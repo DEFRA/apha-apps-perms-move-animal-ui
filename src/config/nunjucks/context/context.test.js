@@ -47,7 +47,7 @@ describe('#context', () => {
             url: '/about'
           }
         ],
-        serviceName: 'apha-apps-perms-move-animal-ui',
+        serviceName: 'Applications and permissions',
         serviceUrl: '/'
       })
     })
@@ -136,7 +136,7 @@ describe('#context cache', () => {
             url: '/about'
           }
         ],
-        serviceName: 'apha-apps-perms-move-animal-ui',
+        serviceName: 'Applications and permissions',
         serviceUrl: '/'
       })
     })

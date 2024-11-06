@@ -22,7 +22,7 @@ describe('#errors', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining('Page not found | apha-apps-perms-move-animal-ui')
+      expect.stringContaining('Applications and permissions')
     )
     expect(statusCode).toBe(statusCodes.notFound)
   })
