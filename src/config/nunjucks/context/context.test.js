@@ -47,7 +47,7 @@ describe('#context', () => {
             url: '/about'
           }
         ],
-        serviceName: 'cdp-node-frontend-template',
+        serviceName: 'apha-apps-perms-move-animal-ui',
         serviceUrl: '/'
       })
     })
@@ -136,7 +136,7 @@ describe('#context cache', () => {
             url: '/about'
           }
         ],
-        serviceName: 'cdp-node-frontend-template',
+        serviceName: 'apha-apps-perms-move-animal-ui',
         serviceUrl: '/'
       })
     })
