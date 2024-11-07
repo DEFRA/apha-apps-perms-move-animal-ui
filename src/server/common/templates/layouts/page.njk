@@ -2,6 +2,7 @@
 
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
+{% from "phaseBanner/macro.njk" import appPhaseBanner %}
 
 {% set mainClasses = "app-main-wrapper" %}
 
@@ -25,6 +26,10 @@
 {% endblock %}
 
 {% block beforeContent %}
+  {{ appPhaseBanner({
+    phase: 'Private beta'
+  })}}
+
   {% if breadcrumbs.length > 1 %}
     {{ appBreadcrumbs({
       items: breadcrumbs
