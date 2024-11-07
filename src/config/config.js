@@ -40,7 +40,7 @@ export const config = convict({
   serviceName: {
     doc: 'Applications Service Name',
     format: String,
-    default: 'apha-apps-perms-move-animal-ui'
+    default: 'Applications and permissions'
   },
   root: {
     doc: 'Project root',
