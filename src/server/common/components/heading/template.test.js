@@ -29,3 +29,7 @@ describe('Heading Component', () => {
     })
   })
 })
+
+/**
+ * @import { CheerioAPI } from 'cheerio'
+ */
