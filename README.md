@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_apha-apps-perms-move-animal-ui&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DEFRA_apha-apps-perms-move-animal-ui)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_apha-apps-perms-move-animal-ui&metric=coverage)](https://sonarcloud.io/summary/new_code?id=DEFRA_apha-apps-perms-move-animal-ui)
 
-Core delivery platform Node.js Frontend Template.
+Frontend to the 'Move animals under disease control restriction' service.
 
 - [Requirements](#requirements)
   - [Node.js](#nodejs)
