@@ -26,7 +26,7 @@ export const toFromFarmPostController = {
         pageTitle: 'Are you moving the cattle on or off your farm?',
         heading: 'Are you moving the cattle on or off your farm?',
         errorMessage: {
-          text: 'Select whether you are moving cattle on or off your farm'
+          text: 'Select if you are moving cattle on or off your farm?'
         }
       })
     }
