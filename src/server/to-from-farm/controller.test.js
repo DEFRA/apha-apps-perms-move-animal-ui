@@ -42,6 +42,13 @@ describe('#xController', () => {
         'Are you moving the cattle on or off your farm? |'
       )
     )
+
+    expect(result).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-radios__input" id="toFromFarm" name="toFromFarm" type="radio" value="on" checked>'
+      )
+    )
+
     expect(statusCode).toBe(statusCodes.ok)
   })
 })
