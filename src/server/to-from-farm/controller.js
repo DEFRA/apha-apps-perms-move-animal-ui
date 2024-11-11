@@ -1,6 +1,5 @@
 /**
  * The first question to start the journey.
-
  * @satisfies {Partial<ServerRoute>}
  */
 export const toFromFarmGetController = {
