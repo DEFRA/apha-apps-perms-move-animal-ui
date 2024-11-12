@@ -3,7 +3,7 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { toFromFarm } from '~/src/server/to-from-farm/index.js'
+import { onOffFarm } from '~/src/server/on-off-farm/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -17,7 +17,7 @@ export const router = {
       await server.register([health])
 
       // Application specific routes, add your own routes here
-      await server.register([home, toFromFarm])
+      await server.register([home, onOffFarm])
 
       // Static assets
       await server.register([serveStaticFiles])
