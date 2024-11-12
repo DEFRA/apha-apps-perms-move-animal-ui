@@ -45,7 +45,13 @@ describe('#onOffFarmController', () => {
 
     expect(result).toEqual(
       expect.stringContaining(
-        '<input class="govuk-radios__input" id="onOffFarm" name="onOffFarm" type="radio" value="on" checked>'
+        '<input class="govuk-radios__input" id="off-farm-radio" name="onOffFarm" type="radio" value="off">'
+      )
+    )
+
+    expect(result).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-radios__input" id="on-farm-radio" name="onOffFarm" type="radio" value="on" checked>'
       )
     )
 

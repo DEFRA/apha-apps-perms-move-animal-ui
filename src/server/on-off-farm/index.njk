@@ -28,10 +28,12 @@
           value: onOffFarm.value,
           items: [
             {
+              id: "on-farm-radio",
               value: "on",
               text: "On the farm"
             },
             {
+              id: "off-farm-radio",
               value: "off",
               text: "Off the farm"
             }
@@ -44,6 +46,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         {{ govukButton({
+          id: "continue-button",
           text: "Continue"
         }) }}
       </div>
