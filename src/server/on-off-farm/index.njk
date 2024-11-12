@@ -1,0 +1,53 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends 'layouts/page.njk' %}
+
+{% block metaBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <form method="POST">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukRadios({
+          name: "onOffFarm",
+          fieldset: {
+            legend: {
+              text: "Are you moving the cattle on or off your farm?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: onOffFarm.value,
+          items: [
+            {
+              value: "on",
+              text: "On the farm"
+            },
+            {
+              value: "off",
+              text: "Off the farm"
+            }
+          ],
+          errorMessage: errorMessage
+        }) }}
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
