@@ -57,6 +57,22 @@ describe('#onOffFarmController', () => {
 
     expect(statusCode).toBe(statusCodes.ok)
   })
+
+  test('Should display an error to the user if no value selected', async () => {
+    const { result, statusCode } = await server.inject({
+      method: 'POST',
+      url: '/to-or-from-own-premises',
+      payload: {}
+    })
+
+    expect(result).toEqual(
+      expect.stringContaining(
+        'Select if you are moving cattle on or off your farm?'
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+  })
 })
 
 /**
