@@ -43,6 +43,8 @@ describe('#onOffFarmController', () => {
       )
     )
 
+    expect(result).toEqual(expect.not.stringContaining('There is a problem'))
+
     expect(result).toEqual(
       expect.stringContaining(
         '<input class="govuk-radios__input" id="off-farm-radio" name="onOffFarm" type="radio" value="off">'
@@ -67,9 +69,11 @@ describe('#onOffFarmController', () => {
 
     expect(result).toEqual(
       expect.stringContaining(
-        'Select if you are moving cattle on or off your farm?'
+        'Select if you are moving cattle on or off your farm'
       )
     )
+
+    expect(result).toEqual(expect.stringContaining('There is a problem'))
 
     expect(statusCode).toBe(statusCodes.ok)
   })
