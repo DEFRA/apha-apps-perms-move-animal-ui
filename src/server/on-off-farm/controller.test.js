@@ -1,10 +1,10 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import {
-  testCrsfProtectedGet,
-  testCrsfProtectedPost,
-  withCrsfProtection
-} from '~/src/server/common/test-helpers/crsf.js'
+  testCsrfProtectedGet,
+  testCsrfProtectedPost,
+  withCsrfProtection
+} from '~/src/server/common/test-helpers/csrf.js'
 
 describe('#onOffFarmController', () => {
   /** @type {Server} */
@@ -33,7 +33,7 @@ describe('#onOffFarmController', () => {
 
   test('Should process the result and provide expected response', async () => {
     const { result, statusCode } = await server.inject(
-      withCrsfProtection({
+      withCsrfProtection({
         method: 'POST',
         url: '/to-or-from-own-premises',
         payload: {
@@ -65,7 +65,7 @@ describe('#onOffFarmController', () => {
 
   test('Should display an error to the user if no value selected', async () => {
     const { result, statusCode } = await server.inject(
-      withCrsfProtection({
+      withCsrfProtection({
         method: 'POST',
         url: '/to-or-from-own-premises'
       })
@@ -82,12 +82,12 @@ describe('#onOffFarmController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  testCrsfProtectedGet(() => server, {
+  testCsrfProtectedGet(() => server, {
     method: 'GET',
     url: '/to-or-from-own-premises'
   })
 
-  testCrsfProtectedPost(() => server, {
+  testCsrfProtectedPost(() => server, {
     method: 'POST',
     url: '/to-or-from-own-premises',
     payload: {

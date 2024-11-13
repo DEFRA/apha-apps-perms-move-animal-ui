@@ -36,13 +36,13 @@ const expectCsrf = (payload, headers) => {
  * @param {function(): Server} serverFn
  * @param {ServerInjectOptions} injectionOptions
  */
-export const testCrsfProtectedPost = (serverFn, injectionOptions) =>
-  test('should reject if experiencing an apparent CRSF attack (they have their session cookie, but no hidden form value)', async () => {
+export const testCsrfProtectedPost = (serverFn, injectionOptions) =>
+  test('should reject if experiencing an apparent csrf attack (they have their session cookie, but no hidden form value)', async () => {
     const { statusCode } = await serverFn().inject({
       ...injectionOptions,
       headers: {
         ...(injectionOptions.headers ?? {}),
-        Cookie: 'crumb=crsf-value'
+        Cookie: 'crumb=csrf-value'
       }
     })
 
@@ -53,8 +53,8 @@ export const testCrsfProtectedPost = (serverFn, injectionOptions) =>
  * @param {function(): Server} serverFn
  * @param {ServerInjectOptions} injectionOptions
  */
-export const testCrsfProtectedGet = (serverFn, injectionOptions) =>
-  test('should reject if experiencing an apparent CRSF attack (they have their session cookie, but no hidden form value)', async () => {
+export const testCsrfProtectedGet = (serverFn, injectionOptions) =>
+  test('should reject if experiencing an apparent csrf attack (they have their session cookie, but no hidden form value)', async () => {
     const { headers, payload } = await serverFn().inject(injectionOptions)
 
     expectCsrf(payload, headers)
@@ -64,17 +64,17 @@ export const testCrsfProtectedGet = (serverFn, injectionOptions) =>
  * @param {ServerInjectOptions} injectionOptions
  * @returns {ServerInjectOptions}
  */
-export const withCrsfProtection = (injectionOptions) => ({
+export const withCsrfProtection = (injectionOptions) => ({
   ...injectionOptions,
   payload: {
     ...(typeof injectionOptions.payload === 'object'
       ? injectionOptions.payload
       : {}),
-    crumb: 'crsf-value'
+    crumb: 'csrf-value'
   },
   headers: {
     ...(injectionOptions.headers ?? {}),
-    Cookie: 'crumb=crsf-value'
+    Cookie: 'crumb=csrf-value'
   }
 })
 
