@@ -3,6 +3,7 @@
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
 {% set mainClasses = "app-main-wrapper" %}
 
@@ -22,7 +23,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {{ pageTitle }} | {{ serviceName }}
+  {{ pageTitle }} 
 {% endblock %}
 
 {% block beforeContent %}
@@ -30,7 +31,7 @@
     tag: {
       text: 'Private beta'
     },
-    html: 'This is a new service – your <a data-testid="feedback-link" class="govuk-link" href="#">feedback</a> will help us to improve it.'
+    html: 'This is a new service. <!-- – your <a data-testid="feedback-link" class="govuk-link" href="#">feedback</a> will help us to improve it.-->'
   }) }}
 
   {% if breadcrumbs.length > 1 %}
@@ -38,6 +39,21 @@
       items: breadcrumbs
     }) }}
   {% endif %}
+
+  {% block metaBeforeContent %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+    <noscript>
+      <style>
+        .govuk-back-link {
+          display: none;
+        }
+      </style>
+    </noscript>
+  {% endblock %}  
 {% endblock %}
 
 {% block content %}{% endblock %}

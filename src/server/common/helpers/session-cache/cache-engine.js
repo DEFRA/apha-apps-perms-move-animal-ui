@@ -18,6 +18,7 @@ export function getCacheEngine(engine) {
 
   if (engine === 'redis') {
     logger.info('Using Redis session cache')
+
     const redisClient = buildRedisClient(config.get('redis'))
     return new CatboxRedis({ client: redisClient })
   }
