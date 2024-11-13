@@ -5,21 +5,21 @@
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-  {% if (errorMessage) %}
-  {{ govukErrorSummary({
-    titleText: "There is a problem",
-    errorList: [
-      {
-        text: errorMessage.text,
-        href: "#on-off-farm-question"
-      }
-    ]
-  }) }}
-  {% endif %}
-
   <form method="POST">
     <div class="govuk-grid-row" id="on-off-farm-question">
       <div class="govuk-grid-column-two-thirds">
+        {% if (errorMessage) %}
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: errorMessage.text,
+                href: "#on-off-farm-question"
+              }
+            ]
+          }) }}
+        {% endif %}
+        
         {{ govukRadios({
           name: "onOffFarm",
           id: "test",
