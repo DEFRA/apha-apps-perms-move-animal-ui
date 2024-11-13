@@ -8,6 +8,7 @@
   <form method="POST">
     <div class="govuk-grid-row" id="on-off-farm-question">
       <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="{{crumb}}">
         {% if (errorMessage) %}
           {{ govukErrorSummary({
             titleText: "There is a problem",
@@ -19,7 +20,7 @@
             ]
           }) }}
         {% endif %}
-        
+
         {{ govukRadios({
           name: "onOffFarm",
           id: "test",

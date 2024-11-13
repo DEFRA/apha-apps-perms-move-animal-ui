@@ -1,6 +1,41 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 
+/**
+ * @param {OutgoingHttpHeaders} headers
+ * @param {string} name
+ * @returns {string}
+ */
+const findCookie = (headers, name) => {
+  const setCookie = headers['set-cookie']
+
+  /** @type {string[] | undefined} */
+  const cookies = typeof setCookie === 'string' ? [setCookie] : setCookie
+  return cookies?.find((h) => h?.includes(`${name}=`)) ?? ''
+}
+
+/**
+ * @param {string} cookieString
+ */
+const extractCookieValue = (cookieString) =>
+  cookieString.split('=')[1].split(';')[0]
+
+/**
+ * @param {string} payload
+ * @param {OutgoingHttpHeaders} headers
+ */
+const expectCsrf = (payload, headers) => {
+  const token = extractCookieValue(findCookie(headers, 'crumb'))
+  expect(token).not.toHaveLength(0)
+  expect(payload).toContain(
+    `<input type="hidden" name="crumb" value="${token}"`
+  )
+}
+
+/**
+ * @import { OutgoingHttpHeaders } from 'http'
+ */
+
 describe('#onOffFarmController', () => {
   /** @type {Server} */
   let server
@@ -15,14 +50,15 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should provide expected response', async () => {
-    const { result, statusCode } = await server.inject({
+    const { payload, headers, statusCode } = await server.inject({
       method: 'GET',
       url: '/to-or-from-own-premises'
     })
 
-    expect(result).toEqual(
+    expect(payload).toEqual(
       expect.stringContaining('Are you moving the cattle on or off your farm?')
     )
+    expectCsrf(payload, headers)
     expect(statusCode).toBe(statusCodes.ok)
   })
 
@@ -31,7 +67,11 @@ describe('#onOffFarmController', () => {
       method: 'POST',
       url: '/to-or-from-own-premises',
       payload: {
-        onOffFarm: 'on'
+        onOffFarm: 'on',
+        crumb: 'crsf-value'
+      },
+      headers: {
+        Cookie: 'crumb=crsf-value'
       }
     })
 
@@ -60,7 +100,12 @@ describe('#onOffFarmController', () => {
     const { result, statusCode } = await server.inject({
       method: 'POST',
       url: '/to-or-from-own-premises',
-      payload: {}
+      payload: {
+        crumb: 'crsf-value'
+      },
+      headers: {
+        Cookie: 'crumb=crsf-value'
+      }
     })
 
     expect(result).toEqual(
@@ -72,6 +117,21 @@ describe('#onOffFarmController', () => {
     expect(result).toEqual(expect.stringContaining('There is a problem'))
 
     expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  test('should reject if experiencing an apparent CRSF attack (they have their session cookie, but no hidden form value)', async () => {
+    const { statusCode } = await server.inject({
+      method: 'POST',
+      url: '/to-or-from-own-premises',
+      payload: {
+        onOffFarm: 'on'
+      },
+      headers: {
+        Cookie: 'crumb=crsf-value'
+      }
+    })
+
+    expect(statusCode).toEqual(statusCodes.forbidden)
   })
 })
 
