@@ -4,7 +4,6 @@
  */
 export const onOffFarmGetController = {
   handler(req, h) {
-    req.yar.set('animal', 'cow')
     const onOffFarm = req.yar.get('onOffFarm')
 
     return h.view('on-off-farm/index', {
@@ -17,9 +16,14 @@ export const onOffFarmGetController = {
   }
 }
 
+/**
+ * Respond to the first question.
+ * @satisfies {Partial<ServerRoute>}
+ * @param req
+ */
 export const onOffFarmPostController = {
   handler(req, res) {
-    const { onOffFarm } = req.payload
+    const { onOffFarm } = /** @type {OnOffFarmPayload} */ (req.payload)
 
     if (!onOffFarm) {
       return res.view('on-off-farm/index', {
@@ -44,5 +48,6 @@ export const onOffFarmPostController = {
 }
 
 /**
- * @import { ServerRoute } from '@hapi/hapi'
+ * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
+ * @import { ServerRoute, Request } from '@hapi/hapi'
  */

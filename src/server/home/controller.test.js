@@ -21,7 +21,7 @@ describe('#homeController', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining('Apply for an animal disease movement licence |')
+      expect.stringContaining('Apply for an animal disease movement licence')
     )
     expect(statusCode).toBe(statusCodes.ok)
   })

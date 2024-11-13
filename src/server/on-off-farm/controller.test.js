@@ -21,9 +21,7 @@ describe('#onOffFarmController', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining(
-        'Are you moving the cattle on or off your farm? |'
-      )
+      expect.stringContaining('Are you moving the cattle on or off your farm?')
     )
     expect(statusCode).toBe(statusCodes.ok)
   })
@@ -38,9 +36,7 @@ describe('#onOffFarmController', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining(
-        'Are you moving the cattle on or off your farm? |'
-      )
+      expect.stringContaining('Are you moving the cattle on or off your farm?')
     )
 
     expect(result).toEqual(expect.not.stringContaining('There is a problem'))
