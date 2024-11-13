@@ -21,18 +21,6 @@ const extractCookieValue = (cookieString) =>
   cookieString.split('=')[1].split(';')[0]
 
 /**
- * @param {string} payload
- * @param {OutgoingHttpHeaders} headers
- */
-const expectCsrf = (payload, headers) => {
-  const token = extractCookieValue(findCookie(headers, 'crumb'))
-  expect(token).not.toHaveLength(0)
-  expect(payload).toContain(
-    `<input type="hidden" name="crumb" value="${token}"`
-  )
-}
-
-/**
  * @param {function(): Server} serverFn
  * @param {ServerInjectOptions} injectionOptions
  */
@@ -54,10 +42,14 @@ export const testCsrfProtectedPost = (serverFn, injectionOptions) =>
  * @param {ServerInjectOptions} injectionOptions
  */
 export const testCsrfProtectedGet = (serverFn, injectionOptions) =>
-  test('should reject if experiencing an apparent csrf attack (they have their session cookie, but no hidden form value)', async () => {
+  test('should contain a cookie with a set CSRF value, and contain a hidden form field to submit that CSRF back to the server', async () => {
     const { headers, payload } = await serverFn().inject(injectionOptions)
 
-    expectCsrf(payload, headers)
+    const token = extractCookieValue(findCookie(headers, 'crumb'))
+    expect(token).not.toHaveLength(0)
+    expect(payload).toContain(
+      `<input type="hidden" name="crumb" value="${token}"`
+    )
   })
 
 /**
