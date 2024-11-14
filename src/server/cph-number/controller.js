@@ -43,6 +43,7 @@ export const postController = {
     }
 
     if (errorMessage) {
+      req.yar.clear('cphNumber')
       return res.view('cph-number/index', {
         pageTitle,
         heading: pageTitle,

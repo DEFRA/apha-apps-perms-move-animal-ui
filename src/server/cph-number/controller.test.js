@@ -40,7 +40,7 @@ describe('#onOffFarmController', () => {
 
     expect(result).toEqual(
       expect.stringContaining(
-        '<input class="govuk-input govuk-!-width-one-quarter" id="cph-number" name="cphNumber" type="text" value="12/456/7899" aria-describedby="cph-number-hint" autocomplete="cph-number">'
+        '<input class="govuk-input govuk-input--width-10" id="cph-number" name="cphNumber" type="text" value="12/456/7899" aria-describedby="cph-number-hint" autocomplete="cph-number">'
       )
     )
 
