@@ -37,6 +37,10 @@ export const onOffFarmPostController = {
 
     req.yar.set('onOffFarm', onOffFarm)
 
+    if (onOffFarm === 'off') {
+      return res.redirect('/cph-number')
+    }
+
     return res.view('on-off-farm/index', {
       pageTitle: 'Are you moving the cattle on or off your farm?',
       heading: 'Are you moving the cattle on or off your farm?',

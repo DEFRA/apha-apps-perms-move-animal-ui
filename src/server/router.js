@@ -4,6 +4,7 @@ import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
 import { onOffFarm } from '~/src/server/on-off-farm/index.js'
+import { cphNumber } from '~/src/server/cph-number/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -17,7 +18,7 @@ export const router = {
       await server.register([health])
 
       // Application specific routes, add your own routes here
-      await server.register([home, onOffFarm])
+      await server.register([home, onOffFarm, cphNumber])
 
       // Static assets
       await server.register([serveStaticFiles])
