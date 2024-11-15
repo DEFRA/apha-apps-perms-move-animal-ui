@@ -27,7 +27,7 @@ export const onOffFarmPostController = {
 
     if (!onOffFarm) {
       return res.view('on-off-farm/index', {
-        pageTitle: 'Are you moving the cattle on or off your farm?',
+        pageTitle: 'Error: Are you moving the cattle on or off your farm?',
         heading: 'Are you moving the cattle on or off your farm?',
         errorMessage: {
           text: 'Select if you are moving cattle on or off your farm'
@@ -36,6 +36,10 @@ export const onOffFarmPostController = {
     }
 
     req.yar.set('onOffFarm', onOffFarm)
+
+    if (onOffFarm === 'off') {
+      return res.redirect('/cph-number')
+    }
 
     return res.view('on-off-farm/index', {
       pageTitle: 'Are you moving the cattle on or off your farm?',
