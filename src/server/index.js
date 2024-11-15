@@ -10,6 +10,7 @@ import { secureContext } from '~/src/server/common/helpers/secure-context/index.
 import { sessionCache } from '~/src/server/common/helpers/session-cache/session-cache.js'
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
+import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -53,6 +54,7 @@ export async function createServer() {
     pulse,
     sessionCache,
     nunjucksConfig,
+    csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js
   ])
 

@@ -1,5 +1,10 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+import {
+  testCsrfProtectedGet,
+  testCsrfProtectedPost,
+  withCsrfProtection
+} from '~/src/server/common/test-helpers/csrf.js'
 
 describe('#onOffFarmController', () => {
   /** @type {Server} */
@@ -15,25 +20,27 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should provide expected response', async () => {
-    const { result, statusCode } = await server.inject({
+    const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/to-or-from-own-premises'
     })
 
-    expect(result).toEqual(
+    expect(payload).toEqual(
       expect.stringContaining('Are you moving the cattle on or off your farm?')
     )
     expect(statusCode).toBe(statusCodes.ok)
   })
 
   test('Should process the result and provide expected response', async () => {
-    const { result, statusCode } = await server.inject({
-      method: 'POST',
-      url: '/to-or-from-own-premises',
-      payload: {
-        onOffFarm: 'on'
-      }
-    })
+    const { result, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/to-or-from-own-premises',
+        payload: {
+          onOffFarm: 'on'
+        }
+      })
+    )
 
     expect(result).toEqual(
       expect.stringContaining('Are you moving the cattle on or off your farm?')
@@ -57,11 +64,12 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should display an error to the user if no value selected', async () => {
-    const { result, statusCode } = await server.inject({
-      method: 'POST',
-      url: '/to-or-from-own-premises',
-      payload: {}
-    })
+    const { result, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/to-or-from-own-premises'
+      })
+    )
 
     expect(result).toEqual(
       expect.stringContaining(
@@ -72,6 +80,19 @@ describe('#onOffFarmController', () => {
     expect(result).toEqual(expect.stringContaining('There is a problem'))
 
     expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  testCsrfProtectedGet(() => server, {
+    method: 'GET',
+    url: '/to-or-from-own-premises'
+  })
+
+  testCsrfProtectedPost(() => server, {
+    method: 'POST',
+    url: '/to-or-from-own-premises',
+    payload: {
+      onOffFarm: 'on'
+    }
   })
 })
 
