@@ -2,16 +2,23 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 /* global expect, test */
 
 /**
+ * @param {string | string[] | undefined} cookie
+ * @returns {string[]}
+ */
+const normaliseCookieHeader = (cookie) => {
+  if (cookie === undefined) return []
+  if (!Array.isArray(cookie)) return [cookie]
+  return cookie
+}
+
+/**
  * @param {OutgoingHttpHeaders} headers
  * @param {string} name
- * @returns {string}
+ * @returns {string | undefined}
  */
 const findCookie = (headers, name) => {
-  const setCookie = headers['set-cookie']
-
-  /** @type {string[] | undefined} */
-  const cookies = typeof setCookie === 'string' ? [setCookie] : setCookie
-  return cookies?.find((h) => h?.includes(`${name}=`)) ?? ''
+  const cookies = normaliseCookieHeader(headers['set-cookie'])
+  return cookies?.find((h) => h?.includes(`${name}=`))
 }
 
 /**
@@ -45,7 +52,7 @@ export const testCsrfProtectedGet = (serverFn, injectionOptions) =>
   test('should contain a cookie with a set CSRF value, and contain a hidden form field to submit that CSRF back to the server', async () => {
     const { headers, payload } = await serverFn().inject(injectionOptions)
 
-    const token = extractCookieValue(findCookie(headers, 'crumb'))
+    const token = extractCookieValue(findCookie(headers, 'crumb') ?? '')
     expect(token).not.toHaveLength(0)
     expect(payload).toContain(
       `<input type="hidden" name="crumb" value="${token}"`
