@@ -6,6 +6,7 @@ import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files
 import { onOffFarm } from '~/src/server/on-off-farm/index.js'
 import { cphNumber } from '~/src/server/cph-number/index.js'
 import { exitPage } from './exit-page/index.js'
+
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
