@@ -2,7 +2,7 @@ export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
 
 /**
- * The first question to start the journey.
+ * CPH number question.
  * @satisfies {Partial<ServerRoute>}
  */
 export const getController = {
@@ -20,7 +20,7 @@ export const getController = {
 }
 
 /**
- * Respond to the first question.
+ * Respond to the CPH number.
  * @satisfies {Partial<ServerRoute>}
  * @param req
  */
@@ -45,8 +45,11 @@ export const postController = {
     if (errorMessage) {
       req.yar.clear('cphNumber')
       return res.view('cph-number/index', {
-        pageTitle,
+        pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
+        cphNumber: {
+          value: cphNumber
+        },
         errorMessage
       })
     }

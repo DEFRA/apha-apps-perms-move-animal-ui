@@ -54,7 +54,7 @@ describe('#onOffFarmController', () => {
       payload: {}
     })
 
-    expect(result).toEqual(expect.stringContaining(pageTitle))
+    expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
 
     expect(result).toEqual(expect.stringContaining('There is a problem'))
     expect(result).toEqual(
@@ -73,7 +73,7 @@ describe('#onOffFarmController', () => {
       }
     })
 
-    expect(result).toEqual(expect.stringContaining(pageTitle))
+    expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
 
     expect(result).toEqual(expect.stringContaining('There is a problem'))
     expect(result).toEqual(
