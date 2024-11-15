@@ -1,6 +1,7 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { pageTitle } from './controller.js'
+import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 
 describe('#onOffFarmController', () => {
   /** @type {Server} */
@@ -26,13 +27,15 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should process the result and provide expected response', async () => {
-    const { result, statusCode } = await server.inject({
-      method: 'POST',
-      url: '/cph-number',
-      payload: {
-        cphNumber: '12/456/7899'
-      }
-    })
+    const { result, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/cph-number',
+        payload: {
+          cphNumber: '12/456/7899'
+        }
+      })
+    )
 
     expect(result).toEqual(expect.stringContaining(pageTitle))
 
@@ -48,11 +51,13 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should display an error to the user if no value entered', async () => {
-    const { result, statusCode } = await server.inject({
-      method: 'POST',
-      url: '/cph-number',
-      payload: {}
-    })
+    const { result, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/cph-number',
+        payload: {}
+      })
+    )
 
     expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
 
@@ -65,13 +70,15 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should display an error to the user entered malformed CPH', async () => {
-    const { result, statusCode } = await server.inject({
-      method: 'POST',
-      url: '/cph-number',
-      payload: {
-        cphNumber: 'invalid format'
-      }
-    })
+    const { result, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/cph-number',
+        payload: {
+          cphNumber: 'invalid format'
+        }
+      })
+    )
 
     expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
 
