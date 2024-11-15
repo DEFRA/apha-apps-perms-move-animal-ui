@@ -31,36 +31,38 @@ describe('#onOffFarmController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('Should process the result and provide expected response', async () => {
-    const { result, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/to-or-from-own-premises',
-        payload: {
-          onOffFarm: 'on'
-        }
-      })
-    )
-
-    expect(result).toEqual(
-      expect.stringContaining('Are you moving the cattle on or off your farm?')
-    )
-
-    expect(result).toEqual(expect.not.stringContaining('There is a problem'))
-
-    expect(result).toEqual(
-      expect.stringContaining(
-        '<input class="govuk-radios__input" id="off-farm-radio" name="onOffFarm" type="radio" value="off">'
+  describe('Should process the result and provide expected response', () => {
+    test('should redirect to cph number page', async () => {
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection({
+          method: 'POST',
+          url: '/to-or-from-own-premises',
+          payload: {
+            onOffFarm: 'off'
+          }
+        })
       )
-    )
 
-    expect(result).toEqual(
-      expect.stringContaining(
-        '<input class="govuk-radios__input" id="on-farm-radio" name="onOffFarm" type="radio" value="on" checked>'
+      expect(headers.location).toBe('/cph-number')
+
+      expect(statusCode).toBe(statusCodes.redirect)
+    })
+
+    test('should redirect to exit page', async () => {
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection({
+          method: 'POST',
+          url: '/to-or-from-own-premises',
+          payload: {
+            onOffFarm: 'on'
+          }
+        })
       )
-    )
 
-    expect(statusCode).toBe(statusCodes.ok)
+      expect(headers.location).toBe('/exit-page')
+
+      expect(statusCode).toBe(statusCodes.redirect)
+    })
   })
 
   test('Should display an error to the user if no value selected', async () => {
