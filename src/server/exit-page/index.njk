@@ -1,0 +1,35 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+            <h1 class="gem-c-title__text govuk-heading-xl">
+                {{ heading }}
+            </h1>
+        </div>
+
+        <p>
+          This service is currently only available for movements off your farm or premises.
+        </p>
+        
+        <p>
+          You need to complete and submit the current form.
+        </p>
+        
+        <p>
+          <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
+            View the application form
+          </a> 
+          on 
+          <a href="https://www.gov.uk/">
+            GOV.UK
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
