@@ -11,7 +11,7 @@ export const onOffFarmGetController = {
     const onOffFarm = req.yar.get('onOffFarm')
 
     return h.view(indexView, {
-      pageTitle: pageTitle,
+      pageTitle,
       heading: pageHeading,
       onOffFarm: {
         value: onOffFarm
@@ -46,7 +46,7 @@ export const onOffFarmPostController = {
     }
 
     return res.view(indexView, {
-      pageTitle: pageTitle,
+      pageTitle,
       heading: pageHeading,
       onOffFarm: {
         value: onOffFarm
