@@ -1,5 +1,6 @@
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+const indexView = 'cph-number/index'
 
 /**
  * CPH number question.
@@ -44,7 +45,7 @@ export const postController = {
 
     if (errorMessage) {
       req.yar.clear('cphNumber')
-      return res.view('cph-number/index', {
+      return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
@@ -56,7 +57,7 @@ export const postController = {
 
     req.yar.set('cphNumber', cphNumber)
 
-    return res.view('cph-number/index', {
+    return res.view(indexView, {
       pageTitle,
       heading: pageTitle,
       cphNumber: {

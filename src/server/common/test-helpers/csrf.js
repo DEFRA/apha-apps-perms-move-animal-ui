@@ -6,8 +6,12 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
  * @returns {string[]}
  */
 const normaliseCookieHeader = (cookie) => {
-  if (cookie === undefined) return []
-  if (!Array.isArray(cookie)) return [cookie]
+  if (cookie === undefined) {
+    return []
+  }
+  if (!Array.isArray(cookie)) {
+    return [cookie]
+  }
   return cookie
 }
 
