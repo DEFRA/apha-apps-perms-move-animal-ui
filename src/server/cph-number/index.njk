@@ -10,16 +10,10 @@
   {% if (errorMessage) %}
     {{ govukErrorSummary({
       titleText: "There is a problem",
-      attributes: {
-        'data-testid': 'foo'
-      },
       errorList: [
         {
           text: errorMessage.text,
-          href: "#cph-number-question",
-          attributes: {
-            'data-testid': 'bar'
-          }
+          href: "#cph-number-question"
         }
       ]
     }) }}
