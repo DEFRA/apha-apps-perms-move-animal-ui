@@ -2,6 +2,7 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
+import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
 describe('#onOffFarmController', () => {
   /** @type {Server} */
@@ -17,17 +18,17 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should provide expected response', async () => {
-    const { result, statusCode } = await server.inject({
+    const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/cph-number'
     })
 
-    expect(result).toEqual(expect.stringContaining(pageTitle))
+    expect(parseDocument(payload).title).toEqual(pageTitle)
     expect(statusCode).toBe(statusCodes.ok)
   })
 
   test('Should process the result and provide expected response', async () => {
-    const { result, statusCode } = await server.inject(
+    const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
         url: '/cph-number',
@@ -37,11 +38,11 @@ describe('#onOffFarmController', () => {
       })
     )
 
-    expect(result).toEqual(expect.stringContaining(pageTitle))
+    expect(parseDocument(payload).title).toEqual(pageTitle)
 
-    expect(result).toEqual(expect.not.stringContaining('There is a problem'))
+    expect(payload).toEqual(expect.not.stringContaining('There is a problem'))
 
-    expect(result).toEqual(
+    expect(payload).toEqual(
       expect.stringContaining(
         '<input class="govuk-input govuk-input--width-10" id="cph-number" name="cphNumber" type="text" value="12/456/7899" aria-describedby="cph-number-hint" autocomplete="cph-number">'
       )
@@ -51,7 +52,7 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should display an error to the user if no value entered', async () => {
-    const { result, statusCode } = await server.inject(
+    const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
         url: '/cph-number',
@@ -59,10 +60,10 @@ describe('#onOffFarmController', () => {
       })
     )
 
-    expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
+    expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
 
-    expect(result).toEqual(expect.stringContaining('There is a problem'))
-    expect(result).toEqual(
+    expect(payload).toEqual(expect.stringContaining('There is a problem'))
+    expect(payload).toEqual(
       expect.stringContaining('Enter the farm or premises CPH number')
     )
 
@@ -70,7 +71,7 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should display an error to the user entered malformed CPH', async () => {
-    const { result, statusCode } = await server.inject(
+    const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
         url: '/cph-number',
@@ -80,10 +81,10 @@ describe('#onOffFarmController', () => {
       })
     )
 
-    expect(result).toEqual(expect.stringContaining(`Error: ${pageTitle}`))
+    expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
 
-    expect(result).toEqual(expect.stringContaining('There is a problem'))
-    expect(result).toEqual(
+    expect(payload).toEqual(expect.stringContaining('There is a problem'))
+    expect(payload).toEqual(
       expect.stringContaining(
         'Enter the CPH number in the correct format, for example, 12/345/6789'
       )
