@@ -6,7 +6,7 @@
 export const exitPageController = {
   handler(_request, h) {
     return h.view('exit-page/index', {
-      pageTitle: 'Apply for an animal disease movement licence',
+      pageTitle: 'This service is not available for your movement type',
       heading: 'This service is not available for your movement type'
     })
   }
