@@ -11,7 +11,7 @@
       errorList: [
         {
           text: errorMessage.text,
-          href: "#on-off-farm-question"
+          href: "#on-farm-radio"
         }
       ]
     }) }}
@@ -19,10 +19,10 @@
 
   {{ govukRadios({
     name: "onOffFarm",
-    id: "test",
+    id: "on-off-farm",
     fieldset: {
       legend: {
-        text: "Are you moving the cattle on or off your farm?",
+        text: "Are you moving the cattle on or off your farm or premises?",
         isPageHeading: true,
         classes: "govuk-fieldset__legend--l"
       }
