@@ -30,7 +30,9 @@ export const getController = {
 export const postController = {
   handler(req, res) {
     const { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
-    const [isValid, message] = validator(cphNumber)
+    // Remove whitespace from cphNumber
+    const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
+    const [isValid, message] = validator(input)
 
     if (!isValid) {
       req.yar.clear('cphNumber')
@@ -38,7 +40,7 @@ export const postController = {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
-          value: cphNumber
+          value: input
         },
         errorMessage: {
           text: message
@@ -46,13 +48,13 @@ export const postController = {
       })
     }
 
-    req.yar.set('cphNumber', cphNumber)
+    req.yar.set('cphNumber', input)
 
     return res.view(indexView, {
       pageTitle,
       heading: pageTitle,
       cphNumber: {
-        value: cphNumber
+        value: input
       }
     })
   }
