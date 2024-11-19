@@ -46,6 +46,14 @@ export const onOffFarmPostController = {
         return res.redirect('/cph-number')
       case 'on':
         return res.redirect('/exit-page')
+      default:
+        return res.view(indexView, {
+          pageTitle: `Error: ${pageTitle}`,
+          heading: pageHeading,
+          errorMessage: {
+            text: 'Select if you are moving cattle on or off your farm'
+          }
+        })
     }
   }
 }
