@@ -41,17 +41,12 @@ export const onOffFarmPostController = {
 
     req.yar.set('onOffFarm', onOffFarm)
 
-    if (onOffFarm === 'off') {
-      return res.redirect('/cph-number')
+    switch (onOffFarm) {
+      case 'off':
+        return res.redirect('/cph-number')
+      case 'on':
+        return res.redirect('/exit-page')
     }
-
-    return res.view(indexView, {
-      pageTitle,
-      heading: pageHeading,
-      onOffFarm: {
-        value: onOffFarm
-      }
-    })
   }
 }
 

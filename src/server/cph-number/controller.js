@@ -29,7 +29,10 @@ export const postController = {
   handler(req, res) {
     const valid = /([0-9]{2})\/([0-9]{3})\/([0-9]{4})/g
     let errorMessage = null
-    const { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
+    let { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
+
+    // Remove whitespace from cphNumber
+    cphNumber = cphNumber ? cphNumber.replace(/\s+/g, '') : ''
 
     if (!cphNumber) {
       errorMessage = {
