@@ -41,17 +41,20 @@ export const onOffFarmPostController = {
 
     req.yar.set('onOffFarm', onOffFarm)
 
-    if (onOffFarm === 'off') {
-      return res.redirect('/cph-number')
+    switch (onOffFarm) {
+      case 'off':
+        return res.redirect('/cph-number')
+      case 'on':
+        return res.redirect('/exit-page')
+      default:
+        return res.view(indexView, {
+          pageTitle: `Error: ${pageTitle}`,
+          heading: pageHeading,
+          errorMessage: {
+            text: 'Select if you are moving cattle on or off your farm'
+          }
+        })
     }
-
-    return res.view(indexView, {
-      pageTitle,
-      heading: pageHeading,
-      onOffFarm: {
-        value: onOffFarm
-      }
-    })
   }
 }
 
