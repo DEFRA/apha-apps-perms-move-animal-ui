@@ -28,7 +28,7 @@ describe('#onOffFarmController', () => {
 
     const document = parseDocument(payload)
     expect(document.title).toBe(
-      'Are you moving the cattle on or off your farm?'
+      'Are you moving the cattle on or off your farm or premises?'
     )
     expect(statusCode).toBe(statusCodes.ok)
   })
@@ -76,7 +76,7 @@ describe('#onOffFarmController', () => {
     )
 
     expect(parseDocument(payload).title).toBe(
-      'Error: Are you moving the cattle on or off your farm?'
+      'Error: Are you moving the cattle on or off your farm or premises?'
     )
     expect(payload).toEqual(expect.stringContaining('There is a problem'))
 
