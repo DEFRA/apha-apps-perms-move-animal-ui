@@ -1,4 +1,7 @@
-export default (/** @type {OriginAddress} */ originAddress) => {
+/**
+ * @param {OriginAddress} originAddress
+ */
+export default (originAddress) => {
   const { addressLine1, addressTown, addressPostcode } = originAddress
 
   let valid = true
