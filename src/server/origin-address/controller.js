@@ -51,6 +51,10 @@ export const originAddressPostController = {
         heading: pageHeading,
         values: req.payload,
         errorMessages: Object.entries(errors).map(([key, value]) => {
+          if (!value) {
+            return null
+          }
+
           return {
             text: value.text,
             href: `#${key}`
