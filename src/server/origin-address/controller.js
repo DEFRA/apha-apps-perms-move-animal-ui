@@ -33,7 +33,7 @@ export const originAddressPostController = {
       addressTown,
       addressCounty,
       addressPostcode
-    } = /** @type {OriginAddressPayload} */ (req.payload)
+    } = /** @type {OriginAddress} */ (req.payload)
 
     const originAddress = {
       addressLine1,
@@ -43,19 +43,20 @@ export const originAddressPostController = {
       addressPostcode
     }
 
-    const [isValid, errors] = validator(originAddress)
+    const { isValid, errors } = validator(originAddress)
+    const errorMessages =
+      errors &&
+      Object.entries(errors).map(([key, value]) => ({
+        text: value.text,
+        href: `#${key}`
+      }))
 
     if (!isValid) {
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
         values: req.payload,
-        errorMessages: Object.entries(errors).map(([key, value]) => {
-          return {
-            text: value.text,
-            href: `#${key}`
-          }
-        }),
+        errorMessages,
         errors
       })
     }
@@ -75,4 +76,5 @@ export const originAddressPostController = {
  *  addressPostcode: string;
  * }} OriginAddressPayload
  * @import { ServerRoute } from '@hapi/hapi'
+ * @import { OriginAddress } from './validator.js'
  */
