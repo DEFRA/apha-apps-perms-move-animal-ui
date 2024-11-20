@@ -62,5 +62,11 @@ export default (originAddress) => {
 }
 
 /**
- * @import { OriginAddress } from './controller.js'
+ * export @typedef {{
+ *  addressLine1: string;
+ *  addressLine2: string;
+ *  addressTown: string;
+ *  addressCounty: string;
+ *  addressPostcode: string;
+ * }} OriginAddress
  */
