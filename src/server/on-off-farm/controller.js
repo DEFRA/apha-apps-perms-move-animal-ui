@@ -1,5 +1,5 @@
-const pageTitle = 'Are you moving the cattle on or off your farm?'
-const pageHeading = 'Are you moving the cattle on or off your farm?'
+const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
+const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'on-off-farm/index.njk'
 
 /**
@@ -34,7 +34,7 @@ export const onOffFarmPostController = {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
         errorMessage: {
-          text: 'Select if you are moving cattle on or off your farm'
+          text: 'Select if you are moving cattle on or off your farm or premises'
         }
       })
     }
@@ -51,7 +51,7 @@ export const onOffFarmPostController = {
           pageTitle: `Error: ${pageTitle}`,
           heading: pageHeading,
           errorMessage: {
-            text: 'Select if you are moving cattle on or off your farm'
+            text: 'Select if you are moving cattle on or off your farm or premises'
           }
         })
     }
