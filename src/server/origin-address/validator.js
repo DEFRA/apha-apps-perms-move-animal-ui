@@ -18,7 +18,7 @@ export default (/** @type {OriginAddress} */ originAddress) => {
 
   if (!validateLength(originAddress?.addressLine2, false)) {
     valid = false
-    errors.addressLine1 = {
+    errors.addressLine2 = {
       text: 'Address line 2 must be no longer than 255 characters'
     }
   }
@@ -30,8 +30,8 @@ export default (/** @type {OriginAddress} */ originAddress) => {
     }
   } else if (!validateLength(originAddress.addressTown)) {
     valid = false
-    errors.addressLine1 = {
-      text: 'Address line 2 must be no longer than 255 characters'
+    errors.addressTown = {
+      text: 'Address town must be no longer than 255 characters'
     }
   }
 
@@ -53,7 +53,10 @@ export default (/** @type {OriginAddress} */ originAddress) => {
 /**
  * Validate that input is present and between 1 and 255 characters.
  * @param {string} input
- * @returns {boolean} - Returns a tuple where the first element is a boolean indicating validity, and the second element is an error message if invalid.
+ * @param {boolean} [required=true]
+ * @param {number} [min=1]
+ * @param {number} [max=255]
+ * @returns {boolean}
  */
 export function validateLength(input, required = true, min = 1, max = 255) {
   if (!input && !required) {
@@ -69,11 +72,10 @@ export function validateLength(input, required = true, min = 1, max = 255) {
 /**
  * Validate that the postcode is in a valid format.
  * @param {string} postcode
- * @returns {boolean} - Returns whether postcode is valid or not
+ * @returns {boolean} - Returns whether postcode is valid
  */
 export function validatePostcode(postcode) {
-  const postcodeRegex =
-    /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/
+  const postcodeRegex = /^(GIR 0AA|[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2})$/i
 
   if (!postcodeRegex.test(postcode)) {
     return false
