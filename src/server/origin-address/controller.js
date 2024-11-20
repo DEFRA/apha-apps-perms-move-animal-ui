@@ -68,13 +68,13 @@ export const originAddressPostController = {
 }
 
 /**
- * @typedef {{
+ * export @typedef {{
  *  addressLine1: string;
  *  addressLine2: string;
  *  addressTown: string;
  *  addressCounty: string;
  *  addressPostcode: string;
- * }} OriginAddressPayload
+ * }} OriginAddress
  * @import { ServerRoute } from '@hapi/hapi'
  * @import { OriginAddress } from './validator.js'
  */
