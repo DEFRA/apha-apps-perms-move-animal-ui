@@ -17,6 +17,8 @@ export default (originAddress) => {
     errors.addressLine1 = {
       text: 'Address line 1 must be no longer than 255 characters'
     }
+  } else {
+    errors.addressLine1 = null
   }
 
   if (!validateLength(originAddress?.addressLine2, false)) {
@@ -37,7 +39,7 @@ export default (originAddress) => {
       text: 'Address town must be no longer than 255 characters'
     }
   } else {
-    errors.addressTown = undefined
+    errors.addressTown = null
   }
 
   if (!addressPostcode) {
@@ -50,6 +52,8 @@ export default (originAddress) => {
     errors.addressPostcode = {
       text: 'Enter a full UK postcode'
     }
+  } else {
+    errors.addressPostcode = null
   }
 
   return [valid, errors]
