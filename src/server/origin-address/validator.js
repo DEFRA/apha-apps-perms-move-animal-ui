@@ -1,5 +1,5 @@
 /**
- * @param {OriginAddressPayload} originAddress
+ * @param {OriginAddress} originAddress
  */
 export default (originAddress) => {
   const { addressLine1, addressTown, addressPostcode } = originAddress
@@ -87,5 +87,5 @@ export function validatePostcode(postcode) {
 }
 
 /**
- * @import { OriginAddressPayload } from './controller.js'
+ * @import { OriginAddress } from './controller.js'
  */

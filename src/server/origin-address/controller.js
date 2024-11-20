@@ -7,7 +7,6 @@ export const pageHeading =
   'What is the address of your farm or premises where the animals are moving off?'
 
 /**
- * The first question to start the journey.
  * @satisfies {Partial<ServerRoute>}
  */
 export const originAddressGetController = {
@@ -23,7 +22,6 @@ export const originAddressGetController = {
 }
 
 /**
- * Respond to the entry of origin address details.
  * @satisfies {Partial<ServerRoute>}
  * @param req
  */
@@ -35,7 +33,7 @@ export const originAddressPostController = {
       addressTown,
       addressCounty,
       addressPostcode
-    } = /** @type {OriginAddressPayload} */ (req.payload)
+    } = /** @type {OriginAddress} */ (req.payload)
 
     const originAddress = {
       addressLine1,
@@ -75,7 +73,6 @@ export const originAddressPostController = {
  *  addressTown: string;
  *  addressCounty: string;
  *  addressPostcode: string;
- * }} OriginAddressPayload
- * @exports OriginAddressPayload
+ * }} OriginAddress
  * @import { ServerRoute } from '@hapi/hapi'
  */
