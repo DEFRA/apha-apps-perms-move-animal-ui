@@ -4,7 +4,7 @@ import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
-describe('#onOffFarmController', () => {
+describe('#cphNumber', () => {
   /** @type {Server} */
   let server
 
@@ -28,7 +28,7 @@ describe('#onOffFarmController', () => {
   })
 
   test('Should process the result and provide expected response', async () => {
-    const { payload, statusCode } = await server.inject(
+    const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
         url: '/cph-number',
@@ -38,17 +38,9 @@ describe('#onOffFarmController', () => {
       })
     )
 
-    expect(parseDocument(payload).title).toEqual(pageTitle)
+    expect(statusCode).toBe(statusCodes.redirect)
 
-    expect(payload).toEqual(expect.not.stringContaining('There is a problem'))
-
-    expect(payload).toEqual(
-      expect.stringContaining(
-        '<input class="govuk-input govuk-input--width-10" id="cph-number" name="cphNumber" type="text" value="12/456/7899" aria-describedby="cph-number-hint" autocomplete="cph-number">'
-      )
-    )
-
-    expect(statusCode).toBe(statusCodes.ok)
+    expect(headers.location).toBe('/origin-address')
   })
 
   test('Should display an error to the user if no value entered', async () => {
