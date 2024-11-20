@@ -36,6 +36,8 @@ export default (originAddress) => {
     errors.addressTown = {
       text: 'Address town must be no longer than 255 characters'
     }
+  } else {
+    errors.addressTown = undefined
   }
 
   if (!addressPostcode) {
