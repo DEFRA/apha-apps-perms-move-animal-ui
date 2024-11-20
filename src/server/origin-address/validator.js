@@ -14,7 +14,7 @@ const postcodeRequired = 'Enter postcode'
 const addressSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
-    .max(255)
+    .max(maxLength)
     .messages({
       'any.required': addressLine1Required,
       'string.empty': addressLine1Required,
@@ -22,13 +22,13 @@ const addressSchema = Joi.object({
     }),
   addressLine2: Joi.string()
     .allow('')
-    .max(255)
+    .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address Line 2')
     }),
   addressTown: Joi.string()
     .required()
-    .max(255)
+    .max(maxLength)
     .messages({
       'any.required': addressTownRequired,
       'string.empty': addressTownRequired,
