@@ -37,10 +37,6 @@ jobs:
           docker build --no-cache --tag cdp-node-frontend-template .
           exit $?
 
-  pr-security-validator:
-    name: Run Pull Request SonarCloud Checks
-    runs-on: ubuntu-latest
-    steps:
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
         uses: SonarSource/sonarcloud-github-action@master
