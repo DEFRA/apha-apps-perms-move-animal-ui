@@ -7,7 +7,6 @@ export const pageHeading =
   'What is the address of your farm or premises where the animals are moving off?'
 
 /**
- * The first question to start the journey.
  * @satisfies {Partial<ServerRoute>}
  */
 export const originAddressGetController = {
@@ -23,7 +22,6 @@ export const originAddressGetController = {
 }
 
 /**
- * Respond to the first question.
  * @satisfies {Partial<ServerRoute>}
  * @param req
  */
