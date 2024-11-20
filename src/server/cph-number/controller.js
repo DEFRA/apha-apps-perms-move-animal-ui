@@ -50,13 +50,7 @@ export const postController = {
 
     req.yar.set('cphNumber', input)
 
-    return res.view(indexView, {
-      pageTitle,
-      heading: pageTitle,
-      cphNumber: {
-        value: input
-      }
-    })
+    return res.redirect('/origin-address')
   }
 }
 

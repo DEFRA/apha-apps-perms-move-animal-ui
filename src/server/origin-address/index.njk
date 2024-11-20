@@ -1,0 +1,82 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+  {% if (errorMessages.length) %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: errorMessages
+    }) }}
+  {% endif %}
+
+  {% call govukFieldset({
+    legend: {
+      text: "What is the address of your farm or premises where the animals are moving off?",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+
+    {{ govukInput({
+      label: {
+        text: "Address line 1"
+      },
+      id: "addressLine1",
+      name: "addressLine1",
+      autocomplete: "address-line1",
+      errorMessage: errors.addressLine1,
+      value: values.addressLine1
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Address line 2 (optional)"
+      },
+      id: "addressLine2",
+      name: "addressLine2",
+      autocomplete: "address-line2",
+      value: values.addressLine2
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Town or city"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "addressTown",
+      name: "addressTown",
+      autocomplete: "address-level2",
+      errorMessage: errors.addressTown,
+      value: values.addressTown
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "County (optional)"
+      },
+      classes: "govuk-!-width-two-thirds",
+      id: "addressCounty",
+      name: "addressCounty",
+      value: values.addressCounty
+    }) }}
+
+    {{ govukInput({
+      label: {
+        text: "Postcode"
+      },
+      classes: "govuk-input--width-10",
+      id: "addressPostcode",
+      name: "addressPostcode",
+      autocomplete: "postal-code",
+      errorMessage: errors.addressPostcode,
+      value: values.addressPostcode
+    }) }}
+
+  {% endcall %}
+{% endblock %}
