@@ -1,4 +1,7 @@
-export default (/** @type {OriginAddress} */ originAddress) => {
+/**
+ * @param {OriginAddressPayload} originAddress
+ */
+export default (originAddress) => {
   const { addressLine1, addressTown, addressPostcode } = originAddress
 
   let valid = true
@@ -84,11 +87,5 @@ export function validatePostcode(postcode) {
 }
 
 /**
- * @typedef {{
- *  addressLine1: string;
- *  addressLine2: string;
- *  addressTown: string;
- *  addressCounty: string;
- *  addressPostcode: string;
- * }} OriginAddress
+ * @import { OriginAddressPayload } from './controller.js'
  */

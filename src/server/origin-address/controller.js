@@ -23,7 +23,7 @@ export const originAddressGetController = {
 }
 
 /**
- * Respond to the first question.
+ * Respond to the entry of origin address details.
  * @satisfies {Partial<ServerRoute>}
  * @param req
  */
@@ -69,12 +69,13 @@ export const originAddressPostController = {
 }
 
 /**
- * @typedef {{
+ * export @typedef {{
  *  addressLine1: string;
  *  addressLine2: string;
  *  addressTown: string;
  *  addressCounty: string;
  *  addressPostcode: string;
  * }} OriginAddressPayload
+ * @exports OriginAddressPayload
  * @import { ServerRoute } from '@hapi/hapi'
  */
