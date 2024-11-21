@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-const postcodeRegex = /^(GIR 0AA|[A-Z]{1,2}\d[A-Z\d]? \d[A-Z]{2})$/i
+const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
 const maxLength = 255
 const maxLengthMessage = (key) =>
