@@ -10,8 +10,7 @@
  * @typedef {{
  *  question: string,
  *  question_key: string,
- *  answer: object,
- *  answer_key?: string
+ *  answer: { [key:string]: Data },
  * }} Question
  */
 
@@ -23,12 +22,20 @@
  * }} SemanticVersion
  */
 
+/**
+ * @typedef {{key?: string, value: string}} Data
+ */
+
 /** @type {Question} */
 const premises = {
   question_key: 'on_to_farm',
   question: 'Are you moving the cattle on or off your farm or premises?',
-  answer: 'On to the farm or premises',
-  answer_key: 'on_to_farm'
+  answer: {
+    onToFarm: {
+      value: 'On to the farm or premises',
+      key: 'on_to_farm'
+    }
+  }
 }
 
 /** @type {Question} */
@@ -36,7 +43,7 @@ const originCPH = {
   question_key: 'origin_cph',
   question:
     'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
-  answer: '12/345/6789'
+  answer: { cphNumber: { value: '12/345/6789' } }
 }
 
 /** @type {Question} */
@@ -45,9 +52,9 @@ const originAddress = {
   question:
     'What is the address of your farm or premises where the animals are moving off?',
   answer: {
-    addressLine1: 'Starfleet Headquarters',
-    addressTown: 'San Francisco',
-    addressPostcode: 'RG24 8RR'
+    addressLine1: { value: 'Starfleet Headquarters' },
+    addressTown: { value: 'San Francisco' },
+    addressPostcode: { value: 'RG24 8RR' }
   }
 }
 
@@ -71,8 +78,7 @@ const applicationv0_1_0 = {
     {
       question_key: 'on_to_farm',
       question: 'Are you moving the cattle on or off your farm?',
-      answer: 'On the farm',
-      answer_key: 'on_to_farm'
+      answer: { onToFarm: { value: 'On to the farm', key: 'on_to_farm' } }
     }
   ]
 }
@@ -99,8 +105,9 @@ const applicationv0_1_1 = {
     {
       question_key: 'on_to_farm',
       question: 'Are you moving the cattle on or off your farm or premises?',
-      answer: 'On the farm or premises',
-      answer_key: 'on_to_farm'
+      answer: {
+        onToFarm: { value: 'On to the farm or premises', key: 'on_to_farm' }
+      }
     }
   ]
 }
