@@ -35,7 +35,12 @@ const addressSchema = Joi.object({
       'string.empty': addressTownRequired,
       'string.max': maxLengthMessage('Address town')
     }),
-  addressCounty: Joi.string().allow(''),
+  addressCounty: Joi.string()
+    .allow('')
+    .max(maxLength)
+    .messages({
+      'string.max': maxLengthMessage('Address county')
+    }),
   addressPostcode: Joi.string()
     .required()
     .replace(' ', '')
