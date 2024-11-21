@@ -1,7 +1,8 @@
 /**
+ *
  * @typedef {{
  *   applicationVersion: SemanticVersion,
- *   applicationType: string,
+ *   applicationType: Symbol,
  *   questions: Question[]
  * }} Application
  */
@@ -25,6 +26,10 @@
 /**
  * @typedef {{key?: string, value: string}} Data
  */
+
+const APPLICATION_TYPES = Object.freeze({
+  MOVE_ANIMALS_BOVINE_TB: Symbol('MOVE_ANIMALS_BOVINE_TB')
+})
 
 /** @type {Question} */
 const premises = {
@@ -61,7 +66,7 @@ const originAddress = {
 /** @type {Application} */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const application = {
-  applicationType: 'MOVE_ANIMALS_BOVINE_TB',
+  applicationType: APPLICATION_TYPES.MOVE_ANIMALS_BOVINE_TB,
   applicationVersion: { major: 0, minor: 1, patch: 0 },
   questions: [premises, originCPH, originAddress]
 }
@@ -72,7 +77,7 @@ const application = {
 /** @type {Application} */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, camelcase
 const applicationv0_1_0 = {
-  applicationType: 'MOVE_ANIMALS_BOVINE_TB',
+  applicationType: APPLICATION_TYPES.MOVE_ANIMALS_BOVINE_TB,
   applicationVersion: { major: 0, minor: 1, patch: 0 },
   questions: [
     {
@@ -99,7 +104,7 @@ const applicationv0_1_0 = {
 /** @type {Application} */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, camelcase
 const applicationv0_1_1 = {
-  applicationType: 'MOVE_ANIMALS_BOVINE_TB',
+  applicationType: APPLICATION_TYPES.MOVE_ANIMALS_BOVINE_TB,
   applicationVersion: { major: 0, minor: 1, patch: 1 },
   questions: [
     {
