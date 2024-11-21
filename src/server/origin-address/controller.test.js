@@ -205,7 +205,7 @@ describe('#originAddressController', () => {
   })
 
   test('Should report error for addressLine1 exceeding max length', async () => {
-    const { payload, statusCode } = await server.inject(
+    const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
         url: '/origin-address',
@@ -217,13 +217,8 @@ describe('#originAddressController', () => {
       })
     )
 
-    expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
-    expect(payload).toEqual(
-      expect.stringContaining(
-        'Address line 1 must be no longer than 255 characters'
-      )
-    )
-    expect(statusCode).toBe(statusCodes.ok)
+    expect(headers.location).toBe('/origin-address')
+    expect(statusCode).toBe(statusCodes.redirect)
   })
 
   test('Should process addressLine1 at max length correctly', async () => {

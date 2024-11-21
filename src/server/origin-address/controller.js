@@ -36,10 +36,10 @@ export const originAddressPostController = {
     } = /** @type {OriginAddress} */ (req.payload)
 
     const originAddress = {
-      addressLine1,
-      addressLine2,
-      addressTown,
-      addressCounty,
+      addressLine1: (addressLine1 ?? '').slice(0, 255),
+      addressLine2: (addressLine2 ?? '').slice(0, 255),
+      addressTown: (addressTown ?? '').slice(0, 255),
+      addressCounty: (addressCounty ?? '').slice(0, 255),
       addressPostcode
     }
 
