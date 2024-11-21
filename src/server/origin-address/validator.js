@@ -24,7 +24,7 @@ const addressSchema = Joi.object({
     .allow('')
     .max(maxLength)
     .messages({
-      'string.max': maxLengthMessage('Address Line 2')
+      'string.max': maxLengthMessage('Address line 2')
     }),
   addressTown: Joi.string()
     .required()
