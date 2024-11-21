@@ -1,3 +1,25 @@
+/*
+ * Our application state must satisfy a number of different constraints:
+ *
+ * QUESTION DATA
+ *
+ *  - It must be possible to know the exact questions & answers given
+ *  - As questions evolve over time, we need to know which questions are
+ *    getting at an underlying meaning so that we can use them to integrate
+ *    to downstream systems (e.g. case management, risk engine, data
+ *    analytics)
+ *  - As multiple-selection answers evolve over time, we need to know
+ *    what the options map to
+ *
+ * JOURNEY DATA
+ *
+ *   - We need to know what application journey a user was going through (so
+ *     we can handle their application correctly when we release a new
+ *     version)
+ *   - In the long run - when we support many application journeys - we will
+ *     need to distinguish between the journeys themselves
+ */
+
 /**
  *
  * @typedef {{
@@ -22,6 +44,11 @@
  *   minor: number,
  *   patch: number
  * }} SemanticVersion
+ *
+ * The semantic version policy suggested here is:
+ * **major** - a breaking change to a key (question or answer) that would prevent downstream systems ingesting the data
+ * **minor** - addition of new data / new questions / a journey change that changes which pages you hit
+ * **patch** - a wording change that brings clarity, but can use the same questionKey and answerKeys without causing confusion
  */
 
 /**
