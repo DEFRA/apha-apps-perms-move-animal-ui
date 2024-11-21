@@ -53,7 +53,7 @@ const originCPH = {
 
 /** @type {Question} */
 const originAddress = {
-  question_key: 'origin_cph',
+  question_key: 'origin_address',
   question:
     'What is the address of your farm or premises where the animals are moving off?',
   answer: {
