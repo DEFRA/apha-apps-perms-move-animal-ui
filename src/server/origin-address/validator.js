@@ -28,6 +28,7 @@ const addressSchema = Joi.object({
     }),
   addressTown: Joi.string()
     .required()
+    .trim()
     .max(maxLength)
     .messages({
       'any.required': addressTownRequired,
@@ -35,11 +36,15 @@ const addressSchema = Joi.object({
       'string.max': maxLengthMessage('Address town')
     }),
   addressCounty: Joi.string().allow(''),
-  addressPostcode: Joi.string().required().pattern(postcodeRegex).messages({
-    'any.required': postcodeRequired,
-    'string.empty': postcodeRequired,
-    'string.pattern.base': 'Enter a full UK postcode'
-  })
+  addressPostcode: Joi.string()
+    .required()
+    .replace(' ', '')
+    .pattern(postcodeRegex)
+    .messages({
+      'any.required': postcodeRequired,
+      'string.empty': postcodeRequired,
+      'string.pattern.base': 'Enter a full UK postcode'
+    })
 })
 
 /**
@@ -64,9 +69,9 @@ export default (originAddress) => {
 /**
  * export @typedef {{
  *  addressLine1: string;
- *  addressLine2: string;
+ *  addressLine2 ?: string;
  *  addressTown: string;
- *  addressCounty: string;
+ *  addressCounty ?: string;
  *  addressPostcode: string;
  * }} OriginAddress
  */

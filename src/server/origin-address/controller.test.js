@@ -195,7 +195,7 @@ describe('#originAddressController', () => {
         payload: {
           addressLine1: 'Starfleet Headquarters',
           addressTown: 'San Francisco',
-          addressPostcode: 'SW1A 1AA' // Valid UK postcode
+          addressPostcode: 'sw1a1aa' // Valid UK postcode
         }
       })
     )
@@ -212,7 +212,7 @@ describe('#originAddressController', () => {
         payload: {
           addressLine1: 'A'.repeat(256), // Exceeding max length
           addressTown: 'San Francisco',
-          addressPostcode: 'SW1A 1AA' // Valid UK postcode
+          addressPostcode: 'SW1A1AA' // Valid UK postcode
         }
       })
     )
@@ -234,7 +234,7 @@ describe('#originAddressController', () => {
         payload: {
           addressLine1: 'A'.repeat(255), // Max length
           addressTown: 'San Francisco',
-          addressPostcode: 'SW1A 1AA' // Valid UK postcode
+          addressPostcode: 'Sw1A 1AA' // Valid UK postcode
         }
       })
     )
