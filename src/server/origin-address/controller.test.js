@@ -243,6 +243,23 @@ describe('#originAddressController', () => {
     expect(headers.location).toBe('/origin-address') // Check for redirect response
   })
 
+  test('Should process London postcodes correctly', async () => {
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/origin-address',
+        payload: {
+          addressLine1: 'A'.repeat(255), // Max length
+          addressTown: 'San Francisco',
+          addressPostcode: 'N10 1AA' // Valid UK postcode
+        }
+      })
+    )
+
+    expect(statusCode).toBe(statusCodes.redirect) // Assuming a redirect on success
+    expect(headers.location).toBe('/origin-address') // Check for redirect response
+  })
+
   testCsrfProtectedGet(() => server, {
     method: 'GET',
     url: '/origin-address'
