@@ -32,7 +32,7 @@ export const postController = {
     const { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
     // Remove whitespace from cphNumber
     const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
-    const [isValid, message] = validator(input)
+    const { isValid, errors } = validator({ cphNumber: input })
 
     if (!isValid) {
       req.yar.clear('cphNumber')
@@ -43,7 +43,7 @@ export const postController = {
           value: input
         },
         errorMessage: {
-          text: message
+          text: errors.cphNumber
         }
       })
     }

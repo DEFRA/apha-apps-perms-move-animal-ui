@@ -1,4 +1,6 @@
 import Joi from 'joi'
+import { validate } from '../common/page/validation.js'
+import _ from 'lodash'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
@@ -49,20 +51,12 @@ const addressSchema = Joi.object({
 
 /**
  * @param {OriginAddress} originAddress
- * @returns {{isValid: boolean, errors: object}}
  */
 export default (originAddress) => {
-  const result = addressSchema
-    .options({ abortEarly: false })
-    .validate(originAddress)
-  const errors = result.error?.details.map(({ context, message }) => [
-    /** @type string */ (context?.key),
-    { text: message }
-  ])
-
+  const { isValid, errors } = validate(addressSchema, originAddress)
   return {
-    isValid: result.error === undefined,
-    errors: errors && Object.fromEntries(errors)
+    isValid,
+    errors: _.mapValues(errors, (text) => ({ text }))
   }
 }
 
@@ -74,4 +68,8 @@ export default (originAddress) => {
  *  addressCounty ?: string;
  *  addressPostcode: string;
  * }} OriginAddress
+ */
+
+/**
+ * @import {ValidationResult} from'../common/page/validation.js'
  */

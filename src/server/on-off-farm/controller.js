@@ -1,3 +1,5 @@
+import validator from './validator.js'
+
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'on-off-farm/index.njk'
@@ -28,13 +30,14 @@ export const onOffFarmGetController = {
 export const onOffFarmPostController = {
   handler(req, res) {
     const { onOffFarm } = /** @type {OnOffFarmPayload} */ (req.payload)
+    const { isValid, errors } = validator({ onOffFarm })
 
-    if (!onOffFarm) {
+    if (!isValid) {
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
         errorMessage: {
-          text: 'Select if you are moving cattle on or off your farm or premises'
+          text: errors.onOffFarm
         }
       })
     }
@@ -46,14 +49,6 @@ export const onOffFarmPostController = {
         return res.redirect('/cph-number')
       case 'on':
         return res.redirect('/exit-page')
-      default:
-        return res.view(indexView, {
-          pageTitle: `Error: ${pageTitle}`,
-          heading: pageHeading,
-          errorMessage: {
-            text: 'Select if you are moving cattle on or off your farm or premises'
-          }
-        })
     }
   }
 }
