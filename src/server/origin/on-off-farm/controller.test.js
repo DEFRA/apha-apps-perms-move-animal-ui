@@ -23,7 +23,7 @@ describe('#onOffFarmController', () => {
   test('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/to-or-from-own-premises'
+      url: '/origin/to-or-from-own-premises'
     })
 
     const document = parseDocument(payload)
@@ -38,14 +38,14 @@ describe('#onOffFarmController', () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/to-or-from-own-premises',
+          url: '/origin/to-or-from-own-premises',
           payload: {
             onOffFarm: 'off'
           }
         })
       )
 
-      expect(headers.location).toBe('/cph-number')
+      expect(headers.location).toBe('/origin/cph-number')
 
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -54,7 +54,7 @@ describe('#onOffFarmController', () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/to-or-from-own-premises',
+          url: '/origin/to-or-from-own-premises',
           payload: {
             onOffFarm: 'on'
           }
@@ -71,7 +71,7 @@ describe('#onOffFarmController', () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/to-or-from-own-premises'
+        url: '/origin/to-or-from-own-premises'
       })
     )
 
@@ -85,12 +85,12 @@ describe('#onOffFarmController', () => {
 
   testCsrfProtectedGet(() => server, {
     method: 'GET',
-    url: '/to-or-from-own-premises'
+    url: '/origin/to-or-from-own-premises'
   })
 
   testCsrfProtectedPost(() => server, {
     method: 'POST',
-    url: '/to-or-from-own-premises',
+    url: '/origin/to-or-from-own-premises',
     payload: {
       onOffFarm: 'on'
     }

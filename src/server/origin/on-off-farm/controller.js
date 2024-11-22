@@ -1,6 +1,6 @@
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
-const indexView = 'on-off-farm/index.njk'
+const indexView = 'origin/on-off-farm/index.njk'
 
 /**
  * The first question to start the journey.
@@ -8,7 +8,7 @@ const indexView = 'on-off-farm/index.njk'
  */
 export const onOffFarmGetController = {
   handler(req, h) {
-    const onOffFarm = req.yar.get('onOffFarm')
+    const { onOffFarm } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
       pageTitle,
@@ -39,11 +39,14 @@ export const onOffFarmPostController = {
       })
     }
 
-    req.yar.set('onOffFarm', onOffFarm)
+    req.yar.set('origin', {
+      ...req.yar.get('origin'),
+      onOffFarm
+    })
 
     switch (onOffFarm) {
       case 'off':
-        return res.redirect('/cph-number')
+        return res.redirect('/origin/cph-number')
       case 'on':
         return res.redirect('/exit-page')
       default:
