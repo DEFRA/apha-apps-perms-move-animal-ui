@@ -23,10 +23,12 @@ describe('#originAddressController', () => {
   })
 
   test('Should provide expected response', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: '/origin-address'
-    })
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'GET',
+        url: '/origin/address'
+      })
+    )
 
     const document = parseDocument(payload)
     expect(document.title).toBe(pageTitle)
@@ -37,7 +39,7 @@ describe('#originAddressController', () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'Starfleet Headquarters',
           addressLine2: '24-593 Federation Drive',
@@ -48,7 +50,7 @@ describe('#originAddressController', () => {
       })
     )
 
-    expect(headers.location).toBe('/origin-address')
+    expect(headers.location).toBe('/origin/summary')
 
     expect(statusCode).toBe(statusCodes.redirect)
   })
@@ -57,7 +59,7 @@ describe('#originAddressController', () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address'
+        url: '/origin/address'
       })
     )
 
@@ -72,7 +74,7 @@ describe('#originAddressController', () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/origin-address',
+          url: '/origin/address',
           payload: {}
         })
       )
@@ -91,7 +93,7 @@ describe('#originAddressController', () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/origin-address',
+          url: '/origin/address',
           payload: {
             addressLine2: '24-593 Federation Drive',
             addressTown: 'San Francisco',
@@ -115,7 +117,7 @@ describe('#originAddressController', () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/origin-address',
+          url: '/origin/address',
           payload: {
             addressLine1: 'Starfleet Headquarters',
             addressLine2: '24-593 Federation Drive',
@@ -141,7 +143,7 @@ describe('#originAddressController', () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/origin-address',
+          url: '/origin/address',
           payload: {
             addressLine1: 'Starfleet Headquarters',
             addressLine2: '24-593 Federation Drive',
@@ -168,7 +170,7 @@ describe('#originAddressController', () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'Starfleet Headquarters',
           addressLine2: '24-593 Federation Drive',
@@ -191,7 +193,7 @@ describe('#originAddressController', () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'Starfleet Headquarters',
           addressTown: 'San Francisco',
@@ -201,14 +203,14 @@ describe('#originAddressController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect) // Assuming a redirect on success
-    expect(headers.location).toBe('/origin-address')
+    expect(headers.location).toBe('/origin/summary')
   })
 
   test('Should report error for addressLine1 exceeding max length', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'A'.repeat(256), // Exceeding max length
           addressTown: 'San Francisco',
@@ -230,7 +232,7 @@ describe('#originAddressController', () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'A'.repeat(255), // Max length
           addressTown: 'San Francisco',
@@ -240,14 +242,14 @@ describe('#originAddressController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect) // Assuming a redirect on success
-    expect(headers.location).toBe('/origin-address') // Check for redirect response
+    expect(headers.location).toBe('/origin/summary') // Check for redirect response
   })
 
   test('Should process London postcodes correctly', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/origin-address',
+        url: '/origin/address',
         payload: {
           addressLine1: 'A'.repeat(255), // Max length
           addressTown: 'San Francisco',
@@ -257,19 +259,25 @@ describe('#originAddressController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect) // Assuming a redirect on success
-    expect(headers.location).toBe('/origin-address') // Check for redirect response
+    expect(headers.location).toBe('/origin/summary') // Check for redirect response
   })
 
   testCsrfProtectedGet(() => server, {
     method: 'GET',
-    url: '/origin-address'
+    url: '/origin/address'
   })
 
   testCsrfProtectedPost(() => server, {
     method: 'POST',
-    url: '/origin-address',
+    url: '/origin/address',
     payload: {
-      originAddress: 'on'
+      originAddress: {
+        addressLine1: '73 OCEANA CRESCENT',
+        addressLine2: 'Archronos Ltd',
+        addressTown: 'Basingstoke',
+        addressCounty: 'Hampshire',
+        addressPostcode: 'RG248RR'
+      }
     }
   })
 })

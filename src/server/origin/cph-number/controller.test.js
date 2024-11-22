@@ -20,7 +20,7 @@ describe('#cphNumber', () => {
   test('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/cph-number'
+      url: '/origin/cph-number'
     })
 
     expect(parseDocument(payload).title).toEqual(pageTitle)
@@ -31,7 +31,7 @@ describe('#cphNumber', () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/cph-number',
+        url: '/origin/cph-number',
         payload: {
           cphNumber: '12/456/7899'
         }
@@ -40,14 +40,14 @@ describe('#cphNumber', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
 
-    expect(headers.location).toBe('/origin-address')
+    expect(headers.location).toBe('/origin/address')
   })
 
   test('Should display an error to the user if no value entered', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/cph-number',
+        url: '/origin/cph-number',
         payload: {}
       })
     )
@@ -66,7 +66,7 @@ describe('#cphNumber', () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/cph-number',
+        url: '/origin/cph-number',
         payload: {
           cphNumber: 'invalid format'
         }
