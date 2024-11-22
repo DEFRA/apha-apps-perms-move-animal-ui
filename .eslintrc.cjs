@@ -20,6 +20,7 @@ module.exports = {
         browser: false
       },
       files: ['**/*.{cjs,js}'],
+      excludedFiles: ['**/e2e-tests/**/*.{cjs,js}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
@@ -144,6 +145,31 @@ module.exports = {
             allowModules: []
           }
         ]
+      }
+    },
+    {
+      env: {
+        es2022: true,
+        node: true,
+        jest: true
+      },
+      extends: ['standard', 'prettier', 'plugin:wdio/recommended'],
+      files: ['e2e-tests/**/*.{cjs,js}'],
+      parserOptions: {
+        ecmaVersion: 'latest'
+      },
+      plugins: ['prettier', 'wdio'],
+      rules: {
+        'prettier/prettier': 'error',
+        'no-console': 'error',
+        // Allow import devDependencies
+        'n/no-unpublished-import': [
+          'error',
+          {
+            allowModules: ['@wdio/globals', 'deepmerge']
+          }
+        ],
+        '@typescript-eslint/class-literal-property-style': 'off'
       }
     }
   ],
