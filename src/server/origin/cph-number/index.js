@@ -1,30 +1,29 @@
-import {
-  onOffFarmGetController,
-  onOffFarmPostController
-} from './controller.js'
+import { getController, postController } from './controller.js'
 
 /**
  * Sets up the routes used in the home page.
  * These routes are registered in src/server/router.js.
  */
 
+const path = 'cph-number'
+
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const onOffFarm = {
+export const cphNumber = {
   plugin: {
-    name: 'to-or-from-own-premises',
+    name: `origin-${path}`,
     register(server) {
       server.route([
         {
           method: 'GET',
-          path: '/to-or-from-own-premises',
-          ...onOffFarmGetController
+          path: `/${path}`,
+          ...getController
         },
         {
           method: 'POST',
-          path: '/to-or-from-own-premises',
-          ...onOffFarmPostController
+          path: `/${path}`,
+          ...postController
         }
       ])
     }

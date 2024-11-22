@@ -2,7 +2,7 @@ import validator from './validator.js'
 
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
-const indexView = 'cph-number/index'
+const indexView = 'origin/cph-number/index'
 
 /**
  * CPH number question.
@@ -10,9 +10,9 @@ const indexView = 'cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const cphNumber = req.yar.get('cphNumber')
+    const { cphNumber } = req.yar.get('origin') ?? {}
 
-    return h.view('cph-number/index', {
+    return h.view(indexView, {
       pageTitle,
       heading: pageTitle,
       cphNumber: {
@@ -48,9 +48,12 @@ export const postController = {
       })
     }
 
-    req.yar.set('cphNumber', input)
+    req.yar.set('origin', {
+      ...req.yar.get('origin'),
+      cphNumber: input
+    })
 
-    return res.redirect('/origin-address')
+    return res.redirect('/origin/address')
   }
 }
 
