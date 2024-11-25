@@ -31,29 +31,23 @@ jobs:
           npm run lint
           npm test
 
-      # - name: Test Docker Image Build
-      #   run: |
-      #     set +e
-      #     docker build --no-cache --tag cdp-node-frontend-template .
-      #     exit $?
+      - name: Build docker image and run container
+        run: |
+          set +e
+          docker build --no-cache --tag cdp-node-frontend-template .
+          docker run cdp-node-frontend-template
+          exit $?
 
-      - name: Start docker compose
-        run: docker compose up --wait-timeout 300 -d --quiet-pull
+      # - name: Start docker compose
+      #   run: docker compose up --wait-timeout 300 -d --quiet-pull
 
       - name: Journey tests
         run: |
           npm run e2e
 
-      - name: debug
-        if: failure()
-        run: |
-          docker ps
-          docker logs apha-apps-perms-move-animal-ui-your-frontend-1
-          # You can run commands like `docker logs service-name` here to help debug failures
-
-      - name: cleanup
+      - name: Stop docker container
         if: always()
-        run: docker compose down
+        run: docker stop cdp-node-frontend-template
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
