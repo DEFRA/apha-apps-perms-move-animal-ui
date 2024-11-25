@@ -1,7 +1,7 @@
 import { browser, expect } from '@wdio/globals'
 
-import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
-import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import toFromFarmPage from '../page-objects/toFromFarmPage'
+import { loadPageAndVerifyTitle } from '../helpers/page'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 import exitPage from '../page-objects/exitPage'
 

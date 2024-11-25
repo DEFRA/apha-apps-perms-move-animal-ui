@@ -1,6 +1,6 @@
-import landingPage from '~/ttest/page-objects/landingPage'
-import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
-import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import landingPage from '../page-objects/landingPage'
+import toFromFarmPage from '../page-objects/toFromFarmPage'
+import { loadPageAndVerifyTitle } from '../helpers/page'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 import newAddressPage from '../page-objects/newAddressPage'
 

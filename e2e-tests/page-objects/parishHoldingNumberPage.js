@@ -1,6 +1,6 @@
 import { $ } from '@wdio/globals'
 
-import { Page } from 'page-objects/page'
+import { Page } from './page'
 import * as page from '../helpers/page'
 
 class ParishHoldingNumberPage extends Page {

@@ -1,4 +1,4 @@
-import { Page } from 'page-objects/page'
+import { Page } from './page'
 import * as page from '../helpers/page'
 
 const addressLineOneId = 'addressLine1'

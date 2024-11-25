@@ -1,4 +1,4 @@
-import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import { loadPageAndVerifyTitle } from '../helpers/page'
 import exitPage from '../page-objects/exitPage'
 
 describe('Exit page test', () => {

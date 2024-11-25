@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import { loadPageAndVerifyTitle } from '../helpers/page'
 import ParishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
 
 describe('Paris holding page test', () => {

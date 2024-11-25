@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import { loadPageAndVerifyTitle } from '../helpers/page'
 import newAddressPage from '../page-objects/newAddressPage'
 
 const longString = 'a'.repeat(300)
