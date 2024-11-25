@@ -11,16 +11,24 @@ export const originSummaryGetController = {
   handler(req, h) {
     const origin = req.yar.get('origin') ?? {}
 
+    const originOnOffFarm = origin?.onOffFarm
+    let enteredOnOffFarm = ''
+
+    if (originOnOffFarm === 'on') {
+      enteredOnOffFarm = 'On to the farm or premises'
+    } else if (originOnOffFarm === 'off') {
+      enteredOnOffFarm = 'Off the farm or premises'
+    } else {
+      enteredOnOffFarm = ''
+    }
+
     return h.view(indexView, {
       pageTitle,
       heading: pageHeading,
       origin: {
         cphNumber: origin?.cphNumber,
         address: Object.values(origin?.address ?? {}).join('<br />'),
-        onOffFarm:
-          origin?.onOffFarm === 'on'
-            ? 'On to the farm or premises'
-            : 'Off the farm or premises'
+        onOffFarm: enteredOnOffFarm
       }
     })
   }
