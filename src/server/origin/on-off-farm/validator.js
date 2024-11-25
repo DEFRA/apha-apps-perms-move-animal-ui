@@ -4,6 +4,8 @@ export const CphNumberSchema = Joi.string()
   .required()
   .valid('on', 'off')
   .messages({
+    'any.required':
+      'Select if you are moving cattle on or off your farm or premises',
     'any.valid':
       'Select if you are moving cattle on or off your farm or premises'
   })

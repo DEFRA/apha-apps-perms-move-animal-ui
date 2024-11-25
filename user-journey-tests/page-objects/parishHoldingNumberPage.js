@@ -5,7 +5,7 @@ const cphId = 'cph-number'
 
 class ParishHoldingNumberPage extends Page {
   get urlPath() {
-    return 'cph-number'
+    return 'origin/cph-number'
   }
 
   get parishHoldingTitle() {
