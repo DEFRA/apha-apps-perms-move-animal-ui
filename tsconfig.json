@@ -19,7 +19,7 @@
     ".server",
     "coverage",
     "node_modules",
-    "e2e-tests"
+    "user-journey-tests"
   ],
   "include": ["**/*.cjs", "**/*.js", ".eslintrc.*", ".prettierrc.*"]
 }

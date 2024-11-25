@@ -39,7 +39,7 @@ jobs:
 
       - name: Journey tests
         run: |
-          npm run e2e
+          npm run user-journey-test
 
       - name: cleanup
         if: always()

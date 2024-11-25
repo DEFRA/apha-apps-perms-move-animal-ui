@@ -32,9 +32,9 @@
     "prestart": "npm run build",
     "start": "NODE_ENV=production node --use-strict .",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module",
-    "e2e": "npm run e2e:js && npm run e2e:nojs",
-    "e2e:js": "wdio run ./e2e-tests/wdioJS.conf.js",
-    "e2e:nojs": "wdio run ./e2e-tests/wdioNoJS.conf.js"
+    "user-journey-test": "npm run user-journey-test:js && npm run user-journey-test:nojs",
+    "user-journey-test:js": "wdio run ./user-journey-tests/wdioJS.conf.js",
+    "user-journey-test:nojs": "wdio run ./user-journey-tests/wdioNoJS.conf.js"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",

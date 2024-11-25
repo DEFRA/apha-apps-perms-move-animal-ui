@@ -20,7 +20,7 @@ module.exports = {
         browser: false
       },
       files: ['**/*.{cjs,js}'],
-      excludedFiles: ['**/e2e-tests/**/*.{cjs,js}'],
+      excludedFiles: ['**/user-journey-tests/**/*.{cjs,js}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
@@ -154,7 +154,7 @@ module.exports = {
         jest: true
       },
       extends: ['standard', 'prettier', 'plugin:wdio/recommended'],
-      files: ['e2e-tests/**/*.{cjs,js}'],
+      files: ['user-journey-tests/**/*.{cjs,js}'],
       parserOptions: {
         ecmaVersion: 'latest'
       },
