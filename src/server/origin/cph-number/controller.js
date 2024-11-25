@@ -45,6 +45,7 @@ export const postController = {
       })
 
       return res.view(indexView, {
+        nextPage,
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
