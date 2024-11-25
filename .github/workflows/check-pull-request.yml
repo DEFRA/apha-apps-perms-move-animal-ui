@@ -31,23 +31,19 @@ jobs:
           npm run lint
           npm test
 
-      - name: Build docker image and run container
+      - name: Start docker compose
         run: |
           set +e
-          docker build --no-cache --tag cdp-node-frontend-template .
-          docker run cdp-node-frontend-template
+          docker compose up --wait-timeout 300 -d --quiet-pull
           exit $?
-
-      # - name: Start docker compose
-      #   run: docker compose up --wait-timeout 300 -d --quiet-pull
 
       - name: Journey tests
         run: |
           npm run e2e
 
-      - name: Stop docker container
+      - name: cleanup
         if: always()
-        run: docker stop cdp-node-frontend-template
+        run: docker compose down
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
