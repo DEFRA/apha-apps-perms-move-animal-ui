@@ -12,7 +12,7 @@ export const originSummaryGetController = {
     const origin = req.yar.get('origin') ?? {}
 
     const originOnOffFarm = origin?.onOffFarm
-    let enteredOnOffFarm = ''
+    let enteredOnOffFarm
 
     if (originOnOffFarm === 'on') {
       enteredOnOffFarm = 'On to the farm or premises'
