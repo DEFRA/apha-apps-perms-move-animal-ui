@@ -13,9 +13,6 @@ describe('#originSummaryController', () => {
   /** @type {SesessionTestHelper} */
   let session
 
-  /** @type {SesessionTestHelper} */
-  let session
-
   const defaultState = {
     onOffFarm: 'off',
     cphNumber: '12/123/1234',
