@@ -1,5 +1,5 @@
 import { browser, $ } from '@wdio/globals'
-import * as page from '../helpers/page'
+import * as page from '../helpers/page.js'
 
 class Page {
   get pageHeading() {

@@ -1,5 +1,5 @@
-import { Page } from './page'
-import * as page from '../helpers/page'
+import { Page } from './page.js'
+import * as page from '../helpers/page.js'
 
 const addressLineOneId = 'addressLine1'
 const addressLineTwoId = 'addressLine2'
