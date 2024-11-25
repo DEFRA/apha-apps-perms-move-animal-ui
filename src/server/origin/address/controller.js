@@ -1,4 +1,4 @@
-import validator from './validator.js'
+import { Address } from '~/src/server/common/model/address.js'
 
 const indexView = 'origin/address/index'
 export const pageTitle =
@@ -11,7 +11,7 @@ export const pageHeading =
  */
 export const originAddressGetController = {
   handler(req, h) {
-    const { address } = req.yar.get('origin') ?? {}
+    const address = Address.fromState(req.yar.get('origin')?.address)
 
     return h.view(indexView, {
       pageTitle,
@@ -27,24 +27,10 @@ export const originAddressGetController = {
  */
 export const originAddressPostController = {
   handler(req, res) {
-    const {
-      addressLine1,
-      addressLine2,
-      addressTown,
-      addressCounty,
-      addressPostcode
-    } = /** @type {OriginAddress} */ (req.payload)
+    const payload = /** @type {AddressData} */ (req.payload)
 
-    const originAddress = {
-      addressLine1,
-      addressLine2,
-      addressTown,
-      addressCounty,
-      addressPostcode
-    }
-
-    const { isValid, errors } = validator(originAddress)
-    const errorMessages = Object.entries(errors ?? {}).map(([key, value]) => ({
+    const { isValid, errors } = Address.validate(payload)
+    const errorMessages = Object.entries(errors).map(([key, value]) => ({
       text: value.text,
       href: `#${key}`
     }))
@@ -58,7 +44,7 @@ export const originAddressPostController = {
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
-        values: req.payload,
+        values: payload,
         errorMessages,
         errors
       })
@@ -66,7 +52,7 @@ export const originAddressPostController = {
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      address: originAddress
+      address: Address.toState(payload)
     })
 
     return res.redirect('/origin/summary')
@@ -75,5 +61,5 @@ export const originAddressPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { OriginAddress } from './validator.js'
+ * @import { AddressData } from '~/src/server/common/model/address.js'
  */

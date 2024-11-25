@@ -1,4 +1,4 @@
-import validateAddress from './validator.js'
+import { Address } from './address.js'
 
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',
@@ -8,15 +8,15 @@ const validAddress = {
   addressPostcode: 'RG24 8RR'
 }
 
-describe('#AddressValidator', () => {
-  test('should return true for valid address', () => {
-    const { isValid } = validateAddress(validAddress)
+describe('Address.validate', () => {
+  it('should return true for valid address', () => {
+    const { isValid } = Address.validate(validAddress)
 
     expect(isValid).toBe(true)
   })
 
-  test('should return false for too short input', () => {
-    const { isValid, errors } = validateAddress({
+  it('should return false for too short input', () => {
+    const { isValid, errors } = Address.validate({
       ...validAddress,
       addressLine1: 'A'.repeat(256)
     })
@@ -27,8 +27,8 @@ describe('#AddressValidator', () => {
     )
   })
 
-  test('should return true for optional field with empty input', () => {
-    const { isValid } = validateAddress({
+  it('should return true for optional field with empty input', () => {
+    const { isValid } = Address.validate({
       addressLine1: 'Starfleet Headquarters',
       addressTown: 'San Francisco',
       addressPostcode: 'RG24 8RR'
@@ -38,12 +38,6 @@ describe('#AddressValidator', () => {
   })
 
   describe('validatePostcode', () => {
-    test('should return true for valid postcode', () => {
-      const { isValid } = validateAddress(validAddress)
-
-      expect(isValid).toBe(true)
-    })
-
     describe('postcode formats', () => {
       const postcodes = [
         'RG248RR',
@@ -59,8 +53,8 @@ describe('#AddressValidator', () => {
       ]
 
       for (const postcode of postcodes) {
-        test(`should return true for valid postcode format: ${postcode}`, () => {
-          const { isValid } = validateAddress({
+        it(`should return true for valid postcode format: ${postcode}`, () => {
+          const { isValid } = Address.validate({
             ...validAddress,
             addressPostcode: postcode
           })
@@ -69,8 +63,8 @@ describe('#AddressValidator', () => {
         })
       }
 
-      test('should return false for malformed postcode', () => {
-        const { isValid, errors } = validateAddress({
+      it('should return false for malformed postcode', () => {
+        const { isValid, errors } = Address.validate({
           ...validAddress,
           addressPostcode: 'invalid postcode'
         })
@@ -79,10 +73,8 @@ describe('#AddressValidator', () => {
         expect(errors.addressPostcode.text).toBe('Enter a full UK postcode')
       })
     })
-  })
 
-  describe('validateOriginAddress', () => {
-    test('should return false for missing required fields', () => {
+    it('should return false for missing required fields', () => {
       const originAddress = {
         addressLine1: '',
         addressLine2: '',
@@ -90,7 +82,7 @@ describe('#AddressValidator', () => {
         addressCounty: '',
         addressPostcode: ''
       }
-      const { isValid, errors } = validateAddress(originAddress)
+      const { isValid, errors } = Address.validate(originAddress)
       expect(isValid).toBe(false)
       expect(errors).toEqual({
         addressLine1: {
@@ -100,5 +92,32 @@ describe('#AddressValidator', () => {
         addressPostcode: { text: 'Enter postcode' }
       })
     })
+  })
+})
+
+describe('Address.toState', () => {
+  it('should extract state from payload', () => {
+    expect(Address.toState(validAddress)).toEqual(validAddress)
+  })
+
+  it('should default missing fields to empty string', () => {
+    expect(Address.toState({})).toEqual({
+      addressLine1: '',
+      addressLine2: '',
+      addressTown: '',
+      addressCounty: '',
+      addressPostcode: ''
+    })
+  })
+})
+
+describe('Address.fromState', () => {
+  it('should return the state as-is as payload, since the state is already a valid payload', () => {
+    const state = Address.toState(validAddress)
+    expect(Address.fromState(state)).toEqual(state)
+  })
+
+  it('should return an empty object if the state is undefined', () => {
+    expect(Address.fromState(undefined)).toEqual({})
   })
 })

@@ -1,6 +1,5 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-
-import validator from './validator.js'
+import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
 
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
@@ -12,7 +11,7 @@ const indexView = 'origin/on-off-farm/index.njk'
  */
 export const onOffFarmGetController = {
   handler(req, h) {
-    const { onOffFarm } = req.yar.get('origin') ?? {}
+    const { onOffFarm } = OnOffFarm.fromState(req.yar.get('origin')?.onOffFarm)
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
@@ -32,11 +31,9 @@ export const onOffFarmGetController = {
  */
 export const onOffFarmPostController = {
   handler(req, res) {
-    const { onOffFarm, nextPage } = /** @type {OnOffFarmPayload & NextPage} */ (
-      req.payload
-    )
+    const payload = /** @type {OnOffFarmPayload & NextPage} */ (req.payload)
 
-    const { isValid, errors } = validator(onOffFarm)
+    const { isValid, errors } = OnOffFarm.validate(payload)
 
     if (!isValid) {
       req.yar.set('origin', {
@@ -47,18 +44,20 @@ export const onOffFarmPostController = {
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
-        errorMessage: errors.cphNumber
+        errorMessage: errors.onOffFarm
       })
     }
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      onOffFarm
+      onOffFarm: OnOffFarm.toState(payload)
     })
 
-    switch (onOffFarm) {
+    switch (payload.onOffFarm) {
       case 'off':
-        return res.redirect(calculateNextPage(nextPage, '/origin/cph-number'))
+        return res.redirect(
+          calculateNextPage(payload.nextPage, '/origin/cph-number')
+        )
       case 'on':
         return res.redirect('/exit-page')
       default:

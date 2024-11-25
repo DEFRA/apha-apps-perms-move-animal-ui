@@ -1,8 +1,11 @@
 import Joi from 'joi'
+import { validateAgainstSchema } from './model.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
 const maxLength = 255
+
+/** @param {string} key */
 const maxLengthMessage = (key) =>
   `${key} must be no longer than ${maxLength} characters`
 
@@ -11,7 +14,7 @@ const addressLine1Required =
 const addressTownRequired = 'Enter town or city'
 const postcodeRequired = 'Enter postcode'
 
-const addressSchema = Joi.object({
+const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
     .max(maxLength)
@@ -53,30 +56,46 @@ const addressSchema = Joi.object({
 })
 
 /**
- * @param {OriginAddress} originAddress
- * @returns {{isValid: boolean, errors: object}}
- */
-export default (originAddress) => {
-  const result = addressSchema
-    .options({ abortEarly: false })
-    .validate(originAddress)
-  const errors = result.error?.details.map(({ context, message }) => [
-    /** @type string */ (context?.key),
-    { text: message }
-  ])
-
-  return {
-    isValid: result.error === undefined,
-    errors: errors && Object.fromEntries(errors)
-  }
-}
-
-/**
  * export @typedef {{
  *  addressLine1: string;
  *  addressLine2 ?: string;
  *  addressTown: string;
  *  addressCounty ?: string;
  *  addressPostcode: string;
- * }} OriginAddress
+ * }} AddressData
  */
+
+/**
+ * @implements {Model<AddressData>}
+ */
+class AddressModel {
+  /** @param {RawPayload} payload */
+  toState(payload) {
+    return {
+      addressLine1: payload.addressLine1 ?? '',
+      addressLine2: payload.addressLine2 ?? '',
+      addressTown: payload.addressTown ?? '',
+      addressCounty: payload.addressCounty ?? '',
+      addressPostcode: payload.addressPostcode ?? ''
+    }
+  }
+
+  /**
+   * @param {AddressData | undefined} data
+   * @returns {RawPayload}
+   */
+  fromState(data) {
+    return data ?? {}
+  }
+
+  /**
+   * @param {RawPayload} data
+   */
+  validate(data) {
+    return validateAgainstSchema(addressPayloadSchema, data)
+  }
+}
+
+export const Address = new AddressModel()
+
+/** @import {Model,RawPayload} from './model.js' */

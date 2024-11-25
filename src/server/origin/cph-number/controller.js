@@ -1,5 +1,5 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-import validator from './validator.js'
+import { CphNumber } from '~/src/server/common/model/cph-number.js'
 
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
@@ -11,7 +11,7 @@ const indexView = 'origin/cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const { cphNumber } = req.yar.get('origin') ?? {}
+    const { cphNumber } = CphNumber.fromState(req.yar.get('origin')?.cphNumber)
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
@@ -31,12 +31,9 @@ export const getController = {
  */
 export const postController = {
   handler(req, res) {
-    const { cphNumber, nextPage } = /** @type {CphNumberPayload & NextPage} */ (
-      req.payload
-    )
+    const payload = /** @type {CphNumberPayload & NextPage} */ (req.payload)
     // Remove whitespace from cphNumber
-    const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
-    const { isValid, errors } = validator(input)
+    const { isValid, errors } = CphNumber.validate(payload)
 
     if (!isValid) {
       req.yar.set('origin', {
@@ -48,7 +45,7 @@ export const postController = {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
-          value: input
+          value: payload.cphNumber
         },
         errorMessage: errors.cphNumber
       })
@@ -56,10 +53,10 @@ export const postController = {
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      cphNumber: input
+      cphNumber: CphNumber.toState(payload)
     })
 
-    return res.redirect(calculateNextPage(nextPage, '/origin/address'))
+    return res.redirect(calculateNextPage(payload.nextPage, '/origin/address'))
   }
 }
 
