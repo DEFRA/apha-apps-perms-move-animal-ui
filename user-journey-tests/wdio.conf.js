@@ -136,7 +136,8 @@ export const config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: 'bdd',
-    timeout: debug ? 24 * 60 * 60 * 1000 : 60000
+    timeout: debug ? 24 * 60 * 60 * 1000 : 60000,
+    retries: 1
   }
   //
   // =====
@@ -231,7 +232,6 @@ export const config = {
   //   context,
   //   { error, result, duration, passed, retries }
   // ) {},
-
   /**
    * Hook that gets executed after the suite has ended
    * @param {object} suite suite details

@@ -16,63 +16,63 @@ class NewAddressPage extends Page {
     return 'origin-address'
   }
 
-  async addressLineOneInput() {
+  addressLineOneInput() {
     return super.getInputField(addressLineOneId)
   }
 
-  async addressLineTwoInput() {
+  addressLineTwoInput() {
     return super.getInputField(addressLineTwoId)
   }
 
-  async townOrCityInput() {
+  townOrCityInput() {
     return super.getInputField(townOrCityId)
   }
 
-  async countyInput() {
+  countyInput() {
     return super.getInputField(countyId)
   }
 
-  async postcodeInput() {
+  postcodeInput() {
     return super.getInputField(postcodeId)
   }
 
-  async lineOneError() {
+  lineOneError() {
     return super.getErrorElement(addressLineOneId)
   }
 
-  async lineTwoError() {
+  lineTwoError() {
     return super.getErrorElement(addressLineTwoId)
   }
 
-  async townOrCityError() {
+  townOrCityError() {
     return super.getErrorElement(townOrCityId)
   }
 
-  async countyError() {
+  countyError() {
     return super.getErrorElement(countyId)
   }
 
-  async postcodeError() {
+  postcodeError() {
     return super.getErrorElement(postcodeId)
   }
 
-  async lineOneErrorLink() {
+  lineOneErrorLink() {
     return super.getErrorLink(addressLineOneId)
   }
 
-  async lineTwoErrorLink() {
+  lineTwoErrorLink() {
     return super.getErrorLink(addressLineTwoId)
   }
 
-  async townOrCityErrorLink() {
+  townOrCityErrorLink() {
     return super.getErrorLink(townOrCityId)
   }
 
-  async countyErrorLink() {
+  countyErrorLink() {
     return super.getErrorLink(countyId)
   }
 
-  async postcodeErrorLink() {
+  postcodeErrorLink() {
     return super.getErrorLink(postcodeId)
   }
 
@@ -96,63 +96,63 @@ class NewAddressPage extends Page {
     return `${addressField} must be no longer than 255 characters`
   }
 
-  async getFieldMappings() {
+  getFieldMappings() {
     return {
-      lineOne: await this.addressLineOneInput(),
-      lineTwo: await this.addressLineTwoInput(),
-      townOrCity: await this.townOrCityInput(),
-      county: await this.countyInput(),
-      postcode: await this.postcodeInput()
+      lineOne: this.addressLineOneInput(),
+      lineTwo: this.addressLineTwoInput(),
+      townOrCity: this.townOrCityInput(),
+      county: this.countyInput(),
+      postcode: this.postcodeInput()
     }
   }
 
-  async getErrorMappings() {
+  getErrorMappings() {
     return {
       lineOne: {
-        element: await this.lineOneError(),
+        element: this.lineOneError(),
         message: this.lineOneErrorText,
-        link: await this.lineOneErrorLink()
+        link: this.lineOneErrorLink()
       },
       townOrCity: {
-        element: await this.townOrCityError(),
+        element: this.townOrCityError(),
         message: this.townOrCityErrorText,
-        link: await this.townOrCityErrorLink()
+        link: this.townOrCityErrorLink()
       },
       noPostcode: {
-        element: await this.postcodeError(),
+        element: this.postcodeError(),
         message: this.noPostcodeErrorText,
-        link: await this.postcodeErrorLink()
+        link: this.postcodeErrorLink()
       },
       invalidPostcode: {
-        element: await this.postcodeError(),
+        element: this.postcodeError(),
         message: this.invalidPostcodeErrorText,
-        link: await this.postcodeErrorLink()
+        link: this.postcodeErrorLink()
       },
       lineOneMaxLength: {
-        element: await this.lineOneError(),
+        element: this.lineOneError(),
         message: this.maxErrorLengthText('Address line 1'),
-        link: await this.lineOneErrorLink()
+        link: this.lineOneErrorLink()
       },
       lineTwoMaxLength: {
-        element: await this.lineTwoError(),
+        element: this.lineTwoError(),
         message: this.maxErrorLengthText('Address line 2'),
-        link: await this.lineTwoErrorLink()
+        link: this.lineTwoErrorLink()
       },
       townOrCityMaxLength: {
-        element: await this.townOrCityError(),
+        element: this.townOrCityError(),
         message: this.maxErrorLengthText('Address town'),
-        link: await this.townOrCityErrorLink()
+        link: this.townOrCityErrorLink()
       },
       countyMaxLength: {
-        element: await this.countyError(),
+        element: this.countyError(),
         message: this.maxErrorLengthText('Address county'),
-        link: await this.countyErrorLink()
+        link: this.countyErrorLink()
       }
     }
   }
 
   async verifyNewAddressErrors(fields = []) {
-    const errorMappings = await this.getErrorMappings()
+    const errorMappings = this.getErrorMappings()
 
     for (const field of fields) {
       const error = errorMappings[field]
@@ -170,7 +170,7 @@ class NewAddressPage extends Page {
 
   async fillFormFieldsAndSubmit(fields = {}) {
     for (const [field, value] of Object.entries(fields)) {
-      const fieldMappings = await this.getFieldMappings()
+      const fieldMappings = this.getFieldMappings()
       const fieldElement = fieldMappings[field]
 
       if (value !== undefined && fieldElement) {
@@ -195,7 +195,7 @@ class NewAddressPage extends Page {
 
   async verifyFieldValues(expectedValues = {}) {
     for (const [field, expectedValue] of Object.entries(expectedValues)) {
-      const fieldMappings = await this.getFieldMappings()
+      const fieldMappings = this.getFieldMappings()
       const fieldElement = fieldMappings[field]
 
       if (!fieldElement) {

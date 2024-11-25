@@ -29,7 +29,7 @@ describe('To from farm page test', () => {
 
   it('Should choose an option and check its maintained', async () => {
     await toFromFarmPage.selectOffFarmAndContinue()
-    await expect(parishHoldingNumberPage.cphNumberInput).toBeDisplayed()
+    await expect(parishHoldingNumberPage.cphNumberInput()).toBeDisplayed()
     await parishHoldingNumberPage.verifyPageHeading(
       parishHoldingNumberPage.parishHoldingTitle
     )

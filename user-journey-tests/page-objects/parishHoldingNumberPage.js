@@ -1,7 +1,7 @@
-import { $ } from '@wdio/globals'
-
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
+
+const cphId = 'cph-number'
 
 class ParishHoldingNumberPage extends Page {
   get urlPath() {
@@ -12,20 +12,20 @@ class ParishHoldingNumberPage extends Page {
     return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
   }
 
-  get cphNumberInput() {
-    return $('#cph-number')
+  cphNumberInput() {
+    return super.getInputField(cphId)
   }
 
-  get cphInputFieldError() {
-    return $('#cph-number-error')
+  cphInputFieldError() {
+    return super.getErrorElement(cphId)
+  }
+
+  cphSummaryErrorLink() {
+    return super.getErrorLink(cphId)
   }
 
   get invalidFormatError() {
     return 'Enter the CPH number in the correct format, for example, 12/345/6789'
-  }
-
-  get cphSummaryErrorLink() {
-    return $('[href="#cph-number"]')
   }
 
   get noInputError() {
@@ -33,16 +33,16 @@ class ParishHoldingNumberPage extends Page {
   }
 
   async inputParishHoldingNumberAndContinue(text) {
-    await page.typeIntoElement(this.cphNumberInput, text)
+    await page.typeIntoElement(this.cphNumberInput(), text)
     await super.selectContinue()
   }
 
   async parishHoldingErrorTest(textInput, errorMessage) {
     await this.inputParishHoldingNumberAndContinue(textInput)
-    await super.verifyErrorsOnPage(this.cphInputFieldError, errorMessage)
+    await super.verifyErrorsOnPage(this.cphInputFieldError(), errorMessage)
     await super.verifySummaryErrorLink(
-      this.cphSummaryErrorLink,
-      this.cphNumberInput
+      this.cphSummaryErrorLink(),
+      this.cphNumberInput()
     )
   }
 }
