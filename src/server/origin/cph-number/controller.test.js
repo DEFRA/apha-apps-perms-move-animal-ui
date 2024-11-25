@@ -84,6 +84,40 @@ describe('#cphNumber', () => {
 
     expect(statusCode).toBe(statusCodes.ok)
   })
+
+  test('should set the next page appropriately', async () => {
+    const { payload, statusCode } = await server.inject({
+      method: 'GET',
+      url: '/origin/cph-number',
+      headers: {
+        referer: 'http://some.domain/origin/summary'
+      }
+    })
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input type="hidden" name="nextPage" value="/origin/summary" />'
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  test('should redirect to summary page if it came from there', async () => {
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/origin/cph-number',
+        payload: {
+          cphNumber: '12/123/1234',
+          nextPage: '/origin/summary'
+        }
+      })
+    )
+
+    expect(headers.location).toBe('/origin/summary')
+    expect(statusCode).toBe(statusCodes.redirect)
+  })
 })
 
 /**
