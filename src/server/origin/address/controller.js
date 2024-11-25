@@ -50,7 +50,11 @@ export const originAddressPostController = {
     }))
 
     if (!isValid) {
-      req.yar.clear('originAddress')
+      req.yar.set('origin', {
+        ...req.yar.get('origin'),
+        address: undefined
+      })
+
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
