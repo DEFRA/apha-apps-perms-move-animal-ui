@@ -36,19 +36,21 @@ export const postController = {
     )
     // Remove whitespace from cphNumber
     const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
-    const [isValid, message] = validator(input)
+    const { isValid, errors } = validator(input)
 
     if (!isValid) {
-      req.yar.clear('cphNumber')
+      req.yar.set('origin', {
+        ...req.yar.get('origin'),
+        cphNumber: undefined
+      })
+
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
           value: input
         },
-        errorMessage: {
-          text: message
-        }
+        errorMessage: errors.cphNumber
       })
     }
 

@@ -1,3 +1,7 @@
+import addressValidator from '../address/validator.js'
+import cphNumberValidator from '../cph-number/validator.js'
+import onOffValidator from '../on-off-farm/validator.js'
+
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
   'Check your answers before you continue your application'
@@ -20,6 +24,21 @@ export const originSummaryGetController = {
       enteredOnOffFarm = 'Off the farm or premises'
     } else {
       enteredOnOffFarm = ''
+    }
+
+    const onOffFarm = onOffValidator(origin?.onOffFarm ?? '')
+    if (!onOffFarm.isValid) {
+      return h.redirect('/origin/on-off-farm')
+    }
+
+    const cphNumber = cphNumberValidator(origin?.cphNumber ?? '')
+    if (!cphNumber.isValid) {
+      return h.redirect('/origin/cph-number')
+    }
+
+    const address = addressValidator(origin?.address ?? {})
+    if (!address.isValid) {
+      return h.redirect('/origin/address')
     }
 
     return h.view(indexView, {

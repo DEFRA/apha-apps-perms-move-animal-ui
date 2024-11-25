@@ -1,5 +1,7 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
 
+import validator from './validator.js'
+
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'origin/on-off-farm/index.njk'
@@ -34,13 +36,18 @@ export const onOffFarmPostController = {
       req.payload
     )
 
-    if (!onOffFarm) {
+    const { isValid, errors } = validator(onOffFarm)
+
+    if (!isValid) {
+      req.yar.set('origin', {
+        ...req.yar.get('origin'),
+        onOffFarm: undefined
+      })
+
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
-        errorMessage: {
-          text: 'Select if you are moving cattle on or off your farm or premises'
-        }
+        errorMessage: errors.cphNumber
       })
     }
 
