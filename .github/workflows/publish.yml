@@ -29,6 +29,18 @@ jobs:
           npm run build
           npm test
 
+      - name: Start docker compose
+        run: |
+            docker compose up --wait-timeout 300 -d --quiet-pull
+  
+      - name: Journey tests
+        run: |
+            npm run user-journey-test
+  
+      - name: cleanup
+        if: always()
+        run: docker compose down
+
       - name: Build and Publish
         uses: DEFRA/cdp-build-action/build@main
         with:
