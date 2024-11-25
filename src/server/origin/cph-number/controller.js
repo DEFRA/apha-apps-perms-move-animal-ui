@@ -1,4 +1,3 @@
-import nextPage from '../../common/helpers/next-page.js'
 import validator from './validator.js'
 
 export const pageTitle =
@@ -14,7 +13,7 @@ export const getController = {
     const { cphNumber } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
-      ...nextPage(req.headers.referer, '/origin/summary'),
+      nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageTitle,
       cphNumber: {
