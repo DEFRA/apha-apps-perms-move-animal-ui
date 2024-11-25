@@ -9,7 +9,7 @@ const postcodeId = 'addressPostcode'
 
 class NewAddressPage extends Page {
   get newAddressPageTitle() {
-    return 'What is the address of your 456farm or premises where the animals are moving off?'
+    return 'What is the address of your farm or premises where the animals are moving off?'
   }
 
   get urlPath() {
