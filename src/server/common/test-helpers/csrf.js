@@ -67,19 +67,22 @@ export const testCsrfProtectedGet = (serverFn, injectionOptions) =>
  * @param {ServerInjectOptions} injectionOptions
  * @returns {ServerInjectOptions}
  */
-export const withCsrfProtection = (injectionOptions) => ({
-  ...injectionOptions,
-  payload: {
-    ...(typeof injectionOptions.payload === 'object'
-      ? injectionOptions.payload
-      : {}),
-    crumb: 'csrf-value'
-  },
-  headers: {
-    ...(injectionOptions.headers ?? {}),
-    Cookie: 'crumb=csrf-value'
+export const withCsrfProtection = (injectionOptions, headers = {}) => {
+  return {
+    ...injectionOptions,
+    payload: {
+      ...(typeof injectionOptions.payload === 'object'
+        ? injectionOptions.payload
+        : {}),
+      crumb: 'csrf-value'
+    },
+    headers: {
+      ...(injectionOptions.headers ?? {}),
+      ...headers,
+      Cookie: ['crumb=csrf-value', headers?.Cookie].filter((v) => v).join(';')
+    }
   }
-})
+}
 
 /**
  * @import { OutgoingHttpHeaders } from 'http'

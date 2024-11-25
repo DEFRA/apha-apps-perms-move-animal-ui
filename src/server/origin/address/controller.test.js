@@ -272,11 +272,11 @@ describe('#originAddressController', () => {
     url: '/origin/address',
     payload: {
       originAddress: {
-        addressLine1: '73 OCEANA CRESCENT',
-        addressLine2: 'Archronos Ltd',
-        addressTown: 'Basingstoke',
-        addressCounty: 'Hampshire',
-        addressPostcode: 'RG248RR'
+        addressLine1: 'Starfleet Headquarters',
+        addressLine2: '24-593 Federation Drive',
+        addressTown: 'San Francisco',
+        addressCounty: 'San Francisco',
+        addressPostcode: 'RG24 8RR'
       }
     }
   })
