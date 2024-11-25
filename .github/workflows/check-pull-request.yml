@@ -48,7 +48,7 @@ jobs:
         if: failure()
         run: |
           docker ps
-          docker logs apha-apps-perms-move-animal-ui-apha-apps-perms-move-animal-ui-1
+          docker logs apha-apps-perms-move-animal-ui-your-frontend-1
           # You can run commands like `docker logs service-name` here to help debug failures
 
       - name: cleanup
