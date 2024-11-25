@@ -115,7 +115,9 @@ class SessionTester {
    * @returns {Promise<string>}
    */
   async _startSession() {
+    this._logger.info('Starting session')
     this._cookie = await startSession(this._server)
+    this._logger.info('Session started')
 
     return this._cookie
   }
@@ -125,13 +127,15 @@ class SessionTester {
    * @param {{[key: string]: any}} state
    */
   async setState(key, state) {
+    this._logger.info(`Setting state ${key} to ${JSON.stringify(state)}`)
     return await setSession(this._server, this._cookie, key, state)
   }
 
   /**
-   * @param {{string}} key
+   * @param {string} key
    */
   async getStateKey(key) {
+    this._logger.info(`Getting state for ${key}`)
     return await getSession(this._server, this._cookie, key)
   }
 
