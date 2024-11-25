@@ -1,3 +1,5 @@
+import nextPage from '../../common/helpers/next-page.js'
+
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'origin/on-off-farm/index.njk'
@@ -11,6 +13,7 @@ export const onOffFarmGetController = {
     const { onOffFarm } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
+      ...nextPage(req.headers.referer, '/origin/summary'),
       pageTitle,
       heading: pageHeading,
       onOffFarm: {
@@ -27,7 +30,9 @@ export const onOffFarmGetController = {
  */
 export const onOffFarmPostController = {
   handler(req, res) {
-    const { onOffFarm } = /** @type {OnOffFarmPayload} */ (req.payload)
+    const { onOffFarm, nextPage } = /** @type {OnOffFarmPayload & NextPage} */ (
+      req.payload
+    )
 
     if (!onOffFarm) {
       return res.view(indexView, {
@@ -46,7 +51,7 @@ export const onOffFarmPostController = {
 
     switch (onOffFarm) {
       case 'off':
-        return res.redirect('/origin/cph-number')
+        return res.redirect(nextPage ?? '/origin/cph-number')
       case 'on':
         return res.redirect('/exit-page')
       default:
@@ -64,4 +69,5 @@ export const onOffFarmPostController = {
 /**
  * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
  * @import { ServerRoute } from '@hapi/hapi'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
  */

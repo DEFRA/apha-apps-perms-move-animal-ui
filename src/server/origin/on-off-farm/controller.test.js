@@ -45,9 +45,8 @@ describe('#onOffFarmController', () => {
         })
       )
 
-      expect(headers.location).toBe('/origin/cph-number')
-
       expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe('/origin/cph-number')
     })
 
     test('should redirect to exit page', async () => {
