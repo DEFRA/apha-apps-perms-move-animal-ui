@@ -1,16 +1,11 @@
 import Joi from 'joi'
 
-const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
-
 export const CphNumberSchema = Joi.string()
   .required()
-  .replace(' ', '')
-  .pattern(cphNumberRegex)
+  .valid('on', 'off')
   .messages({
-    'any.required': 'Enter the farm or premises CPH number',
-    'string.empty': 'Enter the farm or premises CPH number',
-    'string.pattern.base':
-      'Enter the CPH number in the correct format, for example, 12/345/6789'
+    'any.valid':
+      'Select if you are moving cattle on or off your farm or premises'
   })
 
 /**

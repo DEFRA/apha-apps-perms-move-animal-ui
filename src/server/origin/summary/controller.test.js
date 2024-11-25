@@ -1,9 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import {
-  testCsrfProtectedGet,
-  withCsrfProtection
-} from '~/src/server/common/test-helpers/csrf.js'
+import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
 import { pageTitle } from './controller.js'
@@ -79,7 +76,7 @@ describe('#originSummaryController', () => {
         onOffFarm: undefined
       })
 
-      const { payload } = await server.inject(
+      const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
             method: 'GET',
@@ -91,19 +88,8 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(payload).not.toEqual(
-        expect.stringContaining('On to the farm or premises')
-      )
-      expect(payload).not.toEqual(
-        expect.stringContaining('Off the farm or premises')
-      )
-
-      expect(payload).toEqual(expect.stringContaining('12/123/1234'))
-      expect(payload).toEqual(
-        expect.stringContaining(
-          Object.values(defaultState.address).join('<br />')
-        )
-      )
+      expect(headers.location).toBe('/origin/on-off-farm')
+      expect(statusCode).toBe(statusCodes.redirect)
     })
 
     it('should not show address text', async () => {
@@ -112,7 +98,7 @@ describe('#originSummaryController', () => {
         address: undefined
       })
 
-      const { payload } = await server.inject(
+      const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
             method: 'GET',
@@ -124,17 +110,8 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(payload).toEqual(
-        expect.stringContaining('Off the farm or premises')
-      )
-
-      expect(payload).toEqual(expect.stringContaining('12/123/1234'))
-
-      expect(payload).not.toEqual(
-        expect.stringContaining(
-          Object.values(defaultState.address).join('<br />')
-        )
-      )
+      expect(headers.location).toBe('/origin/address')
+      expect(statusCode).toBe(statusCodes.redirect)
     })
 
     it('should not show cph number', async () => {
@@ -143,7 +120,7 @@ describe('#originSummaryController', () => {
         cphNumber: undefined
       })
 
-      const { payload } = await server.inject(
+      const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
             method: 'GET',
@@ -155,23 +132,9 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(payload).toEqual(
-        expect.stringContaining('Off the farm or premises')
-      )
-
-      expect(payload).not.toEqual(expect.stringContaining('12/123/1234'))
-
-      expect(payload).toEqual(
-        expect.stringContaining(
-          Object.values(defaultState.address).join('<br />')
-        )
-      )
+      expect(headers.location).toBe('/origin/cph-number')
+      expect(statusCode).toBe(statusCodes.redirect)
     })
-  })
-
-  testCsrfProtectedGet(() => server, {
-    method: 'GET',
-    url: '/origin/summary'
   })
 })
 
