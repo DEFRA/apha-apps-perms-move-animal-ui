@@ -12,6 +12,8 @@ import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
 describe('#originSummaryController', () => {
   /** @type {Server} */
   let server
+
+  /** @type {SesessionTestHelper} */
   let session
 
   /** @type {SesessionTestHelper} */
