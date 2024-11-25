@@ -9,3 +9,6 @@ npm-debug.log
 coverage
 .cache
 .envrc
+browserstack.err
+local.log
+logs
