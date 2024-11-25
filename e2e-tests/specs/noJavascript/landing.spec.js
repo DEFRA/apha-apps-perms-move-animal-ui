@@ -1,8 +1,8 @@
 import { browser } from '@wdio/globals'
 
-import landingPage from '../page-objects/landingPage.js'
-import toFromFarmPage from '../page-objects/toFromFarmPage.js'
-import { loadPageAndVerifyTitle } from '../helpers/page.js'
+import landingPage from '../../page-objects/landingPage.js'
+import toFromFarmPage from '../../page-objects/toFromFarmPage.js'
+import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 
 describe('Javascript disabled test', () => {
   beforeEach('Reset browser state and navigate to landing page', async () => {
