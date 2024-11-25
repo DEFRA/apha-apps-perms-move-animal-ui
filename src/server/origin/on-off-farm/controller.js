@@ -1,5 +1,3 @@
-import nextPage from '../../common/helpers/next-page.js'
-
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'origin/on-off-farm/index.njk'
@@ -13,7 +11,7 @@ export const onOffFarmGetController = {
     const { onOffFarm } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
-      ...nextPage(req.headers.referer, '/origin/summary'),
+      nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageHeading,
       onOffFarm: {

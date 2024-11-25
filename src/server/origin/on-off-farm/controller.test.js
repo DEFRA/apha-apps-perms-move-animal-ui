@@ -85,10 +85,7 @@ describe('#onOffFarmController', () => {
   test('should set the next page appropriately', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/origin/to-or-from-own-premises',
-      headers: {
-        referer: 'http://some.domain/origin/summary'
-      }
+      url: '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
     })
 
     const document = parseDocument(payload)

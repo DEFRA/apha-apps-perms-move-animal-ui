@@ -88,10 +88,7 @@ describe('#cphNumber', () => {
   test('should set the next page appropriately', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/origin/cph-number',
-      headers: {
-        referer: 'http://some.domain/origin/summary'
-      }
+      url: '/origin/cph-number?redirect_uri=/origin/summary'
     })
 
     expect(payload).toEqual(
