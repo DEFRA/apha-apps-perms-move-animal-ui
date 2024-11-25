@@ -28,17 +28,19 @@ export const originSummaryGetController = {
 
     const onOffFarm = onOffValidator(origin?.onOffFarm ?? '')
     if (!onOffFarm.isValid) {
-      return h.redirect('/origin/on-off-farm')
+      return h.redirect(
+        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+      )
     }
 
     const cphNumber = cphNumberValidator(origin?.cphNumber ?? '')
     if (!cphNumber.isValid) {
-      return h.redirect('/origin/cph-number')
+      return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
     }
 
     const address = addressValidator(origin?.address ?? {})
     if (!address.isValid) {
-      return h.redirect('/origin/address')
+      return h.redirect('/origin/address?redirect_uri=/origin/summary')
     }
 
     return h.view(indexView, {

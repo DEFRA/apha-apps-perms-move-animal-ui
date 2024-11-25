@@ -85,7 +85,9 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(headers.location).toBe('/origin/on-off-farm')
+      expect(headers.location).toBe(
+        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+      )
       expect(statusCode).toBe(statusCodes.redirect)
     })
 
@@ -107,7 +109,9 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(headers.location).toBe('/origin/address')
+      expect(headers.location).toBe(
+        '/origin/address?redirect_uri=/origin/summary'
+      )
       expect(statusCode).toBe(statusCodes.redirect)
     })
 
@@ -129,7 +133,9 @@ describe('#originSummaryController', () => {
         )
       )
 
-      expect(headers.location).toBe('/origin/cph-number')
+      expect(headers.location).toBe(
+        '/origin/cph-number?redirect_uri=/origin/summary'
+      )
       expect(statusCode).toBe(statusCodes.redirect)
     })
   })
