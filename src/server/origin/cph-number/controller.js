@@ -1,3 +1,4 @@
+import nextPage from '../../common/helpers/next-page.js'
 import validator from './validator.js'
 
 export const pageTitle =
@@ -13,6 +14,7 @@ export const getController = {
     const { cphNumber } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
+      ...nextPage(req.headers.referer, '/origin/summary'),
       pageTitle,
       heading: pageTitle,
       cphNumber: {
@@ -29,7 +31,9 @@ export const getController = {
  */
 export const postController = {
   handler(req, res) {
-    const { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
+    const { cphNumber, nextPage } = /** @type {CphNumberPayload & NextPage} */ (
+      req.payload
+    )
     // Remove whitespace from cphNumber
     const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
     const [isValid, message] = validator(input)
@@ -53,11 +57,12 @@ export const postController = {
       cphNumber: input
     })
 
-    return res.redirect('/origin/address')
+    return res.redirect(nextPage ?? '/origin/address')
   }
 }
 
 /**
  * @typedef {{ cphNumber: string }} CphNumberPayload
  * @import { ServerRoute, Request } from '@hapi/hapi'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
  */

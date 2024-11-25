@@ -9,12 +9,19 @@ export const pageHeading =
  */
 export const originSummaryGetController = {
   handler(req, h) {
-    const origin = req.yar.get('origin')
+    const origin = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
       pageTitle,
       heading: pageHeading,
-      origin
+      origin: {
+        cphNumber: origin?.cphNumber,
+        address: Object.values(origin?.address ?? {}).join('<br />'),
+        onOffFarm:
+          origin?.onOffFarm === 'on'
+            ? 'On to the farm or premises'
+            : 'Off the farm or premises'
+      }
     })
   }
 }
