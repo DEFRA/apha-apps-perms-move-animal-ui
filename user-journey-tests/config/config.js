@@ -1,5 +1,5 @@
 export default {
-  logLevel: 'info',
+  logLevel: 'error',
   maxInstance: 5,
   bail: 0,
   specFileRetries: 0,
