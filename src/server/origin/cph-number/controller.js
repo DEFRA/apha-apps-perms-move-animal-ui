@@ -1,3 +1,4 @@
+import { calculateNextPage } from '../../common/helpers/next-page.js'
 import validator from './validator.js'
 
 export const pageTitle =
@@ -56,7 +57,7 @@ export const postController = {
       cphNumber: input
     })
 
-    return res.redirect(nextPage ?? '/origin/address')
+    return res.redirect(calculateNextPage(nextPage, '/origin/address'))
   }
 }
 

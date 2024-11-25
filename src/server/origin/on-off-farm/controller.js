@@ -1,3 +1,5 @@
+import { calculateNextPage } from '../../common/helpers/next-page.js'
+
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
 const indexView = 'origin/on-off-farm/index.njk'
@@ -49,7 +51,7 @@ export const onOffFarmPostController = {
 
     switch (onOffFarm) {
       case 'off':
-        return res.redirect(nextPage ?? '/origin/cph-number')
+        return res.redirect(calculateNextPage(nextPage, '/origin/cph-number'))
       case 'on':
         return res.redirect('/exit-page')
       default:
