@@ -7,7 +7,7 @@ export const addSessionHelper = (server) => {
       method: 'GET',
       path: '/start-state',
       handler: (req, res) => {
-        req.yar.set('foo', 'bar')
+        req.yar.set('foo', 'bar') // need to set something or no session created
         return res.response('session started').code(200)
       }
     },
@@ -43,7 +43,7 @@ export const startSession = async (server) => {
 
   const header = createSession.headers['set-cookie']
   // eslint-disable-next-line no-control-regex
-  const cookie = header?.at(0)?.match(/(session=[^\x00-\x20",;\\\x7F]*)/)
+  const cookie = header?.at(0)?.match(/(session=[^\x00-\x20",;\\\x7F]*)/) // line from `yar` library
 
   return cookie?.at(1)
 }
@@ -106,7 +106,7 @@ class SessionTester {
 
   static async create(server) {
     const sessionTester = new SessionTester(server)
-    await sessionTester.startSession()
+    await sessionTester._startSession()
 
     return sessionTester
   }
@@ -114,13 +114,14 @@ class SessionTester {
   /**
    * @returns {Promise<string>}
    */
-  async startSession() {
+  async _startSession() {
     this._cookie = await startSession(this._server)
 
     return this._cookie
   }
 
   /**
+   * @param {string} key
    * @param {{[key: string]: any}} state
    */
   async setState(key, state) {
@@ -128,8 +129,7 @@ class SessionTester {
   }
 
   /**
-   * @param {{ string}} key
-   * @returns {Promise<any>}
+   * @param {{string}} key
    */
   async getStateKey(key) {
     return await getSession(this._server, this._cookie, key)
@@ -141,21 +141,3 @@ class SessionTester {
 }
 
 export default SessionTester
-
-// export default async (server) => {
-//   addSessionHelper(server)
-
-//   return {
-//     start: async () => {
-//       const cookie = await startSession(server)
-
-//       return cookie
-//     },
-//     set: async (state) => {
-//       return await setSession(server, cookie, state)
-//     },
-//     get: async (key) => {
-//       return await getSession(server, cookie, key)
-//     }
-//   }
-// }
