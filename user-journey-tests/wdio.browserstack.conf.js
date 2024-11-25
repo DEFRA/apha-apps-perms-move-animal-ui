@@ -1,9 +1,9 @@
-const merge = require('deepmerge')
-const wdioConf = require('./wdio.conf')
+import merge from 'deepmerge'
+import { config as wdioConf } from './wdio.conf.js'
 
-exports.config = merge(wdioConf.config, {
-  specs: ['./test/specs/**/*.spec.js'],
-  exclude: ['./test/specs/noJavascript/**/*.js'],
+export const config = merge(wdioConf, {
+  specs: ['./specs/**/**.js'],
+  exclude: ['./specs/noJavascript/**/*.js'],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,
   maxInstances: 20,
