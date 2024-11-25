@@ -44,6 +44,13 @@ jobs:
         run: |
           npm run e2e
 
+      - name: debug
+        if: failure()
+        run: |
+          docker ps
+          docker logs apha-apps-perms-move-animal-ui-apha-apps-perms-move-animal-ui-1
+          # You can run commands like `docker logs service-name` here to help debug failures
+
       - name: cleanup
         if: always()
         run: docker compose down
