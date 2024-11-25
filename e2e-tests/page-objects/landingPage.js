@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
-import { Page } from '../page-objects/page.js'
+import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 class LandingPage extends Page {
   get startNowButton() {
@@ -12,9 +13,9 @@ class LandingPage extends Page {
   }
 
   async verifyStartNowButton(text, click = false) {
-    await super.validateElementVisibleAndText(this.startNowButton, text)
+    await page.validateElementVisibleAndText(this.startNowButton, text)
     if (click) {
-      await super.selectElement(this.startNowButton)
+      await page.selectElement(this.startNowButton)
     }
   }
 }

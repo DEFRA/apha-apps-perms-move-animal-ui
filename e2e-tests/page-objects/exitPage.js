@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
-import { Page } from '../page-objects/page.js'
+import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 class ExitPage extends Page {
   get exitPageHeading() {
@@ -24,22 +25,14 @@ class ExitPage extends Page {
   }
 
   async verifyViewApplicationLink() {
-    await super.selectElement(this.viewApplicationLink)
-    const title = await browser.getTitle()
-    if (
-      title !==
+    await page.selectLinkAndVerifyTitle(
+      this.viewApplicationLink,
       'TB restricted cattle: application for movement licence in England - GOV.UK'
-    ) {
-      throw new Error(`Unexpected title: ${title}`)
-    }
+    )
   }
 
   async verifyGovUkLink() {
-    await super.selectElement(this.govUkLink)
-    const title = await browser.getTitle()
-    if (title !== 'Welcome to GOV.UK') {
-      throw new Error(`Unexpected title: ${title}`)
-    }
+    await page.selectLinkAndVerifyTitle(this.govUkLink, 'Welcome to GOV.UK')
   }
 }
 

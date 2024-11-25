@@ -1,4 +1,5 @@
 import { browser, $ } from '@wdio/globals'
+import * as page from '../helpers/page'
 
 class Page {
   get pageHeading() {
@@ -43,66 +44,28 @@ class Page {
     return $(`[href="#${id}"]`)
   }
 
-  // Reusable wait function
-  async waitForElement(element, options = { timeout: 10000, visible: true }) {
-    await element.waitForExist({ timeout: options.timeout })
-    if (options.visible) {
-      await element.waitForDisplayed({ timeout: options.timeout })
-    }
-  }
-
-  async validateElementVisibleAndText(element, text) {
-    try {
-      await this.waitForElement(element, { visible: true })
-      await expect(element).toHaveTextContaining(text)
-    } catch (error) {
-      throw new Error(
-        `Failed to validate text for element - ${await element.selector}: ${error}`
-      )
-    }
-  }
-
-  async selectElement(element, hidden = false) {
-    try {
-      await this.waitForElement(element, { visible: !hidden })
-      await element.click()
-    } catch (error) {
-      throw new Error(
-        `Failed to click element - ${await element.selector}: ${error}`
-      )
-    }
-  }
-
-  async typeIntoElement(element, text) {
-    try {
-      await this.waitForElement(element)
-      await element.setValue(text)
-    } catch (error) {
-      throw new Error(
-        `Failed type command on element - ${await element.selector}: ${error}`
-      )
-    }
-  }
-
   async verifyFeedbackLink(text) {
-    await this.validateElementVisibleAndText(this.feedbackLink, text)
+    await page.validateElementVisibleAndText(this.feedbackLink, text)
   }
 
-  async verifyPrivateBetaBanner(bannerText = 'Private beta') {
-    // await this.validateElementVisibleAndText(this.feedbackLink, feedbackText)
-    await this.validateElementVisibleAndText(this.privateBetaBanner, bannerText)
+  async verifyPrivateBetaBanner(
+    feedbackText = 'feedback',
+    bannerText = 'Private beta'
+  ) {
+    // await page.validateElementVisibleAndText(this.feedbackLink, feedbackText)
+    await page.validateElementVisibleAndText(this.privateBetaBanner, bannerText)
   }
 
   async verifyPageHeading(headingText) {
-    await this.validateElementVisibleAndText(this.pageHeading, headingText)
+    await page.validateElementVisibleAndText(this.pageHeading, headingText)
   }
 
   async selectBackLink() {
-    await this.selectElement(this.backLink)
+    await page.selectElement(this.backLink)
   }
 
   async selectContinue() {
-    await this.selectElement(this.continueButton)
+    await page.selectElement(this.continueButton)
   }
 
   async verifyRadioIsSelected(element) {
@@ -116,13 +79,13 @@ class Page {
   }
 
   async verifyErrorsOnPage(element, errorMessage) {
-    await this.validateElementVisibleAndText(element, errorMessage)
-    await this.validateElementVisibleAndText(this.errorSummary, errorMessage)
-    expect(await browser.getTitle()).toMatch(/^Error:/)
+    await page.validateElementVisibleAndText(element, errorMessage)
+    await page.validateElementVisibleAndText(this.errorSummary, errorMessage)
+    await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 
   async verifySummaryErrorLink(linkElement, fieldElement) {
-    await this.selectElement(linkElement)
+    await page.selectElement(linkElement)
     await fieldElement.isFocused()
   }
 

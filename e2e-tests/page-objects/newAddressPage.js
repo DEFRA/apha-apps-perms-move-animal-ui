@@ -1,4 +1,5 @@
-import { Page } from '../page-objects/page.js'
+import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 const addressLineOneId = 'addressLine1'
 const addressLineTwoId = 'addressLine2'
@@ -156,7 +157,7 @@ class NewAddressPage extends Page {
     for (const field of fields) {
       const error = errorMappings[field]
 
-      if (error?.element) {
+      if (error && error.element) {
         const message = error.message
         const link = error.link
         await super.verifyErrorsOnPage(error.element, message) // Verify the error element
@@ -173,7 +174,7 @@ class NewAddressPage extends Page {
       const fieldElement = fieldMappings[field]
 
       if (value !== undefined && fieldElement) {
-        await super.typeIntoElement(fieldElement, value)
+        await page.typeIntoElement(fieldElement, value)
       } else if (!fieldElement) {
         throw new Error(`Invalid field: ${field}`)
       }

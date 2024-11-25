@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
-import { Page } from '../page-objects/page.js'
+import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 class ToFromFarmPage extends Page {
   get urlPath() {
@@ -32,12 +33,12 @@ class ToFromFarmPage extends Page {
   }
 
   async selectOnFarmAndContinue() {
-    await super.selectElement(this.onThefarmRadio, true)
+    await page.selectElement(this.onThefarmRadio, true)
     await super.selectContinue()
   }
 
   async selectOffFarmAndContinue() {
-    await super.selectElement(this.offThefarmRadio, true)
+    await page.selectElement(this.offThefarmRadio, true)
     await super.selectContinue()
   }
 

@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
-import { Page } from '../page-objects/page.js'
+import { Page } from 'page-objects/page'
+import * as page from '../helpers/page'
 
 class ParishHoldingNumberPage extends Page {
   get urlPath() {
@@ -32,7 +33,7 @@ class ParishHoldingNumberPage extends Page {
   }
 
   async inputParishHoldingNumberAndContinue(text) {
-    await super.typeIntoElement(this.cphNumberInput, text)
+    await page.typeIntoElement(this.cphNumberInput, text)
     await super.selectContinue()
   }
 

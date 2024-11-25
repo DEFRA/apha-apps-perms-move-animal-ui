@@ -1,8 +1,8 @@
-import { browser, expect } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 
-import landingPage from '../../page-objects/landingPage.js'
-import toFromFarmPage from '../../page-objects/toFromFarmPage.js'
-import loadPageAndVerifyTitle from '../../helpers/loadPageHelper.js'
+import landingPage from '~/test/page-objects/landingPage'
+import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
+import { loadPageAndVerifyTitle } from '~/test/helpers/page'
 
 describe('Javascript disabled test', () => {
   beforeEach('Reset browser state and navigate to landing page', async () => {

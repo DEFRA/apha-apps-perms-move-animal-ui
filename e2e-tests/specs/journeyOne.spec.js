@@ -1,8 +1,8 @@
-import landingPage from '../page-objects/landingPage.js'
-import toFromFarmPage from '../page-objects/toFromFarmPage.js'
-import loadPageAndVerifyTitle from '../helpers/loadPageHelper.js'
-import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage.js'
-import newAddressPage from '../page-objects/newAddressPage.js'
+import landingPage from '~/ttest/page-objects/landingPage'
+import toFromFarmPage from '~/test/page-objects/toFromFarmPage'
+import { loadPageAndVerifyTitle } from '~/test/helpers/page'
+import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage'
+import newAddressPage from '../page-objects/newAddressPage'
 
 const lineOne = '37 Made up lane'
 const townOrCity = 'Gotham'
