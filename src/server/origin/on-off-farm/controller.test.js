@@ -23,7 +23,7 @@ describe('#onOffFarmController', () => {
   test('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/to-or-from-own-premises'
+      url: '/origin/to-or-from-own-premises'
     })
 
     const document = parseDocument(payload)
@@ -38,23 +38,22 @@ describe('#onOffFarmController', () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/to-or-from-own-premises',
+          url: '/origin/to-or-from-own-premises',
           payload: {
             onOffFarm: 'off'
           }
         })
       )
 
-      expect(headers.location).toBe('/cph-number')
-
       expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe('/origin/cph-number')
     })
 
     test('should redirect to exit page', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
-          url: '/to-or-from-own-premises',
+          url: '/origin/to-or-from-own-premises',
           payload: {
             onOffFarm: 'on'
           }
@@ -71,7 +70,7 @@ describe('#onOffFarmController', () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
-        url: '/to-or-from-own-premises'
+        url: '/origin/to-or-from-own-premises'
       })
     )
 
@@ -83,14 +82,50 @@ describe('#onOffFarmController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
+  test('should set the next page appropriately', async () => {
+    const { payload, statusCode } = await server.inject({
+      method: 'GET',
+      url: '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+    })
+
+    const document = parseDocument(payload)
+    expect(document.title).toBe(
+      'Are you moving the cattle on or off your farm or premises?'
+    )
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input type="hidden" name="nextPage" value="/origin/summary" />'
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  test('should redirect to summary page if it came from there', async () => {
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/origin/to-or-from-own-premises',
+        payload: {
+          onOffFarm: 'off',
+          nextPage: '/origin/summary'
+        }
+      })
+    )
+
+    expect(headers.location).toBe('/origin/summary')
+    expect(statusCode).toBe(statusCodes.redirect)
+  })
+
   testCsrfProtectedGet(() => server, {
     method: 'GET',
-    url: '/to-or-from-own-premises'
+    url: '/origin/to-or-from-own-premises'
   })
 
   testCsrfProtectedPost(() => server, {
     method: 'POST',
-    url: '/to-or-from-own-premises',
+    url: '/origin/to-or-from-own-premises',
     payload: {
       onOffFarm: 'on'
     }

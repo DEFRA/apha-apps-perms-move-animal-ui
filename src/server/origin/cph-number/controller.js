@@ -1,8 +1,9 @@
+import { calculateNextPage } from '../../common/helpers/next-page.js'
 import validator from './validator.js'
 
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
-const indexView = 'cph-number/index'
+const indexView = 'origin/cph-number/index'
 
 /**
  * CPH number question.
@@ -10,9 +11,10 @@ const indexView = 'cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const cphNumber = req.yar.get('cphNumber')
+    const { cphNumber } = req.yar.get('origin') ?? {}
 
-    return h.view('cph-number/index', {
+    return h.view(indexView, {
+      nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageTitle,
       cphNumber: {
@@ -29,32 +31,41 @@ export const getController = {
  */
 export const postController = {
   handler(req, res) {
-    const { cphNumber } = /** @type {CphNumberPayload} */ (req.payload)
+    const { cphNumber, nextPage } = /** @type {CphNumberPayload & NextPage} */ (
+      req.payload
+    )
     // Remove whitespace from cphNumber
     const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
-    const [isValid, message] = validator(input)
+    const { isValid, errors } = validator(input)
 
     if (!isValid) {
-      req.yar.clear('cphNumber')
+      req.yar.set('origin', {
+        ...req.yar.get('origin'),
+        cphNumber: undefined
+      })
+
       return res.view(indexView, {
+        nextPage: calculateNextPage(nextPage, '/origin/address'),
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
           value: input
         },
-        errorMessage: {
-          text: message
-        }
+        errorMessage: errors.cphNumber
       })
     }
 
-    req.yar.set('cphNumber', input)
+    req.yar.set('origin', {
+      ...req.yar.get('origin'),
+      cphNumber: input
+    })
 
-    return res.redirect('/origin-address')
+    return res.redirect(calculateNextPage(nextPage, '/origin/address'))
   }
 }
 
 /**
  * @typedef {{ cphNumber: string }} CphNumberPayload
  * @import { ServerRoute, Request } from '@hapi/hapi'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
  */

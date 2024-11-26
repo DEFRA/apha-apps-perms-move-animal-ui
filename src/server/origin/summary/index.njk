@@ -1,0 +1,67 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+  <h1 class="govuk-heading-l">{{pageTitle}}</h1>
+
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: [
+      {
+        key: {
+          text: "Are you moving the cattle on or off your farm or premises?"
+        },
+        value: {
+          text: origin.onOffFarm
+        },
+        actions: {
+          items: [
+            {
+              href: "to-or-from-own-premises?redirect_uri=/origin/summary",
+              text: "Change",
+              visuallyHiddenText: "Are you moving the cattle on or off your farm or premises?"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?"
+        },
+        value: {
+          text: origin.cphNumber
+        },
+        actions: {
+          items: [
+            {
+              href: "cph-number?redirect_uri=/origin/summary",
+              text: "Change",
+              visuallyHiddenText: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "What is the address of your farm or premises where the animals are moving off?"
+        },
+        value: {
+          html: origin.address
+        },
+        actions: {
+          items: [
+            {
+              href: "address?redirect_uri=/origin/summary",
+              text: "Change",
+              visuallyHiddenText: "What is the address of your farm or premises where the animals are moving off?"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+{% endblock %}

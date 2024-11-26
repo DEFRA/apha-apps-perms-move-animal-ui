@@ -11,19 +11,19 @@ import {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originAddress = {
+export const address = {
   plugin: {
     name: 'origin-address',
     register(server) {
       server.route([
         {
           method: 'GET',
-          path: '/origin-address',
+          path: '/address',
           ...originAddressGetController
         },
         {
           method: 'POST',
-          path: '/origin-address',
+          path: '/address',
           ...originAddressPostController
         }
       ])

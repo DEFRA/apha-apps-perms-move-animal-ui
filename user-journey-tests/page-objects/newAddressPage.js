@@ -8,12 +8,12 @@ const countyId = 'addressCounty'
 const postcodeId = 'addressPostcode'
 
 class NewAddressPage extends Page {
-  get newAddressPageTitle() {
-    return 'What is the address of your farm or premises where the animals are moving off?'
+  get urlPath() {
+    return 'origin/address'
   }
 
-  get urlPath() {
-    return 'origin-address'
+  get newAddressPageTitle() {
+    return 'What is the address of your farm or premises where the animals are moving off?'
   }
 
   addressLineOneInput() {

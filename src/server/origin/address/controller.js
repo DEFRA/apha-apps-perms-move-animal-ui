@@ -1,6 +1,6 @@
 import validator from './validator.js'
 
-const indexView = 'origin-address/index.njk'
+const indexView = 'origin/address/index'
 export const pageTitle =
   'What is the address of your farm or premises where the animals are moving off?'
 export const pageHeading =
@@ -11,12 +11,12 @@ export const pageHeading =
  */
 export const originAddressGetController = {
   handler(req, h) {
-    const originAddress = req.yar.get('originAddress')
+    const { address } = req.yar.get('origin') ?? {}
 
     return h.view(indexView, {
       pageTitle,
       heading: pageHeading,
-      values: originAddress
+      values: address
     })
   }
 }
@@ -50,6 +50,11 @@ export const originAddressPostController = {
     }))
 
     if (!isValid) {
+      req.yar.set('origin', {
+        ...req.yar.get('origin'),
+        address: undefined
+      })
+
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
@@ -59,9 +64,12 @@ export const originAddressPostController = {
       })
     }
 
-    req.yar.set('originAddress', originAddress)
+    req.yar.set('origin', {
+      ...req.yar.get('origin'),
+      address: originAddress
+    })
 
-    return res.redirect('/origin-address')
+    return res.redirect('/origin/summary')
   }
 }
 
