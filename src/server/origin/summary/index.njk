@@ -23,7 +23,10 @@
             {
               href: "to-or-from-own-premises?redirect_uri=/origin/summary",
               text: "Change",
-              visuallyHiddenText: "Are you moving the cattle on or off your farm or premises?"
+              visuallyHiddenText: "Are you moving the cattle on or off your farm or premises?",
+              attributes: {
+                'data-testid': "on-off-change-link" 
+              }
             }
           ]
         }
@@ -40,7 +43,10 @@
             {
               href: "cph-number?redirect_uri=/origin/summary",
               text: "Change",
-              visuallyHiddenText: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?"
+              visuallyHiddenText: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?",
+              attributes: {
+                'data-testid': "cph-change-link" 
+              }
             }
           ]
         }
@@ -57,7 +63,10 @@
             {
               href: "address?redirect_uri=/origin/summary",
               text: "Change",
-              visuallyHiddenText: "What is the address of your farm or premises where the animals are moving off?"
+              visuallyHiddenText: "What is the address of your farm or premises where the animals are moving off?",
+              attributes: {
+                'data-testid': "address-change-link" 
+              }
             }
           ]
         }

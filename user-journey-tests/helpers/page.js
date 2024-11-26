@@ -61,3 +61,14 @@ export const typeIntoElement = async (element, text) => {
     )
   }
 }
+
+export const clearElement = async (element) => {
+  try {
+    await waitForElement(element)
+    await element.clearValue()
+  } catch (error) {
+    throw new Error(
+      `Failed clear command on element - ${await element.selector}: ${error}`
+    )
+  }
+}
