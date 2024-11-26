@@ -1,6 +1,6 @@
 import landingPage from '../page-objects/landingPage.js'
 import { loadPageAndVerifyTitle } from '../helpers/page.js'
-import completeTaskListOneAnswers from '../helpers/testHelpers/movementLicense.js'
+import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicense.js'
 import checkAnswersPage from '../page-objects/checkAnswersPage.js'
 
 describe('Full journey test 1', () => {
@@ -11,7 +11,7 @@ describe('Full journey test 1', () => {
 
   it('Should navigate you through the first journey happy path', async () => {
     // To do: verify new page
-    await completeTaskListOneAnswers()
+    await completeOriginTaskAnswers()
     checkAnswersPage.selectContinue()
   })
 })
