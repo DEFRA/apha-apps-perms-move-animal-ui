@@ -33,8 +33,8 @@ export const originSummaryGetController = {
       )
     }
 
-    const cphNumber = CphNumber.validate(CphNumber.fromState(origin?.cphNumber))
-    if (!cphNumber.isValid) {
+    const cphNumber = CphNumber.fromState(origin)
+    if (!cphNumber.validate().isValid) {
       return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
     }
 

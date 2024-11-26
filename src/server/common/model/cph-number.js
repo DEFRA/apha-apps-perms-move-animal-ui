@@ -1,5 +1,6 @@
 import Joi from 'joi'
 import { validateAgainstSchema } from './model.js'
+import { Model } from './model.js'
 
 const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
 
@@ -18,31 +19,49 @@ export const cphNumberPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} CphNumberData
+ * @import {RawPayload} from './model.js'
  */
 
-/**
- * @implements {Model<CphNumberData>}
- */
-class CphNumberModel {
-  /** @param {RawPayload} payload */
-  toState({ cphNumber }) {
-    return cphNumber?.replace(/\s+/g, '') ?? ''
+export class CphNumber extends Model {
+  /** @type {RawPayload | undefined} */
+  _data
+
+  /**
+   * @param {RawPayload | undefined} data
+   */
+  constructor(data) {
+    super()
+    this._data = data
+
+    Object.seal(this) // makes class immutable after instantiation
   }
 
   /**
-   * @param {CphNumberData | undefined} data
-   * @returns {{ cphNumber?: string }}
+   * @returns {string | undefined}
    */
-  fromState(data) {
-    return { cphNumber: data }
+  get value() {
+    return this._data?.cphNumber
   }
 
-  /** @param {RawPayload} data */
-  validate(data) {
-    return validateAgainstSchema(cphNumberPayloadSchema, data)
+  /**
+   *
+   * @returns {RawPayload}
+   */
+  toState() {
+    return {
+      cphNumber: this.value?.replace(/\s+/g, '') ?? ''
+    }
+  }
+
+  validate() {
+    return validateAgainstSchema(cphNumberPayloadSchema, this._data)
+  }
+
+  /**
+   * @param {RawPayload | undefined} data
+   * @returns {CphNumber}
+   */
+  static fromState(data) {
+    return new CphNumber(data)
   }
 }
-
-export const CphNumber = new CphNumberModel()
-
-/** @import {Model,RawPayload} from './model.js' */

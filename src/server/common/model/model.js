@@ -33,17 +33,37 @@ export const validateAgainstSchema = (schema, value) => {
   }
 }
 
-/**
- * @typedef {{[key:string]: string}} RawPayload
- */
+export class Model {
+  /**
+   * @returns {unknown}
+   */
+  get value() {
+    throw new Error('Not implemented')
+  }
+
+  toState() {
+    throw new Error('Not implemented')
+  }
+
+  validate() {
+    throw new Error('Not implemented')
+  }
+
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+
+  /**
+   * @param {unknown} _data
+   * @returns {unknown}
+   */
+  static fromState(_data) {
+    throw new Error('Not implemented')
+  }
+
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+}
 
 /**
- * @template State
- * @typedef {{
- *   toState: (payload: RawPayload) => State,
- *   fromState: (data: State) => RawPayload,
- *   validate: (payload: RawPayload) => ValidationResult
- * }} Model<Data>
+ * @typedef {{[key:string]: string}} RawPayload
  */
 
 /** @import { Schema } from 'joi' */
