@@ -168,6 +168,19 @@ class NewAddressPage extends Page {
     }
   }
 
+  async clearFormFields(fields = {}) {
+    for (const [field, value] of Object.entries(fields)) {
+      const fieldMappings = this.getFieldMappings()
+      const fieldElement = fieldMappings[field]
+
+      if (value !== undefined && fieldElement) {
+        await page.clearElement(fieldElement)
+      } else if (!fieldElement) {
+        throw new Error(`Invalid field: ${field}`)
+      }
+    }
+  }
+
   async fillFormFieldsAndSubmit(fields = {}) {
     for (const [field, value] of Object.entries(fields)) {
       const fieldMappings = this.getFieldMappings()
