@@ -56,9 +56,10 @@ describe('#CphNumber.toState', () => {
 })
 
 describe('#CphNumber.fromState', () => {
-  it('should return just the cphNumber from the payload', () => {
-    const state = CphNumber.toState(validCphNumber)
-    expect(CphNumber.fromState(state)).toEqual(validCphNumber)
+  it('should wrap the state in the appropriate payload key', () => {
+    expect(CphNumber.fromState('12/234/1234')).toEqual({
+      cphNumber: '12/234/1234'
+    })
   })
 
   it('should return an empty object if the state is undefined', () => {

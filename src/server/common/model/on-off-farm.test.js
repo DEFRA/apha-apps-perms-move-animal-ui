@@ -1,9 +1,5 @@
 import { OnOffFarm } from './on-off-farm.js'
 
-const validOnOffRadio = {
-  onOffFarm: 'on'
-}
-
 describe('#OnOffFarm.validate', () => {
   test('should return true for on', () => {
     const { isValid, errors } = OnOffFarm.validate({
@@ -50,9 +46,8 @@ describe('#OnOffFarm.toState', () => {
 })
 
 describe('#OnOffFarm.fromState', () => {
-  it('should return just the cphNumber from the payload', () => {
-    const state = OnOffFarm.toState(validOnOffRadio)
-    expect(OnOffFarm.fromState(state)).toEqual(validOnOffRadio)
+  it('should wrap the state in the appropriate payload key', () => {
+    expect(OnOffFarm.fromState('off')).toEqual({ onOffFarm: 'off' })
   })
 
   it('should return an empty object if the state is undefined', () => {
