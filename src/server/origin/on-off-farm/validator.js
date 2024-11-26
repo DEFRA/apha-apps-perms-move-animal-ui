@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-export const CphNumberSchema = Joi.string()
+export const onOffFarmSchema = Joi.string()
   .required()
   .valid('on', 'off')
   .messages({
@@ -11,15 +11,15 @@ export const CphNumberSchema = Joi.string()
   })
 
 /**
- * @param {string} cphNumber
+ * @param {string} onOffFarm
  * @returns {{isValid: boolean, errors: object}}
  */
-export default (cphNumber) => {
-  const result = CphNumberSchema.options({ abortEarly: false }).validate(
-    cphNumber
-  )
+export default (onOffFarm) => {
+  const result = onOffFarmSchema
+    .options({ abortEarly: false })
+    .validate(onOffFarm)
   const errors = result.error?.details.map(({ message }) => [
-    'cphNumber',
+    'onOffFarm',
     { text: message }
   ])
 
