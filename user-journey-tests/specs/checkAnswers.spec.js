@@ -1,3 +1,5 @@
+import { browser } from '@wdio/globals'
+
 import {
   clearElement,
   loadPageAndVerifyTitle,
@@ -8,7 +10,7 @@ import checkAnswersPage from '../page-objects/checkAnswersPage.js'
 import newAddressPage from '../page-objects/newAddressPage.js'
 import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage.js'
 import toFromFarmPage from '../page-objects/toFromFarmPage.js'
-import completeMovementLicenceAnswers from '../helpers/testHelpers/movementLicense.js'
+import completeTaskListOneAnswers from '../helpers/testHelpers/movementLicense.js'
 import landingPage from '../page-objects/landingPage.js'
 
 const parishHoldingInput = '45/456/4567'
@@ -22,7 +24,7 @@ describe('Check your answers test', () => {
   beforeEach('Navigate to check answers page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
-    await completeMovementLicenceAnswers()
+    await completeTaskListOneAnswers()
   })
 
   it('Should verify the back link', async () => {

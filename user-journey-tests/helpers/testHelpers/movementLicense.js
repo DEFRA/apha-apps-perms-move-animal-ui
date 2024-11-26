@@ -7,7 +7,7 @@ const lineOne = '37 Made up lane'
 const townOrCity = 'Gotham'
 const postcode = 'SW1A2AA'
 
-const completeMovementLicenceAnswers = async () => {
+const completeTaskListOneAnswers = async () => {
   await landingPage.verifyStartNowButton('Start now', true)
   await toFromFarmPage.selectOffFarmAndContinue()
   await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
@@ -20,4 +20,4 @@ const completeMovementLicenceAnswers = async () => {
   })
 }
 
-export default completeMovementLicenceAnswers
+export default completeTaskListOneAnswers

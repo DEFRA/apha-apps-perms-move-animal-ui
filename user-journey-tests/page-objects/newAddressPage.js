@@ -153,7 +153,6 @@ class NewAddressPage extends Page {
 
   async verifyNewAddressErrors(fields = []) {
     const errorMappings = this.getErrorMappings()
-
     for (const field of fields) {
       const error = errorMappings[field]
 
@@ -169,8 +168,8 @@ class NewAddressPage extends Page {
   }
 
   async clearFormFields(fields = {}) {
+    const fieldMappings = this.getFieldMappings()
     for (const [field, value] of Object.entries(fields)) {
-      const fieldMappings = this.getFieldMappings()
       const fieldElement = fieldMappings[field]
 
       if (value !== undefined && fieldElement) {
@@ -182,8 +181,8 @@ class NewAddressPage extends Page {
   }
 
   async fillFormFieldsAndSubmit(fields = {}) {
+    const fieldMappings = this.getFieldMappings()
     for (const [field, value] of Object.entries(fields)) {
-      const fieldMappings = this.getFieldMappings()
       const fieldElement = fieldMappings[field]
 
       if (value !== undefined && fieldElement) {
@@ -207,8 +206,8 @@ class NewAddressPage extends Page {
   }
 
   async verifyFieldValues(expectedValues = {}) {
+    const fieldMappings = this.getFieldMappings()
     for (const [field, expectedValue] of Object.entries(expectedValues)) {
-      const fieldMappings = this.getFieldMappings()
       const fieldElement = fieldMappings[field]
 
       if (!fieldElement) {
