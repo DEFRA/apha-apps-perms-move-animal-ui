@@ -42,6 +42,10 @@ export const onOffFarmPostController = {
       })
 
       return res.view(indexView, {
+        nextPage: calculateNextPage(
+          payload.nextPage,
+          '/origin/to-or-from-own-premises'
+        ),
         pageTitle: `Error: ${pageTitle}`,
         heading: pageHeading,
         errorMessage: errors.onOffFarm

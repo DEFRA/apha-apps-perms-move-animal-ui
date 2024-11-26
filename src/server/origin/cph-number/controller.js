@@ -42,6 +42,7 @@ export const postController = {
       })
 
       return res.view(indexView, {
+        nextPage: calculateNextPage(payload.nextPage, '/origin/address'),
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         cphNumber: {
@@ -62,6 +63,6 @@ export const postController = {
 
 /**
  * @typedef {{ cphNumber: string }} CphNumberPayload
- * @import { ServerRoute, Request } from '@hapi/hapi'
+ * @import { ServerRoute } from '@hapi/hapi'
  * @import {NextPage} from '../../common/helpers/next-page.js'
  */

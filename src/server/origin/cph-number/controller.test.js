@@ -85,35 +85,59 @@ describe('#cphNumber', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('should set the next page appropriately', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: '/origin/cph-number?redirect_uri=/origin/summary'
+  describe('when nextPage is provided', () => {
+    test('should set the next page appropriately', async () => {
+      const { payload, statusCode } = await server.inject({
+        method: 'GET',
+        url: '/origin/cph-number?redirect_uri=/origin/summary'
+      })
+
+      expect(payload).toEqual(
+        expect.stringContaining(
+          '<input type="hidden" name="nextPage" value="/origin/summary" />'
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.ok)
     })
 
-    expect(payload).toEqual(
-      expect.stringContaining(
-        '<input type="hidden" name="nextPage" value="/origin/summary" />'
+    test('should redirect to summary page if it came from there', async () => {
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection({
+          method: 'POST',
+          url: '/origin/cph-number',
+          payload: {
+            cphNumber: '12/123/1234',
+            nextPage: '/origin/summary'
+          }
+        })
       )
-    )
 
-    expect(statusCode).toBe(statusCodes.ok)
-  })
+      expect(headers.location).toBe('/origin/summary')
+      expect(statusCode).toBe(statusCodes.redirect)
+    })
 
-  test('should redirect to summary page if it came from there', async () => {
-    const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin/cph-number',
-        payload: {
-          cphNumber: '12/123/1234',
-          nextPage: '/origin/summary'
-        }
-      })
-    )
+    test('Should display an error and set next page appropriately', async () => {
+      const { payload, statusCode } = await server.inject(
+        withCsrfProtection({
+          method: 'POST',
+          url: '/origin/cph-number',
+          payload: {
+            cphNumber: 'invalid format',
+            nextPage: '/origin/summary'
+          }
+        })
+      )
 
-    expect(headers.location).toBe('/origin/summary')
-    expect(statusCode).toBe(statusCodes.redirect)
+      expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
+      expect(payload).toEqual(
+        expect.stringContaining(
+          '<input type="hidden" name="nextPage" value="/origin/summary" />'
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.ok)
+    })
   })
 })
 
