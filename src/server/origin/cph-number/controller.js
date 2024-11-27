@@ -11,13 +11,17 @@ const indexView = 'origin/cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const cphNumber = CphNumber.fromState(req.yar.get('origin'))
+    const cphNumber = CphNumber.fromState(
+      req.yar.get('origin')?.cphNumber ?? ''
+    ).toState()
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageTitle,
-      cphNumber
+      cphNumber: {
+        value: cphNumber
+      }
     })
   }
 }
@@ -30,7 +34,7 @@ export const getController = {
 export const postController = {
   handler(req, res) {
     const payload = /** @type {CphNumberPayload & NextPage} */ (req.payload)
-    const cphNumber = new CphNumber(payload)
+    const cphNumber = new CphNumber(payload.cphNumber)
     // Remove whitespace from cphNumber
     const { isValid, errors } = cphNumber.validate()
 
@@ -44,14 +48,14 @@ export const postController = {
         nextPage: calculateNextPage(payload.nextPage, '/origin/address'),
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
-        errorMessage: errors.cphNumber,
-        cphNumber
+        errorMessage: errors.value,
+        cphNumber: cphNumber.toState()
       })
     }
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      ...cphNumber.toState()
+      cphNumber: cphNumber.toState()
     })
 
     return res.redirect(calculateNextPage(payload.nextPage, '/origin/address'))

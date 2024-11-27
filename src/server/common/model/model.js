@@ -34,13 +34,6 @@ export const validateAgainstSchema = (schema, value) => {
 }
 
 export class Model {
-  /**
-   * @returns {unknown}
-   */
-  get value() {
-    throw new Error('Not implemented')
-  }
-
   toState() {
     throw new Error('Not implemented')
   }
