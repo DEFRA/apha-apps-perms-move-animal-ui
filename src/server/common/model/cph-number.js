@@ -45,12 +45,10 @@ export class CphNumber extends Model {
 
   /**
    *
-   * @returns {RawPayload}
+   * @returns {CphNumberData}
    */
   toState() {
-    return {
-      cphNumber: this.value?.replace(/\s+/g, '') ?? ''
-    }
+    return this.value?.replace(/\s+/g, '') ?? ''
   }
 
   validate() {
@@ -58,10 +56,12 @@ export class CphNumber extends Model {
   }
 
   /**
-   * @param {RawPayload | undefined} data
+   * @param {CphNumberData} state
    * @returns {CphNumber}
    */
-  static fromState(data) {
-    return new CphNumber(data)
+  static fromState(state) {
+    return new CphNumber({
+      cphNumber: state
+    })
   }
 }
