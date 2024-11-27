@@ -26,9 +26,7 @@ export class OnOffFarm extends Model {
   }
 
   get value() {
-    return {
-      value: this._data?.onOffFarm
-    }
+    return this._data?.onOffFarm
   }
 
   /**

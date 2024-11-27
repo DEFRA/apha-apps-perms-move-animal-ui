@@ -62,6 +62,6 @@ describe('#OnOffFarm.fromState', () => {
 
 describe('#OnOffFarm.value', () => {
   it('should return a value-wrapped object to rendering in the template', () => {
-    expect(new OnOffFarm({ onOffFarm: 'on' }).value).toEqual({ value: 'on' })
+    expect(new OnOffFarm({ onOffFarm: 'on' }).value).toBe('on')
   })
 })
