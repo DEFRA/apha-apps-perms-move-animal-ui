@@ -26,7 +26,7 @@ export const originSummaryGetController = {
       enteredOnOffFarm = ''
     }
 
-    const onOffFarm = OnOffFarm.validate(OnOffFarm.fromState(origin?.onOffFarm))
+    const onOffFarm = OnOffFarm.fromState(origin?.onOffFarm).validate()
     if (!onOffFarm.isValid) {
       return h.redirect(
         '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
