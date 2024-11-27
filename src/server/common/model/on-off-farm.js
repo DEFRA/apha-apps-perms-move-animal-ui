@@ -1,14 +1,15 @@
 import Joi from 'joi'
-import { validateAgainstSchema } from './model.js'
+import { validateAgainstSchema, Model } from './model.js'
+/** @import {RawPayload} from './model.js' */
+
+const selectOptionText =
+      'Select if you are moving cattle on or off your farm or premises'
 
 export const onOffFarmPayloadSchema = Joi.object({
   onOffFarm: Joi.string().required().valid('on', 'off').messages({
-    'any.required':
-      'Select if you are moving cattle on or off your farm or premises',
-    'any.valid':
-      'Select if you are moving cattle on or off your farm or premises',
-    'string.empty':
-      'Select if you are moving cattle on or off your farm or premises'
+    'any.required': selectOptionText,
+    'any.valid': selectOptionText,
+    'string.empty': selectOptionText
   })
 })
 
@@ -16,29 +17,43 @@ export const onOffFarmPayloadSchema = Joi.object({
  * export @typedef {string} OnOffFarmData
  */
 
-/**
- * @implements {Model<OnOffFarmData>}
- */
-class OnOffFarmModel {
-  /** @param {RawPayload} payload */
-  toState(payload) {
-    return payload.onOffFarm ?? ''
+export class OnOffFarm extends Model {
+  /** @type {RawPayload | undefined} */
+  _data
+
+  /**
+   * @param {RawPayload | undefined} data
+   */
+  constructor(data) {
+    super()
+    this._data = data
+
+    Object.seal(this) // makes class immutable after instantiation
+  }
+
+  /**
+   * @returns {OnOffFarmData}
+   */
+  toState() {
+    return this._data?.onOffFarm ?? ''
+  }
+
+  get value() {
+    return {
+      value: this._data?.onOffFarm
+    }
   }
 
   /**
    * @param {OnOffFarmData | undefined} data
-   * @returns {RawPayload}
+   * @returns {OnOffFarm}
    */
-  fromState(data) {
-    return data !== undefined ? { onOffFarm: data } : {}
+  static fromState(data) {
+    return new OnOffFarm(data !== undefined ? { onOffFarm: data } : {})
   }
 
-  /** @param {RawPayload} data */
-  validate(data) {
-    return validateAgainstSchema(onOffFarmPayloadSchema, data)
+  validate() {
+    return validateAgainstSchema(onOffFarmPayloadSchema, this._data)
   }
 }
 
-export const OnOffFarm = new OnOffFarmModel()
-
-/** @import {Model,RawPayload} from './model.js' */

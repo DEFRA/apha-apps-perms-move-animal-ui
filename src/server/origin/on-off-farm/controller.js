@@ -11,15 +11,13 @@ const indexView = 'origin/on-off-farm/index.njk'
  */
 export const onOffFarmGetController = {
   handler(req, h) {
-    const { onOffFarm } = OnOffFarm.fromState(req.yar.get('origin')?.onOffFarm)
+    const onOffFarm = OnOffFarm.fromState(req.yar.get('origin')?.onOffFarm)
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageHeading,
-      onOffFarm: {
-        value: onOffFarm
-      }
+      onOffFarm
     })
   }
 }
@@ -33,7 +31,8 @@ export const onOffFarmPostController = {
   handler(req, res) {
     const payload = /** @type {OnOffFarmPayload & NextPage} */ (req.payload)
 
-    const { isValid, errors } = OnOffFarm.validate(payload)
+    const onOffFarm = new OnOffFarm(payload)
+    const { isValid, errors } = onOffFarm.validate()
 
     if (!isValid) {
       req.yar.set('origin', {
@@ -54,7 +53,7 @@ export const onOffFarmPostController = {
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      onOffFarm: OnOffFarm.toState(payload)
+      onOffFarm: onOffFarm.toState()
     })
 
     switch (payload.onOffFarm) {
