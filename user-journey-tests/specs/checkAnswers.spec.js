@@ -33,14 +33,14 @@ describe('Check your answers test', () => {
     await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
   })
 
-  it('Should verify the back link', async () => {
+  it('Should verify the back link is history -1', async () => {
     await completeOriginTaskAnswers()
     await checkAnswersPage.selectBackLink()
 
     await newAddressPage.addressLineOneInput().isDisplayed()
   })
 
-  it('Should verify changing the on off farm answer', async () => {
+  it('Should verify the existing radio selection and verify resubmission', async () => {
     await completeOriginTaskAnswers()
     await checkAnswersPage.verifyPageHeading(checkAnswersPage.checkAnswersTitle)
     await selectElement(checkAnswersPage.changeOnOrOffLink)
@@ -54,7 +54,7 @@ describe('Check your answers test', () => {
     )
   })
 
-  it('Should verify changing the cph number', async () => {
+  it('Should verify the existing cph number then verify changing the cph number', async () => {
     completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
@@ -77,7 +77,7 @@ describe('Check your answers test', () => {
     )
   })
 
-  it('Should verify changing the address', async () => {
+  it('Should verify the existing data then verify changing the address', async () => {
     completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
