@@ -23,19 +23,6 @@ export const cphNumberPayloadSchema = Joi.object({
  */
 
 export class CphNumber extends Model {
-  /** @type {RawPayload | undefined} */
-  _data
-
-  /**
-   * @param {RawPayload | undefined} data
-   */
-  constructor(data) {
-    super()
-    this._data = data
-
-    Object.seal(this) // makes class immutable after instantiation
-  }
-
   /**
    * @returns {string | undefined}
    */
@@ -44,7 +31,6 @@ export class CphNumber extends Model {
   }
 
   /**
-   *
    * @returns {CphNumberData}
    */
   toState() {

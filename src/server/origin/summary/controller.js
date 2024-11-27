@@ -38,8 +38,8 @@ export const originSummaryGetController = {
       return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
     }
 
-    const address = Address.validate(Address.fromState(origin?.address))
-    if (!address.isValid) {
+    const address = Address.fromState(origin?.address)
+    if (!address.validate().isValid) {
       return h.redirect('/origin/address?redirect_uri=/origin/summary')
     }
 

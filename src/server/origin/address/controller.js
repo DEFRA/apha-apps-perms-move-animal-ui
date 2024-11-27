@@ -28,8 +28,9 @@ export const originAddressGetController = {
 export const originAddressPostController = {
   handler(req, res) {
     const payload = /** @type {AddressData} */ (req.payload)
+    const address = new Address(req.payload)
 
-    const { isValid, errors } = Address.validate(payload)
+    const { isValid, errors } = address.validate()
     const errorMessages = Object.entries(errors).map(([key, value]) => ({
       text: value.text,
       href: `#${key}`
@@ -52,7 +53,7 @@ export const originAddressPostController = {
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      address: Address.toState(payload)
+      address: address.toState()
     })
 
     return res.redirect('/origin/summary')

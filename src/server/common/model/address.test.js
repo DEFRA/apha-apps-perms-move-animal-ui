@@ -10,16 +10,18 @@ const validAddress = {
 
 describe('Address.validate', () => {
   it('should return true for valid address', () => {
-    const { isValid } = Address.validate(validAddress)
+    const address = new Address(validAddress)
+    const { isValid } = address.validate()
 
     expect(isValid).toBe(true)
   })
 
   it('should return false for too short input', () => {
-    const { isValid, errors } = Address.validate({
+    const address = new Address({
       ...validAddress,
       addressLine1: 'A'.repeat(256)
     })
+    const { isValid, errors } = address.validate()
 
     expect(isValid).toBe(false)
     expect(errors.addressLine1.text).toBe(
@@ -28,11 +30,13 @@ describe('Address.validate', () => {
   })
 
   it('should return true for optional field with empty input', () => {
-    const { isValid } = Address.validate({
+    const address = new Address({
       addressLine1: 'Starfleet Headquarters',
       addressTown: 'San Francisco',
       addressPostcode: 'RG24 8RR'
     })
+
+    const { isValid } = address.validate()
 
     expect(isValid).toBe(true)
   })
@@ -54,20 +58,23 @@ describe('Address.validate', () => {
 
       for (const postcode of postcodes) {
         it(`should return true for valid postcode format: ${postcode}`, () => {
-          const { isValid } = Address.validate({
+          const address = new Address({
             ...validAddress,
             addressPostcode: postcode
           })
+          const { isValid } = address.validate()
 
           expect(isValid).toBe(true)
         })
       }
 
       it('should return false for malformed postcode', () => {
-        const { isValid, errors } = Address.validate({
+        const address = new Address({
           ...validAddress,
           addressPostcode: 'invalid postcode'
         })
+
+        const { isValid, errors } = address.validate()
 
         expect(isValid).toBe(false)
         expect(errors.addressPostcode.text).toBe('Enter a full UK postcode')
@@ -75,14 +82,15 @@ describe('Address.validate', () => {
     })
 
     it('should return false for missing required fields', () => {
-      const originAddress = {
+      const address = new Address({
         addressLine1: '',
         addressLine2: '',
         addressTown: '',
         addressCounty: '',
         addressPostcode: ''
-      }
-      const { isValid, errors } = Address.validate(originAddress)
+      })
+
+      const { isValid, errors } = address.validate()
       expect(isValid).toBe(false)
       expect(errors).toEqual({
         addressLine1: {
@@ -97,11 +105,13 @@ describe('Address.validate', () => {
 
 describe('Address.toState', () => {
   it('should extract state from payload', () => {
-    expect(Address.toState(validAddress)).toEqual(validAddress)
+    const address = new Address(validAddress)
+    expect(address.toState()).toEqual(validAddress)
   })
 
   it('should default missing fields to empty string', () => {
-    expect(Address.toState({})).toEqual({
+    const address = new Address({})
+    expect(address.toState()).toEqual({
       addressLine1: '',
       addressLine2: '',
       addressTown: '',
@@ -113,8 +123,9 @@ describe('Address.toState', () => {
 
 describe('Address.fromState', () => {
   it('should return the state as-is as payload, since the state is already a valid payload', () => {
-    const state = Address.toState(validAddress)
-    expect(Address.fromState(state)).toEqual(state)
+    const address = new Address(validAddress)
+    const state = address.toState()
+    expect(Address.fromState(state).value).toEqual(validAddress)
   })
 
   it('should return an empty object if the state is undefined', () => {

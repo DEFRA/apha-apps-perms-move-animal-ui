@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import { Model } from './model.js'
 import { validateAgainstSchema } from './model.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
@@ -53,7 +54,7 @@ const addressPayloadSchema = Joi.object({
       'string.empty': postcodeRequired,
       'string.pattern.base': 'Enter a full UK postcode'
     })
-})
+}).required()
 
 /**
  * export @typedef {{
@@ -65,37 +66,38 @@ const addressPayloadSchema = Joi.object({
  * }} AddressData
  */
 
-/**
- * @implements {Model<AddressData>}
- */
-class AddressModel {
-  /** @param {RawPayload} payload */
-  toState(payload) {
+export class Address extends Model {
+  /**
+   * @returns {AddressData | undefined}
+   */
+  get value() {
     return {
-      addressLine1: payload.addressLine1 ?? '',
-      addressLine2: payload.addressLine2 ?? '',
-      addressTown: payload.addressTown ?? '',
-      addressCounty: payload.addressCounty ?? '',
-      addressPostcode: payload.addressPostcode ?? ''
+      addressLine1: this._data?.addressLine1 ?? '',
+      addressLine2: this._data?.addressLine2 ?? '',
+      addressTown: this._data?.addressTown ?? '',
+      addressCounty: this._data?.addressCounty ?? '',
+      addressPostcode: this._data?.addressPostcode ?? ''
     }
   }
 
   /**
-   * @param {AddressData | undefined} data
-   * @returns {RawPayload}
+   * @returns {AddressData | undefined}
    */
-  fromState(data) {
-    return data ?? {}
+  toState() {
+    return this.value
+  }
+
+  validate() {
+    return validateAgainstSchema(addressPayloadSchema, this._data)
   }
 
   /**
-   * @param {RawPayload} data
+   * @param {AddressData | undefined} data
+   * @returns {Address}
    */
-  validate(data) {
-    return validateAgainstSchema(addressPayloadSchema, data)
+  static fromState(data) {
+    return new Address(data)
   }
 }
 
-export const Address = new AddressModel()
-
-/** @import {Model,RawPayload} from './model.js' */
+/** @import {RawPayload} from './model.js' */

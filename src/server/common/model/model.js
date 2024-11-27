@@ -34,6 +34,14 @@ export const validateAgainstSchema = (schema, value) => {
 }
 
 export class Model {
+  /** @type {RawPayload | undefined} */
+  _data
+
+  constructor(data) {
+    this._data = data
+    Object.seal(this)
+  }
+
   /**
    * @returns {unknown}
    */
