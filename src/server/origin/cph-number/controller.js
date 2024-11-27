@@ -45,7 +45,9 @@ export const postController = {
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
         errorMessage: errors.cphNumber,
-        cphNumber
+        cphNumber: {
+          value: payload.cphNumber
+        }
       })
     }
 
