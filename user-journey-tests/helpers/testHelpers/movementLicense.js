@@ -3,21 +3,42 @@ import toFromFarmPage from '../../page-objects/toFromFarmPage.js'
 import parishHoldingNumberPage from '../../page-objects/parishHoldingNumberPage.js'
 import newAddressPage from '../../page-objects/newAddressPage.js'
 
-const lineOne = '37 Made up lane'
-const townOrCity = 'Gotham'
-const postcode = 'SW1A2AA'
+// Default data
+const defaultLineOne = '37 Made up lane'
+const defaultTownOrCity = 'Gotham'
+const defaultPostcode = 'SW1A2AA'
+const defaultCphNumber = '12/345/6789'
 
-const completeOriginTaskAnswers = async () => {
+// Helper function to complete the origin task
+const completeOriginTask = async ({
+  cphNumber = defaultCphNumber,
+  lineOne = defaultLineOne,
+  townOrCity = defaultTownOrCity,
+  postcode = defaultPostcode
+} = {}) => {
   await landingPage.verifyStartNowButton('Start now', true)
   await toFromFarmPage.selectOffFarmAndContinue()
-  await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-    '12/345/6789'
-  )
+  await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(cphNumber)
   await newAddressPage.fillFormFieldsAndSubmit({
     lineOne,
     townOrCity,
     postcode
   })
+}
+
+// Predefined task completion function
+const completeOriginTaskAnswers = async () => {
+  await completeOriginTask() // Uses default values
+}
+
+// Customizable task completion function
+export const completeOriginTaskAnswersCustom = async (
+  cphNumber,
+  lineOne,
+  townOrCity,
+  postcode
+) => {
+  await completeOriginTask({ cphNumber, lineOne, townOrCity, postcode })
 }
 
 export default completeOriginTaskAnswers
