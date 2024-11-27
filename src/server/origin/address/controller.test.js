@@ -8,21 +8,36 @@ import {
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
 import { pageTitle } from './controller.js'
+import SessionTester from '../../common/test-helpers/session-helper.js'
 
 describe('#originAddressController', () => {
   /** @type {Server} */
   let server
+  let session
 
   beforeAll(async () => {
     server = await createServer()
     await server.initialize()
   })
 
+  beforeEach(async () => {
+    session = await SessionTester.create(server)
+    await session.setState('origin', {
+      address: {
+        addressLine1: 'Starfleet Headquarters',
+        addressLine2: '24-593 Federation Drive',
+        addressTown: 'San Francisco',
+        addressCounty: 'San Francisco',
+        addressPostcode: 'RG24 8RR'
+      }
+    })
+  })
+
   afterAll(async () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected response', async () => {
+  it('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'GET',
@@ -35,7 +50,52 @@ describe('#originAddressController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('should redirect to self', async () => {
+  it('should repopulate the form from state', async () => {
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/origin/address'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-input" id="addressLine1" name="addressLine1" type="text" value="Starfleet Headquarters" autocomplete="address-line1">'
+      )
+    )
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-input" id="addressLine2" name="addressLine2" type="text" value="24-593 Federation Drive" autocomplete="address-line2">'
+      )
+    )
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-input govuk-!-width-two-thirds" id="addressTown" name="addressTown" type="text" value="San Francisco" autocomplete="address-level2">'
+      )
+    )
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-input govuk-!-width-two-thirds" id="addressCounty" name="addressCounty" type="text" value="San Francisco">'
+      )
+    )
+
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-input govuk-input--width-10" id="addressPostcode" name="addressPostcode" type="text" value="RG24 8RR" autocomplete="postal-code">'
+      )
+    )
+  })
+
+  it('should redirect to self', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -55,7 +115,7 @@ describe('#originAddressController', () => {
     expect(statusCode).toBe(statusCodes.redirect)
   })
 
-  test('Should display an error to the user if no value selected', async () => {
+  it('Should display an error to the user if no value selected', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -70,7 +130,7 @@ describe('#originAddressController', () => {
   })
 
   describe('When the user has not entered address details', () => {
-    test('Should display an error to the user if no value entered', async () => {
+    it('Should display an error to the user if no value entered', async () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -89,7 +149,7 @@ describe('#originAddressController', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    test('Should display an error to the user if no value entered for address line 1', async () => {
+    it('Should display an error to the user if no value entered for address line 1', async () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -113,7 +173,7 @@ describe('#originAddressController', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    test('Should display an error to the user if no value entered for town/city', async () => {
+    it('Should display an error to the user if no value entered for town/city', async () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -139,7 +199,7 @@ describe('#originAddressController', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    test('Should display an error to the user if no value entered for postcode', async () => {
+    it('Should display an error to the user if no value entered for postcode', async () => {
       const { payload, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -166,7 +226,7 @@ describe('#originAddressController', () => {
     })
   })
 
-  test('Should report malformed error on incorrect postcode', async () => {
+  it('Should report malformed error on incorrect postcode', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -189,7 +249,7 @@ describe('#originAddressController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('Should process input correctly with missing optional fields', async () => {
+  it('Should process input correctly with missing optional fields', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -206,7 +266,7 @@ describe('#originAddressController', () => {
     expect(headers.location).toBe('/origin/summary')
   })
 
-  test('Should report error for addressLine1 exceeding max length', async () => {
+  it('Should report error for addressLine1 exceeding max length', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -228,7 +288,7 @@ describe('#originAddressController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('Should process addressLine1 at max length correctly', async () => {
+  it('Should process addressLine1 at max length correctly', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -245,7 +305,7 @@ describe('#originAddressController', () => {
     expect(headers.location).toBe('/origin/summary') // Check for redirect response
   })
 
-  test('Should process London postcodes correctly', async () => {
+  it('Should process London postcodes correctly', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',

@@ -16,7 +16,7 @@ export const originAddressGetController = {
     return h.view(indexView, {
       pageTitle,
       heading: pageHeading,
-      values: address
+      values: address.value
     })
   }
 }
