@@ -1,8 +1,11 @@
 import Joi from 'joi'
+import { Model, validateAgainstSchema } from './model.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
 const maxLength = 255
+
+/** @param {string} key */
 const maxLengthMessage = (key) =>
   `${key} must be no longer than ${maxLength} characters`
 
@@ -11,7 +14,7 @@ const addressLine1Required =
 const addressTownRequired = 'Enter town or city'
 const postcodeRequired = 'Enter postcode'
 
-const addressSchema = Joi.object({
+const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
     .max(maxLength)
@@ -50,26 +53,7 @@ const addressSchema = Joi.object({
       'string.empty': postcodeRequired,
       'string.pattern.base': 'Enter a full UK postcode'
     })
-})
-
-/**
- * @param {OriginAddress} originAddress
- * @returns {{isValid: boolean, errors: object}}
- */
-export default (originAddress) => {
-  const result = addressSchema
-    .options({ abortEarly: false })
-    .validate(originAddress)
-  const errors = result.error?.details.map(({ context, message }) => [
-    /** @type string */ (context?.key),
-    { text: message }
-  ])
-
-  return {
-    isValid: result.error === undefined,
-    errors: errors && Object.fromEntries(errors)
-  }
-}
+}).required()
 
 /**
  * export @typedef {{
@@ -78,5 +62,41 @@ export default (originAddress) => {
  *  addressTown: string;
  *  addressCounty ?: string;
  *  addressPostcode: string;
- * }} OriginAddress
+ * }} AddressData
  */
+
+export class Address extends Model {
+  /**
+   * @returns {AddressData | undefined}
+   */
+  get value() {
+    return {
+      addressLine1: this._data?.addressLine1 ?? '',
+      addressLine2: this._data?.addressLine2 ?? '',
+      addressTown: this._data?.addressTown ?? '',
+      addressCounty: this._data?.addressCounty ?? '',
+      addressPostcode: this._data?.addressPostcode ?? ''
+    }
+  }
+
+  /**
+   * @returns {AddressData | undefined}
+   */
+  toState() {
+    return this.value
+  }
+
+  validate() {
+    return validateAgainstSchema(addressPayloadSchema, this._data)
+  }
+
+  /**
+   * @param {AddressData | undefined} data
+   * @returns {Address}
+   */
+  static fromState(data) {
+    return new Address(data)
+  }
+}
+
+/** @import {RawPayload} from './model.js' */

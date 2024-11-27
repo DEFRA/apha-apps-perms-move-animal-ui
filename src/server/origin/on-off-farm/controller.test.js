@@ -6,14 +6,23 @@ import {
   withCsrfProtection
 } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+import SessionTester from '../../common/test-helpers/session-helper.js'
 
 describe('#onOffFarmController', () => {
   /** @type {Server} */
   let server
+  let session
 
   beforeAll(async () => {
     server = await createServer()
     await server.initialize()
+  })
+
+  beforeEach(async () => {
+    session = await SessionTester.create(server)
+    await session.setState('origin', {
+      onOffFarm: 'off'
+    })
   })
 
   afterAll(async () => {
@@ -30,6 +39,28 @@ describe('#onOffFarmController', () => {
     expect(document.title).toBe(
       'Are you moving the cattle on or off your farm or premises?'
     )
+    expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  it('should repopulate the form from state', async () => {
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/origin/to-or-from-own-premises'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const document = parseDocument(payload)
+
+    expect(
+      /** @type {any} */ (document.querySelector('#off-farm-radio'))?.checked
+    ).toBe(true)
+
     expect(statusCode).toBe(statusCodes.ok)
   })
 

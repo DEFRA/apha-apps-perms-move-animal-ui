@@ -1,6 +1,6 @@
-import addressValidator from '../address/validator.js'
-import cphNumberValidator from '../cph-number/validator.js'
-import onOffValidator from '../on-off-farm/validator.js'
+import { Address } from '~/src/server/common/model/address.js'
+import { CphNumber } from '~/src/server/common/model/cph-number.js'
+import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -26,20 +26,20 @@ export const originSummaryGetController = {
       enteredOnOffFarm = ''
     }
 
-    const onOffFarm = onOffValidator(origin?.onOffFarm ?? '')
+    const onOffFarm = OnOffFarm.fromState(origin?.onOffFarm).validate()
     if (!onOffFarm.isValid) {
       return h.redirect(
         '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
       )
     }
 
-    const cphNumber = cphNumberValidator(origin?.cphNumber ?? '')
-    if (!cphNumber.isValid) {
+    const cphNumber = CphNumber.fromState(origin.cphNumber)
+    if (!cphNumber.validate().isValid) {
       return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
     }
 
-    const address = addressValidator(origin?.address ?? {})
-    if (!address.isValid) {
+    const address = Address.fromState(origin?.address)
+    if (!address.validate().isValid) {
       return h.redirect('/origin/address?redirect_uri=/origin/summary')
     }
 
@@ -57,10 +57,10 @@ export const originSummaryGetController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { OriginAddress } from '../address/validator.js'
+ * @import { AddressData } from '~/src/server/common/model/address.js'
  * @typedef {{
  *   onOffFarm: string;
  *   cphNumber: string;
- *   address: OriginAddress;
+ *   address: AddressData;
  * }} Origin
  */

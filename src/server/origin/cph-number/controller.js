@@ -1,5 +1,5 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-import validator from './validator.js'
+import { CphNumber } from '~/src/server/common/model/cph-number.js'
 
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
@@ -11,15 +11,13 @@ const indexView = 'origin/cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const { cphNumber } = req.yar.get('origin') ?? {}
+    const cphNumber = CphNumber.fromState(req.yar.get('origin')?.cphNumber)
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
       pageTitle,
       heading: pageTitle,
-      cphNumber: {
-        value: cphNumber
-      }
+      cphNumber
     })
   }
 }
@@ -31,12 +29,10 @@ export const getController = {
  */
 export const postController = {
   handler(req, res) {
-    const { cphNumber, nextPage } = /** @type {CphNumberPayload & NextPage} */ (
-      req.payload
-    )
+    const payload = /** @type {CphNumberPayload & NextPage} */ (req.payload)
+    const cphNumber = new CphNumber(payload)
     // Remove whitespace from cphNumber
-    const input = cphNumber ? cphNumber.replace(/\s+/g, '') : cphNumber
-    const { isValid, errors } = validator(input)
+    const { isValid, errors } = cphNumber.validate()
 
     if (!isValid) {
       req.yar.set('origin', {
@@ -45,27 +41,27 @@ export const postController = {
       })
 
       return res.view(indexView, {
-        nextPage: calculateNextPage(nextPage, '/origin/address'),
+        nextPage: calculateNextPage(payload.nextPage, '/origin/address'),
         pageTitle: `Error: ${pageTitle}`,
         heading: pageTitle,
+        errorMessage: errors.cphNumber,
         cphNumber: {
-          value: input
-        },
-        errorMessage: errors.cphNumber
+          value: payload.cphNumber
+        }
       })
     }
 
     req.yar.set('origin', {
       ...req.yar.get('origin'),
-      cphNumber: input
+      cphNumber: cphNumber.toState()
     })
 
-    return res.redirect(calculateNextPage(nextPage, '/origin/address'))
+    return res.redirect(calculateNextPage(payload.nextPage, '/origin/address'))
   }
 }
 
 /**
  * @typedef {{ cphNumber: string }} CphNumberPayload
- * @import { ServerRoute, Request } from '@hapi/hapi'
+ * @import { ServerRoute } from '@hapi/hapi'
  * @import {NextPage} from '../../common/helpers/next-page.js'
  */
