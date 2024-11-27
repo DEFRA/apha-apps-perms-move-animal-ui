@@ -3,7 +3,7 @@ import { validateAgainstSchema, Model } from './model.js'
 /** @import {RawPayload} from './model.js' */
 
 const selectOptionText =
-      'Select if you are moving cattle on or off your farm or premises'
+  'Select if you are moving cattle on or off your farm or premises'
 
 export const onOffFarmPayloadSchema = Joi.object({
   onOffFarm: Joi.string().required().valid('on', 'off').messages({
@@ -18,19 +18,6 @@ export const onOffFarmPayloadSchema = Joi.object({
  */
 
 export class OnOffFarm extends Model {
-  /** @type {RawPayload | undefined} */
-  _data
-
-  /**
-   * @param {RawPayload | undefined} data
-   */
-  constructor(data) {
-    super()
-    this._data = data
-
-    Object.seal(this) // makes class immutable after instantiation
-  }
-
   /**
    * @returns {OnOffFarmData}
    */
@@ -56,4 +43,3 @@ export class OnOffFarm extends Model {
     return validateAgainstSchema(onOffFarmPayloadSchema, this._data)
   }
 }
-
