@@ -1,6 +1,5 @@
 import Joi from 'joi'
-import { validateAgainstSchema } from './model.js'
-import { Model } from './model.js'
+import { validateAgainstSchema, Model } from './model.js'
 
 const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
 
