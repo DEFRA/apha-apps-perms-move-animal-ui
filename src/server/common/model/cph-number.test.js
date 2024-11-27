@@ -1,12 +1,12 @@
 import { CphNumber } from './cph-number.js'
 
-const validCphNumber = {
+const validCphNumberPayload = {
   cphNumber: '12/456/7899'
 }
 
 describe('#CphNumber.validate', () => {
   test('should return true for valid cphNumber', () => {
-    const cphNumber = new CphNumber(validCphNumber)
+    const cphNumber = new CphNumber(validCphNumberPayload)
     const { isValid, errors } = cphNumber.validate()
 
     expect(isValid).toBe(true)
@@ -41,14 +41,14 @@ describe('#CphNumber.toState', () => {
     const cphNumber = new CphNumber({})
     const data = cphNumber.toState()
 
-    expect(data.cphNumber).toBe('')
+    expect(data).toBe('')
   })
 
   test('should pass through valid data unaltered', () => {
-    const cphNumber = new CphNumber(validCphNumber)
+    const cphNumber = new CphNumber(validCphNumberPayload)
     const data = cphNumber.toState()
 
-    expect(data).toEqual(validCphNumber)
+    expect(data).toEqual(validCphNumberPayload.cphNumber)
   })
 
   test('should remove whitespace', () => {
@@ -56,18 +56,20 @@ describe('#CphNumber.toState', () => {
       cphNumber: '  12/4 56/789 9 '
     })
 
-    expect(cphNumber.toState().cphNumber).toBe('12/456/7899')
+    expect(cphNumber.toState()).toBe('12/456/7899')
   })
 })
 
 describe('#CphNumber.fromState', () => {
   it('should return just the cphNumber from the payload', () => {
-    const cphNumber = new CphNumber(validCphNumber)
+    const cphNumber = new CphNumber(validCphNumberPayload)
     const state = cphNumber.toState()
-    expect(CphNumber.fromState(state).value).toEqual(validCphNumber.cphNumber)
+    expect(CphNumber.fromState(state).value).toEqual(
+      validCphNumberPayload.cphNumber
+    )
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(CphNumber.fromState(undefined)).toEqual({})
+    expect(CphNumber.fromState(undefined).value).toBeUndefined()
   })
 })

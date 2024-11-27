@@ -11,7 +11,7 @@ const indexView = 'origin/cph-number/index'
  */
 export const getController = {
   handler(req, h) {
-    const cphNumber = CphNumber.fromState(req.yar.get('origin').cphNumber)
+    const cphNumber = CphNumber.fromState(req.yar.get('origin')?.cphNumber)
 
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,

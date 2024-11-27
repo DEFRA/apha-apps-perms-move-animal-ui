@@ -56,7 +56,7 @@ export class CphNumber extends Model {
   }
 
   /**
-   * @param {CphNumberData} state
+   * @param {CphNumberData | undefined} state
    * @returns {CphNumber}
    */
   static fromState(state) {

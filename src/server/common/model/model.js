@@ -63,7 +63,7 @@ export class Model {
 }
 
 /**
- * @typedef {{[key:string]: string}} RawPayload
+ * @typedef {{[key:string]: string | undefined}} RawPayload
  */
 
 /** @import { Schema } from 'joi' */
