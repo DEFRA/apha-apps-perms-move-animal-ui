@@ -33,6 +33,12 @@ export const validateAgainstSchema = (schema, value) => {
   }
 }
 
+class NotImplementedError extends Error {
+  constructor() {
+    super('Not implemented')
+  }
+}
+
 export class Model {
   /** @type {RawPayload | undefined} */
   _data
@@ -46,15 +52,15 @@ export class Model {
    * @returns {unknown}
    */
   get value() {
-    throw new Error('Not implemented')
+    throw new NotImplementedError()
   }
 
   toState() {
-    throw new Error('Not implemented')
+    throw new NotImplementedError()
   }
 
   validate() {
-    throw new Error('Not implemented')
+    throw new NotImplementedError()
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -64,7 +70,7 @@ export class Model {
    * @returns {unknown}
    */
   static fromState(_data) {
-    throw new Error('Not implemented')
+    throw new NotImplementedError()
   }
 
   /* eslint-enable @typescript-eslint/no-unused-vars */
