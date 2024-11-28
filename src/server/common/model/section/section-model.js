@@ -39,24 +39,13 @@ class NotImplementedError extends Error {
   }
 }
 
-export class Model {
-  /** @type {RawPayload | undefined} */
+export class SectionModel {
+  /** @type {SectionPayload | undefined} */
   _data
 
   constructor(data) {
     this._data = data
     Object.seal(this)
-  }
-
-  /**
-   * @returns {unknown}
-   */
-  get value() {
-    throw new NotImplementedError()
-  }
-
-  toState() {
-    throw new NotImplementedError()
   }
 
   validate() {
@@ -77,7 +66,7 @@ export class Model {
 }
 
 /**
- * @typedef {{[key:string]: string | object | undefined}} RawPayload
+ * @typedef {{[key:string]: object | undefined}} SectionPayload
  */
 
 /** @import { Schema } from 'joi' */

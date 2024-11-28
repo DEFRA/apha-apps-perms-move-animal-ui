@@ -1,7 +1,7 @@
-import { Origin } from '../common/model/origin/origin.js'
-import { Destination } from '../common/model/destination/destination.js'
-import { Tests } from '../common/model/tests/tests.js'
-import { License } from '../common/model/license/license.js'
+import { Origin } from '../common/model/section/origin.js'
+import { Destination } from '../common/model/section/destination.js'
+import { Tests } from '../common/model/section/tests.js'
+import { License } from '../common/model/section/license.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -99,28 +99,34 @@ export const taskListPostController = {
  * @param {boolean} isEnabled
  */
 function buildGdsTaskItem(title, initialLink, summaryLink, isValid, isEnabled) {
-  const status = {
-    text: !isEnabled
-      ? 'Cannot start yet'
-      : isValid
-        ? 'Completed'
-        : 'Incomplete',
-    classes: !isEnabled ? 'govuk-task-list__status--cannot-start-yet' : ''
-  }
-
-  const statusTag = {
-    tag: {
-      ...status,
-      classes: 'govuk-tag--blue'
+  let status, href
+  if (!isEnabled) {
+    status = {
+      text: 'Cannot start yet',
+      classes: 'govuk-task-list__status--cannot-start-yet'
     }
+  } else if (isValid) {
+    status = {
+      text: 'Completed',
+      classes: ''
+    }
+    href = summaryLink
+  } else {
+    status = {
+      tag: {
+        text: 'Incomplete',
+        classes: 'govuk-tag--blue'
+      }
+    }
+    href = initialLink
   }
 
   return {
     title: {
       text: title
     },
-    href: isEnabled ? (isValid ? summaryLink : initialLink) : null,
-    status: isValid || !isEnabled ? status : statusTag
+    href,
+    status
   }
 }
 

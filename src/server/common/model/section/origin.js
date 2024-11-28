@@ -1,8 +1,8 @@
 import Joi from 'joi'
-import { Model, validateAgainstSchema } from '../model.js'
-import { OnOffFarm } from './on-off-farm.js'
-import { CphNumber } from './cph-number.js'
-import { Address } from './address.js'
+import { AnswerModel, validateAgainstSchema } from '../answer/answer-model.js'
+import { OnOffFarm } from '../answer/on-off-farm.js'
+import { CphNumber } from '../answer/cph-number.js'
+import { Address } from '../answer/address.js'
 
 const validationSchema = Joi.object().custom((value, helpers) => {
   const invalid = Object.values(value).some((item) => {
@@ -22,34 +22,12 @@ const validationSchema = Joi.object().custom((value, helpers) => {
  *  address: AddressData | undefined;
  * }} OriginData
  *
- * export @typedef {{
- *  onOffFarm?: OnOffFarm;
- *  cphNumber: CphNumber;
- *  address?: Address;
- * }} OriginDataObjects
- *
- * @import {OnOffFarmData} from './on-off-farm.js'
- * @import {CphNumberData} from './cph-number.js'
- * @import {AddressData} from './address.js'
- * @import {RawPayload} from '../model.js'
+ * @import {OnOffFarmData} from '../answer/on-off-farm.js'
+ * @import {CphNumberData} from '../answer/cph-number.js'
+ * @import {AddressData} from '../answer/address.js'
  */
 
-export class Origin extends Model {
-  /**
-   * @returns {RawPayload | undefined}
-   */
-  get value() {
-    return this._data
-  }
-
-  /**
-   *
-   * @returns {RawPayload | undefined}
-   */
-  toState() {
-    return this.value
-  }
-
+export class Origin extends AnswerModel {
   validate() {
     return validateAgainstSchema(validationSchema, this._data)
   }

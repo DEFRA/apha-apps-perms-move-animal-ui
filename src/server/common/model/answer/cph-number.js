@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { validateAgainstSchema, Model } from '../model.js'
+import { validateAgainstSchema, AnswerModel } from './answer-model.js'
 
 const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
 
@@ -18,10 +18,10 @@ export const cphNumberPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} CphNumberData
- * @import {RawPayload} from '../model.js'
+ * @import {RawPayload} from './answer-model.js'
  */
 
-export class CphNumber extends Model {
+export class CphNumber extends AnswerModel {
   /**
    * @returns {string | undefined}
    */
