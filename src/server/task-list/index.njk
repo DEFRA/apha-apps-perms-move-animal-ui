@@ -13,7 +13,7 @@
               {{ heading }}
           </h1>
 
-          <p>You have <span>{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
+          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
 
           {{ govukTaskList({
             idPrefix: "task-list",

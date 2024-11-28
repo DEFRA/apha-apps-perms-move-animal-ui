@@ -4,8 +4,7 @@ import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
 class LandingPage extends Page {
-
-  get landingPageUrl(){
+  get landingPageUrl() {
     return '/'
   }
 

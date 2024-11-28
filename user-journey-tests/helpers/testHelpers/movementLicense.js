@@ -19,7 +19,10 @@ const completeOriginTask = async ({
   townOrCity = defaultTownOrCity,
   postcode = defaultPostcode
 } = {}) => {
-  await loadPageAndVerifyTitle(landingPage.landingPageUrl, landingPage.landingPageTitleText)
+  await loadPageAndVerifyTitle(
+    landingPage.landingPageUrl,
+    landingPage.landingPageTitleText
+  )
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementOrigin()
   await toFromFarmPage.selectOffFarmAndContinue()

@@ -23,6 +23,16 @@ class TaskListPage extends Page {
   get receivingTheLicenceLink() {
     return $('aria/Receiving the licence')
   }
+
+  get reviewLink() {
+    return $('aria/Review and submit')
+  }
+
+  async getTaskToCompleteCount() {
+    const element = await $('[data="test-id-task-to-complete-count"]')
+    return element.getText()
+  }
+
   async selectMovementOrigin() {
     await page.selectElement(this.movementOriginLink)
   }
@@ -37,6 +47,10 @@ class TaskListPage extends Page {
 
     expect(await task.getText()).toContain(taskTitle)
     expect(await status.getText()).toBe(expectedStatus)
+  }
+
+  async selectReview() {
+    await page.selectElement(this.reviewLink)
   }
 }
 

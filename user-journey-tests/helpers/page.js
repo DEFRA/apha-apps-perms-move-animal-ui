@@ -2,14 +2,11 @@ import { browser } from '@wdio/globals'
 
 export const waitForUrlPath = async (path) => {
   try {
-
     await browser.waitUntil(async () => {
       return new URL(await browser.getUrl()).pathName === path
     })
   } catch (error) {
-    throw new Error(
-      `Failed to verify page path ${path} - ${error}`
-    )
+    throw new Error(`Failed to verify page path ${path} - ${error}`)
   }
 }
 export const waitForElement = async (
