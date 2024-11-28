@@ -19,34 +19,37 @@ export const taskListGetController = {
     const license = License.fromState()
     const isOriginValid = origin.validate().isValid
 
-    const originGdsTask = buildGdsTaskItem(
-      'Movement origin',
-      'origin/to-or-from-own-premises',
-      'origin/summary',
-      isOriginValid,
-      true
-    )
-    const destinationGdsTask = buildGdsTaskItem(
-      'Movement destination',
-      '#',
-      '#',
-      destination.validate().isValid,
-      isOriginValid
-    )
-    const testsGdsTask = buildGdsTaskItem(
-      'Tests',
-      '#',
-      '#',
-      tests.validate().isValid,
-      isOriginValid
-    )
-    const licenseGdsTask = buildGdsTaskItem(
-      'Receiving the licence',
-      '#',
-      '#',
-      license.validate().isValid,
-      true
-    )
+    const originGdsTask = buildGdsTaskItem({
+      title: 'Movement origin',
+      initialLink: 'origin/to-or-from-own-premises',
+      summaryLink: 'origin/summary',
+      isValid: isOriginValid,
+      isEnabled: true
+    })
+
+    const destinationGdsTask = buildGdsTaskItem({
+      title: 'Movement destination',
+      initialLink: '#',
+      summaryLink: '#',
+      isValid: destination.validate().isValid,
+      isEnabled: isOriginValid
+    })
+
+    const testsGdsTask = buildGdsTaskItem({
+      title: 'Tests',
+      initialLink: '#',
+      summaryLink: '#',
+      isValid: tests.validate().isValid,
+      isEnabled: isOriginValid
+    })
+
+    const licenseGdsTask = buildGdsTaskItem({
+      title: 'Receiving the licence',
+      initialLink: '#',
+      summaryLink: '#',
+      isValid: license.validate().isValid,
+      isEnabled: true
+    })
 
     const gdsTasks = [
       originGdsTask,
@@ -92,13 +95,21 @@ export const taskListPostController = {
 }
 
 /**
- * @param {string} title
- * @param {string} initialLink
- * @param {string} summaryLink
- * @param {boolean} isValid
- * @param {boolean} isEnabled
+ * @param {object} params - The parameters to configure the GDS task item.
+ * @param {string} params.title - The title of the task item.
+ * @param {string} params.initialLink - The URL link to navigate when the task is incomplete or not enabled.
+ * @param {string} params.summaryLink - The URL link to navigate when the task is completed.
+ * @param {boolean} params.isValid - Indicates whether the task is valid or completed.
+ * @param {boolean} params.isEnabled - Indicates whether the task is enabled and can be interacted with.
+ * @returns {object} A GDS task item object ready to be used in a nunjucks template.
  */
-function buildGdsTaskItem(title, initialLink, summaryLink, isValid, isEnabled) {
+function buildGdsTaskItem({
+  title,
+  initialLink,
+  summaryLink,
+  isValid,
+  isEnabled
+}) {
   let status, href
   if (!isEnabled) {
     status = {
