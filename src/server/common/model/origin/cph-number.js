@@ -45,8 +45,6 @@ export class CphNumber extends Model {
    * @returns {CphNumber}
    */
   static fromState(state) {
-    return new CphNumber({
-      cphNumber: state
-    })
+    return new CphNumber(state !== undefined ? { cphNumber: state } : {})
   }
 }

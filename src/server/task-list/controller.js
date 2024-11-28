@@ -4,7 +4,7 @@ import { Tests } from '../common/model/tests/tests.js'
 import { License } from '../common/model/license/license.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
-const heading = 'Your Bovine Tuberculosis (TB) movement licence application'
+const heading = pageTitle
 const buttonText = 'Review and submit'
 
 /**

@@ -30,11 +30,11 @@ export class OnOffFarm extends Model {
   }
 
   /**
-   * @param {OnOffFarmData | undefined} data
+   * @param {OnOffFarmData | undefined} state
    * @returns {OnOffFarm}
    */
-  static fromState(data) {
-    return new OnOffFarm(data !== undefined ? { onOffFarm: data } : {})
+  static fromState(state) {
+    return new OnOffFarm(state !== undefined ? { onOffFarm: state } : {})
   }
 
   validate() {

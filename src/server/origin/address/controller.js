@@ -3,8 +3,7 @@ import { Address } from '~/src/server/common/model/origin/address.js'
 const indexView = 'origin/address/index'
 export const pageTitle =
   'What is the address of your farm or premises where the animals are moving off?'
-export const pageHeading =
-  'What is the address of your farm or premises where the animals are moving off?'
+export const heading = pageTitle
 
 /**
  * @satisfies {Partial<ServerRoute>}
@@ -15,7 +14,7 @@ export const originAddressGetController = {
 
     return h.view(indexView, {
       pageTitle,
-      heading: pageHeading,
+      heading,
       values: address.value
     })
   }
@@ -44,7 +43,7 @@ export const originAddressPostController = {
 
       return res.view(indexView, {
         pageTitle: `Error: ${pageTitle}`,
-        heading: pageHeading,
+        heading,
         values: payload,
         errorMessages,
         errors

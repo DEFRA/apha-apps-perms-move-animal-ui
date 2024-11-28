@@ -91,11 +91,11 @@ export class Address extends Model {
   }
 
   /**
-   * @param {AddressData | undefined} data
+   * @param {AddressData | undefined} state
    * @returns {Address}
    */
-  static fromState(data) {
-    return new Address(data)
+  static fromState(state) {
+    return new Address(state ?? {})
   }
 }
 

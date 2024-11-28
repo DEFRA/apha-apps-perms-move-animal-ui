@@ -1,7 +1,6 @@
 const pageTitle =
   'You need to complete all of the sections before you review and submit'
-const heading =
-  'You need to complete all of the sections before you review and submit'
+const heading = pageTitle
 const buttonText = 'Go to your application'
 
 /**
