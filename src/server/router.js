@@ -5,6 +5,8 @@ import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
 import { exitPage } from './exit-page/index.js'
 import { origin } from './origin/index.js'
+import { taskList } from './task-list/index.js'
+import { taskListIncomplete } from './task-list-incomplete/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -19,7 +21,13 @@ export const router = {
       await server.register([health])
 
       // Application specific routes, add your own routes here
-      await server.register([home, exitPage, origin])
+      await server.register([
+        home,
+        exitPage,
+        origin,
+        taskList,
+        taskListIncomplete
+      ])
 
       // Static assets
       await server.register([serveStaticFiles])

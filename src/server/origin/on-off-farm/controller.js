@@ -1,5 +1,5 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
+import { OnOffFarm } from '~/src/server/common/model/origin/on-off-farm.js'
 
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const pageHeading = 'Are you moving the cattle on or off your farm or premises?'

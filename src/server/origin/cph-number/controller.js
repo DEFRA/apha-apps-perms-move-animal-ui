@@ -1,5 +1,5 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-import { CphNumber } from '~/src/server/common/model/cph-number.js'
+import { CphNumber } from '~/src/server/common/model/origin/cph-number.js'
 
 export const pageTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'

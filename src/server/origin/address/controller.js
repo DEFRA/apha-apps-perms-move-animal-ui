@@ -1,4 +1,4 @@
-import { Address } from '~/src/server/common/model/address.js'
+import { Address } from '~/src/server/common/model/origin/address.js'
 
 const indexView = 'origin/address/index'
 export const pageTitle =
@@ -62,5 +62,5 @@ export const originAddressPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { AddressData } from '~/src/server/common/model/address.js'
+ * @import { AddressData } from '~/src/server/common/model/origin/address.js'
  */

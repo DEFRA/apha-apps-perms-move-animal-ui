@@ -1,29 +1,30 @@
-import { getController, postController } from './controller.js'
+import {
+  taskListGetController,
+  taskListPostController
+} from '~/src/server/task-list/controller.js'
 
 /**
- * Sets up the routes used in the cph number page.
+ * Sets up the routes used in the home page.
  * These routes are registered in src/server/router.js.
  */
-
-const path = 'cph-number'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const cphNumber = {
+export const taskList = {
   plugin: {
-    name: `origin-${path}`,
+    name: 'task-list',
     register(server) {
       server.route([
         {
           method: 'GET',
-          path: `/${path}`,
-          ...getController
+          path: '/task-list',
+          ...taskListGetController
         },
         {
           method: 'POST',
-          path: `/${path}`,
-          ...postController
+          path: '/task-list',
+          ...taskListPostController
         }
       ])
     }
