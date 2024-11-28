@@ -1,8 +1,10 @@
 import landingPage from '../../page-objects/landingPage.js'
-import toFromFarmPage from '../../page-objects/toFromFarmPage.js'
-import parishHoldingNumberPage from '../../page-objects/parishHoldingNumberPage.js'
-import newAddressPage from '../../page-objects/newAddressPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
+import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
+import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
+
+import { loadPageAndVerifyTitle } from '../page.js'
 
 // Default data
 const defaultLineOne = '37 Made up lane'
@@ -17,6 +19,7 @@ const completeOriginTask = async ({
   townOrCity = defaultTownOrCity,
   postcode = defaultPostcode
 } = {}) => {
+  await loadPageAndVerifyTitle(landingPage.landingPageUrl, landingPage.landingPageTitleText)
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementOrigin()
   await toFromFarmPage.selectOffFarmAndContinue()
@@ -29,7 +32,7 @@ const completeOriginTask = async ({
 }
 
 // Predefined task completion function
-const completeOriginTaskAnswers = async () => {
+export const completeOriginTaskAnswers = async () => {
   await completeOriginTask() // Uses default values
 }
 

@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import landingPage from '../../page-objects/landingPage.js'
-import toFromFarmPage from '../../page-objects/toFromFarmPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 
 describe('Javascript disabled test', () => {

@@ -1,6 +1,6 @@
-import { Page } from './page.js'
+import { Page } from '../page.js'
 
-class CheckAnswersPage extends Page {
+class OriginCheckAnswersPage extends Page {
   get checkAnswersTitle() {
     return 'Check your answers before you continue your application'
   }
@@ -36,4 +36,4 @@ class CheckAnswersPage extends Page {
   }
 }
 
-export default new CheckAnswersPage()
+export default new OriginCheckAnswersPage()

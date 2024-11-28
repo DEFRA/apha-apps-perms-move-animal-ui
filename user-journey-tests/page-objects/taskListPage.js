@@ -20,8 +20,15 @@ class TaskListPage extends Page {
     return $('aria/Movement origin')
   }
 
+  get receivingTheLicenceLink() {
+    return $('aria/Receiving the licence')
+  }
   async selectMovementOrigin() {
     await page.selectElement(this.movementOriginLink)
+  }
+
+  async selectReceiveTheLicence() {
+    await page.selectElement(this.receivingTheLicenceLink)
   }
 
   async verifyStatus({ position, taskTitle, expectedStatus }) {
