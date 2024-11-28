@@ -99,7 +99,7 @@ export const config = merge(wdioConf, {
       {
         testObservability: true, // Disable if you do not want to use the browserstack test observer functionality
         testObservabilityOptions: {
-          projectName: 'apha-apps-perms-move-animal-uat',
+          projectName: 'apha-apps-perms-move-animal-ui',
           buildName: 'apha-test-run'
         },
         acceptInsecureCerts: true,
