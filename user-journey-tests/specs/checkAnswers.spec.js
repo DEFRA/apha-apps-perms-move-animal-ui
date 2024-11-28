@@ -55,7 +55,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing cph number then verify changing the cph number', async () => {
-    completeOriginTaskAnswersCustom(
+    await completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
       defaultTownOrCity,
@@ -78,7 +78,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing data then verify changing the address', async () => {
-    completeOriginTaskAnswersCustom(
+    await completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
       defaultTownOrCity,
