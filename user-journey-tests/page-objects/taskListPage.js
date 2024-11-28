@@ -17,11 +17,19 @@ class TaskListPage extends Page {
   }
 
   get movementOriginLink() {
-    return $('[href="origin/to-or-from-own-premises"]')
+    return $('aria/Movement origin')
   }
 
   async selectMovementOrigin() {
     await page.selectElement(this.movementOriginLink)
+  }
+
+  async verifyStatus({ position, taskTitle, expectedStatus }) {
+    const task = (await $$('.govuk-task-list__item'))[position - 1]
+    const status = await task.$(`#task-list-${position}-status`)
+
+    expect(await task.getText()).toContain(taskTitle)
+    expect(await status.getText()).toBe(expectedStatus)
   }
 }
 

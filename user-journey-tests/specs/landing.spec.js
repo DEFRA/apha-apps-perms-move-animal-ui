@@ -1,7 +1,6 @@
 import { browser, expect } from '@wdio/globals'
 
 import landingPage from '../page-objects/landingPage.js'
-import toFromFarmPage from '../page-objects/toFromFarmPage.js'
 import { loadPageAndVerifyTitle } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 
