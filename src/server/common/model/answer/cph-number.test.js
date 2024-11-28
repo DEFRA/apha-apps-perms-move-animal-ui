@@ -69,7 +69,11 @@ describe('#CphNumber.fromState', () => {
     )
   })
 
-  it('should return an empty object if the state is undefined', () => {
+  it('should return an undefined value if the state is undefined', () => {
     expect(CphNumber.fromState(undefined).value).toBeUndefined()
+  })
+
+  it('should return an empty object if the state is undefined', () => {
+    expect(CphNumber.fromState(undefined)._data).toEqual({})
   })
 })
