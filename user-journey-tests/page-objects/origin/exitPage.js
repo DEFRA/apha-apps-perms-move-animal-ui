@@ -7,17 +7,9 @@ const pageHeadingAndTitle =
   'This service is not available for your movement type'
 
 class ExitPage extends Page {
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
-
-  get pagePath() {
-    return 'exit-page'
-  }
+  pagePath = 'exit-page'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get viewApplicationLink() {
     return $('[data-testid="view-application-link"]')

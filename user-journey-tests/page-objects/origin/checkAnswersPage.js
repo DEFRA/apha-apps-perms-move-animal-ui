@@ -4,17 +4,9 @@ const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
 class OriginCheckAnswersPage extends Page {
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
-
-  get pagePath() {
-    return 'origin/summary'
-  }
+  pagePath = 'origin/summary'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   // Change links
   get changeOnOrOffLink() {

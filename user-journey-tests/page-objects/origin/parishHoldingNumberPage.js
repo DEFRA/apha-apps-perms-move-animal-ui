@@ -7,17 +7,9 @@ const pageHeadingAndTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
 
 class ParishHoldingNumberPage extends Page {
-  get pagePath() {
-    return 'origin/cph-number'
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
-
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
+  pagePath = 'origin/cph-number'
+  pageTitle = pageHeadingAndTitle
+  pageHeading = pageHeadingAndTitle
 
   cphNumberInput() {
     return super.getInputField(cphId)

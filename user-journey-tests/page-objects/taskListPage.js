@@ -7,17 +7,9 @@ const pageHeadingAndTitle =
   'Your Bovine Tuberculosis (TB) movement licence application'
 
 class TaskListPage extends Page {
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
-
-  get pagePath() {
-    return 'task-list'
-  }
+  pagePath = 'task-list'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get movementOriginLink() {
     return $('aria/Movement origin')

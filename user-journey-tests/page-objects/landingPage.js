@@ -7,17 +7,9 @@ const pageHeadingAndTitle =
   'Apply for a Bovine Tuberculosis (TB) movement licence'
 
 class LandingPage extends Page {
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
-
-  get pagePath() {
-    return '/'
-  }
+  pagePath = '/'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get startNowButton() {
     return $('[data-testid="start-now-btn"]')

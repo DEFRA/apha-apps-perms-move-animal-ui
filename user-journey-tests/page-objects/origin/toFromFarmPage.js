@@ -7,17 +7,9 @@ const pageHeadingAndTitle =
   'Are you moving the cattle on or off your farm or premises?'
 
 class ToFromFarmPage extends Page {
-  get pagePath() {
-    return 'origin/to-or-from-own-premises'
-  }
-
-  get pageHeading() {
-    return pageHeadingAndTitle
-  }
-
-  get pageTitle() {
-    return pageHeadingAndTitle
-  }
+  pagePath = 'origin/to-or-from-own-premises'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get toFromFarmErrorMessage() {
     return 'Select if you are moving cattle on or off your farm'
