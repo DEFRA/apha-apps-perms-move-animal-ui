@@ -42,7 +42,7 @@ describe('Check your answers test', () => {
 
   it('Should verify the existing radio selection and verify resubmission', async () => {
     await completeOriginTaskAnswers()
-    await checkAnswersPage.verifyPageHeading()
+    await checkAnswersPage.verifyPageHeadingAndTitle()
     await selectElement(checkAnswersPage.changeOnOrOffLink)
 
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()

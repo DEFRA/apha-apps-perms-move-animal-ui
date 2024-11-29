@@ -72,8 +72,9 @@ class Page {
     )
   }
 
-  async verifyPageHeading() {
+  async verifyPageHeadingAndTitle() {
     await page.validateElementVisibleAndText(this.getPageHeading(), this.pageHeading)
+    await page.verifyPageTitle(this.pageTitle)
   }
 
   async selectBackLink() {

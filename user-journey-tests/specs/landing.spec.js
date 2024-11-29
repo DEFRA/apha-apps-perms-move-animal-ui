@@ -12,14 +12,14 @@ describe('Landing page test', () => {
 
   it('Should verify start now button visible on landing page', async () => {
     await landingPage.verifyPrivateBetaBanner()
-    await landingPage.verifyPageHeading()
+    await landingPage.verifyPageHeadingAndTitle()
     await landingPage.verifyStartNowButton('Start now')
   })
 
   it('Should verify that start now navigates you to first question and back link returns you', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await expect(browser).toHaveTitle(taskListPage.pageTitle)
-    await taskListPage.verifyPageHeading()
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.selectBackLink()
 
     await landingPage.verifyStartNowButton('Start now')
