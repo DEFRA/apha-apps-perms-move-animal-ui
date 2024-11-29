@@ -1,8 +1,8 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
-import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
+import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
-const pageHeading = 'Are you moving the cattle on or off your farm or premises?'
+const heading = pageTitle
 const indexView = 'origin/on-off-farm/index.njk'
 
 /**
@@ -16,7 +16,7 @@ export const onOffFarmGetController = {
     return h.view(indexView, {
       nextPage: req.query.redirect_uri,
       pageTitle,
-      heading: pageHeading,
+      heading,
       onOffFarm
     })
   }
@@ -46,7 +46,7 @@ export const onOffFarmPostController = {
           '/origin/to-or-from-own-premises'
         ),
         pageTitle: `Error: ${pageTitle}`,
-        heading: pageHeading,
+        heading,
         errorMessage: errors.onOffFarm
       })
     }
@@ -66,7 +66,7 @@ export const onOffFarmPostController = {
       default:
         return res.view(indexView, {
           pageTitle: `Error: ${pageTitle}`,
-          heading: pageHeading,
+          heading,
           errorMessage: {
             text: 'Select if you are moving cattle on or off your farm or premises'
           }

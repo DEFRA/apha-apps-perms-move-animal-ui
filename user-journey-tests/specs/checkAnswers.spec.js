@@ -6,10 +6,10 @@ import {
   selectElement,
   validateElementVisibleAndText
 } from '../helpers/page.js'
-import checkAnswersPage from '../page-objects/checkAnswersPage.js'
-import newAddressPage from '../page-objects/newAddressPage.js'
-import parishHoldingNumberPage from '../page-objects/parishHoldingNumberPage.js'
-import toFromFarmPage from '../page-objects/toFromFarmPage.js'
+import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
+import newAddressPage from '../page-objects/origin/newAddressPage.js'
+import parishHoldingNumberPage from '../page-objects/origin/parishHoldingNumberPage.js'
+import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import completeOriginTaskAnswers, {
   completeOriginTaskAnswersCustom
 } from '../helpers/testHelpers/movementLicense.js'

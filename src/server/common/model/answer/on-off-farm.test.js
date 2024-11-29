@@ -55,6 +55,10 @@ describe('#OnOffFarm.fromState', () => {
     expect(OnOffFarm.fromState(state)._data).toEqual(validOnOffRadio)
   })
 
+  it('should return an undefined value if the state is undefined', () => {
+    expect(OnOffFarm.fromState(undefined).value).toBeUndefined()
+  })
+
   it('should return an empty object if the state is undefined', () => {
     expect(OnOffFarm.fromState(undefined)._data).toEqual({})
   })

@@ -1,5 +1,5 @@
-import { Page } from './page.js'
-import * as page from '../helpers/page.js'
+import { Page } from '../page.js'
+import * as page from '../../helpers/page.js'
 
 const cphId = 'cph-number'
 

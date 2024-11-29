@@ -1,12 +1,11 @@
-import { Address } from '~/src/server/common/model/address.js'
-import { CphNumber } from '~/src/server/common/model/cph-number.js'
-import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
+import { Address } from '~/src/server/common/model/answer/address.js'
+import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
+import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
   'Check your answers before you continue your application'
-export const pageHeading =
-  'Check your answers before you continue your application'
+export const heading = pageTitle
 
 /**
  * @satisfies {Partial<ServerRoute>}
@@ -45,7 +44,7 @@ export const originSummaryGetController = {
 
     return h.view(indexView, {
       pageTitle,
-      heading: pageHeading,
+      heading,
       origin: {
         cphNumber: origin?.cphNumber,
         address: Object.values(origin?.address ?? {}).join('<br />'),
@@ -56,8 +55,17 @@ export const originSummaryGetController = {
 }
 
 /**
+ * @satisfies {Partial<ServerRoute>}
+ */
+export const originSummaryPostController = {
+  handler(_req, h) {
+    return h.redirect('/task-list')
+  }
+}
+
+/**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { AddressData } from '~/src/server/common/model/address.js'
+ * @import { AddressData } from '~/src/server/common/model/answer/address.js'
  * @typedef {{
  *   onOffFarm: string;
  *   cphNumber: string;

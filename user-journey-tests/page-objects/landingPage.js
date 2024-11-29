@@ -4,6 +4,10 @@ import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
 class LandingPage extends Page {
+  get landingPageUrl() {
+    return '/'
+  }
+
   get startNowButton() {
     return $('[data-testid="start-now-btn"]')
   }

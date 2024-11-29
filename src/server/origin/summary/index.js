@@ -1,9 +1,14 @@
-import { originSummaryGetController } from './controller.js'
+import {
+  originSummaryGetController,
+  originSummaryPostController
+} from './controller.js'
 
 /**
- * Sets up the routes used in the home page.
+ * Sets up the routes used in the summary page.
  * These routes are registered in src/server/router.js.
  */
+
+const path = 'summary'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -15,8 +20,13 @@ export const originSummary = {
       server.route([
         {
           method: 'GET',
-          path: '/summary',
+          path: `/${path}`,
           ...originSummaryGetController
+        },
+        {
+          method: 'POST',
+          path: `/${path}`,
+          ...originSummaryPostController
         }
       ])
     }

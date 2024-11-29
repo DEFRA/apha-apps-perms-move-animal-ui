@@ -1,7 +1,8 @@
 import Joi from 'joi'
-import { validateAgainstSchema, Model } from './model.js'
+import { AnswerModel } from './answer-model.js'
+import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 
-const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
+const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 
 export const cphNumberPayloadSchema = Joi.object({
   cphNumber: Joi.string()
@@ -18,10 +19,10 @@ export const cphNumberPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} CphNumberData
- * @import {RawPayload} from './model.js'
+ * @import {RawPayload} from './answer-model.js'
  */
 
-export class CphNumber extends Model {
+export class CphNumber extends AnswerModel {
   /**
    * @returns {string | undefined}
    */
@@ -45,8 +46,6 @@ export class CphNumber extends Model {
    * @returns {CphNumber}
    */
   static fromState(state) {
-    return new CphNumber({
-      cphNumber: state
-    })
+    return new CphNumber(state !== undefined ? { cphNumber: state } : {})
   }
 }
