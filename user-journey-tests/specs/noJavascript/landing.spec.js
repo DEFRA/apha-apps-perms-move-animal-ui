@@ -1,8 +1,8 @@
 import { browser } from '@wdio/globals'
 
 import landingPage from '../../page-objects/landingPage.js'
-import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import { loadPageAndVerifyTitle } from '../../helpers/page.js'
+import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Javascript disabled test', () => {
   beforeEach('Reset browser state and navigate to landing page', async () => {
@@ -12,10 +12,8 @@ describe('Javascript disabled test', () => {
 
   it('Should verify that the back link isnt visble when javascript is disabled', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
-    await expect(browser).toHaveTitle(toFromFarmPage.toFromFarmTitle)
-    await toFromFarmPage.verifyPageHeading(
-      'Are you moving the cattle on or off your farm or premises?'
-    )
-    await expect(await toFromFarmPage.backLink.isDisplayed()).toBe(false)
+    await expect(browser).toHaveTitle(taskListPage.taskListPageTitle)
+    await taskListPage.verifyPageHeading(taskListPage.taskListPageHeading)
+    await expect(await taskListPage.backLink.isDisplayed()).toBe(false)
   })
 })

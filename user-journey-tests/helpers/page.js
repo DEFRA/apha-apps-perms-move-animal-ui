@@ -1,14 +1,24 @@
 import { browser } from '@wdio/globals'
 
 export const waitForUrlPath = async (path) => {
-  try {
-    await browser.waitUntil(async () => {
-      return new URL(await browser.getUrl()).pathName === path
-    })
-  } catch (error) {
-    throw new Error(`Failed to verify page path ${path} - ${error}`)
-  }
-}
+  const normalizePath = (path) => path.replace(/^\/+|\/+$/g, ''); // Remove leading and trailing slashes
+
+  await browser.waitUntil(
+    async () => {
+      const currentUrl = await browser.getUrl();
+      const currentPath = new URL(currentUrl).pathname;
+      const normalizedCurrentPath = normalizePath(currentPath);
+
+      const expectedPath = `/${normalizePath(path)}`;
+
+      return normalizedCurrentPath === normalizePath(expectedPath);
+    },
+    {
+      timeoutMsg: `Failed to verify page path. Expected: "/${path}", but found: "${await browser.getUrl()}"`,
+    }
+  );
+};
+
 export const waitForElement = async (
   element,
   options = { timeout: 10000, visible: true }
