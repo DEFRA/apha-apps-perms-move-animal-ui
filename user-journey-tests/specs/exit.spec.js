@@ -5,7 +5,7 @@ describe('Exit page test', () => {
   beforeEach('Navigate to exit page', async () => {
     await loadPageAndVerifyTitle(
       exitPage.exitPageUrlPath,
-      exitPage.exitPageTitle
+      exitPage.pageTitle
     )
   })
 

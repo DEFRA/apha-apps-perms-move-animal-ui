@@ -8,7 +8,7 @@ class ParishHoldingNumberPage extends Page {
     return 'origin/cph-number'
   }
 
-  get parishHoldingTitle() {
+  get pageTitle() {
     return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
   }
 

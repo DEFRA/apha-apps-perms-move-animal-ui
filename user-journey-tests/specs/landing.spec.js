@@ -7,19 +7,19 @@ import taskListPage from '../page-objects/taskListPage.js'
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
+    await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
   it('Should verify start now button visible on landing page', async () => {
     await landingPage.verifyPrivateBetaBanner()
-    await landingPage.verifyPageHeading(landingPage.landingPageTitleText)
+    await landingPage.verifyPageHeading(landingPage.pageTitle)
     await landingPage.verifyStartNowButton('Start now')
   })
 
   it('Should verify that start now navigates you to first question and back link returns you', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
-    await expect(browser).toHaveTitle(taskListPage.taskListPageTitle)
-    await taskListPage.verifyPageHeading(taskListPage.taskListPageHeading)
+    await expect(browser).toHaveTitle(taskListPage.pageTitle)
+    await taskListPage.verifyPageHeading(taskListPage.pageTitle)
     await taskListPage.selectBackLink()
 
     await landingPage.verifyStartNowButton('Start now')

@@ -12,7 +12,7 @@ class NewAddressPage extends Page {
     return 'origin/address'
   }
 
-  get newAddressPageTitle() {
+  get pageTitle() {
     return 'What is the address of your farm or premises where the animals are moving off?'
   }
 

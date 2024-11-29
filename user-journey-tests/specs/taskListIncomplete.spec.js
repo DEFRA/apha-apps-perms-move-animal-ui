@@ -7,12 +7,12 @@ describe('Task list page test', () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
       taskListIncompletePage.taskListIncompletePageUrlPath,
-      taskListIncompletePage.taskListIncompletePageTitle
+      taskListIncompletePage.pageTitle
     )
   })
 
   it('should allow the user to return to the task list', async () => {
     await taskListIncompletePage.selectGoToApplication()
-    await taskListPage.verifyPageHeading(taskListPage.taskListPageHeading)
+    await taskListPage.verifyPageHeading(taskListPage.pageHeading)
   })
 })

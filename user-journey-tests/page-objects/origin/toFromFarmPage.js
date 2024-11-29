@@ -8,7 +8,7 @@ class ToFromFarmPage extends Page {
     return 'origin/to-or-from-own-premises'
   }
 
-  get toFromFarmTitle() {
+  get pageTitle() {
     return 'Are you moving the cattle on or off your farm or premises?'
   }
 

@@ -21,7 +21,7 @@ const completeOriginTask = async ({
 } = {}) => {
   await loadPageAndVerifyTitle(
     landingPage.landingPageUrl,
-    landingPage.landingPageTitleText
+    landingPage.pageTitle
   )
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementOrigin()

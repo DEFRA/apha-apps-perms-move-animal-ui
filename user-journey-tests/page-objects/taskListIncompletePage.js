@@ -2,7 +2,11 @@ import { selectElement } from '../helpers/page.js'
 import { Page } from './page.js'
 
 class TaskListIncompletePage extends Page {
-  get taskListIncompletePageHeading() {
+  get pageHeading() {
+    return 'You need to complete all of the sections before you review and submit'
+  }
+
+  get pageTitle() {
     return 'You need to complete all of the sections before you review and submit'
   }
 

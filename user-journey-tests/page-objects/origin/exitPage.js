@@ -4,11 +4,11 @@ import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
 class ExitPage extends Page {
-  get exitPageHeading() {
+  get pageHeading() {
     return 'This service is not available for your movement type'
   }
 
-  get exitPageTitle() {
+  get pageTitle() {
     return 'This service is not available for your movement type'
   }
 

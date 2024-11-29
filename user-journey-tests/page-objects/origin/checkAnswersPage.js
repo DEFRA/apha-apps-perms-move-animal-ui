@@ -1,7 +1,7 @@
 import { Page } from '../page.js'
 
 class OriginCheckAnswersPage extends Page {
-  get checkAnswersTitle() {
+  get pageTitle() {
     return 'Check your answers before you continue your application'
   }
 

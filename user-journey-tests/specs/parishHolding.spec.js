@@ -8,7 +8,7 @@ describe('Paris holding page test', () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
       ParishHoldingNumberPage.urlPath,
-      ParishHoldingNumberPage.parishHoldingTitle
+      ParishHoldingNumberPage.pageTitle
     )
   })
 

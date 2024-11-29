@@ -4,11 +4,11 @@ import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
 class TaskListPage extends Page {
-  get taskListPageHeading() {
+  get pageHeading() {
     return 'Your Bovine Tuberculosis (TB) movement licence application'
   }
 
-  get taskListPageTitle() {
+  get pageTitle() {
     return 'Your Bovine Tuberculosis (TB) movement licence application'
   }
 
