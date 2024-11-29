@@ -2,6 +2,19 @@ import { browser, $ } from '@wdio/globals'
 import * as page from '../helpers/page.js'
 
 class Page {
+
+  get pagePath() {
+    throw new Error('Page path not provided')
+  }
+
+  get pageHeading() {
+    throw new Error('Page heading not provided')
+  }
+
+  get pageTitle() {
+    throw new Error('Page title not provided')
+  }
+
   getPageHeading() {
     return $('h1')
   }
