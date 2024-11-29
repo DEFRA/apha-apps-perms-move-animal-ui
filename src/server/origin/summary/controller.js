@@ -58,7 +58,7 @@ export const originSummaryGetController = {
  * @satisfies {Partial<ServerRoute>}
  */
 export const originSummaryPostController = {
-  handler(req, h) {
+  handler(_req, h) {
     return h.redirect('/task-list')
   }
 }

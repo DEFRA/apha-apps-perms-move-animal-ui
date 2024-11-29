@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import { validateAgainstSchema, AnswerModel } from './answer-model.js'
 
-const cphNumberRegex = /^([0-9]{2})\/([0-9]{3})\/([0-9]{4})$/i
+const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 
 export const cphNumberPayloadSchema = Joi.object({
   cphNumber: Joi.string()

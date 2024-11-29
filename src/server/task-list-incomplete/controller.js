@@ -8,7 +8,7 @@ const buttonText = 'Go to your application'
  * @satisfies {Partial<ServerRoute>}
  */
 export const taskListIncompleteGetController = {
-  handler(req, h) {
+  handler(_req, h) {
     return h.view('task-list-incomplete/index', {
       pageTitle,
       heading,
