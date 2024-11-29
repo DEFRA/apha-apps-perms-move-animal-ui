@@ -3,13 +3,16 @@ import { $ } from '@wdio/globals'
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'This service is not available for your movement type'
+
 class ExitPage extends Page {
   get pageHeading() {
-    return 'This service is not available for your movement type'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'This service is not available for your movement type'
+    return pageHeadingAndTitle
   }
 
   get pagePath() {

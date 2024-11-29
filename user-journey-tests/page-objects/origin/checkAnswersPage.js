@@ -1,12 +1,15 @@
 import { Page } from '../page.js'
 
+const pageHeadingAndTitle =
+  'Check your answers before you continue your application'
+
 class OriginCheckAnswersPage extends Page {
   get pageHeading() {
-    return 'Check your answers before you continue your application'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'Check your answers before you continue your application'
+    return pageHeadingAndTitle
   }
 
   get pagePath() {

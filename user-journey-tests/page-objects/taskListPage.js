@@ -3,13 +3,16 @@ import { $ } from '@wdio/globals'
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'Your Bovine Tuberculosis (TB) movement licence application'
+
 class TaskListPage extends Page {
   get pageHeading() {
-    return 'Your Bovine Tuberculosis (TB) movement licence application'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'Your Bovine Tuberculosis (TB) movement licence application'
+    return pageHeadingAndTitle
   }
 
   get pagePath() {

@@ -1,13 +1,16 @@
 import { selectElement } from '../helpers/page.js'
 import { Page } from './page.js'
 
+const pageHeadingAndTitle =
+  'You need to complete all of the sections before you review and submit'
+
 class TaskListIncompletePage extends Page {
   get pageHeading() {
-    return 'You need to complete all of the sections before you review and submit'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'You need to complete all of the sections before you review and submit'
+    return pageHeadingAndTitle
   }
 
   get pagePath() {

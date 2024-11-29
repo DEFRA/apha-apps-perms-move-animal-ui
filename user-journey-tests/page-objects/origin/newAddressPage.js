@@ -7,17 +7,20 @@ const townOrCityId = 'addressTown'
 const countyId = 'addressCounty'
 const postcodeId = 'addressPostcode'
 
+const pageHeadingAndTitle =
+  'What is the address of your farm or premises where the animals are moving off?'
+
 class NewAddressPage extends Page {
   get pagePath() {
     return 'origin/address'
   }
 
   get pageHeading() {
-    return 'What is the address of your farm or premises where the animals are moving off?'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'What is the address of your farm or premises where the animals are moving off?'
+    return pageHeadingAndTitle
   }
 
   addressLineOneInput() {

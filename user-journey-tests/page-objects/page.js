@@ -2,7 +2,6 @@ import { browser, $ } from '@wdio/globals'
 import * as page from '../helpers/page.js'
 
 class Page {
-
   get pagePath() {
     throw new Error('Page path not provided')
   }
@@ -73,7 +72,10 @@ class Page {
   }
 
   async verifyPageHeadingAndTitle() {
-    await page.validateElementVisibleAndText(this.getPageHeading(), this.pageHeading)
+    await page.validateElementVisibleAndText(
+      this.getPageHeading(),
+      this.pageHeading
+    )
     await page.verifyPageTitle(this.pageTitle)
   }
 

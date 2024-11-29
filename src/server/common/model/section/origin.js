@@ -20,11 +20,10 @@ const validationSchema = Joi.object()
 
 /**
  * export @typedef {{
- *  onOffFarm: OnOffFarmData | undefined;
- *  cphNumber: CphNumberData | undefined;
- *  address: AddressData | undefined;
+ * onOffFarm: OnOffFarmData | undefined;
+ * cphNumber: CphNumberData | undefined;
+ * address: AddressData | undefined;
  * }} OriginData
- *
  * @import {OnOffFarmData} from '../answer/on-off-farm.js'
  * @import {CphNumberData} from '../answer/cph-number.js'
  * @import {AddressData} from '../answer/address.js'

@@ -1,4 +1,4 @@
-import { browser, expect } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 
 import landingPage from '../page-objects/landingPage.js'
 import { loadPageAndVerifyTitle } from '../helpers/page.js'
@@ -18,7 +18,6 @@ describe('Landing page test', () => {
 
   it('Should verify that start now navigates you to first question and back link returns you', async () => {
     await landingPage.verifyStartNowButton('Start now', true)
-    await expect(browser).toHaveTitle(taskListPage.pageTitle)
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.selectBackLink()
 

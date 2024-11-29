@@ -3,17 +3,20 @@ import * as page from '../../helpers/page.js'
 
 const cphId = 'cph-number'
 
+const pageHeadingAndTitle =
+  'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+
 class ParishHoldingNumberPage extends Page {
   get pagePath() {
     return 'origin/cph-number'
   }
 
-  get pageHeading() {
-    return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  get pageTitle() {
+    return pageHeadingAndTitle
   }
 
-  get pageTitle() {
-    return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  get pageHeading() {
+    return pageHeadingAndTitle
   }
 
   cphNumberInput() {

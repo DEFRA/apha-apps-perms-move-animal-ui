@@ -3,13 +3,16 @@ import { $ } from '@wdio/globals'
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'Apply for a Bovine Tuberculosis (TB) movement licence'
+
 class LandingPage extends Page {
   get pageHeading() {
-    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
+    return pageHeadingAndTitle
   }
 
   get pageTitle() {
-    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
+    return pageHeadingAndTitle
   }
 
   get pagePath() {

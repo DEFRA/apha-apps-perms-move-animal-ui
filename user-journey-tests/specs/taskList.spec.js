@@ -9,10 +9,7 @@ import { completeOriginTaskAnswers } from '../helpers/testHelpers/movementLicens
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(
-      taskListPage.pagePath,
-      taskListPage.pageTitle
-    )
+    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
   })
 
   it('should display the correct statuses before an application has been started', async () => {
@@ -52,10 +49,7 @@ describe('Task list page test', () => {
 
   it('should link to movement origin summary once that selection has been completed', async () => {
     await completeOriginTaskAnswers()
-    await loadPageAndVerifyTitle(
-      taskListPage.pagePath,
-      taskListPage.pageTitle
-    )
+    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
     await taskListPage.verifyStatus({
       position: 1,
       taskTitle: 'Movement origin',
