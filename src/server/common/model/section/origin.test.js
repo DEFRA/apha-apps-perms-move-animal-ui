@@ -3,6 +3,14 @@ import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
 
+const validCphNumber = '12/345/6789'
+const validOnOffFarm = 'off'
+const validAddress = {
+  addressLine1: 'Starfleet Headquarters',
+  addressTown: 'San Francisco',
+  addressPostcode: 'RG24 8RR'
+}
+
 describe('Origin', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
@@ -29,14 +37,6 @@ describe('Origin', () => {
       expect(result.isValid).toBe(false)
       expect(result.errors).toHaveProperty('origin')
     })
-
-    const validCphNumber = '12/345/6789'
-    const validOnOffFarm = 'off'
-    const validAddress = {
-      addressLine1: 'Starfleet Headquarters',
-      addressTown: 'San Francisco',
-      addressPostcode: 'RG24 8RR'
-    }
 
     describe('fromState', () => {
       it('should create an Origin instance with valid nested objects', () => {

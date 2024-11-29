@@ -15,14 +15,14 @@ describe('#taskListIncompleteController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected response', async () => {
+  it('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/'
+      url: '/task-list-incomplete'
     })
 
     expect(parseDocument(payload).title).toBe(
-      'Apply for a Bovine Tuberculosis (TB) movement licence'
+      'You need to complete all of the sections before you review and submit'
     )
 
     expect(statusCode).toBe(statusCodes.ok)
