@@ -14,6 +14,6 @@ describe('Javascript disabled test', () => {
     await landingPage.verifyStartNowButton('Start now', true)
     await expect(browser).toHaveTitle(taskListPage.taskListPageTitle)
     await taskListPage.verifyPageHeading(taskListPage.taskListPageHeading)
-    await expect(await taskListPage.backLink.isDisplayed()).toBe(false)
+    expect(await taskListPage.getBackLink().isDisplayed()).toBe(false)
   })
 })
