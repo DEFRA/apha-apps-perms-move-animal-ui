@@ -2,7 +2,7 @@ import merge from 'deepmerge'
 import { config as wdioConf } from './wdio.conf.js'
 
 export const config = merge(wdioConf, {
-  specs: ['./specs/**/**.js'],
+  specs: ['./specs/**/*.js'],
   exclude: ['./specs/noJavascript/**/*.js'],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,

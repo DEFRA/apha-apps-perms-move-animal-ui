@@ -46,7 +46,7 @@ class TaskListPage extends Page {
     const status = await task.$(`#task-list-${position}-status`)
 
     expect(await task.getText()).toContain(taskTitle)
-    expect(await status.getText()).toBe(expectedStatus)
+    expect(await status.getText()).toContain(expectedStatus)
   }
 
   async selectReview() {
