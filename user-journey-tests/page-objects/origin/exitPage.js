@@ -12,7 +12,7 @@ class ExitPage extends Page {
     return 'This service is not available for your movement type'
   }
 
-  get exitPageUrlPath() {
+  get pagePath() {
     return 'exit-page'
   }
 

@@ -1,4 +1,4 @@
-import { loadPageAndVerifyTitle, waitForUrlPath } from '../helpers/page.js'
+import { loadPageAndVerifyTitle, waitForpagePath } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -10,7 +10,7 @@ describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      taskListPage.taskListPageUrlPath,
+      taskListPage.pagePath,
       taskListPage.pageTitle
     )
   })
@@ -47,13 +47,13 @@ describe('Task list page test', () => {
 
   it('should link to receiving the licence first question before an application has been started', async () => {
     await taskListPage.selectReceiveTheLicence()
-    await waitForUrlPath(emailPage.emailPageUrlPath)
+    await waitForpagePath(emailPage.pagePath)
   })
 
   it('should link to movement origin summary once that selection has been completed', async () => {
     await completeOriginTaskAnswers()
     await loadPageAndVerifyTitle(
-      taskListPage.taskListPageUrlPath,
+      taskListPage.pagePath,
       taskListPage.pageTitle
     )
     await taskListPage.verifyStatus({
@@ -81,7 +81,7 @@ describe('Task list page test', () => {
 
     await taskListPage.selectMovementOrigin()
     await checkAnswersPage.verifyPageHeading()
-    await waitForUrlPath(checkAnswersPage.checkAnswersUrlPath)
+    await waitForpagePath(checkAnswersPage.pagePath)
   })
 
   it(`should route the user to task incomplete page if they haven't completed the user journey`, async () => {

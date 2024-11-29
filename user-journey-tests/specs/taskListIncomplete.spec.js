@@ -6,7 +6,7 @@ describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      taskListIncompletePage.taskListIncompletePageUrlPath,
+      taskListIncompletePage.pagePath,
       taskListIncompletePage.pageTitle
     )
   })

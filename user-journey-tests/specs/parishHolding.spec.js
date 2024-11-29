@@ -7,7 +7,7 @@ describe('Paris holding page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      ParishHoldingNumberPage.urlPath,
+      ParishHoldingNumberPage.pagePath,
       ParishHoldingNumberPage.pageTitle
     )
   })

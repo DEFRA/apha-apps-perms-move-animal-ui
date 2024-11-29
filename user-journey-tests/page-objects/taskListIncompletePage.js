@@ -10,11 +10,7 @@ class TaskListIncompletePage extends Page {
     return 'You need to complete all of the sections before you review and submit'
   }
 
-  get taskListIncompletePageTitle() {
-    return 'You need to complete all of the sections before you review and submit'
-  }
-
-  get taskListIncompletePageUrlPath() {
+  get pagePath() {
     return 'task-list-incomplete'
   }
 

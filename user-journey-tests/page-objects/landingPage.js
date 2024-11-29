@@ -12,7 +12,7 @@ class LandingPage extends Page {
     return 'Apply for a Bovine Tuberculosis (TB) movement licence'
   }
 
-  get landingPageUrl() {
+  get pagePath() {
     return '/'
   }
 

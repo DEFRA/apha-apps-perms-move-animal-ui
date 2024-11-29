@@ -20,7 +20,7 @@ const completeOriginTask = async ({
   postcode = defaultPostcode
 } = {}) => {
   await loadPageAndVerifyTitle(
-    landingPage.landingPageUrl,
+    landingPage.pagePath,
     landingPage.pageTitle
   )
   await landingPage.verifyStartNowButton('Start now', true)

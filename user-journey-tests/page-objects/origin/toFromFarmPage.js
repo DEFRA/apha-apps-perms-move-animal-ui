@@ -4,7 +4,7 @@ import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
 class ToFromFarmPage extends Page {
-  get urlPath() {
+  get pagePath() {
     return 'origin/to-or-from-own-premises'
   }
 

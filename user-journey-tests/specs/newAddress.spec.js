@@ -17,7 +17,7 @@ describe('New address page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      newAddressPage.urlPath,
+      newAddressPage.pagePath,
       newAddressPage.pageTitle
     )
   })

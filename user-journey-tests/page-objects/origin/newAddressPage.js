@@ -8,7 +8,7 @@ const countyId = 'addressCounty'
 const postcodeId = 'addressPostcode'
 
 class NewAddressPage extends Page {
-  get urlPath() {
+  get pagePath() {
     return 'origin/address'
   }
 

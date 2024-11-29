@@ -9,7 +9,7 @@ describe('To from farm page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      toFromFarmPage.urlPath,
+      toFromFarmPage.pagePath,
       toFromFarmPage.pageTitle
     )
   })

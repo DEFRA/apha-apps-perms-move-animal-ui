@@ -9,7 +9,7 @@ class OriginCheckAnswersPage extends Page {
     return 'Check your answers before you continue your application'
   }
 
-  get checkAnswersUrlPath() {
+  get pagePath() {
     return 'origin/summary'
   }
 

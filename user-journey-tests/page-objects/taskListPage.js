@@ -12,7 +12,7 @@ class TaskListPage extends Page {
     return 'Your Bovine Tuberculosis (TB) movement licence application'
   }
 
-  get taskListPageUrlPath() {
+  get pagePath() {
     return 'task-list'
   }
 

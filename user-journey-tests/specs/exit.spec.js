@@ -4,7 +4,7 @@ import exitPage from '../page-objects/origin/exitPage.js'
 describe('Exit page test', () => {
   beforeEach('Navigate to exit page', async () => {
     await loadPageAndVerifyTitle(
-      exitPage.exitPageUrlPath,
+      exitPage.pagePath,
       exitPage.pageTitle
     )
   })

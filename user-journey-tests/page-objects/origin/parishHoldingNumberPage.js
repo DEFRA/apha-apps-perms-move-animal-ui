@@ -4,7 +4,7 @@ import * as page from '../../helpers/page.js'
 const cphId = 'cph-number'
 
 class ParishHoldingNumberPage extends Page {
-  get urlPath() {
+  get pagePath() {
     return 'origin/cph-number'
   }
 
