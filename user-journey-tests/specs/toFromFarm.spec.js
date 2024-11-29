@@ -24,15 +24,13 @@ describe('To from farm page test', () => {
     await toFromFarmPage.selectOnFarmAndContinue()
     await expect(toFromFarmPage.pageError).not.toBeDisplayed()
     await expect(toFromFarmPage.errorSummary).not.toBeDisplayed()
-    await exitPage.verifyPageHeading(exitPage.pageHeading)
+    await exitPage.verifyPageHeading()
   })
 
   it('Should choose an option and check its maintained', async () => {
     await toFromFarmPage.selectOffFarmAndContinue()
     await expect(parishHoldingNumberPage.cphNumberInput()).toBeDisplayed()
-    await parishHoldingNumberPage.verifyPageHeading(
-      parishHoldingNumberPage.pageTitle
-    )
+    await parishHoldingNumberPage.verifyPageHeading()
     await browser.back()
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
   })

@@ -42,7 +42,7 @@ describe('Task list page test', () => {
 
   it('should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin()
-    await toFromFarmPage.verifyPageHeading(toFromFarmPage.pageTitle)
+    await toFromFarmPage.verifyPageHeading()
   })
 
   it('should link to receiving the licence first question before an application has been started', async () => {
@@ -80,7 +80,7 @@ describe('Task list page test', () => {
     expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
 
     await taskListPage.selectMovementOrigin()
-    await checkAnswersPage.verifyPageHeading(checkAnswersPage.pageTitle)
+    await checkAnswersPage.verifyPageHeading()
     await waitForUrlPath(checkAnswersPage.checkAnswersUrlPath)
   })
 

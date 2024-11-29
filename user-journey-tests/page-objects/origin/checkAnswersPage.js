@@ -1,6 +1,10 @@
 import { Page } from '../page.js'
 
 class OriginCheckAnswersPage extends Page {
+  get pageHeading() {
+    return 'Check your answers before you continue your application'
+  }
+
   get pageTitle() {
     return 'Check your answers before you continue your application'
   }

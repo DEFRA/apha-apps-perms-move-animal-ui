@@ -4,16 +4,20 @@ import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
 class LandingPage extends Page {
+  get pageHeading() {
+    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
+  }
+
+  get pageTitle() {
+    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
+  }
+
   get landingPageUrl() {
     return '/'
   }
 
   get startNowButton() {
     return $('[data-testid="start-now-btn"]')
-  }
-
-  get pageTitle() {
-    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
   }
 
   async verifyStartNowButton(text, click = false) {
