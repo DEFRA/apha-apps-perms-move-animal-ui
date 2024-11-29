@@ -1,11 +1,9 @@
 import Joi from 'joi'
-import {
-  SectionModel,
-  validateAgainstSchema
-} from '../section/section-model.js'
+import { SectionModel } from '../section/section-model.js'
 import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
+import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 
 const validationSchema = Joi.object()
   .custom((origin, helpers) => {

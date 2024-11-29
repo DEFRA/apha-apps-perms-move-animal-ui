@@ -1,5 +1,6 @@
 import Joi from 'joi'
-import { validateAgainstSchema, AnswerModel } from './answer-model.js'
+import { AnswerModel } from './answer-model.js'
+import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 /** @import {RawPayload} from './answer-model.js' */
 
 const selectOptionText =

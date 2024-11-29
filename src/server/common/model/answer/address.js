@@ -1,5 +1,6 @@
 import Joi from 'joi'
-import { AnswerModel, validateAgainstSchema } from './answer-model.js'
+import { AnswerModel } from './answer-model.js'
+import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
