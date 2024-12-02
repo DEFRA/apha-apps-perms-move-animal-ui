@@ -2,7 +2,8 @@ import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
 import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 
-const emailAddressRegex = /^.+@.+$/
+const emailAddressRegex = /^[^@]+@[^@]+$/
+
 const maxLength = 255
 const emptyAddressError =
   'Enter the email address you would like the licence sent to'
