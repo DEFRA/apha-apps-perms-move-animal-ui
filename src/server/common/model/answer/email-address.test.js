@@ -32,8 +32,8 @@ const invalidEmailAddresses = [
 
 describe('EmailAddress', () => {
   describe('validate', () => {
-    it('should return true for valid email address', () => {
-      validEmailAddresses.forEach((email) => {
+    validEmailAddresses.forEach((email) => {
+      it(`should return true for valid email address ${email}`, () => {
         const emailAddress = new EmailAddress({ emailAddress: email })
         const { isValid, errors } = emailAddress.validate()
 
@@ -53,8 +53,8 @@ describe('EmailAddress', () => {
       )
     })
 
-    it('should return false for invalid email address', () => {
-      invalidEmailAddresses.forEach((email) => {
+    invalidEmailAddresses.forEach((email) => {
+      it(`should return false for invalid email address: ${email}`, () => {
         const emailAddress = new EmailAddress({
           emailAddress: email
         })
