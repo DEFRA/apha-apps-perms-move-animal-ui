@@ -1,0 +1,41 @@
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+  {% if (errorMessage) %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: errorMessage.text,
+          href: "#email-address"
+        }
+      ]
+    }) }}
+  {% endif %}
+
+  {% call govukFieldset({
+    legend: {
+      text: heading,
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+
+    {{ govukInput({
+      id: "email-address",
+      name: "emailAddress",
+      type: "email",
+      spellcheck: false,
+      autocomplete: "email-address",
+      classes: "govuk-input--width-20",
+      value: emailAddress.value,
+      errorMessage: errorMessage
+    }) }}
+
+  {% endcall %}
+{% endblock %}
