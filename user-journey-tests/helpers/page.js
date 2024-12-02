@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-export const waitForUrlPath = async (path) => {
+export const waitForPagePath = async (path) => {
   const normalizePath = (path) => path.replace(/^\/+|\/+$/g, '') // Remove leading and trailing slashes
 
   await browser.waitUntil(

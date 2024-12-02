@@ -3,17 +3,16 @@ import { $ } from '@wdio/globals'
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'Apply for a Bovine Tuberculosis (TB) movement licence'
+
 class LandingPage extends Page {
-  get landingPageUrl() {
-    return '/'
-  }
+  pagePath = '/'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get startNowButton() {
     return $('[data-testid="start-now-btn"]')
-  }
-
-  get landingPageTitleText() {
-    return 'Apply for a Bovine Tuberculosis (TB) movement licence'
   }
 
   async verifyStartNowButton(text, click = false) {

@@ -3,14 +3,13 @@ import { $ } from '@wdio/globals'
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
-class ToFromFarmPage extends Page {
-  get urlPath() {
-    return 'origin/to-or-from-own-premises'
-  }
+const pageHeadingAndTitle =
+  'Are you moving the cattle on or off your farm or premises?'
 
-  get toFromFarmTitle() {
-    return 'Are you moving the cattle on or off your farm or premises?'
-  }
+class ToFromFarmPage extends Page {
+  pagePath = 'origin/to-or-from-own-premises'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get toFromFarmErrorMessage() {
     return 'Select if you are moving cattle on or off your farm'

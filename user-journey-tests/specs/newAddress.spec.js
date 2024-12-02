@@ -17,13 +17,13 @@ describe('New address page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle(
-      newAddressPage.urlPath,
-      newAddressPage.newAddressPageTitle
+      newAddressPage.pagePath,
+      newAddressPage.pageTitle
     )
   })
 
   it('Should verify all errors when no input', async () => {
-    await newAddressPage.verifyPageHeading(newAddressPage.newAddressPageTitle)
+    await newAddressPage.verifyPageHeadingAndTitle()
     await newAddressPage.selectContinue()
     await newAddressPage.verifyNewAddressErrors([
       'lineOne',

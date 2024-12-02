@@ -6,7 +6,7 @@ import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 describe('Full journey test 1', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
+    await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
   it('Should navigate you through the first journey happy path', async () => {

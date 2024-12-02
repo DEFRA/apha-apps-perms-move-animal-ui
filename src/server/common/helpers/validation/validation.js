@@ -5,7 +5,6 @@
  *   isValid: boolean,
  *   errors: {[key:string]: ValidationError}
  * }} ValidationResult
- *
  * @import { Schema } from 'joi'
  */
 

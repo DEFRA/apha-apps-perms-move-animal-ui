@@ -1,13 +1,12 @@
 import { Page } from '../page.js'
 
-class OriginCheckAnswersPage extends Page {
-  get checkAnswersTitle() {
-    return 'Check your answers before you continue your application'
-  }
+const pageHeadingAndTitle =
+  'Check your answers before you continue your application'
 
-  get checkAnswersUrlPath() {
-    return 'origin/summary'
-  }
+class OriginCheckAnswersPage extends Page {
+  pagePath = 'origin/summary'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   // Change links
   get changeOnOrOffLink() {

@@ -3,18 +3,13 @@ import { $ } from '@wdio/globals'
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'Your Bovine Tuberculosis (TB) movement licence application'
+
 class TaskListPage extends Page {
-  get taskListPageHeading() {
-    return 'Your Bovine Tuberculosis (TB) movement licence application'
-  }
-
-  get taskListPageTitle() {
-    return 'Your Bovine Tuberculosis (TB) movement licence application'
-  }
-
-  get taskListPageUrlPath() {
-    return 'task-list'
-  }
+  pagePath = 'task-list'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get movementOriginLink() {
     return $('aria/Movement origin')

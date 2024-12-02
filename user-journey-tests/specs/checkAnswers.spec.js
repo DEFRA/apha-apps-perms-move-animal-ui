@@ -30,7 +30,7 @@ const postcode = 'SW1C 2CC'
 describe('Check your answers test', () => {
   beforeEach('Navigate to check answers page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle('', landingPage.landingPageTitleText)
+    await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
   it('Should verify the back link is history -1', async () => {
@@ -42,7 +42,7 @@ describe('Check your answers test', () => {
 
   it('Should verify the existing radio selection and verify resubmission', async () => {
     await completeOriginTaskAnswers()
-    await checkAnswersPage.verifyPageHeading(checkAnswersPage.checkAnswersTitle)
+    await checkAnswersPage.verifyPageHeadingAndTitle()
     await selectElement(checkAnswersPage.changeOnOrOffLink)
 
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()

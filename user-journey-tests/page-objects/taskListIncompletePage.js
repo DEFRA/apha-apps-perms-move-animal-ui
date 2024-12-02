@@ -1,18 +1,13 @@
 import { selectElement } from '../helpers/page.js'
 import { Page } from './page.js'
 
+const pageHeadingAndTitle =
+  'You need to complete all of the sections before you review and submit'
+
 class TaskListIncompletePage extends Page {
-  get taskListIncompletePageHeading() {
-    return 'You need to complete all of the sections before you review and submit'
-  }
-
-  get taskListIncompletePageTitle() {
-    return 'You need to complete all of the sections before you review and submit'
-  }
-
-  get taskListIncompletePageUrlPath() {
-    return 'task-list-incomplete'
-  }
+  pagePath = 'task-list-incomplete'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get goToApplicationElement() {
     return $('aria/Go to your application')

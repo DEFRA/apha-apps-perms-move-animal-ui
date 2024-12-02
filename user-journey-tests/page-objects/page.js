@@ -2,32 +2,44 @@ import { browser, $ } from '@wdio/globals'
 import * as page from '../helpers/page.js'
 
 class Page {
+  get pagePath() {
+    throw new Error('Page path not provided')
+  }
+
   get pageHeading() {
+    throw new Error('Page heading not provided')
+  }
+
+  get pageTitle() {
+    throw new Error('Page title not provided')
+  }
+
+  getPageHeading() {
     return $('h1')
   }
 
-  get feedbackLink() {
+  getFeedbackLink() {
     return $('[data-testid="feedback-link"]')
   }
 
-  get privateBetaBanner() {
+  getPrivateBetaBanner() {
     return $('.govuk-phase-banner__content__tag')
   }
 
-  get backLink() {
+  getBackLink() {
     return $('.govuk-back-link')
   }
 
-  get continueButton() {
+  getContinueButton() {
     return $('#continue-button')
   }
 
-  get errorSummary() {
+  getErrorSummary() {
     return $('.govuk-error-summary')
   }
 
-  async getPageTitle() {
-    return await browser.getTitle()
+  getPageTitle() {
+    return browser.getTitle()
   }
 
   getInputField(id) {
@@ -45,7 +57,7 @@ class Page {
   }
 
   async verifyFeedbackLink(text) {
-    await page.validateElementVisibleAndText(this.feedbackLink, text)
+    await page.validateElementVisibleAndText(this.getFeedbackLink(), text)
   }
 
   async verifyPrivateBetaBanner(
@@ -53,19 +65,26 @@ class Page {
     bannerText = 'Private beta'
   ) {
     // await page.validateElementVisibleAndText(this.feedbackLink, feedbackText)
-    await page.validateElementVisibleAndText(this.privateBetaBanner, bannerText)
+    await page.validateElementVisibleAndText(
+      this.getPrivateBetaBanner(),
+      bannerText
+    )
   }
 
-  async verifyPageHeading(headingText) {
-    await page.validateElementVisibleAndText(this.pageHeading, headingText)
+  async verifyPageHeadingAndTitle() {
+    await page.validateElementVisibleAndText(
+      this.getPageHeading(),
+      this.pageHeading
+    )
+    await page.verifyPageTitle(this.pageTitle)
   }
 
   async selectBackLink() {
-    await page.selectElement(this.backLink)
+    await page.selectElement(this.getBackLink())
   }
 
   async selectContinue() {
-    await page.selectElement(this.continueButton)
+    await page.selectElement(this.getContinueButton())
   }
 
   async verifyRadioIsSelected(element) {
@@ -80,7 +99,10 @@ class Page {
 
   async verifyErrorsOnPage(element, errorMessage) {
     await page.validateElementVisibleAndText(element, errorMessage)
-    await page.validateElementVisibleAndText(this.errorSummary, errorMessage)
+    await page.validateElementVisibleAndText(
+      this.getErrorSummary(),
+      errorMessage
+    )
     await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 

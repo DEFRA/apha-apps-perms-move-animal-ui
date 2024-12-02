@@ -3,18 +3,13 @@ import { $ } from '@wdio/globals'
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
+const pageHeadingAndTitle =
+  'This service is not available for your movement type'
+
 class ExitPage extends Page {
-  get exitPageHeading() {
-    return 'This service is not available for your movement type'
-  }
-
-  get exitPageTitle() {
-    return 'This service is not available for your movement type'
-  }
-
-  get exitPageUrlPath() {
-    return 'exit-page'
-  }
+  pagePath = 'exit-page'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 
   get viewApplicationLink() {
     return $('[data-testid="view-application-link"]')

@@ -1,4 +1,4 @@
-import { loadPageAndVerifyTitle, waitForUrlPath } from '../helpers/page.js'
+import { loadPageAndVerifyTitle, waitForPagePath } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -9,10 +9,7 @@ import { completeOriginTaskAnswers } from '../helpers/testHelpers/movementLicens
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(
-      taskListPage.taskListPageUrlPath,
-      taskListPage.taskListPageTitle
-    )
+    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
   })
 
   it('should display the correct statuses before an application has been started', async () => {
@@ -42,20 +39,17 @@ describe('Task list page test', () => {
 
   it('should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin()
-    await toFromFarmPage.verifyPageHeading(toFromFarmPage.toFromFarmTitle)
+    await toFromFarmPage.verifyPageHeadingAndTitle()
   })
 
   it('should link to receiving the licence first question before an application has been started', async () => {
     await taskListPage.selectReceiveTheLicence()
-    await waitForUrlPath(emailPage.emailPageUrlPath)
+    await waitForPagePath(emailPage.pagePath)
   })
 
   it('should link to movement origin summary once that selection has been completed', async () => {
     await completeOriginTaskAnswers()
-    await loadPageAndVerifyTitle(
-      taskListPage.taskListPageUrlPath,
-      taskListPage.taskListPageTitle
-    )
+    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
     await taskListPage.verifyStatus({
       position: 1,
       taskTitle: 'Movement origin',
@@ -80,14 +74,14 @@ describe('Task list page test', () => {
     expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
 
     await taskListPage.selectMovementOrigin()
-    await checkAnswersPage.verifyPageHeading(checkAnswersPage.checkAnswersTitle)
-    await waitForUrlPath(checkAnswersPage.checkAnswersUrlPath)
+    await checkAnswersPage.verifyPageHeadingAndTitle()
+    await waitForPagePath(checkAnswersPage.pagePath)
   })
 
   it(`should route the user to task incomplete page if they haven't completed the user journey`, async () => {
     await taskListPage.selectReview()
-    await taskListIncompletePage.verifyPageHeading(
-      taskListIncompletePage.taskListIncompletePageTitle
+    await taskListIncompletePage.verifyPageHeadingAndTitle(
+      taskListIncompletePage.pageTitle
     )
   })
 })

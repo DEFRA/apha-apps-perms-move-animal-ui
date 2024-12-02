@@ -3,14 +3,13 @@ import * as page from '../../helpers/page.js'
 
 const cphId = 'cph-number'
 
-class ParishHoldingNumberPage extends Page {
-  get urlPath() {
-    return 'origin/cph-number'
-  }
+const pageHeadingAndTitle =
+  'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
 
-  get parishHoldingTitle() {
-    return 'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
-  }
+class ParishHoldingNumberPage extends Page {
+  pagePath = 'origin/cph-number'
+  pageTitle = pageHeadingAndTitle
+  pageHeading = pageHeadingAndTitle
 
   cphNumberInput() {
     return super.getInputField(cphId)
