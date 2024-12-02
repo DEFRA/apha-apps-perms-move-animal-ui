@@ -1,6 +1,6 @@
 import Joi from 'joi'
-import { validateAgainstSchema, Model } from './model.js'
-/** @import {RawPayload} from './model.js' */
+import { validateAgainstSchema, Model } from '../model.js'
+/** @import {RawPayload} from '../model.js' */
 
 const selectOptionText =
   'Select if you are moving cattle on or off your farm or premises'

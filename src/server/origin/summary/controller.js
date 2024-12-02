@@ -1,6 +1,6 @@
-import { Address } from '~/src/server/common/model/address.js'
-import { CphNumber } from '~/src/server/common/model/cph-number.js'
-import { OnOffFarm } from '~/src/server/common/model/on-off-farm.js'
+import { Address } from '~/src/server/common/model/address/address.js'
+import { CphNumber } from '~/src/server/common/model/cph-number/cph-number.js'
+import { OnOffFarm } from '~/src/server/common/model/on-off-farm/on-off-farm.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -57,7 +57,7 @@ export const originSummaryGetController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { AddressData } from '~/src/server/common/model/address.js'
+ * @import { AddressData } from '~/src/server/common/model/address/address.js'
  * @typedef {{
  *   onOffFarm: string;
  *   cphNumber: string;

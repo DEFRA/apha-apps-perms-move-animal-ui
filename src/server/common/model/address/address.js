@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { Model, validateAgainstSchema } from './model.js'
+import { Model, validateAgainstSchema } from '../model.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
@@ -99,4 +99,4 @@ export class Address extends Model {
   }
 }
 
-/** @import {RawPayload} from './model.js' */
+/** @import {RawPayload} from '../model.js' */

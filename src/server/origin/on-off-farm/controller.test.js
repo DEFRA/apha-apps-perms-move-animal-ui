@@ -55,11 +55,11 @@ describe('#onOffFarmController', () => {
       )
     )
 
-    const document = parseDocument(payload)
-
-    expect(
-      /** @type {any} */ (document.querySelector('#off-farm-radio'))?.checked
-    ).toBe(true)
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input class="govuk-radios__input" id="off-farm-radio" name="onOffFarm" type="radio" value="off" checked>'
+      )
+    )
 
     expect(statusCode).toBe(statusCodes.ok)
   })
