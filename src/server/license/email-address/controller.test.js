@@ -3,6 +3,9 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+import SessionTester from '../../common/test-helpers/session-helper.js'
+
+const testEmail = 'test@domain.com'
 
 describe('licenseEmailAddress', () => {
   /** @type {Server} */
@@ -33,7 +36,7 @@ describe('licenseEmailAddress', () => {
         method: 'POST',
         url: '/receiving-the-licence/licence-enter-email-address',
         payload: {
-          emailAddress: 'test@domain.com'
+          emailAddress: testEmail
         }
       })
     )
@@ -87,6 +90,38 @@ describe('licenseEmailAddress', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
+  describe('when there is data already in the session', () => {
+    let session
+
+    beforeEach(async () => {
+      session = await SessionTester.create(server)
+      await session.setState('license', {
+        emailAddress: testEmail
+      })
+    })
+
+    it('should repopulate the form from state', async () => {
+      const { payload, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: '/receiving-the-licence/licence-enter-email-address'
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(payload).toEqual(
+        expect.stringContaining(
+          `<input class="govuk-input govuk-input--width-20" id="email-address" name="emailAddress" type="email" spellcheck="false" value="${testEmail}" autocomplete="email-address">`
+        )
+      )
+    })
+  })
+
   describe('when nextPage is provided', () => {
     it('should set the next page appropriately', async () => {
       const { payload, statusCode } = await server.inject({
@@ -109,7 +144,7 @@ describe('licenseEmailAddress', () => {
           method: 'POST',
           url: '/receiving-the-licence/licence-enter-email-address',
           payload: {
-            emailAddress: 'test@domain.com',
+            emailAddress: testEmail,
             nextPage: '/receiving-the-licence/check-answers'
           }
         })

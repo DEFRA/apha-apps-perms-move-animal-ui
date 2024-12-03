@@ -19,7 +19,7 @@ export const getEmailAddressController = {
       nextPage: req.query.redirect_uri,
       pageTitle,
       heading,
-      values: emailAddress.value
+      emailAddress
     })
   }
 }
