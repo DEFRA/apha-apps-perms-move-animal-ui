@@ -30,6 +30,10 @@ export class CphNumber extends AnswerModel {
     return this._data?.cphNumber
   }
 
+  get html() {
+    return this._data?.cphNumber
+  }
+
   /**
    * @returns {CphNumberData}
    */

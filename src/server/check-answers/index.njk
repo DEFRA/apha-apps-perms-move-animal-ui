@@ -1,0 +1,49 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h1 class="govuk-heading-l">
+              {{ heading }}
+          </h1>
+
+          <h2>Movement origin</h2>
+
+          {{ govukSummaryList({
+            classes: "govuk-!-margin-bottom-9",
+            rows: [
+              {
+                key: {
+                  text: "Are you moving the cattle on or off your farm or premises?"
+                },
+                value: {
+                  text: origin.onOffFarm.html
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "to-or-from-own-premises?redirect_uri=/origin/summary",
+                      text: "Change",
+                      visuallyHiddenText: "Are you moving the cattle on or off your farm or premises?",
+                      attributes: {
+                        'data-testid': "on-off-change-link"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

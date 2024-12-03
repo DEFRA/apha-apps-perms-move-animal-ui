@@ -30,6 +30,18 @@ export class OnOffFarm extends AnswerModel {
     return this._data?.onOffFarm
   }
 
+  get html() {
+    const originOnOffFarm = this._data?.onOffFarm
+
+    if (originOnOffFarm === 'on') {
+      return 'On to the farm or premises'
+    } else if (originOnOffFarm === 'off') {
+      return 'Off the farm or premises'
+    } else {
+      return ''
+    }
+  }
+
   /**
    * @param {OnOffFarmData | undefined} state
    * @returns {OnOffFarm}

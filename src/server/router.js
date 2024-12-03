@@ -7,6 +7,7 @@ import { exitPage } from './exit-page/index.js'
 import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
+import { checkAnswers } from './check-answers/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -26,7 +27,8 @@ export const router = {
         exitPage,
         origin,
         taskList,
-        taskListIncomplete
+        taskListIncomplete,
+        checkAnswers
       ])
 
       // Static assets

@@ -1,6 +1,4 @@
-import { Address } from '~/src/server/common/model/answer/address.js'
-import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
-import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+import { Origin } from '../../common/model/section/origin.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -12,33 +10,19 @@ export const heading = pageTitle
  */
 export const originSummaryGetController = {
   handler(req, h) {
-    const origin = req.yar.get('origin') ?? {}
+    const origin = Origin.fromState(req.yar.get('origin'))
 
-    const originOnOffFarm = origin?.onOffFarm
-    let enteredOnOffFarm
-
-    if (originOnOffFarm === 'on') {
-      enteredOnOffFarm = 'On to the farm or premises'
-    } else if (originOnOffFarm === 'off') {
-      enteredOnOffFarm = 'Off the farm or premises'
-    } else {
-      enteredOnOffFarm = ''
-    }
-
-    const onOffFarm = OnOffFarm.fromState(origin?.onOffFarm).validate()
-    if (!onOffFarm.isValid) {
+    if (!origin.onOffFarm.validate().isValid) {
       return h.redirect(
         '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
       )
     }
 
-    const cphNumber = CphNumber.fromState(origin.cphNumber)
-    if (!cphNumber.validate().isValid) {
+    if (!origin.cphNumber.validate().isValid) {
       return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
     }
 
-    const address = Address.fromState(origin?.address)
-    if (!address.validate().isValid) {
+    if (!origin.address.validate().isValid) {
       return h.redirect('/origin/address?redirect_uri=/origin/summary')
     }
 
@@ -46,9 +30,9 @@ export const originSummaryGetController = {
       pageTitle,
       heading,
       origin: {
-        cphNumber: origin?.cphNumber,
-        address: Object.values(origin?.address ?? {}).join('<br />'),
-        onOffFarm: enteredOnOffFarm
+        cphNumber: origin?.cphNumber.html,
+        address: origin.address.html,
+        onOffFarm: origin.onOffFarm.html
       }
     })
   }

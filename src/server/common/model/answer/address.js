@@ -80,6 +80,15 @@ export class Address extends AnswerModel {
     }
   }
 
+  get html() {
+    return Object.values(this.value ?? [])
+      .filter((line) => {
+        const trimmed = line.trim()
+        return trimmed.length > 0
+      })
+      .join('<br />')
+  }
+
   /**
    * @returns {AddressData | undefined}
    */
