@@ -48,7 +48,7 @@ export const postEmailAddressController = {
         ),
         pageTitle: `Error: ${pageTitle}`,
         heading,
-        emailAddress: payload,
+        emailAddress,
         errorMessage: errors.emailAddress
       })
     }
