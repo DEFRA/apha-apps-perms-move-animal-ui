@@ -33,7 +33,7 @@ describe('Check your answers test', () => {
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
-  it.only('Should verify the back link is history -1', async () => {
+  it('Should verify the back link is history -1', async () => {
     await completeOriginTaskAnswers()
     await checkAnswersPage.selectBackLink()
 
