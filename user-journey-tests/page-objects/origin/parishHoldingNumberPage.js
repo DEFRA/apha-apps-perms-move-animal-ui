@@ -43,6 +43,7 @@ class ParishHoldingNumberPage extends Page {
       this.cphSummaryErrorLink(),
       this.cphNumberInput()
     )
+    await expect(this.cphNumberInput()).toHaveValue(textInput)
   }
 }
 

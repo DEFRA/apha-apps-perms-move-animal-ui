@@ -1,9 +1,9 @@
 import { browser, expect } from '@wdio/globals'
 
-import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
-import { loadPageAndVerifyTitle } from '../helpers/page.js'
-import parishHoldingNumberPage from '../page-objects/origin/parishHoldingNumberPage.js'
-import exitPage from '../page-objects/origin/exitPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
+import { loadPageAndVerifyTitle } from '../../helpers/page.js'
+import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
+import exitPage from '../../page-objects/origin/exitPage.js'
 
 describe('To from farm page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {

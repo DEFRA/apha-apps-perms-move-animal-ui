@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
-import { loadPageAndVerifyTitle } from '../helpers/page.js'
-import newAddressPage from '../page-objects/origin/newAddressPage.js'
+import { loadPageAndVerifyTitle } from '../../helpers/page.js'
+import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 
 const longString = 'a'.repeat(300)
 const longPostcode = 'SW1A2AATEST'

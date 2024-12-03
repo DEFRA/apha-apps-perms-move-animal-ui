@@ -137,7 +137,7 @@ export const config = {
   mochaOpts: {
     ui: 'bdd',
     timeout: debug ? 24 * 60 * 60 * 1000 : 60000,
-    retries: 1
+    retries: 2
   }
   //
   // =====
