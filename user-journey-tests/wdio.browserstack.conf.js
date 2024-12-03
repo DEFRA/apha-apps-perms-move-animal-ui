@@ -13,7 +13,8 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
-        osVersion: '10'
+        osVersion: '10',
+        sessionName: 'windows-chrome'
       }
     },
     {
@@ -21,7 +22,8 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
-        osVersion: '10'
+        osVersion: '10',
+        sessionName: 'windows-edge'
       }
     },
     {
@@ -29,7 +31,8 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
-        osVersion: '10'
+        osVersion: '10',
+        sessionName: 'windows-firefox'
       }
     },
     {
@@ -37,7 +40,8 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: '15.6',
         os: 'OS X',
-        osVersion: 'Monterey'
+        osVersion: 'Monterey',
+        sessionName: 'osx-safari'
       }
     },
     {
@@ -45,7 +49,8 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'OS X',
-        osVersion: 'Monterey'
+        osVersion: 'Monterey',
+        sessionName: 'osx-chrome'
       }
     },
     {
@@ -53,27 +58,30 @@ export const config = merge(wdioConf, {
       'bstack:options': {
         browserVersion: 'latest',
         os: 'OS X',
-        osVersion: 'Monterey'
+        osVersion: 'Monterey',
+        sessionName: 'osx-firefox'
+      }
+    },
+    {
+      browserName: 'Safari',
+      'bstack:options': {
+        os: 'iOS',
+        osVersion: '15.6',
+        deviceName: 'iPhone 13',
+        realMobile: true,
+        sessionName: 'ios-safari'
+      }
+    },
+    {
+      browserName: 'Chrome',
+      'bstack:options': {
+        os: 'iOS',
+        osVersion: '15.6',
+        deviceName: 'iPhone 13',
+        realMobile: true,
+        sessionName: 'ios-chrome'
       }
     }
-    // {
-    //   browserName: 'Safari',
-    //   'bstack:options': {
-    //     os: 'iOS',
-    //     osVersion: '15.6',
-    //     deviceName: 'iPhone 13',
-    //     realMobile: true
-    //   }
-    // }
-    // {
-    //   browserName: 'Chrome',
-    //   'bstack:options': {
-    //     os: 'iOS',
-    //     osVersion: '15.6',
-    //     deviceName: 'iPhone 13',
-    //     realMobile: true
-    //   }
-    // },
     // {
     //   browserName: 'Chrome',
     //   'bstack:options': {
@@ -97,7 +105,7 @@ export const config = merge(wdioConf, {
     [
       'browserstack',
       {
-        testObservability: true, // Disable if you do not want to use the browserstack test observer functionality
+        testObservability: true,
         testObservabilityOptions: {
           projectName: 'apha-apps-perms-move-animal-ui',
           buildName: 'apha-test-run'

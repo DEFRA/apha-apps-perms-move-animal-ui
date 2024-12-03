@@ -84,7 +84,11 @@ class Page {
   }
 
   async selectContinue() {
+    const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.getContinueButton())
+    if (deviceName === 'iPhone 13') {
+      await page.checkForSecurityPopUpAndResolve()
+    }
   }
 
   async verifyRadioIsSelected(element) {

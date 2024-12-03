@@ -49,9 +49,8 @@ describe('Paris holding page test', () => {
     ).not.toBeDisplayed()
     await ParishHoldingNumberPage.selectBackLink()
     await browser.refresh()
-    await expect(ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
-      '12/345/6789'
-    )
+    const inputValue = await ParishHoldingNumberPage.cphNumberInput().getValue()
+    expect(inputValue).toBe('12/345/6789')
   })
 
   it('Should verify that page errors when letters and spaces and numbers are included', async () => {
@@ -80,8 +79,7 @@ describe('Paris holding page test', () => {
       ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
     await ParishHoldingNumberPage.selectBackLink()
-    await expect(ParishHoldingNumberPage.cphNumberInput()).toHaveValue(
-      validInput
-    )
+    const inputValue = await ParishHoldingNumberPage.cphNumberInput().getValue()
+    expect(inputValue).toBe(validInput)
   })
 })

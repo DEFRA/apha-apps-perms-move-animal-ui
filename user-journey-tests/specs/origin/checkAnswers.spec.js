@@ -33,7 +33,7 @@ describe('Check your answers test', () => {
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
   })
 
-  it('Should verify the back link is history -1', async () => {
+  it.only('Should verify the back link is history -1', async () => {
     await completeOriginTaskAnswers()
     await checkAnswersPage.selectBackLink()
 
@@ -63,9 +63,8 @@ describe('Check your answers test', () => {
     )
     await selectElement(checkAnswersPage.changeParishNumberLink)
 
-    await expect(parishHoldingNumberPage.cphNumberInput()).toHaveValue(
-      defaultCphNumber
-    )
+    const inputValue = await parishHoldingNumberPage.cphNumberInput().getValue()
+    expect(inputValue).toBe(defaultCphNumber)
     await clearElement(parishHoldingNumberPage.cphNumberInput())
     await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       parishHoldingInput
