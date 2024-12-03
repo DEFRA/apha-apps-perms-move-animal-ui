@@ -1,0 +1,34 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+  <h1 class="govuk-heading-l">{{pageTitle}}</h1>
+
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: [
+      {
+        key: {
+          text: "What email address would you like the licence sent to?"
+        },
+        value: {
+          text: license.emailAddress
+        },
+        actions: {
+          items: [
+            {
+              href: "licence-enter-email-address?redirect_uri=/receiving-your-licence/check-answers",
+              text: "Change",
+              visuallyHiddenText: "What email address would you like the licence sent to?",
+              attributes: {
+                'data-testid': "email-address-change-link"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+{% endblock %}

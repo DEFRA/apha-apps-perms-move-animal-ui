@@ -16,7 +16,7 @@ export const taskListGetController = {
     const origin = Origin.fromState(req.yar.get('origin'))
     const destination = Destination.fromState()
     const tests = Tests.fromState()
-    const license = License.fromState()
+    const license = License.fromState(req.yar.get('license'))
     const isOriginValid = origin.validate().isValid
 
     const originGdsTask = buildGdsTaskItem({
@@ -46,7 +46,7 @@ export const taskListGetController = {
     const licenseGdsTask = buildGdsTaskItem({
       title: 'Receiving the licence',
       initialLink: '/receiving-the-licence/licence-enter-email-address',
-      summaryLink: '#',
+      summaryLink: '/receiving-the-licence/check-answers',
       isValid: license.validate().isValid,
       isEnabled: true
     })
@@ -85,7 +85,7 @@ export const taskListPostController = {
       Origin.fromState(req.yar.get('origin')).validate().isValid,
       Destination.fromState().validate().isValid,
       Tests.fromState().validate().isValid,
-      License.fromState().validate().isValid
+      License.fromState(req.yar.get('license')).validate().isValid
     ]
 
     const isAllValid = validations.every(Boolean)
