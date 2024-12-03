@@ -4,6 +4,64 @@
 
 {% extends 'layouts/page.njk' %}
 
+{% macro multipleSections(rows) %}
+
+{% set enrichedRows = [] %}
+{% for row in rows %}
+  {% set domesticAnimals = (enrichedRows, enrichedRows.push({
+    key: {
+      text: row.key,
+      classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+    },
+    value: {
+      text: row.value
+    },
+    actions: {
+      items: [
+        {
+          href: row.url,
+          text: "Change",
+          visuallyHiddenText: question,
+          attributes: attributes
+        }
+      ]
+    }
+  })) %}
+{% endfor %}
+
+
+
+{{ govukSummaryList({
+  rows: enrichedRows
+}) }}
+{% endmacro %}
+
+{% macro section(key, value, url, attributes) %}
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: key,
+        classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+      },
+      value: {
+        text: value
+      },
+      actions: {
+        items: [
+          {
+            href: url,
+            text: "Change",
+            visuallyHiddenText: question,
+            attributes: attributes
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endmacro %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -14,33 +72,25 @@
               {{ heading }}
           </h1>
 
-          <h2>Movement origin</h2>
+          <h2 class="govuk-heading-m">Movement origin</h2>
+          {{ section("Are you moving the cattle on or off your farm or premises?", "", "/origin/summary") }}
 
-          {{ govukSummaryList({
-            classes: "govuk-!-margin-bottom-9",
-            rows: [
-              {
-                key: {
-                  text: "Are you moving the cattle on or off your farm or premises?"
-                },
-                value: {
-                  text: origin.onOffFarm.html
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "to-or-from-own-premises?redirect_uri=/origin/summary",
-                      text: "Change",
-                      visuallyHiddenText: "Are you moving the cattle on or off your farm or premises?",
-                      attributes: {
-                        'data-testid': "on-off-change-link"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }) }}
+          <h2 class="govuk-heading-m">Movement destination</h2>
+          {{ section("Where are the animals going to?", "") }}
+
+          <h2 class="govuk-heading-m">Tests</h2>
+          {{ section("Tests on the animals you plan to move", "I confirm these test conditions have been met", "") }}
+
+          <h2 class="govuk-heading-m">Receiving the licence</h2>
+          {{ multipleSections([{
+            key: "How would you like this licence sent to you?", 
+            value: "", 
+            url: ""
+          }, {
+            key: "What address would you like the licence sent to?", 
+            value: "", 
+            url: ""
+          }])}}
         </div>
       </div>
     </div>
