@@ -1,5 +1,10 @@
 import Joi from 'joi'
 
-export default Joi.array()
-  .items(Joi.string())
-  .has(Joi.string().valid('confirm').required())
+export default Joi.object({
+  confirmation: Joi.array()
+  .items(Joi.string().valid('confirm', 'other'))
+  .min(1)
+  .messages({
+    'array.min': 'You need to tick a declaration box'
+  })
+})
