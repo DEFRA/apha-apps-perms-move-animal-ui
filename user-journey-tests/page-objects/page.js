@@ -84,9 +84,10 @@ class Page {
   }
 
   async selectContinue() {
+    const deviceArray = ['iPhone 13']
     const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.getContinueButton())
-    if (deviceName === 'iPhone 13') {
+    if (deviceArray.includes(deviceName)) {
       await page.checkForSecurityPopUpAndResolve()
     }
   }

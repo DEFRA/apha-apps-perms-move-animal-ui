@@ -45,9 +45,10 @@ class TaskListPage extends Page {
   }
 
   async selectReview() {
-    await page.selectElement(this.reviewLink)
+    const deviceArray = ['iPhone 13']
     const deviceName = browser.capabilities?.deviceName
-    if (deviceName === 'iPhone 13') {
+    await page.selectElement(this.reviewLink)
+    if (deviceArray.includes(deviceName)) {
       await page.checkForSecurityPopUpAndResolve()
     }
   }
