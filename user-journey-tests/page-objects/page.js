@@ -1,5 +1,6 @@
 import { browser, $ } from '@wdio/globals'
 import * as page from '../helpers/page.js'
+import { secureDeviceArray } from '../helpers/constants.js'
 
 class Page {
   get pagePath() {
@@ -84,7 +85,7 @@ class Page {
   }
 
   async selectContinue() {
-    const deviceArray = ['iPhone 13']
+    const deviceArray = secureDeviceArray
     const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.getContinueButton())
     if (deviceArray.includes(deviceName)) {

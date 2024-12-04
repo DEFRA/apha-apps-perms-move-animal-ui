@@ -2,6 +2,7 @@ import { $ } from '@wdio/globals'
 
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
+import { secureDeviceArray } from '../helpers/constants.js'
 
 const pageHeadingAndTitle =
   'Your Bovine Tuberculosis (TB) movement licence application'
@@ -45,7 +46,7 @@ class TaskListPage extends Page {
   }
 
   async selectReview() {
-    const deviceArray = ['iPhone 13']
+    const deviceArray = secureDeviceArray
     const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.reviewLink)
     if (deviceArray.includes(deviceName)) {
