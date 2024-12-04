@@ -15,11 +15,9 @@ const heading = pageTitle
  */
 export const checkAnswersGetController = {
   handler(req, res) {
-    const tasks = [Origin.fromState(req.yar.get('origin'))]
+    const tasks = [Origin.fromState(req.yar.get('origin')).validate()]
 
-    const isValid = tasks.reduce((acc, task) => {
-      return acc && task.validate().isValid
-    }, true)
+    const isValid = tasks.every((task) => task.isValid)
 
     if (!isValid) {
       return res.redirect('/task-list')

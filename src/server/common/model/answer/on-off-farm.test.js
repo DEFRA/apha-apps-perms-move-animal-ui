@@ -69,3 +69,17 @@ describe('#OnOffFarm.value', () => {
     expect(new OnOffFarm({ onOffFarm: 'on' }).value).toBe('on')
   })
 })
+
+describe('#OnOffFarm.html', () => {
+  it('should return the full text for `on`', () => {
+    expect(new OnOffFarm({ onOffFarm: 'on' }).html).toBe(
+      'On to the farm or premises'
+    )
+  })
+
+  it('should return the full text for `off`', () => {
+    expect(new OnOffFarm({ onOffFarm: 'off' }).html).toBe(
+      'Off the farm or premises'
+    )
+  })
+})

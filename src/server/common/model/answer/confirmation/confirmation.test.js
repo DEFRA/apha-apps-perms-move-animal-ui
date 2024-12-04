@@ -35,4 +35,23 @@ describe('#ConfirmationModel', () => {
       }
     })
   })
+
+  it('should return an object with the correct data (confirm only)', () => {
+    const confirmation = new Confirmation({ confirmation: ['confirm'] })
+    expect(confirmation.toState()).toEqual({ confirmation: ['confirm'] })
+  })
+
+  it('should return an object with the correct data (other only)', () => {
+    const confirmation = new Confirmation({ confirmation: ['other'] })
+    expect(confirmation.toState()).toEqual({ confirmation: ['other'] })
+  })
+
+  it('should return an object with the correct data (confirm and other)', () => {
+    const confirmation = new Confirmation({
+      confirmation: ['confirm', 'other']
+    })
+    expect(confirmation.toState()).toEqual({
+      confirmation: ['confirm', 'other']
+    })
+  })
 })
