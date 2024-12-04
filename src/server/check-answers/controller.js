@@ -1,13 +1,15 @@
 import { Origin } from '../common/model/section/origin.js'
-import { Destination } from '../common/model/section/destination.js'
-import { Tests } from '../common/model/section/tests.js'
-import { License } from '../common/model/section/license.js'
+import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
 
 const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
 
 /**
- * A GDS styled example task list page controller.
+ * @import {NextPage} from '../common/helpers/next-page.js'
+ * @typedef {{ confirmation: string[] }} ConfirmationPayload
+ */
+
+/**
  * @satisfies {Partial<ServerRoute>}
  */
 export const checkAnswersGetController = {
@@ -18,6 +20,22 @@ export const checkAnswersGetController = {
       pageTitle,
       heading,
       origin
+    })
+  }
+}
+
+/**
+ * @satisfies {Partial<ServerRoute>}
+ */
+export const checkAnswersPostController = {
+  handler(req, h) {
+    const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
+    const confirmation = new Confirmation(payload)
+
+    return h.view('check-answers/index', {
+      pageTitle,
+      heading,
+      confirmation // does nothing but fix lint errors
     })
   }
 }

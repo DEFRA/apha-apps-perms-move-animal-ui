@@ -1,4 +1,4 @@
-import { Origin } from '../../common/model/section/origin.js'
+import { Origin as OriginModel } from '../../common/model/section/origin.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -10,7 +10,7 @@ export const heading = pageTitle
  */
 export const originSummaryGetController = {
   handler(req, h) {
-    const origin = Origin.fromState(req.yar.get('origin'))
+    const origin = OriginModel.fromState(req.yar.get('origin'))
 
     if (!origin.onOffFarm.validate().isValid) {
       return h.redirect(

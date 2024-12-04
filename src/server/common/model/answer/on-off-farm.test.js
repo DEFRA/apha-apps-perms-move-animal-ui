@@ -39,7 +39,7 @@ describe('#OnOffFarm.toState', () => {
   test('should replace missing data with blank string', () => {
     const data = new OnOffFarm().toState()
 
-    expect(data).toBe(undefined)
+    expect(data).toBeUndefined()
   })
 
   test('should pass through valid data unaltered', () => {

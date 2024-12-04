@@ -1,10 +1,10 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
-{% extends 'layouts/page.njk' %}
+{% extends 'layouts/questions.njk' %}
 
-{% macro multipleSections(rows) %}
+{% macro section(rows) %}
 
 {% set enrichedRows = [] %}
 {% for row in rows %}
@@ -36,53 +36,49 @@
 }) }}
 {% endmacro %}
 
-{% macro section(key, value, url, attributes) %}
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: key,
-        classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
-      },
-      value: {
-        text: value
-      },
-      actions: {
-        items: [
-          {
-            href: url,
-            text: "Change",
-            visuallyHiddenText: question,
-            attributes: attributes
-          }
-        ]
-      }
-    }
-  ]
-}) }}
-{% endmacro %}
-
-{% block content %}
+{% block beforequestion %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          {% if (errorMessage) %}
+            {{ govukErrorSummary({
+              titleText: "There is a problem",
+              errorList: [
+                {
+                  text: errorMessage.text,
+                  href: "#confirmation"
+                }
+              ]
+            }) }}
+          {% endif %}
+
           <h1 class="govuk-heading-l">
               {{ heading }}
           </h1>
 
           <h2 class="govuk-heading-m">Movement origin</h2>
-          {{ section("Are you moving the cattle on or off your farm or premises?", "", "/origin/summary") }}
+          {{ section([{
+            key: "Are you moving the cattle on or off your farm or premises?", 
+            value: "", 
+            url: "/origin/summary"
+          }]) }}
 
           <h2 class="govuk-heading-m">Movement destination</h2>
-          {{ section("Where are the animals going to?", "") }}
+          {{ section([{
+            key: "Where are the animals going to?"
+          }]) }}
 
           <h2 class="govuk-heading-m">Tests</h2>
-          {{ section("Tests on the animals you plan to move", "I confirm these test conditions have been met", "") }}
+          {{ section([{
+            key: "Tests on the animals you plan to move", 
+            value: "I confirm these test conditions have been met", 
+            url: ""
+          }]) }}
 
           <h2 class="govuk-heading-m">Receiving the licence</h2>
-          {{ multipleSections([{
+          {{ section([{
             key: "How would you like this licence sent to you?", 
             value: "", 
             url: ""
@@ -96,4 +92,37 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block questions %}
+  <h2 class="govuk-heading-m">Your declaration</h2>
+
+  <p>Before you submit your application, you need to confirm:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>all relevant sections are complete</li>
+    <li>all the information given is correct and accurate to the best of your knowledge</li>
+  </ul>
+
+  <!-- form URL below turns off errors on the next page  -->
+  {{ govukCheckboxes
+    ({
+      name: "confirmation",
+      id: "confirmation",
+      fieldset: {
+        legend:{
+          text: "",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [{
+        value: "confirm",
+        text: "I confirm the above statements"
+      }, {
+        value: "other",
+        text: "I am submitting this form on behalf of someone else and confirm the above statements"
+      }]
+    })
+  }}
 {% endblock %}

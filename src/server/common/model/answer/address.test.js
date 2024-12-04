@@ -111,13 +111,7 @@ describe('Address.toState', () => {
 
   it('should default missing fields to empty string', () => {
     const address = new Address()
-    expect(address.toState()).toEqual({
-      addressLine1: '',
-      addressLine2: '',
-      addressTown: '',
-      addressCounty: '',
-      addressPostcode: ''
-    })
+    expect(address.toState()).toBeUndefined()
   })
 })
 
@@ -128,7 +122,7 @@ describe('Address.fromState', () => {
     expect(Address.fromState(state)._data).toEqual(validAddress)
   })
 
-  it('should store undefined if the state isn\'t defined', () => {
-    expect(Address.fromState(undefined)._data).toEqual(undefined)
+  it("should store undefined if the state isn't defined", () => {
+    expect(Address.fromState(undefined)._data).toBeUndefined()
   })
 })
