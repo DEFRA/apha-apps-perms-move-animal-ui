@@ -14,6 +14,7 @@ import completeOriginTaskAnswers, {
   completeOriginTaskAnswersCustom
 } from '../../helpers/testHelpers/movementLicense.js'
 import landingPage from '../../page-objects/landingPage.js'
+import taskListPage from '../../page-objects/taskListPage.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -110,5 +111,15 @@ describe('Check your answers test', () => {
     )
     await validateElementVisibleAndText(checkAnswersPage.addressValue, county)
     await validateElementVisibleAndText(checkAnswersPage.addressValue, postcode)
+  })
+
+  it('Should verify submitting answers', async () => {
+    await completeOriginTaskAnswers()
+    await checkAnswersPage.selectContinue()
+    await taskListPage.verifyStatus({
+      position: 1,
+      taskTitle: 'Movement origin',
+      expectedStatus: 'Completed'
+    })
   })
 })

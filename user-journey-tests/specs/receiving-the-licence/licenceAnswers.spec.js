@@ -12,6 +12,7 @@ import completeLicenceTaskAnswers, {
 } from '../../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import taskListPage from '../../page-objects/taskListPage.js'
 
 const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
@@ -44,5 +45,15 @@ describe('Check your licence answers test', () => {
       licenceAnswersPage.emailValue,
       editedEmail
     )
+  })
+
+  it('Should verify submitting answers', async () => {
+    await completeLicenceTaskAnswers()
+    await licenceAnswersPage.selectContinue()
+    await taskListPage.verifyStatus({
+      position: 4,
+      taskTitle: 'Receiving the licence',
+      expectedStatus: 'Completed'
+    })
   })
 })
