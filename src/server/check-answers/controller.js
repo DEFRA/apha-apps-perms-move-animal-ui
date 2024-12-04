@@ -50,7 +50,7 @@ export const checkAnswersPostController = {
     }
 
     return res.redirect(
-      calculateNextPage(payload.nextPage, '/submit/check-answers')
+      calculateNextPage(payload.nextPage, '/submit/confirmation')
     )
   }
 }

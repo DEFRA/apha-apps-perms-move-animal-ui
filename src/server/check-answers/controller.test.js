@@ -3,7 +3,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SesessionTestHelper from '../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../common/test-helpers/session-helper.js'
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */
@@ -28,7 +28,7 @@ describe('#CheckAnswers', () => {
   })
 
   beforeEach(async () => {
-    session = await SesessionTestHelper.create(server)
+    session = await SessionTestHelper.create(server)
     await session.setState('origin', defaultState)
   })
 
@@ -92,7 +92,7 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  it('Should redirect to itself when there is no error', async () => {
+  it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -104,10 +104,10 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/check-answers')
+    expect(headers.location).toBe('/submit/confirmation')
   })
 
-  it('Should redirect to itself when only `confirm` present', async () => {
+  it('Should redirect correctly when only `confirm` present', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -119,10 +119,10 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/check-answers')
+    expect(headers.location).toBe('/submit/confirmation')
   })
 
-  it('Should redirect to itself when only `other` present', async () => {
+  it('Should redirect correctly when only `other` present', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -134,7 +134,7 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/check-answers')
+    expect(headers.location).toBe('/submit/confirmation')
   })
 })
 
