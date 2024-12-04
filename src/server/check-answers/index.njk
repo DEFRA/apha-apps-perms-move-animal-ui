@@ -1,39 +1,40 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends 'layouts/questions.njk' %}
 
 {% macro section(rows) %}
 
-{% set enrichedRows = [] %}
-{% for row in rows %}
-  {% set domesticAnimals = (enrichedRows, enrichedRows.push({
-    key: {
-      text: row.key,
-      classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
-    },
-    value: {
-      text: row.value
-    },
-    actions: {
-      items: [
-        {
-          href: row.url,
-          text: "Change",
-          visuallyHiddenText: question,
-          attributes: attributes
-        }
-      ]
-    }
-  })) %}
-{% endfor %}
+  {% set enrichedRows = [] %}
+  {% for row in rows %}
+    {% set rows = (enrichedRows, enrichedRows.push({
+      key: {
+        text: row.key,
+        classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+      },
+      value: {
+        text: row.value
+      },
+      actions: {
+        items: [
+          {
+            href: row.url,
+            text: "Change",
+            visuallyHiddenText: question,
+            attributes: attributes
+          }
+        ]
+      }
+    })) %}
+  {% endfor %}
 
 
 
-{{ govukSummaryList({
-  rows: enrichedRows
-}) }}
+  {{ govukSummaryList({
+    rows: enrichedRows
+  }) }}
 {% endmacro %}
 
 {% block beforequestion %}
@@ -53,7 +54,6 @@
               ]
             }) }}
           {% endif %}
-
           <h1 class="govuk-heading-l">
               {{ heading }}
           </h1>
@@ -109,6 +109,7 @@
     ({
       name: "confirmation",
       id: "confirmation",
+      errorMessage: errorMessage,
       fieldset: {
         legend:{
           text: "",

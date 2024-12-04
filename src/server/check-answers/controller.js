@@ -1,7 +1,8 @@
+import { calculateNextPage } from '../common/helpers/next-page.js'
 import { Origin } from '../common/model/section/origin.js'
 import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
 
-const pageTitle = 'Check your answers before sending your application'
+export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
 
 /**
@@ -13,13 +14,21 @@ const heading = pageTitle
  * @satisfies {Partial<ServerRoute>}
  */
 export const checkAnswersGetController = {
-  handler(req, h) {
-    const origin = Origin.fromState(req.yar.get('origin'))
+  handler(req, res) {
+    const tasks = [Origin.fromState(req.yar.get('origin'))]
 
-    return h.view('check-answers/index', {
+    const isValid = tasks.reduce((acc, task) => {
+      return acc && task.validate().isValid
+    }, true)
+
+    if (!isValid) {
+      return res.redirect('/task-list')
+    }
+
+    return res.view('check-answers/index', {
+      nextPage: req.query.redirect_uri,
       pageTitle,
-      heading,
-      origin
+      heading
     })
   }
 }
@@ -28,15 +37,23 @@ export const checkAnswersGetController = {
  * @satisfies {Partial<ServerRoute>}
  */
 export const checkAnswersPostController = {
-  handler(req, h) {
+  handler(req, res) {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new Confirmation(payload)
 
-    return h.view('check-answers/index', {
-      pageTitle,
-      heading,
-      confirmation // does nothing but fix lint errors
-    })
+    const { isValid, errors } = confirmation.validate()
+    if (!isValid) {
+      return res.view('check-answers/index', {
+        pageTitle: `Error: ${pageTitle}`,
+        heading,
+        confirmation,
+        errorMessage: errors.confirmation
+      })
+    }
+
+    return res.redirect(
+      calculateNextPage(payload.nextPage, '/submit/check-answers')
+    )
   }
 }
 
