@@ -30,7 +30,7 @@ describe('#ConfirmationModel', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      'confirmation': {
+      confirmation: {
         text: 'You need to tick a declaration box'
       }
     })

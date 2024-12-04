@@ -7,14 +7,14 @@ import validationSchema from './validation.js'
  * @param {T[] | T} value
  * @returns T[]
  */
-const ensureArray = (value) => Array.isArray(value) ? value : [value]
+const ensureArray = (value) => (Array.isArray(value) ? value : [value])
 
 /**
  * export @typedef {{
  *  confirmation: string[]
  * }} ConfirmationData
  *
- * @typedef {{ confirmation: string[] | string }} ConfirmationPayload
+ * export @typedef {{ confirmation: string[] | string }} ConfirmationPayload
  */
 
 /**

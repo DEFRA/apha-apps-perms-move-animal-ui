@@ -6,6 +6,7 @@ const heading = pageTitle
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
+ * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
  */
 
 /**

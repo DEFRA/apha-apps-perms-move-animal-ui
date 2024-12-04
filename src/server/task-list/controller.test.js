@@ -58,8 +58,16 @@ describe('#taskListController', () => {
       validate: () => ({ isValid: true, errors: {} }),
       _data: {}
     }
+
+    const mockValidOrigin = {
+      ...mockValidValue,
+      onOffFarm: 'any value',
+      cphNumber: 'any value',
+      address: 'any value'
+    }
+
     const allSpies = [
-      jest.spyOn(Origin, 'fromState').mockReturnValue(mockValidValue),
+      jest.spyOn(Origin, 'fromState').mockReturnValue(mockValidOrigin),
       jest.spyOn(Destination, 'fromState').mockReturnValue(mockValidValue),
       jest.spyOn(Tests, 'fromState').mockReturnValue(mockValidValue),
       jest.spyOn(License, 'fromState').mockReturnValue(mockValidValue)
@@ -73,6 +81,7 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
+
     expect(headers.location).toBe('/check-answers')
 
     allSpies.forEach((spy) => spy.mockRestore())
