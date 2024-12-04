@@ -1,4 +1,7 @@
 import { License } from './license.js'
+import { EmailAddress } from '../answer/email-address.js'
+
+const testEmail = 'test@domain.com'
 
 describe('License', () => {
   let destination
@@ -9,16 +12,45 @@ describe('License', () => {
   })
 
   describe('validate', () => {
-    it('should return invalid', () => {
-      const result = License.fromState().validate()
+    it('should return valid if all nested objects are valid', () => {
+      const licenseData = {
+        emailAddress: testEmail
+      }
+      const result = License.fromState(licenseData).validate()
+
+      expect(result.isValid).toBe(true)
+      expect(result.errors).toEqual({})
+    })
+
+    it('should return invalid if any nested object is invalid', () => {
+      const licenseData = {
+        emailAddress: ''
+      }
+
+      const result = License.fromState(licenseData).validate()
+
       expect(result.isValid).toBe(false)
+      expect(result.errors).toHaveProperty('license')
     })
   })
 
   describe('fromState', () => {
-    it('should return an instance of Destination', () => {
-      const instance = License.fromState()
-      expect(instance).toBeInstanceOf(License)
+    it('should create an Origin instance with valid nested objects', () => {
+      const licenseData = {
+        emailAddress: testEmail
+      }
+
+      const license = License.fromState(licenseData)
+
+      expect(license).toBeInstanceOf(License)
+      expect(license._data?.emailAddress).toBeInstanceOf(EmailAddress)
+    })
+
+    it('should handle undefined state gracefully', () => {
+      const license = License.fromState(undefined)
+
+      expect(license).toBeInstanceOf(License)
+      expect(license._data?.emailAddress.value).toBeUndefined()
     })
   })
 })

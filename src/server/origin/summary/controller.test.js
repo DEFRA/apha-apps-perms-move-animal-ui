@@ -66,7 +66,7 @@ describe('#originSummaryController', () => {
     )
   })
 
-  describe('should exclude specific fields when missing from state', () => {
+  describe('should redirect to specific page when fields are missing from state', () => {
     it('should not show on/off farm text', async () => {
       await session.setState('origin', {
         ...defaultState,
