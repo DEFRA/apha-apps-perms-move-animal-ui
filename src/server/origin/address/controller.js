@@ -1,4 +1,5 @@
 import { Address } from '~/src/server/common/model/answer/address.js'
+import { calculateNextPage } from '../../common/helpers/next-page.js'
 
 const indexView = 'origin/address/index'
 export const pageTitle =
@@ -13,6 +14,7 @@ export const originAddressGetController = {
     const address = Address.fromState(req.yar.get('origin')?.address)
 
     return h.view(indexView, {
+      nextPage: req.query.redirect_uri,
       pageTitle,
       heading,
       values: address.value
@@ -26,7 +28,7 @@ export const originAddressGetController = {
  */
 export const originAddressPostController = {
   handler(req, res) {
-    const payload = /** @type {AddressData} */ (req.payload)
+    const payload = /** @type {AddressData & NextPage} */ (req.payload)
     const address = new Address(payload)
 
     const { isValid, errors } = address.validate()
@@ -42,6 +44,7 @@ export const originAddressPostController = {
       })
 
       return res.view(indexView, {
+        nextPage: req.query.redirect_uri,
         pageTitle: `Error: ${pageTitle}`,
         heading,
         values: payload,
@@ -55,11 +58,12 @@ export const originAddressPostController = {
       address: address.toState()
     })
 
-    return res.redirect('/origin/summary')
+    return res.redirect(calculateNextPage(payload.nextPage, '/origin/summary'))
   }
 }
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
  * @import { AddressData } from '~/src/server/common/model/answer/address.js'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
  */

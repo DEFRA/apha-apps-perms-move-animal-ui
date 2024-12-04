@@ -15,7 +15,7 @@
         classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
       },
       value: {
-        text: row.value
+        html: row.value
       },
       actions: {
         items: [
@@ -61,8 +61,16 @@
           <h2 class="govuk-heading-m">Movement origin</h2>
           {{ section([{
             key: "Are you moving the cattle on or off your farm or premises?", 
-            value: "", 
-            url: "/origin/summary"
+            value: origin.onOffFarm.html, 
+            url: "/origin/to-or-from-own-premises?redirect_uri=/submit/check-answers"
+          }, {
+            key: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?", 
+            value: origin.cphNumber.html, 
+            url: "/origin/cph-number?redirect_uri=/submit/check-answers"
+          }, {
+            key: "What is the address of your farm or premises where the animals are moving off?", 
+            value: origin.address.html, 
+            url: "/origin/address?redirect_uri=/submit/check-answers"
           }]) }}
 
           <h2 class="govuk-heading-m">Movement destination</h2>

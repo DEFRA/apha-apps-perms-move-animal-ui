@@ -15,9 +15,13 @@ const heading = pageTitle
  */
 export const checkAnswersGetController = {
   handler(req, res) {
-    const tasks = [Origin.fromState(req.yar.get('origin')).validate()]
+    const tasks = {
+      origin: Origin.fromState(req.yar.get('origin'))
+    }
 
-    const isValid = tasks.every((task) => task.isValid)
+    const isValid = Object.values(tasks).every(
+      (task) => task.validate().isValid
+    )
 
     if (!isValid) {
       return res.redirect('/task-list')
@@ -26,7 +30,7 @@ export const checkAnswersGetController = {
     return res.view('check-answers/index', {
       nextPage: req.query.redirect_uri,
       pageTitle,
-      heading
+      origin: tasks.origin
     })
   }
 }
