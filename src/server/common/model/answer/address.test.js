@@ -110,7 +110,7 @@ describe('Address.toState', () => {
   })
 
   it('should default missing fields to empty string', () => {
-    const address = new Address({})
+    const address = new Address()
     expect(address.toState()).toEqual({
       addressLine1: '',
       addressLine2: '',
@@ -125,10 +125,10 @@ describe('Address.fromState', () => {
   it('should return the state as-is as payload, since the state is already a valid payload', () => {
     const address = new Address(validAddress)
     const state = address.toState()
-    expect(Address.fromState(state).value).toEqual(validAddress)
+    expect(Address.fromState(state)._data).toEqual(validAddress)
   })
 
-  it('should return an empty object if the state is undefined', () => {
-    expect(Address.fromState(undefined)).toEqual({})
+  it('should store undefined if the state isn\'t defined', () => {
+    expect(Address.fromState(undefined)._data).toEqual(undefined)
   })
 })

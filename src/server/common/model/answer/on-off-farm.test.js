@@ -1,5 +1,7 @@
 import { OnOffFarm } from './on-off-farm.js'
+/** @import {OnOffFarmPayload} from './on-off-farm.js' */
 
+/** @type {OnOffFarmPayload} */
 const validOnOffRadio = {
   onOffFarm: 'on'
 }
@@ -24,9 +26,7 @@ describe('#OnOffFarm.validate', () => {
   })
 
   test('should return false for empty', () => {
-    const { isValid, errors } = new OnOffFarm({
-      onOffFarm: ''
-    }).validate()
+    const { isValid, errors } = new OnOffFarm(undefined).validate()
 
     expect(isValid).toBe(false)
     expect(errors.onOffFarm.text).toBe(
@@ -37,9 +37,9 @@ describe('#OnOffFarm.validate', () => {
 
 describe('#OnOffFarm.toState', () => {
   test('should replace missing data with blank string', () => {
-    const data = new OnOffFarm({}).toState()
+    const data = new OnOffFarm().toState()
 
-    expect(data).toBe('')
+    expect(data).toBe(undefined)
   })
 
   test('should pass through valid data unaltered', () => {
@@ -59,8 +59,8 @@ describe('#OnOffFarm.fromState', () => {
     expect(OnOffFarm.fromState(undefined).value).toBeUndefined()
   })
 
-  it('should return an empty object if the state is undefined', () => {
-    expect(OnOffFarm.fromState(undefined)._data).toEqual({})
+  it('should store undefined if the state is undefined', () => {
+    expect(OnOffFarm.fromState(undefined)._data).toBeUndefined()
   })
 })
 

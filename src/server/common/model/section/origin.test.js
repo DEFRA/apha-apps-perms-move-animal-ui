@@ -2,8 +2,11 @@ import { Origin } from './origin.js'
 import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
+/** @import { OnOffFarmData } from '../answer/on-off-farm.js' */
 
 const validCphNumber = '12/345/6789'
+
+/** @type OnOffFarmData */
 const validOnOffFarm = 'off'
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',
@@ -27,7 +30,7 @@ describe('Origin', () => {
 
     it('should return invalid if any nested object is invalid', () => {
       const originData = {
-        onOffFarm: '',
+        onOffFarm: undefined,
         cphNumber: validCphNumber,
         address: validAddress
       }

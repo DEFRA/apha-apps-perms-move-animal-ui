@@ -80,7 +80,7 @@ describe('#taskListController', () => {
 
   it('Should redirect to task-list-incomplete if any task is invalid', async () => {
     const originData = {
-      onOffFarm: '',
+      onOffFarm: undefined,
       cphNumber: '12/345/6789',
       address: {
         addressLine1: 'Starfleet Headquarters',

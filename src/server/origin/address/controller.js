@@ -27,7 +27,7 @@ export const originAddressGetController = {
 export const originAddressPostController = {
   handler(req, res) {
     const payload = /** @type {AddressData} */ (req.payload)
-    const address = new Address(req.payload)
+    const address = new Address(payload)
 
     const { isValid, errors } = address.validate()
     const errorMessages = Object.entries(errors).map(([key, value]) => ({

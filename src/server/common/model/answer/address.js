@@ -66,6 +66,9 @@ const addressPayloadSchema = Joi.object({
  * }} AddressData
  */
 
+/**
+ * @extends AnswerModel<AddressData>
+ */
 export class Address extends AnswerModel {
   /**
    * @returns {AddressData | undefined}
@@ -97,7 +100,7 @@ export class Address extends AnswerModel {
   }
 
   validate() {
-    return validateAgainstSchema(addressPayloadSchema, this._data)
+    return validateAgainstSchema(addressPayloadSchema, this._data ?? {})
   }
 
   /**
@@ -108,5 +111,3 @@ export class Address extends AnswerModel {
     return new Address(state)
   }
 }
-
-/** @import {RawPayload} from './answer-model.js' */

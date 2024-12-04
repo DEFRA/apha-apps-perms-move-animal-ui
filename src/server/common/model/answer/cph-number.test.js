@@ -14,7 +14,7 @@ describe('#CphNumber.validate', () => {
   })
 
   test('should return false for an empty input', () => {
-    const cphNumber = new CphNumber({})
+    const cphNumber = new CphNumber()
 
     const { isValid, errors } = cphNumber.validate()
 
@@ -38,7 +38,7 @@ describe('#CphNumber.validate', () => {
 
 describe('#CphNumber.toState', () => {
   test('should replace missing data with blank string', () => {
-    const cphNumber = new CphNumber({})
+    const cphNumber = new CphNumber()
     const data = cphNumber.toState()
 
     expect(data).toBe('')
@@ -74,6 +74,6 @@ describe('#CphNumber.fromState', () => {
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(CphNumber.fromState(undefined)._data).toEqual({})
+    expect(CphNumber.fromState(undefined)._data).toEqual(undefined)
   })
 })
