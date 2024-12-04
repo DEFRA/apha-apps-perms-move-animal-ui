@@ -91,3 +91,15 @@ export const clearElement = async (element) => {
     )
   }
 }
+
+export const checkForSecurityPopUpAndResolve = async () => {
+  const contexts = await browser.getContexts()
+  if (contexts.length > 1) {
+    await browser.switchContext(contexts[0])
+    const popUp = await $('[name="Send anyway"]')
+    if (await popUp.isExisting()) {
+      await popUp.click()
+    }
+    await browser.switchContext(contexts[1])
+  }
+}

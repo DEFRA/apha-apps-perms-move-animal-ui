@@ -42,7 +42,8 @@ class EmailPage extends Page {
       this.emailAddressErrorLink(),
       this.emailAddressInput()
     )
-    await expect(this.emailAddressInput()).toHaveValue(textInput)
+    const inputValue = await this.emailAddressInput().getValue()
+    expect(inputValue).toBe(textInput)
   }
 }
 
