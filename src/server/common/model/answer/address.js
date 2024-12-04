@@ -74,13 +74,7 @@ export class Address extends AnswerModel {
    * @returns {AddressData | undefined}
    */
   get value() {
-    return {
-      addressLine1: this._data?.addressLine1 ?? '',
-      addressLine2: this._data?.addressLine2 ?? '',
-      addressTown: this._data?.addressTown ?? '',
-      addressCounty: this._data?.addressCounty ?? '',
-      addressPostcode: this._data?.addressPostcode ?? ''
-    }
+    return this._data
   }
 
   get html() {

@@ -63,13 +63,7 @@ describe('Origin', () => {
         expect(origin).toBeInstanceOf(Origin)
         expect(origin._data?.onOffFarm.value).toBeUndefined()
         expect(origin._data?.cphNumber.value).toBeUndefined()
-        expect(origin._data?.address.value).toEqual({
-          addressCounty: '',
-          addressLine1: '',
-          addressLine2: '',
-          addressPostcode: '',
-          addressTown: ''
-        })
+        expect(origin._data?.address.value).toBeUndefined()
       })
     })
   })
