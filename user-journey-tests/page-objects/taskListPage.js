@@ -46,10 +46,8 @@ class TaskListPage extends Page {
   }
 
   async selectReview() {
-    const deviceArray = secureDeviceArray
-    const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.reviewLink)
-    if (deviceArray.includes(deviceName)) {
+    if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
       await page.checkForSecurityPopUpAndResolve()
     }
   }

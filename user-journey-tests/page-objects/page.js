@@ -85,10 +85,8 @@ class Page {
   }
 
   async selectContinue() {
-    const deviceArray = secureDeviceArray
-    const deviceName = browser.capabilities?.deviceName
     await page.selectElement(this.getContinueButton())
-    if (deviceArray.includes(deviceName)) {
+    if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
       await page.checkForSecurityPopUpAndResolve()
     }
   }
