@@ -63,9 +63,8 @@ describe('Check your answers test', () => {
     )
     await selectElement(checkAnswersPage.changeParishNumberLink)
 
-    await expect(parishHoldingNumberPage.cphNumberInput()).toHaveValue(
-      defaultCphNumber
-    )
+    const inputValue = await parishHoldingNumberPage.cphNumberInput().getValue()
+    expect(inputValue).toBe(defaultCphNumber)
     await clearElement(parishHoldingNumberPage.cphNumberInput())
     await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       parishHoldingInput

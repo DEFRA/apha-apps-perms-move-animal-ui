@@ -23,6 +23,18 @@ export class Origin extends SectionModel {
     return validateAgainstSchema(validationSchema, this._data)
   }
 
+  get onOffFarm() {
+    return this._data?.onOffFarm
+  }
+
+  get cphNumber() {
+    return this._data?.cphNumber
+  }
+
+  get address() {
+    return this._data?.address
+  }
+
   /**
    * @param {OriginData | undefined} state
    * @returns {Origin}

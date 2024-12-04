@@ -1,5 +1,10 @@
 import { calculateNextPage } from '../../common/helpers/next-page.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+/**
+ * @import { OnOffFarmPayload } from '~/src/server/common/model/answer/on-off-farm.js'
+ * @import { ServerRoute } from '@hapi/hapi'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
+ */
 
 const pageTitle = 'Are you moving the cattle on or off your farm or premises?'
 const heading = pageTitle
@@ -74,9 +79,3 @@ export const onOffFarmPostController = {
     }
   }
 }
-
-/**
- * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
- * @import { ServerRoute } from '@hapi/hapi'
- * @import {NextPage} from '../../common/helpers/next-page.js'
- */

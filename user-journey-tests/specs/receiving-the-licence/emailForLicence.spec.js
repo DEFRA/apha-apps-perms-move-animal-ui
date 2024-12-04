@@ -15,7 +15,8 @@ const validSubmissionCheck = async (input, whitespace = false) => {
   await expect(emailPage.emailFieldError()).not.toBeDisplayed()
   await emailPage.selectBackLink()
   await browser.refresh()
-  await expect(emailPage.emailAddressInput()).toHaveValue(expected)
+  const inputValue = await emailPage.emailAddressInput().getValue()
+  expect(inputValue).toBe(expected)
 }
 
 describe('Email address for licence page test', () => {

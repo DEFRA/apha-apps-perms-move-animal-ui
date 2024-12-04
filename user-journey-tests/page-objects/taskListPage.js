@@ -2,6 +2,7 @@ import { $ } from '@wdio/globals'
 
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
+import { secureDeviceArray } from '../helpers/constants.js'
 
 const pageHeadingAndTitle =
   'Your Bovine Tuberculosis (TB) movement licence application'
@@ -46,6 +47,9 @@ class TaskListPage extends Page {
 
   async selectReview() {
     await page.selectElement(this.reviewLink)
+    if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
+      await page.checkForSecurityPopUpAndResolve()
+    }
   }
 }
 

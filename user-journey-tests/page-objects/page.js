@@ -1,5 +1,6 @@
 import { browser, $ } from '@wdio/globals'
 import * as page from '../helpers/page.js'
+import { secureDeviceArray } from '../helpers/constants.js'
 
 class Page {
   get pagePath() {
@@ -85,6 +86,9 @@ class Page {
 
   async selectContinue() {
     await page.selectElement(this.getContinueButton())
+    if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
+      await page.checkForSecurityPopUpAndResolve()
+    }
   }
 
   async verifyRadioIsSelected(element) {
