@@ -5,15 +5,15 @@ import {
   loadPageAndVerifyTitle,
   selectElement,
   validateElementVisibleAndText
-} from '../helpers/page.js'
-import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
-import newAddressPage from '../page-objects/origin/newAddressPage.js'
-import parishHoldingNumberPage from '../page-objects/origin/parishHoldingNumberPage.js'
-import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
+} from '../../helpers/page.js'
+import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
+import newAddressPage from '../../page-objects/origin/newAddressPage.js'
+import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import completeOriginTaskAnswers, {
   completeOriginTaskAnswersCustom
-} from '../helpers/testHelpers/movementLicense.js'
-import landingPage from '../page-objects/landingPage.js'
+} from '../../helpers/testHelpers/movementLicense.js'
+import landingPage from '../../page-objects/landingPage.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -63,9 +63,8 @@ describe('Check your answers test', () => {
     )
     await selectElement(checkAnswersPage.changeParishNumberLink)
 
-    await expect(parishHoldingNumberPage.cphNumberInput()).toHaveValue(
-      defaultCphNumber
-    )
+    const inputValue = await parishHoldingNumberPage.cphNumberInput().getValue()
+    expect(inputValue).toBe(defaultCphNumber)
     await clearElement(parishHoldingNumberPage.cphNumberInput())
     await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       parishHoldingInput

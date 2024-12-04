@@ -1,5 +1,5 @@
-import { loadPageAndVerifyTitle } from '../helpers/page.js'
-import exitPage from '../page-objects/origin/exitPage.js'
+import { loadPageAndVerifyTitle } from '../../helpers/page.js'
+import exitPage from '../../page-objects/origin/exitPage.js'
 
 describe('Exit page test', () => {
   beforeEach('Navigate to exit page', async () => {

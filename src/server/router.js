@@ -8,6 +8,7 @@ import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
 import { checkAnswers } from './check-answers/index.js'
+import { licence } from './license/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -26,6 +27,7 @@ export const router = {
         home,
         exitPage,
         origin,
+        licence,
         taskList,
         taskListIncomplete,
         checkAnswers
