@@ -3,13 +3,22 @@ import { validateAgainstSchema } from '../../../helpers/validation/validation.js
 import validationSchema from './validation.js'
 
 /**
+ * @template T
+ * @param {T[] | T} value
+ * @returns T[]
+ */
+const ensureArray = (value) => Array.isArray(value) ? value : [value]
+
+/**
  * export @typedef {{
- *  confirmation: (undefined | string)[] | string
+ *  confirmation: string[]
  * }} ConfirmationData
+ *
+ * @typedef {{ confirmation: string[] | string }} ConfirmationPayload
  */
 
 /**
- * @extends AnswerModel<ConfirmationData>
+ * @extends AnswerModel<ConfirmationPayload>
  */
 export class Confirmation extends AnswerModel {
   get value() {
@@ -29,17 +38,14 @@ export class Confirmation extends AnswerModel {
    */
   toState() {
     return {
-      confirmation: this._data?.confirmation ?? []
+      confirmation: ensureArray(this._data?.confirmation ?? [])
     }
   }
 
   validate() {
-    let state = this._data?.confirmation
-    if (!Array.isArray(state)) {
-      state = [state]
-    }
-
-    return validateAgainstSchema(validationSchema, state ?? [])
+    return validateAgainstSchema(validationSchema, {
+      confirmation: ensureArray(this._data?.confirmation ?? [])
+    })
   }
 
   /**

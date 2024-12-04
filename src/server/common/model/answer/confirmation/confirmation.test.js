@@ -24,10 +24,15 @@ describe('#ConfirmationModel', () => {
     expect(isValid).toBe(true)
   })
 
-  it('should not vlaidate when not confirmed', () => {
-    const confirmation = new Confirmation({ confirmation: ['other'] })
-    const { isValid } = confirmation.validate()
+  it('should not validate when not confirmed', () => {
+    const confirmation = new Confirmation({ confirmation: [] })
+    const { isValid, errors } = confirmation.validate()
 
     expect(isValid).toBe(false)
+    expect(errors).toEqual({
+      'confirmation': {
+        text: 'You need to tick a declaration box'
+      }
+    })
   })
 })

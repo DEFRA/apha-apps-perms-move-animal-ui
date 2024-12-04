@@ -6,7 +6,6 @@ const heading = pageTitle
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
- * @typedef {{ confirmation: string[] }} ConfirmationPayload
  */
 
 /**
