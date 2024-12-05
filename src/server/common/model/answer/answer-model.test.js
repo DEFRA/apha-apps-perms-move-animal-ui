@@ -27,16 +27,4 @@ describe('AnswerModel', () => {
   it('should throw NotImplementedError when fromState is called', () => {
     expect(() => AnswerModel.fromState({})).toThrow(notImplementedError)
   })
-
-  it('should seal the object to prevent property additions or deletions', () => {
-    answer = new AnswerModel({ key: 'value' })
-
-    expect(() => {
-      answer.something = 'should fail'
-    }).toThrow()
-
-    expect(() => {
-      delete answer._data
-    }).toThrow()
-  })
 })

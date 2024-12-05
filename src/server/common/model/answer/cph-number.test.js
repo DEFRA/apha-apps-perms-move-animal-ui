@@ -4,6 +4,15 @@ const validCphNumberPayload = {
   cphNumber: '12/456/7899'
 }
 
+describe('CphNumber.new', () => {
+  it('should strip away any irrelevant values', () => {
+    const payload = { ...validCphNumberPayload, nextPage: '/other/page' }
+    const cphNumber = new CphNumber(payload)
+
+    expect(cphNumber._data).toEqual(validCphNumberPayload)
+  })
+})
+
 describe('#CphNumber.validate', () => {
   it('should return true for valid cphNumber', () => {
     const cphNumber = new CphNumber(validCphNumberPayload)

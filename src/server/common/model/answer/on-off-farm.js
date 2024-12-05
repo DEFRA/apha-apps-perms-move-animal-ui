@@ -56,4 +56,8 @@ export class OnOffFarm extends AnswerModel {
   validate() {
     return validateAnswerAgainstSchema(onOffFarmPayloadSchema, this._data ?? {})
   }
+
+  extractFields({ onOffFarm }) {
+    return { onOffFarm }
+  }
 }

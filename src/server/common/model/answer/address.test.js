@@ -8,6 +8,15 @@ const validAddress = {
   addressPostcode: 'RG24 8RR'
 }
 
+describe('Address.new', () => {
+  it('should strip away any irrelevant values', () => {
+    const payload = { ...validAddress, nextPage: '/other/page' }
+    const address = new Address(payload)
+
+    expect(address._data).toEqual(validAddress)
+  })
+})
+
 describe('Address.validate', () => {
   it('should return true for valid address', () => {
     const address = new Address(validAddress)

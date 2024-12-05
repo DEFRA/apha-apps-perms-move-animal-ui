@@ -79,6 +79,7 @@ export class Address extends AnswerModel {
 
   get html() {
     return Object.values(this.value ?? [])
+      .filter((line) => line !== undefined)
       .filter((line) => {
         const trimmed = line.trim()
         return trimmed.length > 0
@@ -95,6 +96,22 @@ export class Address extends AnswerModel {
 
   validate() {
     return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
+  }
+
+  extractFields({
+    addressLine1,
+    addressLine2,
+    addressTown,
+    addressCounty,
+    addressPostcode
+  }) {
+    return {
+      addressLine1,
+      addressLine2,
+      addressTown,
+      addressCounty,
+      addressPostcode
+    }
   }
 
   /**

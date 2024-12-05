@@ -48,6 +48,10 @@ export class CphNumber extends AnswerModel {
     return validateAnswerAgainstSchema(cphNumberPayloadSchema, this._data ?? {})
   }
 
+  extractFields({ cphNumber }) {
+    return { cphNumber }
+  }
+
   /**
    * @param {CphNumberData | undefined} state
    * @returns {CphNumber}

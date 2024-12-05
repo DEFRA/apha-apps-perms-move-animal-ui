@@ -1,21 +1,29 @@
 import { validateSection } from './validation.js'
+import { AnswerModel } from '../answer/answer-model.js'
 
-const baseMockAnswer = {
-  toState: jest.fn(),
-  value: 'value',
-  html: '',
-  _data: {}
+class MockAnswer extends AnswerModel {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  extractFields(data) {
+    return data
+  }
 }
 
-const validAnswer = {
-  ...baseMockAnswer,
-  validate: jest.fn().mockReturnValue({ isValid: true })
+class ValidAnswer extends MockAnswer {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  validate(_) {
+    return { isValid: true, errors: {} }
+  }
 }
 
-const invalidAnswer = {
-  ...baseMockAnswer,
-  validate: jest.fn().mockReturnValue({ isValid: false })
+class InvalidAnswer extends MockAnswer {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  validate(_) {
+    return { isValid: false, errors: { field1: { text: 'Invalid' } } }
+  }
 }
+const validAnswer = new ValidAnswer()
+
+const invalidAnswer = new InvalidAnswer()
 
 describe('validateSection', () => {
   it('should return isValid as true when all answers are valid', () => {
@@ -46,16 +54,8 @@ describe('validateSection', () => {
 
   it('should return the correct validation result for each answer', () => {
     const data = {
-      answer1: {
-        ...baseMockAnswer,
-        validate: jest.fn().mockReturnValue({ isValid: true, errors: {} })
-      },
-      answer2: {
-        ...baseMockAnswer,
-        validate: jest
-          .fn()
-          .mockReturnValue({ isValid: false, errors: { field1: 'Invalid' } })
-      }
+      answer1: validAnswer,
+      answer2: invalidAnswer
     }
 
     const { isValid, result } = validateSection(data)
@@ -64,7 +64,7 @@ describe('validateSection', () => {
     expect(result.answer1).toEqual({ isValid: true, errors: {} })
     expect(result.answer2).toEqual({
       isValid: false,
-      errors: { field1: 'Invalid' }
+      errors: { field1: { text: 'Invalid' } }
     })
   })
 })
