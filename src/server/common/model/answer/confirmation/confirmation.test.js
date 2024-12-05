@@ -6,9 +6,9 @@ describe('#ConfirmationModel', () => {
       const validConfirmation = { confirmation: ['confirm', 'other'] }
 
       const payload = { ...validConfirmation, nextPage: '/other/page' }
-      const onOffFarm = new Confirmation(payload)
+      const confirmation = new Confirmation(payload)
 
-      expect(onOffFarm._data).toEqual(validConfirmation)
+      expect(confirmation._data).toEqual(validConfirmation)
     })
   })
 
