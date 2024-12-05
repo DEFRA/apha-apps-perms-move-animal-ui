@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
+import { validateAnswerAgainstSchema } from './validation.js'
 
 const selectOptionText =
   'Select if you are moving cattle on or off your farm or premises'
@@ -19,7 +19,7 @@ export const onOffFarmPayloadSchema = Joi.object({
  */
 
 /**
- * @extends AnswerModel<OnOffFarmPayload>
+ * @augments AnswerModel<OnOffFarmPayload>
  */
 export class OnOffFarm extends AnswerModel {
   /**
@@ -54,6 +54,6 @@ export class OnOffFarm extends AnswerModel {
   }
 
   validate() {
-    return validateAgainstSchema(onOffFarmPayloadSchema, this._data ?? {})
+    return validateAnswerAgainstSchema(onOffFarmPayloadSchema, this._data ?? {})
   }
 }

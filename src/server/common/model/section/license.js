@@ -1,18 +1,25 @@
-import Joi from 'joi'
 import { SectionModel } from './section-model.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
+import { EmailAddress } from '../answer/email-address.js'
 
-const validationSchema = Joi.object().required()
+/**
+ * export @typedef {{
+ * emailAddress: EmailAddressData | undefined;
+ * }} LicenseData
+ * @import {EmailAddressData} from '../answer/email-address.js'
+ */
 
 export class License extends SectionModel {
-  validate() {
-    return validateAgainstSchema(validationSchema, this._data)
+  get emailAddress() {
+    return this._data?.emailAddress
   }
 
   /**
+   * @param {LicenseData | undefined} state
    * @returns {License}
    */
-  static fromState() {
-    return new License()
+  static fromState(state) {
+    return new License({
+      emailAddress: EmailAddress.fromState(state?.emailAddress)
+    })
   }
 }

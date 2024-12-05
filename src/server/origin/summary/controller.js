@@ -1,4 +1,4 @@
-import { Origin as OriginModel } from '../../common/model/section/origin.js'
+import { Origin } from '../../common/model/section/origin.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -10,20 +10,21 @@ export const heading = pageTitle
  */
 export const originSummaryGetController = {
   handler(req, h) {
-    const origin = OriginModel.fromState(req.yar.get('origin'))
+    const origin = Origin.fromState(req.yar.get('origin'))
+    const { isValid, result } = origin.validate()
 
-    if (!origin.onOffFarm.validate().isValid) {
-      return h.redirect(
-        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
-      )
-    }
-
-    if (!origin.cphNumber.validate().isValid) {
-      return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
-    }
-
-    if (!origin.address.validate().isValid) {
-      return h.redirect('/origin/address?redirect_uri=/origin/summary')
+    if (!isValid) {
+      if (!result.onOffFarm.isValid) {
+        return h.redirect(
+          '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+        )
+      }
+      if (!result.cphNumber.isValid) {
+        return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
+      }
+      if (!result.address.isValid) {
+        return h.redirect('/origin/address?redirect_uri=/origin/summary')
+      }
     }
 
     return h.view(indexView, {
@@ -49,10 +50,4 @@ export const originSummaryPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { AddressData } from '~/src/server/common/model/answer/address.js'
- * @typedef {{
- *   onOffFarm: string;
- *   cphNumber: string;
- *   address: AddressData;
- * }} Origin
  */

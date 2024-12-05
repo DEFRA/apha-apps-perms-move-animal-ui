@@ -1,5 +1,5 @@
 import { AnswerModel } from '../answer-model.js'
-import { validateAgainstSchema } from '../../../helpers/validation/validation.js'
+import { validateAnswerAgainstSchema } from '../validation.js'
 import validationSchema from './validation.js'
 
 /**
@@ -18,7 +18,7 @@ const ensureArray = (value) => (Array.isArray(value) ? value : [value])
  */
 
 /**
- * @extends AnswerModel<ConfirmationPayload>
+ * @augments AnswerModel<ConfirmationPayload>
  */
 export class Confirmation extends AnswerModel {
   get value() {
@@ -43,7 +43,7 @@ export class Confirmation extends AnswerModel {
   }
 
   validate() {
-    return validateAgainstSchema(validationSchema, {
+    return validateAnswerAgainstSchema(validationSchema, {
       confirmation: ensureArray(this._data?.confirmation ?? [])
     })
   }

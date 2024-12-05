@@ -1,22 +1,7 @@
-import Joi from 'joi'
 import { SectionModel } from '../section/section-model.js'
 import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
-
-const validationSchema = Joi.object()
-  .custom((origin, helpers) => {
-    const invalid = Object.values(origin).some((item) => {
-      return !item.validate().isValid
-    })
-
-    if (invalid) {
-      return helpers.error('any.invalid')
-    }
-    return origin
-  })
-  .label('origin')
 
 /**
  * export @typedef {{
@@ -30,10 +15,6 @@ const validationSchema = Joi.object()
  */
 
 export class Origin extends SectionModel {
-  validate() {
-    return validateAgainstSchema(validationSchema, this._data)
-  }
-
   get onOffFarm() {
     return this._data?.onOffFarm
   }

@@ -8,10 +8,6 @@ describe('SectionModel', () => {
     section = new SectionModel()
   })
 
-  it('should throw NotImplementedError when validate is called', () => {
-    expect(() => section.validate()).toThrow(notImplementedError)
-  })
-
   it('should throw NotImplementedError when fromState is called', () => {
     expect(() => SectionModel.fromState({})).toThrow(notImplementedError)
   })
