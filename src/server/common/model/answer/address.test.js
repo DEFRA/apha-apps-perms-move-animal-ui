@@ -126,3 +126,51 @@ describe('Address.fromState', () => {
     expect(Address.fromState(undefined)._data).toBeUndefined()
   })
 })
+
+describe('Address.html', () => {
+  it('should return formatted HTML string for a complete address', () => {
+    const address = new Address(validAddress)
+    const expectedHtml = [
+      'Starfleet Headquarters',
+      '24-593 Federation Drive',
+      'San Francisco',
+      'San Francisco',
+      'RG24 8RR'
+    ].join('<br />')
+
+    expect(address.html).toBe(expectedHtml)
+  })
+
+  it('should return formatted HTML string for an address with missing optional fields', () => {
+    const address = new Address({
+      addressLine1: 'Starfleet Headquarters',
+      addressTown: 'San Francisco',
+      addressPostcode: 'RG24 8RR'
+    })
+    const expectedHtml = [
+      'Starfleet Headquarters',
+      'San Francisco',
+      'RG24 8RR'
+    ].join('<br />')
+
+    expect(address.html).toBe(expectedHtml)
+  })
+
+  it('should return an empty string for an address with all fields empty', () => {
+    const address = new Address({
+      addressLine1: '',
+      addressLine2: '',
+      addressTown: '',
+      addressCounty: '',
+      addressPostcode: ''
+    })
+
+    expect(address.html).toBe('')
+  })
+
+  it('should return an empty string for an undefined address', () => {
+    const address = new Address(undefined)
+
+    expect(address.html).toBe('')
+  })
+})

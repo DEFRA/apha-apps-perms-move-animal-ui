@@ -12,6 +12,10 @@ describe('AnswerModel', () => {
     expect(() => answer.value).toThrow(notImplementedError)
   })
 
+  it('should throw NotImplementedError when html getter is called', () => {
+    expect(() => answer.html()).toThrow(notImplementedError)
+  })
+
   it('should throw NotImplementedError when toState is called', () => {
     expect(() => answer.toState()).toThrow(notImplementedError)
   })

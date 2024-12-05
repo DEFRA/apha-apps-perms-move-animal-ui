@@ -82,4 +82,22 @@ describe('#OnOffFarm.html', () => {
       'Off the farm or premises'
     )
   })
+
+  describe('#OnOffFarm.html', () => {
+    it('should return the full text for `on`', () => {
+      expect(new OnOffFarm({ onOffFarm: 'on' }).html).toBe(
+        'On to the farm or premises'
+      )
+    })
+
+    it('should return the full text for `off`', () => {
+      expect(new OnOffFarm({ onOffFarm: 'off' }).html).toBe(
+        'Off the farm or premises'
+      )
+    })
+
+    it('should return an empty string for undefined', () => {
+      expect(new OnOffFarm(undefined).html).toBe('')
+    })
+  })
 })
