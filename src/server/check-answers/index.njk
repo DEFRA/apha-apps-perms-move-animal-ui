@@ -60,40 +60,24 @@
 
           <h2 class="govuk-heading-m">Movement origin</h2>
           {{ section([{
-            key: "Are you moving the cattle on or off your farm or premises?", 
-            value: origin.onOffFarm.html, 
+            key: "Are you moving the cattle on or off your farm or premises?",
+            value: origin.onOffFarm.html,
             url: "/origin/to-or-from-own-premises?redirect_uri=/submit/check-answers"
           }, {
-            key: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?", 
-            value: origin.cphNumber.html, 
+            key: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?",
+            value: origin.cphNumber.html,
             url: "/origin/cph-number?redirect_uri=/submit/check-answers"
           }, {
-            key: "What is the address of your farm or premises where the animals are moving off?", 
-            value: origin.address.html, 
+            key: "What is the address of your farm or premises where the animals are moving off?",
+            value: origin.address.html,
             url: "/origin/address?redirect_uri=/submit/check-answers"
-          }]) }}
-
-          <h2 class="govuk-heading-m">Movement destination</h2>
-          {{ section([{
-            key: "Where are the animals going to?"
-          }]) }}
-
-          <h2 class="govuk-heading-m">Tests</h2>
-          {{ section([{
-            key: "Tests on the animals you plan to move", 
-            value: "I confirm these test conditions have been met", 
-            url: ""
           }]) }}
 
           <h2 class="govuk-heading-m">Receiving the licence</h2>
           {{ section([{
-            key: "How would you like this licence sent to you?", 
-            value: "", 
-            url: ""
-          }, {
-            key: "What address would you like the licence sent to?", 
-            value: "", 
-            url: ""
+            key: "What is the address of your farm or premises where the animals are moving off?",
+            value: license.emailAddress.html,
+            url: "/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers"
           }])}}
         </div>
       </div>

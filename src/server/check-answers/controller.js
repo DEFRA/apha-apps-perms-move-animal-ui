@@ -1,5 +1,6 @@
 import { calculateNextPage } from '../common/helpers/next-page.js'
 import { Origin } from '../common/model/section/origin.js'
+import { License } from '../common/model/section/license.js'
 import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
 
 export const pageTitle = 'Check your answers before sending your application'
@@ -16,7 +17,8 @@ const heading = pageTitle
 export const checkAnswersGetController = {
   handler(req, res) {
     const tasks = {
-      origin: Origin.fromState(req.yar.get('origin'))
+      origin: Origin.fromState(req.yar.get('origin')),
+      license: License.fromState(req.yar.get('license'))
     }
 
     const isValid = Object.values(tasks).every(
@@ -30,7 +32,7 @@ export const checkAnswersGetController = {
     return res.view('check-answers/index', {
       nextPage: req.query.redirect_uri,
       pageTitle,
-      origin: tasks.origin
+      ...tasks
     })
   }
 }

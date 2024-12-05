@@ -10,7 +10,7 @@ describe('#CheckAnswers', () => {
   let server
   let session
 
-  const defaultState = {
+  const originDefaultState = {
     onOffFarm: 'off',
     cphNumber: '12/123/1234',
     address: {
@@ -22,6 +22,10 @@ describe('#CheckAnswers', () => {
     }
   }
 
+  const licenseDefaultState = {
+    emailAddress: 'name@example.com'
+  }
+
   beforeAll(async () => {
     server = await createServer()
     await server.initialize()
@@ -29,7 +33,8 @@ describe('#CheckAnswers', () => {
 
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
-    await session.setState('origin', defaultState)
+    await session.setState('origin', originDefaultState)
+    await session.setState('license', licenseDefaultState)
   })
 
   afterAll(async () => {
@@ -50,7 +55,18 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    expect(parseDocument(payload).title).toEqual(pageTitle)
+    const document = parseDocument(payload)
+    expect(document.title).toEqual(pageTitle)
+
+    const taskListValues = document.querySelectorAll(
+      '.govuk-summary-list__value'
+    )
+
+    expect(taskListValues[0].innerHTML).toContain('Off the farm or premises')
+    expect(taskListValues[1].innerHTML).toContain('12/123/1234')
+    expect(taskListValues[2].innerHTML).toContain('Starfleet Headquarters')
+    expect(taskListValues[3].innerHTML).toContain('name@example.com')
+
     expect(statusCode).toBe(statusCodes.ok)
   })
 
