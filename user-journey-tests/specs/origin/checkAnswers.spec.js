@@ -1,20 +1,16 @@
 import { browser } from '@wdio/globals'
 
-import {
-  clearElement,
-  loadPageAndVerifyTitle,
-  selectElement,
-  validateElementVisibleAndText
-} from '../../helpers/page.js'
+import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
-import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
-import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import completeOriginTaskAnswers, {
-  completeOriginTaskAnswersCustom
-} from '../../helpers/testHelpers/movementLicense.js'
+import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementLicense.js'
 import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
+import {
+  validateAndAdjustAddress,
+  validateAndAdjustParishNumber,
+  validateOnOffFarm
+} from '../../helpers/testHelpers/checkAnswers.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -32,89 +28,73 @@ describe('Check your answers test', () => {
   beforeEach('Navigate to check answers page', async () => {
     await browser.reloadSession()
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await completeOriginTaskAnswersCustom(
+      defaultCphNumber,
+      defaultLineOne,
+      defaultTownOrCity,
+      defaultPostcode
+    )
   })
 
   it('Should verify the back link is history -1', async () => {
-    await completeOriginTaskAnswers()
+    await loadPageAndVerifyTitle(
+      newAddressPage.pagePath,
+      newAddressPage.pageTitle
+    )
+    await newAddressPage.selectContinue()
     await checkAnswersPage.selectBackLink()
 
     await newAddressPage.addressLineOneInput().isDisplayed()
   })
 
   it('Should verify the existing radio selection and verify resubmission', async () => {
-    await completeOriginTaskAnswers()
-    await checkAnswersPage.verifyPageHeadingAndTitle(
-      checkAnswersPage.pageHeading
+    await loadPageAndVerifyTitle(
+      checkAnswersPage.pagePath,
+      checkAnswersPage.pageTitle
     )
-    await selectElement(checkAnswersPage.changeOnOrOffLink)
-
-    await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
-    await toFromFarmPage.selectOffFarmAndContinue()
-
-    await validateElementVisibleAndText(
-      checkAnswersPage.onOffFarmValue,
-      'Off the farm or premises'
+    await validateOnOffFarm(
+      checkAnswersPage.changeOnOrOffLink,
+      checkAnswersPage.onOffFarmValue
     )
   })
 
   it('Should verify the existing cph number then verify changing the cph number', async () => {
-    await completeOriginTaskAnswersCustom(
-      defaultCphNumber,
-      defaultLineOne,
-      defaultTownOrCity,
-      defaultPostcode
+    await loadPageAndVerifyTitle(
+      checkAnswersPage.pagePath,
+      checkAnswersPage.pageTitle
     )
-    await selectElement(checkAnswersPage.changeParishNumberLink)
-
-    const inputValue = await parishHoldingNumberPage.cphNumberInput().getValue()
-    expect(inputValue).toBe(defaultCphNumber)
-    await clearElement(parishHoldingNumberPage.cphNumberInput())
-    await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-      parishHoldingInput
-    )
-
-    await validateElementVisibleAndText(
+    await validateAndAdjustParishNumber(
+      checkAnswersPage.changeParishNumberLink,
       checkAnswersPage.parishNumberValue,
+      defaultCphNumber,
       parishHoldingInput
     )
   })
 
   it('Should verify the existing data then verify changing the address', async () => {
-    await completeOriginTaskAnswersCustom(
-      defaultCphNumber,
-      defaultLineOne,
-      defaultTownOrCity,
-      defaultPostcode
+    await loadPageAndVerifyTitle(
+      checkAnswersPage.pagePath,
+      checkAnswersPage.pageTitle
     )
-    await selectElement(checkAnswersPage.changeAddressLink)
-
-    await newAddressPage.verifyFieldValues({
-      lineOne: defaultLineOne,
-      townOrCity: defaultTownOrCity,
-      postcode: defaultPostcode
-    })
-    await newAddressPage.clearFormFields()
-    await newAddressPage.fillFormFieldsAndSubmit({
-      lineOne,
-      lineTwo,
-      townOrCity,
-      county,
-      postcode
-    })
-
-    await validateElementVisibleAndText(checkAnswersPage.addressValue, lineOne)
-    await validateElementVisibleAndText(checkAnswersPage.addressValue, lineTwo)
-    await validateElementVisibleAndText(
+    await validateAndAdjustAddress(
+      checkAnswersPage.changeAddressLink,
       checkAnswersPage.addressValue,
-      townOrCity
+      {
+        lineOne: defaultLineOne,
+        townOrCity: defaultTownOrCity,
+        postcode: defaultPostcode
+      },
+      { lineOne, lineTwo, townOrCity, county, postcode }
     )
-    await validateElementVisibleAndText(checkAnswersPage.addressValue, county)
-    await validateElementVisibleAndText(checkAnswersPage.addressValue, postcode)
   })
 
   it('Should verify submitting answers', async () => {
-    await completeOriginTaskAnswers()
+    await loadPageAndVerifyTitle(
+      checkAnswersPage.pagePath,
+      checkAnswersPage.pageTitle
+    )
     await checkAnswersPage.selectContinue()
+    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
     await taskListPage.verifyStatus({
       position: 1,
       taskTitle: 'Movement origin',

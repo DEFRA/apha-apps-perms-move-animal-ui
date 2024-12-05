@@ -32,6 +32,7 @@ export const waitForElement = async (
 export const selectElement = async (element, hidden = false) => {
   try {
     await waitForElement(element, { visible: !hidden })
+    await element.isClickable()
     await element.click()
   } catch (error) {
     throw new Error(
