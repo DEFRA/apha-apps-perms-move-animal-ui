@@ -58,7 +58,12 @@ export const postEmailAddressController = {
       emailAddress: emailAddress.toState()
     })
 
-    return res.redirect('/receiving-the-licence/check-answers')
+    return res.redirect(
+      calculateNextPage(
+        payload.nextPage,
+        '/receiving-the-licence/check-answers'
+      )
+    )
   }
 }
 
