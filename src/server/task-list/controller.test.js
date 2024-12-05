@@ -6,6 +6,7 @@ import { withCsrfProtection } from '../common/test-helpers/csrf.js'
 import { Destination } from '../common/model/section/destination.js'
 import { License } from '../common/model/section/license.js'
 import { Tests } from '../common/model/section/tests.js'
+import { AnswerModel } from '../common/model/answer/answer-model.js'
 
 describe('#taskListController', () => {
   /** @type {Server} */
@@ -55,14 +56,17 @@ describe('#taskListController', () => {
   it('Should redirect to check-answers if all tasks are valid', async () => {
     // Mock the validation to return true for all the tasks (needed until we can have actual valid tasks)
     const mockValidValue = {
-      validate: () => ({ isValid: true, errors: {} }),
+      validate: () => ({ isValid: true, result: {} }),
       _data: {}
     }
     const allSpies = [
       jest.spyOn(Origin, 'fromState').mockReturnValue(mockValidValue),
       jest.spyOn(Destination, 'fromState').mockReturnValue(mockValidValue),
       jest.spyOn(Tests, 'fromState').mockReturnValue(mockValidValue),
-      jest.spyOn(License, 'fromState').mockReturnValue(mockValidValue)
+      jest.spyOn(License, 'fromState').mockReturnValue({
+        ...mockValidValue,
+        ...{ emailAddress: new AnswerModel({ value: '' }) }
+      })
     ]
 
     const { statusCode, headers } = await server.inject(

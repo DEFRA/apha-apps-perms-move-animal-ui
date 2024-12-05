@@ -1,4 +1,7 @@
 import { License } from './license.js'
+import { EmailAddress } from '../answer/email-address.js'
+
+const testEmail = 'test@domain.com'
 
 describe('License', () => {
   let destination
@@ -8,17 +11,23 @@ describe('License', () => {
     destination._data = {}
   })
 
-  describe('validate', () => {
-    it('should return invalid', () => {
-      const result = License.fromState().validate()
-      expect(result.isValid).toBe(false)
-    })
-  })
-
   describe('fromState', () => {
-    it('should return an instance of Destination', () => {
-      const instance = License.fromState()
-      expect(instance).toBeInstanceOf(License)
+    it('should create an Origin instance with valid nested objects', () => {
+      const licenseData = {
+        emailAddress: testEmail
+      }
+
+      const license = License.fromState(licenseData)
+
+      expect(license).toBeInstanceOf(License)
+      expect(license._data?.emailAddress).toBeInstanceOf(EmailAddress)
+    })
+
+    it('should handle undefined state gracefully', () => {
+      const license = License.fromState(undefined)
+
+      expect(license).toBeInstanceOf(License)
+      expect(license._data?.emailAddress.value).toBeUndefined()
     })
   })
 })

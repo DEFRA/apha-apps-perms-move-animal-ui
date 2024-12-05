@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
+import { validateAnswerAgainstSchema } from './validation.js'
 
 const emailAddressRegex = /^[^@]+@[^@]+$/
 
@@ -36,6 +36,10 @@ export class EmailAddress extends AnswerModel {
     return this._data?.emailAddress
   }
 
+  get html() {
+    return this._data?.emailAddress
+  }
+
   /**
    * @returns {EmailAddressData}
    */
@@ -44,7 +48,7 @@ export class EmailAddress extends AnswerModel {
   }
 
   validate() {
-    return validateAgainstSchema(emailAddressPayloadSchema, this._data)
+    return validateAnswerAgainstSchema(emailAddressPayloadSchema, this._data)
   }
 
   /**

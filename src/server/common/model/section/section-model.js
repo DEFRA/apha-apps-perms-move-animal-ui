@@ -1,3 +1,13 @@
+import { validateSection } from './validation.js'
+
+/**
+ * @import {AnswerModel} from '../answer/answer-model.js'
+ */
+
+/**
+ * @typedef {{[key:string]: AnswerModel}} SectionPayload
+ */
+
 class NotImplementedError extends Error {
   constructor() {
     super('Not implemented')
@@ -5,7 +15,7 @@ class NotImplementedError extends Error {
 }
 
 export class SectionModel {
-  /** @type {SectionPayload | undefined} */
+  /** @type {SectionPayload} */
   _data
 
   constructor(data) {
@@ -14,7 +24,7 @@ export class SectionModel {
   }
 
   validate() {
-    throw new NotImplementedError()
+    return validateSection(this._data)
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -29,7 +39,3 @@ export class SectionModel {
 
   /* eslint-enable @typescript-eslint/no-unused-vars */
 }
-
-/**
- * @typedef {{[key:string]: object | undefined}} SectionPayload
- */

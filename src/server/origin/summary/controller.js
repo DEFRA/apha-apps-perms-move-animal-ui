@@ -1,6 +1,4 @@
-import { Address } from '~/src/server/common/model/answer/address.js'
-import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
-import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+import { Origin } from '../../common/model/section/origin.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -12,9 +10,25 @@ export const heading = pageTitle
  */
 export const originSummaryGetController = {
   handler(req, h) {
-    const origin = req.yar.get('origin') ?? {}
+    const origin = Origin.fromState(req.yar.get('origin'))
+    const { isValid, result } = origin.validate()
 
-    const originOnOffFarm = origin?.onOffFarm
+    if (!isValid) {
+      if (!result.onOffFarm.isValid) {
+        return h.redirect(
+          '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+        )
+      }
+      if (!result.cphNumber.isValid) {
+        return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
+      }
+      if (!result.address.isValid) {
+        return h.redirect('/origin/address?redirect_uri=/origin/summary')
+      }
+    }
+
+    const tempOrigin = req.yar.get('origin') ?? {}
+    const originOnOffFarm = tempOrigin?.onOffFarm
     let enteredOnOffFarm
 
     if (originOnOffFarm === 'on') {
@@ -24,30 +38,12 @@ export const originSummaryGetController = {
     } else {
       enteredOnOffFarm = ''
     }
-
-    const onOffFarm = OnOffFarm.fromState(origin?.onOffFarm).validate()
-    if (!onOffFarm.isValid) {
-      return h.redirect(
-        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
-      )
-    }
-
-    const cphNumber = CphNumber.fromState(origin.cphNumber)
-    if (!cphNumber.validate().isValid) {
-      return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
-    }
-
-    const address = Address.fromState(origin?.address)
-    if (!address.validate().isValid) {
-      return h.redirect('/origin/address?redirect_uri=/origin/summary')
-    }
-
     return h.view(indexView, {
       pageTitle,
       heading,
       origin: {
-        cphNumber: origin?.cphNumber,
-        address: Object.values(origin?.address ?? {}).join('<br />'),
+        cphNumber: tempOrigin?.cphNumber,
+        address: Object.values(tempOrigin?.address ?? {}).join('<br />'),
         onOffFarm: enteredOnOffFarm
       }
     })
@@ -65,10 +61,4 @@ export const originSummaryPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
- * @import { AddressData } from '~/src/server/common/model/answer/address.js'
- * @typedef {{
- *   onOffFarm: string;
- *   cphNumber: string;
- *   address: AddressData;
- * }} Origin
  */

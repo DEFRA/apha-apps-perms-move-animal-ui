@@ -45,6 +45,12 @@ class TaskListPage extends Page {
     expect(await status.getText()).toContain(expectedStatus)
   }
 
+  async verifyAllStatus(statusArray) {
+    for (const { position, taskTitle, expectedStatus } of statusArray) {
+      await this.verifyStatus({ position, taskTitle, expectedStatus })
+    }
+  }
+
   async selectReview() {
     await page.selectElement(this.reviewLink)
     if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
