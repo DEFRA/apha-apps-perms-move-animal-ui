@@ -70,7 +70,7 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  it('Should redirect to task page if not all answers valid', async () => {
+  it('Should redirect to task-incomplete page if not all answers valid', async () => {
     await session.setState('origin', {})
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
@@ -86,7 +86,42 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list')
+    expect(headers.location).toBe('/task-list-incomplete')
+  })
+
+  it('Should stay in check-answers if all tasks are valid', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/submit/check-answers'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  it('Should redirect to task-list-incomplete if any task is invalid', async () => {
+    await session.setState('license', {})
+
+    const { statusCode, headers } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/submit/check-answers'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe('/task-list-incomplete')
   })
 
   it('Should display an error', async () => {

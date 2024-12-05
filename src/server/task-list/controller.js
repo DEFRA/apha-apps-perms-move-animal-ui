@@ -80,17 +80,8 @@ export const taskListGetController = {
  * @satisfies {Partial<ServerRoute>}
  */
 export const taskListPostController = {
-  handler(req, h) {
-    const validations = [
-      Origin.fromState(req.yar.get('origin')).validate().isValid,
-      Destination.fromState().validate().isValid,
-      Tests.fromState().validate().isValid,
-      License.fromState(req.yar.get('license')).validate().isValid
-    ]
-
-    const isAllValid = validations.every(Boolean)
-
-    return h.redirect(isAllValid ? '/check-answers' : '/task-list-incomplete')
+  handler(_req, h) {
+    return h.redirect('/submit/check-answers')
   }
 }
 

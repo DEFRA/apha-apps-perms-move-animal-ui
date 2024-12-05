@@ -26,7 +26,7 @@ export const checkAnswersGetController = {
     )
 
     if (!isValid) {
-      return res.redirect('/task-list')
+      return res.redirect('/task-list-incomplete')
     }
 
     return res.view('check-answers/index', {
