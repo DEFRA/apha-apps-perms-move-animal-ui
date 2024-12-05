@@ -1,12 +1,12 @@
-import newAddressPage from '../../page-objects/origin/newAddressPage'
-import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage'
-import toFromFarmPage from '../../page-objects/origin/toFromFarmPage'
-import emailPage from '../../page-objects/receiving-the-licence/emailPage'
+import newAddressPage from '../../page-objects/origin/newAddressPage.js'
+import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
+import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import {
   clearElement,
   selectElement,
   validateElementVisibleAndText
-} from '../page'
+} from '../page.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
