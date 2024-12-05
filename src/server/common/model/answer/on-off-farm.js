@@ -14,19 +14,35 @@ export const onOffFarmPayloadSchema = Joi.object({
 })
 
 /**
- * export @typedef {string} OnOffFarmData
+ * export @typedef {'on' | 'off'} OnOffFarmData
+ * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
  */
 
+/**
+ * @augments AnswerModel<OnOffFarmPayload>
+ */
 export class OnOffFarm extends AnswerModel {
   /**
-   * @returns {OnOffFarmData}
+   * @returns {OnOffFarmData | undefined}
    */
   toState() {
-    return this._data?.onOffFarm ?? ''
+    return this._data?.onOffFarm
   }
 
   get value() {
     return this._data?.onOffFarm
+  }
+
+  get html() {
+    const originOnOffFarm = this._data?.onOffFarm
+
+    if (originOnOffFarm === 'on') {
+      return 'On to the farm or premises'
+    } else if (originOnOffFarm === 'off') {
+      return 'Off the farm or premises'
+    } else {
+      return ''
+    }
   }
 
   /**
@@ -34,10 +50,10 @@ export class OnOffFarm extends AnswerModel {
    * @returns {OnOffFarm}
    */
   static fromState(state) {
-    return new OnOffFarm(state !== undefined ? { onOffFarm: state } : {})
+    return new OnOffFarm(state !== undefined ? { onOffFarm: state } : undefined)
   }
 
   validate() {
-    return validateAnswerAgainstSchema(onOffFarmPayloadSchema, this._data)
+    return validateAnswerAgainstSchema(onOffFarmPayloadSchema, this._data ?? {})
   }
 }

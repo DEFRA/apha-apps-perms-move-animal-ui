@@ -37,7 +37,7 @@ export class EmailAddress extends AnswerModel {
   }
 
   get html() {
-    return this._data?.emailAddress
+    return this._data?.emailAddress ?? ''
   }
 
   /**

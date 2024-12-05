@@ -1,8 +1,12 @@
 import landingPage from '../../page-objects/landingPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import { loadPageAndVerifyTitle } from '../page.js'
+import {
+  loadPageAndVerifyTitle,
+  validateElementVisibleAndText
+} from '../page.js'
 
 // Default data
 const defaultEmail = 'batman@gotham.gov.uk'
@@ -13,6 +17,7 @@ const completeLicenceTask = async ({ email = defaultEmail } = {}) => {
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectReceiveTheLicence()
   await emailPage.inputEmailAndContinue(email)
+  await validateElementVisibleAndText(licenceAnswersPage.emailValue, email)
 }
 
 // Predefined task completion function

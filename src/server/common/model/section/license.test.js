@@ -30,4 +30,12 @@ describe('License', () => {
       expect(license._data?.emailAddress.value).toBeUndefined()
     })
   })
+
+  describe('emailAddress', () => {
+    it('should return the licence email address answer model', () => {
+      const license = License.fromState(undefined)
+
+      expect(license.emailAddress).toBeInstanceOf(EmailAddress)
+    })
+  })
 })

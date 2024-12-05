@@ -138,19 +138,19 @@ describe('licenseEmailAddress', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    it('should redirect to summary page if it came from there', async () => {
+    it('should redirect to the page it came from via redirect_uri', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
           url: '/receiving-the-licence/licence-enter-email-address',
           payload: {
             emailAddress: testEmail,
-            nextPage: '/receiving-the-licence/check-answers'
+            nextPage: '/some/page'
           }
         })
       )
 
-      expect(headers.location).toBe('/receiving-the-licence/check-answers')
+      expect(headers.location).toBe('/some/page')
       expect(statusCode).toBe(statusCodes.redirect)
     })
 

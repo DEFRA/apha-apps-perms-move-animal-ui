@@ -110,4 +110,16 @@ describe('EmailAddress', () => {
       expect(EmailAddress.fromState(undefined)._data).toEqual({})
     })
   })
+
+  describe('html', () => {
+    it('should return the email address if present', () => {
+      const emailAddress = new EmailAddress(validEmailAddressPayload)
+      expect(emailAddress.html).toBe(validEmailAddressPayload.emailAddress)
+    })
+
+    it('should return an empty string if email address is not present', () => {
+      const emailAddress = new EmailAddress({})
+      expect(emailAddress.html).toBe('')
+    })
+  })
 })

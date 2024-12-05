@@ -3,6 +3,7 @@ import { validateSection } from './validation.js'
 const baseMockAnswer = {
   toState: jest.fn(),
   value: 'value',
+  html: '',
   _data: {}
 }
 

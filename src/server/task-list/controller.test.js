@@ -1,12 +1,7 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import { Origin } from '../common/model/section/origin.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
-import { Destination } from '../common/model/section/destination.js'
-import { License } from '../common/model/section/license.js'
-import { Tests } from '../common/model/section/tests.js'
-import { AnswerModel } from '../common/model/answer/answer-model.js'
 
 describe('#taskListController', () => {
   /** @type {Server} */
@@ -53,22 +48,7 @@ describe('#taskListController', () => {
     ])
   })
 
-  it('Should redirect to check-answers if all tasks are valid', async () => {
-    // Mock the validation to return true for all the tasks (needed until we can have actual valid tasks)
-    const mockValidValue = {
-      validate: () => ({ isValid: true, result: {} }),
-      _data: {}
-    }
-    const allSpies = [
-      jest.spyOn(Origin, 'fromState').mockReturnValue(mockValidValue),
-      jest.spyOn(Destination, 'fromState').mockReturnValue(mockValidValue),
-      jest.spyOn(Tests, 'fromState').mockReturnValue(mockValidValue),
-      jest.spyOn(License, 'fromState').mockReturnValue({
-        ...mockValidValue,
-        ...{ emailAddress: new AnswerModel({ value: '' }) }
-      })
-    ]
-
+  it('Should redirect to check-answers', async () => {
     const { statusCode, headers } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -77,33 +57,7 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/check-answers')
-
-    allSpies.forEach((spy) => spy.mockRestore())
-  })
-
-  it('Should redirect to task-list-incomplete if any task is invalid', async () => {
-    const originData = {
-      onOffFarm: '',
-      cphNumber: '12/345/6789',
-      address: {
-        addressLine1: 'Starfleet Headquarters',
-        addressTown: 'San Francisco',
-        addressPostcode: 'RG24 8RR'
-      }
-    }
-
-    Origin.fromState(originData)
-
-    const { statusCode, headers } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/task-list'
-      })
-    )
-
-    expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list-incomplete')
+    expect(headers.location).toBe('/submit/check-answers')
   })
 })
 

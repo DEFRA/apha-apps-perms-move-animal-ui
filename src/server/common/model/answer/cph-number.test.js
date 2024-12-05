@@ -5,7 +5,7 @@ const validCphNumberPayload = {
 }
 
 describe('#CphNumber.validate', () => {
-  test('should return true for valid cphNumber', () => {
+  it('should return true for valid cphNumber', () => {
     const cphNumber = new CphNumber(validCphNumberPayload)
     const { isValid, errors } = cphNumber.validate()
 
@@ -13,8 +13,8 @@ describe('#CphNumber.validate', () => {
     expect(errors).toEqual({})
   })
 
-  test('should return false for an empty input', () => {
-    const cphNumber = new CphNumber({})
+  it('should return false for an empty input', () => {
+    const cphNumber = new CphNumber()
 
     const { isValid, errors } = cphNumber.validate()
 
@@ -22,7 +22,7 @@ describe('#CphNumber.validate', () => {
     expect(errors.cphNumber.text).toBe('Enter the farm or premises CPH number')
   })
 
-  test('should return false for too short input', () => {
+  it('should return false for too short input', () => {
     const cphNumber = new CphNumber({
       cphNumber: '1/2/3'
     })
@@ -37,21 +37,21 @@ describe('#CphNumber.validate', () => {
 })
 
 describe('#CphNumber.toState', () => {
-  test('should replace missing data with blank string', () => {
-    const cphNumber = new CphNumber({})
+  it('should replace missing data with blank string', () => {
+    const cphNumber = new CphNumber()
     const data = cphNumber.toState()
 
     expect(data).toBe('')
   })
 
-  test('should pass through valid data unaltered', () => {
+  it('should pass through valid data unaltered', () => {
     const cphNumber = new CphNumber(validCphNumberPayload)
     const data = cphNumber.toState()
 
     expect(data).toEqual(validCphNumberPayload.cphNumber)
   })
 
-  test('should remove whitespace', () => {
+  it('should remove whitespace', () => {
     const cphNumber = new CphNumber({
       cphNumber: '  12/4 56/789 9 '
     })
@@ -74,6 +74,18 @@ describe('#CphNumber.fromState', () => {
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(CphNumber.fromState(undefined)._data).toEqual({})
+    expect(CphNumber.fromState(undefined)._data).toBeUndefined()
+  })
+})
+
+describe('#CphNumber.html', () => {
+  it('should return the cphNumber if present', () => {
+    const cphNumber = new CphNumber(validCphNumberPayload)
+    expect(cphNumber.html).toBe(validCphNumberPayload.cphNumber)
+  })
+
+  it('should return an empty string if cphNumber is not present', () => {
+    const cphNumber = new CphNumber()
+    expect(cphNumber.html).toBe('')
   })
 })

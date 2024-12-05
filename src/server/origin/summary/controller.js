@@ -27,24 +27,13 @@ export const originSummaryGetController = {
       }
     }
 
-    const tempOrigin = req.yar.get('origin') ?? {}
-    const originOnOffFarm = tempOrigin?.onOffFarm
-    let enteredOnOffFarm
-
-    if (originOnOffFarm === 'on') {
-      enteredOnOffFarm = 'On to the farm or premises'
-    } else if (originOnOffFarm === 'off') {
-      enteredOnOffFarm = 'Off the farm or premises'
-    } else {
-      enteredOnOffFarm = ''
-    }
     return h.view(indexView, {
       pageTitle,
       heading,
       origin: {
-        cphNumber: tempOrigin?.cphNumber,
-        address: Object.values(tempOrigin?.address ?? {}).join('<br />'),
-        onOffFarm: enteredOnOffFarm
+        cphNumber: origin?.cphNumber.html,
+        address: origin.address.html,
+        onOffFarm: origin.onOffFarm.html
       }
     })
   }

@@ -4,7 +4,11 @@ import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumb
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import { loadPageAndVerifyTitle } from '../page.js'
+import {
+  loadPageAndVerifyTitle,
+  validateElementVisibleAndText
+} from '../page.js'
+import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 // Default data
 const defaultLineOne = '37 Made up lane'
@@ -29,6 +33,11 @@ const completeOriginTask = async ({
     townOrCity,
     postcode
   })
+  await checkAnswersPage.verifyPageHeadingAndTitle(checkAnswersPage.pageHeading)
+  await validateElementVisibleAndText(
+    checkAnswersPage.parishNumberValue,
+    cphNumber
+  )
 }
 
 // Predefined task completion function

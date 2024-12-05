@@ -8,10 +8,17 @@ class NotImplementedError extends Error {
   }
 }
 
+/**
+ * @template Payload
+ * @class AnswerModel<Payload>
+ */
 export class AnswerModel {
-  /** @type {RawPayload | undefined} */
+  /** @type {Payload | undefined } */
   _data
 
+  /**
+   * @param {Payload | undefined } [data]
+   */
   constructor(data) {
     this._data = data
     Object.seal(this)
@@ -35,6 +42,11 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
+  /** @returns {string} */
+  get html() {
+    throw new NotImplementedError()
+  }
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
   /**
@@ -51,5 +63,3 @@ export class AnswerModel {
 /**
  * @typedef {{[key:string]: string | undefined}} RawPayload
  */
-
-/** @import { Schema } from 'joi' */

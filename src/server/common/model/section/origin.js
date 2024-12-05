@@ -15,6 +15,18 @@ import { Address } from '../answer/address.js'
  */
 
 export class Origin extends SectionModel {
+  get onOffFarm() {
+    return this._data?.onOffFarm
+  }
+
+  get cphNumber() {
+    return this._data?.cphNumber
+  }
+
+  get address() {
+    return this._data?.address
+  }
+
   /**
    * @param {OriginData | undefined} state
    * @returns {Origin}

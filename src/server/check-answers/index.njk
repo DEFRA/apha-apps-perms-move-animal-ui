@@ -1,0 +1,141 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% extends 'layouts/questions.njk' %}
+
+{% macro section(rows) %}
+
+  {% set enrichedRows = [] %}
+  {% for row in rows %}
+    {% set rows = (enrichedRows, enrichedRows.push({
+      key: {
+        text: row.key,
+        classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+      },
+      value: {
+        html: row.value
+      },
+      actions: {
+        items: [
+          {
+            href: row.url,
+            text: "Change",
+            visuallyHiddenText: question,
+            attributes: row.attributes
+          }
+        ]
+      }
+    })) %}
+  {% endfor %}
+
+
+
+  {{ govukSummaryList({
+    rows: enrichedRows
+  }) }}
+{% endmacro %}
+
+{% block beforequestion %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h1 class="govuk-heading-l">{{pageTitle}}</h1>
+
+          {% if (errorMessage) %}
+            {{ govukErrorSummary({
+              titleText: "There is a problem",
+              errorList: [
+                {
+                  text: errorMessage.text,
+                  href: "#confirmation"
+                }
+              ]
+            }) }}
+          {% endif %}
+          <h1 class="govuk-heading-l">
+              {{ heading }}
+          </h1>
+
+          <h2 class="govuk-heading-m">Movement origin</h2>
+          {{ section([{
+            key: "Are you moving the cattle on or off your farm or premises?",
+            value: origin.onOffFarm.html,
+            url: "/origin/to-or-from-own-premises?redirect_uri=/submit/check-answers",
+            attributes: {
+              'data-testid': 'on-off-change-link'
+            }
+          }, {
+            key: "What is the County Parish Holding (CPH) number of your farm where the animals are moving off?",
+            value: origin.cphNumber.html,
+            url: "/origin/cph-number?redirect_uri=/submit/check-answers",
+            attributes: {
+              'data-testid': 'cph-change-link'
+            }
+          }, {
+            key: "What is the address of your farm or premises where the animals are moving off?",
+            value: origin.address.html,
+            url: "/origin/address?redirect_uri=/submit/check-answers",
+            attributes: {
+              'data-testid': 'address-change-link'
+            }
+          }]) }}
+
+          <h2 class="govuk-heading-m">Receiving the licence</h2>
+          {{ section([{
+            key: "What email address would you like the licence sent to?",
+            value: license.emailAddress.html,
+            url: "/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers",
+            attributes: {
+              'data-testid': 'email-change-link'
+            }
+          }])}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block questions %}
+  <h2 class="govuk-heading-m">Your declaration</h2>
+
+  <p>Before you submit your application, you need to confirm:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>all relevant sections are complete</li>
+    <li>all the information given is correct and accurate to the best of your knowledge</li>
+  </ul>
+
+  <!-- form URL below turns off errors on the next page  -->
+  {{ govukCheckboxes
+    ({
+      name: "confirmation",
+      id: "confirmation",
+      errorMessage: errorMessage,
+      fieldset: {
+        legend:{
+          text: "",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [{
+        value: "confirm",
+        text: "I confirm the above statements",
+        attributes: {
+          'data-testid': 'confirm-statements-checkbox'
+        }
+      }, {
+        value: "other",
+        text: "I am submitting this form on behalf of someone else and confirm the above statements",
+        attributes: {
+          'data-testid': 'someone-else-checkbox'
+        }
+      }]
+    })
+  }}
+{% endblock %}

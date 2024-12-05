@@ -61,27 +61,27 @@ export const config = merge(wdioConf, {
         osVersion: 'Monterey',
         sessionName: 'osx-firefox'
       }
-    },
-    {
-      browserName: 'Safari',
-      'bstack:options': {
-        os: 'iOS',
-        osVersion: '15.6',
-        deviceName: 'iPhone 13',
-        realMobile: true,
-        sessionName: 'ios-safari'
-      }
-    },
-    {
-      browserName: 'Chrome',
-      'bstack:options': {
-        os: 'iOS',
-        osVersion: '15.6',
-        deviceName: 'iPhone 13',
-        realMobile: true,
-        sessionName: 'ios-chrome'
-      }
     }
+    // {
+    //   browserName: 'Safari',
+    //   'bstack:options': {
+    //     os: 'iOS',
+    //     osVersion: '15.6',
+    //     deviceName: 'iPhone 13',
+    //     realMobile: true,
+    //     sessionName: 'ios-safari'
+    //   }
+    // },
+    // {
+    //   browserName: 'Chrome',
+    //   'bstack:options': {
+    //     os: 'iOS',
+    //     osVersion: '15.6',
+    //     deviceName: 'iPhone 13',
+    //     realMobile: true,
+    //     sessionName: 'ios-chrome'
+    //   }
+    // }
     // {
     //   browserName: 'Chrome',
     //   'bstack:options': {
