@@ -1,19 +1,21 @@
 /**
- *
+ * @import { Schema } from 'joi'
+ */
+
+/**
  * @typedef {{text: string}} ValidationError
- * @typedef {{
+ * export @typedef {{
  *   isValid: boolean,
  *   errors: {[key:string]: ValidationError}
- * }} ValidationResult
- * @import { Schema } from 'joi'
+ * }} AnswerValidationResult
  */
 
 /**
  * @param {Schema} schema
  * @param {object} value
- * @returns {ValidationResult}
+ * @returns {AnswerValidationResult}
  */
-export const validateAgainstSchema = (schema, value) => {
+export const validateAnswerAgainstSchema = (schema, value) => {
   const { error } = schema.validate(value, {
     abortEarly: false,
     allowUnknown: true

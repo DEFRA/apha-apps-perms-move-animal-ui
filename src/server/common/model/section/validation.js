@@ -1,21 +1,33 @@
-import Joi from 'joi'
+/**
+ * @import {AnswerValidationResult} from '../answer/validation.js'
+ * @import {AnswerModel} from '../answer/answer-model.js'
+ */
 
 /**
- * A Joi validation schema that performs custom validation on a section object.
- * It checks if any of the object's values are invalid based on their own `validate` method.
- * If any value is invalid, it returns a validation error.
- * @type {Joi.ObjectSchema}
- * @param {object} data - The object to validate.
- * @param {object} helpers - Joi helpers for custom validation.
- * @returns {object} - The validated data or an error if validation fails.
+ * @typedef {{[key:string]: AnswerValidationResult}} ValidationResult
+ * @typedef {{
+ *   isValid: boolean,
+ *   result: ValidationResult
+ * }} SectionValidationResult
  */
-export const sectionValidationSchema = Joi.object().custom((data, helpers) => {
-  const invalid = Object.values(data).some((item) => {
-    return !item.validate().isValid
+
+/**
+ * Validates all the answers within a section and outputs an overall isValid result.
+ * @param {{[key:string]: AnswerModel}} data - The data to be validated.
+ * @returns {SectionValidationResult} An object containing the validation result
+ */
+export const validateSection = (data) => {
+  /** @type {ValidationResult} */
+  const result = {}
+  let isValid = true
+
+  Object.keys(data).forEach((key) => {
+    result[key] = data[key].validate()
+    isValid = isValid && result[key].isValid
   })
 
-  if (invalid) {
-    return helpers.error('any.invalid')
+  return {
+    isValid,
+    result
   }
-  return data
-})
+}

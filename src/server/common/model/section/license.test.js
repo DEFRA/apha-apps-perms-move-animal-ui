@@ -11,29 +11,6 @@ describe('License', () => {
     destination._data = {}
   })
 
-  describe('validate', () => {
-    it('should return valid if all nested objects are valid', () => {
-      const licenseData = {
-        emailAddress: testEmail
-      }
-      const result = License.fromState(licenseData).validate()
-
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
-    })
-
-    it('should return invalid if any nested object is invalid', () => {
-      const licenseData = {
-        emailAddress: ''
-      }
-
-      const result = License.fromState(licenseData).validate()
-
-      expect(result.isValid).toBe(false)
-      expect(result.errors).toHaveProperty('license')
-    })
-  })
-
   describe('fromState', () => {
     it('should create an Origin instance with valid nested objects', () => {
       const licenseData = {

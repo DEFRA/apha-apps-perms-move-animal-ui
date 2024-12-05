@@ -2,10 +2,6 @@ import { SectionModel } from '../section/section-model.js'
 import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
-import { sectionValidationSchema } from './validation.js'
-
-const validationSchema = sectionValidationSchema.label('origin')
 
 /**
  * export @typedef {{
@@ -19,10 +15,6 @@ const validationSchema = sectionValidationSchema.label('origin')
  */
 
 export class Origin extends SectionModel {
-  validate() {
-    return validateAgainstSchema(validationSchema, this._data)
-  }
-
   /**
    * @param {OriginData | undefined} state
    * @returns {Origin}

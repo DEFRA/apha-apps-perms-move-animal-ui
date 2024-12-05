@@ -1,4 +1,4 @@
-import { EmailAddress } from '../../common/model/answer/email-address.js'
+import { License } from '../../common/model/section/license.js'
 
 const indexView = 'license/check-answers/index.njk'
 export const pageTitle =
@@ -10,12 +10,10 @@ export const heading = pageTitle
  */
 export const licenseCheckAnswersGetController = {
   handler(req, h) {
-    const license = req.yar.get('license') ?? {}
+    const license = License.fromState(req.yar.get('license'))
+    const { isValid, result } = license.validate()
 
-    const emailAddress = EmailAddress.fromState(
-      license?.emailAddress
-    ).validate()
-    if (!emailAddress.isValid) {
+    if (!isValid && !result.emailAddress.isValid) {
       return h.redirect(
         '/receiving-the-licence/licence-enter-email-address?redirect_uri=/receiving-the-licence/check-answers'
       )
@@ -24,9 +22,7 @@ export const licenseCheckAnswersGetController = {
     return h.view(indexView, {
       pageTitle,
       heading,
-      license: {
-        emailAddress: license?.emailAddress
-      }
+      license
     })
   }
 }

@@ -1,3 +1,7 @@
+/**
+ * @import {AnswerValidationResult} from './validation.js'
+ */
+
 class NotImplementedError extends Error {
   constructor() {
     super('Not implemented')
@@ -24,6 +28,9 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
+  /**
+   * @returns {AnswerValidationResult}
+   */
   validate() {
     throw new NotImplementedError()
   }

@@ -1,9 +1,6 @@
 import { SectionModel } from './section-model.js'
-import { validateAgainstSchema } from '../../helpers/validation/validation.js'
 import { EmailAddress } from '../answer/email-address.js'
-import { sectionValidationSchema } from './validation.js'
 
-const validationSchema = sectionValidationSchema.label('license')
 /**
  * export @typedef {{
  * emailAddress: EmailAddressData | undefined;
@@ -12,8 +9,8 @@ const validationSchema = sectionValidationSchema.label('license')
  */
 
 export class License extends SectionModel {
-  validate() {
-    return validateAgainstSchema(validationSchema, this._data)
+  get emailAddress() {
+    return this._data?.emailAddress
   }
 
   /**
