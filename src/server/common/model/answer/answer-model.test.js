@@ -30,7 +30,7 @@ describe('AnswerModel', () => {
 
   it('should seal the object to prevent property additions or deletions', () => {
     class AnswerModelBasic extends AnswerModel {
-      extractFields(data) {
+      _extractFields(data) {
         return data
       }
     }

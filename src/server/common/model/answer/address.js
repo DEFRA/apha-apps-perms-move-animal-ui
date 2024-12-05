@@ -98,7 +98,7 @@ export class Address extends AnswerModel {
     return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
   }
 
-  extractFields({
+  _extractFields({
     addressLine1,
     addressLine2,
     addressTown,

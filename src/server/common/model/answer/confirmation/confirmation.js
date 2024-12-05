@@ -48,7 +48,7 @@ export class Confirmation extends AnswerModel {
     })
   }
 
-  extractFields({ confirmation }) {
+  _extractFields({ confirmation }) {
     return { confirmation }
   }
 

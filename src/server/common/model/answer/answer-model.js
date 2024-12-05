@@ -20,7 +20,7 @@ export class AnswerModel {
    * @param {Payload | undefined } [data]
    */
   constructor(data) {
-    this._data = data === undefined ? undefined : this.extractFields(data)
+    this._data = data === undefined ? undefined : this._extractFields(data)
     Object.seal(this)
   }
 
@@ -40,7 +40,7 @@ export class AnswerModel {
    * @returns {Payload}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  extractFields(data) {
+  _extractFields(data) {
     throw new NotImplementedError()
   }
 

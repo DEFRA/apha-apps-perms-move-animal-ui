@@ -3,7 +3,7 @@ import { AnswerModel } from '../answer/answer-model.js'
 
 class MockAnswer extends AnswerModel {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  extractFields(data) {
+  _extractFields(data) {
     return data
   }
 }
