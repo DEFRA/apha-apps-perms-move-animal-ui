@@ -1,7 +1,7 @@
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
-const cphId = 'cph-number'
+const cphId = 'cphNumber'
 
 const pageHeadingAndTitle =
   'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
