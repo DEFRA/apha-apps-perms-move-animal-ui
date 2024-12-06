@@ -1,8 +1,10 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+
+const pageTitle =
+  'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
 
 describe('#cphNumber', () => {
   /** @type {Server} */

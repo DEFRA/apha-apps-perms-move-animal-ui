@@ -2,11 +2,7 @@
  * @import {AnswerValidationResult} from './validation.js'
  */
 
-class NotImplementedError extends Error {
-  constructor() {
-    super('Not implemented')
-  }
-}
+import { NotImplementedError } from '../../helpers/not-implmented-error.js'
 
 /**
  * @template Payload
