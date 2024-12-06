@@ -3,6 +3,8 @@
  * @import {AnswerModel} from '../answer/answer-model.js'
  */
 
+import { mapValues } from 'lodash'
+
 /**
  * @typedef {{[key:string]: AnswerValidationResult}} ValidationResult
  * @typedef {{
@@ -17,14 +19,8 @@
  * @returns {SectionValidationResult} An object containing the validation result
  */
 export const validateSection = (data) => {
-  /** @type {ValidationResult} */
-  const result = {}
-  let isValid = true
-
-  Object.keys(data).forEach((key) => {
-    result[key] = data[key].validate()
-    isValid = isValid && result[key].isValid
-  })
+  const result = mapValues(data, (answer) => answer.validate())
+  const isValid = Object.values(result).every((a) => a.isValid)
 
   return {
     isValid,
