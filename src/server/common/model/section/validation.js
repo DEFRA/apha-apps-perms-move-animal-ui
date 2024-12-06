@@ -3,7 +3,7 @@
  * @import {AnswerModel} from '../answer/answer-model.js'
  */
 
-import { mapValues } from 'lodash'
+import mapValues from 'lodash.mapvalues'
 
 /**
  * @typedef {{[key:string]: AnswerValidationResult}} ValidationResult
