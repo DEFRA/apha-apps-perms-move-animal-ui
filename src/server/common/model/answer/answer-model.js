@@ -36,11 +36,11 @@ export class AnswerModel {
   }
 
   /**
-   * @param {Payload} data
+   * @param {Payload} _data
    * @returns {Payload}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _extractFields(data) {
+  _extractFields(_data) {
     throw new NotImplementedError()
   }
 
