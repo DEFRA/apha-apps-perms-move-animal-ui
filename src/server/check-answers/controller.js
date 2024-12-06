@@ -31,6 +31,7 @@ export const checkAnswersGetController = {
 
     return res.view('check-answers/index', {
       nextPage: req.query.redirect_uri,
+      heading,
       pageTitle,
       ...tasks
     })
@@ -42,6 +43,11 @@ export const checkAnswersGetController = {
  */
 export const checkAnswersPostController = {
   handler(req, res) {
+    const tasks = {
+      origin: Origin.fromState(req.yar.get('origin')),
+      license: License.fromState(req.yar.get('license'))
+    }
+
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new Confirmation(payload)
 
@@ -51,7 +57,8 @@ export const checkAnswersPostController = {
         pageTitle: `Error: ${pageTitle}`,
         heading,
         confirmation,
-        errorMessage: errors.confirmation
+        errorMessage: errors.confirmation,
+        ...tasks
       })
     }
 
