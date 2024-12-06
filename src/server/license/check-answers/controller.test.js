@@ -4,7 +4,7 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
 import { pageTitle } from './controller.js'
-import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
+import SesessionTestHelper from '~/src/server/common/test-helpers/session-helper.js'
 
 const testEmail = 'test@domain.com'
 
