@@ -3,7 +3,7 @@
  * @import {AnswerModel} from '../answer/answer-model.js'
  */
 
-import mapValues from 'lodash.mapvalues'
+import _ from 'lodash'
 
 /**
  * @typedef {{[key:string]: AnswerValidationResult}} ValidationResult
@@ -19,7 +19,7 @@ import mapValues from 'lodash.mapvalues'
  * @returns {SectionValidationResult} An object containing the validation result
  */
 export const validateSection = (data) => {
-  const result = mapValues(data, (answer) => answer.validate())
+  const result = _.mapValues(data, (answer) => answer.validate())
   const isValid = Object.values(result).every((a) => a.isValid)
 
   return {
