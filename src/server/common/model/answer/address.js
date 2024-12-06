@@ -79,7 +79,6 @@ export class Address extends AnswerModel {
 
   get html() {
     return Object.values(this.value ?? [])
-      .filter((line) => line !== undefined)
       .filter((line) => {
         const trimmed = line.trim()
         return trimmed.length > 0
@@ -107,9 +106,9 @@ export class Address extends AnswerModel {
   }) {
     return {
       addressLine1,
-      addressLine2,
+      ...(addressLine2 !== undefined && { addressLine2 }),
       addressTown,
-      addressCounty,
+      ...(addressCounty !== undefined && { addressCounty }),
       addressPostcode
     }
   }
