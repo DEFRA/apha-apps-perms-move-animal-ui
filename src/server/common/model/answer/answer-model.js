@@ -2,11 +2,7 @@
  * @import {AnswerValidationResult} from './validation.js'
  */
 
-class NotImplementedError extends Error {
-  constructor() {
-    super('Not implemented')
-  }
-}
+import { NotImplementedError } from '../../helpers/not-implmented-error.js'
 
 /**
  * @template Payload
@@ -59,6 +55,14 @@ export class AnswerModel {
 
   /* eslint-enable @typescript-eslint/no-unused-vars */
 }
+
+/**
+ * @template Payload
+ * @typedef {{
+ *   new (data: Payload): AnswerModel<Payload>,
+ *   fromState(data: any): AnswerModel<Payload>
+ * }} AnswerModelClass
+ */
 
 /**
  * @typedef {{[key:string]: string | undefined}} RawPayload

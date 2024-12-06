@@ -6,16 +6,11 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {% if (errorMessage) %}
+  {% if (errorMessages) %}
     {{ govukErrorSummary({
       titleText: "There is a problem",
-      errorList: [
-        {
-          text: errorMessage.text,
-          href: "#cph-number"
-        }
-      ]
-    }) }}
+      errorList: errorMessages
+      }) }}
   {% endif %}
 
   {% call govukFieldset({
@@ -27,12 +22,12 @@
   }) %}
 
     {{ govukInput({
-      id: "cph-number",
+      id: "cphNumber",
       name: "cphNumber",
       autocomplete: "cph-number",
       classes: "govuk-input--width-10",
-      value: cphNumber.value,
-      errorMessage: errorMessage,
+      value: value,
+      errorMessage: errors.cphNumber,
       hint: {
         text: "For example, 12/345/6789"
       }
