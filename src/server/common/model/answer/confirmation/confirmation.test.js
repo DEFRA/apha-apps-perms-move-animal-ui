@@ -1,6 +1,17 @@
 import { Confirmation } from './confirmation.js'
 
 describe('#ConfirmationModel', () => {
+  describe('Confirmation.new', () => {
+    it('should strip away any irrelevant values', () => {
+      const validConfirmation = { confirmation: ['confirm', 'other'] }
+
+      const payload = { ...validConfirmation, nextPage: '/other/page' }
+      const confirmation = new Confirmation(payload)
+
+      expect(confirmation._data).toEqual(validConfirmation)
+    })
+  })
+
   describe('validate', () => {
     it('should return valid when only confirmed', () => {
       const confirmation = new Confirmation({ confirmation: ['confirm'] })

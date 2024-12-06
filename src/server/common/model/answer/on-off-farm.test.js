@@ -6,6 +6,15 @@ const validOnOffRadio = {
   onOffFarm: 'on'
 }
 
+describe('OnOffFarm.new', () => {
+  it('should strip away any irrelevant values', () => {
+    const payload = { ...validOnOffRadio, nextPage: '/other/page' }
+    const onOffFarm = new OnOffFarm(payload)
+
+    expect(onOffFarm._data).toEqual(validOnOffRadio)
+  })
+})
+
 describe('#OnOffFarm.validate', () => {
   test('should return true for on', () => {
     const { isValid, errors } = new OnOffFarm({

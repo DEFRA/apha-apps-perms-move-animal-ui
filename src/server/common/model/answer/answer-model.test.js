@@ -29,7 +29,12 @@ describe('AnswerModel', () => {
   })
 
   it('should seal the object to prevent property additions or deletions', () => {
-    answer = new AnswerModel({ key: 'value' })
+    class AnswerModelBasic extends AnswerModel {
+      _extractFields(data) {
+        return data
+      }
+    }
+    answer = new AnswerModelBasic({ key: 'value' })
 
     expect(() => {
       answer.something = 'should fail'

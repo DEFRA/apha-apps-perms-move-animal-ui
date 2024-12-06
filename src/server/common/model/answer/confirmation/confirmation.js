@@ -48,6 +48,10 @@ export class Confirmation extends AnswerModel {
     })
   }
 
+  _extractFields({ confirmation }) {
+    return { confirmation }
+  }
+
   /**
    * @param {ConfirmationData | undefined} state
    * @returns {Confirmation}

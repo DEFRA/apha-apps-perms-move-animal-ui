@@ -20,7 +20,7 @@ export class AnswerModel {
    * @param {Payload | undefined } [data]
    */
   constructor(data) {
-    this._data = data
+    this._data = data === undefined ? undefined : this._extractFields(data)
     Object.seal(this)
   }
 
@@ -36,6 +36,15 @@ export class AnswerModel {
   }
 
   /**
+   * @param {Payload} _data
+   * @returns {Payload}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _extractFields(_data) {
+    throw new NotImplementedError()
+  }
+
+  /**
    * @returns {AnswerValidationResult}
    */
   validate() {
@@ -47,17 +56,14 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-
   /**
    * @param {unknown} _data
    * @returns {unknown}
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(_data) {
     throw new NotImplementedError()
   }
-
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 }
 
 /**

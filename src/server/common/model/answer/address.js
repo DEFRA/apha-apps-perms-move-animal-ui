@@ -97,6 +97,22 @@ export class Address extends AnswerModel {
     return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
   }
 
+  _extractFields({
+    addressLine1,
+    addressLine2,
+    addressTown,
+    addressCounty,
+    addressPostcode
+  }) {
+    return {
+      addressLine1,
+      ...(addressLine2 !== undefined && { addressLine2 }),
+      addressTown,
+      ...(addressCounty !== undefined && { addressCounty }),
+      addressPostcode
+    }
+  }
+
   /**
    * @param {AddressData | undefined} state
    * @returns {Address}

@@ -51,6 +51,10 @@ export class EmailAddress extends AnswerModel {
     return validateAnswerAgainstSchema(emailAddressPayloadSchema, this._data)
   }
 
+  _extractFields({ emailAddress }) {
+    return { emailAddress }
+  }
+
   /**
    * @param {EmailAddressData | undefined} state
    * @returns {EmailAddress}

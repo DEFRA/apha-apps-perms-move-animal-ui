@@ -31,6 +31,15 @@ const invalidEmailAddresses = [
 ]
 
 describe('EmailAddress', () => {
+  describe('new', () => {
+    it('should strip away any irrelevant values', () => {
+      const payload = { ...validEmailAddressPayload, nextPage: '/other/page' }
+      const emailAddress = new EmailAddress(payload)
+
+      expect(emailAddress._data).toEqual(validEmailAddressPayload)
+    })
+  })
+
   describe('validate', () => {
     validEmailAddresses.forEach((email) => {
       it(`should return true for valid email address ${email}`, () => {
