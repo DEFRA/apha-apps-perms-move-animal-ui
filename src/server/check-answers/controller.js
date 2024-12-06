@@ -22,7 +22,6 @@ export const checkAnswersGetController = {
       license: License.fromState(req.yar.get('license'))
     }
 
-    // TODO see how to get the whole state in one go with req.yar.get('application')
     const application = Application.fromState({
       origin: req.yar.get('origin'),
       license: req.yar.get('license')

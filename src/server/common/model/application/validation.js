@@ -3,6 +3,8 @@
  * @import {SectionModel} from '../section/section-model.js'
  */
 
+import mapValues from 'lodash/mapValues.js'
+
 /**
  * @typedef {{[key:string]: SectionValidationResult}} ValidationResult
  * @typedef {{
@@ -17,14 +19,8 @@
  * @returns {ApplicationValidationResult} An object containing the validation result
  */
 export const validateApplication = (data) => {
-  /** @type {ValidationResult} */
-  const result = {}
-  let isValid = true
-
-  Object.keys(data).forEach((key) => {
-    result[key] = data[key].validate()
-    isValid = isValid && result[key].isValid
-  })
+  const result = mapValues(data, (answer) => answer.validate())
+  const isValid = Object.values(result).every((a) => a.isValid)
 
   return {
     isValid,
