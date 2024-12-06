@@ -1,3 +1,4 @@
+import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
@@ -59,11 +60,16 @@ export const validateAndAdjustAddress = async (
     postcode
   })
 
-  await validateElementVisibleAndText(valueElement, lineOne)
-  await validateElementVisibleAndText(valueElement, lineTwo)
-  await validateElementVisibleAndText(valueElement, townOrCity)
-  await validateElementVisibleAndText(valueElement, county)
-  await validateElementVisibleAndText(valueElement, postcode)
+  // Expected text must be kept to the left of the page to ensure accuracy in the check
+  const elementText = await checkAnswersPage.addressValue
+    .getHTML(false)
+    .then((text) => text.replace(/<br\s*\/?>/g, '\n').trim())
+  const expectedText = `${lineOne}
+${lineTwo}
+${townOrCity}
+${county}
+${postcode}`
+  expect(elementText).toBe(expectedText)
 }
 
 export const validateAndAdjustEmail = async (
