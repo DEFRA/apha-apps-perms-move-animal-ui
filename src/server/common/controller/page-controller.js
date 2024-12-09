@@ -82,6 +82,8 @@ export class PageController {
       [questionKey]: answer.toState()
     })
 
-    return h.redirect(calculateNextPage(payload.nextPage, this.page.nextPage()))
+    return h.redirect(
+      calculateNextPage(payload.nextPage, this.page.nextPage(payload))
+    )
   }
 }

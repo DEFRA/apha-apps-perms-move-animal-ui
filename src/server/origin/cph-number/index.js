@@ -22,7 +22,7 @@ export class CphNumberPage extends Page {
   Answer = CphNumber
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_cphNumber) {
+  nextPage() {
     return '/origin/address'
   }
 
