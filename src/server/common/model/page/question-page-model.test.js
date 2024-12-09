@@ -17,6 +17,14 @@ describe('QuestionPage', () => {
     expect(question).toHaveProperty('Answer')
   })
 
+  it('should have an expected view', () => {
+    expect(question).toHaveProperty('view')
+  })
+
+  it('should have an expected sectionKey', () => {
+    expect(question).toHaveProperty('sectionKey')
+  })
+
   it('should title & heading should be the same as the question', () => {
     const question =
       'Are you moving the cattle on or off your farm or premises?'
