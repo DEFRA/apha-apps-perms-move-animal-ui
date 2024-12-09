@@ -67,5 +67,13 @@ export class AnswerModel {
 }
 
 /**
+ * @template Payload
+ * @typedef {{
+ *   new (data: Payload): AnswerModel<Payload>,
+ *   fromState(data: any): AnswerModel<Payload>
+ * }} AnswerModelClass
+ */
+
+/**
  * @typedef {{[key:string]: string | undefined}} RawPayload
  */

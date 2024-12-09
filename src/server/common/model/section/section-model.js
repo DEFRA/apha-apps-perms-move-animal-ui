@@ -1,3 +1,4 @@
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { validateSection } from './validation.js'
 
 /**
@@ -7,12 +8,6 @@ import { validateSection } from './validation.js'
 /**
  * @typedef {{[key:string]: AnswerModel}} SectionPayload
  */
-
-class NotImplementedError extends Error {
-  constructor() {
-    super('Not implemented')
-  }
-}
 
 export class SectionModel {
   /** @type {SectionPayload} */
