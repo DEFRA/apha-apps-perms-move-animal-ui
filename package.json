@@ -35,7 +35,8 @@
     "user-journey-test": "npm run user-journey-test:js && npm run user-journey-test:nojs",
     "user-journey-test:js": "wdio run ./user-journey-tests/wdioJS.conf.js",
     "user-journey-test:nojs": "wdio run ./user-journey-tests/wdioNoJS.conf.js",
-    "user-journey-test:bs": "wdio run ./user-journey-tests/wdio.browserstack.conf.js"
+    "user-journey-test:bs": "wdio run ./user-journey-tests/wdio.browserstack.conf.js",
+    "user-journey-test:bs-extended": "wdio run ./user-journey-tests/wdio.browserstack.extended.conf.js"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",

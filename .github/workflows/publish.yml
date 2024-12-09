@@ -32,10 +32,10 @@ jobs:
       - name: Start docker compose
         run: |
             docker compose up --wait-timeout 300 -d --quiet-pull
-  
-      - name: Journey tests
+
+      - name: Browserstack initial tests
         run: |
-            npm run user-journey-test
+            npm run user-journey-test:bs
   
       - name: cleanup
         if: always()
