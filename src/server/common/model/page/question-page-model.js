@@ -1,12 +1,13 @@
 /** @import { AnswerModel, AnswerModelClass } from '../answer/answer-model.js' */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { Page } from './page-model.js'
 
 /**
  * @template AnswerPayload
  * @class QuestionPage<AnswerPayload>
  */
-export class QuestionPage {
+export class QuestionPage extends Page {
   /** @type {string} */
   question
 
