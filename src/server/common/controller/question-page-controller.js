@@ -58,10 +58,11 @@ export class QuestionPageController {
     const { isValid, errors } = answer.validate()
 
     if (!isValid) {
-      //   req.yar.set(section, {
-      //     ...req.yar.get(section),
-      //     [questionKey]: undefined
-      //   })
+      req.yar.set(this.page.sectionKey, {
+        ...req.yar.get(this.page.sectionKey),
+        [this.page.questionKey]: undefined
+      })
+
       return h.view(this.page.view, {
         pageTitle: `Error: ${this.page.title}`,
         heading: this.page.heading,
@@ -70,6 +71,10 @@ export class QuestionPageController {
       })
     }
 
+    req.yar.set(this.page.sectionKey, {
+      ...req.yar.get(this.page.sectionKey),
+      [this.page.questionKey]: answer.toState()
+    })
     return h.redirect(
       calculateNextPage(payload.nextPage, this.page.nextPage(answer).urlPath)
     )
