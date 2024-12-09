@@ -1,12 +1,8 @@
 import merge from 'deepmerge'
-import { config as wdioConf } from './wdio.conf.js'
+import { config as browserstackBaseConfig } from './wdio.browserstack.conf.js'
 
 //  These capabilities should run as an extended test after publishing
-export const config = merge(wdioConf, {
-  specs: ['./specs/**/*.js'],
-  exclude: ['./specs/noJavascript/**/*.spec.js'],
-  user: process.env.BROWSERSTACK_USER,
-  key: process.env.BROWSERSTACK_KEY,
+export const config = merge(browserstackBaseConfig, {
   maxInstances: 5,
   capabilities: [
     {
@@ -83,20 +79,5 @@ export const config = merge(wdioConf, {
     //     realMobile: true
     //   }
     // }
-  ],
-  services: [
-    [
-      'browserstack',
-      {
-        testObservability: true,
-        testObservabilityOptions: {
-          projectName: 'apha-apps-perms-move-animal-ui',
-          buildName: 'apha-test-run'
-        },
-        acceptInsecureCerts: true,
-        forceLocal: true,
-        browserstackLocal: true
-      }
-    ]
   ]
 })
