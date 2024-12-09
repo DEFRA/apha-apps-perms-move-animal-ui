@@ -1,19 +1,13 @@
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { SectionModel } from './section-model.js'
 
 describe('SectionModel', () => {
-  const notImplementedError = 'Not implemented'
-  let section
-
-  beforeEach(() => {
-    section = new SectionModel()
-  })
-
   it('should throw NotImplementedError when fromState is called', () => {
-    expect(() => SectionModel.fromState({})).toThrow(notImplementedError)
+    expect(() => SectionModel.fromState({})).toThrow(NotImplementedError)
   })
 
   it('should seal the object to prevent property additions or deletions', () => {
-    section = new SectionModel({ key: 'value' })
+    const section = /** @type {any} */ (new SectionModel({ key: 'value' }))
 
     expect(() => {
       section.something = 'should fail'
