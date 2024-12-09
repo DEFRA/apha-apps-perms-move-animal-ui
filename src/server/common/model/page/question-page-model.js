@@ -29,7 +29,7 @@ export class QuestionPage extends Page {
 
   /**
    * @param {AnswerModel} _answer
-   * @returns string
+   * @returns {Page}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
