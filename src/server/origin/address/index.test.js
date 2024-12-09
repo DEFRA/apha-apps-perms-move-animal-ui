@@ -7,8 +7,10 @@ import {
 } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
-import { pageTitle } from './controller.js'
-import SessionTester from '../../common/test-helpers/session-helper.js'
+import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
+
+const pageTitle =
+  'What is the address of your farm or premises where the animals are moving off?'
 
 describe('#originAddressController', () => {
   /** @type {Server} */
