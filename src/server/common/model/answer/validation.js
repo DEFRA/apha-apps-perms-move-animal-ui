@@ -4,9 +4,10 @@
 
 /**
  * @typedef {{text: string}} ValidationError
+ * @typedef {{[key:string]: ValidationError}} AnswerErrors
  * export @typedef {{
  *   isValid: boolean,
- *   errors: {[key:string]: ValidationError}
+ *   errors: AnswerErrors
  * }} AnswerValidationResult
  */
 

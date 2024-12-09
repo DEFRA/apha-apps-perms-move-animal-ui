@@ -2,7 +2,6 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
-
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
@@ -15,7 +14,7 @@
 
   {% call govukFieldset({
     legend: {
-      text: "What is the address of your farm or premises where the animals are moving off?",
+      text: question,
       classes: "govuk-fieldset__legend--l",
       isPageHeading: true
     }
@@ -29,7 +28,7 @@
       name: "addressLine1",
       autocomplete: "address-line1",
       errorMessage: errors.addressLine1,
-      value: values.addressLine1
+      value: value.addressLine1
     }) }}
 
     {{ govukInput({
@@ -40,7 +39,7 @@
       name: "addressLine2",
       autocomplete: "address-line2",
       errorMessage: errors.addressLine2,
-      value: values.addressLine2
+      value: value.addressLine2
     }) }}
 
     {{ govukInput({
@@ -52,7 +51,7 @@
       name: "addressTown",
       autocomplete: "address-level2",
       errorMessage: errors.addressTown,
-      value: values.addressTown
+      value: value.addressTown
     }) }}
 
     {{ govukInput({
@@ -63,7 +62,7 @@
       id: "addressCounty",
       name: "addressCounty",
       errorMessage: errors.addressCounty,
-      value: values.addressCounty
+      value: value.addressCounty
     }) }}
 
     {{ govukInput({
@@ -75,7 +74,7 @@
       name: "addressPostcode",
       autocomplete: "postal-code",
       errorMessage: errors.addressPostcode,
-      value: values.addressPostcode
+      value: value.addressPostcode
     }) }}
 
   {% endcall %}

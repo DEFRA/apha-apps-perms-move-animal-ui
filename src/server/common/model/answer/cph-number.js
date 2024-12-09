@@ -1,7 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
 import { validateAnswerAgainstSchema } from './validation.js'
-/** @import { CphNumberPayload } from '~/src/server/origin/cph-number/controller.js' */
 
 const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 
@@ -20,6 +19,7 @@ export const cphNumberPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} CphNumberData
+ * @typedef {{ cphNumber: string }} CphNumberPayload
  */
 
 /**
