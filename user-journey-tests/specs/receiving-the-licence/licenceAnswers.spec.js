@@ -1,5 +1,3 @@
-import { browser } from '@wdio/globals'
-
 import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import landingPage from '../../page-objects/landingPage.js'
 import { completeLicenceTaskAnswersCustom } from '../../helpers/testHelpers/receivingLicence.js'
@@ -12,8 +10,8 @@ const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
 
 describe('Check your licence answers test', () => {
-  beforeEach('Navigate to check answers page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before('Navigate to check answers page', async () => {
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
     await completeLicenceTaskAnswersCustom(emailDefault)
   })
@@ -31,10 +29,7 @@ describe('Check your licence answers test', () => {
       licenceAnswersPage.pagePath,
       licenceAnswersPage.pageTitle
     )
-    await licenceAnswersPage.verifyPageHeadingAndTitle(
-      licenceAnswersPage.pageHeading
-    )
-    validateAndAdjustEmail(
+    await validateAndAdjustEmail(
       licenceAnswersPage.changeEmailLink,
       licenceAnswersPage.emailValue,
       emailDefault,

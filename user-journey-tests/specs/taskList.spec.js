@@ -4,17 +4,16 @@ import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import emailPage from '../page-objects/receiving-the-licence/emailPage.js'
 import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
-import { completeOriginTaskAnswers } from '../helpers/testHelpers/movementLicense.js'
+import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicense.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
-    await browser.reloadSession()
     await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
   })
 
-  it('should display the correct statuses before an application has been started', async () => {
+  it('Should display the correct statuses before an application has been started', async () => {
     await taskListPage.verifyAllStatus([
       {
         position: 1,
@@ -37,17 +36,17 @@ describe('Task list page test', () => {
     expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 4')
   })
 
-  it('should link to movement origin first question before an application has been started', async () => {
+  it('Should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin()
     await toFromFarmPage.verifyPageHeadingAndTitle(toFromFarmPage.pageHeading)
   })
 
-  it('should link to receiving the licence first question before an application has been started', async () => {
+  it('Should link to receiving the licence first question before an application has been started', async () => {
     await taskListPage.selectReceiveTheLicence()
     await waitForPagePath(emailPage.pagePath)
   })
 
-  it('should link to movement origin summary once that selection has been completed', async () => {
+  it('Should link to movement origin summary once that selection has been completed', async () => {
     await completeOriginTaskAnswers()
     await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
     await taskListPage.verifyAllStatus([
@@ -78,7 +77,15 @@ describe('Task list page test', () => {
     await waitForPagePath(checkAnswersPage.pagePath)
   })
 
-  it('should link to receiving licence summary once that selection has been completed', async () => {
+  it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
+    await taskListPage.selectReview()
+    await taskListIncompletePage.verifyPageHeadingAndTitle(
+      taskListIncompletePage.pageTitle
+    )
+  })
+
+  it('Should link to receiving licence summary once that selection has been completed', async () => {
+    await browser.reloadSession()
     await completeLicenceTaskAnswers()
     await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
     await taskListPage.verifyAllStatus([
@@ -107,12 +114,5 @@ describe('Task list page test', () => {
       licenceAnswersPage.pageHeading
     )
     await waitForPagePath(licenceAnswersPage.pagePath)
-  })
-
-  it(`should route the user to task incomplete page if they haven't completed the user journey`, async () => {
-    await taskListPage.selectReview()
-    await taskListIncompletePage.verifyPageHeadingAndTitle(
-      taskListIncompletePage.pageTitle
-    )
   })
 })
