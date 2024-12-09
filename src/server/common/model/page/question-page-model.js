@@ -14,6 +14,12 @@ export class QuestionPage extends Page {
   /** @type {string} */
   questionKey
 
+  /** @type {string} */
+  sectionKey
+
+  /** @type {string} */
+  view
+
   /** @type {AnswerModelClass<AnswerPayload>} */
   Answer
 
@@ -29,7 +35,7 @@ export class QuestionPage extends Page {
 
   /**
    * @param {AnswerModel} _answer
-   * @returns string
+   * @returns {Page}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
