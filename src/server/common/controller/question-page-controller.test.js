@@ -69,7 +69,7 @@ describe('QuestionPageController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected response', async () => {
+  it('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/origin-test/to-or-from-own-premises'
@@ -105,7 +105,7 @@ describe('QuestionPageController', () => {
   })
 
   describe('Should process the result and provide expected response', () => {
-    test('should redirect to cph number page', async () => {
+    it('should redirect to cph number page', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -120,7 +120,7 @@ describe('QuestionPageController', () => {
       expect(headers.location).toBe('/origin-test/cph-number')
     })
 
-    test('should redirect to exit page', async () => {
+    it('should redirect to exit page', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection({
           method: 'POST',
@@ -137,7 +137,7 @@ describe('QuestionPageController', () => {
     })
   })
 
-  test('Should display an error to the user if no value selected', async () => {
+  it('Should display an error to the user if no value selected', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
@@ -153,7 +153,7 @@ describe('QuestionPageController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('should set the next page appropriately', async () => {
+  it('should set the next page appropriately', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/origin-test/to-or-from-own-premises?redirect_uri=/origin/summary'
@@ -173,7 +173,7 @@ describe('QuestionPageController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('should redirect to summary page if it came from there', async () => {
+  it('should redirect to summary page if it came from there', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',
