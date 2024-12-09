@@ -3,7 +3,7 @@ import { config as browserstackBaseConfig } from './wdio.browserstack.conf.js'
 //  These capabilities should run as an extended test after publishing
 export const config = {
   ...browserstackBaseConfig,
-  maxInstances: 5,
+  maxInstances: 7,
   capabilities: [
     {
       browserName: 'Chrome',
