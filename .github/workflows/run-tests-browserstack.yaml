@@ -1,4 +1,4 @@
-name: Browserstack tests
+name: Browserstack extended tests
 
 on:
   workflow_run:
