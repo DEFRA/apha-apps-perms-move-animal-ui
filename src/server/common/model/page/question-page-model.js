@@ -1,7 +1,11 @@
-/** @import { AnswerModel } from '../answer/answer-model.js' */
+/** @import { AnswerModel, AnswerModelClass } from '../answer/answer-model.js' */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
+/**
+ * @template AnswerPayload
+ * @class QuestionPage<AnswerPayload>
+ */
 export class QuestionPage {
   /** @type {string} */
   question
@@ -9,7 +13,7 @@ export class QuestionPage {
   /** @type {string} */
   questionKey
 
-  /** @type {AnswerModel} */
+  /** @type {AnswerModelClass<AnswerPayload>} */
   Answer
 
   /** @returns {string} */
