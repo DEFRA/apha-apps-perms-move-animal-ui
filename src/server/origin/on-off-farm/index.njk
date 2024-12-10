@@ -4,21 +4,16 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {% if (errorMessage) %}
+  {% if (errorMessages) %}
     {{ govukErrorSummary({
       titleText: "There is a problem",
-      errorList: [
-        {
-          text: errorMessage.text,
-          href: "#on-farm-radio"
-        }
-      ]
+      errorList: errorMessages
     }) }}
   {% endif %}
 
   {{ govukRadios({
     name: "onOffFarm",
-    id: "on-off-farm",
+    id: "onOffFarm",
     fieldset: {
       legend: {
         text: "Are you moving the cattle on or off your farm or premises?",
@@ -26,7 +21,7 @@
         classes: "govuk-fieldset__legend--l"
       }
     },
-    value: onOffFarm.value,
+    value: value,
     items: [
       {
         id: "on-farm-radio",
@@ -39,6 +34,6 @@
         text: "Off the farm or premises"
       }
     ],
-    errorMessage: errorMessage
+    errorMessage: errors.onOffFarm
   }) }}
 {% endblock %}

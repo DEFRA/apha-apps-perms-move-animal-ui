@@ -1,7 +1,29 @@
-import {
-  originAddressGetController,
-  originAddressPostController
-} from './controller.js'
+import { Address } from '../../common/model/answer/address.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { summaryPage } from '../summary/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+export class OriginAddressPage extends QuestionPage {
+  urlPath = '/origin/address'
+  sectionKey = 'origin'
+
+  question =
+    'What is the address of your farm or premises where the animals are moving off?'
+
+  questionKey = 'address'
+
+  view = 'origin/address/index'
+  Answer = Address
+
+  /** @param {Address} _answer */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  nextPage(_answer) {
+    return summaryPage
+  }
+}
+export const originAddressPage = new OriginAddressPage()
 
 /**
  * Sets up the routes used in the home page.
@@ -11,26 +33,4 @@ import {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const address = {
-  plugin: {
-    name: 'origin-address',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: '/address',
-          ...originAddressGetController
-        },
-        {
-          method: 'POST',
-          path: '/address',
-          ...originAddressPostController
-        }
-      ])
-    }
-  }
-}
-
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */
+export const address = new QuestionPageController(originAddressPage).plugin()

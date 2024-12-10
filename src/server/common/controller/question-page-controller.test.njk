@@ -4,13 +4,10 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {% if (errors) %}
+  {% if (errorMessages) %}
     {{ govukErrorSummary({
       titleText: "There is a problem",
-      errorList: [{
-        text: errors.onOffFarm,
-        href: '#on-off-farm'
-      }]
+      errorList: errorMessages
     }) }}
   {% endif %}
 
@@ -24,7 +21,7 @@
         classes: "govuk-fieldset__legend--l"
       }
     },
-    value: answer.value,
+    value: value,
     items: [
       {
         id: "on-farm-radio",

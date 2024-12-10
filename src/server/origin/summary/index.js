@@ -1,3 +1,4 @@
+import { Page } from '../../common/model/page/page-model.js'
 import {
   originSummaryGetController,
   originSummaryPostController
@@ -8,7 +9,10 @@ import {
  * These routes are registered in src/server/router.js.
  */
 
-const path = 'summary'
+export class SummaryPage extends Page {
+  urlPath = '/origin/summary'
+}
+export const summaryPage = new SummaryPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -20,12 +24,12 @@ export const originSummary = {
       server.route([
         {
           method: 'GET',
-          path: `/${path}`,
+          path: summaryPage.urlPath,
           ...originSummaryGetController
         },
         {
           method: 'POST',
-          path: `/${path}`,
+          path: summaryPage.urlPath,
           ...originSummaryPostController
         }
       ])

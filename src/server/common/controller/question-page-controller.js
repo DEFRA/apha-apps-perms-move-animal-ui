@@ -47,7 +47,7 @@ export class QuestionPageController {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
-      answer
+      value: answer.value
     })
   }
 
@@ -64,10 +64,12 @@ export class QuestionPageController {
       })
 
       return h.view(this.page.view, {
+        nextPage: payload.nextPage,
         pageTitle: `Error: ${this.page.title}`,
         heading: this.page.heading,
-        answer,
-        errors
+        value: answer.value,
+        errors,
+        errorMessages: Answer.errorMessages(errors)
       })
     }
 

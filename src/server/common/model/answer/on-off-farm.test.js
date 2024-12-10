@@ -58,7 +58,7 @@ describe('#OnOffFarm.toState', () => {
   })
 })
 
-describe('#OnOffFarm.fromState', () => {
+describe('OnOffFarm.fromState', () => {
   it('should return just the onOffFarm value from the payload', () => {
     const state = new OnOffFarm(validOnOffRadio).toState()
     expect(OnOffFarm.fromState(state)._data).toEqual(validOnOffRadio)
@@ -70,6 +70,17 @@ describe('#OnOffFarm.fromState', () => {
 
   it('should store undefined if the state is undefined', () => {
     expect(OnOffFarm.fromState(undefined)._data).toBeUndefined()
+  })
+})
+
+describe('OnOffFarm.errorMessages', () => {
+  it('should calculate the href to the first radio button', () => {
+    expect(OnOffFarm.errorMessages({ onOffFarm: { text: 'error' } })).toEqual([
+      {
+        href: '#on-farm-radio',
+        text: 'error'
+      }
+    ])
   })
 })
 

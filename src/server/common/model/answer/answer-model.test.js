@@ -1,7 +1,7 @@
 import { AnswerModel } from './answer-model.js'
 
 describe('AnswerModel', () => {
-  const notImplementedError = 'Not implemented'
+  const notImplementedError = 'Not Implemented'
   let answer
 
   beforeEach(() => {
@@ -43,5 +43,19 @@ describe('AnswerModel', () => {
     expect(() => {
       delete answer._data
     }).toThrow()
+  })
+
+  it('should provide a default error message converter', () => {
+    const error = 'Enter address line 1, typically the building and street'
+
+    const errors = {
+      addressLine1: { text: error }
+    }
+    expect(AnswerModel.errorMessages(errors)).toEqual([
+      {
+        text: error,
+        href: '#addressLine1'
+      }
+    ])
   })
 })
