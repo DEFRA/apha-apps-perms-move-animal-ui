@@ -4,21 +4,21 @@ import { EmailAddress } from '../answer/email-address.js'
 /**
  * export @typedef {{
  * emailAddress: EmailAddressData | undefined;
- * }} LicenseData
+ * }} LicenceData
  * @import {EmailAddressData} from '../answer/email-address.js'
  */
 
-export class License extends SectionModel {
+export class Licence extends SectionModel {
   get emailAddress() {
     return this._data?.emailAddress
   }
 
   /**
-   * @param {LicenseData | undefined} state
-   * @returns {License}
+   * @param {LicenceData | undefined} state
+   * @returns {Licence}
    */
   static fromState(state) {
-    return new License({
+    return new Licence({
       emailAddress: EmailAddress.fromState(state?.emailAddress)
     })
   }

@@ -1,13 +1,13 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../common/test-helpers/session-helper.js'
 
+const pageTitle = 'What email address would you like the licence sent to?'
 const testEmail = 'test@domain.com'
 
-describe('licenseEmailAddress', () => {
+describe('#licenceEmailAddress', () => {
   /** @type {Server} */
   let server
 
@@ -95,7 +95,7 @@ describe('licenseEmailAddress', () => {
 
     beforeEach(async () => {
       session = await SessionTester.create(server)
-      await session.setState('license', {
+      await session.setState('licence', {
         emailAddress: testEmail
       })
     })
@@ -116,7 +116,7 @@ describe('licenseEmailAddress', () => {
       expect(statusCode).toBe(statusCodes.ok)
       expect(payload).toEqual(
         expect.stringContaining(
-          `<input class="govuk-input govuk-input--width-20" id="email-address" name="emailAddress" type="email" spellcheck="false" value="${testEmail}" autocomplete="email-address">`
+          `<input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="email" spellcheck="false" value="${testEmail}" autocomplete="email-address">`
         )
       )
     })

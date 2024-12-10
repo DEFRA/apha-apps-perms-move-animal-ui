@@ -6,15 +6,10 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {% if (errorMessage) %}
-    {{ govukErrorSummary({
+{% if (errorMessages) %}
+  {{ govukErrorSummary({
       titleText: "There is a problem",
-      errorList: [
-        {
-          text: errorMessage.text,
-          href: "#email-address"
-        }
-      ]
+      errorList: errorMessages
     }) }}
   {% endif %}
 
@@ -27,14 +22,14 @@
   }) %}
 
     {{ govukInput({
-      id: "email-address",
+      id: "emailAddress",
       name: "emailAddress",
       type: "email",
       spellcheck: false,
       autocomplete: "email-address",
       classes: "govuk-input--width-20",
-      value: emailAddress.value,
-      errorMessage: errorMessage
+      value: value,
+      errorMessage: errors.emailAddress
     }) }}
 
   {% endcall %}

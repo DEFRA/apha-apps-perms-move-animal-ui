@@ -1,7 +1,7 @@
 import { Origin } from '../common/model/section/origin.js'
 import { Destination } from '../common/model/section/destination.js'
 import { Tests } from '../common/model/section/tests.js'
-import { License } from '../common/model/section/license.js'
+import { Licence } from '../common/model/section/licence.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -16,7 +16,7 @@ export const taskListGetController = {
     const origin = Origin.fromState(req.yar.get('origin'))
     const destination = Destination.fromState()
     const tests = Tests.fromState()
-    const license = License.fromState(req.yar.get('license'))
+    const licence = Licence.fromState(req.yar.get('licence'))
     const isOriginValid = origin.validate().isValid
 
     const originGdsTask = buildGdsTaskItem({
@@ -43,11 +43,11 @@ export const taskListGetController = {
       isEnabled: isOriginValid
     })
 
-    const licenseGdsTask = buildGdsTaskItem({
+    const licenceGdsTask = buildGdsTaskItem({
       title: 'Receiving the licence',
       initialLink: '/receiving-the-licence/licence-enter-email-address',
       summaryLink: '/receiving-the-licence/check-answers',
-      isValid: license.validate().isValid,
+      isValid: licence.validate().isValid,
       isEnabled: true
     })
 
@@ -55,10 +55,10 @@ export const taskListGetController = {
       originGdsTask,
       destinationGdsTask,
       testsGdsTask,
-      licenseGdsTask
+      licenceGdsTask
     ]
 
-    const allTasks = [origin, destination, tests, license]
+    const allTasks = [origin, destination, tests, licence]
     const incompleteTasks =
       allTasks.length -
       allTasks.filter((task) => {

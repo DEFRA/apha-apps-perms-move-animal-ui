@@ -1,6 +1,6 @@
 import { calculateNextPage } from '../common/helpers/next-page.js'
 import { Origin } from '../common/model/section/origin.js'
-import { License } from '../common/model/section/license.js'
+import { Licence } from '../common/model/section/licence.js'
 import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
 import { Application } from '../common/model/application/application.js'
 
@@ -19,12 +19,12 @@ export const checkAnswersGetController = {
   handler(req, res) {
     const tasks = {
       origin: Origin.fromState(req.yar.get('origin')),
-      license: License.fromState(req.yar.get('license'))
+      licence: Licence.fromState(req.yar.get('licence'))
     }
 
     const application = Application.fromState({
       origin: req.yar.get('origin'),
-      license: req.yar.get('license')
+      licence: req.yar.get('licence')
     })
 
     const { isValid } = application.validate()
@@ -49,7 +49,7 @@ export const checkAnswersPostController = {
   handler(req, res) {
     const tasks = {
       origin: Origin.fromState(req.yar.get('origin')),
-      license: License.fromState(req.yar.get('license'))
+      licence: Licence.fromState(req.yar.get('licence'))
     }
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)

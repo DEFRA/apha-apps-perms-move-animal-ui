@@ -1,6 +1,6 @@
 import landingPage from '../../page-objects/landingPage.js'
 import { loadPageAndVerifyTitle } from '../../helpers/page.js'
-import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicense.js'
+import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 describe('Full journey test 1', () => {

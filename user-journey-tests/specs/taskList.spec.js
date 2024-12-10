@@ -4,7 +4,7 @@ import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import emailPage from '../page-objects/receiving-the-licence/emailPage.js'
 import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
-import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicense.js'
+import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
 

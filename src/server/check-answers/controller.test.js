@@ -22,7 +22,7 @@ describe('#CheckAnswers', () => {
     }
   }
 
-  const licenseDefaultState = {
+  const licenceDefaultState = {
     emailAddress: 'name@example.com'
   }
 
@@ -34,7 +34,7 @@ describe('#CheckAnswers', () => {
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
     await session.setState('origin', originDefaultState)
-    await session.setState('license', licenseDefaultState)
+    await session.setState('licence', licenceDefaultState)
   })
 
   afterAll(async () => {
@@ -106,7 +106,7 @@ describe('#CheckAnswers', () => {
   })
 
   it('Should redirect to task-list-incomplete if any task is invalid', async () => {
-    await session.setState('license', {})
+    await session.setState('licence', {})
 
     const { statusCode, headers } = await server.inject(
       withCsrfProtection(

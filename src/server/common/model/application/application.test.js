@@ -13,7 +13,7 @@ const originDefaultState = {
   }
 }
 
-const licenseDefaultState = {
+const licenceDefaultState = {
   emailAddress: 'name@example.com'
 }
 
@@ -21,7 +21,7 @@ describe('Application', () => {
   it('should create an Application instance from a valid state', () => {
     const state = {
       origin: originDefaultState,
-      license: licenseDefaultState
+      licence: licenceDefaultState
     }
 
     const application = Application.fromState(state)
@@ -30,7 +30,7 @@ describe('Application', () => {
     expect(application._data.origin._data.address.value).toBeDefined()
     expect(application._data.origin._data.cphNumber.value).toBeDefined()
     expect(application._data.origin._data.onOffFarm.value).toBeDefined()
-    expect(application._data.license._data.emailAddress.value).toBeDefined()
+    expect(application._data.licence._data.emailAddress.value).toBeDefined()
   })
 
   it('should create an Application instance with undefined sections from an undefined state', () => {
@@ -38,6 +38,6 @@ describe('Application', () => {
 
     expect(application).toBeInstanceOf(Application)
     expect(application._data.origin._data.address.value).toBeUndefined()
-    expect(application._data.license._data.emailAddress.value).toBeUndefined()
+    expect(application._data.licence._data.emailAddress.value).toBeUndefined()
   })
 })
