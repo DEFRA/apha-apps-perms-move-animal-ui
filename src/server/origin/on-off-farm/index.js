@@ -6,6 +6,8 @@
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { exitPage } from '~/src/server/exit-page/index.js'
+import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -24,7 +26,10 @@ export class OnOffFarmPage extends QuestionPage {
   /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
-    return answer.nextPage()
+    if (answer.value === 'on') {
+      return exitPage
+    }
+    return cphNumberPage
   }
 
   /** @param {AnswerErrors} errors */

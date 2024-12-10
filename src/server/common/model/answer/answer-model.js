@@ -68,11 +68,6 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
-  /** @returns {Page} */
-  nextPage() {
-    throw new NotImplementedError()
-  }
-
   /**
    * @param {unknown} _data
    * @returns {unknown}
