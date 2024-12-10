@@ -1,7 +1,7 @@
 import { AnswerModel } from './answer-model.js'
 
 describe('AnswerModel', () => {
-  const notImplementedError = 'Not implemented'
+  const notImplementedError = 'Not Implemented'
   let answer
 
   beforeEach(() => {

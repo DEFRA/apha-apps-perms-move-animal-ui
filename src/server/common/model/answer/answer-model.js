@@ -2,7 +2,7 @@
  * @import {AnswerErrors, AnswerValidationResult} from './validation.js'
  */
 
-import { NotImplementedError } from '../../helpers/not-implmented-error.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
  * @typedef {{ href: string, text: string }} ViewErrorMessage

@@ -247,7 +247,7 @@ describe('QuestionPageController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  test('Should display an error and set next page appropriately', async () => {
+  it('Should display an error and set next page appropriately', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection({
         method: 'POST',

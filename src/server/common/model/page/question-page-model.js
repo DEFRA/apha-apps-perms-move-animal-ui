@@ -1,4 +1,5 @@
 /** @import { AnswerModel, AnswerModelClass } from '../answer/answer-model.js' */
+/** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { Page } from './page-model.js'
