@@ -30,24 +30,12 @@ export const originSummaryGetController = {
     }
 
     const items = pages.map((page) => ({
-      key: {
-        text: page.question,
-        classes: 'govuk-!-width-one-half govuk-!-font-weight-regular'
-      },
-      value: {
-        html: origin[page.questionKey].html
-      },
-      actions: {
-        items: [
-          {
-            href: `${page.urlPath}?redirect_uri=/origin/summary`,
-            text: 'Change',
-            visuallyHiddenText: page.question,
-            attributes: {
-              'data-testid': `${page.questionKey}-change-link`
-            }
-          }
-        ]
+      key: page.question,
+      value: origin[page.questionKey].html,
+      url: `${page.urlPath}?redirect_uri=/origin/summary`,
+      visuallyHiddenKey: page.question,
+      attributes: {
+        'data-testid': `${page.questionKey}-change-link`
       }
     }))
 

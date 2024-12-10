@@ -3,11 +3,41 @@
 
 {% extends 'layouts/questions.njk' %}
 
-{% block questions %}
-  <h1 class="govuk-heading-l">{{pageTitle}}</h1>
+{% macro createSummary(rows) %}
+
+  {% set summaryRows = [] %}
+  {% for row in originSummary %}
+    {% set rows = (summaryRows, summaryRows.push({
+      key: {
+        text: row.key,
+        classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+      },
+      value: {
+        html: row.value
+      },
+      actions: {
+        items: [
+          {
+            href: row.url,
+            text: "Change",
+            visuallyHiddenText: row.visuallyHiddenKey,
+            attributes: row.attributes
+          }
+        ]
+      }
+    })) %}
+  {% endfor %}
+
+
 
   {{ govukSummaryList({
     classes: "govuk-!-margin-bottom-9",
-    rows: originSummary
+    rows: summaryRows
   }) }}
+{% endmacro %}
+
+{% block questions %}
+  <h1 class="govuk-heading-l">{{pageTitle}}</h1>
+
+  {{ createSummary(originSummary) }}
 {% endblock %}
