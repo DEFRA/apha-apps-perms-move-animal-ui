@@ -3,12 +3,13 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { PageController } from '~/src/server/common/controller/page-controller.js'
 import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { originAddressPage } from '../address/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
 
 export class CphNumberPage extends QuestionPage{
-  urlPath = '/cph-number'
+  urlPath = '/origin/cph-number'
   sectionKey = 'origin'
 
   question =
@@ -22,14 +23,15 @@ export class CphNumberPage extends QuestionPage{
   /** @param {CphNumber} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
-    return '/origin/address'
+    return originAddressPage
   }
 }
+export const cphNumberPage = new CphNumberPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const cphNumber = new PageController(new CphNumberPage()).plugin()
+export const cphNumber = new QuestionPageController(cphNumberPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

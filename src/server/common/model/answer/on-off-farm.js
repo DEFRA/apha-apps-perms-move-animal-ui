@@ -2,6 +2,8 @@ import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
 import { validateAnswerAgainstSchema } from './validation.js'
 
+/** @import { AnswerErrors } from './validation.js' */
+
 const selectOptionText =
   'Select if you are moving cattle on or off your farm or premises'
 
@@ -43,6 +45,14 @@ export class OnOffFarm extends AnswerModel {
     } else {
       return ''
     }
+  }
+
+  /** @param {AnswerErrors} errors */
+  static errorMessages(errors) {
+    return [{
+      href: '#on-farm-radio',
+      text: errors.onOffFarm?.text
+    }]
   }
 
   /**

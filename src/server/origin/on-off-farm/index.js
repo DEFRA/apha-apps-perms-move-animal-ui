@@ -3,15 +3,17 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { PageController } from '~/src/server/common/controller/page-controller.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { exitPage } from '../../exit-page/index.js'
+import { cphNumberPage } from '../cph-number/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 
 export class OnOffFarmPage extends QuestionPage {
-  path = '/to-or-from-own-premises'
-  section = 'origin'
+  urlPath = '/origin/to-or-from-own-premises'
+  sectionKey = 'origin'
 
   question = 'Are you moving the cattle on or off your farm or premises?'
 
@@ -24,9 +26,9 @@ export class OnOffFarmPage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'on') {
-      return '/exit-page'
+      return exitPage
     }
-    return '/origin/cph-number'
+    return cphNumberPage
   }
 
   /** @param {AnswerErrors} errors */
@@ -41,7 +43,7 @@ export class OnOffFarmPage extends QuestionPage {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const onOffFarm = new PageController(new OnOffFarmPage()).plugin()
+export const onOffFarm = new QuestionPageController(new OnOffFarmPage()).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

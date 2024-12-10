@@ -247,6 +247,28 @@ describe('QuestionPageController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
+  test('Should display an error and set next page appropriately', async () => {
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection({
+        method: 'POST',
+        url: '/origin-test/to-or-from-own-premises',
+        payload: {
+          onOffFarm: 'invalid format',
+          nextPage: '/origin/summary'
+        }
+      })
+    )
+
+    expect(parseDocument(payload).title).toBe('Error: Are you moving the cattle on or off your farm or premises?')
+    expect(payload).toEqual(
+      expect.stringContaining(
+        '<input type="hidden" name="nextPage" value="/origin/summary" />'
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+  })
+
   it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection({

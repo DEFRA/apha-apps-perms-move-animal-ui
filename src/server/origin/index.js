@@ -15,11 +15,7 @@ export const origin = {
   plugin: {
     name: 'origin',
     async register(server) {
-      await server.register([onOffFarm, cphNumber, address, originSummary], {
-        routes: {
-          prefix: '/origin'
-        }
-      })
+      await server.register([onOffFarm, cphNumber, address, originSummary])
     }
   }
 }

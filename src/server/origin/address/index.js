@@ -1,7 +1,7 @@
-import { Page } from '../../common/model/page/page-model.js'
 import { Address } from '../../common/model/answer/address.js'
-import { PageController } from '../../common/controller/page-controller.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { summaryPage } from '../summary/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -20,9 +20,10 @@ export class OriginAddressPage extends QuestionPage {
   /** @param {Address} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
-    return '/origin/summary'
+    return summaryPage
   }
 }
+export const originAddressPage = new OriginAddressPage()
 
 /**
  * Sets up the routes used in the home page.
@@ -32,5 +33,5 @@ export class OriginAddressPage extends QuestionPage {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const address = new PageController(new OriginAddressPage()).plugin()
+export const address = new QuestionPageController(originAddressPage).plugin()
 

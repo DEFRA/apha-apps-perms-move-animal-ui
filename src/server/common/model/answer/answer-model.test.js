@@ -44,4 +44,16 @@ describe('AnswerModel', () => {
       delete answer._data
     }).toThrow()
   })
+
+  it('should provide a default error message converter', () => {
+    const error = 'Enter address line 1, typically the building and street'
+
+    const errors = {
+      addressLine1: { text: error }
+    }
+    expect(AnswerModel.errorMessages(errors)).toEqual([{
+      text: error,
+      href: '#addressLine1'
+    }])
+  })
 })
