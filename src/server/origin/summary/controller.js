@@ -1,5 +1,6 @@
 import { Origin } from '../../common/model/section/origin.js'
 import { OnOffFarmPage } from '../on-off-farm/index.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -14,11 +15,13 @@ export const originSummaryGetController = {
     const origin = Origin.fromState(req.yar.get('origin'))
     const { isValid, result } = origin.validate()
 
+    /** @type {QuestionPage[]} */
     const pages = []
 
-    /** @type any */
+    /** @type {Page} */
     let page = new OnOffFarmPage()
-    while (!page.isFinal) {
+
+    while (page instanceof QuestionPage) {
       pages.push(page)
       page = page.nextPage(origin[page.questionKey])
     }
@@ -78,4 +81,5 @@ export const originSummaryPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
+ * @import { Page } from '../../common/model/page/page-model.js'
  */

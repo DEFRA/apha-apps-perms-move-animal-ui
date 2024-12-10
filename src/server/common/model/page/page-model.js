@@ -4,4 +4,10 @@ export class Page {
 
   /** @type {boolean} */
   isFinal = false
+
+  /** @param {unknown} answer */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  nextPage(answer) {
+    throw new Error('Not implemented')
+  }
 }
