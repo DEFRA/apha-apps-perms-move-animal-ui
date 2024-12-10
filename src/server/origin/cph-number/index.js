@@ -3,15 +3,13 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { Page } from '~/src/server/common/model/page/page-model.js'
 import { PageController } from '~/src/server/common/controller/page-controller.js'
 import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
-/** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-
-export class CphNumberPage extends Page {
-  path = '/cph-number'
-  section = 'origin'
+export class CphNumberPage extends QuestionPage{
+  urlPath = '/cph-number'
+  sectionKey = 'origin'
 
   question =
     'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
@@ -21,17 +19,10 @@ export class CphNumberPage extends Page {
   view = 'origin/cph-number/index'
   Answer = CphNumber
 
+  /** @param {CphNumber} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage() {
+  nextPage(_answer) {
     return '/origin/address'
-  }
-
-  /** @param {AnswerErrors} errors */
-  errorMessages(errors) {
-    return Object.entries(errors).map(([key, value]) => ({
-      text: value.text,
-      href: `#${key}`
-    }))
   }
 }
 

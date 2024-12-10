@@ -3,13 +3,13 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { Page } from '~/src/server/common/model/page/page-model.js'
 import { PageController } from '~/src/server/common/controller/page-controller.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 
-export class OnOffFarmPage extends Page {
+export class OnOffFarmPage extends QuestionPage {
   path = '/to-or-from-own-premises'
   section = 'origin'
 
@@ -20,9 +20,10 @@ export class OnOffFarmPage extends Page {
   view = 'origin/on-off-farm/index'
   Answer = OnOffFarm
 
+  /** @param {OnOffFarm} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage({ onOffFarm }) {
-    if (onOffFarm === 'on') {
+  nextPage(answer) {
+    if (answer.value === 'on') {
       return '/exit-page'
     }
     return '/origin/cph-number'

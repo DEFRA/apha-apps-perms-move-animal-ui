@@ -133,6 +133,15 @@ class SessionTester {
 
   /**
    * @param {string} key
+   * @returns {Promise<{[key: string]: any}>}
+   */
+  async getState(key) {
+    this._logger.info(`Getting state ${key}`)
+    return await getSession(this._server, this._cookie, key)
+  }
+
+  /**
+   * @param {string} key
    */
   async getStateKey(key) {
     this._logger.info(`Getting state for ${key}`)

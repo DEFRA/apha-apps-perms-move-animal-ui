@@ -1,15 +1,26 @@
-/** @import { AnswerModel } from '../answer/answer-model.js' */
+/** @import { AnswerModel, AnswerModelClass } from '../answer/answer-model.js' */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { Page } from './page-model.js'
 
-export class QuestionPage {
+/**
+ * @template AnswerPayload
+ * @class QuestionPage<AnswerPayload>
+ */
+export class QuestionPage extends Page {
   /** @type {string} */
   question
 
   /** @type {string} */
   questionKey
 
-  /** @type {AnswerModel} */
+  /** @type {string} */
+  sectionKey
+
+  /** @type {string} */
+  view
+
+  /** @type {AnswerModelClass<AnswerPayload>} */
   Answer
 
   /** @returns {string} */
@@ -24,7 +35,7 @@ export class QuestionPage {
 
   /**
    * @param {AnswerModel} _answer
-   * @returns string
+   * @returns {Page}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
