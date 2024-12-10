@@ -51,9 +51,11 @@ describe('AnswerModel', () => {
     const errors = {
       addressLine1: { text: error }
     }
-    expect(AnswerModel.errorMessages(errors)).toEqual([{
-      text: error,
-      href: '#addressLine1'
-    }])
+    expect(AnswerModel.errorMessages(errors)).toEqual([
+      {
+        text: error,
+        href: '#addressLine1'
+      }
+    ])
   })
 })

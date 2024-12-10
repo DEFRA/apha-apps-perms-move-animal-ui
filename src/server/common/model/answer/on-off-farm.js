@@ -49,10 +49,12 @@ export class OnOffFarm extends AnswerModel {
 
   /** @param {AnswerErrors} errors */
   static errorMessages(errors) {
-    return [{
-      href: '#on-farm-radio',
-      text: errors.onOffFarm?.text
-    }]
+    return [
+      {
+        href: '#on-farm-radio',
+        text: errors.onOffFarm?.text
+      }
+    ]
   }
 
   /**

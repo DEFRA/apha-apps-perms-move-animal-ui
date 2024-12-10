@@ -43,7 +43,9 @@ export class OnOffFarmPage extends QuestionPage {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const onOffFarm = new QuestionPageController(new OnOffFarmPage()).plugin()
+export const onOffFarm = new QuestionPageController(
+  new OnOffFarmPage()
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

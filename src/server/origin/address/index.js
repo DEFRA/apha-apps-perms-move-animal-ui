@@ -34,4 +34,3 @@ export const originAddressPage = new OriginAddressPage()
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const address = new QuestionPageController(originAddressPage).plugin()
-

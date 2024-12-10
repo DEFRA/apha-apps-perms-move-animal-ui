@@ -259,7 +259,9 @@ describe('QuestionPageController', () => {
       })
     )
 
-    expect(parseDocument(payload).title).toBe('Error: Are you moving the cattle on or off your farm or premises?')
+    expect(parseDocument(payload).title).toBe(
+      'Error: Are you moving the cattle on or off your farm or premises?'
+    )
     expect(payload).toEqual(
       expect.stringContaining(
         '<input type="hidden" name="nextPage" value="/origin/summary" />'
