@@ -3,7 +3,7 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { exitPage } from './exit-page/index.js'
+import { exit } from './exit-page/index.js'
 import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
@@ -25,7 +25,7 @@ export const router = {
       // Application specific routes, add your own routes here
       await server.register([
         home,
-        exitPage,
+        exit,
         origin,
         licence,
         taskList,

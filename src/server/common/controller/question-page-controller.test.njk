@@ -1,0 +1,39 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+  {% if (errorMessages) %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: errorMessages
+    }) }}
+  {% endif %}
+
+  {{ govukRadios({
+    name: "onOffFarm",
+    id: "on-off-farm",
+    fieldset: {
+      legend: {
+        text: pageHeading,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    value: value,
+    items: [
+      {
+        id: "on-farm-radio",
+        value: "on",
+        text: "On to the farm or premises"
+      },
+      {
+        id: "off-farm-radio",
+        value: "off",
+        text: "Off the farm or premises"
+      }
+    ],
+    errorMessage: errorMessage
+  }) }}
+{% endblock %}

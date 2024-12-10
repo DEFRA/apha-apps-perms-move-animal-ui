@@ -1,8 +1,12 @@
 /**
- * @import {AnswerValidationResult} from './validation.js'
+ * @import {AnswerErrors, AnswerValidationResult} from './validation.js'
  */
 
 import { NotImplementedError } from '../../helpers/not-implmented-error.js'
+
+/**
+ * @typedef {{ href: string, text: string }} ViewErrorMessage
+ */
 
 /**
  * @template Payload
@@ -47,6 +51,17 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
+  /*
+   * @param {AnswerErrors} errors
+   * @returns {ViewErrorMessage[]}
+   */
+  static errorMessages(errors) {
+    return Object.entries(errors).map(([key, value]) => ({
+      text: value.text,
+      href: `#${key}`
+    }))
+  }
+
   /** @returns {string} */
   get html() {
     throw new NotImplementedError()
@@ -67,6 +82,7 @@ export class AnswerModel {
  * @typedef {{
  *   new (data: Payload): AnswerModel<Payload>,
  *   fromState(data: any): AnswerModel<Payload>
+ *   errorMessages(errors: AnswerErrors): ViewErrorMessage[]
  * }} AnswerModelClass
  */
 

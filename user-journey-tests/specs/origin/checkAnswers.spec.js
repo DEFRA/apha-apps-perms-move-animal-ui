@@ -1,5 +1,3 @@
-import { browser } from '@wdio/globals'
-
 import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
@@ -25,8 +23,8 @@ const county = 'West new york edited'
 const postcode = 'SW1C 2CC'
 
 describe('Check your answers test', () => {
-  beforeEach('Navigate to check answers page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before('Navigate to check answers page', async () => {
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
     await completeOriginTaskAnswersCustom(
       defaultCphNumber,

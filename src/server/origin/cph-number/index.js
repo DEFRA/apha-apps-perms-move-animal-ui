@@ -3,15 +3,14 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { Page } from '~/src/server/common/model/page/page-model.js'
-import { PageController } from '~/src/server/common/controller/page-controller.js'
 import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { originAddressPage } from '../address/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
 
-/** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-
-export class CphNumberPage extends Page {
-  path = '/cph-number'
-  section = 'origin'
+export class CphNumberPage extends QuestionPage{
+  urlPath = '/origin/cph-number'
+  sectionKey = 'origin'
 
   question =
     'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
@@ -21,24 +20,18 @@ export class CphNumberPage extends Page {
   view = 'origin/cph-number/index'
   Answer = CphNumber
 
+  /** @param {CphNumber} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage() {
-    return '/origin/address'
-  }
-
-  /** @param {AnswerErrors} errors */
-  errorMessages(errors) {
-    return Object.entries(errors).map(([key, value]) => ({
-      text: value.text,
-      href: `#${key}`
-    }))
+  nextPage(_answer) {
+    return originAddressPage
   }
 }
+export const cphNumberPage = new CphNumberPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const cphNumber = new PageController(new CphNumberPage()).plugin()
+export const cphNumber = new QuestionPageController(cphNumberPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

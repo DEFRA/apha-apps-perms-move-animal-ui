@@ -1,12 +1,13 @@
-import { Page } from '../../common/model/page/page-model.js'
 import { Address } from '../../common/model/answer/address.js'
-import { PageController } from '../../common/controller/page-controller.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { summaryPage } from '../summary/index.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller.js'
 
-/** @import { AnswerErrors } from "../../common/model/answer/validation.js" */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-export class OriginAddressPage extends Page {
-  path = '/address'
-  section = 'origin'
+export class OriginAddressPage extends QuestionPage {
+  urlPath = '/origin/address'
+  sectionKey = 'origin'
 
   question =
     'What is the address of your farm or premises where the animals are moving off?'
@@ -16,19 +17,14 @@ export class OriginAddressPage extends Page {
   view = 'origin/address/index'
   Answer = Address
 
+  /** @param {Address} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_address) {
-    return '/origin/summary'
-  }
-
-  /** @param {AnswerErrors} errors */
-  errorMessages(errors) {
-    return Object.entries(errors).map(([key, value]) => ({
-      text: value.text,
-      href: `#${key}`
-    }))
+  nextPage(_answer) {
+    return summaryPage
   }
 }
+export const originAddressPage = new OriginAddressPage()
+
 /**
  * Sets up the routes used in the home page.
  * These routes are registered in src/server/router.js.
@@ -37,8 +33,5 @@ export class OriginAddressPage extends Page {
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const address = new PageController(new OriginAddressPage()).plugin()
+export const address = new QuestionPageController(originAddressPage).plugin()
 
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */
