@@ -1,4 +1,5 @@
 import { Origin } from '../../common/model/section/origin.js'
+import { OnOffFarmPage } from '../on-off-farm/index.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -12,6 +13,15 @@ export const originSummaryGetController = {
   handler(req, h) {
     const origin = Origin.fromState(req.yar.get('origin'))
     const { isValid, result } = origin.validate()
+
+    const pages = []
+
+    /** @type any */
+    let page = new OnOffFarmPage()
+    while (!page.isFinal) {
+      pages.push(page)
+      page = page.nextPage(origin[page.questionKey])
+    }
 
     if (!isValid) {
       if (!result.onOffFarm.isValid) {
@@ -27,14 +37,32 @@ export const originSummaryGetController = {
       }
     }
 
+    const items = pages.map((page) => ({
+      key: {
+        text: page.question,
+        classes: 'govuk-!-width-one-half govuk-!-font-weight-regular'
+      },
+      value: {
+        html: origin[page.questionKey].html
+      },
+      actions: {
+        items: [
+          {
+            href: `${page.urlPath}?redirect_uri=/origin/summary`,
+            text: 'Change',
+            visuallyHiddenText: page.question,
+            attributes: {
+              'data-testid': `${page.questionKey}-change-link`
+            }
+          }
+        ]
+      }
+    }))
+
     return h.view(indexView, {
       pageTitle,
       heading,
-      origin: {
-        cphNumber: origin?.cphNumber.html,
-        address: origin.address.html,
-        onOffFarm: origin.onOffFarm.html
-      }
+      originSummary: items
     })
   }
 }

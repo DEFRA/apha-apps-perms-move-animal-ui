@@ -11,6 +11,7 @@ import {
 
 export class SummaryPage extends Page {
   urlPath = '/origin/summary'
+  isFinal = true
 }
 export const summaryPage = new SummaryPage()
 

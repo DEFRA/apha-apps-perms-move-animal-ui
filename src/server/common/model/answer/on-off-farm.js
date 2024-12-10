@@ -1,6 +1,8 @@
 import Joi from 'joi'
 import { AnswerModel } from './answer-model.js'
 import { validateAnswerAgainstSchema } from './validation.js'
+import { exitPage } from '~/src/server/exit-page/index.js'
+import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 
 /** @import { AnswerErrors } from './validation.js' */
 
@@ -55,6 +57,13 @@ export class OnOffFarm extends AnswerModel {
         text: errors.onOffFarm?.text
       }
     ]
+  }
+
+  nextPage() {
+    if (this.value === 'on') {
+      return exitPage
+    }
+    return cphNumberPage
   }
 
   /**

@@ -12,6 +12,7 @@ import { Page } from '../common/model/page/page-model.js'
 
 export class ExitPage extends Page {
   urlPath = '/exit-page'
+  isFinal = true
 }
 export const exitPage = new ExitPage()
 

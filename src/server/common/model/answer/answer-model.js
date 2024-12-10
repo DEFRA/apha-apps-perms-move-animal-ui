@@ -1,5 +1,6 @@
 /**
  * @import {AnswerErrors, AnswerValidationResult} from './validation.js'
+ * @import {Page} from '../../model/page/page-model.js'
  */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
@@ -64,6 +65,11 @@ export class AnswerModel {
 
   /** @returns {string} */
   get html() {
+    throw new NotImplementedError()
+  }
+
+  /** @returns {Page} */
+  nextPage() {
     throw new NotImplementedError()
   }
 
