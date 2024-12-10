@@ -11,9 +11,8 @@ export const heading = pageTitle
  * @satisfies {Partial<ServerRoute>}
  */
 export const originSummaryGetController = {
-  handler(req, h) {
+  handler(req, res) {
     const origin = Origin.fromState(req.yar.get('origin'))
-    const { isValid, result } = origin.validate()
 
     /** @type {QuestionPage[]} */
     const pages = []
@@ -23,20 +22,10 @@ export const originSummaryGetController = {
 
     while (page instanceof QuestionPage) {
       pages.push(page)
-      page = page.nextPage(origin[page.questionKey])
-    }
-
-    if (!isValid) {
-      if (!result.onOffFarm.isValid) {
-        return h.redirect(
-          '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
-        )
-      }
-      if (!result.cphNumber.isValid) {
-        return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
-      }
-      if (!result.address.isValid) {
-        return h.redirect('/origin/address?redirect_uri=/origin/summary')
+      if (origin[page.questionKey].validate().isValid) {
+        page = page.nextPage(origin[page.questionKey])
+      } else {
+        return res.redirect(`${page.urlPath}?redirect_uri=/origin/summary`)
       }
     }
 
@@ -62,7 +51,7 @@ export const originSummaryGetController = {
       }
     }))
 
-    return h.view(indexView, {
+    return res.view(indexView, {
       pageTitle,
       heading,
       originSummary: items
