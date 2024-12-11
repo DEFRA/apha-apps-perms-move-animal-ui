@@ -1,6 +1,6 @@
-import { License } from '../../common/model/section/license.js'
+import { Licence } from '../../common/model/section/licence.js'
 
-const indexView = 'license/check-answers/index.njk'
+const indexView = 'licence/check-answers/index.njk'
 export const pageTitle =
   'Check your answers before you continue your application'
 export const heading = pageTitle
@@ -8,10 +8,10 @@ export const heading = pageTitle
 /**
  * @satisfies {Partial<ServerRoute>}
  */
-export const licenseCheckAnswersGetController = {
+export const licenceCheckAnswersGetController = {
   handler(req, h) {
-    const license = License.fromState(req.yar.get('license'))
-    const { isValid, result } = license.validate()
+    const licence = Licence.fromState(req.yar.get('licence'))
+    const { isValid, result } = licence.validate()
 
     if (!isValid && !result.emailAddress.isValid) {
       return h.redirect(
@@ -22,7 +22,7 @@ export const licenseCheckAnswersGetController = {
     return h.view(indexView, {
       pageTitle,
       heading,
-      license
+      licence
     })
   }
 }
@@ -30,7 +30,7 @@ export const licenseCheckAnswersGetController = {
 /**
  * @satisfies {Partial<ServerRoute>}
  */
-export const licenseCheckAnswersPostController = {
+export const licenceCheckAnswersPostController = {
   handler(_req, h) {
     return h.redirect('/task-list')
   }

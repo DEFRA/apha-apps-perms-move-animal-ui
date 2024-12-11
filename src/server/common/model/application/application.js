@@ -1,4 +1,4 @@
-import { License } from '../section/license.js'
+import { Licence } from '../section/licence.js'
 import { Origin } from '../section/origin.js'
 import { validateApplication } from './validation.js'
 
@@ -9,10 +9,10 @@ import { validateApplication } from './validation.js'
 /**
  * export @typedef {{
  * origin: OriginData | undefined;
- * license: LicenseData | undefined;
+ * licence: LicenceData | undefined;
  * }} ApplicationData
  * @import {OriginData} from '../section/origin.js'
- * @import {LicenseData} from '../section/license.js'
+ * @import {LicenceData} from '../section/licence.js'
  * @import {AddressData} from '../answer/address.js'
  */
 
@@ -42,7 +42,7 @@ export class Application {
   static fromState(state) {
     return new Application({
       origin: Origin.fromState(state?.origin),
-      license: License.fromState(state?.license)
+      licence: Licence.fromState(state?.licence)
     })
   }
 

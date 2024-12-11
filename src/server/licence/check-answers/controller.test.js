@@ -8,7 +8,7 @@ import SesessionTestHelper from '~/src/server/common/test-helpers/session-helper
 
 const testEmail = 'test@domain.com'
 
-describe('licenseCheckAnswersController', () => {
+describe('licenceCheckAnswersController', () => {
   /** @type {Server} */
   let server
 
@@ -27,7 +27,7 @@ describe('licenseCheckAnswersController', () => {
   beforeEach(async () => {
     session = await SesessionTestHelper.create(server)
 
-    await session.setState('license', defaultState)
+    await session.setState('licence', defaultState)
   })
 
   afterAll(async () => {
@@ -56,7 +56,7 @@ describe('licenseCheckAnswersController', () => {
 
   describe('should redirect to specific page when fields are missing from state', () => {
     it('should not show email address value', async () => {
-      await session.setState('license', {
+      await session.setState('licence', {
         ...defaultState,
         emailAddress: undefined
       })

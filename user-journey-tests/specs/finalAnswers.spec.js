@@ -6,7 +6,7 @@ import {
   validateAndAdjustParishNumber,
   validateOnOffFarm
 } from '../helpers/testHelpers/checkAnswers.js'
-import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicense.js'
+import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
 import finalAnswersPage from '../page-objects/finalAnswersPage.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'

@@ -1,7 +1,7 @@
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
-const emailId = 'email-address'
+const emailId = 'emailAddress'
 const pageHeadingAndTitle =
   'What email address would you like the licence sent to?'
 
