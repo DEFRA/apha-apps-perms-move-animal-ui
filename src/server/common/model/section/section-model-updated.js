@@ -67,7 +67,7 @@ export class SectionModelUpdated {
       page = page.nextPage(answer)
     }
 
-    return new SectionModelUpdated(pageAnswers)
+    return new this(pageAnswers)
   }
 
   /* eslint-enable @typescript-eslint/no-unused-vars */

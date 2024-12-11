@@ -35,40 +35,40 @@ const exitState = {
   address: validAddress // this is unreachable in the journey, because we will have exited already
 }
 
-describe('SectionModel.fromState', () => {
+describe('SectionModel.value', () => {
   it('should generate from the first page it runs out of questions - for a valid payload', () => {
-    const data = OriginModel.fromState(validState)._data
+    const value = OriginModel.fromState(validState).value
 
-    expect(data.length).toEqual(3)
+    expect(value.length).toEqual(3)
 
-    expect(data[0].page).toBeInstanceOf(OnOffFarmPage)
-    expect(data[0].answer).toBeInstanceOf(OnOffFarm)
+    expect(value[0].page).toBeInstanceOf(OnOffFarmPage)
+    expect(value[0].answer).toBeInstanceOf(OnOffFarm)
 
-    expect(data[1].page).toBeInstanceOf(CphNumberPage)
-    expect(data[1].answer).toBeInstanceOf(CphNumber)
+    expect(value[1].page).toBeInstanceOf(CphNumberPage)
+    expect(value[1].answer).toBeInstanceOf(CphNumber)
 
-    expect(data[2].page).toBeInstanceOf(OriginAddressPage)
-    expect(data[2].answer).toBeInstanceOf(Address)
+    expect(value[2].page).toBeInstanceOf(OriginAddressPage)
+    expect(value[2].answer).toBeInstanceOf(Address)
   })
 
   it('should short-circuit on invalid page', () => {
-    const data = OriginModel.fromState(invalidState)._data
+    const value = OriginModel.fromState(invalidState).value
 
-    expect(data.length).toEqual(2)
+    expect(value.length).toEqual(2)
 
-    expect(data[0].page).toBeInstanceOf(OnOffFarmPage)
-    expect(data[0].answer).toBeInstanceOf(OnOffFarm)
+    expect(value[0].page).toBeInstanceOf(OnOffFarmPage)
+    expect(value[0].answer).toBeInstanceOf(OnOffFarm)
 
-    expect(data[1].page).toBeInstanceOf(CphNumberPage)
-    expect(data[1].answer).toBeInstanceOf(CphNumber)
+    expect(value[1].page).toBeInstanceOf(CphNumberPage)
+    expect(value[1].answer).toBeInstanceOf(CphNumber)
   })
 
   it('should short-circuit on an exit page', () => {
-    const data = OriginModel.fromState(exitState)._data
+    const value = OriginModel.fromState(exitState).value
 
-    expect(data.length).toEqual(1)
-    expect(data[0].page).toBeInstanceOf(OnOffFarmPage)
-    expect(data[0].answer).toBeInstanceOf(OnOffFarm)
+    expect(value.length).toEqual(1)
+    expect(value[0].page).toBeInstanceOf(OnOffFarmPage)
+    expect(value[0].answer).toBeInstanceOf(OnOffFarm)
   })
 })
 
@@ -94,10 +94,8 @@ describe('SectionModel.validate', () => {
   })
 })
 
-describe('SectionModel.value', () => {
-  it('return the page answers', () => {
-    const { value, _data } = OriginModel.fromState(validState)
-
-    expect(value).toEqual(_data)
+describe('SectionModel.fromState', () => {
+  it('should return an instance of the class that produced it', () => {
+    expect(OriginModel.fromState(validState)).toBeInstanceOf(OriginModel)
   })
 })
