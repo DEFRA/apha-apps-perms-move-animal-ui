@@ -5,11 +5,12 @@
 
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { exitPage } from '../../exit-page/index.js'
-import { cphNumberPage } from '../cph-number/index.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { exitPage } from '~/src/server/exit-page/index.js'
+import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
+/** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 
 export class OnOffFarmPage extends QuestionPage {
   urlPath = '/origin/to-or-from-own-premises'
@@ -22,7 +23,7 @@ export class OnOffFarmPage extends QuestionPage {
   view = 'origin/on-off-farm/index'
   Answer = OnOffFarm
 
-  /** @param {OnOffFarm} answer */
+  /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'on') {

@@ -1,4 +1,6 @@
 import { Origin } from '../../common/model/section/origin.js'
+import { OnOffFarmPage } from '../on-off-farm/index.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
@@ -9,32 +11,39 @@ export const heading = pageTitle
  * @satisfies {Partial<ServerRoute>}
  */
 export const originSummaryGetController = {
-  handler(req, h) {
+  handler(req, res) {
     const origin = Origin.fromState(req.yar.get('origin'))
-    const { isValid, result } = origin.validate()
 
-    if (!isValid) {
-      if (!result.onOffFarm.isValid) {
-        return h.redirect(
-          '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
-        )
-      }
-      if (!result.cphNumber.isValid) {
-        return h.redirect('/origin/cph-number?redirect_uri=/origin/summary')
-      }
-      if (!result.address.isValid) {
-        return h.redirect('/origin/address?redirect_uri=/origin/summary')
+    /** @type {QuestionPage[]} */
+    const pages = []
+
+    /** @type {Page} */
+    let page = new OnOffFarmPage()
+
+    while (page instanceof QuestionPage) {
+      const currPage = origin[page.questionKey]
+      pages.push(page)
+      if (currPage.validate().isValid) {
+        page = page.nextPage(currPage)
+      } else {
+        return res.redirect(`${page.urlPath}?redirect_uri=/origin/summary`)
       }
     }
 
-    return h.view(indexView, {
+    const items = pages.map((visitedPage) => ({
+      key: visitedPage.question,
+      value: origin[visitedPage.questionKey].html,
+      url: `${visitedPage.urlPath}?redirect_uri=/origin/summary`,
+      visuallyHiddenKey: visitedPage.question,
+      attributes: {
+        'data-testid': `${visitedPage.questionKey}-change-link`
+      }
+    }))
+
+    return res.view(indexView, {
       pageTitle,
       heading,
-      origin: {
-        cphNumber: origin?.cphNumber.html,
-        address: origin.address.html,
-        onOffFarm: origin.onOffFarm.html
-      }
+      originSummary: items
     })
   }
 }
@@ -50,4 +59,5 @@ export const originSummaryPostController = {
 
 /**
  * @import { ServerRoute } from '@hapi/hapi'
+ * @import { Page } from '../../common/model/page/page-model.js'
  */

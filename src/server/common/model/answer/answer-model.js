@@ -1,5 +1,6 @@
 /**
  * @import {AnswerErrors, AnswerValidationResult} from './validation.js'
+ * @import {Page} from '../../model/page/page-model.js'
  */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
