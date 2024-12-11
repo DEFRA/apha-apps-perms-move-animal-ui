@@ -19,7 +19,7 @@ export class Destination extends SectionModel {
   title = 'Movement destination'
   initialPage = new DestinationPagePlaceholder()
   summaryPageLink = '/destination/summary'
-  isEnabled = false
+  isEnabled = true
 
   validate() {
     return { isValid: false, result: {} }

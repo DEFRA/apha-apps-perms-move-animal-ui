@@ -4,10 +4,10 @@
 {% extends 'layouts/page.njk' %}
 
 {% macro incompleteTasks() %}
-{% set incomplete = 0 %}
+{% set incomplete = tasks.length %}
   {% for row in tasks %}
     {% if row.isValid %}
-      {% set incomplete = incomplete + 1 %}
+      {% set incomplete = incomplete - 1 %}
     {% endif %}
   {% endfor %}
 

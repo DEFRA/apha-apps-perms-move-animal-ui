@@ -19,7 +19,7 @@ export class Tests extends SectionModel {
   title = 'Tests'
   initialPage = new TestsPagePlaceholder()
   summaryPageLink = '/destination/summary'
-  isEnabled = false
+  isEnabled = true
 
   validate() {
     return { isValid: false, result: {} }
