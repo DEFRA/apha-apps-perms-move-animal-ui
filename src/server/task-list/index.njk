@@ -58,7 +58,7 @@
 
           <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
 
-          {{ createTaskList(items) }}
+          {{ createTaskList(tasks) }}
 
           <form method="POST">
             <input type="hidden" name="crumb" value="{{crumb}}" />
