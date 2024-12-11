@@ -1,5 +1,7 @@
 import { SectionModel } from './section-model.js'
 import { EmailAddress } from '../answer/email-address.js'
+import { EmailAddressPage } from '../../../licence/email-address/index.js'
+import { LicenceCheckAnswersPage } from '../../../licence/check-answers/index.js'
 
 /**
  * export @typedef {{
@@ -9,6 +11,11 @@ import { EmailAddress } from '../answer/email-address.js'
  */
 
 export class Licence extends SectionModel {
+  title = 'Receiving the licence'
+  initialPage = new EmailAddressPage()
+  summaryPageLink = new LicenceCheckAnswersPage().urlPath
+  isEnabled = true
+
   get emailAddress() {
     return this._data?.emailAddress
   }
@@ -18,8 +25,10 @@ export class Licence extends SectionModel {
    * @returns {Licence}
    */
   static fromState(state) {
-    return new Licence({
+    const instance = new Licence({
       emailAddress: EmailAddress.fromState(state?.emailAddress)
     })
+    instance.seal()
+    return instance
   }
 }

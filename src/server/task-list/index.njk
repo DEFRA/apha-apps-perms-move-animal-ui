@@ -3,6 +3,49 @@
 
 {% extends 'layouts/page.njk' %}
 
+{% macro createTaskList(tasks) %}
+
+  {% set summaryRows = [] %}
+  {% for row in tasks %}
+    {% if not row.isEnabled %}
+      {% set href = '' %}
+      {% set status = {
+        text: 'Cannot start yet',
+        classes: 'govuk-task-list__status--cannot-start-yet'
+      } %}
+    {% elif row.isValid %}
+      {% set href = row.summaryLink %}
+      {% set status = {
+        text: 'Completed',
+        classes: ''
+      } %}
+    {% else %}
+      {% set href = row.initialLink %}
+      {% set status = {
+        tag: {
+          text: 'Incomplete',
+          classes: 'govuk-tag--blue'
+        }
+      } %}
+    {% endif %}
+
+    {% set rows = (summaryRows, summaryRows.push({
+      title: {
+        text: row.title
+      },
+      href: href,
+      status: status
+    })) %}
+  {% endfor %}
+
+
+
+  {{ govukTaskList({
+    idPrefix: "task-list",
+    items: summaryRows
+  }) }}
+{% endmacro %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -15,10 +58,7 @@
 
           <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
 
-          {{ govukTaskList({
-            idPrefix: "task-list",
-            items: gdsTasks
-          }) }}
+          {{ createTaskList(items) }}
 
           <form method="POST">
             <input type="hidden" name="crumb" value="{{crumb}}" />

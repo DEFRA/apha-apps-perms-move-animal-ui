@@ -13,62 +13,47 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const origin = Origin.fromState(req.yar.get('origin'))
-    const destination = Destination.fromState()
-    const tests = Tests.fromState()
-    const licence = Licence.fromState(req.yar.get('licence'))
-    const isOriginValid = origin.validate().isValid
+    const application = {
+      origin: Origin.fromState(req.yar.get('origin')),
+      destination: Destination.fromState(),
+      tests: Tests.fromState(),
+      licence: Licence.fromState(req.yar.get('licence'))
+    }
 
-    const originGdsTask = buildGdsTaskItem({
-      title: 'Movement origin',
-      initialLink: 'origin/to-or-from-own-premises',
-      summaryLink: 'origin/summary',
-      isValid: isOriginValid,
-      isEnabled: true
+    const tasks = Object.values(application)
+
+    const gdsTasks = Object.values(application).map((section) => {
+      return buildGdsTaskItem({
+        title: section.title,
+        initialLink: section.initialPage.urlPath,
+        summaryLink: section.summaryPageLink,
+        isValid: section.validate().isValid,
+        isEnabled: section.isEnabled
+      })
     })
 
-    const destinationGdsTask = buildGdsTaskItem({
-      title: 'Movement destination',
-      initialLink: '#',
-      summaryLink: '#',
-      isValid: destination.validate().isValid,
-      isEnabled: isOriginValid
-    })
+    const allTasks = tasks
+    const incompleteTasks = allTasks.reduce((acc, task) => {
+      if (!task.validate().isValid) {
+        acc += 1
+      }
 
-    const testsGdsTask = buildGdsTaskItem({
-      title: 'Tests',
-      initialLink: '#',
-      summaryLink: '#',
-      isValid: tests.validate().isValid,
-      isEnabled: isOriginValid
-    })
-
-    const licenceGdsTask = buildGdsTaskItem({
-      title: 'Receiving the licence',
-      initialLink: '/receiving-the-licence/licence-enter-email-address',
-      summaryLink: '/receiving-the-licence/check-answers',
-      isValid: licence.validate().isValid,
-      isEnabled: true
-    })
-
-    const gdsTasks = [
-      originGdsTask,
-      destinationGdsTask,
-      testsGdsTask,
-      licenceGdsTask
-    ]
-
-    const allTasks = [origin, destination, tests, licence]
-    const incompleteTasks =
-      allTasks.length -
-      allTasks.filter((task) => {
-        return task.validate().isValid
-      }).length
+      return acc
+    }, 0)
 
     return h.view('task-list/index', {
       pageTitle,
       heading,
       gdsTasks,
+      items: Object.values(application).map((section) => {
+        return {
+          title: section.title,
+          initialLink: section.initialPage.urlPath,
+          summaryLink: section.summaryPageLink,
+          isValid: section.validate().isValid,
+          isEnabled: section.isEnabled
+        }
+      }),
       incompleteTasks,
       buttonText
     })

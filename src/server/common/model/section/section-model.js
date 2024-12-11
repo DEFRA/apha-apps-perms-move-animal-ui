@@ -3,6 +3,7 @@ import { validateSection } from './validation.js'
 
 /**
  * @import {AnswerModel} from '../answer/answer-model.js'
+ * @import { QuestionPage } from '../page/question-page-model.js'
  */
 
 /**
@@ -10,11 +11,26 @@ import { validateSection } from './validation.js'
  */
 
 export class SectionModel {
+  /** @type {string}  */
+  title
+
+  /** @type {QuestionPage}  */
+  initialPage
+
+  /** @type {string}  */
+  summaryPageLink
+
+  /** @type {boolean}  */
+  isEnabled = true
+
   /** @type {SectionPayload} */
   _data
 
   constructor(data) {
     this._data = data
+  }
+
+  seal() {
     Object.seal(this)
   }
 
