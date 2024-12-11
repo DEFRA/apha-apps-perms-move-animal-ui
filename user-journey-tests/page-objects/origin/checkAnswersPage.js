@@ -10,11 +10,11 @@ class OriginCheckAnswersPage extends Page {
 
   // Change links
   get changeOnOrOffLink() {
-    return $('[data-testid="on-off-change-link"]')
+    return $('[data-testid="onOffFarm-change-link"]')
   }
 
   get changeParishNumberLink() {
-    return $('[data-testid="cph-change-link"]')
+    return $('[data-testid="cphNumber-change-link"]')
   }
 
   get changeAddressLink() {
