@@ -32,20 +32,10 @@ export const taskListGetController = {
       }
     })
 
-    const allTasks = tasks
-    const incompleteTasks = allTasks.reduce((acc, task) => {
-      if (!task.validate().isValid) {
-        acc += 1
-      }
-
-      return acc
-    }, 0)
-
     return h.view('task-list/index', {
       pageTitle,
       heading,
       tasks: gdsTasks,
-      incompleteTasks,
       buttonText
     })
   }

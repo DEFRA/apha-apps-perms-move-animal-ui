@@ -3,7 +3,18 @@
 
 {% extends 'layouts/page.njk' %}
 
-{% macro createTaskList(tasks) %}
+{% macro incompleteTasks() %}
+{% set incomplete = 0 %}
+  {% for row in tasks %}
+    {% if row.isValid %}
+      {% set incomplete = incomplete + 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {{ incomplete }}
+{% endmacro %}
+
+{% macro createTaskList() %}
 
   {% set summaryRows = [] %}
   {% for row in tasks %}
@@ -56,9 +67,9 @@
               {{ heading }}
           </h1>
 
-          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
+          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks() }} out of {{ tasks.length }}</span> sections left to complete.</p>
 
-          {{ createTaskList(tasks) }}
+          {{ createTaskList() }}
 
           <form method="POST">
             <input type="hidden" name="crumb" value="{{crumb}}" />
