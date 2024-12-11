@@ -12,7 +12,7 @@ describe('Licence', () => {
   })
 
   describe('fromState', () => {
-    it('should create an Origin instance with valid nested objects', () => {
+    it('should create an Licence instance with valid nested objects', () => {
       const licenceData = {
         emailAddress: testEmail
       }
