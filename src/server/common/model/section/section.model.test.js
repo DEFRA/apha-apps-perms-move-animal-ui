@@ -6,8 +6,9 @@ describe('SectionModel', () => {
     expect(() => SectionModel.fromState({})).toThrow(NotImplementedError)
   })
 
-  it('should seal the object to prevent property additions or deletions', () => {
+  it('should prevent property additions or deletions after sealing', () => {
     const section = /** @type {any} */ (new SectionModel({ key: 'value' }))
+    section.seal()
 
     expect(() => {
       section.something = 'should fail'
