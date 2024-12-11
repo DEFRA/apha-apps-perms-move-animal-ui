@@ -3,59 +3,45 @@
 
 {% extends 'layouts/page.njk' %}
 
-{% macro incompleteTasks() %}
-{% set incomplete = tasks.length %}
-  {% for row in tasks %}
-    {% if row.isValid %}
-      {% set incomplete = incomplete - 1 %}
-    {% endif %}
-  {% endfor %}
+{% set incompleteTaskCount = tasks.length %}
+{% for row in tasks %}
+  {% if row.isValid %}
+    {% set incompleteTaskCount = incompleteTaskCount - 1 %}
+  {% endif %}
+{% endfor %}
 
-  {{ incomplete }}
-{% endmacro %}
+{% set summaryRows = [] %}
+{% for row in tasks %}
+  {% if not row.isEnabled %}
+    {% set href = '' %}
+    {% set status = {
+      text: 'Cannot start yet',
+      classes: 'govuk-task-list__status--cannot-start-yet'
+    } %}
+  {% elif row.isValid %}
+    {% set href = row.summaryLink %}
+    {% set status = {
+      text: 'Completed',
+      classes: ''
+    } %}
+  {% else %}
+    {% set href = row.initialLink %}
+    {% set status = {
+      tag: {
+        text: 'Incomplete',
+        classes: 'govuk-tag--blue'
+      }
+    } %}
+  {% endif %}
 
-{% macro createTaskList() %}
-
-  {% set summaryRows = [] %}
-  {% for row in tasks %}
-    {% if not row.isEnabled %}
-      {% set href = '' %}
-      {% set status = {
-        text: 'Cannot start yet',
-        classes: 'govuk-task-list__status--cannot-start-yet'
-      } %}
-    {% elif row.isValid %}
-      {% set href = row.summaryLink %}
-      {% set status = {
-        text: 'Completed',
-        classes: ''
-      } %}
-    {% else %}
-      {% set href = row.initialLink %}
-      {% set status = {
-        tag: {
-          text: 'Incomplete',
-          classes: 'govuk-tag--blue'
-        }
-      } %}
-    {% endif %}
-
-    {% set rows = (summaryRows, summaryRows.push({
-      title: {
-        text: row.title
-      },
-      href: href,
-      status: status
-    })) %}
-  {% endfor %}
-
-
-
-  {{ govukTaskList({
-    idPrefix: "task-list",
-    items: summaryRows
-  }) }}
-{% endmacro %}
+  {% set rows = (summaryRows, summaryRows.push({
+    title: {
+      text: row.title
+    },
+    href: href,
+    status: status
+  })) %}
+{% endfor %}
 
 {% block content %}
 
@@ -67,9 +53,12 @@
               {{ heading }}
           </h1>
 
-          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks() }} out of {{ tasks.length }}</span> sections left to complete.</p>
+          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTaskCount }} out of {{ tasks.length }}</span> sections left to complete.</p>
 
-          {{ createTaskList() }}
+          {{ govukTaskList({
+            idPrefix: "task-list",
+            items: summaryRows
+          }) }}
 
           <form method="POST">
             <input type="hidden" name="crumb" value="{{crumb}}" />

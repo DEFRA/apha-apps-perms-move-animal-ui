@@ -32,6 +32,11 @@ export class Origin extends SectionModel {
     return this._data?.address
   }
 
+  get isEnabled() {
+    const isEnabled = true
+    return isEnabled
+  }
+
   /**
    * @param {OriginData | undefined} state
    * @returns {Origin}

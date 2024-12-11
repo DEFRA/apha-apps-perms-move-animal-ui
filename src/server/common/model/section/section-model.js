@@ -20,14 +20,16 @@ export class SectionModel {
   /** @type {string}  */
   summaryPageLink
 
-  /** @type {boolean}  */
-  isEnabled = true
-
   /** @type {SectionPayload} */
   _data
 
   constructor(data) {
     this._data = data
+  }
+
+  /** @returns {boolean}  */
+  get isEnabled() {
+    throw new NotImplementedError()
   }
 
   seal() {

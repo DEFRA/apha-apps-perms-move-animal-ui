@@ -26,7 +26,7 @@ export const taskListGetController = {
       return {
         title: section.title,
         initialLink: section.initialPage.urlPath,
-        summaryLink: section.summaryPageLink,
+        summaryLink: section.summaryPageLink, // TODO: make summary page a Page object and change to `section.summaryPage.urlPath`
         isValid: section.validate().isValid,
         isEnabled: section.isEnabled
       }

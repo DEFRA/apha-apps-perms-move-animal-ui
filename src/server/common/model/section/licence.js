@@ -14,7 +14,11 @@ export class Licence extends SectionModel {
   title = 'Receiving the licence'
   initialPage = new EmailAddressPage()
   summaryPageLink = new LicenceCheckAnswersPage().urlPath
-  isEnabled = true
+
+  get isEnabled() {
+    const isEnabled = true
+    return isEnabled
+  }
 
   get emailAddress() {
     return this._data?.emailAddress
