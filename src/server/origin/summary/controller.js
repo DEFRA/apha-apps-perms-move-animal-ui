@@ -21,21 +21,22 @@ export const originSummaryGetController = {
     let page = new OnOffFarmPage()
 
     while (page instanceof QuestionPage) {
+      const currPage = origin[page.questionKey]
       pages.push(page)
-      if (origin[page.questionKey].validate().isValid) {
-        page = page.nextPage(origin[page.questionKey])
+      if (currPage.validate().isValid) {
+        page = page.nextPage(currPage)
       } else {
         return res.redirect(`${page.urlPath}?redirect_uri=/origin/summary`)
       }
     }
 
-    const items = pages.map((page) => ({
-      key: page.question,
-      value: origin[page.questionKey].html,
-      url: `${page.urlPath}?redirect_uri=/origin/summary`,
-      visuallyHiddenKey: page.question,
+    const items = pages.map((visitedPage) => ({
+      key: visitedPage.question,
+      value: origin[visitedPage.questionKey].html,
+      url: `${visitedPage.urlPath}?redirect_uri=/origin/summary`,
+      visuallyHiddenKey: visitedPage.question,
       attributes: {
-        'data-testid': `${page.questionKey}-change-link`
+        'data-testid': `${visitedPage.questionKey}-change-link`
       }
     }))
 
