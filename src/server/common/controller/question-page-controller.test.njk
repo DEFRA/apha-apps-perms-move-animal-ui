@@ -1,4 +1,5 @@
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends 'layouts/questions.njk' %}
@@ -11,29 +12,23 @@
     }) }}
   {% endif %}
 
-  {{ govukRadios({
-    name: "onOffFarm",
-    id: "on-off-farm",
-    fieldset: {
-      legend: {
-        text: pageHeading,
-        isPageHeading: true,
-        classes: "govuk-fieldset__legend--l"
-      }
-    },
-    value: value,
-    items: [
-      {
-        id: "on-farm-radio",
-        value: "on",
-        text: "On to the farm or premises"
-      },
-      {
-        id: "off-farm-radio",
-        value: "off",
-        text: "Off the farm or premises"
-      }
-    ],
-    errorMessage: errorMessage
-  }) }}
+  {% call govukFieldset({
+    legend: {
+      text: heading,
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  }) %}
+
+    {{ govukInput({
+      id: "questionId",
+      name: "questionName",
+      type: "text",
+      autocomplete: "question",
+      classes: "govuk-input--width-20",
+      value: value,
+      errorMessage: errors.question
+    }) }}
+
+  {% endcall %}
 {% endblock %}
