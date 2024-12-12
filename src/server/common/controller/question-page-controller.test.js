@@ -2,50 +2,66 @@ import { QuestionPage } from '../model/page/question-page-model.js'
 import { QuestionPageController } from './question-page-controller.js'
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import {
-  testCsrfProtectedGet,
-  testCsrfProtectedPost,
-  withCsrfProtection
-} from '~/src/server/common/test-helpers/csrf.js'
+import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../common/test-helpers/session-helper.js'
-import { Page } from '../model/page/page-model.js'
-import { OnOffFarm } from '../model/answer/on-off-farm.js'
+import { AnswerModel } from '../model/answer/answer-model.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
-class CphNumberPage extends Page {
-  urlPath = '/origin-test/cph-number'
-}
+const question = 'question-text'
+const questionKey = 'questionKey'
+const questionView = 'common/controller/question-page-controller.test.njk'
+const sectionKey = 'section-key'
+const questionUrl = '/question-url'
+const nextQuestionUrl = '/next-question-url'
+const questionValue = 'question-value'
+const questionElementSelector = '#questionId'
+const validationSpy = jest
+  .spyOn(AnswerModel.prototype, 'validate')
+  .mockReturnValue({ isValid: true, errors: {} })
+const redirectUri = '/redirect-uri'
 
-class ExitPage extends Page {
-  urlPath = '/exit-page'
-}
+class TestAnswer extends AnswerModel {
+  toState() {
+    return this._data?.questionKey
+  }
 
-const question = 'Are you moving the cattle on or off your farm or premises?'
+  static fromState(state) {
+    return new TestAnswer(
+      state !== undefined ? { questionKey: state } : undefined
+    )
+  }
 
-class TestOnOffPage extends QuestionPage {
-  question = question
-  questionKey = 'onOffFarm'
-  view = 'common/controller/question-page-controller.test.njk'
-  sectionKey = 'origin-test'
-  urlPath = '/origin-test/to-or-from-own-premises'
+  get value() {
+    return this._data?.questionKey
+  }
 
-  Answer = OnOffFarm
-
-  /**
-   * @param {OnOffFarm} answer
-   */
-  nextPage(answer) {
-    if (answer.value === 'on') {
-      return new ExitPage()
-    } else {
-      return new CphNumberPage()
-    }
+  _extractFields({ questionKey }) {
+    return { questionKey }
   }
 }
 
-const controller = new QuestionPageController(new TestOnOffPage())
+class TestPage extends QuestionPage {
+  question = question
+  questionKey = questionKey
+  view = questionView
+  sectionKey = sectionKey
+  urlPath = questionUrl
+
+  Answer = TestAnswer
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  nextPage(_answer) {
+    return new NextTestPage()
+  }
+}
+
+class NextTestPage extends TestPage {
+  urlPath = nextQuestionUrl
+}
+
+const controller = new QuestionPageController(new TestPage())
 
 describe('QuestionPageController', () => {
   /** @type {Server} */
@@ -68,35 +84,26 @@ describe('QuestionPageController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  it('should provide a blank question page on a GET without any session state', async () => {
+  it('should provide the question page on a GET without any session state', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/origin-test/to-or-from-own-premises'
+      url: questionUrl
     })
 
     const document = parseDocument(payload)
     expect(document.title).toBe(question)
     expect(statusCode).toBe(statusCodes.ok)
-    expect(
-      /** @type {HTMLInputElement} */ (
-        document.querySelector('#off-farm-radio')
-      )?.checked
-    ).toBe(false)
-    expect(
-      /** @type {HTMLInputElement} */ (document.querySelector('#on-farm-radio'))
-        ?.checked
-    ).toBe(false)
   })
 
   it('should repopulate the form from state', async () => {
-    await session.setState('origin-test', {
-      onOffFarm: 'off'
+    await session.setState(sectionKey, {
+      questionKey: questionValue
     })
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/origin-test/to-or-from-own-premises'
+          url: questionUrl
         },
         {
           Cookie: session.sessionID
@@ -107,29 +114,25 @@ describe('QuestionPageController', () => {
     const document = parseDocument(payload)
     expect(
       /** @type {HTMLInputElement} */ (
-        document.querySelector('#off-farm-radio')
-      )?.checked
-    ).toBe(true)
-    expect(
-      /** @type {HTMLInputElement} */ (document.querySelector('#on-farm-radio'))
-        ?.checked
-    ).toBe(false)
+        document.querySelector(questionElementSelector)
+      )?.value
+    ).toBe(questionValue)
 
     expect(statusCode).toBe(statusCodes.ok)
   })
 
   describe('Should process the result and provide expected response', () => {
-    it('should redirect to cph number page, storing question state & preserving the rest of the section state', async () => {
-      await session.setState('origin-test', {
+    it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
+      await session.setState(sectionKey, {
         someOtherQuestion: 'some-other-answer'
       })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
             method: 'POST',
-            url: '/origin-test/to-or-from-own-premises',
+            url: questionUrl,
             payload: {
-              onOffFarm: 'off'
+              questionKey: questionValue
             }
           },
           {
@@ -139,29 +142,25 @@ describe('QuestionPageController', () => {
       )
 
       expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe('/origin-test/cph-number')
+      expect(headers.location).toBe(nextQuestionUrl)
 
-      const state = await session.getState('origin-test')
-      expect(state.onOffFarm).toBe('off')
+      const state = await session.getState(sectionKey)
+      expect(state.questionKey).toBe(questionValue)
       expect(state.someOtherQuestion).toBe('some-other-answer')
     })
 
-    it('should redirect to exit page, storing question state & preserving the rest of the section state', async () => {
-      await session.setState('origin-test', {
-        someOtherQuestion: 'some-other-answer'
+    it('should set the next page to redirect_uri if one exists', async () => {
+      const { payload, statusCode } = await server.inject({
+        method: 'GET',
+        url: `${questionUrl}?redirect_uri=${redirectUri}`
       })
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: '/origin-test/to-or-from-own-premises',
-            payload: {
-              onOffFarm: 'on'
-            }
-          },
-          {
-            Cookie: session.sessionID
-          }
+
+      const document = parseDocument(payload)
+      expect(document.title).toBe(question)
+
+      expect(payload).toEqual(
+        expect.stringContaining(
+          `<input type="hidden" name="nextPage" value="${redirectUri}" />`
         )
       )
 
@@ -172,131 +171,93 @@ describe('QuestionPageController', () => {
       expect(state.onOffFarm).toBe('on')
       expect(state.someOtherQuestion).toBe('some-other-answer')
     })
-  })
 
-  it('should display an error to the user if no value selected', async () => {
-    const { payload, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin-test/to-or-from-own-premises'
-      })
-    )
-
-    expect(parseDocument(payload).title).toBe(
-      'Error: Are you moving the cattle on or off your farm or premises?'
-    )
-    expect(payload).toEqual(expect.stringContaining('There is a problem'))
-    const document = parseDocument(payload)
-
-    expect(
-      /** @type {HTMLInputElement} */ (
-        document.querySelector('#off-farm-radio')
-      )?.checked
-    ).toBe(false)
-    expect(
-      /** @type {HTMLInputElement} */ (document.querySelector('#on-farm-radio'))
-        ?.checked
-    ).toBe(false)
-
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  it('should clear the session state *for this question only* if the user encounters an error', async () => {
-    await session.setState('origin-test', {
-      onOffFarm: 'off',
-      someOtherQuestion: 'some-other-answer'
-    })
-    const { payload } = await server.inject(
-      withCsrfProtection(
-        {
+    it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection({
           method: 'POST',
-          url: '/origin-test/to-or-from-own-premises'
-        },
-        {
-          Cookie: session.sessionID
-        }
+          url: questionUrl,
+          payload: {
+            questionKey: questionValue,
+            nextPage: redirectUri
+          }
+        })
       )
-    )
 
-    expect(parseDocument(payload).title).toBe(
-      'Error: Are you moving the cattle on or off your farm or premises?'
-    )
-
-    const state = await session.getState('origin-test')
-    expect(state.onOffFarm).toBeUndefined()
-    expect(state.someOtherQuestion).toBe('some-other-answer')
-  })
-
-  it('should set the next page to redirect_uri if one exists', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: '/origin-test/to-or-from-own-premises?redirect_uri=/origin/summary'
+      expect(headers.location).toBe(redirectUri)
+      expect(statusCode).toBe(statusCodes.redirect)
     })
 
-    const document = parseDocument(payload)
-    expect(document.title).toBe(
-      'Are you moving the cattle on or off your farm or premises?'
-    )
-
-    expect(payload).toEqual(
-      expect.stringContaining(
-        '<input type="hidden" name="nextPage" value="/origin/summary" />'
-      )
-    )
-
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  it('Should display an error and set next page appropriately', async () => {
-    const { payload, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin-test/to-or-from-own-premises',
-        payload: {
-          onOffFarm: 'invalid format',
-          nextPage: '/origin/summary'
-        }
+    describe('when the answer is invalid', () => {
+      beforeEach(() => {
+        validationSpy.mockReturnValue({ isValid: false, errors: {} })
       })
-    )
 
-    expect(parseDocument(payload).title).toBe(
-      'Error: Are you moving the cattle on or off your farm or premises?'
-    )
-    expect(payload).toEqual(
-      expect.stringContaining(
-        '<input type="hidden" name="nextPage" value="/origin/summary" />'
-      )
-    )
+      it('should display an error to the user if answer is invalid', async () => {
+        const { payload, statusCode } = await server.inject(
+          withCsrfProtection({
+            method: 'POST',
+            url: questionUrl
+          })
+        )
 
-    expect(statusCode).toBe(statusCodes.ok)
-  })
+        const document = parseDocument(payload)
+        expect(document.title).toBe(`Error: ${question}`)
+        expect(payload).toEqual(expect.stringContaining('There is a problem'))
+        expect(
+          /** @type {HTMLInputElement} */ (
+            document.querySelector(questionElementSelector)
+          )?.value
+        ).toBe('')
 
-  it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
-    const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin-test/to-or-from-own-premises',
-        payload: {
-          onOffFarm: 'off',
-          nextPage: '/origin/summary'
-        }
+        expect(statusCode).toBe(statusCodes.ok)
       })
-    )
 
-    expect(headers.location).toBe('/origin/summary')
-    expect(statusCode).toBe(statusCodes.redirect)
-  })
+      it('should clear the session state *for this question only* if the user encounters an error', async () => {
+        await session.setState(sectionKey, {
+          questionKey: questionValue,
+          someOtherQuestion: 'some-other-answer'
+        })
+        const { payload } = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: questionUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
 
-  testCsrfProtectedGet(() => server, {
-    method: 'GET',
-    url: '/origin-test/to-or-from-own-premises'
-  })
+        const document = parseDocument(payload)
+        expect(document.title).toBe(`Error: ${question}`)
 
-  testCsrfProtectedPost(() => server, {
-    method: 'POST',
-    url: '/origin-test/to-or-from-own-premises',
-    payload: {
-      onOffFarm: 'on'
-    }
+        const state = await session.getState(sectionKey)
+        expect(state.questionKey).toBeUndefined()
+        expect(state.someOtherQuestion).toBe('some-other-answer')
+      })
+
+      it('Should display an error and set next page appropriately', async () => {
+        const { payload, statusCode } = await server.inject(
+          withCsrfProtection({
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              nextPage: redirectUri
+            }
+          })
+        )
+
+        expect(parseDocument(payload).title).toBe(`Error: ${question}`)
+        expect(payload).toEqual(
+          expect.stringContaining(
+            `<input type="hidden" name="nextPage" value="${redirectUri}" />`
+          )
+        )
+
+        expect(statusCode).toBe(statusCodes.ok)
+      })
+    })
   })
 })
