@@ -13,6 +13,8 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
+    console.log(req.yar.get('origin'))
+
     const origin = Origin.fromState(req.yar.get('origin'))
     const destination = Destination.fromState()
     const tests = Tests.fromState()
