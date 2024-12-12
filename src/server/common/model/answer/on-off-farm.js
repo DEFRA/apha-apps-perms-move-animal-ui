@@ -47,16 +47,6 @@ export class OnOffFarm extends AnswerModel {
     }
   }
 
-  /** @param {AnswerErrors} errors */
-  static errorMessages(errors) {
-    return [
-      {
-        href: '#on-farm-radio',
-        text: errors.onOffFarm?.text
-      }
-    ]
-  }
-
   /**
    * @param {OnOffFarmData | undefined} state
    * @returns {OnOffFarm}

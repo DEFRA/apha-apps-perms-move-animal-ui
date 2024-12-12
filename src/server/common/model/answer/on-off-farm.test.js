@@ -73,17 +73,6 @@ describe('OnOffFarm.fromState', () => {
   })
 })
 
-describe('OnOffFarm.errorMessages', () => {
-  it('should calculate the href to the first radio button', () => {
-    expect(OnOffFarm.errorMessages({ onOffFarm: { text: 'error' } })).toEqual([
-      {
-        href: '#on-farm-radio',
-        text: 'error'
-      }
-    ])
-  })
-})
-
 describe('#OnOffFarm.value', () => {
   it('should return a value-wrapped object to rendering in the template', () => {
     expect(new OnOffFarm({ onOffFarm: 'on' }).value).toBe('on')

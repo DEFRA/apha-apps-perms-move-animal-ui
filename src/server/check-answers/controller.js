@@ -61,7 +61,7 @@ export const checkAnswersPostController = {
         pageTitle: `Error: ${pageTitle}`,
         heading,
         confirmation,
-        errorMessage: errors.confirmation,
+        errorMessages: Confirmation.errorMessages(errors),
         ...tasks
       })
     }

@@ -4,7 +4,6 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  <h1 class="govuk-heading-l">{{pageTitle}}</h1>
 
   {{ govukSummaryList({
     classes: "govuk-!-margin-bottom-9",
@@ -31,4 +30,5 @@
       }
     ]
   }) }}
+
 {% endblock %}
