@@ -1,5 +1,4 @@
 import { Origin } from '../../common/model/section/origin.js'
-
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
   'Check your answers before you continue your application'
