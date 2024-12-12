@@ -2,7 +2,6 @@ import { CphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { Origin } from '../origin.js'
-import { SectionModelUpdated } from './section-model-updated.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
 
