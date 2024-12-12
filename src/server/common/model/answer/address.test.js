@@ -36,7 +36,7 @@ describe('Address.validate', () => {
     expect(isValid).toBe(true)
   })
 
-  it('should return false for too short input', () => {
+  it('should return false for too long input', () => {
     const address = new Address({
       ...validAddress,
       addressLine1: 'A'.repeat(256)
@@ -98,6 +98,18 @@ describe('Address.validate', () => {
 
         expect(isValid).toBe(false)
         expect(errors.addressPostcode.text).toBe('Enter a full UK postcode')
+      })
+
+      it('should return false for empty postcode', () => {
+        const address = new Address({
+          ...validAddress,
+          addressPostcode: ''
+        })
+
+        const { isValid, errors } = address.validate()
+
+        expect(isValid).toBe(false)
+        expect(errors.addressPostcode.text).toBe('Enter postcode')
       })
     })
 

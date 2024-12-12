@@ -31,7 +31,7 @@ describe('#CphNumber.validate', () => {
     expect(errors.cphNumber.text).toBe('Enter the farm or premises CPH number')
   })
 
-  it('should return false for too short input', () => {
+  it('should return false for malformed input', () => {
     const cphNumber = new CphNumber({
       cphNumber: '1/2/3'
     })
