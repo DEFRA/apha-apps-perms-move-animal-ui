@@ -49,12 +49,6 @@ describe('SectionModel.validate', () => {
     expect(origin.validate()).toEqual({ isValid: true })
   })
 
-  it.skip('should return ... invalid ? ... if the section hits an exit condition before its complete', () => {
-    const origin = Origin.fromState(exitState)
-
-    expect(origin.validate().isValid).toBe(true)
-  })
-
   it('should return invalid if the section hits a page with an invalid answer', () => {
     const origin = Origin.fromState(invalidState)
     const { isValid, firstInvalidPage } = origin.validate()
