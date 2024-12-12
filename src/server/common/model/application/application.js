@@ -3,7 +3,7 @@ import { Origin } from '../section/origin.js'
 import { validateApplication } from './validation.js'
 
 /**
- * @import {SectionModel} from '../section/section-model.js'
+ * @import {SectionModel} from '../section/section-model/section-model.js'
  */
 
 /**
@@ -16,12 +16,7 @@ import { validateApplication } from './validation.js'
  * @import {AddressData} from '../answer/address.js'
  */
 
-/**
- * @typedef {{[key:string]: SectionModel}} ApplicationPayload
- */
-
 export class Application {
-  /** @type {ApplicationPayload} */
   _data
 
   constructor(data) {
@@ -31,6 +26,13 @@ export class Application {
 
   validate() {
     return validateApplication(this._data)
+  }
+
+  /**
+   * @returns {Origin}
+   */
+  get origin() {
+    return Origin.fromState(this._data.origin)
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */

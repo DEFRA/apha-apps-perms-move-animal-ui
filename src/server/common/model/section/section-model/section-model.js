@@ -1,8 +1,8 @@
-import { NotImplementedError } from '../../helpers/not-implemented-error.js'
-import { validateSection } from './validation.js'
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { validateSection } from '../validation.js'
 
 /**
- * @import {AnswerModel} from '../answer/answer-model.js'
+ * @import {AnswerModel} from '../../answer/answer-model.js'
  */
 
 /**

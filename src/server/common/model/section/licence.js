@@ -1,4 +1,4 @@
-import { SectionModel } from './section-model.js'
+import { SectionModel } from './section-model/section-model.js'
 import { EmailAddress } from '../answer/email-address.js'
 
 /**

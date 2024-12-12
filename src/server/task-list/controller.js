@@ -17,11 +17,14 @@ export const taskListGetController = {
     const destination = Destination.fromState()
     const tests = Tests.fromState()
     const licence = Licence.fromState(req.yar.get('licence'))
-    const isOriginValid = origin.validate().isValid
+    const originValidity = origin.validate()
+
+    const isOriginValid = originValidity.isValid
 
     const originGdsTask = buildGdsTaskItem({
       title: 'Movement origin',
-      initialLink: 'origin/to-or-from-own-premises',
+      initialLink:
+        originValidity.firstInvalidPage?.urlPath ?? origin.firstPage.urlPath,
       summaryLink: 'origin/summary',
       isValid: isOriginValid,
       isEnabled: true
