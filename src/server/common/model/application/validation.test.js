@@ -1,4 +1,4 @@
-import { SectionModel } from '../section/section-model.js'
+import { SectionModel } from '../section/section-model/section-model.js'
 import { validateApplication } from './validation.js'
 
 class ValidSection extends SectionModel {

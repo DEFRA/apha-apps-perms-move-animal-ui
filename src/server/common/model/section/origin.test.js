@@ -2,6 +2,7 @@ import { Origin } from './origin.js'
 import { OnOffFarm } from '../answer/on-off-farm.js'
 import { CphNumber } from '../answer/cph-number.js'
 import { Address } from '../answer/address.js'
+import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 /** @import { OnOffFarmData } from '../answer/on-off-farm.js' */
 
 const validCphNumber = '12/345/6789'
@@ -25,18 +26,18 @@ describe('Origin', () => {
       const origin = Origin.fromState(originData)
 
       expect(origin).toBeInstanceOf(Origin)
-      expect(origin._data?.onOffFarm).toBeInstanceOf(OnOffFarm)
-      expect(origin._data?.cphNumber).toBeInstanceOf(CphNumber)
-      expect(origin._data?.address).toBeInstanceOf(Address)
+      expect(origin.onOffFarm).toBeInstanceOf(OnOffFarm)
+      expect(origin.cphNumber).toBeInstanceOf(CphNumber)
+      expect(origin.address).toBeInstanceOf(Address)
     })
 
     it('should handle undefined state gracefully', () => {
       const origin = Origin.fromState(undefined)
 
       expect(origin).toBeInstanceOf(Origin)
-      expect(origin._data?.onOffFarm.value).toBeUndefined()
-      expect(origin._data?.cphNumber.value).toBeUndefined()
-      expect(origin._data?.address.value).toBeUndefined()
+      expect(origin.onOffFarm.value).toBeUndefined()
+      expect(origin.cphNumber.value).toBeUndefined()
+      expect(origin.address.value).toBeUndefined()
     })
   })
 
@@ -62,9 +63,7 @@ describe('Origin', () => {
       const result = Origin.fromState(originData).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.result.onOffFarm.isValid).toBe(false)
-      expect(result.result.cphNumber.isValid).toBe(true)
-      expect(result.result.address.isValid).toBe(true)
+      expect(result.firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
     })
   })
 })

@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
 import { SectionModel } from './section-model.js'
 
 describe('SectionModel', () => {
