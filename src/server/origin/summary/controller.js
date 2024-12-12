@@ -1,5 +1,5 @@
 import { Origin } from '../../common/model/section/origin.js'
-import { OnOffFarmPage } from '../on-off-farm/index.js'
+import { onOffFarmPage } from '../on-off-farm/index.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
 const indexView = 'origin/summary/index.njk'
@@ -18,7 +18,7 @@ export const originSummaryGetController = {
     const pages = []
 
     /** @type {Page} */
-    let page = new OnOffFarmPage()
+    let page = onOffFarmPage
 
     while (page instanceof QuestionPage) {
       const currPage = origin[page.questionKey]

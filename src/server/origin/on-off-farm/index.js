@@ -41,6 +41,8 @@ export class OnOffFarmPage extends QuestionPage {
   }
 }
 
+export const onOffFarmPage = new OnOffFarmPage()
+
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */

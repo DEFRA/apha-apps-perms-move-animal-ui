@@ -1,168 +1,70 @@
-import { createServer } from '~/src/server/index.js'
-import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import {
-  testCsrfProtectedGet,
-  testCsrfProtectedPost,
-  withCsrfProtection
-} from '~/src/server/common/test-helpers/csrf.js'
-import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SessionTester from '../../common/test-helpers/session-helper.js'
+import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
+import { OnOffFarm } from '../../common/model/answer/on-off-farm.js'
+import { cphNumberPage } from '../cph-number/index.js'
+import { exitPage } from '../../exit-page/index.js'
 
-describe('#onOffFarmController', () => {
-  /** @type {Server} */
-  let server
-  let session
+const sectionKey = 'origin'
+const question = 'Are you moving the cattle on or off your farm or premises?'
+const questionKey = 'onOffFarm'
+const view = 'origin/on-off-farm/index'
+const pageUrl = '/origin/to-or-from-own-premises'
 
-  beforeAll(async () => {
-    server = await createServer()
-    await server.initialize()
+describe('OnOffFarmPage', () => {
+  let page
+
+  beforeEach(() => {
+    page = new OnOffFarmPage()
   })
 
-  beforeEach(async () => {
-    session = await SessionTester.create(server)
-    await session.setState('origin', {
-      onOffFarm: 'off'
-    })
+  it('should have the correct urlPath', () => {
+    expect(page.urlPath).toBe(pageUrl)
   })
 
-  afterAll(async () => {
-    await server.stop({ timeout: 0 })
+  it('should have the correct sectionKey', () => {
+    expect(page.sectionKey).toBe(sectionKey)
   })
 
-  it('Should provide expected response', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: '/origin/to-or-from-own-premises'
-    })
+  it('should have the correct question', () => {
+    expect(page.question).toBe(question)
+  })
 
-    const document = parseDocument(payload)
-    expect(document.title).toBe(
-      'Are you moving the cattle on or off your farm or premises?'
+  it('should have the correct questionKey', () => {
+    expect(page.questionKey).toBe(questionKey)
+  })
+
+  it('should have the correct view', () => {
+    expect(page.view).toBe(view)
+  })
+
+  it('should have the correct Answer model', () => {
+    expect(page.Answer).toBe(OnOffFarm)
+  })
+
+  it('nextPage should return exitPage when answer is "on"', () => {
+    const answer = { value: 'on' }
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(exitPage)
+  })
+
+  it('nextPage should return cphNumberPage when answer is "off"', () => {
+    const answer = { value: 'off' }
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(cphNumberPage)
+  })
+
+  it('should export page', () => {
+    expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
+  })
+
+  it('should export emailAddress as a plugin', () => {
+    expect(onOffFarm).toHaveProperty('plugin')
+    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
+      onOffFarm.plugin
     )
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  it('should repopulate the form from state', async () => {
-    const { payload, statusCode } = await server.inject(
-      withCsrfProtection(
-        {
-          method: 'GET',
-          url: '/origin/to-or-from-own-premises'
-        },
-        {
-          Cookie: session.sessionID
-        }
-      )
-    )
-
-    const document = parseDocument(payload)
-
-    expect(
-      /** @type {any} */ (document.querySelector('#off-farm-radio'))?.checked
-    ).toBe(true)
-
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  describe('Should process the result and provide expected response', () => {
-    test('should redirect to cph number page', async () => {
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection({
-          method: 'POST',
-          url: '/origin/to-or-from-own-premises',
-          payload: {
-            onOffFarm: 'off'
-          }
-        })
-      )
-
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe('/origin/cph-number')
-    })
-
-    test('should redirect to exit page', async () => {
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection({
-          method: 'POST',
-          url: '/origin/to-or-from-own-premises',
-          payload: {
-            onOffFarm: 'on'
-          }
-        })
-      )
-
-      expect(headers.location).toBe('/exit-page')
-
-      expect(statusCode).toBe(statusCodes.redirect)
-    })
-  })
-
-  test('Should display an error to the user if no value selected', async () => {
-    const { payload, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin/to-or-from-own-premises'
-      })
-    )
-
-    expect(parseDocument(payload).title).toBe(
-      'Error: Are you moving the cattle on or off your farm or premises?'
-    )
-    expect(payload).toEqual(expect.stringContaining('There is a problem'))
-
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  test('should set the next page appropriately', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
-    })
-
-    const document = parseDocument(payload)
-    expect(document.title).toBe(
-      'Are you moving the cattle on or off your farm or premises?'
-    )
-
-    expect(payload).toEqual(
-      expect.stringContaining(
-        '<input type="hidden" name="nextPage" value="/origin/summary" />'
-      )
-    )
-
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  test('should redirect to summary page if it came from there', async () => {
-    const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/origin/to-or-from-own-premises',
-        payload: {
-          onOffFarm: 'off',
-          nextPage: '/origin/summary'
-        }
-      })
-    )
-
-    expect(headers.location).toBe('/origin/summary')
-    expect(statusCode).toBe(statusCodes.redirect)
-  })
-
-  testCsrfProtectedGet(() => server, {
-    method: 'GET',
-    url: '/origin/to-or-from-own-premises'
-  })
-
-  testCsrfProtectedPost(() => server, {
-    method: 'POST',
-    url: '/origin/to-or-from-own-premises',
-    payload: {
-      onOffFarm: 'on'
-    }
+    expect(plugin).toHaveProperty('name')
+    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
+    expect(plugin).toHaveProperty('register')
   })
 })
 
-/**
- * @import { Server } from '@hapi/hapi'
- */
+/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
