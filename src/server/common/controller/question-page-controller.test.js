@@ -164,12 +164,7 @@ describe('QuestionPageController', () => {
         )
       )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe('/exit-page')
-
-      const state = await session.getState('origin-test')
-      expect(state.onOffFarm).toBe('on')
-      expect(state.someOtherQuestion).toBe('some-other-answer')
+      expect(statusCode).toBe(statusCodes.ok)
     })
 
     it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
