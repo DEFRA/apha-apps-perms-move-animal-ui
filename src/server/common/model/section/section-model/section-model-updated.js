@@ -39,11 +39,8 @@ export class SectionModelUpdated {
     while (page instanceof QuestionPage) {
       const currPage = this._data[page.questionKey]
 
-      if (this._data[page.questionKey].answer.validate().isValid) {
-        pages.push(page)
-      } else {
-        pages.push(page)
-      }
+      pages.push(page)
+
       page = /** @type {QuestionPage} */ (page.nextPage(currPage.answer))
     }
 
