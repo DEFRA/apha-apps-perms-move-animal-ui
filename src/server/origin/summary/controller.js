@@ -1,7 +1,4 @@
 import { Origin } from '../../common/model/section/origin.js'
-import { onOffFarmPage } from '../on-off-farm/index.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
-
 const indexView = 'origin/summary/index.njk'
 export const pageTitle =
   'Check your answers before you continue your application'
