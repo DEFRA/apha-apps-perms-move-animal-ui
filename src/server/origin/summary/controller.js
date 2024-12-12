@@ -12,11 +12,11 @@ export const originSummaryGetController = {
   handler(req, res) {
     const origin = Origin.fromState(req.yar.get('origin'))
 
-    for (const page of origin.pages) {
-      const answer = origin[page.questionKey]
-      if (!answer.validate().isValid) {
-        return res.redirect(`${page.urlPath}?redirect_uri=/origin/summary`)
-      }
+    const { isValid, firstInvalidPage } = origin.validate()
+    if (!isValid) {
+      return res.redirect(
+        `${firstInvalidPage?.urlPath}?redirect_uri=/origin/summary`
+      )
     }
 
     const items = origin.pages.map((visitedPage) => ({
