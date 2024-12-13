@@ -7,7 +7,7 @@ export class OriginSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'
   heading = 'Check your answers before you continue your application'
   sectionKey = 'origin'
-  urlPath = `/${this.sectionKey}/summary`
+  urlPath = `/${this.sectionKey}/check-answers`
   sectionFactory = (data) => Origin.fromState(data)
 }
 

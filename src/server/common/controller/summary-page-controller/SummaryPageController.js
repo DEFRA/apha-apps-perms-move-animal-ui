@@ -20,7 +20,7 @@ export class SummaryPageController {
   }
 
   get urlPath() {
-    return `/${this.page.sectionKey}/summary`
+    return `/${this.page.sectionKey}/check-answers`
   }
 
   /** @type {SectionModel} */
@@ -30,7 +30,7 @@ export class SummaryPageController {
   plugin() {
     return {
       plugin: {
-        name: `${this.page.sectionKey}-summary`,
+        name: `${this.page.sectionKey}-check-answers`,
 
         /** @param {Server} server */
         register: (server) => {
@@ -57,14 +57,14 @@ export class SummaryPageController {
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
       return res.redirect(
-        `${firstInvalidPage?.urlPath}?redirect_uri=/${this.page.sectionKey}/summary`
+        `${firstInvalidPage?.urlPath}?redirect_uri=/${this.page.sectionKey}/check-answers`
       )
     }
 
     const items = section.pages.map((visitedPage) => ({
       key: visitedPage.question,
       value: section[visitedPage.questionKey].html,
-      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.sectionKey}/summary`,
+      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.sectionKey}/check-answers`,
       visuallyHiddenKey: visitedPage.question,
       attributes: {
         'data-testid': `${visitedPage.questionKey}-change-link`

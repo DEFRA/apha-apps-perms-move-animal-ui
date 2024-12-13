@@ -44,7 +44,7 @@ describe('#originSummaryController', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/origin/summary'
+          url: '/origin/check-answers'
         },
         {
           Cookie: session.sessionID
@@ -76,7 +76,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -85,7 +85,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+        '/origin/to-or-from-own-premises?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -100,7 +100,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -109,7 +109,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/address?redirect_uri=/origin/summary'
+        '/origin/address?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -124,7 +124,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -133,7 +133,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/cph-number?redirect_uri=/origin/summary'
+        '/origin/cph-number?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
