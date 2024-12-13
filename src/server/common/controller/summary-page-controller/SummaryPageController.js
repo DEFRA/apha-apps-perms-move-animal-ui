@@ -57,14 +57,14 @@ export class SummaryPageController {
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
       return res.redirect(
-        `${firstInvalidPage?.urlPath}?redirect_uri=/origin/summary`
+        `${firstInvalidPage?.urlPath}?redirect_uri=/${this.page.sectionKey}/summary`
       )
     }
 
     const items = section.pages.map((visitedPage) => ({
       key: visitedPage.question,
       value: section[visitedPage.questionKey].html,
-      url: `${visitedPage.urlPath}?redirect_uri=/origin/summary`,
+      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.sectionKey}/summary`,
       visuallyHiddenKey: visitedPage.question,
       attributes: {
         'data-testid': `${visitedPage.questionKey}-change-link`
