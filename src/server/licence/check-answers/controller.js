@@ -11,11 +11,11 @@ export const heading = pageTitle
 export const licenceCheckAnswersGetController = {
   handler(req, h) {
     const licence = Licence.fromState(req.yar.get('licence'))
-    const { isValid, result } = licence.validate()
+    const { isValid, firstInvalidPage } = licence.validate()
 
-    if (!isValid && !result.emailAddress.isValid) {
+    if (!isValid) {
       return h.redirect(
-        '/receiving-the-licence/licence-enter-email-address?redirect_uri=/receiving-the-licence/check-answers'
+        `${firstInvalidPage?.urlPath}?redirect_uri=/receiving-the-licence/check-answers`
       )
     }
 
