@@ -68,13 +68,13 @@ export class SectionModelUpdated {
   /** @returns {SectionValidation} */
   validate() {
     const page = this.finalPage
-    const questionPages = this.questionPages
 
     if (page instanceof QuestionPage) {
       return { isValid: false, firstInvalidPage: page }
     }
 
     if (page instanceof ExitPage) {
+      const questionPages = this.questionPages
       return {
         isValid: false,
         firstInvalidPage: questionPages[questionPages.length - 1]
