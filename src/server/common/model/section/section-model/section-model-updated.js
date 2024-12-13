@@ -33,7 +33,7 @@ export class SectionModelUpdated {
   get pages() {
     const pages = []
 
-    /** @type {QuestionPage} */
+    /** @type {Page} */
     let page = this._data[this.firstPage.questionKey].page
 
     while (page instanceof QuestionPage) {
@@ -41,7 +41,7 @@ export class SectionModelUpdated {
 
       pages.push(page)
 
-      page = /** @type {QuestionPage} */ (page.nextPage(currPage.answer))
+      page = page.nextPage(currPage.answer)
     }
 
     return pages
