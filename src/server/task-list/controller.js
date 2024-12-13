@@ -25,7 +25,7 @@ export const taskListGetController = {
       title: 'Movement origin',
       initialLink:
         originValidity.firstInvalidPage?.urlPath ?? origin.firstPage.urlPath,
-      summaryLink: 'origin/summary',
+      summaryLink: 'origin/check-answers',
       isValid: isOriginValid,
       isEnabled: true
     })

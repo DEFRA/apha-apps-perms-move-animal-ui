@@ -1,41 +1,24 @@
-import { Page } from '../../common/model/page/page-model.js'
-import {
-  originSummaryGetController,
-  originSummaryPostController
-} from './controller.js'
+import SummaryPage from '../../common/model/page/summary-page/SummaryPageModel.js'
+import { SummaryPageController } from '../../common/controller/summary-page-controller/SummaryPageController.js'
 
-/**
- * Sets up the routes used in the summary page.
- * These routes are registered in src/server/router.js.
- */
+import { Origin } from '~/src/server/common/model/section/origin.js'
 
-export class SummaryPage extends Page {
-  urlPath = '/origin/summary'
+export class OriginSummaryPage extends SummaryPage {
+  pageTitle = 'Check your answers before you continue your application'
+  heading = 'Check your answers before you continue your application'
+  sectionKey = 'origin'
+  urlPath = `/${this.sectionKey}/check-answers`
+  sectionFactory = (data) => Origin.fromState(data)
 }
-export const summaryPage = new SummaryPage()
+
+export const originSummaryPage = new OriginSummaryPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originSummary = {
-  plugin: {
-    name: 'origin-summary',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: summaryPage.urlPath,
-          ...originSummaryGetController
-        },
-        {
-          method: 'POST',
-          path: summaryPage.urlPath,
-          ...originSummaryPostController
-        }
-      ])
-    }
-  }
-}
+export const originSummary = new SummaryPageController(
+  new OriginSummaryPage()
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

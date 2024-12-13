@@ -4,7 +4,7 @@ const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
 class OriginCheckAnswersPage extends Page {
-  pagePath = 'origin/summary'
+  pagePath = 'origin/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
