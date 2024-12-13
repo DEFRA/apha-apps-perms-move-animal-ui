@@ -1,4 +1,5 @@
 import { calculateNextPage } from '../helpers/next-page.js'
+import { ExitPage } from '../model/page/exit-page-model.js'
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../helpers/next-page.js' */
 /** @import { RawPayload } from '../model/answer/answer-model.js' */
@@ -77,8 +78,13 @@ export class QuestionPageController {
       ...req.yar.get(this.page.sectionKey),
       [this.page.questionKey]: answer.toState()
     })
-    return h.redirect(
-      calculateNextPage(payload.nextPage, this.page.nextPage(answer).urlPath)
-    )
+
+    const nextPage = this.page.nextPage(answer)
+
+    if (nextPage instanceof ExitPage) {
+      return h.redirect(nextPage.urlPath)
+    } else {
+      return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))
+    }
   }
 }
