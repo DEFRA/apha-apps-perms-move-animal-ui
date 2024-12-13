@@ -21,11 +21,5 @@
     "node_modules",
     "user-journey-tests"
   ],
-  "include": [
-    "**/*.cjs",
-    "**/*.js",
-    ".eslintrc.*",
-    ".prettierrc.*",
-    "src/server/common/controller/summary-page-controller"
-  ]
+  "include": ["**/*.cjs", "**/*.js", ".eslintrc.*", ".prettierrc.*"]
 }
