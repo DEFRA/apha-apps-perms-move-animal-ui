@@ -16,7 +16,7 @@ class ToFromFarmPage extends Page {
   }
 
   get onThefarmRadio() {
-    return $('#on-farm-radio')
+    return $('#onOffFarm')
   }
 
   get offThefarmRadio() {
@@ -24,7 +24,7 @@ class ToFromFarmPage extends Page {
   }
 
   get onFarmSummaryErrorLink() {
-    return $('[href="#on-farm-radio"]')
+    return $('[href="#onOffFarm"]')
   }
 
   get pageError() {

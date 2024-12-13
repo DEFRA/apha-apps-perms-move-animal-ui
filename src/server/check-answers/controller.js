@@ -56,11 +56,13 @@ export const checkAnswersPostController = {
     const confirmation = new Confirmation(payload)
 
     const { isValid, errors } = confirmation.validate()
+
     if (!isValid) {
       return res.view('check-answers/index', {
         pageTitle: `Error: ${pageTitle}`,
         heading,
         confirmation,
+        errorMessages: Confirmation.errorMessages(errors),
         errorMessage: errors.confirmation,
         ...tasks
       })

@@ -1,26 +1,11 @@
-{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {% if (errorMessages) %}
-    {{ govukErrorSummary({
-      titleText: "There is a problem",
-      errorList: errorMessages
-      }) }}
-  {% endif %}
 
-  {% call govukFieldset({
-    legend: {
-      text: heading,
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: true
-    }
-  }) %}
-
+  {% call govukFieldset() %}
     {{ govukInput({
       id: "cphNumber",
       name: "cphNumber",
@@ -34,4 +19,5 @@
     }) }}
 
   {% endcall %}
+
 {% endblock %}
