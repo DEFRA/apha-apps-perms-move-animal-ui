@@ -30,6 +30,9 @@ export class SectionModelUpdated {
     return this._data
   }
 
+  /**
+   * returns {QuestionPage[]}
+   */
   get pages() {
     const pages = []
 
@@ -40,6 +43,10 @@ export class SectionModelUpdated {
       const currPage = this._data[page.questionKey]
 
       pages.push(page)
+
+      if (!currPage.answer.validate().isValid) {
+        break
+      }
 
       page = page.nextPage(currPage.answer)
     }
