@@ -1,5 +1,5 @@
 import { address, originAddressPage, OriginAddressPage } from './index.js'
-import { summaryPage } from '../summary/index.js'
+import { originSummaryPage } from '~/src/server/origin/summary/index.js'
 import { Address } from '../../common/model/answer/address.js'
 
 const sectionKey = 'origin'
@@ -42,7 +42,7 @@ describe('OriginAddressPage', () => {
 
   it('nextPage should return summaryPage', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(summaryPage)
+    expect(nextPage).toBe(originSummaryPage)
   })
 
   it('should export page', () => {

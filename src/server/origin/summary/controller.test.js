@@ -2,9 +2,8 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-
-import { pageTitle } from './controller.js'
 import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
+import { originSummaryPage } from './index.js'
 
 describe('#originSummaryController', () => {
   /** @type {Server} */
@@ -54,7 +53,7 @@ describe('#originSummaryController', () => {
     )
 
     const document = parseDocument(payload)
-    expect(document.title).toBe(pageTitle)
+    expect(document.title).toBe(originSummaryPage.pageTitle)
     expect(statusCode).toBe(statusCodes.ok)
 
     expect(payload).toEqual(expect.stringContaining('12/123/1234'))
