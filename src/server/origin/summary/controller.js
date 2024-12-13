@@ -18,7 +18,7 @@ export const originSummaryGetController = {
       )
     }
 
-    const items = origin.pages.map((visitedPage) => ({
+    const items = origin.questionPages.map((visitedPage) => ({
       key: visitedPage.question,
       value: origin[visitedPage.questionKey].html,
       url: `${visitedPage.urlPath}?redirect_uri=/origin/summary`,

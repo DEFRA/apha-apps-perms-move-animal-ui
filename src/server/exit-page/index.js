@@ -1,5 +1,5 @@
 import { exitPageController } from '~/src/server/exit-page/controller.js'
-import { Page } from '../common/model/page/page-model.js'
+import { ExitPage } from '../common/model/page/exit-page-model.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -10,10 +10,10 @@ import { Page } from '../common/model/page/page-model.js'
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 
-export class ExitPage extends Page {
+export class OriginExitPage extends ExitPage {
   urlPath = '/exit-page'
 }
-export const exitPage = new ExitPage()
+export const exitPage = new OriginExitPage()
 
 export const exit = {
   plugin: {

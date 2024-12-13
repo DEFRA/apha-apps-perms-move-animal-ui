@@ -30,10 +30,10 @@ const exitState = {
   address: validAddress // this is unreachable in the journey, because we will have exited already
 }
 
-describe('SectionModel.pages', () => {
+describe('SectionModel.questionPages', () => {
   it('should short-circuit on an exit page', () => {
     const origin = Origin.fromState(exitState)
-    const pages = origin.pages
+    const pages = origin.questionPages
 
     expect(pages).toHaveLength(1)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
@@ -44,7 +44,7 @@ describe('SectionModel.pages', () => {
 
   it('should short-circuit on a page with an invalid answer', () => {
     const origin = Origin.fromState(invalidState)
-    const pages = origin.pages
+    const pages = origin.questionPages
 
     expect(pages).toHaveLength(2)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
@@ -67,10 +67,12 @@ describe('SectionModel.validate', () => {
   })
 
   // Reason: We have not finalised how exit pages will behave
-  it.skip('should return ... invalid ? ... if the section hits an exit condition before its complete', () => {
+  it('should return if the section hits an exit condition before its complete', () => {
     const origin = Origin.fromState(exitState)
+    const { isValid, firstInvalidPage } = origin.validate()
 
-    expect(origin.validate().isValid).toBe(true)
+    expect(isValid).toBe(false)
+    expect(firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
   })
 
   it('should return invalid if the section hits a page with an invalid answer', () => {
