@@ -66,21 +66,18 @@ export class SectionModelUpdated {
 
   /** @returns {SectionValidation} */
   validate() {
-    const pages = this.questionPages
+    const page = this.finalPage
+    const questionPages = this.questionPages
 
-    if (pages.length === 0) {
-      return { isValid: false, firstInvalidPage: this.firstPage }
-    }
-
-    for (const visitedPage of pages) {
-      const { page, answer } = this._data[visitedPage.questionKey]
-      if (!answer.validate().isValid) {
-        return { isValid: false, firstInvalidPage: page }
-      }
+    if (page instanceof QuestionPage) {
+      return { isValid: false, firstInvalidPage: page }
     }
 
     if (this.finalPage instanceof ExitPage) {
-      return { isValid: false, firstInvalidPage: pages[pages.length - 1] }
+      return {
+        isValid: false,
+        firstInvalidPage: questionPages[questionPages.length - 1]
+      }
     }
 
     return { isValid: true }

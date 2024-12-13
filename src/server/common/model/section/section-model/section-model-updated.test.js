@@ -3,6 +3,8 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { Origin } from '../origin.js'
 import { CphNumber } from '../../answer/cph-number.js'
+import { OriginExitPage } from '~/src/server/exit-page/index.js'
+import { SummaryPage } from '~/src/server/origin/summary/index.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
 
@@ -56,6 +58,23 @@ describe('SectionModel.questionPages', () => {
     expect(origin[pages.at(1)?.questionKey ?? 'invalid']).toBeInstanceOf(
       CphNumber
     )
+  })
+})
+
+describe('SectionModel.finalPage', () => {
+  it('should return exit page', () => {
+    const origin = Origin.fromState(exitState)
+    expect(origin.finalPage).toBeInstanceOf(OriginExitPage)
+  })
+
+  it('should short-circuit on invalid questions', () => {
+    const origin = Origin.fromState(invalidState)
+    expect(origin.finalPage).toBeInstanceOf(CphNumberPage)
+  })
+
+  it('go all the way through the journey to the summary page', () => {
+    const origin = Origin.fromState(validState)
+    expect(origin.finalPage).toBeInstanceOf(SummaryPage)
   })
 })
 
