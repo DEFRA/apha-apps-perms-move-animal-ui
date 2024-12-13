@@ -20,14 +20,14 @@ describe('Licence', () => {
       const licence = Licence.fromState(licenceData)
 
       expect(licence).toBeInstanceOf(Licence)
-      expect(licence._data?.emailAddress).toBeInstanceOf(EmailAddress)
+      expect(licence.emailAddress).toBeInstanceOf(EmailAddress)
     })
 
     it('should handle undefined state gracefully', () => {
       const licence = Licence.fromState(undefined)
 
       expect(licence).toBeInstanceOf(Licence)
-      expect(licence._data?.emailAddress.value).toBeUndefined()
+      expect(licence.emailAddress.value).toBeUndefined()
     })
   })
 
