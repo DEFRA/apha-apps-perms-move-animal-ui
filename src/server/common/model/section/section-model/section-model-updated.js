@@ -73,7 +73,7 @@ export class SectionModelUpdated {
       return { isValid: false, firstInvalidPage: page }
     }
 
-    if (this.finalPage instanceof ExitPage) {
+    if (page instanceof ExitPage) {
       return {
         isValid: false,
         firstInvalidPage: questionPages[questionPages.length - 1]
