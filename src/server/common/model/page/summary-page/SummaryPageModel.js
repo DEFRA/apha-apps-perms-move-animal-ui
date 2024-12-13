@@ -4,7 +4,7 @@ import { Page } from '../page-model.js'
 
 class SummaryPage extends Page {
   /** @type {(_data) => SectionModel} */
-  factory
+  sectionFactory
 
   /** @type {string} */
   heading

@@ -52,7 +52,7 @@ export class SummaryPageController {
   }
 
   getHandler(req, res) {
-    const section = this.page.factory(req.yar.get('origin'))
+    const section = this.page.sectionFactory(req.yar.get('origin'))
 
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
@@ -78,7 +78,7 @@ export class SummaryPageController {
     })
   }
 
-  postHandler(req, res) {
+  postHandler(_req, res) {
     return res.redirect('/task-list')
   }
 }
