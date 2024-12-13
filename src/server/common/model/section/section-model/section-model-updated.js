@@ -54,7 +54,8 @@ export class SectionModelUpdated {
   }
 
   get finalPage() {
-    return this.pages[this.pages.length - 1]
+    const pages = this.pages
+    return pages[pages.length - 1]
   }
 
   /**
