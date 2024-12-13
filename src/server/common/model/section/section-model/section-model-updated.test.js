@@ -67,7 +67,7 @@ describe('SectionModel.validate', () => {
   })
 
   // Reason: We have not finalised how exit pages will behave
-  it('should return if the section hits an exit condition before its complete', () => {
+  it('should return invalid if the section hits an exit condition before its complete', () => {
     const origin = Origin.fromState(exitState)
     const { isValid, firstInvalidPage } = origin.validate()
 
