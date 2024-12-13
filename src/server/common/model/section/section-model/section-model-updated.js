@@ -30,10 +30,13 @@ export class SectionModelUpdated {
     return this._data
   }
 
+  /**
+   * returns {QuestionPage[]}
+   */
   get pages() {
     const pages = []
 
-    /** @type {QuestionPage} */
+    /** @type {Page} */
     let page = this._data[this.firstPage.questionKey].page
 
     while (page instanceof QuestionPage) {
@@ -41,7 +44,11 @@ export class SectionModelUpdated {
 
       pages.push(page)
 
-      page = /** @type {QuestionPage} */ (page.nextPage(currPage.answer))
+      if (!currPage.answer.validate().isValid) {
+        break
+      }
+
+      page = page.nextPage(currPage.answer)
     }
 
     return pages

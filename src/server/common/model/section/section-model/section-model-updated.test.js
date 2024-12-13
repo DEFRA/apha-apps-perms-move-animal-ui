@@ -2,6 +2,7 @@ import { CphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { Origin } from '../origin.js'
+import { CphNumber } from '../../answer/cph-number.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
 
@@ -29,7 +30,7 @@ const exitState = {
   address: validAddress // this is unreachable in the journey, because we will have exited already
 }
 
-describe('SectionModel.value', () => {
+describe('SectionModel.pages', () => {
   it('should short-circuit on an exit page', () => {
     const origin = Origin.fromState(exitState)
     const pages = origin.pages
@@ -38,6 +39,22 @@ describe('SectionModel.value', () => {
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
     expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
       OnOffFarm
+    )
+  })
+
+  it('should short-circuit on a page with an invalid answer', () => {
+    const origin = Origin.fromState(invalidState)
+    const pages = origin.pages
+
+    expect(pages).toHaveLength(2)
+    expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
+    expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
+      OnOffFarm
+    )
+
+    expect(pages.at(1)).toBeInstanceOf(CphNumberPage)
+    expect(origin[pages.at(1)?.questionKey ?? 'invalid']).toBeInstanceOf(
+      CphNumber
     )
   })
 })

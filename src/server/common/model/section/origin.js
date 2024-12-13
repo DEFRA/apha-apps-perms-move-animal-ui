@@ -1,11 +1,7 @@
 import { SectionModel } from '../section/section-model/index.js'
-import { CphNumber } from '../answer/cph-number.js'
-import { Address } from '../answer/address.js'
-
-import { OnOffFarm } from '../answer/on-off-farm.js'
-import { OnOffFarmPage } from '../../../origin/on-off-farm/index.js'
-import { CphNumberPage } from '../../../origin/cph-number/index.js'
-import { OriginAddressPage } from '../../../origin/address/index.js'
+import { onOffFarmPage } from '../../../origin/on-off-farm/index.js'
+import { cphNumberPage } from '../../../origin/cph-number/index.js'
+import { originAddressPage } from '../../../origin/address/index.js'
 
 /**
  * export @typedef {{
@@ -19,7 +15,7 @@ import { OriginAddressPage } from '../../../origin/address/index.js'
  */
 
 export class Origin extends SectionModel {
-  firstPage = new OnOffFarmPage()
+  firstPage = onOffFarmPage
 
   get onOffFarm() {
     return this._data?.onOffFarm.answer
@@ -40,16 +36,16 @@ export class Origin extends SectionModel {
   static fromState(state) {
     return new Origin({
       onOffFarm: {
-        page: new OnOffFarmPage(),
-        answer: OnOffFarm.fromState(state?.onOffFarm)
+        page: onOffFarmPage,
+        answer: onOffFarmPage.Answer.fromState(state?.onOffFarm)
       },
       cphNumber: {
-        page: new CphNumberPage(),
-        answer: CphNumber.fromState(state?.cphNumber)
+        page: cphNumberPage,
+        answer: cphNumberPage.Answer.fromState(state?.cphNumber)
       },
       address: {
-        page: new OriginAddressPage(),
-        answer: Address.fromState(state?.address)
+        page: originAddressPage,
+        answer: originAddressPage.Answer.fromState(state?.address)
       }
     })
   }
