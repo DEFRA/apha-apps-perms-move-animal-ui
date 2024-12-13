@@ -1,5 +1,5 @@
-import { SectionModel } from './section-model/section-model.js'
-import { EmailAddress } from '../answer/email-address.js'
+import { SectionModel } from '../section/section-model/index.js'
+import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
 
 /**
  * export @typedef {{
@@ -9,8 +9,10 @@ import { EmailAddress } from '../answer/email-address.js'
  */
 
 export class Licence extends SectionModel {
+  firstPage = emailAddressPage
+
   get emailAddress() {
-    return this._data?.emailAddress
+    return this._data?.emailAddress.answer
   }
 
   /**
@@ -19,7 +21,10 @@ export class Licence extends SectionModel {
    */
   static fromState(state) {
     return new Licence({
-      emailAddress: EmailAddress.fromState(state?.emailAddress)
+      emailAddress: {
+        page: emailAddressPage,
+        answer: emailAddressPage.Answer.fromState(state?.emailAddress)
+      }
     })
   }
 }

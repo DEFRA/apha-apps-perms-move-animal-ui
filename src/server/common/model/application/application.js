@@ -35,6 +35,13 @@ export class Application {
     return Origin.fromState(this._data.origin)
   }
 
+  /**
+   * @returns {Licence}
+   */
+  get licence() {
+    return Licence.fromState(this._data.licence)
+  }
+
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
   /**
