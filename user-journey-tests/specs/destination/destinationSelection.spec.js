@@ -19,7 +19,7 @@ describe('Destination selection test', () => {
     await destinationSelectionPage.destinationSelectionErrorTest()
   })
 
-  it('Should select on the farm radio and continue', async () => {
+  it('Should select slaughter radio and continue', async () => {
     await destinationSelectionPage.selectSlaughterRadioAndContinue()
     await expect(destinationSelectionPage.pageError).not.toBeDisplayed()
     await expect(destinationSelectionPage.errorSummary).not.toBeDisplayed()
