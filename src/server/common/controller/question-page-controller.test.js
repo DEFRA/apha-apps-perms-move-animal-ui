@@ -6,6 +6,7 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../common/test-helpers/session-helper.js'
 import { AnswerModel } from '../model/answer/answer-model.js'
+import { ExitPage } from '../model/page/exit-page-model.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -42,6 +43,10 @@ class TestAnswer extends AnswerModel {
   }
 }
 
+class TestExitPage extends ExitPage {
+  urlPath = '/exit'
+}
+
 class TestPage extends QuestionPage {
   question = question
   questionKey = questionKey
@@ -53,7 +58,11 @@ class TestPage extends QuestionPage {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
-    return new NextTestPage()
+    if (_answer.value === 'exit') {
+      return new TestExitPage()
+    } else {
+      return new NextTestPage()
+    }
   }
 }
 
@@ -147,6 +156,30 @@ describe('QuestionPageController', () => {
       const state = await session.getState(sectionKey)
       expect(state.questionKey).toBe(questionValue)
       expect(state.someOtherQuestion).toBe('some-other-answer')
+    })
+
+    it('should redirect to exit page even if redirect uri is set', async () => {
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              questionKey: 'exit',
+              nextPage: redirectUri
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe('/exit')
+
+      const state = await session.getState(sectionKey)
+      expect(state.questionKey).toBe('exit')
     })
 
     it('should set the next page to redirect_uri if one exists', async () => {

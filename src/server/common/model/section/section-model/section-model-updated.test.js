@@ -3,6 +3,8 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { Origin } from '../origin.js'
 import { CphNumber } from '../../answer/cph-number.js'
+import { OriginExitPage } from '~/src/server/exit-page/index.js'
+import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
 
@@ -30,10 +32,10 @@ const exitState = {
   address: validAddress // this is unreachable in the journey, because we will have exited already
 }
 
-describe('SectionModel.pages', () => {
+describe('SectionModel.questionPages', () => {
   it('should short-circuit on an exit page', () => {
     const origin = Origin.fromState(exitState)
-    const pages = origin.pages
+    const pages = origin.questionPages
 
     expect(pages).toHaveLength(1)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
@@ -44,7 +46,7 @@ describe('SectionModel.pages', () => {
 
   it('should short-circuit on a page with an invalid answer', () => {
     const origin = Origin.fromState(invalidState)
-    const pages = origin.pages
+    const pages = origin.questionPages
 
     expect(pages).toHaveLength(2)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
@@ -59,6 +61,23 @@ describe('SectionModel.pages', () => {
   })
 })
 
+describe('SectionModel.finalPage', () => {
+  it('should return exit page', () => {
+    const origin = Origin.fromState(exitState)
+    expect(origin.finalPage).toBeInstanceOf(OriginExitPage)
+  })
+
+  it('should short-circuit on invalid questions', () => {
+    const origin = Origin.fromState(invalidState)
+    expect(origin.finalPage).toBeInstanceOf(CphNumberPage)
+  })
+
+  it('go all the way through the journey to the summary page', () => {
+    const origin = Origin.fromState(validState)
+    expect(origin.finalPage).toBeInstanceOf(OriginSummaryPage)
+  })
+})
+
 describe('SectionModel.validate', () => {
   it('should return valid if all questions in journey are validly answered', () => {
     const origin = Origin.fromState(validState)
@@ -67,10 +86,12 @@ describe('SectionModel.validate', () => {
   })
 
   // Reason: We have not finalised how exit pages will behave
-  it.skip('should return ... invalid ? ... if the section hits an exit condition before its complete', () => {
+  it('should return invalid if the section hits an exit condition before its complete', () => {
     const origin = Origin.fromState(exitState)
+    const { isValid, firstInvalidPage } = origin.validate()
 
-    expect(origin.validate().isValid).toBe(true)
+    expect(isValid).toBe(false)
+    expect(firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
   })
 
   it('should return invalid if the section hits a page with an invalid answer', () => {

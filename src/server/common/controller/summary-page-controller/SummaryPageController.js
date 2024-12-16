@@ -57,7 +57,7 @@ export class SummaryPageController {
       )
     }
 
-    const items = section.pages.map((visitedPage) => ({
+    const items = section.questionPages.map((visitedPage) => ({
       key: visitedPage.question,
       value: section[visitedPage.questionKey].html,
       url: `${visitedPage.urlPath}?redirect_uri=/${this.page.sectionKey}/check-answers`,

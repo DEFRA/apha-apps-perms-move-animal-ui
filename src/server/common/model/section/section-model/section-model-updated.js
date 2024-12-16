@@ -1,5 +1,6 @@
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { QuestionPage } from '../../page/question-page-model.js'
+import { ExitPage } from '../../page/exit-page-model.js'
 
 /**
  * @import { Page } from '../../page/page-model.js'
@@ -30,42 +31,53 @@ export class SectionModel {
     return this._data
   }
 
-  /**
-   * returns {QuestionPage[]}
-   */
-  get pages() {
+  get _pages() {
     const pages = []
 
     /** @type {Page} */
     let page = this._data[this.firstPage.questionKey].page
 
+    pages.push(page)
+
     while (page instanceof QuestionPage) {
       const currPage = this._data[page.questionKey]
-
-      pages.push(page)
 
       if (!currPage.answer.validate().isValid) {
         break
       }
 
       page = page.nextPage(currPage.answer)
+      pages.push(page)
     }
 
     return pages
   }
 
+  get finalPage() {
+    const pages = this._pages
+    return pages[pages.length - 1]
+  }
+
+  /**
+   * returns {QuestionPage[]}
+   */
+  get questionPages() {
+    return this._pages.filter((p) => p instanceof QuestionPage)
+  }
+
   /** @returns {SectionValidation} */
   validate() {
-    const pages = this.pages
+    const page = this.finalPage
 
-    if (pages.length === 0) {
-      return { isValid: false, firstInvalidPage: this.firstPage }
+    if (page instanceof QuestionPage) {
+      return { isValid: false, firstInvalidPage: page }
     }
 
-    for (const visitedPage of pages) {
-      const { page, answer } = this._data[visitedPage.questionKey]
-      if (!answer.validate().isValid) {
-        return { isValid: false, firstInvalidPage: page }
+    if (page instanceof ExitPage) {
+      const questionPages = this.questionPages
+      return {
+        isValid: false,
+        firstInvalidPage: questionPages[questionPages.length - 1]
       }
     }
 
