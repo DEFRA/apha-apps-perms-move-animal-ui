@@ -5,7 +5,7 @@ import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
  * export @typedef {{
  * emailAddress: EmailAddressData | undefined;
  * }} LicenceData
- * @import {EmailAddressData} from '../answer/email-address.js'
+ * @import {EmailAddressData} from '../answer/email/email-address.js'
  */
 
 export class Licence extends SectionModel {

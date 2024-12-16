@@ -1,4 +1,4 @@
-import { Address } from './address.js'
+import { AddressAnswer } from './address.js'
 
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',
@@ -11,7 +11,7 @@ const validAddress = {
 describe('Address.new', () => {
   it('should strip away any irrelevant values', () => {
     const payload = { ...validAddress, nextPage: '/other/page' }
-    const address = new Address(payload)
+    const address = new AddressAnswer(payload)
 
     expect(address._data).toEqual(validAddress)
   })
@@ -22,7 +22,7 @@ describe('Address.new', () => {
       addressTown: validAddress.addressTown,
       addressPostcode: validAddress.addressPostcode
     }
-    const address = new Address(validAddressWithOptionalsMissing)
+    const address = new AddressAnswer(validAddressWithOptionalsMissing)
 
     expect(address._data).toEqual(validAddressWithOptionalsMissing)
   })
@@ -30,14 +30,14 @@ describe('Address.new', () => {
 
 describe('Address.validate', () => {
   it('should return true for valid address', () => {
-    const address = new Address(validAddress)
+    const address = new AddressAnswer(validAddress)
     const { isValid } = address.validate()
 
     expect(isValid).toBe(true)
   })
 
   it('should return false for too long input', () => {
-    const address = new Address({
+    const address = new AddressAnswer({
       ...validAddress,
       addressLine1: 'A'.repeat(256)
     })
@@ -50,7 +50,7 @@ describe('Address.validate', () => {
   })
 
   it('should return true for optional field with empty input', () => {
-    const address = new Address({
+    const address = new AddressAnswer({
       addressLine1: 'Starfleet Headquarters',
       addressTown: 'San Francisco',
       addressPostcode: 'RG24 8RR'
@@ -78,7 +78,7 @@ describe('Address.validate', () => {
 
       for (const postcode of postcodes) {
         it(`should return true for valid postcode format: ${postcode}`, () => {
-          const address = new Address({
+          const address = new AddressAnswer({
             ...validAddress,
             addressPostcode: postcode
           })
@@ -89,7 +89,7 @@ describe('Address.validate', () => {
       }
 
       it('should return false for malformed postcode', () => {
-        const address = new Address({
+        const address = new AddressAnswer({
           ...validAddress,
           addressPostcode: 'invalid postcode'
         })
@@ -101,7 +101,7 @@ describe('Address.validate', () => {
       })
 
       it('should return false for empty postcode', () => {
-        const address = new Address({
+        const address = new AddressAnswer({
           ...validAddress,
           addressPostcode: ''
         })
@@ -114,7 +114,7 @@ describe('Address.validate', () => {
     })
 
     it('should return false for missing required fields', () => {
-      const address = new Address({
+      const address = new AddressAnswer({
         addressLine1: '',
         addressLine2: '',
         addressTown: '',
@@ -137,31 +137,31 @@ describe('Address.validate', () => {
 
 describe('Address.toState', () => {
   it('should extract state from payload', () => {
-    const address = new Address(validAddress)
+    const address = new AddressAnswer(validAddress)
     expect(address.toState()).toEqual(validAddress)
   })
 
   it('should default missing fields to empty string', () => {
-    const address = new Address()
+    const address = new AddressAnswer()
     expect(address.toState()).toBeUndefined()
   })
 })
 
 describe('Address.fromState', () => {
   it('should return the state as-is as payload, since the state is already a valid payload', () => {
-    const address = new Address(validAddress)
+    const address = new AddressAnswer(validAddress)
     const state = address.toState()
-    expect(Address.fromState(state)._data).toEqual(validAddress)
+    expect(AddressAnswer.fromState(state)._data).toEqual(validAddress)
   })
 
   it("should store undefined if the state isn't defined", () => {
-    expect(Address.fromState(undefined)._data).toBeUndefined()
+    expect(AddressAnswer.fromState(undefined)._data).toBeUndefined()
   })
 })
 
 describe('Address.html', () => {
   it('should return formatted HTML string for a complete address', () => {
-    const address = new Address(validAddress)
+    const address = new AddressAnswer(validAddress)
     const expectedHtml = [
       'Starfleet Headquarters',
       '24-593 Federation Drive',
@@ -174,7 +174,7 @@ describe('Address.html', () => {
   })
 
   it('should return formatted HTML string for an address with missing optional fields', () => {
-    const address = new Address({
+    const address = new AddressAnswer({
       addressLine1: 'Starfleet Headquarters',
       addressTown: 'San Francisco',
       addressPostcode: 'RG24 8RR'
@@ -189,7 +189,7 @@ describe('Address.html', () => {
   })
 
   it('should return an empty string for an address with all fields empty', () => {
-    const address = new Address({
+    const address = new AddressAnswer({
       addressLine1: '',
       addressLine2: '',
       addressTown: '',
@@ -201,7 +201,7 @@ describe('Address.html', () => {
   })
 
   it('should return an empty string for an undefined address', () => {
-    const address = new Address(undefined)
+    const address = new AddressAnswer(undefined)
 
     expect(address.html).toBe('')
   })

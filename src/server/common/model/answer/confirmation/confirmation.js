@@ -20,7 +20,7 @@ const ensureArray = (value) => (Array.isArray(value) ? value : [value])
 /**
  * @augments AnswerModel<ConfirmationPayload>
  */
-export class Confirmation extends AnswerModel {
+export class ConfirmationAnswer extends AnswerModel {
   get value() {
     return {
       confirm: this._data?.confirmation.includes('confirm'),
@@ -54,9 +54,9 @@ export class Confirmation extends AnswerModel {
 
   /**
    * @param {ConfirmationData | undefined} state
-   * @returns {Confirmation}
+   * @returns {ConfirmationAnswer}
    */
   static fromState(state) {
-    return new Confirmation(state)
+    return new ConfirmationAnswer(state)
   }
 }

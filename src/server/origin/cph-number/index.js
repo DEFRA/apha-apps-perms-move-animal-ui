@@ -3,10 +3,10 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { CphNumber } from '~/src/server/common/model/answer/cph-number.js'
+import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { originAddressPage } from '../address/index.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
 
 export class CphNumberPage extends QuestionPage {
   urlPath = '/origin/cph-number'
@@ -18,9 +18,9 @@ export class CphNumberPage extends QuestionPage {
   questionKey = 'cphNumber'
 
   view = 'origin/cph-number/index'
-  Answer = CphNumber
+  Answer = CphNumberAnswer
 
-  /** @param {CphNumber} _answer */
+  /** @param {CphNumberAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
     return originAddressPage

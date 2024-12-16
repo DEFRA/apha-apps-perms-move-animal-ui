@@ -1,7 +1,7 @@
-import { Address } from '../../common/model/answer/address.js'
+import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { originSummaryPage } from '~/src/server/origin/summary/index.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -15,9 +15,9 @@ export class OriginAddressPage extends QuestionPage {
   questionKey = 'address'
 
   view = 'origin/address/index'
-  Answer = Address
+  Answer = AddressAnswer
 
-  /** @param {Address} _answer */
+  /** @param {AddressAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
     return originSummaryPage

@@ -1,12 +1,12 @@
 import { CphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
-import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { Origin } from '../origin.js'
-import { CphNumber } from '../../answer/cph-number.js'
+import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
 import { OriginExitPage } from '~/src/server/exit-page/index.js'
 import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
 
-/** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
+/** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',
@@ -40,7 +40,7 @@ describe('SectionModel.questionPages', () => {
     expect(pages).toHaveLength(1)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
     expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      OnOffFarm
+      OnOffFarmAnswer
     )
   })
 
@@ -51,12 +51,12 @@ describe('SectionModel.questionPages', () => {
     expect(pages).toHaveLength(2)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
     expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      OnOffFarm
+      OnOffFarmAnswer
     )
 
     expect(pages.at(1)).toBeInstanceOf(CphNumberPage)
     expect(origin[pages.at(1)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      CphNumber
+      CphNumberAnswer
     )
   })
 })

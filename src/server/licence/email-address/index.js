@@ -3,10 +3,10 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { EmailAddress } from '../../common/model/answer/email-address.js'
+import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { licenceCheckAnswersPage } from '../check-answers/index.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
 
 export class EmailAddressPage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-enter-email-address'
@@ -16,9 +16,9 @@ export class EmailAddressPage extends QuestionPage {
   questionKey = 'emailAddress'
 
   view = 'licence/email-address/index'
-  Answer = EmailAddress
+  Answer = EmailAddressAnswer
 
-  /** @param {EmailAddress} _answer */
+  /** @param {EmailAddressAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
     return licenceCheckAnswersPage

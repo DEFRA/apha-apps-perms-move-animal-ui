@@ -13,7 +13,7 @@ import { validateApplication } from './validation.js'
  * }} ApplicationData
  * @import {OriginData} from '../section/origin.js'
  * @import {LicenceData} from '../section/licence.js'
- * @import {AddressData} from '../answer/address.js'
+ * @import {AddressData} from '../answer/address/address.js'
  */
 
 export class Application {

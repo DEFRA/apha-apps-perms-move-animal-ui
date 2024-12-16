@@ -9,9 +9,9 @@ import { originAddressPage } from '../../../origin/address/index.js'
  * cphNumber: CphNumberData | undefined;
  * address: AddressData | undefined;
  * }} OriginData
- * @import {OnOffFarmData} from '../answer/on-off-farm.js'
- * @import {CphNumberData} from '../answer/cph-number.js'
- * @import {AddressData} from '../answer/address.js'
+ * @import {OnOffFarmData} from '../answer/on-off-farm/on-off-farm.js'
+ * @import {CphNumberData} from '../answer/cph-number/cph-number.js'
+ * @import {AddressData} from '../answer/address/address.js'
  */
 
 export class Origin extends SectionModel {

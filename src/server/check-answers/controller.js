@@ -1,7 +1,7 @@
 import { calculateNextPage } from '../common/helpers/next-page.js'
 import { Origin } from '../common/model/section/origin.js'
 import { Licence } from '../common/model/section/licence.js'
-import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
+import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Application } from '../common/model/application/application.js'
 
 export const pageTitle = 'Check your answers before sending your application'
@@ -53,7 +53,7 @@ export const checkAnswersPostController = {
     }
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
-    const confirmation = new Confirmation(payload)
+    const confirmation = new ConfirmationAnswer(payload)
 
     const { isValid, errors } = confirmation.validate()
 
@@ -62,7 +62,7 @@ export const checkAnswersPostController = {
         pageTitle: `Error: ${pageTitle}`,
         heading,
         confirmation,
-        errorMessages: Confirmation.errorMessages(errors),
+        errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
         ...tasks
       })

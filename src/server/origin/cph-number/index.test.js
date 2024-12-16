@@ -1,5 +1,5 @@
 import { cphNumber, cphNumberPage, CphNumberPage } from './index.js'
-import { CphNumber } from '../../common/model/answer/cph-number.js'
+import { CphNumberAnswer } from '../../common/model/answer/cph-number/cph-number.js'
 import { originAddressPage } from '../address/index.js'
 
 const sectionKey = 'origin'
@@ -37,7 +37,7 @@ describe('CphNumberPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(CphNumber)
+    expect(page.Answer).toBe(CphNumberAnswer)
   })
 
   it('nextPage should return address page', () => {

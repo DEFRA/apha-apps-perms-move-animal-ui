@@ -1,12 +1,12 @@
 import { Application } from './application.js'
-import { OnOffFarm } from '../answer/on-off-farm.js'
+import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
 
 /**
  * @import {Origin} from '../section/origin.js'
  */
 
 const originDefaultState = {
-  onOffFarm: new OnOffFarm({ onOffFarm: 'on' }).toState(),
+  onOffFarm: new OnOffFarmAnswer({ onOffFarm: 'on' }).toState(),
   cphNumber: '12/123/1234',
   address: {
     addressLine1: 'Starfleet Headquarters',

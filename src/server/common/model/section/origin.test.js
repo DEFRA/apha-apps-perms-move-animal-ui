@@ -1,9 +1,9 @@
 import { Origin } from './origin.js'
-import { OnOffFarm } from '../answer/on-off-farm.js'
-import { CphNumber } from '../answer/cph-number.js'
-import { Address } from '../answer/address.js'
+import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
+import { CphNumberAnswer } from '../answer/cph-number/cph-number.js'
+import { AddressAnswer } from '../answer/address/address.js'
 import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
-/** @import { OnOffFarmData } from '../answer/on-off-farm.js' */
+/** @import { OnOffFarmData } from '../answer/on-off-farm/on-off-farm.js' */
 
 const validCphNumber = '12/345/6789'
 /** @type OnOffFarmData */
@@ -26,9 +26,9 @@ describe('Origin', () => {
       const origin = Origin.fromState(originData)
 
       expect(origin).toBeInstanceOf(Origin)
-      expect(origin.onOffFarm).toBeInstanceOf(OnOffFarm)
-      expect(origin.cphNumber).toBeInstanceOf(CphNumber)
-      expect(origin.address).toBeInstanceOf(Address)
+      expect(origin.onOffFarm).toBeInstanceOf(OnOffFarmAnswer)
+      expect(origin.cphNumber).toBeInstanceOf(CphNumberAnswer)
+      expect(origin.address).toBeInstanceOf(AddressAnswer)
     })
 
     it('should handle undefined state gracefully', () => {

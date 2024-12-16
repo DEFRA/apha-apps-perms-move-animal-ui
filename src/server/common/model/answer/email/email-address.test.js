@@ -1,4 +1,4 @@
-import { EmailAddress } from './email-address.js'
+import { EmailAddressAnswer } from './email-address.js'
 
 const validEmailAddressPayload = {
   emailAddress: 'test@somewhere.com'
@@ -34,7 +34,7 @@ describe('EmailAddress', () => {
   describe('new', () => {
     it('should strip away any irrelevant values', () => {
       const payload = { ...validEmailAddressPayload, nextPage: '/other/page' }
-      const emailAddress = new EmailAddress(payload)
+      const emailAddress = new EmailAddressAnswer(payload)
 
       expect(emailAddress._data).toEqual(validEmailAddressPayload)
     })
@@ -43,7 +43,7 @@ describe('EmailAddress', () => {
   describe('validate', () => {
     validEmailAddresses.forEach((email) => {
       it(`should return true for valid email address ${email}`, () => {
-        const emailAddress = new EmailAddress({ emailAddress: email })
+        const emailAddress = new EmailAddressAnswer({ emailAddress: email })
         const { isValid, errors } = emailAddress.validate()
 
         expect(isValid).toBe(true)
@@ -52,7 +52,7 @@ describe('EmailAddress', () => {
     })
 
     it('should return false for an empty input', () => {
-      const emailAddress = new EmailAddress({})
+      const emailAddress = new EmailAddressAnswer({})
 
       const { isValid, errors } = emailAddress.validate()
 
@@ -64,7 +64,7 @@ describe('EmailAddress', () => {
 
     invalidEmailAddresses.forEach((email) => {
       it(`should return false for invalid email address: ${email}`, () => {
-        const emailAddress = new EmailAddress({
+        const emailAddress = new EmailAddressAnswer({
           emailAddress: email
         })
 
@@ -80,21 +80,21 @@ describe('EmailAddress', () => {
 
   describe('toState', () => {
     it('should replace missing data with blank string', () => {
-      const emailAddress = new EmailAddress({})
+      const emailAddress = new EmailAddressAnswer({})
       const data = emailAddress.toState()
 
       expect(data).toBe('')
     })
 
     it('should pass through valid data unaltered', () => {
-      const emailAddress = new EmailAddress(validEmailAddressPayload)
+      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
       const data = emailAddress.toState()
 
       expect(data).toEqual(validEmailAddressPayload.emailAddress)
     })
 
     it('should remove whitespace', () => {
-      const emailAddress = new EmailAddress({
+      const emailAddress = new EmailAddressAnswer({
         emailAddress: '  test @ domain.com '
       })
 
@@ -104,30 +104,30 @@ describe('EmailAddress', () => {
 
   describe('fromState', () => {
     it('should return just the email address from the payload', () => {
-      const emailAddress = new EmailAddress(validEmailAddressPayload)
+      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
       const state = emailAddress.toState()
-      expect(EmailAddress.fromState(state).value).toEqual(
+      expect(EmailAddressAnswer.fromState(state).value).toEqual(
         validEmailAddressPayload.emailAddress
       )
     })
 
     it('should return an undefined value if the state is undefined', () => {
-      expect(EmailAddress.fromState(undefined).value).toBeUndefined()
+      expect(EmailAddressAnswer.fromState(undefined).value).toBeUndefined()
     })
 
     it('should return an empty object if the state is undefined', () => {
-      expect(EmailAddress.fromState(undefined)._data).toEqual({})
+      expect(EmailAddressAnswer.fromState(undefined)._data).toEqual({})
     })
   })
 
   describe('html', () => {
     it('should return the email address if present', () => {
-      const emailAddress = new EmailAddress(validEmailAddressPayload)
+      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
       expect(emailAddress.html).toBe(validEmailAddressPayload.emailAddress)
     })
 
     it('should return an empty string if email address is not present', () => {
-      const emailAddress = new EmailAddress({})
+      const emailAddress = new EmailAddressAnswer({})
       expect(emailAddress.html).toBe('')
     })
   })

@@ -1,5 +1,5 @@
 import { Licence } from './licence.js'
-import { EmailAddress } from '../answer/email-address.js'
+import { EmailAddressAnswer } from '../answer/email/email-address.js'
 
 const testEmail = 'test@domain.com'
 
@@ -20,7 +20,7 @@ describe('Licence', () => {
       const licence = Licence.fromState(licenceData)
 
       expect(licence).toBeInstanceOf(Licence)
-      expect(licence.emailAddress).toBeInstanceOf(EmailAddress)
+      expect(licence.emailAddress).toBeInstanceOf(EmailAddressAnswer)
     })
 
     it('should handle undefined state gracefully', () => {
@@ -35,7 +35,7 @@ describe('Licence', () => {
     it('should return the licence email address answer model', () => {
       const licence = Licence.fromState(undefined)
 
-      expect(licence.emailAddress).toBeInstanceOf(EmailAddress)
+      expect(licence.emailAddress).toBeInstanceOf(EmailAddressAnswer)
     })
   })
 })
