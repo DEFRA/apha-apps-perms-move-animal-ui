@@ -43,7 +43,7 @@ describe('Check your licence answers test', () => {
       licenceAnswersPage.pageTitle
     )
     await licenceAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
       position: 4,
       taskTitle: 'Receiving the licence',

@@ -38,7 +38,7 @@ describe('Task list page test', () => {
 
   it('Should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin()
-    await toFromFarmPage.verifyPageHeadingAndTitle(toFromFarmPage.pageHeading)
+    await toFromFarmPage.verifyPageHeadingAndTitle()
   })
 
   it('Should link to receiving the licence first question before an application has been started', async () => {
@@ -79,9 +79,7 @@ describe('Task list page test', () => {
 
   it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
     await taskListPage.selectReview()
-    await taskListIncompletePage.verifyPageHeadingAndTitle(
-      taskListIncompletePage.pageTitle
-    )
+    await taskListIncompletePage.verifyPageHeadingAndTitle()
   })
 
   it('Should link to receiving licence summary once that selection has been completed', async () => {
@@ -110,9 +108,7 @@ describe('Task list page test', () => {
     expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
 
     await taskListPage.selectReceiveTheLicence()
-    await licenceAnswersPage.verifyPageHeadingAndTitle(
-      licenceAnswersPage.pageHeading
-    )
+    await licenceAnswersPage.verifyPageHeadingAndTitle()
     await waitForPagePath(licenceAnswersPage.pagePath)
   })
 })

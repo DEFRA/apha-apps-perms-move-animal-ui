@@ -4,6 +4,7 @@ import {
   validateAndAdjustAddress,
   validateAndAdjustEmail,
   validateAndAdjustParishNumber,
+  validateOnFarmErrorHandling,
   validateOnOffFarm
 } from '../helpers/testHelpers/checkAnswers.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
@@ -40,7 +41,7 @@ describe('Check your final answers test', () => {
       defaultPostcode
     )
     await checkAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
       position: 1,
       taskTitle: 'Movement origin',
@@ -49,7 +50,7 @@ describe('Check your final answers test', () => {
     await loadPageAndVerifyTitle('', landingPage.pageTitle)
     await completeLicenceTaskAnswersCustom(emailDefault)
     await licenceAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
       position: 4,
       taskTitle: 'Receiving the licence',
@@ -64,9 +65,7 @@ describe('Check your final answers test', () => {
   it('Should verify the back link is history -1', async () => {
     await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
     await taskListPage.selectReview()
-    await finalAnswersPage.verifyPageHeadingAndTitle(
-      finalAnswersPage.pageHeading
-    )
+    await finalAnswersPage.verifyPageHeadingAndTitle()
     await finalAnswersPage.selectBackLink()
 
     await taskListPage.movementOriginLink.isDisplayed()
@@ -76,9 +75,6 @@ describe('Check your final answers test', () => {
     await loadPageAndVerifyTitle(
       finalAnswersPage.pagePath,
       finalAnswersPage.pageTitle
-    )
-    await checkAnswersPage.verifyPageHeadingAndTitle(
-      finalAnswersPage.pageHeading
     )
     await await validateOnOffFarm(
       finalAnswersPage.onOffFarmChange,
@@ -154,5 +150,13 @@ describe('Check your final answers test', () => {
       finalAnswersPage.pageTitle
     )
     await finalAnswersPage.submissionErrorTest()
+  })
+
+  it('Should verify changing the value to on the farm and navigating back', async () => {
+    await loadPageAndVerifyTitle(
+      finalAnswersPage.pagePath,
+      finalAnswersPage.pageTitle
+    )
+    await validateOnFarmErrorHandling(finalAnswersPage.onOffFarmChange, true)
   })
 })

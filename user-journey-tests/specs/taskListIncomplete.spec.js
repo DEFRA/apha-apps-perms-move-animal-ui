@@ -12,6 +12,6 @@ describe('Task list page test', () => {
 
   it('should allow the user to return to the task list', async () => {
     await taskListIncompletePage.selectGoToApplication()
-    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
+    await taskListPage.verifyPageHeadingAndTitle()
   })
 })

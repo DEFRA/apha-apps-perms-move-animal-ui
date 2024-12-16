@@ -33,7 +33,7 @@ const completeOriginTask = async ({
     townOrCity,
     postcode
   })
-  await checkAnswersPage.verifyPageHeadingAndTitle(checkAnswersPage.pageHeading)
+  await checkAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(
     checkAnswersPage.parishNumberValue,
     cphNumber
