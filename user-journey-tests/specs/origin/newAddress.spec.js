@@ -23,7 +23,7 @@ describe('New address page test', () => {
   })
 
   it('Should verify all errors when no input', async () => {
-    await newAddressPage.verifyPageHeadingAndTitle(newAddressPage.pageHeading)
+    await newAddressPage.verifyPageHeadingAndTitle()
     await newAddressPage.selectContinue()
     await newAddressPage.verifyNewAddressErrors([
       'lineOne',

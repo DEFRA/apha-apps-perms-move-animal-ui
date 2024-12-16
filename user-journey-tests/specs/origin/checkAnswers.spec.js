@@ -93,7 +93,7 @@ describe('Check your answers test', () => {
       checkAnswersPage.pageTitle
     )
     await checkAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle(taskListPage.pageHeading)
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
       position: 1,
       taskTitle: 'Movement origin',
@@ -106,9 +106,6 @@ describe('Check your answers test', () => {
       checkAnswersPage.pagePath,
       checkAnswersPage.pageTitle
     )
-    await validateOnFarmErrorHandling(
-      checkAnswersPage.changeOnOrOffLink,
-      checkAnswersPage.pageHeading
-    )
+    await validateOnFarmErrorHandling(checkAnswersPage.changeOnOrOffLink)
   })
 })

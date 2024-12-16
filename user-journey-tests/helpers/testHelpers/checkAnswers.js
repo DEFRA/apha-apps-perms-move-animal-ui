@@ -10,6 +10,7 @@ import {
   validateElementVisibleAndText
 } from '../page.js'
 import taskListIncompletePage from '../../page-objects/taskListIncompletePage.js'
+import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
@@ -92,22 +93,25 @@ export const validateAndAdjustEmail = async (
 
 export const validateOnFarmErrorHandling = async (
   changeElement,
-  checkAnswersHeading,
   final = false
 ) => {
   await selectElement(changeElement)
   await toFromFarmPage.selectOnFarmAndContinue()
-  await exitPage.verifyPageHeadingAndTitle(exitPage.pageHeading)
+  await exitPage.verifyPageHeadingAndTitle()
   await exitPage.selectBackLink()
   await expect(toFromFarmPage.onThefarmRadio).toBeSelected()
   await toFromFarmPage.selectBackLink()
-  await checkAnswersPage.verifyPageHeadingAndTitle(checkAnswersHeading)
+
+  if (!final) {
+    await checkAnswersPage.verifyPageHeadingAndTitle()
+  } else {
+    await finalAnswersPage.verifyPageHeadingAndTitle()
+  }
+
   await browser.refresh()
   if (!final) {
     await expect(toFromFarmPage.onThefarmRadio).toBeExisting()
   } else {
-    await taskListIncompletePage.verifyPageHeadingAndTitle(
-      taskListIncompletePage.pageHeading
-    )
+    await taskListIncompletePage.verifyPageHeadingAndTitle()
   }
 }
