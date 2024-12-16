@@ -15,12 +15,10 @@ describe('To from farm page test', () => {
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
-    await toFromFarmPage.toFromFarmErrorTest(
-      toFromFarmPage.toFromFarmErrorMessage
-    )
+    await toFromFarmPage.toFromFarmErrorTest()
   })
 
-  it('Should select on the farm radio and continue (currently no where)', async () => {
+  it('Should select on the farm radio and continue', async () => {
     await toFromFarmPage.selectOnFarmAndContinue()
     await expect(toFromFarmPage.pageError).not.toBeDisplayed()
     await expect(toFromFarmPage.errorSummary).not.toBeDisplayed()

@@ -131,6 +131,11 @@ class Page {
     }
   }
 
+  async selectRadioAndContinue(element, hidden = true) {
+    await page.selectElement(element, hidden)
+    await this.selectContinue()
+  }
+
   async open(path) {
     await browser.url(path)
   }

@@ -7,8 +7,15 @@ const pageHeadingAndTitle =
 
 class EmailPage extends Page {
   pagePath = '/receiving-the-licence/licence-enter-email-address'
+
   pageHeading = pageHeadingAndTitle
+
   pageTitle = pageHeadingAndTitle
+
+  invalidFormatError =
+    'Enter an email address in the correct format, like name@example.com'
+
+  noInputError = 'Enter the email address you would like the licence sent to'
 
   emailAddressInput() {
     return super.getInputField(emailId)
@@ -20,14 +27,6 @@ class EmailPage extends Page {
 
   emailAddressErrorLink() {
     return super.getErrorLink(emailId)
-  }
-
-  get invalidFormatError() {
-    return 'Enter an email address in the correct format, like name@example.com'
-  }
-
-  get noInputError() {
-    return 'Enter the email address you would like the licence sent to'
   }
 
   async inputEmailAndContinue(text) {

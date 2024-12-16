@@ -1,7 +1,6 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from '../page.js'
-import * as page from '../../helpers/page.js'
 
 const pageHeadingAndTitle =
   'Are you moving the cattle on or off your farm or premises?'
@@ -10,10 +9,7 @@ class ToFromFarmPage extends Page {
   pagePath = 'origin/to-or-from-own-premises'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-
-  get toFromFarmErrorMessage() {
-    return 'Select if you are moving cattle on or off your farm'
-  }
+  toFromFarmErrorMessage = 'Select if you are moving cattle on or off your farm'
 
   get onThefarmRadio() {
     return $('#onOffFarm')
@@ -32,18 +28,16 @@ class ToFromFarmPage extends Page {
   }
 
   async selectOnFarmAndContinue() {
-    await page.selectElement(this.onThefarmRadio, true)
-    await super.selectContinue()
+    await super.selectRadioAndContinue(this.onThefarmRadio)
   }
 
   async selectOffFarmAndContinue() {
-    await page.selectElement(this.offThefarmRadio, true)
-    await super.selectContinue()
+    await super.selectRadioAndContinue(this.offThefarmRadio)
   }
 
-  async toFromFarmErrorTest(errorMessage) {
+  async toFromFarmErrorTest() {
     await super.selectContinue()
-    await super.verifyErrorsOnPage(this.pageError, errorMessage)
+    await super.verifyErrorsOnPage(this.pageError, this.toFromFarmErrorMessage)
     await super.verifySummaryErrorLink(
       this.onFarmSummaryErrorLink,
       this.onThefarmRadio

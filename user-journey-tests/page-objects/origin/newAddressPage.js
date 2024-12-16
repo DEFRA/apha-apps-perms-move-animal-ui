@@ -15,6 +15,11 @@ class NewAddressPage extends Page {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
+  lineOneErrorText = 'Enter address line 1, typically the building and street'
+  townOrCityErrorText = 'Enter town or city'
+  noPostcodeErrorText = 'Enter postcode'
+  invalidPostcodeErrorText = 'Enter a full UK postcode'
+
   addressLineOneInput() {
     return super.getInputField(addressLineOneId)
   }
@@ -73,22 +78,6 @@ class NewAddressPage extends Page {
 
   postcodeErrorLink() {
     return super.getErrorLink(postcodeId)
-  }
-
-  get lineOneErrorText() {
-    return 'Enter address line 1, typically the building and street'
-  }
-
-  get townOrCityErrorText() {
-    return 'Enter town or city'
-  }
-
-  get noPostcodeErrorText() {
-    return 'Enter postcode'
-  }
-
-  get invalidPostcodeErrorText() {
-    return 'Enter a full UK postcode'
   }
 
   maxErrorLengthText(addressField) {
