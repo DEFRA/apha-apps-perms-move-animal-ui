@@ -6,7 +6,7 @@
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { licenceCheckAnswersPage } from '../check-answers/index.js'
-import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
 export class EmailAddressPage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-enter-email-address'

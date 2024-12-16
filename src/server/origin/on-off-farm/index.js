@@ -5,7 +5,7 @@
 
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { exitPage } from '~/src/server/exit-page/index.js'
 import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 

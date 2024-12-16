@@ -1,7 +1,7 @@
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { originSummaryPage } from '~/src/server/origin/summary/index.js'
-import { QuestionPageController } from '../../common/controller/question-age-controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
