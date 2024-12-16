@@ -4,7 +4,7 @@ import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
 import { Origin } from '../origin.js'
 import { CphNumber } from '../../answer/cph-number.js'
 import { OriginExitPage } from '~/src/server/exit-page/index.js'
-import { SummaryPage } from '~/src/server/origin/summary/index.js'
+import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm.js' */
 
@@ -74,7 +74,7 @@ describe('SectionModel.finalPage', () => {
 
   it('go all the way through the journey to the summary page', () => {
     const origin = Origin.fromState(validState)
-    expect(origin.finalPage).toBeInstanceOf(SummaryPage)
+    expect(origin.finalPage).toBeInstanceOf(OriginSummaryPage)
   })
 })
 

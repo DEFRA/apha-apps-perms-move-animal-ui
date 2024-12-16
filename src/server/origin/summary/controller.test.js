@@ -2,9 +2,8 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-
-import { pageTitle } from './controller.js'
 import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
+import { originSummaryPage } from './index.js'
 
 describe('#originSummaryController', () => {
   /** @type {Server} */
@@ -45,7 +44,7 @@ describe('#originSummaryController', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/origin/summary'
+          url: '/origin/check-answers'
         },
         {
           Cookie: session.sessionID
@@ -54,7 +53,7 @@ describe('#originSummaryController', () => {
     )
 
     const document = parseDocument(payload)
-    expect(document.title).toBe(pageTitle)
+    expect(document.title).toBe(originSummaryPage.pageTitle)
     expect(statusCode).toBe(statusCodes.ok)
 
     expect(payload).toEqual(expect.stringContaining('12/123/1234'))
@@ -77,7 +76,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -86,7 +85,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/to-or-from-own-premises?redirect_uri=/origin/summary'
+        '/origin/to-or-from-own-premises?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -101,7 +100,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -110,7 +109,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/address?redirect_uri=/origin/summary'
+        '/origin/address?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -125,7 +124,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/summary'
+            url: '/origin/check-answers'
           },
           {
             Cookie: session.sessionID
@@ -134,7 +133,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/cph-number?redirect_uri=/origin/summary'
+        '/origin/cph-number?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })

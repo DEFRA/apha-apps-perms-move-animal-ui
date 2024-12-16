@@ -16,7 +16,7 @@ import { ExitPage } from '../../page/exit-page-model.js'
  * @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
  */
 
-export class SectionModelUpdated {
+export class SectionModel {
   /** @type {SectionPayload} */
   _data
 
@@ -86,7 +86,7 @@ export class SectionModelUpdated {
 
   /**
    * @param {object} _data
-   * @returns {SectionModelUpdated}
+   * @returns {SectionModel}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(_data) {
