@@ -38,17 +38,14 @@ export class DestinationType extends AnswerModel {
   get html() {
     const destinationType = this._data?.destinationType
 
-    if (destinationType === 'slaughter') {
-      return 'Slaughter'
-    } else if (destinationType === 'dedicated-sale') {
-      return 'Dedicated sale for TB (orange market)'
-    } else if (destinationType === 'afu') {
-      return 'Approved finishing unit (AFU)'
-    } else if (destinationType === 'other') {
-      return 'Another destination'
-    } else {
-      return ''
+    const destinationTypeMapping = {
+      slaughter: 'Slaughter',
+      'dedicated-sale': 'Dedicated sale for TB (orange market)',
+      afu: 'Approved finishing unit (AFU)',
+      other: 'Another destination'
     }
+
+    return destinationTypeMapping[destinationType] ?? ''
   }
 
   /**

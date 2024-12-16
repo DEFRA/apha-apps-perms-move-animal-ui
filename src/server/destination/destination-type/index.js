@@ -20,18 +20,13 @@ export class DestinationTypePage extends QuestionPage {
   /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
-    switch (answer.value) {
-      case 'slaughter':
-        return destinationGeneralLicencePage
-      case 'dedicated-sale':
-        return destinationSummaryPage
-      case 'afu':
-        return destinationSummaryPage
-      case 'other':
-        return destinationExitPage
-      default:
-        return destinationExitPage
+    const nextPageMapping = {
+      slaughter: destinationGeneralLicencePage,
+      'dedicated-sale': destinationSummaryPage,
+      afu: destinationSummaryPage,
+      other: destinationExitPage
     }
+    return nextPageMapping[answer.value] ?? destinationExitPage
   }
 
   /** @param {AnswerErrors} errors */
