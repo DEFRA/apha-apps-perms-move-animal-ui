@@ -93,7 +93,7 @@ export const validateAndAdjustEmail = async (
 export const validateOnFarmErrorHandling = async (
   changeElement,
   checkAnswersHeading,
-  final = true
+  final = false
 ) => {
   await selectElement(changeElement)
   await toFromFarmPage.selectOnFarmAndContinue()
@@ -103,7 +103,7 @@ export const validateOnFarmErrorHandling = async (
   await toFromFarmPage.selectBackLink()
   await checkAnswersPage.verifyPageHeadingAndTitle(checkAnswersHeading)
   await browser.refresh()
-  if (final) {
+  if (!final) {
     await expect(toFromFarmPage.onThefarmRadio).toBeExisting()
   } else {
     await taskListIncompletePage.verifyPageHeadingAndTitle(

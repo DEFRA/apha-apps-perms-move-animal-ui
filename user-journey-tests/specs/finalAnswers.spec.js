@@ -157,7 +157,7 @@ describe('Check your final answers test', () => {
     await finalAnswersPage.submissionErrorTest()
   })
 
-  it.only('Should verify changing the value to on the farm and navigating back', async () => {
+  it('Should verify changing the value to on the farm and navigating back', async () => {
     await loadPageAndVerifyTitle(
       finalAnswersPage.pagePath,
       finalAnswersPage.pageTitle
@@ -165,7 +165,7 @@ describe('Check your final answers test', () => {
     await validateOnFarmErrorHandling(
       finalAnswersPage.onOffFarmChange,
       finalAnswersPage.pageHeading,
-      false
+      true
     )
   })
 })
