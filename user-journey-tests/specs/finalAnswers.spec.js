@@ -4,6 +4,7 @@ import {
   validateAndAdjustAddress,
   validateAndAdjustEmail,
   validateAndAdjustParishNumber,
+  validateOnFarmErrorHandling,
   validateOnOffFarm
 } from '../helpers/testHelpers/checkAnswers.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
@@ -154,5 +155,17 @@ describe('Check your final answers test', () => {
       finalAnswersPage.pageTitle
     )
     await finalAnswersPage.submissionErrorTest()
+  })
+
+  it.only('Should verify changing the value to on the farm and navigating back', async () => {
+    await loadPageAndVerifyTitle(
+      finalAnswersPage.pagePath,
+      finalAnswersPage.pageTitle
+    )
+    await validateOnFarmErrorHandling(
+      finalAnswersPage.onOffFarmChange,
+      finalAnswersPage.pageHeading,
+      false
+    )
   })
 })
