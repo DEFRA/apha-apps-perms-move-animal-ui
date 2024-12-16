@@ -1,24 +1,38 @@
 import { Destination } from './destination.js'
+import { DestinationType } from '../answer/destination-type.js'
+
+/**
+ * @import { DestinationTypeData } from '../answer/destination-type.js'
+ * @type {DestinationTypeData}
+ */
+const testDestinationType = 'slaughter'
 
 describe('Destination', () => {
-  let destination
+  describe('fromState', () => {
+    it('should create an Destination instance with valid nested objects', () => {
+      const destinationData = {
+        destinationType: testDestinationType
+      }
 
-  beforeEach(() => {
-    destination = new Destination()
-    destination._data = {}
-  })
+      const destination = Destination.fromState(destinationData)
 
-  describe('validate', () => {
-    it('should return invalid', () => {
-      const result = Destination.fromState().validate()
-      expect(result.isValid).toBe(false)
+      expect(destination).toBeInstanceOf(Destination)
+      expect(destination.destinationType).toBeInstanceOf(DestinationType)
+    })
+
+    it('should handle undefined state gracefully', () => {
+      const destination = Destination.fromState(undefined)
+
+      expect(destination).toBeInstanceOf(Destination)
+      expect(destination.destinationType.value).toBeUndefined()
     })
   })
 
-  describe('fromState', () => {
-    it('should return an instance of Destination', () => {
-      const instance = Destination.fromState()
-      expect(instance).toBeInstanceOf(Destination)
+  describe('destinationType', () => {
+    it('should return the destination type answer model', () => {
+      const destination = Destination.fromState(undefined)
+
+      expect(destination.destinationType).toBeInstanceOf(DestinationType)
     })
   })
 })

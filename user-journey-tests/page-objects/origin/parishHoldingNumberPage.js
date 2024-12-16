@@ -8,8 +8,15 @@ const pageHeadingAndTitle =
 
 class ParishHoldingNumberPage extends Page {
   pagePath = 'origin/cph-number'
+
   pageTitle = pageHeadingAndTitle
+
   pageHeading = pageHeadingAndTitle
+
+  invalidFormatError =
+    'Enter the CPH number in the correct format, for example, 12/345/6789'
+
+  noInputError = 'Enter the farm or premises CPH number'
 
   cphNumberInput() {
     return super.getInputField(cphId)
@@ -21,14 +28,6 @@ class ParishHoldingNumberPage extends Page {
 
   cphSummaryErrorLink() {
     return super.getErrorLink(cphId)
-  }
-
-  get invalidFormatError() {
-    return 'Enter the CPH number in the correct format, for example, 12/345/6789'
-  }
-
-  get noInputError() {
-    return 'Enter the farm or premises CPH number'
   }
 
   async inputParishHoldingNumberAndContinue(text) {
