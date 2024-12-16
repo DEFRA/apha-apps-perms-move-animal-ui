@@ -1,5 +1,4 @@
 /** @import SummaryPage from '../../model/page/summary-page/SummaryPageModel.js' */
-/** @import { SectionModel } from "~/src/server/common/model/section/section-model/index.js" */
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
 export class SummaryPageController {
@@ -22,9 +21,6 @@ export class SummaryPageController {
   get urlPath() {
     return `/${this.page.sectionKey}/check-answers`
   }
-
-  /** @type {SectionModel} */
-  Model
 
   /** @returns {ServerRegisterPluginObject<void>} */
   plugin() {
