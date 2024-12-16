@@ -31,7 +31,7 @@ export class SectionModel {
     return this._data
   }
 
-  get pages() {
+  get _pages() {
     const pages = []
 
     /** @type {Page} */
@@ -54,7 +54,7 @@ export class SectionModel {
   }
 
   get finalPage() {
-    const pages = this.pages
+    const pages = this._pages
     return pages[pages.length - 1]
   }
 
@@ -62,7 +62,7 @@ export class SectionModel {
    * returns {QuestionPage[]}
    */
   get questionPages() {
-    return this.pages.filter((p) => p instanceof QuestionPage)
+    return this._pages.filter((p) => p instanceof QuestionPage)
   }
 
   /** @returns {SectionValidation} */
