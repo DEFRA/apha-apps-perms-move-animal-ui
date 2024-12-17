@@ -2,7 +2,7 @@ import { Application } from './application.js'
 import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
 
 /**
- * @import {Origin} from '../section/origin.js'
+ * @import {Origin} from '../section/origin/origin.js'
  */
 
 const originDefaultState = {

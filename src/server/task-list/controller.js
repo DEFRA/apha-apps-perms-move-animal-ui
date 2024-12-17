@@ -1,7 +1,7 @@
-import { Origin } from '../common/model/section/origin.js'
-import { Destination } from '../common/model/section/destination.js'
-import { Tests } from '../common/model/section/tests.js'
-import { Licence } from '../common/model/section/licence.js'
+import { OriginSection } from '../common/model/section/origin/origin.js'
+import { DestinationSection } from '../common/model/section/destination/destination.js'
+import { TestsSection } from '../common/model/section/tests/tests.js'
+import { LicenceSection } from '../common/model/section/licence/licence.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -13,10 +13,10 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const origin = Origin.fromState(req.yar.get('origin'))
-    const destination = Destination.fromState()
-    const tests = Tests.fromState()
-    const licence = Licence.fromState(req.yar.get('licence'))
+    const origin = OriginSection.fromState(req.yar.get('origin'))
+    const destination = DestinationSection.fromState()
+    const tests = TestsSection.fromState()
+    const licence = LicenceSection.fromState(req.yar.get('licence'))
     const originValidity = origin.validate()
 
     const isOriginValid = originValidity.isValid

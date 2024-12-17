@@ -1,4 +1,4 @@
-import { Licence } from '../../common/model/section/licence.js'
+import { LicenceSection } from '../../common/model/section/licence/licence.js'
 
 const indexView = 'licence/check-answers/index.njk'
 export const pageTitle =
@@ -10,7 +10,7 @@ export const heading = pageTitle
  */
 export const licenceCheckAnswersGetController = {
   handler(req, h) {
-    const licence = Licence.fromState(req.yar.get('licence'))
+    const licence = LicenceSection.fromState(req.yar.get('licence'))
     const { isValid, firstInvalidPage } = licence.validate()
 
     if (!isValid) {

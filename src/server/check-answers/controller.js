@@ -1,6 +1,6 @@
 import { calculateNextPage } from '../common/helpers/next-page.js'
-import { Origin } from '../common/model/section/origin.js'
-import { Licence } from '../common/model/section/licence.js'
+import { OriginSection } from '../common/model/section/origin/origin.js'
+import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Application } from '../common/model/application/application.js'
 
@@ -18,8 +18,8 @@ const heading = pageTitle
 export const checkAnswersGetController = {
   handler(req, res) {
     const tasks = {
-      origin: Origin.fromState(req.yar.get('origin')),
-      licence: Licence.fromState(req.yar.get('licence'))
+      origin: OriginSection.fromState(req.yar.get('origin')),
+      licence: LicenceSection.fromState(req.yar.get('licence'))
     }
 
     const application = Application.fromState({
@@ -48,8 +48,8 @@ export const checkAnswersGetController = {
 export const checkAnswersPostController = {
   handler(req, res) {
     const tasks = {
-      origin: Origin.fromState(req.yar.get('origin')),
-      licence: Licence.fromState(req.yar.get('licence'))
+      origin: OriginSection.fromState(req.yar.get('origin')),
+      licence: LicenceSection.fromState(req.yar.get('licence'))
     }
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
