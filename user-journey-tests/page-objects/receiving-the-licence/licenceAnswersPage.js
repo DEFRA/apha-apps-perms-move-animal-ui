@@ -10,7 +10,7 @@ class LicenceAnswersPage extends Page {
 
   // Change links
   get changeEmailLink() {
-    return $('[data-testid="email-address-change-link"]')
+    return $('[data-testid="emailAddress-change-link"]')
   }
 
   // Answer values
