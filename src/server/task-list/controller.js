@@ -13,11 +13,13 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const origin = OriginSection.fromState(req.yar.get('origin'))
-    const destination = DestinationSection.fromState()
-    const tests = TestsSection.fromState()
-    const licence = LicenceSection.fromState(req.yar.get('licence'))
+    const origin = Origin.fromState(req.yar.get('origin'))
+    const destination = Destination.fromState(req.yar.get('destination'))
+    const tests = Tests.fromState()
+    const licence = Licence.fromState(req.yar.get('licence'))
+
     const originValidity = origin.validate()
+    const destinationValidity = destination.validate()
 
     const isOriginValid = originValidity.isValid
 
@@ -32,9 +34,11 @@ export const taskListGetController = {
 
     const destinationGdsTask = buildGdsTaskItem({
       title: 'Movement destination',
-      initialLink: '#',
-      summaryLink: '#',
-      isValid: destination.validate().isValid,
+      initialLink:
+        destinationValidity.firstInvalidPage?.urlPath ??
+        destination.firstPage.urlPath,
+      summaryLink: '/destination/check-answers',
+      isValid: destinationValidity.isValid,
       isEnabled: isOriginValid
     })
 
