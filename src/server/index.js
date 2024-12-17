@@ -11,6 +11,22 @@ import { sessionCache } from '~/src/server/common/helpers/session-cache/session-
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
 import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
+import { isBoom } from '@hapi/boom'
+
+/**
+ * @param {import('@hapi/hapi').Request} request
+ * @param {import('@hapi/hapi').ResponseToolkit} h
+ */
+const addCacheNoStoreHeader = (request, h) => {
+  if (isBoom(request.response)) {
+    return h.continue
+  }
+  if (request.method === 'get') {
+    request.response.header('Cache-Control', 'no-store')
+  }
+
+  return h.continue
+}
 
 export async function createServer() {
   const server = hapi.server({
@@ -59,6 +75,7 @@ export async function createServer() {
   ])
 
   server.ext('onPreResponse', catchAll)
+  server.ext('onPreResponse', addCacheNoStoreHeader)
 
   return server
 }
