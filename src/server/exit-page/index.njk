@@ -1,33 +1,29 @@
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="gem-c-title__text govuk-heading-l">
-          {{ heading }}
-      </h1>
+      <h1 class="gem-c-title__text govuk-heading-l">{{ heading }}</h1>
 
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          This service is currently only available for movements off your farm or premises.
+          This service is currently only available for movements off your farm
+          or premises.
         </p>
-        
+
+        <p>You need to complete and submit the current form.</p>
+
         <p>
-          You need to complete and submit the current form.
-        </p>
-        
-        <p>
-          <a data-testid="view-application-link" href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
+          <a
+            data-testid="view-application-link"
+            href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england"
+          >
             View the application form
-          </a> 
-          on 
-          <a data-testid="gov-uk-link" href="https://www.gov.uk/">
-            GOV.UK
           </a>
+          on
+          <a data-testid="gov-uk-link" href="https://www.gov.uk/"> GOV.UK </a>
         </p>
       </div>
     </div>
   </div>
-
 {% endblock %}

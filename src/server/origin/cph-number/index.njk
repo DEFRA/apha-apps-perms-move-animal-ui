@@ -1,23 +1,22 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
 
   {% call govukFieldset() %}
-    {{ govukInput({
-      id: "cphNumber",
-      name: "cphNumber",
-      autocomplete: "cph-number",
-      classes: "govuk-input--width-10",
-      value: value,
-      errorMessage: errors.cphNumber,
-      hint: {
-        text: "For example, 12/345/6789"
-      }
-    }) }}
-
+    {{
+      govukInput({
+        id: "cphNumber",
+        name: "cphNumber",
+        autocomplete: "cph-number",
+        classes: "govuk-input--width-10",
+        value: value,
+        errorMessage: errors.cphNumber,
+        hint: {
+          text: "For example, 12/345/6789"
+        }
+      })
+    }}
   {% endcall %}
-
 {% endblock %}
