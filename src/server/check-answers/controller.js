@@ -2,7 +2,7 @@ import { calculateNextPage } from '../common/helpers/next-page.js'
 import { OriginSection } from '../common/model/section/origin/origin.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
-import { Application } from '../common/model/application/application.js'
+import { ApplicationModel } from '../common/model/application/application.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -22,7 +22,7 @@ export const checkAnswersGetController = {
       licence: LicenceSection.fromState(req.yar.get('licence'))
     }
 
-    const application = Application.fromState({
+    const application = ApplicationModel.fromState({
       origin: req.yar.get('origin'),
       licence: req.yar.get('licence')
     })

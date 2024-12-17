@@ -16,7 +16,7 @@ import { validateApplication } from './validation.js'
  * @import {AddressData} from '../answer/address/address.js'
  */
 
-export class Application {
+export class ApplicationModel {
   _data
 
   constructor(data) {
@@ -46,10 +46,10 @@ export class Application {
 
   /**
    * @param {ApplicationData | undefined} state
-   * @returns {Application}
+   * @returns {ApplicationModel}
    */
   static fromState(state) {
-    return new Application({
+    return new ApplicationModel({
       origin: OriginSection.fromState(state?.origin),
       licence: LicenceSection.fromState(state?.licence)
     })
