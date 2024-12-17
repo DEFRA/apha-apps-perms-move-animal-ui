@@ -105,8 +105,8 @@
         </p>
 
         {{
-          govukButton({ id:"start-now", text: "Start now", href:"task-list",
-          isStartButton: true })
+          govukButton({ text: "Start now", href:"task-list",
+          isStartButton: true, attributes: "data-testid='start-now-btn'" })
         }}
       </div>
     </div>
