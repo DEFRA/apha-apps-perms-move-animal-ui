@@ -1,42 +1,25 @@
-import { Page } from '../../common/model/page/page-model.js'
-import {
-  licenceCheckAnswersGetController,
-  licenceCheckAnswersPostController
-} from './controller.js'
+import SummaryPage from '../../common/model/page/summary-page/SummaryPageModel.js'
+import { SummaryPageController } from '../../common/controller/summary-page-controller/SummaryPageController.js'
 
-/**
- * Sets up the routes used in the summary page.
- * These routes are registered in src/server/router.js.
- */
+import { LicenceSection } from '~/src/server/common/model/section/licence/licence.js'
 
-export class LicenceCheckAnswersPage extends Page {
-  urlPath = '/receiving-the-licence/check-answers'
+export class LicenceSummaryPage extends SummaryPage {
+  pageTitle = 'Check your answers before you continue your application'
+  heading = 'Check your answers before you continue your application'
+  sectionKey = 'licence'
+  urlPath = `/receiving-the-licence/check-answers`
+  urlKey = 'receiving-the-licence'
+  sectionFactory = (data) => LicenceSection.fromState(data)
 }
 
-export const licenceCheckAnswersPage = new LicenceCheckAnswersPage()
+export const licenceSummaryPage = new LicenceSummaryPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const licenceCheckAnswers = {
-  plugin: {
-    name: 'licence-check-answers',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: licenceCheckAnswersPage.urlPath,
-          ...licenceCheckAnswersGetController
-        },
-        {
-          method: 'POST',
-          path: licenceCheckAnswersPage.urlPath,
-          ...licenceCheckAnswersPostController
-        }
-      ])
-    }
-  }
-}
+export const licenceSummary = new SummaryPageController(
+  new LicenceSummaryPage()
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

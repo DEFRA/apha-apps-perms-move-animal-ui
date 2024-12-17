@@ -1,12 +1,12 @@
 /**
- * @import {SectionValidationResult} from '../section/validation.js'
+ * @import {SectionValidation} from '../section/section-model/section-model.js'
  * @import {SectionModel} from '../section/section-model/section-model.js'
  */
 
 import mapValues from 'lodash/mapValues.js'
 
 /**
- * @typedef {{[key:string]: SectionValidationResult}} ValidationResult
+ * @typedef {{[key:string]: SectionValidation}} ValidationResult
  * @typedef {{
  *   isValid: boolean,
  *   result: ValidationResult

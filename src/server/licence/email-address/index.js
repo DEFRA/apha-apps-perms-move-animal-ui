@@ -5,7 +5,7 @@
 
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { licenceCheckAnswersPage } from '../check-answers/index.js'
+import { licenceSummaryPage } from '../check-answers/index.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
 export class EmailAddressPage extends QuestionPage {
@@ -21,7 +21,7 @@ export class EmailAddressPage extends QuestionPage {
   /** @param {EmailAddressAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
-    return licenceCheckAnswersPage
+    return licenceSummaryPage
   }
 }
 
