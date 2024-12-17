@@ -1,4 +1,4 @@
-import { OnOffFarm } from '../answer/on-off-farm.js'
+import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
 import { QuestionPage } from './question-page-model.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
@@ -40,7 +40,7 @@ describe('QuestionPage', () => {
   })
 
   it('should throw NotImplementedError for the nextPage', () => {
-    const answer = new OnOffFarm({ onOffFarm: 'off' })
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
     expect(() => question.nextPage(answer)).toThrow(NotImplementedError)
   })
 })

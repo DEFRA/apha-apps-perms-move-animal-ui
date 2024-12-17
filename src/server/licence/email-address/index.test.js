@@ -1,6 +1,6 @@
 import { emailAddress, emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceCheckAnswersPage } from '../check-answers/index.js'
-import { EmailAddress } from '../../common/model/answer/email-address.js'
+import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
@@ -36,7 +36,7 @@ describe('EmailAddressPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(EmailAddress)
+    expect(page.Answer).toBe(EmailAddressAnswer)
   })
 
   it('nextPage should return licenceCheckAnswersPage', () => {

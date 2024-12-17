@@ -1,7 +1,7 @@
-import { SectionModel } from '../section/section-model/index.js'
-import { onOffFarmPage } from '../../../origin/on-off-farm/index.js'
-import { cphNumberPage } from '../../../origin/cph-number/index.js'
-import { originAddressPage } from '../../../origin/address/index.js'
+import { SectionModel } from '../section-model/index.js'
+import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
+import { cphNumberPage } from '../../../../origin/cph-number/index.js'
+import { originAddressPage } from '../../../../origin/address/index.js'
 
 /**
  * export @typedef {{
@@ -9,12 +9,12 @@ import { originAddressPage } from '../../../origin/address/index.js'
  * cphNumber: CphNumberData | undefined;
  * address: AddressData | undefined;
  * }} OriginData
- * @import {OnOffFarmData} from '../answer/on-off-farm.js'
- * @import {CphNumberData} from '../answer/cph-number.js'
- * @import {AddressData} from '../answer/address.js'
+ * @import {OnOffFarmData} from '../../answer/on-off-farm/on-off-farm.js'
+ * @import {CphNumberData} from '../../answer/cph-number/cph-number.js'
+ * @import {AddressData} from '../../answer/address/address.js'
  */
 
-export class Origin extends SectionModel {
+export class OriginSection extends SectionModel {
   firstPage = onOffFarmPage
 
   get onOffFarm() {
@@ -31,10 +31,10 @@ export class Origin extends SectionModel {
 
   /**
    * @param {OriginData | undefined} state
-   * @returns {Origin}
+   * @returns {OriginSection}
    */
   static fromState(state) {
-    return new Origin({
+    return new OriginSection({
       onOffFarm: {
         page: onOffFarmPage,
         answer: onOffFarmPage.Answer.fromState(state?.onOffFarm)

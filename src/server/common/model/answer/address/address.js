@@ -1,6 +1,6 @@
 import Joi from 'joi'
-import { AnswerModel } from './answer-model.js'
-import { validateAnswerAgainstSchema } from './validation.js'
+import { AnswerModel } from '../answer-model.js'
+import { validateAnswerAgainstSchema } from '../validation.js'
 
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
@@ -69,7 +69,7 @@ const addressPayloadSchema = Joi.object({
 /**
  * @augments AnswerModel<AddressData>
  */
-export class Address extends AnswerModel {
+export class AddressAnswer extends AnswerModel {
   /**
    * @returns {AddressData | undefined}
    */
@@ -115,9 +115,9 @@ export class Address extends AnswerModel {
 
   /**
    * @param {AddressData | undefined} state
-   * @returns {Address}
+   * @returns {AddressAnswer}
    */
   static fromState(state) {
-    return new Address(state)
+    return new AddressAnswer(state)
   }
 }

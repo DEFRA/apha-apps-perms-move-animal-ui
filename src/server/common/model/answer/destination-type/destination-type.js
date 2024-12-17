@@ -1,6 +1,6 @@
 import Joi from 'joi'
-import { AnswerModel } from './answer-model.js'
-import { validateAnswerAgainstSchema } from './validation.js'
+import { AnswerModel } from '../answer-model.js'
+import { validateAnswerAgainstSchema } from '../validation.js'
 
 const selectOptionText = 'Select where the animals are going'
 
@@ -23,7 +23,7 @@ export const destinationTypePayloadSchema = Joi.object({
 /**
  * @augments AnswerModel<DestinationTypePayload>
  */
-export class DestinationType extends AnswerModel {
+export class DestinationTypeAnswer extends AnswerModel {
   /**
    * @returns {DestinationTypeData | undefined}
    */
@@ -50,10 +50,10 @@ export class DestinationType extends AnswerModel {
 
   /**
    * @param {DestinationTypeData | undefined} state
-   * @returns {DestinationType}
+   * @returns {DestinationTypeAnswer}
    */
   static fromState(state) {
-    return new DestinationType(
+    return new DestinationTypeAnswer(
       state !== undefined ? { destinationType: state } : undefined
     )
   }

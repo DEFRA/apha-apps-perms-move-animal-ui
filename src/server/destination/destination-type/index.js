@@ -1,6 +1,6 @@
-import { DestinationType } from '~/src/server/common/model/answer/destination-type.js'
+import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { destinationExitPage } from '~/src/server/destination/exit-page/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
@@ -15,7 +15,7 @@ export class DestinationTypePage extends QuestionPage {
   questionKey = 'destinationType'
   view = 'destination/destination-type/index'
 
-  Answer = DestinationType
+  Answer = DestinationTypeAnswer
 
   /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

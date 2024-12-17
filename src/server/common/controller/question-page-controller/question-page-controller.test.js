@@ -1,18 +1,19 @@
-import { QuestionPage } from '../model/page/question-page-model.js'
+import { QuestionPage } from '../../model/page/question-page-model.js'
 import { QuestionPageController } from './question-page-controller.js'
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SessionTester from '../../common/test-helpers/session-helper.js'
-import { AnswerModel } from '../model/answer/answer-model.js'
-import { ExitPage } from '../model/page/exit-page-model.js'
+import SessionTester from '../../test-helpers/session-helper.js'
+import { AnswerModel } from '../../model/answer/answer-model.js'
+import { ExitPage } from '../../model/page/exit-page-model.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
 const question = 'question-text'
 const questionKey = 'questionKey'
-const questionView = 'common/controller/question-page-controller.test.njk'
+const questionView =
+  'common/controller/question-page-controller/question-page-controller.test.njk'
 const sectionKey = 'section-key'
 const questionUrl = '/question-url'
 const nextQuestionUrl = '/next-question-url'

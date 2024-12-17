@@ -1,5 +1,5 @@
-import { Licence } from '../section/licence.js'
-import { Origin } from '../section/origin.js'
+import { LicenceSection } from '../section/licence/licence.js'
+import { OriginSection } from '../section/origin/origin.js'
 import { validateApplication } from './validation.js'
 
 /**
@@ -11,12 +11,12 @@ import { validateApplication } from './validation.js'
  * origin: OriginData | undefined;
  * licence: LicenceData | undefined;
  * }} ApplicationData
- * @import {OriginData} from '../section/origin.js'
- * @import {LicenceData} from '../section/licence.js'
- * @import {AddressData} from '../answer/address.js'
+ * @import {OriginData} from '../section/origin/origin.js'
+ * @import {LicenceData} from '../section/licence/licence.js'
+ * @import {AddressData} from '../answer/address/address.js'
  */
 
-export class Application {
+export class ApplicationModel {
   _data
 
   constructor(data) {
@@ -29,29 +29,29 @@ export class Application {
   }
 
   /**
-   * @returns {Origin}
+   * @returns {OriginSection}
    */
   get origin() {
-    return Origin.fromState(this._data.origin)
+    return OriginSection.fromState(this._data.origin)
   }
 
   /**
-   * @returns {Licence}
+   * @returns {LicenceSection}
    */
   get licence() {
-    return Licence.fromState(this._data.licence)
+    return LicenceSection.fromState(this._data.licence)
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
   /**
    * @param {ApplicationData | undefined} state
-   * @returns {Application}
+   * @returns {ApplicationModel}
    */
   static fromState(state) {
-    return new Application({
-      origin: Origin.fromState(state?.origin),
-      licence: Licence.fromState(state?.licence)
+    return new ApplicationModel({
+      origin: OriginSection.fromState(state?.origin),
+      licence: LicenceSection.fromState(state?.licence)
     })
   }
 

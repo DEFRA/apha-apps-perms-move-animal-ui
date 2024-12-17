@@ -1,8 +1,8 @@
 import { calculateNextPage } from '../common/helpers/next-page.js'
-import { Origin } from '../common/model/section/origin.js'
-import { Licence } from '../common/model/section/licence.js'
-import { Confirmation } from '../common/model/answer/confirmation/confirmation.js'
-import { Application } from '../common/model/application/application.js'
+import { OriginSection } from '../common/model/section/origin/origin.js'
+import { LicenceSection } from '../common/model/section/licence/licence.js'
+import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
+import { ApplicationModel } from '../common/model/application/application.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -18,11 +18,11 @@ const heading = pageTitle
 export const checkAnswersGetController = {
   handler(req, res) {
     const tasks = {
-      origin: Origin.fromState(req.yar.get('origin')),
-      licence: Licence.fromState(req.yar.get('licence'))
+      origin: OriginSection.fromState(req.yar.get('origin')),
+      licence: LicenceSection.fromState(req.yar.get('licence'))
     }
 
-    const application = Application.fromState({
+    const application = ApplicationModel.fromState({
       origin: req.yar.get('origin'),
       licence: req.yar.get('licence')
     })
@@ -48,12 +48,12 @@ export const checkAnswersGetController = {
 export const checkAnswersPostController = {
   handler(req, res) {
     const tasks = {
-      origin: Origin.fromState(req.yar.get('origin')),
-      licence: Licence.fromState(req.yar.get('licence'))
+      origin: OriginSection.fromState(req.yar.get('origin')),
+      licence: LicenceSection.fromState(req.yar.get('licence'))
     }
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
-    const confirmation = new Confirmation(payload)
+    const confirmation = new ConfirmationAnswer(payload)
 
     const { isValid, errors } = confirmation.validate()
 
@@ -62,7 +62,7 @@ export const checkAnswersPostController = {
         pageTitle: `Error: ${pageTitle}`,
         heading,
         confirmation,
-        errorMessages: Confirmation.errorMessages(errors),
+        errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
         ...tasks
       })

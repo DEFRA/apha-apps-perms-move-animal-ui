@@ -1,12 +1,12 @@
-import { Application } from './application.js'
-import { OnOffFarm } from '../answer/on-off-farm.js'
+import { ApplicationModel } from './application.js'
+import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
 
 /**
- * @import {Origin} from '../section/origin.js'
+ * @import {Origin} from '../section/origin/origin.js'
  */
 
 const originDefaultState = {
-  onOffFarm: new OnOffFarm({ onOffFarm: 'on' }).toState(),
+  onOffFarm: new OnOffFarmAnswer({ onOffFarm: 'on' }).toState(),
   cphNumber: '12/123/1234',
   address: {
     addressLine1: 'Starfleet Headquarters',
@@ -28,9 +28,9 @@ describe('Application', () => {
       licence: licenceDefaultState
     }
 
-    const application = Application.fromState(state)
+    const application = ApplicationModel.fromState(state)
 
-    expect(application).toBeInstanceOf(Application)
+    expect(application).toBeInstanceOf(ApplicationModel)
 
     const origin = application.origin
     const licence = application.licence
@@ -42,9 +42,9 @@ describe('Application', () => {
   })
 
   it('should create an Application instance with undefined sections from an undefined state', () => {
-    const application = Application.fromState(undefined)
+    const application = ApplicationModel.fromState(undefined)
 
-    expect(application).toBeInstanceOf(Application)
+    expect(application).toBeInstanceOf(ApplicationModel)
     expect(application._data.origin._data.address.value).toBeUndefined()
     expect(application._data.licence._data.emailAddress.value).toBeUndefined()
   })

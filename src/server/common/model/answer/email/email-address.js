@@ -1,6 +1,6 @@
 import Joi from 'joi'
-import { AnswerModel } from './answer-model.js'
-import { validateAnswerAgainstSchema } from './validation.js'
+import { AnswerModel } from '../answer-model.js'
+import { validateAnswerAgainstSchema } from '../validation.js'
 
 const emailAddressRegex = /^[^@]+@[^@]+$/
 
@@ -25,10 +25,10 @@ export const emailAddressPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} EmailAddressData
- * @import {RawPayload} from './answer-model.js'
+ * @import {RawPayload} from '../answer-model.js'
  */
 
-export class EmailAddress extends AnswerModel {
+export class EmailAddressAnswer extends AnswerModel {
   /**
    * @returns {string | undefined}
    */
@@ -57,9 +57,11 @@ export class EmailAddress extends AnswerModel {
 
   /**
    * @param {EmailAddressData | undefined} state
-   * @returns {EmailAddress}
+   * @returns {EmailAddressAnswer}
    */
   static fromState(state) {
-    return new EmailAddress(state !== undefined ? { emailAddress: state } : {})
+    return new EmailAddressAnswer(
+      state !== undefined ? { emailAddress: state } : {}
+    )
   }
 }

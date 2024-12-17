@@ -1,9 +1,9 @@
-import { calculateNextPage } from '../helpers/next-page.js'
-import { ExitPage } from '../model/page/exit-page-model.js'
+import { calculateNextPage } from '../../helpers/next-page.js'
+import { ExitPage } from '../../model/page/exit-page-model.js'
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
-/** @import { NextPage } from '../helpers/next-page.js' */
-/** @import { RawPayload } from '../model/answer/answer-model.js' */
-/** @import { QuestionPage } from '../model/page/question-page-model.js' */
+/** @import { NextPage } from '../../helpers/next-page.js' */
+/** @import { RawPayload } from '../../model/answer/answer-model.js' */
+/** @import { QuestionPage } from '../../model/page/question-page-model.js' */
 
 export class QuestionPageController {
   /**

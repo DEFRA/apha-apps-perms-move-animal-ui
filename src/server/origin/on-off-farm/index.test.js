@@ -1,5 +1,5 @@
 import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
-import { OnOffFarm } from '../../common/model/answer/on-off-farm.js'
+import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-farm.js'
 import { cphNumberPage } from '../cph-number/index.js'
 import { exitPage } from '../../exit-page/index.js'
 
@@ -37,7 +37,7 @@ describe('OnOffFarmPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(OnOffFarm)
+    expect(page.Answer).toBe(OnOffFarmAnswer)
   })
 
   it('nextPage should return exitPage when answer is "on"', () => {

@@ -3,9 +3,9 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { OnOffFarm } from '~/src/server/common/model/answer/on-off-farm.js'
+import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { exitPage } from '~/src/server/exit-page/index.js'
 import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 
@@ -21,7 +21,7 @@ export class OnOffFarmPage extends QuestionPage {
   questionKey = 'onOffFarm'
 
   view = 'origin/on-off-farm/index'
-  Answer = OnOffFarm
+  Answer = OnOffFarmAnswer
 
   /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

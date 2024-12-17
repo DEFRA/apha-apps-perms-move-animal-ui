@@ -1,4 +1,4 @@
-import { CphNumber } from './cph-number.js'
+import { CphNumberAnswer } from './cph-number.js'
 
 const validCphNumberPayload = {
   cphNumber: '12/456/7899'
@@ -7,7 +7,7 @@ const validCphNumberPayload = {
 describe('CphNumber.new', () => {
   it('should strip away any irrelevant values', () => {
     const payload = { ...validCphNumberPayload, nextPage: '/other/page' }
-    const cphNumber = new CphNumber(payload)
+    const cphNumber = new CphNumberAnswer(payload)
 
     expect(cphNumber._data).toEqual(validCphNumberPayload)
   })
@@ -15,7 +15,7 @@ describe('CphNumber.new', () => {
 
 describe('#CphNumber.validate', () => {
   it('should return true for valid cphNumber', () => {
-    const cphNumber = new CphNumber(validCphNumberPayload)
+    const cphNumber = new CphNumberAnswer(validCphNumberPayload)
     const { isValid, errors } = cphNumber.validate()
 
     expect(isValid).toBe(true)
@@ -23,7 +23,7 @@ describe('#CphNumber.validate', () => {
   })
 
   it('should return false for an empty input', () => {
-    const cphNumber = new CphNumber()
+    const cphNumber = new CphNumberAnswer()
 
     const { isValid, errors } = cphNumber.validate()
 
@@ -32,7 +32,7 @@ describe('#CphNumber.validate', () => {
   })
 
   it('should return false for malformed input', () => {
-    const cphNumber = new CphNumber({
+    const cphNumber = new CphNumberAnswer({
       cphNumber: '1/2/3'
     })
 
@@ -47,21 +47,21 @@ describe('#CphNumber.validate', () => {
 
 describe('#CphNumber.toState', () => {
   it('should replace missing data with blank string', () => {
-    const cphNumber = new CphNumber()
+    const cphNumber = new CphNumberAnswer()
     const data = cphNumber.toState()
 
     expect(data).toBe('')
   })
 
   it('should pass through valid data unaltered', () => {
-    const cphNumber = new CphNumber(validCphNumberPayload)
+    const cphNumber = new CphNumberAnswer(validCphNumberPayload)
     const data = cphNumber.toState()
 
     expect(data).toEqual(validCphNumberPayload.cphNumber)
   })
 
   it('should remove whitespace', () => {
-    const cphNumber = new CphNumber({
+    const cphNumber = new CphNumberAnswer({
       cphNumber: '  12/4 56/789 9 '
     })
 
@@ -71,30 +71,30 @@ describe('#CphNumber.toState', () => {
 
 describe('#CphNumber.fromState', () => {
   it('should return just the cphNumber from the payload', () => {
-    const cphNumber = new CphNumber(validCphNumberPayload)
+    const cphNumber = new CphNumberAnswer(validCphNumberPayload)
     const state = cphNumber.toState()
-    expect(CphNumber.fromState(state).value).toEqual(
+    expect(CphNumberAnswer.fromState(state).value).toEqual(
       validCphNumberPayload.cphNumber
     )
   })
 
   it('should return an undefined value if the state is undefined', () => {
-    expect(CphNumber.fromState(undefined).value).toBeUndefined()
+    expect(CphNumberAnswer.fromState(undefined).value).toBeUndefined()
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(CphNumber.fromState(undefined)._data).toBeUndefined()
+    expect(CphNumberAnswer.fromState(undefined)._data).toBeUndefined()
   })
 })
 
 describe('#CphNumber.html', () => {
   it('should return the cphNumber if present', () => {
-    const cphNumber = new CphNumber(validCphNumberPayload)
+    const cphNumber = new CphNumberAnswer(validCphNumberPayload)
     expect(cphNumber.html).toBe(validCphNumberPayload.cphNumber)
   })
 
   it('should return an empty string if cphNumber is not present', () => {
-    const cphNumber = new CphNumber()
+    const cphNumber = new CphNumberAnswer()
     expect(cphNumber.html).toBe('')
   })
 })
