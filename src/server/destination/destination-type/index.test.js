@@ -4,7 +4,7 @@ import {
   DestinationTypePage
 } from './index.js'
 import { destinationExitPage } from '../exit-page/index.js'
-import { DestinationType } from '../../common/model/answer/destination-type.js'
+import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 
@@ -42,7 +42,7 @@ describe('DestinationTypePage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(DestinationType)
+    expect(page.Answer).toBe(DestinationTypeAnswer)
   })
 
   describe('nextPage', () => {

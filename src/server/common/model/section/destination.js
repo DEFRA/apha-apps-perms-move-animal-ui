@@ -5,7 +5,7 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
  * export @typedef {{
  * destinationType: DestinationTypeData | undefined;
  * }} DestinationData
- * @import {DestinationTypeData} from '../answer/destination-type.js'
+ * @import {DestinationTypeData} from '../answer/destination-type/destination-type.js'
  */
 export class Destination extends SectionModel {
   firstPage = destinationTypePage

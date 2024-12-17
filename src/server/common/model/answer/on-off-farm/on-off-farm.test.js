@@ -10,7 +10,7 @@ describe('OnOffFarm', () => {
   describe('OnOffFarm.new', () => {
     it('should strip away any irrelevant values', () => {
       const payload = { ...validOnOffRadio, nextPage: '/other/page' }
-      const onOffFarm = new OnOffFarm(payload)
+      const onOffFarm = new OnOffFarmAnswer(payload)
 
       expect(onOffFarm._data).toEqual(validOnOffRadio)
     })
@@ -18,7 +18,7 @@ describe('OnOffFarm', () => {
 
   describe('#OnOffFarm.validate', () => {
     test('should return true for on', () => {
-      const { isValid, errors } = new OnOffFarm({
+      const { isValid, errors } = new OnOffFarmAnswer({
         onOffFarm: 'on'
       }).validate()
 
@@ -27,7 +27,7 @@ describe('OnOffFarm', () => {
     })
 
     test('should return true for off', () => {
-      const { isValid, errors } = new OnOffFarm({
+      const { isValid, errors } = new OnOffFarmAnswer({
         onOffFarm: 'off'
       }).validate()
 
@@ -36,7 +36,7 @@ describe('OnOffFarm', () => {
     })
 
     test('should return false for empty', () => {
-      const { isValid, errors } = new OnOffFarm(undefined).validate()
+      const { isValid, errors } = new OnOffFarmAnswer(undefined).validate()
 
       expect(isValid).toBe(false)
       expect(errors.onOffFarm.text).toBe(
@@ -47,13 +47,13 @@ describe('OnOffFarm', () => {
 
   describe('#OnOffFarm.toState', () => {
     test('should replace missing data with blank string', () => {
-      const data = new OnOffFarm().toState()
+      const data = new OnOffFarmAnswer().toState()
 
       expect(data).toBeUndefined()
     })
 
     test('should pass through valid data unaltered', () => {
-      const data = new OnOffFarm({ onOffFarm: 'on' }).toState()
+      const data = new OnOffFarmAnswer({ onOffFarm: 'on' }).toState()
 
       expect(data).toBe('on')
     })
@@ -61,22 +61,22 @@ describe('OnOffFarm', () => {
 
   describe('OnOffFarm.fromState', () => {
     it('should return just the onOffFarm value from the payload', () => {
-      const state = new OnOffFarm(validOnOffRadio).toState()
-      expect(OnOffFarm.fromState(state)._data).toEqual(validOnOffRadio)
+      const state = new OnOffFarmAnswer(validOnOffRadio).toState()
+      expect(OnOffFarmAnswer.fromState(state)._data).toEqual(validOnOffRadio)
     })
 
     it('should return an undefined value if the state is undefined', () => {
-      expect(OnOffFarm.fromState(undefined).value).toBeUndefined()
+      expect(OnOffFarmAnswer.fromState(undefined).value).toBeUndefined()
     })
 
     it('should store undefined if the state is undefined', () => {
-      expect(OnOffFarm.fromState(undefined)._data).toBeUndefined()
+      expect(OnOffFarmAnswer.fromState(undefined)._data).toBeUndefined()
     })
   })
 
   describe('#OnOffFarm.value', () => {
     it('should return a value-wrapped object to rendering in the template', () => {
-      expect(new OnOffFarm({ onOffFarm: 'on' }).value).toBe('on')
+      expect(new OnOffFarmAnswer({ onOffFarm: 'on' }).value).toBe('on')
     })
   })
 

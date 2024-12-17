@@ -1,8 +1,8 @@
-import { Destination } from './destination.js'
-import { DestinationType } from '../answer/destination-type.js'
+import { DestinationSection } from './destination.js'
+import { DestinationTypeAnswer } from '../../answer/destination-type/destination-type.js'
 
 /**
- * @import { DestinationTypeData } from '../answer/destination-type.js'
+ * @import { DestinationTypeData } from '../../answer/destination-type/destination-type.js'
  * @type {DestinationTypeData}
  */
 const testDestinationType = 'slaughter'
@@ -14,25 +14,25 @@ describe('Destination', () => {
         destinationType: testDestinationType
       }
 
-      const destination = Destination.fromState(destinationData)
+      const destination = DestinationSection.fromState(destinationData)
 
-      expect(destination).toBeInstanceOf(Destination)
-      expect(destination.destinationType).toBeInstanceOf(DestinationType)
+      expect(destination).toBeInstanceOf(DestinationSection)
+      expect(destination.destinationType).toBeInstanceOf(DestinationTypeAnswer)
     })
 
     it('should handle undefined state gracefully', () => {
-      const destination = Destination.fromState(undefined)
+      const destination = DestinationSection.fromState(undefined)
 
-      expect(destination).toBeInstanceOf(Destination)
+      expect(destination).toBeInstanceOf(DestinationSection)
       expect(destination.destinationType.value).toBeUndefined()
     })
   })
 
   describe('destinationType', () => {
     it('should return the destination type answer model', () => {
-      const destination = Destination.fromState(undefined)
+      const destination = DestinationSection.fromState(undefined)
 
-      expect(destination.destinationType).toBeInstanceOf(DestinationType)
+      expect(destination.destinationType).toBeInstanceOf(DestinationTypeAnswer)
     })
   })
 })

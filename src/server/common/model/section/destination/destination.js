@@ -1,14 +1,29 @@
-import { SectionModel } from '../section-model/section-model.js'
+import { SectionModel } from '../../section/section-model/index.js'
+import { destinationTypePage } from '~/src/server/destination/destination-type/index.js'
 
+/**
+ * export @typedef {{
+ * destinationType: DestinationTypeData | undefined;
+ * }} DestinationData
+ * @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js'
+ */
 export class DestinationSection extends SectionModel {
-  validate() {
-    return { isValid: false, result: {} }
+  firstPage = destinationTypePage
+
+  get destinationType() {
+    return this._data?.destinationType.answer
   }
 
   /**
+   * @param {DestinationData | undefined} state
    * @returns {DestinationSection}
    */
-  static fromState() {
-    return new DestinationSection()
+  static fromState(state) {
+    return new DestinationSection({
+      destinationType: {
+        page: destinationTypePage,
+        answer: destinationTypePage.Answer.fromState(state?.destinationType)
+      }
+    })
   }
 }
