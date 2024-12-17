@@ -1,4 +1,4 @@
-import { SectionModel } from '../section-model/index.js'
+import { SectionModel } from '../section-model/section-model-updated.js'
 import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
 
 /**

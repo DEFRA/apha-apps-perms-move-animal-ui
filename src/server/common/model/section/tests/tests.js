@@ -1,4 +1,4 @@
-import { SectionModel } from '../section-model/section-model.js'
+import { SectionModel } from '../section-model/section-model-updated.js'
 
 export class TestsSection extends SectionModel {
   validate() {

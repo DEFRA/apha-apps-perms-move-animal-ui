@@ -19,7 +19,7 @@ export class SummaryPageController {
   }
 
   get urlPath() {
-    return `/${this.page.sectionKey}/check-answers`
+    return `/${this.page.urlKey ?? this.page.sectionKey}/check-answers`
   }
 
   /** @returns {ServerRegisterPluginObject<void>} */
@@ -48,19 +48,19 @@ export class SummaryPageController {
   }
 
   getHandler(req, res) {
-    const section = this.page.sectionFactory(req.yar.get('origin'))
+    const section = this.page.sectionFactory(req.yar.get(this.page.sectionKey))
 
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
       return res.redirect(
-        `${firstInvalidPage?.urlPath}?redirect_uri=/${this.page.sectionKey}/check-answers`
+        `${firstInvalidPage?.urlPath}?redirect_uri=/${this.page.urlKey ?? this.page.sectionKey}/check-answers`
       )
     }
 
     const items = section.questionPages.map((visitedPage) => ({
       key: visitedPage.question,
       value: section[visitedPage.questionKey].html,
-      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.sectionKey}/check-answers`,
+      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.urlKey ?? this.page.sectionKey}/check-answers`,
       visuallyHiddenKey: visitedPage.question,
       attributes: {
         'data-testid': `${visitedPage.questionKey}-change-link`

@@ -1,5 +1,5 @@
 import { emailAddress, emailAddressPage, EmailAddressPage } from './index.js'
-import { licenceCheckAnswersPage } from '../check-answers/index.js'
+import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 
 const sectionKey = 'licence'
@@ -41,7 +41,7 @@ describe('EmailAddressPage', () => {
 
   it('nextPage should return licenceCheckAnswersPage', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(licenceCheckAnswersPage)
+    expect(nextPage).toBe(licenceSummaryPage)
   })
 
   it('should export page', () => {

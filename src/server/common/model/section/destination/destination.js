@@ -1,4 +1,4 @@
-import { SectionModel } from '../../section/section-model/index.js'
+import { SectionModel } from '../../section/section-model/section-model-updated.js'
 import { destinationTypePage } from '~/src/server/destination/destination-type/index.js'
 
 /**

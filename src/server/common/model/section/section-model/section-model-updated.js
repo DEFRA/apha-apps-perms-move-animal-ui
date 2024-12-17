@@ -13,7 +13,7 @@ import { ExitPage } from '../../page/exit-page-model.js'
  */
 
 /**
- * @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
+ * export @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
  */
 
 export class SectionModel {

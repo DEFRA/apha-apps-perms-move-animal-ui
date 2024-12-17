@@ -3,7 +3,7 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { licenceCheckAnswers } from './check-answers/index.js'
+import { licenceSummary } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
 
 /**
@@ -13,7 +13,7 @@ export const licence = {
   plugin: {
     name: 'receiving-the-licence',
     async register(server) {
-      await server.register([emailAddress, licenceCheckAnswers])
+      await server.register([emailAddress, licenceSummary])
     }
   }
 }
