@@ -1,42 +1,114 @@
-{% extends 'layouts/page.njk' %}
-
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{%
+  extends
+  'layouts/page.njk'
+%}
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-            <h1 class="gem-c-title__text govuk-heading-xl">
-                {{ heading }}
-            </h1>
+          <h1 class="gem-c-title__text govuk-heading-l">{{ heading }}</h1>
         </div>
 
-        <p>It can take up to 5 working days to process and issue a licence.</p>
+        <h3 class="govuk-heading-m">Movement types this service is for</h3>
 
-        <p>You will need to provide information about the animals, including their origin and destination.
-            You may need to provide animal identification numbers and your biosecurity plan, if needed. </p>
+        <p class="govuk-body">
+          You should only use this service if you are moving animals from one of
+          these origins:
+        </p>
 
-
-        <a data-testid="start-now-btn" class="gem-c-button govuk-button govuk-button--start " role="button" rel="external" data-module="govuk-button" draggable="false"
-           href="task-list">
-            Start now
-            <svg class="govuk-button__start-icon govuk-!-display-none-print" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" focusable="false" aria-hidden="true">
-                <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
-            </svg>
-        </a>
-
-
-        <h2  class="govuk-heading-m ">
-            Before you start
-        </h2>
-
-        <p>You should not apply for a licence if:</p>
-
-        <ul class="govuk-body govuk-list--bullet">
-            <li>APHA has not received the results from cattle tuberculin skin tests or interferon-gamma blood tests</li>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>TB restricted farm</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
         </ul>
+
+        <p class="govuk-body">
+          And they are going to one of these destinations:
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>slaughter</li>
+          <li>dedicated sale for TB (orange market)</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
+        </ul>
+
+        <p class="govuk-body">
+          If you are moving animals from a TB restricted farm to slaughter, you
+          do not need to use this service to apply for a licence.
+        </p>
+
+        <p class="govuk-body">
+          You should have a general licence in the information pack sent to you
+          from the Animal and Plant Health Agency (APHA). The pack was posted to
+          you when your herd was placed under TB restriction.
+        </p>
+
+        <p class="govuk-body">
+          For movements onto your farm or premises,
+          <a
+            href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england"
+            class="govuk-link"
+            >complete the TB204 form</a
+          >.
+        </p>
+
+        <h3 class="govuk-heading-m">Before you start</h3>
+
+        <p class="govuk-body">Licences cannot be assessed or issued if:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>reactors are still on your farm or premises</li>
+          <li>cattle are awaiting skin or blood test results</li>
+        </ul>
+
+        <p class="govuk-body">
+          Contact your vet if you are unsure whether the tests have been sent.
+          If APHA has not received the tests, there could be delays in
+          processing your licence.
+        </p>
+
+        <p class="govuk-body">
+          To apply for a licence, you need the following information:
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>name of the County Parish Holding (CPH) owner</li>
+          <li>
+            County Parish Holding (CPH) number and address where the animals are
+            moving from
+          </li>
+          <li>
+            where the animals are moving to, for example the type of market
+          </li>
+          <li>email address to send the licence to</li>
+        </ul>
+
+        <p class="govuk-body">
+          It can take up to 5 working days to process your application. It may
+          take longer if veterinary checks are required, or we need further
+          information.
+        </p>
+
+        <h3 class="govuk-heading-m">Get help</h3>
+
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301 and
+          choose the option for TB licencing. Lines are open from Monday to
+          Friday between 8.30am and 5pm.
+        </p>
+
+        {{
+          govukButton({ text: "Start now", href:"task-list",
+          isStartButton: true, attributes: "data-testid='start-now-btn'" })
+        }}
       </div>
     </div>
   </div>
-
 {% endblock %}

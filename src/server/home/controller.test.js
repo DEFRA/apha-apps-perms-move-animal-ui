@@ -15,7 +15,7 @@ describe('#homeController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected response', async () => {
+  it('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/'
