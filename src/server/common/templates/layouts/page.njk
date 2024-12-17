@@ -1,50 +1,59 @@
 {% extends "govuk/template.njk" %}
-
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
 {% set mainClasses = "app-main-wrapper" %}
 
 {% block head %}
-  <link href="{{ getAssetPath('stylesheets/application.scss') }}" rel="stylesheet">
+  <link
+    href="{{ getAssetPath('stylesheets/application.scss') }}"
+    rel="stylesheet"
+  />
 {% endblock %}
 
 {% block header %}
-  {{ govukHeader({
-    homepageUrl: "https://www.gov.uk/",
-    classes: "app-header",
-    containerClasses: "govuk-width-container",
-    serviceName: serviceName,
-    serviceUrl: serviceUrl,
-    useTudorCrown: true
-  }) }}
+  {{
+    govukHeader({
+      homepageUrl: "https://www.gov.uk/",
+      classes: "app-header",
+      containerClasses: "govuk-width-container",
+      serviceName: serviceName,
+      serviceUrl: serviceUrl,
+      useTudorCrown: true
+    })
+  }}
 {% endblock %}
 
 {% block pageTitle %}
-  {{ pageTitle }} 
+  {{ pageTitle }}
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: 'Private beta'
-    },
-    html: 'This is a new service. <!-- – your <a data-testid="feedback-link" class="govuk-link" href="#">feedback</a> will help us to improve it.-->'
-  }) }}
+  {{
+    govukPhaseBanner({
+      tag: {
+        text: 'Private beta'
+      },
+      html: 'This is a new service. <!-- – your <a data-testid="feedback-link" class="govuk-link" href="#">feedback</a> will help us to improve it.-->'
+    })
+  }}
 
   {% if breadcrumbs.length > 1 %}
-    {{ appBreadcrumbs({
-      items: breadcrumbs
-    }) }}
+    {{
+      appBreadcrumbs({
+        items: breadcrumbs
+      })
+    }}
   {% endif %}
 
   {% block metaBeforeContent %}
-    {{ govukBackLink({
-      text: "Back",
-      href: "javascript:window.history.back()"
-    }) }}
+    {{
+      govukBackLink({
+        text: "Back",
+        href: "javascript:window.history.back()"
+      })
+    }}
 
     <noscript>
       <style>
@@ -53,30 +62,33 @@
         }
       </style>
     </noscript>
-  {% endblock %}  
+  {% endblock %}
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 
 {% block footer %}
-  {{ govukFooter({
-    meta: {
-      items: [
-        {
-          href: "https://www.gov.uk/help/privacy-notice",
-          text: "Privacy"
-        },
-        {
-          href: "https://www.gov.uk/help/cookies",
-          text: "Cookies"
-        },
-        {
-          href: "https://www.gov.uk/help/accessibility-statement",
-          text: "Accessibility statement"
-        }
-      ]
-    }
-  }) }}
+  {{
+    govukFooter({
+      meta: {
+        items: [
+          {
+            href: "https://www.gov.uk/help/privacy-notice",
+            text: "Privacy"
+          },
+          {
+            href: "https://www.gov.uk/help/cookies",
+            text: "Cookies"
+          },
+          {
+            href: "https://www.gov.uk/help/accessibility-statement",
+            text: "Accessibility statement"
+          }
+        ]
+      }
+    })
+  }}
 {% endblock %}
 
 {% block bodyEnd %}

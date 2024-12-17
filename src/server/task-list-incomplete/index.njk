@@ -1,26 +1,23 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="govuk-heading-l">
-              {{ heading }}
-          </h1>
+          <h1 class="govuk-heading-l">{{ heading }}</h1>
 
-          {{ govukButton({
-            text: buttonText,
-            classes: "govuk-button--primary",
-            href: '/task-list'
+          {{
+            govukButton({
+              text: buttonText,
+              classes: "govuk-button--primary",
+              href: '/task-list'
 
-          }) }}
+            })
+          }}
         </div>
       </div>
     </div>
   </div>
-
 {% endblock %}

@@ -1,37 +1,41 @@
 {% from "govuk/components/task-list/macro.njk" import govukTaskList %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="govuk-heading-l">
-              {{ heading }}
-          </h1>
+          <h1 class="govuk-heading-l">{{ heading }}</h1>
 
-          <p>You have <span data="test-id-task-to-complete-count">{{ incompleteTasks }} out of {{ gdsTasks.length }}</span> sections left to complete.</p>
+          <p>
+            You have
+            <span data="test-id-task-to-complete-count"
+              >{{ incompleteTasks }} out of {{ gdsTasks.length }}</span
+            >
+            sections left to complete.
+          </p>
 
-          {{ govukTaskList({
-            idPrefix: "task-list",
-            items: gdsTasks
-          }) }}
+          {{
+            govukTaskList({
+              idPrefix: "task-list",
+              items: gdsTasks
+            })
+          }}
 
           <form method="POST">
-            <input type="hidden" name="crumb" value="{{crumb}}" />
+            <input type="hidden" name="crumb" value="{{ crumb }}" />
 
-            {{ govukButton({
-              text: buttonText,
-              classes: "govuk-button--secondary"
-            }) }}
+            {{
+              govukButton({
+                text: buttonText,
+                classes: "govuk-button--secondary"
+              })
+            }}
           </form>
-
         </div>
       </div>
     </div>
   </div>
-
 {% endblock %}
