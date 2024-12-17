@@ -2,7 +2,7 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 
-describe('#homeController', () => {
+describe('#privacyPolicyController', () => {
   /** @type {Server} */
   let server
 
