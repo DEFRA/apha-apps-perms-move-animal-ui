@@ -1,4 +1,4 @@
-import { SectionModel } from '../section-model/section-model-updated.js'
+import { SectionModel } from '../section-model/section-model.js'
 import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
 import { cphNumberPage } from '../../../../origin/cph-number/index.js'
 import { originAddressPage } from '../../../../origin/address/index.js'

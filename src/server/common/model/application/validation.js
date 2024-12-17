@@ -1,6 +1,6 @@
 /**
- * @import {SectionValidation} from '../section/section-model/section-model-updated.js'
- * @import {SectionModel} from '../section/section-model/section-model-updated.js'
+ * @import {SectionValidation} from '../section/section-model/section-model.js'
+ * @import {SectionModel} from '../section/section-model/section-model.js'
  */
 
 import mapValues from 'lodash/mapValues.js'
