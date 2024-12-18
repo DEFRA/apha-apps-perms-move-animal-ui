@@ -37,9 +37,22 @@ export const checkAnswersGetController = {
       nextPage: req.query.redirect_uri,
       heading,
       pageTitle,
-      ...tasks
+      origin: taskToSummary(tasks.origin),
+      licence: taskToSummary(tasks.licence)
     })
   }
+}
+
+const taskToSummary = (section) => {
+  return section.questionPageAnswers.map(({ page, answer }) => ({
+    key: page.question,
+    value: answer.html,
+    url: `${page.urlPath}?redirect_uri=/submit/check-answers`,
+    visuallyHiddenKey: page.question,
+    attributes: {
+      'data-testid': `${page.questionKey}-change-link`
+    }
+  }))
 }
 
 /**

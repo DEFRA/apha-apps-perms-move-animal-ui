@@ -70,7 +70,7 @@ export class SummaryPageController {
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.heading,
-      originSummary: items
+      summary: items
     })
   }
 
