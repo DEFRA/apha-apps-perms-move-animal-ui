@@ -11,10 +11,6 @@ import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
 export class LicenceSection extends SectionModel {
   firstPage = emailAddressPage
 
-  get emailAddress() {
-    return this._data?.emailAddress.answer
-  }
-
   /**
    * @param {LicenceData | undefined} state
    * @returns {LicenceSection}

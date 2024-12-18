@@ -10,10 +10,6 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
 export class DestinationSection extends SectionModel {
   firstPage = destinationTypePage
 
-  get destinationType() {
-    return this._data?.destinationType.answer
-  }
-
   /**
    * @param {DestinationData | undefined} state
    * @returns {DestinationSection}

@@ -1,7 +1,4 @@
 import { OriginSection } from './origin.js'
-import { OnOffFarmAnswer } from '../../answer/on-off-farm/on-off-farm.js'
-import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
-import { AddressAnswer } from '../../answer/address/address.js'
 import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 /** @import { OnOffFarmData } from '../../answer/on-off-farm/on-off-farm.js' */
 
@@ -26,18 +23,12 @@ describe('Origin', () => {
       const origin = OriginSection.fromState(originData)
 
       expect(origin).toBeInstanceOf(OriginSection)
-      expect(origin.onOffFarm).toBeInstanceOf(OnOffFarmAnswer)
-      expect(origin.cphNumber).toBeInstanceOf(CphNumberAnswer)
-      expect(origin.address).toBeInstanceOf(AddressAnswer)
     })
 
     it('should handle undefined state gracefully', () => {
       const origin = OriginSection.fromState(undefined)
 
       expect(origin).toBeInstanceOf(OriginSection)
-      expect(origin.onOffFarm.value).toBeUndefined()
-      expect(origin.cphNumber.value).toBeUndefined()
-      expect(origin.address.value).toBeUndefined()
     })
   })
 

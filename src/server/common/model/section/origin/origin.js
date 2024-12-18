@@ -17,18 +17,6 @@ import { originAddressPage } from '../../../../origin/address/index.js'
 export class OriginSection extends SectionModel {
   firstPage = onOffFarmPage
 
-  get onOffFarm() {
-    return this._data?.onOffFarm.answer
-  }
-
-  get cphNumber() {
-    return this._data?.cphNumber.answer
-  }
-
-  get address() {
-    return this._data?.address.answer
-  }
-
   /**
    * @param {OriginData | undefined} state
    * @returns {OriginSection}
