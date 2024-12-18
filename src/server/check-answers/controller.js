@@ -3,6 +3,7 @@ import { OriginSection } from '../common/model/section/origin/origin.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { ApplicationModel } from '../common/model/application/application.js'
+import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -11,6 +12,8 @@ const heading = pageTitle
  * @import {NextPage} from '../common/helpers/next-page.js'
  * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
  */
+
+const checkAnswersUrlPath = '/submit/check-answers'
 
 /**
  * @satisfies {Partial<ServerRoute>}
@@ -37,7 +40,8 @@ export const checkAnswersGetController = {
       nextPage: req.query.redirect_uri,
       heading,
       pageTitle,
-      ...tasks
+      origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
+      licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
     })
   }
 }
@@ -64,7 +68,8 @@ export const checkAnswersPostController = {
         confirmation,
         errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
-        ...tasks
+        origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
+        licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
       })
     }
 

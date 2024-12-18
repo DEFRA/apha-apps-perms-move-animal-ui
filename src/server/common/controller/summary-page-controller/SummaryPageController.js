@@ -1,6 +1,8 @@
 /** @import SummaryPage from '../../model/page/summary-page/SummaryPageModel.js' */
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
+import { sectionToSummary } from '../../templates/macros/create-summary.js'
+
 export class SummaryPageController {
   /** @type {string} */
   indexView = 'common/controller/summary-page-controller/index.njk'
@@ -57,20 +59,14 @@ export class SummaryPageController {
       )
     }
 
-    const items = section.questionPageAnswers.map(({ page, answer }) => ({
-      key: page.question,
-      value: answer.html,
-      url: `${page.urlPath}?redirect_uri=/${this.page.urlKey ?? this.page.sectionKey}/check-answers`,
-      visuallyHiddenKey: page.question,
-      attributes: {
-        'data-testid': `${page.questionKey}-change-link`
-      }
-    }))
-
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.pageHeading,
-      originSummary: items
+      originSummary: item,
+      summary: sectionToSummary(
+        section,
+        `/${this.page.urlKey ?? this.page.sectionKey}/check-answers`
+      )
     })
   }
 

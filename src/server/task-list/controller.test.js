@@ -49,7 +49,6 @@ describe('#taskListController', () => {
     expect(taskTitles).toEqual([
       'Movement origin',
       'Movement destination',
-      'Tests',
       'Receiving the licence'
     ])
   })

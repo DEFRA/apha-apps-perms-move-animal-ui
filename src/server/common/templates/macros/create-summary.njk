@@ -1,0 +1,36 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% macro createSummary(rows) %}
+  {% set summaryRows = [] %}
+  {% for row in rows %}
+    {%
+      set rows = (summaryRows, summaryRows.push({
+        key: {
+          text: row.key,
+          classes: "govuk-!-width-one-half govuk-!-font-weight-regular"
+        },
+        value: {
+          html: row.value
+        },
+        actions: {
+          items: [
+            {
+              href: row.url,
+              text: "Change",
+              visuallyHiddenText: row.visuallyHiddenKey,
+              attributes: row.attributes
+            }
+          ]
+        }
+      }))
+    %}
+  {% endfor %}
+
+  {{
+    govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: summaryRows
+    })
+  }}
+{% endmacro %}

@@ -36,24 +36,20 @@ class FinalAnswersPage extends Page {
     return $$(valueIdentifier)[3]
   }
 
-  get testsValue() {
+  get receivingMethodValue() {
     return $$(valueIdentifier)[4]
   }
 
-  get receivingMethodValue() {
+  get emailValue() {
     return $$(valueIdentifier)[5]
   }
 
-  get emailValue() {
-    return $$(valueIdentifier)[6]
-  }
-
   get onOffFarmChange() {
-    return $('[data-testid="on-off-change-link"]')
+    return $('[data-testid="onOffFarm-change-link"]')
   }
 
   get parishHoldingChange() {
-    return $('[data-testid="cph-change-link"]')
+    return $('[data-testid="cphNumber-change-link"]')
   }
 
   get addressChange() {
@@ -61,11 +57,7 @@ class FinalAnswersPage extends Page {
   }
 
   get movementDestinationChange() {
-    return $('[data-testid="destination-change-link"]')
-  }
-
-  get testsChange() {
-    return $('[data-testid="tests-change-link"]')
+    return $('[data-testid="destinationType-change-link"]')
   }
 
   get receivingMethodChange() {
@@ -73,7 +65,7 @@ class FinalAnswersPage extends Page {
   }
 
   get emailChange() {
-    return $('[data-testid="email-change-link"]')
+    return $('[data-testid="emailAddress-change-link"]')
   }
 
   get confirmStatementsCheckbox() {

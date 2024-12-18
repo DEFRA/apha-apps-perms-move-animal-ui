@@ -25,15 +25,14 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Cannot start yet'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Cannot start yet' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 3')
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -60,15 +59,14 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Incomplete'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Incomplete' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
 
     await taskListPage.selectMovementOrigin()
     await checkAnswersPage.verifyPageHeadingAndTitle(
@@ -97,15 +95,14 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Cannot start yet'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Cannot start yet' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Completed'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
 
     await taskListPage.selectReceiveTheLicence()
     await licenceAnswersPage.verifyPageHeadingAndTitle()
