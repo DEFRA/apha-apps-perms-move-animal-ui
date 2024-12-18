@@ -1,4 +1,3 @@
-import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
 
@@ -8,8 +7,9 @@ import { ExitPage } from '../../page/exit-page-model.js'
  */
 
 /**
- * @typedef {{ page: QuestionPage, answer: AnswerModel }} PageAnswer
- * @typedef {{[key: string]: PageAnswer}} SectionPayload
+ * @typedef {{ kind: 'NonQuestion', page: Page }} NonQuestionPageAnswer
+ * @typedef {{ kind: 'Question', page: QuestionPage, answer: AnswerModel }} QuestionPageAnswer
+ * @typedef { (NonQuestionPageAnswer | QuestionPageAnswer)[] } SectionPayload
  */
 
 /**
@@ -20,50 +20,29 @@ export class SectionModel {
   /** @type {SectionPayload} */
   _data
 
-  /** @type {QuestionPage} */
-  firstPage
+  /** @type {() => QuestionPage} */
+  static firstPageFactory
 
+  get firstPage() {
+    return /** @type {any} */ (this.constructor).firstPageFactory()
+  }
+
+  /** @param {SectionPayload} data */
   constructor(data) {
     this._data = data
   }
 
-  get _pages() {
-    const pages = []
-
-    /** @type {Page} */
-    let page = this._data[this.firstPage.questionKey].page
-
-    pages.push(page)
-
-    while (page instanceof QuestionPage) {
-      const currPage = this._data[page.questionKey]
-
-      if (!currPage.answer.validate().isValid) {
-        break
-      }
-
-      page = page.nextPage(currPage.answer)
-      pages.push(page)
-    }
-
-    return pages
-  }
-
   get finalPage() {
-    const pages = this._pages
-    return pages[pages.length - 1]
+    const pages = this._data
+    return pages[pages.length - 1].page
   }
 
   /**
-   * @returns {PageAnswer[]}
+   * @returns {QuestionPageAnswer[]}
    */
   get questionPageAnswers() {
-    return this._pages
-      .filter((p) => p instanceof QuestionPage)
-      .map((page) => ({
-        page,
-        answer: this._data[page.questionKey].answer
-      }))
+    return this._data
+      .filter((p) => p.kind === 'Question')
   }
 
   /** @returns {SectionValidation} */
@@ -87,12 +66,37 @@ export class SectionModel {
   }
 
   /**
-   * @param {object} _data
+   * @param {object} data
    * @returns {SectionModel}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static fromState(_data) {
-    throw new NotImplementedError()
+  static fromState(data) {
+
+    /** @type {SectionPayload} */
+    const pages = []
+
+    /** @type {Page} */
+    let page = this.firstPageFactory()
+
+    while (page instanceof QuestionPage) {
+      let answer = page.Answer.fromState(data?.[page.questionKey])
+      pages.push({
+        kind: 'Question',
+        page,
+        answer
+      })
+      if (!answer.validate().isValid) {
+        break
+      }
+
+      page = page.nextPage(answer)
+    }
+
+    if (!(page instanceof QuestionPage)) {
+      pages.push({ kind: 'NonQuestion', page })
+    }
+
+    return new this(pages)
   }
 
   /* eslint-enable @typescript-eslint/no-unused-vars */

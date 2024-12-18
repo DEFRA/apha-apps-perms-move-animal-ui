@@ -8,18 +8,5 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
  * @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js'
  */
 export class DestinationSection extends SectionModel {
-  firstPage = destinationTypePage
-
-  /**
-   * @param {DestinationData | undefined} state
-   * @returns {DestinationSection}
-   */
-  static fromState(state) {
-    return new DestinationSection({
-      destinationType: {
-        page: destinationTypePage,
-        answer: destinationTypePage.Answer.fromState(state?.destinationType)
-      }
-    })
-  }
+  static firstPageFactory = () => destinationTypePage
 }

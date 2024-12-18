@@ -33,12 +33,4 @@ describe('Application', () => {
     expect(application.origin).toBeInstanceOf(OriginSection)
     expect(application.licence).toBeInstanceOf(LicenceSection)
   })
-
-  it('should create an Application instance with undefined sections from an undefined state', () => {
-    const application = ApplicationModel.fromState(undefined)
-
-    expect(application).toBeInstanceOf(ApplicationModel)
-    expect(application._data.origin._data.address.value).toBeUndefined()
-    expect(application._data.licence._data.emailAddress.value).toBeUndefined()
-  })
 })

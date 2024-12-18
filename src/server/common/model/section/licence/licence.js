@@ -9,18 +9,5 @@ import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
  */
 
 export class LicenceSection extends SectionModel {
-  firstPage = emailAddressPage
-
-  /**
-   * @param {LicenceData | undefined} state
-   * @returns {LicenceSection}
-   */
-  static fromState(state) {
-    return new LicenceSection({
-      emailAddress: {
-        page: emailAddressPage,
-        answer: emailAddressPage.Answer.fromState(state?.emailAddress)
-      }
-    })
-  }
+  static firstPageFactory = () => emailAddressPage
 }
