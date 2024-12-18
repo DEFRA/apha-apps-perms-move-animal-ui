@@ -48,10 +48,9 @@ export class SectionModel {
     }
 
     if (finalPage instanceof ExitPage) {
-      const questionPageAnswers = this.questionPageAnswers
       return {
         isValid: false,
-        firstInvalidPage: questionPageAnswers.at(-1)?.page
+        firstInvalidPage: this.questionPageAnswers.at(-1)?.page
       }
     }
 
