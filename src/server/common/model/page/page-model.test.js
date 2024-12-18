@@ -50,4 +50,9 @@ describe('Page', () => {
     const page = new Page()
     expect(() => page.nextPage()).toThrow()
   })
+
+  it('should return an empty object for viewProps', () => {
+    const page = new Page()
+    expect(page.viewProps).toEqual({})
+  })
 })

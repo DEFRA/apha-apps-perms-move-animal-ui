@@ -2,6 +2,7 @@ import { Page } from '../../model/page/page-model.js'
 import { PageController } from './page-controller.js'
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import SessionTester from '../../test-helpers/session-helper.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
@@ -62,6 +63,24 @@ describe('PageController', () => {
   })
 
   describe('Should process the result and provide expected response', () => {
+    it('should display the page', async () => {
+      const { statusCode, payload } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: pageUrl
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      const document = parseDocument(payload)
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(document.title).toBe(title)
+    })
+
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
