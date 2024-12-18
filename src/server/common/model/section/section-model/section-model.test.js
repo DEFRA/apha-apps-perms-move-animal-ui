@@ -37,7 +37,7 @@ const exitState = {
 describe('SectionModel.questionPages', () => {
   it('should short-circuit on an exit page', () => {
     const origin = OriginSection.fromState(exitState)
-    const pages = origin.questionPages
+    const pages = origin._questionPages
 
     expect(pages).toHaveLength(1)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
@@ -48,7 +48,7 @@ describe('SectionModel.questionPages', () => {
 
   it('should short-circuit on a page with an invalid answer', () => {
     const origin = OriginSection.fromState(invalidState)
-    const pages = origin.questionPages
+    const pages = origin._questionPages
 
     expect(pages).toHaveLength(2)
     expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
