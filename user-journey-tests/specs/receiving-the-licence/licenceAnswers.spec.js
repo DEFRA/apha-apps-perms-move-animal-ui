@@ -45,7 +45,7 @@ describe('Check your licence answers test', () => {
     await licenceAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
-      position: 4,
+      position: 3,
       taskTitle: 'Receiving the licence',
       expectedStatus: 'Completed'
     })
