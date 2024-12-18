@@ -5,7 +5,7 @@ import { OriginSection } from '~/src/server/common/model/section/origin/origin.j
 
 export class OriginSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'
-  heading = 'Check your answers before you continue your application'
+  pageHeading = 'Check your answers before you continue your application'
   sectionKey = 'origin'
   urlPath = `/${this.sectionKey}/check-answers`
   sectionFactory = (data) => OriginSection.fromState(data)

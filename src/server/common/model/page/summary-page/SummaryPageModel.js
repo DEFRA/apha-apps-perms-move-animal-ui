@@ -5,12 +5,6 @@ import { Page } from '../page-model.js'
 class SummaryPage extends Page {
   /** @type {(_data) => SectionModel} */
   sectionFactory
-
-  /** @type {string} */
-  heading
-
-  /** @type {string} */
-  pageTitle
 }
 
 export default SummaryPage

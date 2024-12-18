@@ -5,7 +5,7 @@ import { LicenceSection } from '~/src/server/common/model/section/licence/licenc
 
 export class LicenceSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'
-  heading = 'Check your answers before you continue your application'
+  pageHeading = 'Check your answers before you continue your application'
   sectionKey = 'licence'
   urlPath = `/receiving-the-licence/check-answers`
   urlKey = 'receiving-the-licence'
