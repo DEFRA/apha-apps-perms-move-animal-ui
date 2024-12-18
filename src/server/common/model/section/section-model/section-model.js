@@ -41,7 +41,7 @@ export class SectionModel {
 
   /** @returns {SectionValidation} */
   validate() {
-    const finalPage = this._data[this._data.length - 1].page
+    const finalPage = this._data.at(-1)?.page
 
     if (finalPage instanceof QuestionPage) {
       return { isValid: false, firstInvalidPage: finalPage }
@@ -51,8 +51,7 @@ export class SectionModel {
       const questionPageAnswers = this.questionPageAnswers
       return {
         isValid: false,
-        firstInvalidPage:
-          questionPageAnswers[questionPageAnswers.length - 1].page
+        firstInvalidPage: questionPageAnswers.at(-1)?.page
       }
     }
 
