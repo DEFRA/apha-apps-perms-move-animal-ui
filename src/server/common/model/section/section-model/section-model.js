@@ -27,10 +27,6 @@ export class SectionModel {
     this._data = data
   }
 
-  get value() {
-    return this._data
-  }
-
   get _pages() {
     const pages = []
 
