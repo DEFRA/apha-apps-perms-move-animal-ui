@@ -32,7 +32,7 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 3')
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -66,7 +66,7 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
 
     await taskListPage.selectMovementOrigin()
     await checkAnswersPage.verifyPageHeadingAndTitle(
@@ -102,7 +102,7 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
 
     await taskListPage.selectReceiveTheLicence()
     await licenceAnswersPage.verifyPageHeadingAndTitle()
