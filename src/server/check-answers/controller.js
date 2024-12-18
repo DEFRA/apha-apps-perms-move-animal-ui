@@ -3,6 +3,7 @@ import { OriginSection } from '../common/model/section/origin/origin.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { ApplicationModel } from '../common/model/application/application.js'
+import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -37,22 +38,10 @@ export const checkAnswersGetController = {
       nextPage: req.query.redirect_uri,
       heading,
       pageTitle,
-      origin: taskToSummary(tasks.origin),
-      licence: taskToSummary(tasks.licence)
+      origin: sectionToSummary(tasks.origin, '/submit/check-answers'),
+      licence: sectionToSummary(tasks.licence, '/submit/check-answers')
     })
   }
-}
-
-const taskToSummary = (section) => {
-  return section.questionPageAnswers.map(({ page, answer }) => ({
-    key: page.question,
-    value: answer.html,
-    url: `${page.urlPath}?redirect_uri=/submit/check-answers`,
-    visuallyHiddenKey: page.question,
-    attributes: {
-      'data-testid': `${page.questionKey}-change-link`
-    }
-  }))
 }
 
 /**
@@ -77,7 +66,8 @@ export const checkAnswersPostController = {
         confirmation,
         errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
-        ...tasks
+        origin: sectionToSummary(tasks.origin, '/submit/check-answers'),
+        licence: sectionToSummary(tasks.licence, '/submit/check-answers')
       })
     }
 
