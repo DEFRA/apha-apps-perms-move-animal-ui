@@ -25,9 +25,8 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Cannot start yet'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Cannot start yet' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
       }
@@ -60,9 +59,8 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Incomplete'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Incomplete' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
       }
@@ -97,9 +95,8 @@ describe('Task list page test', () => {
         taskTitle: 'Movement destination',
         expectedStatus: 'Cannot start yet'
       },
-      { position: 3, taskTitle: 'Test', expectedStatus: 'Cannot start yet' },
       {
-        position: 4,
+        position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Completed'
       }
