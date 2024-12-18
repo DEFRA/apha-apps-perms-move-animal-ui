@@ -79,9 +79,10 @@ describe('PageController', () => {
       const document = parseDocument(payload)
       expect(statusCode).toBe(statusCodes.ok)
       expect(document.title).toBe(title)
+      expect(document.querySelector('h1')?.textContent).toBe(heading)
     })
 
-    it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
+    it('should redirect to next page', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
