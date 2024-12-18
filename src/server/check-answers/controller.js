@@ -13,6 +13,8 @@ const heading = pageTitle
  * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
  */
 
+const checkAnswersUrlPath = '/submit/check-answers'
+
 /**
  * @satisfies {Partial<ServerRoute>}
  */
@@ -38,8 +40,8 @@ export const checkAnswersGetController = {
       nextPage: req.query.redirect_uri,
       heading,
       pageTitle,
-      origin: sectionToSummary(tasks.origin, '/submit/check-answers'),
-      licence: sectionToSummary(tasks.licence, '/submit/check-answers')
+      origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
+      licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
     })
   }
 }
@@ -66,8 +68,8 @@ export const checkAnswersPostController = {
         confirmation,
         errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
-        origin: sectionToSummary(tasks.origin, '/submit/check-answers'),
-        licence: sectionToSummary(tasks.licence, '/submit/check-answers')
+        origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
+        licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
       })
     }
 
