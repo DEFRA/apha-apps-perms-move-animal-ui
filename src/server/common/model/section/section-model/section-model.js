@@ -32,11 +32,6 @@ export class SectionModel {
     this._data = data
   }
 
-  get finalPage() {
-    const pages = this._data
-    return pages[pages.length - 1].page
-  }
-
   /**
    * @returns {QuestionPageAnswer[]}
    */
@@ -46,13 +41,13 @@ export class SectionModel {
 
   /** @returns {SectionValidation} */
   validate() {
-    const page = this.finalPage
+    const finalPage = this._data[this._data.length - 1].page
 
-    if (page instanceof QuestionPage) {
-      return { isValid: false, firstInvalidPage: page }
+    if (finalPage instanceof QuestionPage) {
+      return { isValid: false, firstInvalidPage: finalPage }
     }
 
-    if (page instanceof ExitPage) {
+    if (finalPage instanceof ExitPage) {
       const questionPageAnswers = this.questionPageAnswers
       return {
         isValid: false,

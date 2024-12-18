@@ -3,8 +3,6 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { OriginSection } from '../origin/origin.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
-import { OriginExitPage } from '~/src/server/exit-page/index.js'
-import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
 import { OriginAddressPage } from '~/src/server/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
 
@@ -69,23 +67,6 @@ describe('SectionModel.questionPageAnswers', () => {
 
     expect(pageAnswers.at(1)?.page).toBeInstanceOf(CphNumberPage)
     expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CphNumberAnswer)
-  })
-})
-
-describe('SectionModel.finalPage', () => {
-  it('should return exit page', () => {
-    const origin = OriginSection.fromState(exitState)
-    expect(origin.finalPage).toBeInstanceOf(OriginExitPage)
-  })
-
-  it('should short-circuit on invalid questions', () => {
-    const origin = OriginSection.fromState(invalidState)
-    expect(origin.finalPage).toBeInstanceOf(CphNumberPage)
-  })
-
-  it('go all the way through the journey to the summary page', () => {
-    const origin = OriginSection.fromState(validState)
-    expect(origin.finalPage).toBeInstanceOf(OriginSummaryPage)
   })
 })
 
