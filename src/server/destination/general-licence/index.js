@@ -31,5 +31,8 @@ export const destinationGeneralLicencePage = new DestinationGeneralLicencePage()
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const generalLicence = new PageController(
-  new DestinationGeneralLicencePage()
+  new DestinationGeneralLicencePage(),
+  {
+    methods: ['GET']
+  }
 ).plugin()
