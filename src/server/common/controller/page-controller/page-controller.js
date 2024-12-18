@@ -43,6 +43,7 @@ export class PageController {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
+      hideQuestion: true,
       ...this.page.viewProps
     })
   }

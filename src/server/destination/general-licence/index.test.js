@@ -3,7 +3,7 @@ import { DestinationGeneralLicencePage } from './index.js'
 
 const sectionKey = 'destination'
 const heading = 'Check if you have a general licence'
-const key = 'use-general-licence'
+const urlKey = 'use-general-licence'
 const view = 'destination/general-licence/index'
 const pageUrl = '/destination/use-general-licence'
 
@@ -29,7 +29,7 @@ describe('DestinationGeneralLicencePage', () => {
   })
 
   it('should have the correct questionKey', () => {
-    expect(page.key).toBe(key)
+    expect(page.urlKey).toBe(urlKey)
   })
 
   it('should have the correct view', () => {

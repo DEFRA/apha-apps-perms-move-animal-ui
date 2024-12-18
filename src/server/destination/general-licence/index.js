@@ -7,10 +7,10 @@ import { DestinationSummaryPage } from '../summary/index.js'
  */
 
 export class DestinationGeneralLicencePage extends Page {
-  urlPath = '/destination/use-general-licence'
-  view = 'destination/general-licence/index'
-  key = 'use-general-licence'
   sectionKey = 'destination'
+  urlKey = 'use-general-licence'
+  urlPath = `/${this.sectionKey}/${this.urlKey}`
+  view = `destination/general-licence/index`
 
   pageTitle = 'Check if you have a general licence'
   pageHeading = 'Check if you have a general licence'

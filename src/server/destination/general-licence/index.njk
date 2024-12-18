@@ -1,7 +1,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% extends 'layouts/questions.njk' %}
 
-{% block questions %}
+{% block beforequestion %}
   <p>
     You should have a general licence in the information pack sent to you from
     the Animal and Plant Health Agency (APHA). The pack was posted to you when
@@ -21,8 +21,4 @@
   <p>
     <a href="{{ continueUrl }}">Continue</a>
   </p>
-{% endblock %}
-
-{% block button %}
-  <!-- remove the form button as not needed -->
 {% endblock %}
