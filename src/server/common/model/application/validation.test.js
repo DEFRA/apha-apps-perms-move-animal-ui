@@ -20,8 +20,8 @@ class InvalidSection extends SectionModel {
   }
 }
 
-const validSection = new ValidSection()
-const invalidSection = new InvalidSection()
+const validSection = new ValidSection([])
+const invalidSection = new InvalidSection([])
 
 describe('validateSection', () => {
   it('should return isValid as true when all sections are valid', () => {

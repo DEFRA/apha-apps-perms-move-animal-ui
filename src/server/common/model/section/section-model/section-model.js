@@ -41,8 +41,7 @@ export class SectionModel {
    * @returns {QuestionPageAnswer[]}
    */
   get questionPageAnswers() {
-    return this._data
-      .filter((p) => p.kind === 'Question')
+    return this._data.filter((p) => p.kind === 'Question')
   }
 
   /** @returns {SectionValidation} */
@@ -71,7 +70,6 @@ export class SectionModel {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(data) {
-
     /** @type {SectionPayload} */
     const pages = []
 
@@ -79,7 +77,7 @@ export class SectionModel {
     let page = this.firstPageFactory()
 
     while (page instanceof QuestionPage) {
-      let answer = page.Answer.fromState(data?.[page.questionKey])
+      const answer = page.Answer.fromState(data?.[page.questionKey])
       pages.push({
         kind: 'Question',
         page,

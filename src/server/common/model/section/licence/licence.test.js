@@ -3,13 +3,6 @@ import { LicenceSection } from './licence.js'
 const testEmail = 'test@domain.com'
 
 describe('Licence', () => {
-  let destination
-
-  beforeEach(() => {
-    destination = new LicenceSection()
-    destination._data = {}
-  })
-
   describe('fromState', () => {
     it('should create an Licence instance with valid nested objects', () => {
       const licenceData = {
