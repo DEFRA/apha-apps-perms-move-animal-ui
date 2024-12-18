@@ -45,11 +45,11 @@ class FinalAnswersPage extends Page {
   }
 
   get onOffFarmChange() {
-    return $('[data-testid="on-off-change-link"]')
+    return $('[data-testid="onOffFarm-change-link"]')
   }
 
   get parishHoldingChange() {
-    return $('[data-testid="cph-change-link"]')
+    return $('[data-testid="cphNumber-change-link"]')
   }
 
   get addressChange() {
@@ -57,7 +57,7 @@ class FinalAnswersPage extends Page {
   }
 
   get movementDestinationChange() {
-    return $('[data-testid="destination-change-link"]')
+    return $('[data-testid="destinationType-change-link"]')
   }
 
   get receivingMethodChange() {
@@ -65,7 +65,7 @@ class FinalAnswersPage extends Page {
   }
 
   get emailChange() {
-    return $('[data-testid="email-change-link"]')
+    return $('[data-testid="emailAddress-change-link"]')
   }
 
   get confirmStatementsCheckbox() {
