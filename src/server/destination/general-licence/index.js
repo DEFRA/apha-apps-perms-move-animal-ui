@@ -10,6 +10,7 @@ export class DestinationGeneralLicencePage extends Page {
   urlPath = '/destination/use-general-licence'
   view = 'destination/general-licence/index'
   key = 'use-general-licence'
+  sectionKey = 'destination'
 
   pageTitle = 'Check if you have a general licence'
   pageHeading = 'Check if you have a general licence'
