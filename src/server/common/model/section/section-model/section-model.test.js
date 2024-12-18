@@ -34,35 +34,6 @@ const exitState = {
   address: validAddress // this is unreachable in the journey, because we will have exited already
 }
 
-describe('SectionModel.questionPages', () => {
-  it('should short-circuit on an exit page', () => {
-    const origin = OriginSection.fromState(exitState)
-    const pages = origin._questionPages
-
-    expect(pages).toHaveLength(1)
-    expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
-    expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      OnOffFarmAnswer
-    )
-  })
-
-  it('should short-circuit on a page with an invalid answer', () => {
-    const origin = OriginSection.fromState(invalidState)
-    const pages = origin._questionPages
-
-    expect(pages).toHaveLength(2)
-    expect(pages.at(0)).toBeInstanceOf(OnOffFarmPage)
-    expect(origin[pages.at(0)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      OnOffFarmAnswer
-    )
-
-    expect(pages.at(1)).toBeInstanceOf(CphNumberPage)
-    expect(origin[pages.at(1)?.questionKey ?? 'invalid']).toBeInstanceOf(
-      CphNumberAnswer
-    )
-  })
-})
-
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
     const origin = OriginSection.fromState(validState)
@@ -77,6 +48,27 @@ describe('SectionModel.questionPageAnswers', () => {
 
     expect(pageAnswers.at(2)?.page).toBeInstanceOf(OriginAddressPage)
     expect(pageAnswers.at(2)?.answer).toBeInstanceOf(AddressAnswer)
+  })
+
+  it('should short-circuit on an exit page', () => {
+    const origin = OriginSection.fromState(exitState)
+    const pageAnswers = origin.questionPageAnswers
+
+    expect(pageAnswers).toHaveLength(1)
+    expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
+    expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
+  })
+
+  it('should short-circuit on a page with an invalid answer', () => {
+    const origin = OriginSection.fromState(invalidState)
+    const pageAnswers = origin.questionPageAnswers
+
+    expect(pageAnswers).toHaveLength(2)
+    expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
+    expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
+
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(CphNumberPage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CphNumberAnswer)
   })
 })
 
