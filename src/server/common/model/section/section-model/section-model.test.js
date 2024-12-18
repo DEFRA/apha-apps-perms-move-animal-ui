@@ -5,6 +5,8 @@ import { OriginSection } from '../origin/origin.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
 import { OriginExitPage } from '~/src/server/exit-page/index.js'
 import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
+import { OriginAddressPage } from '~/src/server/origin/address/index.js'
+import { AddressAnswer } from '../../answer/address/address.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
@@ -58,6 +60,23 @@ describe('SectionModel.questionPages', () => {
     expect(origin[pages.at(1)?.questionKey ?? 'invalid']).toBeInstanceOf(
       CphNumberAnswer
     )
+  })
+})
+
+describe('SectionModel.questionPageAnswers', () => {
+  it('should return all of the pages with answers pre-populated', () => {
+    const origin = OriginSection.fromState(validState)
+    const pageAnswers = origin.questionPageAnswers
+
+    expect(pageAnswers).toHaveLength(3)
+    expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
+    expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
+
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(CphNumberPage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CphNumberAnswer)
+
+    expect(pageAnswers.at(2)?.page).toBeInstanceOf(OriginAddressPage)
+    expect(pageAnswers.at(2)?.answer).toBeInstanceOf(AddressAnswer)
   })
 })
 

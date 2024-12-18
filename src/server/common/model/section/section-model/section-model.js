@@ -59,6 +59,16 @@ export class SectionModel {
   }
 
   /**
+   * @returns {PageAnswer[]}
+   */
+  get questionPageAnswers() {
+    return this.questionPages.map((page) => ({
+      page,
+      answer: this._data[page.questionKey].answer
+    }))
+  }
+
+  /**
    * returns {QuestionPage[]}
    */
   get questionPages() {
