@@ -57,13 +57,13 @@ export class SummaryPageController {
       )
     }
 
-    const items = section.questionPages.map((visitedPage) => ({
-      key: visitedPage.question,
-      value: section[visitedPage.questionKey].html,
-      url: `${visitedPage.urlPath}?redirect_uri=/${this.page.urlKey ?? this.page.sectionKey}/check-answers`,
-      visuallyHiddenKey: visitedPage.question,
+    const items = section.questionPageAnswers.map(({ page, answer }) => ({
+      key: page.question,
+      value: answer.html,
+      url: `${page.urlPath}?redirect_uri=/${this.page.urlKey ?? this.page.sectionKey}/check-answers`,
+      visuallyHiddenKey: page.question,
       attributes: {
-        'data-testid': `${visitedPage.questionKey}-change-link`
+        'data-testid': `${page.questionKey}-change-link`
       }
     }))
 

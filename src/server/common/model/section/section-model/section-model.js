@@ -59,10 +59,15 @@ export class SectionModel {
   }
 
   /**
-   * returns {QuestionPage[]}
+   * @returns {PageAnswer[]}
    */
-  get questionPages() {
-    return this._pages.filter((p) => p instanceof QuestionPage)
+  get questionPageAnswers() {
+    return this._pages
+      .filter((p) => p instanceof QuestionPage)
+      .map((page) => ({
+        page,
+        answer: this._data[page.questionKey].answer
+      }))
   }
 
   /** @returns {SectionValidation} */
@@ -74,10 +79,11 @@ export class SectionModel {
     }
 
     if (page instanceof ExitPage) {
-      const questionPages = this.questionPages
+      const questionPageAnswers = this.questionPageAnswers
       return {
         isValid: false,
-        firstInvalidPage: questionPages[questionPages.length - 1]
+        firstInvalidPage:
+          questionPageAnswers[questionPageAnswers.length - 1].page
       }
     }
 
