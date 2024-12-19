@@ -19,6 +19,18 @@ export const waitForPagePath = async (path) => {
   )
 }
 
+export const waitForFullPageUrl = async (url) => {
+  await browser.waitUntil(
+    async () => {
+      const currentUrl = await browser.getUrl()
+      return url === currentUrl
+    },
+    {
+      timeoutMsg: `Failed to verify page url. Expected: "${url}", but found: "${await browser.getUrl()}"`
+    }
+  )
+}
+
 export const waitForElement = async (
   element,
   options = { timeout: 10000, visible: true }
@@ -53,6 +65,7 @@ export const verifyPageTitle = async (pageTitle) => {
 export const loadPageAndVerifyTitle = async (path, pageTitle) => {
   await browser.url(path)
   await verifyPageTitle(pageTitle)
+  await expect($('[href="/privacy-policy"]')).toBeDisplayed()
 }
 
 export const selectLinkAndVerifyTitle = async (linkElement, pageTitle) => {
