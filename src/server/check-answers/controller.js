@@ -1,4 +1,3 @@
-import { calculateNextPage } from '../common/helpers/next-page.js'
 import { OriginSection } from '../common/model/section/origin/origin.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
@@ -86,9 +85,7 @@ export const checkAnswersPostController = {
     await sendNotification({
       content: emailContent
     })
-    return res.redirect(
-      calculateNextPage(payload.nextPage, '/submit/confirmation')
-    )
+    return res.redirect('/submit/confirmation')
   }
 }
 
