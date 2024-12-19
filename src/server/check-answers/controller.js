@@ -1,9 +1,9 @@
-import { calculateNextPage } from '../common/helpers/next-page.js'
 import { OriginSection } from '../common/model/section/origin/origin.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
+import { sendNotification } from '../common/helpers/notify/notify.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -50,7 +50,7 @@ export const checkAnswersGetController = {
  * @satisfies {Partial<ServerRoute>}
  */
 export const checkAnswersPostController = {
-  handler(req, res) {
+  async handler(req, res) {
     const tasks = {
       origin: OriginSection.fromState(req.yar.get('origin')),
       licence: LicenceSection.fromState(req.yar.get('licence'))
@@ -73,9 +73,19 @@ export const checkAnswersPostController = {
       })
     }
 
-    return res.redirect(
-      calculateNextPage(payload.nextPage, '/submit/confirmation')
-    )
+    const emailContent = Object.values(tasks)
+      .flatMap(({ questionPageAnswers }) =>
+        questionPageAnswers.map(
+          ({ page, answer }) =>
+            `## ${page.question}\n${answer.html.replace(/<br \/>/g, '\n')}`
+        )
+      )
+      .join('\n')
+
+    await sendNotification({
+      content: emailContent
+    })
+    return res.redirect('/submit/confirmation')
   }
 }
 
