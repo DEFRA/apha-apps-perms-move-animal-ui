@@ -16,7 +16,7 @@ export class OnOffFarmPage extends QuestionPage {
   urlPath = '/origin/to-or-from-own-premises'
   sectionKey = 'origin'
 
-  question = 'Are you moving the cattle on or off your farm or premises?'
+  question = 'Are you moving the animals on or off your farm or premises?'
 
   questionKey = 'onOffFarm'
 

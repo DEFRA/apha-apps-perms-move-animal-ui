@@ -3,7 +3,7 @@ import { $ } from '@wdio/globals'
 import { Page } from '../page.js'
 
 const pageHeadingAndTitle =
-  'Are you moving the cattle on or off your farm or premises?'
+  'Are you moving the animals on or off your farm or premises?'
 
 class ToFromFarmPage extends Page {
   pagePath = 'origin/to-or-from-own-premises'
