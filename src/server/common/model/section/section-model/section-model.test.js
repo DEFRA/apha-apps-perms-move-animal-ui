@@ -5,6 +5,8 @@ import { OriginSection } from '../origin/origin.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
 import { OriginAddressPage } from '~/src/server/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
+import { OriginTypePage } from '~/src/server/origin/origin-type/index.js'
+import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
@@ -16,20 +18,19 @@ const validAddress = {
 
 const validState = {
   onOffFarm: /** @type {OnOffFarmData} */ ('off'),
+  originType: 'afu',
   cphNumber: '12/345/6789',
   address: validAddress
 }
 
 const invalidState = {
-  onOffFarm: /** @type {OnOffFarmData} */ ('off'),
-  cphNumber: 'not-a-cph',
-  address: validAddress // this is unreachable in the journey, since we've got an invalid question ahead of it
+  ...validState,
+  cphNumber: 'not-a-cph'
 }
 
 const exitState = {
-  onOffFarm: /** @type {OnOffFarmData} */ ('on'),
-  cphNumber: 'not-a-cph', // this is unreachable in the journey, because we will have exited already
-  address: validAddress // this is unreachable in the journey, because we will have exited already
+  ...validState,
+  onOffFarm: /** @type {OnOffFarmData} */ ('on')
 }
 
 describe('SectionModel.questionPageAnswers', () => {
@@ -37,15 +38,18 @@ describe('SectionModel.questionPageAnswers', () => {
     const origin = OriginSection.fromState(validState)
     const pageAnswers = origin.questionPageAnswers
 
-    expect(pageAnswers).toHaveLength(3)
+    expect(pageAnswers).toHaveLength(4)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
     expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
 
-    expect(pageAnswers.at(1)?.page).toBeInstanceOf(CphNumberPage)
-    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CphNumberAnswer)
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(OriginTypePage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(OriginTypeAnswer)
 
-    expect(pageAnswers.at(2)?.page).toBeInstanceOf(OriginAddressPage)
-    expect(pageAnswers.at(2)?.answer).toBeInstanceOf(AddressAnswer)
+    expect(pageAnswers.at(2)?.page).toBeInstanceOf(CphNumberPage)
+    expect(pageAnswers.at(2)?.answer).toBeInstanceOf(CphNumberAnswer)
+
+    expect(pageAnswers.at(3)?.page).toBeInstanceOf(OriginAddressPage)
+    expect(pageAnswers.at(3)?.answer).toBeInstanceOf(AddressAnswer)
   })
 
   it('should short-circuit on an exit page', () => {
@@ -61,12 +65,15 @@ describe('SectionModel.questionPageAnswers', () => {
     const origin = OriginSection.fromState(invalidState)
     const pageAnswers = origin.questionPageAnswers
 
-    expect(pageAnswers).toHaveLength(2)
+    expect(pageAnswers).toHaveLength(3)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
     expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
 
-    expect(pageAnswers.at(1)?.page).toBeInstanceOf(CphNumberPage)
-    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CphNumberAnswer)
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(OriginTypePage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(OriginTypeAnswer)
+
+    expect(pageAnswers.at(2)?.page).toBeInstanceOf(CphNumberPage)
+    expect(pageAnswers.at(2)?.answer).toBeInstanceOf(CphNumberAnswer)
   })
 })
 

@@ -1,7 +1,7 @@
 import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
 import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-farm.js'
-import { cphNumberPage } from '../cph-number/index.js'
 import { exitPage } from '../exit-page/index.js'
+import { originTypePage } from '../origin-type/index.js'
 
 const sectionKey = 'origin'
 const question = 'Are you moving the animals on or off your farm or premises?'
@@ -46,10 +46,10 @@ describe('OnOffFarmPage', () => {
     expect(nextPage).toBe(exitPage)
   })
 
-  it('nextPage should return cphNumberPage when answer is "off"', () => {
+  it('nextPage should return originTypePage when answer is "off"', () => {
     const answer = { value: 'off' }
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(cphNumberPage)
+    expect(nextPage).toBe(originTypePage)
   })
 
   it('should export page', () => {

@@ -14,6 +14,7 @@ describe('#originSummaryController', () => {
 
   const defaultState = {
     onOffFarm: 'off',
+    originType: 'afu',
     cphNumber: '12/123/1234',
     address: {
       addressLine1: 'Starfleet Headquarters',
@@ -57,6 +58,9 @@ describe('#originSummaryController', () => {
     expect(statusCode).toBe(statusCodes.ok)
 
     expect(payload).toEqual(expect.stringContaining('12/123/1234'))
+    expect(payload).toEqual(
+      expect.stringContaining('Approved finishing unit (AFU)')
+    )
     expect(payload).toEqual(expect.stringContaining('Off the farm or premises'))
     expect(payload).toEqual(
       expect.stringContaining(
