@@ -1,5 +1,5 @@
-import { exitPageController } from '~/src/server/exit-page/controller.js'
-import { ExitPage } from '../common/model/page/exit-page-model.js'
+import { exitPageController } from './controller.js'
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 
 /**
  * Sets up the routes used in the home page.

@@ -3,7 +3,6 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { exit } from './exit-page/index.js'
 import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
@@ -28,7 +27,6 @@ export const router = {
       await server.register([
         home,
         privacyPolicy,
-        exit,
         origin,
         destination,
         licence,
