@@ -9,4 +9,11 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
  */
 export class DestinationSection extends SectionModel {
   static firstPageFactory = () => destinationTypePage
+
+  /**
+   * @param {DestinationData | undefined} data
+   */
+  static fromState(data) {
+    return SectionModel.fromState.call(this, data)
+  }
 }

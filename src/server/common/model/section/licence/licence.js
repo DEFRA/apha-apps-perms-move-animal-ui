@@ -10,4 +10,11 @@ import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
 
 export class LicenceSection extends SectionModel {
   static firstPageFactory = () => emailAddressPage
+
+  /**
+   * @param {LicenceData | undefined} data
+   */
+  static fromState(data) {
+    return SectionModel.fromState.call(this, data)
+  }
 }

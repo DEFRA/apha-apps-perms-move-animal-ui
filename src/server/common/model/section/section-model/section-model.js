@@ -62,7 +62,7 @@ export class SectionModel {
   }
 
   /**
-   * @param {object} data
+   * @param {object | undefined} data
    * @returns {SectionModel}
    */
   static fromState(data) {
