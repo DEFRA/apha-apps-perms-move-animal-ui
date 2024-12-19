@@ -95,6 +95,13 @@ describe('SectionModel.validate', () => {
   })
 })
 
+describe('SectionModel.firstPage', () => {
+  it('should return the page from the page factory', () => {
+    const origin = OriginSection.fromState(validState)
+    expect(origin.firstPage).toBeInstanceOf(OnOffFarmPage)
+  })
+})
+
 describe('SectionModel.fromState', () => {
   it('should return an instance of the class that produced it', () => {
     expect(OriginSection.fromState(validState)).toBeInstanceOf(OriginSection)
