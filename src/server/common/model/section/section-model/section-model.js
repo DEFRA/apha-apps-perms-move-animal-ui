@@ -65,7 +65,6 @@ export class SectionModel {
    * @param {object} data
    * @returns {SectionModel}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(data) {
     /** @type {SectionPayload} */
     const pages = []
@@ -93,6 +92,4 @@ export class SectionModel {
 
     return new this(pages)
   }
-
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 }
