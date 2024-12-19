@@ -1,3 +1,4 @@
+import { DestinationTypePage } from '~/src/server/destination/destination-type/index.js'
 import { DestinationSection } from './destination.js'
 
 /**
@@ -7,21 +8,25 @@ import { DestinationSection } from './destination.js'
 const testDestinationType = 'slaughter'
 
 describe('Destination', () => {
-  describe('fromState', () => {
-    it('should create an Destination instance with valid nested objects', () => {
-      const destinationData = {
+  describe('validate', () => {
+    it('should return valid if all nested objects are valid', () => {
+      const originData = {
         destinationType: testDestinationType
       }
+      const result = DestinationSection.fromState(originData).validate()
 
-      const destination = DestinationSection.fromState(destinationData)
-
-      expect(destination).toBeInstanceOf(DestinationSection)
+      expect(result.isValid).toBe(true)
     })
 
-    it('should handle undefined state gracefully', () => {
-      const destination = DestinationSection.fromState(undefined)
+    it('should return invalid if any nested object is invalid', () => {
+      const originData = {
+        destinationType: undefined
+      }
 
-      expect(destination).toBeInstanceOf(DestinationSection)
+      const result = DestinationSection.fromState(originData).validate()
+
+      expect(result.isValid).toBe(false)
+      expect(result.firstInvalidPage).toBeInstanceOf(DestinationTypePage)
     })
   })
 })

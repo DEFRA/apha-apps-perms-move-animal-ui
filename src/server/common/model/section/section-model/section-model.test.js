@@ -3,8 +3,6 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { OriginSection } from '../origin/origin.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
-import { OriginExitPage } from '~/src/server/exit-page/index.js'
-import { OriginSummaryPage } from '~/src/server/origin/summary/index.js'
 import { OriginAddressPage } from '~/src/server/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
 
@@ -72,23 +70,6 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 })
 
-describe('SectionModel.finalPage', () => {
-  it('should return exit page', () => {
-    const origin = OriginSection.fromState(exitState)
-    expect(origin.finalPage).toBeInstanceOf(OriginExitPage)
-  })
-
-  it('should short-circuit on invalid questions', () => {
-    const origin = OriginSection.fromState(invalidState)
-    expect(origin.finalPage).toBeInstanceOf(CphNumberPage)
-  })
-
-  it('go all the way through the journey to the summary page', () => {
-    const origin = OriginSection.fromState(validState)
-    expect(origin.finalPage).toBeInstanceOf(OriginSummaryPage)
-  })
-})
-
 describe('SectionModel.validate', () => {
   it('should return valid if all questions in journey are validly answered', () => {
     const origin = OriginSection.fromState(validState)
@@ -111,6 +92,22 @@ describe('SectionModel.validate', () => {
 
     expect(isValid).toBe(false)
     expect(firstInvalidPage).toBeInstanceOf(CphNumberPage)
+  })
+
+  it('should return the first page as invalid if no state can be found', () => {
+    const origin = OriginSection.fromState(undefined)
+
+    const { isValid, firstInvalidPage } = origin.validate()
+
+    expect(isValid).toBe(false)
+    expect(firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
+  })
+})
+
+describe('SectionModel.firstPage', () => {
+  it('should return the page from the page factory', () => {
+    const origin = OriginSection.fromState(validState)
+    expect(origin.firstPage).toBeInstanceOf(OnOffFarmPage)
   })
 })
 

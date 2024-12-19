@@ -14,4 +14,11 @@ import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
 
 export class OriginSection extends SectionModel {
   static firstPageFactory = () => onOffFarmPage
+
+  /**
+   * @param {OriginData | undefined} data
+   */
+  static fromState(data) {
+    return SectionModel.fromState.call(this, data)
+  }
 }

@@ -1,23 +1,28 @@
+import { EmailAddressPage } from '~/src/server/licence/email-address/index.js'
 import { LicenceSection } from './licence.js'
 
 const testEmail = 'test@domain.com'
 
 describe('Licence', () => {
-  describe('fromState', () => {
-    it('should create an Licence instance with valid nested objects', () => {
-      const licenceData = {
+  describe('validate', () => {
+    it('should return valid if all nested objects are valid', () => {
+      const originData = {
         emailAddress: testEmail
       }
+      const result = LicenceSection.fromState(originData).validate()
 
-      const licence = LicenceSection.fromState(licenceData)
-
-      expect(licence).toBeInstanceOf(LicenceSection)
+      expect(result.isValid).toBe(true)
     })
 
-    it('should handle undefined state gracefully', () => {
-      const licence = LicenceSection.fromState(undefined)
+    it('should return invalid if any nested object is invalid', () => {
+      const originData = {
+        emailAddress: undefined
+      }
 
-      expect(licence).toBeInstanceOf(LicenceSection)
+      const result = LicenceSection.fromState(originData).validate()
+
+      expect(result.isValid).toBe(false)
+      expect(result.firstInvalidPage).toBeInstanceOf(EmailAddressPage)
     })
   })
 })

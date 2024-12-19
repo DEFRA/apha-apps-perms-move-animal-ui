@@ -12,26 +12,6 @@ const validAddress = {
 }
 
 describe('Origin', () => {
-  describe('fromState', () => {
-    it('should create an Origin instance with valid nested objects', () => {
-      const originData = {
-        onOffFarm: validOnOffFarm,
-        cphNumber: validCphNumber,
-        address: validAddress
-      }
-
-      const origin = OriginSection.fromState(originData)
-
-      expect(origin).toBeInstanceOf(OriginSection)
-    })
-
-    it('should handle undefined state gracefully', () => {
-      const origin = OriginSection.fromState(undefined)
-
-      expect(origin).toBeInstanceOf(OriginSection)
-    })
-  })
-
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const originData = {

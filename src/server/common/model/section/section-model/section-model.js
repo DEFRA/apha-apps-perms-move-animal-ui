@@ -24,17 +24,16 @@ export class SectionModel {
   static firstPageFactory
 
   get firstPage() {
-    return /** @type {any} */ (this.constructor).firstPageFactory()
+    return /** @type {typeof SectionModel} */ (
+      this.constructor
+    ).firstPageFactory()
   }
 
-  /** @param {SectionPayload} data */
+  /**
+   * @param {SectionPayload} data
+   */
   constructor(data) {
     this._data = data
-  }
-
-  get finalPage() {
-    const pages = this._data
-    return pages[pages.length - 1].page
   }
 
   /**
@@ -46,18 +45,16 @@ export class SectionModel {
 
   /** @returns {SectionValidation} */
   validate() {
-    const page = this.finalPage
+    const finalPage = this._data.at(-1)?.page
 
-    if (page instanceof QuestionPage) {
-      return { isValid: false, firstInvalidPage: page }
+    if (finalPage instanceof QuestionPage) {
+      return { isValid: false, firstInvalidPage: finalPage }
     }
 
-    if (page instanceof ExitPage) {
-      const questionPageAnswers = this.questionPageAnswers
+    if (finalPage instanceof ExitPage) {
       return {
         isValid: false,
-        firstInvalidPage:
-          questionPageAnswers[questionPageAnswers.length - 1].page
+        firstInvalidPage: this.questionPageAnswers.at(-1)?.page
       }
     }
 
@@ -65,10 +62,9 @@ export class SectionModel {
   }
 
   /**
-   * @param {object} data
+   * @param {object | undefined} data
    * @returns {SectionModel}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(data) {
     /** @type {SectionPayload} */
     const pages = []
@@ -96,6 +92,4 @@ export class SectionModel {
 
     return new this(pages)
   }
-
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 }
