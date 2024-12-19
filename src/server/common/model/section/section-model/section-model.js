@@ -24,10 +24,14 @@ export class SectionModel {
   static firstPageFactory
 
   get firstPage() {
-    return /** @type {any} */ (this.constructor).firstPageFactory()
+    return /** @type {typeof SectionModel} */ (
+      this.constructor
+    ).firstPageFactory()
   }
 
-  /** @param {SectionPayload} data */
+  /**
+   * @param {SectionPayload} data
+   */
   constructor(data) {
     this._data = data
   }
