@@ -1,7 +1,7 @@
 import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
 import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-farm.js'
 import { cphNumberPage } from '../cph-number/index.js'
-import { exitPage } from '../../exit-page/index.js'
+import { exitPage } from '../exit-page/index.js'
 
 const sectionKey = 'origin'
 const question = 'Are you moving the cattle on or off your farm or premises?'

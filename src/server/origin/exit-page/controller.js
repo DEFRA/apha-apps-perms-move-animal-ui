@@ -5,7 +5,7 @@
  */
 export const exitPageController = {
   handler(_request, h) {
-    return h.view('exit-page/index', {
+    return h.view('origin/exit-page/index', {
       pageTitle: 'This service is not available for your movement type',
       heading: 'This service is not available for your movement type'
     })
