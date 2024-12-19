@@ -15,6 +15,8 @@ export class DestinationGeneralLicencePage extends Page {
   pageTitle = 'Check if you have a general licence'
   pageHeading = 'Check if you have a general licence'
 
+  overrideRedirects = true
+
   nextPage() {
     return new DestinationSummaryPage()
   }
