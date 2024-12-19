@@ -10,24 +10,44 @@ jest.mock('../common/helpers/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
 
+const testCphNumber = '12/123/1234'
+const testAddress = {
+  addressLine1: 'Starfleet Headquarters',
+  addressLine2: '24-593 Federation Drive',
+  addressTown: 'San Francisco',
+  addressCounty: 'San Francisco',
+  addressPostcode: 'RG24 8RR'
+}
+const testEmailAddress = 'name@example.com'
+
 const originDefaultState = {
   onOffFarm: 'off',
-  cphNumber: '12/123/1234',
-  address: {
-    addressLine1: 'Starfleet Headquarters',
-    addressLine2: '24-593 Federation Drive',
-    addressTown: 'San Francisco',
-    addressCounty: 'San Francisco',
-    addressPostcode: 'RG24 8RR'
-  }
+  cphNumber: testCphNumber,
+  address: testAddress
 }
 
 const licenceDefaultState = {
-  emailAddress: 'name@example.com'
+  emailAddress: testEmailAddress
 }
 
-const onOffFarmEmailContent =
-  '## Are you moving the animals on or off your farm or premises? \n Off the farm or premises'
+const confirmationUri = '/submit/confirmation'
+const checkAnswersUri = '/submit/check-answers'
+const taskListIncompleteUri = '/task-list-incomplete'
+
+const emailContent = [
+  '## Are you moving the animals on or off your farm or premises?',
+  'Off the farm or premises',
+  '## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
+  testCphNumber,
+  '## What is the address of your farm or premises where the animals are moving off?',
+  testAddress.addressLine1,
+  testAddress.addressLine2,
+  testAddress.addressTown,
+  testAddress.addressCounty,
+  testAddress.addressPostcode,
+  '## What email address would you like the licence sent to?',
+  testEmailAddress
+].join('\n')
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */
@@ -54,7 +74,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {}
         },
         {
@@ -71,9 +91,9 @@ describe('#CheckAnswers', () => {
     )
 
     expect(taskListValues[0].innerHTML).toContain('Off the farm or premises')
-    expect(taskListValues[1].innerHTML).toContain('12/123/1234')
-    expect(taskListValues[2].innerHTML).toContain('Starfleet Headquarters')
-    expect(taskListValues[3].innerHTML).toContain('name@example.com')
+    expect(taskListValues[1].innerHTML).toContain(testCphNumber)
+    expect(taskListValues[2].innerHTML).toContain(testAddress.addressLine1)
+    expect(taskListValues[3].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)
   })
@@ -84,7 +104,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {}
         },
         {
@@ -94,7 +114,7 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list-incomplete')
+    expect(headers.location).toBe(taskListIncompleteUri)
   })
 
   it('Should stay in check-answers if all tasks are valid', async () => {
@@ -102,7 +122,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers'
+          url: checkAnswersUri
         },
         {
           Cookie: session.sessionID
@@ -120,7 +140,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers'
+          url: checkAnswersUri
         },
         {
           Cookie: session.sessionID
@@ -129,7 +149,7 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list-incomplete')
+    expect(headers.location).toBe(taskListIncompleteUri)
   })
 
   it('Should not send email and display an error', async () => {
@@ -137,7 +157,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'POST',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {}
         },
         {
@@ -162,7 +182,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'POST',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {
             confirmation: ['confirm', 'other']
           }
@@ -174,10 +194,10 @@ describe('#CheckAnswers', () => {
     )
 
     expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(onOffFarmEmailContent)
+      content: expect.stringContaining(emailContent)
     })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 
   it('Should send email and redirect correctly when only `confirm` present', async () => {
@@ -185,7 +205,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'POST',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {
             confirmation: 'confirm'
           }
@@ -197,10 +217,10 @@ describe('#CheckAnswers', () => {
     )
 
     expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(onOffFarmEmailContent)
+      content: expect.stringContaining(emailContent)
     })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 
   it('Should send email and redirect correctly when only `other` present', async () => {
@@ -208,7 +228,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'POST',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {
             confirmation: 'other'
           }
@@ -220,10 +240,10 @@ describe('#CheckAnswers', () => {
     )
 
     expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(onOffFarmEmailContent)
+      content: expect.stringContaining(emailContent)
     })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 })
 

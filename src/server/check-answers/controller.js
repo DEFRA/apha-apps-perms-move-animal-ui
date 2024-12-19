@@ -77,7 +77,7 @@ export const checkAnswersPostController = {
       .flatMap(({ questionPageAnswers }) =>
         questionPageAnswers.map(
           ({ page, answer }) =>
-            `## ${page.question} \n ${answer.html.replace(/<br \/>/g, '\n')}`
+            `## ${page.question}\n${answer.html.replace(/<br \/>/g, '\n')}`
         )
       )
       .join('\n')
