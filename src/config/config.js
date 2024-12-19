@@ -218,20 +218,17 @@ export const config = convict({
   notify: {
     templateId: /** @type {SchemaObj<string | null>} */ {
       format: String,
-      default: null,
-      nullable: true,
+      default: '',
       env: 'NOTIFY_TEMPLATE_ID'
     },
     apiKey: /** @type {SchemaObj<string | null>} */ {
       format: String,
-      default: null,
-      nullable: true,
+      default: '',
       env: 'NOTIFY_API_KEY'
     },
     caseDeliveryEmailAddress: /** @type {SchemaObj<string | null>} */ {
       format: String,
-      default: null,
-      nullable: true,
+      default: '',
       env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
     }
   }
