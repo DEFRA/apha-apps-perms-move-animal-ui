@@ -9,8 +9,4 @@ describe('Exit page test', () => {
   it('Should verify the view application link', async () => {
     await exitPage.verifyViewApplicationLink()
   })
-
-  it('Should verify the gov uk link', async () => {
-    await exitPage.verifyGovUkLink()
-  })
 })

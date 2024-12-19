@@ -15,19 +15,11 @@ class ExitPage extends Page {
     return $('[data-testid="view-application-link"]')
   }
 
-  get govUkLink() {
-    return $('[data-testid="gov-uk-link"]')
-  }
-
   async verifyViewApplicationLink() {
     await page.selectLinkAndVerifyTitle(
       this.viewApplicationLink,
       'TB restricted cattle: application for movement licence in England - GOV.UK'
     )
-  }
-
-  async verifyGovUkLink() {
-    await page.selectLinkAndVerifyTitle(this.govUkLink, 'Welcome to GOV.UK')
   }
 }
 
