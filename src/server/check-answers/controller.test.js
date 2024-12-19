@@ -27,7 +27,7 @@ const licenceDefaultState = {
 }
 
 const onOffFarmEmailContent =
-  '## Are you moving the cattle on or off your farm or premises? \n Off the farm or premises'
+  '## Are you moving the animals on or off your farm or premises? \n Off the farm or premises'
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */
