@@ -7,7 +7,7 @@ import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { exitPage } from '~/src/server/origin/exit-page/index.js'
-import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
+import { originTypePage } from '../origin-type/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -29,7 +29,7 @@ export class OnOffFarmPage extends QuestionPage {
     if (answer.value === 'on') {
       return exitPage
     }
-    return cphNumberPage
+    return originTypePage
   }
 
   /** @param {AnswerErrors} errors */
