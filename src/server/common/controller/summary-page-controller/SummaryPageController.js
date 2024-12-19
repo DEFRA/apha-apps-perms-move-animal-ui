@@ -25,7 +25,7 @@ export class SummaryPageController {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  redirectPath(section) {
+  redirectPath(_section) {
     return this.urlPath
   }
 
