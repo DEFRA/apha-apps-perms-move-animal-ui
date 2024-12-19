@@ -4,27 +4,35 @@ import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
+import { sendNotification } from '../common/helpers/notify/notify.js'
+
+jest.mock('../common/helpers/notify/notify.js', () => ({
+  sendNotification: jest.fn()
+}))
+
+const originDefaultState = {
+  onOffFarm: 'off',
+  cphNumber: '12/123/1234',
+  address: {
+    addressLine1: 'Starfleet Headquarters',
+    addressLine2: '24-593 Federation Drive',
+    addressTown: 'San Francisco',
+    addressCounty: 'San Francisco',
+    addressPostcode: 'RG24 8RR'
+  }
+}
+
+const licenceDefaultState = {
+  emailAddress: 'name@example.com'
+}
+
+const onOffFarmEmailContent =
+  '## Are you moving the cattle on or off your farm or premises? \n Off the farm or premises'
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */
   let server
   let session
-
-  const originDefaultState = {
-    onOffFarm: 'off',
-    cphNumber: '12/123/1234',
-    address: {
-      addressLine1: 'Starfleet Headquarters',
-      addressLine2: '24-593 Federation Drive',
-      addressTown: 'San Francisco',
-      addressCounty: 'San Francisco',
-      addressPostcode: 'RG24 8RR'
-    }
-  }
-
-  const licenceDefaultState = {
-    emailAddress: 'name@example.com'
-  }
 
   beforeAll(async () => {
     server = await createServer()
@@ -124,13 +132,18 @@ describe('#CheckAnswers', () => {
     expect(headers.location).toBe('/task-list-incomplete')
   })
 
-  it('Should display an error', async () => {
+  it('Should not send email and display an error', async () => {
     const { payload, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {}
-      })
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: '/submit/check-answers',
+          payload: {}
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
     )
 
     expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
@@ -140,50 +153,75 @@ describe('#CheckAnswers', () => {
       )
     )
 
+    expect(sendNotification).not.toHaveBeenCalled()
     expect(statusCode).toBe(statusCodes.ok)
   })
 
   it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: ['confirm', 'other']
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: '/submit/check-answers',
+          payload: {
+            confirmation: ['confirm', 'other']
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(onOffFarmEmailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe('/submit/confirmation')
   })
 
-  it('Should redirect correctly when only `confirm` present', async () => {
+  it('Should send email and redirect correctly when only `confirm` present', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: 'confirm'
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: '/submit/check-answers',
+          payload: {
+            confirmation: 'confirm'
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(onOffFarmEmailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe('/submit/confirmation')
   })
 
-  it('Should redirect correctly when only `other` present', async () => {
+  it('Should send email and redirect correctly when only `other` present', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: 'other'
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: '/submit/check-answers',
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(onOffFarmEmailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe('/submit/confirmation')
   })
