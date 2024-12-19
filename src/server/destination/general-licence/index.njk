@@ -1,0 +1,24 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% extends 'layouts/questions.njk' %}
+
+{% block beforequestion %}
+  <p>
+    You should have a general licence in the information pack sent to you from
+    the Animal and Plant Health Agency (APHA). The pack was posted to you when
+    your herd was placed under TB restriction.
+  </p>
+
+  <p>
+    This licence allows you to move animals from a TB restricted farm to
+    slaughter.
+  </p>
+
+  <p>
+    If you do not have a general licence, you can continue to apply for a new
+    one.
+  </p>
+
+  <p>
+    <a href="{{ continueUrl }}">Continue</a>
+  </p>
+{% endblock %}

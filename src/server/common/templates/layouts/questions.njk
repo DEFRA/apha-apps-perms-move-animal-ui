@@ -28,27 +28,29 @@
   {% block beforequestion %}
   {% endblock %}
 
-  <form method="POST" novalidate>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="{{ crumb }}" />
-        <input type="hidden" name="nextPage" value="{{ nextPage }}" />
+  {% if (not hideQuestion) %}
+    <form method="POST" novalidate>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="{{ crumb }}" />
+          <input type="hidden" name="nextPage" value="{{ nextPage }}" />
 
-        {% block questions %}{% endblock %}
+          {% block questions %}{% endblock %}
+        </div>
       </div>
-    </div>
 
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        {% block button %}
-          {{
-            govukButton({
-              id: "continue-button",
-              text: "Continue"
-            })
-          }}
-        {% endblock %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          {% block button %}
+            {{
+              govukButton({
+                id: "continue-button",
+                text: "Continue"
+              })
+            }}
+          {% endblock %}
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  {% endif %}
 {% endblock %}

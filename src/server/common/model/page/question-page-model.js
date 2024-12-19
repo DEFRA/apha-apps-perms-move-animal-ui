@@ -15,9 +15,6 @@ export class QuestionPage extends Page {
   /** @type {string} */
   questionKey
 
-  /** @type {string} */
-  view
-
   /** @type {AnswerModelClass<AnswerPayload>} */
   Answer
 

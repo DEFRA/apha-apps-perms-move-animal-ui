@@ -21,15 +21,20 @@ describe('Destination selection test', () => {
 
   it('Should select slaughter radio and continue', async () => {
     await destinationSelectionPage.selectSlaughterRadioAndContinue()
+
     await expect(destinationSelectionPage.pageError).not.toBeDisplayed()
     await expect(destinationSelectionPage.errorSummary).not.toBeDisplayed()
     await waitForPagePath(generalLicencePage.pagePath)
+
+    await destinationAnswersPage.selectBackLink()
+    await waitForPagePath(destinationSelectionPage.pagePath)
   })
 
   it('Should choose an option and check its maintained', async () => {
     await destinationSelectionPage.selectDedicatedSaleAndContinue()
     await waitForPagePath(destinationAnswersPage.pagePath)
-    await browser.back()
+
+    await destinationAnswersPage.selectBackLink()
     await expect(destinationSelectionPage.dedicatedSaleRadio).toBeSelected()
   })
 
@@ -41,5 +46,8 @@ describe('Destination selection test', () => {
   it('Should choose other destination and continue', async () => {
     await destinationSelectionPage.selectOtherDestinationAndContinue()
     await waitForPagePath(canNotUseServicePage.pagePath)
+
+    await canNotUseServicePage.selectBackLink()
+    await waitForPagePath(destinationSelectionPage.pagePath)
   })
 })
