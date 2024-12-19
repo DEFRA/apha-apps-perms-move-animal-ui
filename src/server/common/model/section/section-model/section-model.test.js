@@ -93,6 +93,15 @@ describe('SectionModel.validate', () => {
     expect(isValid).toBe(false)
     expect(firstInvalidPage).toBeInstanceOf(CphNumberPage)
   })
+
+  it('should return the first page as invalid if no state can be found', () => {
+    const origin = OriginSection.fromState(undefined)
+
+    const { isValid, firstInvalidPage } = origin.validate()
+
+    expect(isValid).toBe(false)
+    expect(firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
+  })
 })
 
 describe('SectionModel.firstPage', () => {
