@@ -10,6 +10,7 @@ import { taskListIncomplete } from './task-list-incomplete/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import { licence } from './licence/index.js'
 import { destination } from './destination/index.js'
+import { privacyPolicy } from './privacy-policy/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -26,6 +27,7 @@ export const router = {
       // Application specific routes, add your own routes here
       await server.register([
         home,
+        privacyPolicy,
         exit,
         origin,
         destination,
