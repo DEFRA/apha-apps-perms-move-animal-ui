@@ -1,0 +1,35 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% extends 'layouts/questions.njk' %}
+
+{% block questions %}
+
+  {{
+    govukRadios({
+      name: "originType",
+      id: "origin-type",
+      fieldset:{},
+      value: value,
+      items: [
+        {
+          id: "originType",
+          value: "tb-restricted-farm",
+          text: "TB restricted farm"
+        },
+        {
+          id: "afu-radio",
+          value: "afu",
+          text: "Approved finishing unit (AFU)",
+          hint: {
+            text: "Including enhanced with grazing (AFUE)"
+            }
+        },
+        {
+          id: "other-radio",
+          value: "other",
+          text: "Another type of premises"
+        }
+      ],
+      errorMessage: errors.onOffFarm
+    })
+  }}
+{% endblock %}
