@@ -13,7 +13,7 @@ class DestinationAnswersPage extends Page {
     return $('[data-testid="destinationType-change-link"]')
   }
 
-  get destiationValue() {
+  get destinationValue() {
     return $$('.govuk-summary-list__value')[0]
   }
 }

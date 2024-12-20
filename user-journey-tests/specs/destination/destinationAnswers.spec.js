@@ -22,7 +22,7 @@ describe('Check your answers test - destination', () => {
   it('Should verify slaughter answer and change link', async () => {
     await completeDestinationTest('slaughter')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Slaughter'
     )
 
@@ -32,15 +32,15 @@ describe('Check your answers test - destination', () => {
     await destinationSelectionPage.selectContinue()
     await selectElement(generalLicencePage.continueLink)
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Slaughter'
     )
   })
 
-  it('Should verify slaughter answer and change link', async () => {
+  it('Should verify dedicated sale for tb answer and change link', async () => {
     await completeDestinationTest('dedicated')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Dedicated sale for TB (orange market)'
     )
 
@@ -49,15 +49,15 @@ describe('Check your answers test - destination', () => {
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Dedicated sale for TB (orange market)'
     )
   })
 
-  it('Should verify slaughter answer and change link', async () => {
+  it('Should verify approved finishing unit answer and change link', async () => {
     await completeDestinationTest('approved')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Approved finishing unit (AFU)'
     )
 
@@ -66,7 +66,7 @@ describe('Check your answers test - destination', () => {
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Approved finishing unit (AFU)'
     )
   })
@@ -74,7 +74,7 @@ describe('Check your answers test - destination', () => {
   it('Should verify continue link', async () => {
     await completeDestinationTest('approved')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destiationValue,
+      destinationAnswersPage.destinationValue,
       'Approved finishing unit (AFU)'
     )
 
