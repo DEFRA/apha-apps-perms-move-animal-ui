@@ -4,28 +4,58 @@ import { pageTitle } from './controller.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
+import { sendNotification } from '../common/helpers/notify/notify.js'
+
+jest.mock('../common/helpers/notify/notify.js', () => ({
+  sendNotification: jest.fn()
+}))
+
+const testCphNumber = '12/123/1234'
+const testAddress = {
+  addressLine1: 'Starfleet Headquarters',
+  addressLine2: '24-593 Federation Drive',
+  addressTown: 'San Francisco',
+  addressCounty: 'San Francisco',
+  addressPostcode: 'RG24 8RR'
+}
+const testEmailAddress = 'name@example.com'
+
+const originDefaultState = {
+  onOffFarm: 'off',
+  cphNumber: testCphNumber,
+  originType: 'afu',
+  address: testAddress
+}
+
+const licenceDefaultState = {
+  emailAddress: testEmailAddress
+}
+
+const confirmationUri = '/submit/confirmation'
+const checkAnswersUri = '/submit/check-answers'
+const taskListIncompleteUri = '/task-list-incomplete'
+
+const emailContent = [
+  '## Are you moving the animals on or off your farm or premises?',
+  'Off the farm or premises',
+  '## What type of premises are the animals moving off?',
+  'Approved finishing unit (AFU)',
+  '## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
+  testCphNumber,
+  '## What is the address of your farm or premises where the animals are moving off?',
+  testAddress.addressLine1,
+  testAddress.addressLine2,
+  testAddress.addressTown,
+  testAddress.addressCounty,
+  testAddress.addressPostcode,
+  '## What email address would you like the licence sent to?',
+  testEmailAddress
+].join('\n')
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */
   let server
   let session
-
-  const originDefaultState = {
-    onOffFarm: 'off',
-    cphNumber: '12/123/1234',
-    originType: 'afu',
-    address: {
-      addressLine1: 'Starfleet Headquarters',
-      addressLine2: '24-593 Federation Drive',
-      addressTown: 'San Francisco',
-      addressCounty: 'San Francisco',
-      addressPostcode: 'RG24 8RR'
-    }
-  }
-
-  const licenceDefaultState = {
-    emailAddress: 'name@example.com'
-  }
 
   beforeAll(async () => {
     server = await createServer()
@@ -47,7 +77,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {}
         },
         {
@@ -67,9 +97,9 @@ describe('#CheckAnswers', () => {
     expect(taskListValues[1].innerHTML).toContain(
       'Approved finishing unit (AFU)'
     )
-    expect(taskListValues[2].innerHTML).toContain('12/123/1234')
-    expect(taskListValues[3].innerHTML).toContain('Starfleet Headquarters')
-    expect(taskListValues[4].innerHTML).toContain('name@example.com')
+    expect(taskListValues[2].innerHTML).toContain(testCphNumber)
+    expect(taskListValues[3].innerHTML).toContain(testAddress.addressLine1)
+    expect(taskListValues[4].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)
   })
@@ -80,7 +110,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers',
+          url: checkAnswersUri,
           payload: {}
         },
         {
@@ -90,7 +120,7 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list-incomplete')
+    expect(headers.location).toBe(taskListIncompleteUri)
   })
 
   it('Should stay in check-answers if all tasks are valid', async () => {
@@ -98,7 +128,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers'
+          url: checkAnswersUri
         },
         {
           Cookie: session.sessionID
@@ -116,7 +146,7 @@ describe('#CheckAnswers', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/submit/check-answers'
+          url: checkAnswersUri
         },
         {
           Cookie: session.sessionID
@@ -125,16 +155,21 @@ describe('#CheckAnswers', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/task-list-incomplete')
+    expect(headers.location).toBe(taskListIncompleteUri)
   })
 
-  it('Should display an error', async () => {
+  it('Should not send email and display an error', async () => {
     const { payload, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {}
-      })
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {}
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
     )
 
     expect(parseDocument(payload).title).toBe(`Error: ${pageTitle}`)
@@ -144,52 +179,77 @@ describe('#CheckAnswers', () => {
       )
     )
 
+    expect(sendNotification).not.toHaveBeenCalled()
     expect(statusCode).toBe(statusCodes.ok)
   })
 
   it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: ['confirm', 'other']
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: ['confirm', 'other']
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(emailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 
-  it('Should redirect correctly when only `confirm` present', async () => {
+  it('Should send email and redirect correctly when only `confirm` present', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: 'confirm'
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(emailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 
-  it('Should redirect correctly when only `other` present', async () => {
+  it('Should send email and redirect correctly when only `other` present', async () => {
     const { headers, statusCode } = await server.inject(
-      withCsrfProtection({
-        method: 'POST',
-        url: '/submit/check-answers',
-        payload: {
-          confirmation: 'other'
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
+      )
     )
 
+    expect(sendNotification).toHaveBeenCalledWith({
+      content: expect.stringContaining(emailContent)
+    })
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe('/submit/confirmation')
+    expect(headers.location).toBe(confirmationUri)
   })
 })
 

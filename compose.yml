@@ -1,6 +1,5 @@
 version: '3.4'
 services:
-
   redis:
     image: redis:7.2.3-alpine3.18
     ports:
@@ -25,6 +24,9 @@ services:
       NODE_ENV: development
       REDIS_HOST: redis
       USE_SINGLE_INSTANCE_CACHE: true
+      NOTIFY_TEMPLATE_ID: ${NOTIFY_TEMPLATE_ID}
+      NOTIFY_API_KEY: ${NOTIFY_API_KEY}
+      NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS}
     networks:
       - cdp-tenant
 
