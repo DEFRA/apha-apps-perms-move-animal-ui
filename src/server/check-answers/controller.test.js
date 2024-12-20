@@ -38,6 +38,8 @@ const taskListIncompleteUri = '/task-list-incomplete'
 const emailContent = [
   '## Are you moving the animals on or off your farm or premises?',
   'Off the farm or premises',
+  '## What type of premises are the animals moving off?',
+  'Approved finishing unit (AFU)',
   '## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
   testCphNumber,
   '## What is the address of your farm or premises where the animals are moving off?',
