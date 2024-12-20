@@ -4,6 +4,7 @@ import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
+import { DestinationSection } from '../common/model/section/destination/destination.js'
 
 export const pageTitle = 'Check your answers before sending your application'
 const heading = pageTitle
@@ -15,19 +16,23 @@ const heading = pageTitle
 
 const checkAnswersUrlPath = '/submit/check-answers'
 
+const getTasks = (yar) => ({
+  origin: OriginSection.fromState(yar.get('origin')),
+  destination: DestinationSection.fromState(yar.get('destination')),
+  licence: LicenceSection.fromState(yar.get('licence'))
+})
+
 /**
  * @satisfies {Partial<ServerRoute>}
  */
 export const checkAnswersGetController = {
   handler(req, res) {
-    const tasks = {
-      origin: OriginSection.fromState(req.yar.get('origin')),
-      licence: LicenceSection.fromState(req.yar.get('licence'))
-    }
+    const tasks = getTasks(req.yar)
 
     const application = ApplicationModel.fromState({
       origin: req.yar.get('origin'),
-      licence: req.yar.get('licence')
+      licence: req.yar.get('licence'),
+      destination: req.yar.get('destination')
     })
 
     const { isValid } = application.validate()
@@ -41,7 +46,8 @@ export const checkAnswersGetController = {
       heading,
       pageTitle,
       origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
-      licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
+      licence: sectionToSummary(tasks.licence, checkAnswersUrlPath),
+      destination: sectionToSummary(tasks.destination, checkAnswersUrlPath)
     })
   }
 }
@@ -51,10 +57,7 @@ export const checkAnswersGetController = {
  */
 export const checkAnswersPostController = {
   handler(req, res) {
-    const tasks = {
-      origin: OriginSection.fromState(req.yar.get('origin')),
-      licence: LicenceSection.fromState(req.yar.get('licence'))
-    }
+    const tasks = getTasks(req.yar)
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
@@ -69,7 +72,8 @@ export const checkAnswersPostController = {
         errorMessages: ConfirmationAnswer.errorMessages(errors),
         errorMessage: errors.confirmation,
         origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
-        licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
+        licence: sectionToSummary(tasks.licence, checkAnswersUrlPath),
+        destination: sectionToSummary(tasks.destination, checkAnswersUrlPath)
       })
     }
 

@@ -19,11 +19,17 @@ const licenceDefaultState = {
   emailAddress: 'name@example.com'
 }
 
+/** @type {import('../section/destination/destination.js').DestinationData} */
+const destinationDefaultState = {
+  destinationType: 'afu'
+}
+
 describe('Application', () => {
   it('should create an Application instance from a valid state', () => {
     const state = {
       origin: originDefaultState,
-      licence: licenceDefaultState
+      licence: licenceDefaultState,
+      destination: destinationDefaultState
     }
 
     const application = ApplicationModel.fromState(state)
