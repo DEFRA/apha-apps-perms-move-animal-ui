@@ -20,6 +20,10 @@ class TaskListPage extends Page {
     return $('aria/Receiving the licence')
   }
 
+  get movementDestinationLink() {
+    return $('aria/Movement destination')
+  }
+
   get reviewLink() {
     return $('aria/Review and submit')
   }
@@ -35,6 +39,10 @@ class TaskListPage extends Page {
 
   async selectReceiveTheLicence() {
     await page.selectElement(this.receivingTheLicenceLink)
+  }
+
+  async selectMovementDestination() {
+    await page.selectElement(this.movementDestinationLink)
   }
 
   async verifyStatus({ position, taskTitle, expectedStatus }) {

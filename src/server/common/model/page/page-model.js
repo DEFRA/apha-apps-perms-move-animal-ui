@@ -23,6 +23,9 @@ export class Page {
   /** @type {string} */
   pageTitle
 
+  /** @type {boolean} */
+  overrideRedirects = false
+
   /** @returns {string} */
   get heading() {
     return this.pageHeading

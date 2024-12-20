@@ -72,6 +72,10 @@ class Page {
     )
   }
 
+  async navigateToPageAndVerifyTitle() {
+    await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
+  }
+
   async verifyPageHeadingAndTitle() {
     await page.validateElementVisibleAndText(
       this.getPageHeading(),

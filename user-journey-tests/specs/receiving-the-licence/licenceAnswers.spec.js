@@ -1,4 +1,3 @@
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import landingPage from '../../page-objects/landingPage.js'
 import { completeLicenceTaskAnswersCustom } from '../../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
@@ -12,12 +11,12 @@ const editedEmail = 'edited@email.com'
 describe('Check your licence answers test', () => {
   // eslint-disable-next-line no-undef
   before('Navigate to check answers page', async () => {
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await landingPage.navigateToPageAndVerifyTitle()
     await completeLicenceTaskAnswersCustom(emailDefault)
   })
 
   it('Should verify the back link is history -1', async () => {
-    await loadPageAndVerifyTitle(emailPage.pagePath, emailPage.pageTitle)
+    await emailPage.navigateToPageAndVerifyTitle()
     await emailPage.selectContinue()
     await licenceAnswersPage.selectBackLink()
 
@@ -25,10 +24,7 @@ describe('Check your licence answers test', () => {
   })
 
   it('Should verify the existing email and confirm resubmission', async () => {
-    await loadPageAndVerifyTitle(
-      licenceAnswersPage.pagePath,
-      licenceAnswersPage.pageTitle
-    )
+    await licenceAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustEmail(
       licenceAnswersPage.changeEmailLink,
       licenceAnswersPage.emailValue,
@@ -38,10 +34,7 @@ describe('Check your licence answers test', () => {
   })
 
   it('Should verify submitting answers', async () => {
-    await loadPageAndVerifyTitle(
-      licenceAnswersPage.pagePath,
-      licenceAnswersPage.pageTitle
-    )
+    await licenceAnswersPage.navigateToPageAndVerifyTitle()
     await licenceAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({

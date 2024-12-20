@@ -5,10 +5,7 @@ import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumb
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import {
-  loadPageAndVerifyTitle,
-  validateElementVisibleAndText
-} from '../page.js'
+import { validateElementVisibleAndText } from '../page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 // Default data
@@ -24,7 +21,7 @@ const completeOriginTask = async ({
   townOrCity = defaultTownOrCity,
   postcode = defaultPostcode
 } = {}) => {
-  await loadPageAndVerifyTitle(landingPage.pagePath, landingPage.pageTitle)
+  await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementOrigin()
   await toFromFarmPage.selectOffFarmAndContinue()

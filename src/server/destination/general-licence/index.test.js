@@ -37,7 +37,7 @@ describe('DestinationGeneralLicencePage', () => {
   })
 
   it('should know the next page is the summary page', () => {
-    expect(page.nextPage()).toEqual(nextPage)
+    expect(page.nextPage().urlPath).toBe(nextPage.urlPath)
   })
 
   it('should be able ot calculate the next page URL as a string for the template', () => {
