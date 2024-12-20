@@ -5,6 +5,7 @@ import {
 } from '../../helpers/page.js'
 import completeDestinationTest from '../../helpers/testHelpers/destination.js'
 import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
+import canNotUseServicePage from '../../page-objects/destination/canNotUseServicePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
@@ -80,5 +81,23 @@ describe('Check your answers test - destination', () => {
 
     await destinationAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)
+  })
+
+  it('Should verify continue link', async () => {
+    await completeDestinationTest('dedicated')
+    await validateElementVisibleAndText(
+      destinationAnswersPage.destinationValue,
+      'Dedicated sale for TB (orange market)'
+    )
+
+    await selectElement(destinationAnswersPage.changeDestinationLink)
+    await destinationSelectionPage.selectOtherDestinationAndContinue()
+    await canNotUseServicePage.selectBackLink()
+
+    await waitForPagePath(destinationSelectionPage.pagePath)
+    await destinationSelectionPage.selectBackLink()
+    await browser.refresh()
+
+    await waitForPagePath(destinationSelectionPage.pagePath)
   })
 })
