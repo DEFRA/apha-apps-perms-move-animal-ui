@@ -24,11 +24,6 @@ export class SummaryPageController {
     return `/${this.page.urlKey ?? this.page.sectionKey}/check-answers`
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  redirectPath(_section) {
-    return this.urlPath
-  }
-
   /** @returns {ServerRegisterPluginObject<void>} */
   plugin() {
     return {
@@ -60,14 +55,14 @@ export class SummaryPageController {
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
       return res.redirect(
-        `${firstInvalidPage?.urlPath}?redirect_uri=${this.redirectPath(section)}`
+        `${firstInvalidPage?.urlPath}?redirect_uri=${this.urlPath}`
       )
     }
 
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.pageHeading,
-      summary: sectionToSummary(section, this.redirectPath(section))
+      summary: sectionToSummary(section, this.urlPath)
     })
   }
 

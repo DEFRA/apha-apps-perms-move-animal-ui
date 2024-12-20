@@ -17,6 +17,7 @@ const questionView =
 const sectionKey = 'section-key'
 const questionUrl = '/question-url'
 const nextQuestionUrl = '/next-question-url'
+const overriddenQuestionUrl = '/dummy/overridden-question-url'
 const questionValue = 'question-value'
 const questionElementSelector = '#questionId'
 const validationSpy = jest
@@ -26,21 +27,41 @@ const redirectUri = '/redirect-uri'
 
 class TestAnswer extends AnswerModel {
   toState() {
-    return this._data?.questionKey
+    return this._data?.[questionKey]
   }
 
   static fromState(state) {
     return new TestAnswer(
-      state !== undefined ? { questionKey: state } : undefined
+      state !== undefined ? { [questionKey]: state } : undefined
     )
   }
 
   get value() {
-    return this._data?.questionKey
+    return this._data?.[questionKey]
   }
 
-  _extractFields({ questionKey }) {
-    return { questionKey }
+  _extractFields(data) {
+    return {
+      [questionKey]: data[questionKey]
+    }
+  }
+
+  validate() {
+    if (!this.value || this.value?.includes('ERROR')) {
+      return {
+        isValid: false,
+        errors: {
+          questionKey: { text: 'There is a problem' }
+        }
+      }
+    }
+
+    return {
+      isValid: true,
+      errors: {
+        questionKey: { text: 'There is no problem' }
+      }
+    }
   }
 }
 
@@ -57,18 +78,25 @@ class TestPage extends QuestionPage {
 
   Answer = TestAnswer
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_answer) {
-    if (_answer.value === 'exit') {
-      return new TestExitPage()
-    } else {
-      return new NextTestPage()
+  nextPage(answer) {
+    switch (answer.value) {
+      case 'exit':
+        return new TestExitPage()
+      case 'block-redirect':
+        return new RedirectBlockPage()
+      default:
+        return new NextTestPage()
     }
   }
 }
 
 class NextTestPage extends TestPage {
   urlPath = nextQuestionUrl
+}
+
+class RedirectBlockPage extends TestPage {
+  urlPath = overriddenQuestionUrl
+  overrideRedirects = true
 }
 
 const controller = new QuestionPageController(new TestPage())
@@ -107,7 +135,7 @@ describe('QuestionPageController', () => {
 
   it('should repopulate the form from state', async () => {
     await session.setState(sectionKey, {
-      questionKey: questionValue
+      [questionKey]: questionValue
     })
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
@@ -142,7 +170,7 @@ describe('QuestionPageController', () => {
             method: 'POST',
             url: questionUrl,
             payload: {
-              questionKey: questionValue
+              [questionKey]: questionValue
             }
           },
           {
@@ -155,7 +183,7 @@ describe('QuestionPageController', () => {
       expect(headers.location).toBe(nextQuestionUrl)
 
       const state = await session.getState(sectionKey)
-      expect(state.questionKey).toBe(questionValue)
+      expect(state[questionKey]).toBe(questionValue)
       expect(state.someOtherQuestion).toBe('some-other-answer')
     })
 
@@ -166,7 +194,7 @@ describe('QuestionPageController', () => {
             method: 'POST',
             url: questionUrl,
             payload: {
-              questionKey: 'exit',
+              [questionKey]: 'exit',
               nextPage: redirectUri
             }
           },
@@ -180,7 +208,7 @@ describe('QuestionPageController', () => {
       expect(headers.location).toBe('/exit')
 
       const state = await session.getState(sectionKey)
-      expect(state.questionKey).toBe('exit')
+      expect(state[questionKey]).toBe('exit')
     })
 
     it('should set the next page to redirect_uri if one exists', async () => {
@@ -207,7 +235,7 @@ describe('QuestionPageController', () => {
           method: 'POST',
           url: questionUrl,
           payload: {
-            questionKey: questionValue,
+            [questionKey]: questionValue,
             nextPage: redirectUri
           }
         })
@@ -244,7 +272,7 @@ describe('QuestionPageController', () => {
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {
         await session.setState(sectionKey, {
-          questionKey: questionValue,
+          [questionKey]: questionValue,
           someOtherQuestion: 'some-other-answer'
         })
         const { payload } = await server.inject(
@@ -263,7 +291,7 @@ describe('QuestionPageController', () => {
         expect(document.title).toBe(`Error: ${question}`)
 
         const state = await session.getState(sectionKey)
-        expect(state.questionKey).toBeUndefined()
+        expect(state[questionKey]).toBeUndefined()
         expect(state.someOtherQuestion).toBe('some-other-answer')
       })
 
@@ -287,6 +315,68 @@ describe('QuestionPageController', () => {
 
         expect(statusCode).toBe(statusCodes.ok)
       })
+    })
+  })
+
+  describe('next page tests', () => {
+    it('should return the TestExitPage', () => {
+      expect(
+        controller.page.nextPage(new TestAnswer({ [questionKey]: 'exit' }))
+      ).toBeInstanceOf(TestExitPage)
+    })
+
+    it('should return the NextTestPage', () => {
+      expect(
+        controller.page.nextPage(new TestAnswer({ [questionKey]: 'continue' }))
+      ).toBeInstanceOf(NextTestPage)
+    })
+
+    it('should go to redirected page on post', async () => {
+      const redirectUrl = '/dummy/incorrect-url'
+      const { statusCode, headers } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}`,
+            payload: {
+              nextPage: redirectUrl,
+              [questionKey]: 'continue'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).not.toBe(nextQuestionUrl)
+      expect(headers.location).toBe(redirectUrl)
+    })
+
+    it('should not go to redirected page on post', async () => {
+      await session.setState(sectionKey, { [questionKey]: 'block-redirect' })
+
+      const redirectUrl = '/dummy/incorrect-url'
+      const { statusCode, headers } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}`,
+            payload: {
+              nextPage: redirectUrl,
+              [questionKey]: 'block-redirect'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).not.toBe(redirectUrl)
+      expect(headers.location).toBe(overriddenQuestionUrl)
     })
   })
 })
