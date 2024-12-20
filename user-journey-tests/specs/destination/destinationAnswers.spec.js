@@ -1,5 +1,4 @@
 import {
-  loadPageAndVerifyTitle,
   selectElement,
   validateElementVisibleAndText,
   waitForPagePath
@@ -17,7 +16,7 @@ describe('Check your answers test - destination', () => {
   beforeEach('Navigate to check answers page', async () => {
     await browser.reloadSession()
     await completeOriginTaskAnswers()
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await landingPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify slaughter answer and change link', async () => {

@@ -1,6 +1,4 @@
 import { browser } from '@wdio/globals'
-
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 
 const longString = 'a'.repeat(300)
@@ -16,10 +14,7 @@ const postcodeInvalid = 'test'
 describe('New address page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(
-      newAddressPage.pagePath,
-      newAddressPage.pageTitle
-    )
+    await newAddressPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify all errors when no input', async () => {

@@ -1,17 +1,13 @@
 import { browser, expect } from '@wdio/globals'
 
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import exitPage from '../../page-objects/origin/exitPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 
 describe('To from farm page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(
-      toFromFarmPage.pagePath,
-      toFromFarmPage.pageTitle
-    )
+    await toFromFarmPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify that the page errors when no option is selected', async () => {

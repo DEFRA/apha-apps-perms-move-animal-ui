@@ -1,5 +1,4 @@
 import {
-  loadPageAndVerifyTitle,
   waitForFullPageUrl,
   selectElement,
   waitForPagePath
@@ -8,7 +7,7 @@ import privacyPage from '../page-objects/privacyPage.js'
 
 describe('Exit page test', () => {
   beforeEach('Navigate to privacy page', async () => {
-    await loadPageAndVerifyTitle(privacyPage.pagePath, privacyPage.pageTitle)
+    await privacyPage.navigateToPageAndVerifyTitle()
   })
 
   // Regular links

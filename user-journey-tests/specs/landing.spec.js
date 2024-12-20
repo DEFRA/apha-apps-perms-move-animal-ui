@@ -1,10 +1,9 @@
 import landingPage from '../page-objects/landingPage.js'
-import { loadPageAndVerifyTitle } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await landingPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify start now button visible on landing page', async () => {
