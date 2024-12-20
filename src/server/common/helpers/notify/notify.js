@@ -7,9 +7,16 @@ import { proxyFetch } from '../proxy.js'
  */
 const notifyConfig = config.get('notify')
 
+const SECRET_LENGTH = 36
+const ISSUER_START_OFFSET = 73
+const ISSUER_END_OFFSET = 37
+
 const secrets = (apiKey) => ({
-  iss: apiKey.substring(apiKey.length - 36, apiKey.length),
-  secret: apiKey.substring(apiKey.length - 73, apiKey.length - 37)
+  secret: apiKey.substring(apiKey.length - SECRET_LENGTH, apiKey.length),
+  iss: apiKey.substring(
+    apiKey.length - ISSUER_START_OFFSET,
+    apiKey.length - ISSUER_END_OFFSET
+  )
 })
 
 function createToken({ iss, secret }) {
@@ -39,5 +46,10 @@ export function sendNotification(data) {
         Authorization: 'Bearer ' + createToken(secrets(notifyConfig.apiKey))
       }
     }
-  )
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error()
+    }
+    return response
+  })
 }
