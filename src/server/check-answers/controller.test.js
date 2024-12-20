@@ -23,6 +23,7 @@ const testEmailAddress = 'name@example.com'
 const originDefaultState = {
   onOffFarm: 'off',
   cphNumber: testCphNumber,
+  originType: 'afu',
   address: testAddress
 }
 
@@ -91,9 +92,12 @@ describe('#CheckAnswers', () => {
     )
 
     expect(taskListValues[0].innerHTML).toContain('Off the farm or premises')
-    expect(taskListValues[1].innerHTML).toContain(testCphNumber)
-    expect(taskListValues[2].innerHTML).toContain(testAddress.addressLine1)
-    expect(taskListValues[3].innerHTML).toContain(testEmailAddress)
+    expect(taskListValues[1].innerHTML).toContain(
+      'Approved finishing unit (AFU)'
+    )
+    expect(taskListValues[2].innerHTML).toContain(testCphNumber)
+    expect(taskListValues[3].innerHTML).toContain(testAddress.addressLine1)
+    expect(taskListValues[4].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)
   })

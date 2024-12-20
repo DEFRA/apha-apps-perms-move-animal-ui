@@ -1,4 +1,4 @@
-import { loadPageAndVerifyTitle, waitForPagePath } from '../helpers/page.js'
+import { waitForPagePath } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -7,10 +7,12 @@ import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
+import completeDestinationTest from '../helpers/testHelpers/destination.js'
+import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
-    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
+    await taskListPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should display the correct statuses before an application has been started', async () => {
@@ -47,7 +49,7 @@ describe('Task list page test', () => {
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
     await completeOriginTaskAnswers()
-    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
+    await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
         position: 1,
@@ -80,10 +82,40 @@ describe('Task list page test', () => {
     await taskListIncompletePage.verifyPageHeadingAndTitle()
   })
 
+  it('Should verify completed destination task', async () => {
+    await browser.reloadSession()
+    await completeOriginTaskAnswers()
+    await completeDestinationTest('slaughter')
+    await taskListPage.navigateToPageAndVerifyTitle()
+    await taskListPage.verifyAllStatus([
+      {
+        position: 1,
+        taskTitle: 'Movement origin',
+        expectedStatus: 'Complete'
+      },
+      {
+        position: 2,
+        taskTitle: 'Movement destination',
+        expectedStatus: 'Complete'
+      },
+      {
+        position: 3,
+        taskTitle: 'Receiving the licence',
+        expectedStatus: 'Incomplete'
+      }
+    ])
+
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('1 out of 3')
+
+    await taskListPage.selectMovementDestination()
+    await waitForPagePath(destinationAnswersPage.pagePath)
+    await destinationAnswersPage.verifyPageHeadingAndTitle()
+  })
+
   it('Should link to receiving licence summary once that selection has been completed', async () => {
     await browser.reloadSession()
     await completeLicenceTaskAnswers()
-    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
+    await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
         position: 1,

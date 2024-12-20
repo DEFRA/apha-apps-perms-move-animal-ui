@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
 
-import { loadPageAndVerifyTitle, waitForPagePath } from '../../helpers/page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 
@@ -22,7 +22,7 @@ const validSubmissionCheck = async (input, whitespace = false) => {
 describe('Email address for licence page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(emailPage.pagePath, emailPage.pageTitle)
+    await emailPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify that page errors when nothing is entered', async () => {

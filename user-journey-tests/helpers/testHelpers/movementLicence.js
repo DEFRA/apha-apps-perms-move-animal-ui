@@ -1,13 +1,11 @@
 import landingPage from '../../page-objects/landingPage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
+import originTypePage from '../../page-objects/origin/originTypePage.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import {
-  loadPageAndVerifyTitle,
-  validateElementVisibleAndText
-} from '../page.js'
+import { validateElementVisibleAndText } from '../page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 // Default data
@@ -23,10 +21,11 @@ const completeOriginTask = async ({
   townOrCity = defaultTownOrCity,
   postcode = defaultPostcode
 } = {}) => {
-  await loadPageAndVerifyTitle(landingPage.pagePath, landingPage.pageTitle)
+  await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementOrigin()
   await toFromFarmPage.selectOffFarmAndContinue()
+  await originTypePage.selectTBRestrictedFarmAndContinue()
   await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(cphNumber)
   await newAddressPage.fillFormFieldsAndSubmit({
     lineOne,

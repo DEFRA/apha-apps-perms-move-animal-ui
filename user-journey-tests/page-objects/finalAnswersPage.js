@@ -24,28 +24,36 @@ class FinalAnswersPage extends Page {
     return $$(valueIdentifier)[0]
   }
 
-  get parishNumberValue() {
+  get originTypeValue() {
     return $$(valueIdentifier)[1]
   }
 
-  get addressValue() {
+  get parishNumberValue() {
     return $$(valueIdentifier)[2]
   }
 
-  get movementDestinationVaue() {
+  get addressValue() {
     return $$(valueIdentifier)[3]
   }
 
-  get receivingMethodValue() {
+  get movementDestinationVaue() {
     return $$(valueIdentifier)[4]
   }
 
-  get emailValue() {
+  get receivingMethodValue() {
     return $$(valueIdentifier)[5]
+  }
+
+  get emailValue() {
+    return $$(valueIdentifier)[6]
   }
 
   get onOffFarmChange() {
     return $('[data-testid="onOffFarm-change-link"]')
+  }
+
+  get originTypeChange() {
+    return $('[data-testid="originType-change-link"]')
   }
 
   get parishHoldingChange() {

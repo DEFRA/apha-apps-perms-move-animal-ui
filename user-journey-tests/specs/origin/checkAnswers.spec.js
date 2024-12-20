@@ -1,4 +1,3 @@
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementLicence.js'
@@ -8,7 +7,8 @@ import {
   validateAndAdjustAddress,
   validateAndAdjustParishNumber,
   validateOnFarmErrorHandling,
-  validateOnOffFarm
+  validateOnOffFarm,
+  validateOriginType
 } from '../../helpers/testHelpers/checkAnswers.js'
 
 const defaultCphNumber = '23/678/1234'
@@ -26,7 +26,7 @@ const postcode = 'SW1C 2CC'
 describe('Check your answers test', () => {
   // eslint-disable-next-line no-undef
   before('Navigate to check answers page', async () => {
-    await loadPageAndVerifyTitle('', landingPage.pageTitle)
+    await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
@@ -36,10 +36,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the back link is history -1', async () => {
-    await loadPageAndVerifyTitle(
-      newAddressPage.pagePath,
-      newAddressPage.pageTitle
-    )
+    await newAddressPage.navigateToPageAndVerifyTitle()
     await newAddressPage.selectContinue()
     await checkAnswersPage.selectBackLink()
 
@@ -47,21 +44,23 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing radio selection and verify resubmission', async () => {
-    await loadPageAndVerifyTitle(
-      checkAnswersPage.pagePath,
-      checkAnswersPage.pageTitle
-    )
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnOffFarm(
       checkAnswersPage.changeOnOrOffLink,
       checkAnswersPage.onOffFarmValue
     )
   })
 
-  it('Should verify the existing cph number then verify changing the cph number', async () => {
-    await loadPageAndVerifyTitle(
-      checkAnswersPage.pagePath,
-      checkAnswersPage.pageTitle
+  it('Should verify origin type selection and verify resubission', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
+    await validateOriginType(
+      checkAnswersPage.changeOriginTypeLink,
+      checkAnswersPage.originTypeValue
     )
+  })
+
+  it('Should verify the existing cph number then verify changing the cph number', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustParishNumber(
       checkAnswersPage.changeParishNumberLink,
       checkAnswersPage.parishNumberValue,
@@ -71,10 +70,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing data then verify changing the address', async () => {
-    await loadPageAndVerifyTitle(
-      checkAnswersPage.pagePath,
-      checkAnswersPage.pageTitle
-    )
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustAddress(
       checkAnswersPage.changeAddressLink,
       checkAnswersPage.addressValue,
@@ -88,10 +84,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify submitting answers', async () => {
-    await loadPageAndVerifyTitle(
-      checkAnswersPage.pagePath,
-      checkAnswersPage.pageTitle
-    )
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await checkAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
@@ -102,10 +95,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify changing the value to on the farm and navigating back', async () => {
-    await loadPageAndVerifyTitle(
-      checkAnswersPage.pagePath,
-      checkAnswersPage.pageTitle
-    )
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnFarmErrorHandling(checkAnswersPage.changeOnOrOffLink)
   })
 })

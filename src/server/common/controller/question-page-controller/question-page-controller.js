@@ -84,6 +84,10 @@ export class QuestionPageController {
     if (nextPage instanceof ExitPage) {
       return h.redirect(nextPage.urlPath)
     } else {
+      if (nextPage.overrideRedirects) {
+        return h.redirect(nextPage.urlPath)
+      }
+
       return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))
     }
   }

@@ -40,6 +40,13 @@ jobs:
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
 
+      - name: SonarCloud Scan
+        if: github.actor != 'dependabot[bot]'
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Journey tests
         run: |
           npm run user-journey-test
@@ -47,10 +54,3 @@ jobs:
       - name: cleanup
         if: always()
         run: docker compose down
-
-      - name: SonarCloud Scan
-        if: github.actor != 'dependabot[bot]'
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

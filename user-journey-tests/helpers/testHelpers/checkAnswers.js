@@ -11,6 +11,7 @@ import {
 } from '../page.js'
 import taskListIncompletePage from '../../page-objects/taskListIncompletePage.js'
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
+import originTypePage from '../../page-objects/origin/originTypePage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
@@ -19,6 +20,18 @@ export const validateOnOffFarm = async (changeLink, valueElement) => {
   await toFromFarmPage.selectOffFarmAndContinue()
 
   await validateElementVisibleAndText(valueElement, 'Off the farm or premises')
+}
+
+export const validateOriginType = async (changeLink, valueElement) => {
+  await selectElement(changeLink)
+
+  await expect(originTypePage.tbRestrictedFarmRadio).toBeSelected()
+  await originTypePage.selectApprovedFinishingUnitAndContinue()
+
+  await validateElementVisibleAndText(
+    valueElement,
+    'Approved finishing unit (AFU)'
+  )
 }
 
 export const validateAndAdjustParishNumber = async (

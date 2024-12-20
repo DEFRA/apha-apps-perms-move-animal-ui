@@ -1,15 +1,11 @@
 import { browser } from '@wdio/globals'
 
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
 import ParishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 
 describe('Paris holding page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
-    await loadPageAndVerifyTitle(
-      ParishHoldingNumberPage.pagePath,
-      ParishHoldingNumberPage.pageTitle
-    )
+    await ParishHoldingNumberPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
