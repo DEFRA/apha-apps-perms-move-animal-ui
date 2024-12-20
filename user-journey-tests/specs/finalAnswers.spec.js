@@ -132,6 +132,7 @@ describe('Check your final answers test', () => {
     )
     await finalAnswersPage.selectADeclarationAndContinue()
     await waitForPagePath(submissionConfirmationPage.pagePath)
+    await submissionConfirmationPage.verifyPageHeadingAndTitle()
   })
 
   it('Should submit the page after selecting second declaration', async () => {
@@ -141,6 +142,10 @@ describe('Check your final answers test', () => {
     )
     await finalAnswersPage.selectADeclarationAndContinue(true)
     await waitForPagePath(submissionConfirmationPage.pagePath)
+
+    await submissionConfirmationPage.verifyPageHeadingAndTitle()
+    await submissionConfirmationPage.selectBackLink()
+    await waitForPagePath(finalAnswersPage.pagePath)
   })
 
   it('Should verify errors when trying to submit without selecting a declaration', async () => {
