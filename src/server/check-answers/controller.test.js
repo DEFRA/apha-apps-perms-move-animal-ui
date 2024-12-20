@@ -13,6 +13,7 @@ describe('#CheckAnswers', () => {
   const originDefaultState = {
     onOffFarm: 'off',
     cphNumber: '12/123/1234',
+    originType: 'afu',
     address: {
       addressLine1: 'Starfleet Headquarters',
       addressLine2: '24-593 Federation Drive',
@@ -63,9 +64,12 @@ describe('#CheckAnswers', () => {
     )
 
     expect(taskListValues[0].innerHTML).toContain('Off the farm or premises')
-    expect(taskListValues[1].innerHTML).toContain('12/123/1234')
-    expect(taskListValues[2].innerHTML).toContain('Starfleet Headquarters')
-    expect(taskListValues[3].innerHTML).toContain('name@example.com')
+    expect(taskListValues[1].innerHTML).toContain(
+      'Approved finishing unit (AFU)'
+    )
+    expect(taskListValues[2].innerHTML).toContain('12/123/1234')
+    expect(taskListValues[3].innerHTML).toContain('Starfleet Headquarters')
+    expect(taskListValues[4].innerHTML).toContain('name@example.com')
 
     expect(statusCode).toBe(statusCodes.ok)
   })

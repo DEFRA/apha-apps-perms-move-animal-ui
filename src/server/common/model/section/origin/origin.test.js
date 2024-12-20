@@ -3,6 +3,7 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 /** @import { OnOffFarmData } from '../../answer/on-off-farm/on-off-farm.js' */
 
 const validCphNumber = '12/345/6789'
+const validOriginType = 'afu'
 /** @type OnOffFarmData */
 const validOnOffFarm = 'off'
 const validAddress = {
@@ -16,6 +17,7 @@ describe('Origin', () => {
     it('should return valid if all nested objects are valid', () => {
       const originData = {
         onOffFarm: validOnOffFarm,
+        originType: validOriginType,
         cphNumber: validCphNumber,
         address: validAddress
       }
@@ -27,6 +29,7 @@ describe('Origin', () => {
     it('should return invalid if any nested object is invalid', () => {
       const originData = {
         onOffFarm: undefined,
+        originType: validOriginType,
         cphNumber: validCphNumber,
         address: validAddress
       }

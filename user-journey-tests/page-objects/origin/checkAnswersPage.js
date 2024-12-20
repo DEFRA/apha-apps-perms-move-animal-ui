@@ -13,6 +13,10 @@ class OriginCheckAnswersPage extends Page {
     return $('[data-testid="onOffFarm-change-link"]')
   }
 
+  get changeOriginTypeLink() {
+    return $('[data-testid="originType-change-link"]')
+  }
+
   get changeParishNumberLink() {
     return $('[data-testid="cphNumber-change-link"]')
   }
@@ -26,12 +30,16 @@ class OriginCheckAnswersPage extends Page {
     return $$('.govuk-summary-list__value')[0]
   }
 
-  get parishNumberValue() {
+  get originTypeValue() {
     return $$('.govuk-summary-list__value')[1]
   }
 
-  get addressValue() {
+  get parishNumberValue() {
     return $$('.govuk-summary-list__value')[2]
+  }
+
+  get addressValue() {
+    return $$('.govuk-summary-list__value')[3]
   }
 }
 

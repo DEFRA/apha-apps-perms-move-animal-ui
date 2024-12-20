@@ -8,7 +8,8 @@ import {
   validateAndAdjustAddress,
   validateAndAdjustParishNumber,
   validateOnFarmErrorHandling,
-  validateOnOffFarm
+  validateOnOffFarm,
+  validateOriginType
 } from '../../helpers/testHelpers/checkAnswers.js'
 
 const defaultCphNumber = '23/678/1234'
@@ -54,6 +55,17 @@ describe('Check your answers test', () => {
     await validateOnOffFarm(
       checkAnswersPage.changeOnOrOffLink,
       checkAnswersPage.onOffFarmValue
+    )
+  })
+
+  it('Should verify origin type selection and verify resubission', async () => {
+    await loadPageAndVerifyTitle(
+      checkAnswersPage.pagePath,
+      checkAnswersPage.pageTitle
+    )
+    await validateOriginType(
+      checkAnswersPage.changeOriginTypeLink,
+      checkAnswersPage.originTypeValue
     )
   })
 

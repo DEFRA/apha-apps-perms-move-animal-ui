@@ -74,6 +74,7 @@ describe('#taskListController', () => {
         addressCounty: '#####',
         addressPostcode: 'RG24 8RR'
       },
+      originType: 'afu',
       onOffFarm: 'off',
       cphNumber: '12/345/6789'
     })
