@@ -1,7 +1,7 @@
 import { browser, expect } from '@wdio/globals'
 
 import originTypePage from '../../page-objects/origin/originTypePage.js'
-import { loadPageAndVerifyTitle } from '../../helpers/page.js'
+import { loadPageAndVerifyTitle, waitForPagePath } from '../../helpers/page.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import originTypeExitPage from '../../page-objects/origin/originTypeExitPage.js'
 
@@ -36,9 +36,7 @@ describe('origin type page test', () => {
     await originTypePage.selectAnotherTypeOfPremisesAndContinue()
     await expect(originTypePage.pageError).not.toBeDisplayed()
     await expect(originTypePage.errorSummary).not.toBeDisplayed()
-    expect(new URL(await browser.getUrl()).pathname).toBe(
-      `/${originTypeExitPage.pagePath}`
-    )
+    await waitForPagePath(originTypeExitPage.pagePath)
   })
 
   it('Should choose an option and check its maintained', async () => {
