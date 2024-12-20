@@ -2,8 +2,9 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { destinationSummaryPage } from './index.js'
+import { destinationTypePage } from '../destination-type/index.js'
 
 describe('#destinationSummaryController', () => {
   /** @type {Server} */
@@ -19,7 +20,7 @@ describe('#destinationSummaryController', () => {
   })
 
   describe('slaughter answer selected', () => {
-    /** @type {SesessionTestHelper} */
+    /** @type {SessionTestHelper} */
     let session
 
     const defaultState = {
@@ -27,7 +28,7 @@ describe('#destinationSummaryController', () => {
     }
 
     beforeEach(async () => {
-      session = await SesessionTestHelper.create(server)
+      session = await SessionTestHelper.create(server)
 
       await session.setState('destination', defaultState)
     })
@@ -54,7 +55,7 @@ describe('#destinationSummaryController', () => {
   })
 
   describe('other answer selected', () => {
-    /** @type {SesessionTestHelper} */
+    /** @type {SessionTestHelper} */
     let session
 
     const defaultState = {
@@ -62,13 +63,13 @@ describe('#destinationSummaryController', () => {
     }
 
     beforeEach(async () => {
-      session = await SesessionTestHelper.create(server)
+      session = await SessionTestHelper.create(server)
 
       await session.setState('destination', defaultState)
     })
 
-    it('should render expected response', async () => {
-      const { payload, statusCode } = await server.inject(
+    it('should redirect user to exit page if they`ve exited the journey', async () => {
+      const { statusCode, headers } = await server.inject(
         withCsrfProtection(
           {
             method: 'GET',
@@ -80,11 +81,11 @@ describe('#destinationSummaryController', () => {
         )
       )
 
-      const document = parseDocument(payload)
-      expect(document.title).toBe(destinationSummaryPage.pageTitle)
-      expect(statusCode).toBe(statusCodes.ok)
-
-      expect(payload).toEqual(expect.stringContaining('Another destination'))
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(
+        `${destinationTypePage.urlPath}?redirect_uri=${destinationSummaryPage.urlPath}`
+      )
     })
   })
 })

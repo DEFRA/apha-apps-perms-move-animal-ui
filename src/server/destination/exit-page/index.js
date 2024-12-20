@@ -1,7 +1,6 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { ExitPage } from '../../common/model/page/exit-page-model.js'
 
-export class DestinationExitPage extends Page {
+export class DestinationExitPage extends ExitPage {
   urlPath = '/destination/can-not-use-service'
-  overrideRedirects = true
 }
 export const destinationExitPage = new DestinationExitPage()
