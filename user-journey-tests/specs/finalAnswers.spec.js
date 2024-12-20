@@ -145,8 +145,8 @@ describe('Check your final answers test', () => {
     await waitForPagePath(submissionConfirmationPage.pagePath)
 
     await submissionConfirmationPage.verifyPageHeadingAndTitle()
-    await submissionConfirmationPage.selectBackLink()
-    await waitForPagePath(finalAnswersPage.pagePath)
+    // expect(await submissionConfirmationPage.getBackLink().isDisplayed()).toBe(false)
+    // Uncomment above when back link is removed
   })
 
   it('Should verify errors when trying to submit without selecting a declaration', async () => {
