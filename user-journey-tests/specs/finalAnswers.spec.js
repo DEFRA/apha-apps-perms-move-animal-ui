@@ -5,7 +5,8 @@ import {
   validateAndAdjustEmail,
   validateAndAdjustParishNumber,
   validateOnFarmErrorHandling,
-  validateOnOffFarm
+  validateOnOffFarm,
+  validateOriginType
 } from '../helpers/testHelpers/checkAnswers.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
@@ -71,18 +72,29 @@ describe('Check your final answers test', () => {
     await taskListPage.movementOriginLink.isDisplayed()
   })
 
-  it('Should verify the existing radio selection from submission page', async () => {
+  it('Should verify the existing on off farm selection from submission page', async () => {
     await loadPageAndVerifyTitle(
       finalAnswersPage.pagePath,
       finalAnswersPage.pageTitle
     )
-    await await validateOnOffFarm(
+    await validateOnOffFarm(
       finalAnswersPage.onOffFarmChange,
       finalAnswersPage.onOffFarmValue
     )
   })
 
-  it('Should verify the existing cph number then verify changing the cph number from submission pafe', async () => {
+  it('Should verify the existing origin type selection from submission page', async () => {
+    await loadPageAndVerifyTitle(
+      finalAnswersPage.pagePath,
+      finalAnswersPage.pageTitle
+    )
+    await validateOriginType(
+      finalAnswersPage.originTypeChange,
+      finalAnswersPage.originTypeValue
+    )
+  })
+
+  it('Should verify the existing cph number then verify changing the cph number from submission page', async () => {
     await loadPageAndVerifyTitle(
       finalAnswersPage.pagePath,
       finalAnswersPage.pageTitle
