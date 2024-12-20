@@ -7,6 +7,8 @@ import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
+import completeDestinationTest from '../helpers/testHelpers/destination.js'
+import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -78,6 +80,36 @@ describe('Task list page test', () => {
   it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
     await taskListPage.selectReview()
     await taskListIncompletePage.verifyPageHeadingAndTitle()
+  })
+
+  it('Should verify completed destination task', async () => {
+    await browser.reloadSession()
+    await completeOriginTaskAnswers()
+    await completeDestinationTest('slaughter')
+    await loadPageAndVerifyTitle(taskListPage.pagePath, taskListPage.pageTitle)
+    await taskListPage.verifyAllStatus([
+      {
+        position: 1,
+        taskTitle: 'Movement origin',
+        expectedStatus: 'Complete'
+      },
+      {
+        position: 2,
+        taskTitle: 'Movement destination',
+        expectedStatus: 'Complete'
+      },
+      {
+        position: 3,
+        taskTitle: 'Receiving the licence',
+        expectedStatus: 'Incomplete'
+      }
+    ])
+
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('1 out of 3')
+
+    await taskListPage.selectMovementDestination()
+    await waitForPagePath(destinationAnswersPage.pagePath)
+    await destinationAnswersPage.verifyPageHeadingAndTitle()
   })
 
   it('Should link to receiving licence summary once that selection has been completed', async () => {
