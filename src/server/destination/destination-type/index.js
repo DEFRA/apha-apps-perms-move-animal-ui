@@ -1,9 +1,10 @@
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { destinationExitPage } from '~/src/server/destination/exit-page/index.js'
+import { anotherDestinationPage } from '~/src/server/destination/another-destination/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
+import { destinationExitPage } from '../exit-page/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -24,7 +25,7 @@ export class DestinationTypePage extends QuestionPage {
       slaughter: destinationGeneralLicencePage,
       'dedicated-sale': destinationSummaryPage,
       afu: destinationSummaryPage,
-      other: destinationExitPage
+      other: anotherDestinationPage
     }
     return nextPageMapping[answer.value] ?? destinationExitPage
   }
