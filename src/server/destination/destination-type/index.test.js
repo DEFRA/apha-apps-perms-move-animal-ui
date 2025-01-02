@@ -3,10 +3,10 @@ import {
   destinationTypePage,
   DestinationTypePage
 } from './index.js'
-import { destinationExitPage } from '../exit-page/index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
+import { anotherDestinationPage } from '../another-destination/index.js'
 
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
@@ -67,7 +67,7 @@ describe('DestinationTypePage', () => {
     it('nextPage should return exitPage when answer is "other"', () => {
       const answer = { value: 'other' }
       const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationExitPage)
+      expect(nextPage).toBe(anotherDestinationPage)
     })
   })
 
