@@ -83,7 +83,7 @@ describe('Check your answers test - destination', () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('Should verify continue link', async () => {
+  it('Should handle "Another destination" as an exit page & redirect users back to the preceding question', async () => {
     await completeDestinationTest('dedicated')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
