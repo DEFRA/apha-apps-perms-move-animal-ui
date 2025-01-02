@@ -13,18 +13,22 @@ describe('#CheckAnswers', () => {
   const originDefaultState = {
     onOffFarm: 'off',
     cphNumber: '12/123/1234',
-    originType: 'afu',
     address: {
       addressLine1: 'Starfleet Headquarters',
       addressLine2: '24-593 Federation Drive',
       addressTown: 'San Francisco',
       addressCounty: 'San Francisco',
       addressPostcode: 'RG24 8RR'
-    }
+    },
+    originType: 'afu'
   }
 
   const licenceDefaultState = {
     emailAddress: 'name@example.com'
+  }
+
+  const destinationDefaultState = {
+    destinationType: 'afu'
   }
 
   beforeAll(async () => {
@@ -36,6 +40,7 @@ describe('#CheckAnswers', () => {
     session = await SessionTestHelper.create(server)
     await session.setState('origin', originDefaultState)
     await session.setState('licence', licenceDefaultState)
+    await session.setState('destination', destinationDefaultState)
   })
 
   afterAll(async () => {
@@ -69,7 +74,10 @@ describe('#CheckAnswers', () => {
     )
     expect(taskListValues[2].innerHTML).toContain('12/123/1234')
     expect(taskListValues[3].innerHTML).toContain('Starfleet Headquarters')
-    expect(taskListValues[4].innerHTML).toContain('name@example.com')
+    expect(taskListValues[4].innerHTML).toContain(
+      'Approved finishing unit (AFU)'
+    )
+    expect(taskListValues[5].innerHTML).toContain('name@example.com')
 
     expect(statusCode).toBe(statusCodes.ok)
   })
