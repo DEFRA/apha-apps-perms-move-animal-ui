@@ -7,7 +7,7 @@ import { ExitPage } from '../../common/model/page/exit-page-model.js'
 
 export class AnotherDestinationExitPage extends ExitPage {
   pageTitle = 'This service is not available for your movement type'
-  urlPath = `/destination/another-destination`
+  urlPath = `/destination/can-not-use-service`
   view = `destination/another-destination/index`
 }
 export const anotherDestinationPage = new AnotherDestinationExitPage()

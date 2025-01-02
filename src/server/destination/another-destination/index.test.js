@@ -14,7 +14,7 @@ describe('#AnotherDestinationController', () => {
   })
 
   it('should have the correct path', () => {
-    expect(page.urlPath).toBe('/destination/another-destination')
+    expect(page.urlPath).toBe('/destination/can-not-use-service')
   })
 
   it('should have the correct view', () => {
