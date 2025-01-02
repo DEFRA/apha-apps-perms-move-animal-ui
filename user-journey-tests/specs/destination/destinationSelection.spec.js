@@ -42,7 +42,7 @@ describe('Destination selection test', () => {
 
   it('Should choose other destination and continue', async () => {
     await destinationSelectionPage.selectOtherDestinationAndContinue()
-    await waitForPagePath(canNotUseServicePage.pagePath)
+    await canNotUseServicePage.verifyPageHeadingAndTitle()
 
     await canNotUseServicePage.selectBackLink()
     await waitForPagePath(destinationSelectionPage.pagePath)
