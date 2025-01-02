@@ -1,9 +1,7 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% extends 'layouts/page.njk' %}
-
 {% block content %}
-
   {% if (errorMessages) %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -16,7 +14,6 @@
       </div>
     </div>
   {% endif %}
-
   {% if (heading) %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -24,21 +21,17 @@
       </div>
     </div>
   {% endif %}
-
   {% block beforequestion %}
   {% endblock %}
-
   {% if (not hideQuestion) %}
     <form method="POST" novalidate>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="{{ crumb }}" />
           <input type="hidden" name="nextPage" value="{{ nextPage }}" />
-
           {% block questions %}{% endblock %}
         </div>
       </div>
-
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           {% block button %}
