@@ -1,3 +1,4 @@
+import { anotherDestination } from './another-destination/index.js'
 import { destinationType } from './destination-type/index.js'
 import { generalLicence } from './general-licence/index.js'
 import { destinationSummary } from './summary/index.js'
@@ -12,7 +13,8 @@ export const destination = {
       await server.register([
         destinationType,
         generalLicence,
-        destinationSummary
+        destinationSummary,
+        anotherDestination
       ])
     }
   }
