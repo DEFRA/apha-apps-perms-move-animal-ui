@@ -6,6 +6,7 @@ import { QuestionPage } from '../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../common/model/page/page-model.js'
+import { ApplicationModel } from '../common/model/application/application.js'
 
 const checkAnswersUrlPath = '/submit/check-answers'
 
@@ -14,8 +15,7 @@ class ConfirmationPage extends Page {
 }
 
 export class SubmitSummaryPage extends QuestionPage {
-  pageTitle = 'Check your answers before sending your application'
-  pageHeading = 'Check your answers before sending your application'
+  question = 'Check your answers before sending your application'
   sectionKey = 'submit'
   questionKey = 'check-answers'
   urlPath = `/${this.sectionKey}/${this.questionKey}`
@@ -48,6 +48,22 @@ export const submitSummaryPage = new SubmitSummaryPage()
 class SubmitPageController extends QuestionPageController {
   constructor() {
     super(new SubmitSummaryPage())
+  }
+
+  getHandler(req, h) {
+    const application = ApplicationModel.fromState({
+      origin: req.yar.get('origin'),
+      licence: req.yar.get('licence'),
+      destination: req.yar.get('destination')
+    })
+
+    const { isValid } = application.validate()
+
+    if (!isValid) {
+      return h.redirect('/task-list-incomplete')
+    }
+
+    return super.getHandler(req, h)
   }
 
   postHandler(req, h) {
