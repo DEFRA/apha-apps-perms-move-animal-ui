@@ -2,6 +2,7 @@ import { ApplicationModel } from './application.js'
 import { OnOffFarmAnswer } from '../answer/on-off-farm/on-off-farm.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
+import { DestinationSection } from '../section/destination/destination.js'
 
 const originDefaultState = {
   onOffFarm: new OnOffFarmAnswer({ onOffFarm: 'on' }).toState(),
@@ -38,5 +39,6 @@ describe('Application', () => {
 
     expect(application.origin).toBeInstanceOf(OriginSection)
     expect(application.licence).toBeInstanceOf(LicenceSection)
+    expect(application.destination).toBeInstanceOf(DestinationSection)
   })
 })
