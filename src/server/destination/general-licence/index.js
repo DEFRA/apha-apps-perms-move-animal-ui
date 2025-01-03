@@ -21,7 +21,7 @@ export class DestinationGeneralLicencePage extends Page {
     return new DestinationSummaryPage()
   }
 
-  get viewProps() {
+  viewProps() {
     return {
       continueUrl: this.nextPage().urlPath
     }

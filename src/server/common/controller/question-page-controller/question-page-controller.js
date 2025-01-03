@@ -48,7 +48,8 @@ export class QuestionPageController {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
-      value: answer.value
+      value: answer.value,
+      ...this.page.viewProps(req)
     })
   }
 
@@ -70,7 +71,8 @@ export class QuestionPageController {
         heading: this.page.heading,
         value: answer.value,
         errors,
-        errorMessages: Answer.errorMessages(errors)
+        errorMessages: Answer.errorMessages(errors),
+        ...this.page.viewProps(req)
       })
     }
 

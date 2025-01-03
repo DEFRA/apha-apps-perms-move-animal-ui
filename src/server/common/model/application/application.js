@@ -1,4 +1,3 @@
-import { destination } from 'pino'
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
