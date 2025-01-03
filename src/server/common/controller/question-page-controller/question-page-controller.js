@@ -87,7 +87,13 @@ export class QuestionPageController {
       return h.redirect(nextPage.urlPath)
     } else {
       if (nextPage.overrideRedirects) {
-        return h.redirect(nextPage.urlPath)
+        const query = new URLSearchParams(req.query)
+        let url = nextPage.urlPath
+
+        if (query.size > 0) {
+          url += `?${query.toString()}`
+        }
+        return h.redirect(url)
       }
 
       return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))
