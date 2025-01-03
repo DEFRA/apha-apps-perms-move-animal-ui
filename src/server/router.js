@@ -6,12 +6,11 @@ import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files
 import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
-import { checkAnswers } from './check-answers/index.js'
 import { licence } from './licence/index.js'
 import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './submit/index.js'
-import { submitSummary } from './task-list/page.js'
+import { submitSummary } from './check-answers/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -34,7 +33,6 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        checkAnswers,
         submit,
         submitSummary
       ])
