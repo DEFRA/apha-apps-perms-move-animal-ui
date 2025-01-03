@@ -11,6 +11,7 @@ import { licence } from './licence/index.js'
 import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './submit/index.js'
+import { submitSummary } from './task-list/page.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -34,7 +35,8 @@ export const router = {
         taskList,
         taskListIncomplete,
         checkAnswers,
-        submit
+        submit,
+        submitSummary
       ])
 
       // Static assets
