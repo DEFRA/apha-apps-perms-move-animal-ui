@@ -45,7 +45,7 @@ export class SubmitSummaryPage extends QuestionPage {
 
 export const submitSummaryPage = new SubmitSummaryPage()
 
-class SubmitPageController extends QuestionPageController {
+export class SubmitPageController extends QuestionPageController {
   constructor() {
     super(new SubmitSummaryPage())
   }
