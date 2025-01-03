@@ -32,7 +32,7 @@ class TestPage extends Page {
     return new TestNextPage()
   }
 
-  get viewProps() {
+  viewProps() {
     return {
       continueUrl: this.nextPage().urlPath
     }

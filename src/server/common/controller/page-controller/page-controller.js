@@ -57,7 +57,7 @@ export class PageController {
       pageTitle: this.page.title,
       heading: this.page.heading,
       hideQuestion: true,
-      ...this.page.viewProps
+      ...this.page.viewProps(req)
     })
   }
 

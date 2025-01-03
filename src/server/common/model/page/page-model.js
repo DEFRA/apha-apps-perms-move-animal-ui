@@ -36,8 +36,12 @@ export class Page {
     return this.pageTitle
   }
 
-  /** @returns {Record<string, unknown>} */
-  get viewProps() {
+  /**
+   * @param {import('@hapi/hapi').Request} _req
+   * @returns {Record<string, unknown>}
+   * */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  viewProps(_req) {
     return {}
   }
 

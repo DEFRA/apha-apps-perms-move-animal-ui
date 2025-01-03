@@ -41,6 +41,6 @@ describe('DestinationGeneralLicencePage', () => {
   })
 
   it('should be able ot calculate the next page URL as a string for the template', () => {
-    expect(page.viewProps.continueUrl).toBe(nextPage.urlPath)
+    expect(page.viewProps().continueUrl).toBe(nextPage.urlPath)
   })
 })

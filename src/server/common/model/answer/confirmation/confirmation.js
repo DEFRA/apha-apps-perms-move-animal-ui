@@ -22,10 +22,29 @@ const ensureArray = (value) => (Array.isArray(value) ? value : [value])
  */
 export class ConfirmationAnswer extends AnswerModel {
   get value() {
-    return {
-      confirm: this._data?.confirmation.includes('confirm'),
-      other: this._data?.confirmation.includes('other')
+    const value = {}
+
+    if (
+      (Array.isArray(this._data?.confirmation) &&
+        this._data?.confirmation?.includes('confirm')) ||
+      this._data?.confirmation === 'confirm'
+    ) {
+      value.confirm = true
+    } else {
+      value.confirm = false
     }
+
+    if (
+      (Array.isArray(this._data?.confirmation) &&
+        this._data?.confirmation?.includes('other')) ||
+      this._data?.confirmation === 'other'
+    ) {
+      value.other = true
+    } else {
+      value.other = false
+    }
+
+    return value
   }
 
   get html() {
