@@ -25,7 +25,6 @@ export class ConfirmationAnswer extends AnswerModel {
     const data = Array.isArray(this._data?.confirmation)
       ? this._data.confirmation
       : [this._data?.confirmation]
-
     const value = {
       confirm: data.includes('confirm'),
       other: data.includes('other')
