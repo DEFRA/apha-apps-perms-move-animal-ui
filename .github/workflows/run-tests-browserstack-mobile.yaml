@@ -1,0 +1,42 @@
+name: Browserstack extended tests (mobile)
+
+on:
+  workflow_run:
+    workflows: ['Publish']
+    types:
+      - completed
+
+env:
+  AWS_REGION: eu-west-2
+  AWS_ACCOUNT_ID: '094954420758'
+
+concurrency:
+  group: browserstack-extended-tests-mobile
+
+jobs:
+  build:
+    name: CDP-build-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Start docker compose
+        env:
+          NOTIFY_TEMPLATE_ID: ${{ secrets.NOTIFY_TEMPLATE_ID }}
+          NOTIFY_API_KEY: ${{ secrets.NOTIFY_API_KEY }}
+          NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${{ secrets.NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS }}
+        run: |
+          docker compose up --wait-timeout 300 -d --quiet-pull
+
+      - name: Browserstack tests
+        run: |
+          npm ci
+          npm run user-journey-test:bs-extended-mobile
+        env:
+          BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
+          BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
+
+      - name: cleanup
+        if: always()
+        run: docker compose down
