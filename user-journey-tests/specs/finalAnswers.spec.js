@@ -55,6 +55,7 @@ describe('Check your final answers test', () => {
 
     await completeDestinationTask('approved')
     await destinationAnswersPage.selectContinue()
+    await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
       position: 2,
       taskTitle: 'Movement destination',
