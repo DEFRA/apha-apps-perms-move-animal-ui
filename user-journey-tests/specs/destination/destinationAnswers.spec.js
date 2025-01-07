@@ -31,7 +31,7 @@ describe('Check your answers test - destination', () => {
     await expect(destinationSelectionPage.slaughterRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
-    await selectElement(generalLicencePage.continueLink)
+    await generalLicencePage.selectContinueLink()
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Slaughter'
