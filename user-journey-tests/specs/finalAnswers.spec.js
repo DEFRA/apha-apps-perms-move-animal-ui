@@ -15,6 +15,8 @@ import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAns
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import submissionConfirmationPage from '../page-objects/submissionConfirmationPage.js'
+import completeDestinationTask from '../helpers/testHelpers/destination.js'
+import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 
 const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
@@ -48,7 +50,15 @@ describe('Check your final answers test', () => {
       taskTitle: 'Movement origin',
       expectedStatus: 'Completed'
     })
-    await landingPage.navigateToPageAndVerifyTitle()
+
+    await completeDestinationTask('approved')
+    await destinationAnswersPage.selectContinue()
+    await taskListPage.verifyStatus({
+      position: 2,
+      taskTitle: 'Movement destination',
+      expectedStatus: 'Completed'
+    })
+
     await completeLicenceTaskAnswersCustom(emailDefault)
     await licenceAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
