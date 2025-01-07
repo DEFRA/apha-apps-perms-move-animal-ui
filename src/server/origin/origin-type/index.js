@@ -7,7 +7,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
-import { exitPageOriginType } from '../exit-page-origin-type/index.js'
+import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -25,7 +25,7 @@ export class OriginTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'other') {
-      return exitPageOriginType
+      return exitPagePremisesType
     }
     return cphNumberPage
   }
