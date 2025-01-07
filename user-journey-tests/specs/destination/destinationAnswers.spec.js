@@ -3,7 +3,7 @@ import {
   validateElementVisibleAndText,
   waitForPagePath
 } from '../../helpers/page.js'
-import completeDestinationTest from '../../helpers/testHelpers/destination.js'
+import completeDestinationTask from '../../helpers/testHelpers/destination.js'
 import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
 import canNotUseServicePage from '../../page-objects/destination/canNotUseServicePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
@@ -21,7 +21,7 @@ describe('Check your answers test - destination', () => {
   })
 
   it('Should verify slaughter answer and change link', async () => {
-    await completeDestinationTest('slaughter')
+    await completeDestinationTask('slaughter')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Slaughter'
@@ -39,7 +39,7 @@ describe('Check your answers test - destination', () => {
   })
 
   it('Should verify dedicated sale for tb answer and change link', async () => {
-    await completeDestinationTest('dedicated')
+    await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Dedicated sale for TB (orange market)'
@@ -56,7 +56,7 @@ describe('Check your answers test - destination', () => {
   })
 
   it('Should verify approved finishing unit answer and change link', async () => {
-    await completeDestinationTest('approved')
+    await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Approved finishing unit (AFU)'
@@ -73,7 +73,7 @@ describe('Check your answers test - destination', () => {
   })
 
   it('Should verify continue link', async () => {
-    await completeDestinationTest('approved')
+    await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Approved finishing unit (AFU)'
@@ -84,7 +84,7 @@ describe('Check your answers test - destination', () => {
   })
 
   it('Should handle "Another destination" as an exit page & redirect users back to the preceding question', async () => {
-    await completeDestinationTest('dedicated')
+    await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       destinationAnswersPage.destinationValue,
       'Dedicated sale for TB (orange market)'

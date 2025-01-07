@@ -6,7 +6,7 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 
 // Helper function to complete the origin task
-const completeDestinationTest = async (radioType) => {
+const completeDestinationTask = async (radioType) => {
   await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectMovementDestination()
@@ -29,4 +29,4 @@ const completeDestinationTest = async (radioType) => {
   }
 }
 
-export default completeDestinationTest
+export default completeDestinationTask
