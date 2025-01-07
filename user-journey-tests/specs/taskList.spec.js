@@ -7,7 +7,7 @@ import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
-import completeDestinationTest from '../helpers/testHelpers/destination.js'
+import completeDestinationTask from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 
 describe('Task list page test', () => {
@@ -85,7 +85,7 @@ describe('Task list page test', () => {
   it('Should verify completed destination task', async () => {
     await browser.reloadSession()
     await completeOriginTaskAnswers()
-    await completeDestinationTest('slaughter')
+    await completeDestinationTask('slaughter')
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {

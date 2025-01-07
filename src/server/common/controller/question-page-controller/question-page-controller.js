@@ -48,7 +48,8 @@ export class QuestionPageController {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
-      value: answer.value
+      value: answer.value,
+      ...this.page.viewProps(req)
     })
   }
 
@@ -70,7 +71,8 @@ export class QuestionPageController {
         heading: this.page.heading,
         value: answer.value,
         errors,
-        errorMessages: Answer.errorMessages(errors)
+        errorMessages: Answer.errorMessages(errors),
+        ...this.page.viewProps(req)
       })
     }
 
@@ -85,7 +87,13 @@ export class QuestionPageController {
       return h.redirect(nextPage.urlPath)
     } else {
       if (nextPage.overrideRedirects) {
-        return h.redirect(nextPage.urlPath)
+        const query = new URLSearchParams(req.query)
+        let url = nextPage.urlPath
+
+        if (query.size > 0) {
+          url += `?${query.toString()}`
+        }
+        return h.redirect(url)
       }
 
       return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))

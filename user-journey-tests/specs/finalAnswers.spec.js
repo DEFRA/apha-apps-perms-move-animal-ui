@@ -1,4 +1,4 @@
-import { waitForPagePath } from '../helpers/page.js'
+import { selectElement, waitForPagePath } from '../helpers/page.js'
 import landingPage from '../page-objects/landingPage.js'
 import {
   validateAndAdjustAddress,
@@ -15,6 +15,10 @@ import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAns
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import submissionConfirmationPage from '../page-objects/submissionConfirmationPage.js'
+import completeDestinationTask from '../helpers/testHelpers/destination.js'
+import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
+import destinationSelectionPage from '../page-objects/destination/destinationSelectionPage.js'
+import generalLicencePage from '../page-objects/destination/generalLicencePage.js'
 
 const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
@@ -48,7 +52,15 @@ describe('Check your final answers test', () => {
       taskTitle: 'Movement origin',
       expectedStatus: 'Completed'
     })
-    await landingPage.navigateToPageAndVerifyTitle()
+
+    await completeDestinationTask('approved')
+    await destinationAnswersPage.selectContinue()
+    await taskListPage.verifyStatus({
+      position: 2,
+      taskTitle: 'Movement destination',
+      expectedStatus: 'Completed'
+    })
+
     await completeLicenceTaskAnswersCustom(emailDefault)
     await licenceAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
@@ -135,6 +147,19 @@ describe('Check your final answers test', () => {
     // This test must go last because it changes the page title
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await finalAnswersPage.submissionErrorTest()
+  })
+
+  it('Should go via the general licence page if the destination type is changed to "slaughter"', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+
+    await selectElement(finalAnswersPage.movementDestinationChange)
+
+    await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
+
+    await destinationSelectionPage.selectSlaughterRadioAndContinue()
+    await generalLicencePage.verifyPageHeadingAndTitle()
+    await generalLicencePage.selectContinueLink()
+    await finalAnswersPage.verifyPageHeadingAndTitle()
   })
 
   it('Should verify changing the value to on the farm and navigating back', async () => {
