@@ -1,7 +1,7 @@
 import { originType, originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
-import { exitPageOriginType } from '../exit-page-origin-type/index.js'
+import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 
 /** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
 
@@ -61,7 +61,7 @@ describe('OriginTypePage', () => {
   it('nextPage should return exitPagePremisesType when answer is "other"', () => {
     const answer = { value: 'other' }
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(exitPageOriginType)
+    expect(nextPage).toBe(exitPagePremisesType)
   })
 
   it('should export originType as a plugin', () => {

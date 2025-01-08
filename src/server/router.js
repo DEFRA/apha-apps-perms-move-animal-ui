@@ -11,6 +11,7 @@ import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './submit/index.js'
 import { submitSummary } from './check-answers/index.js'
+import { premisesType } from './origin/premises-type-exit-page/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -34,7 +35,8 @@ export const router = {
         taskList,
         taskListIncomplete,
         submit,
-        submitSummary
+        submitSummary,
+        premisesType
       ])
 
       // Static assets
