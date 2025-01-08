@@ -1,7 +1,6 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% extends 'layouts/questions.njk' %}
 {% from "macros/create-summary.njk" import createSummary %}
-
 {% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -9,6 +8,8 @@
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
           <h2 class="govuk-heading-m">Movement origin</h2>
           {{ createSummary(origin) }}
+          <h2 class="govuk-heading-m">Movement destination</h2>
+          {{ createSummary(destination) }}
           <h2 class="govuk-heading-m">Receiving the licence</h2>
           {{ createSummary(licence) }}
         </div>
@@ -16,12 +17,9 @@
     </div>
   </div>
 {% endblock %}
-
 {% block questions %}
   <h2 class="govuk-heading-m">Your declaration</h2>
-
   <p>Before you submit your application, you need to confirm:</p>
-
   <ul class="govuk-list govuk-list--bullet">
     <li>all relevant sections are complete</li>
     <li>
@@ -29,14 +27,13 @@
       knowledge
     </li>
   </ul>
-
   <!-- form URL below turns off errors on the next page  -->
   {{
     govukCheckboxes
     ({
       name: "confirmation",
       id: "confirmation",
-      errorMessage: errorMessage,
+      errorMessage: errors.confirmation,
       fieldset: {
         legend:{
           text: "",

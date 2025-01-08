@@ -378,5 +378,30 @@ describe('QuestionPageController', () => {
       expect(headers.location).not.toBe(redirectUrl)
       expect(headers.location).toBe(overriddenQuestionUrl)
     })
+
+    it('should add a query string onto tthe overriden url', async () => {
+      await session.setState(sectionKey, { [questionKey]: 'block-redirect' })
+
+      const redirectUrl = '/dummy/incorrect-url'
+      const { statusCode, headers } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}?redirect=true`,
+            payload: {
+              nextPage: redirectUrl,
+              [questionKey]: 'block-redirect'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).not.toBe(redirectUrl)
+      expect(headers.location).toBe(`${overriddenQuestionUrl}?redirect=true`)
+    })
   })
 })

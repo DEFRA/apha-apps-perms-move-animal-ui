@@ -48,6 +48,6 @@ describe('Page', () => {
   })
 
   it('should return an empty object for viewProps', () => {
-    expect(page.viewProps).toEqual({})
+    expect(page.viewProps()).toEqual({})
   })
 })

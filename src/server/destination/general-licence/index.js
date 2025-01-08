@@ -1,6 +1,7 @@
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
 import { DestinationSummaryPage } from '../summary/index.js'
+import { calculateNextPage } from '../../common/helpers/next-page.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -21,9 +22,12 @@ export class DestinationGeneralLicencePage extends Page {
     return new DestinationSummaryPage()
   }
 
-  get viewProps() {
+  viewProps(req) {
     return {
-      continueUrl: this.nextPage().urlPath
+      continueUrl: calculateNextPage(
+        req?.query?.redirect_uri,
+        this.nextPage().urlPath
+      )
     }
   }
 }

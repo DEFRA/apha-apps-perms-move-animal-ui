@@ -3,8 +3,9 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_apha-apps-perms-move-animal-ui&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=DEFRA_apha-apps-perms-move-animal-ui)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_apha-apps-perms-move-animal-ui&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DEFRA_apha-apps-perms-move-animal-ui)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_apha-apps-perms-move-animal-ui&metric=coverage)](https://sonarcloud.io/summary/new_code?id=DEFRA_apha-apps-perms-move-animal-ui)
-![Publish Workflow Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/publish.yml/badge.svg)
-![Run Tests Browserstack Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack.yaml/badge.svg)
+[![Publish Workflow Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/publish.yml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/publish.yml)
+[![Run Tests Browserstack (desktop) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml)
+[![Run Tests Browserstack (mobile) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml)
 
 Frontend to the 'Move animals under disease control restriction' service.
 
