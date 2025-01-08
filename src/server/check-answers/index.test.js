@@ -60,7 +60,8 @@ describe('#checkAnswers', () => {
     })
 
     await session.setState('licence', {
-      emailAddress: 'here@there.com'
+      emailAddress: 'here@there.com',
+      receiveMethod: 'email'
     })
 
     const { payload, statusCode } = await server.inject(

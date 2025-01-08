@@ -11,6 +11,9 @@ import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submitSummary } from './check-answers/index.js'
 import { premisesType } from './origin/premises-type-exit-page/index.js'
+import { receiveMethod } from './licence/receiveMethod/index.js'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { postExitPage } from './licence/postExitPage/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -34,7 +37,9 @@ export const router = {
         taskList,
         taskListIncomplete,
         premisesType,
-        submitSummary
+        submitSummary,
+        receiveMethod
+        // postExitPage - TODO: Uncomment this line to enable the post exit page
       ])
 
       // Static assets

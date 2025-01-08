@@ -10,6 +10,7 @@ export class ExitPagePremisesType extends ExitPage {
   pageTitle = 'This service is not available for your movement type'
   view = `origin/premises-type-exit-page/index`
   key = 'ExitPagePremisesType'
+  sectionKey = 'origin'
 }
 export const exitPagePremisesType = new ExitPagePremisesType()
 

@@ -1,5 +1,5 @@
 import { SectionModel } from '../section-model/section-model.js'
-import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
+import { receiveMethodPage } from '~/src/server/licence/receiveMethod/index.js'
 
 /**
  * export @typedef {{
@@ -9,7 +9,7 @@ import { emailAddressPage } from '~/src/server/licence/email-address/index.js'
  */
 
 export class LicenceSection extends SectionModel {
-  static firstPageFactory = () => emailAddressPage
+  static firstPageFactory = () => receiveMethodPage
 
   /**
    * @param {LicenceData | undefined} data

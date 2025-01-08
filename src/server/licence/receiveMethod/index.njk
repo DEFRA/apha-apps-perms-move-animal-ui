@@ -1,0 +1,28 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% extends 'layouts/questions.njk' %}
+{% block questions %}
+  {% call govukFieldset() %}
+    {{
+      govukRadios({
+        name: "receiveMethod",
+        id: "receive-method",
+        fieldset:{},
+        value: value,
+        items: [
+          {
+            id: "email",
+            value: "email",
+            text: "Email"
+          },
+          {
+            id: "post",
+            value: "post",
+            text: "Post"
+          }
+        ],
+        errorMessage: errors.receiveMethod
+      })
+    }}
+  {% endcall %}
+{% endblock %}
