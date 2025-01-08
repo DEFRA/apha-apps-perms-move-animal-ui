@@ -33,8 +33,7 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        checkAnswers,
-        premisesType
+        premisesType,
         submitSummary
       ])
 
