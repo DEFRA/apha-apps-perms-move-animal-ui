@@ -7,8 +7,17 @@ import { QuestionPageController } from '../common/controller/question-page-contr
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
+import { sendNotification } from '../common/helpers/notify/notify.js'
 
 const checkAnswersUrlPath = '/submit/check-answers'
+
+export const pageTitle = 'Check your answers before sending your application'
+const heading = pageTitle
+
+/**
+ * @import {NextPage} from '../common/helpers/next-page.js'
+ * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
+ */
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -66,11 +75,43 @@ export class SubmitPageController extends QuestionPageController {
     return super.getHandler(req, h)
   }
 
-  postHandler(req, h) {
-    // eslint-disable-next-line no-console
-    console.info('do custom logic here')
+  async postHandler(req, h) {
+    const tasks = {
+      origin: OriginSection.fromState(req.yar.get('origin')),
+      licence: LicenceSection.fromState(req.yar.get('licence'))
+    }
 
-    return super.postHandler(req, h)
+    const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
+    const confirmation = new ConfirmationAnswer(payload)
+
+    const { isValid, errors } = confirmation.validate()
+
+    if (!isValid) {
+      return h.view('check-answers/index', {
+        pageTitle: `Error: ${pageTitle}`,
+        heading,
+        confirmation,
+        errorMessages: ConfirmationAnswer.errorMessages(errors),
+        errorMessage: errors.confirmation,
+        origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
+        licence: sectionToSummary(tasks.licence, checkAnswersUrlPath)
+      })
+    }
+
+    const emailContent = Object.values(tasks)
+      .flatMap(({ questionPageAnswers }) =>
+        questionPageAnswers.map(
+          ({ page, answer }) =>
+            `## ${page.question}\n${answer.html.replace(/<br \/>/g, '\n')}`
+        )
+      )
+      .join('\n')
+
+    await sendNotification({
+      content: emailContent
+    })
+    return h.redirect('/submit/confirmation')
+    // return super.postHandler(req, h)
   }
 }
 
