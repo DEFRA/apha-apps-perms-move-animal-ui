@@ -9,6 +9,7 @@ import { taskListIncomplete } from './task-list-incomplete/index.js'
 import { licence } from './licence/index.js'
 import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
+import { submit } from './submit/index.js'
 import { submitSummary } from './check-answers/index.js'
 import { premisesType } from './origin/premises-type-exit-page/index.js'
 
@@ -33,8 +34,9 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        premisesType,
-        submitSummary
+        submit,
+        submitSummary,
+        premisesType
       ])
 
       // Static assets

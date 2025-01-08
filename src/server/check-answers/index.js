@@ -7,8 +7,14 @@ import { QuestionPageController } from '../common/controller/question-page-contr
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
+import { sendNotification } from '../common/helpers/notify/notify.js'
 
 const checkAnswersUrlPath = '/submit/check-answers'
+
+/**
+ * @import {NextPage} from '../common/helpers/next-page.js'
+ * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
+ */
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -66,9 +72,37 @@ export class SubmitPageController extends QuestionPageController {
     return super.getHandler(req, h)
   }
 
-  postHandler(req, h) {
-    // eslint-disable-next-line no-console
-    console.info('do custom logic here')
+  async postHandler(req, h) {
+    const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
+    const confirmation = new ConfirmationAnswer(payload)
+    const { isValid: isValidPage } = confirmation.validate()
+
+    const application = ApplicationModel.fromState({
+      origin: req.yar.get('origin'),
+      licence: req.yar.get('licence'),
+      destination: req.yar.get('destination')
+    })
+
+    const { isValid: isValidApplication } = application.validate()
+
+    if (isValidPage && isValidApplication) {
+      const emailContent = Object.values(application.tasks)
+        .flatMap(({ questionPageAnswers }) =>
+          questionPageAnswers.map(
+            ({ page, answer }) =>
+              `## ${page.question}\n${answer.html.replace(/<br \/>/g, '\n')}`
+          )
+        )
+        .join('\n')
+
+      await sendNotification({
+        content: emailContent
+      })
+    }
+
+    if (!isValidApplication) {
+      return h.redirect('/task-list-incomplete')
+    }
 
     return super.postHandler(req, h)
   }

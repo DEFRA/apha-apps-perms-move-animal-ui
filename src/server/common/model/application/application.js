@@ -4,10 +4,6 @@ import { OriginSection } from '../section/origin/origin.js'
 import { validateApplication } from './validation.js'
 
 /**
- * @import {SectionModel} from '../section/section-model/section-model.js'
- */
-
-/**
  * export @typedef {{
  * origin: OriginData | undefined;
  * licence: LicenceData | undefined;
@@ -31,27 +27,12 @@ export class ApplicationModel {
   }
 
   /**
-   * @returns {OriginSection}
+   * Getter for tasks.
+   * @returns {Array | object} The data associated with each and every task in the application
    */
-  get origin() {
-    return OriginSection.fromState(this._data.origin)
+  get tasks() {
+    return this._data
   }
-
-  /**
-   * @returns {LicenceSection}
-   */
-  get licence() {
-    return LicenceSection.fromState(this._data.licence)
-  }
-
-  /**
-   * @returns {DestinationSection}
-   */
-  get destination() {
-    return DestinationSection.fromState(this._data.destination)
-  }
-
-  /* eslint-disable @typescript-eslint/no-unused-vars */
 
   /**
    * @param {ApplicationData | undefined} state
@@ -64,6 +45,4 @@ export class ApplicationModel {
       destination: DestinationSection.fromState(state?.destination)
     })
   }
-
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 }

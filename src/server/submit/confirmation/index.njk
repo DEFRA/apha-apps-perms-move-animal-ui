@@ -1,0 +1,33 @@
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{%
+  extends
+  'layouts/page.njk'
+%}
+
+{% block metaBeforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        {{
+          govukPanel({
+            titleText: "Application complete",
+            html: ""
+          })
+        }}
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p class="govuk-body">
+          It takes up to 5 working days to process and issue a licence.
+        </p>
+
+        <p class="govuk-body">
+          We will contact you if we need any further information.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
