@@ -41,7 +41,9 @@ export const router = {
         // postExitPage - TODO: Uncomment this line to enable the post exit page
         submit,
         submitSummary,
-        premisesType
+        premisesType,
+        receiveMethod
+        // postExitPage - TODO: Uncomment this line to enable the post exit page
       ])
 
       // Static assets
