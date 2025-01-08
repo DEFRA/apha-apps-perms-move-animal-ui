@@ -33,8 +33,8 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        submitSummary,
-        premisesType
+        premisesType,
+        submitSummary
       ])
 
       // Static assets
