@@ -10,6 +10,7 @@ import { licence } from './licence/index.js'
 import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submitSummary } from './check-answers/index.js'
+import { premisesType } from './origin/premises-type-exit-page/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -32,7 +33,8 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        submitSummary
+        submitSummary,
+        premisesType
       ])
 
       // Static assets
