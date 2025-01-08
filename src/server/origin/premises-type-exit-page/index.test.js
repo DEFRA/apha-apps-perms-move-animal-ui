@@ -1,6 +1,6 @@
 import { ExitPagePremisesType } from './index.js'
 
-describe('#AnotherDestinationController', () => {
+describe('#ExitPagePremisesTypeController', () => {
   it('should have the correct properties', () => {
     const page = new ExitPagePremisesType()
     expect(page.pageTitle).toBe(
