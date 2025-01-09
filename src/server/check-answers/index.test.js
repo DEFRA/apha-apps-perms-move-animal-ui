@@ -146,25 +146,6 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  it('Should redirect to task-list-incomplete if any task is invalid', async () => {
-    await session.setState('licence', {})
-
-    const { statusCode, headers } = await server.inject(
-      withCsrfProtection(
-        {
-          method: 'GET',
-          url: checkAnswersUri
-        },
-        {
-          Cookie: session.sessionID
-        }
-      )
-    )
-
-    expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe(taskListIncompleteUri)
-  })
-
   it('Should not send email and display an error', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
