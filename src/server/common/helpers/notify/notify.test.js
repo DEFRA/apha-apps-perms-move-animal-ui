@@ -25,7 +25,7 @@ describe('sendNotification', () => {
       'https://api.notifications.service.gov.uk/v2/notifications/email'
     )
 
-    expect(options.method).toEqual('POST')
+    expect(options.method).toBe('POST')
     expect(JSON.parse(options.body)).toEqual({
       personalisation: testData,
       template_id: config.get('notify').templateId,
