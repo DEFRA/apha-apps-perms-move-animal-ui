@@ -1,5 +1,6 @@
 import { sendNotification } from './notify.js'
 import { proxyFetch } from '../proxy.js'
+import { config } from '~/src/config/config.js'
 
 jest.mock('../proxy.js', () => ({
   proxyFetch: jest.fn()
@@ -18,16 +19,22 @@ describe('sendNotification', () => {
     mockProxyFetch.mockImplementation(() => Promise.resolve(mockResponse))
     const response = await sendNotification(testData)
 
-    expect(proxyFetch).toHaveBeenCalledWith(
-      'https://api.notifications.service.gov.uk/v2/notifications/email',
-      expect.objectContaining({
-        method: 'POST',
-        body: expect.stringContaining(JSON.stringify(testData)),
-        headers: expect.objectContaining({
-          Authorization: 'Bearer mocked-jwt-token'
-        })
-      })
+    const [url, options] = mockProxyFetch.mock.calls[0]
+
+    expect(url).toBe(
+      'https://api.notifications.service.gov.uk/v2/notifications/email'
     )
+
+    expect(options.method).toEqual('POST')
+    expect(JSON.parse(options.body)).toEqual({
+      personalisation: testData,
+      template_id: config.get('notify').templateId,
+      email_address: config.get('notify').caseDeliveryEmailAddress
+    })
+    expect(options.headers).toEqual({
+      Authorization: 'Bearer mocked-jwt-token'
+    })
+
     expect(response).toEqual(mockResponse)
   })
 
