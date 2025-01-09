@@ -17,8 +17,10 @@ describe('token-utils', () => {
   })
 
   it('should generate a token with correct payload and options', () => {
-    const iat = 1
-    jest.spyOn(Math, 'round').mockReturnValue(iat)
+    const mockNow = 1_736_430_853_769
+    const iat = 1_736_430_854
+    jest.spyOn(Date, 'now').mockReturnValue(mockNow)
+
     const expectedPayload = { iss, iat }
     const expectedOptions = {
       header: { typ: 'JWT', alg: 'HS256' }

@@ -5,14 +5,16 @@ import { Page } from '../../common/model/page/page-model.js'
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */
 
+const title = 'Your animal disease movement licence application'
+
 export class ConfirmationPage extends Page {
   sectionKey = 'confirmation'
   urlKey = 'submit-confirmation'
   urlPath = '/submit/confirmation'
   view = 'submit/confirmation/index'
 
-  pageTitle = 'Your animal disease movement licence application'
-  pageHeading = 'Your animal disease movement licence application'
+  pageTitle = title
+  pageHeading = title
 }
 
 /**
