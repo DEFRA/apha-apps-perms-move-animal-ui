@@ -1,28 +1,23 @@
-/**
- * Sets up the routes used in the submit confirmation page.
- * These routes are registered in src/server/router.js.
- */
-
-import { submitConfirmationController } from './controller.js'
-
-/**
- * @satisfies {ServerRegisterPluginObject<void>}
- */
-export const submitConfirmation = {
-  plugin: {
-    name: 'confirmation',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: '/submit/confirmation',
-          ...submitConfirmationController
-        }
-      ])
-    }
-  }
-}
+import { PageController } from '../../common/controller/page-controller/page-controller.js'
+import { Page } from '../../common/model/page/page-model.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */
+
+export class ConfirmationPage extends Page {
+  sectionKey = 'confirmation'
+  urlKey = 'submit-confirmation'
+  urlPath = '/submit/confirmation'
+  view = 'submit/confirmation/index'
+
+  pageTitle = 'Your animal disease movement licence application'
+  pageHeading = 'Your animal disease movement licence application'
+}
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const submitConfirmation = new PageController(new ConfirmationPage(), {
+  methods: ['GET']
+}).plugin()
