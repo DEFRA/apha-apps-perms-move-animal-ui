@@ -146,7 +146,7 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  it('Should not send email and display an error', async () => {
+  it('should not send an email on POST and display an error if a declaration is missing', async () => {
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
         {
