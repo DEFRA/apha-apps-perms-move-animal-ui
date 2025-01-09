@@ -171,6 +171,26 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
+  it('should not send an email and redirect to task incomplete on POST if application is invalid', async () => {
+    await session.setState('origin', {})
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {}
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(sendNotification).not.toHaveBeenCalled()
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(taskListIncompleteUri)
+  })
+
   it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
