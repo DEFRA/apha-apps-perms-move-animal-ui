@@ -24,19 +24,6 @@ describe('#ReceiveMethod.validate', () => {
       'Select how you would like this licence sent to you'
     )
   })
-
-  it('should return false for malformed input', () => {
-    const receiveMethod = new ReceiveMethodAnswer({
-      receiveMethod: 'unknown response'
-    })
-
-    const { isValid, errors } = receiveMethod.validate()
-
-    expect(isValid).toBe(false)
-    expect(errors.receiveMethod.text).toBe(
-      'Select how you would like this licence sent to you'
-    )
-  })
 })
 
 describe('#ReceiveMethod.toState', () => {

@@ -9,8 +9,8 @@ export class ExitPagePost extends ExitPage {
   urlPath = '/licence/post'
   pageTitle = 'This service does not currently send licences by post'
   view = `licence/postExitPage/index`
-  // sectionKey = 'licence'
-  // key = 'post'
+  sectionKey = 'licence'
+  key = 'post'
 }
 export const exitPagePost = new ExitPagePost()
 
