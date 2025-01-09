@@ -1,4 +1,7 @@
-import { waitForPagePath, validateElementVisibleAndText } from '../page.js'
+import {
+  waitForPagePath,
+  validateElementVisibleAndText
+} from '../helpers/page.js'
 import landingPage from '../page-objects/landingPage.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
