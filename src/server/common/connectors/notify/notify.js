@@ -1,6 +1,6 @@
 import { config } from '~/src/config/config.js'
-import { proxyFetch } from '../proxy.js'
-import { createToken } from '../token/token-utils.js'
+import { proxyFetch } from '~/src/server/common/helpers/proxy.js'
+import { createToken } from '~/src/server/common/connectors/notify/notify-token-utils.js'
 
 /**
  * @typedef {{ content: string}} NotifyContent

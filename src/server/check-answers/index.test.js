@@ -3,9 +3,9 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
-import { sendNotification } from '../common/helpers/notify/notify.js'
+import { sendNotification } from '../common/connectors/notify/notify.js'
 
-jest.mock('../common/helpers/notify/notify.js', () => ({
+jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
 

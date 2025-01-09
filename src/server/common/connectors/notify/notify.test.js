@@ -1,15 +1,18 @@
 import { sendNotification } from './notify.js'
-import { proxyFetch } from '../proxy.js'
+import { proxyFetch } from '~/src/server/common/helpers/proxy.js'
 import { config } from '~/src/config/config.js'
 
-jest.mock('../proxy.js', () => ({
+jest.mock('~/src/server/common/helpers/proxy.js', () => ({
   proxyFetch: jest.fn()
 }))
 const mockProxyFetch = /** @type {jest.Mock} */ (proxyFetch)
 
-jest.mock('../token/token-utils.js', () => ({
-  createToken: jest.fn().mockReturnValue('mocked-jwt-token')
-}))
+jest.mock(
+  '~/src/server/common/connectors/notify/notify-token-utils.js',
+  () => ({
+    createToken: jest.fn().mockReturnValue('mocked-jwt-token')
+  })
+)
 
 const testData = { content: 'test' }
 

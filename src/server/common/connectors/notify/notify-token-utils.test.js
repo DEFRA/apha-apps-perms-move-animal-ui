@@ -1,4 +1,4 @@
-import { createToken, secrets } from './token-utils.js'
+import { createToken, secrets } from './notify-token-utils.js'
 import { token } from '@hapi/jwt'
 
 jest.mock('@hapi/jwt', () => ({

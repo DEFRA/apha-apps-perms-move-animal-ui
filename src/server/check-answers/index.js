@@ -7,7 +7,7 @@ import { QuestionPageController } from '../common/controller/question-page-contr
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
-import { sendNotification } from '../common/helpers/notify/notify.js'
+import { sendNotification } from '../common/connectors/notify/notify.js'
 
 const checkAnswersUrlPath = '/submit/check-answers'
 
