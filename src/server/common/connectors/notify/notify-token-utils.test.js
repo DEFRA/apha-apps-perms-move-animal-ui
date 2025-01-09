@@ -8,10 +8,9 @@ jest.mock('@hapi/jwt', () => ({
 }))
 
 describe('token-utils', () => {
-  const apiKey =
-    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  const secret = apiKey.substring(apiKey.length - 36, apiKey.length)
-  const iss = apiKey.substring(apiKey.length - 73, apiKey.length - 37)
+  const secret = '3d844edf-8d35-48ac-975b-e847b4f122b0'
+  const iss = '26785a09-ab16-4eb0-8407-a37497a57506'
+  const apiKey = `my_test_key-${iss}-${secret}`
 
   beforeEach(() => {
     jest.clearAllMocks()
