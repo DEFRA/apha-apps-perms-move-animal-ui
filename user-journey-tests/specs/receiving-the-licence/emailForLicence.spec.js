@@ -1,8 +1,6 @@
 import { browser } from '@wdio/globals'
 
-import { waitForPagePath } from '../../helpers/page.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
-import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 
 const validSubmissionCheck = async (input, whitespace = false) => {
   let expected
@@ -56,8 +54,6 @@ describe('Email address for licence page test', () => {
     await emailPage.inputEmailAndContinue('bruce.wayne@gotham.com')
     await expect(emailPage.emailFieldError()).not.toBeDisplayed()
     await expect(emailPage.errorSummary).not.toBeDisplayed()
-
-    await waitForPagePath(licenceAnswersPage.pagePath)
   })
 
   it.skip('Should check answer is maintained when submitting after an error', async () => {

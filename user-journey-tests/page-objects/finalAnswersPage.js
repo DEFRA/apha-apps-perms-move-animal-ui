@@ -40,7 +40,7 @@ class FinalAnswersPage extends Page {
     return $$(valueIdentifier)[4]
   }
 
-  get receivingMethodValue() {
+  get receiveMethodValue() {
     return $$(valueIdentifier)[5]
   }
 
@@ -68,7 +68,7 @@ class FinalAnswersPage extends Page {
     return $('[data-testid="destinationType-change-link"]')
   }
 
-  get receivingMethodChange() {
+  get receiveMethodChange() {
     return $('[data-testid="licence-choice-change-link"]')
   }
 

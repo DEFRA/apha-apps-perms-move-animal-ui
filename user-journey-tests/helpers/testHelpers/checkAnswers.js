@@ -12,6 +12,7 @@ import {
 import taskListIncompletePage from '../../page-objects/taskListIncompletePage.js'
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
+import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
@@ -102,6 +103,15 @@ export const validateAndAdjustEmail = async (
   await emailPage.inputEmailAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)
+}
+
+export const validateReceiveMethod = async (changeLink, valueElement) => {
+  await selectElement(changeLink)
+
+  await expect(receiveMethodPage.emailRadio).toBeSelected()
+  await receiveMethodPage.selectEmailAndContinue()
+
+  await validateElementVisibleAndText(valueElement, 'email')
 }
 
 export const validateOnFarmErrorHandling = async (

@@ -1,6 +1,7 @@
 import landingPage from '../../page-objects/landingPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
+import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import { validateElementVisibleAndText } from '../page.js'
@@ -13,6 +14,7 @@ const completeLicenceTask = async ({ email = defaultEmail } = {}) => {
   await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectReceiveTheLicence()
+  await receiveMethodPage.selectEmailAndContinue()
   await emailPage.inputEmailAndContinue(email)
   await validateElementVisibleAndText(licenceAnswersPage.emailValue, email)
 }
