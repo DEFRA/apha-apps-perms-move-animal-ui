@@ -41,8 +41,8 @@ export class ApplicationModel {
   static fromState(state) {
     return new ApplicationModel({
       origin: OriginSection.fromState(state?.origin),
-      licence: LicenceSection.fromState(state?.licence),
-      destination: DestinationSection.fromState(state?.destination)
+      destination: DestinationSection.fromState(state?.destination),
+      licence: LicenceSection.fromState(state?.licence)
     })
   }
 }

@@ -8,6 +8,7 @@ import { sendNotification } from '../common/connectors/notify/notify.js'
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
+const mockSendNotifiation = /** @type {jest.Mock} */ (sendNotification)
 
 const testCphNumber = '12/123/1234'
 const testAddress = {
@@ -53,6 +54,8 @@ const emailContent = [
   testAddress.addressTown,
   testAddress.addressCounty,
   testAddress.addressPostcode,
+  '## Where are the animals going to?',
+  expectedDestinationText,
   '## What email address would you like the licence sent to?',
   testEmailAddress
 ].join('\n')
@@ -207,9 +210,9 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(emailContent)
-    })
+    const [{ content }] = mockSendNotifiation.mock.calls[0]
+
+    expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })
@@ -230,9 +233,9 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(emailContent)
-    })
+    const [{ content }] = mockSendNotifiation.mock.calls[0]
+
+    expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })
@@ -253,9 +256,9 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    expect(sendNotification).toHaveBeenCalledWith({
-      content: expect.stringContaining(emailContent)
-    })
+    const [{ content }] = mockSendNotifiation.mock.calls[0]
+
+    expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })
