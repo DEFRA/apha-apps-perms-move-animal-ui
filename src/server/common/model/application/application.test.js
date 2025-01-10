@@ -37,8 +37,8 @@ describe('Application', () => {
 
     expect(application).toBeInstanceOf(ApplicationModel)
 
-    expect(application.origin).toBeInstanceOf(OriginSection)
-    expect(application.licence).toBeInstanceOf(LicenceSection)
-    expect(application.destination).toBeInstanceOf(DestinationSection)
+    expect(application.tasks.origin).toBeInstanceOf(OriginSection)
+    expect(application.tasks.licence).toBeInstanceOf(LicenceSection)
+    expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
   })
 })
