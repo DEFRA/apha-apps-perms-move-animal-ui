@@ -6,7 +6,7 @@ class SubmissionConfirmationPage extends Page {
   pageHeading = 'Application complete'
 
   get slaText() {
-    return $('[data-testid="slaText"]')
+    return $('[data-testid="sla-text"]')
   }
 }
 
