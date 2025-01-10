@@ -9,26 +9,27 @@
 
 Frontend to the 'Move animals under disease control restriction' service.
 
-- [Requirements](#requirements)
-  - [Node.js](#nodejs)
-- [Server-side Caching](#server-side-caching)
-- [Redis](#redis)
-- [Local Development](#local-development)
-  - [Setup](#setup)
-  - [Development](#development)
-  - [Production](#production)
-  - [Npm scripts](#npm-scripts)
-  - [Update dependencies](#update-dependencies)
-  - [Formatting](#formatting)
-    - [Windows prettier issue](#windows-prettier-issue)
-- [Docker](#docker)
-  - [Development image](#development-image)
-  - [Production image](#production-image)
-  - [Docker Compose](#docker-compose)
-  - [Dependabot](#dependabot)
-  - [SonarCloud](#sonarcloud)
-- [Licence](#licence)
-  - [About the licence](#about-the-licence)
+- [apha-apps-perms-move-animal-ui](#apha-apps-perms-move-animal-ui)
+  - [Requirements](#requirements)
+    - [Node.js](#nodejs)
+  - [Server-side Caching](#server-side-caching)
+  - [Redis](#redis)
+  - [Local Development](#local-development)
+    - [Setup](#setup)
+    - [Development](#development)
+    - [Production](#production)
+    - [Npm scripts](#npm-scripts)
+    - [Update dependencies](#update-dependencies)
+    - [Formatting](#formatting)
+      - [Windows prettier issue](#windows-prettier-issue)
+  - [Docker](#docker)
+    - [Development image](#development-image)
+    - [Production image](#production-image)
+    - [Docker Compose](#docker-compose)
+    - [Dependabot](#dependabot)
+    - [SonarCloud](#sonarcloud)
+  - [Licence](#licence)
+    - [About the licence](#about-the-licence)
 
 ## Requirements
 
@@ -80,6 +81,16 @@ To run the application in `development` mode run:
 ```bash
 npm run dev
 ```
+
+In order to receive emails three **environment variables** need to be set, either manually or using a _.envrc_ file and a tool like _direnv_
+
+```bash
+NOTIFY_TEMPLATE_ID=value_to_be_provided_by_tech_team
+NOTIFY_API_KEY=value_to_be_provided_by_tech_team
+NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
+```
+
+The email address provided will need to be added to a guest list for it to be accepted by notify
 
 ### Production
 
