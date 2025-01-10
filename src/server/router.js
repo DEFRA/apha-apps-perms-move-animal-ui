@@ -37,7 +37,7 @@ export const router = {
         licence,
         taskList,
         taskListIncomplete,
-        receiveMethod
+        receiveMethod,
         // postExitPage - TODO: Uncomment this line to enable the post exit page
         submit,
         submitSummary,

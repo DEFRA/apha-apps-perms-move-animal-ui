@@ -19,6 +19,7 @@ const testAddress = {
   addressPostcode: 'RG24 8RR'
 }
 const testEmailAddress = 'name@example.com'
+const testReceiveMethod = 'email'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -28,7 +29,8 @@ const originDefaultState = {
 }
 
 const licenceDefaultState = {
-  emailAddress: testEmailAddress
+  emailAddress: testEmailAddress,
+  receiveMethod: testReceiveMethod
 }
 
 const destinationDefaultState = {
@@ -56,6 +58,8 @@ const emailContent = [
   testAddress.addressPostcode,
   '## Where are the animals going to?',
   expectedDestinationText,
+  '## How would you like this licence sent to you?',
+  testReceiveMethod,
   '## What email address would you like the licence sent to?',
   testEmailAddress
 ].join('\n')
@@ -109,7 +113,8 @@ describe('#CheckAnswers', () => {
     expect(taskListValues[2].innerHTML).toContain(testCphNumber)
     expect(taskListValues[3].innerHTML).toContain(testAddress.addressLine1)
     expect(taskListValues[4].innerHTML).toContain(expectedDestinationText)
-    expect(taskListValues[5].innerHTML).toContain(testEmailAddress)
+    expect(taskListValues[5].innerHTML).toContain(testReceiveMethod)
+    expect(taskListValues[6].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)
   })
@@ -132,29 +137,6 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(taskListIncompleteUri)
   })
-
-  it('Should provide expected response', async () => {
-    await session.setState('origin', {
-      onOffFarm: 'off',
-      originType: 'afu',
-      cphNumber: '12/345/6789',
-      address: {
-        addressLine1: '73 OCEANA CRESCENT',
-        addressLine2: 'Archronos Ltd',
-        addressTown: 'Basingstoke',
-        addressCounty: 'Hampshire',
-        addressPostcode: 'RG224FF'
-      }
-    })
-
-    await session.setState('destination', {
-      destinationType: 'afu'
-    })
-
-    await session.setState('licence', {
-      emailAddress: 'here@there.com',
-      receiveMethod: 'email'
-    })
 
   it('Should stay in check-answers if all tasks are valid', async () => {
     const { statusCode } = await server.inject(
