@@ -38,12 +38,10 @@ export const router = {
         taskList,
         taskListIncomplete,
         receiveMethod,
-        // postExitPage - TODO: Uncomment this line to enable the post exit page
+        // postExitPage, - TODO: Uncomment this line to enable the post exit page
         submit,
         submitSummary,
-        premisesType,
-        receiveMethod
-        // postExitPage - TODO: Uncomment this line to enable the post exit page
+        premisesType
       ])
 
       // Static assets
