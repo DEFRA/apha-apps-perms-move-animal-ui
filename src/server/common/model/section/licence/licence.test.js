@@ -1,14 +1,19 @@
-import { ReceiveMethodPage } from '~/src/server/licence/receiveMethod/index.js'
 import { LicenceSection } from './licence.js'
+import { FullNamePage } from '~/src/server/licence/fullName/index.js'
 
 const testEmail = 'test@domain.com'
+const testFullName = {
+  firstName: 'Loxanna',
+  lastName: 'Troi'
+}
 
 describe('Licence', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const originData = {
         emailAddress: testEmail,
-        receiveMethod: 'email'
+        receiveMethod: 'email',
+        fullName: testFullName
       }
       const result = LicenceSection.fromState(originData).validate()
 
@@ -23,7 +28,7 @@ describe('Licence', () => {
       const result = LicenceSection.fromState(originData).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPage).toBeInstanceOf(ReceiveMethodPage)
+      expect(result.firstInvalidPage).toBeInstanceOf(FullNamePage)
     })
   })
 })

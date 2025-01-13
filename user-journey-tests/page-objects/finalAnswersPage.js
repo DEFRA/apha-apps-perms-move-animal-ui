@@ -40,12 +40,16 @@ class FinalAnswersPage extends Page {
     return $$(valueIdentifier)[4]
   }
 
-  get receiveMethodValue() {
+  get ownerNameValue() {
     return $$(valueIdentifier)[5]
   }
 
-  get emailValue() {
+  get receiveMethodValue() {
     return $$(valueIdentifier)[6]
+  }
+
+  get emailValue() {
+    return $$(valueIdentifier)[7]
   }
 
   get onOffFarmChange() {
@@ -66,6 +70,10 @@ class FinalAnswersPage extends Page {
 
   get movementDestinationChange() {
     return $('[data-testid="destinationType-change-link"]')
+  }
+
+  get ownerNameChange() {
+    return $('[data-testid="fullName-change-link"]')
   }
 
   get receiveMethodChange() {

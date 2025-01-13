@@ -8,7 +8,7 @@ import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import completeDestinationTask from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
-import receiveMethodPage from '../page-objects/receiving-the-licence/receiveMethodPage.js'
+import ownerNamePage from '../page-objects/receiving-the-licence/ownerNamePage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -44,7 +44,7 @@ describe('Task list page test', () => {
 
   it('Should link to receiving the licence first question before an application has been started', async () => {
     await taskListPage.selectReceiveTheLicence()
-    await waitForPagePath(receiveMethodPage.pagePath)
+    await waitForPagePath(ownerNamePage.pagePath)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {

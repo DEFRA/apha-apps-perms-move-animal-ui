@@ -30,7 +30,11 @@ const originDefaultState = {
 
 const licenceDefaultState = {
   emailAddress: testEmailAddress,
-  receiveMethod: testReceiveMethod
+  receiveMethod: testReceiveMethod,
+  fullName: {
+    firstName: 'William T.',
+    lastName: 'Riker'
+  }
 }
 
 const destinationDefaultState = {
@@ -58,6 +62,10 @@ const emailContent = [
   testAddress.addressPostcode,
   '## Where are the animals going to?',
   expectedDestinationText,
+  '## What is the name of the County Parish Holding (CPH) owner?',
+  licenceDefaultState.fullName.firstName +
+    ' ' +
+    licenceDefaultState.fullName.lastName,
   '## How would you like this licence sent to you?',
   testReceiveMethod,
   '## What email address would you like the licence sent to?',
@@ -113,8 +121,11 @@ describe('#CheckAnswers', () => {
     expect(taskListValues[2].innerHTML).toContain(testCphNumber)
     expect(taskListValues[3].innerHTML).toContain(testAddress.addressLine1)
     expect(taskListValues[4].innerHTML).toContain(expectedDestinationText)
-    expect(taskListValues[5].innerHTML).toContain(testReceiveMethod)
-    expect(taskListValues[6].innerHTML).toContain(testEmailAddress)
+    expect(taskListValues[5].innerHTML).toContain(
+      `${licenceDefaultState.fullName.firstName} ${licenceDefaultState.fullName.lastName}`
+    )
+    expect(taskListValues[6].innerHTML).toContain(testReceiveMethod)
+    expect(taskListValues[7].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)
   })
