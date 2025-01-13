@@ -54,8 +54,8 @@ export class FullNameAnswer extends AnswerModel {
    */
   toState() {
     return {
-      firstName: this._data?.firstName ?? '',
-      lastName: this._data?.lastName ?? ''
+      firstName: this._data?.firstName.trim() ?? '',
+      lastName: this._data?.lastName.trim() ?? ''
     }
   }
 
