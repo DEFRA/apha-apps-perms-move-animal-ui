@@ -13,6 +13,7 @@ import taskListIncompletePage from '../../page-objects/taskListIncompletePage.js
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
+import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
@@ -103,6 +104,31 @@ export const validateAndAdjustEmail = async (
   await emailPage.inputEmailAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)
+}
+
+export const validateAndAdjustOwnerName = async (
+  changeLink,
+  valueElement,
+  defaultFirstName,
+  newFirstName,
+  defaultLastName,
+  newLastName
+) => {
+  await selectElement(changeLink)
+
+  const firstNameValue = await ownerNamePage.firstNameInput().getValue()
+  expect(firstNameValue).toBe(defaultFirstName)
+  const lastNameValue = await ownerNamePage.lastNameInput().getValue()
+  expect(lastNameValue).toBe(defaultLastName)
+
+  await clearElement(ownerNamePage.firstNameInput())
+  await clearElement(ownerNamePage.lastNameInput())
+
+  await ownerNamePage.inputNameAndContinue(newFirstName, newLastName)
+  await validateElementVisibleAndText(
+    valueElement,
+    `${newFirstName} ${newLastName}`
+  )
 }
 
 export const validateReceiveMethod = async (changeLink, valueElement) => {

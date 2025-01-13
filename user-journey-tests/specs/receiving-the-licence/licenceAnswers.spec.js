@@ -3,8 +3,16 @@ import { completeLicenceTaskAnswersCustom } from '../../helpers/testHelpers/rece
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
-import { validateAndAdjustEmail } from '../../helpers/testHelpers/checkAnswers.js'
+import {
+  validateAndAdjustEmail,
+  validateAndAdjustOwnerName,
+  validateReceiveMethod
+} from '../../helpers/testHelpers/checkAnswers.js'
 
+const firstNameDefault = 'defaultFirst'
+const lastNameDefault = 'defaultLast'
+const newFirstName = 'newFirst'
+const newLastName = 'newLast'
 const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
 
@@ -12,7 +20,11 @@ describe('Check your licence answers test', () => {
   // eslint-disable-next-line no-undef
   before('Navigate to check answers page', async () => {
     await landingPage.navigateToPageAndVerifyTitle()
-    await completeLicenceTaskAnswersCustom(emailDefault)
+    await completeLicenceTaskAnswersCustom(
+      emailDefault,
+      firstNameDefault,
+      lastNameDefault
+    )
   })
 
   it('Should verify the back link is history -1', async () => {
@@ -21,6 +33,26 @@ describe('Check your licence answers test', () => {
     await licenceAnswersPage.selectBackLink()
 
     await emailPage.emailAddressInput().isDisplayed()
+  })
+
+  it('Should verify existing name and then changing it', async () => {
+    await licenceAnswersPage.navigateToPageAndVerifyTitle()
+    await validateAndAdjustOwnerName(
+      licenceAnswersPage.changeNameLink,
+      licenceAnswersPage.nameValue,
+      firstNameDefault,
+      newFirstName,
+      lastNameDefault,
+      newLastName
+    )
+  })
+
+  it('Should verify the method to receive the licence', async () => {
+    await licenceAnswersPage.navigateToPageAndVerifyTitle()
+    validateReceiveMethod(
+      licenceAnswersPage.changeMethodLink,
+      licenceAnswersPage.receiveMethodValue
+    )
   })
 
   it('Should verify the existing email and confirm resubmission', async () => {
