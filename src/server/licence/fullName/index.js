@@ -1,8 +1,3 @@
-/**
- * Sets up the routes used in the cph number page.
- * These routes are registered in src/server/router.js.
- */
-
 import { FullNameAnswer } from '~/src/server/common/model/answer/fullName/fullName.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
