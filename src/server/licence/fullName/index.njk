@@ -2,8 +2,9 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends 'layouts/questions.njk' %}
 {% block questions %}
-    {% call govukFieldset() %}
-    {{ govukInput
+  {% call govukFieldset() %}
+    {{
+      govukInput
       ({
           label:
           {
@@ -16,8 +17,10 @@
           errorMessage: errors.firstName,
           value: value.firstName,
           classes: "govuk-input--width-20"
-      }) }}
-    {{ govukInput
+      })
+    }}
+    {{
+      govukInput
       ({
           label:
           {
@@ -30,6 +33,7 @@
           errorMessage: errors.lastName,
           value: value.lastName,
           classes: "govuk-input--width-20"
-      }) }}
-    {% endcall %}
+      })
+    }}
+  {% endcall %}
 {% endblock %}

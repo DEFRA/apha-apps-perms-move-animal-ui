@@ -1,13 +1,13 @@
 import { fullName, fullNamePage, FullNamePage } from './index.js'
 import { FullNameAnswer } from '../../common/model/answer/fullName/fullName.js'
 
-import { emailAddressPage } from '../email-address/index.js'
+import { receiveMethodPage } from '../receiveMethod/index.js'
 
 const sectionKey = 'licence'
 const question = 'What is the name of the County Parish Holding (CPH) owner?'
 const questionKey = 'fullName'
 const view = 'licence/fullName/index'
-const pageUrl = '/licence/licence-name'
+const pageUrl = '/receiving-the-licence/licence-name'
 
 describe('FullNamePage', () => {
   let page
@@ -43,7 +43,7 @@ describe('FullNamePage', () => {
   it('nextPage should return correct next page', () => {
     const nextPage = page.nextPage()
 
-    expect(nextPage).toBe(emailAddressPage)
+    expect(nextPage).toBe(receiveMethodPage)
   })
 
   it('should export page', () => {

@@ -42,7 +42,7 @@ export const taskListGetController = {
 
     const licenceGdsTask = buildGdsTaskItem({
       title: 'Receiving the licence',
-      initialLink: '/receiving-the-licence/licence-email-or-post',
+      initialLink: licence.firstPage.urlPath,
       summaryLink: '/receiving-the-licence/check-answers',
       isValid: licence.validate().isValid,
       isEnabled: true
