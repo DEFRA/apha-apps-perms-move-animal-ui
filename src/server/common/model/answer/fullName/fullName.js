@@ -33,7 +33,7 @@ export const fullNamePayloadSchema = Joi.object({
  */
 export class FullNameAnswer extends AnswerModel {
   get value() {
-    if (!this._data?.firstName || !this._data?.lastName) {
+    if (!this._data?.firstName && !this._data?.lastName) {
       return undefined
     }
 
