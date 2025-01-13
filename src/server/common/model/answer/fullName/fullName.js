@@ -7,6 +7,7 @@ const maxLength = 255
 export const fullNamePayloadSchema = Joi.object({
   firstName: Joi.string()
     .required()
+    .trim()
     .max(maxLength)
     .messages({
       'string.empty':
@@ -15,6 +16,7 @@ export const fullNamePayloadSchema = Joi.object({
     }),
   lastName: Joi.string()
     .required()
+    .trim()
     .max(maxLength)
     .messages({
       'string.empty':
