@@ -14,8 +14,13 @@ class LicenceAnswersPage extends Page {
   }
 
   // Answer values
-  get emailValue() {
+
+  get receiveMethodValue() {
     return $$('.govuk-summary-list__value')[0]
+  }
+
+  get emailValue() {
+    return $$('.govuk-summary-list__value')[1]
   }
 }
 

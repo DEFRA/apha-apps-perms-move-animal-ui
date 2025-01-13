@@ -6,7 +6,8 @@ import {
   validateAndAdjustParishNumber,
   validateOnFarmErrorHandling,
   validateOnOffFarm,
-  validateOriginType
+  validateOriginType,
+  validateReceiveMethod
 } from '../helpers/testHelpers/checkAnswers.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
@@ -129,6 +130,14 @@ describe('Check your final answers test', () => {
       finalAnswersPage.emailValue,
       emailDefault,
       editedEmail
+    )
+  })
+
+  it('Should verify the method to receive the licence', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+    validateReceiveMethod(
+      finalAnswersPage.receiveMethodChange,
+      finalAnswersPage.receiveMethodValue
     )
   })
 

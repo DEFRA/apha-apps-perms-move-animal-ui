@@ -2,13 +2,13 @@ import { waitForPagePath } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
-import emailPage from '../page-objects/receiving-the-licence/emailPage.js'
 import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import completeDestinationTask from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
+import receiveMethodPage from '../page-objects/receiving-the-licence/receiveMethodPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -44,7 +44,7 @@ describe('Task list page test', () => {
 
   it('Should link to receiving the licence first question before an application has been started', async () => {
     await taskListPage.selectReceiveTheLicence()
-    await waitForPagePath(emailPage.pagePath)
+    await waitForPagePath(receiveMethodPage.pagePath)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
