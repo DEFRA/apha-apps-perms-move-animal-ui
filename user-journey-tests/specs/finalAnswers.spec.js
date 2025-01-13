@@ -3,6 +3,7 @@ import landingPage from '../page-objects/landingPage.js'
 import {
   validateAndAdjustAddress,
   validateAndAdjustEmail,
+  validateAndAdjustOwnerName,
   validateAndAdjustParishNumber,
   validateOnFarmErrorHandling,
   validateOnOffFarm,
@@ -21,6 +22,10 @@ import destinationAnswersPage from '../page-objects/destination/destinationAnswe
 import destinationSelectionPage from '../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../page-objects/destination/generalLicencePage.js'
 
+const firstNameDefault = 'firstName'
+const lastNameDefault = 'lastName'
+const newFirstName = 'newFirst'
+const newLastName = 'newLast'
 const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
 
@@ -63,7 +68,11 @@ describe('Check your final answers test', () => {
       expectedStatus: 'Completed'
     })
 
-    await completeLicenceTaskAnswersCustom(emailDefault)
+    await completeLicenceTaskAnswersCustom(
+      emailDefault,
+      firstNameDefault,
+      lastNameDefault
+    )
     await licenceAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({
@@ -120,6 +129,18 @@ describe('Check your final answers test', () => {
         postcode: defaultPostcode
       },
       { lineOne, lineTwo, townOrCity, county, postcode }
+    )
+  })
+
+  it('Should verify existing name and then changing it', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+    await validateAndAdjustOwnerName(
+      finalAnswersPage.ownerNameChange,
+      finalAnswersPage.ownerNameValue,
+      firstNameDefault,
+      newFirstName,
+      lastNameDefault,
+      newLastName
     )
   })
 

@@ -1,6 +1,7 @@
 import {
   selectElement,
   validateElementVisibleAndText,
+  waitForElement,
   waitForPagePath
 } from '../../helpers/page.js'
 import completeDestinationTask from '../../helpers/testHelpers/destination.js'
@@ -96,6 +97,7 @@ describe('Check your answers test - destination', () => {
 
     await waitForPagePath(destinationSelectionPage.pagePath)
     await destinationSelectionPage.selectBackLink()
+    await waitForElement(destinationAnswersPage.destinationValue)
     await browser.refresh()
 
     await waitForPagePath(destinationSelectionPage.pagePath)
