@@ -94,6 +94,72 @@ describe('#taskListController', () => {
     expect(statusCode).toBe(statusCodes.ok)
     expect(payload).toEqual(expect.stringContaining(`Completed`))
   })
+
+  it('should say that there are incomplete sections, and have a greyed out button', async () => {
+    const { statusCode, payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(payload).toEqual(expect.stringContaining(`3 out of 3`))
+    expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
+  })
+
+  it('should state all section complete, and have a green button', async () => {
+    await session.setState('origin', {
+      address: {
+        addressLine1: '#####',
+        addressLine2: '#####',
+        addressTown: '#####',
+        addressCounty: '#####',
+        addressPostcode: 'RG24 8RR'
+      },
+      originType: 'afu',
+      onOffFarm: 'off',
+      cphNumber: '12/345/6789'
+    })
+
+    await session.setState('destination', {
+      destinationType: 'dedicated-sale'
+    })
+
+    await session.setState('licence', {
+      fullName: {
+        firstName: 'Kathryn',
+        lastName: 'Janeway'
+      },
+      receiveMethod: 'email',
+      emailAddress: 'kathryn@starfleet.com'
+    })
+
+    const { statusCode, payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(payload).toEqual(
+      expect.stringContaining('You have completed all sections.')
+    )
+    expect(payload).not.toEqual(
+      expect.stringContaining('govuk-button--secondary')
+    )
+  })
 })
 
 /**
