@@ -83,20 +83,18 @@ describe('Task list page test', () => {
   })
 
   it('Should verify completed destination task', async () => {
-    await browser.reloadSession()
-    await completeOriginTaskAnswers()
     await completeDestinationTask('slaughter')
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
         position: 1,
         taskTitle: 'Movement origin',
-        expectedStatus: 'Complete'
+        expectedStatus: 'Completed'
       },
       {
         position: 2,
         taskTitle: 'Movement destination',
-        expectedStatus: 'Complete'
+        expectedStatus: 'Completed'
       },
       {
         position: 3,
@@ -113,19 +111,18 @@ describe('Task list page test', () => {
   })
 
   it('Should link to receiving licence summary once that selection has been completed', async () => {
-    await browser.reloadSession()
     await completeLicenceTaskAnswers()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
         position: 1,
         taskTitle: 'Movement origin',
-        expectedStatus: 'Incomplete'
+        expectedStatus: 'Completed'
       },
       {
         position: 2,
         taskTitle: 'Movement destination',
-        expectedStatus: 'Cannot start yet'
+        expectedStatus: 'Completed'
       },
       {
         position: 3,
@@ -134,9 +131,11 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
-
+    expect(await taskListPage.getTaskToCompleteCount()).toBe(
+      'You have completed all sections.'
+    )
     await taskListPage.selectReceiveTheLicence()
+
     await licenceAnswersPage.verifyPageHeadingAndTitle()
     await waitForPagePath(licenceAnswersPage.pagePath)
   })
