@@ -21,11 +21,8 @@ describe('#homeController', () => {
       url: '/'
     })
 
-    expect(parseDocument(payload).title).toBe(
-      'Apply for a Bovine Tuberculosis (TB) movement licence'
-    )
-
     expect(statusCode).toBe(statusCodes.ok)
+    expect(parseDocument(payload).title).toBe('Applications and permissions')
   })
 })
 

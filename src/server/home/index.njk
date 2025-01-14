@@ -8,7 +8,7 @@
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="gem-c-title__text govuk-heading-l">{{ heading }}</h1>
+          <h1 class="gem-c-title__text govuk-heading-l">{{ serviceName }}</h1>
         </div>
 
         <h3 class="govuk-heading-m">Movement types this service is for</h3>
@@ -103,11 +103,31 @@
           choose the option for TB licencing. Lines are open from Monday to
           Friday between 8.30am and 5pm.
         </p>
-
+        <<<<<<< Updated upstream
         {{
           govukButton({ text: "Start now", href:"task-list",
           isStartButton: true, attributes: "data-testid='start-now-btn'" })
         }}
+        =======
+        {{
+          govukButton({ text: "Start now", href:"task-list",
+          isStartButton: true, attributes: "data-testid='start-now-btn'" })
+        }}
+        <h3 class="govuk-heading-m">Give feedback</h3>
+        <p>
+          Your feedback will help improve this service. You can give feedback by
+          <a
+            href="https://submit-form-to-defra.service.gov.uk/apply-for-a-bovine-tuberculosis-tb-movement-licence/start"
+            target="_blank"
+            >completing a short survey (opens in new tab)</a
+          >.
+        </p>
+        <p>You can also find the survey link on the:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>feedback banner at the top of the page throughout the service</li>
+          <li>confirmation page once you complete your application</li>
+        </ul>
+        >>>>>>> Stashed changes
       </div>
     </div>
   </div>
