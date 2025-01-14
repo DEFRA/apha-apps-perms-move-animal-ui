@@ -8,7 +8,7 @@
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="gem-c-title govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="gem-c-title__text govuk-heading-l">{{ heading }}</h1>
+          <h1 class="gem-c-title__text govuk-heading-l">{{ serviceName }}</h1>
         </div>
         <h3 class="govuk-heading-m">Movement types this service is for</h3>
         <p class="govuk-body">
@@ -86,6 +86,7 @@
           choose the option for TB licencing. Lines are open from Monday to
           Friday between 8.30am and 5pm.
         </p>
+
         {{
           govukButton({ text: "Start now", href:"task-list",
           isStartButton: true, attributes: "data-testid='start-now-btn'" })
