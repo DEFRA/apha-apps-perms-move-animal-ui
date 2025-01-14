@@ -3,14 +3,12 @@
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
 {% block head %}
   <link
     href="{{ getAssetPath('stylesheets/application.scss') }}"
     rel="stylesheet"
   />
 {% endblock %}
-
 {% block header %}
   {{
     govukHeader({
@@ -23,21 +21,18 @@
     })
   }}
 {% endblock %}
-
 {% block pageTitle %}
   {{ pageTitle }}
 {% endblock %}
-
 {% block beforeContent %}
   {{
     govukPhaseBanner({
       tag: {
         text: 'Private beta'
       },
-      html: 'This is a new service. <!-- – your <a data-testid="feedback-link" class="govuk-link" href="#">feedback</a> will help us to improve it.-->'
+      html: 'This is a new service. Help us improve it and <a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">give your feedback (opens in new tab)</a>.'
     })
   }}
-
   {% if breadcrumbs.length > 1 %}
     {{
       appBreadcrumbs({
@@ -45,7 +40,6 @@
       })
     }}
   {% endif %}
-
   {% block metaBeforeContent %}
     {{
       govukBackLink({
@@ -53,7 +47,6 @@
         href: "javascript:window.history.back()"
       })
     }}
-
     <noscript>
       <style>
         .govuk-back-link {
@@ -63,10 +56,8 @@
     </noscript>
   {% endblock %}
 {% endblock %}
-
 {% block content %}
 {% endblock %}
-
 {% block footer %}
   {{
     govukFooter({
@@ -89,7 +80,6 @@
     })
   }}
 {% endblock %}
-
 {% block bodyEnd %}
   <script type="module" src="{{ getAssetPath('application.js') }}"></script>
 {% endblock %}
