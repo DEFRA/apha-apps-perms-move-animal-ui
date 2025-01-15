@@ -1,6 +1,7 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+import { config } from '~/src/config/config.js'
 
 describe('#homeController', () => {
   /** @type {Server} */
@@ -22,7 +23,7 @@ describe('#homeController', () => {
     })
 
     expect(statusCode).toBe(statusCodes.ok)
-    expect(parseDocument(payload).title).toBe('Applications and permissions')
+    expect(parseDocument(payload).title).toBe(config.get('serviceName'))
   })
 })
 
