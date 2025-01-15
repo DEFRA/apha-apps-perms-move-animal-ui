@@ -14,7 +14,7 @@ class PostExitPage extends Page {
 
   pageTitle = pageHeadingAndTitle
 
-  get completeApplicationLink() {
+  get completePaperApplicationLink() {
     return $('[data-testid="complete-application-link"]')
   }
 
@@ -22,9 +22,9 @@ class PostExitPage extends Page {
     return $('#continue-button')
   }
 
-  async verifyCompleteApplicationLink() {
+  async verifyCompletePaperApplicationLink() {
     await page.selectLinkAndVerifyTitle(
-      this.completeApplicationLink,
+      this.completePaperApplicationLink,
       'TB restricted cattle: application for movement licence in England - GOV.UK'
     )
   }
