@@ -14,7 +14,7 @@ import { submitSummary } from './check-answers/index.js'
 import { premisesType } from './origin/premises-type-exit-page/index.js'
 import { receiveMethod } from './licence/receiveMethod/index.js'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { postExitPage } from './licence/postExitPage/index.js'
+import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 
 /**
@@ -39,7 +39,7 @@ export const router = {
         taskList,
         taskListIncomplete,
         receiveMethod,
-        // postExitPage, - TODO: Uncomment this line to enable the post exit page
+        postExit,
         submit,
         submitSummary,
         premisesType,

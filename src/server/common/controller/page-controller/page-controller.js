@@ -2,7 +2,6 @@ import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
-/** @import { RawPayload } from '../../model/answer/answer-model.js' */
 /** @import { Page } from '../../model/page/page-model.js' */
 
 /**
@@ -56,7 +55,6 @@ export class PageController {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
-      hideQuestion: true,
       ...this.page.viewProps(req)
     })
   }

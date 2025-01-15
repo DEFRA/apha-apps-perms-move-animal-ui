@@ -1,7 +1,7 @@
 import { receiveMethod, receiveMethodPage, ReceiveMethodPage } from './index.js'
 import { ReceiveMethodAnswer } from '../../common/model/answer/receiveMethod/receiveMethod.js'
 import { emailAddressPage } from '../email-address/index.js'
-import { exitPagePost } from '../postExitPage/index.js'
+import { postExitPage } from '../postExitPage/index.js'
 
 // TODO: import next page object
 
@@ -55,7 +55,7 @@ describe('ReceiveMethodPage', () => {
       value: 'post'
     })
 
-    expect(nextPage).toBe(exitPagePost)
+    expect(nextPage).toBe(postExitPage)
   })
 
   it('should export page', () => {

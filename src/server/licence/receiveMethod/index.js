@@ -8,7 +8,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
 import { emailAddressPage } from '../email-address/index.js'
-import { exitPagePost } from '../postExitPage/index.js'
+import { postExitPage } from '../postExitPage/index.js'
 
 export class ReceiveMethodPage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-email-or-post'
@@ -24,7 +24,7 @@ export class ReceiveMethodPage extends QuestionPage {
   /** @param {ReceiveMethodAnswer} answer */
   nextPage(answer) {
     if (answer.value === 'post') {
-      return exitPagePost
+      return postExitPage
     }
     return emailAddressPage
   }
