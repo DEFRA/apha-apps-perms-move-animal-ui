@@ -1,22 +1,31 @@
 import { ExitPage } from '../../common/model/page/exit-page-model.js'
-import { PageController } from '../../common/controller/page-controller/page-controller.js'
+import { PostExitPageController } from './post-exit-page-controller.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */
 
-export class ExitPagePost extends ExitPage {
-  urlPath = '/licence/post'
+export class PostExitPage extends ExitPage {
+  urlPath =
+    '/receiving-the-licence/licence-select-post-can-not-use-this-service'
+
   pageTitle = 'This service does not currently send licences by post'
   view = `licence/postExitPage/index`
-  sectionKey = 'licence'
   key = 'post'
+  sectionKey = 'licence'
+
+  viewProps() {
+    return {
+      continueButtonText: 'Continue with email',
+      continueButtonClasses: 'govuk-button--secondary'
+    }
+  }
 }
-export const exitPagePost = new ExitPagePost()
+export const postExitPage = new PostExitPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const postExitPage = new PageController(exitPagePost, {
-  methods: ['GET']
+export const postExit = new PostExitPageController(postExitPage, {
+  methods: ['GET', 'POST']
 }).plugin()

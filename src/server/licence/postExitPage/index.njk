@@ -1,12 +1,25 @@
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% extends 'layouts/page.njk' %}
-{% block content %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+
+{% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="gem-c-title__text govuk-heading-l"></h1>
+      <h1 class="gem-c-title__text govuk-heading-l">{{ pageTitle }}</h1>
       <div class="govuk-body" data-testid="app-page-body">
-        <!-- put content here -->
+        <p>
+          If you want to receive your licence by post, you need to
+          <a
+            data-testid="complete-application-link"
+            href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england"
+          >
+            complete the current application form on GOV.UK</a
+          >
+          and post it to APHA.
+        </p>
       </div>
     </div>
   </div>
+{% endblock %}
+{% block questions %}
+  <input type="hidden" name="receiveMethod" value="email" />
 {% endblock %}
