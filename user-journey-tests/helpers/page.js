@@ -117,3 +117,8 @@ export const checkForSecurityPopUpAndResolve = async () => {
     await browser.switchContext(contexts[1])
   }
 }
+
+export const switchToNewTab = async () => {
+  const handles = await browser.getWindowHandles()
+  await browser.switchToWindow(handles[handles.length - 1])
+}
