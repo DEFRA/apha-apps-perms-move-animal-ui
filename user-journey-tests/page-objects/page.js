@@ -65,7 +65,7 @@ class Page {
     feedbackText = 'feedback',
     bannerText = 'Private beta'
   ) {
-    // await page.validateElementVisibleAndText(this.feedbackLink, feedbackText)
+    await this.verifyFeedbackLink(feedbackText)
     await page.validateElementVisibleAndText(
       this.getPrivateBetaBanner(),
       bannerText
@@ -74,6 +74,7 @@ class Page {
 
   async navigateToPageAndVerifyTitle() {
     await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
+    await this.verifyPrivateBetaBanner()
   }
 
   async verifyPageHeadingAndTitle() {

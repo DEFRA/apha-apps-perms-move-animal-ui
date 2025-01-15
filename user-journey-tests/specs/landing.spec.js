@@ -1,3 +1,8 @@
+import {
+  selectElement,
+  switchToNewTab,
+  waitForFullPageUrl
+} from '../helpers/page.js'
 import landingPage from '../page-objects/landingPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
 
@@ -7,7 +12,6 @@ describe('Landing page test', () => {
   })
 
   it('Should verify start now button visible on landing page', async () => {
-    await landingPage.verifyPrivateBetaBanner()
     await landingPage.verifyPageHeadingAndTitle()
     await landingPage.verifyStartNowButton('Start now')
   })
@@ -18,5 +22,13 @@ describe('Landing page test', () => {
     await taskListPage.selectBackLink()
 
     await landingPage.verifyStartNowButton('Start now')
+  })
+
+  it('Should verify the feedback link', async () => {
+    await selectElement(landingPage.getFeedbackLink())
+    await switchToNewTab()
+    await waitForFullPageUrl(
+      'https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk'
+    )
   })
 })
