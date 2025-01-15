@@ -1,6 +1,7 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+import { config } from '~/src/config/config.js'
 
 describe('#homeController', () => {
   /** @type {Server} */
@@ -21,11 +22,8 @@ describe('#homeController', () => {
       url: '/'
     })
 
-    expect(parseDocument(payload).title).toBe(
-      'Apply for a Bovine Tuberculosis (TB) movement licence'
-    )
-
     expect(statusCode).toBe(statusCodes.ok)
+    expect(parseDocument(payload).title).toBe(config.get('serviceName'))
   })
 })
 

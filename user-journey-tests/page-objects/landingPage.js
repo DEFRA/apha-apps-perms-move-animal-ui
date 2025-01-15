@@ -4,7 +4,7 @@ import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
 const pageHeadingAndTitle =
-  'Apply for a Bovine Tuberculosis (TB) movement licence'
+  'Get permission to move animals under disease controls'
 
 class LandingPage extends Page {
   pagePath = '/'
