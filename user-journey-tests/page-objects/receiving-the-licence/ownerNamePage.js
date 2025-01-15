@@ -83,12 +83,12 @@ class EmailPage extends Page {
 
   async nameInputErrorTest() {
     await super.selectContinue()
-    this.verifyFirstNameErrors(false)
-    this.verifyLastNameErrors(false)
+    await this.verifyFirstNameErrors(false)
+    await this.verifyLastNameErrors(false)
   }
 
   async fieldLengthErrorTest(firstName, lastName) {
-    this.inputNameAndContinue(firstName, lastName)
+    await this.inputNameAndContinue(firstName, lastName)
     await super.verifyErrorsOnPage(
       this.firstNameFieldError(),
       this.firstNameLengthError
