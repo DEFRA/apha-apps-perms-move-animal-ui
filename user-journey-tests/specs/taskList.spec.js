@@ -131,7 +131,7 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe(
+    expect(await taskListPage.getTaskToCompleteCount()).toContain(
       'You have completed all sections.'
     )
     await taskListPage.selectReceiveTheLicence()

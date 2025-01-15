@@ -1,10 +1,8 @@
 name: Browserstack extended tests (desktop)
 
 on:
-  workflow_run:
-    workflows: ['Publish']
-    types:
-      - completed
+ schedule:
+    - cron: "0 */6 * * *" # Runs every 6 hours
 
 env:
   AWS_REGION: eu-west-2
