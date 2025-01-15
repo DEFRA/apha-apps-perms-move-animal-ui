@@ -119,6 +119,14 @@ export const checkForSecurityPopUpAndResolve = async () => {
 }
 
 export const switchToNewTab = async () => {
+  await browser.waitUntil(
+    async () => (await browser.getWindowHandles()).length > 1,
+    {
+      timeout: 10000, // Wait up to 10 seconds
+      timeoutMsg: 'New tab did not open within the expected time'
+    }
+  )
+
   const handles = await browser.getWindowHandles()
-  await browser.switchToWindow(handles[handles.length - 1])
+  await browser.switchToWindow(handles[1])
 }
