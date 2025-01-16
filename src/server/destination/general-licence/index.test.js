@@ -1,3 +1,4 @@
+import { parseDocument } from '../../common/test-helpers/dom.js'
 import { DestinationSummaryPage } from '../summary/index.js'
 import { DestinationGeneralLicencePage } from './index.js'
 import { createServer } from '~/src/server/index.js'
@@ -58,6 +59,9 @@ describe('DestinationGeneralLicenceController', () => {
       url: page.urlPath
     })
 
-    expect(payload).toMatchSnapshot()
+    const content =
+      parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+    expect(content).toMatchSnapshot()
   })
 })
