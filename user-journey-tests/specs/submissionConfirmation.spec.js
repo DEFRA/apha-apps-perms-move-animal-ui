@@ -19,7 +19,8 @@ const defaultLineOne = 'default line one'
 const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
 
-const slaText = 'It takes up to 5 working days to process and issue a licence.'
+const slaText =
+  'It can take up to 5 working days to process your application. It may take longer if veterinary checks are required, or we need further information.'
 
 describe('Submission confirmation test', () => {
   // eslint-disable-next-line
