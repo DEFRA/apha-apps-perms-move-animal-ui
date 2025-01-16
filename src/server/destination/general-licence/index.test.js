@@ -1,5 +1,8 @@
 import { DestinationSummaryPage } from '../summary/index.js'
 import { DestinationGeneralLicencePage } from './index.js'
+import { createServer } from '~/src/server/index.js'
+
+/** @import { Server } from '@hapi/hapi' */
 
 const sectionKey = 'destination'
 const heading = 'Check if you have a general licence'
@@ -8,14 +11,9 @@ const view = 'destination/general-licence/index'
 const pageUrl = '/destination/use-general-licence'
 
 const nextPage = new DestinationSummaryPage()
+const page = new DestinationGeneralLicencePage()
 
 describe('DestinationGeneralLicencePage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new DestinationGeneralLicencePage()
-  })
-
   it('should have correct url path', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -42,5 +40,24 @@ describe('DestinationGeneralLicencePage', () => {
 
   it('should be able ot calculate the next page URL as a string for the template', () => {
     expect(page.viewProps().continueUrl).toBe(nextPage.urlPath)
+  })
+})
+
+describe('DestinationGeneralLicenceController', () => {
+  /** @type {Server} */
+  let server
+
+  beforeAll(async () => {
+    server = await createServer()
+    await server.initialize()
+  })
+
+  it('should render the expected content', async () => {
+    const { payload } = await server.inject({
+      method: 'GET',
+      url: page.urlPath
+    })
+
+    expect(payload).toMatchSnapshot()
   })
 })
