@@ -31,4 +31,14 @@ describe('Landing page test', () => {
       'https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk'
     )
   })
+
+  it('Should verify cookie link in the footer', async () => {
+    await selectElement(landingPage.getCookiesFooterLink())
+    await waitForFullPageUrl('https://www.gov.uk/help/cookies')
+  })
+
+  it('Should verify the accessibility link in the footer', async () => {
+    await selectElement(landingPage.getAccessibilityFooterLink())
+    await waitForFullPageUrl('https://www.gov.uk/help/accessibility-statement')
+  })
 })

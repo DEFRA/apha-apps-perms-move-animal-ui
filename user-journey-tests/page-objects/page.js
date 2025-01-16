@@ -35,6 +35,22 @@ class Page {
     return $('#continue-button')
   }
 
+  getHelpFooterText() {
+    return $('[data-testid="help-footer-text"]')
+  }
+
+  getPricacyFooterLink() {
+    return $('[data-testid="privacy-policy-link"]')
+  }
+
+  getCookiesFooterLink() {
+    return $('[data-testid="cookies-link"]')
+  }
+
+  getAccessibilityFooterLink() {
+    return $('[data-testid="accessibility-statement-link"]')
+  }
+
   getErrorSummary() {
     return $('.govuk-error-summary')
   }
@@ -72,9 +88,41 @@ class Page {
     )
   }
 
+  async verifyFooter() {
+    await page.validateElementVisibleAndText(
+      this.getHelpFooterText(),
+      'If you need help with the service you can call 03000 200 301'
+    )
+    await page.validateElementVisibleAndText(
+      this.getPricacyFooterLink(),
+      'Privacy'
+    )
+    await page.validateHrefOfElement(
+      this.getPricacyFooterLink(),
+      '/privacy-policy'
+    )
+    await page.validateElementVisibleAndText(
+      this.getCookiesFooterLink(),
+      'Cookies'
+    )
+    await page.validateHrefOfElement(
+      this.getCookiesFooterLink(),
+      'https://www.gov.uk/help/cookies'
+    )
+    await page.validateElementVisibleAndText(
+      this.getAccessibilityFooterLink(),
+      'Accessibility statement'
+    )
+    await page.validateHrefOfElement(
+      this.getAccessibilityFooterLink(),
+      'https://www.gov.uk/help/accessibility-statement'
+    )
+  }
+
   async navigateToPageAndVerifyTitle() {
     await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
     await this.verifyPrivateBetaBanner()
+    await this.verifyFooter()
   }
 
   async verifyPageHeadingAndTitle() {
