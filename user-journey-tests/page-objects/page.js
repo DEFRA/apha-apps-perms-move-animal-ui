@@ -97,13 +97,25 @@ class Page {
       this.getPricacyFooterLink(),
       'Privacy'
     )
+    await page.validateHrefOfElement(
+      this.getPricacyFooterLink(),
+      '/privacy-policy'
+    )
     await page.validateElementVisibleAndText(
       this.getCookiesFooterLink(),
       'Cookies'
     )
+    await page.validateHrefOfElement(
+      this.getCookiesFooterLink(),
+      'https://www.gov.uk/help/cookies'
+    )
     await page.validateElementVisibleAndText(
       this.getAccessibilityFooterLink(),
       'Accessibility statement'
+    )
+    await page.validateHrefOfElement(
+      this.getAccessibilityFooterLink(),
+      'https://www.gov.uk/help/accessibility-statement'
     )
   }
 
