@@ -4,7 +4,6 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { anotherDestinationPage } from '~/src/server/destination/another-destination/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
-import { destinationExitPage } from '../exit-page/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -27,7 +26,7 @@ export class DestinationTypePage extends QuestionPage {
       afu: destinationSummaryPage,
       other: anotherDestinationPage
     }
-    return nextPageMapping[answer.value] ?? destinationExitPage
+    return nextPageMapping[answer.value] ?? anotherDestinationPage
   }
 
   /** @param {AnswerErrors} errors */
