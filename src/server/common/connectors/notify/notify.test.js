@@ -42,9 +42,30 @@ describe('sendNotification', () => {
   })
 
   it('should throw an error if the response is not ok', async () => {
-    const mockResponse = { ok: false }
+    const mockResponse = {
+      ok: false,
+      status: 400,
+
+      // eslint-disable-next-line @typescript-eslint/require-await
+      json: async () => ({
+        status_code: 400,
+        errors: [
+          {
+            error: 'BadRequestError',
+            message: "Can't send to this recipient using a team-only API key"
+          },
+          {
+            error: 'BadRequestError',
+            message:
+              "Can't send to this recipient when service is in trial mode"
+          }
+        ]
+      })
+    }
     mockProxyFetch.mockImplementation(() => Promise.resolve(mockResponse))
 
-    await expect(sendNotification(testData)).rejects.toThrow()
+    await expect(sendNotification(testData)).rejects.toThrow(
+      "HTTP failure from GOV.uk notify: status 400 with the following errors: Can't send to this recipient using a team-only API key, Can't send to this recipient when service is in trial mode"
+    )
   })
 })

@@ -26,9 +26,13 @@ export function sendNotification(data) {
         Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
       }
     }
-  ).then((response) => {
+  ).then(async (response) => {
     if (!response.ok) {
-      throw new Error()
+      const body = await response.json()
+      const errors = body.errors.map((error) => error.message)
+      throw new Error(
+        `HTTP failure from GOV.uk notify: status ${response.status} with the following errors: ${errors.join(', ')}`
+      )
     }
     return response
   })
