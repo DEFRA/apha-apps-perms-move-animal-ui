@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#CheckAnswers Should provide expected response 1`] = `
+"
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
+      </div>
+    </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h2 class="govuk-heading-m">Movement origin</h2>
+          
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Are you moving the animals on or off your farm or premises?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Off the farm or premises
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/to-or-from-own-premises?redirect_uri=/submit/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What type of premises are the animals moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Approved finishing unit (AFU)
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      12/123/1234
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the address of your farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Starfleet Headquarters<br>24-593 Federation Drive<br>San Francisco<br>San Francisco<br>RG24 8RR
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/address?redirect_uri=/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of your farm or premises where the animals are moving off?</span></a>
+    </dd>
+  </div>
+</dl>
+
+          <h2 class="govuk-heading-m">Movement destination</h2>
+          
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Where are the animals going to?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Dedicated sale for TB (orange market)
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/submit/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
+    </dd>
+  </div>
+</dl>
+
+          <h2 class="govuk-heading-m">Receiving the licence</h2>
+          
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the name of the County Parish Holding (CPH) owner?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      William T. Riker
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-name?redirect_uri=/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the County Parish Holding (CPH) owner?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How would you like this licence sent to you?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      email
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-email-or-post?redirect_uri=/submit/check-answers" data-testid="receiveMethod-change-link">Change<span class="govuk-visually-hidden"> How would you like this licence sent to you?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What email address would you like the licence sent to?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      name@example.com
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+    </dd>
+  </div>
+</dl>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+  <h2 class="govuk-heading-m">Your declaration</h2>
+  <p>
+    Before you submit your application, you must select one of the declaration
+    check boxes.
+  </p>
+  <!-- form URL below turns off errors on the next page  -->
+  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-statements-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="confirmation">
+          I confirm all the information given about my farm or premises is correct to the best of my knowledge
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="confirmation-2" name="confirmation" type="checkbox" value="other" data-testid="someone-else-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="confirmation-2">
+          I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;

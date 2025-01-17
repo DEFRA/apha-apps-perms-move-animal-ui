@@ -109,6 +109,7 @@ describe('#CheckAnswers', () => {
 
     const document = parseDocument(payload)
     expect(document.title).toEqual(pageTitle)
+    expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
 
     const taskListValues = document.querySelectorAll(
       '.govuk-summary-list__value'
