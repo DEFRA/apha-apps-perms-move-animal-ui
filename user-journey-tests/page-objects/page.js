@@ -105,10 +105,7 @@ class Page {
       this.getCookiesFooterLink(),
       'Cookies'
     )
-    await page.validateHrefOfElement(
-      this.getCookiesFooterLink(),
-      'https://www.gov.uk/help/cookies'
-    )
+    await page.validateHrefOfElement(this.getCookiesFooterLink(), '/cookies')
     await page.validateElementVisibleAndText(
       this.getAccessibilityFooterLink(),
       'Accessibility statement'
