@@ -1,8 +1,10 @@
 import {
   selectElement,
   switchToNewTab,
-  waitForFullPageUrl
+  waitForFullPageUrl,
+  waitForPagePath
 } from '../helpers/page.js'
+import cookiesPage from '../page-objects/cookiesPage.js'
 import landingPage from '../page-objects/landingPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
 
@@ -34,7 +36,8 @@ describe('Landing page test', () => {
 
   it('Should verify cookie link in the footer', async () => {
     await selectElement(landingPage.getCookiesFooterLink())
-    await waitForFullPageUrl('https://www.gov.uk/help/cookies')
+    await waitForPagePath(cookiesPage.pagePath)
+    await cookiesPage.verifyPageHeadingAndTitle()
   })
 
   it('Should verify the accessibility link in the footer', async () => {

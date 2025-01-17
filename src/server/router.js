@@ -16,6 +16,7 @@ import { receiveMethod } from './licence/receiveMethod/index.js'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
+import { cookiesPolicy } from './cookies-policy/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -33,6 +34,7 @@ export const router = {
       await server.register([
         home,
         privacyPolicy,
+        cookiesPolicy,
         origin,
         destination,
         licence,

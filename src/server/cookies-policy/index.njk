@@ -1,0 +1,65 @@
+{%
+  extends
+  'layouts/page.njk'
+%}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h1 class="govuk-heading-l">{{ heading }}</h1>
+        </div>
+        <p class="govuk-body">
+          Cookies are small files saved on your phone, tablet or computer when
+          you visit a website.
+        </p>
+
+        <p class="govuk-body">
+          We use the following essential cookies to keep your data secure while
+          you use the Get permission to move animals under disease controls
+          service.
+        </p>
+
+        <p class="govuk-body">
+          We do not need to ask permission to use essential cookies.
+        </p>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" style="width:20%">
+                Name
+              </th>
+              <th scope="col" class="govuk-table__header">Purpose</th>
+              <th scope="col" class="govuk-table__header" style="width:20%">
+                Expires
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" style="word-break: break-all">
+                session
+              </td>
+              <td class="govuk-table__cell">
+                Used to save your progress during the application process
+              </td>
+              <td class="govuk-table__cell">
+                4 hours since you last used the website
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" style="word-break: break-all">
+                crumb
+              </td>
+              <td class="govuk-table__cell">
+                Used to prevent attackers from changing your application
+              </td>
+              <td class="govuk-table__cell">Until you close your browser</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
