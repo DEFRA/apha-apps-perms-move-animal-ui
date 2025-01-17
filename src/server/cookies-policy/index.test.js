@@ -15,25 +15,17 @@ describe('#destinationSummaryController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  it('should render expected response', async () => {
+  it('should render expected response and content', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
       url: '/cookies'
     })
 
-    expect(parseDocument(payload).title).toBe('Cookies')
+    const document = parseDocument(payload)
+    expect(document.title).toBe('Cookies')
     expect(statusCode).toBe(statusCodes.ok)
-  })
 
-  it('should render the expected content', async () => {
-    const { payload } = await server.inject({
-      method: 'GET',
-      url: '/cookies'
-    })
-
-    const content =
-      parseDocument(payload).querySelector('#main-content')?.innerHTML
-
+    const content = document.querySelector('#main-content')?.innerHTML
     expect(content).toMatchSnapshot()
   })
 })
