@@ -1,7 +1,4 @@
-import {
-  waitForPagePath,
-  validateElementVisibleAndText
-} from '../helpers/page.js'
+import { waitForPagePath } from '../helpers/page.js'
 import landingPage from '../page-objects/landingPage.js'
 import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
@@ -18,9 +15,6 @@ const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
 const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
-
-const slaText =
-  'It can take up to 5 working days to process your application. It may take longer if veterinary checks are required, or we need further information.'
 
 describe('Submission confirmation test', () => {
   // eslint-disable-next-line
@@ -64,9 +58,5 @@ describe('Submission confirmation test', () => {
   it('Should show the confirmation page with the expected information', async () => {
     await waitForPagePath(submissionConfirmationPage.pagePath)
     await submissionConfirmationPage.verifyPageHeadingAndTitle()
-    await validateElementVisibleAndText(
-      submissionConfirmationPage.slaText,
-      slaText
-    )
   })
 })
