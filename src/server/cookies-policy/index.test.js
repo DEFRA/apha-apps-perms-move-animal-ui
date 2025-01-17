@@ -24,6 +24,18 @@ describe('#destinationSummaryController', () => {
     expect(parseDocument(payload).title).toBe('Cookies')
     expect(statusCode).toBe(statusCodes.ok)
   })
+
+  it('should render the expected content', async () => {
+    const { payload } = await server.inject({
+      method: 'GET',
+      url: '/cookies'
+    })
+
+    const content =
+      parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+    expect(content).toMatchSnapshot()
+  })
 })
 
 /**
