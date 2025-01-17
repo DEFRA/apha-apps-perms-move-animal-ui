@@ -28,8 +28,8 @@ export function sendNotification(data) {
     }
   ).then(async (response) => {
     if (!response.ok) {
-      const body = await response.json()
-      const errors = body.errors.map((error) => error.message)
+      const responseBody = await response.json()
+      const errors = responseBody.errors.map((error) => error.message)
       throw new Error(
         `HTTP failure from GOV.uk notify: status ${response.status} with the following errors: ${errors.join(', ')}`
       )
