@@ -7,7 +7,7 @@
 [![Run Tests Browserstack (desktop) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml)
 [![Run Tests Browserstack (mobile) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml)
 
-Frontend to the 'Move animals under disease control restriction' service.
+Frontend to the 'Get permission to move animals under disease controls' service.
 
 - [apha-apps-perms-move-animal-ui](#apha-apps-perms-move-animal-ui)
   - [Requirements](#requirements)
