@@ -18,26 +18,40 @@ concurrency:
   group: publish-main
 
 jobs:
-  build:
-    if: github.run_number != 1
-    name: CDP-build-workflow
+  checkout:
+    name: Check out Code
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Create Test Coverage Reports
+  test:
+    name: Create Test Coverage Reports
+    runs-on: ubuntu-latest
+    needs: checkout
+    steps:
+      - name: Install dependencies and run tests
         run: |
           npm ci
           npm run build
           npm test
 
+  sonar:
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+  docker:
+    name: Start Docker Compose
+    runs-on: ubuntu-latest
+    needs: sonar
+    steps:
       - name: Start docker compose
         env:
           NOTIFY_TEMPLATE_ID: ${{ secrets.NOTIFY_TEMPLATE_ID }}
@@ -46,17 +60,32 @@ jobs:
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
 
-      - name: Browserstack initial tests
+  browserstack:
+    name: BrowserStack Initial Tests
+    runs-on: ubuntu-latest
+    needs: docker
+    steps:
+      - name: Run BrowserStack tests
         run: |
           npm run user-journey-test:bs
         env:
           BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
           BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
 
-      - name: cleanup
-        if: always()
+  cleanup:
+    name: Cleanup
+    runs-on: ubuntu-latest
+    needs: browserstack
+    if: always()
+    steps:
+      - name: Stop Docker Compose
         run: docker compose down
 
+  publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    needs: cleanup
+    steps:
       - name: Build and Publish
         uses: DEFRA/cdp-build-action/build@main
         with:
