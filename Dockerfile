@@ -48,6 +48,7 @@ COPY --from=production_build /home/node/.server ./.server/
 COPY --from=production_build /home/node/.public/ ./.public/
 
 RUN npm ci --omit=dev  --ignore-scripts
+RUN npm audit --omit=dev
 
 ARG PORT
 ENV PORT=${PORT}
