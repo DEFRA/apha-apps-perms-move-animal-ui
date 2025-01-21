@@ -3,7 +3,7 @@ import { AddressAnswer } from './address.js'
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',
   addressLine2: '24-593 Federation Drive',
-  addressTown: 'San Francisco',
+  addressTown: 'San Francisco Bay',
   addressCounty: 'San Francisco',
   addressPostcode: 'RG24 8RR'
 }
@@ -14,6 +14,21 @@ describe('Address.new', () => {
     const address = new AddressAnswer(payload)
 
     expect(address._data).toEqual(validAddress)
+  })
+
+  it('should trim any whitespace from the values', () => {
+    const payload = {
+      addressLine1: '  Starfleet Headquarters  ',
+      addressTown: '  San Francisco  ',
+      addressPostcode: '  RG24 8RR  '
+    }
+    const address = new AddressAnswer(payload)
+
+    expect(address.value).toEqual({
+      addressLine1: 'Starfleet Headquarters',
+      addressTown: 'San Francisco',
+      addressPostcode: 'RG24 8RR'
+    })
   })
 
   it('should graceully handle optional values', () => {
@@ -165,7 +180,7 @@ describe('Address.html', () => {
     const expectedHtml = [
       'Starfleet Headquarters',
       '24-593 Federation Drive',
-      'San Francisco',
+      'San Francisco Bay',
       'San Francisco',
       'RG24 8RR'
     ].join('<br />')
