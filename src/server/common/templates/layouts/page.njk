@@ -8,6 +8,8 @@
     href="{{ getAssetPath('stylesheets/application.scss') }}"
     rel="stylesheet"
   />
+  <!-- stop index bot indexing any page that uses this template -->
+  <meta name="robots" content="noindex, nofollow" />
 {% endblock %}
 {% block header %}
   {{
