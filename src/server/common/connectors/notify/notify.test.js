@@ -1,4 +1,4 @@
-import { sendNotification } from './notify.js'
+import { NOTIFY_URL, sendNotification } from './notify.js'
 import * as proxyFetchObject from '~/src/server/common/helpers/proxy.js'
 import { config } from '~/src/config/config.js'
 
@@ -28,9 +28,7 @@ describe('sendNotification', () => {
       // @ts-expect-error: options.body might note be a string
       const body = options.body
 
-      expect(url).toBe(
-        'https://api.notifications.service.gov.uk/v2/notifications/email'
-      )
+      expect(url).toBe(NOTIFY_URL)
 
       expect(options.method).toBe('POST')
       expect(JSON.parse(body ?? '')).toEqual({
@@ -79,14 +77,37 @@ describe('sendNotification', () => {
   describe('without mocked proxyFetch', () => {
     beforeEach(() => {
       jest.restoreAllMocks()
+    })
+
+    it('should call proxyFetch passing the correct timeout', async () => {
+      const expectedTimeout = 10000
+      const fetchSpy = jest.spyOn(proxyFetchObject, 'proxyFetch')
+      const abortSignalTimeoutSpy = jest.spyOn(global.AbortSignal, 'timeout')
+
+      try {
+        await sendNotification(testData)
+      } catch (e) {
+        // ignore error
+      } finally {
+        expect(abortSignalTimeoutSpy).toHaveBeenCalledWith(expectedTimeout)
+
+        const mockSignal = abortSignalTimeoutSpy.mock.results[0].value
+        expect(fetchSpy).toHaveBeenCalledWith(
+          NOTIFY_URL,
+          expect.objectContaining({
+            signal: mockSignal
+          })
+        )
+      }
+    })
+
+    it('should abort if timeout is hit', async () => {
       const notifyConfig = config.get('notify')
       config.set('notify', {
         ...notifyConfig,
         timeout: 0
       })
-    })
 
-    it('should abort if timeout is hit', async () => {
       const result = sendNotification(testData)
 
       await expect(result).rejects.toThrow(
