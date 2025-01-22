@@ -7,6 +7,10 @@ class TestPage extends Page {
     get: {
       request: false,
       response: true
+    },
+    post: {
+      request: false,
+      response: true
     }
   }
 }
@@ -63,6 +67,17 @@ describe('#GenricPageController', () => {
     const metricSpy = jest.spyOn(controller.metrics, 'putMetric')
     controller.getHandler()
     expect(controller.sendMetric).toHaveBeenCalledWith('get', 'response')
+    expect(metricSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('should send metric on postHandler', () => {
+    jest.spyOn(controller, 'sendMetric')
+    jest.spyOn(controller, 'handlePost').mockImplementation(() => {
+      return 'get success'
+    })
+    const metricSpy = jest.spyOn(controller.metrics, 'putMetric')
+    controller.postHandler()
+    expect(controller.sendMetric).toHaveBeenCalledWith('post', 'response')
     expect(metricSpy).toHaveBeenCalledTimes(1)
   })
 

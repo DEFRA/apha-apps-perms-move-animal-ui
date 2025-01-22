@@ -77,7 +77,9 @@ export default class GenericPageController {
    * @param {string} event
    */
   sendMetric(method, event) {
-    if (!config.get('isProduction')) return
+    if (!config.get('isProduction')) {
+      return
+    }
 
     const sendMetric = this.page.reportMetrics[method]?.[event]
 
@@ -92,12 +94,12 @@ export default class GenericPageController {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleGet(req, h) {
+  handleGet(_req, _h) {
     throw new Error('Method not implemented')
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handlePost(req, h) {
+  handlePost(_req, _h) {
     throw new Error('Method not implemented')
   }
 }
