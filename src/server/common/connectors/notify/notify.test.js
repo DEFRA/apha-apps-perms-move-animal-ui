@@ -21,19 +21,24 @@ describe('sendNotification', () => {
 
       const response = await sendNotification(testData)
 
-      const [url, { body, method, headers }] = mockProxyFetch.mock.calls[0]
+      const [url, options] = mockProxyFetch.mock.calls[0]
+      /**
+       * @type {string | undefined}
+       */
+      // @ts-expect-error: options.body might note be a string
+      const body = options.body
 
       expect(url).toBe(
         'https://api.notifications.service.gov.uk/v2/notifications/email'
       )
 
-      expect(method).toBe('POST')
-      expect(JSON.parse(body)).toEqual({
+      expect(options.method).toBe('POST')
+      expect(JSON.parse(body ?? '')).toEqual({
         personalisation: testData,
         template_id: config.get('notify').templateId,
         email_address: config.get('notify').caseDeliveryEmailAddress
       })
-      expect(headers).toEqual({
+      expect(options.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
       })
 
@@ -61,7 +66,9 @@ describe('sendNotification', () => {
           ]
         })
       }
-      mockProxyFetch.mockImplementation(() => Promise.resolve(mockResponse))
+      jest
+        .spyOn(proxyFetchObject, 'proxyFetch')
+        .mockImplementation(() => Promise.resolve(mockResponse))
 
       await expect(sendNotification(testData)).rejects.toThrow(
         "HTTP failure from GOV.uk notify: status 400 with the following errors: Can't send to this recipient using a team-only API key, Can't send to this recipient when service is in trial mode"
@@ -71,6 +78,7 @@ describe('sendNotification', () => {
 
   describe('without mocked proxyFetch', () => {
     beforeEach(() => {
+      jest.restoreAllMocks()
       const notifyConfig = config.get('notify')
       config.set('notify', {
         ...notifyConfig,
