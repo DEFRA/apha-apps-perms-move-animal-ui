@@ -8,7 +8,7 @@ export class PostExitPageController extends PageController {
     return emailAddressPage
   }
 
-  postHandler(req, h) {
+  handlePost(req, h) {
     const answer = ReceiveMethodAnswer.fromState(req.payload.receiveMethod)
 
     req.yar.set(receiveMethodPage.sectionKey, {
