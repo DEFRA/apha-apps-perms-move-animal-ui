@@ -72,6 +72,17 @@ describe('sendNotification', () => {
         "HTTP failure from GOV.uk notify: status 400 with the following errors: Can't send to this recipient using a team-only API key, Can't send to this recipient when service is in trial mode"
       )
     })
+
+    it('should throw an error on reject', async () => {
+      const errorMessage = 'test error'
+      jest
+        .spyOn(proxyFetchObject, 'proxyFetch')
+        .mockImplementation(() => Promise.reject(new Error(errorMessage)))
+
+      await expect(sendNotification(testData)).rejects.toThrow(
+        `Request to GOV.uk notify failed with error: ${errorMessage}`
+      )
+    })
   })
 
   describe('without mocked proxyFetch', () => {
