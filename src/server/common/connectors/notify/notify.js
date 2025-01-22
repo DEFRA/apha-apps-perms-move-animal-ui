@@ -6,6 +6,7 @@ import { createToken } from '~/src/server/common/connectors/notify/notify-token-
  * @typedef {{ content: string}} NotifyContent
  */
 const notifyConfig = config.get('notify')
+const requestTimeout = 10000
 
 /**
  * @param {NotifyContent} data
@@ -17,16 +18,31 @@ export async function sendNotification(data) {
     personalisation: data
   })
 
-  const response = await proxyFetch(
-    'https://api.notifications.service.gov.uk/v2/notifications/email',
-    {
-      method: 'POST',
-      body,
-      headers: {
-        Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
+  let response
+
+  try {
+    response = await proxyFetch(
+      'https://api.notifications.service.gov.uk/v2/notifications/email',
+      {
+        method: 'POST',
+        body,
+        headers: {
+          Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
+        },
+        signal: AbortSignal.timeout(requestTimeout)
       }
+    )
+  } catch (err) {
+    if (err.code && err.code === err.TIMEOUT_ERR) {
+      throw new Error(
+        `Request to GOV.uk notify timed out after ${requestTimeout}ms`
+      )
+    } else {
+      throw new Error(
+        `Request to GOV.uk notify failed with error: ${err.message}`
+      )
     }
-  )
+  }
 
   if (!response.ok) {
     const responseBody = await response.json()
@@ -35,5 +51,6 @@ export async function sendNotification(data) {
       `HTTP failure from GOV.uk notify: status ${response.status} with the following errors: ${errors.join(', ')}`
     )
   }
+
   return response
 }
