@@ -1,5 +1,5 @@
 import SummaryPage from '../../common/model/page/summary-page/SummaryPageModel.js'
-import { SummaryPageController } from '../../common/controller/summary-page-controller/SummaryPageController.js'
+import { SummaryPageController } from '../../common/controller/summary-page-controller/summary-page-controller.js'
 
 import { LicenceSection } from '~/src/server/common/model/section/licence/licence.js'
 

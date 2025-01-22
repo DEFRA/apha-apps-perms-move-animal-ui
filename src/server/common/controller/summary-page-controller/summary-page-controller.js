@@ -2,8 +2,9 @@
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
 import { sectionToSummary } from '../../templates/macros/create-summary.js'
+import GenericPageController from '../generic-page-controller/index.js'
 
-export class SummaryPageController {
+export class SummaryPageController extends GenericPageController {
   /** @type {string} */
   indexView = 'common/controller/summary-page-controller/index.njk'
 
@@ -17,6 +18,7 @@ export class SummaryPageController {
    * @param {SummaryPage} page
    */
   constructor(page) {
+    super(page)
     this.page = page
   }
 
@@ -49,7 +51,7 @@ export class SummaryPageController {
     }
   }
 
-  getHandler(req, res) {
+  handleGet(req, res) {
     const section = this.page.sectionFactory(req.yar.get(this.page.sectionKey))
 
     const { isValid, firstInvalidPage } = section.validate()
@@ -66,7 +68,7 @@ export class SummaryPageController {
     })
   }
 
-  postHandler(_req, res) {
+  handlePost(_req, res) {
     return res.redirect('/task-list')
   }
 }

@@ -13,6 +13,14 @@ export class ConfirmationPage extends Page {
   urlPath = '/submit/confirmation'
   view = 'submit/confirmation/index'
 
+  // sends metric that the page was served
+  reportMetrics = {
+    get: {
+      request: false,
+      response: true
+    }
+  }
+
   pageTitle = title
   pageHeading = title
 }
