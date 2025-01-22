@@ -39,37 +39,17 @@ export default class GenericPageController {
   }
 
   getHandler(req, h) {
-    let served = true
-
-    try {
-      this.sendMetric('get', 'request')
-
-      return this.handleGet(req, h)
-    } catch (e) {
-      this.logger.error(e)
-      served = false
-    } finally {
-      if (served) {
-        this.sendMetric('get', 'response')
-      }
-    }
+    this.sendMetric('get', 'request')
+    const result = this.handleGet(req, h)
+    this.sendMetric('get', 'response')
+    return result
   }
 
   postHandler(req, h) {
-    let served = true
-
-    try {
-      this.sendMetric('post', 'request')
-
-      return this.handlePost(req, h)
-    } catch (e) {
-      this.logger.error(e)
-      served = false
-    } finally {
-      if (served) {
-        this.sendMetric('post', 'response')
-      }
-    }
+    this.sendMetric('post', 'request')
+    const result = this.handlePost(req, h)
+    this.sendMetric('post', 'response')
+    return result
   }
 
   /**
