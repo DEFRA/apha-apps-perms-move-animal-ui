@@ -5,7 +5,7 @@ import { config } from '~/src/config/config.js'
 const testData = { content: 'test' }
 
 describe('sendNotification', () => {
-  describe('with mocks', () => {
+  describe('with mocked proxyFetch', () => {
     jest.mock('~/src/server/common/helpers/proxy.js', () => ({
       proxyFetch: jest.fn()
     }))
@@ -71,7 +71,14 @@ describe('sendNotification', () => {
     })
   })
 
-  describe('without mocks', () => {
+  describe('without mocked proxyFetch', () => {
+    jest.mock(
+      '~/src/server/common/connectors/notify/notify-token-utils.js',
+      () => ({
+        createToken: jest.fn().mockReturnValue('mocked-jwt-token')
+      })
+    )
+
     beforeEach(() => {
       const notifyConfig = config.get('notify')
       config.set('notify', {
