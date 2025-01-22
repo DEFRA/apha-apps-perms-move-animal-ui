@@ -7,12 +7,12 @@ import { config } from '~/src/config/config.js'
 // }))
 // const mockProxyFetch = /** @type {jest.Mock} */ (proxyFetch)
 
-jest.mock(
-  '~/src/server/common/connectors/notify/notify-token-utils.js',
-  () => ({
-    createToken: jest.fn().mockReturnValue('mocked-jwt-token')
-  })
-)
+// jest.mock(
+//   '~/src/server/common/connectors/notify/notify-token-utils.js',
+//   () => ({
+//     createToken: jest.fn().mockReturnValue('mocked-jwt-token')
+//   })
+// )
 
 const testData = { content: 'test' }
 
@@ -70,22 +70,19 @@ describe('sendNotification', () => {
   })
 
   describe('timeout with steve', () => {
+    beforeEach(() => {
+      const notifyConfig = config.get('notify')
+      config.set('notify', {
+        ...notifyConfig,
+        timeout: 0
+      })
+    })
+
     it('should abort if timeout is hit', async () => {
-      jest.useFakeTimers()
-
-      global.fetch = jest.fn(
-        () =>
-          new Promise(() => {
-            // testing
-          })
-      )
-
       const result = sendNotification(testData)
 
-      jest.advanceTimersByTime(11000)
-
       await expect(result).rejects.toThrow(
-        'Request to GOV.uk notify timed out after 10000ms'
+        'Request to GOV.uk notify timed out after 0ms'
       )
       jest.useRealTimers()
     })

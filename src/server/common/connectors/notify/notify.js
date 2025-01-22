@@ -5,13 +5,13 @@ import { createToken } from '~/src/server/common/connectors/notify/notify-token-
 /**
  * @typedef {{ content: string}} NotifyContent
  */
-const notifyConfig = config.get('notify')
-const requestTimeout = 10000
 
 /**
  * @param {NotifyContent} data
  */
 export async function sendNotification(data) {
+  const { timeout, ...notifyConfig } = config.get('notify')
+
   const body = JSON.stringify({
     template_id: notifyConfig.templateId,
     email_address: notifyConfig.caseDeliveryEmailAddress,
@@ -29,14 +29,12 @@ export async function sendNotification(data) {
         headers: {
           Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
         },
-        signal: AbortSignal.timeout(requestTimeout)
+        signal: AbortSignal.timeout(timeout)
       }
     )
   } catch (err) {
     if (err.code && err.code === err.TIMEOUT_ERR) {
-      throw new Error(
-        `Request to GOV.uk notify timed out after ${requestTimeout}ms`
-      )
+      throw new Error(`Request to GOV.uk notify timed out after ${timeout}ms`)
     } else {
       throw new Error(
         `Request to GOV.uk notify failed with error: ${err.message}`
