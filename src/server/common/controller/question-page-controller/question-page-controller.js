@@ -1,15 +1,17 @@
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
+import GenericPageController from '../generic-page-controller/index.js'
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
 /** @import { RawPayload } from '../../model/answer/answer-model.js' */
 /** @import { QuestionPage } from '../../model/page/question-page-model.js' */
 
-export class QuestionPageController {
+export class QuestionPageController extends GenericPageController {
   /**
    * @param {QuestionPage} page
    */
   constructor(page) {
+    super(page)
     this.page = page
   }
 
@@ -38,7 +40,7 @@ export class QuestionPageController {
     }
   }
 
-  getHandler(req, h) {
+  handleGet(req, h) {
     const sectionState = req.yar.get(this.page.sectionKey)
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey]
@@ -53,7 +55,7 @@ export class QuestionPageController {
     })
   }
 
-  postHandler(req, h) {
+  handlePost(req, h) {
     const payload = /** @type {NextPage} */ (req.payload)
     const Answer = this.page.Answer
     const answer = new Answer(/** @type {RawPayload} */ (payload))

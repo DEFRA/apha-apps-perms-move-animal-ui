@@ -1,5 +1,6 @@
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
+import GenericPageController from '../generic-page-controller/index.js'
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
 /** @import { Page } from '../../model/page/page-model.js' */
@@ -15,13 +16,17 @@ const defaultControllerOptions = {
   methods: ['GET', 'POST']
 }
 
-export class PageController {
+/**
+ * @satisfies {PageController}
+ */
+export class PageController extends GenericPageController {
   options
   /**
    * @param {Page} page
    * @param {ControllerOptions} opts
    */
   constructor(page, opts = defaultControllerOptions) {
+    super(page)
     this.page = page
 
     this.options = opts
@@ -50,7 +55,7 @@ export class PageController {
     }
   }
 
-  getHandler(req, h) {
+  handleGet(req, h) {
     return h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
@@ -59,7 +64,7 @@ export class PageController {
     })
   }
 
-  postHandler(req, h) {
+  handlePost(req, h) {
     const payload = /** @type {NextPage} */ (req.payload)
     const nextPage = this.page.nextPage()
 
