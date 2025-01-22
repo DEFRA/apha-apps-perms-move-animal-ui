@@ -2,10 +2,10 @@ import { sendNotification } from './notify.js'
 import { proxyFetch } from '~/src/server/common/helpers/proxy.js'
 import { config } from '~/src/config/config.js'
 
-jest.mock('~/src/server/common/helpers/proxy.js', () => ({
-  proxyFetch: jest.fn()
-}))
-const mockProxyFetch = /** @type {jest.Mock} */ (proxyFetch)
+// jest.mock('~/src/server/common/helpers/proxy.js', () => ({
+//   proxyFetch: jest.fn()
+// }))
+// const mockProxyFetch = /** @type {jest.Mock} */ (proxyFetch)
 
 jest.mock(
   '~/src/server/common/connectors/notify/notify-token-utils.js',
