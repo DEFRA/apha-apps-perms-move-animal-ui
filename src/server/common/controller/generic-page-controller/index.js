@@ -5,6 +5,7 @@ import {
 } from 'aws-embedded-metrics'
 import { config } from '~/src/config/config.js'
 import { createLogger } from '../../helpers/logging/logger.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
  * @import {Page} from '../../model/page/page-model.js'
@@ -95,11 +96,11 @@ export default class GenericPageController {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleGet(_req, _h) {
-    throw new Error('Method not implemented')
+    throw new NotImplementedError()
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handlePost(_req, _h) {
-    throw new Error('Method not implemented')
+    throw new NotImplementedError()
   }
 }

@@ -1,6 +1,7 @@
 import { config } from '~/src/config/config.js'
 import { Page } from '../../model/page/page-model.js'
 import GenericPageController from './index.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 class TestPage extends Page {
   reportMetrics = {
@@ -35,6 +36,12 @@ describe('#GenricPageController', () => {
   beforeEach(() => {
     const page = new TestPage()
     controller = new TestGenericController(page)
+  })
+
+  it('should throw not implemented error', () => {
+    const defaultController = new GenericPageController(new Page())
+    expect(() => defaultController.handleGet()).toThrow(NotImplementedError)
+    expect(() => defaultController.handlePost()).toThrow(NotImplementedError)
   })
 
   it('should output error on getHandler', () => {
