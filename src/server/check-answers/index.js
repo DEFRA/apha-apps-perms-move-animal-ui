@@ -56,7 +56,7 @@ export class SubmitPageController extends QuestionPageController {
     super(new SubmitSummaryPage())
   }
 
-  getHandler(req, h) {
+  handleGet(req, h) {
     const application = ApplicationModel.fromState({
       origin: req.yar.get('origin'),
       licence: req.yar.get('licence'),
@@ -69,10 +69,10 @@ export class SubmitPageController extends QuestionPageController {
       return h.redirect('/task-list-incomplete')
     }
 
-    return super.getHandler(req, h)
+    return super.handleGet(req, h)
   }
 
-  async postHandler(req, h) {
+  async handlePost(req, h) {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
@@ -104,7 +104,7 @@ export class SubmitPageController extends QuestionPageController {
       return h.redirect('/task-list-incomplete')
     }
 
-    return super.postHandler(req, h)
+    return super.handlePost(req, h)
   }
 }
 
