@@ -62,7 +62,7 @@ export default class GenericPageController {
       return
     }
 
-    const sendMetric = this.page.reportMetrics[method]?.[event]
+    const sendMetric = this.page.reportMetrics?.[method]?.[event]
 
     if (sendMetric) {
       this.metrics.putMetric(

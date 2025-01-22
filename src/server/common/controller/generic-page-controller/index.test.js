@@ -26,7 +26,7 @@ class TestGenericController extends GenericPageController {
   }
 }
 
-describe('#GenricPageController', () => {
+describe('#GenericPageController', () => {
   let controller
 
   beforeEach(() => {
