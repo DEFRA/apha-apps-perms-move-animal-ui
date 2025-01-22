@@ -68,4 +68,26 @@ describe('sendNotification', () => {
       "HTTP failure from GOV.uk notify: status 400 with the following errors: Can't send to this recipient using a team-only API key, Can't send to this recipient when service is in trial mode"
     )
   })
+
+  describe('timeout with steve', () => {
+    it('should abort if timeout is hit', async () => {
+      jest.useFakeTimers()
+
+      global.fetch = jest.fn(
+        () =>
+          new Promise(() => {
+            // testing
+          })
+      )
+
+      const result = sendNotification(testData)
+
+      jest.advanceTimersByTime(11000)
+
+      await expect(result).rejects.toThrow(
+        'Request to GOV.uk notify timed out after 10000ms'
+      )
+      jest.useRealTimers()
+    })
+  })
 })
