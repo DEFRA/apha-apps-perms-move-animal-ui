@@ -52,7 +52,7 @@ export class Page {
   /**
    * @param {import('@hapi/hapi').Request} _req
    * @returns {Record<string, unknown>}
-   * */
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   viewProps(_req) {
     return {}

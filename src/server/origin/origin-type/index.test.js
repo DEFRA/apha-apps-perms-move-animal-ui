@@ -2,12 +2,9 @@ import { originType, originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
-import { createServer } from '~/src/server/index.js'
-import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
-/** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */
+/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
 
 const sectionKey = 'origin'
 const question = 'What type of premises are the animals moving off?'
@@ -78,33 +75,9 @@ describe('OriginTypePage', () => {
     expect(plugin).toHaveProperty('register')
   })
 
-  describe('OriginTypePage.content', () => {
-    /** @type {Server} */
-    let server
-
-    beforeAll(async () => {
-      server = await createServer()
-      await server.initialize()
-    })
-
-    afterAll(async () => {
-      await server.stop({ timeout: 0 })
-    })
-
-    it('should render expected response and content', async () => {
-      const { payload, statusCode } = await server.inject(
-        withCsrfProtection({
-          method: 'GET',
-          url: pageUrl
-        })
-      )
-
-      const document = parseDocument(payload)
-      expect(document.title).toBe(question)
-      expect(statusCode).toBe(statusCodes.ok)
-
-      const content = document.querySelector('#main-content')?.innerHTML
-      expect(content).toMatchSnapshot()
-    })
-  })
+  describePageSnapshot(
+    'OriginTypePage.content',
+    'should render expected response and content',
+    pageUrl
+  )
 })
