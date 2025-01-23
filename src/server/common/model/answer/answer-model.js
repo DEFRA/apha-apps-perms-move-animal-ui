@@ -1,9 +1,8 @@
-/**
- * @import {AnswerErrors, AnswerValidationResult} from './validation.js'
- * @import {Page} from '../../model/page/page-model.js'
- */
-
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+/** @import {AnswerErrors, AnswerValidationResult} from './validation.js' */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable jsdoc/require-returns-check */
 
 /**
  * @typedef {{ href: string, text: string }} ViewErrorMessage
@@ -40,7 +39,6 @@ export class AnswerModel {
    * @param {Payload} _data
    * @returns {Payload}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _extractFields(_data) {
     throw new NotImplementedError()
   }
@@ -63,7 +61,9 @@ export class AnswerModel {
     }))
   }
 
-  /** @returns {string} */
+  /**
+   * @returns {string}
+   */
   get html() {
     throw new NotImplementedError()
   }
@@ -72,7 +72,6 @@ export class AnswerModel {
    * @param {unknown} _data
    * @returns {unknown}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static fromState(_data) {
     throw new NotImplementedError()
   }
@@ -81,9 +80,9 @@ export class AnswerModel {
 /**
  * @template Payload
  * @typedef {{
- *   new (data: Payload): AnswerModel<Payload>,
- *   fromState(data: any): AnswerModel<Payload>
- *   errorMessages(errors: AnswerErrors): ViewErrorMessage[]
+ *   new(data: Payload): AnswerModel<Payload>;
+ *   fromState(data: any): AnswerModel<Payload>;
+ *   errorMessages(errors: AnswerErrors): ViewErrorMessage[];
  * }} AnswerModelClass
  */
 

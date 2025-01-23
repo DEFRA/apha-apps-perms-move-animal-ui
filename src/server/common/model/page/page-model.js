@@ -52,12 +52,13 @@ export class Page {
   /**
    * @param {import('@hapi/hapi').Request} _req
    * @returns {Record<string, unknown>}
-   * */
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   viewProps(_req) {
     return {}
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {AnswerModel} [_answer]
    * @returns {Page }
