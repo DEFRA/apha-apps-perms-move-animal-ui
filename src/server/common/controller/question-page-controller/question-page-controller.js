@@ -51,6 +51,7 @@ export class QuestionPageController extends GenericPageController {
       pageTitle: this.page.title,
       heading: this.page.heading,
       value: answer.value,
+      answer,
       ...this.page.viewProps(req)
     })
   }

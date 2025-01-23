@@ -2,26 +2,26 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
+  {# {% include "common/model/answer/radio-button/radio-button.njk" %} #}
+  {% set items = [] %}
+  {% for key,option in answer.config.options %}
+    {%
+      set items = (items.push( {
+        id: key,
+        value: key,
+        text: option.label
+      }), items)
+    %}
+  {% endfor %}
 
   {{
     govukRadios({
-      name: "onOffFarm",
-      id: "on-off-farm",
+      name: answer.config.payloadKey,
+      id: answer.config.payloadKey,
       fieldset:{},
       value: value,
-      items: [
-        {
-          id: "onOffFarm",
-          value: "on",
-          text: "On to the farm or premises"
-        },
-        {
-          id: "off-farm-radio",
-          value: "off",
-          text: "Off the farm or premises"
-        }
-      ],
-      errorMessage: errors.onOffFarm
+      items: items,
+      errorMessage: errors[answer.config.payloadKey]
     })
   }}
 {% endblock %}
