@@ -5,8 +5,8 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 const config = {
   payloadKey: 'receiveMethod',
   options: {
-    email: { label: 'email' },
-    post: { label: 'post' }
+    email: { label: 'Email' },
+    post: { label: 'Post' }
   },
   errors: {
     emptyOptionText: 'Select how you would like this licence sent to you'

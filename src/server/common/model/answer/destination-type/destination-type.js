@@ -7,8 +7,14 @@ const onOffFarmConfig = {
   options: {
     slaughter: { label: 'Slaughter' },
     'dedicated-sale': { label: 'Dedicated sale for TB (orange market)' },
-    afu: { label: 'Approved finishing unit (AFU)' },
-    other: { label: 'Another destination' }
+    afu: {
+      label: 'Approved finishing unit (AFU)',
+      hint: 'Including enhanced with grazing (AFUE)'
+    },
+    other: {
+      label: 'Another destination',
+      hint: 'For example, a veterinary practice, zoo, or a laboratory'
+    }
   },
   errors: {
     emptyOptionText: 'Select where the animals are going'

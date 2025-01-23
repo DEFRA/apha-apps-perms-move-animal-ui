@@ -2,27 +2,5 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends 'layouts/questions.njk' %}
 {% block questions %}
-  {% call govukFieldset() %}
-    {{
-      govukRadios({
-        name: "receiveMethod",
-        id: "receive-method",
-        fieldset:{},
-        value: value,
-        items: [
-          {
-            id: "receiveMethod",
-            value: "email",
-            text: "Email"
-          },
-          {
-            id: "post",
-            value: "post",
-            text: "Post"
-          }
-        ],
-        errorMessage: errors.receiveMethod
-      })
-    }}
-  {% endcall %}
+  {% include "model/answer/radio-button/radio-button.njk" %}
 {% endblock %}

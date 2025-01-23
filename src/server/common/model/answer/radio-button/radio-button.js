@@ -95,7 +95,10 @@ export class RadioButtonAnswer extends AnswerModel {
     const result = Object.entries(this.config.options).map(([key, value]) => ({
       id: key,
       value: key,
-      text: value.label
+      text: value.label,
+      hint: {
+        text: value.hint
+      }
     }))
     result[0].id = this.config.payloadKey
     return result

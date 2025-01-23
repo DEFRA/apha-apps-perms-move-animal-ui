@@ -17,7 +17,7 @@ const testRadioConfig = {
   payloadKey: 'test_radio',
   options: {
     value_1: { label: 'test_label_1' },
-    value_2: { label: 'test_label_2' }
+    value_2: { label: 'test_label_2', hint: 'test_hint_2' }
   },
   errors: {
     emptyOptionText: 'Select an option'
@@ -148,12 +148,18 @@ describe('RadioButton', () => {
         {
           id: 'test_radio',
           value: 'value_1',
-          text: 'test_label_1'
+          text: 'test_label_1',
+          hint: {
+            text: undefined
+          }
         },
         {
           id: 'value_2',
           value: 'value_2',
-          text: 'test_label_2'
+          text: 'test_label_2',
+          hint: {
+            text: 'test_hint_2'
+          }
         }
       ])
     })

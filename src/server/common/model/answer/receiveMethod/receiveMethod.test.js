@@ -25,7 +25,7 @@ describe('ReceiveMethod', () => {
 
   it('should have the expected options to select from', () => {
     expect(Object.keys(ReceiveMethodAnswer.config.options)).toHaveLength(2)
-    expect(ReceiveMethodAnswer.config.options.email.label).toBe('email')
-    expect(ReceiveMethodAnswer.config.options.post.label).toBe('post')
+    expect(ReceiveMethodAnswer.config.options.email.label).toBe('Email')
+    expect(ReceiveMethodAnswer.config.options.post.label).toBe('Post')
   })
 })

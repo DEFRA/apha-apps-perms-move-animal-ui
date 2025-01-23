@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OriginTypePage OriginTypePage.content should render expected response and content 1`] = `
+"
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">What type of premises are the animals moving off?</h1>
+      </div>
+    </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="originType" name="originType" type="radio" value="tb-restricted-farm">
+        <label class="govuk-label govuk-radios__label" for="originType">
+          TB restricted farm
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="afu" name="originType" type="radio" value="afu" aria-describedby="afu-item-hint">
+        <label class="govuk-label govuk-radios__label" for="afu">
+          Approved finishing unit (AFU)
+        </label>
+        <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+          Including enhanced with grazing (AFUE)
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
+        <label class="govuk-label govuk-radios__label" for="other">
+          Another type of premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;
