@@ -49,9 +49,6 @@ describe('#GenericPageController', () => {
       throw new Error('test error')
     })
 
-    jest.spyOn(controller.logger, 'error').mockImplementation(() => {
-      throw new Error('test error')
-    })
     expect(() => controller.getHandler()).toThrow()
   })
 
@@ -60,9 +57,6 @@ describe('#GenericPageController', () => {
       throw new Error('test error')
     })
 
-    jest.spyOn(controller.logger, 'error').mockImplementation(() => {
-      throw new Error('test error')
-    })
     expect(() => controller.postHandler()).toThrow()
   })
 
