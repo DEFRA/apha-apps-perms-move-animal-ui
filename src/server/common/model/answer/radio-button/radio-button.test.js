@@ -3,61 +3,60 @@ import { RadioButtonAnswer } from './radio-button.js'
 /** @import {RadioButtonConfig} from './radio-button.js' */
 
 /**
- * export @typedef {'on' | 'off'} OnOffFarmData
- * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
+ * @typedef {'value_1' | 'value_2'} TestRadioValues
+ * @typedef {{ test_radio: TestRadioValues }} TestRadioPayload
  */
 
-/** @type {OnOffFarmPayload} */
-const validOnOffRadio = {
-  onOffFarm: 'on'
+/** @type {TestRadioPayload} */
+const validTestRadio = {
+  test_radio: 'value_1'
 }
 
 /** @type {RadioButtonConfig} */
-const onOffFarmConfig = {
-  payloadKey: 'onOffFarm',
+const testRadioConfig = {
+  payloadKey: 'test_radio',
   options: {
-    on: { label: 'On to the farm or premises' },
-    off: { label: 'Off the farm or premises' }
+    value_1: { label: 'test_label_1' },
+    value_2: { label: 'test_label_2' }
   },
   errors: {
-    emptyOptionText:
-      'Select if you are moving cattle on or off your farm or premises'
+    emptyOptionText: 'Select an option'
   }
 }
 
-class OnOffFarmTest extends RadioButtonAnswer {
+class RadioButtonTest extends RadioButtonAnswer {
   get config() {
-    return onOffFarmConfig
+    return testRadioConfig
   }
 
   static get config() {
-    return onOffFarmConfig
+    return testRadioConfig
   }
 }
 
 describe('RadioButton', () => {
   describe('RadioButton.new', () => {
     it('should strip away any irrelevant values', () => {
-      const payload = { ...validOnOffRadio, nextPage: '/other/page' }
-      const onOffFarm = new OnOffFarmTest(payload)
+      const payload = { ...validTestRadio, nextPage: '/other/page' }
+      const testInstance = new RadioButtonTest(payload)
 
-      expect(onOffFarm._data).toEqual(validOnOffRadio)
+      expect(testInstance._data).toEqual(validTestRadio)
     })
   })
 
   describe('#RadioButton.validate', () => {
-    test('should return true for on', () => {
-      const { isValid, errors } = new OnOffFarmTest({
-        onOffFarm: 'on'
+    test('should return true for valid value', () => {
+      const { isValid, errors } = new RadioButtonTest({
+        test_radio: 'value_1'
       }).validate()
 
       expect(isValid).toBe(true)
       expect(errors).toEqual({})
     })
 
-    test('should return true for off', () => {
-      const { isValid, errors } = new OnOffFarmTest({
-        onOffFarm: 'off'
+    test('should return true for another valid value', () => {
+      const { isValid, errors } = new RadioButtonTest({
+        test_radio: 'value_2'
       }).validate()
 
       expect(isValid).toBe(true)
@@ -65,77 +64,79 @@ describe('RadioButton', () => {
     })
 
     test('should return false for empty', () => {
-      const { isValid, errors } = new OnOffFarmTest(undefined).validate()
+      const { isValid, errors } = new RadioButtonTest(undefined).validate()
 
       expect(isValid).toBe(false)
-      expect(errors.onOffFarm.text).toBe(
-        'Select if you are moving cattle on or off your farm or premises'
+      expect(errors.test_radio.text).toBe(
+        testRadioConfig.errors.emptyOptionText
       )
     })
 
     it('should return false for an invalid', () => {
-      const onOffFarm = new OnOffFarmTest({
-        onOffFarm: 'invalid value'
+      const testInstance = new RadioButtonTest({
+        test_radio: 'invalid value'
       })
 
-      const { isValid, errors } = onOffFarm.validate()
+      const { isValid, errors } = testInstance.validate()
 
       expect(isValid).toBe(false)
-      expect(errors.onOffFarm.text).toBe(
-        'Select if you are moving cattle on or off your farm or premises'
+      expect(errors.test_radio.text).toBe(
+        testRadioConfig.errors.emptyOptionText
       )
     })
   })
 
   describe('#RadioButton.toState', () => {
     test('should replace missing data with blank string', () => {
-      const data = new OnOffFarmTest().toState()
+      const data = new RadioButtonTest().toState()
       expect(data).toBe('')
     })
 
     test('should pass through valid data unaltered', () => {
-      const data = new OnOffFarmTest({ onOffFarm: 'on' }).toState()
+      const data = new RadioButtonTest({ test_radio: 'value_1' }).toState()
 
-      expect(data).toBe('on')
+      expect(data).toBe('value_1')
     })
   })
 
   describe('RadioButton.fromState', () => {
-    it('should return just the onOffFarm value from the payload', () => {
-      const state = new OnOffFarmTest(validOnOffRadio).toState()
-      expect(OnOffFarmTest.fromState(state)._data).toEqual(validOnOffRadio)
+    it('should re-construct the payload from a valid state', () => {
+      const state = new RadioButtonTest(validTestRadio).toState()
+      expect(RadioButtonTest.fromState(state)._data).toEqual(validTestRadio)
     })
 
     it('should return an undefined value if the state is undefined', () => {
-      expect(OnOffFarmTest.fromState(undefined).value).toBeUndefined()
+      expect(RadioButtonTest.fromState(undefined).value).toBeUndefined()
     })
 
     it('should store undefined if the state is undefined', () => {
-      expect(OnOffFarmTest.fromState(undefined)._data).toBeUndefined()
+      expect(RadioButtonTest.fromState(undefined)._data).toBeUndefined()
     })
   })
 
   describe('#RadioButton.value', () => {
     it('should return a value-wrapped object to rendering in the template', () => {
-      expect(new OnOffFarmTest({ onOffFarm: 'on' }).value).toBe('on')
+      expect(new RadioButtonTest({ test_radio: 'value_1' }).value).toBe(
+        'value_1'
+      )
     })
   })
 
   describe('#RadioButton.html', () => {
-    it('should return the full text for `on`', () => {
-      expect(new OnOffFarmTest({ onOffFarm: 'on' }).html).toBe(
-        'On to the farm or premises'
+    it('should return the full text for `value_1`', () => {
+      expect(new RadioButtonTest({ test_radio: 'value_1' }).html).toBe(
+        'test_label_1'
       )
     })
 
-    it('should return the full text for `off`', () => {
-      expect(new OnOffFarmTest({ onOffFarm: 'off' }).html).toBe(
-        'Off the farm or premises'
+    it('should return the full text for `value_2`', () => {
+      expect(new RadioButtonTest({ test_radio: 'value_2' }).html).toBe(
+        'test_label_2'
       )
     })
 
     it('should return an empty string for undefined', () => {
-      expect(new OnOffFarmTest(undefined).html).toBe('')
+      expect(new RadioButtonTest(undefined).html).toBe('')
     })
   })
 })
