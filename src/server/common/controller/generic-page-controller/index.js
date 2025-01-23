@@ -52,6 +52,16 @@ export default class GenericPageController {
 
   /**
    *
+   * @param {import('../../model/answer/validation.js').AnswerErrors} errors
+   */
+  recordErrors(errors) {
+    Object.entries(errors).forEach(([key, value]) => {
+      this.sendMetric(key, value.text)
+    })
+  }
+
+  /**
+   *
    * @param {string} method
    * @param {string} event
    */
@@ -70,6 +80,24 @@ export default class GenericPageController {
         StorageResolution.Standard
       )
     }
+  }
+
+  /**
+   *
+   * @param {string} field
+   * @param {string} error
+   */
+  sendErrorMetric(field, error) {
+    if (!config.get('isProduction')) {
+      return
+    }
+
+    this.metrics.putMetric(
+      `${field} errored:${error}-${this.page.urlPath}`,
+      1,
+      Unit.Count,
+      StorageResolution.Standard
+    )
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

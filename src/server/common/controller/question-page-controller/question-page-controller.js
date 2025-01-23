@@ -62,6 +62,8 @@ export class QuestionPageController extends GenericPageController {
     const { isValid, errors } = answer.validate()
 
     if (!isValid) {
+      this.recordErrors(errors)
+
       req.yar.set(this.page.sectionKey, {
         ...req.yar.get(this.page.sectionKey),
         [this.page.questionKey]: undefined

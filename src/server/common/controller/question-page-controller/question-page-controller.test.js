@@ -296,6 +296,8 @@ describe('QuestionPageController', () => {
       })
 
       it('Should display an error and set next page appropriately', async () => {
+        const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
+
         const { payload, statusCode } = await server.inject(
           withCsrfProtection({
             method: 'POST',
@@ -314,6 +316,10 @@ describe('QuestionPageController', () => {
         )
 
         expect(statusCode).toBe(statusCodes.ok)
+
+        expect(errorHandlerSpy).toHaveBeenCalledWith({
+          [questionKey]: { text: 'There is a problem' }
+        })
       })
     })
   })
