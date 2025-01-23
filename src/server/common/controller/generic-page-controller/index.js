@@ -56,7 +56,12 @@ export default class GenericPageController {
    */
   recordErrors(errors) {
     Object.entries(errors).forEach(([key, value]) => {
-      this.sendMetric(key, value.text)
+      this.metrics.putMetric(
+        `Error ${key}::${value.text}-${this.page.urlPath}`,
+        1,
+        Unit.Count,
+        StorageResolution.Standard
+      )
     })
   }
 
