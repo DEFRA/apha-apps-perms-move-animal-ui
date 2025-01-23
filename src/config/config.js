@@ -233,6 +233,12 @@ export const config = convict({
       default: null,
       nullable: true,
       env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
+    },
+    timeout: {
+      doc: 'Timeout for notify requests in milliseconds',
+      format: Number,
+      default: 10_000,
+      env: 'NOTIFY_TIMEOUT'
     }
   }
 })

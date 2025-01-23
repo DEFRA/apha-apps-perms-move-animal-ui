@@ -1,11 +1,8 @@
-import { sendNotification } from './notify.js'
-import { proxyFetch } from '~/src/server/common/helpers/proxy.js'
+import { NOTIFY_URL, sendNotification } from './notify.js'
+import * as proxyFetchObject from '~/src/server/common/helpers/proxy.js'
 import { config } from '~/src/config/config.js'
 
-jest.mock('~/src/server/common/helpers/proxy.js', () => ({
-  proxyFetch: jest.fn()
-}))
-const mockProxyFetch = /** @type {jest.Mock} */ (proxyFetch)
+const testData = { content: 'test' }
 
 jest.mock(
   '~/src/server/common/connectors/notify/notify-token-utils.js',
@@ -14,22 +11,30 @@ jest.mock(
   })
 )
 
-const testData = { content: 'test' }
-
 describe('sendNotification', () => {
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   it('should send a notification successfully', async () => {
     const mockResponse = { ok: true }
-    mockProxyFetch.mockImplementation(() => Promise.resolve(mockResponse))
+    const mockProxyFetch = jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.resolve(mockResponse))
+
     const response = await sendNotification(testData)
 
     const [url, options] = mockProxyFetch.mock.calls[0]
+    /**
+     * @type {string | undefined}
+     */
+    // @ts-expect-error: options.body might note be a string
+    const body = options.body
 
-    expect(url).toBe(
-      'https://api.notifications.service.gov.uk/v2/notifications/email'
-    )
+    expect(url).toBe(NOTIFY_URL)
 
     expect(options.method).toBe('POST')
-    expect(JSON.parse(options.body)).toEqual({
+    expect(JSON.parse(body ?? '')).toEqual({
       personalisation: testData,
       template_id: config.get('notify').templateId,
       email_address: config.get('notify').caseDeliveryEmailAddress
@@ -62,10 +67,43 @@ describe('sendNotification', () => {
         ]
       })
     }
-    mockProxyFetch.mockImplementation(() => Promise.resolve(mockResponse))
+    jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.resolve(mockResponse))
 
     await expect(sendNotification(testData)).rejects.toThrow(
       "HTTP failure from GOV.uk notify: status 400 with the following errors: Can't send to this recipient using a team-only API key, Can't send to this recipient when service is in trial mode"
+    )
+  })
+
+  it('should throw an error on reject', async () => {
+    const errorMessage = 'test error'
+    jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.reject(new Error(errorMessage)))
+
+    await expect(sendNotification(testData)).rejects.toThrow(
+      `Request to GOV.uk notify failed with error: ${errorMessage}`
+    )
+  })
+
+  it('should call proxyFetch passing the correct timeout', async () => {
+    const expectedTimeout = 10000
+    const mockResponse = { ok: true }
+    const fetchSpy = jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.resolve(mockResponse))
+    const abortSignalTimeoutSpy = jest.spyOn(global.AbortSignal, 'timeout')
+
+    await sendNotification(testData)
+    expect(abortSignalTimeoutSpy).toHaveBeenCalledWith(expectedTimeout)
+
+    const mockSignal = abortSignalTimeoutSpy.mock.results[0].value
+    expect(fetchSpy).toHaveBeenCalledWith(
+      NOTIFY_URL,
+      expect.objectContaining({
+        signal: mockSignal
+      })
     )
   })
 })
