@@ -23,11 +23,6 @@ const createRadioSchema = (config) => {
 }
 
 /**
- * export @typedef {'on' | 'off'} OnOffFarmData
- * @typedef {{ onOffFarm: 'on' | 'off' }} OnOffFarmPayload
- */
-
-/**
  * @typedef {{ label: string, hint?: string }} RadioOption
  * export @typedef {{
  *  payloadKey: string,
@@ -54,7 +49,7 @@ export class RadioButtonAnswer extends AnswerModel {
   }
 
   /**
-   * @returns {OnOffFarmData | undefined}
+   * @returns {Payload | undefined}
    */
   toState() {
     return this._data?.[this.config.payloadKey] ?? ''
@@ -65,9 +60,9 @@ export class RadioButtonAnswer extends AnswerModel {
   }
 
   get html() {
-    const originOnOffFarm = this._data?.[this.config.payloadKey]
+    const value = this._data?.[this.config.payloadKey]
 
-    return this.config.options[originOnOffFarm]?.label ?? ''
+    return this.config.options[value]?.label ?? ''
   }
 
   /**
