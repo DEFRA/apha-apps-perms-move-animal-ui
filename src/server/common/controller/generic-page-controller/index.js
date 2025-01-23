@@ -4,7 +4,6 @@ import {
   StorageResolution
 } from 'aws-embedded-metrics'
 import { config } from '~/src/config/config.js'
-import { createLogger } from '../../helpers/logging/logger.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
@@ -29,7 +28,6 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 export default class GenericPageController {
   metrics = createMetricsLogger()
-  logger = createLogger()
 
   /**
    * @param {Page} page
