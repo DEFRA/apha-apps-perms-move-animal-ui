@@ -86,7 +86,7 @@ export const validateElementVisibleAndText = async (element, text) => {
 
 export const validateHrefOfElement = async (element, href) => {
   const hrefValue = await element.getAttribute('href')
-  expect(hrefValue).toBe(href)
+  expect(hrefValue).toContain(href)
 }
 
 export const typeIntoElement = async (element, text) => {

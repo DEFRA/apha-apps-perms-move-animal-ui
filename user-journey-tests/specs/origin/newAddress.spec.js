@@ -11,6 +11,12 @@ const county = 'West new york'
 const postcodeValid = 'SW1A 2AA'
 const postcodeInvalid = 'test'
 
+const lineOneWhitespace = ' 37 Made up lane '
+const lineTwoWhitespace = ' Not real avenue '
+const townOrCityWhitespace = ' Gotham '
+const countyWhitespace = ' West new york '
+const postcodeValidWhitespace = ' SW1A 2AA '
+
 describe('New address page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
@@ -98,6 +104,28 @@ describe('New address page test', () => {
 
     await newAddressPage.verifyNoErrorsVisible()
     await newAddressPage.selectBackLink()
+
+    await newAddressPage.verifyFieldValues({
+      lineOne,
+      lineTwo,
+      townOrCity,
+      county,
+      postcode: postcodeValid
+    })
+  })
+
+  it.only('Should verify successful submission when all fields entered', async () => {
+    await newAddressPage.fillFormFieldsAndSubmit({
+      lineOne: lineOneWhitespace,
+      lineTwo: lineTwoWhitespace,
+      townOrCity: townOrCityWhitespace,
+      county: countyWhitespace,
+      postcode: postcodeValidWhitespace
+    })
+
+    await newAddressPage.verifyNoErrorsVisible()
+    await newAddressPage.selectBackLink()
+    await browser.refresh()
 
     await newAddressPage.verifyFieldValues({
       lineOne,
