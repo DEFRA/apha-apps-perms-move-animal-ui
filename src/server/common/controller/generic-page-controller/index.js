@@ -1,10 +1,6 @@
-import {
-  createMetricsLogger,
-  Unit,
-  StorageResolution
-} from 'aws-embedded-metrics'
 import { config } from '~/src/config/config.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { createLogger } from '../../helpers/logging/logger.js'
 
 /**
  * @import {Page} from '../../model/page/page-model.js'
@@ -27,7 +23,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
  */
 
 export default class GenericPageController {
-  metrics = createMetricsLogger()
+  logger = createLogger()
 
   /**
    * @param {Page} page
@@ -73,12 +69,7 @@ export default class GenericPageController {
     const sendMetric = this.page.reportMetrics?.[method]?.[event]
 
     if (sendMetric) {
-      this.metrics.putMetric(
-        `${method}::${event}-${this.page.urlPath}`,
-        1,
-        Unit.Count,
-        StorageResolution.Standard
-      )
+      this.logger.info(`${method}::${event}-${this.page.urlPath}`)
     }
   }
 
@@ -92,12 +83,7 @@ export default class GenericPageController {
       return
     }
 
-    this.metrics.putMetric(
-      `${field} errored:${error}-${this.page.urlPath}`,
-      1,
-      Unit.Count,
-      StorageResolution.Standard
-    )
+    this.logger.info(`${field} errored:${error}-${this.page.urlPath}`)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
