@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { createLogger } from '../../helpers/logging/logger.js'
 

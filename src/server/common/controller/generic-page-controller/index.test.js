@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { Page } from '../../model/page/page-model.js'
 import GenericPageController from './index.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
