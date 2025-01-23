@@ -140,7 +140,7 @@ describe('RadioButton', () => {
     })
   })
 
-  describe('#RadioButton.viewModelItems', () => {
+  describe('#RadioButton.viewModel', () => {
     it('should return everything (except errors) to render in the template', () => {
       const answer = new RadioButtonTest({ test_radio: 'value_1' })
       expect(answer.viewModel).toEqual({
