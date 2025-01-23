@@ -69,7 +69,7 @@ describe('DestinationType', () => {
     it('should replace missing data with blank string', () => {
       const data = new DestinationTypeAnswer().toState()
 
-      expect(data).toBeUndefined()
+      expect(data).toBe('')
     })
 
     it('should pass through valid data unaltered', () => {
