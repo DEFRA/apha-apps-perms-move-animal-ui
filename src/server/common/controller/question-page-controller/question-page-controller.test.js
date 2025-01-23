@@ -7,6 +7,7 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../test-helpers/session-helper.js'
 import { AnswerModel } from '../../model/answer/answer-model.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
+import { config } from '~/src/config/config.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -296,6 +297,7 @@ describe('QuestionPageController', () => {
       })
 
       it('Should display an error and set next page appropriately', async () => {
+        config.set('isProduction', true)
         const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
         const { payload, statusCode } = await server.inject(
@@ -320,6 +322,8 @@ describe('QuestionPageController', () => {
         expect(errorHandlerSpy).toHaveBeenCalledWith({
           [questionKey]: { text: 'There is a problem' }
         })
+
+        config.set('isProduction', false)
       })
     })
   })
