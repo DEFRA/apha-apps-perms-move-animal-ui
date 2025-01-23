@@ -49,7 +49,6 @@ export class PageController extends GenericPageController {
 
         /** @param {Server} server */
         register: (server) => {
-          this.server = server
           server.route(handlers)
         }
       }

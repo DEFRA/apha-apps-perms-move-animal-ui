@@ -22,27 +22,30 @@ import { createLogger } from '../../helpers/logging/logger.js'
  * }} MetricReports
  */
 
+const logger = createLogger()
+
 export default class GenericPageController {
-  logger = createLogger()
+  logger
 
   /**
    * @param {Page} page
    */
   constructor(page) {
     this.page = page
+    this.logger = logger.child({ controller: this.page.key })
   }
 
   getHandler(req, h) {
-    this.sendMetric('get', 'request')
+    this.sendLog('get', 'request')
     const result = this.handleGet(req, h)
-    this.sendMetric('get', 'response')
+    this.sendLog('get', 'response')
     return result
   }
 
   postHandler(req, h) {
-    this.sendMetric('post', 'request')
+    this.sendLog('post', 'request')
     const result = this.handlePost(req, h)
-    this.sendMetric('post', 'response')
+    this.sendLog('post', 'response')
     return result
   }
 
@@ -52,7 +55,7 @@ export default class GenericPageController {
    */
   recordErrors(errors) {
     Object.entries(errors).forEach(([key, value]) => {
-      this.sendErrorMetric(key, value.text)
+      this.sendErrorLog(key, value.text)
     })
   }
 
@@ -61,11 +64,7 @@ export default class GenericPageController {
    * @param {string} method
    * @param {string} event
    */
-  sendMetric(method, event) {
-    if (!config.get('isProduction')) {
-      return
-    }
-
+  sendLog(method, event) {
     const sendMetric = this.page.reportMetrics?.[method]?.[event]
 
     if (sendMetric) {
@@ -78,12 +77,10 @@ export default class GenericPageController {
    * @param {string} field
    * @param {string} error
    */
-  sendErrorMetric(field, error) {
-    if (!config.get('isProduction')) {
-      return
-    }
-
-    this.logger.info(`${field} errored:${error}-${this.page.urlPath}`)
+  sendErrorLog(field, error) {
+    this.logger.info(
+      `User encountered a validation error on ${this.page.urlPath}, on the ${field} field : ${error}`
+    )
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

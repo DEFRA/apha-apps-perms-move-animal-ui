@@ -297,7 +297,6 @@ describe('QuestionPageController', () => {
       })
 
       it('Should display an error and set next page appropriately', async () => {
-        config.set('isProduction', true)
         const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
         const { payload, statusCode } = await server.inject(
@@ -322,8 +321,6 @@ describe('QuestionPageController', () => {
         expect(errorHandlerSpy).toHaveBeenCalledWith({
           [questionKey]: { text: 'There is a problem' }
         })
-
-        config.set('isProduction', false)
       })
 
       describe('custom logging', () => {

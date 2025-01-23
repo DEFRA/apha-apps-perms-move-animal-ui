@@ -30,10 +30,6 @@ describe('#GenericPageController', () => {
   let controller
 
   beforeEach(() => {
-    config.set('isProduction', true)
-  })
-
-  beforeEach(() => {
     const page = new TestPage()
     controller = new TestGenericController(page)
 
@@ -68,9 +64,9 @@ describe('#GenericPageController', () => {
     })
     const logger = jest.spyOn(controller.logger, 'info')
 
-    const metricSpy = jest.spyOn(controller, 'sendMetric')
+    const metricSpy = jest.spyOn(controller, 'sendLog')
     controller.getHandler()
-    expect(controller.sendMetric).toHaveBeenCalledWith('get', 'response')
+    expect(controller.sendLog).toHaveBeenCalledWith('get', 'response')
     expect(metricSpy).toHaveBeenCalledTimes(2)
     expect(logger).toHaveBeenCalledTimes(1)
   })
@@ -80,14 +76,13 @@ describe('#GenericPageController', () => {
       return 'get success'
     })
 
-    const metricSpy = jest.spyOn(controller, 'sendMetric')
+    const metricSpy = jest.spyOn(controller, 'sendLog')
     controller.postHandler()
-    expect(controller.sendMetric).toHaveBeenCalledWith('post', 'response')
+    expect(controller.sendLog).toHaveBeenCalledWith('post', 'response')
     expect(metricSpy).toHaveBeenCalledTimes(2)
   })
 
   afterEach(() => {
     jest.clearAllMocks()
-    config.set('isProduction', false)
   })
 })
