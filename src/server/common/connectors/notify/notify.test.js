@@ -12,6 +12,10 @@ jest.mock(
 )
 
 describe('sendNotification', () => {
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   describe('with mocked proxyFetch', () => {
     it('should send a notification successfully', async () => {
       const mockResponse = { ok: true }
@@ -83,12 +87,6 @@ describe('sendNotification', () => {
         `Request to GOV.uk notify failed with error: ${errorMessage}`
       )
     })
-  })
-
-  describe('without mocked proxyFetch', () => {
-    beforeEach(() => {
-      jest.restoreAllMocks()
-    })
 
     it('should call proxyFetch passing the correct timeout', async () => {
       const expectedTimeout = 10000
@@ -109,7 +107,9 @@ describe('sendNotification', () => {
         })
       )
     })
+  })
 
+  describe('without mocked proxyFetch', () => {
     it('should abort if timeout is hit', async () => {
       const notifyConfig = config.get('notify')
       config.set('notify', {
