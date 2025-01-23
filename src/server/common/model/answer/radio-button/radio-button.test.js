@@ -141,27 +141,32 @@ describe('RadioButton', () => {
   })
 
   describe('#RadioButton.viewModelItems', () => {
-    it('should return the list of items from the config options and first item with the payloadKey', () => {
-      const viewModelItems = new RadioButtonTest().viewModelItems
-
-      expect(viewModelItems).toEqual([
-        {
-          id: 'test_radio',
-          value: 'value_1',
-          text: 'test_label_1',
-          hint: {
-            text: undefined
+    it('should return everything (except errors) to render in the template', () => {
+      const answer = new RadioButtonTest({ test_radio: 'value_1' })
+      expect(answer.viewModel).toEqual({
+        name: 'test_radio',
+        id: 'test_radio',
+        fieldset: {},
+        value: answer.value,
+        items: [
+          {
+            id: 'test_radio',
+            value: 'value_1',
+            text: 'test_label_1',
+            hint: {
+              text: undefined
+            }
+          },
+          {
+            id: 'value_2',
+            value: 'value_2',
+            text: 'test_label_2',
+            hint: {
+              text: 'test_hint_2'
+            }
           }
-        },
-        {
-          id: 'value_2',
-          value: 'value_2',
-          text: 'test_label_2',
-          hint: {
-            text: 'test_hint_2'
-          }
-        }
-      ])
+        ]
+      })
     })
   })
 })

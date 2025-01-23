@@ -1,10 +1,1 @@
-{{
-  govukRadios({
-    name: answer.config.payloadKey,
-    id: answer.config.payloadKey,
-    fieldset:{},
-    value: value,
-    items: answer.viewModelItems,
-    errorMessage: errors[answer.config.payloadKey]
-  })
-}}
+{{ govukRadios(assign({}, answer.viewModel, { errorMessage: errors[answer.config.payloadKey]})) }}

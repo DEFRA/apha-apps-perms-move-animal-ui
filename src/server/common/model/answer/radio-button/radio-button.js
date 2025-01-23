@@ -91,16 +91,28 @@ export class RadioButtonAnswer extends AnswerModel {
     })
   }
 
+  get viewModel() {
+    return {
+      name: this.config.payloadKey,
+      id: this.config.payloadKey,
+      fieldset: {},
+      value: this.value,
+      items: this.viewModelItems
+    }
+  }
+
   get viewModelItems() {
-    const result = Object.entries(this.config.options).map(([key, value]) => ({
-      id: key,
-      value: key,
-      text: value.label,
-      hint: {
-        text: value.hint
-      }
-    }))
-    result[0].id = this.config.payloadKey
-    return result
+    const viewModelItems = Object.entries(this.config.options).map(
+      ([key, value]) => ({
+        id: key,
+        value: key,
+        text: value.label,
+        hint: {
+          text: value.hint
+        }
+      })
+    )
+    viewModelItems[0].id = this.config.payloadKey
+    return viewModelItems
   }
 }
