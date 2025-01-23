@@ -90,4 +90,14 @@ export class RadioButtonAnswer extends AnswerModel {
       [this.config.payloadKey]: fields[this.config.payloadKey]
     })
   }
+
+  get viewModelItems() {
+    const result = Object.entries(this.config.options).map(([key, value]) => ({
+      id: key,
+      value: key,
+      text: value.label
+    }))
+    result[0].id = this.config.payloadKey
+    return result
+  }
 }
