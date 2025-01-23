@@ -74,7 +74,14 @@ export class AddressAnswer extends AnswerModel {
    * @returns {AddressData | undefined}
    */
   get value() {
-    return this._data
+    const trimmedValues = Object.fromEntries(
+      Object.entries(this._data ?? {})
+        .map(([key, value]) => [key, value.trim()])
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .filter(([_, value]) => value !== '')
+    )
+
+    return Object.keys(trimmedValues).length === 0 ? undefined : trimmedValues
   }
 
   get html() {
