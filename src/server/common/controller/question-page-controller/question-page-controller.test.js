@@ -404,4 +404,68 @@ describe('QuestionPageController', () => {
       expect(headers.location).toBe(`${overriddenQuestionUrl}?redirect=true`)
     })
   })
+
+  describe('View render', () => {
+    const h = {
+      view: jest.fn().mockReturnValue('view')
+    }
+    const request = {
+      yar: {
+        get: jest.fn(),
+        set: jest.fn()
+      },
+      query: {
+        redirect_uri: 'redirect_uri'
+      }
+    }
+
+    it('GET should render view with expected arguments', () => {
+      const result = controller.getHandler(request, h)
+
+      expect(h.view).toHaveBeenCalledTimes(1)
+      expect(h.view).toHaveBeenCalledWith(
+        questionView,
+        expect.objectContaining({
+          heading: question,
+          nextPage: 'redirect_uri',
+          pageTitle: question,
+          value: undefined
+        })
+      )
+
+      const viewArgs = h.view.mock.calls[0][1]
+      expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
+
+      expect(result).toBe('view')
+    })
+
+    it('POST should render view with expected arguments', () => {
+      const postRequest = {
+        ...request,
+        payload: { nextPage: 'test_next_page' }
+      }
+
+      const result = controller.postHandler(postRequest, h)
+
+      expect(h.view).toHaveBeenCalledTimes(1)
+      expect(h.view).toHaveBeenCalledWith(
+        questionView,
+        expect.objectContaining({
+          errorMessages: [
+            { href: `#${questionKey}`, text: 'There is a problem' }
+          ],
+          errors: { questionKey: { text: 'There is a problem' } },
+          heading: question,
+          nextPage: 'test_next_page',
+          pageTitle: `Error: ${question}`,
+          value: undefined
+        })
+      )
+
+      const viewArgs = h.view.mock.calls[0][1]
+      expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
+
+      expect(result).toBe('view')
+    })
+  })
 })

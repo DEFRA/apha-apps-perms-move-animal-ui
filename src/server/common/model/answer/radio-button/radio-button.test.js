@@ -139,4 +139,23 @@ describe('RadioButton', () => {
       expect(new RadioButtonTest(undefined).html).toBe('')
     })
   })
+
+  describe('#RadioButton.viewModelItems', () => {
+    it('should return the list of items from the config options and first item with the payloadKey', () => {
+      const viewModelItems = new RadioButtonTest().viewModelItems
+
+      expect(viewModelItems).toEqual([
+        {
+          id: 'test_radio',
+          value: 'value_1',
+          text: 'test_label_1'
+        },
+        {
+          id: 'value_2',
+          value: 'value_2',
+          text: 'test_label_2'
+        }
+      ])
+    })
+  })
 })
