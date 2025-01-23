@@ -45,7 +45,7 @@ describe('OriginType', () => {
     it('should replace missing data with blank string', () => {
       const data = new OriginTypeAnswer().toState()
 
-      expect(data).toBeUndefined()
+      expect(data).toBe('')
     })
 
     it('should pass through valid data unaltered', () => {
