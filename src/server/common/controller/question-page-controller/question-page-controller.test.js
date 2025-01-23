@@ -325,6 +325,35 @@ describe('QuestionPageController', () => {
 
         config.set('isProduction', false)
       })
+
+      describe('custom logging', () => {
+        beforeAll(() => {
+          config.set('isProduction', true)
+        })
+
+        it('Should report errors appropriately', async () => {
+          const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
+
+          const { payload } = await server.inject(
+            withCsrfProtection({
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                nextPage: redirectUri
+              }
+            })
+          )
+
+          expect(parseDocument(payload).title).toBe(`Error: ${question}`)
+          expect(errorHandlerSpy).toHaveBeenCalledWith({
+            [questionKey]: { text: 'There is a problem' }
+          })
+        })
+
+        afterAll(() => {
+          config.set('isProduction', false)
+        })
+      })
     })
   })
 
