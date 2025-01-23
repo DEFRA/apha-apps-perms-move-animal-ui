@@ -91,7 +91,7 @@ export class RadioButtonAnswer extends AnswerModel {
    * @param {Payload} fields
    */
   _extractFields(fields) {
-    return /** @type Payload */ ({
+    return /** @type {Payload} */ ({
       [this.config.payloadKey]: fields[this.config.payloadKey]
     })
   }
