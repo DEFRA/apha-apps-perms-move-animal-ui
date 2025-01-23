@@ -92,24 +92,22 @@ describe('sendNotification', () => {
 
     it('should call proxyFetch passing the correct timeout', async () => {
       const expectedTimeout = 10000
-      const fetchSpy = jest.spyOn(proxyFetchObject, 'proxyFetch')
+      const mockResponse = { ok: true }
+      const fetchSpy = jest
+        .spyOn(proxyFetchObject, 'proxyFetch')
+        .mockImplementation(() => Promise.resolve(mockResponse))
       const abortSignalTimeoutSpy = jest.spyOn(global.AbortSignal, 'timeout')
 
-      try {
-        await sendNotification(testData)
-      } catch (e) {
-        // ignore error
-      } finally {
-        expect(abortSignalTimeoutSpy).toHaveBeenCalledWith(expectedTimeout)
+      await sendNotification(testData)
+      expect(abortSignalTimeoutSpy).toHaveBeenCalledWith(expectedTimeout)
 
-        const mockSignal = abortSignalTimeoutSpy.mock.results[0].value
-        expect(fetchSpy).toHaveBeenCalledWith(
-          NOTIFY_URL,
-          expect.objectContaining({
-            signal: mockSignal
-          })
-        )
-      }
+      const mockSignal = abortSignalTimeoutSpy.mock.results[0].value
+      expect(fetchSpy).toHaveBeenCalledWith(
+        NOTIFY_URL,
+        expect.objectContaining({
+          signal: mockSignal
+        })
+      )
     })
 
     it('should abort if timeout is hit', async () => {
