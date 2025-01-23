@@ -2,26 +2,5 @@
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-  {# {% include "common/model/answer/radio-button/radio-button.njk" %} #}
-  {% set items = [] %}
-  {% for key,option in answer.config.options %}
-    {%
-      set items = (items.push( {
-        id: key,
-        value: key,
-        text: option.label
-      }), items)
-    %}
-  {% endfor %}
-
-  {{
-    govukRadios({
-      name: answer.config.payloadKey,
-      id: answer.config.payloadKey,
-      fieldset:{},
-      value: value,
-      items: items,
-      errorMessage: errors[answer.config.payloadKey]
-    })
-  }}
+  {% include "components/radio-button.njk" %}
 {% endblock %}

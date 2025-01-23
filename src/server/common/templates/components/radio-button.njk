@@ -1,0 +1,21 @@
+{% set items = [] %}
+{% for key,option in answer.config.options %}
+  {%
+    set items = (items.push( {
+      id: key,
+      value: key,
+      text: option.label
+    }), items)
+  %}
+{% endfor %}
+
+{{
+  govukRadios({
+    name: answer.config.payloadKey,
+    id: answer.config.payloadKey,
+    fieldset:{},
+    value: value,
+    items: items,
+    errorMessage: errors[answer.config.payloadKey]
+  })
+}}
