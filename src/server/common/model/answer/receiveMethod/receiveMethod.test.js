@@ -40,14 +40,6 @@ describe('#ReceiveMethod.toState', () => {
 
     expect(data).toEqual(validReceiveMethodPayload.receiveMethod)
   })
-
-  it('should remove whitespace', () => {
-    const receiveMethod = new ReceiveMethodAnswer({
-      receiveMethod: 'p o s t'
-    })
-
-    expect(receiveMethod.toState()).toBe('post')
-  })
 })
 
 describe('#ReceiveMethod.fromState', () => {

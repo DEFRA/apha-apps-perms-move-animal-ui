@@ -49,7 +49,7 @@ describe('OnOffFarm', () => {
     test('should replace missing data with blank string', () => {
       const data = new OnOffFarmAnswer().toState()
 
-      expect(data).toBeUndefined()
+      expect(data).toBe('')
     })
 
     test('should pass through valid data unaltered', () => {

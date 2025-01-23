@@ -72,13 +72,25 @@ describe('RadioButton', () => {
         'Select if you are moving cattle on or off your farm or premises'
       )
     })
+
+    it('should return false for an invalid', () => {
+      const onOffFarm = new OnOffFarmTest({
+        onOffFarm: 'invalid value'
+      })
+
+      const { isValid, errors } = onOffFarm.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.onOffFarm.text).toBe(
+        'Select if you are moving cattle on or off your farm or premises'
+      )
+    })
   })
 
   describe('#RadioButton.toState', () => {
     test('should replace missing data with blank string', () => {
       const data = new OnOffFarmTest().toState()
-
-      expect(data).toBeUndefined()
+      expect(data).toBe('')
     })
 
     test('should pass through valid data unaltered', () => {

@@ -16,7 +16,8 @@ const createRadioSchema = (config) => {
       .messages({
         'any.required': emptyOptionText,
         'any.valid': emptyOptionText,
-        'string.empty': emptyOptionText
+        'string.empty': emptyOptionText,
+        'any.only': emptyOptionText
       })
   })
 }
@@ -56,7 +57,7 @@ export class RadioButtonAnswer extends AnswerModel {
    * @returns {OnOffFarmData | undefined}
    */
   toState() {
-    return this._data?.[this.config.payloadKey]
+    return this._data?.[this.config.payloadKey] ?? ''
   }
 
   get value() {
