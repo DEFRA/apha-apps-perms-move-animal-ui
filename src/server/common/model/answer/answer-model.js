@@ -77,6 +77,7 @@ export class AnswerModel {
   }
 }
 
+/* eslint-disable jsdoc/valid-types */
 /**
  * @template Payload
  * @typedef {{
@@ -85,6 +86,7 @@ export class AnswerModel {
  *   errorMessages(errors: AnswerErrors): ViewErrorMessage[];
  * }} AnswerModelClass
  */
+/* eslint-enable jsdoc/valid-types */
 
 /**
  * @typedef {{[key:string]: string | undefined}} RawPayload
