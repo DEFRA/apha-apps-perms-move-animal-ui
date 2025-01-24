@@ -12,6 +12,17 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
+    if (
+      req.info.referrer
+        .toLowerCase()
+        .includes(req.info.host.toLowerCase().split(':').at(0) ?? '')
+    ) {
+      const referrer = new URL(req.info.referrer)
+      if (referrer.pathname === '/') {
+        req.server.logger.info('User began journey via the start page')
+      }
+    }
+
     const origin = OriginSection.fromState(req.yar.get('origin'))
     const destination = DestinationSection.fromState(req.yar.get('destination'))
     const licence = LicenceSection.fromState(req.yar.get('licence'))
