@@ -1,7 +1,6 @@
-import { parseDocument } from '../../common/test-helpers/dom.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { DestinationSummaryPage } from '../summary/index.js'
 import { DestinationGeneralLicencePage } from './index.js'
-import { createServer } from '~/src/server/index.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -44,24 +43,8 @@ describe('DestinationGeneralLicencePage', () => {
   })
 })
 
-describe('DestinationGeneralLicenceController', () => {
-  /** @type {Server} */
-  let server
-
-  beforeAll(async () => {
-    server = await createServer()
-    await server.initialize()
-  })
-
-  it('should render the expected content', async () => {
-    const { payload } = await server.inject({
-      method: 'GET',
-      url: page.urlPath
-    })
-
-    const content =
-      parseDocument(payload).querySelector('#main-content')?.innerHTML
-
-    expect(content).toMatchSnapshot()
-  })
-})
+describePageSnapshot(
+  'DestinationGeneralLicenceController',
+  'should render the expected content',
+  page.urlPath
+)

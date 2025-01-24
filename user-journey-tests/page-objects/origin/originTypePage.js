@@ -15,11 +15,11 @@ class OriginTypePage extends Page {
   }
 
   get approvedFinishingUnitRadio() {
-    return $('#afu-radio')
+    return $('#afu')
   }
 
   get anotherTypeOfPremisesRadio() {
-    return $('#other-radio')
+    return $('#other')
   }
 
   get errorLink() {

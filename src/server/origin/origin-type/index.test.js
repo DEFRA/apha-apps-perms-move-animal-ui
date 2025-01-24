@@ -2,6 +2,7 @@ import { originType, originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 /** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
 
@@ -73,4 +74,10 @@ describe('OriginTypePage', () => {
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
   })
+
+  describePageSnapshot(
+    'OriginTypePage.content',
+    'should render expected response and content',
+    pageUrl
+  )
 })

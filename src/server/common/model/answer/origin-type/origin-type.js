@@ -6,7 +6,10 @@ const config = {
   payloadKey: 'originType',
   options: {
     'tb-restricted-farm': { label: 'TB restricted farm' },
-    afu: { label: 'Approved finishing unit (AFU)' },
+    afu: {
+      label: 'Approved finishing unit (AFU)',
+      hint: 'Including enhanced with grazing (AFUE)'
+    },
     other: { label: 'Another type of premises' }
   },
   errors: {

@@ -2,6 +2,7 @@ import { receiveMethod, receiveMethodPage, ReceiveMethodPage } from './index.js'
 import { ReceiveMethodAnswer } from '../../common/model/answer/receiveMethod/receiveMethod.js'
 import { emailAddressPage } from '../email-address/index.js'
 import { postExitPage } from '../postExitPage/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 // TODO: import next page object
 
@@ -71,6 +72,12 @@ describe('ReceiveMethodPage', () => {
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
   })
+
+  describePageSnapshot(
+    'DestinationTypePage.content',
+    'should render expected response and content',
+    pageUrl
+  )
 })
 
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
+/** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */

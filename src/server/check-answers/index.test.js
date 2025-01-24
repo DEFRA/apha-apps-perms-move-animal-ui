@@ -19,7 +19,8 @@ const testAddress = {
   addressPostcode: 'RG24 8RR'
 }
 const testEmailAddress = 'name@example.com'
-const testReceiveMethod = 'email'
+const testReceiveMethodValue = 'email'
+const testReceiveMethodLabel = 'Email'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -30,7 +31,7 @@ const originDefaultState = {
 
 const licenceDefaultState = {
   emailAddress: testEmailAddress,
-  receiveMethod: testReceiveMethod,
+  receiveMethod: testReceiveMethodValue,
   fullName: {
     firstName: 'William T.',
     lastName: 'Riker'
@@ -67,7 +68,7 @@ const emailContent = [
     ' ' +
     licenceDefaultState.fullName.lastName,
   '## How would you like this licence sent to you?',
-  testReceiveMethod,
+  testReceiveMethodLabel,
   '## What email address would you like the licence sent to?',
   testEmailAddress
 ].join('\n')
@@ -125,7 +126,7 @@ describe('#CheckAnswers', () => {
     expect(taskListValues[5].innerHTML).toContain(
       `${licenceDefaultState.fullName.firstName} ${licenceDefaultState.fullName.lastName}`
     )
-    expect(taskListValues[6].innerHTML).toContain(testReceiveMethod)
+    expect(taskListValues[6].innerHTML).toContain(testReceiveMethodLabel)
     expect(taskListValues[7].innerHTML).toContain(testEmailAddress)
 
     expect(statusCode).toBe(statusCodes.ok)

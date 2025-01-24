@@ -95,7 +95,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       How would you like this licence sent to you?
     </dt>
     <dd class="govuk-summary-list__value">
-      email
+      Email
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/receiving-the-licence/licence-email-or-post?redirect_uri=/submit/check-answers" data-testid="receiveMethod-change-link">Change<span class="govuk-visually-hidden"> How would you like this licence sent to you?</span></a>

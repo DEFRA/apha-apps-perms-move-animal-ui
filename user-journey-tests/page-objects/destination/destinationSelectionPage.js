@@ -15,7 +15,7 @@ class DestinationSelectionPage extends Page {
   }
 
   get dedicatedSaleRadio() {
-    return $('#dedicatedSale')
+    return $('#dedicated-sale')
   }
 
   get approvedFinishingRadio() {

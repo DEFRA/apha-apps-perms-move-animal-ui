@@ -1,43 +1,5 @@
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% extends 'layouts/questions.njk' %}
 
 {% block questions %}
-
-  {{
-    govukRadios({
-      name: "destinationType",
-      id: "destination-type",
-      fieldset:{},
-      value: value,
-      items: [
-        {
-          id: "destinationType",
-          value: "slaughter",
-          text: "Slaughter"
-        },
-        {
-          id: "dedicatedSale",
-          value: "dedicated-sale",
-          text: "Dedicated sale for TB (orange market)"
-        },
-        {
-          id: "afu",
-          value: "afu",
-          text: "Approved finishing unit (AFU)",
-          hint: {
-            text: "Including enhanced with grazing (AFUE)"
-              }
-        },
-        {
-          id: "other",
-          value: "other",
-          text: "Another destination",
-          hint:{
-            text: "For example, a veterinary practice, zoo, or a laboratory"
-          }
-        }
-      ],
-      errorMessage: errors.destinationType
-    })
-  }}
+  {% include "model/answer/radio-button/radio-button.njk" %}
 {% endblock %}

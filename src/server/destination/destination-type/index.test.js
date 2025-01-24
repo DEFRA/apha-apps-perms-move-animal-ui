@@ -7,6 +7,7 @@ import { DestinationTypeAnswer } from '../../common/model/answer/destination-typ
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { anotherDestinationPage } from '../another-destination/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
@@ -84,6 +85,12 @@ describe('DestinationTypePage', () => {
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
   })
+
+  describePageSnapshot(
+    'DestinationTypePage.content',
+    'should render expected response and content',
+    pageUrl
+  )
 })
 
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
+/** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */

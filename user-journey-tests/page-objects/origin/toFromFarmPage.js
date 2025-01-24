@@ -16,7 +16,7 @@ class ToFromFarmPage extends Page {
   }
 
   get offThefarmRadio() {
-    return $('#off-farm-radio')
+    return $('#off')
   }
 
   get onFarmSummaryErrorLink() {

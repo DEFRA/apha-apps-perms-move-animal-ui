@@ -1,27 +1,5 @@
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% extends 'layouts/questions.njk' %}
+{% extends 'templates/layouts/questions.njk' %}
 
 {% block questions %}
-
-  {{
-    govukRadios({
-      name: "onOffFarm",
-      id: "on-off-farm",
-      fieldset:{},
-      value: value,
-      items: [
-        {
-          id: "onOffFarm",
-          value: "on",
-          text: "On to the farm or premises"
-        },
-        {
-          id: "off-farm-radio",
-          value: "off",
-          text: "Off the farm or premises"
-        }
-      ],
-      errorMessage: errors.onOffFarm
-    })
-  }}
+  {% include "model/answer/radio-button/radio-button.njk" %}
 {% endblock %}
