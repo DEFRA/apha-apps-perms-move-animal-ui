@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { Page } from '../../model/page/page-model.js'
 import GenericPageController from './index.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
@@ -30,12 +29,10 @@ describe('#GenericPageController', () => {
   let controller
 
   beforeEach(() => {
-    config.set('isProduction', true)
-  })
-
-  beforeEach(() => {
     const page = new TestPage()
     controller = new TestGenericController(page)
+
+    jest.resetAllMocks()
   })
 
   it('should throw not implemented error', () => {
@@ -61,29 +58,30 @@ describe('#GenericPageController', () => {
   })
 
   it('should send metric on getHandler', () => {
-    jest.spyOn(controller, 'sendMetric')
     jest.spyOn(controller, 'handleGet').mockImplementation(() => {
       return 'get success'
     })
-    const metricSpy = jest.spyOn(controller.metrics, 'putMetric')
+    const logger = jest.spyOn(controller.logger, 'info')
+
+    const metricSpy = jest.spyOn(controller, 'sendLog')
     controller.getHandler()
-    expect(controller.sendMetric).toHaveBeenCalledWith('get', 'response')
-    expect(metricSpy).toHaveBeenCalledTimes(1)
+    expect(controller.sendLog).toHaveBeenCalledWith('get', 'response')
+    expect(metricSpy).toHaveBeenCalledTimes(2)
+    expect(logger).toHaveBeenCalledTimes(1)
   })
 
   it('should send metric on postHandler', () => {
-    jest.spyOn(controller, 'sendMetric')
     jest.spyOn(controller, 'handlePost').mockImplementation(() => {
       return 'get success'
     })
-    const metricSpy = jest.spyOn(controller.metrics, 'putMetric')
+
+    const metricSpy = jest.spyOn(controller, 'sendLog')
     controller.postHandler()
-    expect(controller.sendMetric).toHaveBeenCalledWith('post', 'response')
-    expect(metricSpy).toHaveBeenCalledTimes(1)
+    expect(controller.sendLog).toHaveBeenCalledWith('post', 'response')
+    expect(metricSpy).toHaveBeenCalledTimes(2)
   })
 
   afterEach(() => {
     jest.clearAllMocks()
-    config.set('isProduction', false)
   })
 })

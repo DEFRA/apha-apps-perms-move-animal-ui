@@ -1,10 +1,5 @@
-import {
-  createMetricsLogger,
-  Unit,
-  StorageResolution
-} from 'aws-embedded-metrics'
-import { config } from '~/src/config/config.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { createLogger } from '../../helpers/logging/logger.js'
 
 /**
  * @import {Page} from '../../model/page/page-model.js'
@@ -26,28 +21,41 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
  * }} MetricReports
  */
 
+const logger = createLogger()
+
 export default class GenericPageController {
-  metrics = createMetricsLogger()
+  logger
 
   /**
    * @param {Page} page
    */
   constructor(page) {
     this.page = page
+    this.logger = logger.child({ controller: this.page.key })
   }
 
   getHandler(req, h) {
-    this.sendMetric('get', 'request')
+    this.sendLog('get', 'request')
     const result = this.handleGet(req, h)
-    this.sendMetric('get', 'response')
+    this.sendLog('get', 'response')
     return result
   }
 
   postHandler(req, h) {
-    this.sendMetric('post', 'request')
+    this.sendLog('post', 'request')
     const result = this.handlePost(req, h)
-    this.sendMetric('post', 'response')
+    this.sendLog('post', 'response')
     return result
+  }
+
+  /**
+   *
+   * @param {import('../../model/answer/validation.js').AnswerErrors} errors
+   */
+  recordErrors(errors) {
+    Object.entries(errors).forEach(([key, value]) => {
+      this.sendErrorLog(key, value.text)
+    })
   }
 
   /**
@@ -55,21 +63,23 @@ export default class GenericPageController {
    * @param {string} method
    * @param {string} event
    */
-  sendMetric(method, event) {
-    if (!config.get('isProduction')) {
-      return
-    }
-
+  sendLog(method, event) {
     const sendMetric = this.page.reportMetrics?.[method]?.[event]
 
     if (sendMetric) {
-      this.metrics.putMetric(
-        `${method}::${event}-${this.page.urlPath}`,
-        1,
-        Unit.Count,
-        StorageResolution.Standard
-      )
+      this.logger.info(`${method}::${event}-${this.page.urlPath}`)
     }
+  }
+
+  /**
+   *
+   * @param {string} field
+   * @param {string} error
+   */
+  sendErrorLog(field, error) {
+    this.logger.info(
+      `User encountered a validation error on ${this.page.urlPath}, on the ${field} field : ${error}`
+    )
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

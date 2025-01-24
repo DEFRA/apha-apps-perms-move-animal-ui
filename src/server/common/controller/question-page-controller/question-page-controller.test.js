@@ -7,6 +7,7 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../test-helpers/session-helper.js'
 import { AnswerModel } from '../../model/answer/answer-model.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
+import { config } from '~/src/config/config.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -296,6 +297,8 @@ describe('QuestionPageController', () => {
       })
 
       it('Should display an error and set next page appropriately', async () => {
+        const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
+
         const { payload, statusCode } = await server.inject(
           withCsrfProtection({
             method: 'POST',
@@ -314,6 +317,39 @@ describe('QuestionPageController', () => {
         )
 
         expect(statusCode).toBe(statusCodes.ok)
+
+        expect(errorHandlerSpy).toHaveBeenCalledWith({
+          [questionKey]: { text: 'There is a problem' }
+        })
+      })
+
+      describe('custom logging', () => {
+        beforeAll(() => {
+          config.set('isProduction', true)
+        })
+
+        it('Should report errors appropriately', async () => {
+          const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
+
+          const { payload } = await server.inject(
+            withCsrfProtection({
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                nextPage: redirectUri
+              }
+            })
+          )
+
+          expect(parseDocument(payload).title).toBe(`Error: ${question}`)
+          expect(errorHandlerSpy).toHaveBeenCalledWith({
+            [questionKey]: { text: 'There is a problem' }
+          })
+        })
+
+        afterAll(() => {
+          config.set('isProduction', false)
+        })
       })
     })
   })

@@ -18,7 +18,10 @@ jest.mock('hapi-pino', () => ({
 jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
   createLogger: () => ({
     info: (...args) => mockLoggerInfo(...args),
-    error: (...args) => mockLoggerError(...args)
+    error: (...args) => mockLoggerError(...args),
+    child: () => ({
+      info: (...args) => mockLoggerInfo(...args)
+    })
   })
 }))
 
