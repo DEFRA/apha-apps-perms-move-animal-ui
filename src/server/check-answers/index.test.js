@@ -211,7 +211,7 @@ describe('#CheckAnswers', () => {
     expect(headers.location).toBe(taskListIncompleteUri)
   })
 
-  it('should error if email fails ot send for whatever reason', async () => {
+  it('should error if email fails to send for whatever reason', async () => {
     mockSendNotifiation.mockImplementationOnce(() => {
       throw new Error('Failed to send email')
     })
