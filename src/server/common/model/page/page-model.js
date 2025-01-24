@@ -58,6 +58,7 @@ export class Page {
     return {}
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {AnswerModel} [_answer]
    * @returns {Page }

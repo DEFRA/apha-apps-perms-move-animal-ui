@@ -4,7 +4,7 @@ import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 
 const validCphNumber = '12/345/6789'
 const validOriginType = 'afu'
-/** @type OnOffFarmData */
+/** @type {OnOffFarmData} */
 const validOnOffFarm = 'off'
 const validAddress = {
   addressLine1: 'Starfleet Headquarters',

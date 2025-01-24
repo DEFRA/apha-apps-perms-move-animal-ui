@@ -28,6 +28,7 @@ export class QuestionPage extends Page {
     return this.question
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {AnswerModel} _answer
    * @returns {Page | QuestionPage}

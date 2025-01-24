@@ -3,6 +3,8 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
+/* eslint-disable jsdoc/require-returns-check */
+
 /**
  * @param {RadioButtonConfig} config
  * @returns {Joi.Schema}
