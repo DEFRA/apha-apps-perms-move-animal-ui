@@ -75,9 +75,9 @@ describe('OriginTypePage', () => {
     expect(plugin).toHaveProperty('register')
   })
 
-  describePageSnapshot(
-    'OriginTypePage.content',
-    'should render expected response and content',
+  describePageSnapshot({
+    describes: 'OriginTypePage.content',
+    it: 'should render expected response and content',
     pageUrl
-  )
+  })
 })

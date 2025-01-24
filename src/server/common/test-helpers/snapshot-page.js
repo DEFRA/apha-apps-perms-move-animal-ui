@@ -6,16 +6,14 @@ import { withCsrfProtection } from './csrf.js'
 /* global expect, it, beforeAll, afterAll, describe */
 
 /**
- * @param {string} describeMessage
- * @param {string} shouldMessage
- * @param {string} urlPath
+ * @param {{describes: string, it: string, pageUrl: string }} options
  */
-export const describePageSnapshot = (
-  describeMessage,
-  shouldMessage,
-  urlPath
-) => {
-  describe(describeMessage, () => {
+export const describePageSnapshot = ({
+  describes,
+  it: itDescription,
+  pageUrl
+}) => {
+  describe(describes, () => {
     /** @type {Server} */
     let server
 
@@ -28,11 +26,11 @@ export const describePageSnapshot = (
       await server.stop({ timeout: 0 })
     })
 
-    it(shouldMessage, async () => {
+    it(itDescription, async () => {
       const { payload } = await server.inject(
         withCsrfProtection({
           method: 'GET',
-          url: urlPath
+          url: pageUrl
         })
       )
 

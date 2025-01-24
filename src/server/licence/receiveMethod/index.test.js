@@ -73,11 +73,11 @@ describe('ReceiveMethodPage', () => {
     expect(plugin).toHaveProperty('register')
   })
 
-  describePageSnapshot(
-    'DestinationTypePage.content',
-    'should render expected response and content',
+  describePageSnapshot({
+    describes: 'DestinationTypePage.content',
+    it: 'should render expected response and content',
     pageUrl
-  )
+  })
 })
 
 /** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */

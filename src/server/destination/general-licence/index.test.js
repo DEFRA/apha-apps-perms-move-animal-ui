@@ -43,8 +43,8 @@ describe('DestinationGeneralLicencePage', () => {
   })
 })
 
-describePageSnapshot(
-  'DestinationGeneralLicenceController',
-  'should render the expected content',
-  page.urlPath
-)
+describePageSnapshot({
+  describes: 'DestinationGeneralLicenceController',
+  it: 'should render the expected content',
+  pageUrl: page.urlPath
+})
