@@ -2,7 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
-const maxLength = 255
+const maxLength = 50
 
 export const fullNamePayloadSchema = Joi.object({
   firstName: Joi.string()

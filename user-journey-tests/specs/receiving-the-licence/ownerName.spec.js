@@ -1,7 +1,7 @@
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 
-const longString = 'a'.repeat(300)
+const longString = 'a'.repeat(51)
 
 describe('County parish owner name test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
