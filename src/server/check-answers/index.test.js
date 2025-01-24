@@ -211,6 +211,38 @@ describe('#CheckAnswers', () => {
     expect(headers.location).toBe(taskListIncompleteUri)
   })
 
+  it('should error if email fails ot send for whatever reason', async () => {
+    mockSendNotifiation.mockImplementationOnce(() => {
+      throw new Error('Failed to send email')
+    })
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotifiation.mock.calls[0]
+
+    expect(content).toBe(emailContent)
+    expect(mockSendNotifiation).toHaveBeenCalledTimes(1)
+    expect(statusCode).toBe(statusCodes.serverError)
+    expect(await session.getState('origin')).toEqual(originDefaultState)
+    expect(await session.getState('destination')).toEqual(
+      destinationDefaultState
+    )
+    expect(await session.getState('licence')).toEqual(licenceDefaultState)
+  })
+
   it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
@@ -253,8 +285,13 @@ describe('#CheckAnswers', () => {
     const [{ content }] = mockSendNotifiation.mock.calls[0]
 
     expect(content).toBe(emailContent)
+    expect(mockSendNotifiation).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
+    expect(await session.getState('origin')).toBeUndefined()
+    expect(await session.getState('destination')).toBeUndefined()
+    expect(await session.getState('licence')).toBeUndefined()
+    expect(await session.getState('submit')).toBeUndefined()
   })
 
   it('Should send email and redirect correctly when only `other` present', async () => {
