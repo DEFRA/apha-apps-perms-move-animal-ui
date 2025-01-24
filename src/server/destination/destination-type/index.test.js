@@ -87,7 +87,7 @@ describe('DestinationTypePage', () => {
   })
 
   describePageSnapshot({
-    description: 'DestinationTypePage.content',
+    describes: 'DestinationTypePage.content',
     it: 'should render expected response and content',
     pageUrl
   })

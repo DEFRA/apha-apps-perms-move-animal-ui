@@ -6,14 +6,14 @@ import { withCsrfProtection } from './csrf.js'
 /* global expect, it, beforeAll, afterAll, describe */
 
 /**
- * @param {{description: string, it: string, pageUrl: string }} options
+ * @param {{describes: string, it: string, pageUrl: string }} options
  */
 export const describePageSnapshot = ({
-  description,
+  describes,
   it: itDescription,
   pageUrl
 }) => {
-  describe(description, () => {
+  describe(describes, () => {
     /** @type {Server} */
     let server
 

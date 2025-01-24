@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '../common/test-helpers/snapshot-page.js'
 
 describePageSnapshot({
-  description: '#destinationSummaryController',
+  describes: '#destinationSummaryController',
   it: 'should render expected response and content',
   pageUrl: '/cookies'
 })

@@ -44,7 +44,7 @@ describe('DestinationGeneralLicencePage', () => {
 })
 
 describePageSnapshot({
-  description: 'DestinationGeneralLicenceController',
+  describes: 'DestinationGeneralLicenceController',
   it: 'should render the expected content',
   pageUrl: page.urlPath
 })

@@ -76,7 +76,7 @@ describe('OriginTypePage', () => {
   })
 
   describePageSnapshot({
-    description: 'OriginTypePage.content',
+    describes: 'OriginTypePage.content',
     it: 'should render expected response and content',
     pageUrl
   })
