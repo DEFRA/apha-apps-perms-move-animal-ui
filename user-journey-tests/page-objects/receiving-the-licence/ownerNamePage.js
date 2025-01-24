@@ -19,9 +19,9 @@ class EmailPage extends Page {
 
   lastNameError = 'Enter the last name of the County Parish Holding (CPH) owner'
 
-  firstNameLengthError = 'First name must be no longer than 255 characters'
+  firstNameLengthError = 'First name must be no longer than 50 characters'
 
-  lastNameLengthError = 'Last name must be no longer than 255 characters'
+  lastNameLengthError = 'Last name must be no longer than 50 characters'
 
   firstNameInput() {
     return super.getInputField(firstNameId)
