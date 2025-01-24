@@ -9,16 +9,6 @@ import { createLogger } from '../../helpers/logging/logger.js'
  * export @interface PageController {
  *  handleGet: (req: Request, h: ResponseToolkit) => ResponseObject
  * }
- *
- * export @typedef {{
- *   request ?: boolean;
- *   response ?: boolean;
- * }} Metrics
- *
- * export @typedef {{
- *   get ?: Metrics;
- *   post ?: Metrics;
- * }} MetricReports
  */
 
 const logger = createLogger()
@@ -35,21 +25,14 @@ export default class GenericPageController {
   }
 
   getHandler(req, h) {
-    this.sendLog('get', 'request')
-    const result = this.handleGet(req, h)
-    this.sendLog('get', 'response')
-    return result
+    return this.handleGet(req, h)
   }
 
   postHandler(req, h) {
-    this.sendLog('post', 'request')
-    const result = this.handlePost(req, h)
-    this.sendLog('post', 'response')
-    return result
+    return this.handlePost(req, h)
   }
 
   /**
-   *
    * @param {import('../../model/answer/validation.js').AnswerErrors} errors
    */
   recordErrors(errors) {
@@ -59,20 +42,6 @@ export default class GenericPageController {
   }
 
   /**
-   *
-   * @param {string} method
-   * @param {string} event
-   */
-  sendLog(method, event) {
-    const sendMetric = this.page.reportMetrics?.[method]?.[event]
-
-    if (sendMetric) {
-      this.logger.info(`${method}::${event}-${this.page.urlPath}`)
-    }
-  }
-
-  /**
-   *
    * @param {string} field
    * @param {string} error
    */

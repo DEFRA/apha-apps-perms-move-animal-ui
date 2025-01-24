@@ -1,20 +1,7 @@
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /** @import { AnswerModel } from '../answer/answer-model.js' */
-/** @import { MetricReports, Metrics } from '../../controller/generic-page-controller/index.js' */
 
 export class Page {
-  /** @type {MetricReports} */
-  reportMetrics = {
-    get: {
-      request: false,
-      response: false
-    },
-    post: {
-      request: false,
-      response: false
-    }
-  }
-
   /** @type {string} */
   urlPath
 
