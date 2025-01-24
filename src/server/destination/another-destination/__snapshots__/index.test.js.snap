@@ -4,7 +4,7 @@ exports[`#AnotherDestinationExitPage AnotherDestinationPage.content should rende
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="gem-c-title__text govuk-heading-l">This service is not available for your movement type</h1>
+      <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
           You should only use this service if you are moving animals off your
