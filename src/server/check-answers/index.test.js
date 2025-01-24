@@ -8,7 +8,7 @@ import { sendNotification } from '../common/connectors/notify/notify.js'
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
-const mockSendNotifiation = /** @type {jest.Mock} */ (sendNotification)
+const mockSendNotification = /** @type {jest.Mock} */ (sendNotification)
 
 const testCphNumber = '12/123/1234'
 const testAddress = {
@@ -211,8 +211,8 @@ describe('#CheckAnswers', () => {
     expect(headers.location).toBe(taskListIncompleteUri)
   })
 
-  it('should error if email fails to send for whatever reason', async () => {
-    mockSendNotifiation.mockImplementationOnce(() => {
+  it('should error if email fails ot send for whatever reason', async () => {
+    mockSendNotification.mockImplementationOnce(() => {
       throw new Error('Failed to send email')
     })
 
@@ -231,10 +231,10 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
-    expect(mockSendNotifiation).toHaveBeenCalledTimes(1)
+    expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.serverError)
     expect(await session.getState('origin')).toEqual(originDefaultState)
     expect(await session.getState('destination')).toEqual(
@@ -259,7 +259,7 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
@@ -282,10 +282,10 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
-    expect(mockSendNotifiation).toHaveBeenCalledTimes(1)
+    expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
     expect(await session.getState('origin')).toBeUndefined()
@@ -310,7 +310,7 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
