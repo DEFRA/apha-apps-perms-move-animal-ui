@@ -141,6 +141,42 @@ describe('#taskListController', () => {
     expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(1)
   })
 
+  it('should log that the user came from any other page', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID,
+          Referer: `https://${server.info.host}/another-page` // simulate the index page of a application
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
+  })
+
+  it('should not log that the user came from a 3rd party referrer', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID,
+          Referer: `https://star-trek.com/` // simulate the index page of a application
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
+  })
+
   it('should not log that the user came from start page', async () => {
     const { statusCode } = await server.inject(
       withCsrfProtection(
