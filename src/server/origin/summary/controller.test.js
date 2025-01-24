@@ -4,6 +4,9 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { originSummaryPage } from './index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+
+const pageUrl = '/origin/check-answers'
 
 describe('#originSummaryController', () => {
   /** @type {Server} */
@@ -45,7 +48,7 @@ describe('#originSummaryController', () => {
       withCsrfProtection(
         {
           method: 'GET',
-          url: '/origin/check-answers'
+          url: pageUrl
         },
         {
           Cookie: session.sessionID
@@ -80,7 +83,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/check-answers'
+            url: pageUrl
           },
           {
             Cookie: session.sessionID
@@ -104,7 +107,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/check-answers'
+            url: pageUrl
           },
           {
             Cookie: session.sessionID
@@ -128,7 +131,7 @@ describe('#originSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/origin/check-answers'
+            url: pageUrl
           },
           {
             Cookie: session.sessionID
@@ -140,6 +143,14 @@ describe('#originSummaryController', () => {
         '/origin/cph-number?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
+    })
+  })
+
+  describe('#originSummaryPage.content', () => {
+    describePageSnapshot({
+      describes: 'licenceSummaryPage.content',
+      it: 'should render expected response and content',
+      pageUrl
     })
   })
 })

@@ -5,8 +5,11 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { destinationSummaryPage } from './index.js'
 import { destinationTypePage } from '../destination-type/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
-describe('#destinationSummaryController', () => {
+const pageUrl = '/destination/check-answers'
+
+describe('#destinationSummaryPage', () => {
   /** @type {Server} */
   let server
 
@@ -38,7 +41,7 @@ describe('#destinationSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/destination/check-answers'
+            url: pageUrl
           },
           {
             Cookie: session.sessionID
@@ -73,7 +76,7 @@ describe('#destinationSummaryController', () => {
         withCsrfProtection(
           {
             method: 'GET',
-            url: '/destination/check-answers'
+            url: pageUrl
           },
           {
             Cookie: session.sessionID
@@ -87,6 +90,12 @@ describe('#destinationSummaryController', () => {
         `${destinationTypePage.urlPath}?redirect_uri=${destinationSummaryPage.urlPath}`
       )
     })
+  })
+
+  describePageSnapshot({
+    describes: 'destinationSummaryPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
 

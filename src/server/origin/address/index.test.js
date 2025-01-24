@@ -1,6 +1,7 @@
 import { address, originAddressPage, OriginAddressPage } from './index.js'
 import { originSummaryPage } from '~/src/server/origin/summary/index.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'origin'
 const question =
@@ -57,6 +58,14 @@ describe('OriginAddressPage', () => {
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
+  })
+
+  describe('#originAddressPage.content', () => {
+    describePageSnapshot({
+      describes: 'licenceSummaryPage.content',
+      it: 'should render expected response and content',
+      pageUrl
+    })
   })
 })
 

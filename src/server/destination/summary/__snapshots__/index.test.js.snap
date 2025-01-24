@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#destinationSummaryPage destinationSummaryPage.content should render expected response and content 1`] = `undefined`;

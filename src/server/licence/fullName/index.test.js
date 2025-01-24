@@ -2,6 +2,7 @@ import { fullName, fullNamePage, FullNamePage } from './index.js'
 import { FullNameAnswer } from '../../common/model/answer/fullName/fullName.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'licence'
 const question = 'What is the name of the County Parish Holding (CPH) owner?'
@@ -58,6 +59,12 @@ describe('FullNamePage', () => {
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
+  })
+
+  describePageSnapshot({
+    describes: 'FullNamePage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
 

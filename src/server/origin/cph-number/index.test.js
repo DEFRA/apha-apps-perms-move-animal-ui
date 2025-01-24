@@ -1,6 +1,7 @@
 import { cphNumber, cphNumberPage, CphNumberPage } from './index.js'
 import { CphNumberAnswer } from '../../common/model/answer/cph-number/cph-number.js'
 import { originAddressPage } from '../address/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'origin'
 const question =
@@ -57,6 +58,14 @@ describe('CphNumberPage', () => {
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
+  })
+
+  describe('#cphNumberPage.content', () => {
+    describePageSnapshot({
+      describes: 'licenceSummaryPage.content',
+      it: 'should render expected response and content',
+      pageUrl
+    })
   })
 })
 

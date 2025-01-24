@@ -4,6 +4,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
 import { receiveMethodPage } from '../receiveMethod/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -73,5 +74,11 @@ describe('PostExitPageController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(emailAddressPage.urlPath)
     })
+  })
+
+  describePageSnapshot({
+    describes: 'PostExitPageController.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

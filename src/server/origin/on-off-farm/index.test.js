@@ -2,6 +2,7 @@ import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
 import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-farm.js'
 import { exitPage } from '../exit-page/index.js'
 import { originTypePage } from '../origin-type/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'origin'
 const question = 'Are you moving the animals on or off your farm or premises?'
@@ -64,6 +65,14 @@ describe('OnOffFarmPage', () => {
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
+  })
+
+  describe('#onOffFarmPage.content', () => {
+    describePageSnapshot({
+      describes: 'licenceSummaryPage.content',
+      it: 'should render expected response and content',
+      pageUrl
+    })
   })
 })
 

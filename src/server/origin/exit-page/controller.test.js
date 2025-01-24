@@ -1,6 +1,9 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '../../common/test-helpers/dom.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+
+const pageUrl = '/exit-page'
 
 describe('#exitPageController', () => {
   const pageTitleAndHeading =
@@ -23,7 +26,7 @@ describe('#exitPageController', () => {
   test('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/exit-page'
+      url: pageUrl
     })
 
     const document = parseDocument(payload)
@@ -35,6 +38,14 @@ describe('#exitPageController', () => {
       document.querySelector(`[href='${govukTB204Link}']`)?.innerHTML.trim()
     ).toBe('submit the current application form on GOV.UK')
     expect(statusCode).toBe(statusCodes.ok)
+  })
+
+  describe('#originExitPage.content', () => {
+    describePageSnapshot({
+      describes: 'licenceSummaryPage.content',
+      it: 'should render expected response and content',
+      pageUrl
+    })
   })
 })
 

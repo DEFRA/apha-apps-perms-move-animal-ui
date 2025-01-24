@@ -1,6 +1,7 @@
 import { emailAddress, emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
@@ -56,6 +57,12 @@ describe('EmailAddressPage', () => {
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
     expect(plugin).toHaveProperty('register')
+  })
+
+  describePageSnapshot({
+    describes: 'EmailAddressPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
 

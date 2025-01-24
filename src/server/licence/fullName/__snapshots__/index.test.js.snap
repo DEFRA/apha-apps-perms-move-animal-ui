@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullNamePage FullNamePage.content should render expected response and content 1`] = `
+"
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">What is the name of the County Parish Holding (CPH) owner?</h1>
+      </div>
+    </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+<fieldset class="govuk-fieldset">
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="firstName">
+    First name
+  </label>
+  <input class="govuk-input govuk-input--width-20" id="firstName" name="firstName" type="text">
+</div>
+
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="lastName">
+    Last name
+  </label>
+  <input class="govuk-input govuk-input--width-20" id="lastName" name="lastName" type="text">
+</div>
+
+
+</fieldset>
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;
