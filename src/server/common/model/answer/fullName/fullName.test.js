@@ -1,5 +1,7 @@
 import { FullNameAnswer } from './fullName.js'
 
+const maxLength = 50
+
 const validFullNamePayload = {
   firstName: 'Jean-Luc',
   lastName: 'Picard'
@@ -34,19 +36,23 @@ describe('#FullName.validate', () => {
 
   it('should return false for input that is too long', () => {
     const fullName = new FullNameAnswer({
-      firstName: Array(256).fill('a').join(''),
-      lastName: Array(256).fill('a').join('')
+      firstName: Array(maxLength + 1)
+        .fill('a')
+        .join(''),
+      lastName: Array(maxLength + 1)
+        .fill('a')
+        .join('')
     })
 
     const { isValid, errors } = fullName.validate()
 
     expect(isValid).toBe(false)
     expect(errors.firstName.text).toBe(
-      'First name must be no longer than 255 characters'
+      `First name must be no longer than ${maxLength} characters`
     )
 
     expect(errors.lastName.text).toBe(
-      'Last name must be no longer than 255 characters'
+      `Last name must be no longer than ${maxLength} characters`
     )
   })
 })
