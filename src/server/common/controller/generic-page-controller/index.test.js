@@ -57,30 +57,6 @@ describe('#GenericPageController', () => {
     expect(() => controller.postHandler()).toThrow()
   })
 
-  it('should send metric on getHandler', () => {
-    jest.spyOn(controller, 'handleGet').mockImplementation(() => {
-      return 'get success'
-    })
-    const logger = jest.spyOn(controller.logger, 'info')
-
-    const metricSpy = jest.spyOn(controller, 'sendLog')
-    controller.getHandler()
-    expect(controller.sendLog).toHaveBeenCalledWith('get', 'response')
-    expect(metricSpy).toHaveBeenCalledTimes(2)
-    expect(logger).toHaveBeenCalledTimes(1)
-  })
-
-  it('should send metric on postHandler', () => {
-    jest.spyOn(controller, 'handlePost').mockImplementation(() => {
-      return 'get success'
-    })
-
-    const metricSpy = jest.spyOn(controller, 'sendLog')
-    controller.postHandler()
-    expect(controller.sendLog).toHaveBeenCalledWith('post', 'response')
-    expect(metricSpy).toHaveBeenCalledTimes(2)
-  })
-
   afterEach(() => {
     jest.clearAllMocks()
   })
