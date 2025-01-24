@@ -86,11 +86,11 @@ describe('DestinationTypePage', () => {
     expect(plugin).toHaveProperty('register')
   })
 
-  describePageSnapshot(
-    'DestinationTypePage.content',
-    'should render expected response and content',
+  describePageSnapshot({
+    description: 'DestinationTypePage.content',
+    it: 'should render expected response and content',
     pageUrl
-  )
+  })
 })
 
 /** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */
