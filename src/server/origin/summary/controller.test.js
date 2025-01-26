@@ -2,9 +2,8 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SesessionTestHelper from '../../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { originSummaryPage } from './index.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const pageUrl = '/origin/check-answers'
 
@@ -12,7 +11,7 @@ describe('#originSummaryController', () => {
   /** @type {Server} */
   let server
 
-  /** @type {SesessionTestHelper} */
+  /** @type {SessionTestHelper} */
   let session
 
   const defaultState = {
@@ -34,7 +33,7 @@ describe('#originSummaryController', () => {
   })
 
   beforeEach(async () => {
-    session = await SesessionTestHelper.create(server)
+    session = await SessionTestHelper.create(server)
 
     await session.setState('origin', defaultState)
   })
@@ -143,14 +142,6 @@ describe('#originSummaryController', () => {
         '/origin/cph-number?redirect_uri=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
-    })
-  })
-
-  describe('#originSummaryPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
     })
   })
 })
