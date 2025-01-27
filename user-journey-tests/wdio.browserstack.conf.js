@@ -7,7 +7,7 @@ export const config = merge(wdioConf, {
   exclude: ['./specs/noJavascript/**/*.spec.js'],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,
-  maxInstances: 7,
+  maxInstances: 5,
   capabilities: [
     {
       browserName: 'Edge',
