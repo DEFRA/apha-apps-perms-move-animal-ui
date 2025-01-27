@@ -79,8 +79,7 @@ export const withCsrfProtection = (injectionOptions, headers = {}) => {
     headers: {
       ...(injectionOptions.headers ?? {}),
       ...headers,
-      Cookie: ['crumb=csrf-value', headers?.Cookie].filter((v) => v).join(';'),
-      Referer: headers.Referer ?? ''
+      Cookie: ['crumb=csrf-value', headers?.Cookie].filter((v) => v).join(';')
     }
   }
 }
