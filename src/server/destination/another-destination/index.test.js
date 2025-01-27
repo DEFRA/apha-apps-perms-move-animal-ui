@@ -1,12 +1,32 @@
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { AnotherDestinationExitPage } from './index.js'
 
-describe('#AnotherDestinationController', () => {
-  it('should have the correct properties', () => {
-    const page = new AnotherDestinationExitPage()
-    expect(page.pageTitle).toBe(
-      'This service is not available for your movement type'
-    )
-    expect(page.urlPath).toBe('/destination/can-not-use-service')
-    expect(page.view).toBe('destination/another-destination/index')
+const sectionKey = 'destination'
+const view = 'destination/another-destination/index'
+const pageUrl = '/destination/can-not-use-service'
+
+describe('#AnotherDestinationExitPage', () => {
+  let page
+
+  beforeEach(() => {
+    page = new AnotherDestinationExitPage()
+  })
+
+  it('should have the correct urlPath', () => {
+    expect(page.urlPath).toBe(pageUrl)
+  })
+
+  it('should have the correct sectionKey', () => {
+    expect(page.sectionKey).toBe(sectionKey)
+  })
+
+  it('should have the correct view', () => {
+    expect(page.view).toBe(view)
+  })
+
+  describePageSnapshot({
+    describes: 'AnotherDestinationPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

@@ -3,12 +3,27 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
-import { destinationSummaryPage } from './index.js'
-import { destinationTypePage } from '../destination-type/index.js'
+import { licenceSummaryPage } from './index.js'
+import { receiveMethodPage } from '../receiveMethod/index.js'
 
-const pageUrl = '/destination/check-answers'
+const pageUrl = '/receiving-the-licence/check-answers'
 
-describe('#destinationSummaryPage', () => {
+const testName = 'test_name'
+const testSurname = 'test_surname'
+const emailMethod = 'email'
+const postMethod = 'post'
+const testEmail = 'test@email.com'
+
+const defaultState = {
+  fullName: {
+    firstName: testName,
+    lastName: testSurname
+  },
+  receiveMethod: emailMethod,
+  emailAddress: testEmail
+}
+
+describe('#licenceSummaryPage', () => {
   /** @type {Server} */
   let server
 
@@ -21,18 +36,14 @@ describe('#destinationSummaryPage', () => {
     await server.stop({ timeout: 0 })
   })
 
-  describe('slaughter answer selected', () => {
+  describe('email method selected', () => {
     /** @type {SessionTestHelper} */
     let session
-
-    const defaultState = {
-      destinationType: 'slaughter'
-    }
 
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setState('destination', defaultState)
+      await session.setState('licence', defaultState)
     })
 
     it('should render expected response', async () => {
@@ -49,28 +60,20 @@ describe('#destinationSummaryPage', () => {
       )
 
       const document = parseDocument(payload)
-      expect(document.title).toBe(destinationSummaryPage.pageTitle)
+      expect(document.title).toBe(licenceSummaryPage.pageTitle)
       expect(statusCode).toBe(statusCodes.ok)
 
-      expect(payload).toEqual(expect.stringContaining('Slaughter'))
-    })
-  })
-
-  describe('other answer selected', () => {
-    /** @type {SessionTestHelper} */
-    let session
-
-    const defaultState = {
-      destinationType: 'other'
-    }
-
-    beforeEach(async () => {
-      session = await SessionTestHelper.create(server)
-
-      await session.setState('destination', defaultState)
+      expect(payload).toEqual(
+        expect.stringContaining(`${testName} ${testSurname}`)
+      )
     })
 
-    it('should redirect user to exit page if they`ve exited the journey', async () => {
+    it('should redirect user to receive method page if they`ve selected Post', async () => {
+      await session.setState('licence', {
+        ...defaultState,
+        receiveMethod: postMethod
+      })
+
       const { statusCode, headers } = await server.inject(
         withCsrfProtection(
           {
@@ -86,7 +89,7 @@ describe('#destinationSummaryPage', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(
-        `${destinationTypePage.urlPath}?redirect_uri=${destinationSummaryPage.urlPath}`
+        `${receiveMethodPage.urlPath}?redirect_uri=${licenceSummaryPage.urlPath}`
       )
     })
   })

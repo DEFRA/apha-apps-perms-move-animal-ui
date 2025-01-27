@@ -1,3 +1,4 @@
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { PostExitPage } from './index.js'
 
 const sectionKey = 'licence'
@@ -39,5 +40,11 @@ describe('#PostExitPage', () => {
   it('should return the correct view props', () => {
     expect(page.viewProps().continueButtonText).toBe(continueButtonText)
     expect(page.viewProps().continueButtonClasses).toBe(continueButtonClasses)
+  })
+
+  describePageSnapshot({
+    describes: 'PostExitPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
