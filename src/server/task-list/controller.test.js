@@ -168,7 +168,7 @@ describe('#taskListController', () => {
         },
         {
           Cookie: session.sessionID,
-          Referer: `https://star-trek.com/` // simulate the index page of a application
+          Referer: `https://star-trek:443.com/` // simulate the index page of a application
         }
       )
     )
