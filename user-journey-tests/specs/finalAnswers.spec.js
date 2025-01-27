@@ -41,47 +41,49 @@ const townOrCity = 'Gotham edited'
 const county = 'West new york edited'
 const postcode = 'SW1C 2CC'
 
+const completeApplication = async () => {
+  await landingPage.navigateToPageAndVerifyTitle()
+  await completeOriginTaskAnswersCustom(
+    defaultCphNumber,
+    defaultLineOne,
+    defaultTownOrCity,
+    defaultPostcode
+  )
+  await checkAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+  await taskListPage.verifyStatus({
+    position: 1,
+    taskTitle: 'Movement origin',
+    expectedStatus: 'Completed'
+  })
+
+  await completeDestinationTask('approved')
+  await destinationAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+  await taskListPage.verifyStatus({
+    position: 2,
+    taskTitle: 'Movement destination',
+    expectedStatus: 'Completed'
+  })
+
+  await completeLicenceTaskAnswersCustom(
+    emailDefault,
+    firstNameDefault,
+    lastNameDefault
+  )
+  await licenceAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+  await taskListPage.verifyStatus({
+    position: 3,
+    taskTitle: 'Receiving the licence',
+    expectedStatus: 'Completed'
+  })
+  await finalAnswersPage.navigateToPageAndVerifyTitle()
+}
+
 describe('Check your final answers test', () => {
   // eslint-disable-next-line
-  before('Navigate to check answers page', async () => {
-    await landingPage.navigateToPageAndVerifyTitle()
-    await completeOriginTaskAnswersCustom(
-      defaultCphNumber,
-      defaultLineOne,
-      defaultTownOrCity,
-      defaultPostcode
-    )
-    await checkAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle()
-    await taskListPage.verifyStatus({
-      position: 1,
-      taskTitle: 'Movement origin',
-      expectedStatus: 'Completed'
-    })
-
-    await completeDestinationTask('approved')
-    await destinationAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle()
-    await taskListPage.verifyStatus({
-      position: 2,
-      taskTitle: 'Movement destination',
-      expectedStatus: 'Completed'
-    })
-
-    await completeLicenceTaskAnswersCustom(
-      emailDefault,
-      firstNameDefault,
-      lastNameDefault
-    )
-    await licenceAnswersPage.selectContinue()
-    await taskListPage.verifyPageHeadingAndTitle()
-    await taskListPage.verifyStatus({
-      position: 3,
-      taskTitle: 'Receiving the licence',
-      expectedStatus: 'Completed'
-    })
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-  })
+  before('Navigate to check answers page', completeApplication)
 
   it('Should verify the back link is history -1', async () => {
     await taskListPage.navigateToPageAndVerifyTitle()
@@ -162,24 +164,6 @@ describe('Check your final answers test', () => {
     )
   })
 
-  it('Should submit the page after selecting first declaration', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await finalAnswersPage.selectADeclarationAndContinue()
-    await waitForPagePath(submissionConfirmationPage.pagePath)
-  })
-
-  it('Should submit the page after selecting second declaration', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await finalAnswersPage.selectADeclarationAndContinue(true)
-    await waitForPagePath(submissionConfirmationPage.pagePath)
-  })
-
-  it('Should verify errors when trying to submit without selecting a declaration', async () => {
-    // This test must go last because it changes the page title
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await finalAnswersPage.submissionErrorTest()
-  })
-
   it('Should go via the general licence page if the destination type is changed to "slaughter"', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
 
@@ -196,5 +180,30 @@ describe('Check your final answers test', () => {
   it('Should verify changing the value to on the farm and navigating back', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnFarmErrorHandling(finalAnswersPage.onOffFarmChange, true)
+  })
+
+  describe('declarations', () => {
+    beforeEach(async () => {
+      await browser.deleteAllCookies()
+      await completeApplication()
+    })
+
+    it('Should submit the page after selecting first declaration', async () => {
+      await finalAnswersPage.navigateToPageAndVerifyTitle()
+      await finalAnswersPage.selectADeclarationAndContinue()
+      await waitForPagePath(submissionConfirmationPage.pagePath)
+    })
+
+    it('Should submit the page after selecting second declaration', async () => {
+      await finalAnswersPage.navigateToPageAndVerifyTitle()
+      await finalAnswersPage.selectADeclarationAndContinue(true)
+      await waitForPagePath(submissionConfirmationPage.pagePath)
+    })
+
+    it('Should verify errors when trying to submit without selecting a declaration', async () => {
+      // This test must go last because it changes the page title
+      await finalAnswersPage.navigateToPageAndVerifyTitle()
+      await finalAnswersPage.submissionErrorTest()
+    })
   })
 })

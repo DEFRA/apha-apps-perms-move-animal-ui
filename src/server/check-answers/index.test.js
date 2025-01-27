@@ -8,7 +8,7 @@ import { sendNotification } from '../common/connectors/notify/notify.js'
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
-const mockSendNotifiation = /** @type {jest.Mock} */ (sendNotification)
+const mockSendNotification = /** @type {jest.Mock} */ (sendNotification)
 
 const testCphNumber = '12/123/1234'
 const testAddress = {
@@ -212,6 +212,38 @@ describe('#CheckAnswers', () => {
     expect(headers.location).toBe(taskListIncompleteUri)
   })
 
+  it('should error if email fails ot send for whatever reason', async () => {
+    mockSendNotification.mockImplementationOnce(() => {
+      throw new Error('Failed to send email')
+    })
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(content).toBe(emailContent)
+    expect(mockSendNotification).toHaveBeenCalledTimes(1)
+    expect(statusCode).toBe(statusCodes.serverError)
+    expect(await session.getState('origin')).toEqual(originDefaultState)
+    expect(await session.getState('destination')).toEqual(
+      destinationDefaultState
+    )
+    expect(await session.getState('licence')).toEqual(licenceDefaultState)
+  })
+
   it('Should redirect correctly when there is no error', async () => {
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
@@ -228,7 +260,7 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)
@@ -251,11 +283,16 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
+    expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
+    expect(await session.getState('origin')).toBeUndefined()
+    expect(await session.getState('destination')).toBeUndefined()
+    expect(await session.getState('licence')).toBeUndefined()
+    expect(await session.getState('submit')).toBeUndefined()
   })
 
   it('Should send email and redirect correctly when only `other` present', async () => {
@@ -274,7 +311,7 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotifiation.mock.calls[0]
+    const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
     expect(statusCode).toBe(statusCodes.redirect)

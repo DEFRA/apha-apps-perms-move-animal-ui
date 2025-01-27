@@ -98,6 +98,8 @@ export class SubmitPageController extends QuestionPageController {
       await sendNotification({
         content: emailContent
       })
+
+      req.yar.reset()
     }
 
     if (!isValidApplication) {

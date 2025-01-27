@@ -84,6 +84,10 @@ export const getSession = async (server, sessionCookie, key) => {
     )
   )
 
+  if (!payload) {
+    return
+  }
+
   return JSON.parse(payload)
 }
 
