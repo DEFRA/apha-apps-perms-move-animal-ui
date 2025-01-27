@@ -26,15 +26,15 @@ export const getBrowserStackRunners = async () => {
     const availableThreads = threadsAllowed - threadsRunning
     const threadsToUse = Math.floor(availableThreads / 2)
 
-    if (threadsToUse < defaultMinimum) {
+    if (threadsToUse < defaultMinimum && threadsToUse < availableThreads) {
       return threadsToUse
     }
 
-    if (defaultMinimum > threadsAllowed) {
-      return threadsAllowed
+    if (defaultMinimum > availableThreads) {
+      return availableThreads
     }
 
-    return availableThreads
+    return defaultMinimum
   } catch (error) {
     return defaultMinimum // default to a speculative value
   }
