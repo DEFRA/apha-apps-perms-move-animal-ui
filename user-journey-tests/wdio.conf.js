@@ -1,4 +1,5 @@
 import testConfig from './config/config.js'
+import { getBrowserStackRunners } from './config/browserstackMetrics.js'
 const debug = process.env.DEBUG
 
 export const config = {
@@ -137,7 +138,7 @@ export const config = {
     ui: 'bdd',
     timeout: debug ? 24 * 60 * 60 * 1000 : 60000,
     retries: 2
-  }
+  },
   //
   // =====
   // Hooks
@@ -151,7 +152,11 @@ export const config = {
    * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {},
+  onPrepare: async function (config) {
+    const maxInstances = await getBrowserStackRunners()
+
+    config.maxInstances = maxInstances
+  }
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -178,7 +183,11 @@ export const config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    * @param {string} cid worker id (e.g. 0-0)
    */
-  // beforeSession: function (config, capabilities, specs, cid) {},
+  // beforeSession: async (config, capabilities, specs, cid) => {
+  //   const thread = await getBrowserStackRunners()
+
+  //   config.maxInstances = thread
+  // }
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
