@@ -21,5 +21,13 @@
     "node_modules",
     "user-journey-tests"
   ],
-  "include": ["**/*.cjs", "**/*.js", ".eslintrc.*", ".prettierrc.*"]
+  "include": [
+    "**/*.cjs",
+    "**/*.js",
+    ".eslintrc.*",
+    ".prettierrc.*"
+  ],
+  "files": [
+    "user-journey-tests/config/browserstackMetrics.test.js"
+  ]
 }
