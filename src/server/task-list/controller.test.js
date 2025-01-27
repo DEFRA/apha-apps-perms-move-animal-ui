@@ -4,6 +4,16 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
 import SessionTester from '../common/test-helpers/session-helper.js'
 
+const mockHapiLoggerInfo = jest.fn()
+jest.mock('hapi-pino', () => ({
+  register: (server) => {
+    server.decorate('server', 'logger', {
+      info: mockHapiLoggerInfo
+    })
+  },
+  name: 'mock-hapi-pino'
+}))
+
 describe('#taskListController', () => {
   /** @type {Server} */
   let server
@@ -111,6 +121,77 @@ describe('#taskListController', () => {
     expect(statusCode).toBe(statusCodes.ok)
     expect(payload).toEqual(expect.stringContaining(`3 out of 3`))
     expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
+  })
+
+  it('should log that the user came from start page', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID,
+          Referer: `https://${server.info.host}/` // simulate the index page of a application
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(1)
+  })
+
+  it('should not log that the user came from any other page', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID,
+          Referer: `https://${server.info.host}/another-page` // simulate the index page of a application
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
+  })
+
+  it('should not log that the user came from a 3rd party referrer', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID,
+          Referer: `https://star-trek:443.com/` // simulate the index page of a application
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
+  })
+
+  it('should not log that the user came directly to task-list', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: '/task-list'
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
   })
 
   it('should state all section complete, and have a green button', async () => {
