@@ -1,4 +1,4 @@
-const defaultMinimum = 6
+const defaultMaximum = 6
 
 export const getBrowserStackRunners = async () => {
   const username = process.env.BROWSERSTACK_USER
@@ -26,16 +26,16 @@ export const getBrowserStackRunners = async () => {
     const availableThreads = threadsAllowed - threadsRunning
     const threadsToUse = Math.floor(availableThreads / 2)
 
-    if (threadsToUse < defaultMinimum && threadsToUse < availableThreads) {
+    if (threadsToUse < defaultMaximum && threadsToUse < availableThreads) {
       return threadsToUse
     }
 
-    if (defaultMinimum > availableThreads) {
+    if (defaultMaximum > availableThreads) {
       return availableThreads
     }
 
-    return defaultMinimum
+    return defaultMaximum
   } catch (error) {
-    return defaultMinimum // default to a speculative value
+    return defaultMaximum // default to a speculative value
   }
 }
