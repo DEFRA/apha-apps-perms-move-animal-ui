@@ -141,7 +141,7 @@ describe('#taskListController', () => {
     expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(1)
   })
 
-  it('should log that the user came from any other page', async () => {
+  it('should not log that the user came from any other page', async () => {
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -177,7 +177,7 @@ describe('#taskListController', () => {
     expect(mockHapiLoggerInfo).toHaveBeenCalledTimes(0)
   })
 
-  it('should not log that the user came from start page', async () => {
+  it('should not log that the user came directly to task-list', async () => {
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {
