@@ -69,7 +69,7 @@ export class AnswerModel {
   }
 
   /**
-   * @params {AnswerViewModelOptions} options
+   * @param {AnswerViewModelOptions} options
    */
   viewModel(options) {
     throw new NotImplementedError()

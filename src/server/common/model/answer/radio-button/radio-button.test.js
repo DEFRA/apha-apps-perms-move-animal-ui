@@ -166,13 +166,12 @@ describe('RadioButton', () => {
         }
       ]
     }
+
     it('should return everything (except errors) to render in the template', () => {
       expect(answer.viewModel({ validate: false })).toEqual(defaultViewModel)
     })
 
     it('should return everything (including errors) to render in the template', () => {
-      console.log(answer.viewModel({ validate: true }))
-      console.log(answer.validate().errors)
       expect(answer.viewModel({ validate: true })).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
