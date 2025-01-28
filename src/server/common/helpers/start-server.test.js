@@ -56,7 +56,7 @@ describe('#startServer', () => {
       await server.stop({ timeout: 0 })
     })
 
-    test('Should start up server as expected', async () => {
+    it('Should start up server as expected', async () => {
       server = await startServerImport.startServer()
 
       expect(createServerSpy).toHaveBeenCalled()
@@ -76,6 +76,10 @@ describe('#startServer', () => {
         3,
         'Access your frontend on http://localhost:3097'
       )
+      expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
+        4,
+        `Feature flags configuration: {"biosecurity":${process.env.BIOSECURITY_FEATURE_ENABLED ?? process.env.NODE_ENV === 'development'}}`
+      )
     })
   })
 
@@ -84,7 +88,7 @@ describe('#startServer', () => {
       createServerSpy.mockRejectedValue(new Error('Server failed to start'))
     })
 
-    test('Should log failed startup message', async () => {
+    it('Should log failed startup message', async () => {
       await startServerImport.startServer()
 
       expect(mockLoggerInfo).toHaveBeenCalledWith('Server failed to start :(')
