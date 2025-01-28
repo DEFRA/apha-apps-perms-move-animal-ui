@@ -3,6 +3,8 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
+/** @import {AnswerViewModelOptions} from '../answer-model.js' */
+
 /* eslint-disable jsdoc/require-returns-check */
 
 /**
@@ -93,7 +95,10 @@ export class RadioButtonAnswer extends AnswerModel {
     })
   }
 
-  get viewModel() {
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  viewModel({ validate }) {
     const items = Object.entries(this.config.options).map(([key, value]) => ({
       id: key,
       value: key,
@@ -103,12 +108,18 @@ export class RadioButtonAnswer extends AnswerModel {
       }
     }))
     items[0].id = this.config.payloadKey
-    return {
+
+    const model = {
       name: this.config.payloadKey,
       id: this.config.payloadKey,
       fieldset: {},
       value: this.value,
       items
     }
+
+    if (validate) {
+      model.errorMessage = this.validate().errors[this.config.payloadKey]
+    }
+    return model
   }
 }
