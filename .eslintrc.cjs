@@ -132,6 +132,7 @@ module.exports = {
         'plugin:jest/style'
       ],
       files: ['**/*.test.{cjs,js}', '**/__mocks__/**'],
+      excludedFiles: ['**/user-journey-tests/**/*.{cjs,js}'],
       plugins: ['jest'],
       rules: {
         // Allow Jest to assert on mocked unbound methods
