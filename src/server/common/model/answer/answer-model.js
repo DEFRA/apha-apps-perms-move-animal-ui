@@ -69,6 +69,13 @@ export class AnswerModel {
   }
 
   /**
+   * @params {AnswerViewModelOptions} options
+   */
+  viewModel(options) {
+    throw new NotImplementedError()
+  }
+
+  /**
    * @param {unknown} _data
    * @returns {unknown}
    */
@@ -90,4 +97,8 @@ export class AnswerModel {
 
 /**
  * @typedef {{[key:string]: string | undefined}} RawPayload
+ */
+
+/**
+ * @typedef {{ validate: boolean }} AnswerViewModelOptions
  */

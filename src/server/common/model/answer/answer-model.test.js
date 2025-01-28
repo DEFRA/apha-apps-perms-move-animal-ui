@@ -28,6 +28,12 @@ describe('AnswerModel', () => {
     expect(() => AnswerModel.fromState({})).toThrow(notImplementedError)
   })
 
+  it('should throw NotImplementedError when viewModel is called', () => {
+    expect(() => answer.viewModel({ validate: true })).toThrow(
+      notImplementedError
+    )
+  })
+
   it('should seal the object to prevent property additions or deletions', () => {
     class AnswerModelBasic extends AnswerModel {
       _extractFields(data) {
