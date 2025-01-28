@@ -14,6 +14,9 @@ async function startServer() {
     server.logger.info(
       `Access your frontend on http://localhost:${config.get('port')}`
     )
+    server.logger.info(
+      `Feature flags configuration: ${JSON.stringify(config.get('featureFlags'))}`
+    )
   } catch (error) {
     const logger = createLogger()
     logger.info('Server failed to start :(')

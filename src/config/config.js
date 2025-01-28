@@ -240,6 +240,14 @@ export const config = convict({
       default: 10_000,
       env: 'NOTIFY_TIMEOUT'
     }
+  },
+  featureFlags: {
+    biosecurity: {
+      doc: 'Feature flag to enable biosecurity sections',
+      format: Boolean,
+      default: isDevelopment,
+      env: 'BIOSECURITY_FEATURE_ENABLED'
+    }
   }
 })
 
