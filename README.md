@@ -7,7 +7,7 @@
 [![Run Tests Browserstack (desktop) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-desktop.yaml)
 [![Run Tests Browserstack (mobile) Status](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml/badge.svg)](https://github.com/DEFRA/apha-apps-perms-move-animal-ui/actions/workflows/run-tests-browserstack-mobile.yaml)
 
-Frontend to the 'Get permission to move animals under disease controls' service.  It's purpose is to allow applicants to apply for licences to move animals, when such movements may be restricted due to disease outbreaks.
+Frontend to the 'Get permission to move animals under disease controls' service. It's purpose is to allow applicants to apply for licences to move animals, when such movements may be restricted due to disease outbreaks.
 
 - [apha-apps-perms-move-animal-ui](#apha-apps-perms-move-animal-ui)
   - [Architecture Diagram](#architecture-diagram)
