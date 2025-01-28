@@ -1,12 +1,10 @@
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfig} from '../radio-button/radio-button.js' */
 
-
 /**
  * export @typedef {'yes' | 'no'} YesNoRadioButtonData
  * @typedef {{ yesOrNo: 'yes' | 'no' }} YesNoRadioButtonPayload
  */
-
 
 export const yesNoRadioButtonFactory = ({ emptyOptionText }) => {
   /** @type {RadioButtonConfig} */

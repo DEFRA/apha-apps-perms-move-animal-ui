@@ -16,7 +16,9 @@ describe('YesNoRadioButton', () => {
   })
 
   it('should have same static config & instance config', () => {
-    expect(new YesNoRadioButton(payload).config).toEqual(YesNoRadioButton.config)
+    expect(new YesNoRadioButton(payload).config).toEqual(
+      YesNoRadioButton.config
+    )
   })
 
   it('should have the right payload key', () => {
@@ -29,11 +31,7 @@ describe('YesNoRadioButton', () => {
 
   it('should have the expected options to select from', () => {
     expect(Object.keys(YesNoRadioButton.config.options)).toHaveLength(2)
-    expect(YesNoRadioButton.config.options.yes.label).toBe(
-      'Yes'
-    )
-    expect(YesNoRadioButton.config.options.no.label).toBe(
-      'No'
-    )
+    expect(YesNoRadioButton.config.options.yes.label).toBe('Yes')
+    expect(YesNoRadioButton.config.options.no.label).toBe('No')
   })
 })
