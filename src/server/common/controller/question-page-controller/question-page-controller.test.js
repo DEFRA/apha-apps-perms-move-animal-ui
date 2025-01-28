@@ -465,7 +465,8 @@ describe('QuestionPageController', () => {
           heading: question,
           nextPage: 'redirect_uri',
           pageTitle: question,
-          value: undefined
+          value: undefined,
+          viewModelOptions: { validate: false }
         })
       )
 
@@ -491,6 +492,7 @@ describe('QuestionPageController', () => {
             { href: `#${questionKey}`, text: 'There is a problem' }
           ],
           errors: { questionKey: { text: 'There is a problem' } },
+          viewModelOptions: { validate: true },
           heading: question,
           nextPage: 'test_next_page',
           pageTitle: `Error: ${question}`,

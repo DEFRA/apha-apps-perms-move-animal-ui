@@ -141,32 +141,42 @@ describe('RadioButton', () => {
   })
 
   describe('#RadioButton.viewModel', () => {
-    it('should return everything (except errors) to render in the template', () => {
-      const answer = new RadioButtonTest({ test_radio: 'value_1' })
-      expect(answer.viewModel).toEqual({
-        name: 'test_radio',
-        id: 'test_radio',
-        fieldset: {},
-        value: answer.value,
-        classes: '',
-        items: [
-          {
-            id: 'test_radio',
-            value: 'value_1',
-            text: 'test_label_1',
-            hint: {
-              text: undefined
-            }
-          },
-          {
-            id: 'value_2',
-            value: 'value_2',
-            text: 'test_label_2',
-            hint: {
-              text: 'test_hint_2'
-            }
+    const invalidAnswer = new RadioButtonTest({ test_radio: 'invalid_answer' })
+    const defaultViewModel = {
+      name: 'test_radio',
+      id: 'test_radio',
+      fieldset: {},
+      value: invalidAnswer.value,
+      items: [
+        {
+          id: 'test_radio',
+          value: 'value_1',
+          text: 'test_label_1',
+          hint: {
+            text: undefined
           }
-        ]
+        },
+        {
+          id: 'value_2',
+          value: 'value_2',
+          text: 'test_label_2',
+          hint: {
+            text: 'test_hint_2'
+          }
+        }
+      ]
+    }
+
+    it('should return everything (except errors) to render in the template', () => {
+      expect(invalidAnswer.viewModel({ validate: false })).toEqual(
+        defaultViewModel
+      )
+    })
+
+    it('should return everything (including errors) to render in the template', () => {
+      expect(invalidAnswer.viewModel({ validate: true })).toEqual({
+        ...defaultViewModel,
+        errorMessage: { text: 'Select an option' }
       })
     })
 
