@@ -147,9 +147,9 @@ describe('TextAnswer.validate', () => {
       expect(errors).toEqual({})
     })
 
-    it('should strip the string first, before validating', () => {
+    it('should trim the string first, before validating', () => {
       const textAnswer = new PatternValidationTextAnswer({
-        textPayload: '12345'
+        textPayload: '  12345  '
       })
       const { isValid, errors } = textAnswer.validate()
 
