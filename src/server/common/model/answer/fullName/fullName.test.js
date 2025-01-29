@@ -118,3 +118,25 @@ describe('#FullName.html', () => {
     expect(fullName.html).toBe(' ')
   })
 })
+
+describe('FullName.viewModel', () => {
+  const longInput = new Array(51).fill('a').join('')
+  const invalidFullName = {
+    firstName: longInput,
+    lastName: longInput
+  }
+  const name = new FullNameAnswer(invalidFullName)
+
+  it('should return the value without errors (if validate is false)', () => {
+    expect(name.viewModel({ validate: false })).toEqual({
+      value: name.value
+    })
+  })
+
+  it('should return the value with errors (if valiate is true)', () => {
+    expect(name.viewModel({ validate: true })).toEqual({
+      value: name.value,
+      errors: name.validate().errors
+    })
+  })
+})

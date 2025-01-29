@@ -78,4 +78,14 @@ export class FullNameAnswer extends AnswerModel {
         : undefined
     )
   }
+
+  viewModel({ validate }) {
+    const viewModel = { value: this.value }
+
+    if (validate) {
+      viewModel.errors = this.validate().errors
+    }
+
+    return viewModel
+  }
 }
