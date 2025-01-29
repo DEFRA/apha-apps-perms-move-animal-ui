@@ -1,4 +1,3 @@
-import Joi from 'joi'
 import { TextAnswer } from '../text/text.js'
 
 const emailAddressRegex = /^[^@]+@[^@]+$/
@@ -9,26 +8,13 @@ const emptyAddressError =
 const invalidAddressError =
   'Enter an email address in the correct format, like name@example.com'
 
-export const emailAddressPayloadSchema = Joi.object({
-  emailAddress: Joi.string()
-    .required()
-    .max(maxLength)
-    .pattern(emailAddressRegex)
-    .messages({
-      'any.required': emptyAddressError,
-      'string.empty': emptyAddressError,
-      'string.max': invalidAddressError,
-      'string.pattern.base': invalidAddressError
-    })
-})
-
 /**
  * export @typedef {string} EmailAddressData
  * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
 
 /**
- * @auguments {TextAnswer<EmailAddressPayload>}
+ * @augments {TextAnswer<EmailAddressPayload>}
  */
 export class EmailAddressAnswer extends TextAnswer {
   static config = {

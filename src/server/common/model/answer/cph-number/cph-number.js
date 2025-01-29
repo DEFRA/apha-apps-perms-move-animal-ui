@@ -12,7 +12,7 @@ const emptyCphNumberError = 'Enter the farm or premises CPH number'
  */
 
 /**
- * @extends {TextAnswer<CphNumberPayload>}
+ * @augments {TextAnswer<CphNumberPayload>}
  */
 export class CphNumberAnswer extends TextAnswer {
   static config = {
