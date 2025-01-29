@@ -148,6 +148,7 @@ describe('RadioButton', () => {
         id: 'test_radio',
         fieldset: {},
         value: answer.value,
+        classes: '',
         items: [
           {
             id: 'test_radio',
@@ -166,6 +167,29 @@ describe('RadioButton', () => {
             }
           }
         ]
+      })
+    })
+
+    describe('radio button layout', () => {
+      const originalLayout = testRadioConfig.layout
+
+      afterEach(() => {
+        testRadioConfig.layout = originalLayout
+      })
+
+      it('should return inline class when layout is inline', () => {
+        testRadioConfig.layout = 'inline'
+        const answer = new RadioButtonTest({ test_radio: 'value_1' })
+        expect(answer.viewModel).toMatchObject({
+          classes: 'govuk-radios--inline'
+        })
+      })
+
+      it('should return empty class when layout is not specified', () => {
+        const answer = new RadioButtonTest({ test_radio: 'value_1' })
+        expect(answer.viewModel).toMatchObject({
+          classes: ''
+        })
       })
     })
   })

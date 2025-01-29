@@ -26,12 +26,14 @@ const createRadioSchema = (config) => {
 
 /**
  * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
  *  options: Record<string, RadioOption>,
  *  errors: {
  *    emptyOptionText: string
  *  }
+ * layout?: RadioButtonLayout
  * }} RadioButtonConfig
  */
 
@@ -108,7 +110,8 @@ export class RadioButtonAnswer extends AnswerModel {
       id: this.config.payloadKey,
       fieldset: {},
       value: this.value,
-      items
+      items,
+      classes: this.config.layout === 'inline' ? 'govuk-radios--inline' : ''
     }
   }
 }

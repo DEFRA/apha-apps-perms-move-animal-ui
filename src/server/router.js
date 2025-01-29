@@ -17,6 +17,8 @@ import { receiveMethod } from './licence/receiveMethod/index.js'
 import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
+import { config } from '../config/config.js'
+import { keptSeparately } from './biosecurity/kept-separately/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -47,6 +49,11 @@ export const router = {
         premisesType,
         fullName
       ])
+
+      // Add routes specific to features behind feature flags
+      if (config.get('featureFlags')?.biosecurity) {
+        await server.register([keptSeparately])
+      }
 
       // Static assets
       await server.register([serveStaticFiles])
