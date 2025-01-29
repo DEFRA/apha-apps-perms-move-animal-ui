@@ -127,4 +127,14 @@ export class AddressAnswer extends AnswerModel {
   static fromState(state) {
     return new AddressAnswer(state)
   }
+
+  viewModel({ validate }) {
+    const viewModel = { value: this.value }
+
+    if (validate) {
+      viewModel.errors = this.validate().errors
+    }
+
+    return viewModel
+  }
 }

@@ -14,8 +14,7 @@ exports[`OriginAddressPage #originAddressPage.content licenceSummaryPage.content
         <input type="hidden" name="nextPage" value="">
 
 <fieldset class="govuk-fieldset">
-
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   <label class="govuk-label" for="addressLine1">
     Address line 1
   </label>
@@ -23,7 +22,7 @@ exports[`OriginAddressPage #originAddressPage.content licenceSummaryPage.content
 </div>
 
 
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   <label class="govuk-label" for="addressLine2">
     Address line 2 (optional)
   </label>
@@ -31,7 +30,7 @@ exports[`OriginAddressPage #originAddressPage.content licenceSummaryPage.content
 </div>
 
 
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   <label class="govuk-label" for="addressTown">
     Town or city
   </label>
@@ -39,7 +38,7 @@ exports[`OriginAddressPage #originAddressPage.content licenceSummaryPage.content
 </div>
 
 
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   <label class="govuk-label" for="addressCounty">
     County (optional)
   </label>
@@ -47,7 +46,7 @@ exports[`OriginAddressPage #originAddressPage.content licenceSummaryPage.content
 </div>
 
 
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   <label class="govuk-label" for="addressPostcode">
     Postcode
   </label>

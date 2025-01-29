@@ -221,3 +221,28 @@ describe('Address.html', () => {
     expect(address.html).toBe('')
   })
 })
+
+describe('Address.viewModel', () => {
+  const longInput = new Array(500).fill('a').join('')
+  const invalidAddress = {
+    addressLine1: '',
+    addressLine2: longInput,
+    addressTown: '',
+    addressCounty: longInput,
+    addressPostcode: 'invalid post code'
+  }
+  const address = new AddressAnswer(invalidAddress)
+
+  it('should return the value without errors (if validate is false)', () => {
+    expect(address.viewModel({ validate: false })).toEqual({
+      value: address.value
+    })
+  })
+
+  it('should return the value with errors (if valiate is true)', () => {
+    expect(address.viewModel({ validate: true })).toEqual({
+      value: address.value,
+      errors: address.validate().errors
+    })
+  })
+})
