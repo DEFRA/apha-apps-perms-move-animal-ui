@@ -29,6 +29,7 @@ export const emailAddressPayloadSchema = Joi.object({
  * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
 
+/** @typedef {TextAnswer<EmailAddressPayload>} EmailAddressAnswerType */
 /**
  * @type {typeof TextAnswer<EmailAddressPayload>}
  */
