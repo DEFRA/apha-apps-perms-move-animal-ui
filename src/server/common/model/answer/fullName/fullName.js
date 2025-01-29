@@ -2,6 +2,8 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
+/** @import { AnswerViewModelOptions } from '../answer-model.js' */
+
 const maxLength = 50
 
 export const fullNamePayloadSchema = Joi.object({
@@ -61,6 +63,19 @@ export class FullNameAnswer extends AnswerModel {
 
   validate() {
     return validateAnswerAgainstSchema(fullNamePayloadSchema, this._data ?? {})
+  }
+
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  viewModel({ validate }) {
+    const viewModel = { value: this.value }
+
+    if (validate) {
+      viewModel.errors = this.validate().errors
+    }
+
+    return viewModel
   }
 
   _extractFields({ firstName, lastName }) {

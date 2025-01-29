@@ -1,39 +1,4 @@
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends 'layouts/questions.njk' %}
 {% block questions %}
-  {% call govukFieldset() %}
-    {{
-      govukInput
-      ({
-          label:
-          {
-              text: "First name",
-              classes: "",
-              isPageHeading: false
-          },
-          id: "firstName",
-          name: "firstName",
-          errorMessage: errors.firstName,
-          value: value.firstName,
-          classes: "govuk-input--width-20"
-      })
-    }}
-    {{
-      govukInput
-      ({
-          label:
-          {
-              text: "Last name",
-              classes: "",
-              isPageHeading: false
-          },
-          id: "lastName",
-          name: "lastName",
-          errorMessage: errors.lastName,
-          value: value.lastName,
-          classes: "govuk-input--width-20"
-      })
-    }}
-  {% endcall %}
+  {% include "model/answer/fullName/fullName.njk" %}
 {% endblock %}
