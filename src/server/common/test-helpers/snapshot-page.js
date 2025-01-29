@@ -13,24 +13,17 @@ export const describePageSnapshot = ({
   it: itDescription,
   pageUrl
 }) => {
-  const PROCESS_ENV = process.env
-
   describe(describes, () => {
     /** @type {Server} */
     let server
 
     beforeAll(async () => {
-      process.env = { ...PROCESS_ENV }
-      // set the feature flags to allow the actual pages to be rendered
-      process.env.BIOSECURITY_FEATURE_ENABLED = 'true'
-
       server = await createServer()
       await server.initialize()
     })
 
     afterAll(async () => {
       await server.stop({ timeout: 0 })
-      process.env = PROCESS_ENV
     })
 
     it(itDescription, async () => {
