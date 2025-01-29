@@ -10,7 +10,10 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @returns {Joi.Schema}
  */
 const textSchema = ({ payloadKey, validation }) => {
-  let stringValidation = Joi.string().required().max(validation.maxLength.value)
+  let stringValidation = Joi.string()
+    .trim()
+    .required()
+    .max(validation.maxLength.value)
 
   const messages = {
     'any.required': validation.empty.message,
@@ -87,7 +90,10 @@ export class TextAnswer extends AnswerModel {
   }
 
   validate() {
-    return validateAnswerAgainstSchema(textSchema(this.config), this._data)
+    return validateAnswerAgainstSchema(
+      textSchema(this.config),
+      this._data ?? {}
+    )
   }
 
   /**

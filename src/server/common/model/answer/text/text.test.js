@@ -38,8 +38,29 @@ describe('TextAnswer.validate', () => {
     })
   })
 
+  it('should not error if the max length is exceeded after trimming input', () => {
+    const whitespace = new Array(25).fill(' ').join('')
+    const textAnswer = new TestTextAnswer({
+      textPayload: `${whitespace}a${whitespace}`
+    })
+    const { isValid, errors } = textAnswer.validate()
+
+    expect(isValid).toBe(true)
+    expect(errors).toEqual({})
+  })
+
   it('should error if the input is empty', () => {
     const textAnswer = new TestTextAnswer({ textPayload: '' })
+    const { isValid, errors } = textAnswer.validate()
+
+    expect(isValid).toBe(false)
+    expect(errors).toEqual({
+      textPayload: { text: textConfig.validation.empty.message }
+    })
+  })
+
+  it('should error if the input is empty via being undefined', () => {
+    const textAnswer = new TestTextAnswer()
     const { isValid, errors } = textAnswer.validate()
 
     expect(isValid).toBe(false)

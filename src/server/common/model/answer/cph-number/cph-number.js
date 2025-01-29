@@ -1,6 +1,12 @@
+import { textAnswerFactory } from '../text/text.js'
 import Joi from 'joi'
-import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+
+/** @import { TextAnswer } from '../text/text.js' */
+
+/**
+ * export @typedef {string} CphNumberData
+ * @typedef {{ cphNumber: string }} CphNumberPayload
+ */
 
 const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 
@@ -17,48 +23,25 @@ export const cphNumberPayloadSchema = Joi.object({
     })
 })
 
-/**
- * export @typedef {string} CphNumberData
- * @typedef {{ cphNumber: string }} CphNumberPayload
- */
+const invalidCphNumberError =
+  'Enter the CPH number in the correct format, for example, 12/345/6789'
+const emptyCphNumberError = 'Enter the farm or premises CPH number'
 
 /**
- * @augments AnswerModel<CphNumberPayload>
+ * export @typedef {string} EmailAddressData
+ * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
-export class CphNumberAnswer extends AnswerModel {
-  /**
-   * @returns {string | undefined}
-   */
-  get value() {
-    return this._data?.cphNumber
-  }
 
-  get html() {
-    return this._data?.cphNumber ?? ''
+/** @typedef {TextAnswer<CphNumberPayload>} CphNumberAnswerType */
+/**
+ * @type {typeof TextAnswer<CphNumberPayload>}
+ */
+export const CphNumberAnswer = textAnswerFactory('CphNumberAnswer', {
+  payloadKey: 'cphNumber',
+  stripWhitespace: true,
+  validation: {
+    maxLength: { value: 11, message: invalidCphNumberError },
+    pattern: { regex: cphNumberRegex, message: invalidCphNumberError },
+    empty: { message: emptyCphNumberError }
   }
-
-  /**
-   * @returns {CphNumberData}
-   */
-  toState() {
-    return this.value?.replace(/\s+/g, '') ?? ''
-  }
-
-  validate() {
-    return validateAnswerAgainstSchema(cphNumberPayloadSchema, this._data ?? {})
-  }
-
-  _extractFields({ cphNumber }) {
-    return { cphNumber }
-  }
-
-  /**
-   * @param {CphNumberData | undefined} state
-   * @returns {CphNumberAnswer}
-   */
-  static fromState(state) {
-    return new CphNumberAnswer(
-      state !== undefined ? { cphNumber: state } : undefined
-    )
-  }
-}
+})

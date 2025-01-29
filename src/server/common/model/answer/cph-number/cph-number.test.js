@@ -24,7 +24,6 @@ describe('#CphNumber.validate', () => {
 
   it('should return false for an empty input', () => {
     const cphNumber = new CphNumberAnswer()
-
     const { isValid, errors } = cphNumber.validate()
 
     expect(isValid).toBe(false)
@@ -83,7 +82,7 @@ describe('#CphNumber.fromState', () => {
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(CphNumberAnswer.fromState(undefined)._data).toBeUndefined()
+    expect(CphNumberAnswer.fromState(undefined)._data).toEqual({})
   })
 })
 
