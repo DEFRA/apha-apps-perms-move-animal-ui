@@ -1,4 +1,4 @@
-import { textAnswerFactory } from './text.js'
+import { TextAnswer } from './text.js'
 /** @import {TextConfig} from './text.js' */
 
 /** @type {TextConfig} */
@@ -10,7 +10,9 @@ const textConfig = {
   }
 }
 
-const TestTextAnswer = textAnswerFactory('TestTextAnswer', textConfig)
+class TestTextAnswer extends TextAnswer {
+  static config = textConfig
+}
 
 const validPayload = {
   textPayload: 'some text'
@@ -82,16 +84,15 @@ describe('TextAnswer.validate', () => {
   describe('TextAnswer.validate with pattern', () => {
     const regexValidationMessage = 'Text must conform to regex'
 
-    const PatternValidationTextAnswer = textAnswerFactory(
-      'PaternValidationTextAnswer',
-      {
+    class PatternValidationTextAnswer extends TextAnswer {
+      static config = {
         ...textConfig,
         validation: {
           ...textConfig.validation,
           pattern: { regex: /^[0-9]+$/, message: regexValidationMessage }
         }
       }
-    )
+    }
 
     it('should return an error for a regex pattern, if one is provided', () => {
       const textAnswer = new PatternValidationTextAnswer({
@@ -151,10 +152,12 @@ describe('TextAnswer.toState', () => {
   })
 
   it('should remove all whitespace (if configured)', () => {
-    const NoWhitespaceTextAnswer = textAnswerFactory('NoWhitespaceTextAnswer', {
-      ...textConfig,
-      stripWhitespace: true
-    })
+    class NoWhitespaceTextAnswer extends TextAnswer {
+      static config = {
+        ...textConfig,
+        stripWhitespace: true
+      }
+    }
 
     const textAnswer = new NoWhitespaceTextAnswer({
       textPayload: '  test value '

@@ -3,8 +3,6 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
-/** @import {RawPayload} from '../answer-model.js' */
-
 /**
  * @param {TextConfig} config
  * @returns {Joi.Schema}
@@ -57,7 +55,7 @@ export class TextAnswer extends AnswerModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {TextConfig} */
   get config() {
-    throw new NotImplementedError()
+    return /** @type {any} */ (this.constructor).config
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
@@ -114,25 +112,4 @@ export class TextAnswer extends AnswerModel {
       state !== undefined ? { [this.config.payloadKey]: state } : {}
     )
   }
-}
-
-/**
- * @template Payload
- * @param {string} name
- * @param {TextConfig} config
- * @returns {typeof TextAnswer<Payload>}
- */
-export const textAnswerFactory = (name, config) => {
-  class TextAnswerInstance extends TextAnswer {
-    static name = name
-
-    get config() {
-      return config
-    }
-
-    static get config() {
-      return config
-    }
-  }
-  return TextAnswerInstance
 }

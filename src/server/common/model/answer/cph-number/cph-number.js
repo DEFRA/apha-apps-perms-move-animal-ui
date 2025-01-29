@@ -1,7 +1,5 @@
-import { textAnswerFactory } from '../text/text.js'
+import { TextAnswer } from '../text/text.js'
 import Joi from 'joi'
-
-/** @import { TextAnswer } from '../text/text.js' */
 
 /**
  * export @typedef {string} CphNumberData
@@ -32,16 +30,17 @@ const emptyCphNumberError = 'Enter the farm or premises CPH number'
  * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
 
-/** @typedef {TextAnswer<CphNumberPayload>} CphNumberAnswerType */
 /**
- * @type {typeof TextAnswer<CphNumberPayload>}
+ * @extends {TextAnswer<CphNumberPayload>}
  */
-export const CphNumberAnswer = textAnswerFactory('CphNumberAnswer', {
-  payloadKey: 'cphNumber',
-  stripWhitespace: true,
-  validation: {
-    maxLength: { value: 11, message: invalidCphNumberError },
-    pattern: { regex: cphNumberRegex, message: invalidCphNumberError },
-    empty: { message: emptyCphNumberError }
+export class CphNumberAnswer extends TextAnswer {
+  static config = {
+    payloadKey: 'cphNumber',
+    stripWhitespace: true,
+    validation: {
+      maxLength: { value: 11, message: invalidCphNumberError },
+      pattern: { regex: cphNumberRegex, message: invalidCphNumberError },
+      empty: { message: emptyCphNumberError }
+    }
   }
-})
+}

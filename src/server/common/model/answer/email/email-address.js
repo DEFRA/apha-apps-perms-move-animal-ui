@@ -1,7 +1,5 @@
 import Joi from 'joi'
-import { textAnswerFactory } from '../text/text.js'
-
-/** @import {TextAnswer} from '../text/text.js' */
+import { TextAnswer } from '../text/text.js'
 
 const emailAddressRegex = /^[^@]+@[^@]+$/
 
@@ -29,16 +27,17 @@ export const emailAddressPayloadSchema = Joi.object({
  * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
 
-/** @typedef {TextAnswer<EmailAddressPayload>} EmailAddressAnswerType */
 /**
- * @type {typeof TextAnswer<EmailAddressPayload>}
+ * @auguments {TextAnswer<EmailAddressPayload>}
  */
-export const EmailAddressAnswer = textAnswerFactory('EmailAddressAnswer', {
-  payloadKey: 'emailAddress',
-  stripWhitespace: true,
-  validation: {
-    pattern: { regex: emailAddressRegex, message: invalidAddressError },
-    maxLength: { value: maxLength, message: invalidAddressError },
-    empty: { message: emptyAddressError }
+export class EmailAddressAnswer extends TextAnswer {
+  static config = {
+    payloadKey: 'emailAddress',
+    stripWhitespace: true,
+    validation: {
+      pattern: { regex: emailAddressRegex, message: invalidAddressError },
+      maxLength: { value: maxLength, message: invalidAddressError },
+      empty: { message: emptyAddressError }
+    }
   }
-})
+}
