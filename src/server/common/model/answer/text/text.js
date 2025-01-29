@@ -30,7 +30,6 @@ const textSchema = ({ payloadKey, validation }) => {
 }
 
 /**
- * @typedef {{ label: string, hint?: string }} RadioOption
  * export @typedef {{
  *  payloadKey: string,
  *  stripWhitespace?: boolean,
