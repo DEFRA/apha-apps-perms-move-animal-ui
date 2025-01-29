@@ -7,7 +7,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @param {TextConfig} config
  * @returns {Joi.Schema}
  */
-const textSchema = ({ payloadKey, validation }) => {
+const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
   let stringValidation = Joi.string()
     .trim()
     .required()
@@ -24,10 +24,16 @@ const textSchema = ({ payloadKey, validation }) => {
     messages['string.pattern.base'] = validation.pattern.message
   }
 
+  if (stripWhitespace) {
+    stringValidation = stringValidation.replace(whitespaceRegex, '')
+  }
+
   return Joi.object({
     [payloadKey]: stringValidation.messages(messages)
   })
 }
+
+const whitespaceRegex = /\s+/g
 
 /**
  * export @typedef {{
@@ -77,12 +83,12 @@ export class TextAnswer extends AnswerModel {
    * @returns {TextData}
    */
   toState() {
-    let value = this.value?.trim() ?? ''
+    let v = this.value?.trim() ?? ''
 
     if (this.config.stripWhitespace) {
-      value = value.replace(/\s+/g, '')
+      v = v.replace(whitespaceRegex, '')
     }
-    return value
+    return v
   }
 
   validate() {

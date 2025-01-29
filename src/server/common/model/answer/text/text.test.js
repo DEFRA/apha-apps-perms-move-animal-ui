@@ -14,6 +14,13 @@ class TestTextAnswer extends TextAnswer {
   static config = textConfig
 }
 
+class NoWhitespaceTextAnswer extends TextAnswer {
+  static config = {
+    ...textConfig,
+    stripWhitespace: true
+  }
+}
+
 const validPayload = {
   textPayload: 'some text'
 }
@@ -40,10 +47,34 @@ describe('TextAnswer.validate', () => {
     })
   })
 
+  it('should error if max length is exceeded with a whitespace-filled string, if stripWhitespace is not', () => {
+    const whitespace = new Array(40).fill(' ').join('')
+    const textAnswer = new TestTextAnswer({
+      textPayload: `a${whitespace}z`
+    })
+    const { isValid, errors } = textAnswer.validate()
+
+    expect(isValid).toBe(false)
+    expect(errors).toEqual({
+      textPayload: { text: textConfig.validation.maxLength.message }
+    })
+  })
+
   it('should not error if the max length is exceeded after trimming input', () => {
     const whitespace = new Array(25).fill(' ').join('')
     const textAnswer = new TestTextAnswer({
       textPayload: `${whitespace}a${whitespace}`
+    })
+    const { isValid, errors } = textAnswer.validate()
+
+    expect(isValid).toBe(true)
+    expect(errors).toEqual({})
+  })
+
+  it('should not error if max length is exceeded, after stripping whitespace (if configured)', () => {
+    const whitespace = new Array(40).fill(' ').join('')
+    const textAnswer = new NoWhitespaceTextAnswer({
+      textPayload: `a${whitespace}z`
     })
     const { isValid, errors } = textAnswer.validate()
 
@@ -152,13 +183,6 @@ describe('TextAnswer.toState', () => {
   })
 
   it('should remove all whitespace (if configured)', () => {
-    class NoWhitespaceTextAnswer extends TextAnswer {
-      static config = {
-        ...textConfig,
-        stripWhitespace: true
-      }
-    }
-
     const textAnswer = new NoWhitespaceTextAnswer({
       textPayload: '  test value '
     })
