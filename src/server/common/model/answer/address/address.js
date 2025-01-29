@@ -2,6 +2,8 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
+/** @import { AnswerViewModelOptions } from '../answer-model.js' */
+
 const postcodeRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i
 
 const maxLength = 255
@@ -102,6 +104,19 @@ export class AddressAnswer extends AnswerModel {
 
   validate() {
     return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
+  }
+
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  viewModel({ validate }) {
+    const viewModel = { value: this.value }
+
+    if (validate) {
+      viewModel.errors = this.validate().errors
+    }
+
+    return viewModel
   }
 
   _extractFields({
