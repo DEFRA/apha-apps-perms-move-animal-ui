@@ -8,6 +8,8 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
+/** @import { TextAnswer } from '../../common/model/answer/text/text.js' */
+
 export class EmailAddressPage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-enter-email-address'
   sectionKey = 'licence'
@@ -18,7 +20,7 @@ export class EmailAddressPage extends QuestionPage {
   view = 'licence/email-address/index'
   Answer = EmailAddressAnswer
 
-  /** @param {EmailAddressAnswer} _answer */
+  /** @param {TextAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {
     return licenceSummaryPage

@@ -3,6 +3,8 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
+/** @import {RawPayload} from '../answer-model.js' */
+
 /**
  * @param {TextConfig} config
  * @returns {Joi.Schema}
@@ -42,22 +44,21 @@ const textSchema = ({ payloadKey, validation }) => {
 /**
  * export @typedef {string} TextData
  * export @typedef {{ emailAddress: string }} EmailAddressAnswer
- * @import {RawPayload} from '../answer-model.js'
  */
 
 /**
  * @template Payload
- * @class TextAnswer<Payload>
+ * @augments {AnswerModel<Payload>}
  */
 export class TextAnswer extends AnswerModel {
-  /** @returns {TextConfig} */
   // eslint-disable-next-line jsdoc/require-returns-check
+  /** @returns {TextConfig} */
   get config() {
     throw new NotImplementedError()
   }
 
-  /** @returns {TextConfig} */
   // eslint-disable-next-line jsdoc/require-returns-check
+  /** @returns {TextConfig} */
   static get config() {
     throw new NotImplementedError()
   }
@@ -110,11 +111,15 @@ export class TextAnswer extends AnswerModel {
 }
 
 /**
+ * @template Payload
+ * @param {string} name
  * @param {TextConfig} config
- * @returns TextAnswer
+ * @returns {typeof TextAnswer<Payload>}
  */
-export const textAnswerFactory = (config) =>
-  class extends TextAnswer {
+export const textAnswerFactory = (name, config) => {
+  class TextAnswerInstance extends TextAnswer {
+    static name = name
+
     get config() {
       return config
     }
@@ -123,3 +128,5 @@ export const textAnswerFactory = (config) =>
       return config
     }
   }
+  return TextAnswerInstance
+}

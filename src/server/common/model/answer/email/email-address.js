@@ -1,6 +1,7 @@
 import Joi from 'joi'
-import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import { textAnswerFactory } from '../text/text.js'
+
+/** @import {TextAnswer} from '../text/text.js' */
 
 const emailAddressRegex = /^[^@]+@[^@]+$/
 
@@ -25,43 +26,18 @@ export const emailAddressPayloadSchema = Joi.object({
 
 /**
  * export @typedef {string} EmailAddressData
- * @import {RawPayload} from '../answer-model.js'
+ * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
  */
 
-export class EmailAddressAnswer extends AnswerModel {
-  /**
-   * @returns {string | undefined}
-   */
-  get value() {
-    return this._data?.emailAddress
+/**
+ * @type {typeof TextAnswer<EmailAddressPayload>}
+ */
+export const EmailAddressAnswer = textAnswerFactory('EmailAddressAnswer', {
+  payloadKey: 'emailAddress',
+  stripWhitespace: true,
+  validation: {
+    pattern: { regex: emailAddressRegex, message: invalidAddressError },
+    maxLength: { value: maxLength, message: invalidAddressError },
+    empty: { message: emptyAddressError }
   }
-
-  get html() {
-    return this._data?.emailAddress ?? ''
-  }
-
-  /**
-   * @returns {EmailAddressData}
-   */
-  toState() {
-    return this.value?.replace(/\s+/g, '') ?? ''
-  }
-
-  validate() {
-    return validateAnswerAgainstSchema(emailAddressPayloadSchema, this._data)
-  }
-
-  _extractFields({ emailAddress }) {
-    return { emailAddress }
-  }
-
-  /**
-   * @param {EmailAddressData | undefined} state
-   * @returns {EmailAddressAnswer}
-   */
-  static fromState(state) {
-    return new EmailAddressAnswer(
-      state !== undefined ? { emailAddress: state } : {}
-    )
-  }
-}
+})

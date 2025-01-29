@@ -1,5 +1,7 @@
 import { EmailAddressAnswer } from './email-address.js'
 
+/** @import {EmailAddressPayload} from './email-address.js' */
+
 const validEmailAddressPayload = {
   emailAddress: 'test@somewhere.com'
 }
@@ -31,6 +33,10 @@ const invalidEmailAddresses = [
 ]
 
 describe('EmailAddress', () => {
+  it('should have the expected .name', () => {
+    expect(EmailAddressAnswer.name).toBe('EmailAddressAnswer')
+  })
+
   describe('new', () => {
     it('should strip away any irrelevant values', () => {
       const payload = { ...validEmailAddressPayload, nextPage: '/other/page' }
@@ -52,7 +58,9 @@ describe('EmailAddress', () => {
     })
 
     it('should return false for an empty input', () => {
-      const emailAddress = new EmailAddressAnswer({})
+      const emailAddress = new EmailAddressAnswer(
+        /** @type {EmailAddressPayload} */ ({})
+      )
 
       const { isValid, errors } = emailAddress.validate()
 
@@ -80,7 +88,9 @@ describe('EmailAddress', () => {
 
   describe('toState', () => {
     it('should replace missing data with blank string', () => {
-      const emailAddress = new EmailAddressAnswer({})
+      const emailAddress = new EmailAddressAnswer(
+        /** @type {EmailAddressPayload} */ ({})
+      )
       const data = emailAddress.toState()
 
       expect(data).toBe('')
@@ -127,7 +137,9 @@ describe('EmailAddress', () => {
     })
 
     it('should return an empty string if email address is not present', () => {
-      const emailAddress = new EmailAddressAnswer({})
+      const emailAddress = new EmailAddressAnswer(
+        /** @type {EmailAddressPayload} */ ({})
+      )
       expect(emailAddress.html).toBe('')
     })
   })
