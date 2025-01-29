@@ -42,8 +42,7 @@ const textSchema = ({ payloadKey, validation }) => {
  */
 
 /**
- * export @typedef {string} TextData
- * export @typedef {{ emailAddress: string }} EmailAddressAnswer
+ * @typedef {string} TextData
  */
 
 /**
