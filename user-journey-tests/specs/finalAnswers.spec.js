@@ -82,8 +82,10 @@ const completeApplication = async () => {
 }
 
 describe('Check your final answers test', () => {
-  // eslint-disable-next-line
-  before('Navigate to check answers page', completeApplication)
+  beforeEach(async () => {
+    await browser.deleteAllCookies()
+    await completeApplication()
+  })
 
   it('Should verify the back link is history -1', async () => {
     await taskListPage.navigateToPageAndVerifyTitle()
@@ -148,7 +150,7 @@ describe('Check your final answers test', () => {
 
   it('Should verify the existing email and confirm resubmission', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
-    validateAndAdjustEmail(
+    await validateAndAdjustEmail(
       finalAnswersPage.emailChange,
       finalAnswersPage.emailValue,
       emailDefault,
@@ -183,11 +185,6 @@ describe('Check your final answers test', () => {
   })
 
   describe('declarations', () => {
-    beforeEach(async () => {
-      await browser.deleteAllCookies()
-      await completeApplication()
-    })
-
     it('Should submit the page after selecting first declaration', async () => {
       await finalAnswersPage.navigateToPageAndVerifyTitle()
       await finalAnswersPage.selectADeclarationAndContinue()
