@@ -4,6 +4,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { selectElement } from '../page.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
+import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
@@ -27,6 +28,7 @@ const completeDestinationTask = async (radioType) => {
     default:
       throw new Error(`Unsupported radio type: ${radioType}`)
   }
+  await destinationAnswersPage.verifyPageHeadingAndTitle()
 }
 
 export default completeDestinationTask
