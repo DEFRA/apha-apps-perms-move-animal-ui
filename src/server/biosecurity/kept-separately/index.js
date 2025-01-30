@@ -14,7 +14,7 @@ export class KeptSeparatelyPage extends QuestionPage {
   view = 'biosecurity/kept-separately/index'
   Answer = KeptSeparatelyAnswer
 
-  /** @param {AnswerModel} answer */
+  /** @param {KeptSeparatelyAnswer} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'yes') {

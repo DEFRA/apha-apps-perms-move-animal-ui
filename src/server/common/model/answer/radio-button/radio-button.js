@@ -44,11 +44,13 @@ const createRadioSchema = (config) => {
  * @augments AnswerModel<Payload>
  */
 export class RadioButtonAnswer extends AnswerModel {
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   get config() {
-    throw new NotImplementedError()
+    return /** @type {any} */ (this.constructor).config
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   static get config() {
     throw new NotImplementedError()
