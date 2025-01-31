@@ -245,7 +245,7 @@ export const config = convict({
     biosecurity: {
       doc: 'Feature flag to enable biosecurity sections',
       format: Boolean,
-      default: isDevelopment,
+      default: !isProduction,
       env: 'BIOSECURITY_FEATURE_ENABLED'
     }
   }

@@ -28,12 +28,14 @@ const createRadioSchema = (config) => {
 
 /**
  * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
  *  options: Record<string, RadioOption>,
  *  errors: {
  *    emptyOptionText: string
  *  }
+ * layout?: RadioButtonLayout
  * }} RadioButtonConfig
  */
 
@@ -42,11 +44,13 @@ const createRadioSchema = (config) => {
  * @augments AnswerModel<Payload>
  */
 export class RadioButtonAnswer extends AnswerModel {
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   get config() {
-    throw new NotImplementedError()
+    return /** @type {any} */ (this.constructor).config
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   static get config() {
     throw new NotImplementedError()
@@ -114,7 +118,8 @@ export class RadioButtonAnswer extends AnswerModel {
       id: this.config.payloadKey,
       fieldset: {},
       value: this.value,
-      items
+      items,
+      classes: this.config.layout === 'inline' ? 'govuk-radios--inline' : ''
     }
 
     if (validate) {

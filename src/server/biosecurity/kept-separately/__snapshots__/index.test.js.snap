@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KeptSeparatelyPage keptSeparatelyPage.content should render expected response and content 1`] = `
+"
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Will you separate the incoming cattle from the resident herd?</h1>
+      </div>
+    </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="keptSeparately" name="keptSeparately" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="keptSeparately">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="no" name="keptSeparately" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="no">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;
