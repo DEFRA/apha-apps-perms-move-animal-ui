@@ -71,12 +71,10 @@ describe('KeptSeparatelyPage', () => {
     expect(plugin).toHaveProperty('register')
   })
 
-  describe('#keptSeparatelyPage.content', () => {
-    describePageSnapshot({
-      describes: 'keptSeparatelyPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'keptSeparatelyPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
 
