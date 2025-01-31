@@ -99,7 +99,8 @@ describe('#licenceSummaryPage', () => {
 describePageSnapshot({
   describes: '#licenceSummaryPage.content',
   it: 'should render the expected content',
-  pageUrl
+  pageUrl,
+  state: { licence: defaultState }
 })
 
 /**

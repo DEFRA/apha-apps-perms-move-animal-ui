@@ -9,6 +9,10 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 
 const pageUrl = '/destination/check-answers'
 
+const defaultState = {
+  destinationType: 'slaughter'
+}
+
 describe('#destinationSummaryPage', () => {
   /** @type {Server} */
   let server
@@ -25,10 +29,6 @@ describe('#destinationSummaryPage', () => {
   describe('slaughter answer selected', () => {
     /** @type {SessionTestHelper} */
     let session
-
-    const defaultState = {
-      destinationType: 'slaughter'
-    }
 
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
@@ -96,7 +96,8 @@ describe('#destinationSummaryPage', () => {
 describePageSnapshot({
   describes: '#destinationSummaryPage.content',
   it: 'should render the expected content',
-  pageUrl
+  pageUrl,
+  state: { destination: defaultState }
 })
 
 /**

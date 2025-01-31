@@ -8,25 +8,25 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 
 const pageUrl = '/origin/check-answers'
 
+const defaultState = {
+  onOffFarm: 'off',
+  originType: 'afu',
+  cphNumber: '12/123/1234',
+  address: {
+    addressLine1: 'Starfleet Headquarters',
+    addressLine2: '24-593 Federation Drive',
+    addressTown: 'San Francisco',
+    addressCounty: 'San Francisco',
+    addressPostcode: 'RG24 8RR'
+  }
+}
+
 describe('#originSummaryController', () => {
   /** @type {Server} */
   let server
 
   /** @type {SessionTestHelper} */
   let session
-
-  const defaultState = {
-    onOffFarm: 'off',
-    originType: 'afu',
-    cphNumber: '12/123/1234',
-    address: {
-      addressLine1: 'Starfleet Headquarters',
-      addressLine2: '24-593 Federation Drive',
-      addressTown: 'San Francisco',
-      addressCounty: 'San Francisco',
-      addressPostcode: 'RG24 8RR'
-    }
-  }
 
   beforeAll(async () => {
     server = await createServer()
@@ -150,7 +150,8 @@ describe('#originSummaryController', () => {
 describePageSnapshot({
   describes: '#originSummaryController.content',
   it: 'should render the expected content',
-  pageUrl
+  pageUrl,
+  state: { origin: defaultState }
 })
 
 /**
