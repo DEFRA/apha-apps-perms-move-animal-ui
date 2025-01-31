@@ -129,16 +129,16 @@ export class TextAnswer extends AnswerModel {
       viewModel.type = type
     }
 
-    if (validate) {
-      viewModel.errorMessage = this.validate().errors[payloadKey]
-    }
-
     if (hint) {
       viewModel.hint = { text: hint }
     }
 
     if (spellcheck === false) {
       viewModel.spellcheck = false
+    }
+
+    if (validate) {
+      viewModel.errorMessage = this.validate().errors[payloadKey]
     }
 
     return viewModel
