@@ -32,13 +32,13 @@ export class UploadPlanController extends QuestionPageController {
   }
 
   async handleGet(req, h) {
-    const { bucket, uploaderUrl } = config.get('fileUpload')
+    const { bucket, uploaderUrl, path } = config.get('fileUpload')
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
         redirect: 'http://localhost/nextPage',
         callback: 'http://localhost/callback',
         s3Bucket: bucket,
-        s3Path: 'scanned'
+        s3Path: path
       })
     })
 
