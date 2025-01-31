@@ -108,10 +108,15 @@ export class TextAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate }) {
+  viewModel({ validate, question }) {
     const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
       this.config
     const viewModel = {
+      label: {
+        text: question,
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
       id: payloadKey,
       name: payloadKey,
       value: this.value

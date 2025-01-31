@@ -2,6 +2,7 @@ import { TextAnswer } from './text.js'
 /** @import {TextConfig} from './text.js' */
 
 const maxLengthError = 'Text exceeds maximum length (40)'
+const question = 'Enter your answer?'
 
 /** @type {TextConfig} */
 const textConfig = {
@@ -232,7 +233,12 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAnswer = new TestTextAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', () => {
-    expect(textAnswer.viewModel({ validate: false })).toEqual({
+    expect(textAnswer.viewModel({ validate: false, question })).toEqual({
+      label: {
+        text: question,
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
       id: 'textPayload',
       name: 'textPayload',
       value: textAnswer.value
@@ -240,7 +246,12 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
   })
 
   it('should return data to render with errors (if validate is true)', () => {
-    expect(textAnswer.viewModel({ validate: true })).toEqual({
+    expect(textAnswer.viewModel({ validate: true, question })).toEqual({
+      label: {
+        text: question,
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
       id: 'textPayload',
       name: 'textPayload',
       value: textAnswer.value,
@@ -266,7 +277,12 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   const textAnswer = new ExtraOptionsTextAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', () => {
-    expect(textAnswer.viewModel({ validate: false })).toEqual({
+    expect(textAnswer.viewModel({ validate: false, question })).toEqual({
+      label: {
+        text: question,
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
       id: 'textPayload',
       name: 'textPayload',
       type: 'email',
@@ -279,7 +295,12 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   })
 
   it('should return data to render with errors (if validate is true)', () => {
-    expect(textAnswer.viewModel({ validate: true })).toEqual({
+    expect(textAnswer.viewModel({ validate: true, question })).toEqual({
+      label: {
+        text: question,
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
       id: 'textPayload',
       name: 'textPayload',
       type: 'email',
