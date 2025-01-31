@@ -149,13 +149,21 @@ describe('RadioButton', () => {
   })
 
   describe('#RadioButton.viewModel', () => {
+    const question = 'What option would you like to pick?'
+
     const invalidAnswer = new TestRadioButtonAnswer({
       test_radio: 'invalid_answer'
     })
     const defaultViewModel = {
+      fieldset: {
+        legend: {
+          text: question,
+          isPageHeading: true,
+          classes: 'govuk-fieldset__legend--l'
+        }
+      },
       name: 'test_radio',
       id: 'test_radio',
-      fieldset: {},
       value: invalidAnswer.value,
       classes: '',
       items: [
@@ -179,13 +187,13 @@ describe('RadioButton', () => {
     }
 
     it('should return everything (except errors) to render in the template', () => {
-      expect(invalidAnswer.viewModel({ validate: false })).toEqual(
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
         defaultViewModel
       )
     })
 
     it('should return everything (including errors) to render in the template', () => {
-      expect(invalidAnswer.viewModel({ validate: true })).toEqual({
+      expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
       })
@@ -196,14 +204,14 @@ describe('RadioButton', () => {
         const answer = new InlineTestRadioButtonAnswer({
           test_radio: 'value_1'
         })
-        expect(answer.viewModel({ validate: false })).toMatchObject({
+        expect(answer.viewModel({ validate: false, question })).toMatchObject({
           classes: 'govuk-radios--inline'
         })
       })
 
       it('should return empty class when layout is not specified', () => {
         const answer = new TestRadioButtonAnswer({ test_radio: 'value_1' })
-        expect(answer.viewModel({ validate: false })).toMatchObject({
+        expect(answer.viewModel({ validate: false, question })).toMatchObject({
           classes: ''
         })
       })
