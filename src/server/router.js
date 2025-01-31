@@ -17,6 +17,7 @@ import { receiveMethod } from './licence/receiveMethod/index.js'
 import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
+import { uploadPlan } from './biosecurity-map/upload-plan/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -45,7 +46,8 @@ export const router = {
         submit,
         submitSummary,
         premisesType,
-        fullName
+        fullName,
+        uploadPlan
       ])
 
       // Static assets

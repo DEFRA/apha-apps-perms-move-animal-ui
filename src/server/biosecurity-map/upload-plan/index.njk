@@ -1,0 +1,49 @@
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% extends 'layouts/questions.njk' %}
+{% from "macros/create-summary.njk" import createSummary %}
+{% block form %}
+  <form method="POST" action="{{ upload.uploadUrl }}" novalidate enctype="multipart/form-data">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="{{ crumb }}"/>
+        <input type="hidden" name="nextPage" value="{{ nextPage }}"/>
+        <p>
+          You need to upload a map of the farm or premises. The map should not be hand drawn, but you can make annotations to the
+          map of specific locations by hand.
+        </p>
+        <p>It needs to include:</p>
+        <ul class="govuk-body govuk-list--bullet">
+          <li>where the incoming cattle will be isolated</li>
+          <li>location of the resident cattle</li>
+          <li>
+            movements of the cattle, including where they will graze, be milked, and be
+            loaded
+          </li>
+          <li>location of handling facility</li>
+          <li>location of manure or slurry storage</li>
+          <li>location of biosecurity points</li>
+        </ul>
+        {{ govukFileUpload
+    ({
+        id: "biosecurity-upload-plan-file-upload",
+        name: "file",
+        label:
+        {
+            text: "Upload a file"
+        }
+    }) }}
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% block button %}
+          {{ govukButton({
+              id: "continue-button",
+              text: continueButtonText | default('Continue'),
+              classes: continueButtonClasses | default('')
+            }) }}
+        {% endblock %}
+      </div>
+    </div>
+  </form>
+{% endblock %}
