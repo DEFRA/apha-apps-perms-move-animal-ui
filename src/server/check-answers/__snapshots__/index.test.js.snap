@@ -128,22 +128,20 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </p>
   <!-- form URL below turns off errors on the next page  -->
   <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset">
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-statements-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="confirmation">
-          I confirm all the information given about my farm or premises is correct to the best of my knowledge
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="confirmation-2" name="confirmation" type="checkbox" value="other" data-testid="someone-else-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="confirmation-2">
-          I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
-        </label>
-      </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-statements-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="confirmation">
+        I confirm all the information given about my farm or premises is correct to the best of my knowledge
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="confirmation-2" name="confirmation" type="checkbox" value="other" data-testid="someone-else-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="confirmation-2">
+        I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
+      </label>
+    </div>
+  </div>
 </div>
 
       </div>
