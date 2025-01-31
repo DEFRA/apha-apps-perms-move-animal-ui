@@ -5,6 +5,7 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { licenceSummaryPage } from './index.js'
 import { receiveMethodPage } from '../receiveMethod/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const pageUrl = '/receiving-the-licence/check-answers'
 
@@ -93,6 +94,12 @@ describe('#licenceSummaryPage', () => {
       )
     })
   })
+})
+
+describePageSnapshot({
+  describes: '#licenceSummaryPage.content',
+  it: 'should render the expected content',
+  pageUrl
 })
 
 /**
