@@ -6,11 +6,6 @@ const maxLengthError = 'Text exceeds maximum length (40)'
 /** @type {TextConfig} */
 const textConfig = {
   payloadKey: 'textPayload',
-  type: 'email',
-  autocomplete: 'email-address',
-  spellcheck: false,
-  characterWidth: 20,
-  hint: 'Enter your email',
   validation: {
     maxLength: { value: 40, message: maxLengthError },
     empty: { message: 'Text must not be empty' }
@@ -233,8 +228,42 @@ describe('TestAnswer.html', () => {
   })
 })
 
-describe('TestAnswer.viewModel', () => {
+describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAnswer = new TestTextAnswer(invalidPayload)
+
+  it('should return data to render without errors (if validate is false)', () => {
+    expect(textAnswer.viewModel({ validate: false })).toEqual({
+      id: 'textPayload',
+      name: 'textPayload',
+      value: textAnswer.value
+    })
+  })
+
+  it('should return data to render with errors (if validate is true)', () => {
+    expect(textAnswer.viewModel({ validate: true })).toEqual({
+      id: 'textPayload',
+      name: 'textPayload',
+      value: textAnswer.value,
+      errorMessage: { text: maxLengthError }
+    })
+  })
+})
+
+describe('TestAnswer.viewModel (with all optional options)', () => {
+  /** @type {TextConfig} */
+  const textConfigWithExtraOptions = {
+    ...textConfig,
+    type: 'email',
+    autocomplete: 'email-address',
+    spellcheck: false,
+    characterWidth: 20,
+    hint: 'Enter your email'
+  }
+
+  class ExtraOptionsTextAnswer extends TextAnswer {
+    static config = textConfigWithExtraOptions
+  }
+  const textAnswer = new ExtraOptionsTextAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', () => {
     expect(textAnswer.viewModel({ validate: false })).toEqual({

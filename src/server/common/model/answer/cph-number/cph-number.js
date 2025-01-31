@@ -21,7 +21,6 @@ export class CphNumberAnswer extends TextAnswer {
   static config = {
     payloadKey: 'cphNumber',
     stripWhitespace: true,
-    type: 'text',
     autocomplete: 'cph-number',
     characterWidth: 10,
     hint: 'For example, 12/345/6789',

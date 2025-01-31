@@ -41,9 +41,9 @@ const whitespaceRegex = /\s+/g
  * export @typedef {{
  *  payloadKey: string,
  *  stripWhitespace?: boolean,
- *  type: 'text' | 'email',
+ *  type?: 'email',               // the default is text, so no need to specify
  *  spellcheck?: false,
- *  characterWidth: 10 | 20,
+ *  characterWidth?: 10 | 20,
  *  autocomplete?: string,
  *  hint?: string,
  *  validation: {
@@ -114,10 +114,19 @@ export class TextAnswer extends AnswerModel {
     const viewModel = {
       id: payloadKey,
       name: payloadKey,
-      type,
-      autocomplete,
-      classes: `govuk-input--width-${characterWidth}`,
       value: this.value
+    }
+
+    if (characterWidth) {
+      viewModel.classes = `govuk-input--width-${characterWidth}`
+    }
+
+    if (autocomplete) {
+      viewModel.autocomplete = autocomplete
+    }
+
+    if (type) {
+      viewModel.type = type
     }
 
     if (validate) {
