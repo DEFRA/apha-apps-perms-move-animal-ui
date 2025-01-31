@@ -1,5 +1,5 @@
 import { browser, expect } from '@wdio/globals'
-
+import { waitForPagePath } from '../../helpers/page.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import exitPage from '../../page-objects/origin/exitPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
@@ -25,6 +25,10 @@ describe('To from farm page test', () => {
     await toFromFarmPage.selectOffFarmAndContinue()
     await originTypePage.verifyPageHeadingAndTitle()
     await browser.back()
+
+    await browser.refresh()
+    await waitForPagePath(toFromFarmPage.pagePath)
+
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
   })
 })

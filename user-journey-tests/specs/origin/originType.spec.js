@@ -43,6 +43,10 @@ describe('origin type page test', () => {
     await originTypePage.selectApprovedFinishingUnitAndContinue()
     await parishHoldingNumberPage.verifyPageHeadingAndTitle()
     await browser.back()
+
+    await browser.refresh()
+    await waitForPagePath(originTypePage.pagePath)
+
     await expect(originTypePage.approvedFinishingUnitRadio).toBeSelected()
   })
 })

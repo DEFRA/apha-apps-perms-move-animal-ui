@@ -1,4 +1,5 @@
 import { browser } from '@wdio/globals'
+import { waitForPagePath } from '../../helpers/page.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 
@@ -23,6 +24,10 @@ describe('Receive method for licence page test', () => {
     await receiveMethodPage.selectEmailAndContinue()
     await emailPage.verifyPageHeadingAndTitle()
     await browser.back()
+
+    await browser.refresh()
+    await waitForPagePath(receiveMethodPage.pagePath)
+
     await expect(receiveMethodPage.emailRadio).toBeSelected()
   })
 })

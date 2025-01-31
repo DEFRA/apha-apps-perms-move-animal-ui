@@ -24,6 +24,10 @@ describe('Kept separately selection test', () => {
 
     await grazingPage.selectBackLink()
     await waitForPagePath(keptSeparatelyPage.pagePath)
+
+    await browser.refresh()
+    await waitForPagePath(keptSeparatelyPage.pagePath)
+
     await expect(keptSeparatelyPage.yesRadio).toBeSelected()
   })
 
@@ -32,6 +36,11 @@ describe('Kept separately selection test', () => {
     await waitForPagePath(disinfectionPage.pagePath)
 
     await disinfectionPage.selectBackLink()
+    await waitForPagePath(keptSeparatelyPage.pagePath)
+
+    await browser.refresh()
+    await waitForPagePath(keptSeparatelyPage.pagePath)
+
     await expect(keptSeparatelyPage.noRadio).toBeSelected()
   })
 })

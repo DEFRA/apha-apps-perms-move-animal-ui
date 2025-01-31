@@ -32,6 +32,10 @@ describe('Destination selection test', () => {
     await waitForPagePath(destinationAnswersPage.pagePath)
 
     await destinationAnswersPage.selectBackLink()
+
+    await browser.refresh()
+    await waitForPagePath(destinationSelectionPage.pagePath)
+
     await expect(destinationSelectionPage.dedicatedSaleRadio).toBeSelected()
   })
 
