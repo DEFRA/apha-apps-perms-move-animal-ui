@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OnOffFarmPage #onOffFarmPage.content licenceSummaryPage.content should render expected response and content 1`] = `
+exports[`KeptSeparatelyPage keptSeparatelyPage.content should render expected response and content 1`] = `
 "
   <form method="POST" novalidate="">
     <div class="govuk-grid-row">
@@ -12,20 +12,20 @@ exports[`OnOffFarmPage #onOffFarmPage.content licenceSummaryPage.content should 
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        Are you moving the animals on or off your farm or premises?
+        Will you separate the incoming cattle from the resident herd?
       </h1>
     </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="onOffFarm" name="onOffFarm" type="radio" value="on">
-        <label class="govuk-label govuk-radios__label" for="onOffFarm">
-          On to the farm or premises
+        <input class="govuk-radios__input" id="keptSeparately" name="keptSeparately" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="keptSeparately">
+          Yes
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="off" name="onOffFarm" type="radio" value="off">
-        <label class="govuk-label govuk-radios__label" for="off">
-          Off the farm or premises
+        <input class="govuk-radios__input" id="no" name="keptSeparately" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="no">
+          No
         </label>
       </div>
     </div>

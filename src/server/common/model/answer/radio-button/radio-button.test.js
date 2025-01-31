@@ -24,13 +24,15 @@ const testRadioConfig = {
   }
 }
 
-class RadioButtonTest extends RadioButtonAnswer {
-  get config() {
-    return testRadioConfig
-  }
+class TestRadioButtonAnswer extends RadioButtonAnswer {
+  static config = testRadioConfig
+}
 
-  static get config() {
-    return testRadioConfig
+class InlineTestRadioButtonAnswer extends RadioButtonAnswer {
+  /** @type {RadioButtonConfig} */
+  static config = {
+    ...testRadioConfig,
+    layout: 'inline'
   }
 }
 
@@ -38,7 +40,7 @@ describe('RadioButton', () => {
   describe('RadioButton.new', () => {
     it('should strip away any irrelevant values', () => {
       const payload = { ...validTestRadio, nextPage: '/other/page' }
-      const testInstance = new RadioButtonTest(payload)
+      const testInstance = new TestRadioButtonAnswer(payload)
 
       expect(testInstance._data).toEqual(validTestRadio)
     })
@@ -46,7 +48,7 @@ describe('RadioButton', () => {
 
   describe('#RadioButton.validate', () => {
     test('should return true for valid value', () => {
-      const { isValid, errors } = new RadioButtonTest({
+      const { isValid, errors } = new TestRadioButtonAnswer({
         test_radio: 'value_1'
       }).validate()
 
@@ -55,7 +57,7 @@ describe('RadioButton', () => {
     })
 
     test('should return true for another valid value', () => {
-      const { isValid, errors } = new RadioButtonTest({
+      const { isValid, errors } = new TestRadioButtonAnswer({
         test_radio: 'value_2'
       }).validate()
 
@@ -64,7 +66,9 @@ describe('RadioButton', () => {
     })
 
     test('should return false for empty', () => {
-      const { isValid, errors } = new RadioButtonTest(undefined).validate()
+      const { isValid, errors } = new TestRadioButtonAnswer(
+        undefined
+      ).validate()
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
@@ -73,7 +77,7 @@ describe('RadioButton', () => {
     })
 
     it('should return false for an invalid', () => {
-      const testInstance = new RadioButtonTest({
+      const testInstance = new TestRadioButtonAnswer({
         test_radio: 'invalid value'
       })
 
@@ -88,12 +92,14 @@ describe('RadioButton', () => {
 
   describe('#RadioButton.toState', () => {
     test('should replace missing data with blank string', () => {
-      const data = new RadioButtonTest().toState()
+      const data = new TestRadioButtonAnswer().toState()
       expect(data).toBe('')
     })
 
     test('should pass through valid data unaltered', () => {
-      const data = new RadioButtonTest({ test_radio: 'value_1' }).toState()
+      const data = new TestRadioButtonAnswer({
+        test_radio: 'value_1'
+      }).toState()
 
       expect(data).toBe('value_1')
     })
@@ -101,22 +107,24 @@ describe('RadioButton', () => {
 
   describe('RadioButton.fromState', () => {
     it('should re-construct the payload from a valid state', () => {
-      const state = new RadioButtonTest(validTestRadio).toState()
-      expect(RadioButtonTest.fromState(state)._data).toEqual(validTestRadio)
+      const state = new TestRadioButtonAnswer(validTestRadio).toState()
+      expect(TestRadioButtonAnswer.fromState(state)._data).toEqual(
+        validTestRadio
+      )
     })
 
     it('should return an undefined value if the state is undefined', () => {
-      expect(RadioButtonTest.fromState(undefined).value).toBeUndefined()
+      expect(TestRadioButtonAnswer.fromState(undefined).value).toBeUndefined()
     })
 
     it('should store undefined if the state is undefined', () => {
-      expect(RadioButtonTest.fromState(undefined)._data).toBeUndefined()
+      expect(TestRadioButtonAnswer.fromState(undefined)._data).toBeUndefined()
     })
   })
 
   describe('#RadioButton.value', () => {
     it('should return a value-wrapped object to rendering in the template', () => {
-      expect(new RadioButtonTest({ test_radio: 'value_1' }).value).toBe(
+      expect(new TestRadioButtonAnswer({ test_radio: 'value_1' }).value).toBe(
         'value_1'
       )
     })
@@ -124,29 +132,40 @@ describe('RadioButton', () => {
 
   describe('#RadioButton.html', () => {
     it('should return the full text for `value_1`', () => {
-      expect(new RadioButtonTest({ test_radio: 'value_1' }).html).toBe(
+      expect(new TestRadioButtonAnswer({ test_radio: 'value_1' }).html).toBe(
         'test_label_1'
       )
     })
 
     it('should return the full text for `value_2`', () => {
-      expect(new RadioButtonTest({ test_radio: 'value_2' }).html).toBe(
+      expect(new TestRadioButtonAnswer({ test_radio: 'value_2' }).html).toBe(
         'test_label_2'
       )
     })
 
     it('should return an empty string for undefined', () => {
-      expect(new RadioButtonTest(undefined).html).toBe('')
+      expect(new TestRadioButtonAnswer(undefined).html).toBe('')
     })
   })
 
   describe('#RadioButton.viewModel', () => {
-    const answer = new RadioButtonTest({ test_radio: 'invalid_answer' })
+    const question = 'What option would you like to pick?'
+
+    const invalidAnswer = new TestRadioButtonAnswer({
+      test_radio: 'invalid_answer'
+    })
     const defaultViewModel = {
+      fieldset: {
+        legend: {
+          text: question,
+          isPageHeading: true,
+          classes: 'govuk-fieldset__legend--l'
+        }
+      },
       name: 'test_radio',
       id: 'test_radio',
-      fieldset: {},
-      value: answer.value,
+      value: invalidAnswer.value,
+      classes: '',
       items: [
         {
           id: 'test_radio',
@@ -168,13 +187,33 @@ describe('RadioButton', () => {
     }
 
     it('should return everything (except errors) to render in the template', () => {
-      expect(answer.viewModel({ validate: false })).toEqual(defaultViewModel)
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
+        defaultViewModel
+      )
     })
 
     it('should return everything (including errors) to render in the template', () => {
-      expect(answer.viewModel({ validate: true })).toEqual({
+      expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
+      })
+    })
+
+    describe('radio button layout', () => {
+      it('should return inline class when layout is inline', () => {
+        const answer = new InlineTestRadioButtonAnswer({
+          test_radio: 'value_1'
+        })
+        expect(answer.viewModel({ validate: false, question })).toMatchObject({
+          classes: 'govuk-radios--inline'
+        })
+      })
+
+      it('should return empty class when layout is not specified', () => {
+        const answer = new TestRadioButtonAnswer({ test_radio: 'value_1' })
+        expect(answer.viewModel({ validate: false, question })).toMatchObject({
+          classes: ''
+        })
       })
     })
   })

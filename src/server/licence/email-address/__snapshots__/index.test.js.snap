@@ -2,11 +2,6 @@
 
 exports[`EmailAddressPage EmailAddressPage.content should render expected response and content 1`] = `
 "
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">What email address would you like the licence sent to?</h1>
-      </div>
-    </div>
   <form method="POST" novalidate="">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -14,9 +9,12 @@ exports[`EmailAddressPage EmailAddressPage.content should render expected respon
         <input type="hidden" name="nextPage" value="">
 
 <fieldset class="govuk-fieldset">
-
-    <div class="govuk-form-group">
-  
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="emailAddress">
+      What email address would you like the licence sent to?
+    </label>
+  </h1>
   <input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="email" spellcheck="false" autocomplete="email-address">
 </div>
 

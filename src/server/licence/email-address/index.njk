@@ -1,22 +1,8 @@
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends 'layouts/questions.njk' %}
 
+{% block heading %}
+{% endblock %}
+
 {% block questions %}
-
-  {% call govukFieldset() %}
-
-    {{
-      govukInput({
-        id: "emailAddress",
-        name: "emailAddress",
-        type: "email",
-        spellcheck: false,
-        autocomplete: "email-address",
-        classes: "govuk-input--width-20",
-        value: value,
-        errorMessage: errors.emailAddress
-      })
-    }}
-  {% endcall %}
+  {% include "model/answer/text/text.njk" %}
 {% endblock %}
