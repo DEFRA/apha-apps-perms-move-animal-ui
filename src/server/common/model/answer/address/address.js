@@ -109,8 +109,8 @@ export class AddressAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate }) {
-    const viewModel = { value: this.value }
+  viewModel({ validate, question }) {
+    const viewModel = { value: this.value, question }
 
     if (validate) {
       viewModel.errors = this.validate().errors

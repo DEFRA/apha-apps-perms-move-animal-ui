@@ -2,11 +2,11 @@
 
 exports[`OnOffFarmPage #onOffFarmPage.content licenceSummaryPage.content should render expected response and content 1`] = `
 "
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">Are you moving the animals on or off your farm or premises?</h1>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l">Are you moving the animals on or off your farm or premises?</h1>
+        </div>
       </div>
-    </div>
   <form method="POST" novalidate="">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">

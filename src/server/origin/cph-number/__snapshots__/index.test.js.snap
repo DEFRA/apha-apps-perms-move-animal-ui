@@ -2,11 +2,11 @@
 
 exports[`CphNumberPage #cphNumberPage.content licenceSummaryPage.content should render expected response and content 1`] = `
 "
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</h1>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l">What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</h1>
+        </div>
       </div>
-    </div>
   <form method="POST" novalidate="">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
