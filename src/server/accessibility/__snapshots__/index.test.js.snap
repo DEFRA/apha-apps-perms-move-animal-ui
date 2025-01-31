@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#accessibilityStatementPage should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <h1 class="govuk-heading-l">Accessibility statement</h1>
+        <p class="govuk-body">
+          Accessibility statement for Get permission to move animals under
+          disease control.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          How you should be able to use this website
+        </h2>
+        <p class="govuk-body">
+          We want as many people as possible to be able to use this website.
+        </p>
+        <p class="govuk-body">You should be able to:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            Change colours, contrast levels and fonts using browser or device
+            settings
+          </li>
+          <li>Zoom in up to 200% without the text spilling off the screen</li>
+          <li>
+            Navigate most of the website using a keyboard or speech recognition
+            software
+          </li>
+          <li>
+            Listen to most of the website using a screen reader (including the
+            most recent versions of JAWS, NVDA and VoiceOver)
+          </li>
+          <li>
+            We also make the website text as simple as possible to understand
+          </li>
+        </ul>
+
+        <h2 class="govuk-heading-m">How accessible this website is</h2>
+        <p class="govuk-body">
+          While most of this website is fully accessible, we are engaging in a
+          full accessibility audit that may uncover unknown accessibility
+          issues. If you encounter any, please
+          <a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">give your feedback (opens in new tab)
+          </a>
+          to let us know how we can improve.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;

@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '../common/test-helpers/snapshot-page.js'
 
 describePageSnapshot({
-  describes: '#cookiesPolicyPage',
+  describes: '#accessibilityStatementPage',
   it: 'should render expected response and content',
-  pageUrl: '/cookies'
+  pageUrl: '/accessibility-statement'
 })
