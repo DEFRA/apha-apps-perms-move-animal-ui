@@ -121,13 +121,17 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="csrf-value">
         <input type="hidden" name="nextPage" value="">
-  <h2 class="govuk-heading-m">Your declaration</h2>
-  <p>
-    Before you submit your application, you must select one of the declaration
-    check boxes.
-  </p>
-  <!-- form URL below turns off errors on the next page  -->
-  <div class="govuk-form-group">
+
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    Your declaration
+  </legend>
+    <p>
+      Before you submit your application, you must select one of the declaration
+      check boxes.
+    </p>
+    <!-- form URL below turns off errors on the next page  -->
+    <div class="govuk-form-group">
   <div class="govuk-checkboxes" data-module="govuk-checkboxes">
     <div class="govuk-checkboxes__item">
       <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-statements-checkbox">
@@ -144,6 +148,8 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
 </div>
 
+
+</fieldset>
       </div>
     </div>
     <div class="govuk-grid-row">
