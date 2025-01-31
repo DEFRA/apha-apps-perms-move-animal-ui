@@ -102,7 +102,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate }) {
+  viewModel({ validate, question }) {
     const items = Object.entries(this.config.options).map(([key, value]) => ({
       id: key,
       value: key,
@@ -114,9 +114,15 @@ export class RadioButtonAnswer extends AnswerModel {
     items[0].id = this.config.payloadKey
 
     const model = {
+      fieldset: {
+        legend: {
+          text: question,
+          isPageHeading: true,
+          classes: 'govuk-fieldset__legend--l'
+        }
+      },
       name: this.config.payloadKey,
       id: this.config.payloadKey,
-      fieldset: {},
       value: this.value,
       items,
       classes: this.config.layout === 'inline' ? 'govuk-radios--inline' : ''

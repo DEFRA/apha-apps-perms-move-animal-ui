@@ -2,11 +2,6 @@
 
 exports[`FullNamePage FullNamePage.content should render expected response and content 1`] = `
 "
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">What is the name of the County Parish Holding (CPH) owner?</h1>
-      </div>
-    </div>
   <form method="POST" novalidate="">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -14,6 +9,11 @@ exports[`FullNamePage FullNamePage.content should render expected response and c
         <input type="hidden" name="nextPage" value="">
 
 <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What is the name of the County Parish Holding (CPH) owner?
+    </h1>
+  </legend>
   <div class="govuk-form-group">
   <label class="govuk-label" for="firstName">
     First name

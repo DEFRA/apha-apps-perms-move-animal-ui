@@ -14,13 +14,15 @@
       </div>
     </div>
   {% endif %}
-  {% if (heading) %}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">{{ heading }}</h1>
+  {% block heading %}
+    {% if (heading) %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l">{{ heading }}</h1>
+        </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
+  {% endblock %}
   {% block beforequestion %}
   {% endblock %}
   <form method="POST" novalidate>

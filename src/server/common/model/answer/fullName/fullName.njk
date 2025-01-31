@@ -4,7 +4,15 @@
 {% set value = viewModel.value %}
 {% set errors = viewModel.errors %}
 
-{% call govukFieldset() %}
+{%
+  call govukFieldset({
+    legend: {
+      text: viewModel.question,
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  })
+%}
   {{
     govukInput
     ({
