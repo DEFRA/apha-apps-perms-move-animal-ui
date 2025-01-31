@@ -4,8 +4,22 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { originSummaryPage } from './index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const pageUrl = '/origin/check-answers'
+
+const defaultState = {
+  onOffFarm: 'off',
+  originType: 'afu',
+  cphNumber: '12/123/1234',
+  address: {
+    addressLine1: 'Starfleet Headquarters',
+    addressLine2: '24-593 Federation Drive',
+    addressTown: 'San Francisco',
+    addressCounty: 'San Francisco',
+    addressPostcode: 'RG24 8RR'
+  }
+}
 
 describe('#originSummaryController', () => {
   /** @type {Server} */
@@ -13,19 +27,6 @@ describe('#originSummaryController', () => {
 
   /** @type {SessionTestHelper} */
   let session
-
-  const defaultState = {
-    onOffFarm: 'off',
-    originType: 'afu',
-    cphNumber: '12/123/1234',
-    address: {
-      addressLine1: 'Starfleet Headquarters',
-      addressLine2: '24-593 Federation Drive',
-      addressTown: 'San Francisco',
-      addressCounty: 'San Francisco',
-      addressPostcode: 'RG24 8RR'
-    }
-  }
 
   beforeAll(async () => {
     server = await createServer()
@@ -144,6 +145,13 @@ describe('#originSummaryController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
     })
   })
+})
+
+describePageSnapshot({
+  describes: '#originSummaryController.content',
+  it: 'should render the expected content',
+  pageUrl,
+  state: { origin: defaultState }
 })
 
 /**

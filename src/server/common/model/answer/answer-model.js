@@ -100,5 +100,5 @@ export class AnswerModel {
  */
 
 /**
- * @typedef {{ validate: boolean, question?: string }} AnswerViewModelOptions
+ * @typedef {{ validate: boolean, question: string }} AnswerViewModelOptions
  */

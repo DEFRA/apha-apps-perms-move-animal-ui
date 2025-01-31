@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#licenceSummaryPage.content should render the expected content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+    </div>
+  </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+  
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the name of the County Parish Holding (CPH) owner?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      test_name test_surname
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-name?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the County Parish Holding (CPH) owner?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How would you like this licence sent to you?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Email
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-email-or-post?redirect_uri=/receiving-the-licence/check-answers" data-testid="receiveMethod-change-link">Change<span class="govuk-visually-hidden"> How would you like this licence sent to you?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What email address would you like the licence sent to?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      test@email.com
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/receiving-the-licence/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+    </dd>
+  </div>
+</dl>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;
