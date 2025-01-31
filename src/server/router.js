@@ -17,6 +17,7 @@ import { receiveMethod } from './licence/receiveMethod/index.js'
 import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
+import { accessibilityStatement } from './accessibility/index.js'
 import { config } from '../config/config.js'
 import { keptSeparately } from './biosecurity/kept-separately/index.js'
 
@@ -37,6 +38,7 @@ export const router = {
         home,
         privacyPolicy,
         cookiesPolicy,
+        accessibilityStatement,
         origin,
         destination,
         licence,
