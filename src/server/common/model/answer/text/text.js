@@ -3,6 +3,8 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
+/** @import {AnswerViewModelOptions} from '../answer-model.js' */
+
 /**
  * @param {TextConfig} config
  * @returns {Joi.Schema}
@@ -39,6 +41,11 @@ const whitespaceRegex = /\s+/g
  * export @typedef {{
  *  payloadKey: string,
  *  stripWhitespace?: boolean,
+ *  type: 'text' | 'email',
+ *  spellcheck?: false,
+ *  characterWidth: 10 | 20,
+ *  autocomplete?: string,
+ *  hint?: string,
  *  validation: {
  *    maxLength: { value: number, message: string },
  *    empty: { message: string },
@@ -96,6 +103,36 @@ export class TextAnswer extends AnswerModel {
       textSchema(this.config),
       this._data ?? {}
     )
+  }
+
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  viewModel({ validate }) {
+    const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
+      this.config
+    const viewModel = {
+      id: payloadKey,
+      name: payloadKey,
+      type,
+      autocomplete,
+      classes: `govuk-input--width-${characterWidth}`,
+      value: this.value
+    }
+
+    if (validate) {
+      viewModel.errorMessage = this.validate().errors[payloadKey]
+    }
+
+    if (hint) {
+      viewModel.hint = { text: hint }
+    }
+
+    if (spellcheck === false) {
+      viewModel.spellcheck = false
+    }
+
+    return viewModel
   }
 
   /**

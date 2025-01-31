@@ -1,11 +1,18 @@
 import { TextAnswer } from './text.js'
 /** @import {TextConfig} from './text.js' */
 
+const maxLengthError = 'Text exceeds maximum length (40)'
+
 /** @type {TextConfig} */
 const textConfig = {
   payloadKey: 'textPayload',
+  type: 'email',
+  autocomplete: 'email-address',
+  spellcheck: false,
+  characterWidth: 20,
+  hint: 'Enter your email',
   validation: {
-    maxLength: { value: 40, message: 'Text exceeds maximum length (40)' },
+    maxLength: { value: 40, message: maxLengthError },
     empty: { message: 'Text must not be empty' }
   }
 }
@@ -25,6 +32,11 @@ const validPayload = {
   textPayload: 'some text'
 }
 
+const longAnswer = new Array(41).fill('a').join('')
+const invalidPayload = {
+  textPayload: longAnswer
+}
+
 describe('TextAnswer.new', () => {
   it('should strip away any irrelevant values', () => {
     const payload = { ...validPayload, nextPage: '/other/page' }
@@ -37,7 +49,7 @@ describe('TextAnswer.new', () => {
 describe('TextAnswer.validate', () => {
   it('should error if max length is exceeded', () => {
     const textAnswer = new TestTextAnswer({
-      textPayload: new Array(41).fill('a').join('')
+      textPayload: longAnswer
     })
     const { isValid, errors } = textAnswer.validate()
 
@@ -218,5 +230,36 @@ describe('TestAnswer.html', () => {
   it('should return an empty string if payload is not present', () => {
     const textAnswer = new TestTextAnswer({})
     expect(textAnswer.html).toBe('')
+  })
+})
+
+describe('TestAnswer.viewModel', () => {
+  const textAnswer = new TestTextAnswer(invalidPayload)
+
+  it('should return data to render without errors (if validate is false)', () => {
+    expect(textAnswer.viewModel({ validate: false })).toEqual({
+      id: 'textPayload',
+      name: 'textPayload',
+      type: 'email',
+      hint: { text: 'Enter your email' },
+      spellcheck: false,
+      autocomplete: 'email-address',
+      classes: 'govuk-input--width-20',
+      value: textAnswer.value
+    })
+  })
+
+  it('should return data to render with errors (if validate is true)', () => {
+    expect(textAnswer.viewModel({ validate: true })).toEqual({
+      id: 'textPayload',
+      name: 'textPayload',
+      type: 'email',
+      hint: { text: 'Enter your email' },
+      spellcheck: false,
+      autocomplete: 'email-address',
+      classes: 'govuk-input--width-20',
+      value: textAnswer.value,
+      errorMessage: { text: maxLengthError }
+    })
   })
 })

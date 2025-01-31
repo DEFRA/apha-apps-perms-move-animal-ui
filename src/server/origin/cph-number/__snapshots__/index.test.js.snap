@@ -14,7 +14,7 @@ exports[`CphNumberPage #cphNumberPage.content licenceSummaryPage.content should 
         <input type="hidden" name="nextPage" value="">
 
 <fieldset class="govuk-fieldset">
-    <div class="govuk-form-group">
+  <div class="govuk-form-group">
   
   <div id="cphNumber-hint" class="govuk-hint">
     For example, 12/345/6789
