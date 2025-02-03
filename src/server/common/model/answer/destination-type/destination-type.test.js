@@ -1,3 +1,4 @@
+import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { DestinationTypeAnswer } from './destination-type.js'
 /** @import {DestinationTypePayload} from './destination-type.js' */
 
@@ -7,10 +8,8 @@ const payload = {
 }
 
 describe('DestinationType', () => {
-  it('should have same static config & instance config', () => {
-    expect(new DestinationTypeAnswer(payload).config).toEqual(
-      DestinationTypeAnswer.config
-    )
+  it('should be a radio button', () => {
+    expect(new DestinationTypeAnswer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {
