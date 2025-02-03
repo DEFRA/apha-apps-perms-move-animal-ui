@@ -15,7 +15,6 @@ export class EmailAddressPage extends QuestionPage {
   question = 'What email address would you like the licence sent to?'
   questionKey = 'emailAddress'
 
-  view = 'licence/email-address/index'
   Answer = EmailAddressAnswer
 
   /** @param {EmailAddressAnswer} _answer */

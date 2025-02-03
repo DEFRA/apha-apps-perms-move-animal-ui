@@ -18,7 +18,6 @@ export class ReceiveMethodPage extends QuestionPage {
 
   questionKey = 'receiveMethod'
 
-  view = 'licence/receiveMethod/index'
   Answer = ReceiveMethodAnswer
 
   /** @param {ReceiveMethodAnswer} answer */

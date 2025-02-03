@@ -14,7 +14,6 @@ export class OriginAddressPage extends QuestionPage {
 
   questionKey = 'address'
 
-  view = 'origin/address/index'
   Answer = AddressAnswer
 
   /** @param {AddressAnswer} _answer */

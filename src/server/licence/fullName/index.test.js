@@ -7,7 +7,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const sectionKey = 'licence'
 const question = 'What is the name of the County Parish Holding (CPH) owner?'
 const questionKey = 'fullName'
-const view = 'licence/fullName/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-name'
 
 describe('FullNamePage', () => {

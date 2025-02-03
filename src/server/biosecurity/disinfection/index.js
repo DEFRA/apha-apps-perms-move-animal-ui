@@ -5,7 +5,6 @@ export class DisinfectionPage extends QuestionPage {
   sectionKey = 'biosecurity'
   question = ''
   questionKey = 'disinfection'
-  view = 'biosecurity/disinfection/index'
 }
 
 export const disinfectionPage = new DisinfectionPage()

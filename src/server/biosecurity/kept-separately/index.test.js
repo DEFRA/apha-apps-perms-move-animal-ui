@@ -11,7 +11,7 @@ import {
 const sectionKey = 'biosecurity'
 const question = 'Will you separate the incoming cattle from the resident herd?'
 const questionKey = 'keptSeparately'
-const view = 'biosecurity/kept-separately/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/kept-separately'
 
 describe('KeptSeparatelyPage', () => {

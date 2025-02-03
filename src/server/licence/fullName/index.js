@@ -12,7 +12,6 @@ export class FullNamePage extends QuestionPage {
 
   questionKey = 'fullName'
 
-  view = 'licence/fullName/index'
   Answer = FullNameAnswer
 
   nextPage() {

@@ -20,7 +20,6 @@ export class OnOffFarmPage extends QuestionPage {
 
   questionKey = 'onOffFarm'
 
-  view = 'origin/on-off-farm/index'
   Answer = OnOffFarmAnswer
 
   /** @param {AnswerModel} answer */

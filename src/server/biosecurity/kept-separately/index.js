@@ -11,7 +11,6 @@ export class KeptSeparatelyPage extends QuestionPage {
   sectionKey = 'biosecurity'
   question = 'Will you separate the incoming cattle from the resident herd?'
   questionKey = 'keptSeparately'
-  view = 'biosecurity/kept-separately/index'
   Answer = KeptSeparatelyAnswer
 
   /** @param {KeptSeparatelyAnswer} answer */
