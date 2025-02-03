@@ -20,11 +20,5 @@ const config = {
 
 /** @augments {RadioButtonAnswer<ReceiveMethodPayload>} */
 export class ReceiveMethodAnswer extends RadioButtonAnswer {
-  get config() {
-    return config
-  }
-
-  static get config() {
-    return config
-  }
+  static config = config
 }

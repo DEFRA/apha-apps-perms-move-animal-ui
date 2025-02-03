@@ -21,11 +21,5 @@ const onOffFarmConfig = {
 
 /** @augments {RadioButtonAnswer<OnOffFarmPayload>} */
 export class OnOffFarmAnswer extends RadioButtonAnswer {
-  get config() {
-    return onOffFarmConfig
-  }
-
-  static get config() {
-    return onOffFarmConfig
-  }
+  static config = onOffFarmConfig
 }
