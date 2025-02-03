@@ -82,10 +82,8 @@ const completeApplication = async () => {
 }
 
 describe('Check your final answers test', () => {
-  beforeEach(async () => {
-    await browser.deleteAllCookies()
-    await completeApplication()
-  })
+  // eslint-disable-next-line
+  before('Navigate to check answers page', completeApplication)
 
   it('Should verify the back link is history -1', async () => {
     await taskListPage.navigateToPageAndVerifyTitle()
@@ -185,6 +183,11 @@ describe('Check your final answers test', () => {
   })
 
   describe('declarations', () => {
+    beforeEach(async () => {
+      await browser.reloadSession()
+      await completeApplication()
+    })
+
     it('Should submit the page after selecting first declaration', async () => {
       await finalAnswersPage.navigateToPageAndVerifyTitle()
       await finalAnswersPage.selectADeclarationAndContinue()
