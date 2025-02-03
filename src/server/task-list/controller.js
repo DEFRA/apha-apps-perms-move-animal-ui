@@ -1,6 +1,7 @@
 import { OriginSection } from '../common/model/section/origin/origin.js'
 import { DestinationSection } from '../common/model/section/destination/destination.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
+import { BiosecuritySection } from '../common/model/section/biosecurity/biosecurity.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -15,6 +16,7 @@ export const taskListGetController = {
     const origin = OriginSection.fromState(req.yar.get('origin'))
     const destination = DestinationSection.fromState(req.yar.get('destination'))
     const licence = LicenceSection.fromState(req.yar.get('licence'))
+    const biosecurity = BiosecuritySection.fromState(req.yar.get('biosecurity'))
 
     const originValidity = origin.validate()
     const destinationValidity = destination.validate()
@@ -48,9 +50,22 @@ export const taskListGetController = {
       isEnabled: true
     })
 
-    const gdsTasks = [originGdsTask, destinationGdsTask, licenceGdsTask]
+    const biosecurityGdsTask = buildGdsTaskItem({
+      title: 'Biosecurity',
+      initialLink: biosecurity.firstPage.urlPath,
+      summaryLink: '/biosecurity/check-answers',
+      isValid: biosecurity.validate().isValid,
+      isEnabled: true
+    })
 
-    const allTasks = [origin, destination, licence]
+    const gdsTasks = [
+      originGdsTask,
+      destinationGdsTask,
+      licenceGdsTask,
+      biosecurityGdsTask
+    ]
+
+    const allTasks = [origin, destination, licence, biosecurity]
     const incompleteTasks =
       allTasks.length -
       allTasks.filter((task) => {

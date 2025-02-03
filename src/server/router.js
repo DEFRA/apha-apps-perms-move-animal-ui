@@ -19,7 +19,7 @@ import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { config } from '../config/config.js'
-import { keptSeparately } from './biosecurity/kept-separately/index.js'
+import { biosecurity } from './biosecurity/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -54,7 +54,7 @@ export const router = {
 
       // Add routes specific to features behind feature flags
       if (config.get('featureFlags')?.biosecurity) {
-        await server.register([keptSeparately])
+        await server.register([biosecurity])
       }
 
       // Static assets
