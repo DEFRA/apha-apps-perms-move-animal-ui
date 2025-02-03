@@ -23,7 +23,9 @@
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="{{ crumb }}" />
         <input type="hidden" name="nextPage" value="{{ nextPage }}" />
-        {% block questions %}{% endblock %}
+        {% block questions %}
+          {% include answer.template %}
+        {% endblock %}
       </div>
     </div>
     <div class="govuk-grid-row">
