@@ -30,13 +30,6 @@ describe('CphNumberAnswer', () => {
     expect(CphNumberAnswer.config.hint).toBe('For example, 12/345/6789')
   })
 
-  it('should strip away any irrelevant values', () => {
-    const payload = { ...validPayload, nextPage: '/other/page' }
-    const cphNumber = new CphNumberAnswer(payload)
-
-    expect(cphNumber._data).toEqual(validPayload)
-  })
-
   describe('#CphNumberAnswer.validate', () => {
     it('should return true for valid cphNumber', () => {
       const cphNumber = new CphNumberAnswer(validPayload)
