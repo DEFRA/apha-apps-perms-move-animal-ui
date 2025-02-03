@@ -55,12 +55,13 @@ export class PageController extends GenericPageController {
     }
   }
 
-  handleGet(req, h) {
+  handleGet(req, h, opts = {}) {
     return h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
-      ...this.page.viewProps(req)
+      ...this.page.viewProps(req),
+      ...opts
     })
   }
 

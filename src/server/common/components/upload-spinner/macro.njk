@@ -1,0 +1,21 @@
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% macro uploadSpinner(options) %}
+  {% set display = "block" %}
+  {% if options.formPage %}
+    {% set display = "none" %}
+  {% endif %}
+  <div class="apha_upload-spinner" style="display: {{ display }}">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ options.title }}</h1>
+      </div>
+    </div>
+    <p>
+      This may take a few minutes.
+    </p>
+    <div class="hods-loading-spinner">
+      <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+{% endmacro %}

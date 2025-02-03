@@ -18,6 +18,7 @@ import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { uploadPlan } from './biosecurity-map/upload-plan/index.js'
+import { uploadProgress } from './biosecurity-map/upload-progress/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -47,7 +48,8 @@ export const router = {
         submitSummary,
         premisesType,
         fullName,
-        uploadPlan
+        uploadPlan,
+        uploadProgress
       ])
 
       // Static assets

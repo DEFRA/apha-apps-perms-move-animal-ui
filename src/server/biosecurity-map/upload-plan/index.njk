@@ -1,6 +1,7 @@
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
-{% extends 'layouts/questions.njk' %}
 {% from "macros/create-summary.njk" import createSummary %}
+{% from "upload-spinner/macro.njk" import uploadSpinner %}
+{% extends 'layouts/questions.njk' %}
 {% block form %}
   <form method="POST" action="{{ upload.uploadUrl }}" novalidate enctype="multipart/form-data">
     <div class="govuk-grid-row">
@@ -17,7 +18,7 @@
           <li>location of the resident cattle</li>
           <li>
             movements of the cattle, including where they will graze, be milked, and be
-            loaded
+                                loaded
           </li>
           <li>location of handling facility</li>
           <li>location of manure or slurry storage</li>
@@ -46,4 +47,13 @@
       </div>
     </div>
   </form>
+  {{ uploadSpinner({
+    title: "Uploading the biosecurity map",
+    subTitle: "This may take a few minutes.",
+    formPage: true
+  }) }}
+{% endblock %}
+{% block bodyEnd %}
+  {{ super() }}
+  <script src="{{ getAssetPath('javascripts/file-upload-spinner.js') }}"></script>
 {% endblock %}

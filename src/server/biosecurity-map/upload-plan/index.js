@@ -4,6 +4,7 @@ import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confi
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
 import { assert } from 'console'
+import { uploadProgressPage } from '../upload-progress/index.js'
 
 /**
  * @import {NextPage} from '../../common/helpers/next-page.js'
@@ -19,6 +20,10 @@ export class UploadPlanPage extends QuestionPage {
   view = `biosecurity-map/upload-plan/index`
 
   Answer = ConfirmationAnswer
+
+  nextPage() {
+    return uploadProgressPage
+  }
 }
 
 export class UploadPlanController extends QuestionPageController {
@@ -35,8 +40,7 @@ export class UploadPlanController extends QuestionPageController {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
-        redirect: 'http://localhost/nextPage',
-        callback: 'http://localhost/callback',
+        redirect: this.page.nextPage(req).urlPath,
         s3Bucket: bucket,
         s3Path: path
       })
@@ -45,6 +49,11 @@ export class UploadPlanController extends QuestionPageController {
     const data = JSON.parse(response.payload.toString())
 
     req.yar.set('upload', data)
+
+    h.headers = {
+      'Cache-Control': 'no-store, must-revalidate, max-age=0',
+      Pragma: 'no-cache'
+    }
 
     return super.handleGet(req, h, {
       upload: data

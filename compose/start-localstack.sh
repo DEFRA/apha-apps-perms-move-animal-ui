@@ -29,3 +29,5 @@ aws --endpoint-url=http://localhost:4566 s3api put-bucket-notification-configura
                                          }
                                        ]
 	                                }'
+
+aws --endpoint-url=http://localhost:4566 s3 mb s3://apha
