@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (form && uploadSpinner) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', () => {
       document
         .querySelectorAll('.govuk-main-wrapper > *:not(.apha_upload-spinner)')
         .forEach((el) => (el.style.display = 'none'))

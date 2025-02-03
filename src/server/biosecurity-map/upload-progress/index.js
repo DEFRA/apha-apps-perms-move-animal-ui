@@ -8,7 +8,7 @@ import { PageController } from '../../common/controller/page-controller/page-con
  */
 
 export class UploadProgressPage extends Page {
-  title = 'Uploading the biosecurity map'
+  pageTitle = 'Uploading the biosecurity map'
   sectionKey = 'biosecurity-map'
   questionKey = 'uploading'
   urlPath = `/${this.sectionKey}/${this.questionKey}`
