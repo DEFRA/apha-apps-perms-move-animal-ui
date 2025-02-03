@@ -2,12 +2,14 @@
 {% from "upload-spinner/macro.njk" import uploadSpinner %}
 {% extends 'layouts/questions.njk' %}
 {% block head %}
-  {{ super() }} <meta http-equiv="refresh" content="5"/>
+  {{ super() }} <meta http-equiv="refresh" content="5" />
 {% endblock %}
 {% block form %}
-  {{ uploadSpinner({
-    title: "Uploading the biosecurity map",
-    subTitle: "This may take a few minutes.",
-    formPage: false
-  }) }}
+  {{
+    uploadSpinner({
+      title: "Uploading the biosecurity map",
+      subTitle: "This may take a few minutes.",
+      formPage: false
+    })
+  }}
 {% endblock %}
