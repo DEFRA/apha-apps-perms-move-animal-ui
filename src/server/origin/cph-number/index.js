@@ -17,7 +17,6 @@ export class CphNumberPage extends QuestionPage {
 
   questionKey = 'cphNumber'
 
-  view = 'origin/cph-number/index'
   Answer = CphNumberAnswer
 
   /** @param {CphNumberAnswer} _answer */

@@ -143,3 +143,10 @@ describe('FullName.viewModel', () => {
     })
   })
 })
+
+describe('FullNameAnswer.template', () => {
+  it('should return the full name model template', () => {
+    const fullName = new FullNameAnswer(validFullNamePayload)
+    expect(fullName.template).toBe('model/answer/fullName/fullName.njk')
+  })
+})

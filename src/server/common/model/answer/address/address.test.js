@@ -249,3 +249,10 @@ describe('Address.viewModel', () => {
     })
   })
 })
+
+describe('Address.template', () => {
+  it('should return the address model template', () => {
+    const address = new AddressAnswer(validAddress)
+    expect(address.template).toBe('model/answer/address/address.njk')
+  })
+})

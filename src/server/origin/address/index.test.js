@@ -7,7 +7,7 @@ const sectionKey = 'origin'
 const question =
   'What is the address of your farm or premises where the animals are moving off?'
 const questionKey = 'address'
-const view = 'origin/address/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/address'
 
 describe('OriginAddressPage', () => {

@@ -18,7 +18,6 @@ export class OriginTypePage extends QuestionPage {
   question = 'What type of premises are the animals moving off?'
   questionKey = 'originType'
 
-  view = 'origin/origin-type/index'
   Answer = OriginTypeAnswer
 
   /** @param {AnswerModel} answer */

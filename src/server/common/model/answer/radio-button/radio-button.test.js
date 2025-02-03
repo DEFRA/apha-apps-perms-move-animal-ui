@@ -218,3 +218,10 @@ describe('RadioButton', () => {
     })
   })
 })
+
+describe('RadioButtonAnswer.template', () => {
+  it('should return the radio button model template', () => {
+    const radio = new TestRadioButtonAnswer(validTestRadio)
+    expect(radio.template).toBe('model/answer/radio-button/radio-button.njk')
+  })
+})

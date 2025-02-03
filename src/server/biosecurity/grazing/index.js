@@ -5,7 +5,6 @@ export class GrazingPage extends QuestionPage {
   sectionKey = 'biosecurity'
   question = ''
   questionKey = 'grazing'
-  view = 'biosecurity/grazing/index'
 }
 
 export const grazingPage = new GrazingPage()

@@ -12,7 +12,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
 const questionKey = 'destinationType'
-const view = 'destination/destination-type/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/type-of-destination'
 
 describe('DestinationTypePage', () => {

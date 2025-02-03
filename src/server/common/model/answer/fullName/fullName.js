@@ -51,6 +51,11 @@ export class FullNameAnswer extends AnswerModel {
     return `${this._data?.firstName ?? ''} ${this._data?.lastName ?? ''}`
   }
 
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get template() {
+    return 'model/answer/fullName/fullName.njk'
+  }
+
   /**
    * @returns { FullNameData }
    */

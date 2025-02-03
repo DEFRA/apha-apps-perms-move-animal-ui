@@ -13,7 +13,6 @@ export class DestinationTypePage extends QuestionPage {
   sectionKey = 'destination'
   question = 'Where are the animals going to?'
   questionKey = 'destinationType'
-  view = 'destination/destination-type/index'
 
   Answer = DestinationTypeAnswer
 

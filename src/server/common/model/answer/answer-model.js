@@ -76,6 +76,13 @@ export class AnswerModel {
   }
 
   /**
+   * @returns {string}
+   */
+  get template() {
+    throw new NotImplementedError()
+  }
+
+  /**
    * @param {unknown} _data
    * @returns {unknown}
    */

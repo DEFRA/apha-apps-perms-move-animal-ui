@@ -313,3 +313,10 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     })
   })
 })
+
+describe('TextAnswer.template', () => {
+  it('should return the text model template', () => {
+    const text = new TestTextAnswer(validPayload)
+    expect(text.template).toBe('model/answer/text/text.njk')
+  })
+})

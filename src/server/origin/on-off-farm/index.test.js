@@ -7,7 +7,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const sectionKey = 'origin'
 const question = 'Are you moving the animals on or off your farm or premises?'
 const questionKey = 'onOffFarm'
-const view = 'origin/on-off-farm/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/to-or-from-own-premises'
 
 describe('OnOffFarmPage', () => {
