@@ -18,7 +18,7 @@ describe('QuestionPage', () => {
   })
 
   it('should have an expected view', () => {
-    expect(question).toHaveProperty('view')
+    expect(question.view).toBe('common/model/page/question-page.njk')
   })
 
   it('should have an expected sectionKey', () => {
