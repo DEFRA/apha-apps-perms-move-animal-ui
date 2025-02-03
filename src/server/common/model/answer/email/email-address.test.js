@@ -1,8 +1,9 @@
+import { TextAnswer } from '../text/text.js'
 import { EmailAddressAnswer } from './email-address.js'
 
 /** @import {EmailAddressPayload} from './email-address.js' */
 
-const validEmailAddressPayload = {
+const validPayload = {
   emailAddress: 'test@somewhere.com'
 }
 
@@ -32,21 +33,32 @@ const invalidEmailAddresses = [
   'no-at.domain.com'
 ]
 
-describe('EmailAddress', () => {
-  it('should have the expected .name', () => {
-    expect(EmailAddressAnswer.name).toBe('EmailAddressAnswer')
+describe('EmailAddressAnswer', () => {
+  it('should be a text input', () => {
+    expect(new EmailAddressAnswer(validPayload)).toBeInstanceOf(TextAnswer)
   })
 
-  describe('new', () => {
-    it('should strip away any irrelevant values', () => {
-      const payload = { ...validEmailAddressPayload, nextPage: '/other/page' }
-      const emailAddress = new EmailAddressAnswer(payload)
-
-      expect(emailAddress._data).toEqual(validEmailAddressPayload)
-    })
+  it('should have the right payload key', () => {
+    expect(EmailAddressAnswer.config.payloadKey).toBe('emailAddress')
   })
 
-  describe('validate', () => {
+  it('should autocomplete', () => {
+    expect(EmailAddressAnswer.config.autocomplete).toBe('email-address')
+  })
+
+  it('should strip whitespace', () => {
+    expect(EmailAddressAnswer.config.stripWhitespace).toBe(true)
+  })
+
+  it('should have an input type of email', () => {
+    expect(EmailAddressAnswer.config.type).toBe('email')
+  })
+
+  it('should display with a char width of 20', () => {
+    expect(EmailAddressAnswer.config.characterWidth).toBe(20)
+  })
+
+  describe('#EmailAddressAnswer.validate', () => {
     validEmailAddresses.forEach((email) => {
       it(`should return true for valid email address ${email}`, () => {
         const emailAddress = new EmailAddressAnswer({ emailAddress: email })
@@ -83,64 +95,6 @@ describe('EmailAddress', () => {
           'Enter an email address in the correct format, like name@example.com'
         )
       })
-    })
-  })
-
-  describe('toState', () => {
-    it('should replace missing data with blank string', () => {
-      const emailAddress = new EmailAddressAnswer(
-        /** @type {EmailAddressPayload} */ ({})
-      )
-      const data = emailAddress.toState()
-
-      expect(data).toBe('')
-    })
-
-    it('should pass through valid data unaltered', () => {
-      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
-      const data = emailAddress.toState()
-
-      expect(data).toEqual(validEmailAddressPayload.emailAddress)
-    })
-
-    it('should remove whitespace', () => {
-      const emailAddress = new EmailAddressAnswer({
-        emailAddress: '  test @ domain.com '
-      })
-
-      expect(emailAddress.toState()).toBe('test@domain.com')
-    })
-  })
-
-  describe('fromState', () => {
-    it('should return just the email address from the payload', () => {
-      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
-      const state = emailAddress.toState()
-      expect(EmailAddressAnswer.fromState(state).value).toEqual(
-        validEmailAddressPayload.emailAddress
-      )
-    })
-
-    it('should return an undefined value if the state is undefined', () => {
-      expect(EmailAddressAnswer.fromState(undefined).value).toBeUndefined()
-    })
-
-    it('should return an empty object if the state is undefined', () => {
-      expect(EmailAddressAnswer.fromState(undefined)._data).toEqual({})
-    })
-  })
-
-  describe('html', () => {
-    it('should return the email address if present', () => {
-      const emailAddress = new EmailAddressAnswer(validEmailAddressPayload)
-      expect(emailAddress.html).toBe(validEmailAddressPayload.emailAddress)
-    })
-
-    it('should return an empty string if email address is not present', () => {
-      const emailAddress = new EmailAddressAnswer(
-        /** @type {EmailAddressPayload} */ ({})
-      )
-      expect(emailAddress.html).toBe('')
     })
   })
 })

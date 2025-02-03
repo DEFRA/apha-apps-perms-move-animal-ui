@@ -1,3 +1,4 @@
+import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { KeptSeparatelyAnswer } from './kept-separately.js'
 /** @import {KeptSeparatelyPayload} from './kept-separately.js' */
 
@@ -7,10 +8,8 @@ const payload = {
 }
 
 describe('KeptSeparately', () => {
-  it('should have same static config & instance config', () => {
-    expect(new KeptSeparatelyAnswer(payload).config).toEqual(
-      KeptSeparatelyAnswer.config
-    )
+  it('should be a radio button', () => {
+    expect(new KeptSeparatelyAnswer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {

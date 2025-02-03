@@ -1,3 +1,4 @@
+import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { OnOffFarmAnswer } from './on-off-farm.js'
 /** @import {OnOffFarmPayload} from './on-off-farm.js' */
 
@@ -7,8 +8,8 @@ const payload = {
 }
 
 describe('OnOffFarm', () => {
-  it('should have same static config & instance config', () => {
-    expect(new OnOffFarmAnswer(payload).config).toEqual(OnOffFarmAnswer.config)
+  it('should be a radio button', () => {
+    expect(new OnOffFarmAnswer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {
