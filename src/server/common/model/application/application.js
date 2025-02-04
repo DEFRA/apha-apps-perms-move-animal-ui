@@ -2,16 +2,19 @@ import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
 import { validateApplication } from './validation.js'
+import { FeatureFlagHelper } from '../../helpers/feature-flag.js'
 
 /**
  * export @typedef {{
  * origin: OriginData | undefined;
  * licence: LicenceData | undefined;
  * destination: DestinationData | undefined;
+ * biosecurity?: BiosecurityData | undefined;
  * }} ApplicationData
  * @import {OriginData} from '../section/origin/origin.js'
  * @import {LicenceData} from '../section/licence/licence.js'
  * @import {DestinationData} from '../section/destination/destination.js'
+ * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
  */
 
 export class ApplicationModel {
@@ -40,9 +43,12 @@ export class ApplicationModel {
    */
   static fromState(state) {
     return new ApplicationModel({
-      origin: OriginSection.fromState(state?.origin),
-      destination: DestinationSection.fromState(state?.destination),
-      licence: LicenceSection.fromState(state?.licence)
+      ...{
+        origin: OriginSection.fromState(state?.origin),
+        destination: DestinationSection.fromState(state?.destination),
+        licence: LicenceSection.fromState(state?.licence)
+      },
+      ...FeatureFlagHelper.getAppplicationStatesBehindFeatureFlags(state)
     })
   }
 }

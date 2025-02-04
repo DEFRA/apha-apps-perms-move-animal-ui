@@ -17,4 +17,16 @@ export class LicenceSection extends SectionModel {
   static fromState(data) {
     return SectionModel.fromState.call(this, data)
   }
+
+  buildGdsTaskDetails() {
+    const sectionValidity = this.validate()
+    return {
+      title: 'Receiving the licence',
+      initialLink:
+        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
+      summaryLink: '/receiving-the-licence/check-answers',
+      isValid: sectionValidity.isValid,
+      isEnabled: true
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /**
  * @import { Page } from '../../page/page-model.js'
@@ -92,4 +93,18 @@ export class SectionModel {
 
     return new this(pages)
   }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
+   * @param {Request} req
+   * @returns {object}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildGdsTaskDetails(req) {
+    throw new NotImplementedError()
+  }
 }
+
+/**
+ * import {Request} from '@hapi/hapi'
+ */

@@ -18,8 +18,7 @@ import { postExit } from './licence/postExitPage/index.js'
 import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
-import { config } from '../config/config.js'
-import { biosecurity } from './biosecurity/index.js'
+import { FeatureFlagHelper } from './common/helpers/feature-flag.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -53,9 +52,7 @@ export const router = {
       ])
 
       // Add routes specific to features behind feature flags
-      if (config.get('featureFlags')?.biosecurity) {
-        await server.register([biosecurity])
-      }
+      await server.register(FeatureFlagHelper.getRoutesBehindFeatureFlags())
 
       // Static assets
       await server.register([serveStaticFiles])

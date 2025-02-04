@@ -1,7 +1,7 @@
 import { OriginSection } from '../common/model/section/origin/origin.js'
 import { DestinationSection } from '../common/model/section/destination/destination.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
-import { BiosecuritySection } from '../common/model/section/biosecurity/biosecurity.js'
+import { FeatureFlagHelper } from '../common/helpers/feature-flag.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -16,60 +16,22 @@ export const taskListGetController = {
     const origin = OriginSection.fromState(req.yar.get('origin'))
     const destination = DestinationSection.fromState(req.yar.get('destination'))
     const licence = LicenceSection.fromState(req.yar.get('licence'))
-    const biosecurity = BiosecuritySection.fromState(req.yar.get('biosecurity'))
 
-    const originValidity = origin.validate()
-    const destinationValidity = destination.validate()
-
-    const isOriginValid = originValidity.isValid
-
-    const originGdsTask = buildGdsTaskItem({
-      title: 'Movement origin',
-      initialLink:
-        originValidity.firstInvalidPage?.urlPath ?? origin.firstPage.urlPath,
-      summaryLink: 'origin/check-answers',
-      isValid: isOriginValid,
-      isEnabled: true
-    })
-
-    const destinationGdsTask = buildGdsTaskItem({
-      title: 'Movement destination',
-      initialLink:
-        destinationValidity.firstInvalidPage?.urlPath ??
-        destination.firstPage.urlPath,
-      summaryLink: '/destination/check-answers',
-      isValid: destinationValidity.isValid,
-      isEnabled: isOriginValid
-    })
-
-    const licenceGdsTask = buildGdsTaskItem({
-      title: 'Receiving the licence',
-      initialLink: licence.firstPage.urlPath,
-      summaryLink: '/receiving-the-licence/check-answers',
-      isValid: licence.validate().isValid,
-      isEnabled: true
-    })
-
-    const biosecurityGdsTask = buildGdsTaskItem({
-      title: 'Biosecurity',
-      initialLink: biosecurity.firstPage.urlPath,
-      summaryLink: '/biosecurity/check-answers',
-      isValid: biosecurity.validate().isValid,
-      isEnabled: true
-    })
-
-    const gdsTasks = [
-      originGdsTask,
-      destinationGdsTask,
-      licenceGdsTask,
-      biosecurityGdsTask
+    const allSections = [
+      origin,
+      destination,
+      licence,
+      ...FeatureFlagHelper.getSectionsBehindFeatureFlags(req)
     ]
 
-    const allTasks = [origin, destination, licence, biosecurity]
+    const gdsTasks = allSections.map((section) => {
+      return buildGdsTaskItem(section.buildGdsTaskDetails(req))
+    })
+
     const incompleteTasks =
-      allTasks.length -
-      allTasks.filter((task) => {
-        return task.validate().isValid
+      allSections.length -
+      allSections.filter((section) => {
+        return section.validate().isValid
       }).length
 
     return h.view('task-list/index', {
