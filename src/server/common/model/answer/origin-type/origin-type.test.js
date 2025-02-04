@@ -1,3 +1,4 @@
+import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { OriginTypeAnswer } from './origin-type.js'
 /** @import {OriginTypePayload} from './origin-type.js' */
 
@@ -7,10 +8,8 @@ const payload = {
 }
 
 describe('OriginType', () => {
-  it('should have same static config & instance config', () => {
-    expect(new OriginTypeAnswer(payload).config).toEqual(
-      OriginTypeAnswer.config
-    )
+  it('should be a radio button', () => {
+    expect(new OriginTypeAnswer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {

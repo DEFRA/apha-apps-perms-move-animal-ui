@@ -52,7 +52,7 @@ export class QuestionPageController extends GenericPageController {
       heading: this.page.heading,
       value: answer.value,
       answer,
-      viewModelOptions: { validate: false },
+      viewModelOptions: { validate: false, question: this.page.question },
       ...this.page.viewProps(req),
       ...args
     })
@@ -78,7 +78,7 @@ export class QuestionPageController extends GenericPageController {
         heading: this.page.heading,
         value: answer.value,
         answer,
-        viewModelOptions: { validate: true },
+        viewModelOptions: { validate: true, question: this.page.question },
         errors,
         errorMessages: Answer.errorMessages(errors),
         ...this.page.viewProps(req)

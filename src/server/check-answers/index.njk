@@ -1,6 +1,15 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% extends 'layouts/questions.njk' %}
 {% from "macros/create-summary.njk" import createSummary %}
+
+{% block heading %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+    </div>
+  </div>
+{% endblock %}
+
 {% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -17,10 +26,6 @@
 {% endblock %}
 {% block questions %}
   <h2 class="govuk-heading-m">Your declaration</h2>
-  <p>
-    Before you submit your application, you must select one of the declaration
-    check boxes.
-  </p>
   <!-- form URL below turns off errors on the next page  -->
   {{
     govukCheckboxes
@@ -30,9 +35,8 @@
       errorMessage: errors.confirmation,
       fieldset: {
         legend:{
-          text: "",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
+          text: "Before you submit your application, you must select one of the declaration check boxes.",
+          isPageHeading: false
         }
       },
       items: [{

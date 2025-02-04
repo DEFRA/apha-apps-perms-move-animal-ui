@@ -19,6 +19,9 @@ import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { uploadPlan } from './biosecurity-map/upload-plan/index.js'
 import { uploadProgress } from './biosecurity-map/upload-progress/index.js'
+import { accessibilityStatement } from './accessibility/index.js'
+import { config } from '../config/config.js'
+import { keptSeparately } from './biosecurity/kept-separately/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -37,6 +40,7 @@ export const router = {
         home,
         privacyPolicy,
         cookiesPolicy,
+        accessibilityStatement,
         origin,
         destination,
         licence,
@@ -51,6 +55,11 @@ export const router = {
         uploadPlan,
         uploadProgress
       ])
+
+      // Add routes specific to features behind feature flags
+      if (config.get('featureFlags')?.biosecurity) {
+        await server.register([keptSeparately])
+      }
 
       // Static assets
       await server.register([serveStaticFiles])

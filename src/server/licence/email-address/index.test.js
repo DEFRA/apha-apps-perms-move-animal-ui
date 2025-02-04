@@ -6,7 +6,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
 const questionKey = 'emailAddress'
-const view = 'licence/email-address/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-enter-email-address'
 
 describe('EmailAddressPage', () => {

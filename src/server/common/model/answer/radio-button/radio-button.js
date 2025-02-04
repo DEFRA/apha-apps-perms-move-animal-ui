@@ -28,12 +28,14 @@ const createRadioSchema = (config) => {
 
 /**
  * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
  *  options: Record<string, RadioOption>,
  *  errors: {
  *    emptyOptionText: string
  *  }
+ * layout?: RadioButtonLayout
  * }} RadioButtonConfig
  */
 
@@ -42,11 +44,13 @@ const createRadioSchema = (config) => {
  * @augments AnswerModel<Payload>
  */
 export class RadioButtonAnswer extends AnswerModel {
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   get config() {
-    throw new NotImplementedError()
+    return /** @type {any} */ (this.constructor).config
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   static get config() {
     throw new NotImplementedError()
@@ -67,6 +71,11 @@ export class RadioButtonAnswer extends AnswerModel {
     const value = this._data?.[this.config.payloadKey]
 
     return this.config.options[value]?.label ?? ''
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get template() {
+    return 'model/answer/radio-button/radio-button.njk'
   }
 
   /**
@@ -98,7 +107,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate }) {
+  viewModel({ validate, question }) {
     const items = Object.entries(this.config.options).map(([key, value]) => ({
       id: key,
       value: key,
@@ -110,11 +119,18 @@ export class RadioButtonAnswer extends AnswerModel {
     items[0].id = this.config.payloadKey
 
     const model = {
+      fieldset: {
+        legend: {
+          text: question,
+          isPageHeading: true,
+          classes: 'govuk-fieldset__legend--l'
+        }
+      },
       name: this.config.payloadKey,
       id: this.config.payloadKey,
-      fieldset: {},
       value: this.value,
-      items
+      items,
+      classes: this.config.layout === 'inline' ? 'govuk-radios--inline' : ''
     }
 
     if (validate) {

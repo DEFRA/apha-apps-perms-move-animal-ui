@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#originSummaryController.content should render the expected content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+    </div>
+  </div>
+  <form method="POST" novalidate="">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+  
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Are you moving the animals on or off your farm or premises?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Off the farm or premises
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/to-or-from-own-premises?redirect_uri=/origin/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What type of premises are the animals moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Approved finishing unit (AFU)
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/origin/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      12/123/1234
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/origin/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the address of your farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Starfleet Headquarters<br>24-593 Federation Drive<br>San Francisco<br>San Francisco<br>RG24 8RR
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/address?redirect_uri=/origin/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of your farm or premises where the animals are moving off?</span></a>
+    </dd>
+  </div>
+</dl>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+        "
+`;

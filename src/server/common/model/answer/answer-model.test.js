@@ -1,19 +1,16 @@
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { AnswerModel } from './answer-model.js'
 
 describe('AnswerModel', () => {
   const notImplementedError = 'Not Implemented'
-  let answer
-
-  beforeEach(() => {
-    answer = new AnswerModel()
-  })
+  const answer = new AnswerModel()
 
   it('should throw NotImplementedError when value getter is called', () => {
     expect(() => answer.value).toThrow(notImplementedError)
   })
 
   it('should throw NotImplementedError when html getter is called', () => {
-    expect(() => answer.html()).toThrow(notImplementedError)
+    expect(() => answer.html).toThrow(notImplementedError)
   })
 
   it('should throw NotImplementedError when toState is called', () => {
@@ -29,9 +26,13 @@ describe('AnswerModel', () => {
   })
 
   it('should throw NotImplementedError when viewModel is called', () => {
-    expect(() => answer.viewModel({ validate: true })).toThrow(
-      notImplementedError
-    )
+    expect(() =>
+      answer.viewModel({ validate: true, question: 'What is the answer?' })
+    ).toThrow(notImplementedError)
+  })
+
+  it('should throw NotImplementedError when template is accessed', () => {
+    expect(() => answer.template).toThrow(NotImplementedError)
   })
 
   it('should seal the object to prevent property additions or deletions', () => {
@@ -40,7 +41,7 @@ describe('AnswerModel', () => {
         return data
       }
     }
-    answer = new AnswerModelBasic({ key: 'value' })
+    const answer = /** @type {any} */ (new AnswerModelBasic({ key: 'value' }))
 
     expect(() => {
       answer.something = 'should fail'

@@ -5,8 +5,13 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { destinationSummaryPage } from './index.js'
 import { destinationTypePage } from '../destination-type/index.js'
+import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 
 const pageUrl = '/destination/check-answers'
+
+const defaultState = {
+  destinationType: 'slaughter'
+}
 
 describe('#destinationSummaryPage', () => {
   /** @type {Server} */
@@ -24,10 +29,6 @@ describe('#destinationSummaryPage', () => {
   describe('slaughter answer selected', () => {
     /** @type {SessionTestHelper} */
     let session
-
-    const defaultState = {
-      destinationType: 'slaughter'
-    }
 
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
@@ -90,6 +91,13 @@ describe('#destinationSummaryPage', () => {
       )
     })
   })
+})
+
+describePageSnapshot({
+  describes: '#destinationSummaryPage.content',
+  it: 'should render the expected content',
+  pageUrl,
+  state: { destination: defaultState }
 })
 
 /**

@@ -1,5 +1,7 @@
 import { TextAnswer } from '../text/text.js'
 
+/** @import {TextConfig} from '../text/text.js' */
+
 const emailAddressRegex = /^[^@]+@[^@]+$/
 
 const maxLength = 255
@@ -17,9 +19,14 @@ const invalidAddressError =
  * @augments {TextAnswer<EmailAddressPayload>}
  */
 export class EmailAddressAnswer extends TextAnswer {
+  /** @type {TextConfig} */
   static config = {
     payloadKey: 'emailAddress',
     stripWhitespace: true,
+    type: 'email',
+    spellcheck: false,
+    autocomplete: 'email-address',
+    characterWidth: 20,
     validation: {
       pattern: { regex: emailAddressRegex, message: invalidAddressError },
       maxLength: { value: maxLength, message: invalidAddressError },

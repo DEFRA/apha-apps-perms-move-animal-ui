@@ -126,17 +126,27 @@ describe('FullName.viewModel', () => {
     lastName: longInput
   }
   const name = new FullNameAnswer(invalidFullName)
+  const question = 'What is the name of the CPH owner?'
 
   it('should return the value without errors (if validate is false)', () => {
-    expect(name.viewModel({ validate: false })).toEqual({
-      value: name.value
+    expect(name.viewModel({ validate: false, question })).toEqual({
+      value: name.value,
+      question
     })
   })
 
   it('should return the value with errors (if valiate is true)', () => {
-    expect(name.viewModel({ validate: true })).toEqual({
+    expect(name.viewModel({ validate: true, question })).toEqual({
       value: name.value,
-      errors: name.validate().errors
+      errors: name.validate().errors,
+      question
     })
+  })
+})
+
+describe('FullNameAnswer.template', () => {
+  it('should return the full name model template', () => {
+    const fullName = new FullNameAnswer(validFullNamePayload)
+    expect(fullName.template).toBe('model/answer/fullName/fullName.njk')
   })
 })

@@ -232,17 +232,27 @@ describe('Address.viewModel', () => {
     addressPostcode: 'invalid post code'
   }
   const address = new AddressAnswer(invalidAddress)
+  const question = 'What is the address of your farm or premises?'
 
   it('should return the value without errors (if validate is false)', () => {
-    expect(address.viewModel({ validate: false })).toEqual({
-      value: address.value
+    expect(address.viewModel({ validate: false, question })).toEqual({
+      value: address.value,
+      question
     })
   })
 
   it('should return the value with errors (if valiate is true)', () => {
-    expect(address.viewModel({ validate: true })).toEqual({
+    expect(address.viewModel({ validate: true, question })).toEqual({
+      question,
       value: address.value,
       errors: address.validate().errors
     })
+  })
+})
+
+describe('Address.template', () => {
+  it('should return the address model template', () => {
+    const address = new AddressAnswer(validAddress)
+    expect(address.template).toBe('model/answer/address/address.njk')
   })
 })

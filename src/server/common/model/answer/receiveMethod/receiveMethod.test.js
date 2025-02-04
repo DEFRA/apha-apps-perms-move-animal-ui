@@ -1,3 +1,4 @@
+import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { ReceiveMethodAnswer } from './receiveMethod.js'
 /** @import {ReceiveMethodPayload} from './receiveMethod.js' */
 
@@ -7,10 +8,8 @@ const payload = {
 }
 
 describe('ReceiveMethod', () => {
-  it('should have same static config & instance config', () => {
-    expect(new ReceiveMethodAnswer(payload).config).toEqual(
-      ReceiveMethodAnswer.config
-    )
+  it('should be a radio button', () => {
+    expect(new ReceiveMethodAnswer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {

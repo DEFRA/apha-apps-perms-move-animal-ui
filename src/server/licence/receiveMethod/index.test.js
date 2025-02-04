@@ -9,7 +9,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const sectionKey = 'licence'
 const question = 'How would you like this licence sent to you?'
 const questionKey = 'receiveMethod'
-const view = 'licence/receiveMethod/index'
+const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-email-or-post'
 
 describe('ReceiveMethodPage', () => {

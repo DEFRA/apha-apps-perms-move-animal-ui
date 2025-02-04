@@ -7,6 +7,7 @@ import {
 import cookiesPage from '../page-objects/cookiesPage.js'
 import landingPage from '../page-objects/landingPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
+import accessibilityStatementPage from '../page-objects/accessibilityStatementPage.js'
 
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -42,6 +43,7 @@ describe('Landing page test', () => {
 
   it('Should verify the accessibility link in the footer', async () => {
     await selectElement(landingPage.getAccessibilityFooterLink())
-    await waitForFullPageUrl('https://www.gov.uk/help/accessibility-statement')
+    await waitForPagePath(accessibilityStatementPage.pagePath)
+    await accessibilityStatementPage.verifyPageHeadingAndTitle()
   })
 })
