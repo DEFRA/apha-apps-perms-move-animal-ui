@@ -5,6 +5,10 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
 
 /**
+ * @import { Request } from '@hapi/hapi'
+ */
+
+/**
  * export @typedef {{
  * origin: OriginData | undefined;
  * licence: LicenceData | undefined;
@@ -17,6 +21,8 @@ import { validateApplication } from './validation.js'
  * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
  */
 
+// This is a list of all the sections that are implemented in the application.
+// The order in this array drives the order in which the sections are displayed.
 const implementedSections = [
   OriginSection,
   DestinationSection,
@@ -51,17 +57,17 @@ export class ApplicationModel {
   }
 
   /**
-   * @param {ApplicationData | undefined} state
+   * @param {Request} req
    * @returns {ApplicationModel}
    */
-  static fromState(state) {
+  static fromState(req) {
     return new ApplicationModel(
-      this.visibleSections.reduce((acc, section) => {
-        acc[section.config.title] = section.fromState(
-          state?.[section.config.key]
-        )
-        return acc
-      }, {})
+      Object.fromEntries(
+        this.visibleSections.map((section) => [
+          section.config.key,
+          section.fromState(req.yar.get(section.config.key))
+        ])
+      )
     )
   }
 }
