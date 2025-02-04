@@ -1,13 +1,11 @@
 import { createServer } from '~/src/server/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+import Wreck from '@hapi/wreck'
 
 /**
  * @import { IncomingMessage } from 'node:http'
- * @import { RequestOptions } from '~/src/server/services/httpService.js'
  */
-
-import Wreck from '@hapi/wreck'
 
 jest.spyOn(Wreck, 'post').mockResolvedValue({
   res: /** @type {IncomingMessage} */ ({
