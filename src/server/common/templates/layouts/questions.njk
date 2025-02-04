@@ -5,21 +5,25 @@
   {% if (errorMessages) %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        {{ govukErrorSummary({
+        {{
+          govukErrorSummary({
           titleText: "There is a problem",
           errorList: errorMessages
-          }) }}
+          })
+        }}
       </div>
     </div>
   {% endif %}
-  {% block heading %}{% endblock %}
-  {% block beforequestion %}{% endblock %}
+  {% block heading %}
+  {% endblock %}
+  {% block beforequestion %}
+  {% endblock %}
   {% block form %}
     <form method="POST" novalidate>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <input type="hidden" name="crumb" value="{{ crumb }}"/>
-          <input type="hidden" name="nextPage" value="{{ nextPage }}"/>
+          <input type="hidden" name="crumb" value="{{ crumb }}" />
+          <input type="hidden" name="nextPage" value="{{ nextPage }}" />
           {% block questions %}
             {% include answer.template %}
           {% endblock %}
@@ -27,14 +31,17 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             {% block button %}
-              {{ govukButton({
-                id: "continue-button",
-                text: continueButtonText | default('Continue'),
-                classes: continueButtonClasses | default('')
-              }) }}
+              {{
+                govukButton({
+                  id: "continue-button",
+                  text: continueButtonText | default('Continue'),
+                  classes: continueButtonClasses | default('')
+                })
+              }}
             {% endblock %}
           </div>
         </div>
-      </form>
-    {% endblock %}
+      </div>
+    </form>
   {% endblock %}
+{% endblock %}

@@ -2,11 +2,11 @@
 
 exports[`OnOffFarmPage #onOffFarmPage.content licenceSummaryPage.content should render expected response and content 1`] = `
 "
-  <form method="POST" novalidate="">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="csrf-value">
-        <input type="hidden" name="nextPage" value="">
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
@@ -32,15 +32,15 @@ exports[`OnOffFarmPage #onOffFarmPage.content licenceSummaryPage.content should 
   </fieldset>
 </div>
 
-      </div>
-    </div>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+              <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
         "
 `;

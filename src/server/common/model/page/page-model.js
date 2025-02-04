@@ -48,7 +48,7 @@ export class Page {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {AnswerModel} [_answer]
-   * @returns {Page }
+   * @returns {Page}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer) {

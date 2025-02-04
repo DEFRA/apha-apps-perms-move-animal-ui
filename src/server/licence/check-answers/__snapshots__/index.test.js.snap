@@ -7,11 +7,11 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
       <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
     </div>
   </div>
-  <form method="POST" novalidate="">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="csrf-value">
-        <input type="hidden" name="nextPage" value="">
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
   
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
@@ -49,15 +49,15 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
   </div>
 </dl>
 
-      </div>
-    </div>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+              <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
         "
 `;

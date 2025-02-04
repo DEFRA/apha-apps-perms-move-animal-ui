@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const uploadSpinner = document.querySelector('form ~ .apha_upload-spinner')
 
   if (uploadSpinner) {
-    uploadSpinner.style.display = 'none'
+    uploadSpinner.classList.add('apha-hidden')
   }
 
   if (form && uploadSpinner) {
     form.addEventListener('submit', () => {
       document
         .querySelectorAll('.govuk-main-wrapper > *:not(.apha_upload-spinner)')
-        .forEach((el) => (el.style.display = 'none'))
-      uploadSpinner.style.display = 'block'
+        .forEach((el) => el.classList.add('apha-hidden'))
+      uploadSpinner.classList.toggle('apha-block')
       return false
     })
   }
