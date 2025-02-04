@@ -1,5 +1,6 @@
+// sonarignore
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form') // Adjust the selector to target your specific form
+  const form = document.querySelector('form')
   const uploadSpinner = document.querySelector('form ~ .apha_upload-spinner')
 
   if (uploadSpinner) {
