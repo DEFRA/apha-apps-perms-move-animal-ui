@@ -137,7 +137,7 @@ export const validateReceiveMethod = async (changeLink, valueElement) => {
   await expect(receiveMethodPage.emailRadio).toBeSelected()
   await receiveMethodPage.selectEmailAndContinue()
 
-  await validateElementVisibleAndText(valueElement, 'email')
+  await validateElementVisibleAndText(valueElement, 'Email')
 }
 
 export const validateOnFarmErrorHandling = async (
@@ -145,9 +145,11 @@ export const validateOnFarmErrorHandling = async (
   final = false
 ) => {
   await selectElement(changeElement)
+  await toFromFarmPage.verifyPageHeadingAndTitle()
   await toFromFarmPage.selectOnFarmAndContinue()
   await exitPage.verifyPageHeadingAndTitle()
   await exitPage.selectBackLink()
+  await toFromFarmPage.verifyPageHeadingAndTitle()
   await expect(toFromFarmPage.onThefarmRadio).toBeSelected()
   await toFromFarmPage.selectBackLink()
 

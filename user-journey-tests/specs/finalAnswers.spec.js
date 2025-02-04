@@ -1,5 +1,4 @@
-import { selectElement, waitForPagePath } from '../helpers/page.js'
-import landingPage from '../page-objects/landingPage.js'
+import { selectElement } from '../helpers/page.js'
 import {
   validateAndAdjustAddress,
   validateAndAdjustEmail,
@@ -10,29 +9,28 @@ import {
   validateOriginType,
   validateReceiveMethod
 } from '../helpers/testHelpers/checkAnswers.js'
-import { completeOriginTaskAnswersCustom } from '../helpers/testHelpers/movementLicence.js'
-import { completeLicenceTaskAnswersCustom } from '../helpers/testHelpers/receivingLicence.js'
 import finalAnswersPage from '../page-objects/finalAnswersPage.js'
-import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
-import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
-import submissionConfirmationPage from '../page-objects/submissionConfirmationPage.js'
-import completeDestinationTask from '../helpers/testHelpers/destination.js'
-import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 import destinationSelectionPage from '../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../page-objects/destination/generalLicencePage.js'
+import { completeApplication } from '../helpers/testHelpers/finalAnswers.js'
 
-const firstNameDefault = 'firstName'
-const lastNameDefault = 'lastName'
+const originDefaultObject = {
+  defaultCphNumber: '23/678/1234',
+  defaultLineOne: 'default line one',
+  defaultTownOrCity: 'default Gotham',
+  defaultPostcode: 'NB2A 1GG'
+}
+
+const licenceDefaultObject = {
+  firstNameDefault: 'firstName',
+  lastNameDefault: 'lastName',
+  emailDefault: 'default@email.com'
+}
+
 const newFirstName = 'newFirst'
 const newLastName = 'newLast'
-const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
-
-const defaultCphNumber = '23/678/1234'
-const defaultLineOne = 'default line one'
-const defaultTownOrCity = 'default Gotham'
-const defaultPostcode = 'NB2A 1GG'
 
 const parishHoldingInput = '45/456/4567'
 const lineOne = 'edited line one'
@@ -41,50 +39,10 @@ const townOrCity = 'Gotham edited'
 const county = 'West new york edited'
 const postcode = 'SW1C 2CC'
 
-const completeApplication = async () => {
-  await landingPage.navigateToPageAndVerifyTitle()
-  await completeOriginTaskAnswersCustom(
-    defaultCphNumber,
-    defaultLineOne,
-    defaultTownOrCity,
-    defaultPostcode
-  )
-  await checkAnswersPage.selectContinue()
-  await taskListPage.verifyPageHeadingAndTitle()
-  await taskListPage.verifyStatus({
-    position: 1,
-    taskTitle: 'Movement origin',
-    expectedStatus: 'Completed'
-  })
-
-  await completeDestinationTask('approved')
-  await destinationAnswersPage.selectContinue()
-  await taskListPage.verifyPageHeadingAndTitle()
-  await taskListPage.verifyStatus({
-    position: 2,
-    taskTitle: 'Movement destination',
-    expectedStatus: 'Completed'
-  })
-
-  await completeLicenceTaskAnswersCustom(
-    emailDefault,
-    firstNameDefault,
-    lastNameDefault
-  )
-  await licenceAnswersPage.selectContinue()
-  await taskListPage.verifyPageHeadingAndTitle()
-  await taskListPage.verifyStatus({
-    position: 3,
-    taskTitle: 'Receiving the licence',
-    expectedStatus: 'Completed'
-  })
-  await finalAnswersPage.navigateToPageAndVerifyTitle()
-}
-
 describe('Check your final answers test', () => {
-  beforeEach(async () => {
-    await browser.deleteAllCookies()
-    await completeApplication()
+  // eslint-disable-next-line
+  before('Navigate to check answers page', async () => {
+    await completeApplication(originDefaultObject, licenceDefaultObject)
   })
 
   it('Should verify the back link is history -1', async () => {
@@ -117,7 +75,7 @@ describe('Check your final answers test', () => {
     await validateAndAdjustParishNumber(
       finalAnswersPage.parishHoldingChange,
       finalAnswersPage.parishNumberValue,
-      defaultCphNumber,
+      originDefaultObject.defaultCphNumber,
       parishHoldingInput
     )
   })
@@ -128,9 +86,9 @@ describe('Check your final answers test', () => {
       finalAnswersPage.addressChange,
       finalAnswersPage.addressValue,
       {
-        lineOne: defaultLineOne,
-        townOrCity: defaultTownOrCity,
-        postcode: defaultPostcode
+        lineOne: originDefaultObject.defaultLineOne,
+        townOrCity: originDefaultObject.defaultTownOrCity,
+        postcode: originDefaultObject.defaultPostcode
       },
       { lineOne, lineTwo, townOrCity, county, postcode }
     )
@@ -141,9 +99,9 @@ describe('Check your final answers test', () => {
     await validateAndAdjustOwnerName(
       finalAnswersPage.ownerNameChange,
       finalAnswersPage.ownerNameValue,
-      firstNameDefault,
+      licenceDefaultObject.firstNameDefault,
       newFirstName,
-      lastNameDefault,
+      licenceDefaultObject.lastNameDefault,
       newLastName
     )
   })
@@ -153,7 +111,7 @@ describe('Check your final answers test', () => {
     await validateAndAdjustEmail(
       finalAnswersPage.emailChange,
       finalAnswersPage.emailValue,
-      emailDefault,
+      licenceDefaultObject.emailDefault,
       editedEmail
     )
   })
@@ -182,25 +140,5 @@ describe('Check your final answers test', () => {
   it('Should verify changing the value to on the farm and navigating back', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnFarmErrorHandling(finalAnswersPage.onOffFarmChange, true)
-  })
-
-  describe('declarations', () => {
-    it('Should submit the page after selecting first declaration', async () => {
-      await finalAnswersPage.navigateToPageAndVerifyTitle()
-      await finalAnswersPage.selectADeclarationAndContinue()
-      await waitForPagePath(submissionConfirmationPage.pagePath)
-    })
-
-    it('Should submit the page after selecting second declaration', async () => {
-      await finalAnswersPage.navigateToPageAndVerifyTitle()
-      await finalAnswersPage.selectADeclarationAndContinue(true)
-      await waitForPagePath(submissionConfirmationPage.pagePath)
-    })
-
-    it('Should verify errors when trying to submit without selecting a declaration', async () => {
-      // This test must go last because it changes the page title
-      await finalAnswersPage.navigateToPageAndVerifyTitle()
-      await finalAnswersPage.submissionErrorTest()
-    })
   })
 })

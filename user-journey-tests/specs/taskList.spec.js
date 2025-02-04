@@ -136,7 +136,7 @@ describe('Task list page test', () => {
     )
     await taskListPage.selectReceiveTheLicence()
 
-    await licenceAnswersPage.verifyPageHeadingAndTitle()
     await waitForPagePath(licenceAnswersPage.pagePath)
+    await licenceAnswersPage.verifyPageHeadingAndTitle()
   })
 })
