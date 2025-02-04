@@ -51,14 +51,12 @@ export const router = {
         submit,
         submitSummary,
         premisesType,
-        fullName,
-        uploadPlan,
-        uploadProgress
+        fullName
       ])
 
       // Add routes specific to features behind feature flags
       if (config.get('featureFlags')?.biosecurity) {
-        await server.register([keptSeparately])
+        await server.register([keptSeparately, uploadPlan, uploadProgress])
       }
 
       // Static assets

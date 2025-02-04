@@ -5,41 +5,36 @@
   {% if (errorMessages) %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        {{
-          govukErrorSummary({
+        {{ govukErrorSummary({
           titleText: "There is a problem",
           errorList: errorMessages
-          })
-        }}
+          }) }}
       </div>
     </div>
   {% endif %}
-  {% block heading %}
-  {% endblock %}
-  {% block beforequestion %}
-  {% endblock %}
-  <form method="POST" novalidate>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="{{ crumb }}" />
-        <input type="hidden" name="nextPage" value="{{ nextPage }}" />
-        {% block questions %}
-          {% include answer.template %}
-        {% endblock %}
-      </div>
+  {% block heading %}{% endblock %}
+  {% block beforequestion %}{% endblock %}
+  {% block form %}
+    <form method="POST" novalidate>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          {% block button %}
-            {{
-              govukButton({
+          <input type="hidden" name="crumb" value="{{ crumb }}"/>
+          <input type="hidden" name="nextPage" value="{{ nextPage }}"/>
+          {% block questions %}
+            {% include answer.template %}
+          {% endblock %}
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            {% block button %}
+              {{ govukButton({
                 id: "continue-button",
                 text: continueButtonText | default('Continue'),
                 classes: continueButtonClasses | default('')
-              })
-            }}
-          {% endblock %}
+              }) }}
+            {% endblock %}
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    {% endblock %}
   {% endblock %}
-{% endblock %}
