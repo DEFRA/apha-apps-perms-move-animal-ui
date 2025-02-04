@@ -1,6 +1,5 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
-import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /**
  * @import { Page } from '../../page/page-model.js'
@@ -20,6 +19,10 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 export class SectionModel {
   /** @type {SectionPayload} */
   _data
+
+  get config() {
+    return /** @type {any} */ (this.constructor).config
+  }
 
   /** @type {() => QuestionPage} */
   static firstPageFactory
@@ -101,7 +104,15 @@ export class SectionModel {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildGdsTaskDetails(req) {
-    throw new NotImplementedError()
+    const sectionValidity = this.validate()
+    return {
+      title: this.config.title,
+      initialLink:
+        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
+      summaryLink: this.config.summaryLink,
+      isValid: sectionValidity.isValid,
+      isEnabled: this.config.isEnabled(req)
+    }
   }
 }
 

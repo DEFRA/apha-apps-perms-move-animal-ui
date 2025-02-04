@@ -9,6 +9,13 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
  * @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js'
  */
 export class DestinationSection extends SectionModel {
+  static config = {
+    title: 'Movement destination',
+    summaryLink: '/destination/check-answers',
+    isEnabled: (req) =>
+      OriginSection.fromState(req.yar.get('origin')).validate().isValid
+  }
+
   static firstPageFactory = () => destinationTypePage
 
   /**
@@ -16,18 +23,5 @@ export class DestinationSection extends SectionModel {
    */
   static fromState(data) {
     return SectionModel.fromState.call(this, data)
-  }
-
-  buildGdsTaskDetails(req) {
-    const sectionValidity = this.validate()
-    return {
-      title: 'Movement destination',
-      initialLink:
-        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
-      summaryLink: '/receiving-the-licence/check-answers',
-      isValid: sectionValidity.isValid,
-      isEnabled: OriginSection.fromState(req.yar.get('origin')).validate()
-        .isValid
-    }
   }
 }

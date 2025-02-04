@@ -13,6 +13,12 @@ import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
  */
 
 export class OriginSection extends SectionModel {
+  static config = {
+    title: 'Movement origin',
+    summaryLink: '/origin/check-answers',
+    isEnabled: () => true
+  }
+
   static firstPageFactory = () => onOffFarmPage
 
   /**
@@ -20,17 +26,5 @@ export class OriginSection extends SectionModel {
    */
   static fromState(data) {
     return SectionModel.fromState.call(this, data)
-  }
-
-  buildGdsTaskDetails() {
-    const sectionValidity = this.validate()
-    return {
-      title: 'Movement origin',
-      initialLink:
-        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
-      summaryLink: '/origin/check-answers',
-      isValid: sectionValidity.isValid,
-      isEnabled: true
-    }
   }
 }

@@ -8,6 +8,12 @@ import { SectionModel } from '../section-model/section-model.js'
  * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
  */
 export class BiosecuritySection extends SectionModel {
+  static config = {
+    title: 'Biosecurity details',
+    summaryLink: '/biosecurity/check-answers',
+    isEnabled: () => true
+  }
+
   static firstPageFactory = () => keptSeparatelyPage
 
   /**
@@ -15,17 +21,5 @@ export class BiosecuritySection extends SectionModel {
    */
   static fromState(data) {
     return SectionModel.fromState.call(this, data)
-  }
-
-  buildGdsTaskDetails() {
-    const sectionValidity = this.validate()
-    return {
-      title: 'Biosecurity details',
-      initialLink:
-        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
-      summaryLink: '/biosecurity/check-answers',
-      isValid: sectionValidity.isValid,
-      isEnabled: true
-    }
   }
 }
