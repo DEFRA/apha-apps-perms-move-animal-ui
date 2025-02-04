@@ -1,7 +1,4 @@
-import { OriginSection } from '../common/model/section/origin/origin.js'
-import { DestinationSection } from '../common/model/section/destination/destination.js'
-import { LicenceSection } from '../common/model/section/licence/licence.js'
-import { FeatureFlagHelper } from '../common/helpers/feature-flag.js'
+import { ApplicationModel } from '../common/model/application/application.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -13,24 +10,17 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const origin = OriginSection.fromState(req.yar.get('origin'))
-    const destination = DestinationSection.fromState(req.yar.get('destination'))
-    const licence = LicenceSection.fromState(req.yar.get('licence'))
+    const visibleSections = ApplicationModel.visibleSections.map((section) => {
+      return section.fromState(req.yar.get(section.config.key))
+    })
 
-    const allSections = [
-      origin,
-      destination,
-      licence,
-      ...FeatureFlagHelper.getSectionsBehindFeatureFlags(req)
-    ]
-
-    const gdsTasks = allSections.map((section) => {
+    const gdsTasks = visibleSections.map((section) => {
       return buildGdsTaskItem(section.buildGdsTaskDetails(req))
     })
 
     const incompleteTasks =
-      allSections.length -
-      allSections.filter((section) => {
+      visibleSections.length -
+      visibleSections.filter((section) => {
         return section.validate().isValid
       }).length
 

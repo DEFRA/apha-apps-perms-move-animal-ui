@@ -1,8 +1,8 @@
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
+import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
-import { FeatureFlagHelper } from '../../helpers/feature-flag.js'
 
 /**
  * export @typedef {{
@@ -16,6 +16,13 @@ import { FeatureFlagHelper } from '../../helpers/feature-flag.js'
  * @import {DestinationData} from '../section/destination/destination.js'
  * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
  */
+
+const implementedSections = [
+  OriginSection,
+  DestinationSection,
+  LicenceSection,
+  BiosecuritySection
+]
 
 export class ApplicationModel {
   _data
@@ -37,18 +44,24 @@ export class ApplicationModel {
     return this._data
   }
 
+  static get visibleSections() {
+    return implementedSections.filter((section) => {
+      return section.config.isVisible
+    })
+  }
+
   /**
    * @param {ApplicationData | undefined} state
    * @returns {ApplicationModel}
    */
   static fromState(state) {
-    return new ApplicationModel({
-      ...{
-        origin: OriginSection.fromState(state?.origin),
-        destination: DestinationSection.fromState(state?.destination),
-        licence: LicenceSection.fromState(state?.licence)
-      },
-      ...FeatureFlagHelper.getAppplicationStatesBehindFeatureFlags(state)
-    })
+    return new ApplicationModel(
+      this.visibleSections.reduce((acc, section) => {
+        acc[section.config.title] = section.fromState(
+          state?.[section.config.key]
+        )
+        return acc
+      }, {})
+    )
   }
 }

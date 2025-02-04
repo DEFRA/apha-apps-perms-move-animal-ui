@@ -1,3 +1,4 @@
+import { destination } from '~/src/server/destination/index.js'
 import { OriginSection } from '../origin/origin.js'
 import { SectionModel } from '../section-model/section-model.js'
 import { destinationTypePage } from '~/src/server/destination/destination-type/index.js'
@@ -10,10 +11,13 @@ import { destinationTypePage } from '~/src/server/destination/destination-type/i
  */
 export class DestinationSection extends SectionModel {
   static config = {
+    key: 'destination',
     title: 'Movement destination',
+    plugin: destination,
     summaryLink: '/destination/check-answers',
     isEnabled: (req) =>
-      OriginSection.fromState(req.yar.get('origin')).validate().isValid
+      OriginSection.fromState(req.yar.get('origin')).validate().isValid,
+    isVisible: true
   }
 
   static firstPageFactory = () => destinationTypePage
