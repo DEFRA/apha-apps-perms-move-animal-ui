@@ -3,7 +3,6 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
-import { assert } from 'console'
 import { uploadProgressPage } from '../upload-progress/index.js'
 
 /**
@@ -27,15 +26,6 @@ export class UploadPlanPage extends QuestionPage {
 }
 
 export class UploadPlanController extends QuestionPageController {
-  constructor(page) {
-    super(page)
-
-    const { bucket, uploaderUrl } = config.get('fileUpload')
-
-    assert(bucket, 'fileUpload.bucket is required')
-    assert(uploaderUrl, 'fileUpload.uploaderUrl is required')
-  }
-
   async handleGet(req, h) {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
