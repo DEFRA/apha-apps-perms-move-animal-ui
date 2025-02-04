@@ -168,6 +168,7 @@ export const config = convict({
     uploaderUrl: {
       format: String,
       default: null,
+      nullable: true,
       env: 'UPLOADER_URL'
     },
     bucket: {
