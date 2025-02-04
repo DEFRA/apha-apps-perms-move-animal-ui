@@ -1,5 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -10,7 +11,7 @@ import Wreck from '@hapi/wreck'
 
 jest.spyOn(Wreck, 'post').mockResolvedValue({
   res: /** @type {IncomingMessage} */ ({
-    statusCode: 200
+    statusCode: statusCodes.ok
   }),
   payload: JSON.stringify({
     uploadId: 'b18ceadb-afb1-4955-a70b-256bf94444d5',
@@ -40,6 +41,6 @@ describe('#UploadPlan', () => {
       url: '/biosecurity-map/upload-plan'
     })
 
-    expect(response.statusCode).toBe(200)
+    expect(response.statusCode).toBe(statusCodes.ok)
   })
 })
