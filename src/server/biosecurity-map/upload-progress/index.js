@@ -1,11 +1,19 @@
 import Wreck from '@hapi/wreck'
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
 
 /**
  * @import {NextPage} from '../../common/helpers/next-page.js'
  * @import {ConfirmationPayload} from '../../common/model/answer/confirmation/confirmation.js'
  */
+
+class BioSecuritySummary extends QuestionPage {
+  urlPath = '/biosecurity/check-answers'
+  sectionKey = 'biosecurity-map'
+  question = ''
+  questionKey = 'disinfection'
+}
 
 export class UploadProgressPage extends Page {
   pageTitle = 'Uploading the biosecurity map'
@@ -16,9 +24,7 @@ export class UploadProgressPage extends Page {
   view = `biosecurity-map/upload-progress/index`
 
   nextPage() {
-    return {
-      urlPath: '/404'
-    }
+    return new BioSecuritySummary()
   }
 }
 

@@ -1,10 +1,10 @@
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 {% macro uploadSpinner(options) %}
-  {% set display = "block" %}
+  {% set display = "apha-block" %}
   {% if options.formPage %}
-    {% set display = "none" %}
+    {% set display = "apha-hidden" %}
   {% endif %}
-  <div class="apha_upload-spinner" style="display: {{ display }}">
+  <div class="apha_upload-spinner" class="{{ display }}">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">{{ options.title }}</h1>
