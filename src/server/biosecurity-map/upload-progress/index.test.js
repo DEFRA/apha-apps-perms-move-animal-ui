@@ -8,15 +8,6 @@ import Wreck from '@hapi/wreck'
  * @import { IncomingMessage } from 'node:http'
  */
 
-jest.spyOn(Wreck, 'get').mockResolvedValue({
-  res: /** @type {IncomingMessage} */ ({
-    statusCode: statusCodes.ok
-  }),
-  payload: JSON.stringify({
-    uploadStatus: 'pending'
-  })
-})
-
 describe('#UploadPlan', () => {
   describePageSnapshot({
     describes: '#UploadProgressPage',
@@ -39,18 +30,57 @@ describe('#UploadPlan', () => {
     })
   })
 
-  it('should render expected response and content', async () => {
-    const { statusCode, payload } = await server.inject({
-      method: 'GET',
-      url: '/biosecurity-map/uploading',
-      headers: {
-        Cookie: session.sessionID
-      }
+  describe('virus scan pending', () => {
+    beforeEach(() => {
+      jest.spyOn(Wreck, 'get').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'pending'
+        })
+      })
     })
 
-    expect(statusCode).toBe(statusCodes.ok)
+    it('should render expected response and content', async () => {
+      const { statusCode, payload } = await server.inject({
+        method: 'GET',
+        url: '/biosecurity-map/uploading',
+        headers: {
+          Cookie: session.sessionID
+        }
+      })
 
-    expect(payload).toContain('<meta http-equiv="refresh" content="5" />')
-    expect(payload).toContain('Uploading the biosecurity map')
+      expect(statusCode).toBe(statusCodes.ok)
+
+      expect(payload).toContain('<meta http-equiv="refresh" content="5" />')
+      expect(payload).toContain('Uploading the biosecurity map')
+    })
+  })
+
+  describe('virus scan complete', () => {
+    beforeEach(() => {
+      jest.spyOn(Wreck, 'get').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'ready'
+        })
+      })
+    })
+
+    it('should redirect to the next page', async () => {
+      const { statusCode, headers } = await server.inject({
+        method: 'GET',
+        url: '/biosecurity-map/uploading',
+        headers: {
+          Cookie: session.sessionID
+        }
+      })
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe('/biosecurity/check-answers')
+    })
   })
 })
