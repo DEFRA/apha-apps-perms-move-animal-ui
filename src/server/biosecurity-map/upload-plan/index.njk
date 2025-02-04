@@ -1,6 +1,6 @@
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 {% from "macros/create-summary.njk" import createSummary %}
-{% from "upload-spinner/macro.njk" import uploadSpinner %}
+{% from "uploadSpinner/macro.njk" import appUploadSpinner %}
 {% extends 'layouts/questions.njk' %}
 {% block form %}
   <form
@@ -58,7 +58,7 @@
     </div>
   </form>
   {{
-    uploadSpinner({
+    appUploadSpinner({
       title: "Uploading the biosecurity map",
       subTitle: "This may take a few minutes.",
       formPage: true
