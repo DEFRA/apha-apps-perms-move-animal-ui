@@ -1,12 +1,12 @@
-import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage'
-import finalAnswersPage from '../../page-objects/finalAnswersPage'
-import landingPage from '../../page-objects/landingPage'
-import checkAnswersPage from '../../page-objects/origin/checkAnswersPage'
-import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage'
-import taskListPage from '../../page-objects/taskListPage'
-import completeDestinationTask from './destination'
-import { completeOriginTaskAnswersCustom } from './movementLicence'
-import { completeLicenceTaskAnswersCustom } from './receivingLicence'
+import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
+import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
+import landingPage from '../../page-objects/landingPage.js'
+import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
+import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
+import taskListPage from '../../page-objects/taskListPage.js'
+import completeDestinationTask from './destination.js'
+import { completeOriginTaskAnswersCustom } from './movementLicence.js'
+import { completeLicenceTaskAnswersCustom } from './receivingLicence.js'
 
 export const completeApplication = async (originObject, licenceObject) => {
   await landingPage.navigateToPageAndVerifyTitle()
