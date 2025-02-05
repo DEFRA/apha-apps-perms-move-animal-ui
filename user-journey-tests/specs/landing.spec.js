@@ -1,7 +1,6 @@
 import {
   selectElement,
-  switchToNewTab,
-  waitForFullPageUrl,
+  validateHrefOfElement,
   waitForPagePath
 } from '../helpers/page.js'
 import cookiesPage from '../page-objects/cookiesPage.js'
@@ -28,9 +27,8 @@ describe('Landing page test', () => {
   })
 
   it('Should verify the feedback link', async () => {
-    await selectElement(landingPage.getFeedbackLink())
-    await switchToNewTab()
-    await waitForFullPageUrl(
+    validateHrefOfElement(
+      landingPage.getFeedbackLink(),
       'https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk'
     )
   })

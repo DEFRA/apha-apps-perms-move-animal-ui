@@ -77,7 +77,7 @@ class FinalAnswersPage extends Page {
   }
 
   get receiveMethodChange() {
-    return $('[data-testid="licence-choice-change-link"]')
+    return $('[data-testid="receiveMethod-change-link"]')
   }
 
   get emailChange() {
