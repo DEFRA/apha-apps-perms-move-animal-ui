@@ -1,6 +1,8 @@
-import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { Page } from '../../common/model/page/page-model.js'
 
-export class GrazingPage extends QuestionPage {
+// using Page to not make whole section invalid due to the page not being implemented yet
+// make QuestionPage when implementing
+export class GrazingPage extends Page {
   urlPath = '/biosecurity/grazing'
   sectionKey = 'biosecurity'
   question = ''

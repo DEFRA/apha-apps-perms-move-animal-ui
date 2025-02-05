@@ -1,6 +1,4 @@
-import { OriginSection } from '../common/model/section/origin/origin.js'
-import { DestinationSection } from '../common/model/section/destination/destination.js'
-import { LicenceSection } from '../common/model/section/licence/licence.js'
+import { ApplicationModel } from '../common/model/application/application.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -12,49 +10,18 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const origin = OriginSection.fromState(req.yar.get('origin'))
-    const destination = DestinationSection.fromState(req.yar.get('destination'))
-    const licence = LicenceSection.fromState(req.yar.get('licence'))
-
-    const originValidity = origin.validate()
-    const destinationValidity = destination.validate()
-
-    const isOriginValid = originValidity.isValid
-
-    const originGdsTask = buildGdsTaskItem({
-      title: 'Movement origin',
-      initialLink:
-        originValidity.firstInvalidPage?.urlPath ?? origin.firstPage.urlPath,
-      summaryLink: 'origin/check-answers',
-      isValid: isOriginValid,
-      isEnabled: true
+    const visibleSections = ApplicationModel.visibleSections.map((section) => {
+      return section.fromState(req.yar.get(section.config.key))
     })
 
-    const destinationGdsTask = buildGdsTaskItem({
-      title: 'Movement destination',
-      initialLink:
-        destinationValidity.firstInvalidPage?.urlPath ??
-        destination.firstPage.urlPath,
-      summaryLink: '/destination/check-answers',
-      isValid: destinationValidity.isValid,
-      isEnabled: isOriginValid
+    const gdsTasks = visibleSections.map((section) => {
+      return buildGdsTaskItem(section.buildGdsTaskDetails(req))
     })
 
-    const licenceGdsTask = buildGdsTaskItem({
-      title: 'Receiving the licence',
-      initialLink: licence.firstPage.urlPath,
-      summaryLink: '/receiving-the-licence/check-answers',
-      isValid: licence.validate().isValid,
-      isEnabled: true
-    })
-
-    const gdsTasks = [originGdsTask, destinationGdsTask, licenceGdsTask]
-
-    const allTasks = [origin, destination, licence]
     const incompleteTasks =
-      allTasks.length -
-      allTasks.filter((task) => {
-        return task.validate().isValid
+      visibleSections.length -
+      visibleSections.filter((section) => {
+        return section.validate().isValid
       }).length
 
     return h.view('task-list/index', {

@@ -2,6 +2,7 @@ import { $ } from '@wdio/globals'
 
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
+import { secureDeviceArray } from '../../helpers/constants.js'
 
 const pageHeadingAndTitle =
   'This service does not currently send licences by post'
@@ -30,8 +31,11 @@ class PostExitPage extends Page {
   }
 
   async verifyContinueWithEmailButton() {
-    await page.selectLinkAndVerifyTitle(
-      this.continueWithEmailButton,
+    await page.selectElement(this.continueWithEmailButton)
+    if (secureDeviceArray.includes(browser.capabilities?.deviceName)) {
+      await page.checkForSecurityPopUpAndResolve()
+    }
+    await page.verifyPageTitle(
       'What email address would you like the licence sent to?'
     )
   }

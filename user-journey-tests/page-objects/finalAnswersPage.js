@@ -52,6 +52,10 @@ class FinalAnswersPage extends Page {
     return $$(valueIdentifier)[7]
   }
 
+  get separateCattleValue() {
+    return $$(valueIdentifier)[8]
+  }
+
   get onOffFarmChange() {
     return $('[data-testid="onOffFarm-change-link"]')
   }
@@ -77,11 +81,15 @@ class FinalAnswersPage extends Page {
   }
 
   get receiveMethodChange() {
-    return $('[data-testid="licence-choice-change-link"]')
+    return $('[data-testid="receiveMethod-change-link"]')
   }
 
   get emailChange() {
     return $('[data-testid="emailAddress-change-link"]')
+  }
+
+  get separateCattleChange() {
+    return $('[data-testid="keptSeparately-change-link"]')
   }
 
   get confirmStatementsCheckbox() {

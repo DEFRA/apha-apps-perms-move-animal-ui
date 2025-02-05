@@ -21,6 +21,8 @@ const testAddress = {
 const testEmailAddress = 'name@example.com'
 const testReceiveMethodValue = 'email'
 const testReceiveMethodLabel = 'Email'
+const testKeptSeparatelyValue = 'yes'
+const testKeptSeparatelyLabel = 'Yes'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -42,6 +44,10 @@ const destinationDefaultState = {
   destinationType: 'dedicated-sale'
 }
 const expectedDestinationText = 'Dedicated sale for TB (orange market)'
+
+const biosecurityDefaultState = {
+  keptSeparately: testKeptSeparatelyValue
+}
 
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
@@ -70,7 +76,9 @@ const emailContent = [
   '## How would you like this licence sent to you?',
   testReceiveMethodLabel,
   '## What email address would you like the licence sent to?',
-  testEmailAddress
+  testEmailAddress,
+  '## Will you separate the incoming cattle from the resident herd?',
+  testKeptSeparatelyLabel
 ].join('\n')
 
 describe('#CheckAnswers', () => {
@@ -88,6 +96,7 @@ describe('#CheckAnswers', () => {
     await session.setState('origin', originDefaultState)
     await session.setState('licence', licenceDefaultState)
     await session.setState('destination', destinationDefaultState)
+    await session.setState('biosecurity', biosecurityDefaultState)
   })
 
   afterAll(async () => {
@@ -128,6 +137,7 @@ describe('#CheckAnswers', () => {
     )
     expect(taskListValues[6].innerHTML).toContain(testReceiveMethodLabel)
     expect(taskListValues[7].innerHTML).toContain(testEmailAddress)
+    expect(taskListValues[8].innerHTML).toContain(testKeptSeparatelyLabel)
 
     expect(statusCode).toBe(statusCodes.ok)
   })

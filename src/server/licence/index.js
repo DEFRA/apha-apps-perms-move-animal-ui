@@ -5,6 +5,9 @@
 
 import { licenceSummary } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
+import { fullName } from './fullName/index.js'
+import { postExit } from './postExitPage/index.js'
+import { receiveMethod } from './receiveMethod/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -13,7 +16,13 @@ export const licence = {
   plugin: {
     name: 'receiving-the-licence',
     async register(server) {
-      await server.register([emailAddress, licenceSummary])
+      await server.register([
+        fullName,
+        receiveMethod,
+        postExit,
+        emailAddress,
+        licenceSummary
+      ])
     }
   }
 }

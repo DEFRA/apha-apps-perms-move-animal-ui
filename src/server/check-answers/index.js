@@ -1,7 +1,4 @@
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
-import { OriginSection } from '../common/model/section/origin/origin.js'
-import { LicenceSection } from '../common/model/section/licence/licence.js'
-import { DestinationSection } from '../common/model/section/destination/destination.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
@@ -35,17 +32,19 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   viewProps(req) {
-    const tasks = {
-      origin: OriginSection.fromState(req.yar.get('origin')),
-      licence: LicenceSection.fromState(req.yar.get('licence')),
-      destination: DestinationSection.fromState(req.yar.get('destination'))
-    }
+    const tasks = ApplicationModel.fromState(req).tasks
 
-    return {
-      origin: sectionToSummary(tasks.origin, checkAnswersUrlPath),
-      licence: sectionToSummary(tasks.licence, checkAnswersUrlPath),
-      destination: sectionToSummary(tasks.destination, checkAnswersUrlPath)
-    }
+    const summary = Object.fromEntries(
+      Object.values(tasks).map((task) => {
+        const { key, title } = task.config
+        return [
+          key,
+          { title, answers: sectionToSummary(task, checkAnswersUrlPath) }
+        ]
+      })
+    )
+
+    return { summary }
   }
 }
 
@@ -57,13 +56,7 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   handleGet(req, h) {
-    const application = ApplicationModel.fromState({
-      origin: req.yar.get('origin'),
-      licence: req.yar.get('licence'),
-      destination: req.yar.get('destination')
-    })
-
-    const { isValid } = application.validate()
+    const { isValid } = ApplicationModel.fromState(req).validate()
 
     if (!isValid) {
       return h.redirect('/task-list-incomplete')
@@ -77,11 +70,7 @@ export class SubmitPageController extends QuestionPageController {
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
 
-    const application = ApplicationModel.fromState({
-      origin: req.yar.get('origin'),
-      licence: req.yar.get('licence'),
-      destination: req.yar.get('destination')
-    })
+    const application = ApplicationModel.fromState(req)
 
     const { isValid: isValidApplication } = application.validate()
 
