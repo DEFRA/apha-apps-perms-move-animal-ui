@@ -18,6 +18,8 @@ function statusCodeMessage(statusCode) {
   }
 }
 
+const lowestServerErrorStatusCode = 500
+
 /**
  * @param {Request} request
  * @param {ResponseToolkit} h
@@ -32,7 +34,7 @@ export function catchAll(request, h) {
   const statusCode = response.output.statusCode
   const errorMessage = statusCodeMessage(statusCode)
 
-  if (statusCode >= 500) {
+  if (statusCode >= lowestServerErrorStatusCode) {
     request.logger.error(response?.stack)
   } else {
     request.logger.warn(response?.stack)
