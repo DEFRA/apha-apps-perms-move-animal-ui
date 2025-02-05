@@ -17,7 +17,7 @@ export default {
     '<rootDir>/.server',
     '<rootDir>/.public',
     '<rootDir>/src/server/common/test-helpers',
-    '<rootDir>/src/client/javascripts/'
+    '<rootDir>/src/client/javascripts'
   ],
   coverageDirectory: '<rootDir>/coverage'
 }
