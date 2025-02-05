@@ -15,7 +15,7 @@ describe('#errors', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected Not Found page', async () => {
+  it('should provide expected Not Found page', async () => {
     const { result, statusCode } = await server.inject({
       method: 'GET',
       url: '/non-existent-path'
@@ -52,7 +52,7 @@ describe('#catchAll', () => {
     code: mockToolkitCode.mockReturnThis()
   }
 
-  test('Should provide expected "Not Found" page', () => {
+  it('should provide expected "Not Found" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.notFound), mockToolkit)
 
@@ -64,7 +64,7 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.notFound)
   })
 
-  test('Should provide expected "Forbidden" page', () => {
+  it('should provide expected "Forbidden" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.forbidden), mockToolkit)
 
@@ -76,7 +76,7 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.forbidden)
   })
 
-  test('Should provide expected "Unauthorized" page', () => {
+  it('should provide expected "Unauthorized" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.unauthorized), mockToolkit)
 
@@ -88,7 +88,7 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.unauthorized)
   })
 
-  test('Should provide expected "Bad Request" page', () => {
+  it('should provide expected "Bad Request" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.badRequest), mockToolkit)
 
@@ -100,7 +100,7 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.badRequest)
   })
 
-  test('Should provide expected default page', () => {
+  it('should provide expected default page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.imATeapot), mockToolkit)
 
@@ -119,7 +119,7 @@ describe('#catchAll', () => {
     statusCodes.imATeapot
   ].map((status) => [status])
 
-  test.each(statuses4xx)('should call warn logger on 4xx', (status) => {
+  it.each(statuses4xx)('should call warn logger on 4xx', (status) => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(status), mockToolkit)
 
@@ -131,7 +131,7 @@ describe('#catchAll', () => {
     (status) => [status]
   )
 
-  test.each(statuses5xx)('should call error logger on 5xx', (status) => {
+  it.each(statuses5xx)('should call error logger on 5xx', (status) => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(status), mockToolkit)
 
