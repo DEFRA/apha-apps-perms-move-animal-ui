@@ -3,6 +3,13 @@ import { config as browserstackBaseConfig } from './wdio.browserstack.conf.js'
 //  These capabilities should run as an extended test after publishing
 export const config = {
   ...browserstackBaseConfig,
+  exclude: [
+    './specs/noJavascript/**/*.spec.js',
+    './specs/finalAnswers.spec.js',
+    './specs/submissionConfirmation.spec.js',
+    './specs/origin/checkAnswers.spec.js',
+    './specs/receiving-the-licence/licenceAnswers.spec.js'
+  ],
   maxInstances: 3,
   capabilities: [
     {

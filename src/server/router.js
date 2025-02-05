@@ -3,23 +3,14 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { origin } from './origin/index.js'
 import { taskList } from './task-list/index.js'
 import { taskListIncomplete } from './task-list-incomplete/index.js'
-import { licence } from './licence/index.js'
-import { destination } from './destination/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './submit/index.js'
 import { submitSummary } from './check-answers/index.js'
-import { premisesType } from './origin/premises-type-exit-page/index.js'
-import { receiveMethod } from './licence/receiveMethod/index.js'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { postExit } from './licence/postExitPage/index.js'
-import { fullName } from './licence/fullName/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
-import { config } from '../config/config.js'
-import { keptSeparately } from './biosecurity/kept-separately/index.js'
+import { ApplicationModel } from './common/model/application/application.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -39,23 +30,16 @@ export const router = {
         privacyPolicy,
         cookiesPolicy,
         accessibilityStatement,
-        origin,
-        destination,
-        licence,
         taskList,
         taskListIncomplete,
-        receiveMethod,
-        postExit,
         submit,
-        submitSummary,
-        premisesType,
-        fullName
+        submitSummary
       ])
 
-      // Add routes specific to features behind feature flags
-      if (config.get('featureFlags')?.biosecurity) {
-        await server.register([keptSeparately])
-      }
+      // Add routes for the visible sections in the application
+      await server.register(
+        ApplicationModel.visibleSections.map((section) => section.config.plugin)
+      )
 
       // Static assets
       await server.register([serveStaticFiles])

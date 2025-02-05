@@ -49,7 +49,8 @@ describe('#taskListController', () => {
     expect(taskTitles).toEqual([
       'Movement origin',
       'Movement destination',
-      'Receiving the licence'
+      'Receiving the licence',
+      'Biosecurity details'
     ])
   })
 
@@ -109,7 +110,7 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.ok)
-    expect(payload).toEqual(expect.stringContaining(`3 out of 3`))
+    expect(payload).toEqual(expect.stringContaining(`4 out of 4`))
     expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
   })
 
@@ -138,6 +139,10 @@ describe('#taskListController', () => {
       },
       receiveMethod: 'email',
       emailAddress: 'kathryn@starfleet.com'
+    })
+
+    await session.setState('biosecurity', {
+      keptSeparately: 'yes'
     })
 
     const { statusCode, payload } = await server.inject(

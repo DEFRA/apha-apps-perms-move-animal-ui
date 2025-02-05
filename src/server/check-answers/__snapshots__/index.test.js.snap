@@ -10,8 +10,8 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
-        <h2 class="govuk-heading-m">Movement origin</h2>
-        
+          <h2 class="govuk-heading-m">Movement origin</h2>
+          
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -59,8 +59,8 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
 </dl>
 
-        <h2 class="govuk-heading-m">Movement destination</h2>
-        
+          <h2 class="govuk-heading-m">Movement destination</h2>
+          
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -75,8 +75,8 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
 </dl>
 
-        <h2 class="govuk-heading-m">Receiving the licence</h2>
-        
+          <h2 class="govuk-heading-m">Receiving the licence</h2>
+          
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -109,6 +109,22 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+    </dd>
+  </div>
+</dl>
+
+          <h2 class="govuk-heading-m">Biosecurity details</h2>
+          
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will you separate the incoming cattle from the resident herd?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yes
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/submit/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming cattle from the resident herd?</span></a>
     </dd>
   </div>
 </dl>

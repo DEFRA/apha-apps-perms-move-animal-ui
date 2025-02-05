@@ -1,18 +1,34 @@
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
+import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
+
+/**
+ * @import { Request } from '@hapi/hapi'
+ */
 
 /**
  * export @typedef {{
  * origin: OriginData | undefined;
  * licence: LicenceData | undefined;
  * destination: DestinationData | undefined;
+ * biosecurity?: BiosecurityData | undefined;
  * }} ApplicationData
  * @import {OriginData} from '../section/origin/origin.js'
  * @import {LicenceData} from '../section/licence/licence.js'
  * @import {DestinationData} from '../section/destination/destination.js'
+ * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
  */
+
+// This is a list of all the sections that are implemented in the application.
+// The order in this array drives the order in which the sections are displayed.
+const implementedSections = [
+  OriginSection,
+  DestinationSection,
+  LicenceSection,
+  BiosecuritySection
+]
 
 export class ApplicationModel {
   _data
@@ -34,15 +50,24 @@ export class ApplicationModel {
     return this._data
   }
 
+  static get visibleSections() {
+    return implementedSections.filter((section) => {
+      return section.config.isVisible
+    })
+  }
+
   /**
-   * @param {ApplicationData | undefined} state
+   * @param {Request} req
    * @returns {ApplicationModel}
    */
-  static fromState(state) {
-    return new ApplicationModel({
-      origin: OriginSection.fromState(state?.origin),
-      destination: DestinationSection.fromState(state?.destination),
-      licence: LicenceSection.fromState(state?.licence)
-    })
+  static fromState(req) {
+    return new ApplicationModel(
+      Object.fromEntries(
+        this.visibleSections.map((section) => [
+          section.config.key,
+          section.fromState(req.yar.get(section.config.key))
+        ])
+      )
+    )
   }
 }

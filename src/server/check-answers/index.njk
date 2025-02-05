@@ -14,12 +14,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
-        <h2 class="govuk-heading-m">Movement origin</h2>
-        {{ createSummary(origin) }}
-        <h2 class="govuk-heading-m">Movement destination</h2>
-        {{ createSummary(destination) }}
-        <h2 class="govuk-heading-m">Receiving the licence</h2>
-        {{ createSummary(licence) }}
+        {% for key, value in summary %}
+          <h2 class="govuk-heading-m">{{ value.title }}</h2>
+          {{ createSummary(value.answers) }}
+        {% endfor %}
       </div>
     </div>
   </div>

@@ -20,6 +20,10 @@ export class SectionModel {
   /** @type {SectionPayload} */
   _data
 
+  get config() {
+    return /** @type {any} */ (this.constructor).config
+  }
+
   /** @type {() => QuestionPage} */
   static firstPageFactory
 
@@ -92,4 +96,26 @@ export class SectionModel {
 
     return new this(pages)
   }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
+   * @param {Request} req
+   * @returns {object}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildGdsTaskDetails(req) {
+    const sectionValidity = this.validate()
+    return {
+      title: this.config.title,
+      initialLink:
+        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
+      summaryLink: this.config.summaryLink,
+      isValid: sectionValidity.isValid,
+      isEnabled: this.config.isEnabled(req)
+    }
+  }
 }
+
+/**
+ * import {Request} from '@hapi/hapi'
+ */
