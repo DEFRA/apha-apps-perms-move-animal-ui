@@ -1,4 +1,3 @@
-// sonarignore
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form')
   const uploadSpinner = document.querySelector('form ~ .apha_upload-spinner')
