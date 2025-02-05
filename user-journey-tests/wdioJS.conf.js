@@ -10,7 +10,7 @@ export const config = merge(wdioConf, {
       browserName: 'chrome',
       browserVersion: 'stable',
       'goog:chromeOptions': {
-        args: ['disable-gpu']
+        args: ['headless', 'disable-gpu']
       }
     }
   ]
