@@ -4,6 +4,7 @@ import {
   validateAndAdjustEmail,
   validateAndAdjustOwnerName,
   validateAndAdjustParishNumber,
+  validateAndAdjustSeparateCattle,
   validateOnFarmErrorHandling,
   validateOnOffFarm,
   validateOriginType,
@@ -113,6 +114,14 @@ describe('Check your final answers test', () => {
       finalAnswersPage.emailValue,
       licenceDefaultObject.emailDefault,
       editedEmail
+    )
+  })
+
+  it('Should verify the existing separate cattle answer and change it', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+    await validateAndAdjustSeparateCattle(
+      finalAnswersPage.separateCattleChange,
+      finalAnswersPage.separateCattleValue
     )
   })
 

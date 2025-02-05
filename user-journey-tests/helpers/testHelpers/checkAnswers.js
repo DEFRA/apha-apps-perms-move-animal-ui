@@ -14,6 +14,7 @@ import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
+import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement) => {
   await selectElement(changeLink)
@@ -104,6 +105,19 @@ export const validateAndAdjustEmail = async (
   await emailPage.inputEmailAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)
+}
+
+export const validateAndAdjustSeparateCattle = async (
+  changeLink,
+  valueElement
+) => {
+  await validateElementVisibleAndText(valueElement, 'No')
+  await selectElement(changeLink)
+
+  await expect(keptSeparatelyPage.noRadio).toBeSelected()
+  await keptSeparatelyPage.selectYesAndContinue()
+
+  await validateElementVisibleAndText(valueElement, 'Yes')
 }
 
 export const validateAndAdjustOwnerName = async (

@@ -24,6 +24,10 @@ class TaskListPage extends Page {
     return $('aria/Movement destination')
   }
 
+  get biosecurityLink() {
+    return $('aria/Biosecurity details')
+  }
+
   get reviewLink() {
     return $('aria/Review and submit')
   }
@@ -43,6 +47,10 @@ class TaskListPage extends Page {
 
   async selectMovementDestination() {
     await page.selectElement(this.movementDestinationLink)
+  }
+
+  async selectBiosecurityLink() {
+    await page.selectElement(this.biosecurityLink)
   }
 
   async verifyStatus({ position, taskTitle, expectedStatus }) {
