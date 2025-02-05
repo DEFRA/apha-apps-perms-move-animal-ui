@@ -65,6 +65,19 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.notFound)
   })
 
+  test('Should provide expected "Server error" page', () => {
+    // @ts-expect-error - Testing purposes only
+    catchAll(mockRequest(statusCodes.serverError), mockToolkit)
+
+    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
+      pageTitle: 'Something went wrong',
+      heading: statusCodes.serverError,
+      message: 'Something went wrong'
+    })
+    expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.serverError)
+  })
+
   test('Should provide expected "Forbidden" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.forbidden), mockToolkit)
