@@ -32,6 +32,7 @@ describe('#errors', () => {
 
 describe('#catchAll', () => {
   const mockErrorLogger = jest.fn()
+  const mockWarnLogger = jest.fn()
   const mockStack = 'Mock error stack'
   const errorPage = 'error/index'
   const mockRequest = (/** @type {number} */ statusCode) => ({
@@ -42,7 +43,7 @@ describe('#catchAll', () => {
         statusCode
       }
     },
-    logger: { error: mockErrorLogger }
+    logger: { error: mockErrorLogger, warn: mockWarnLogger }
   })
   const mockToolkitView = jest.fn()
   const mockToolkitCode = jest.fn()
@@ -55,7 +56,7 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.notFound), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Page not found',
       heading: statusCodes.notFound,
@@ -68,7 +69,7 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.forbidden), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Forbidden',
       heading: statusCodes.forbidden,
@@ -81,7 +82,7 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.unauthorized), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Unauthorized',
       heading: statusCodes.unauthorized,
@@ -94,7 +95,7 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.badRequest), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Bad Request',
       heading: statusCodes.badRequest,
@@ -107,7 +108,7 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.imATeapot), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Something went wrong',
       heading: statusCodes.imATeapot,

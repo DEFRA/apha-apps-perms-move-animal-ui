@@ -29,10 +29,14 @@ export function catchAll(request, h) {
     return h.continue
   }
 
-  request.logger.error(response?.stack)
-
   const statusCode = response.output.statusCode
   const errorMessage = statusCodeMessage(statusCode)
+
+  if (statusCode >= 500) {
+    request.logger.error(response?.stack)
+  } else if (statusCode >= 400 && statusCode < 500) {
+    request.logger.warn(response?.stack)
+  }
 
   return h
     .view('error/index', {
