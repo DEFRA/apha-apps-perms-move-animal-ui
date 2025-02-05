@@ -32,10 +32,13 @@ export function catchAll(request, h) {
   const statusCode = response.output.statusCode
   const errorMessage = statusCodeMessage(statusCode)
 
-  if (statusCode >= 500) {
-    request.logger.error(response?.stack)
-  } else if (statusCode >= 400 && statusCode < 500) {
+  if (
+    statusCode >= statusCodes.badRequest &&
+    statusCode < statusCodes.serverError
+  ) {
     request.logger.warn(response?.stack)
+  } else {
+    request.logger.error(response?.stack)
   }
 
   return h
