@@ -9,7 +9,7 @@ import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAns
 import completeDestinationTask from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 import ownerNamePage from '../page-objects/receiving-the-licence/ownerNamePage.js'
-import completeBiosecurityTask from '../helpers/testHelpers/biosecuruty.js'
+import completeBiosecurityTask from '../helpers/testHelpers/biosecurity.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
