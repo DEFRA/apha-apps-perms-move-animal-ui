@@ -7,27 +7,27 @@ services:
     networks:
       - cdp-tenant
 
-  # your-frontend:
-  #   build: ./
-  #   ports:
-  #     - '3000:3000'
-  #   links:
-  #     - 'redis:redis'
-  #   depends_on:
-  #     redis:
-  #       condition: service_started
-  #   env_file:
-  #     - 'compose/aws.env'
-  #   environment:
-  #     PORT: 3000
-  #     NODE_ENV: development
-  #     REDIS_HOST: redis
-  #     USE_SINGLE_INSTANCE_CACHE: true
-  #     NOTIFY_TEMPLATE_ID: ${NOTIFY_TEMPLATE_ID}
-  #     NOTIFY_API_KEY: ${NOTIFY_API_KEY}
-  #     NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS}
-  #   networks:
-  #     - cdp-tenant
+  your-frontend:
+    build: ./
+    ports:
+      - '3000:3000'
+    links:
+      - 'redis:redis'
+    depends_on:
+      redis:
+        condition: service_started
+    env_file:
+      - 'compose/aws.env'
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      REDIS_HOST: redis
+      USE_SINGLE_INSTANCE_CACHE: true
+      NOTIFY_TEMPLATE_ID: ${NOTIFY_TEMPLATE_ID}
+      NOTIFY_API_KEY: ${NOTIFY_API_KEY}
+      NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS}
+    networks:
+      - cdp-tenant
 
   cdp-uploader:
     image: defradigital/cdp-uploader:${CDP_UPLOADER_VERSION:-latest}
