@@ -100,17 +100,26 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.badRequest)
   })
 
-  it('should provide expected default page', () => {
-    // @ts-expect-error - Testing purposes only
-    catchAll(mockRequest(statusCodes.imATeapot), mockToolkit)
+  const statusesWithoutDedicatedMessage = [
+    statusCodes.imATeapot,
+    statusCodes.serverError,
+    statusCodes.badGateway
+  ].map((status) => [status])
 
-    expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
-      pageTitle: 'Something went wrong',
-      heading: statusCodes.imATeapot,
-      message: 'Something went wrong'
-    })
-    expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.imATeapot)
-  })
+  it.each(statusesWithoutDedicatedMessage)(
+    'should provide expected default page',
+    (status) => {
+      // @ts-expect-error - Testing purposes only
+      catchAll(mockRequest(status), mockToolkit)
+
+      expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
+        pageTitle: 'Something went wrong',
+        heading: status,
+        message: 'Something went wrong'
+      })
+      expect(mockToolkitCode).toHaveBeenCalledWith(status)
+    }
+  )
 
   const statuses4xx = [
     statusCodes.notFound,
