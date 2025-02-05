@@ -18,11 +18,16 @@ class BiosecurityMapUploadPage extends Page {
     return $('#biosecurity-upload-plan-file-upload')
   }
 
+  get loadingSpinner() {
+    return $('[data-testid="upload-spinner"]')
+  }
+
   async uploadFileAndContinue() {
     const filePath = await path.resolve(__dirname, './testFile.txt')
     await waitForElement(this.fileInput)
     await this.fileInput.setValue(filePath)
     await super.selectContinue()
+    await waitForElement(this.loadingSpinner)
   }
 }
 
