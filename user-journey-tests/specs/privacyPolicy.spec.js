@@ -5,7 +5,7 @@ import {
 } from '../helpers/page.js'
 import privacyPage from '../page-objects/privacyPage.js'
 
-describe('Exit page test', () => {
+describe('Privacy policy page test', () => {
   beforeEach('Navigate to privacy page', async () => {
     await privacyPage.navigateToPageAndVerifyTitle()
   })
