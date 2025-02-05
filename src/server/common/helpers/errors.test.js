@@ -135,8 +135,8 @@ describe('#catchAll', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(status), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
     expect(mockWarnLogger).not.toHaveBeenCalled()
+    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
   })
 })
 
