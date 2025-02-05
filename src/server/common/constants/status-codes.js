@@ -10,5 +10,6 @@ export const statusCodes = {
   notFound: 404,
   imATeapot: 418,
   redirect: 302,
-  serverError: 500
+  serverError: 500,
+  badGateway: 502
 }

@@ -15,7 +15,7 @@ describe('#errors', () => {
     await server.stop({ timeout: 0 })
   })
 
-  test('Should provide expected Not Found page', async () => {
+  it('should provide expected Not Found page', async () => {
     const { result, statusCode } = await server.inject({
       method: 'GET',
       url: '/non-existent-path'
@@ -32,6 +32,7 @@ describe('#errors', () => {
 
 describe('#catchAll', () => {
   const mockErrorLogger = jest.fn()
+  const mockWarnLogger = jest.fn()
   const mockStack = 'Mock error stack'
   const errorPage = 'error/index'
   const mockRequest = (/** @type {number} */ statusCode) => ({
@@ -42,7 +43,7 @@ describe('#catchAll', () => {
         statusCode
       }
     },
-    logger: { error: mockErrorLogger }
+    logger: { error: mockErrorLogger, warn: mockWarnLogger }
   })
   const mockToolkitView = jest.fn()
   const mockToolkitCode = jest.fn()
@@ -51,11 +52,10 @@ describe('#catchAll', () => {
     code: mockToolkitCode.mockReturnThis()
   }
 
-  test('Should provide expected "Not Found" page', () => {
+  it('should provide expected "Not Found" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.notFound), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Page not found',
       heading: statusCodes.notFound,
@@ -64,11 +64,10 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.notFound)
   })
 
-  test('Should provide expected "Forbidden" page', () => {
+  it('should provide expected "Forbidden" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.forbidden), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Forbidden',
       heading: statusCodes.forbidden,
@@ -77,11 +76,10 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.forbidden)
   })
 
-  test('Should provide expected "Unauthorized" page', () => {
+  it('should provide expected "Unauthorized" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.unauthorized), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Unauthorized',
       heading: statusCodes.unauthorized,
@@ -90,11 +88,10 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.unauthorized)
   })
 
-  test('Should provide expected "Bad Request" page', () => {
+  it('should provide expected "Bad Request" page', () => {
     // @ts-expect-error - Testing purposes only
     catchAll(mockRequest(statusCodes.badRequest), mockToolkit)
 
-    expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
     expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
       pageTitle: 'Bad Request',
       heading: statusCodes.badRequest,
@@ -103,17 +100,52 @@ describe('#catchAll', () => {
     expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.badRequest)
   })
 
-  test('Should provide expected default page', () => {
-    // @ts-expect-error - Testing purposes only
-    catchAll(mockRequest(statusCodes.imATeapot), mockToolkit)
+  const statusesWithoutDedicatedMessage = [
+    statusCodes.imATeapot,
+    statusCodes.serverError,
+    statusCodes.badGateway
+  ].map((status) => [status])
 
+  it.each(statusesWithoutDedicatedMessage)(
+    'should provide expected default page',
+    (status) => {
+      // @ts-expect-error - Testing purposes only
+      catchAll(mockRequest(status), mockToolkit)
+
+      expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
+        pageTitle: 'Something went wrong',
+        heading: status,
+        message: 'Something went wrong'
+      })
+      expect(mockToolkitCode).toHaveBeenCalledWith(status)
+    }
+  )
+
+  const statuses4xx = [
+    statusCodes.notFound,
+    statusCodes.forbidden,
+    statusCodes.unauthorized,
+    statusCodes.imATeapot
+  ].map((status) => [status])
+
+  it.each(statuses4xx)('should call warn logger on 4xx', (status) => {
+    // @ts-expect-error - Testing purposes only
+    catchAll(mockRequest(status), mockToolkit)
+
+    expect(mockWarnLogger).toHaveBeenCalledWith(mockStack)
+    expect(mockErrorLogger).not.toHaveBeenCalled()
+  })
+
+  const statuses5xx = [statusCodes.serverError, statusCodes.badGateway].map(
+    (status) => [status]
+  )
+
+  it.each(statuses5xx)('should call error logger on 5xx', (status) => {
+    // @ts-expect-error - Testing purposes only
+    catchAll(mockRequest(status), mockToolkit)
+
+    expect(mockWarnLogger).not.toHaveBeenCalled()
     expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
-    expect(mockToolkitView).toHaveBeenCalledWith(errorPage, {
-      pageTitle: 'Something went wrong',
-      heading: statusCodes.imATeapot,
-      message: 'Something went wrong'
-    })
-    expect(mockToolkitCode).toHaveBeenCalledWith(statusCodes.imATeapot)
   })
 })
 
