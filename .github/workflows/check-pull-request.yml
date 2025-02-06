@@ -16,8 +16,8 @@ jobs:
     name: Run Pull Request Checks
     env:
       BIOSECURITY_FEATURE_ENABLED: true
-      UPLOADER_URL: "http://localhost:7300"
-      FILE_S3_BUCKET: "dev-apha-apps-perms-file-upload-c63f2"
+      UPLOADER_URL: "http://localhost:7337"
+      FILE_S3_BUCKET: "apha"
       FILE_S3_PATH: "biosecurity-map"
       CONSUMER_BUCKETS: "apha"
       MOCK_VIRUS_SCAN_ENABLED: false
