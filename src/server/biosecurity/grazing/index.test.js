@@ -11,11 +11,7 @@ const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/grazing'
 
 describe('GrazingPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new GrazingPage()
-  })
+  const page = new GrazingPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -42,13 +38,13 @@ describe('GrazingPage', () => {
   })
 
   it('nextPage should return last-grazed when answer is "yes"', () => {
-    const answer = { value: 'yes' }
+    const answer = new GrazingAnswer({ grazing: 'yes' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(lastGrazedPage)
   })
 
   it('nextPage should return roads-and-tracks page when answer is "no"', () => {
-    const answer = { value: 'no' }
+    const answer = new GrazingAnswer({ grazing: 'no' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(roadsAndTracksPage)
   })
@@ -74,4 +70,7 @@ describe('GrazingPage', () => {
   })
 })
 
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
+/**
+ * @import { PluginBase, PluginNameVersion } from '@hapi/hapi'
+ * @import { RadioButtonAnswer } from '../../common/model/answer/radio-button/radio-button.js'
+ */

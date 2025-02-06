@@ -15,11 +15,7 @@ const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/kept-separately'
 
 describe('KeptSeparatelyPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new KeptSeparatelyPage()
-  })
+  const page = new KeptSeparatelyPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -46,13 +42,13 @@ describe('KeptSeparatelyPage', () => {
   })
 
   it('nextPage should return grazing when answer is "yes"', () => {
-    const answer = { value: 'yes' }
+    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'yes' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(grazingPage)
   })
 
   it('nextPage should return disinfection page when answer is "no"', () => {
-    const answer = { value: 'no' }
+    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'no' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(disinfectionPage)
   })
