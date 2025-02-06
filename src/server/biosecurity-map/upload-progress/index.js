@@ -2,6 +2,7 @@ import Wreck from '@hapi/wreck'
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { config } from '~/src/config/config.js'
 
 /**
  * @import {NextPage} from '../../common/helpers/next-page.js'
@@ -31,7 +32,9 @@ export class UploadProgressPage extends Page {
 export class UploadProgressController extends PageController {
   async handleGet(req, h) {
     const upload = req.yar.get('upload')
-    const response = await Wreck.get(upload.statusUrl)
+
+    const { uploaderUrl } = config.get('fileUpload')
+    const response = await Wreck.get(`${uploaderUrl}/status/${upload.uploadId}`)
 
     const data = JSON.parse(response.payload.toString())
 
