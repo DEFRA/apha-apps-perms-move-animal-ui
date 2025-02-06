@@ -5,10 +5,9 @@ import { biosecurity } from '~/src/server/biosecurity/index.js'
 
 /**
  * export @typedef {{
- * keptSeparately: YesNoRadioButtonData | undefined;
- * grazing: YesNoRadioButtonData | undefined;
+ * keptSeparately: KeptSeparatelyData | undefined;
  * }} BiosecurityData
- * @import {YesNoRadioButtonData} from '../../answer/yes-no-radio-button/yes-no-radio-button.js'
+ * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
  */
 export class BiosecuritySection extends SectionModel {
   static config = {
