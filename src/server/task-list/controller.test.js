@@ -142,7 +142,8 @@ describe('#taskListController', () => {
     })
 
     await session.setState('biosecurity', {
-      keptSeparately: 'yes'
+      keptSeparately: 'yes',
+      grazing: 'yes'
     })
 
     const { statusCode, payload } = await server.inject(
