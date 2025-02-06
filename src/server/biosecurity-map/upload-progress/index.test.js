@@ -3,6 +3,7 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import Wreck from '@hapi/wreck'
+import { uploadConfig } from '../upload-config.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -25,7 +26,7 @@ describe('#UploadPlan', () => {
 
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
-    await session.setState('upload', {
+    await session.setState(uploadConfig.questionKey, {
       statusUrl: 'http://localhost/status'
     })
   })

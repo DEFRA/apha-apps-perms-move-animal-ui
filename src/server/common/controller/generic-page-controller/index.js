@@ -15,6 +15,7 @@ const logger = createLogger()
 
 export default class GenericPageController {
   logger
+  pluginName
 
   /**
    * @param {Page} page
