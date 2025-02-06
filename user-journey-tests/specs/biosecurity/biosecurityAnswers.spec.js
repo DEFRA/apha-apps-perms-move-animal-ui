@@ -10,10 +10,6 @@ describe('Check your answers test - destination', () => {
   // eslint-disable-next-line no-undef
   before('Copmplete answers', async () => {
     await completeBiosecurityTask('no')
-  })
-
-  beforeEach('Navigate to answers page', async () => {
-    // eslint-disable-next-line no-undef
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
 
