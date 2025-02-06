@@ -1,4 +1,4 @@
-import { GrazingAnswer } from '../../common/model/answer/grazing/grazing.js'
+import { yesNoRadioButtonFactory } from '../../common/model/answer/yes-no-radio-button/yes-no-radio-button.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
@@ -38,7 +38,15 @@ describe('GrazingPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(GrazingAnswer)
+    expect(JSON.stringify(page.Answer)).toBe(
+      JSON.stringify(
+        yesNoRadioButtonFactory({
+          payloadKey: 'grazing',
+          emptyOptionText: 'Select yes if the incoming cattle will be grazed',
+          layout: 'inline'
+        })
+      )
+    )
   })
 
   it('nextPage should return last-grazed when answer is "yes"', () => {

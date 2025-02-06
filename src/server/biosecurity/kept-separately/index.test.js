@@ -1,4 +1,4 @@
-import { KeptSeparatelyAnswer } from '../../common/model/answer/kept-separately/kept-separately.js'
+import { yesNoRadioButtonFactory } from '../../common/model/answer/yes-no-radio-button/yes-no-radio-button.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { disinfectionPage } from '../disinfection/index.js'
 import { grazingPage } from '../grazing/index.js'
@@ -42,7 +42,16 @@ describe('KeptSeparatelyPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(KeptSeparatelyAnswer)
+    expect(JSON.stringify(page.Answer)).toBe(
+      JSON.stringify(
+        yesNoRadioButtonFactory({
+          payloadKey: 'keptSeparately',
+          emptyOptionText:
+            'Select if the incoming cattle will be kept separately',
+          layout: 'inline'
+        })
+      )
+    )
   })
 
   it('nextPage should return grazing when answer is "yes"', () => {

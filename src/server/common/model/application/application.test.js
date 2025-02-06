@@ -32,7 +32,8 @@ const destinationDefaultState = {
 
 /** @type {import('../section/biosecurity/biosecurity.js').BiosecurityData} */
 const biosecurityDefaultState = {
-  keptSeparately: 'yes'
+  keptSeparately: 'yes',
+  grazing: 'yes'
 }
 
 describe('Application.fromState', () => {

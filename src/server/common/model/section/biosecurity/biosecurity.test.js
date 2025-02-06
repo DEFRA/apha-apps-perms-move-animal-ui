@@ -2,11 +2,10 @@ import { BiosecuritySection } from './biosecurity.js'
 import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 
 /**
- * @import { KeptSeparatelyData } from '../../answer/kept-separately/kept-separately.js'
- * @type {KeptSeparatelyData}
+ * @import { YesNoRadioButtonData } from '../../answer/yes-no-radio-button/yes-no-radio-button.js'
  */
-const testKeptSeparatelyAnswer = 'yes'
-const testGrazingAnswer = 'yes'
+const testKeptSeparatelyAnswer = /** @type {YesNoRadioButtonData} */ ('yes')
+const testGrazingAnswer = /** @type {YesNoRadioButtonData} */ ('yes')
 
 describe('Biosecurity', () => {
   describe('validate', () => {
@@ -22,7 +21,8 @@ describe('Biosecurity', () => {
 
     it('should return invalid if any nested object is invalid', () => {
       const biosecurityData = {
-        keptSeparately: undefined
+        keptSeparately: undefined,
+        grazing: testGrazingAnswer
       }
 
       const result = BiosecuritySection.fromState(biosecurityData).validate()
