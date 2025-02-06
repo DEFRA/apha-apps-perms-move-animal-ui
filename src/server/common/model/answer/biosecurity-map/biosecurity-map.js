@@ -81,7 +81,11 @@ export class BiosecurityAnswer extends AnswerModel {
     })
   }
 
-  _extractFields({ metadata, status }) {
+  /**
+   * @param {BiosecurityMapPayload} payload
+   */
+  _extractFields(payload) {
+    const { metadata, status } = payload
     return { metadata, status }
   }
 
