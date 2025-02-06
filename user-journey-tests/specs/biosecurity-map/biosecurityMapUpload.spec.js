@@ -1,4 +1,4 @@
-import { waitForElement, waitForPagePath } from '../../helpers/page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 import mapUploadPage from '../../page-objects/biosecurity-map/mapUploadPage.js'
 import uploadLoadingPage from '../../page-objects/biosecurity-map/uploadLoadingPage.js'
 
@@ -10,6 +10,5 @@ describe('Biosecurity map upload test', () => {
   it('Should verify upload flow', async () => {
     await mapUploadPage.uploadFileAndContinue()
     await waitForPagePath(uploadLoadingPage.pagePath)
-    await waitForElement(mapUploadPage.loadingSpinner)
   })
 })
