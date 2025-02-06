@@ -1,3 +1,4 @@
+import { biosecuritySummary } from './check-answers/index.js'
 import { keptSeparately } from './kept-separately/index.js'
 
 /**
@@ -7,7 +8,7 @@ export const biosecurity = {
   plugin: {
     name: 'biosecurity',
     async register(server) {
-      await server.register([keptSeparately])
+      await server.register([keptSeparately, biosecuritySummary])
     }
   }
 }
