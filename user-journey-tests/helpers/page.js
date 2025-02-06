@@ -57,7 +57,7 @@ export const verifyPageTitle = async (pageTitle) => {
   await browser.waitUntil(
     async () => (await browser.getTitle()) === pageTitle,
     {
-      timeoutMsg: `Expected page title to become ${pageTitle}`
+      timeoutMsg: `Expected page title to become ${pageTitle}\nRecieved:\t${await browser.getTitle()}\nExpected:\t${pageTitle}`
     }
   )
 }
