@@ -10,8 +10,7 @@ import { keptSeparatelyPage } from '../kept-separately/index.js'
 const pageUrl = '/biosecurity/check-answers'
 
 const defaultState = {
-  keptSeparately: 'yes',
-  grazing: 'yes'
+  keptSeparately: 'yes'
 }
 
 describe('#biosecuritySummaryPage', () => {
