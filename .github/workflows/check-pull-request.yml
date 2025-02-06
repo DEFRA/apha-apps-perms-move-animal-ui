@@ -17,11 +17,11 @@ jobs:
     env:
       BIOSECURITY_FEATURE_ENABLED: true
       UPLOADER_URL: "http://localhost:7300"
-      FILE_S3_BUCKET: "apha"
+      FILE_S3_BUCKET: "dev-apha-apps-perms-file-upload-c63f2"
       FILE_S3_PATH: "biosecurity-map"
       CONSUMER_BUCKETS: "apha"
       MOCK_VIRUS_SCAN_ENABLED: false
-      
+
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
