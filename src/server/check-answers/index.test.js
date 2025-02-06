@@ -23,8 +23,6 @@ const testReceiveMethodValue = 'email'
 const testReceiveMethodLabel = 'Email'
 const testKeptSeparatelyValue = 'yes'
 const testKeptSeparatelyLabel = 'Yes'
-const testGrazingValue = 'yes'
-const testGrazingLabel = 'Yes'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -48,8 +46,7 @@ const destinationDefaultState = {
 const expectedDestinationText = 'Dedicated sale for TB (orange market)'
 
 const biosecurityDefaultState = {
-  keptSeparately: testKeptSeparatelyValue,
-  grazing: testGrazingValue
+  keptSeparately: testKeptSeparatelyValue
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -81,9 +78,7 @@ const emailContent = [
   '## What email address would you like the licence sent to?',
   testEmailAddress,
   '## Will you separate the incoming cattle from the resident herd?',
-  testKeptSeparatelyLabel,
-  '## Will the incoming cattle be grazed?',
-  testGrazingLabel
+  testKeptSeparatelyLabel
 ].join('\n')
 
 describe('#CheckAnswers', () => {
