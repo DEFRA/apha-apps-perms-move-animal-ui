@@ -60,10 +60,6 @@ jobs:
         run: |
           npm run user-journey-test
 
-      - name: cleanup
-        if: always()
-        run: docker compose down
-
       - name: debug
         if: always()
         run: |
@@ -81,3 +77,7 @@ jobs:
         with:
           name: docker-compose-logs
           path: ./logs.txt
+
+      - name: cleanup
+        if: always()
+        run: docker compose down
