@@ -74,9 +74,9 @@ export class BiosecurityAnswer extends AnswerModel {
   validate() {
     return validateAnswerAgainstSchema(validationSchema, {
       metadata: {
-        uploadId: this._data?.metadata?.uploadId ?? '',
-        uploadUrl: this._data?.metadata?.uploadUrl ?? '',
-        statusUrl: this._data?.metadata?.statusUrl ?? ''
+        uploadId: this._data?.metadata?.uploadId,
+        uploadUrl: this._data?.metadata?.uploadUrl,
+        statusUrl: this._data?.metadata?.statusUrl
       }
     })
   }
