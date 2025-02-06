@@ -28,6 +28,7 @@ export class UploadPlanPage extends QuestionPage {
 export class UploadPlanController extends QuestionPageController {
   async handleGet(req, h) {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
+
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
         redirect: this.page.nextPage(req).urlPath,

@@ -26,6 +26,16 @@ services:
       NOTIFY_TEMPLATE_ID: ${NOTIFY_TEMPLATE_ID}
       NOTIFY_API_KEY: ${NOTIFY_API_KEY}
       NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS}
+      AWS_REGION: eu-west-2
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      UPLOADER_URL: http://cdp-uploader:7337
+      FILE_S3_BUCKET: apha
+      FILE_S3_PATH: biosecurity-map
+      CONSUMER_BUCKETS: apha
+      MOCK_VIRUS_SCAN_ENABLED: false
+      VIRTUAL_HOST: ~^frontend\..*\.sslip\.io
+      VIRTUAL_POR: 80
     networks:
       - cdp-tenant
 
