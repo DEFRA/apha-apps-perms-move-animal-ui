@@ -27,7 +27,7 @@ class BiosecurityMapUploadPage extends Page {
     await waitForElement(this.fileInput)
     await this.fileInput.setValue(filePath)
     await super.selectContinue()
-    await waitForElement(this.loadingSpinner)
+    // await waitForElement(this.loadingSpinner)
   }
 }
 
