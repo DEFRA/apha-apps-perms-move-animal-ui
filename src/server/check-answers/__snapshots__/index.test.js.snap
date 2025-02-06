@@ -132,11 +132,11 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       </div>
     </div>
   </div>
-  <form method="POST" novalidate="">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="csrf-value">
-        <input type="hidden" name="nextPage" value="">
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
   <h2 class="govuk-heading-m">Your declaration</h2>
   <!-- form URL below turns off errors on the next page  -->
   <div class="govuk-form-group">
@@ -161,15 +161,15 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </fieldset>
 </div>
 
-      </div>
-    </div>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+              <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
         "
 `;

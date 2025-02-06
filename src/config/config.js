@@ -164,6 +164,26 @@ export const config = convict({
       }
     }
   },
+  fileUpload: {
+    uploaderUrl: {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'UPLOADER_URL'
+    },
+    bucket: {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'FILE_S3_BUCKET'
+    },
+    path: {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'FILE_S3_PATH'
+    }
+  },
   redis: /** @type {Schema<RedisConfig>} */ ({
     host: {
       doc: 'Redis cache host',

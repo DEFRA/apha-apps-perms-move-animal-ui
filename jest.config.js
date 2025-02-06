@@ -16,7 +16,8 @@ export default {
     '<rootDir>/node_modules/',
     '<rootDir>/.server',
     '<rootDir>/.public',
-    '<rootDir>/src/server/common/test-helpers'
+    '<rootDir>/src/server/common/test-helpers',
+    '<rootDir>/src/client/javascripts'
   ],
   coverageDirectory: '<rootDir>/coverage'
 }

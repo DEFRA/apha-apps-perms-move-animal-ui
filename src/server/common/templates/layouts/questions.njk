@@ -18,28 +18,30 @@
   {% endblock %}
   {% block beforequestion %}
   {% endblock %}
-  <form method="POST" novalidate>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="{{ crumb }}" />
-        <input type="hidden" name="nextPage" value="{{ nextPage }}" />
-        {% block questions %}
-          {% include answer.template %}
-        {% endblock %}
+  {% block form %}
+    <form method="POST" novalidate>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="{{ crumb }}" />
+          <input type="hidden" name="nextPage" value="{{ nextPage }}" />
+          {% block questions %}
+            {% include answer.template %}
+          {% endblock %}
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            {% block button %}
+              {{
+                govukButton({
+                  id: "continue-button",
+                  text: continueButtonText | default('Continue'),
+                  classes: continueButtonClasses | default('')
+                })
+              }}
+            {% endblock %}
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        {% block button %}
-          {{
-            govukButton({
-              id: "continue-button",
-              text: continueButtonText | default('Continue'),
-              classes: continueButtonClasses | default('')
-            })
-          }}
-        {% endblock %}
-      </div>
-    </div>
-  </form>
+    </form>
+  {% endblock %}
 {% endblock %}

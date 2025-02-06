@@ -1,0 +1,22 @@
+{% macro appUploadSpinner(options) %}
+  {% set display = "apha-block" %}
+  {% if options.formPage %}
+    {% set display = "apha-hidden" %}
+  {% endif %}
+  <div class="apha_upload-spinner {{ display }}" data-testid="upload-spinner">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ options.title }}</h1>
+      </div>
+    </div>
+    <p>{{ options.subTitle }}</p>
+    <div class="hods-loading-spinner">
+      <div
+        class="hods-loading-spinner__spinner"
+        aria-live="polite"
+        role="status"
+      ></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+{% endmacro %}

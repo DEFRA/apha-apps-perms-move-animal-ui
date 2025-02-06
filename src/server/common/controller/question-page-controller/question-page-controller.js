@@ -40,7 +40,7 @@ export class QuestionPageController extends GenericPageController {
     }
   }
 
-  handleGet(req, h) {
+  handleGet(req, h, args = {}) {
     const sectionState = req.yar.get(this.page.sectionKey)
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey]
@@ -53,7 +53,8 @@ export class QuestionPageController extends GenericPageController {
       value: answer.value,
       answer,
       viewModelOptions: { validate: false, question: this.page.question },
-      ...this.page.viewProps(req)
+      ...this.page.viewProps(req),
+      ...args
     })
   }
 
