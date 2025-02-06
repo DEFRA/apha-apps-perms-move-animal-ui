@@ -54,9 +54,9 @@ export const selectElement = async (element, hidden = false) => {
 }
 
 export const verifyPageTitle = async (pageTitle) => {
-  const receeivedTitle = await browser.getTitle()
-  await browser.waitUntil(async () => receeivedTitle === pageTitle, {
-    timeoutMsg: `Expected page title to become ${pageTitle}\nRecieved:\t${receeivedTitle}\nExpected:\t${pageTitle}`
+  const titleMatches = async () => (await browser.getTitle()) === pageTitle
+  await browser.waitUntil(titleMatches, {
+    timeoutMsg: `Expected page title to become ${pageTitle}\nRecieved:\t${await browser.getTitle()}\nExpected:\t${pageTitle}`
   })
 }
 
