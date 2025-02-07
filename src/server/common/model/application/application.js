@@ -3,23 +3,13 @@ import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
+import mapValues from 'lodash/mapValues.js'
 
-/**
- * @import { Request } from '@hapi/hapi'
- */
+/** @import { Request } from '@hapi/hapi' */
+/** @import {SectionContext, SectionModel} from '../section/section-model/section-model.js' */
 
-/**
- * export @typedef {{
- * origin: OriginData | undefined;
- * licence: LicenceData | undefined;
- * destination: DestinationData | undefined;
- * biosecurity?: BiosecurityData | undefined;
- * }} ApplicationData
- * @import {OriginData} from '../section/origin/origin.js'
- * @import {LicenceData} from '../section/licence/licence.js'
- * @import {DestinationData} from '../section/destination/destination.js'
- * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
- */
+/** @typedef {Record<string, SectionModel>} ApplicationData */
+/** @typedef {Record<string, SectionContext>} ApplicationContext */
 
 // This is a list of all the sections that are implemented in the application.
 // The order in this array drives the order in which the sections are displayed.
@@ -31,8 +21,10 @@ const implementedSections = [
 ]
 
 export class ApplicationModel {
+  /** @type {ApplicationData} */
   _data
 
+  /** @param {ApplicationData} data */
   constructor(data) {
     this._data = data
     Object.seal(this)
@@ -40,6 +32,14 @@ export class ApplicationModel {
 
   validate() {
     return validateApplication(this._data)
+  }
+
+  /** @returns {ApplicationContext} */
+  get context() {
+    return mapValues(
+      this._data,
+      (/** @type {SectionModel} */ section) => section.context
+    )
   }
 
   /**

@@ -13,6 +13,11 @@ import { ExitPage } from '../../page/exit-page-model.js'
  */
 
 /**
+ * @typedef {{ answer: { value: any }}} QuestionAnswerContext
+ * @typedef {Record<string, QuestionAnswerContext>} SectionContext
+ */
+
+/**
  * export @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
  */
 
@@ -63,6 +68,18 @@ export class SectionModel {
     }
 
     return { isValid: true }
+  }
+
+  /** @returns {SectionContext} */
+  get context() {
+    return Object.fromEntries(
+      this.questionPageAnswers
+        .filter(({ answer }) => answer.validate().isValid)
+        .map(({ page, answer }) => [
+          page.questionKey,
+          { answer: { value: answer.value } }
+        ])
+    )
   }
 
   /**

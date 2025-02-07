@@ -123,3 +123,33 @@ describe('SectionModel.fromState', () => {
     expect(OriginSection.fromState(validState)).toBeInstanceOf(OriginSection)
   })
 })
+
+describe('SectionModel.context', () => {
+  it('should return data describing itself, partially implementing the anticipated long-term structure', () => {
+    expect(OriginSection.fromState(validState).context).toEqual({
+      onOffFarm: { answer: { value: validState.onOffFarm } },
+      cphNumber: { answer: { value: validState.cphNumber } },
+      address: { answer: { value: validState.address } },
+      originType: { answer: { value: validState.originType } }
+    })
+  })
+
+  it('should return data for questions that are *still relevant*, even if the journey is not complete', () => {
+    expect(OriginSection.fromState(invalidState).context).toEqual({
+      onOffFarm: {
+        answer: { value: invalidState.onOffFarm }
+      },
+      originType: {
+        answer: { value: 'afu' }
+      }
+    })
+  })
+
+  it('should not return the exit page', () => {
+    expect(OriginSection.fromState(exitState).context).toEqual({
+      onOffFarm: {
+        answer: { value: exitState.onOffFarm }
+      }
+    })
+  })
+})

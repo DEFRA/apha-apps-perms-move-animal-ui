@@ -74,3 +74,26 @@ describe('Application.fromState', () => {
     )
   })
 })
+
+describe('Application.context', () => {
+  it('should return question & answer data', () => {
+    const state = {
+      origin: originDefaultState,
+      licence: licenceDefaultState,
+      destination: destinationDefaultState,
+      biosecurity: biosecurityDefaultState
+    }
+
+    const request = /** @type {Request} */ {
+      ...jest.requireActual('@hapi/hapi'),
+      yar: {
+        get: jest.fn().mockImplementation((key) => state[key])
+      }
+    }
+
+    const application = ApplicationModel.fromState(request)
+    const { origin } = application.tasks
+
+    expect(application.context.origin).toEqual(origin.context)
+  })
+})
