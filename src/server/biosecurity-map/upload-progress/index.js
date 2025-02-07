@@ -33,23 +33,23 @@ export class UploadProgressController extends QuestionPageController {
 
   async handleGet(req, h) {
     /** @type {BiosecurityAnswer} */
-    const upload = /** @type {BiosecurityAnswer} */ (
+    const answer = /** @type {BiosecurityAnswer} */ (
       this.page.Answer.fromState(req.yar.get(this.page.questionKey))
     )
 
     const { uploaderUrl } = config.get('fileUpload')
     const response = await Wreck.get(
-      `${uploaderUrl}/status/${upload.value.metadata.uploadId}`
+      `${uploaderUrl}/status/${answer.value?.metadata.uploadId}`
     )
 
     const status = JSON.parse(response.payload.toString())
 
-    const answer = new this.page.Answer({
-      ...upload.value,
+    const newAnswer = new this.page.Answer({
+      ...answer.value,
       status
     })
 
-    req.yar.set(this.page.questionKey, answer.toState())
+    req.yar.set(this.page.questionKey, newAnswer.toState())
 
     if (status.uploadStatus === 'ready') {
       return h.redirect(this.page.nextPage(req).urlPath)
