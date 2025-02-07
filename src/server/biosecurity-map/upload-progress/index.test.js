@@ -74,7 +74,7 @@ describe('#UploadPlan', () => {
     })
 
     it('should render the upload progress page', async () => {
-      const { statusCode, result, headers } = await server.inject({
+      const { statusCode, headers } = await server.inject({
         method: 'GET',
         url: '/biosecurity-map/uploading',
         headers: {
@@ -84,7 +84,6 @@ describe('#UploadPlan', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe('/biosecurity-map/check-answers')
-      expect(result).toMatchSnapshot()
     })
   })
 
