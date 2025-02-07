@@ -111,13 +111,13 @@ export const validateAndAdjustSeparateCattle = async (
   changeLink,
   valueElement
 ) => {
-  await validateElementVisibleAndText(valueElement, 'No')
+  await validateElementVisibleAndText(valueElement, 'Yes')
   await selectElement(changeLink)
 
-  await expect(keptSeparatelyPage.noRadio).toBeSelected()
-  await keptSeparatelyPage.selectYesAndContinue()
+  await expect(keptSeparatelyPage.yesRadio).toBeSelected()
+  await keptSeparatelyPage.selectNoAndContinue()
 
-  await validateElementVisibleAndText(valueElement, 'Yes')
+  await validateElementVisibleAndText(valueElement, 'No')
 }
 
 export const validateAndAdjustOwnerName = async (
