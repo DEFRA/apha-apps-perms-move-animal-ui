@@ -138,6 +138,17 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/submit/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be grazed?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How long ago was the field last grazed by cattle?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yesterday
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by cattle?</span></a>
+    </dd>
+  </div>
 </dl>
 
       </div>

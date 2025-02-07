@@ -11,7 +11,8 @@ const pageUrl = '/biosecurity/check-answers'
 
 const defaultState = {
   keptSeparately: 'yes',
-  grazing: 'yes'
+  grazing: 'yes',
+  lastGrazed: 'yesterday'
 }
 
 describe('#biosecuritySummaryPage', () => {
