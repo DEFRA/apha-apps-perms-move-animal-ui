@@ -13,6 +13,6 @@ export default Joi.object({
       crumb: Joi.string().required(),
       file: Joi.object().required()
     }).required(),
-    numberOfRejectedFiles: Joi.number().required()
+    numberOfRejectedFiles: Joi.number().equal(0)
   }).optional()
 }).required()
