@@ -1,45 +1,63 @@
 import Wreck from '@hapi/wreck'
-import { Page } from '../../common/model/page/page-model.js'
-import { PageController } from '../../common/controller/page-controller/page-controller.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { BiosecurityAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { config } from '~/src/config/config.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { Page } from '../../common/model/page/page-model.js'
+import { uploadConfig } from '../upload-config.js'
+import { UploadPlanPage } from '../upload-plan/index.js'
 
-/**
- * @import {NextPage} from '../../common/helpers/next-page.js'
- * @import {ConfirmationPayload} from '../../common/model/answer/confirmation/confirmation.js'
- */
-
-class BioSecuritySummary extends QuestionPage {
-  urlPath = '/biosecurity/check-answers'
+class BioSecuritySummary extends Page {
+  urlPath = '/biosecurity-map/check-answers'
   sectionKey = 'biosecurity-map'
   question = ''
-  questionKey = 'disinfection'
+  questionKey = 'upload-plan'
 }
 
-export class UploadProgressPage extends Page {
+export class UploadProgressPage extends QuestionPage {
   pageTitle = 'Uploading the biosecurity map'
-  sectionKey = 'biosecurity-map'
-  questionKey = 'uploading'
-  urlPath = `/${this.sectionKey}/${this.questionKey}`
+  sectionKey = uploadConfig.sectionKey
+  questionKey = uploadConfig.questionKey
+  urlPath = `/${this.sectionKey}/uploading`
 
   view = `biosecurity-map/upload-progress/index`
+
+  Answer = BiosecurityAnswer
 
   nextPage() {
     return new BioSecuritySummary()
   }
 }
 
-export class UploadProgressController extends PageController {
+export class UploadProgressController extends QuestionPageController {
+  pluginName = 'biosecurity-map-uploading'
+
   async handleGet(req, h) {
-    const upload = req.yar.get('upload')
+    /** @type {BiosecurityAnswer} */
+    const answer = /** @type {BiosecurityAnswer} */ (
+      this.page.Answer.fromState(req.yar.get(this.page.questionKey))
+    )
 
     const { uploaderUrl } = config.get('fileUpload')
-    const response = await Wreck.get(`${uploaderUrl}/status/${upload.uploadId}`)
+    const response = await Wreck.get(
+      `${uploaderUrl}/status/${answer.value?.metadata.uploadId}`
+    )
 
-    const data = JSON.parse(response.payload.toString())
+    const status = JSON.parse(response.payload.toString())
 
-    if (data.uploadStatus === 'ready') {
-      req.yar.set('upload', data)
+    const newAnswer = new this.page.Answer({
+      ...answer.value,
+      status
+    })
+
+    req.yar.set(this.page.questionKey, newAnswer.toState())
+
+    const { isValid } = newAnswer.validate()
+    if (!isValid) {
+      return h.redirect(new UploadPlanPage().urlPath)
+    }
+
+    if (status.uploadStatus === 'ready') {
       return h.redirect(this.page.nextPage(req).urlPath)
     }
 
@@ -49,7 +67,7 @@ export class UploadProgressController extends PageController {
     }
 
     return super.handleGet(req, h, {
-      upload: data
+      upload: status
     })
   }
 }

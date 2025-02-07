@@ -1,24 +1,25 @@
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
 import { uploadProgressPage } from '../upload-progress/index.js'
+import { BiosecurityAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+import { uploadConfig } from '../upload-config.js'
 
 /**
- * @import {NextPage} from '../../common/helpers/next-page.js'
- * @import {ConfirmationPayload} from '../../common/model/answer/confirmation/confirmation.js'
+ * @import { BiosecurityMapData } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+ * @import { AnswerModel } from '../../common/model/answer/answer-model.js'
  */
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
-  sectionKey = 'biosecurity-map'
-  questionKey = 'upload-plan'
+  sectionKey = uploadConfig.sectionKey
+  questionKey = uploadConfig.questionKey
   urlPath = `/${this.sectionKey}/${this.questionKey}`
 
   view = `biosecurity-map/upload-plan/index`
 
-  Answer = ConfirmationAnswer
+  Answer = BiosecurityAnswer
 
   nextPage() {
     return uploadProgressPage
@@ -39,15 +40,28 @@ export class UploadPlanController extends QuestionPageController {
 
     const data = JSON.parse(response.payload.toString())
 
-    req.yar.set('upload', data)
+    const answer = new this.page.Answer({
+      metadata: data
+    })
+
+    req.yar.set(this.page.questionKey, answer.toState())
 
     h.headers = {
       'Cache-Control': 'no-store, must-revalidate, max-age=0',
       Pragma: 'no-cache'
     }
 
+    const { isValid, errors } = answer.validate()
+
+    if (!isValid) {
+      return super.handleGet(req, h, {
+        upload: answer.value,
+        errorMessages: errors.errorMessages
+      })
+    }
+
     return super.handleGet(req, h, {
-      upload: data
+      upload: answer.value
     })
   }
 }
