@@ -26,7 +26,7 @@ describe('BiosecurityAnswer', () => {
   }
 
   it('should create an instance from state', () => {
-    const answer = BiosecurityAnswer.fromState(mockData)
+    const answer = BiosecurityAnswer.fromState(mockData.biosecurityMap)
     expect(answer).toBeInstanceOf(BiosecurityAnswer)
     expect(answer._data).toEqual(mockData)
   })

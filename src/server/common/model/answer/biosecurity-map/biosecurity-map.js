@@ -85,7 +85,13 @@ export class BiosecurityAnswer extends AnswerModel {
     }
   }
 
+  /**
+   * @param {BiosecurityMapData | undefined} state
+   * @returns {BiosecurityAnswer}
+   */
   static fromState(state) {
-    return new BiosecurityAnswer(state)
+    return new BiosecurityAnswer({
+      biosecurityMap: state
+    })
   }
 }
