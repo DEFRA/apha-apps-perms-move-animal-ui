@@ -46,8 +46,10 @@ export class UploadProgressController extends QuestionPageController {
     const status = JSON.parse(response.payload.toString())
 
     const newAnswer = new this.page.Answer({
-      ...answer.value,
-      status
+      biosecurityMap: {
+        ...answer.value,
+        status
+      }
     })
 
     req.yar.set(this.page.questionKey, newAnswer.toState())

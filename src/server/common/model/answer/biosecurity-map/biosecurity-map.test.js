@@ -1,30 +1,32 @@
 import { BiosecurityAnswer } from './biosecurity-map.js'
 
 /**
- * @import { BiosecurityMapData } from './biosecurity-map.js'
+ * @import { BiosecurityMapPayload } from './biosecurity-map.js'
  */
 
 describe('BiosecurityAnswer', () => {
-  /** @type {BiosecurityMapData} */
+  /** @type {BiosecurityMapPayload} */
   const mockData = {
-    metadata: {
-      uploadId: '12345',
-      uploadUrl: 'http://example.com/upload',
-      statusUrl: 'http://example.com/status'
-    },
-    status: {
-      uploadStatus: 'initiated',
-      metadata: {},
-      form: {
-        crumb: 'crumb',
-        file: {}
+    biosecurityMap: {
+      metadata: {
+        uploadId: '12345',
+        uploadUrl: 'http://example.com/upload',
+        statusUrl: 'http://example.com/status'
       },
-      numberOfRejectedFiles: 0
+      status: {
+        uploadStatus: 'initiated',
+        metadata: {},
+        form: {
+          crumb: 'crumb',
+          file: {}
+        },
+        numberOfRejectedFiles: 0
+      }
     }
   }
 
   it('should create an instance from state', () => {
-    const answer = BiosecurityAnswer.fromState(mockData)
+    const answer = BiosecurityAnswer.fromState(mockData.biosecurityMap)
     expect(answer).toBeInstanceOf(BiosecurityAnswer)
     expect(answer._data).toEqual(mockData)
   })
@@ -59,7 +61,7 @@ describe('BiosecurityAnswer', () => {
   it('should convert to state correctly', () => {
     const answer = new BiosecurityAnswer(mockData)
     const state = answer.toState()
-    expect(state).toEqual(mockData)
+    expect(state).toEqual(mockData.biosecurityMap)
   })
 
   it('should validate correctly', () => {
@@ -72,8 +74,10 @@ describe('BiosecurityAnswer', () => {
     const answer = new BiosecurityAnswer(mockData)
     const fields = answer._extractFields(mockData)
     expect(fields).toEqual({
-      metadata: mockData.metadata,
-      status: mockData.status
+      biosecurityMap: {
+        metadata: mockData.biosecurityMap?.metadata,
+        status: mockData.biosecurityMap?.status
+      }
     })
   })
 })

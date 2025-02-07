@@ -20,41 +20,30 @@ import validationSchema from './validation.js'
  * }
  * } | undefined} BiosecurityMapData
  *
- * export @typedef {{ metadata: {
- *   uploadId: string;
- *   uploadUrl: string;
- *   statusUrl: string;
- *  },
- *  status?: {
- *   uploadStatus: 'initiated' | 'pending' | 'ready',
- *   metadata: {},
- *   form: {
- *     crumb: string,
- *     file: any
- *   },
- *   numberOfRejectedFiles: number
- * } }} BiosecurityMapPayload
+ * export @typedef {{ biosecurityMap: BiosecurityMapData }} BiosecurityMapPayload
  */
 
 /**
- * @augments AnswerModel<BiosecurityMapData>
+ * @augments AnswerModel<BiosecurityMapPayload>
  */
 export class BiosecurityAnswer extends AnswerModel {
   /**
    * @returns {BiosecurityMapData}
    */
   get value() {
-    if (!this._data?.metadata) {
+    if (!this._data?.biosecurityMap?.metadata) {
       return undefined
     }
 
+    const { metadata, status } = this._data.biosecurityMap
+
     const value = {
       metadata: {
-        uploadId: this._data.metadata.uploadId,
-        uploadUrl: this._data.metadata.uploadUrl,
-        statusUrl: this._data.metadata.statusUrl
+        uploadId: metadata.uploadId,
+        uploadUrl: metadata.uploadUrl,
+        statusUrl: metadata.statusUrl
       },
-      status: this._data?.status
+      status
     }
 
     return value
@@ -69,17 +58,19 @@ export class BiosecurityAnswer extends AnswerModel {
    * @returns {BiosecurityMapData | undefined}
    */
   toState() {
-    if (!this._data?.metadata) {
+    if (!this._data?.biosecurityMap?.metadata) {
       return undefined
     }
 
+    const { metadata, status } = this._data.biosecurityMap
+
     return {
       metadata: {
-        uploadId: this._data.metadata.uploadId,
-        uploadUrl: this._data.metadata.uploadUrl,
-        statusUrl: this._data?.metadata?.statusUrl
+        uploadId: metadata.uploadId,
+        uploadUrl: metadata.uploadUrl,
+        statusUrl: metadata?.statusUrl
       },
-      status: this._data?.status
+      status
     }
   }
 
@@ -87,12 +78,11 @@ export class BiosecurityAnswer extends AnswerModel {
     return validateAnswerAgainstSchema(validationSchema, this.value)
   }
 
-  /**
-   * @param {BiosecurityMapPayload} payload
-   */
   _extractFields(payload) {
-    const { metadata, status } = payload
-    return { metadata, status }
+    const { metadata, status } = payload.biosecurityMap ?? {}
+    return {
+      biosecurityMap: { metadata, status }
+    }
   }
 
   /**
@@ -100,6 +90,8 @@ export class BiosecurityAnswer extends AnswerModel {
    * @returns {BiosecurityAnswer}
    */
   static fromState(state) {
-    return new BiosecurityAnswer(state)
+    return new BiosecurityAnswer({
+      biosecurityMap: state
+    })
   }
 }
