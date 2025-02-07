@@ -31,47 +31,36 @@ describe('#UploadPlan', () => {
     })
   })
 
-  describe('virus scan pending', () => {
+  describe('missing file', () => {
     beforeEach(() => {
-      jest.spyOn(Wreck, 'get').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: statusCodes.ok
-        }),
-        payload: JSON.stringify({
-          uploadStatus: 'pending'
-        })
-      })
-    })
-
-    it('should render expected response and content', async () => {
-      const { statusCode, payload } = await server.inject({
-        method: 'GET',
-        url: '/biosecurity-map/uploading',
-        headers: {
-          Cookie: session.sessionID
+      session.setState(uploadConfig.questionKey, {
+        metadata: {
+          uploadId: '462b24f2-f9ef-4bde-a826-6ae00b87b32c',
+          uploadUrl:
+            'http://localhost:7337/upload-and-scan/462b24f2-f9ef-4bde-a826-6ae00b87b32c',
+          statusUrl:
+            'http://localhost:7337/status/462b24f2-f9ef-4bde-a826-6ae00b87b32c'
         }
       })
-
-      expect(statusCode).toBe(statusCodes.ok)
-
-      expect(payload).toContain('<meta http-equiv="refresh" content="5" />')
-      expect(payload).toContain('Uploading the biosecurity map')
     })
-  })
 
-  describe('virus scan complete', () => {
     beforeEach(() => {
       jest.spyOn(Wreck, 'get').mockResolvedValue({
         res: /** @type {IncomingMessage} */ ({
           statusCode: statusCodes.ok
         }),
         payload: JSON.stringify({
-          uploadStatus: 'ready'
+          uploadStatus: 'ready',
+          metadata: {},
+          form: {
+            crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
+            nextPage: ''
+          }
         })
       })
     })
 
-    it('should redirect to the next page', async () => {
+    it('should redirect to the upload page', async () => {
       const { statusCode, headers } = await server.inject({
         method: 'GET',
         url: '/biosecurity-map/uploading',
@@ -81,7 +70,7 @@ describe('#UploadPlan', () => {
       })
 
       expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe('/biosecurity/check-answers')
+      expect(headers.location).toBe('/biosecurity-map/upload-plan')
     })
   })
 })

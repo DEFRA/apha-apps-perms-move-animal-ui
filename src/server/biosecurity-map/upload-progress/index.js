@@ -5,6 +5,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { Page } from '../../common/model/page/page-model.js'
 import { uploadConfig } from '../upload-config.js'
+import { UploadPlanPage } from '../upload-plan/index.js'
 
 class BioSecuritySummary extends Page {
   urlPath = '/biosecurity/check-answers'
@@ -50,6 +51,11 @@ export class UploadProgressController extends QuestionPageController {
     })
 
     req.yar.set(this.page.questionKey, newAnswer.toState())
+
+    const { isValid } = newAnswer.validate()
+    if (!isValid) {
+      return h.redirect(new UploadPlanPage().urlPath)
+    }
 
     if (status.uploadStatus === 'ready') {
       return h.redirect(this.page.nextPage(req).urlPath)
