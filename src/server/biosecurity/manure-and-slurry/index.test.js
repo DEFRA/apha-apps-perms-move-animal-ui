@@ -50,7 +50,7 @@ describe('ManureAndSlurryPage', () => {
     expect(manureAndSlurryPage).toBeInstanceOf(ManureAndSlurryPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export manureAndSlurry as a plugin', () => {
     expect(manureAndSlurry).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       manureAndSlurry.plugin

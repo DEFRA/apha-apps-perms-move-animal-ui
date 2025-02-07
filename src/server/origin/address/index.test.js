@@ -50,7 +50,7 @@ describe('OriginAddressPage', () => {
     expect(originAddressPage).toBeInstanceOf(OriginAddressPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export address as a plugin', () => {
     expect(address).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       address.plugin

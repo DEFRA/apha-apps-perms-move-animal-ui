@@ -57,7 +57,7 @@ describe('OnOffFarmPage', () => {
     expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export onOffFarm as a plugin', () => {
     expect(onOffFarm).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       onOffFarm.plugin

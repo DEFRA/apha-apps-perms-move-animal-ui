@@ -57,7 +57,7 @@ describe('KeptSeparatelyPage', () => {
     expect(keptSeparatelyPage).toBeInstanceOf(KeptSeparatelyPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export keptSeparately as a plugin', () => {
     expect(keptSeparately).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       keptSeparately.plugin

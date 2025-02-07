@@ -45,7 +45,7 @@ describe('LastGrazedPage', () => {
     expect(lastGrazedPage).toBeInstanceOf(LastGrazedPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export lastGrazed as a plugin', () => {
     expect(lastGrazed).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       lastGrazed.plugin

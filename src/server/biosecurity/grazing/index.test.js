@@ -53,7 +53,7 @@ describe('GrazingPage', () => {
     expect(grazingPage).toBeInstanceOf(GrazingPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export grazing as a plugin', () => {
     expect(grazing).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       grazing.plugin
