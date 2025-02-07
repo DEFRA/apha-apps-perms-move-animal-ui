@@ -41,7 +41,9 @@ export class UploadPlanController extends QuestionPageController {
     const data = JSON.parse(response.payload.toString())
 
     const answer = new this.page.Answer({
-      metadata: data
+      biosecurityMap: {
+        metadata: data
+      }
     })
 
     req.yar.set(this.page.questionKey, answer.toState())

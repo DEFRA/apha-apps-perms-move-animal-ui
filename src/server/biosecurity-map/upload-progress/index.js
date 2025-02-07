@@ -35,7 +35,9 @@ export class UploadProgressController extends QuestionPageController {
   async handleGet(req, h) {
     /** @type {BiosecurityAnswer} */
     const answer = /** @type {BiosecurityAnswer} */ (
-      this.page.Answer.fromState(req.yar.get(this.page.questionKey))
+      this.page.Answer.fromState({
+        biosecurityMap: req.yar.get(this.page.questionKey)
+      })
     )
 
     const { uploaderUrl } = config.get('fileUpload')
@@ -46,8 +48,10 @@ export class UploadProgressController extends QuestionPageController {
     const status = JSON.parse(response.payload.toString())
 
     const newAnswer = new this.page.Answer({
-      ...answer.value,
-      status
+      biosecurityMap: {
+        ...answer.value,
+        status
+      }
     })
 
     req.yar.set(this.page.questionKey, newAnswer.toState())
