@@ -1,21 +1,17 @@
-import { KeptSeparatelyAnswer } from '../../common/model/answer/kept-separately/kept-separately.js'
+import { GrazingAnswer } from '../../common/model/answer/grazing/grazing.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { disinfectionPage } from '../disinfection/index.js'
-import { grazingPage } from '../grazing/index.js'
-import {
-  keptSeparately,
-  keptSeparatelyPage,
-  KeptSeparatelyPage
-} from './index.js'
+import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
+import { grazing, grazingPage, GrazingPage } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'Will you separate the incoming cattle from the resident herd?'
-const questionKey = 'keptSeparately'
+const question = 'Will the incoming cattle be grazed?'
+const questionKey = 'grazing'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/biosecurity/kept-separately'
+const pageUrl = '/biosecurity/grazing'
 
-describe('KeptSeparatelyPage', () => {
-  const page = new KeptSeparatelyPage()
+describe('GrazingPage', () => {
+  const page = new GrazingPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -38,29 +34,29 @@ describe('KeptSeparatelyPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(KeptSeparatelyAnswer)
+    expect(page.Answer).toBe(GrazingAnswer)
   })
 
-  it('nextPage should return grazing when answer is "yes"', () => {
-    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'yes' })
+  it('nextPage should return last-grazed when answer is "yes"', () => {
+    const answer = new GrazingAnswer({ grazing: 'yes' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(grazingPage)
+    expect(nextPage).toBe(lastGrazedPage)
   })
 
-  it('nextPage should return disinfection page when answer is "no"', () => {
-    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'no' })
+  it('nextPage should return roads-and-tracks page when answer is "no"', () => {
+    const answer = new GrazingAnswer({ grazing: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(disinfectionPage)
+    expect(nextPage).toBe(roadsAndTracksPage)
   })
 
   it('should export page', () => {
-    expect(keptSeparatelyPage).toBeInstanceOf(KeptSeparatelyPage)
+    expect(grazingPage).toBeInstanceOf(GrazingPage)
   })
 
   it('should export emailAddress as a plugin', () => {
-    expect(keptSeparately).toHaveProperty('plugin')
+    expect(grazing).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      keptSeparately.plugin
+      grazing.plugin
     )
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
@@ -68,10 +64,13 @@ describe('KeptSeparatelyPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'keptSeparatelyPage.content',
+    describes: 'grazingPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
 
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
+/**
+ * @import { PluginBase, PluginNameVersion } from '@hapi/hapi'
+ * @import { RadioButtonAnswer } from '../../common/model/answer/radio-button/radio-button.js'
+ */

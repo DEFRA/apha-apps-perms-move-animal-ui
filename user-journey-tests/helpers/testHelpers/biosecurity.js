@@ -5,6 +5,7 @@ import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPag
 import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
 import { waitForPagePath } from '../page.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
+import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -15,6 +16,8 @@ const completeBiosecurityTask = async (radioType) => {
     case 'yes':
       await keptSeparatelyPage.selectYesAndContinue()
       await waitForPagePath(grazingPage.pagePath)
+      await grazingPage.selectYesAndContinue()
+      await waitForPagePath(lastGrazedPage.pagePath)
       break
 
     case 'no':

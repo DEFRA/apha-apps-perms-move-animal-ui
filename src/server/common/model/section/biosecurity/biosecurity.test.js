@@ -6,12 +6,14 @@ import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/ind
  * @type {KeptSeparatelyData}
  */
 const testKeptSeparatelyAnswer = 'yes'
+const testGrazingAnswer = 'yes'
 
 describe('Biosecurity', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const biosecurityData = {
-        keptSeparately: testKeptSeparatelyAnswer
+        keptSeparately: testKeptSeparatelyAnswer,
+        grazing: testGrazingAnswer
       }
       const result = BiosecuritySection.fromState(biosecurityData).validate()
 

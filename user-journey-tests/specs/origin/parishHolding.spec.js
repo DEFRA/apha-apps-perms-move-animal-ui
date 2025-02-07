@@ -1,6 +1,7 @@
 import { browser } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import ParishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
+import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 
 describe('Paris holding page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -43,8 +44,10 @@ describe('Paris holding page test', () => {
     await expect(
       ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
+    await waitForPagePath(newAddressPage.pagePath)
     await ParishHoldingNumberPage.selectBackLink()
     await browser.refresh()
+    await ParishHoldingNumberPage.verifyPageHeadingAndTitle()
     const inputValue = await ParishHoldingNumberPage.cphNumberInput().getValue()
     expect(inputValue).toBe('12/345/6789')
   })
@@ -74,6 +77,7 @@ describe('Paris holding page test', () => {
     await expect(
       ParishHoldingNumberPage.cphInputFieldError()
     ).not.toBeDisplayed()
+    await waitForPagePath(newAddressPage.pagePath)
     await ParishHoldingNumberPage.selectBackLink()
 
     await browser.refresh()
