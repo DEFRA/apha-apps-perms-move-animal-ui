@@ -18,7 +18,7 @@ import validationSchema from './validation.js'
  *   },
  *   numberOfRejectedFiles: number
  * }
- * }} BiosecurityMapData
+ * } | undefined} BiosecurityMapData
  *
  * export @typedef {{ metadata: {
  *   uploadId: string;
@@ -37,15 +37,22 @@ import validationSchema from './validation.js'
  */
 
 /**
- * @augments AnswerModel<BiosecurityMapPayload>
+ * @augments AnswerModel<BiosecurityMapData>
  */
 export class BiosecurityAnswer extends AnswerModel {
+  /**
+   * @returns {BiosecurityMapData}
+   */
   get value() {
+    if (!this._data?.metadata) {
+      return undefined
+    }
+
     const value = {
       metadata: {
-        uploadId: this._data?.metadata?.uploadId ?? '',
-        uploadUrl: this._data?.metadata?.uploadUrl ?? '',
-        statusUrl: this._data?.metadata?.statusUrl ?? ''
+        uploadId: this._data.metadata.uploadId,
+        uploadUrl: this._data.metadata.uploadUrl,
+        statusUrl: this._data.metadata.statusUrl
       }
     }
 
@@ -61,11 +68,15 @@ export class BiosecurityAnswer extends AnswerModel {
    * @returns {BiosecurityMapData | undefined}
    */
   toState() {
+    if (!this._data?.metadata) {
+      return undefined
+    }
+
     return {
       metadata: {
-        uploadId: this._data?.metadata?.uploadId ?? '',
-        uploadUrl: this._data?.metadata?.uploadUrl ?? '',
-        statusUrl: this._data?.metadata?.statusUrl ?? ''
+        uploadId: this._data.metadata.uploadId,
+        uploadUrl: this._data.metadata.uploadUrl,
+        statusUrl: this._data?.metadata?.statusUrl
       },
       status: this._data?.status
     }

@@ -7,7 +7,8 @@ import { BiosecurityAnswer } from '../../common/model/answer/biosecurity-map/bio
 import { uploadConfig } from '../upload-config.js'
 
 /**
- * @import { Page } from '../../common/model/page/page-model.js'
+ * @import { BiosecurityMapData } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+ * @import { AnswerModel } from '../../common/model/answer/answer-model.js'
  */
 
 export class UploadPlanPage extends QuestionPage {
@@ -50,8 +51,17 @@ export class UploadPlanController extends QuestionPageController {
       Pragma: 'no-cache'
     }
 
+    const { isValid, errors } = answer.validate()
+
+    if (!isValid) {
+      return super.handleGet(req, h, {
+        upload: answer.value,
+        errorMessages: errors.errorMessages
+      })
+    }
+
     return super.handleGet(req, h, {
-      upload: data
+      upload: answer.value
     })
   }
 }
