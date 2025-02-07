@@ -10,12 +10,6 @@ import { uploadConfig } from '../upload-config.js'
  */
 
 describe('#UploadPlan', () => {
-  describePageSnapshot({
-    describes: '#UploadProgressPage',
-    it: 'should render expected response and content',
-    pageUrl: '/biosecurity-map/uploading'
-  })
-
   let server
   let session
 
@@ -71,6 +65,12 @@ describe('#UploadPlan', () => {
           numberOfRejectedFiles: 0
         })
       })
+    })
+
+    describePageSnapshot({
+      describes: '#UploadProgressPage',
+      it: 'should render expected response and content',
+      pageUrl: '/biosecurity-map/uploading'
     })
 
     it('should render the upload progress page', async () => {
