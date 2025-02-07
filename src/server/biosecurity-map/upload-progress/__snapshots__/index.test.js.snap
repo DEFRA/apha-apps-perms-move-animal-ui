@@ -19,5 +19,3 @@ exports[`#UploadPlan #UploadProgressPage should render expected response and con
   </div>
         "
 `;
-
-exports[`#UploadPlan valid upload should render the upload progress page 1`] = `""`;
