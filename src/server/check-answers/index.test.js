@@ -21,10 +21,8 @@ const testAddress = {
 const testEmailAddress = 'name@example.com'
 const testReceiveMethodValue = 'email'
 const testReceiveMethodLabel = 'Email'
-const testKeptSeparatelyValue = 'yes'
-const testKeptSeparatelyLabel = 'Yes'
-const testGrazingValue = 'yes'
-const testGrazingLabel = 'Yes'
+const yesValue = 'yes'
+const yesLabel = 'Yes'
 const testLastGrazedValue = 'Yesterday'
 
 const originDefaultState = {
@@ -49,9 +47,10 @@ const destinationDefaultState = {
 const expectedDestinationText = 'Dedicated sale for TB (orange market)'
 
 const biosecurityDefaultState = {
-  keptSeparately: testKeptSeparatelyValue,
-  grazing: testGrazingValue,
-  lastGrazed: testLastGrazedValue
+  keptSeparately: yesValue,
+  grazing: yesValue,
+  lastGrazed: testLastGrazedValue,
+  manureAndSlurry: yesValue
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -83,11 +82,13 @@ const emailContent = [
   '## What email address would you like the licence sent to?',
   testEmailAddress,
   '## Will you separate the incoming cattle from the resident herd?',
-  testKeptSeparatelyLabel,
+  yesLabel,
   '## Will the incoming cattle be grazed?',
-  testGrazingLabel,
+  yesLabel,
   '## How long ago was the field last grazed by cattle?',
-  testLastGrazedValue
+  testLastGrazedValue,
+  '## Has any manure or slurry been put on the grazing field in the past 60 days?',
+  yesLabel
 ].join('\n')
 
 describe('#CheckAnswers', () => {
@@ -146,7 +147,10 @@ describe('#CheckAnswers', () => {
     )
     expect(taskListValues[6].innerHTML).toContain(testReceiveMethodLabel)
     expect(taskListValues[7].innerHTML).toContain(testEmailAddress)
-    expect(taskListValues[8].innerHTML).toContain(testKeptSeparatelyLabel)
+    expect(taskListValues[8].innerHTML).toContain(yesLabel)
+    expect(taskListValues[9].innerHTML).toContain(yesLabel)
+    expect(taskListValues[10].innerHTML).toContain(testLastGrazedValue)
+    expect(taskListValues[11].innerHTML).toContain(yesLabel)
 
     expect(statusCode).toBe(statusCodes.ok)
   })

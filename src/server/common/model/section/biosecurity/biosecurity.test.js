@@ -3,30 +3,35 @@ import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/ind
 
 /**
  * @import { KeptSeparatelyData } from '../../answer/kept-separately/kept-separately.js'
- * @type {KeptSeparatelyData}
+ * @type {import('./biosecurity.js').BiosecurityData}
  */
-const testKeptSeparatelyAnswer = 'yes'
-const testGrazingAnswer = 'yes'
+const validBiosecurityData = {
+  keptSeparately: 'yes',
+  grazing: 'yes',
+  lastGrazed: 'yesterday',
+  manureAndSlurry: 'yes'
+}
+
+const invalidBiosecurityData = {
+  keptSeparately: undefined,
+  grazing: undefined,
+  lastGrazed: undefined,
+  manureAndSlurry: undefined
+}
 
 describe('Biosecurity', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
-      const biosecurityData = {
-        keptSeparately: testKeptSeparatelyAnswer,
-        grazing: testGrazingAnswer,
-        lastGrazed: 'yesterday'
-      }
+      const biosecurityData = validBiosecurityData
       const result = BiosecuritySection.fromState(biosecurityData).validate()
 
       expect(result.isValid).toBe(true)
     })
 
     it('should return invalid if any nested object is invalid', () => {
-      const biosecurityData = {
-        keptSeparately: undefined
-      }
-
-      const result = BiosecuritySection.fromState(biosecurityData).validate()
+      const result = BiosecuritySection.fromState(
+        invalidBiosecurityData
+      ).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(KeptSeparatelyPage)

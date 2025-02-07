@@ -4,6 +4,39 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
 import SessionTester from '../common/test-helpers/session-helper.js'
 
+const validOriginState = {
+  address: {
+    addressLine1: '#####',
+    addressLine2: '#####',
+    addressTown: '#####',
+    addressCounty: '#####',
+    addressPostcode: 'RG24 8RR'
+  },
+  originType: 'afu',
+  onOffFarm: 'off',
+  cphNumber: '12/345/6789'
+}
+
+const validDestinationState = {
+  destinationType: 'dedicated-sale'
+}
+
+const validLicenceState = {
+  fullName: {
+    firstName: 'Kathryn',
+    lastName: 'Janeway'
+  },
+  receiveMethod: 'email',
+  emailAddress: 'kathryn@starfleet.com'
+}
+
+const validBiosecurityState = {
+  keptSeparately: 'yes',
+  grazing: 'yes',
+  lastGrazed: 'yesterday',
+  manureAndSlurry: 'yes'
+}
+
 describe('#taskListController', () => {
   /** @type {Server} */
   let server
@@ -67,18 +100,7 @@ describe('#taskListController', () => {
   })
 
   it('Should show completed sections', async () => {
-    await session.setState('origin', {
-      address: {
-        addressLine1: '#####',
-        addressLine2: '#####',
-        addressTown: '#####',
-        addressCounty: '#####',
-        addressPostcode: 'RG24 8RR'
-      },
-      originType: 'afu',
-      onOffFarm: 'off',
-      cphNumber: '12/345/6789'
-    })
+    await session.setState('origin', validOriginState)
 
     const { statusCode, payload } = await server.inject(
       withCsrfProtection(
@@ -115,37 +137,13 @@ describe('#taskListController', () => {
   })
 
   it('should state all section complete, and have a green button', async () => {
-    await session.setState('origin', {
-      address: {
-        addressLine1: '#####',
-        addressLine2: '#####',
-        addressTown: '#####',
-        addressCounty: '#####',
-        addressPostcode: 'RG24 8RR'
-      },
-      originType: 'afu',
-      onOffFarm: 'off',
-      cphNumber: '12/345/6789'
-    })
+    await session.setState('origin', validOriginState)
 
-    await session.setState('destination', {
-      destinationType: 'dedicated-sale'
-    })
+    await session.setState('destination', validDestinationState)
 
-    await session.setState('licence', {
-      fullName: {
-        firstName: 'Kathryn',
-        lastName: 'Janeway'
-      },
-      receiveMethod: 'email',
-      emailAddress: 'kathryn@starfleet.com'
-    })
+    await session.setState('licence', validLicenceState)
 
-    await session.setState('biosecurity', {
-      keptSeparately: 'yes',
-      grazing: 'yes',
-      lastGrazed: 'yesterday'
-    })
+    await session.setState('biosecurity', validBiosecurityState)
 
     const { statusCode, payload } = await server.inject(
       withCsrfProtection(

@@ -6,11 +6,15 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
+ * @import { OriginData } from '../section/origin/origin.js'
+ * @import { LicenceData } from '../section/licence/licence.js'
+ * @import { DestinationData } from '../section/destination/destination.js'
+ * @import { BiosecurityData } from '../section/biosecurity/biosecurity.js'
  */
 
-/** @import {OnOffFarmData} from '../answer/on-off-farm/on-off-farm.js' */
+/** @type {OriginData} */
 const originDefaultState = {
-  onOffFarm: /** @type {OnOffFarmData} */ ('on'),
+  onOffFarm: 'on',
   cphNumber: '12/123/1234',
   address: {
     addressLine1: 'Starfleet Headquarters',
@@ -21,18 +25,22 @@ const originDefaultState = {
   }
 }
 
+/** @type {LicenceData} */
 const licenceDefaultState = {
   emailAddress: 'name@example.com'
 }
 
-/** @type {import('../section/destination/destination.js').DestinationData} */
+/** @type {DestinationData} */
 const destinationDefaultState = {
   destinationType: 'dedicated-sale'
 }
 
-/** @type {import('../section/biosecurity/biosecurity.js').BiosecurityData} */
+/** @type {BiosecurityData} */
 const biosecurityDefaultState = {
-  keptSeparately: 'yes'
+  keptSeparately: 'yes',
+  grazing: 'yes',
+  lastGrazed: 'yesterday',
+  manureAndSlurry: 'yes'
 }
 
 describe('Application.fromState', () => {
