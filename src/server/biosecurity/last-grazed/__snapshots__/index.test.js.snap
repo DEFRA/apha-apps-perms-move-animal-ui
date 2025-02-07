@@ -20,13 +20,9 @@ exports[`LastGrazedPage lastGrazedPage.content should render expected response a
 
 
 </fieldset>
-        </div>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
-              <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
-          </div>
         </div>
       </div>
     </form>
