@@ -37,6 +37,15 @@ describe('BiosecurityAnswer', () => {
         uploadId: '12345',
         uploadUrl: 'http://example.com/upload',
         statusUrl: 'http://example.com/status'
+      },
+      status: {
+        form: {
+          crumb: 'crumb',
+          file: {}
+        },
+        metadata: {},
+        numberOfRejectedFiles: 0,
+        uploadStatus: 'initiated'
       }
     })
   })

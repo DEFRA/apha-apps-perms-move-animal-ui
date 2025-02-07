@@ -53,7 +53,8 @@ export class BiosecurityAnswer extends AnswerModel {
         uploadId: this._data.metadata.uploadId,
         uploadUrl: this._data.metadata.uploadUrl,
         statusUrl: this._data.metadata.statusUrl
-      }
+      },
+      status: this._data?.status
     }
 
     return value
@@ -83,13 +84,7 @@ export class BiosecurityAnswer extends AnswerModel {
   }
 
   validate() {
-    return validateAnswerAgainstSchema(validationSchema, {
-      metadata: {
-        uploadId: this._data?.metadata?.uploadId,
-        uploadUrl: this._data?.metadata?.uploadUrl,
-        statusUrl: this._data?.metadata?.statusUrl
-      }
-    })
+    return validateAnswerAgainstSchema(validationSchema, this.value)
   }
 
   /**

@@ -12,7 +12,7 @@ export default Joi.object({
     form: Joi.object({
       crumb: Joi.string().required(),
       file: Joi.object().required()
-    }),
+    }).required(),
     numberOfRejectedFiles: Joi.number().required()
   }).optional()
-})
+}).required()
