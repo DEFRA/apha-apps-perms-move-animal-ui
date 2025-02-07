@@ -8,7 +8,7 @@ import { uploadConfig } from '../upload-config.js'
 import { UploadPlanPage } from '../upload-plan/index.js'
 
 class BioSecuritySummary extends Page {
-  urlPath = '/biosecurity/check-answers'
+  urlPath = '/biosecurity-map/check-answers'
   sectionKey = 'biosecurity-map'
   question = ''
   questionKey = 'upload-plan'
