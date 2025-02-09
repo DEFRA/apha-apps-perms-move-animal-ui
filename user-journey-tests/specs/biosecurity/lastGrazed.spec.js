@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
-import { waitForPagePath } from '../../helpers/page'
+import { waitForPagePath } from '../../helpers/page.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 
 describe('Last grazed page spec', () => {
