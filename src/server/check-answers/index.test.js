@@ -25,6 +25,7 @@ const testKeptSeparatelyValue = 'yes'
 const testKeptSeparatelyLabel = 'Yes'
 const testGrazingValue = 'yes'
 const testGrazingLabel = 'Yes'
+const testLastGrazedValue = 'Yesterday'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -49,7 +50,8 @@ const expectedDestinationText = 'Dedicated sale for TB (orange market)'
 
 const biosecurityDefaultState = {
   keptSeparately: testKeptSeparatelyValue,
-  grazing: testGrazingValue
+  grazing: testGrazingValue,
+  lastGrazed: testLastGrazedValue
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -83,7 +85,9 @@ const emailContent = [
   '## Will you separate the incoming cattle from the resident herd?',
   testKeptSeparatelyLabel,
   '## Will the incoming cattle be grazed?',
-  testGrazingLabel
+  testGrazingLabel,
+  '## How long ago was the field last grazed by cattle?',
+  testLastGrazedValue
 ].join('\n')
 
 describe('#CheckAnswers', () => {

@@ -13,7 +13,8 @@ describe('Biosecurity', () => {
     it('should return valid if all nested objects are valid', () => {
       const biosecurityData = {
         keptSeparately: testKeptSeparatelyAnswer,
-        grazing: testGrazingAnswer
+        grazing: testGrazingAnswer,
+        lastGrazed: 'yesterday'
       }
       const result = BiosecuritySection.fromState(biosecurityData).validate()
 
