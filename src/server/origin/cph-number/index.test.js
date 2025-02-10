@@ -50,7 +50,7 @@ describe('CphNumberPage', () => {
     expect(cphNumberPage).toBeInstanceOf(CphNumberPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export cphNumber as a plugin', () => {
     expect(cphNumber).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       cphNumber.plugin

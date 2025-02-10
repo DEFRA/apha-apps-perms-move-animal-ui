@@ -6,7 +6,7 @@ import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 
-describe('Kept separately selection test', () => {
+describe('Grazing selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await grazingPage.navigateToPageAndVerifyTitle()

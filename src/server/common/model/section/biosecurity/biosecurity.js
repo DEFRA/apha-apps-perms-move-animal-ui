@@ -6,8 +6,13 @@ import { biosecurity } from '~/src/server/biosecurity/index.js'
 /**
  * export @typedef {{
  * keptSeparately: KeptSeparatelyData | undefined;
+ * grazing: GrazingData | undefined;
+ * lastGrazed: string | undefined;
+ * manureAndSlurry: ManureAndSlurryData | undefined;
  * }} BiosecurityData
  * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
+ * @import {GrazingData} from '../../answer/grazing/grazing.js'
+ * @import {ManureAndSlurryData} from '../../answer/manure-and-slurry/manure-and-slurry.js'
  */
 export class BiosecuritySection extends SectionModel {
   static config = {

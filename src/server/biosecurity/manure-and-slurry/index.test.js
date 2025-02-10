@@ -1,16 +1,21 @@
-import { LastGrazedAnswer } from '../../common/model/answer/last-grazed/last-grazed.js'
+import { ManureAndSlurryAnswer } from '../../common/model/answer/manure-and-slurry/manure-and-slurry.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
-import { lastGrazed, lastGrazedPage, LastGrazedPage } from './index.js'
+import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
+import {
+  manureAndSlurry,
+  manureAndSlurryPage,
+  ManureAndSlurryPage
+} from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'How long ago was the field last grazed by cattle?'
-const questionKey = 'lastGrazed'
+const question =
+  'Has any manure or slurry been put on the grazing field in the past 60 days?'
+const questionKey = 'manureAndSlurry'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/biosecurity/last-grazed'
+const pageUrl = '/biosecurity/manure-and-slurry'
 
-describe('LastGrazedPage', () => {
-  const page = new LastGrazedPage()
+describe('ManureAndSlurryPage', () => {
+  const page = new ManureAndSlurryPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -33,22 +38,22 @@ describe('LastGrazedPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(LastGrazedAnswer)
+    expect(page.Answer).toBe(ManureAndSlurryAnswer)
   })
 
-  it('nextPage should return manure and slurry page', () => {
+  it('nextPage should return grazing field how separate page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(manureAndSlurryPage)
+    expect(nextPage).toBe(grazingFieldHowSeparatedPage)
   })
 
   it('should export page', () => {
-    expect(lastGrazedPage).toBeInstanceOf(LastGrazedPage)
+    expect(manureAndSlurryPage).toBeInstanceOf(ManureAndSlurryPage)
   })
 
-  it('should export lastGrazed as a plugin', () => {
-    expect(lastGrazed).toHaveProperty('plugin')
+  it('should export manureAndSlurry as a plugin', () => {
+    expect(manureAndSlurry).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      lastGrazed.plugin
+      manureAndSlurry.plugin
     )
     expect(plugin).toHaveProperty('name')
     expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
@@ -56,7 +61,7 @@ describe('LastGrazedPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'lastGrazedPage.content',
+    describes: 'manureAndSlurryPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

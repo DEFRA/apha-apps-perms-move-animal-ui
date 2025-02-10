@@ -76,7 +76,7 @@ describe('DestinationTypePage', () => {
     expect(destinationTypePage).toBeInstanceOf(DestinationTypePage)
   })
 
-  it('should export emailAddress as a plugin', () => {
+  it('should export destinationType as a plugin', () => {
     expect(destinationType).toHaveProperty('plugin')
     const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
       destinationType.plugin

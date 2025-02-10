@@ -1,12 +1,31 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { ManureAndSlurryAnswer } from '../../common/model/answer/manure-and-slurry/manure-and-slurry.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class ManureAndSlurryPage extends Page {
+export class ManureAndSlurryPage extends QuestionPage {
   urlPath = '/biosecurity/manure-and-slurry'
   sectionKey = 'biosecurity'
-  question = ''
+  question =
+    'Has any manure or slurry been put on the grazing field in the past 60 days?'
+
   questionKey = 'manureAndSlurry'
+  Answer = ManureAndSlurryAnswer
+
+  nextPage() {
+    return grazingFieldHowSeparatedPage
+  }
 }
 
 export const manureAndSlurryPage = new ManureAndSlurryPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const manureAndSlurry = new QuestionPageController(
+  manureAndSlurryPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
