@@ -1,4 +1,4 @@
-name: Browserstack extended tests (desktop)
+name: Browserstack tests (core)
 
 on:
   schedule:
