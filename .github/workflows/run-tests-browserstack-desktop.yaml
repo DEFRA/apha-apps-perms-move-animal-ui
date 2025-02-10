@@ -2,7 +2,7 @@ name: Browserstack extended tests (desktop)
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs at midnight
+    - cron: "0 1 * * *" # Runs at 1am
 
 env:
   AWS_REGION: eu-west-2
