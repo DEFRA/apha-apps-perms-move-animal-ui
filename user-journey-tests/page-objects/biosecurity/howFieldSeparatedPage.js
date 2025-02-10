@@ -14,31 +14,34 @@ class HowFieldSeparatedPage extends Page {
   noInputError =
     'Enter information about how this grazing field is separated from the resident herd'
 
-  lastGrazedInput() {
+  separatedGrazingInput() {
     return super.getInputField(pageId)
   }
 
-  lastGrazedFieldError() {
+  separatedGrazingFieldError() {
     return super.getErrorElement(pageId)
   }
 
-  lastGrazedErrorLink() {
+  separatedGrazingErrorLink() {
     return super.getErrorLink(pageId)
   }
 
-  async inputLastGrazedAndContinue(text) {
-    await page.typeIntoElement(this.lastGrazedInput(), text)
+  async inputSeparatedGrazingAndContinue(text) {
+    await page.typeIntoElement(this.separatedGrazingInput(), text)
     await super.selectContinue()
   }
 
-  async lastGrazedErrorTest(textInput, errorMessage) {
-    await this.inputLastGrazedAndContinue(textInput)
-    await super.verifyErrorsOnPage(this.lastGrazedFieldError(), errorMessage)
-    await super.verifySummaryErrorLink(
-      this.lastGrazedErrorLink(),
-      this.lastGrazedInput()
+  async fieldSeparatedErrorTest(textInput, errorMessage) {
+    await this.inputSeparatedGrazingAndContinue(textInput)
+    await super.verifyErrorsOnPage(
+      this.separatedGrazingFieldError(),
+      errorMessage
     )
-    const inputValue = await this.lastGrazedInput().getValue()
+    await super.verifySummaryErrorLink(
+      this.separatedGrazingErrorLink(),
+      this.separatedGrazingInput()
+    )
+    const inputValue = await this.separatedGrazingInput().getValue()
     expect(inputValue).toBe(textInput)
   }
 }

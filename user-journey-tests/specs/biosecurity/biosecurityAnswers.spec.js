@@ -57,6 +57,17 @@ describe('Check your answers test - destination', () => {
     )
   })
 
+  it('Should verify the value and href of graxing row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.separateGrazingValue,
+      'Separate grazing'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.changeSeparateGrazingLink,
+      '/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
   it('Should verify continue takes you to task list', async () => {
     await biosecurityAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
