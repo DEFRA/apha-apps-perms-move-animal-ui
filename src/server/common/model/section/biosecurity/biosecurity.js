@@ -9,6 +9,7 @@ import { biosecurity } from '~/src/server/biosecurity/index.js'
  * grazing: GrazingData | undefined;
  * lastGrazed: string | undefined;
  * manureAndSlurry: ManureAndSlurryData | undefined;
+ * grazingFieldHowSeparated: string | undefined
  * }} BiosecurityData
  * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
  * @import {GrazingData} from '../../answer/grazing/grazing.js'

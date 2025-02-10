@@ -24,6 +24,7 @@ const testReceiveMethodLabel = 'Email'
 const yesValue = 'yes'
 const yesLabel = 'Yes'
 const testLastGrazedValue = 'Yesterday'
+const testGrazingFieldHowSeparated = 'some details'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -50,7 +51,8 @@ const biosecurityDefaultState = {
   keptSeparately: yesValue,
   grazing: yesValue,
   lastGrazed: testLastGrazedValue,
-  manureAndSlurry: yesValue
+  manureAndSlurry: yesValue,
+  grazingFieldHowSeparated: testGrazingFieldHowSeparated
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -88,7 +90,9 @@ const emailContent = [
   '## How long ago was the field last grazed by cattle?',
   testLastGrazedValue,
   '## Has any manure or slurry been put on the grazing field in the past 60 days?',
-  yesLabel
+  yesLabel,
+  '## How is this grazing field separated from the resident herd?',
+  testGrazingFieldHowSeparated
 ].join('\n')
 
 describe('#CheckAnswers', () => {

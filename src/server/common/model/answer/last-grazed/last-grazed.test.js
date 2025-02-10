@@ -10,7 +10,7 @@ const payload = {
 }
 
 describe('LastGrazed', () => {
-  it('should be a radio button', () => {
+  it('should be a text input', () => {
     expect(new LastGrazedAnswer(payload)).toBeInstanceOf(TextAnswer)
   })
 

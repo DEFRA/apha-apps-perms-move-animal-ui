@@ -1,12 +1,29 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { GrazingFieldHowSeparatedAnswer } from '../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class GrazingFieldHowSeparatedPage extends Page {
+export class GrazingFieldHowSeparatedPage extends QuestionPage {
   urlPath = '/biosecurity/grazing-field-how-separated'
   sectionKey = 'biosecurity'
-  question = ''
+  question = 'How is this grazing field separated from the resident herd?'
   questionKey = 'grazingFieldHowSeparated'
+  Answer = GrazingFieldHowSeparatedAnswer
+
+  nextPage() {
+    return roadsAndTracksPage
+  }
 }
 
 export const grazingFieldHowSeparatedPage = new GrazingFieldHowSeparatedPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const grazingFieldHowSeparated = new QuestionPageController(
+  grazingFieldHowSeparatedPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
