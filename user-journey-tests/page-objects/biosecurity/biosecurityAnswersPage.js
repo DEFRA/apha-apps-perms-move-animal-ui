@@ -24,6 +24,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="manureAndSlurry-change-link"]')
   }
 
+  get changeSeparateGrazingLink() {
+    return $('[data-testid="grazingFieldHowSeparated-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -38,6 +42,10 @@ class BiosecurityAnswersPage extends Page {
 
   get manureOrSlurryValue() {
     return $$('.govuk-summary-list__value')[3]
+  }
+
+  get separateGrazingValue() {
+    return $$('.govuk-summary-list__value')[4]
   }
 }
 

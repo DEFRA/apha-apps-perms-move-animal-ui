@@ -9,14 +9,16 @@ const validBiosecurityData = {
   keptSeparately: 'yes',
   grazing: 'yes',
   lastGrazed: 'yesterday',
-  manureAndSlurry: 'yes'
+  manureAndSlurry: 'yes',
+  grazingFieldHowSeparated: 'some details'
 }
 
 const invalidBiosecurityData = {
   keptSeparately: undefined,
   grazing: undefined,
   lastGrazed: undefined,
-  manureAndSlurry: undefined
+  manureAndSlurry: undefined,
+  grazingFieldHowSeparated: undefined
 }
 
 describe('Biosecurity', () => {
