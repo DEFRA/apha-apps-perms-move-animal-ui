@@ -46,7 +46,7 @@ describe('Check your answers test - destination', () => {
     )
   })
 
-  it('Should verify the value and href of graxing row', async () => {
+  it('Should verify the value and href of grazing row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.manureOrSlurryValue,
       'Yes'
@@ -57,7 +57,7 @@ describe('Check your answers test - destination', () => {
     )
   })
 
-  it('Should verify the value and href of graxing row', async () => {
+  it('Should verify the value and href of separated grazing row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.separateGrazingValue,
       'Separate grazing'
