@@ -44,7 +44,7 @@ const biosecurityDefaultState = {
   grazingFieldHowSeparated: 'some details'
 }
 
-describe('Application.fromState', () => {
+describe('Application.fromReq', () => {
   it('should create an Application instance from a valid state', () => {
     const state = {
       origin: originDefaultState,
@@ -60,7 +60,7 @@ describe('Application.fromState', () => {
       }
     }
 
-    const application = ApplicationModel.fromState(request)
+    const application = ApplicationModel.fromReq(request)
 
     expect(application).toBeInstanceOf(ApplicationModel)
 
