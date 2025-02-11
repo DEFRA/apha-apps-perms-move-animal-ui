@@ -69,6 +69,17 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
       <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How is this grazing field separated from the resident herd?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yes
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/roads-and-tracks?redirect_uri=/biosecurity/check-answers" data-testid="roadsAndTracks-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?</span></a>
+    </dd>
+  </div>
 </dl>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

@@ -41,7 +41,8 @@ const biosecurityDefaultState = {
   grazing: 'yes',
   lastGrazed: 'yesterday',
   manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details'
+  grazingFieldHowSeparated: 'some details',
+  roadsAndTracks: 'yes'
 }
 
 describe('Application.fromState', () => {

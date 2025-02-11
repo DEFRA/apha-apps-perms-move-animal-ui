@@ -52,7 +52,8 @@ const biosecurityDefaultState = {
   grazing: yesValue,
   lastGrazed: testLastGrazedValue,
   manureAndSlurry: yesValue,
-  grazingFieldHowSeparated: testGrazingFieldHowSeparated
+  grazingFieldHowSeparated: testGrazingFieldHowSeparated,
+  roadsAndTracks: yesValue
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -92,7 +93,9 @@ const emailContent = [
   '## Has any manure or slurry been put on the grazing field in the past 60 days?',
   yesLabel,
   '## How is this grazing field separated from the resident herd?',
-  testGrazingFieldHowSeparated
+  testGrazingFieldHowSeparated,
+  '## Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?',
+  yesLabel
 ].join('\n')
 
 describe('#CheckAnswers', () => {

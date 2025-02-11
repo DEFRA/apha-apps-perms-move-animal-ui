@@ -35,7 +35,8 @@ const validBiosecurityState = {
   grazing: 'yes',
   lastGrazed: 'yesterday',
   manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details'
+  grazingFieldHowSeparated: 'some details',
+  roadsAndTracks: 'yes'
 }
 
 describe('#taskListController', () => {
