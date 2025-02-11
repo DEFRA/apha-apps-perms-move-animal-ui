@@ -40,11 +40,14 @@
         {{
           govukFileUpload
           ({
-              id: "biosecurity-upload-plan-file-upload",
+              id: "status.form.file",
               name: "file",
-              label:
-              {
+              label:{
                   text: "Upload a file"
+              },
+              errorMessage: errors['status.form.file'],
+              attributes: {
+                "data-testid": "file-biosecuritymap-upload"
               }
           })
         }}
