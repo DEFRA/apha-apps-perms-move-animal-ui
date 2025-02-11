@@ -24,7 +24,7 @@ describe('Check your answers test - destination', () => {
     )
   })
 
-  it('Should verify the value and href of graxing row', async () => {
+  it('Should verify the value and href of grazing row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.grazingValue,
       'Yes'
@@ -35,7 +35,7 @@ describe('Check your answers test - destination', () => {
     )
   })
 
-  it('Should verify the value and href of graxing row', async () => {
+  it('Should verify the value and href of last grazed row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.lastGrazedValue,
       '2 years'
@@ -46,7 +46,7 @@ describe('Check your answers test - destination', () => {
     )
   })
 
-  it('Should verify the value and href of grazing row', async () => {
+  it('Should verify the value and href of manure or slurry', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.manureOrSlurryValue,
       'Yes'
@@ -65,6 +65,17 @@ describe('Check your answers test - destination', () => {
     await validateHrefOfElement(
       biosecurityAnswersPage.changeSeparateGrazingLink,
       '/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
+  it('Should verify the value and href of roads and tracks row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.roadsAndTracksValue,
+      'Yes'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.changeRoadsAndTracksLink,
+      '/biosecurity/roads-and-tracks?redirect_uri=/biosecurity/check-answers'
     )
   })
 

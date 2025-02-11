@@ -9,6 +9,7 @@ import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -29,6 +30,8 @@ const completeBiosecurityTask = async (radioType) => {
         'Separate grazing'
       )
       await waitForPagePath(roadsAndTracksPage.pagePath)
+      await roadsAndTracksPage.selectYesAndContinue()
+      await waitForPagePath(anySharedBuildingsPage.pagePath)
       break
 
     case 'no':
