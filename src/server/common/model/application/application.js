@@ -60,7 +60,7 @@ export class ApplicationModel {
    * @param {Request} req
    * @returns {ApplicationModel}
    */
-  static fromReq(req) {
+  static fromRequest(req) {
     return new ApplicationModel(
       Object.fromEntries(
         this.visibleSections.map((section) => [

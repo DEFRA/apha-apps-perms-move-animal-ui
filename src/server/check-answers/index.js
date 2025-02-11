@@ -32,7 +32,7 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   viewProps(req) {
-    const tasks = ApplicationModel.fromReq(req).tasks
+    const tasks = ApplicationModel.fromRequest(req).tasks
 
     const summary = Object.fromEntries(
       Object.values(tasks).map((task) => {
@@ -56,7 +56,7 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   handleGet(req, h) {
-    const { isValid } = ApplicationModel.fromReq(req).validate()
+    const { isValid } = ApplicationModel.fromRequest(req).validate()
 
     if (!isValid) {
       return h.redirect('/task-list-incomplete')
@@ -70,7 +70,7 @@ export class SubmitPageController extends QuestionPageController {
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
 
-    const application = ApplicationModel.fromReq(req)
+    const application = ApplicationModel.fromRequest(req)
 
     const { isValid: isValidApplication } = application.validate()
 
