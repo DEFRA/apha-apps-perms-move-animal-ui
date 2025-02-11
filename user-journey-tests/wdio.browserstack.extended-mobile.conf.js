@@ -9,7 +9,8 @@ export const config = {
     './specs/submissionConfirmation.spec.js',
     './specs/origin/checkAnswers.spec.js',
     './specs/receiving-the-licence/licenceAnswers.spec.js',
-    './specs/biosecurity-map/biosecurityMapUpload.spec.js'
+    './specs/biosecurity-map/biosecurityMapUpload.spec.js',
+    './specs/finalAnswersDeclarations.spec.js'
   ],
   maxInstances: 3,
   capabilities: [
