@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContaminationPage.content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="buildingsHowMinimiseContamination">
+      How will you reduce building and equipment contamination?
+    </label>
+  </h1>
+  <div id="buildingsHowMinimiseContamination-hint" class="govuk-hint">
+    For example, disinfection points and measures taken when milking dairy cattle
+  </div>
+  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="5" aria-describedby="buildingsHowMinimiseContamination-hint"></textarea>
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

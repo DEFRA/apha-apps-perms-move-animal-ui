@@ -37,7 +37,8 @@ const validBiosecurityState = {
   manureAndSlurry: 'yes',
   grazingFieldHowSeparated: 'some details',
   roadsAndTracks: 'yes',
-  buildingsAnyShared: 'yes'
+  buildingsAnyShared: 'yes',
+  buildingsHowMinimiseContamination: 'somehow'
 }
 
 describe('#taskListController', () => {

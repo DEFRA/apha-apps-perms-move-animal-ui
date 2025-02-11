@@ -1,13 +1,30 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { BuildingsHowMinimiseContaminationAnswer } from '../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class BuildingsHowMinimiseContaminationPage extends Page {
+export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
-  question = 'question to be asked'
+  question = 'How will you reduce building and equipment contamination?'
   questionKey = 'buildingsHowMinimiseContamination'
+  Answer = BuildingsHowMinimiseContaminationAnswer
+
+  nextPage() {
+    return peopleDisinfectionPage
+  }
 }
 
 export const buildingsHowMinimiseContaminationPage =
   new BuildingsHowMinimiseContaminationPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const buildingsHowMinimiseContamination = new QuestionPageController(
+  buildingsHowMinimiseContaminationPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */

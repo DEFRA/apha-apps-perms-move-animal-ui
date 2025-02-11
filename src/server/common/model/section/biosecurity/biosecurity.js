@@ -12,6 +12,7 @@ import { biosecurity } from '~/src/server/biosecurity/index.js'
  * grazingFieldHowSeparated: string | undefined;
  * roadsAndTracks: RoadsAndTracksData | undefined;
  * buildingsAnyShared: BuildingsAnySharedData | undefined;
+ * buildingsHowMinimiseContamination: string | undefined;
  * }} BiosecurityData
  * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
  * @import {GrazingData} from '../../answer/grazing/grazing.js'
