@@ -4,6 +4,7 @@ import { ExitPage } from '../../page/exit-page-model.js'
 /**
  * @import { Page } from '../../page/page-model.js'
  * @import {AnswerModel} from '../../answer/answer-model.js'
+ * @import {RawApplicationState} from '../../state/state-manager.js'
  */
 
 /**
@@ -67,9 +68,10 @@ export class SectionModel {
 
   /**
    * @param {object | undefined} data
+   * @param {RawApplicationState} context
    * @returns {SectionModel}
    */
-  static fromState(data) {
+  static fromState(data, context) {
     /** @type {SectionPayload} */
     const pages = []
 
@@ -77,7 +79,7 @@ export class SectionModel {
     let page = this.firstPageFactory()
 
     while (page instanceof QuestionPage) {
-      const answer = page.Answer.fromState(data?.[page.questionKey])
+      const answer = page.Answer.fromState(data?.[page.questionKey], context)
       pages.push({
         kind: 'Question',
         page,

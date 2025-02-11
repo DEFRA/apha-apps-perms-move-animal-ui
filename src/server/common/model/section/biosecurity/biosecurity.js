@@ -3,6 +3,8 @@ import { SectionModel } from '../section-model/section-model.js'
 import { config } from '~/src/config/config.js'
 import { biosecurity } from '~/src/server/biosecurity/index.js'
 
+/** @import {RawApplicationState} from '../../state/state-manager.js' */
+
 /**
  * export @typedef {{
  * keptSeparately: KeptSeparatelyData | undefined;
@@ -33,8 +35,9 @@ export class BiosecuritySection extends SectionModel {
 
   /**
    * @param {BiosecurityData | undefined} data
+   * @param {RawApplicationState} context
    */
-  static fromState(data) {
-    return SectionModel.fromState.call(this, data)
+  static fromState(data, context) {
+    return super.fromState(data, context)
   }
 }

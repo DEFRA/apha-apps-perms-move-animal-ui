@@ -5,7 +5,6 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
 
 /**
- * @import { Request } from '@hapi/hapi'
  * @import { RawApplicationState } from '../state/state-manager.js'
  */
 
@@ -66,7 +65,10 @@ export class ApplicationModel {
       Object.fromEntries(
         this.visibleSections.map((section) => [
           section.config.key,
-          section.fromState(/** @type {any} */ (state[section.config.key]))
+          section.fromState(
+            /** @type {any} */ (state[section.config.key]),
+            state
+          )
         ])
       )
     )

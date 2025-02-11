@@ -46,6 +46,13 @@ const biosecurityDefaultState = {
   buildingsAnyShared: 'yes'
 }
 
+const applicationState = {
+  origin: originDefaultState,
+  licence: licenceDefaultState,
+  destination: destinationDefaultState,
+  biosecurity: biosecurityDefaultState
+}
+
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {
     const state = {
@@ -65,16 +72,20 @@ describe('Application.fromState', () => {
     expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 
     expect(application.tasks.origin.questionPageAnswers).toEqual(
-      OriginSection.fromState(originDefaultState).questionPageAnswers
+      OriginSection.fromState(originDefaultState, applicationState)
+        .questionPageAnswers
     )
     expect(application.tasks.licence.questionPageAnswers).toEqual(
-      LicenceSection.fromState(licenceDefaultState).questionPageAnswers
+      LicenceSection.fromState(licenceDefaultState, applicationState)
+        .questionPageAnswers
     )
     expect(application.tasks.destination.questionPageAnswers).toEqual(
-      DestinationSection.fromState(destinationDefaultState).questionPageAnswers
+      DestinationSection.fromState(destinationDefaultState, applicationState)
+        .questionPageAnswers
     )
     expect(application.tasks.biosecurity.questionPageAnswers).toEqual(
-      BiosecuritySection.fromState(biosecurityDefaultState).questionPageAnswers
+      BiosecuritySection.fromState(biosecurityDefaultState, applicationState)
+        .questionPageAnswers
     )
   })
 })

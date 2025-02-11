@@ -2,6 +2,8 @@ import { SectionModel } from '../section-model/section-model.js'
 import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
 import { origin } from '~/src/server/origin/index.js'
 
+/** @import {RawApplicationState} from '../../state/state-manager.js' */
+
 /**
  * export @typedef {{
  * onOffFarm: OnOffFarmData | undefined;
@@ -27,8 +29,9 @@ export class OriginSection extends SectionModel {
 
   /**
    * @param {OriginData | undefined} data
+   * @param {RawApplicationState} context
    */
-  static fromState(data) {
-    return SectionModel.fromState.call(this, data)
+  static fromState(data, context) {
+    return super.fromState(data, context)
   }
 }
