@@ -21,6 +21,11 @@ import { validateApplication } from './validation.js'
  * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
  */
 
+/**
+ * @typedef {Record<string, any>} RawSectionState
+ * @typedef {Record<string, RawSectionState>} RawApplicationState
+ */
+
 // This is a list of all the sections that are implemented in the application.
 // The order in this array drives the order in which the sections are displayed.
 const implementedSections = [
@@ -54,6 +59,19 @@ export class ApplicationModel {
     return implementedSections.filter((section) => {
       return section.config.isVisible
     })
+  }
+
+  /**
+   * @param {Request} req
+   * @returns {RawApplicationState}
+   */
+  static rawState(req) {
+    return Object.fromEntries(
+      this.visibleSections.map((section) => [
+        section.config.key,
+        req.yar.get(section.config.key)
+      ])
+    )
   }
 
   /**

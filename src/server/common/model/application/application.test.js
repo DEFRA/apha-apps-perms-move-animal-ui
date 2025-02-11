@@ -44,22 +44,22 @@ const biosecurityDefaultState = {
   grazingFieldHowSeparated: 'some details'
 }
 
-describe('Application.fromState', () => {
+const state = {
+  origin: originDefaultState,
+  licence: licenceDefaultState,
+  destination: destinationDefaultState,
+  biosecurity: biosecurityDefaultState
+}
+
+const request = /** @type {Request} */ {
+  ...jest.requireActual('@hapi/hapi'),
+  yar: {
+    get: jest.fn().mockImplementation((key) => state[key])
+  }
+}
+
+describe('ApplicationModel.fromState', () => {
   it('should create an Application instance from a valid state', () => {
-    const state = {
-      origin: originDefaultState,
-      licence: licenceDefaultState,
-      destination: destinationDefaultState,
-      biosecurity: biosecurityDefaultState
-    }
-
-    const request = /** @type {Request} */ {
-      ...jest.requireActual('@hapi/hapi'),
-      yar: {
-        get: jest.fn().mockImplementation((key) => state[key])
-      }
-    }
-
     const application = ApplicationModel.fromState(request)
 
     expect(application).toBeInstanceOf(ApplicationModel)
@@ -81,5 +81,11 @@ describe('Application.fromState', () => {
     expect(application.tasks.biosecurity.questionPageAnswers).toEqual(
       BiosecuritySection.fromState(biosecurityDefaultState).questionPageAnswers
     )
+  })
+})
+
+describe('ApplicationModel.rawState', () => {
+  it('should return the state as extracted from request, regarding the visible sections', () => {
+    expect(ApplicationModel.rawState(request)).toEqual(state)
   })
 })
