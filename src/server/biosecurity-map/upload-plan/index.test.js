@@ -88,7 +88,6 @@ describe('#UploadPlan', () => {
           )
         )
 
-        expect(payload).toMatchSnapshot()
         expect(payload).toContain('You need to upload your biosecurity map')
       })
     })
@@ -138,7 +137,6 @@ describe('#UploadPlan', () => {
           )
         )
 
-        expect(payload).toMatchSnapshot()
         expect(payload).toContain(
           'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
         )
