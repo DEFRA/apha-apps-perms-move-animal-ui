@@ -1,12 +1,37 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { BuildingsAnySharedAnswer } from '../../common/model/answer/buildings-any-shared/buildings-any-shared.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise-contamination/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class BuildingsAnySharedPage extends Page {
+export class BuildingsAnySharedPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-any-shared'
   sectionKey = 'biosecurity'
-  question = 'question to be asked'
+  question =
+    'Will the cattle share any buildings and equipment with the resident herd?'
+
   questionKey = 'buildingsAnyShared'
+  Answer = BuildingsAnySharedAnswer
+
+  /** @param {BuildingsAnySharedAnswer} answer */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  nextPage(answer) {
+    if (answer.value === 'yes') {
+      return buildingsHowMinimiseContaminationPage
+    }
+    return peopleDisinfectionPage
+  }
 }
 
 export const buildingsAnySharedPage = new BuildingsAnySharedPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const buildingsAnyShared = new QuestionPageController(
+  buildingsAnySharedPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
