@@ -55,14 +55,7 @@ describe('Application.fromState', () => {
       biosecurity: biosecurityDefaultState
     }
 
-    const request = /** @type {Request} */ {
-      ...jest.requireActual('@hapi/hapi'),
-      yar: {
-        get: jest.fn().mockImplementation((key) => state[key])
-      }
-    }
-
-    const application = ApplicationModel.fromState(request)
+    const application = ApplicationModel.fromState(state)
 
     expect(application).toBeInstanceOf(ApplicationModel)
 

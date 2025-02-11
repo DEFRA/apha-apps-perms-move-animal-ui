@@ -6,6 +6,7 @@ import { validateApplication } from './validation.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
+ * @import { RawApplicationState } from '../state/state-manager.js'
  */
 
 /**
@@ -57,15 +58,15 @@ export class ApplicationModel {
   }
 
   /**
-   * @param {Request} req
+   * @param {RawApplicationState} state
    * @returns {ApplicationModel}
    */
-  static fromState(req) {
+  static fromState(state) {
     return new ApplicationModel(
       Object.fromEntries(
         this.visibleSections.map((section) => [
           section.config.key,
-          section.fromState(req.yar.get(section.config.key))
+          section.fromState(/** @type {any} */ (state[section.config.key]))
         ])
       )
     )
