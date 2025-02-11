@@ -6,7 +6,7 @@ import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-describe('Check your answers test - destination', () => {
+describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
   before('Copmplete answers', async () => {
     await completeBiosecurityTask('yes')
@@ -87,6 +87,17 @@ describe('Check your answers test - destination', () => {
     await validateHrefOfElement(
       biosecurityAnswersPage.sharedBuildingsLink,
       '/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
+  it('Should verify the value and href of minimise contamination row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.minimiseContaminationValue,
+      'Minimise'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.minimiseContaminationLink,
+      '/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers'
     )
   })
 

@@ -5,7 +5,7 @@ import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuil
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
 
-describe('Grazing selection test', () => {
+describe('Shared buildings page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await anySharedBuildingsPage.navigateToPageAndVerifyTitle()
