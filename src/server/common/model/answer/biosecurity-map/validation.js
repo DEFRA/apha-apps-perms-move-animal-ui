@@ -12,7 +12,11 @@ export default Joi.object({
     form: Joi.object({
       crumb: Joi.string().required(),
       file: Joi.object().required()
-    }).required(),
+    })
+      .required()
+      .messages({
+        'any.required': 'You need to upload your biosecurity map'
+      }),
     numberOfRejectedFiles: Joi.number().equal(0)
   }).optional()
 }).required()

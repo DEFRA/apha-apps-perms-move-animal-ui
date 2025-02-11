@@ -30,11 +30,29 @@ export class UploadPlanController extends QuestionPageController {
   async handleGet(req, h) {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
 
+    // save this seperately to see if we've already tried to upload a bio-sec-map already
+    const initialState = req.yar.get(this.page.questionKey)
+    const existingAnswer = /** @type {BiosecurityAnswer} */ (
+      this.page.Answer.fromState(initialState)
+    )
+    const { isValid, errors } = existingAnswer.validate()
+
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
         redirect: this.page.nextPage(req).urlPath,
         s3Bucket: bucket,
-        s3Path: path
+        s3Path: path,
+        mimeTypes: [
+          'image/bmp',
+          'image/gif',
+          'image/jpeg',
+          'image/svg+xml',
+          'image/tiff',
+          'image/webp',
+          'image/apng',
+          'image/avif',
+          'application/pdf'
+        ]
       })
     })
 
@@ -53,12 +71,24 @@ export class UploadPlanController extends QuestionPageController {
       Pragma: 'no-cache'
     }
 
-    const { isValid, errors } = answer.validate()
+    // if we dont have an initialState then its the first time we've visited here
+    if (initialState && !isValid) {
+      let validationErrors = errors
+      if (
+        existingAnswer.value?.status?.form.file &&
+        existingAnswer.value?.status?.numberOfRejectedFiles > 0
+      ) {
+        validationErrors = {
+          'status.form.file': {
+            text: existingAnswer.value.status.form.file.errorMessage
+          }
+        }
+      }
 
-    if (!isValid) {
       return super.handleGet(req, h, {
         upload: answer.value,
-        errorMessages: errors.errorMessages
+        errorMessages: this.page.Answer.errorMessages(validationErrors),
+        errors: validationErrors
       })
     }
 
