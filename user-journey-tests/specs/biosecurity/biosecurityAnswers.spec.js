@@ -79,6 +79,17 @@ describe('Check your answers test - destination', () => {
     )
   })
 
+  it('Should verify the value and href of shared buildings row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.sharedBuildingsValue,
+      'Yes'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.sharedBuildingsLink,
+      '/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
   it('Should verify continue takes you to task list', async () => {
     await biosecurityAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()

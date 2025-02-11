@@ -32,6 +32,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="roadsAndTracks-change-link"]')
   }
 
+  get sharedBuildingsLink() {
+    return $('[data-testid="buildingsAnyShared-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -54,6 +58,10 @@ class BiosecurityAnswersPage extends Page {
 
   get roadsAndTracksValue() {
     return $$('.govuk-summary-list__value')[5]
+  }
+
+  get sharedBuildingsValue() {
+    return $$('.govuk-summary-list__value')[6]
   }
 }
 
