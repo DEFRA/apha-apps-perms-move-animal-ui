@@ -17,7 +17,7 @@ export class AnswerModel {
   _data
 
   /**
-   * @param {Payload | undefined } [data]
+   * @param {Payload} [data]
    */
   constructor(data) {
     this._data = data === undefined ? undefined : this._extractFields(data)
@@ -95,7 +95,7 @@ export class AnswerModel {
 /**
  * @template Payload
  * @typedef {{
- *   new(data: Payload): AnswerModel<Payload>;
+ *   new(data?: Payload): AnswerModel<Payload>;
  *   fromState(data: any): AnswerModel<Payload>;
  *   errorMessages(errors: AnswerErrors): ViewErrorMessage[];
  * }} AnswerModelClass
