@@ -4,6 +4,7 @@ import { grazing } from './grazing/index.js'
 import { lastGrazed } from './last-grazed/index.js'
 import { manureAndSlurry } from './manure-and-slurry/index.js'
 import { grazingFieldHowSeparated } from './grazing-field-how-separated/index.js'
+import { roadsAndTracks } from './roads-and-tracks/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -18,6 +19,7 @@ export const biosecurity = {
         lastGrazed,
         manureAndSlurry,
         grazingFieldHowSeparated,
+        roadsAndTracks,
         biosecuritySummary
       ])
     }

@@ -1,12 +1,31 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { RoadsAndTracksAnswer } from '../../common/model/answer/roads-and-tracks/roads-and-tracks.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class RoadsAndTracksPage extends Page {
+export class RoadsAndTracksPage extends QuestionPage {
   urlPath = '/biosecurity/roads-and-tracks'
   sectionKey = 'biosecurity'
-  question = ''
+  question =
+    'Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?'
+
   questionKey = 'roadsAndTracks'
+  Answer = RoadsAndTracksAnswer
+
+  nextPage() {
+    return buildingsAnySharedPage
+  }
 }
 
 export const roadsAndTracksPage = new RoadsAndTracksPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const roadsAndTracks = new QuestionPageController(
+  roadsAndTracksPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */

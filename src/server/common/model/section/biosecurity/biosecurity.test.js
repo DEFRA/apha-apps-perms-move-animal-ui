@@ -10,7 +10,8 @@ const validBiosecurityData = {
   grazing: 'yes',
   lastGrazed: 'yesterday',
   manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details'
+  grazingFieldHowSeparated: 'some details',
+  roadsAndTracks: 'yes'
 }
 
 const invalidBiosecurityData = {
@@ -18,7 +19,8 @@ const invalidBiosecurityData = {
   grazing: undefined,
   lastGrazed: undefined,
   manureAndSlurry: undefined,
-  grazingFieldHowSeparated: undefined
+  grazingFieldHowSeparated: undefined,
+  roadsAndTracks: undefined
 }
 
 describe('Biosecurity', () => {

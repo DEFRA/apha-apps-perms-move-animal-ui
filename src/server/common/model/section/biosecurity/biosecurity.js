@@ -9,11 +9,13 @@ import { biosecurity } from '~/src/server/biosecurity/index.js'
  * grazing: GrazingData | undefined;
  * lastGrazed: string | undefined;
  * manureAndSlurry: ManureAndSlurryData | undefined;
- * grazingFieldHowSeparated: string | undefined
+ * grazingFieldHowSeparated: string | undefined;
+ * roadsAndTracks: RoadsAndTracksData | undefined;
  * }} BiosecurityData
  * @import {KeptSeparatelyData} from '../../answer/kept-separately/kept-separately.js'
  * @import {GrazingData} from '../../answer/grazing/grazing.js'
  * @import {ManureAndSlurryData} from '../../answer/manure-and-slurry/manure-and-slurry.js'
+ * @import {RoadsAndTracksData} from '../../answer/roads-and-tracks/roads-and-tracks.js'
  */
 export class BiosecuritySection extends SectionModel {
   static config = {

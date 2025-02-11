@@ -11,7 +11,7 @@ class GrazingPage extends Page {
   grazingPageError = 'Select yes if the incoming cattle will be grazed'
 
   get yesRadio() {
-    return $('#grazing')
+    return $(`#${pageId}`)
   }
 
   get noRadio() {

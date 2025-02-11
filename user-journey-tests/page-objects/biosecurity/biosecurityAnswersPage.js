@@ -28,6 +28,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="grazingFieldHowSeparated-change-link"]')
   }
 
+  get changeRoadsAndTracksLink() {
+    return $('[data-testid="roadsAndTracks-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -46,6 +50,10 @@ class BiosecurityAnswersPage extends Page {
 
   get separateGrazingValue() {
     return $$('.govuk-summary-list__value')[4]
+  }
+
+  get roadsAndTracksValue() {
+    return $$('.govuk-summary-list__value')[5]
   }
 }
 
