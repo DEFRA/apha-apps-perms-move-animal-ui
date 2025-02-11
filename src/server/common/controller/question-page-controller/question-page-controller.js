@@ -65,8 +65,12 @@ export class QuestionPageController extends GenericPageController {
 
   handlePost(req, h) {
     const payload = /** @type {NextPage} */ (req.payload)
+    const applicationState = new StateManager(req).toState()
     const Answer = this.page.Answer
-    const answer = new Answer(/** @type {RawPayload} */ (payload))
+    const answer = new Answer(
+      /** @type {RawPayload} */ (payload),
+      applicationState
+    )
     const { isValid, errors } = answer.validate()
 
     if (!isValid) {

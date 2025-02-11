@@ -26,7 +26,14 @@ const validationSpy = jest
   .mockReturnValue({ isValid: true, errors: {} })
 const redirectUri = '/redirect-uri'
 
+const TestAnswerSpy = jest.fn()
+
 class TestAnswer extends AnswerModel {
+  constructor(...args) {
+    super(...args)
+    TestAnswerSpy(...args)
+  }
+
   toState() {
     return this._data?.[questionKey]
   }
@@ -380,6 +387,37 @@ describe('QuestionPageController', () => {
         afterAll(() => {
           config.set('isProduction', false)
         })
+      })
+    })
+
+    it('should pass context to the answer model', async () => {
+      const originState = {
+        originType: 'afu'
+      }
+      await session.setState(sectionKey, {
+        [questionKey]: questionValue
+      })
+      await session.setState('origin', originState)
+
+      const payload = {
+        [questionKey]: 'continue'
+      }
+
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}`,
+            payload
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(TestAnswerSpy).toHaveBeenCalledWith(payload, {
+        origin: originState
       })
     })
   })
