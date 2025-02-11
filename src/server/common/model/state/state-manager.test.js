@@ -1,5 +1,7 @@
 import { StateManager } from './state-manager.js'
 
+/** @import {RawApplicationState} from './state-manager.js' */
+
 const origin = {
   onOffFarm: 'on'
 }
@@ -23,14 +25,32 @@ const validState = {
   biosecurity
 }
 
+/**
+ * @param {RawApplicationState} state
+ * @returns {any}
+ */
+const testRequest = (state) => ({
+  yar: {
+    get: jest.fn().mockImplementation((key) => state[key])
+  }
+})
+
 describe('StateManager', () => {
   it('extracts the raw application state from a request', () => {
-    const request = /** @type {Request} */ {
-      ...jest.requireActual('@hapi/hapi'),
-      yar: {
-        get: jest.fn().mockImplementation((key) => validState[key])
-      }
-    }
+    const request = testRequest(validState)
+    const state = new StateManager(request)
+    expect(state.toState()).toEqual(validState)
+  })
+
+  it('filters out missing sections', () => {
+    const partialState = { origin }
+    const request = testRequest(partialState)
+    const state = new StateManager(request)
+    expect(state.toState()).toEqual(partialState)
+  })
+
+  it("should ignore keys it isn't tracking", () => {
+    const request = testRequest({ ...validState, someOtherKey: {} })
     const state = new StateManager(request)
     expect(state.toState()).toEqual(validState)
   })

@@ -16,7 +16,9 @@ export class StateManager {
   /** @returns {RawApplicationState} */
   toState() {
     return Object.fromEntries(
-      sectionKeys.map((key) => [key, this._request.yar.get(key)])
+      sectionKeys
+        .map((key) => [key, this._request.yar.get(key)])
+        .filter((entry) => entry.at(1) !== null)
     )
   }
 }
