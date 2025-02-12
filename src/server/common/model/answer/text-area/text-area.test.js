@@ -203,6 +203,13 @@ describe('TestAnswer.html', () => {
     const textAreaAnswer = new TestTextAreaAnswer({})
     expect(textAreaAnswer.html).toBe('')
   })
+
+  it('should return a string after replacing newlines with <br>', () => {
+    const textAreaAnswer = new TestTextAreaAnswer({
+      textAreaPayload: 'line one\nline two'
+    })
+    expect(textAreaAnswer.html).toBe('line one<br />line two')
+  })
 })
 
 describe('TestAnswer.viewModel (without any extra options)', () => {

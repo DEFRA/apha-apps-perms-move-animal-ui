@@ -25,6 +25,7 @@ const yesValue = 'yes'
 const yesLabel = 'Yes'
 const testLastGrazedValue = 'Yesterday'
 const testGrazingFieldHowSeparated = 'some details'
+const testBuildingsHowMinimiseContamination = 'somehow'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -54,7 +55,8 @@ const biosecurityDefaultState = {
   manureAndSlurry: yesValue,
   grazingFieldHowSeparated: testGrazingFieldHowSeparated,
   roadsAndTracks: yesValue,
-  buildingsAnyShared: yesValue
+  buildingsAnyShared: yesValue,
+  buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -98,7 +100,9 @@ const emailContent = [
   '## Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?',
   yesLabel,
   '## Will the cattle share any buildings and equipment with the resident herd?',
-  yesLabel
+  yesLabel,
+  '## How will you reduce building and equipment contamination?',
+  testBuildingsHowMinimiseContamination
 ].join('\n')
 
 describe('#CheckAnswers', () => {

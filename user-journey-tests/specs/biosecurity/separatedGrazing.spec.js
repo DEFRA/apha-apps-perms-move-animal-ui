@@ -4,7 +4,7 @@ import { waitForPagePath } from '../../helpers/page.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 
-describe('Last grazed page spec', () => {
+describe('Separated grazing page spec', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await howFieldSeparatedPage.navigateToPageAndVerifyTitle()
