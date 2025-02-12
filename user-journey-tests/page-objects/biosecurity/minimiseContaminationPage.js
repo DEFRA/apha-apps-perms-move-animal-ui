@@ -1,4 +1,5 @@
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 import * as page from '../../helpers/page.js'
 
 const pageId = 'buildingsHowMinimiseContamination'
@@ -26,9 +27,12 @@ class MinimiseContaminationPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async inputMinimiseContaminationAndContinue(text) {
+  async inputMinimiseContaminationAndContinue(text, newPage) {
     await page.typeIntoElement(this.minimiseContaminationInput(), text)
     await super.selectContinue()
+    if (newPage) {
+      await waitForPagePath(newPage.pagePath)
+    }
   }
 
   async minimiseContaminationErrorTest(textInput, errorMessage) {

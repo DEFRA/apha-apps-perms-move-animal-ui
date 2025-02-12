@@ -1,4 +1,5 @@
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 
 const pageId = 'manureAndSlurry'
 
@@ -28,12 +29,14 @@ class ManureAndSlurryPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async selectYesAndContinue() {
+  async selectYesAndContinue(newPage) {
     await super.selectRadioAndContinue(this.yesRadio)
+    await waitForPagePath(newPage.pagePath)
   }
 
-  async selectNoAndContinue() {
+  async selectNoAndContinue(newPage) {
     await super.selectRadioAndContinue(this.noRadio)
+    await waitForPagePath(newPage.pagePath)
   }
 
   async grazingErrorTest() {

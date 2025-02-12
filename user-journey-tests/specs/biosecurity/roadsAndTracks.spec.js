@@ -15,11 +15,7 @@ describe('Roads and tracks test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await roadsAndTracksPage.selectYesAndContinue()
-
-    await expect(roadsAndTracksPage.pageError).not.toBeDisplayed()
-    await expect(roadsAndTracksPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
+    await roadsAndTracksPage.selectYesAndContinue(anySharedBuildingsPage)
 
     await anySharedBuildingsPage.selectBackLink()
     await waitForPagePath(roadsAndTracksPage.pagePath)
@@ -31,8 +27,7 @@ describe('Roads and tracks test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await roadsAndTracksPage.selectNoAndContinue()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
+    await roadsAndTracksPage.selectNoAndContinue(anySharedBuildingsPage)
 
     await anySharedBuildingsPage.selectBackLink()
     await waitForPagePath(roadsAndTracksPage.pagePath)

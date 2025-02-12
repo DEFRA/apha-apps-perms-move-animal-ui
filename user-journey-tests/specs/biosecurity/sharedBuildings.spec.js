@@ -16,11 +16,7 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await anySharedBuildingsPage.selectYesAndContinue()
-
-    await expect(anySharedBuildingsPage.pageError).not.toBeDisplayed()
-    await expect(anySharedBuildingsPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(minimiseContaminationPage.pagePath)
+    await anySharedBuildingsPage.selectYesAndContinue(minimiseContaminationPage)
 
     await minimiseContaminationPage.selectBackLink()
     await waitForPagePath(anySharedBuildingsPage.pagePath)
@@ -32,8 +28,7 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await anySharedBuildingsPage.selectNoAndContinue()
-    await waitForPagePath(disinfectionPage.pagePath)
+    await anySharedBuildingsPage.selectNoAndContinue(disinfectionPage)
 
     await disinfectionPage.selectBackLink()
     await waitForPagePath(anySharedBuildingsPage.pagePath)

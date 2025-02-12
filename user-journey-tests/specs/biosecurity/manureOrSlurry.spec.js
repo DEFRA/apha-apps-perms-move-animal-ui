@@ -15,11 +15,7 @@ describe('Manure or slurry selection test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await manureAndSlurryPage.selectYesAndContinue()
-
-    await expect(manureAndSlurryPage.pageError).not.toBeDisplayed()
-    await expect(manureAndSlurryPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(howFieldSeparatedPage.pagePath)
+    await manureAndSlurryPage.selectYesAndContinue(howFieldSeparatedPage)
 
     await howFieldSeparatedPage.selectBackLink()
     await waitForPagePath(manureAndSlurryPage.pagePath)
@@ -31,8 +27,7 @@ describe('Manure or slurry selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await manureAndSlurryPage.selectNoAndContinue()
-    await waitForPagePath(howFieldSeparatedPage.pagePath)
+    await manureAndSlurryPage.selectNoAndContinue(howFieldSeparatedPage)
 
     await howFieldSeparatedPage.selectBackLink()
     await waitForPagePath(manureAndSlurryPage.pagePath)

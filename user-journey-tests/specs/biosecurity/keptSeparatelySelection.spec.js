@@ -16,11 +16,7 @@ describe('Kept separately selection test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await keptSeparatelyPage.selectYesAndContinue()
-
-    await expect(keptSeparatelyPage.pageError).not.toBeDisplayed()
-    await expect(keptSeparatelyPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(grazingPage.pagePath)
+    await keptSeparatelyPage.selectYesAndContinue(grazingPage)
 
     await grazingPage.selectBackLink()
     await waitForPagePath(keptSeparatelyPage.pagePath)
@@ -32,8 +28,7 @@ describe('Kept separately selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await keptSeparatelyPage.selectNoAndContinue()
-    await waitForPagePath(disinfectionPage.pagePath)
+    await keptSeparatelyPage.selectNoAndContinue(disinfectionPage)
 
     await disinfectionPage.selectBackLink()
     await waitForPagePath(keptSeparatelyPage.pagePath)

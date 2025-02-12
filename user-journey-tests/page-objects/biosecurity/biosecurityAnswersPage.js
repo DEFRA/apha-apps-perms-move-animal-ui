@@ -40,6 +40,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="buildingsHowMinimiseContamination-change-link"]')
   }
 
+  get peopleDisinfectionLink() {
+    return $('[data-testid="peopleDisinfection-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -70,6 +74,10 @@ class BiosecurityAnswersPage extends Page {
 
   get minimiseContaminationValue() {
     return $$('.govuk-summary-list__value')[7]
+  }
+
+  get peopleDisinfectionValue() {
+    return $$('.govuk-summary-list__value')[8]
   }
 }
 

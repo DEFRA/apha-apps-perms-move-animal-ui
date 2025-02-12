@@ -115,7 +115,7 @@ export const validateAndAdjustSeparateCattle = async (
   await selectElement(changeLink)
 
   await expect(keptSeparatelyPage.yesRadio).toBeSelected()
-  await keptSeparatelyPage.selectNoAndContinue()
+  await keptSeparatelyPage.selectNoAndContinue(finalAnswersPage)
 
   await validateElementVisibleAndText(valueElement, 'No')
 }

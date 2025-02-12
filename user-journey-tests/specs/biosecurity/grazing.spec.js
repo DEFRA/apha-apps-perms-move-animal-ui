@@ -17,11 +17,7 @@ describe('Grazing selection test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await grazingPage.selectYesAndContinue()
-
-    await expect(grazingPage.pageError).not.toBeDisplayed()
-    await expect(grazingPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(lastGrazedPage.pagePath)
+    await grazingPage.selectYesAndContinue(lastGrazedPage)
 
     await lastGrazedPage.selectBackLink()
     await waitForPagePath(grazingPage.pagePath)
@@ -33,8 +29,7 @@ describe('Grazing selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await grazingPage.selectNoAndContinue()
-    await waitForPagePath(roadsAndTracksPage.pagePath)
+    await grazingPage.selectNoAndContinue(roadsAndTracksPage)
 
     await disinfectionPage.selectBackLink()
     await waitForPagePath(grazingPage.pagePath)
