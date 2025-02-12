@@ -6,13 +6,8 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
- * @import { OriginData } from '../section/origin/origin.js'
- * @import { LicenceData } from '../section/licence/licence.js'
- * @import { DestinationData } from '../section/destination/destination.js'
- * @import { BiosecurityData } from '../section/biosecurity/biosecurity.js'
  */
 
-/** @type {OriginData} */
 const originDefaultState = {
   onOffFarm: 'on',
   cphNumber: '12/123/1234',
@@ -25,17 +20,14 @@ const originDefaultState = {
   }
 }
 
-/** @type {LicenceData} */
 const licenceDefaultState = {
   emailAddress: 'name@example.com'
 }
 
-/** @type {DestinationData} */
 const destinationDefaultState = {
   destinationType: 'dedicated-sale'
 }
 
-/** @type {BiosecurityData} */
 const biosecurityDefaultState = {
   keptSeparately: 'yes',
   grazing: 'yes',

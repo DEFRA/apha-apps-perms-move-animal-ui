@@ -2,6 +2,7 @@ import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+/** @import { Request } from '@hapi/hapi' */
 
 /**
  * @import { Page } from '../../page/page-model.js'

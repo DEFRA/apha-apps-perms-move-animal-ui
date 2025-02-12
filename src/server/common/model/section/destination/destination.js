@@ -4,15 +4,10 @@ import { SectionModel } from '../section-model/section-model.js'
 import { StateManager } from '../../state/state-manager.js'
 import { destinationTypePage } from '~/src/server/destination/destination-type/index.js'
 
-/** @import {RawApplicationState} from '../../state/state-manager.js' */
+/** @import {SectionConfig} from '../section-model/section-model.js' */
 
-/**
- * export @typedef {{
- * destinationType: DestinationTypeData | undefined;
- * }} DestinationData
- * @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js'
- */
 export class DestinationSection extends SectionModel {
+  /** @type {SectionConfig} */
   static config = {
     key: 'destination',
     title: 'Movement destination',

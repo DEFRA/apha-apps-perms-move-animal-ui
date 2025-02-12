@@ -1,10 +1,6 @@
 import { BiosecuritySection } from './biosecurity.js'
 import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 
-/**
- * @import { KeptSeparatelyData } from '../../answer/kept-separately/kept-separately.js'
- * @type {import('./biosecurity.js').BiosecurityData}
- */
 const validBiosecurityData = {
   keptSeparately: 'yes',
   grazing: 'yes',
