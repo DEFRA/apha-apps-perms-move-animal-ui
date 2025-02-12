@@ -95,7 +95,9 @@ export class SubmitPageController extends QuestionPageController {
         content: emailContent
       })
 
-      req.yar.reset()
+      return Promise.resolve(super.handlePost(req, h)).finally(() =>
+        req.yar.reset()
+      )
     }
 
     if (!isValidApplication) {

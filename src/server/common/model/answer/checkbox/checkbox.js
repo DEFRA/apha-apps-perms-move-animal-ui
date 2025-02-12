@@ -91,7 +91,7 @@ export class CheckboxAnswer extends AnswerModel {
         }
       },
       items: Object.entries(this.config.options).map(([value, option]) => ({
-        text: { label: option.label },
+        text: option.label,
         value,
         attributes: {
           'data-testid': `${value}-checkbox`

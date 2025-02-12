@@ -192,7 +192,7 @@ describe('CheckboxAnswer.viewModel', () => {
       items: [
         {
           value: 'badgerProofFencing',
-          text: TestCheckboxAnswer.config.options.badgerProofFencing,
+          text: TestCheckboxAnswer.config.options.badgerProofFencing.label,
           attributes: {
             'data-testid': 'badgerProofFencing-checkbox'
           },
@@ -200,7 +200,8 @@ describe('CheckboxAnswer.viewModel', () => {
         },
         {
           value: 'limitAccessToBadgerHabitat',
-          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat,
+          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat
+            .label,
           attributes: {
             'data-testid': 'limitAccessToBadgerHabitat-checkbox'
           },
@@ -221,7 +222,7 @@ describe('CheckboxAnswer.viewModel', () => {
       items: [
         {
           value: 'badgerProofFencing',
-          text: TestCheckboxAnswer.config.options.badgerProofFencing,
+          text: TestCheckboxAnswer.config.options.badgerProofFencing.label,
           attributes: {
             'data-testid': 'badgerProofFencing-checkbox'
           },
@@ -229,7 +230,8 @@ describe('CheckboxAnswer.viewModel', () => {
         },
         {
           value: 'limitAccessToBadgerHabitat',
-          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat,
+          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat
+            .label,
           attributes: {
             'data-testid': 'limitAccessToBadgerHabitat-checkbox'
           },
