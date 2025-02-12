@@ -7,27 +7,49 @@ import path from 'node:path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+const pageId = 'status.form.file'
+
 const pageHeadingAndTitle = 'Upload a biosecurity map'
 
 class BiosecurityMapUploadPage extends Page {
   pagePath = 'biosecurity-map/upload-plan'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
+  noInputError = 'You need to upload your biosecurity map'
+  wrongFileTypeError =
+    'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
 
   get fileInput() {
-    return $('#biosecurity-upload-plan-file-upload')
+    return $('[data-testid="file-biosecuritymap-upload"]')
   }
 
   get loadingSpinner() {
     return $('[data-testid="upload-spinner"]')
   }
 
-  async uploadFileAndContinue() {
-    const filePath = await path.resolve(__dirname, './testFile.txt')
+  inputFieldError() {
+    return super.getErrorElement(pageId)
+  }
+
+  summaryErrorLink() {
+    return super.getErrorLink(pageId)
+  }
+
+  async uploadFileAndContinue(fileName) {
+    const filePath = await path.resolve(__dirname, fileName)
     await waitForElement(this.fileInput)
     await this.fileInput.setValue(filePath)
     await super.selectContinue()
-    await waitForElement(this.loadingSpinner)
+  }
+
+  async uploadFileErrorTest(fileName) {
+    if (fileName) {
+      this.uploadFileAndContinue(fileName)
+    } else {
+      await super.selectContinue()
+    }
+    await super.verifyErrorsOnPage(this.inputFieldError(), this.noInputError)
+    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.fileInput)
   }
 }
 
