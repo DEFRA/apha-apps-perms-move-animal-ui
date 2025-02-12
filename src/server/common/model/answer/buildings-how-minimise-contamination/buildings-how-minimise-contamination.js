@@ -14,6 +14,7 @@ export class BuildingsHowMinimiseContaminationAnswer extends TextAreaAnswer {
   static config = {
     payloadKey: 'buildingsHowMinimiseContamination',
     hint: 'For example, disinfection points and measures taken when milking dairy cattle',
+    rows: 8,
     validation: {
       maxLength: {
         value: 5000,

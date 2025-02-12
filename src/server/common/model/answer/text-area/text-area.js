@@ -75,7 +75,7 @@ export class TextAreaAnswer extends AnswerModel {
   }
 
   get html() {
-    return this._data?.[this.config.payloadKey] ?? ''
+    return this._data?.[this.config.payloadKey]?.replace(/\n/g, '<br />') ?? ''
   }
 
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style

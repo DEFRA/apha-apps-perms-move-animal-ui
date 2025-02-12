@@ -18,7 +18,7 @@ exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContamination
   <div id="buildingsHowMinimiseContamination-hint" class="govuk-hint">
     For example, disinfection points and measures taken when milking dairy cattle
   </div>
-  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="5" aria-describedby="buildingsHowMinimiseContamination-hint"></textarea>
+  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="8" aria-describedby="buildingsHowMinimiseContamination-hint"></textarea>
 </div>
 
 
