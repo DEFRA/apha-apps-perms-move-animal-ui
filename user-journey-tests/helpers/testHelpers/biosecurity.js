@@ -35,6 +35,10 @@ const completeBiosecurityTask = async (radioType) => {
       await waitForPagePath(anySharedBuildingsPage.pagePath)
       await anySharedBuildingsPage.selectYesAndContinue()
       await waitForPagePath(minimiseContaminationPage.pagePath)
+      await minimiseContaminationPage.inputMinimiseContaminationAndContinue(
+        'Minimise'
+      )
+      await waitForPagePath(disinfectionPage.pagePath)
       break
 
     case 'no':

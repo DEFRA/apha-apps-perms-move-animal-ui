@@ -5,7 +5,7 @@ import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumb
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import { validateElementVisibleAndText } from '../page.js'
+import { validateElementVisibleAndText, waitForPagePath } from '../page.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 // Default data
@@ -23,15 +23,21 @@ const completeOriginTask = async ({
 } = {}) => {
   await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
+  await waitForPagePath(taskListPage.pagePath)
   await taskListPage.selectMovementOrigin()
+  await waitForPagePath(toFromFarmPage.pagePath)
   await toFromFarmPage.selectOffFarmAndContinue()
+  await waitForPagePath(originTypePage.pagePath)
   await originTypePage.selectTBRestrictedFarmAndContinue()
+  await waitForPagePath(parishHoldingNumberPage.pagePath)
   await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(cphNumber)
+  await waitForPagePath(newAddressPage.pagePath)
   await newAddressPage.fillFormFieldsAndSubmit({
     lineOne,
     townOrCity,
     postcode
   })
+  await waitForPagePath(checkAnswersPage.pagePath)
   await checkAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(
     checkAnswersPage.parishNumberValue,

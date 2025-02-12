@@ -4,7 +4,7 @@ import { waitForPagePath } from '../../helpers/page.js'
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 
-describe('Grazing selection test', () => {
+describe('Roads and tracks test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await roadsAndTracksPage.navigateToPageAndVerifyTitle()

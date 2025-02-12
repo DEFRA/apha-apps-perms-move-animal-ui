@@ -36,6 +36,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="buildingsAnyShared-change-link"]')
   }
 
+  get minimiseContaminationLink() {
+    return $('[data-testid="buildingsHowMinimiseContamination-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -62,6 +66,10 @@ class BiosecurityAnswersPage extends Page {
 
   get sharedBuildingsValue() {
     return $$('.govuk-summary-list__value')[6]
+  }
+
+  get minimiseContaminationValue() {
+    return $$('.govuk-summary-list__value')[7]
   }
 }
 

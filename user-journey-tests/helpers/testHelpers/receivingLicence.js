@@ -5,7 +5,7 @@ import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePag
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-import { validateElementVisibleAndText } from '../page.js'
+import { validateElementVisibleAndText, waitForPagePath } from '../page.js'
 
 // Default data
 const defaultEmail = 'batman@gotham.gov.uk'
@@ -20,12 +20,18 @@ const completeLicenceTask = async ({
 } = {}) => {
   await landingPage.navigateToPageAndVerifyTitle()
   await landingPage.verifyStartNowButton('Start now', true)
+  await waitForPagePath(taskListPage.pagePath)
   await taskListPage.selectReceiveTheLicence()
+  await waitForPagePath(ownerNamePage.pagePath)
   await ownerNamePage.inputNameAndContinue(firstName, lastName)
+  await waitForPagePath(receiveMethodPage.pagePath)
   await receiveMethodPage.selectEmailAndContinue()
+  await waitForPagePath(emailPage.pagePath)
   await emailPage.inputEmailAndContinue(email)
+  await waitForPagePath(licenceAnswersPage.pagePath)
   await licenceAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(licenceAnswersPage.emailValue, email)
+  await waitForPagePath(licenceAnswersPage.pagePath)
 }
 
 // Predefined task completion function
