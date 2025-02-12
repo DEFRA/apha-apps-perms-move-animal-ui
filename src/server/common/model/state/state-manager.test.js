@@ -49,6 +49,12 @@ describe('StateManager', () => {
     expect(state.toState()).toEqual(partialState)
   })
 
+  it('returns an empty object if no sections are available', () => {
+    const request = testRequest({})
+    const state = new StateManager(request)
+    expect(state.toState()).toEqual({})
+  })
+
   it("should ignore keys it isn't tracking", () => {
     const request = testRequest({ ...validState, someOtherKey: {} })
     const state = new StateManager(request)

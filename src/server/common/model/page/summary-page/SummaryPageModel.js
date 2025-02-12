@@ -5,7 +5,7 @@ import { Page } from '../page-model.js'
 
 class SummaryPage extends Page {
   /**
-   * @type {(_data: RawSectionState, _context: RawApplicationState) => SectionModel}
+   * @type {(_data: RawApplicationState) => SectionModel}
    */
   sectionFactory
 }

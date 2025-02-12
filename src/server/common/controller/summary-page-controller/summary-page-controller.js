@@ -54,10 +54,7 @@ export class SummaryPageController extends GenericPageController {
 
   handleGet(req, res) {
     const applicationState = new StateManager(req).toState()
-    const section = this.page.sectionFactory(
-      req.yar.get(this.page.sectionKey),
-      applicationState
-    )
+    const section = this.page.sectionFactory(applicationState)
 
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {

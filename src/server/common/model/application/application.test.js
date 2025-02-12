@@ -55,14 +55,7 @@ const applicationState = {
 
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {
-    const state = {
-      origin: originDefaultState,
-      licence: licenceDefaultState,
-      destination: destinationDefaultState,
-      biosecurity: biosecurityDefaultState
-    }
-
-    const application = ApplicationModel.fromState(state)
+    const application = ApplicationModel.fromState(applicationState)
 
     expect(application).toBeInstanceOf(ApplicationModel)
 
@@ -72,20 +65,16 @@ describe('Application.fromState', () => {
     expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 
     expect(application.tasks.origin.questionPageAnswers).toEqual(
-      OriginSection.fromState(originDefaultState, applicationState)
-        .questionPageAnswers
+      OriginSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.licence.questionPageAnswers).toEqual(
-      LicenceSection.fromState(licenceDefaultState, applicationState)
-        .questionPageAnswers
+      LicenceSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.destination.questionPageAnswers).toEqual(
-      DestinationSection.fromState(destinationDefaultState, applicationState)
-        .questionPageAnswers
+      DestinationSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.biosecurity.questionPageAnswers).toEqual(
-      BiosecuritySection.fromState(biosecurityDefaultState, applicationState)
-        .questionPageAnswers
+      BiosecuritySection.fromState(applicationState).questionPageAnswers
     )
   })
 })

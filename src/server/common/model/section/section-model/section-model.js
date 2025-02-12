@@ -1,6 +1,8 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
 
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
 /**
  * @import { Page } from '../../page/page-model.js'
  * @import {AnswerModel} from '../../answer/answer-model.js'
@@ -14,6 +16,17 @@ import { ExitPage } from '../../page/exit-page-model.js'
  */
 
 /**
+ * @typedef {{
+ *  key: string,
+ *  title: string,
+ *  plugin: ServerRegisterPluginObject<void>,
+ *  summaryLink: string,
+ *  isEnabled: (req: Request) => boolean,
+ *  isVisible: boolean
+ * }} SectionConfig
+ */
+
+/**
  * export @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
  */
 
@@ -21,6 +34,12 @@ export class SectionModel {
   /** @type {SectionPayload} */
   _data
 
+  /** @type {SectionConfig} */
+  static config
+
+  /**
+   * @returns {SectionConfig}
+   */
   get config() {
     return /** @type {any} */ (this.constructor).config
   }
@@ -67,19 +86,22 @@ export class SectionModel {
   }
 
   /**
-   * @param {object | undefined} data
-   * @param {RawApplicationState} context
+   * @param {RawApplicationState} data
    * @returns {SectionModel}
    */
-  static fromState(data, context) {
+  static fromState(data) {
     /** @type {SectionPayload} */
     const pages = []
+    const sectionData = data[this.config.key]
 
     /** @type {Page} */
     let page = this.firstPageFactory()
 
     while (page instanceof QuestionPage) {
-      const answer = page.Answer.fromState(data?.[page.questionKey], context)
+      const answer = page.Answer.fromState(
+        sectionData?.[page.questionKey],
+        data
+      )
       pages.push({
         kind: 'Question',
         page,

@@ -22,12 +22,4 @@ export class LicenceSection extends SectionModel {
   }
 
   static firstPageFactory = () => fullNamePage
-
-  /**
-   * @param {LicenceData | undefined} data
-   * @param {RawApplicationState} context
-   */
-  static fromState(data, context) {
-    return super.fromState(data, context)
-  }
 }

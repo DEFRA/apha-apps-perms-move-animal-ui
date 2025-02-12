@@ -3,6 +3,7 @@ import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
 import { origin } from '~/src/server/origin/index.js'
 
 /** @import {RawApplicationState} from '../../state/state-manager.js' */
+/** @import {SectionConfig} from '../section-model/section-model.js' */
 
 /**
  * export @typedef {{
@@ -16,6 +17,7 @@ import { origin } from '~/src/server/origin/index.js'
  */
 
 export class OriginSection extends SectionModel {
+  /** @type {SectionConfig} */
   static config = {
     key: 'origin',
     title: 'Movement origin',
@@ -26,12 +28,4 @@ export class OriginSection extends SectionModel {
   }
 
   static firstPageFactory = () => onOffFarmPage
-
-  /**
-   * @param {OriginData | undefined} data
-   * @param {RawApplicationState} context
-   */
-  static fromState(data, context) {
-    return super.fromState(data, context)
-  }
 }

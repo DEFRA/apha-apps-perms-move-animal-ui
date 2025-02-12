@@ -8,8 +8,7 @@ export class BiosecuritySummaryPage extends SummaryPage {
   pageHeading = 'Check your answers before you continue your application'
   sectionKey = 'biosecurity'
   urlPath = `/${this.sectionKey}/check-answers`
-  sectionFactory = (data, context) =>
-    BiosecuritySection.fromState(data, context)
+  sectionFactory = (data) => BiosecuritySection.fromState(data)
 }
 
 export const biosecuritySummaryPage = new BiosecuritySummaryPage()

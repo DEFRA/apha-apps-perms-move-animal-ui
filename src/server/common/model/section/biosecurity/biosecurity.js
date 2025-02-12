@@ -32,12 +32,4 @@ export class BiosecuritySection extends SectionModel {
   }
 
   static firstPageFactory = () => keptSeparatelyPage
-
-  /**
-   * @param {BiosecurityData | undefined} data
-   * @param {RawApplicationState} context
-   */
-  static fromState(data, context) {
-    return super.fromState(data, context)
-  }
 }

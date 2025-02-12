@@ -8,8 +8,7 @@ export class DestinationSummaryPage extends SummaryPage {
   pageHeading = 'Check your answers before you continue your application'
   sectionKey = 'destination'
   urlPath = `/${this.sectionKey}/check-answers`
-  sectionFactory = (data, context) =>
-    DestinationSection.fromState(data, context)
+  sectionFactory = (data) => DestinationSection.fromState(data)
 }
 
 export const destinationSummaryPage = new DestinationSummaryPage()

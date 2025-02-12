@@ -65,10 +65,7 @@ export class ApplicationModel {
       Object.fromEntries(
         this.visibleSections.map((section) => [
           section.config.key,
-          section.fromState(
-            /** @type {any} */ (state[section.config.key]),
-            state
-          )
+          section.fromState(state)
         ])
       )
     )

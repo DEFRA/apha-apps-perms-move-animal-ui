@@ -19,20 +19,10 @@ export class DestinationSection extends SectionModel {
     plugin: destination,
     summaryLink: '/destination/check-answers',
     isEnabled: (req) =>
-      OriginSection.fromState(
-        req.yar.get('origin'),
-        new StateManager(req).toState()
-      ).validate().isValid,
+      OriginSection.fromState(new StateManager(req).toState()).validate()
+        .isValid,
     isVisible: true
   }
 
   static firstPageFactory = () => destinationTypePage
-
-  /**
-   * @param {DestinationData | undefined} data
-   * @param {RawApplicationState} context
-   */
-  static fromState(data, context) {
-    return super.fromState(data, context)
-  }
 }

@@ -25,26 +25,21 @@ const invalidBiosecurityData = {
   buildingsAnyShared: undefined
 }
 
-/** @type {import('../../state/state-manager.js').RawApplicationState} */
-const applicationState = {}
-
 describe('Biosecurity', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const biosecurityData = validBiosecurityData
-      const result = BiosecuritySection.fromState(
-        biosecurityData,
-        applicationState
-      ).validate()
+      const result = BiosecuritySection.fromState({
+        biosecurity: biosecurityData
+      }).validate()
 
       expect(result.isValid).toBe(true)
     })
 
     it('should return invalid if any nested object is invalid', () => {
-      const result = BiosecuritySection.fromState(
-        invalidBiosecurityData,
-        applicationState
-      ).validate()
+      const result = BiosecuritySection.fromState({
+        biosecurity: invalidBiosecurityData
+      }).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(KeptSeparatelyPage)

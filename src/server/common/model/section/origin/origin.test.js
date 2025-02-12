@@ -12,9 +12,6 @@ const validAddress = {
   addressPostcode: 'RG24 8RR'
 }
 
-/** @type {import('../../state/state-manager.js').RawApplicationState} */
-const applicationState = {}
-
 describe('Origin', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
@@ -24,10 +21,7 @@ describe('Origin', () => {
         cphNumber: validCphNumber,
         address: validAddress
       }
-      const result = OriginSection.fromState(
-        originData,
-        applicationState
-      ).validate()
+      const result = OriginSection.fromState({ origin: originData }).validate()
 
       expect(result.isValid).toBe(true)
     })
@@ -40,10 +34,7 @@ describe('Origin', () => {
         address: validAddress
       }
 
-      const result = OriginSection.fromState(
-        originData,
-        applicationState
-      ).validate()
+      const result = OriginSection.fromState({ origin: originData }).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
