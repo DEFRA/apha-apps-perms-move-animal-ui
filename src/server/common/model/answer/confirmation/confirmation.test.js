@@ -52,70 +52,61 @@ describe('#ConfirmationModel', () => {
   describe('toState', () => {
     it('should return an object with the correct data (confirm only)', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: ['confirm'] })
-      expect(confirmation.toState()).toEqual({ confirmation: ['confirm'] })
+      expect(confirmation.toState()).toEqual(['confirm'])
     })
 
     it('should return an object with the correct data (other only)', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: ['other'] })
-      expect(confirmation.toState()).toEqual({ confirmation: ['other'] })
+      expect(confirmation.toState()).toEqual(['other'])
     })
 
     it('should return an object with the correct data (confirm and other)', () => {
       const confirmation = new ConfirmationAnswer({
         confirmation: ['confirm', 'other']
       })
-      expect(confirmation.toState()).toEqual({
-        confirmation: ['confirm', 'other']
-      })
+      expect(confirmation.toState()).toEqual(['confirm', 'other'])
     })
   })
 
   describe('value', () => {
     it('should return correct value when only confirmed', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: ['confirm'] })
-      expect(confirmation.value).toEqual({ confirm: true, other: false })
+      expect(confirmation.value).toEqual(['confirm'])
     })
 
     it('should return correct value when only on behalf of other', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: ['other'] })
-      expect(confirmation.value).toEqual({ confirm: false, other: true })
+      expect(confirmation.value).toEqual(['other'])
     })
 
     it('should return correct value when neither confirmed nor on behalf of other', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: [] })
-      expect(confirmation.value).toEqual({ confirm: false, other: false })
+      expect(confirmation.value).toEqual([])
     })
 
     it('should return correct value when a single string is passed instead of an array', () => {
       const confirmation = new ConfirmationAnswer({ confirmation: 'confirm' })
-      expect(confirmation.value).toEqual({ confirm: true, other: false })
-    })
-  })
-
-  describe('html', () => {
-    it('should return the hardcoded html string', () => {
-      const confirmation = new ConfirmationAnswer()
-      expect(confirmation.html).toBe('confirmation html')
+      expect(confirmation.value).toEqual(['confirm'])
     })
   })
 
   describe('fromState', () => {
     it('should create a Confirmation instance from state with confirmation array', () => {
-      const state = { confirmation: ['confirm'] }
+      const state = ['confirm']
       const confirmation = ConfirmationAnswer.fromState(state)
       expect(confirmation).toBeInstanceOf(ConfirmationAnswer)
       expect(confirmation.toState()).toEqual(state)
     })
 
     it('should create a Confirmation instance from state with empty confirmation array', () => {
-      const state = { confirmation: [] }
+      const state = []
       const confirmation = ConfirmationAnswer.fromState(state)
       expect(confirmation).toBeInstanceOf(ConfirmationAnswer)
       expect(confirmation.toState()).toEqual(state)
     })
 
     it('should create a Confirmation instance from state with confirmation array containing multiple values', () => {
-      const state = { confirmation: ['confirm', 'other'] }
+      const state = ['confirm', 'other']
       const confirmation = ConfirmationAnswer.fromState(state)
       expect(confirmation).toBeInstanceOf(ConfirmationAnswer)
       expect(confirmation.toState()).toEqual(state)
@@ -125,7 +116,7 @@ describe('#ConfirmationModel', () => {
       const state = undefined
       const confirmation = ConfirmationAnswer.fromState(state)
       expect(confirmation).toBeInstanceOf(ConfirmationAnswer)
-      expect(confirmation.toState()).toEqual({ confirmation: [] })
+      expect(confirmation.toState()).toEqual([])
     })
   })
 })

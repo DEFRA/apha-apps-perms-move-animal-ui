@@ -4,6 +4,8 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
+/** @import {AnswerViewModelOptions} from '../answer-model.js' */
+
 /**
  * @param {CheckboxConfig} config
  * @returns {Joi.Schema}
@@ -68,27 +70,41 @@ export class CheckboxAnswer extends AnswerModel {
       : undefined
   }
 
-  // get value() {
-  //   const data = Array.isArray(this._data?.confirmation)
-  //     ? this._data.confirmation
-  //     : [this._data?.confirmation]
-  //
-  //   const value = {
-  //     confirm: data.includes('confirm'),
-  //     other: data.includes('other')
-  //   }
-  //
-  //   return value
-  // }
-  //
-  // get html() {
-  //   const html = 'confirmation html'
-  //   return html
-  // }
-  //
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/checkbox/checkbox.njk'
+  }
+
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  viewModel({ question, validate }) {
+    const values = this.value
+
+    const viewModel = {
+      name: this.config.payloadKey,
+      id: this.config.payloadKey,
+      fieldset: {
+        legend: {
+          isPageHeading: false,
+          text: question
+        }
+      },
+      items: Object.entries(this.config.options).map(([value, option]) => ({
+        text: { label: option.label },
+        value,
+        attributes: {
+          'data-testid': `${value}-checkbox`
+        },
+        checked: (values ?? []).includes(value)
+      }))
+    }
+
+    if (validate) {
+      viewModel.errorMessage = this.validate().errors[this.config.payloadKey]
+    }
+
+    return viewModel
   }
 
   /**

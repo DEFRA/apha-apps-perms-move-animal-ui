@@ -166,3 +166,76 @@ describe('CheckboxAnswer.template', () => {
     expect(radio.template).toBe('model/answer/checkbox/checkbox.njk')
   })
 })
+
+describe('CheckboxAnswer.viewModel', () => {
+  const question =
+    'Which measures are you taking to reduce contamination from wildlife?'
+
+  const defaultViewModel = {
+    name: 'test_checkbox',
+    id: 'test_checkbox',
+    fieldset: {
+      legend: {
+        text: question,
+        isPageHeading: false
+      }
+    }
+  }
+
+  it('should return everything (except errors) to render in the template', () => {
+    const validAnswer = new TestCheckboxAnswer({
+      test_checkbox: ['limitAccessToBadgerHabitat']
+    })
+
+    expect(validAnswer.viewModel({ validate: false, question })).toEqual({
+      ...defaultViewModel,
+      items: [
+        {
+          value: 'badgerProofFencing',
+          text: TestCheckboxAnswer.config.options.badgerProofFencing,
+          attributes: {
+            'data-testid': 'badgerProofFencing-checkbox'
+          },
+          checked: false
+        },
+        {
+          value: 'limitAccessToBadgerHabitat',
+          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat,
+          attributes: {
+            'data-testid': 'limitAccessToBadgerHabitat-checkbox'
+          },
+          checked: true
+        }
+      ]
+    })
+  })
+
+  it('should return everything (including errors) to render in the template', () => {
+    const invalidAnswer = new TestCheckboxAnswer({
+      test_checkbox: []
+    })
+
+    expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
+      ...defaultViewModel,
+      errorMessage: { text: checkboxEmptyError },
+      items: [
+        {
+          value: 'badgerProofFencing',
+          text: TestCheckboxAnswer.config.options.badgerProofFencing,
+          attributes: {
+            'data-testid': 'badgerProofFencing-checkbox'
+          },
+          checked: false
+        },
+        {
+          value: 'limitAccessToBadgerHabitat',
+          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat,
+          attributes: {
+            'data-testid': 'limitAccessToBadgerHabitat-checkbox'
+          },
+          checked: false
+        }
+      ]
+    })
+  })
+})
