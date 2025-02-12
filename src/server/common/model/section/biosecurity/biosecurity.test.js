@@ -1,10 +1,6 @@
 import { BiosecuritySection } from './biosecurity.js'
 import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 
-/**
- * @import { KeptSeparatelyData } from '../../answer/kept-separately/kept-separately.js'
- * @type {import('./biosecurity.js').BiosecurityData}
- */
 const validBiosecurityData = {
   keptSeparately: 'yes',
   grazing: 'yes',
@@ -31,15 +27,17 @@ describe('Biosecurity', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const biosecurityData = validBiosecurityData
-      const result = BiosecuritySection.fromState(biosecurityData).validate()
+      const result = BiosecuritySection.fromState({
+        biosecurity: biosecurityData
+      }).validate()
 
       expect(result.isValid).toBe(true)
     })
 
     it('should return invalid if any nested object is invalid', () => {
-      const result = BiosecuritySection.fromState(
-        invalidBiosecurityData
-      ).validate()
+      const result = BiosecuritySection.fromState({
+        biosecurity: invalidBiosecurityData
+      }).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(KeptSeparatelyPage)

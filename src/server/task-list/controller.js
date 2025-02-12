@@ -1,4 +1,5 @@
 import { ApplicationModel } from '../common/model/application/application.js'
+import { StateManager } from '../common/model/state/state-manager.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -10,9 +11,9 @@ const buttonText = 'Review and submit'
  */
 export const taskListGetController = {
   handler(req, h) {
-    const visibleSections = ApplicationModel.visibleSections.map((section) => {
-      return section.fromState(req.yar.get(section.config.key))
-    })
+    const visibleSections = Object.values(
+      ApplicationModel.fromState(new StateManager(req).toState()).tasks
+    )
 
     const gdsTasks = visibleSections.map((section) => {
       return buildGdsTaskItem(section.buildGdsTaskDetails(req))

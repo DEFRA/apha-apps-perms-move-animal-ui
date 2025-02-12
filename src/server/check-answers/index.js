@@ -5,6 +5,7 @@ import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirma
 import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
+import { StateManager } from '../common/model/state/state-manager.js'
 
 const checkAnswersUrlPath = '/submit/check-answers'
 
@@ -32,7 +33,9 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   viewProps(req) {
-    const tasks = ApplicationModel.fromState(req).tasks
+    const tasks = ApplicationModel.fromState(
+      new StateManager(req).toState()
+    ).tasks
 
     const summary = Object.fromEntries(
       Object.values(tasks).map((task) => {
@@ -56,7 +59,9 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   handleGet(req, h) {
-    const { isValid } = ApplicationModel.fromState(req).validate()
+    const { isValid } = ApplicationModel.fromState(
+      new StateManager(req).toState()
+    ).validate()
 
     if (!isValid) {
       return h.redirect('/task-list-incomplete')
@@ -70,7 +75,9 @@ export class SubmitPageController extends QuestionPageController {
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
 
-    const application = ApplicationModel.fromState(req)
+    const application = ApplicationModel.fromState(
+      new StateManager(req).toState()
+    )
 
     const { isValid: isValidApplication } = application.validate()
 

@@ -1,6 +1,8 @@
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
+import { StateManager } from '../../model/state/state-manager.js'
+
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
 /** @import { RawPayload } from '../../model/answer/answer-model.js' */
@@ -42,9 +44,11 @@ export class QuestionPageController extends GenericPageController {
   }
 
   handleGet(req, h, args = {}) {
+    const applicationState = new StateManager(req).toState()
     const sectionState = req.yar.get(this.page.sectionKey)
     const answer = this.page.Answer.fromState(
-      sectionState?.[this.page.questionKey]
+      sectionState?.[this.page.questionKey],
+      applicationState
     )
 
     return h.view(this.page.view, {
@@ -61,8 +65,12 @@ export class QuestionPageController extends GenericPageController {
 
   handlePost(req, h) {
     const payload = /** @type {NextPage} */ (req.payload)
+    const applicationState = new StateManager(req).toState()
     const Answer = this.page.Answer
-    const answer = new Answer(/** @type {RawPayload} */ (payload))
+    const answer = new Answer(
+      /** @type {RawPayload} */ (payload),
+      applicationState
+    )
     const { isValid, errors } = answer.validate()
 
     if (!isValid) {

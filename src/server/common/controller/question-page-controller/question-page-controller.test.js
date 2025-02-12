@@ -26,14 +26,22 @@ const validationSpy = jest
   .mockReturnValue({ isValid: true, errors: {} })
 const redirectUri = '/redirect-uri'
 
+const TestAnswerSpy = jest.fn()
+
 class TestAnswer extends AnswerModel {
+  constructor(...args) {
+    super(...args)
+    TestAnswerSpy(...args)
+  }
+
   toState() {
     return this._data?.[questionKey]
   }
 
-  static fromState(state) {
+  static fromState(state, context) {
     return new TestAnswer(
-      state !== undefined ? { [questionKey]: state } : undefined
+      state !== undefined ? { [questionKey]: state } : undefined,
+      context
     )
   }
 
@@ -123,44 +131,73 @@ describe('QuestionPageController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  it('should provide the question page on a GET without any session state', async () => {
-    const { payload, statusCode } = await server.inject({
-      method: 'GET',
-      url: questionUrl
+  describe('GET', () => {
+    it('should provide the question page on a GET without any session state', async () => {
+      const { payload, statusCode } = await server.inject({
+        method: 'GET',
+        url: questionUrl
+      })
+
+      const document = parseDocument(payload)
+      expect(document.title).toBe(question)
+      expect(statusCode).toBe(statusCodes.ok)
     })
 
-    const document = parseDocument(payload)
-    expect(document.title).toBe(question)
-    expect(statusCode).toBe(statusCodes.ok)
-  })
-
-  it('should repopulate the form from state', async () => {
-    await session.setState(sectionKey, {
-      [questionKey]: questionValue
-    })
-    const { payload, statusCode } = await server.inject(
-      withCsrfProtection(
-        {
-          method: 'GET',
-          url: questionUrl
-        },
-        {
-          Cookie: session.sessionID
-        }
+    it('should repopulate the form from state', async () => {
+      await session.setState(sectionKey, {
+        [questionKey]: questionValue
+      })
+      const { payload, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: questionUrl
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
       )
-    )
 
-    const document = parseDocument(payload)
-    expect(
-      /** @type {HTMLInputElement} */ (
-        document.querySelector(questionElementSelector)
-      )?.value
-    ).toBe(questionValue)
+      const document = parseDocument(payload)
+      expect(
+        /** @type {HTMLInputElement} */ (
+          document.querySelector(questionElementSelector)
+        )?.value
+      ).toBe(questionValue)
 
-    expect(statusCode).toBe(statusCodes.ok)
+      expect(statusCode).toBe(statusCodes.ok)
+    })
+
+    it('should pass context', async () => {
+      const originState = {
+        originType: 'afu'
+      }
+      await session.setState(sectionKey, {
+        [questionKey]: questionValue
+      })
+      await session.setState('origin', originState)
+
+      jest.spyOn(TestAnswer, 'fromState')
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: questionUrl
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(TestAnswer.fromState).toHaveBeenCalledWith(questionValue, {
+        origin: originState
+      })
+    })
   })
 
-  describe('Should process the result and provide expected response', () => {
+  describe('POST', () => {
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
       await session.setState(sectionKey, {
         someOtherQuestion: 'some-other-answer'
@@ -350,6 +387,37 @@ describe('QuestionPageController', () => {
         afterAll(() => {
           config.set('isProduction', false)
         })
+      })
+    })
+
+    it('should pass context to the answer model', async () => {
+      const originState = {
+        originType: 'afu'
+      }
+      await session.setState(sectionKey, {
+        [questionKey]: questionValue
+      })
+      await session.setState('origin', originState)
+
+      const payload = {
+        [questionKey]: 'continue'
+      }
+
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}`,
+            payload
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(TestAnswerSpy).toHaveBeenCalledWith(payload, {
+        origin: originState
       })
     })
   })

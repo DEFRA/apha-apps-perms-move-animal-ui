@@ -1,9 +1,33 @@
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { AnswerModel } from './answer-model.js'
 
+class AnswerModelBasic extends AnswerModel {
+  _extractFields(data) {
+    return data
+  }
+}
+
 describe('AnswerModel', () => {
   const notImplementedError = 'Not Implemented'
   const answer = new AnswerModel()
+
+  it('should store answer data & application state context', () => {
+    const answerValue = 'My answer'
+    const applicationState = {
+      origin: { originType: 'afu' }
+    }
+    const answer = new AnswerModelBasic(answerValue, applicationState)
+
+    expect(answer._data).toBe(answerValue)
+    expect(answer._context).toEqual(applicationState)
+  })
+
+  it("should default to undefined if values aren't passed to constructor", () => {
+    const answer = new AnswerModelBasic()
+
+    expect(answer._data).toBeUndefined()
+    expect(answer._context).toBeUndefined()
+  })
 
   it('should throw NotImplementedError when value getter is called', () => {
     expect(() => answer.value).toThrow(notImplementedError)
@@ -36,11 +60,6 @@ describe('AnswerModel', () => {
   })
 
   it('should seal the object to prevent property additions or deletions', () => {
-    class AnswerModelBasic extends AnswerModel {
-      _extractFields(data) {
-        return data
-      }
-    }
     const answer = /** @type {any} */ (new AnswerModelBasic({ key: 'value' }))
 
     expect(() => {

@@ -6,13 +6,8 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
- * @import { OriginData } from '../section/origin/origin.js'
- * @import { LicenceData } from '../section/licence/licence.js'
- * @import { DestinationData } from '../section/destination/destination.js'
- * @import { BiosecurityData } from '../section/biosecurity/biosecurity.js'
  */
 
-/** @type {OriginData} */
 const originDefaultState = {
   onOffFarm: 'on',
   cphNumber: '12/123/1234',
@@ -25,17 +20,14 @@ const originDefaultState = {
   }
 }
 
-/** @type {LicenceData} */
 const licenceDefaultState = {
   emailAddress: 'name@example.com'
 }
 
-/** @type {DestinationData} */
 const destinationDefaultState = {
   destinationType: 'dedicated-sale'
 }
 
-/** @type {BiosecurityData} */
 const biosecurityDefaultState = {
   keptSeparately: 'yes',
   grazing: 'yes',
@@ -47,23 +39,16 @@ const biosecurityDefaultState = {
   buildingsHowMinimiseContamination: 'somehow'
 }
 
+const applicationState = {
+  origin: originDefaultState,
+  licence: licenceDefaultState,
+  destination: destinationDefaultState,
+  biosecurity: biosecurityDefaultState
+}
+
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {
-    const state = {
-      origin: originDefaultState,
-      licence: licenceDefaultState,
-      destination: destinationDefaultState,
-      biosecurity: biosecurityDefaultState
-    }
-
-    const request = /** @type {Request} */ {
-      ...jest.requireActual('@hapi/hapi'),
-      yar: {
-        get: jest.fn().mockImplementation((key) => state[key])
-      }
-    }
-
-    const application = ApplicationModel.fromState(request)
+    const application = ApplicationModel.fromState(applicationState)
 
     expect(application).toBeInstanceOf(ApplicationModel)
 
@@ -73,16 +58,16 @@ describe('Application.fromState', () => {
     expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 
     expect(application.tasks.origin.questionPageAnswers).toEqual(
-      OriginSection.fromState(originDefaultState).questionPageAnswers
+      OriginSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.licence.questionPageAnswers).toEqual(
-      LicenceSection.fromState(licenceDefaultState).questionPageAnswers
+      LicenceSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.destination.questionPageAnswers).toEqual(
-      DestinationSection.fromState(destinationDefaultState).questionPageAnswers
+      DestinationSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.biosecurity.questionPageAnswers).toEqual(
-      BiosecuritySection.fromState(biosecurityDefaultState).questionPageAnswers
+      BiosecuritySection.fromState(applicationState).questionPageAnswers
     )
   })
 })

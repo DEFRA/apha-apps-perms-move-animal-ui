@@ -2,14 +2,10 @@ import { licence } from '~/src/server/licence/index.js'
 import { SectionModel } from '../section-model/section-model.js'
 import { fullNamePage } from '~/src/server/licence/fullName/index.js'
 
-/**
- * export @typedef {{
- * emailAddress: EmailAddressData | undefined;
- * }} LicenceData
- * @import {EmailAddressData} from '../../answer/email/email-address.js'
- */
+/** @import {SectionConfig} from '../section-model/section-model.js' */
 
 export class LicenceSection extends SectionModel {
+  /** @type {SectionConfig} */
   static config = {
     key: 'licence',
     title: 'Receiving the licence',
@@ -20,11 +16,4 @@ export class LicenceSection extends SectionModel {
   }
 
   static firstPageFactory = () => fullNamePage
-
-  /**
-   * @param {LicenceData | undefined} data
-   */
-  static fromState(data) {
-    return SectionModel.fromState.call(this, data)
-  }
 }

@@ -21,7 +21,7 @@ describe('Origin', () => {
         cphNumber: validCphNumber,
         address: validAddress
       }
-      const result = OriginSection.fromState(originData).validate()
+      const result = OriginSection.fromState({ origin: originData }).validate()
 
       expect(result.isValid).toBe(true)
     })
@@ -34,7 +34,7 @@ describe('Origin', () => {
         address: validAddress
       }
 
-      const result = OriginSection.fromState(originData).validate()
+      const result = OriginSection.fromState({ origin: originData }).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(OnOffFarmPage)

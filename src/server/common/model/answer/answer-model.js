@@ -1,5 +1,6 @@
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /** @import {AnswerErrors, AnswerValidationResult} from './validation.js' */
+/** @import {RawApplicationState} from '../state/state-manager.js' */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsdoc/require-returns-check */
@@ -16,11 +17,16 @@ export class AnswerModel {
   /** @type {Payload | undefined } */
   _data
 
+  /** @type {RawApplicationState | undefined} */
+  _context
+
   /**
-   * @param {Payload | undefined } [data]
+   * @param {Payload} [data]
+   * @param {RawApplicationState} [context]
    */
-  constructor(data) {
+  constructor(data, context) {
     this._data = data === undefined ? undefined : this._extractFields(data)
+    this._context = context
     Object.seal(this)
   }
 
@@ -84,9 +90,10 @@ export class AnswerModel {
 
   /**
    * @param {unknown} _data
+   * @param {RawApplicationState} [_context]
    * @returns {unknown}
    */
-  static fromState(_data) {
+  static fromState(_data, _context) {
     throw new NotImplementedError()
   }
 }
@@ -95,8 +102,8 @@ export class AnswerModel {
 /**
  * @template Payload
  * @typedef {{
- *   new(data: Payload): AnswerModel<Payload>;
- *   fromState(data: any): AnswerModel<Payload>;
+ *   new(data?: Payload, context?: RawApplicationState): AnswerModel<Payload>;
+ *   fromState(data: any, context?: RawApplicationState): AnswerModel<Payload>;
  *   errorMessages(errors: AnswerErrors): ViewErrorMessage[];
  * }} AnswerModelClass
  */

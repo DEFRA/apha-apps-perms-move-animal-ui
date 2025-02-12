@@ -5,20 +5,7 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
 
 /**
- * @import { Request } from '@hapi/hapi'
- */
-
-/**
- * export @typedef {{
- * origin: OriginData | undefined;
- * licence: LicenceData | undefined;
- * destination: DestinationData | undefined;
- * biosecurity?: BiosecurityData | undefined;
- * }} ApplicationData
- * @import {OriginData} from '../section/origin/origin.js'
- * @import {LicenceData} from '../section/licence/licence.js'
- * @import {DestinationData} from '../section/destination/destination.js'
- * @import {BiosecurityData} from '../section/biosecurity/biosecurity.js'
+ * @import { RawApplicationState } from '../state/state-manager.js'
  */
 
 // This is a list of all the sections that are implemented in the application.
@@ -57,15 +44,15 @@ export class ApplicationModel {
   }
 
   /**
-   * @param {Request} req
+   * @param {RawApplicationState} state
    * @returns {ApplicationModel}
    */
-  static fromState(req) {
+  static fromState(state) {
     return new ApplicationModel(
       Object.fromEntries(
         this.visibleSections.map((section) => [
           section.config.key,
-          section.fromState(req.yar.get(section.config.key))
+          section.fromState(state)
         ])
       )
     )

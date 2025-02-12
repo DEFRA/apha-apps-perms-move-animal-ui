@@ -7,23 +7,28 @@ import { DestinationSection } from './destination.js'
  */
 const testDestinationType = 'slaughter'
 
+const destinationData = {
+  destinationType: testDestinationType
+}
+
 describe('Destination', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
-      const originData = {
-        destinationType: testDestinationType
-      }
-      const result = DestinationSection.fromState(originData).validate()
+      const result = DestinationSection.fromState({
+        destination: destinationData
+      }).validate()
 
       expect(result.isValid).toBe(true)
     })
 
     it('should return invalid if any nested object is invalid', () => {
-      const originData = {
+      const destinationData = {
         destinationType: undefined
       }
 
-      const result = DestinationSection.fromState(originData).validate()
+      const result = DestinationSection.fromState({
+        destination: destinationData
+      }).validate()
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(DestinationTypePage)
