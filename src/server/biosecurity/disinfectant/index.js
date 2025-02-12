@@ -2,11 +2,11 @@ import { Page } from '../../common/model/page/page-model.js'
 
 // using Page to not make whole section invalid due to the page not being implemented yet
 // make QuestionPage when implementing
-export class DisinfectionPage extends Page {
-  urlPath = '/biosecurity/people-disinfection'
+export class DisinfectantPage extends Page {
+  urlPath = '/biosecurity/disinfectant'
   sectionKey = 'biosecurity'
-  question = ''
-  questionKey = 'disinfection'
+  question = 'question to be asked'
+  questionKey = 'disinfectant'
 }
 
-export const disinfectionPage = new DisinfectionPage()
+export const disinfectantPage = new DisinfectantPage()

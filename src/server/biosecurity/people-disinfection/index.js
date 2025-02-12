@@ -1,12 +1,31 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { PeopleDisinfectionAnswer } from '../../common/model/answer/people-disinfection/people-disinfection.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { disinfectantPage } from '../disinfectant/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class PeopleDisinfectionPage extends Page {
+export class PeopleDisinfectionPage extends QuestionPage {
   urlPath = '/biosecurity/people-disinfection'
   sectionKey = 'biosecurity'
-  question = 'question to be asked'
+  question =
+    'What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?'
+
   questionKey = 'peopleDisinfection'
+  Answer = PeopleDisinfectionAnswer
+
+  nextPage() {
+    return disinfectantPage
+  }
 }
 
 export const peopleDisinfectionPage = new PeopleDisinfectionPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const peopleDisinfection = new QuestionPageController(
+  peopleDisinfectionPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
