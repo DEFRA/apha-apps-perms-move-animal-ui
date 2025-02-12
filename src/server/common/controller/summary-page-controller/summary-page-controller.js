@@ -1,6 +1,7 @@
 /** @import SummaryPage from '../../model/page/summary-page/SummaryPageModel.js' */
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
+import { StateManager } from '../../model/state/state-manager.js'
 import { sectionToSummary } from '../../templates/macros/create-summary.js'
 import GenericPageController from '../generic-page-controller/index.js'
 
@@ -52,7 +53,11 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handleGet(req, res) {
-    const section = this.page.sectionFactory(req.yar.get(this.page.sectionKey))
+    const applicationState = new StateManager(req).toState()
+    const section = this.page.sectionFactory(
+      req.yar.get(this.page.sectionKey),
+      applicationState
+    )
 
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {

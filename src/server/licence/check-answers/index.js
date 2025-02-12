@@ -9,7 +9,7 @@ export class LicenceSummaryPage extends SummaryPage {
   sectionKey = 'licence'
   urlPath = `/receiving-the-licence/check-answers`
   urlKey = 'receiving-the-licence'
-  sectionFactory = (data) => LicenceSection.fromState(data)
+  sectionFactory = (data, context) => LicenceSection.fromState(data, context)
 }
 
 export const licenceSummaryPage = new LicenceSummaryPage()
