@@ -18,7 +18,8 @@ const defaultState = {
   roadsAndTracks: 'yes',
   buildingsAnyShared: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
-  peopleDisinfection: 'ppe'
+  peopleDisinfection: 'ppe',
+  disinfectant: 'some disinfectant'
 }
 
 describe('#biosecuritySummaryPage', () => {
@@ -37,7 +38,7 @@ describe('#biosecuritySummaryPage', () => {
     await server.stop({ timeout: 0 })
   })
 
-  it('should render expected response when kept separately selected', async () => {
+  it('should render expected response when default state present', async () => {
     await session.setState('biosecurity', defaultState)
 
     const { payload, statusCode } = await server.inject(

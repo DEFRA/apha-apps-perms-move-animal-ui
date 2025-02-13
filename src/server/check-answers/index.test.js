@@ -27,6 +27,7 @@ const testLastGrazedValue = 'Yesterday'
 const testGrazingFieldHowSeparated = 'some details'
 const testBuildingsHowMinimiseContamination = 'somehow'
 const testPeopleDisinfection = 'ppe'
+const testDisinfectant = 'some disinfectant'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -58,7 +59,8 @@ const biosecurityDefaultState = {
   roadsAndTracks: yesValue,
   buildingsAnyShared: yesValue,
   buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
-  peopleDisinfection: testPeopleDisinfection
+  peopleDisinfection: testPeopleDisinfection,
+  disinfectant: testDisinfectant
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -106,7 +108,9 @@ const emailContent = [
   '## How will you reduce building and equipment contamination?',
   testBuildingsHowMinimiseContamination,
   '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
-  testPeopleDisinfection
+  testPeopleDisinfection,
+  '## What disinfectant are you using?',
+  testDisinfectant
 ].join('\n')
 
 describe('#CheckAnswers', () => {
