@@ -5,7 +5,13 @@
  * @typedef {Record<string, RawSectionState>} RawApplicationState
  */
 
-const sectionKeys = ['origin', 'destination', 'licence', 'biosecurity']
+const sectionKeys = [
+  'origin',
+  'destination',
+  'licence',
+  'biosecurity',
+  'biosecurity-map'
+]
 
 export class StateManager {
   /** @param {Request} request */

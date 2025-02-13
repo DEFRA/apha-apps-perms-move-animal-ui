@@ -3,8 +3,9 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
 import { uploadProgressPage } from '../upload-progress/index.js'
-import { BiosecurityAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
+import { StateManager } from '../../common/model/state/state-manager.js'
 
 /**
  * @import { BiosecurityMapData } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
@@ -19,7 +20,7 @@ export class UploadPlanPage extends QuestionPage {
 
   view = `biosecurity-map/upload-plan/index`
 
-  Answer = BiosecurityAnswer
+  Answer = BiosecurityMapAnswer
 
   nextPage() {
     return uploadProgressPage
@@ -30,11 +31,18 @@ export class UploadPlanController extends QuestionPageController {
   async handleGet(req, h) {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
 
-    // save this seperately to see if we've already tried to upload a bio-sec-map already
-    const initialState = req.yar.get(this.page.questionKey)
-    const existingAnswer = /** @type {BiosecurityAnswer} */ (
-      this.page.Answer.fromState(initialState)
+    const applicationState = new StateManager(req).toState()
+    const sectionState = req.yar.get(this.page.sectionKey)
+
+    const existingAnswer = /** @type {BiosecurityMapAnswer} */ (
+      this.page.Answer.fromState(
+        sectionState?.[this.page.questionKey],
+        applicationState
+      )
     )
+
+    // save this seperately to see if we've already tried to upload a bio-sec-map already
+    const initialState = sectionState[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validate()
 
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
@@ -59,12 +67,13 @@ export class UploadPlanController extends QuestionPageController {
     const data = JSON.parse(response.payload.toString())
 
     const answer = new this.page.Answer({
-      biosecurityMap: {
-        metadata: data
-      }
+      metadata: data
     })
 
-    req.yar.set(this.page.questionKey, answer.toState())
+    req.yar.set(this.page.sectionKey, {
+      ...req.yar.get(this.page.sectionKey),
+      [this.page.questionKey]: answer.toState()
+    })
 
     h.headers = {
       'Cache-Control': 'no-store, must-revalidate, max-age=0',
@@ -86,14 +95,14 @@ export class UploadPlanController extends QuestionPageController {
       }
 
       return super.handleGet(req, h, {
-        upload: answer.value,
+        upload: answer.value?.metadata,
         errorMessages: this.page.Answer.errorMessages(validationErrors),
         errors: validationErrors
       })
     }
 
     return super.handleGet(req, h, {
-      upload: answer.value
+      upload: answer.value?.metadata
     })
   }
 }

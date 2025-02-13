@@ -5,6 +5,9 @@ export class Page {
   /** @type {string} */
   urlPath
 
+  /** @type {boolean} */
+  isInterstitial = false
+
   /** @type {string | null} */
   urlKey = null
 

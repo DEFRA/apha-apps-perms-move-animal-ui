@@ -39,11 +39,6 @@ export const router = {
         submitSummary
       ])
 
-      // Add routes without sections here
-      if (config.get('featureFlags')?.biosecurity) {
-        await server.register([uploadPlan, uploadProgress])
-      }
-
       // Add routes for the visible sections in the application
       await server.register(
         ApplicationModel.visibleSections.map((section) => section.config.plugin)

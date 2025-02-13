@@ -3,13 +3,13 @@ import { validateAnswerAgainstSchema } from '../validation.js'
 import validationSchema from './validation.js'
 
 /**
- * export @typedef {{
- *  metadata: {
+ * @typedef {{
  *   uploadId: string;
  *   uploadUrl: string;
  *   statusUrl: string;
- *  }
- * status?: {
+ * }} UploadMetadata
+ *
+ * @typedef {{
  *   uploadStatus: 'initiated' | 'pending' | 'ready',
  *   metadata: {},
  *   form: {
@@ -17,60 +17,48 @@ import validationSchema from './validation.js'
  *     file: any
  *   },
  *   numberOfRejectedFiles: number
- * }
- * } | undefined} BiosecurityMapData
+ * }} UploadStatus
+ */
+
+/**
+ * export @typedef {{
+ *   metadata?: UploadMetadata
+ *   status?: UploadStatus
+ * }} BiosecurityMapData
  *
- * export @typedef {{ biosecurityMap: BiosecurityMapData }} BiosecurityMapPayload
+ * export @typedef {{
+ *   metadata?: UploadMetadata
+ *   status?: UploadStatus
+ * }} BiosecurityMapPayload
  */
 
 /**
  * @augments AnswerModel<BiosecurityMapPayload>
  */
-export class BiosecurityAnswer extends AnswerModel {
-  /**
-   * @returns {BiosecurityMapData}
-   */
+export class BiosecurityMapAnswer extends AnswerModel {
   get value() {
-    if (!this._data?.biosecurityMap?.metadata) {
+    if (!this._data?.metadata) {
       return undefined
     }
 
-    const { metadata, status } = this._data.biosecurityMap
-
-    const value = {
-      metadata: {
-        uploadId: metadata.uploadId,
-        uploadUrl: metadata.uploadUrl,
-        statusUrl: metadata.statusUrl
-      },
-      status
+    return {
+      metadata: this._data.metadata,
+      status: this._data.status
     }
-
-    return value
   }
 
   get html() {
-    const html = 'biosecurity html'
+    const html = 'Map uploaded'
     return html
   }
 
   /**
-   * @returns {BiosecurityMapData | undefined}
+   * @returns { BiosecurityMapData }
    */
   toState() {
-    if (!this._data?.biosecurityMap?.metadata) {
-      return undefined
-    }
-
-    const { metadata, status } = this._data.biosecurityMap
-
     return {
-      metadata: {
-        uploadId: metadata.uploadId,
-        uploadUrl: metadata.uploadUrl,
-        statusUrl: metadata?.statusUrl
-      },
-      status
+      metadata: this._data?.metadata,
+      status: this._data?.status
     }
   }
 
@@ -78,20 +66,17 @@ export class BiosecurityAnswer extends AnswerModel {
     return validateAnswerAgainstSchema(validationSchema, this.value)
   }
 
-  _extractFields(payload) {
-    const { metadata, status } = payload.biosecurityMap ?? {}
-    return {
-      biosecurityMap: { metadata, status }
-    }
+  _extractFields({ metadata, status }) {
+    return { metadata, status }
   }
 
   /**
-   * @param {BiosecurityMapData | undefined} state
-   * @returns {BiosecurityAnswer}
+   * @param { BiosecurityMapData | undefined} state
+   * @returns { BiosecurityMapAnswer }
    */
   static fromState(state) {
-    return new BiosecurityAnswer({
-      biosecurityMap: state
-    })
+    return new BiosecurityMapAnswer(
+      state ? { metadata: state.metadata, status: state.status } : undefined
+    )
   }
 }
