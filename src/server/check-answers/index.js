@@ -18,10 +18,23 @@ class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
 }
 
+const headingAndTitle = 'Check your answers before sending your application'
+
 export class SubmitSummaryPage extends QuestionPage {
-  question = 'Check your answers before sending your application'
+  question =
+    'Before you submit your application, you must select one of the declaration check boxes.'
+
+  get title() {
+    return headingAndTitle
+  }
+
+  get heading() {
+    return headingAndTitle
+  }
+
   sectionKey = 'submit'
   questionKey = 'check-answers'
+
   urlPath = `/${this.sectionKey}/${this.questionKey}`
 
   view = `check-answers/index`
