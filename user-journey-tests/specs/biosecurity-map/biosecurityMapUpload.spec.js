@@ -1,4 +1,5 @@
-import { waitForPagePath } from '../../helpers/page.js'
+import { waitForElement, waitForPagePath } from '../../helpers/page.js'
+import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import mapUploadPage from '../../page-objects/biosecurity-map/mapUploadPage.js'
 import uploadLoadingPage from '../../page-objects/biosecurity-map/uploadLoadingPage.js'
 
@@ -7,8 +8,19 @@ describe('Biosecurity map upload test', () => {
     await mapUploadPage.navigateToPageAndVerifyTitle()
   })
 
+  it('Should verify that the page errors when no input is given', () => {
+    mapUploadPage.uploadFileErrorTest()
+  })
+
+  it('Should verify that the page errors when no input is given', () => {
+    mapUploadPage.uploadFileErrorTest('./testFile.txt')
+  })
+
   it('Should verify upload flow', async () => {
-    await mapUploadPage.uploadFileAndContinue()
+    await mapUploadPage.uploadFileAndContinue('./happy_emoji.jpg')
+    await waitForElement(mapUploadPage.loadingSpinner)
     await waitForPagePath(uploadLoadingPage.pagePath)
+    await waitForElement(mapUploadPage.loadingSpinner)
+    await waitForPagePath(biosecurityMapAnswersPage.pagePath)
   })
 })

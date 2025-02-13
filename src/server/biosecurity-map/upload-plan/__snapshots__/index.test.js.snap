@@ -30,10 +30,10 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
           <li>location of biosecurity points</li>
         </ul>
         <div class="govuk-form-group">
-  <label class="govuk-label" for="biosecurity-upload-plan-file-upload">
+  <label class="govuk-label" for="status.form.file">
     Upload a file
   </label>
-  <input class="govuk-file-upload" id="biosecurity-upload-plan-file-upload" name="file" type="file">
+  <input class="govuk-file-upload" id="status.form.file" name="file" type="file" data-testid="file-biosecuritymap-upload">
 </div>
 
       </div>
