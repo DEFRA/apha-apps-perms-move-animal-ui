@@ -2,12 +2,6 @@ import { CheckboxAnswer } from '../checkbox/checkbox.js'
 /** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
 const checkboxEmptyError = 'You need to tick a declaration box'
 
-// value: "confirm",
-// text:
-// attributes: {
-//   'data-testid': 'confirm-statements-checkbox'
-// }
-
 /** @typedef {{ confirmation: CheckboxData }} ConfirmationPayload */
 
 /** @type {CheckboxConfig} */
