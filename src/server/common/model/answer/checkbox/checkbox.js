@@ -27,10 +27,13 @@ const createCheckboxSchema = (config) => {
 
 /**
  * @template T
- * @param {T[] | T} value
+ * @param {T[] | T | undefined} value
  * @returns T[]
  */
-const ensureArray = (value) => (Array.isArray(value) ? value : [value])
+const ensureArray = (value) => {
+  value = value ?? []
+  return Array.isArray(value) ? value : [value]
+}
 
 /**
  * @typedef {{ label: string }} CheckboxOption
@@ -111,13 +114,13 @@ export class CheckboxAnswer extends AnswerModel {
    * @returns {CheckboxData | undefined}
    */
   toState() {
-    return ensureArray(this._data?.[this.config.payloadKey] ?? [])
+    return ensureArray(this._data?.[this.config.payloadKey])
   }
 
   validate() {
     return validateAnswerAgainstSchema(createCheckboxSchema(this.config), {
       [this.config.payloadKey]: ensureArray(
-        this._data?.[this.config.payloadKey] ?? []
+        this._data?.[this.config.payloadKey]
       )
     })
   }
