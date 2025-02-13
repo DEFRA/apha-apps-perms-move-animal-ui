@@ -5,6 +5,10 @@ exports[`DisinfectantPage disinfectantPage.content should render expected respon
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Disinfectant</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       <p>
         You must
         <a target="_blank" href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI">
