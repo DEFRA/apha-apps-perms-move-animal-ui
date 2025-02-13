@@ -142,12 +142,12 @@ const emailContent = [
   testBuildingsHowMinimiseContamination,
   '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
   testPeopleDisinfection,
+  '## What disinfectant are you using?',
+  testDisinfectant,
   '## Upload a biosecurity map',
   'Map uploaded',
   '## undefined',
   'Map uploaded'
-  '## What disinfectant are you using?',
-  testDisinfectant
 ].join('\n')
 
 describe('#CheckAnswers', () => {
