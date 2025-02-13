@@ -9,11 +9,8 @@ import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './submit/index.js'
 import { submitSummary } from './check-answers/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
-import { uploadPlan } from './biosecurity-map/upload-plan/index.js'
-import { uploadProgress } from './biosecurity-map/upload-progress/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { ApplicationModel } from './common/model/application/application.js'
-import { config } from '../config/config.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}

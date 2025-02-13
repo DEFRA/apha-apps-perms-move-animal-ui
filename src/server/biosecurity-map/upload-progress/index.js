@@ -40,7 +40,7 @@ export class UploadProgressController extends QuestionPageController {
 
     const { uploaderUrl } = config.get('fileUpload')
     const response = await Wreck.get(
-      `${uploaderUrl}/status/${answer.value?.metadata.uploadId}`
+      `${uploaderUrl}/status/${answer.value?.metadata?.uploadId}`
     )
 
     const status = JSON.parse(response.payload.toString())

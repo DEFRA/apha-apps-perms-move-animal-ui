@@ -18,14 +18,10 @@ import validationSchema from './validation.js'
  *   },
  *   numberOfRejectedFiles: number
  * }} UploadStatus
- */
-
-/**
  * export @typedef {{
  *   metadata?: UploadMetadata
  *   status?: UploadStatus
  * }} BiosecurityMapData
- *
  * export @typedef {{
  *   metadata?: UploadMetadata
  *   status?: UploadStatus
@@ -36,6 +32,9 @@ import validationSchema from './validation.js'
  * @augments AnswerModel<BiosecurityMapPayload>
  */
 export class BiosecurityMapAnswer extends AnswerModel {
+  /**
+   * @returns { BiosecurityMapData | undefined }
+   */
   get value() {
     if (!this._data?.metadata) {
       return undefined
@@ -66,6 +65,11 @@ export class BiosecurityMapAnswer extends AnswerModel {
     return validateAnswerAgainstSchema(validationSchema, this.value)
   }
 
+  /**
+   *
+   * @param { BiosecurityMapPayload } data
+   * @returns { BiosecurityMapData }
+   */
   _extractFields({ metadata, status }) {
     return { metadata, status }
   }

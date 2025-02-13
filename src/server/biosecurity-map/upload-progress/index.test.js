@@ -27,13 +27,15 @@ describe('#UploadPlan', () => {
 
   describe('valid upload', () => {
     beforeEach(async () => {
-      await session.setState(uploadConfig.questionKey, {
-        metadata: {
-          uploadId: '462b24f2-f9ef-4bde-a826-6ae00b87b32c',
-          uploadUrl:
-            'http://localhost:7337/upload-and-scan/462b24f2-f9ef-4bde-a826-6ae00b87b32c',
-          statusUrl:
-            'http://localhost:7337/status/462b24f2-f9ef-4bde-a826-6ae00b87b32c'
+      await session.setState(uploadConfig.sectionKey, {
+        [uploadConfig.questionKey]: {
+          metadata: {
+            uploadId: '462b24f2-f9ef-4bde-a826-6ae00b87b32c',
+            uploadUrl:
+              'http://localhost:7337/upload-and-scan/462b24f2-f9ef-4bde-a826-6ae00b87b32c',
+            statusUrl:
+              'http://localhost:7337/status/462b24f2-f9ef-4bde-a826-6ae00b87b32c'
+          }
         }
       })
     })

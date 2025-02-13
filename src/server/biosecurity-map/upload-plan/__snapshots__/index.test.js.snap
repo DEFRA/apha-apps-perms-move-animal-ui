@@ -2,20 +2,62 @@
 
 exports[`#UploadPlan #UploadPlanPage should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row app-heading" data-testid="app-heading">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
-      500
-    </h1>
-
-  </div>
-</div>
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p>Something went wrong</p>
+      <h1 class="govuk-heading-l">Upload a biosecurity map</h1>
     </div>
   </div>
+  <form method="POST" action="/upload-and-scan/b18ceadb-afb1-4955-a70b-256bf94444d5" novalidate="" enctype="multipart/form-data">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+        <p>
+          You need to upload a map of the farm or premises. The map should not
+          be hand drawn, but you can make annotations to the map of specific
+          locations by hand.
+        </p>
+        <p>It needs to include:</p>
+        <ul class="govuk-body govuk-list--bullet">
+          <li>where the incoming cattle will be isolated</li>
+          <li>location of the resident cattle</li>
+          <li>
+            movements of the cattle, including where they will graze, be milked,
+            and be loaded
+          </li>
+          <li>location of handling facility</li>
+          <li>location of manure or slurry storage</li>
+          <li>location of biosecurity points</li>
+        </ul>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="status.form.file">
+    Upload a file
+  </label>
+  <input class="govuk-file-upload" id="status.form.file" name="file" type="file" data-testid="file-biosecuritymap-upload">
+</div>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+      </div>
+    </div>
+  </form>
+    <div class="apha_upload-spinner apha-hidden" data-testid="upload-spinner">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Uploading the biosecurity map</h1>
+      </div>
+    </div>
+    <p>This may take a few minutes.</p>
+    <div class="hods-loading-spinner">
+      <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+
         "
 `;

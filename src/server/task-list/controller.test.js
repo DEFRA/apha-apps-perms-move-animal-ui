@@ -42,6 +42,39 @@ const validBiosecurityState = {
   peopleDisinfection: 'ppe'
 }
 
+const validBiosecurityMapState = {
+  'upload-plan': {
+    metadata: {
+      uploadId: '41572cf8-2e37-495e-9ad2-0b0f23f1b277',
+      uploadUrl:
+        'http://localhost:7337/upload-and-scan/41572cf8-2e37-495e-9ad2-0b0f23f1b277',
+      statusUrl:
+        'http://localhost:7337/status/41572cf8-2e37-495e-9ad2-0b0f23f1b277'
+    },
+    status: {
+      uploadStatus: 'ready',
+      metadata: {},
+      form: {
+        crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
+        nextPage: '',
+        file: {
+          fileId: '3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
+          filename: '34998B77-FB3E-44DB-BC0E-05154D6549E0.jpeg',
+          contentType: 'image/jpeg',
+          fileStatus: 'complete',
+          contentLength: 374478,
+          checksumSha256: '3etoXNlR16WpgCiwylqccFxLVg3OrZvpGUqmigmrhcU=',
+          detectedContentType: 'image/jpeg',
+          s3Key:
+            'biosecurity-map/41572cf8-2e37-495e-9ad2-0b0f23f1b277/3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
+          s3Bucket: 'apha'
+        }
+      },
+      numberOfRejectedFiles: 0
+    }
+  }
+}
+
 describe('#taskListController', () => {
   /** @type {Server} */
   let server
@@ -88,7 +121,8 @@ describe('#taskListController', () => {
       'Movement origin',
       'Movement destination',
       'Receiving the licence',
-      'Biosecurity details'
+      'Biosecurity details',
+      'Biosecurity map'
     ])
   })
 
@@ -137,18 +171,16 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.ok)
-    expect(payload).toEqual(expect.stringContaining(`4 out of 4`))
+    expect(payload).toEqual(expect.stringContaining(`5 out of 5`))
     expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
   })
 
   it('should state all section complete, and have a green button', async () => {
     await session.setState('origin', validOriginState)
-
     await session.setState('destination', validDestinationState)
-
     await session.setState('licence', validLicenceState)
-
     await session.setState('biosecurity', validBiosecurityState)
+    await session.setState('biosecurity-map', validBiosecurityMapState)
 
     const { statusCode, payload } = await server.inject(
       withCsrfProtection(

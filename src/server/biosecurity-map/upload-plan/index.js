@@ -42,7 +42,7 @@ export class UploadPlanController extends QuestionPageController {
     )
 
     // save this seperately to see if we've already tried to upload a bio-sec-map already
-    const initialState = sectionState[this.page.questionKey]
+    const initialState = sectionState?.[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validate()
 
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
@@ -95,14 +95,14 @@ export class UploadPlanController extends QuestionPageController {
       }
 
       return super.handleGet(req, h, {
-        upload: answer.value?.metadata,
+        upload: answer.value,
         errorMessages: this.page.Answer.errorMessages(validationErrors),
         errors: validationErrors
       })
     }
 
     return super.handleGet(req, h, {
-      upload: answer.value?.metadata
+      upload: answer.value
     })
   }
 }
