@@ -1,3 +1,4 @@
+import { waitForPagePath } from '../../helpers/page.js'
 import { Page } from '../page.js'
 
 const pageId = 'buildingsAnyShared'
@@ -28,12 +29,14 @@ class AnySharedBuildingsPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async selectYesAndContinue() {
+  async selectYesAndContinue(newPage) {
     await super.selectRadioAndContinue(this.yesRadio)
+    await waitForPagePath(newPage.pagePath)
   }
 
-  async selectNoAndContinue() {
+  async selectNoAndContinue(newPage) {
     await super.selectRadioAndContinue(this.noRadio)
+    await waitForPagePath(newPage.pagePath)
   }
 
   async sharedBuildingsErrorTest() {

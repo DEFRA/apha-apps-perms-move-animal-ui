@@ -1,7 +1,7 @@
 import { KeptSeparatelyAnswer } from '../../common/model/answer/kept-separately/kept-separately.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { disinfectionPage } from '../disinfection/index.js'
 import { grazingPage } from '../grazing/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import {
   keptSeparately,
   keptSeparatelyPage,
@@ -50,7 +50,7 @@ describe('KeptSeparatelyPage', () => {
   it('nextPage should return disinfection page when answer is "no"', () => {
     const answer = new KeptSeparatelyAnswer({ keptSeparately: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(disinfectionPage)
+    expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
   it('should export page', () => {

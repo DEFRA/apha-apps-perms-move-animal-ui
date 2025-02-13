@@ -1,4 +1,5 @@
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 import * as page from '../../helpers/page.js'
 
 const pageId = 'lastGrazed'
@@ -24,9 +25,12 @@ class LastGrazedPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async inputLastGrazedAndContinue(text) {
+  async inputLastGrazedAndContinue(text, newPage) {
     await page.typeIntoElement(this.lastGrazedInput(), text)
     await super.selectContinue()
+    if (newPage) {
+      await waitForPagePath(newPage.pagePath)
+    }
   }
 
   async lastGrazedErrorTest(textInput, errorMessage) {

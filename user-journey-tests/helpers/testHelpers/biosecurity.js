@@ -2,8 +2,7 @@ import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
-import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
-import { waitForPagePath } from '../page.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
@@ -11,6 +10,7 @@ import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSepara
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
+import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -19,31 +19,33 @@ const completeBiosecurityTask = async (radioType) => {
   await taskListPage.selectBiosecurityLink()
   switch (radioType) {
     case 'yes':
-      await keptSeparatelyPage.selectYesAndContinue()
-      await waitForPagePath(grazingPage.pagePath)
-      await grazingPage.selectYesAndContinue()
-      await waitForPagePath(lastGrazedPage.pagePath)
-      await lastGrazedPage.inputLastGrazedAndContinue('2 years')
-      await waitForPagePath(manureAndSlurryPage.pagePath)
-      await manureAndSlurryPage.selectYesAndContinue()
-      await waitForPagePath(howFieldSeparatedPage.pagePath)
+      await keptSeparatelyPage.selectYesAndContinue(grazingPage)
+      await grazingPage.selectYesAndContinue(lastGrazedPage)
+      await lastGrazedPage.inputLastGrazedAndContinue(
+        '2 years',
+        manureAndSlurryPage
+      )
+      await manureAndSlurryPage.selectYesAndContinue(howFieldSeparatedPage)
       await howFieldSeparatedPage.inputSeparatedGrazingAndContinue(
-        'Separate grazing'
+        'Separate grazing',
+        roadsAndTracksPage
       )
-      await waitForPagePath(roadsAndTracksPage.pagePath)
-      await roadsAndTracksPage.selectYesAndContinue()
-      await waitForPagePath(anySharedBuildingsPage.pagePath)
-      await anySharedBuildingsPage.selectYesAndContinue()
-      await waitForPagePath(minimiseContaminationPage.pagePath)
+      await roadsAndTracksPage.selectYesAndContinue(anySharedBuildingsPage)
+      await anySharedBuildingsPage.selectYesAndContinue(
+        minimiseContaminationPage
+      )
       await minimiseContaminationPage.inputMinimiseContaminationAndContinue(
-        'Minimise'
+        'Minimise',
+        peopleDisinfectionPage
       )
-      await waitForPagePath(disinfectionPage.pagePath)
+      await peopleDisinfectionPage.inputPeopleDisinfectionAndContinue(
+        'People disinfection',
+        disinfectantPage
+      )
       break
 
     case 'no':
-      await keptSeparatelyPage.selectNoAndContinue()
-      await waitForPagePath(disinfectionPage.pagePath)
+      await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
       break
 
     default:

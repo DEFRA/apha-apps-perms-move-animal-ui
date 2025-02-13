@@ -1,8 +1,8 @@
 import { KeptSeparatelyAnswer } from '~/src/server/common/model/answer/kept-separately/kept-separately.js'
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { QuestionPageController } from '~/src/server/common/controller/question-page-controller/question-page-controller.js'
-import { disinfectionPage } from '../disinfection/index.js'
 import { grazingPage } from '../grazing/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 
@@ -19,7 +19,7 @@ export class KeptSeparatelyPage extends QuestionPage {
     if (answer.value === 'yes') {
       return grazingPage
     }
-    return disinfectionPage
+    return peopleDisinfectionPage
   }
 }
 

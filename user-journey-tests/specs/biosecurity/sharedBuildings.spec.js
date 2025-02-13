@@ -3,7 +3,7 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
-import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 
 describe('Shared buildings page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -16,11 +16,7 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await anySharedBuildingsPage.selectYesAndContinue()
-
-    await expect(anySharedBuildingsPage.pageError).not.toBeDisplayed()
-    await expect(anySharedBuildingsPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(minimiseContaminationPage.pagePath)
+    await anySharedBuildingsPage.selectYesAndContinue(minimiseContaminationPage)
 
     await minimiseContaminationPage.selectBackLink()
     await waitForPagePath(anySharedBuildingsPage.pagePath)
@@ -32,10 +28,9 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await anySharedBuildingsPage.selectNoAndContinue()
-    await waitForPagePath(disinfectionPage.pagePath)
+    await anySharedBuildingsPage.selectNoAndContinue(peopleDisinfectionPage)
 
-    await disinfectionPage.selectBackLink()
+    await peopleDisinfectionPage.selectBackLink()
     await waitForPagePath(anySharedBuildingsPage.pagePath)
 
     await browser.refresh()

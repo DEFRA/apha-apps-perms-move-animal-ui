@@ -28,6 +28,10 @@ describe('BuildingsHowMinimiseContamination', () => {
     )
   })
 
+  it('should have the right number of rows', () => {
+    expect(BuildingsHowMinimiseContaminationAnswer.config.rows).toBe(8)
+  })
+
   it('should define the right empty input message', () => {
     expect(
       BuildingsHowMinimiseContaminationAnswer.config.validation.empty.message

@@ -26,6 +26,7 @@ const yesLabel = 'Yes'
 const testLastGrazedValue = 'Yesterday'
 const testGrazingFieldHowSeparated = 'some details'
 const testBuildingsHowMinimiseContamination = 'somehow'
+const testPeopleDisinfection = 'ppe'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -56,7 +57,8 @@ const biosecurityDefaultState = {
   grazingFieldHowSeparated: testGrazingFieldHowSeparated,
   roadsAndTracks: yesValue,
   buildingsAnyShared: yesValue,
-  buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination
+  buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
+  peopleDisinfection: testPeopleDisinfection
 }
 
 const pageTitle = 'Check your answers before sending your application'
@@ -102,7 +104,9 @@ const emailContent = [
   '## Will the cattle share any buildings and equipment with the resident herd?',
   yesLabel,
   '## How will you reduce building and equipment contamination?',
-  testBuildingsHowMinimiseContamination
+  testBuildingsHowMinimiseContamination,
+  '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
+  testPeopleDisinfection
 ].join('\n')
 
 describe('#CheckAnswers', () => {

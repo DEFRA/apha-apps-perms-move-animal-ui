@@ -7,6 +7,7 @@ import { grazingFieldHowSeparated } from './grazing-field-how-separated/index.js
 import { roadsAndTracks } from './roads-and-tracks/index.js'
 import { buildingsAnyShared } from './buildings-any-shared/index.js'
 import { buildingsHowMinimiseContamination } from './buildings-how-minimise-contamination/index.js'
+import { peopleDisinfection } from './people-disinfection/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -24,6 +25,7 @@ export const biosecurity = {
         roadsAndTracks,
         buildingsAnyShared,
         buildingsHowMinimiseContamination,
+        peopleDisinfection,
         biosecuritySummary
       ])
     }

@@ -1,6 +1,5 @@
 import { browser } from '@wdio/globals'
 
-import { waitForPagePath } from '../../helpers/page.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 
@@ -19,12 +18,8 @@ describe('Separated grazing page spec', () => {
 
   it('Should input correct input and continue without error', async () => {
     await howFieldSeparatedPage.inputSeparatedGrazingAndContinue(
-      'By testing it'
+      'By testing it',
+      roadsAndTracksPage
     )
-    await expect(
-      howFieldSeparatedPage.separatedGrazingFieldError()
-    ).not.toBeDisplayed()
-    await expect(howFieldSeparatedPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(roadsAndTracksPage.pagePath)
   })
 })

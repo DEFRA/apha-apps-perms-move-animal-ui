@@ -1,4 +1,5 @@
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 import * as page from '../../helpers/page.js'
 
 const pageId = 'grazingFieldHowSeparated'
@@ -26,9 +27,12 @@ class HowFieldSeparatedPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async inputSeparatedGrazingAndContinue(text) {
+  async inputSeparatedGrazingAndContinue(text, newPage) {
     await page.typeIntoElement(this.separatedGrazingInput(), text)
     await super.selectContinue()
+    if (newPage) {
+      await waitForPagePath(newPage.pagePath)
+    }
   }
 
   async fieldSeparatedErrorTest(textInput, errorMessage) {
