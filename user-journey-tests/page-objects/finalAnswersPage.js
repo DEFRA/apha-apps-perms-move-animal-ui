@@ -93,11 +93,11 @@ class FinalAnswersPage extends Page {
   }
 
   get confirmStatementsCheckbox() {
-    return $('[data-testid="confirm-statements-checkbox"]')
+    return $('[data-testid="confirm-checkbox"]')
   }
 
   get someoneElseCheckbox() {
-    return $('[data-testid="someone-else-checkbox"]')
+    return $('[data-testid="other-checkbox"]')
   }
 
   async selectADeclarationAndContinue(someoneElse = false) {
