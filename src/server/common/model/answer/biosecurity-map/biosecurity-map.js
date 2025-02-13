@@ -8,7 +8,6 @@ import validationSchema from './validation.js'
  *   uploadUrl: string;
  *   statusUrl: string;
  * }} UploadMetadata
- *
  * @typedef {{
  *   uploadStatus: 'initiated' | 'pending' | 'ready',
  *   metadata: {},
