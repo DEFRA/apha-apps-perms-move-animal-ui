@@ -11,6 +11,7 @@ import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPag
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
+import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -41,6 +42,10 @@ const completeBiosecurityTask = async (radioType) => {
       await peopleDisinfectionPage.inputPeopleDisinfectionAndContinue(
         'People disinfection',
         disinfectantPage
+      )
+      await disinfectantPage.inputDisinfectantAndContinue(
+        'Batman disinfectant',
+        disinfectantDilutionPage
       )
       break
 

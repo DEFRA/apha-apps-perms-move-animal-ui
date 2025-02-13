@@ -258,6 +258,32 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
       errorMessage: { text: maxLengthError }
     })
   })
+
+  it('should return data to render with the alternative (not page heading) question styles set correctly', () => {
+    /** @type {TextConfig} */
+    const textConfigNotPageHeading = {
+      ...textConfig,
+      isPageHeading: false
+    }
+
+    class NonPageHeadingTextAnswer extends TextAnswer {
+      static config = textConfigNotPageHeading
+    }
+    const nonPageHeadingAnswer = new NonPageHeadingTextAnswer(invalidPayload)
+
+    expect(
+      nonPageHeadingAnswer.viewModel({ validate: false, question })
+    ).toEqual({
+      label: {
+        text: question,
+        classes: 'govuk-label--m',
+        isPageHeading: false
+      },
+      id: 'textPayload',
+      name: 'textPayload',
+      value: textAnswer.value
+    })
+  })
 })
 
 describe('TestAnswer.viewModel (with all optional options)', () => {

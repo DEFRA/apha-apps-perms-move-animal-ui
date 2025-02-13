@@ -1,12 +1,38 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { DisinfectantAnswer } from '../../common/model/answer/disinfectant/disinfectant.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { disinfectantDilutionPage } from '../disinfectant-dilution/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class DisinfectantPage extends Page {
+const customHeading = 'Disinfectant'
+
+export class DisinfectantPage extends QuestionPage {
+  view = `biosecurity/disinfectant/index`
+
+  get heading() {
+    return customHeading
+  }
+
   urlPath = '/biosecurity/disinfectant'
   sectionKey = 'biosecurity'
-  question = 'question to be asked'
+  question = 'What disinfectant are you using?'
   questionKey = 'disinfectant'
+
+  Answer = DisinfectantAnswer
+
+  nextPage() {
+    return disinfectantDilutionPage
+  }
 }
 
 export const disinfectantPage = new DisinfectantPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const disinfectant = new QuestionPageController(
+  disinfectantPage
+).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */

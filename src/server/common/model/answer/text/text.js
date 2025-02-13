@@ -44,6 +44,7 @@ const whitespaceRegex = /\s+/g
  *  type?: 'email',               // the default is text, so no need to specify
  *  spellcheck?: false,
  *  characterWidth?: 10 | 20,
+ *  isPageHeading? : boolean,
  *  autocomplete?: string,
  *  hint?: string,
  *  validation: {
@@ -116,11 +117,14 @@ export class TextAnswer extends AnswerModel {
   viewModel({ validate, question }) {
     const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
       this.config
+
+    const isPageHeading = this.config.isPageHeading ?? true
+
     const viewModel = {
       label: {
         text: question,
-        classes: 'govuk-label--l',
-        isPageHeading: true
+        classes: isPageHeading ? 'govuk-label--l' : 'govuk-label--m',
+        isPageHeading
       },
       id: payloadKey,
       name: payloadKey,

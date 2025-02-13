@@ -112,6 +112,17 @@ describe('Check your answers test - biosecurity', () => {
     )
   })
 
+  it('Should verify the value and href of what disinfectant row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.whatDisinfectantValue,
+      'Batman disinfectant'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.whatDisinfectantLink,
+      '/biosecurity/disinfectant?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
   it('Should verify continue takes you to task list', async () => {
     await biosecurityAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()

@@ -37,7 +37,8 @@ const biosecurityDefaultState = {
   roadsAndTracks: 'yes',
   buildingsAnyShared: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
-  peopleDisinfection: 'ppe'
+  peopleDisinfection: 'ppe',
+  disinfectant: 'some disinfectant'
 }
 
 const applicationState = {

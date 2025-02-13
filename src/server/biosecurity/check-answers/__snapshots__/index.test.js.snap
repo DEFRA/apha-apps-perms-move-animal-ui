@@ -113,6 +113,17 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
       <a class="govuk-link" href="/biosecurity/people-disinfection?redirect_uri=/biosecurity/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What disinfectant are you using?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some disinfectant
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/disinfectant?redirect_uri=/biosecurity/check-answers" data-testid="disinfectant-change-link">Change<span class="govuk-visually-hidden"> What disinfectant are you using?</span></a>
+    </dd>
+  </div>
 </dl>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
