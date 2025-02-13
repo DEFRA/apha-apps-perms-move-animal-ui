@@ -1,6 +1,6 @@
 import { browser } from '@wdio/globals'
-import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage'
-import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage'
+import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
+import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 
 describe('Last grazed page spec', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
