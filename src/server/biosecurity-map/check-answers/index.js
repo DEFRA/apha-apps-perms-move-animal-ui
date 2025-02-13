@@ -6,7 +6,7 @@ import { BiosecurityPlanSection } from '~/src/server/common/model/section/biosec
 export class BiosecurityPlanSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'
   pageHeading = 'Check your answers before you continue your application'
-  sectionKey = 'upload-plan'
+  sectionKey = 'biosecurity-map'
   urlKey = 'biosecurity-map'
   urlPath = `/biosecurity-map/check-answers`
   sectionFactory = (data) => BiosecurityPlanSection.fromState(data)

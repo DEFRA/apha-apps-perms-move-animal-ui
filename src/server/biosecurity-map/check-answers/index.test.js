@@ -82,12 +82,14 @@ describe('#biosecurityPlanSummaryPage', () => {
 
   it('should redirect user to upload page if they`ve not selected a file', async () => {
     await session.setState('biosecurity-map', {
-      metadata: {
-        uploadId: '2ac91a2d-1910-48d0-83af-01cbeb370ca2',
-        uploadUrl:
-          'http://localhost:7337/upload-and-scan/2ac91a2d-1910-48d0-83af-01cbeb370ca2',
-        statusUrl:
-          'http://localhost:7337/status/2ac91a2d-1910-48d0-83af-01cbeb370ca2'
+      'upload-plan': {
+        metadata: {
+          uploadId: '2ac91a2d-1910-48d0-83af-01cbeb370ca2',
+          uploadUrl:
+            'http://localhost:7337/upload-and-scan/2ac91a2d-1910-48d0-83af-01cbeb370ca2',
+          statusUrl:
+            'http://localhost:7337/status/2ac91a2d-1910-48d0-83af-01cbeb370ca2'
+        }
       }
     })
 
