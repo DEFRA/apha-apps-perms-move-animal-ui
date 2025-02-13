@@ -7,7 +7,7 @@ const pageId = 'peopleDisinfection'
 const pageHeadingAndTitle =
   'What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?'
 
-class DisinfectionPage extends Page {
+class PeopleDisinfectionPage extends Page {
   pagePath = 'biosecurity/people-disinfection'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
@@ -27,11 +27,11 @@ class DisinfectionPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async inputPeopleDisinfectionAndContinue(text, newPage) {
+  async inputPeopleDisinfectionAndContinue(text, nextPage) {
     await page.typeIntoElement(this.peopleDisinfectionInput(), text)
     await super.selectContinue()
-    if (newPage) {
-      await waitForPagePath(newPage.pagePath)
+    if (nextPage) {
+      await waitForPagePath(nextPage.pagePath)
     }
   }
 
@@ -50,4 +50,4 @@ class DisinfectionPage extends Page {
   }
 }
 
-export default new DisinfectionPage()
+export default new PeopleDisinfectionPage()

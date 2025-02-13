@@ -1,7 +1,7 @@
 import { Page } from '../page.js'
 
-class UploadLoadingPage extends Page {
+class DisinfectantPage extends Page {
   pagePath = 'biosecurity/disinfectant'
 }
 
-export default new UploadLoadingPage()
+export default new DisinfectantPage()

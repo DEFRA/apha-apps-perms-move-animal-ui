@@ -2,7 +2,7 @@ import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
-import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
@@ -36,16 +36,16 @@ const completeBiosecurityTask = async (radioType) => {
       )
       await minimiseContaminationPage.inputMinimiseContaminationAndContinue(
         'Minimise',
-        disinfectionPage
+        peopleDisinfectionPage
       )
-      await disinfectionPage.inputPeopleDisinfectionAndContinue(
+      await peopleDisinfectionPage.inputPeopleDisinfectionAndContinue(
         'People disinfection',
         disinfectantPage
       )
       break
 
     case 'no':
-      await keptSeparatelyPage.selectNoAndContinue(disinfectionPage)
+      await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
       break
 
     default:

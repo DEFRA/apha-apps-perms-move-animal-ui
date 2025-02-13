@@ -3,7 +3,7 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
-import disinfectionPage from '../../page-objects/biosecurity/disinfectionPage.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 
 describe('Kept separately selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -28,9 +28,9 @@ describe('Kept separately selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await keptSeparatelyPage.selectNoAndContinue(disinfectionPage)
+    await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
 
-    await disinfectionPage.selectBackLink()
+    await peopleDisinfectionPage.selectBackLink()
     await waitForPagePath(keptSeparatelyPage.pagePath)
 
     await browser.refresh()
