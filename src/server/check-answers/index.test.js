@@ -27,6 +27,7 @@ const testLastGrazedValue = 'Yesterday'
 const testGrazingFieldHowSeparated = 'some details'
 const testBuildingsHowMinimiseContamination = 'somehow'
 const testPeopleDisinfection = 'ppe'
+const testDisinfectant = 'some disinfectant'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -58,7 +59,8 @@ const biosecurityDefaultState = {
   roadsAndTracks: yesValue,
   buildingsAnyShared: yesValue,
   buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
-  peopleDisinfection: testPeopleDisinfection
+  peopleDisinfection: testPeopleDisinfection,
+  disinfectant: testDisinfectant
 }
 
 const biosecurityMapDefaultState = {
@@ -144,6 +146,8 @@ const emailContent = [
   'Map uploaded',
   '## undefined',
   'Map uploaded'
+  '## What disinfectant are you using?',
+  testDisinfectant
 ].join('\n')
 
 describe('#CheckAnswers', () => {

@@ -8,6 +8,7 @@ import { roadsAndTracks } from './roads-and-tracks/index.js'
 import { buildingsAnyShared } from './buildings-any-shared/index.js'
 import { buildingsHowMinimiseContamination } from './buildings-how-minimise-contamination/index.js'
 import { peopleDisinfection } from './people-disinfection/index.js'
+import { disinfectant } from './disinfectant/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -26,6 +27,7 @@ export const biosecurity = {
         buildingsAnyShared,
         buildingsHowMinimiseContamination,
         peopleDisinfection,
+        disinfectant,
         biosecuritySummary
       ])
     }

@@ -44,6 +44,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="peopleDisinfection-change-link"]')
   }
 
+  get whatDisinfectantLink() {
+    return $('[data-testid="disinfectant-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -78,6 +82,10 @@ class BiosecurityAnswersPage extends Page {
 
   get peopleDisinfectionValue() {
     return $$('.govuk-summary-list__value')[8]
+  }
+
+  get whatDisinfectantValue() {
+    return $$('.govuk-summary-list__value')[9]
   }
 }
 
