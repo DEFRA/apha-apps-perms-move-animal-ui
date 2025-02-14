@@ -43,7 +43,7 @@ const whitespaceRegex = /\s+/g
  *  stripWhitespace?: boolean,
  *  type?: 'email',               // the default is text, so no need to specify
  *  spellcheck?: false,
- *  characterWidth?: 10 | 20,
+ *  characterWidth?: 2 | 10 | 20,
  *  isPageHeading? : boolean,
  *  autocomplete?: string,
  *  hint?: string,

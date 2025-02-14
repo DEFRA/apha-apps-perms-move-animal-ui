@@ -19,7 +19,8 @@ const defaultState = {
   buildingsAnyShared: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
-  disinfectant: 'some disinfectant'
+  disinfectant: 'some disinfectant',
+  dilutionRate: '15'
 }
 
 describe('#biosecuritySummaryPage', () => {

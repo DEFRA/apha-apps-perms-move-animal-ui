@@ -9,6 +9,7 @@ import { buildingsAnyShared } from './buildings-any-shared/index.js'
 import { buildingsHowMinimiseContamination } from './buildings-how-minimise-contamination/index.js'
 import { peopleDisinfection } from './people-disinfection/index.js'
 import { disinfectant } from './disinfectant/index.js'
+import { disinfectantDilution } from './disinfectant-dilution/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -28,6 +29,7 @@ export const biosecurity = {
         buildingsHowMinimiseContamination,
         peopleDisinfection,
         disinfectant,
+        disinfectantDilution,
         biosecuritySummary
       ])
     }

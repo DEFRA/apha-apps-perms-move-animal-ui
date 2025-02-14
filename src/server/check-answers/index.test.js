@@ -28,6 +28,7 @@ const testGrazingFieldHowSeparated = 'some details'
 const testBuildingsHowMinimiseContamination = 'somehow'
 const testPeopleDisinfection = 'ppe'
 const testDisinfectant = 'some disinfectant'
+const testDilutionRate = '15'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -60,7 +61,8 @@ const biosecurityDefaultState = {
   buildingsAnyShared: yesValue,
   buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
   peopleDisinfection: testPeopleDisinfection,
-  disinfectant: testDisinfectant
+  disinfectant: testDisinfectant,
+  dilutionRate: testDilutionRate
 }
 
 const biosecurityMapDefaultState = {
@@ -144,6 +146,8 @@ const emailContent = [
   testPeopleDisinfection,
   '## What disinfectant are you using?',
   testDisinfectant,
+  '## What dilution rate are you using?',
+  testDilutionRate,
   '## Upload a biosecurity map',
   'Map uploaded',
   '## undefined',

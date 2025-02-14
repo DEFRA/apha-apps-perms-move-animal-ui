@@ -48,6 +48,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="disinfectant-change-link"]')
   }
 
+  get changeDilutionLink() {
+    return $('[data-testid="dilutionRate-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -86,6 +90,10 @@ class BiosecurityAnswersPage extends Page {
 
   get whatDisinfectantValue() {
     return $$('.govuk-summary-list__value')[9]
+  }
+
+  get dilutionValue() {
+    return $$('.govuk-summary-list__value')[10]
   }
 }
 

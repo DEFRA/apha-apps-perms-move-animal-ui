@@ -1,0 +1,41 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% extends 'layouts/questions.njk' %}
+
+{% block heading %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+    </div>
+  </div>
+{% endblock %}
+
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        Dilution rate is the amount of water you add to the disinfectant
+        compared to the amount of disinfectant.
+      </p>
+      <p>
+        For example, if you use 1 litre of disinfectant with 15 litres of water,
+        the rate is 15.
+      </p>
+      <p>
+        You can find the dilution rate on the
+        <a
+          href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI"
+          target="_blank"
+        >
+          disinfectants approved for use in England, Scotland and Wales GOV.UK
+          page</a
+        >
+        (opens in a new tab). Your disinfectant must be approved for
+        Tuberculosis Orders.
+      </p>
+      <p>
+        For non-liquid disinfectants, the number of millilitres to one gram of
+        disinfectant is shown on the table with an Asterisk.
+      </p>
+    </div>
+  </div>
+{% endblock %}
