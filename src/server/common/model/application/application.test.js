@@ -38,7 +38,8 @@ const biosecurityDefaultState = {
   buildingsAnyShared: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
-  disinfectant: 'some disinfectant'
+  disinfectant: 'some disinfectant',
+  dilutionRate: '15'
 }
 
 const applicationState = {
