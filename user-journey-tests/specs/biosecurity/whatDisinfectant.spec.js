@@ -2,7 +2,7 @@ import { browser } from '@wdio/globals'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 
-describe('Last grazed page spec', () => {
+describe('Disinfectant page spec', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await disinfectantPage.navigateToPageAndVerifyTitle()

@@ -12,6 +12,7 @@ import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuil
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
+import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -46,6 +47,10 @@ const completeBiosecurityTask = async (radioType) => {
       await disinfectantPage.inputDisinfectantAndContinue(
         'Batman disinfectant',
         disinfectantDilutionPage
+      )
+      await disinfectantDilutionPage.inputDilutionAndContinue(
+        '1995',
+        biosecBadgersPage
       )
       break
 
