@@ -5,7 +5,7 @@ import { biosecurityPlanSummary } from './check-answers/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const biosecurity = {
+export const biosecurityPlan = {
   plugin: {
     name: 'biosecurity-map',
     async register(server) {
