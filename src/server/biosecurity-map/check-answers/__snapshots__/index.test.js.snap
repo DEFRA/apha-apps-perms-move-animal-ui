@@ -1,3 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#biosecurityPlanSummaryPage.content should render the expected content 1`] = `undefined`;
+exports[`#biosecurityPlanSummaryPage.content should render the expected content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+  
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Upload a biosecurity map
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Map uploaded
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity-map/upload-plan?redirect_uri=/biosecurity-map/check-answers" data-testid="upload-plan-change-link">Change<span class="govuk-visually-hidden"> Upload a biosecurity map</span></a>
+    </dd>
+  </div>
+</dl>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
