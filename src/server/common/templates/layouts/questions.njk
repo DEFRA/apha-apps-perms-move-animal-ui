@@ -27,6 +27,8 @@
           {% block questions %}
             {% include answer.template %}
           {% endblock %}
+          {% block beforeButton %}
+          {% endblock %}
           {% block button %}
             {{
               govukButton({

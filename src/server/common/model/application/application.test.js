@@ -39,7 +39,8 @@ const biosecurityDefaultState = {
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',
-  dilutionRate: '15'
+  dilutionRate: '15',
+  badgers: ['some measures']
 }
 
 const applicationState = {

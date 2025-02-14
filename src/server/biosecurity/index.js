@@ -10,6 +10,7 @@ import { buildingsHowMinimiseContamination } from './buildings-how-minimise-cont
 import { peopleDisinfection } from './people-disinfection/index.js'
 import { disinfectant } from './disinfectant/index.js'
 import { disinfectantDilution } from './disinfectant-dilution/index.js'
+import { badgers } from './badgers/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -30,6 +31,7 @@ export const biosecurity = {
         peopleDisinfection,
         disinfectant,
         disinfectantDilution,
+        badgers,
         biosecuritySummary
       ])
     }

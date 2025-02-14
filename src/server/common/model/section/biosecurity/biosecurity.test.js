@@ -12,7 +12,8 @@ const validBiosecurityData = {
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',
-  dilutionRate: '15'
+  dilutionRate: '15',
+  badgers: ['badgerProofFencing']
 }
 
 const invalidBiosecurityData = {
@@ -26,7 +27,8 @@ const invalidBiosecurityData = {
   buildingsHowMinimiseContamination: undefined,
   peopleDisinfection: undefined,
   disinfectant: undefined,
-  dilutionRate: undefined
+  dilutionRate: undefined,
+  badgers: []
 }
 
 describe('Biosecurity', () => {
