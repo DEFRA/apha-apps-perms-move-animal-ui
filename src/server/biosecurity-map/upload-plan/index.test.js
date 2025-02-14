@@ -56,20 +56,22 @@ describe('#UploadPlan', () => {
 
     describe('empty file', () => {
       beforeEach(async () => {
-        await session.setState(page.questionKey, {
-          metadata: {
-            uploadId: '843ed89f-247d-4c3e-a2f0-f31afbb289b2',
-            uploadUrl:
-              'http://localhost:7337/upload-and-scan/843ed89f-247d-4c3e-a2f0-f31afbb289b2',
-            statusUrl:
-              'http://localhost:7337/status/843ed89f-247d-4c3e-a2f0-f31afbb289b2'
-          },
-          status: {
-            uploadStatus: 'ready',
-            metadata: {},
-            form: {
-              crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
-              nextPage: ''
+        await session.setState(page.sectionKey, {
+          [page.questionKey]: {
+            metadata: {
+              uploadId: '843ed89f-247d-4c3e-a2f0-f31afbb289b2',
+              uploadUrl:
+                'http://localhost:7337/upload-and-scan/843ed89f-247d-4c3e-a2f0-f31afbb289b2',
+              statusUrl:
+                'http://localhost:7337/status/843ed89f-247d-4c3e-a2f0-f31afbb289b2'
+            },
+            status: {
+              uploadStatus: 'ready',
+              metadata: {},
+              form: {
+                crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
+                nextPage: ''
+              }
             }
           }
         })
@@ -94,32 +96,34 @@ describe('#UploadPlan', () => {
 
     describe('invalid mimetype', () => {
       beforeEach(async () => {
-        await session.setState(page.questionKey, {
-          metadata: {
-            uploadId: '71f8a17e-0507-4a3b-b8d2-7b5d7a67852c',
-            uploadUrl:
-              'http://localhost:7337/upload-and-scan/71f8a17e-0507-4a3b-b8d2-7b5d7a67852c',
-            statusUrl:
-              'http://localhost:7337/status/71f8a17e-0507-4a3b-b8d2-7b5d7a67852c'
-          },
-          status: {
-            uploadStatus: 'ready',
-            metadata: {},
-            form: {
-              crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
-              nextPage: '',
-              file: {
-                fileId: 'c02acd86-c858-4221-a971-9e00bfdb1ff1',
-                filename: 'INVALID MIME TYPE TEST',
-                contentType: 'application/octet-stream',
-                fileStatus: 'rejected',
-                contentLength: 8,
-                hasError: true,
-                errorMessage:
-                  'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
-              }
+        await session.setState(page.sectionKey, {
+          [page.questionKey]: {
+            metadata: {
+              uploadId: '71f8a17e-0507-4a3b-b8d2-7b5d7a67852c',
+              uploadUrl:
+                'http://localhost:7337/upload-and-scan/71f8a17e-0507-4a3b-b8d2-7b5d7a67852c',
+              statusUrl:
+                'http://localhost:7337/status/71f8a17e-0507-4a3b-b8d2-7b5d7a67852c'
             },
-            numberOfRejectedFiles: 1
+            status: {
+              uploadStatus: 'ready',
+              metadata: {},
+              form: {
+                crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
+                nextPage: '',
+                file: {
+                  fileId: 'c02acd86-c858-4221-a971-9e00bfdb1ff1',
+                  filename: 'INVALID MIME TYPE TEST',
+                  contentType: 'application/octet-stream',
+                  fileStatus: 'rejected',
+                  contentLength: 8,
+                  hasError: true,
+                  errorMessage:
+                    'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
+                }
+              },
+              numberOfRejectedFiles: 1
+            }
           }
         })
       })

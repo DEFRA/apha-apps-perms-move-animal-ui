@@ -18,5 +18,5 @@ export default Joi.object({
         'any.required': 'You need to upload your biosecurity map'
       }),
     numberOfRejectedFiles: Joi.number().equal(0)
-  }).optional()
+  }).required()
 }).required()

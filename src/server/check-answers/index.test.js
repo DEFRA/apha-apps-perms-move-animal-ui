@@ -63,6 +63,39 @@ const biosecurityDefaultState = {
   disinfectant: testDisinfectant
 }
 
+const biosecurityMapDefaultState = {
+  'upload-plan': {
+    metadata: {
+      uploadId: '41572cf8-2e37-495e-9ad2-0b0f23f1b277',
+      uploadUrl:
+        'http://localhost:7337/upload-and-scan/41572cf8-2e37-495e-9ad2-0b0f23f1b277',
+      statusUrl:
+        'http://localhost:7337/status/41572cf8-2e37-495e-9ad2-0b0f23f1b277'
+    },
+    status: {
+      uploadStatus: 'ready',
+      metadata: {},
+      form: {
+        crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
+        nextPage: '',
+        file: {
+          fileId: '3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
+          filename: '34998B77-FB3E-44DB-BC0E-05154D6549E0.jpeg',
+          contentType: 'image/jpeg',
+          fileStatus: 'complete',
+          contentLength: 374478,
+          checksumSha256: '3etoXNlR16WpgCiwylqccFxLVg3OrZvpGUqmigmrhcU=',
+          detectedContentType: 'image/jpeg',
+          s3Key:
+            'biosecurity-map/41572cf8-2e37-495e-9ad2-0b0f23f1b277/3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
+          s3Bucket: 'apha'
+        }
+      },
+      numberOfRejectedFiles: 0
+    }
+  }
+}
+
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
@@ -110,7 +143,11 @@ const emailContent = [
   '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
   testPeopleDisinfection,
   '## What disinfectant are you using?',
-  testDisinfectant
+  testDisinfectant,
+  '## Upload a biosecurity map',
+  'Map uploaded',
+  '## undefined',
+  'Map uploaded'
 ].join('\n')
 
 describe('#CheckAnswers', () => {
@@ -129,6 +166,7 @@ describe('#CheckAnswers', () => {
     await session.setState('licence', licenceDefaultState)
     await session.setState('destination', destinationDefaultState)
     await session.setState('biosecurity', biosecurityDefaultState)
+    await session.setState('biosecurity-map', biosecurityMapDefaultState)
   })
 
   afterAll(async () => {

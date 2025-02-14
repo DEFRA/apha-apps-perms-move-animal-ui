@@ -3,6 +3,7 @@ import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
+import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
 
 /**
  * @import { RawApplicationState } from '../state/state-manager.js'
@@ -14,7 +15,8 @@ const implementedSections = [
   OriginSection,
   DestinationSection,
   LicenceSection,
-  BiosecuritySection
+  BiosecuritySection,
+  BiosecurityPlanSection
 ]
 
 export class ApplicationModel {

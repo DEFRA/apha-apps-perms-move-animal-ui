@@ -32,6 +32,10 @@ class TaskListPage extends Page {
     return $('aria/Review and submit')
   }
 
+  get biosecurityMapLink() {
+    return $('aria/Biosecurity map')
+  }
+
   async getTaskToCompleteCount() {
     const element = await $('[data="test-id-task-to-complete-count"]')
     return element.getText()
@@ -51,6 +55,10 @@ class TaskListPage extends Page {
 
   async selectBiosecurityLink() {
     await page.selectElement(this.biosecurityLink)
+  }
+
+  async selectBiosecurityMapLink() {
+    await page.selectElement(this.biosecurityMapLink)
   }
 
   async verifyStatus({ position, taskTitle, expectedStatus }) {

@@ -1,31 +1,26 @@
 import Wreck from '@hapi/wreck'
-import { BiosecurityAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { config } from '~/src/config/config.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { Page } from '../../common/model/page/page-model.js'
 import { uploadConfig } from '../upload-config.js'
 import { UploadPlanPage } from '../upload-plan/index.js'
-
-class BioSecuritySummary extends Page {
-  urlPath = '/biosecurity-map/check-answers'
-  sectionKey = 'biosecurity-map'
-  question = ''
-  questionKey = 'upload-plan'
-}
+import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
+import { StateManager } from '../../common/model/state/state-manager.js'
 
 export class UploadProgressPage extends QuestionPage {
   pageTitle = 'Uploading the biosecurity map'
   sectionKey = uploadConfig.sectionKey
   questionKey = uploadConfig.questionKey
   urlPath = `/${this.sectionKey}/uploading`
+  isInterstitial = true
 
   view = `biosecurity-map/upload-progress/index`
 
-  Answer = BiosecurityAnswer
+  Answer = BiosecurityMapAnswer
 
   nextPage() {
-    return new BioSecuritySummary()
+    return biosecurityPlanSummaryPage
   }
 }
 
@@ -33,26 +28,32 @@ export class UploadProgressController extends QuestionPageController {
   pluginName = 'biosecurity-map-uploading'
 
   async handleGet(req, h) {
-    /** @type {BiosecurityAnswer} */
-    const answer = /** @type {BiosecurityAnswer} */ (
-      this.page.Answer.fromState(req.yar.get(this.page.questionKey))
+    const applicationState = new StateManager(req).toState()
+    const sectionState = req.yar.get(this.page.sectionKey)
+
+    const answer = /** @type {BiosecurityMapAnswer} */ (
+      this.page.Answer.fromState(
+        sectionState?.[this.page.questionKey],
+        applicationState
+      )
     )
 
     const { uploaderUrl } = config.get('fileUpload')
     const response = await Wreck.get(
-      `${uploaderUrl}/status/${answer.value?.metadata.uploadId}`
+      `${uploaderUrl}/status/${answer.value?.metadata?.uploadId}`
     )
 
     const status = JSON.parse(response.payload.toString())
 
     const newAnswer = new this.page.Answer({
-      biosecurityMap: {
-        ...answer.value,
-        status
-      }
+      ...answer.value,
+      status
     })
 
-    req.yar.set(this.page.questionKey, newAnswer.toState())
+    req.yar.set(this.page.sectionKey, {
+      ...req.yar.get(this.page.sectionKey),
+      [this.page.questionKey]: newAnswer.toState()
+    })
 
     const { isValid } = newAnswer.validate()
     if (!isValid) {
