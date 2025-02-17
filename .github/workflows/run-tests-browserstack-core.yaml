@@ -3,6 +3,7 @@ name: Browserstack tests (core)
 on:
   schedule:
     - cron: "0 0 * * *" # Runs at midnight
+  workflow_dispatch: 
 
 env:
   AWS_REGION: eu-west-2

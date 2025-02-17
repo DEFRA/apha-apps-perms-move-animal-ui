@@ -1,11 +1,6 @@
 import { waitForElement } from '../../helpers/page.js'
 import { Page } from '../page.js'
-import { fileURLToPath } from 'node:url'
 import path from 'node:path'
-
-// Manually define __dirname
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 const pageId = 'status.form.file'
 
@@ -36,9 +31,16 @@ class BiosecurityMapUploadPage extends Page {
   }
 
   async uploadFileAndContinue(fileName) {
-    const filePath = await path.resolve(__dirname, fileName)
+    // Resolve path from project root (compatible with local & BrowserStack)
+    const filePath = path.resolve(process.cwd(), fileName)
+
+    // Upload the local file to BrowserStack’s remote environment
+    const remoteFilePath = await browser.uploadFile(filePath)
+
+    // Set the file input with the remote path
     await waitForElement(this.fileInput)
-    await this.fileInput.setValue(filePath)
+    await this.fileInput.setValue(remoteFilePath)
+
     await super.selectContinue()
   }
 
