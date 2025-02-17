@@ -19,7 +19,6 @@ jobs:
       UPLOADER_URL: "http://localhost:7337"
       FILE_S3_BUCKET: "apha"
       FILE_S3_PATH: "biosecurity-map"
-      CONSUMER_BUCKETS: "apha"
       MOCK_VIRUS_SCAN_ENABLED: false
 
     runs-on: ubuntu-22.04

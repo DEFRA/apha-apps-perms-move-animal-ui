@@ -28,18 +28,118 @@ export class UploadPlanPage extends QuestionPage {
 }
 
 export class UploadPlanController extends QuestionPageController {
+  async handleNewUpload(req, h) {
+    const { bucket, uploaderUrl, path } = config.get('fileUpload')
+    const response = await Wreck.post(`${uploaderUrl}/initiate`, {
+      payload: JSON.stringify({
+        redirect: this.page.urlPath,
+        s3Bucket: bucket,
+        s3Path: path,
+        mimeTypes: [
+          'image/bmp',
+          'image/gif',
+          'image/jpeg',
+          'image/svg+xml',
+          'image/tiff',
+          'image/webp',
+          'image/apng',
+          'image/avif',
+          'application/pdf'
+        ]
+      })
+    })
+
+    const data = JSON.parse(response.payload.toString())
+
+    const answer = new this.page.Answer({
+      metadata: data
+    })
+
+    req.yar.set(this.page.sectionKey, {
+      ...req.yar.get(this.page.sectionKey),
+      [this.page.questionKey]: answer.toState()
+    })
+
+    h.headers = {
+      'Cache-Control': 'no-store, must-revalidate, max-age=0',
+      Pragma: 'no-cache'
+    }
+
+    return super.handleGet(req, h, {
+      upload: answer.value
+    })
+  }
+
+  async handleSubmittedForm(req, h) {
+    const applicationState = new StateManager(req).toState()
+    const sectionState = req.yar.get(this.page.sectionKey)
+
+    const answer = /** @type {BiosecurityMapAnswer} */ (
+      this.page.Answer.fromState(
+        sectionState?.[this.page.questionKey],
+        applicationState
+      )
+    )
+
+    const { uploaderUrl } = config.get('fileUpload')
+    const response = await Wreck.get(
+      `${uploaderUrl}/status/${answer.value?.metadata?.uploadId}`
+    )
+
+    const status = JSON.parse(response.payload.toString())
+
+    const newAnswer = new this.page.Answer({
+      ...answer.value,
+      status
+    })
+
+    req.yar.set(this.page.sectionKey, {
+      ...req.yar.get(this.page.sectionKey),
+      [this.page.questionKey]: newAnswer.toState()
+    })
+
+    const { isValid } = newAnswer.validate()
+    if (!isValid) {
+      return h.redirect(this.page.urlPath)
+    }
+
+    if (status.uploadStatus === 'ready') {
+      return h.redirect(this.page.nextPage(req).urlPath)
+    }
+
+    h.headers = {
+      'Cache-Control': 'no-store, must-revalidate, max-age=0',
+      Pragma: 'no-cache'
+    }
+
+    return super.handleGet(req, h, {
+      upload: status
+    })
+  }
+
   async handleGet(req, h) {
     const { bucket, uploaderUrl, path } = config.get('fileUpload')
 
     const applicationState = new StateManager(req).toState()
     const sectionState = req.yar.get(this.page.sectionKey)
-
     const existingAnswer = /** @type {BiosecurityMapAnswer} */ (
       this.page.Answer.fromState(
         sectionState?.[this.page.questionKey],
         applicationState
       )
     )
+
+    const currState = existingAnswer.uploadState
+
+    switch (currState) {
+      case 'started':
+        return await this.handleSubmittedForm(req, h)
+      case 'invalid':
+        break
+      case 'not-started':
+      default:
+        return await this.handleNewUpload(req, h)
+    }
 
     // save this seperately to see if we've already tried to upload a bio-sec-map already
     const initialState = sectionState?.[this.page.questionKey]

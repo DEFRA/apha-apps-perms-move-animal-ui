@@ -50,6 +50,26 @@ export class BiosecurityMapAnswer extends AnswerModel {
     return html
   }
 
+  get uploadStarted() {
+    return !!this.value?.metadata?.uploadId
+  }
+
+  get hasSubmitted() {
+    return !!this.value?.status
+  }
+
+  get uploadState() {
+    if (this.uploadStarted && !this.hasSubmitted) {
+      return 'started'
+    } else if (this.uploadStarted && this.hasSubmitted) {
+      return 'submitted'
+    } else if (!this.validate().isValid) {
+      return 'invalid'
+    } else {
+      return 'not-started'
+    }
+  }
+
   /**
    * @returns { BiosecurityMapData }
    */
