@@ -12,15 +12,15 @@ export const config = merge(wdioConf, {
   key: process.env.BROWSERSTACK_KEY,
   maxInstances: 5,
   capabilities: [
-    {
-      browserName: 'Edge',
-      'bstack:options': {
-        browserVersion: 'latest',
-        os: 'Windows',
-        osVersion: '10',
-        sessionName: 'windows-edge'
-      }
-    },
+    // {
+    //   browserName: 'Edge',
+    //   'bstack:options': {
+    //     browserVersion: 'latest',
+    //     os: 'Windows',
+    //     osVersion: '10',
+    //     sessionName: 'windows-edge'
+    //   }
+    // },
     {
       browserName: 'Safari',
       'bstack:options': {

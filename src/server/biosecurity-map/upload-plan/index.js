@@ -8,7 +8,7 @@ import { uploadConfig } from '../upload-config.js'
 import { StateManager } from '../../common/model/state/state-manager.js'
 
 /**
- * @import { BiosecurityMapData } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+ * @import { BiosecurityMapData, BiosecurityMapPayload } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
  * @import { AnswerModel } from '../../common/model/answer/answer-model.js'
  */
 
@@ -62,9 +62,9 @@ export class UploadPlanController extends QuestionPageController {
 
     const data = JSON.parse(response.payload.toString())
 
-    const answer = new this.page.Answer({
+    const answer = /** @type {BiosecurityMapAnswer} */  (new this.page.Answer({
       metadata: data
-    })
+    }))
 
     req.yar.set(this.page.sectionKey, {
       ...req.yar.get(this.page.sectionKey),
@@ -91,16 +91,34 @@ export class UploadPlanController extends QuestionPageController {
       }
 
       return super.handleGet(req, h, {
-        upload: answer.value,
+        upload: mungeUploadUrl(/** @type {BiosecurityMapData} */ (answer.value)),
         errorMessages: this.page.Answer.errorMessages(validationErrors),
         errors: validationErrors
       })
     }
 
     return super.handleGet(req, h, {
-      upload: answer.value
+      upload: mungeUploadUrl(/** @type {BiosecurityMapData} */ (answer.value))
     })
   }
+}
+
+/** @param {BiosecurityMapData} upload */
+const mungeUploadUrl = (upload) => {
+  return {
+    ...upload,
+    metadata: {
+      ...upload.metadata,
+      uploadUrl: stripDomain(upload.metadata?.uploadUrl ?? '')
+    }
+  }
+}
+
+/** @param {string} urlString */
+const stripDomain = (urlString) => {
+  const url = new URL(urlString)
+  url.hostname = 'bs-local.com'
+  return url.toString()
 }
 
 export const uploadPlanPage = new UploadPlanPage()

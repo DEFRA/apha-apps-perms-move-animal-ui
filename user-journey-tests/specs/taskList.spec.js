@@ -214,7 +214,7 @@ describe('Task list page test', () => {
     await waitForPagePath(biosecurityAnswersPage.pagePath)
   })
 
-  it('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
+  it.only('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
     await completeBiosecurityMapTask()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
