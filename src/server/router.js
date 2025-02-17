@@ -11,6 +11,8 @@ import { submitSummary } from './check-answers/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { ApplicationModel } from './common/model/application/application.js'
+import { config } from '../config/config.js'
+import { animalIdentification } from './identification/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -40,6 +42,10 @@ export const router = {
       await server.register(
         ApplicationModel.visibleSections.map((section) => section.config.plugin)
       )
+
+      if (config.get('featureFlags').biosecurity) {
+        await server.register([animalIdentification])
+      }
 
       // Static assets
       await server.register([serveStaticFiles])
