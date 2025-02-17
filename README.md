@@ -82,6 +82,13 @@ npm install
 
 ### Development
 
+To bring up dependencies run:
+
+```bash
+docker compose up -d
+docker kill apha-apps-perms-move-animal-ui-your-frontend-1
+```
+
 To run the application in `development` mode run:
 
 ```bash
@@ -96,7 +103,18 @@ NOTIFY_API_KEY=value_to_be_provided_by_tech_team
 NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
 ```
 
-The email address provided will need to be added to a guest list for it to be accepted by notify
+The email address provided will need to be added to a guest list for it to be accepted by notify.
+
+In order to upload files, you need one environment variable:
+
+```bash
+UPLOADER_URL=http://localhost:7337
+UPLOADER_URL=http://localhost:7337
+FILE_S3_BUCKET=apha
+FILE_S3_PATH=biosecurity-map
+CONSUMER_BUCKETS=apha
+MOCK_VIRUS_SCAN_ENABLED=false
+```
 
 ### Production
 
