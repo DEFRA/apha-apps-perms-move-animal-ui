@@ -45,12 +45,6 @@ export class UploadPlanController extends QuestionPageController {
     const initialState = sectionState?.[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validate()
 
-    req.logger.info('UploadPlanController.handleGet', {
-      bucket,
-      uploaderUrl,
-      path
-    })
-
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
         redirect: this.page.nextPage(req).urlPath,
