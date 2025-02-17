@@ -105,7 +105,7 @@ NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
 
 The email address provided will need to be added to a guest list for it to be accepted by notify.
 
-In order to upload files, you need one environment variable:
+In order to upload files, you need the following environment variables:
 
 ```bash
 UPLOADER_URL=http://localhost:7337
