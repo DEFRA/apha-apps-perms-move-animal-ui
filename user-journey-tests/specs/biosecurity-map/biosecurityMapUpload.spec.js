@@ -13,11 +13,15 @@ describe('Biosecurity map upload test', () => {
   })
 
   it('Should verify that the page errors when no input is given', () => {
-    mapUploadPage.uploadFileErrorTest('./testFile.txt')
+    mapUploadPage.uploadFileErrorTest(
+      'user-journey-tests/page-objects/biosecurity-map/testFile.txt'
+    )
   })
 
   it('Should verify upload flow', async () => {
-    await mapUploadPage.uploadFileAndContinue('./happy_emoji.jpg')
+    await mapUploadPage.uploadFileAndContinue(
+      'user-journey-tests/page-objects/biosecurity-map/happy_emoji.jpg'
+    )
     await waitForElement(mapUploadPage.loadingSpinner)
     await waitForPagePath(uploadLoadingPage.pagePath)
     await waitForElement(mapUploadPage.loadingSpinner)
