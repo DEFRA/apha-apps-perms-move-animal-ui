@@ -3,6 +3,7 @@ import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-fa
 import { exitPage } from '../exit-page/index.js'
 import { originTypePage } from '../origin-type/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 const sectionKey = 'origin'
 const question = 'Are you moving the animals on or off your farm or premises?'
@@ -61,13 +62,21 @@ describe('OnOffFarmPage', () => {
 })
 
 describe('OnOffFarmPage.nextPage', () => {
-  it('nextPage should return exitPage when answer is "on"', () => {
+  it('should return exitPage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is false', () => {
+    spyOnConfig('featureFlags', { biosecurity: false })
     const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(exitPage)
   })
 
-  it('nextPage should return originTypePage when answer is "off"', () => {
+  it('should return originTypePage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is true', () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(originTypePage)
+  })
+
+  it('should return originTypePage when answer is "off"', () => {
     const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(originTypePage)
