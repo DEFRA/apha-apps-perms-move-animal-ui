@@ -1,8 +1,8 @@
-import { selectElement, waitForPagePath } from '../../helpers/page'
-import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity'
-import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage'
-import grazingPage from '../../page-objects/biosecurity/grazingPage'
-import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage'
+import { selectElement, waitForPagePath } from '../../helpers/page.js'
+import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity.js'
+import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
+import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
+import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 
 describe('Check dynamic nature of flow - biosecurity', () => {
   // eslint-disable-next-line no-undef
