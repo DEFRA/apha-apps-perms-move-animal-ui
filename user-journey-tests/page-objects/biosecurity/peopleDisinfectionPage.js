@@ -23,7 +23,7 @@ class PeopleDisinfectionPage extends Page {
     return super.getErrorElement(pageId)
   }
 
-  peopleDisinfectioErrorLink() {
+  peopleDisinfectionErrorLink() {
     return super.getErrorLink(pageId)
   }
 
