@@ -21,17 +21,46 @@ describe('OriginType', () => {
       'Select where the animals are moving from'
     )
   })
+})
 
-  it('should have the expected options to select from', () => {
-    expect(Object.keys(OriginTypeAnswer.config.options)).toHaveLength(3)
-    expect(OriginTypeAnswer.config.options['tb-restricted-farm'].label).toBe(
+describe('#OriginType.config', () => {
+  it('should have the expected options to select from for off the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'off' }
+    }
+    const config = new OriginTypeAnswer(undefined, context).config
+
+    expect(Object.keys(config.options)).toHaveLength(3)
+    expect(config.options['tb-restricted-farm'].label).toBe(
       'TB restricted farm'
     )
-    expect(OriginTypeAnswer.config.options.afu.label).toBe(
-      'Approved finishing unit (AFU)'
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.other.label).toBe('Another type of premises')
+  })
+
+  it('should have the expected options to select from for on to the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'on' }
+    }
+    const config = new OriginTypeAnswer(undefined, context).config
+
+    expect(config.options.market.label).toBe('Market')
+    expect(config.options['unrestricted-farm'].label).toBe(
+      'Unrestricted farm or premises'
     )
-    expect(OriginTypeAnswer.config.options.other.label).toBe(
-      'Another type of premises'
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      'TB restricted farm'
     )
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
+    )
+    expect(config.options.zoo.label).toBe('Zoo')
+    expect(config.options.lab.label).toBe('Laboratory')
+    expect(config.options['after-import-location'].label).toBe(
+      'Location after animals have been imported'
+    )
+    expect(config.options['another-origin'].label).toBe('Another origin')
+    expect(Object.keys(config.options)).toHaveLength(8)
   })
 })
