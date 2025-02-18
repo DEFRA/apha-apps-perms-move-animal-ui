@@ -9,7 +9,9 @@ const completeBiosecurityMapTask = async () => {
   await landingPage.verifyStartNowButton('Start now', true)
   await taskListPage.selectBiosecurityMapLink()
   await waitForPagePath(mapUploadPage.pagePath)
-  await mapUploadPage.uploadFileAndContinue('./happy_emoji.jpg')
+  await mapUploadPage.uploadFileAndContinue(
+    'user-journey-tests/page-objects/biosecurity-map/happy_emoji.jpg'
+  )
   await waitForPagePath(biosecurityMapAnswersPage.pagePath)
 }
 

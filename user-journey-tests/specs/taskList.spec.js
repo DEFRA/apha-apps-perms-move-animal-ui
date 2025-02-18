@@ -140,7 +140,7 @@ describe('Task list page test', () => {
     await waitForPagePath(destinationAnswersPage.pagePath)
   })
 
-  it('Should link to receiving licence summary once that selection has been completed', async () => {
+  it('Should link to receiving licence check-answers page once that selection has been completed', async () => {
     await completeLicenceTaskAnswers()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
@@ -177,7 +177,7 @@ describe('Task list page test', () => {
     await waitForPagePath(licenceAnswersPage.pagePath)
   })
 
-  it('Should link to receiving licence summary once that selection has been completed', async () => {
+  it('Should link should link to Biosecurity details check-answers page once that section has been complete', async () => {
     await completeBiosecurityTask('yes')
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
@@ -214,7 +214,7 @@ describe('Task list page test', () => {
     await waitForPagePath(biosecurityAnswersPage.pagePath)
   })
 
-  it('Should link to biosecurity map summary once that selection has been completed', async () => {
+  it('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
     await completeBiosecurityMapTask()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([

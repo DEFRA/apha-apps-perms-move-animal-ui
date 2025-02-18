@@ -50,17 +50,7 @@ export class UploadPlanController extends QuestionPageController {
         redirect: this.page.nextPage(req).urlPath,
         s3Bucket: bucket,
         s3Path: path,
-        mimeTypes: [
-          'image/bmp',
-          'image/gif',
-          'image/jpeg',
-          'image/svg+xml',
-          'image/tiff',
-          'image/webp',
-          'image/apng',
-          'image/avif',
-          'application/pdf'
-        ]
+        mimeTypes: ['image/png', 'image/jpeg']
       })
     })
 
