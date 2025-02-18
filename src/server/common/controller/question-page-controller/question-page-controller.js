@@ -99,7 +99,7 @@ export class QuestionPageController extends GenericPageController {
       [this.page.questionKey]: answer.toState()
     })
 
-    const nextPage = this.page.nextPage(answer)
+    const nextPage = this.page.nextPage(answer, applicationState)
 
     if (nextPage instanceof ExitPage) {
       return h.redirect(nextPage.urlPath)
