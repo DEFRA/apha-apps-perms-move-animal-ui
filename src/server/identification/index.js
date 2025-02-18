@@ -5,7 +5,7 @@ import { earTags } from './ear-tags/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const animalIdentification = {
+export const identification = {
   plugin: {
     name: 'animal-identification',
     async register(server) {
