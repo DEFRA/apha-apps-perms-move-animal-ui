@@ -10,13 +10,9 @@ const questionKey = 'onOffFarm'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/to-or-from-own-premises'
 
+const page = new OnOffFarmPage()
+
 describe('OnOffFarmPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new OnOffFarmPage()
-  })
-
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -41,18 +37,6 @@ describe('OnOffFarmPage', () => {
     expect(page.Answer).toBe(OnOffFarmAnswer)
   })
 
-  it('nextPage should return exitPage when answer is "on"', () => {
-    const answer = { value: 'on' }
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(exitPage)
-  })
-
-  it('nextPage should return originTypePage when answer is "off"', () => {
-    const answer = { value: 'off' }
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(originTypePage)
-  })
-
   it('should export page', () => {
     expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
   })
@@ -73,6 +57,20 @@ describe('OnOffFarmPage', () => {
       it: 'should render expected response and content',
       pageUrl
     })
+  })
+})
+
+describe('OnOffFarmPage.nextPage', () => {
+  it('nextPage should return exitPage when answer is "on"', () => {
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(exitPage)
+  })
+
+  it('nextPage should return originTypePage when answer is "off"', () => {
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(originTypePage)
   })
 })
 
