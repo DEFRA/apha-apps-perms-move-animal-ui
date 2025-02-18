@@ -42,7 +42,7 @@ class PeopleDisinfectionPage extends Page {
       errorMessage
     )
     await super.verifySummaryErrorLink(
-      this.peopleDisinfectioErrorLink(),
+      this.peopleDisinfectionErrorLink(),
       this.peopleDisinfectionInput()
     )
     const inputValue = await this.peopleDisinfectionInput().getValue()
