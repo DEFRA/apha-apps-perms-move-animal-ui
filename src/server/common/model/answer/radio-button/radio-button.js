@@ -4,6 +4,7 @@ import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /* eslint-disable jsdoc/require-returns-check */
 
@@ -27,7 +28,21 @@ const createRadioSchema = (config) => {
 }
 
 /**
- * @typedef {{ label: string, hint?: string }} RadioOption
+ * @param {RadioButtonConfig} config
+ * @param {RawApplicationState | undefined} context
+ * @returns {RadioButtonConfig}
+ */
+const filterOptions = (config, context) => ({
+  ...config,
+  options: Object.fromEntries(
+    Object.entries(config.options).filter(
+      (kv) => kv[1]?.predicate?.(context ?? {}) ?? true
+    )
+  )
+})
+
+/**
+ * @typedef {{ label: string, hint?: string, predicate?: (app: RawApplicationState) => boolean }} RadioOption
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
@@ -80,11 +95,13 @@ export class RadioButtonAnswer extends AnswerModel {
 
   /**
    * @param {string | undefined} state
+   * @param {RawApplicationState} [context]
    * @returns {RadioButtonAnswer}
    */
-  static fromState(state) {
+  static fromState(state, context) {
     return new this(
-      state !== undefined ? { [this.config.payloadKey]: state } : undefined
+      state !== undefined ? { [this.config.payloadKey]: state } : undefined,
+      context
     )
   }
 
@@ -108,7 +125,11 @@ export class RadioButtonAnswer extends AnswerModel {
    * @param {AnswerViewModelOptions} options
    */
   viewModel({ validate, question }) {
-    const items = Object.entries(this.config.options).map(([key, value]) => ({
+    const { options, payloadKey, layout } = filterOptions(
+      this.config,
+      this._context
+    )
+    const items = Object.entries(options).map(([key, value]) => ({
       id: key,
       value: key,
       text: value.label,
@@ -116,7 +137,7 @@ export class RadioButtonAnswer extends AnswerModel {
         text: value.hint
       }
     }))
-    items[0].id = this.config.payloadKey
+    items[0].id = payloadKey
 
     const model = {
       fieldset: {
@@ -126,15 +147,15 @@ export class RadioButtonAnswer extends AnswerModel {
           classes: 'govuk-fieldset__legend--l'
         }
       },
-      name: this.config.payloadKey,
-      id: this.config.payloadKey,
+      name: payloadKey,
+      id: payloadKey,
       value: this.value,
       items,
-      classes: this.config.layout === 'inline' ? 'govuk-radios--inline' : ''
+      classes: layout === 'inline' ? 'govuk-radios--inline' : ''
     }
 
     if (validate) {
-      model.errorMessage = this.validate().errors[this.config.payloadKey]
+      model.errorMessage = this.validate().errors[payloadKey]
     }
     return model
   }

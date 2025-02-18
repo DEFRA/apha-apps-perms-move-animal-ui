@@ -1,6 +1,7 @@
 import { RadioButtonAnswer } from './radio-button.js'
 
 /** @import {RadioButtonConfig} from './radio-button.js' */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
  * @typedef {'value_1' | 'value_2'} TestRadioValues
@@ -12,12 +13,21 @@ const validTestRadio = {
   test_radio: 'value_1'
 }
 
+/** @type {RawApplicationState} */
+const applicationState = { origin: { onOffFarm: 'on' } }
+
 /** @type {RadioButtonConfig} */
 const testRadioConfig = {
   payloadKey: 'test_radio',
   options: {
     value_1: { label: 'test_label_1' },
-    value_2: { label: 'test_label_2', hint: 'test_hint_2' }
+    value_2: { label: 'test_label_2', hint: 'test_hint_2' },
+    value_3: {
+      label: 'test_label_3',
+      hint: 'test_hint_3',
+      predicate: (/** @type {RawApplicationState} */ app) =>
+        app.origin?.onOffFarm === 'on'
+    }
   },
   errors: {
     emptyOptionText: 'Select an option'
@@ -119,6 +129,18 @@ describe('RadioButton', () => {
 
     it('should store undefined if the state is undefined', () => {
       expect(TestRadioButtonAnswer.fromState(undefined)._data).toBeUndefined()
+      expect(
+        TestRadioButtonAnswer.fromState(undefined)._context
+      ).toBeUndefined()
+    })
+
+    it('should store payload and context if passed', () => {
+      const state = validTestRadio.test_radio
+
+      const answer = TestRadioButtonAnswer.fromState(state, applicationState)
+
+      expect(answer._data).toEqual(validTestRadio)
+      expect(answer._context).toEqual(applicationState)
     })
   })
 
@@ -196,6 +218,45 @@ describe('RadioButton', () => {
       expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
+      })
+    })
+
+    it('should not return extra options if the predicate is not met', () => {
+      const applicationState = {
+        origin: { onOffFarm: 'off' }
+      }
+      const invalidAnswer = new TestRadioButtonAnswer(
+        {
+          test_radio: 'invalid_answer'
+        },
+        applicationState
+      )
+
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
+        defaultViewModel
+      )
+    })
+
+    it('should return extra options if the predicate is met', () => {
+      const invalidAnswer = new TestRadioButtonAnswer(
+        {
+          test_radio: 'invalid_answer'
+        },
+        applicationState
+      )
+
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual({
+        ...defaultViewModel,
+        items: defaultViewModel.items.concat([
+          {
+            id: 'value_3',
+            value: 'value_3',
+            text: 'test_label_3',
+            hint: {
+              text: 'test_hint_3'
+            }
+          }
+        ])
       })
     })
 
