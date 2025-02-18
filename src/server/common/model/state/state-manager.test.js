@@ -14,6 +14,10 @@ const destination = {
   destinationType: 'afu'
 }
 
+const identification = {
+  earTags: 'yes'
+}
+
 const biosecurity = {
   keptSeperately: 'yes'
 }
@@ -21,6 +25,7 @@ const biosecurity = {
 const validState = {
   origin,
   destination,
+  identification,
   licence,
   biosecurity
 }

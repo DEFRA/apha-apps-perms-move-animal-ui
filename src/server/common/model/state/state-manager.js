@@ -9,6 +9,7 @@ const sectionKeys = [
   'origin',
   'destination',
   'licence',
+  'identification',
   'biosecurity',
   'biosecurity-map'
 ]

@@ -30,6 +30,10 @@ const validLicenceState = {
   emailAddress: 'kathryn@starfleet.com'
 }
 
+const validIdentificationState = {
+  earTags: 'some-ear-tags'
+}
+
 const validBiosecurityState = {
   keptSeparately: 'yes',
   grazing: 'yes',
@@ -123,6 +127,7 @@ describe('#taskListController', () => {
       'Movement origin',
       'Movement destination',
       'Receiving the licence',
+      'Animal identifiers',
       'Biosecurity details',
       'Biosecurity map'
     ])
@@ -173,7 +178,7 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.ok)
-    expect(payload).toEqual(expect.stringContaining(`5 out of 5`))
+    expect(payload).toEqual(expect.stringContaining(`6 out of 6`))
     expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
   })
 
@@ -181,6 +186,7 @@ describe('#taskListController', () => {
     await session.setState('origin', validOriginState)
     await session.setState('destination', validDestinationState)
     await session.setState('licence', validLicenceState)
+    await session.setState('identification', validIdentificationState)
     await session.setState('biosecurity', validBiosecurityState)
     await session.setState('biosecurity-map', validBiosecurityMapState)
 

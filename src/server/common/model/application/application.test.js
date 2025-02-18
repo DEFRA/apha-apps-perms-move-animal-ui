@@ -3,10 +3,7 @@ import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
 import { DestinationSection } from '../section/destination/destination.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
-
-/**
- * @import { Request } from '@hapi/hapi'
- */
+import { IdentificationSection } from '../section/identification/identification.js'
 
 const originDefaultState = {
   onOffFarm: 'on',
@@ -28,6 +25,10 @@ const destinationDefaultState = {
   destinationType: 'dedicated-sale'
 }
 
+const identificationDefaultState = {
+  earTags: 'some-ear-tags'
+}
+
 const biosecurityDefaultState = {
   keptSeparately: 'yes',
   grazing: 'yes',
@@ -46,6 +47,7 @@ const applicationState = {
   origin: originDefaultState,
   licence: licenceDefaultState,
   destination: destinationDefaultState,
+  identification: identificationDefaultState,
   biosecurity: biosecurityDefaultState
 }
 
@@ -57,6 +59,9 @@ describe('Application.fromState', () => {
 
     expect(application.tasks.origin).toBeInstanceOf(OriginSection)
     expect(application.tasks.licence).toBeInstanceOf(LicenceSection)
+    expect(application.tasks.identification).toBeInstanceOf(
+      IdentificationSection
+    )
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
     expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 
@@ -65,6 +70,9 @@ describe('Application.fromState', () => {
     )
     expect(application.tasks.licence.questionPageAnswers).toEqual(
       LicenceSection.fromState(applicationState).questionPageAnswers
+    )
+    expect(application.tasks.identification.questionPageAnswers).toEqual(
+      IdentificationSection.fromState(applicationState).questionPageAnswers
     )
     expect(application.tasks.destination.questionPageAnswers).toEqual(
       DestinationSection.fromState(applicationState).questionPageAnswers
