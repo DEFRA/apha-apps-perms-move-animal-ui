@@ -98,6 +98,33 @@ describe('RadioButton', () => {
         testRadioConfig.errors.emptyOptionText
       )
     })
+
+    it('should return false for values that would be valid, but whose predicates fail', () => {
+      const testInstance = new TestRadioButtonAnswer({
+        test_radio: 'value_3'
+      })
+
+      const { isValid, errors } = testInstance.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.test_radio.text).toBe(
+        testRadioConfig.errors.emptyOptionText
+      )
+    })
+
+    it('should return true or values that are only valid because their predicates pass', () => {
+      const testInstance = new TestRadioButtonAnswer(
+        {
+          test_radio: 'value_3'
+        },
+        applicationState
+      )
+
+      const { isValid, errors } = testInstance.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
+    })
   })
 
   describe('#RadioButton.toState', () => {

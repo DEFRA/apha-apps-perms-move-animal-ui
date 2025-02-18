@@ -107,7 +107,7 @@ export class RadioButtonAnswer extends AnswerModel {
 
   validate() {
     return validateAnswerAgainstSchema(
-      createRadioSchema(this.config),
+      createRadioSchema(filterOptions(this.config, this._context)),
       this._data ?? {}
     )
   }
