@@ -114,7 +114,7 @@ describe('New address page test', () => {
     })
   })
 
-  it.only('Should verify successful submission when all fields entered', async () => {
+  it('Should verify successful submission when all fields entered', async () => {
     await newAddressPage.fillFormFieldsAndSubmit({
       lineOne: lineOneWhitespace,
       lineTwo: lineTwoWhitespace,
