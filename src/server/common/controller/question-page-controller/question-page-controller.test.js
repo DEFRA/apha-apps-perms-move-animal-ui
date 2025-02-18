@@ -18,6 +18,7 @@ const questionView =
 const sectionKey = 'section-key'
 const questionUrl = '/question-url'
 const nextQuestionUrl = '/next-question-url'
+const nextOnFarmQuestionUrl = '/next-on-farm-question-url'
 const overriddenQuestionUrl = '/dummy/overridden-question-url'
 const questionValue = 'question-value'
 const questionElementSelector = '#questionId'
@@ -87,7 +88,10 @@ class TestPage extends QuestionPage {
 
   Answer = TestAnswer
 
-  nextPage(answer) {
+  nextPage(answer, state) {
+    if (state?.origin?.onOffFarm === 'on') {
+      return new NextOnFarmTestPage()
+    }
     switch (answer.value) {
       case 'exit':
         return new TestExitPage()
@@ -106,6 +110,10 @@ class NextTestPage extends TestPage {
 class RedirectBlockPage extends TestPage {
   urlPath = overriddenQuestionUrl
   overrideRedirects = true
+}
+
+class NextOnFarmTestPage extends TestPage {
+  urlPath = nextOnFarmQuestionUrl
 }
 
 const controller = new QuestionPageController(new TestPage())
@@ -169,9 +177,9 @@ describe('QuestionPageController', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    it('should pass context', async () => {
+    it('should be able to depend on the previous application state', async () => {
       const originState = {
-        originType: 'afu'
+        onOffFarm: 'on'
       }
       await session.setState(sectionKey, {
         [questionKey]: questionValue
@@ -223,6 +231,29 @@ describe('QuestionPageController', () => {
       const state = await session.getState(sectionKey)
       expect(state[questionKey]).toBe(questionValue)
       expect(state.someOtherQuestion).toBe('some-other-answer')
+    })
+
+    it('should allow routing to depend on application state', async () => {
+      await session.setState('origin', {
+        onOffFarm: 'on'
+      })
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              [questionKey]: 'exit'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(nextOnFarmQuestionUrl)
     })
 
     it('should redirect to exit page even if redirect uri is set', async () => {
