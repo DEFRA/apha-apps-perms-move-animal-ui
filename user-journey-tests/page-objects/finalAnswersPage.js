@@ -53,7 +53,7 @@ class FinalAnswersPage extends Page {
   }
 
   get separateCattleValue() {
-    return $$(valueIdentifier)[8]
+    return $$(valueIdentifier)[9]
   }
 
   get onOffFarmChange() {
