@@ -14,7 +14,7 @@ describe('Biosecurity badgers page spec', () => {
   })
 
   it('Should select option(s) and continue without error', async () => {
-    await biosecBadgersPage.selectOptionsAndContine(
+    await biosecBadgersPage.selectOptionsAndContinue(
       [
         biosecBadgersPage.aluminiumFeedBins,
         biosecBadgersPage.badgerProofFencing

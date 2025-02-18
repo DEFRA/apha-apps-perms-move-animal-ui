@@ -8,7 +8,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
-  before('Copmplete answers', async () => {
+  before('Complete answers', async () => {
     await completeBiosecurityTask('yes')
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })

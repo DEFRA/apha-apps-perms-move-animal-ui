@@ -44,7 +44,7 @@ class BiosecBadgersPage extends Page {
     )
   }
 
-  async selectOptionsAndContine(selectionElements, nextPage) {
+  async selectOptionsAndContinue(selectionElements, nextPage) {
     await selectionElements.forEach(async (selection) => {
       await page.selectElement(selection, true)
     })

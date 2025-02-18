@@ -53,7 +53,7 @@ const completeBiosecurityTask = async (radioType) => {
         '1995',
         biosecBadgersPage
       )
-      await biosecBadgersPage.selectOptionsAndContine(
+      await biosecBadgersPage.selectOptionsAndContinue(
         [biosecBadgersPage.aluminiumFeedBins],
         biosecurityAnswersPage
       )
@@ -73,7 +73,7 @@ const completeBiosecurityTask = async (radioType) => {
         '1995',
         biosecBadgersPage
       )
-      await biosecBadgersPage.selectOptionsAndContine(
+      await biosecBadgersPage.selectOptionsAndContinue(
         [biosecBadgersPage.aluminiumFeedBins],
         biosecurityAnswersPage
       )

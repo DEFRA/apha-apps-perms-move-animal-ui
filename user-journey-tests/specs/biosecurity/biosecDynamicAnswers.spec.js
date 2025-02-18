@@ -6,7 +6,7 @@ import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPag
 
 describe('Check dynamic nature of flow - biosecurity', () => {
   // eslint-disable-next-line no-undef
-  before('Copmplete answers', async () => {
+  before('Complete answers', async () => {
     await completeBiosecurityTask('no')
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
