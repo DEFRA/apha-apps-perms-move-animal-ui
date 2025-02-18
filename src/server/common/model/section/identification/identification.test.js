@@ -5,7 +5,7 @@ const validIdentificationData = {
   earTags: 'test-ear-tag-content'
 }
 
-const invalididentificationData = {
+const invalidIdentificationData = {
   earTags: undefined
 }
 
@@ -21,7 +21,7 @@ describe('Identification.validate', () => {
 
   it('should return invalid if any nested object is invalid', () => {
     const result = IdentificationSection.fromState({
-      identification: invalididentificationData
+      identification: invalidIdentificationData
     }).validate()
 
     expect(result.isValid).toBe(false)
