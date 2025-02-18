@@ -4,15 +4,10 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { identificationSummaryPage } from './index.js'
-
-// import { identificationSummaryPage } from './index.js'
-// import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-// import { keptSeparatelyPage } from '../kept-separately/index.js'
-
-/** @import { Server } from '@hapi/hapi' */
-
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { earTagsPage } from '../ear-tags/index.js'
+
+/** @import { Server } from '@hapi/hapi' */
 
 const pageUrl = '/identification/check-answers'
 
