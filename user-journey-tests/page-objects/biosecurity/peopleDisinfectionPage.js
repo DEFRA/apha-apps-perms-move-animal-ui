@@ -23,7 +23,7 @@ class PeopleDisinfectionPage extends Page {
     return super.getErrorElement(pageId)
   }
 
-  peopleDisinfectioErrorLink() {
+  peopleDisinfectionErrorLink() {
     return super.getErrorLink(pageId)
   }
 
@@ -42,7 +42,7 @@ class PeopleDisinfectionPage extends Page {
       errorMessage
     )
     await super.verifySummaryErrorLink(
-      this.peopleDisinfectioErrorLink(),
+      this.peopleDisinfectionErrorLink(),
       this.peopleDisinfectionInput()
     )
     const inputValue = await this.peopleDisinfectionInput().getValue()
