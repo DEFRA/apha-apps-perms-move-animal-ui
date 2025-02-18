@@ -6,7 +6,6 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import {
   validateAndAdjustAddress,
   validateAndAdjustParishNumber,
-  validateOnFarmErrorHandling,
   validateOnOffFarm,
   validateOriginType
 } from '../../helpers/testHelpers/checkAnswers.js'
@@ -47,7 +46,8 @@ describe('Check your answers test', () => {
     await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnOffFarm(
       checkAnswersPage.changeOnOrOffLink,
-      checkAnswersPage.onOffFarmValue
+      checkAnswersPage.onOffFarmValue,
+      checkAnswersPage
     )
   })
 
@@ -55,7 +55,8 @@ describe('Check your answers test', () => {
     await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOriginType(
       checkAnswersPage.changeOriginTypeLink,
-      checkAnswersPage.originTypeValue
+      checkAnswersPage.originTypeValue,
+      checkAnswersPage
     )
   })
 
@@ -65,7 +66,8 @@ describe('Check your answers test', () => {
       checkAnswersPage.changeParishNumberLink,
       checkAnswersPage.parishNumberValue,
       defaultCphNumber,
-      parishHoldingInput
+      parishHoldingInput,
+      checkAnswersPage
     )
   })
 
@@ -92,10 +94,5 @@ describe('Check your answers test', () => {
       taskTitle: 'Movement origin',
       expectedStatus: 'Completed'
     })
-  })
-
-  it('Should verify changing the value to on the farm and navigating back', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
-    await validateOnFarmErrorHandling(checkAnswersPage.changeOnOrOffLink)
   })
 })

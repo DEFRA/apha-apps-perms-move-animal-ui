@@ -5,7 +5,6 @@ import {
   validateAndAdjustOwnerName,
   validateAndAdjustParishNumber,
   validateAndAdjustSeparateCattle,
-  validateOnFarmErrorHandling,
   validateOnOffFarm,
   validateOriginType,
   validateReceiveMethod
@@ -59,7 +58,8 @@ describe('Check your final answers test', () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnOffFarm(
       finalAnswersPage.onOffFarmChange,
-      finalAnswersPage.onOffFarmValue
+      finalAnswersPage.onOffFarmValue,
+      finalAnswersPage
     )
   })
 
@@ -67,7 +67,8 @@ describe('Check your final answers test', () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOriginType(
       finalAnswersPage.originTypeChange,
-      finalAnswersPage.originTypeValue
+      finalAnswersPage.originTypeValue,
+      finalAnswersPage
     )
   })
 
@@ -77,7 +78,8 @@ describe('Check your final answers test', () => {
       finalAnswersPage.parishHoldingChange,
       finalAnswersPage.parishNumberValue,
       originDefaultObject.defaultCphNumber,
-      parishHoldingInput
+      parishHoldingInput,
+      finalAnswersPage
     )
   })
 
@@ -144,10 +146,5 @@ describe('Check your final answers test', () => {
     await generalLicencePage.verifyPageHeadingAndTitle()
     await generalLicencePage.selectContinueLink()
     await finalAnswersPage.verifyPageHeadingAndTitle()
-  })
-
-  it('Should verify changing the value to on the farm and navigating back', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await validateOnFarmErrorHandling(finalAnswersPage.onOffFarmChange, true)
   })
 })

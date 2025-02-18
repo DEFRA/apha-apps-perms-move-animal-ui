@@ -1,7 +1,6 @@
 import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import exitPage from '../../page-objects/origin/exitPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 
 describe('To from farm page test', () => {
@@ -15,14 +14,11 @@ describe('To from farm page test', () => {
   })
 
   it('Should select on the farm radio and continue', async () => {
-    await toFromFarmPage.selectOnFarmAndContinue()
-    await expect(toFromFarmPage.pageError).not.toBeDisplayed()
-    await expect(toFromFarmPage.errorSummary).not.toBeDisplayed()
-    await exitPage.verifyPageHeadingAndTitle()
+    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
   })
 
   it('Should choose an option and check its maintained', async () => {
-    await toFromFarmPage.selectOffFarmAndContinue()
+    await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     await originTypePage.verifyPageHeadingAndTitle()
     await browser.back()
 

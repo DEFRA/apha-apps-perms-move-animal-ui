@@ -19,28 +19,30 @@ describe('origin type page test', () => {
   })
 
   it('Should select tb restricted farm and continue', async () => {
-    await originTypePage.selectTBRestrictedFarmAndContinue()
-    await expect(originTypePage.pageError).not.toBeDisplayed()
-    await expect(originTypePage.errorSummary).not.toBeDisplayed()
+    await originTypePage.selectTBRestrictedFarmAndContinue(
+      parishHoldingNumberPage
+    )
     await parishHoldingNumberPage.verifyPageHeadingAndTitle()
   })
 
   it('Should select afu and continue', async () => {
-    await originTypePage.selectApprovedFinishingUnitAndContinue()
-    await expect(originTypePage.pageError).not.toBeDisplayed()
-    await expect(originTypePage.errorSummary).not.toBeDisplayed()
+    await originTypePage.selectApprovedFinishingUnitAndContinue(
+      parishHoldingNumberPage
+    )
     await parishHoldingNumberPage.verifyPageHeadingAndTitle()
   })
 
   it('Should select another type of premises and continue', async () => {
-    await originTypePage.selectAnotherTypeOfPremisesAndContinue()
-    await expect(originTypePage.pageError).not.toBeDisplayed()
-    await expect(originTypePage.errorSummary).not.toBeDisplayed()
+    await originTypePage.selectAnotherTypeOfPremisesAndContinue(
+      originTypeExitPage
+    )
     await waitForPagePath(originTypeExitPage.pagePath)
   })
 
   it('Should choose an option and check its maintained', async () => {
-    await originTypePage.selectApprovedFinishingUnitAndContinue()
+    await originTypePage.selectApprovedFinishingUnitAndContinue(
+      parishHoldingNumberPage
+    )
     await parishHoldingNumberPage.verifyPageHeadingAndTitle()
     await browser.back()
 

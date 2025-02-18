@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 
 const pageHeadingAndTitle = 'What type of premises are the animals moving off?'
 
@@ -30,16 +31,19 @@ class OriginTypePage extends Page {
     return $('#originType-error')
   }
 
-  async selectTBRestrictedFarmAndContinue() {
+  async selectTBRestrictedFarmAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.tbRestrictedFarmRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectApprovedFinishingUnitAndContinue() {
+  async selectApprovedFinishingUnitAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.approvedFinishingUnitRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectAnotherTypeOfPremisesAndContinue() {
+  async selectAnotherTypeOfPremisesAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.anotherTypeOfPremisesRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
   async originTypeErrorTest() {
