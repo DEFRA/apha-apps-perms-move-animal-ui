@@ -313,3 +313,18 @@ describe('RadioButtonAnswer.template', () => {
     expect(radio.template).toBe('model/answer/radio-button/radio-button.njk')
   })
 })
+
+describe('RadioButtonAnswer.context', () => {
+  it('should filter out config options where they do not meet the current preciates', () => {
+    const radio = new TestRadioButtonAnswer(validTestRadio)
+    expect(radio.config.options).toEqual({
+      value_1: { label: 'test_label_1' },
+      value_2: { label: 'test_label_2', hint: 'test_hint_2' }
+    })
+  })
+
+  it('should include config options where predicate matches', () => {
+    const radio = new TestRadioButtonAnswer(validTestRadio, applicationState)
+    expect(radio.config.options).toEqual(TestRadioButtonAnswer.config.options)
+  })
+})

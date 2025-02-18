@@ -62,7 +62,10 @@ export class RadioButtonAnswer extends AnswerModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   get config() {
-    return /** @type {any} */ (this.constructor).config
+    return filterOptions(
+      /** @type {any} */ (this.constructor).config,
+      this._context
+    )
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
@@ -107,7 +110,7 @@ export class RadioButtonAnswer extends AnswerModel {
 
   validate() {
     return validateAnswerAgainstSchema(
-      createRadioSchema(filterOptions(this.config, this._context)),
+      createRadioSchema(this.config),
       this._data ?? {}
     )
   }
@@ -125,10 +128,7 @@ export class RadioButtonAnswer extends AnswerModel {
    * @param {AnswerViewModelOptions} options
    */
   viewModel({ validate, question }) {
-    const { options, payloadKey, layout } = filterOptions(
-      this.config,
-      this._context
-    )
+    const { options, payloadKey, layout } = this.config
     const items = Object.entries(options).map(([key, value]) => ({
       id: key,
       value: key,
