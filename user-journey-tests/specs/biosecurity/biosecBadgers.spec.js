@@ -13,7 +13,7 @@ describe('Biosecurity badgers page spec', () => {
     await biosecBadgersPage.verifyTbLicenceLink()
   })
 
-  it('Should input correct input and continue without error', async () => {
+  it('Should select option(s) and continue without error', async () => {
     await biosecBadgersPage.selectOptionsAndContine(
       [
         biosecBadgersPage.aluminiumFeedBins,
