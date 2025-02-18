@@ -8,7 +8,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
-  before('Copmplete answers', async () => {
+  before('Complete answers', async () => {
     await completeBiosecurityTask('yes')
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
@@ -131,6 +131,17 @@ describe('Check your answers test - biosecurity', () => {
     await validateHrefOfElement(
       biosecurityAnswersPage.changeDilutionLink,
       '/biosecurity/disinfectant-dilution?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
+  it('Should verify the value and href of the wildlife row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.wildlifeContaminationValue,
+      'Aluminium feed bins'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.wildlifeContaminationLink,
+      '/biosecurity/badgers?redirect_uri=/biosecurity/check-answers'
     )
   })
 

@@ -7,6 +7,7 @@ const checkboxEmptyError = 'Select at least one checkbox'
 /** @type {CheckboxConfig} */
 const config = {
   payloadKey: 'test_checkbox',
+  hint: 'test_hint',
   options: {
     badgerProofFencing: {
       label:
@@ -174,12 +175,34 @@ describe('CheckboxAnswer.viewModel', () => {
   const defaultViewModel = {
     name: 'test_checkbox',
     id: 'test_checkbox',
+    hint: {
+      text: 'test_hint'
+    },
     fieldset: {
       legend: {
         text: question,
-        isPageHeading: false
+        isPageHeading: true,
+        classes: 'govuk-fieldset__legend--l'
       }
     }
+  }
+
+  const itemOne = {
+    value: 'badgerProofFencing',
+    text: TestCheckboxAnswer.config.options.badgerProofFencing.label,
+    attributes: {
+      'data-testid': 'badgerProofFencing-checkbox'
+    },
+    checked: false
+  }
+
+  const itemTwo = {
+    value: 'limitAccessToBadgerHabitat',
+    text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat.label,
+    attributes: {
+      'data-testid': 'limitAccessToBadgerHabitat-checkbox'
+    },
+    checked: false
   }
 
   it('should return everything (except errors) to render in the template', () => {
@@ -187,27 +210,11 @@ describe('CheckboxAnswer.viewModel', () => {
       test_checkbox: ['limitAccessToBadgerHabitat']
     })
 
+    const expectedItems = [itemOne, { ...itemTwo, checked: true }]
+
     expect(validAnswer.viewModel({ validate: false, question })).toEqual({
       ...defaultViewModel,
-      items: [
-        {
-          value: 'badgerProofFencing',
-          text: TestCheckboxAnswer.config.options.badgerProofFencing.label,
-          attributes: {
-            'data-testid': 'badgerProofFencing-checkbox'
-          },
-          checked: false
-        },
-        {
-          value: 'limitAccessToBadgerHabitat',
-          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat
-            .label,
-          attributes: {
-            'data-testid': 'limitAccessToBadgerHabitat-checkbox'
-          },
-          checked: true
-        }
-      ]
+      items: expectedItems
     })
   })
 
@@ -216,28 +223,45 @@ describe('CheckboxAnswer.viewModel', () => {
       test_checkbox: []
     })
 
+    const expectedItems = [itemOne, itemTwo]
+
     expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
       ...defaultViewModel,
       errorMessage: { text: checkboxEmptyError },
-      items: [
-        {
-          value: 'badgerProofFencing',
-          text: TestCheckboxAnswer.config.options.badgerProofFencing.label,
-          attributes: {
-            'data-testid': 'badgerProofFencing-checkbox'
-          },
-          checked: false
-        },
-        {
-          value: 'limitAccessToBadgerHabitat',
-          text: TestCheckboxAnswer.config.options.limitAccessToBadgerHabitat
-            .label,
-          attributes: {
-            'data-testid': 'limitAccessToBadgerHabitat-checkbox'
-          },
-          checked: false
+      items: expectedItems
+    })
+  })
+
+  it('should return data to render with the alternative (not page heading) question styles set correctly', () => {
+    /** @type {CheckboxConfig} */
+    const checkboxConfigNotPageHeading = {
+      ...config,
+      isPageHeading: false
+    }
+
+    class NonPageHeadingCheckboxAnswer extends CheckboxAnswer {
+      static config = checkboxConfigNotPageHeading
+    }
+    const nonPageHeadingAnswer = new NonPageHeadingCheckboxAnswer({
+      test_checkbox: ['limitAccessToBadgerHabitat']
+    })
+
+    const expectedItems = [itemOne, { ...itemTwo, checked: true }]
+
+    expect(
+      nonPageHeadingAnswer.viewModel({ validate: false, question })
+    ).toEqual({
+      ...defaultViewModel,
+
+      fieldset: {
+        legend: {
+          ...defaultViewModel.fieldset.legend,
+
+          classes: '',
+          isPageHeading: false
         }
-      ]
+      },
+      items: expectedItems
     })
   })
 })

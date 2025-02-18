@@ -1,12 +1,31 @@
-import { Page } from '../../common/model/page/page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { BadgersAnswer } from '../../common/model/answer/badgers/badgers.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { biosecuritySummaryPage } from '../check-answers/index.js'
 
-// using Page to not make whole section invalid due to the page not being implemented yet
-// make QuestionPage when implementing
-export class BadgersPage extends Page {
+export class BadgersPage extends QuestionPage {
+  view = `biosecurity/badgers/index`
+
   urlPath = '/biosecurity/badgers'
   sectionKey = 'biosecurity'
-  question = 'question to be asked'
+  question =
+    'Which measures are you taking to reduce contamination from wildlife?'
+
   questionKey = 'badgers'
+  Answer = BadgersAnswer
+
+  nextPage() {
+    return biosecuritySummaryPage
+  }
 }
 
 export const badgersPage = new BadgersPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const badgers = new QuestionPageController(badgersPage).plugin()
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */

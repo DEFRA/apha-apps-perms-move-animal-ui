@@ -29,6 +29,9 @@ const testBuildingsHowMinimiseContamination = 'somehow'
 const testPeopleDisinfection = 'ppe'
 const testDisinfectant = 'some disinfectant'
 const testDilutionRate = '15'
+const testBadgersMeasures = ['badgerProofFencing']
+const testBadgersMeasuresLabel =
+  'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
 
 const originDefaultState = {
   onOffFarm: 'off',
@@ -62,7 +65,8 @@ const biosecurityDefaultState = {
   buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
   peopleDisinfection: testPeopleDisinfection,
   disinfectant: testDisinfectant,
-  dilutionRate: testDilutionRate
+  dilutionRate: testDilutionRate,
+  badgers: testBadgersMeasures
 }
 
 const biosecurityMapDefaultState = {
@@ -148,6 +152,8 @@ const emailContent = [
   testDisinfectant,
   '## What dilution rate are you using?',
   testDilutionRate,
+  '## Which measures are you taking to reduce contamination from wildlife?',
+  testBadgersMeasuresLabel,
   '## Upload a biosecurity map',
   'Map uploaded',
   '## undefined',

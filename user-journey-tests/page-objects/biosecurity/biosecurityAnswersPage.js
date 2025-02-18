@@ -52,6 +52,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="dilutionRate-change-link"]')
   }
 
+  get wildlifeContaminationLink() {
+    return $('[data-testid="badgers-change-link"]')
+  }
+
   get incomingCattleValue() {
     return $$('.govuk-summary-list__value')[0]
   }
@@ -94,6 +98,10 @@ class BiosecurityAnswersPage extends Page {
 
   get dilutionValue() {
     return $$('.govuk-summary-list__value')[10]
+  }
+
+  get wildlifeContaminationValue() {
+    return $$('.govuk-summary-list__value')[11]
   }
 }
 

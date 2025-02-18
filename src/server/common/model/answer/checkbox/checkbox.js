@@ -40,6 +40,8 @@ const ensureArray = (value) => {
  * @typedef {{
  *   payloadKey: string,
  *   options: Record<string, CheckboxOption>,
+ *   hint?: string,
+ *   isPageHeading? : boolean,
  *   validation: {
  *     empty?: { message: string }
  *   }
@@ -78,22 +80,39 @@ export class CheckboxAnswer extends AnswerModel {
     return 'model/answer/checkbox/checkbox.njk'
   }
 
+  get html() {
+    const data = this._data?.[this.config.payloadKey]
+
+    if (data.length === 0) {
+      return 'None'
+    }
+    return Object.values(data)
+      .map((item) => {
+        return this.config.options[item].label
+      })
+      .join('<br /><br />')
+  }
+
   /**
    * @param {AnswerViewModelOptions} options
    */
   viewModel({ question, validate }) {
     const values = this.value
+    const { payloadKey, options, hint } = this.config
+
+    const isPageHeading = this.config.isPageHeading ?? true
 
     const viewModel = {
-      name: this.config.payloadKey,
-      id: this.config.payloadKey,
+      name: payloadKey,
+      id: payloadKey,
       fieldset: {
         legend: {
-          isPageHeading: false,
-          text: question
+          text: question,
+          classes: isPageHeading ? 'govuk-fieldset__legend--l' : '',
+          isPageHeading
         }
       },
-      items: Object.entries(this.config.options).map(([value, option]) => ({
+      items: Object.entries(options).map(([value, option]) => ({
         text: option.label,
         value,
         attributes: {
@@ -101,6 +120,10 @@ export class CheckboxAnswer extends AnswerModel {
         },
         checked: (values ?? []).includes(value)
       }))
+    }
+
+    if (hint) {
+      viewModel.hint = { text: hint }
     }
 
     if (validate) {

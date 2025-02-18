@@ -7,6 +7,7 @@ const checkboxEmptyError = 'You need to tick a declaration box'
 /** @type {CheckboxConfig} */
 const config = {
   payloadKey: 'confirmation',
+  isPageHeading: false,
   options: {
     confirm: {
       label:

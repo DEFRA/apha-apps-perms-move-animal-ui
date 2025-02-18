@@ -20,7 +20,8 @@ const defaultState = {
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',
-  dilutionRate: '15'
+  dilutionRate: '15',
+  badgers: ['badgerProofFencing']
 }
 
 describe('#biosecuritySummaryPage', () => {

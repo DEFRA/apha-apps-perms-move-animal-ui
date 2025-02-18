@@ -237,6 +237,17 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <a class="govuk-link" href="/biosecurity/disinfectant-dilution?redirect_uri=/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> What dilution rate are you using?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Which measures are you taking to reduce contamination from wildlife?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/badgers?redirect_uri=/submit/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> Which measures are you taking to reduce contamination from wildlife?</span></a>
+    </dd>
+  </div>
 </dl>
 
           <h2 class="govuk-heading-m">Biosecurity map</h2>
