@@ -40,6 +40,11 @@ const originDefaultState = {
   address: testAddress
 }
 
+const destinationDefaultState = {
+  destinationType: 'dedicated-sale'
+}
+const expectedDestinationText = 'Dedicated sale for TB (orange market)'
+
 const licenceDefaultState = {
   emailAddress: testEmailAddress,
   receiveMethod: testReceiveMethodValue,
@@ -49,10 +54,10 @@ const licenceDefaultState = {
   }
 }
 
-const destinationDefaultState = {
-  destinationType: 'dedicated-sale'
+const identificationsDefaultState = {
+  earTags: 'ear-tags'
 }
-const expectedDestinationText = 'Dedicated sale for TB (orange market)'
+const expectedAnimalIdentifiersText = 'ear-tags'
 
 const biosecurityDefaultState = {
   keptSeparately: yesValue,
@@ -130,6 +135,8 @@ const emailContent = [
   testReceiveMethodLabel,
   '## What email address would you like the licence sent to?',
   testEmailAddress,
+  '## Enter the ear tag numbers of the animals you are planning to move',
+  expectedAnimalIdentifiersText,
   '## Will you separate the incoming cattle from the resident herd?',
   yesLabel,
   '## Will the incoming cattle be grazed?',
@@ -175,6 +182,7 @@ describe('#CheckAnswers', () => {
     await session.setState('origin', originDefaultState)
     await session.setState('licence', licenceDefaultState)
     await session.setState('destination', destinationDefaultState)
+    await session.setState('identification', identificationsDefaultState)
     await session.setState('biosecurity', biosecurityDefaultState)
     await session.setState('biosecurity-map', biosecurityMapDefaultState)
   })
@@ -198,30 +206,8 @@ describe('#CheckAnswers', () => {
     )
 
     const document = parseDocument(payload)
-    expect(document.title).toEqual(pageTitle)
     expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
-
-    const taskListValues = document.querySelectorAll(
-      '.govuk-summary-list__value'
-    )
-
-    expect(taskListValues[0].innerHTML).toContain('Off the farm or premises')
-    expect(taskListValues[1].innerHTML).toContain(
-      'Approved finishing unit (AFU)'
-    )
-    expect(taskListValues[2].innerHTML).toContain(testCphNumber)
-    expect(taskListValues[3].innerHTML).toContain(testAddress.addressLine1)
-    expect(taskListValues[4].innerHTML).toContain(expectedDestinationText)
-    expect(taskListValues[5].innerHTML).toContain(
-      `${licenceDefaultState.fullName.firstName} ${licenceDefaultState.fullName.lastName}`
-    )
-    expect(taskListValues[6].innerHTML).toContain(testReceiveMethodLabel)
-    expect(taskListValues[7].innerHTML).toContain(testEmailAddress)
-    expect(taskListValues[8].innerHTML).toContain(yesLabel)
-    expect(taskListValues[9].innerHTML).toContain(yesLabel)
-    expect(taskListValues[10].innerHTML).toContain(testLastGrazedValue)
-    expect(taskListValues[11].innerHTML).toContain(yesLabel)
-
+    expect(document.title).toEqual(pageTitle)
     expect(statusCode).toBe(statusCodes.ok)
   })
 

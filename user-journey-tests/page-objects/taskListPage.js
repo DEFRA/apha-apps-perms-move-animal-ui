@@ -24,16 +24,20 @@ class TaskListPage extends Page {
     return $('aria/Movement destination')
   }
 
+  get animalIdentifiersLink() {
+    return $('aria/Animal identifiers')
+  }
+
   get biosecurityLink() {
     return $('aria/Biosecurity details')
   }
 
-  get reviewLink() {
-    return $('aria/Review and submit')
-  }
-
   get biosecurityMapLink() {
     return $('aria/Biosecurity map')
+  }
+
+  get reviewLink() {
+    return $('aria/Review and submit')
   }
 
   async getTaskToCompleteCount() {
@@ -51,6 +55,10 @@ class TaskListPage extends Page {
 
   async selectMovementDestination() {
     await page.selectElement(this.movementDestinationLink)
+  }
+
+  async selectAnimalIdentificationLink() {
+    await page.selectElement(this.animalIdentifiersLink)
   }
 
   async selectBiosecurityLink() {
