@@ -13,6 +13,7 @@ import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseCo
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
+import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -52,10 +53,30 @@ const completeBiosecurityTask = async (radioType) => {
         '1995',
         biosecBadgersPage
       )
+      await biosecBadgersPage.selectOptionsAndContine(
+        [biosecBadgersPage.aluminiumFeedBins],
+        biosecurityAnswersPage
+      )
       break
 
     case 'no':
       await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
+      await peopleDisinfectionPage.inputPeopleDisinfectionAndContinue(
+        'People disinfection',
+        disinfectantPage
+      )
+      await disinfectantPage.inputDisinfectantAndContinue(
+        'Batman disinfectant',
+        disinfectantDilutionPage
+      )
+      await disinfectantDilutionPage.inputDilutionAndContinue(
+        '1995',
+        biosecBadgersPage
+      )
+      await biosecBadgersPage.selectOptionsAndContine(
+        [biosecBadgersPage.aluminiumFeedBins],
+        biosecurityAnswersPage
+      )
       break
 
     default:

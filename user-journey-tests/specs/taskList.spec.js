@@ -214,7 +214,7 @@ describe('Task list page test', () => {
     await waitForPagePath(biosecurityAnswersPage.pagePath)
   })
 
-  it('Should link to receiving licence summary once that selection has been completed', async () => {
+  it('Should link to biosecurity map summary once that selection has been completed', async () => {
     await completeBiosecurityMapTask()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
