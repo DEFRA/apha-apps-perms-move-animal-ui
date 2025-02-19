@@ -3,7 +3,8 @@ import * as page from '../../helpers/page.js'
 
 const pageId = 'dilutionRate'
 
-const pageHeadingAndTitle = 'What dilution rate are you using?'
+const pageHeadingAndTitle =
+  'What dilution rate are you using for your disinfectant?'
 
 class DisinfectantDilutionPage extends Page {
   pagePath = 'biosecurity/disinfectant-dilution'
