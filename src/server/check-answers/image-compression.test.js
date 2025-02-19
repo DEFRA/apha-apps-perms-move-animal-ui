@@ -1,4 +1,4 @@
-import { compress } from './image-compression.js'
+import { compress, compressToTargetSize } from './image-compression.js'
 import { readFile } from 'fs/promises'
 import sharp from 'sharp'
 import path from 'path'
@@ -82,10 +82,26 @@ describe('imageCompression', () => {
     await compress(buffer)
 
     expect(mockSharpInstance.resize).toHaveBeenCalledWith({
-      width: 1080,
-      height: 1920,
+      width: 1920,
+      height: 1080,
       fit: 'inside'
     })
+  })
+
+  it('should not resize the image if longest edge is already as desired length', async () => {
+    const mockSharpInstance = {
+      metadata: jest.fn().mockResolvedValue({ width: 1080, height: 1920 }),
+      resize: jest.fn().mockReturnThis(),
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(1.5 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    await compress(buffer)
+
+    expect(mockSharpInstance.resize).not.toHaveBeenCalled()
   })
 
   it('should perform binary search compression if resized buffer is too large', async () => {
@@ -126,5 +142,132 @@ describe('imageCompression', () => {
 
     expect(mockSharpInstance.jpeg).toHaveBeenCalledWith({ progressive: true })
     expect(mockSharpInstance.toBuffer).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle case where width is equal to height and greater than 1920', async () => {
+    const mockSharpInstance = {
+      metadata: jest.fn().mockResolvedValue({ width: 3000, height: 3000 }),
+      resize: jest.fn().mockReturnThis(),
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(1.5 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    await compress(buffer)
+
+    expect(mockSharpInstance.resize).toHaveBeenCalledWith({
+      width: 1920,
+      height: 1080,
+      fit: 'inside'
+    })
+  })
+
+  it('should handle case where width is equal to height and less than 1920', async () => {
+    const mockSharpInstance = {
+      metadata: jest.fn().mockResolvedValue({ width: 1000, height: 1000 }),
+      resize: jest.fn().mockReturnThis(),
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(1.5 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    await compress(buffer)
+
+    expect(mockSharpInstance.resize).not.toHaveBeenCalled()
+  })
+
+  it('should handle case where buffer size is within threshold and no compression is needed', async () => {
+    const mockSharpInstance = {
+      metadata: jest.fn().mockResolvedValue({ width: 3000, height: 2000 }),
+      resize: jest.fn().mockReturnThis(),
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(1.9 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    await compress(buffer)
+
+    expect(mockSharpInstance.jpeg).toHaveBeenCalledWith({ progressive: true })
+    expect(mockSharpInstance.toBuffer).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle case where buffer size is exactly at the upper threshold', async () => {
+    const mockSharpInstance = {
+      metadata: jest.fn().mockResolvedValue({ width: 3000, height: 2000 }),
+      resize: jest.fn().mockReturnThis(),
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(2 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    await compress(buffer)
+
+    expect(mockSharpInstance.jpeg).toHaveBeenCalledWith({ progressive: true })
+    expect(mockSharpInstance.toBuffer).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle case where buffer size is greater than upper threshold and binary search finds exact match', async () => {
+    const mockSharpInstance = {
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest
+        .fn()
+        .mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
+        .mockResolvedValueOnce(Buffer.alloc(2 * 1024 * 1024))
+        .mockResolvedValueOnce(Buffer.alloc(1.95 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    const targetFileSize = 2 * 1024 * 1024 // 2 MB
+    const lowerThreshold = targetFileSize * 0.95
+    const upperThreshold = targetFileSize
+
+    const { resizedBuffer, quality, manipulations } =
+      await compressToTargetSize(
+        buffer,
+        targetFileSize,
+        lowerThreshold,
+        upperThreshold
+      )
+
+    expect(resizedBuffer.length).toBeLessThanOrEqual(targetFileSize)
+    expect(resizedBuffer.length).toBeGreaterThanOrEqual(lowerThreshold)
+    expect(quality).toBeLessThanOrEqual(100)
+    expect(manipulations).toBeGreaterThan(1)
+  })
+
+  it('should handle case where buffer size is less than or equal to upper threshold', async () => {
+    const mockSharpInstance = {
+      jpeg: jest.fn().mockReturnThis(),
+      toBuffer: jest.fn().mockResolvedValue(Buffer.alloc(1.5 * 1024 * 1024))
+    }
+
+    // @ts-expect-error jest is unable to recognise the mock on an entire module
+    sharp.mockImplementation(() => mockSharpInstance)
+
+    const targetFileSize = 2 * 1024 * 1024 // 2 MB
+    const lowerThreshold = targetFileSize * 0.95
+    const upperThreshold = targetFileSize
+
+    const { resizedBuffer, quality, manipulations } =
+      await compressToTargetSize(
+        buffer,
+        targetFileSize,
+        lowerThreshold,
+        upperThreshold
+      )
+
+    expect(resizedBuffer.length).toBeLessThanOrEqual(targetFileSize)
+    expect(quality).toBe(100)
+    expect(manipulations).toBe(8)
   })
 })

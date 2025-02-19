@@ -6,7 +6,7 @@ const minimumThreshold = 0.95
 
 const resizeImage = (buffer, width, height) => {
   const compressed = sharp(buffer)
-  if (width > height && width > 1920) {
+  if (width > height || width > 1920) {
     compressed.resize({
       width: maxLongestEdge,
       height: maxShortestEdge,
@@ -34,7 +34,7 @@ const resizeImage = (buffer, width, height) => {
  *  manipulations: number
  * }>}
  */
-const compressToTargetSize = async (
+export const compressToTargetSize = async (
   buffer,
   targetFileSize,
   lowerThreshold,
@@ -54,6 +54,7 @@ const compressToTargetSize = async (
       const tempBuffer = await sharp(resizedBuffer)
         .jpeg({ quality: mid })
         .toBuffer()
+
       const compressedSize = tempBuffer.length
 
       if (
