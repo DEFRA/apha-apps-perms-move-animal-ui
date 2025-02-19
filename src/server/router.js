@@ -11,6 +11,7 @@ import { submitSummary } from './check-answers/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { ApplicationModel } from './common/model/application/application.js'
+import { s3Client } from './common/plugins/s3/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -19,30 +20,38 @@ export const router = {
   plugin: {
     name: 'router',
     async register(server) {
-      await server.register([inert])
+      // do all server registers async of each other (up to 8x faster)
+      await Promise.all([
+        server.register([inert]),
 
-      // Health-check route. Used by platform to check if service is running, do not remove!
-      await server.register([health])
+        // Decorator services
+        server.register([s3Client]),
 
-      // Application specific routes, add your own routes here
-      await server.register([
-        home,
-        privacyPolicy,
-        cookiesPolicy,
-        accessibilityStatement,
-        taskList,
-        taskListIncomplete,
-        submit,
-        submitSummary
+        // Health-check route. Used by platform to check if service is running, do not remove!
+        server.register([health]),
+
+        // Application specific routes, add your own routes here
+        server.register([
+          home,
+          privacyPolicy,
+          cookiesPolicy,
+          accessibilityStatement,
+          taskList,
+          taskListIncomplete,
+          submit,
+          submitSummary
+        ]),
+
+        // Add routes for the visible sections in the application
+        server.register(
+          ApplicationModel.visibleSections.map(
+            (section) => section.config.plugin
+          )
+        ),
+
+        // Static assets
+        server.register([serveStaticFiles])
       ])
-
-      // Add routes for the visible sections in the application
-      await server.register(
-        ApplicationModel.visibleSections.map((section) => section.config.plugin)
-      )
-
-      // Static assets
-      await server.register([serveStaticFiles])
     }
   }
 }
