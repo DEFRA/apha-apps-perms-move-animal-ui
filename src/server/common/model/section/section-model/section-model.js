@@ -112,7 +112,7 @@ export class SectionModel {
         break
       }
 
-      page = page.nextPage(answer)
+      page = page.nextPage(answer, data)
     }
 
     if (!(page instanceof QuestionPage)) {

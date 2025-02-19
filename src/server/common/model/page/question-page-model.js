@@ -34,11 +34,11 @@ export class QuestionPage extends Page {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {AnswerModel} _answer
-   * @param {RawApplicationState} [_state]
+   * @param {RawApplicationState} [_context]
    * @returns {Page | QuestionPage}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_answer, _state) {
+  nextPage(_answer, _context) {
     throw new NotImplementedError()
   }
 }

@@ -1,6 +1,7 @@
 import { RadioButtonAnswer } from './radio-button.js'
 
 /** @import {RadioButtonConfig} from './radio-button.js' */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
  * @typedef {'value_1' | 'value_2'} TestRadioValues
@@ -12,8 +13,11 @@ const validTestRadio = {
   test_radio: 'value_1'
 }
 
+/** @type {RawApplicationState} */
+const applicationState = { origin: { onOffFarm: 'on' } }
+
 /** @type {RadioButtonConfig} */
-const testRadioConfig = {
+const defaultConfig = {
   payloadKey: 'test_radio',
   options: {
     value_1: { label: 'test_label_1' },
@@ -24,6 +28,27 @@ const testRadioConfig = {
   }
 }
 
+const onFarmOptions = {
+  value_1: { label: 'test_label_1' },
+  value_2: { label: 'test_label_2', hint: 'test_hint_2' },
+  value_3: {
+    label: 'test_label_3',
+    hint: 'test_hint_3'
+  }
+}
+
+/**
+ * @param {RawApplicationState} app
+ * @returns {RadioButtonConfig}
+ */
+const testRadioConfig = (app) => {
+  if (app.origin?.onOffFarm === 'on') {
+    return { ...defaultConfig, options: onFarmOptions }
+  } else {
+    return defaultConfig
+  }
+}
+
 class TestRadioButtonAnswer extends RadioButtonAnswer {
   static config = testRadioConfig
 }
@@ -31,7 +56,7 @@ class TestRadioButtonAnswer extends RadioButtonAnswer {
 class InlineTestRadioButtonAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfig} */
   static config = {
-    ...testRadioConfig,
+    ...defaultConfig,
     layout: 'inline'
   }
 }
@@ -72,7 +97,7 @@ describe('RadioButton', () => {
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
-        testRadioConfig.errors.emptyOptionText
+        testRadioConfig({}).errors.emptyOptionText
       )
     })
 
@@ -85,8 +110,35 @@ describe('RadioButton', () => {
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
-        testRadioConfig.errors.emptyOptionText
+        testRadioConfig({}).errors.emptyOptionText
       )
+    })
+
+    it('should return false for values that would be valid, but whose predicates fail', () => {
+      const testInstance = new TestRadioButtonAnswer({
+        test_radio: 'value_3'
+      })
+
+      const { isValid, errors } = testInstance.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.test_radio.text).toBe(
+        testRadioConfig({}).errors.emptyOptionText
+      )
+    })
+
+    it('should return true or values that are only valid because their predicates pass', () => {
+      const testInstance = new TestRadioButtonAnswer(
+        {
+          test_radio: 'value_3'
+        },
+        applicationState
+      )
+
+      const { isValid, errors } = testInstance.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
     })
   })
 
@@ -119,6 +171,18 @@ describe('RadioButton', () => {
 
     it('should store undefined if the state is undefined', () => {
       expect(TestRadioButtonAnswer.fromState(undefined)._data).toBeUndefined()
+      expect(
+        TestRadioButtonAnswer.fromState(undefined)._context
+      ).toBeUndefined()
+    })
+
+    it('should store payload and context if passed', () => {
+      const state = validTestRadio.test_radio
+
+      const answer = TestRadioButtonAnswer.fromState(state, applicationState)
+
+      expect(answer._data).toEqual(validTestRadio)
+      expect(answer._context).toEqual(applicationState)
     })
   })
 
@@ -199,6 +263,45 @@ describe('RadioButton', () => {
       })
     })
 
+    it('should not return extra options if the predicate is not met', () => {
+      const applicationState = {
+        origin: { onOffFarm: 'off' }
+      }
+      const invalidAnswer = new TestRadioButtonAnswer(
+        {
+          test_radio: 'invalid_answer'
+        },
+        applicationState
+      )
+
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
+        defaultViewModel
+      )
+    })
+
+    it('should return extra options if the predicate is met', () => {
+      const invalidAnswer = new TestRadioButtonAnswer(
+        {
+          test_radio: 'invalid_answer'
+        },
+        applicationState
+      )
+
+      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual({
+        ...defaultViewModel,
+        items: defaultViewModel.items.concat([
+          {
+            id: 'value_3',
+            value: 'value_3',
+            text: 'test_label_3',
+            hint: {
+              text: 'test_hint_3'
+            }
+          }
+        ])
+      })
+    })
+
     describe('radio button layout', () => {
       it('should return inline class when layout is inline', () => {
         const answer = new InlineTestRadioButtonAnswer({
@@ -223,5 +326,20 @@ describe('RadioButtonAnswer.template', () => {
   it('should return the radio button model template', () => {
     const radio = new TestRadioButtonAnswer(validTestRadio)
     expect(radio.template).toBe('model/answer/radio-button/radio-button.njk')
+  })
+})
+
+describe('RadioButtonAnswer.context', () => {
+  it('should filter out config options where they do not meet the current preciates', () => {
+    const radio = new TestRadioButtonAnswer(validTestRadio)
+    expect(radio.config.options).toEqual({
+      value_1: { label: 'test_label_1' },
+      value_2: { label: 'test_label_2', hint: 'test_hint_2' }
+    })
+  })
+
+  it('should include config options where predicate matches', () => {
+    const radio = new TestRadioButtonAnswer(validTestRadio, applicationState)
+    expect(radio.config.options).toEqual(onFarmOptions)
   })
 })

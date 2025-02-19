@@ -1,16 +1,15 @@
-/**
- * Sets up the routes used in the origin type page.
- * These routes are registered in src/server/router.js.
- */
-
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
+import { countryPage } from '../country/index.js'
+import { originFarmCphPage } from '../origin-farm-cph/index.js'
+import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
+/** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 export class OriginTypePage extends QuestionPage {
   urlPath = '/origin/type-of-origin'
@@ -20,9 +19,24 @@ export class OriginTypePage extends QuestionPage {
 
   Answer = OriginTypeAnswer
 
-  /** @param {AnswerModel} answer */
+  /**
+   * @param {OriginTypeAnswer} answer
+   * @param {RawApplicationState} context
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(answer) {
+  nextPage(answer, context) {
+    const isOnFarm = context.origin?.onOffFarm === 'on'
+
+    if (isOnFarm) {
+      if (answer.value === 'after-import-location') {
+        return countryPage
+      }
+      if (['market', 'unrestricted-farm'].includes(answer.value)) {
+        return fiftyPercentWarningPage
+      }
+      return originFarmCphPage
+    }
+
     if (answer.value === 'other') {
       return exitPagePremisesType
     }

@@ -1,7 +1,7 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from '../page.js'
-import { waitForPagePath } from '../../helpers/page.js'
+import { waitForElement, waitForPagePath } from '../../helpers/page.js'
 
 const pageHeadingAndTitle = 'What type of premises are the animals moving off?'
 
@@ -11,12 +11,32 @@ class OriginTypePage extends Page {
   pageTitle = pageHeadingAndTitle
   emptyErrorMessage = 'Select where the animals are moving from'
 
+  get marketRadio() {
+    return $('input[value="market"]')
+  }
+
+  get unrestrictedFarmRadio() {
+    return $('#unrestricted-farm')
+  }
+
   get tbRestrictedFarmRadio() {
-    return $('#originType')
+    return $('[value="tb-restricted-farm"]')
   }
 
   get approvedFinishingUnitRadio() {
     return $('#afu')
+  }
+
+  get zooRadio() {
+    return $('#zoo')
+  }
+
+  get labRadio() {
+    return $('#lab')
+  }
+
+  get afterImportRadio() {
+    return $('#after-import-location')
   }
 
   get anotherTypeOfPremisesRadio() {
@@ -31,6 +51,20 @@ class OriginTypePage extends Page {
     return $('#originType-error')
   }
 
+  async verifyOffFarmVersion() {
+    await waitForElement(this.tbRestrictedFarmRadio, { visible: false })
+    await waitForElement(this.approvedFinishingUnitRadio, { visible: false })
+    await waitForElement(this.anotherTypeOfPremisesRadio, { visible: false })
+  }
+
+  async verifyOnFarmVersion() {
+    await waitForElement(this.marketRadio, { visible: false })
+    await waitForElement(this.zooRadio, { visible: false })
+    await waitForElement(this.labRadio, { visible: false })
+    await waitForElement(this.afterImportRadio, { visible: false })
+    await this.verifyOffFarmVersion()
+  }
+
   async selectTBRestrictedFarmAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.tbRestrictedFarmRadio)
     await waitForPagePath(nextPage.pagePath)
@@ -43,6 +77,31 @@ class OriginTypePage extends Page {
 
   async selectAnotherTypeOfPremisesAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.anotherTypeOfPremisesRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectMarketAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.marketRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectZooAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.zooRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectUnrestrictedAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.unrestrictedFarmRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectLabAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.labRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectAfterImportAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.afterImportRadio)
     await waitForPagePath(nextPage.pagePath)
   }
 
