@@ -13,11 +13,11 @@ describe('OriginType', () => {
   })
 
   it('should have the right payload key', () => {
-    expect(OriginTypeAnswer.config.payloadKey).toBe('originType')
+    expect(new OriginTypeAnswer().config.payloadKey).toBe('originType')
   })
 
   it('should define the right empty input message', () => {
-    expect(OriginTypeAnswer.config.errors.emptyOptionText).toBe(
+    expect(new OriginTypeAnswer().config.errors.emptyOptionText).toBe(
       'Select where the animals are moving from'
     )
   })
@@ -60,7 +60,7 @@ describe('#OriginType.config', () => {
     expect(config.options['after-import-location'].label).toBe(
       'Location after animals have been imported'
     )
-    expect(config.options['another-origin'].label).toBe('Another origin')
+    expect(config.options.other.label).toBe('Another origin')
     expect(Object.keys(config.options)).toHaveLength(8)
   })
 })

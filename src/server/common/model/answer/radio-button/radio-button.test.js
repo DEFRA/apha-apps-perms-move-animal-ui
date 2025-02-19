@@ -17,20 +17,35 @@ const validTestRadio = {
 const applicationState = { origin: { onOffFarm: 'on' } }
 
 /** @type {RadioButtonConfig} */
-const testRadioConfig = {
+const defaultConfig = {
   payloadKey: 'test_radio',
   options: {
     value_1: { label: 'test_label_1' },
-    value_2: { label: 'test_label_2', hint: 'test_hint_2' },
-    value_3: {
-      label: 'test_label_3',
-      hint: 'test_hint_3',
-      predicate: (/** @type {RawApplicationState} */ app) =>
-        app.origin?.onOffFarm === 'on'
-    }
+    value_2: { label: 'test_label_2', hint: 'test_hint_2' }
   },
   errors: {
     emptyOptionText: 'Select an option'
+  }
+}
+
+const onFarmOptions = {
+  value_1: { label: 'test_label_1' },
+  value_2: { label: 'test_label_2', hint: 'test_hint_2' },
+  value_3: {
+    label: 'test_label_3',
+    hint: 'test_hint_3'
+  }
+}
+
+/**
+ * @param {RawApplicationState} app
+ * @returns {RadioButtonConfig}
+ */
+const testRadioConfig = (app) => {
+  if (app.origin?.onOffFarm === 'on') {
+    return { ...defaultConfig, options: onFarmOptions }
+  } else {
+    return defaultConfig
   }
 }
 
@@ -41,7 +56,7 @@ class TestRadioButtonAnswer extends RadioButtonAnswer {
 class InlineTestRadioButtonAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfig} */
   static config = {
-    ...testRadioConfig,
+    ...defaultConfig,
     layout: 'inline'
   }
 }
@@ -82,7 +97,7 @@ describe('RadioButton', () => {
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
-        testRadioConfig.errors.emptyOptionText
+        testRadioConfig({}).errors.emptyOptionText
       )
     })
 
@@ -95,7 +110,7 @@ describe('RadioButton', () => {
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
-        testRadioConfig.errors.emptyOptionText
+        testRadioConfig({}).errors.emptyOptionText
       )
     })
 
@@ -108,7 +123,7 @@ describe('RadioButton', () => {
 
       expect(isValid).toBe(false)
       expect(errors.test_radio.text).toBe(
-        testRadioConfig.errors.emptyOptionText
+        testRadioConfig({}).errors.emptyOptionText
       )
     })
 
@@ -325,6 +340,6 @@ describe('RadioButtonAnswer.context', () => {
 
   it('should include config options where predicate matches', () => {
     const radio = new TestRadioButtonAnswer(validTestRadio, applicationState)
-    expect(radio.config.options).toEqual(TestRadioButtonAnswer.config.options)
+    expect(radio.config.options).toEqual(onFarmOptions)
   })
 })

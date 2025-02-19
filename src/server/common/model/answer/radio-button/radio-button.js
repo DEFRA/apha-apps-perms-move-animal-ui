@@ -28,21 +28,20 @@ const createRadioSchema = (config) => {
 }
 
 /**
- * @param {RadioButtonConfig} config
  * @param {RawApplicationState | undefined} context
+ * @param {RadioButtonConfig | RadioButtonConfigFactory} config
  * @returns {RadioButtonConfig}
  */
-const filterOptions = (config, context) => ({
-  ...config,
-  options: Object.fromEntries(
-    Object.entries(config.options).filter(
-      (kv) => kv[1]?.predicate?.(context ?? {}) ?? true
-    )
-  )
-})
+const handleConfig = (context, config) => {
+  if (typeof config === 'function') {
+    return config(context ?? {})
+  } else {
+    return config
+  }
+}
 
 /**
- * @typedef {{ label: string, hint?: string, predicate?: (app: RawApplicationState) => boolean }} RadioOption
+ * @typedef {{ label: string, hint?: string }} RadioOption
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
@@ -55,6 +54,10 @@ const filterOptions = (config, context) => ({
  */
 
 /**
+ * @typedef {(app: RawApplicationState) => RadioButtonConfig} RadioButtonConfigFactory
+ */
+
+/**
  * @template Payload
  * @augments AnswerModel<Payload>
  */
@@ -62,14 +65,14 @@ export class RadioButtonAnswer extends AnswerModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {RadioButtonConfig} */
   get config() {
-    return filterOptions(
-      /** @type {any} */ (this.constructor).config,
-      this._context
+    return handleConfig(
+      this._context,
+      /** @type {any} */ (this.constructor).config
     )
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
-  /** @returns {RadioButtonConfig} */
+  /** @returns {RadioButtonConfig | RadioButtonConfigFactory} */
   static get config() {
     throw new NotImplementedError()
   }
@@ -103,7 +106,9 @@ export class RadioButtonAnswer extends AnswerModel {
    */
   static fromState(state, context) {
     return new this(
-      state !== undefined ? { [this.config.payloadKey]: state } : undefined,
+      state !== undefined
+        ? { [handleConfig(context, this.config).payloadKey]: state }
+        : undefined,
       context
     )
   }

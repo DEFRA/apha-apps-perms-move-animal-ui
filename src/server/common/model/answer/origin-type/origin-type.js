@@ -1,5 +1,5 @@
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
-/** @import {RadioButtonConfig} from '../radio-button/radio-button.js' */
+/** @import {RadioButtonConfig, RadioButtonConfigFactory} from '../radio-button/radio-button.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
@@ -13,39 +13,41 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  */
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
 
-/**
- * @param {RawApplicationState} app
- * @returns boolean
- */
-const isNotOnToTheFarm = (app) => app.origin?.onOffFarm !== 'on'
+const tbRestrictedOption = { label: 'TB restricted farm' }
+const afuOption = {
+  label: 'Approved finishing unit (AFU)',
+  hint: 'Including enhanced with grazing (AFUE)'
+}
+
+const offFarmOptions = {
+  'tb-restricted-farm': tbRestrictedOption,
+  afu: afuOption,
+  other: { label: 'Another type of premises' }
+}
+
+const onFarmOptions = {
+  market: { label: 'Market' },
+  'unrestricted-farm': {
+    label: 'Unrestricted farm or premises'
+  },
+  'tb-restricted-farm': tbRestrictedOption,
+  afu: afuOption,
+  zoo: { label: 'Zoo' },
+  lab: { label: 'Laboratory' },
+  'after-import-location': {
+    label: 'Location after animals have been imported'
+  },
+  other: { label: 'Another origin' }
+}
 
 /** @augments {RadioButtonAnswer<OriginTypePayload>} */
 export class OriginTypeAnswer extends RadioButtonAnswer {
-  /** @type {RadioButtonConfig} */
-  static config = {
+  /** @type {RadioButtonConfigFactory} */
+  static config = (app) => ({
     payloadKey: 'originType',
-    options: {
-      market: { label: 'Market', predicate: isOnToTheFarm },
-      'unrestricted-farm': {
-        label: 'Unrestricted farm or premises',
-        predicate: isOnToTheFarm
-      },
-      'tb-restricted-farm': { label: 'TB restricted farm' },
-      afu: {
-        label: 'Approved finishing unit (AFU)',
-        hint: 'Including enhanced with grazing (AFUE)'
-      },
-      zoo: { label: 'Zoo', predicate: isOnToTheFarm },
-      lab: { label: 'Laboratory', predicate: isOnToTheFarm },
-      'after-import-location': {
-        label: 'Location after animals have been imported',
-        predicate: isOnToTheFarm
-      },
-      'another-origin': { label: 'Another origin', predicate: isOnToTheFarm },
-      other: { label: 'Another type of premises', predicate: isNotOnToTheFarm }
-    },
+    options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions,
     errors: {
       emptyOptionText: 'Select where the animals are moving from'
     }
-  }
+  })
 }
