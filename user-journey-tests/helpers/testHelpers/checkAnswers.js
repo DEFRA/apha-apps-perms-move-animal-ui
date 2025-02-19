@@ -18,12 +18,9 @@ export const validateOnOffFarm = async (changeLink, valueElement, nextPage) => {
   await selectElement(changeLink)
 
   await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
-  await toFromFarmPage.selectOnFarmAndContinue(nextPage)
+  await toFromFarmPage.selectOffFarmAndContinue(nextPage)
 
-  await validateElementVisibleAndText(
-    valueElement,
-    'On to the farm or premises'
-  )
+  await validateElementVisibleAndText(valueElement, 'Off the farm or premises')
 }
 
 export const validateOriginType = async (
