@@ -74,7 +74,19 @@ export class SubmitPageController extends QuestionPageController {
     super(new SubmitSummaryPage())
   }
 
-  async handleGet(req, h) {
+  handleGet(req, h) {
+    const { isValid } = ApplicationModel.fromState(
+      new StateManager(req).toState()
+    ).validate()
+
+    if (!isValid) {
+      return h.redirect('/task-list-incomplete')
+    }
+
+    return super.handleGet(req, h)
+  }
+
+  async handlePost(req, h) {
     const obj = await req.s3.send(
       new GetObjectCommand({
         Bucket: config.get('fileUpload').bucket ?? '',
@@ -94,18 +106,6 @@ export class SubmitPageController extends QuestionPageController {
       `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
     )
 
-    const { isValid } = ApplicationModel.fromState(
-      new StateManager(req).toState()
-    ).validate()
-
-    if (!isValid) {
-      return h.redirect('/task-list-incomplete')
-    }
-
-    return super.handleGet(req, h)
-  }
-
-  async handlePost(req, h) {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
