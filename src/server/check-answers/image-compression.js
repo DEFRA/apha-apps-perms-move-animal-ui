@@ -1,44 +1,52 @@
 import sharp from 'sharp'
 
-export const compress = async (buffer) => {
-  const originalSize = buffer.length
+const maxLongestEdge = 1920
+const maxShortestEdge = 1080
+const minimumThreshold = 0.95
 
-  const start = Date.now()
-  const targetFileSize = 2 * 1024 * 1024 // 2 MB in bytes
+const resizeImage = (buffer, width, height) => {
+  const compressed = sharp(buffer)
+  if (width > height && width > 1920) {
+    compressed.resize({
+      width: maxLongestEdge,
+      height: maxShortestEdge,
+      fit: 'inside'
+    })
+  } else if (height > width && height > 1920) {
+    compressed.resize({
+      width: maxShortestEdge,
+      height: maxLongestEdge,
+      fit: 'inside'
+    })
+  }
+  return compressed
+}
+
+/**
+ *
+ * @param {Buffer} buffer
+ * @param {number} targetFileSize
+ * @param {number} lowerThreshold
+ * @param {number} upperThreshold
+ * @returns {Promise<{
+ *  resizedBuffer: Buffer,
+ *  quality: number,
+ *  manipulations: number
+ * }>}
+ */
+const compressToTargetSize = async (
+  buffer,
+  targetFileSize,
+  lowerThreshold,
+  upperThreshold
+) => {
   let low = 0
   let high = 100
-
-  const lowerThreshold = targetFileSize * 0.95
-  const upperThreshold = targetFileSize
-
-  const { width, height } = await sharp(buffer).metadata()
-  const compressed = sharp(buffer)
-  let manipulations = 1
-
-  const x = width ?? 0
-  const y = height ?? 0
-
-  if (x > y && x > 1920) {
-    compressed.resize({
-      width: 1920,
-      height: 1080,
-      fit: 'inside'
-    })
-  } else if (y > x && y > 1920) {
-    compressed.resize({
-      width: 1080,
-      height: 1920,
-      fit: 'inside'
-    })
-  } else {
-    manipulations--
-  }
-
-  compressed.jpeg({ progressive: true })
-  let resizedBuffer = await compressed.toBuffer()
   let quality = 100
+  let manipulations = 1
+  let resizedBuffer = buffer
 
-  if (resizedBuffer.length > upperThreshold) {
+  if (buffer.length > upperThreshold) {
     while (low <= high) {
       manipulations++
       const mid = Math.floor((low + high) / 2)
@@ -64,9 +72,34 @@ export const compress = async (buffer) => {
     }
   }
 
-  const end = Date.now()
+  return { resizedBuffer, quality, manipulations }
+}
 
-  const blob = new Blob([resizedBuffer])
+export const compress = async (buffer) => {
+  const originalSize = buffer.length
+  const start = Date.now()
+  const targetFileSize = 2 * 1024 * 1024 // 2 MB in bytes
+  const lowerThreshold = targetFileSize * minimumThreshold
+  const upperThreshold = targetFileSize
+
+  const { width, height } = await sharp(buffer).metadata()
+  const compressed = resizeImage(buffer, width, height)
+  compressed.jpeg({ progressive: true })
+  const resizedBuffer = await compressed.toBuffer()
+
+  const {
+    resizedBuffer: finalBuffer,
+    quality,
+    manipulations
+  } = await compressToTargetSize(
+    resizedBuffer,
+    targetFileSize,
+    lowerThreshold,
+    upperThreshold
+  )
+
+  const end = Date.now()
+  const blob = new Blob([finalBuffer])
   return {
     file: new File([blob], 'biosecurity-map.jpg'),
     start,
@@ -75,6 +108,6 @@ export const compress = async (buffer) => {
     quality,
     manipulations,
     originalSize,
-    size: resizedBuffer.length
+    size: finalBuffer.length
   }
 }
