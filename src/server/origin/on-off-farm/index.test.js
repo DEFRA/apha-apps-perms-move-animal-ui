@@ -1,4 +1,4 @@
-import { onOffFarm, onOffFarmPage, OnOffFarmPage } from './index.js'
+import { onOffFarmPage, OnOffFarmPage } from './index.js'
 import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-farm.js'
 import { exitPage } from '../exit-page/index.js'
 import { originTypePage } from '../origin-type/index.js'
@@ -42,16 +42,6 @@ describe('OnOffFarmPage', () => {
     expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
   })
 
-  it('should export onOffFarm as a plugin', () => {
-    expect(onOffFarm).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      onOffFarm.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describe('#onOffFarmPage.content', () => {
     describePageSnapshot({
       describes: 'licenceSummaryPage.content',
@@ -82,5 +72,3 @@ describe('OnOffFarmPage.nextPage', () => {
     expect(nextPage).toBe(originTypePage)
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

@@ -1,4 +1,4 @@
-import { originType, originTypePage, OriginTypePage } from './index.js'
+import { originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
@@ -7,7 +7,6 @@ import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
 
 const sectionKey = 'origin'
@@ -45,16 +44,6 @@ describe('OriginTypePage', () => {
 
   it('should export page', () => {
     expect(originTypePage).toBeInstanceOf(OriginTypePage)
-  })
-
-  it('should export originType as a plugin', () => {
-    expect(originType).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      originType.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
   })
 
   describePageSnapshot({
@@ -99,9 +88,9 @@ describe('#OriginPage.nextPage', () => {
 
     it.each(fiftyPercentOriginTypes)(
       `should return 50% warning page for ${fiftyPercentOriginTypes.join(', ')}`,
-      (originType) => {
+      (testOriginType) => {
         const answer = new OriginTypeAnswer(
-          { originType: /** @type {OriginTypeData} */ (originType) },
+          { originType: /** @type {OriginTypeData} */ (testOriginType) },
           context
         )
         const nextPage = page.nextPage(answer, context)
@@ -119,9 +108,9 @@ describe('#OriginPage.nextPage', () => {
 
     it.each(cphOriginTypes)(
       `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
-      (originType) => {
+      (testOriginType) => {
         const answer = new OriginTypeAnswer(
-          { originType: /** @type {OriginTypeData} */ (originType) },
+          { originType: /** @type {OriginTypeData} */ (testOriginType) },
           context
         )
         const nextPage = page.nextPage(answer, context)

@@ -1,4 +1,4 @@
-import { receiveMethod, receiveMethodPage, ReceiveMethodPage } from './index.js'
+import { receiveMethodPage, ReceiveMethodPage } from './index.js'
 import { ReceiveMethodAnswer } from '../../common/model/answer/receiveMethod/receiveMethod.js'
 import { emailAddressPage } from '../email-address/index.js'
 import { postExitPage } from '../postExitPage/index.js'
@@ -63,21 +63,9 @@ describe('ReceiveMethodPage', () => {
     expect(receiveMethodPage).toBeInstanceOf(ReceiveMethodPage)
   })
 
-  it('should export ReceiveMethod as a plugin', () => {
-    expect(receiveMethod).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      receiveMethod.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'DestinationTypePage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */

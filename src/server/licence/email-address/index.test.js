@@ -1,4 +1,4 @@
-import { emailAddress, emailAddressPage, EmailAddressPage } from './index.js'
+import { emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
@@ -49,21 +49,9 @@ describe('EmailAddressPage', () => {
     expect(emailAddressPage).toBeInstanceOf(EmailAddressPage)
   })
 
-  it('should export emailAddress as a plugin', () => {
-    expect(emailAddress).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      emailAddress.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'EmailAddressPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

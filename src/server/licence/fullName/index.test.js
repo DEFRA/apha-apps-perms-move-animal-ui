@@ -1,4 +1,4 @@
-import { fullName, fullNamePage, FullNamePage } from './index.js'
+import { fullNamePage, FullNamePage } from './index.js'
 import { FullNameAnswer } from '../../common/model/answer/fullName/fullName.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
@@ -51,21 +51,9 @@ describe('FullNamePage', () => {
     expect(fullNamePage).toBeInstanceOf(FullNamePage)
   })
 
-  it('should export FullName as a plugin', () => {
-    expect(fullName).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      fullName.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'FullNamePage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

@@ -1,4 +1,4 @@
-import { address, originAddressPage, OriginAddressPage } from './index.js'
+import { originAddressPage, OriginAddressPage } from './index.js'
 import { originSummaryPage } from '~/src/server/origin/summary/index.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
@@ -50,16 +50,6 @@ describe('OriginAddressPage', () => {
     expect(originAddressPage).toBeInstanceOf(OriginAddressPage)
   })
 
-  it('should export address as a plugin', () => {
-    expect(address).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      address.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describe('#originAddressPage.content', () => {
     describePageSnapshot({
       describes: 'licenceSummaryPage.content',
@@ -68,5 +58,3 @@ describe('OriginAddressPage', () => {
     })
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

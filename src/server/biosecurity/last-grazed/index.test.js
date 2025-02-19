@@ -1,7 +1,7 @@
 import { LastGrazedAnswer } from '../../common/model/answer/last-grazed/last-grazed.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
-import { lastGrazed, lastGrazedPage, LastGrazedPage } from './index.js'
+import { lastGrazedPage, LastGrazedPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'How long ago was the field last grazed by cattle?'
@@ -45,21 +45,9 @@ describe('LastGrazedPage', () => {
     expect(lastGrazedPage).toBeInstanceOf(LastGrazedPage)
   })
 
-  it('should export lastGrazed as a plugin', () => {
-    expect(lastGrazed).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      lastGrazed.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'lastGrazedPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

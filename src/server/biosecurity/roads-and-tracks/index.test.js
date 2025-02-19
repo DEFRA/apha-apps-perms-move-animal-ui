@@ -52,5 +52,3 @@ describe('RoadsAndTracksPage', () => {
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
