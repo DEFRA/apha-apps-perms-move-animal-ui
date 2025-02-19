@@ -4,7 +4,7 @@ import { badgersPage } from '../badgers/index.js'
 import { disinfectantDilutionPage, DisinfectantDilutionPage } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'What dilution rate are you using?'
+const question = 'What dilution rate are you using for your disinfectant?'
 const questionKey = 'dilutionRate'
 const view = 'biosecurity/disinfectant-dilution/index'
 const pageUrl = '/biosecurity/disinfectant-dilution'
