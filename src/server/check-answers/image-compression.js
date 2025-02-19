@@ -6,13 +6,13 @@ const minimumThreshold = 0.95
 
 const resizeImage = (buffer, width, height) => {
   const compressed = sharp(buffer)
-  if (width > height || width > 1920) {
+  if (width > height || width > maxLongestEdge) {
     compressed.resize({
       width: maxLongestEdge,
       height: maxShortestEdge,
       fit: 'inside'
     })
-  } else if (height > width && height > 1920) {
+  } else if (height > width && height > maxLongestEdge) {
     compressed.resize({
       width: maxShortestEdge,
       height: maxLongestEdge,
