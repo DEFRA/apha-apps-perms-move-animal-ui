@@ -4,6 +4,8 @@ import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 import { countryPage } from '../country/index.js'
+import { originFarmCphPage } from '../origin-farm-cph/index.js'
+import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -18,16 +20,23 @@ export class OriginTypePage extends QuestionPage {
   Answer = OriginTypeAnswer
 
   /**
-   * @param {AnswerModel} answer
+   * @param {OriginTypeAnswer} answer
    * @param {RawApplicationState} context
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
-    if (answer.value === 'after-import-location') {
+    const isOnFarm = context.origin?.onOffFarm === 'on'
+    if (isOnFarm && answer.value === 'after-import-location') {
       return countryPage
+    }
+    if (isOnFarm && ['market', 'unrestricted-farm'].includes(answer.value)) {
+      return fiftyPercentWarningPage
     }
     if (answer.value === 'other') {
       return exitPagePremisesType
+    }
+    if (isOnFarm) {
+      return originFarmCphPage
     }
     return cphNumberPage
   }

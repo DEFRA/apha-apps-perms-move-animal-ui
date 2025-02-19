@@ -4,6 +4,8 @@ import { cphNumberPage } from '../cph-number/index.js'
 import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { countryPage } from '../country/index.js'
+import { originFarmCphPage } from '../origin-farm-cph/index.js'
+import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
 /** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
@@ -99,7 +101,7 @@ describe('#OriginPage.nextPage', () => {
       (originType) => {
         const answer = new OriginTypeAnswer({ originType }, context)
         const nextPage = page.nextPage(answer, context)
-        expect(nextPage).toBe(cphNumberPage)
+        expect(nextPage).toBe(fiftyPercentWarningPage)
       }
     )
 
@@ -111,7 +113,7 @@ describe('#OriginPage.nextPage', () => {
       (originType) => {
         const answer = new OriginTypeAnswer({ originType }, context)
         const nextPage = page.nextPage(answer, context)
-        expect(nextPage).toBe(cphNumberPage)
+        expect(nextPage).toBe(originFarmCphPage)
       }
     )
 
