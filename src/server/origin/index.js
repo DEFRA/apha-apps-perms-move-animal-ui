@@ -5,6 +5,7 @@ import { originSummary } from './summary/index.js'
 import { exit } from './exit-page/index.js'
 import { originType } from './origin-type/index.js'
 import { premisesType } from './premises-type-exit-page/index.js'
+import { originFarmCph } from './origin-farm-cph/index.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -22,6 +23,7 @@ export const origin = {
         onOffFarm,
         originType,
         cphNumber,
+        originFarmCph,
         address,
         originSummary,
         exit,

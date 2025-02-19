@@ -22,7 +22,8 @@ export class QuestionPageController extends GenericPageController {
     return {
       plugin: {
         name:
-          this.pluginName ?? `${this.page.sectionKey}-${this.page.questionKey}`,
+          this.pluginName ??
+          `${this.page.sectionKey}-${this.page.constructor.name}`,
 
         /** @param {Server} server */
         register: (server) => {
