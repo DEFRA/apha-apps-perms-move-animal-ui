@@ -3,7 +3,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'afu' | 'other'} OriginTypeData
+ * export @typedef {'tb-restricted-farm' | 'afu' | 'other' | 'market' | 'unrestricted-farm' | 'zoo' | 'lab' | 'after-import-location' } OriginTypeData
  * @typedef {{ originType: OriginTypeData }} OriginTypePayload
  */
 
