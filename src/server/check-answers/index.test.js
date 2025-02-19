@@ -157,7 +157,7 @@ const emailContent = [
   testPeopleDisinfection,
   '## What disinfectant are you using?',
   testDisinfectant,
-  '## What dilution rate are you using?',
+  '## What dilution rate are you using for your disinfectant?',
   testDilutionRate,
   '## Which measures are you taking to reduce contamination from wildlife?',
   testBadgersMeasuresLabel,

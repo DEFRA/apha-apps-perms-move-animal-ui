@@ -244,13 +244,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What dilution rate are you using?
+      What dilution rate are you using for your disinfectant?
     </dt>
     <dd class="govuk-summary-list__value">
       15
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/disinfectant-dilution?redirect_uri=/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> What dilution rate are you using?</span></a>
+      <a class="govuk-link" href="/biosecurity/disinfectant-dilution?redirect_uri=/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> What dilution rate are you using for your disinfectant?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

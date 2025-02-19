@@ -40,7 +40,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="dilutionRate">
-    What dilution rate are you using?
+    What dilution rate are you using for your disinfectant?
   </label>
   <div id="dilutionRate-hint" class="govuk-hint">
     For example, 15
