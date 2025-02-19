@@ -3,6 +3,7 @@ import { OnOffFarmAnswer } from '../../common/model/answer/on-off-farm/on-off-fa
 import { exitPage } from '../exit-page/index.js'
 import { originTypePage } from '../origin-type/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 const sectionKey = 'origin'
 const question = 'Are you moving the animals on or off your farm or premises?'
@@ -10,13 +11,9 @@ const questionKey = 'onOffFarm'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/to-or-from-own-premises'
 
+const page = new OnOffFarmPage()
+
 describe('OnOffFarmPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new OnOffFarmPage()
-  })
-
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -41,18 +38,6 @@ describe('OnOffFarmPage', () => {
     expect(page.Answer).toBe(OnOffFarmAnswer)
   })
 
-  it('nextPage should return exitPage when answer is "on"', () => {
-    const answer = { value: 'on' }
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(exitPage)
-  })
-
-  it('nextPage should return originTypePage when answer is "off"', () => {
-    const answer = { value: 'off' }
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(originTypePage)
-  })
-
   it('should export page', () => {
     expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
   })
@@ -73,6 +58,28 @@ describe('OnOffFarmPage', () => {
       it: 'should render expected response and content',
       pageUrl
     })
+  })
+})
+
+describe('OnOffFarmPage.nextPage', () => {
+  it('should return exitPage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is false', () => {
+    spyOnConfig('featureFlags', { biosecurity: false })
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(exitPage)
+  })
+
+  it('should return originTypePage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is true', () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(originTypePage)
+  })
+
+  it('should return originTypePage when answer is "off"', () => {
+    const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(originTypePage)
   })
 })
 

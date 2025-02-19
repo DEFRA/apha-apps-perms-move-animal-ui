@@ -26,12 +26,14 @@ const completeOriginTask = async ({
   await waitForPagePath(taskListPage.pagePath)
   await taskListPage.selectMovementOrigin()
   await waitForPagePath(toFromFarmPage.pagePath)
-  await toFromFarmPage.selectOffFarmAndContinue()
-  await waitForPagePath(originTypePage.pagePath)
-  await originTypePage.selectTBRestrictedFarmAndContinue()
-  await waitForPagePath(parishHoldingNumberPage.pagePath)
-  await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(cphNumber)
-  await waitForPagePath(newAddressPage.pagePath)
+  await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
+  await originTypePage.selectTBRestrictedFarmAndContinue(
+    parishHoldingNumberPage
+  )
+  await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
+    cphNumber,
+    newAddressPage
+  )
   await newAddressPage.fillFormFieldsAndSubmit({
     lineOne,
     townOrCity,

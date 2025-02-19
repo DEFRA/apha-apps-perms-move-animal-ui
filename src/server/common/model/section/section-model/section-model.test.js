@@ -7,6 +7,7 @@ import { OriginAddressPage } from '~/src/server/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
 import { OriginTypePage } from '~/src/server/origin/origin-type/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
+import { spyOnConfig } from '../../../test-helpers/config.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
@@ -57,6 +58,7 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 
   it('should short-circuit on an exit page', () => {
+    spyOnConfig('featureFlags', { biosecurity: false })
     const origin = OriginSection.fromState({ origin: exitState })
     const pageAnswers = origin.questionPageAnswers
 

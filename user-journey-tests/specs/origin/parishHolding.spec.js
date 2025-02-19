@@ -39,12 +39,9 @@ describe('Paris holding page test', () => {
 
   it('Should verify that input automatically trims whitespace', async () => {
     await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-      ' 12 / 345 / 6789 '
+      ' 12 / 345 / 6789 ',
+      newAddressPage
     )
-    await expect(
-      ParishHoldingNumberPage.cphInputFieldError()
-    ).not.toBeDisplayed()
-    await waitForPagePath(newAddressPage.pagePath)
     await ParishHoldingNumberPage.selectBackLink()
     await browser.refresh()
     await ParishHoldingNumberPage.verifyPageHeadingAndTitle()
@@ -61,7 +58,8 @@ describe('Paris holding page test', () => {
 
   it('Should input correct number format and continue without producing an error', async () => {
     await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-      '12/345/6789'
+      '12/345/6789',
+      newAddressPage
     )
     await expect(
       ParishHoldingNumberPage.cphInputFieldError()
@@ -72,12 +70,9 @@ describe('Paris holding page test', () => {
   it('Should choose an option and check its maintained', async () => {
     const validInput = '54/321/1234'
     await ParishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-      validInput
+      validInput,
+      newAddressPage
     )
-    await expect(
-      ParishHoldingNumberPage.cphInputFieldError()
-    ).not.toBeDisplayed()
-    await waitForPagePath(newAddressPage.pagePath)
     await ParishHoldingNumberPage.selectBackLink()
 
     await browser.refresh()

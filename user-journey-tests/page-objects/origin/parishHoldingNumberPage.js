@@ -30,9 +30,12 @@ class ParishHoldingNumberPage extends Page {
     return super.getErrorLink(cphId)
   }
 
-  async inputParishHoldingNumberAndContinue(text) {
+  async inputParishHoldingNumberAndContinue(text, nextPage) {
     await page.typeIntoElement(this.cphNumberInput(), text)
     await super.selectContinue()
+    if (nextPage) {
+      await page.waitForPagePath(nextPage.pagePath)
+    }
   }
 
   async parishHoldingErrorTest(textInput, errorMessage) {

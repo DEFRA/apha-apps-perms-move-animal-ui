@@ -1,6 +1,7 @@
 import { $ } from '@wdio/globals'
 
 import { Page } from '../page.js'
+import { waitForPagePath } from '../../helpers/page.js'
 
 const pageHeadingAndTitle =
   'Are you moving the animals on or off your farm or premises?'
@@ -27,12 +28,14 @@ class ToFromFarmPage extends Page {
     return $('#onOffFarm-error')
   }
 
-  async selectOnFarmAndContinue() {
+  async selectOnFarmAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.onThefarmRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectOffFarmAndContinue() {
+  async selectOffFarmAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.offThefarmRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
   async toFromFarmErrorTest() {

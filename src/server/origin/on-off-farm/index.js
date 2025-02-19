@@ -8,6 +8,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { exitPage } from '~/src/server/origin/exit-page/index.js'
 import { originTypePage } from '../origin-type/index.js'
+import { config } from '~/src/config/config.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -25,7 +26,7 @@ export class OnOffFarmPage extends QuestionPage {
   /** @param {AnswerModel} answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
-    if (answer.value === 'on') {
+    if (answer.value === 'on' && !config.get('featureFlags').biosecurity) {
       return exitPage
     }
     return originTypePage
