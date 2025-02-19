@@ -1,3 +1,5 @@
+import { GetObjectCommand } from '@aws-sdk/client-s3'
+import { config } from '~/src/config/config.js'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
@@ -6,13 +8,14 @@ import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
-
-const checkAnswersUrlPath = '/submit/check-answers'
+import { compress } from './image-compression.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
  * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
  */
+
+const checkAnswersUrlPath = '/submit/check-answers'
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -71,7 +74,26 @@ export class SubmitPageController extends QuestionPageController {
     super(new SubmitSummaryPage())
   }
 
-  handleGet(req, h) {
+  async handleGet(req, h) {
+    const obj = await req.s3.send(
+      new GetObjectCommand({
+        Bucket: config.get('fileUpload').bucket ?? '',
+        Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
+          .s3Key
+      })
+    )
+
+    const chunks = []
+    for await (const chunk of obj.Body) {
+      chunks.push(chunk)
+    }
+    const buffer = Buffer.concat(chunks)
+
+    const { duration, quality, manipulations } = await compress(buffer)
+    req.logger.info(
+      `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
+    )
+
     const { isValid } = ApplicationModel.fromState(
       new StateManager(req).toState()
     ).validate()
