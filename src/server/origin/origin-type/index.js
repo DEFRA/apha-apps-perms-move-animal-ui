@@ -26,17 +26,19 @@ export class OriginTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
     const isOnFarm = context.origin?.onOffFarm === 'on'
-    if (isOnFarm && answer.value === 'after-import-location') {
-      return countryPage
+
+    if (isOnFarm) {
+      if (answer.value === 'after-import-location') {
+        return countryPage
+      }
+      if (['market', 'unrestricted-farm'].includes(answer.value)) {
+        return fiftyPercentWarningPage
+      }
+      return originFarmCphPage
     }
-    if (isOnFarm && ['market', 'unrestricted-farm'].includes(answer.value)) {
-      return fiftyPercentWarningPage
-    }
+
     if (answer.value === 'other') {
       return exitPagePremisesType
-    }
-    if (isOnFarm) {
-      return originFarmCphPage
     }
     return cphNumberPage
   }

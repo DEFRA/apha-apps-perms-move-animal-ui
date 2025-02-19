@@ -93,25 +93,37 @@ describe('#OriginPage.nextPage', () => {
   describe('On to the farm', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
-    /** @type {OriginTypeData[]} */
-    const fiftyPercentOriginTypes = ['market', 'unrestricted-farm']
+    const fiftyPercentOriginTypes = ['market', 'unrestricted-farm'].map((v) => [
+      v
+    ])
 
-    it.each([fiftyPercentOriginTypes])(
+    it.each(fiftyPercentOriginTypes)(
       `should return 50% warning page for ${fiftyPercentOriginTypes.join(', ')}`,
       (originType) => {
-        const answer = new OriginTypeAnswer({ originType }, context)
+        const answer = new OriginTypeAnswer(
+          { originType: /** @type {OriginTypeData} */ (originType) },
+          context
+        )
         const nextPage = page.nextPage(answer, context)
         expect(nextPage).toBe(fiftyPercentWarningPage)
       }
     )
 
-    /** @type {OriginTypeData[]} */
-    const cphOriginTypes = ['tb-restricted-farm', 'afu', 'zoo', 'lab', 'other']
+    const cphOriginTypes = [
+      'tb-restricted-farm',
+      'afu',
+      'zoo',
+      'lab',
+      'other'
+    ].map((v) => [v])
 
-    it.each([cphOriginTypes])(
+    it.each(cphOriginTypes)(
       `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
       (originType) => {
-        const answer = new OriginTypeAnswer({ originType }, context)
+        const answer = new OriginTypeAnswer(
+          { originType: /** @type {OriginTypeData} */ (originType) },
+          context
+        )
         const nextPage = page.nextPage(answer, context)
         expect(nextPage).toBe(originFarmCphPage)
       }
