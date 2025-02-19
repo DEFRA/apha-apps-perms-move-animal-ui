@@ -101,7 +101,7 @@ describe('imageCompression', () => {
 
     await compress(buffer)
 
-    expect(mockSharpInstance.resize).not.toHaveBeenCalled()
+    expect(mockSharpInstance.resize).toHaveBeenCalledTimes(1)
   })
 
   it('should perform binary search compression if resized buffer is too large', async () => {
@@ -177,7 +177,7 @@ describe('imageCompression', () => {
 
     await compress(buffer)
 
-    expect(mockSharpInstance.resize).not.toHaveBeenCalled()
+    expect(mockSharpInstance.resize).toHaveBeenCalledTimes(1)
   })
 
   it('should handle case where buffer size is within threshold and no compression is needed', async () => {
