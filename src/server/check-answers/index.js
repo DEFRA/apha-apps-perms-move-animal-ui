@@ -87,24 +87,26 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   async handlePost(req, h) {
-    const obj = await req.s3.send(
-      new GetObjectCommand({
-        Bucket: config.get('fileUpload').bucket ?? '',
-        Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
-          .s3Key
-      })
-    )
+    if (config.get('featureFlags').biosecurity) {
+      const obj = await req.s3.send(
+        new GetObjectCommand({
+          Bucket: config.get('fileUpload').bucket ?? '',
+          Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
+            .s3Key
+        })
+      )
 
-    const chunks = []
-    for await (const chunk of obj.Body) {
-      chunks.push(chunk)
+      const chunks = []
+      for await (const chunk of obj.Body) {
+        chunks.push(chunk)
+      }
+      const buffer = Buffer.concat(chunks)
+
+      const { duration, quality, manipulations } = await compress(buffer)
+      req.logger.info(
+        `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
+      )
     }
-    const buffer = Buffer.concat(chunks)
-
-    const { duration, quality, manipulations } = await compress(buffer)
-    req.logger.info(
-      `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
-    )
 
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
