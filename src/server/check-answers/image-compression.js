@@ -18,6 +18,8 @@ const resizeImage = (buffer, width, height) => {
       height: maxLongestEdge,
       fit: 'inside'
     })
+  } else {
+    compressed.resize({ fit: 'inside' })
   }
   return compressed
 }
