@@ -3,6 +3,7 @@ name: Browserstack extended tests (mobile)
 on:
   schedule:
     - cron: "0 2 * * *" # Runs at 2am
+  workflow_dispatch: 
 
 env:
   AWS_REGION: eu-west-2
