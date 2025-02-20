@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactTbRestrictedFarmPage #ContactTbRestrictedFarmPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You need to contact the TB restricted farm the animals are moving onto</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          When animals are moving onto a TB restricted farm, it is the
+          responsibility of the TB restricted farm to apply for a licence.
+        </p>
+        <p>
+          We need details about their biosecurity practices to process the
+          licence.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;

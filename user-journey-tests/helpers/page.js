@@ -1,5 +1,20 @@
 import { browser } from '@wdio/globals'
 
+export const waitForExpectedRedirectUri = async (pagePath) => {
+  const expectedQueryString = `redirect_uri=/${pagePath}`
+  await browser.waitUntil(
+    async () => {
+      const currentUrl = await browser.getUrl()
+      const currentQueryString = currentUrl.split('?')[1]
+
+      return expectedQueryString === currentQueryString
+    },
+    {
+      timeoutMessage: `Failed to verify page redirect_uri.  Expected: "${pagePath}", but found ${await browser.getUrl()}`
+    }
+  )
+}
+
 export const waitForPagePath = async (path) => {
   const normalizePath = (path) => path.replace(/^\/+|\/+$/g, '') // Remove leading and trailing slashes
 
@@ -68,6 +83,15 @@ export const loadPageAndVerifyTitle = async (path, pageTitle) => {
 
 export const selectLinkAndVerifyTitle = async (linkElement, pageTitle) => {
   await selectElement(linkElement)
+  await verifyPageTitle(pageTitle)
+}
+
+export const selectLinkAndVerifyTitleInNewTab = async (
+  linkElement,
+  pageTitle
+) => {
+  await selectElement(linkElement)
+  await switchToNewTab()
   await verifyPageTitle(pageTitle)
 }
 

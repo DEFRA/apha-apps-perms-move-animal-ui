@@ -32,6 +32,7 @@ services:
       UPLOADER_URL: http://cdp-uploader:7337
       FILE_S3_BUCKET: apha
       FILE_S3_PATH: biosecurity-map
+      S3_ENDPOINT: http://localstack:4566
       CONSUMER_BUCKETS: apha
       MOCK_VIRUS_SCAN_ENABLED: false
       VIRTUAL_HOST: ~^frontend\..*\.sslip\.io
