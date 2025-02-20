@@ -1,7 +1,11 @@
 import { Page } from '../page.js'
 
-class ImportParishPage extends Page {
+const pageHeadingAndTitle = 'What is the address of the UK point of entry?'
+
+class ImportAddressPage extends Page {
   pagePath = 'origin/import-address'
+  pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
 }
 
-export default new ImportParishPage()
+export default new ImportAddressPage()
