@@ -23,6 +23,10 @@ class OriginTypePage extends Page {
     return $('[value="tb-restricted-farm"]')
   }
 
+  get unrestrictedFarmRadio() {
+    return $('[value="unrestricted-farm"]')
+  }
+
   get approvedFinishingUnitRadio() {
     return $('#afu')
   }
@@ -54,13 +58,14 @@ class OriginTypePage extends Page {
   async verifyOffFarmVersion() {
     await waitForElement(this.tbRestrictedFarmRadio, { visible: false })
     await waitForElement(this.approvedFinishingUnitRadio, { visible: false })
+    await waitForElement(this.unrestrictedFarmRadio, { visible: false })
+    await waitForElement(this.zooRadio, { visible: false })
+    await waitForElement(this.labRadio, { visible: false })
     await waitForElement(this.anotherTypeOfPremisesRadio, { visible: false })
   }
 
   async verifyOnFarmVersion() {
     await waitForElement(this.marketRadio, { visible: false })
-    await waitForElement(this.zooRadio, { visible: false })
-    await waitForElement(this.labRadio, { visible: false })
     await waitForElement(this.afterImportRadio, { visible: false })
     await this.verifyOffFarmVersion()
   }
