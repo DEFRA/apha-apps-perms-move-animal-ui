@@ -4,6 +4,40 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
+import path from 'path'
+import { createReadStream } from 'fs'
+
+const mockSend = jest.fn().mockImplementation(() => {
+  const filePath = path.resolve(
+    './src/server/check-answers/example-portrait.jpg'
+  )
+  const fileStream = createReadStream(filePath)
+  return Promise.resolve({
+    Body: fileStream
+  })
+})
+
+jest.mock('@aws-sdk/client-s3', () => {
+  const originalModule = jest.requireActual('@aws-sdk/client-s3')
+  return {
+    ...originalModule,
+    S3Client: jest.fn().mockImplementation(() => ({
+      destroy: jest.fn(),
+      send: mockSend
+    }))
+  }
+})
+
+jest.mock('./image-compression.js', () => ({
+  compress: jest.fn().mockResolvedValue({
+    file: new File([new Blob()], 'biosecurity-map.jpg'),
+    start: 0,
+    end: 0,
+    duration: 0,
+    quality: 0,
+    manipulations: 0
+  })
+}))
 
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
