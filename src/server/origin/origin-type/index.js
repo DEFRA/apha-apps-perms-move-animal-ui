@@ -36,7 +36,9 @@ export class OriginTypePage extends QuestionPage {
         return fiftyPercentWarningPage
       }
       return originFarmCphPage
-    } else if (config.get('featureFlags').biosecurity) {
+    }
+
+    if (config.get('featureFlags').biosecurity) {
       if (answer.value === 'unrestricted-farm') {
         return originContactTbRestrictedFarmPage
       }
