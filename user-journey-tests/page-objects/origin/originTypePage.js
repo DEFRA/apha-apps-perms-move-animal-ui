@@ -90,6 +90,11 @@ class OriginTypePage extends Page {
     await waitForPagePath(nextPage.pagePath)
   }
 
+  async selectUnrestrictedPremisesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.unrestrictedFarmRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
   async selectZooAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.zooRadio)
     await waitForPagePath(nextPage.pagePath)

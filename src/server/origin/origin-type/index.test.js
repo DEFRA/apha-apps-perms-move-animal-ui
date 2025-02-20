@@ -118,7 +118,7 @@ describe('#OriginPage.nextPage', () => {
     })
   })
 
-  describe('On to the farm', () => {
+  describe('On to the farm (biosecurity feature flag on))', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
     const fiftyPercentOriginTypes = ['market', 'unrestricted-farm'].map((v) => [

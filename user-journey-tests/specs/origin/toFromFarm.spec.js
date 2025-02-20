@@ -2,9 +2,6 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
-import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
-import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
-import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 
 describe('To from farm page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -31,20 +28,5 @@ describe('To from farm page test', () => {
     await waitForPagePath(toFromFarmPage.pagePath)
 
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
-  })
-
-  it('Should verify fifty percent page navigation', async () => {
-    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.selectMarketAndContinue(fiftyPercentWarningPage)
-  })
-
-  it('Should verify on farm cph page', async () => {
-    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.selectZooAndContinue(onFarmCPHPage)
-  })
-
-  it('Should verify country page', async () => {
-    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.selectAfterImportAndContinue(originCountryPage)
   })
 })
