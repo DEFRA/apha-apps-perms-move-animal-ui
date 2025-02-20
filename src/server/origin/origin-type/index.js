@@ -8,7 +8,6 @@ import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-/** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 export class OriginTypePage extends QuestionPage {

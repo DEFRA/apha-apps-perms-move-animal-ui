@@ -1,3 +1,4 @@
+import { config } from '~/src/config/config.js'
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfig, RadioButtonConfigFactory} from '../radio-button/radio-button.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -19,10 +20,26 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
-const offFarmOptions = {
+const offFarmOptions = () =>
+  config.get('featureFlags').biosecurity
+    ? offFarmOptionsBiosecurityTrue
+    : offFarmOptionsBiosecurityFalse
+
+const offFarmOptionsBiosecurityFalse = {
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
   other: { label: 'Another type of premises' }
+}
+
+const offFarmOptionsBiosecurityTrue = {
+  'unrestricted-farm': {
+    label: 'Unrestricted farm or premises'
+  },
+  'tb-restricted-farm': tbRestrictedOption,
+  afu: afuOption,
+  zoo: { label: 'Zoo' },
+  lab: { label: 'Laboratory' },
+  other: { label: 'Another origin' }
 }
 
 const onFarmOptions = {
@@ -45,7 +62,7 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfigFactory} */
   static config = (app) => ({
     payloadKey: 'originType',
-    options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions,
+    options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions(),
     errors: {
       emptyOptionText: 'Select where the animals are moving from'
     }
