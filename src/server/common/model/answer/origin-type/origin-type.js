@@ -32,11 +32,11 @@ const offFarmOptionsBiosecurityFalse = {
 }
 
 const offFarmOptionsBiosecurityTrue = {
+  'tb-restricted-farm': tbRestrictedOption,
+  afu: afuOption,
   'unrestricted-farm': {
     label: 'Unrestricted farm or premises'
   },
-  'tb-restricted-farm': tbRestrictedOption,
-  afu: afuOption,
   zoo: { label: 'Zoo' },
   lab: { label: 'Laboratory' },
   other: { label: 'Another origin' }

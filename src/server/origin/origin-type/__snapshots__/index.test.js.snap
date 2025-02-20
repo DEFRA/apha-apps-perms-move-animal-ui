@@ -17,14 +17,8 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="originType" name="originType" type="radio" value="unrestricted-farm">
+        <input class="govuk-radios__input" id="originType" name="originType" type="radio" value="tb-restricted-farm">
         <label class="govuk-label govuk-radios__label" for="originType">
-          Unrestricted farm or premises
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="tb-restricted-farm" name="originType" type="radio" value="tb-restricted-farm">
-        <label class="govuk-label govuk-radios__label" for="tb-restricted-farm">
           TB restricted farm
         </label>
       </div>
@@ -36,6 +30,12 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
         <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
           Including enhanced with grazing (AFUE)
         </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="unrestricted-farm" name="originType" type="radio" value="unrestricted-farm">
+        <label class="govuk-label govuk-radios__label" for="unrestricted-farm">
+          Unrestricted farm or premises
+        </label>
       </div>
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="zoo" name="originType" type="radio" value="zoo">
