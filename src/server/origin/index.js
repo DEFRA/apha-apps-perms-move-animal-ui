@@ -7,6 +7,9 @@ import { originType } from './origin-type/index.js'
 import { premisesType } from './premises-type-exit-page/index.js'
 import { originFarmCph } from './origin-farm-cph/index.js'
 import { originFarmAddress } from './origin-farm-address/index.js'
+import { fiftyPercentWarning } from './fifty-percent-warning/index.js'
+import { country } from './country/index.js'
+import { originContactTbRestrictedFarm } from './contact-tb-restricted-farm/index.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -28,8 +31,11 @@ export const origin = {
         originFarmAddress,
         address,
         originSummary,
+        country,
         exit,
-        premisesType
+        premisesType,
+        fiftyPercentWarning,
+        originContactTbRestrictedFarm
       ])
     }
   }

@@ -1,0 +1,46 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <p>
+        Animals that enter a TB breakdown herd and are later removed as TB
+        reactors or direct contacts before the herd is officially TB-free will
+        receive a 50% reduction in compensation.
+      </p>
+
+      <p>This does not apply if:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          the destination herd is registered to a bovine Tb health scheme.
+          Accreditation from the Cattle Health Certification Standards (CHECS)
+          must be in place before the breakdown began
+        </li>
+        <li>
+          the cattle are moving to any type of approved or licenced finishing
+          unit, or to a TB isolation unit
+        </li>
+      </ul>
+      <p>
+        For more information, read the slaughter and compensation section on the
+        <a
+          target="_blank"
+          href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation"
+          >GOV.UK Bovine TB guidance page</a
+        >
+        (opens in new tab).
+      </p>
+      <form action="{{ continueUrl }}" method="get" novalidate="">
+        <button
+          type="submit"
+          class="govuk-button"
+          data-module="govuk-button"
+          id="continue-button"
+        >
+          Continue
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

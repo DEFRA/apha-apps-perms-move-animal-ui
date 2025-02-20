@@ -2,7 +2,7 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
-import fiftyPercentPage from '../../page-objects/origin/fiftyPercentPage.js'
+import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 
@@ -35,7 +35,7 @@ describe('To from farm page test', () => {
 
   it('Should verify fifty percent page navigation', async () => {
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.selectMarketAndContinue(fiftyPercentPage)
+    await originTypePage.selectMarketAndContinue(fiftyPercentWarningPage)
   })
 
   it('Should verify on farm cph page', async () => {

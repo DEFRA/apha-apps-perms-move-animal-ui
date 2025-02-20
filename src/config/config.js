@@ -261,6 +261,20 @@ export const config = convict({
       env: 'NOTIFY_TIMEOUT'
     }
   },
+  aws: {
+    region: {
+      doc: 'AWS region to use',
+      format: String,
+      default: 'eu-west-2',
+      env: 'AWS_REGION'
+    },
+    s3Endpoint: {
+      doc: 'AWS S3 endpoint',
+      format: String,
+      default: 'http://127.0.0.1:4566',
+      env: 'S3_ENDPOINT'
+    }
+  },
   featureFlags: {
     biosecurity: {
       doc: 'Feature flag to enable biosecurity sections',
