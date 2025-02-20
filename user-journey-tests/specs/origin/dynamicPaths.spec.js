@@ -74,5 +74,14 @@ describe('Check your answers test', () => {
       checkAnswersPage.parishNumberQuestion,
       'What is the County Parish Holding (CPH) number of the UK point of entry?'
     )
+
+    await validateHrefOfElement(
+      checkAnswersPage.changeAddressLink,
+      '/origin/import-address?redirect_uri=/origin/check-answers'
+    )
+    await validateElementVisibleAndText(
+      checkAnswersPage.addressQuestion,
+      'What is the address of the UK point of entry?'
+    )
   })
 })
