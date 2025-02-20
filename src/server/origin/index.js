@@ -5,6 +5,7 @@ import { originSummary } from './summary/index.js'
 import { exit } from './exit-page/index.js'
 import { originType } from './origin-type/index.js'
 import { premisesType } from './premises-type-exit-page/index.js'
+import { originFarmCph } from './origin-farm-cph/index.js'
 import { fiftyPercentWarning } from './fifty-percent-warning/index.js'
 import { originContactTbRestrictedFarm } from './contact-tb-restricted-farm/index.js'
 
@@ -24,6 +25,7 @@ export const origin = {
         onOffFarm,
         originType,
         cphNumber,
+        originFarmCph,
         address,
         originSummary,
         exit,

@@ -1,8 +1,4 @@
-import {
-  destinationType,
-  destinationTypePage,
-  DestinationTypePage
-} from './index.js'
+import { destinationTypePage, DestinationTypePage } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
@@ -76,21 +72,9 @@ describe('DestinationTypePage', () => {
     expect(destinationTypePage).toBeInstanceOf(DestinationTypePage)
   })
 
-  it('should export destinationType as a plugin', () => {
-    expect(destinationType).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      destinationType.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'DestinationTypePage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion, Server } from '@hapi/hapi' */

@@ -1,11 +1,7 @@
 import { ManureAndSlurryAnswer } from '../../common/model/answer/manure-and-slurry/manure-and-slurry.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
-import {
-  manureAndSlurry,
-  manureAndSlurryPage,
-  ManureAndSlurryPage
-} from './index.js'
+import { manureAndSlurryPage, ManureAndSlurryPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
@@ -50,21 +46,9 @@ describe('ManureAndSlurryPage', () => {
     expect(manureAndSlurryPage).toBeInstanceOf(ManureAndSlurryPage)
   })
 
-  it('should export manureAndSlurry as a plugin', () => {
-    expect(manureAndSlurry).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      manureAndSlurry.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'manureAndSlurryPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

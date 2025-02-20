@@ -2,11 +2,7 @@ import { KeptSeparatelyAnswer } from '../../common/model/answer/kept-separately/
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { grazingPage } from '../grazing/index.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
-import {
-  keptSeparately,
-  keptSeparatelyPage,
-  KeptSeparatelyPage
-} from './index.js'
+import { keptSeparatelyPage, KeptSeparatelyPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will you separate the incoming cattle from the resident herd?'
@@ -57,21 +53,9 @@ describe('KeptSeparatelyPage', () => {
     expect(keptSeparatelyPage).toBeInstanceOf(KeptSeparatelyPage)
   })
 
-  it('should export keptSeparately as a plugin', () => {
-    expect(keptSeparately).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      keptSeparately.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'keptSeparatelyPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
 })
-
-/** @import { PluginBase, PluginNameVersion } from '@hapi/hapi' */

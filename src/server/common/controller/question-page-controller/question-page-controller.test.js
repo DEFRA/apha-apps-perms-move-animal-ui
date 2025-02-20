@@ -139,6 +139,12 @@ describe('QuestionPageController', () => {
     await server.stop({ timeout: 0 })
   })
 
+  it('should take the plugin name from the section and class name of the page', () => {
+    expect(/** @type {any} */ (controller.plugin()).plugin.name).toBe(
+      `${sectionKey}-TestPage`
+    )
+  })
+
   describe('GET', () => {
     it('should provide the question page on a GET without any session state', async () => {
       const { payload, statusCode } = await server.inject({

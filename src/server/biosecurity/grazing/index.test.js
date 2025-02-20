@@ -2,7 +2,7 @@ import { GrazingAnswer } from '../../common/model/answer/grazing/grazing.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
-import { grazing, grazingPage, GrazingPage } from './index.js'
+import { grazingPage, GrazingPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will the incoming cattle be grazed?'
@@ -53,16 +53,6 @@ describe('GrazingPage', () => {
     expect(grazingPage).toBeInstanceOf(GrazingPage)
   })
 
-  it('should export grazing as a plugin', () => {
-    expect(grazing).toHaveProperty('plugin')
-    const plugin = /** @type {PluginBase<void> & PluginNameVersion} */ (
-      grazing.plugin
-    )
-    expect(plugin).toHaveProperty('name')
-    expect(plugin.name).toBe(`${sectionKey}-${questionKey}`)
-    expect(plugin).toHaveProperty('register')
-  })
-
   describePageSnapshot({
     describes: 'grazingPage.content',
     it: 'should render expected response and content',
@@ -71,6 +61,5 @@ describe('GrazingPage', () => {
 })
 
 /**
- * @import { PluginBase, PluginNameVersion } from '@hapi/hapi'
  * @import { RadioButtonAnswer } from '../../common/model/answer/radio-button/radio-button.js'
  */
