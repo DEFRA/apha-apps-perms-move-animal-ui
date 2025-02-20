@@ -3,7 +3,6 @@ import { browser, expect } from '@wdio/globals'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import { loadPageAndVerifyTitle, waitForPagePath } from '../../helpers/page.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
-import originTypeExitPage from '../../page-objects/origin/originTypeExitPage.js'
 
 describe('origin type page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -34,9 +33,8 @@ describe('origin type page test', () => {
 
   it('Should select another type of premises and continue', async () => {
     await originTypePage.selectAnotherTypeOfPremisesAndContinue(
-      originTypeExitPage
+      parishHoldingNumberPage
     )
-    await waitForPagePath(originTypeExitPage.pagePath)
   })
 
   it('Should choose an option and check its maintained', async () => {
