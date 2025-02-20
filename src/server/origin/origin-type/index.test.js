@@ -6,6 +6,8 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
+import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
 
@@ -54,8 +56,10 @@ describe('OriginTypePage', () => {
 })
 
 describe('#OriginPage.nextPage', () => {
-  describe('Off the farm', () => {
+  describe('Off the farm (biosecurity feature flag off)', () => {
     const context = { origin: { onOffFarm: 'off' } }
+
+    beforeEach(() => spyOnConfig('featureFlags', { biosecurity: false }))
 
     it('should return cphNumberPage when answer is "tb-restricted-farm"', () => {
       const answer = new OriginTypeAnswer(
@@ -79,7 +83,42 @@ describe('#OriginPage.nextPage', () => {
     })
   })
 
-  describe('On to the farm', () => {
+  describe('Off the farm (biosecurity feature flag on)', () => {
+    const context = { origin: { onOffFarm: 'off' } }
+
+    beforeEach(() => spyOnConfig('featureFlags', { biosecurity: true }))
+
+    const cphOriginTypes = [
+      'tb-restricted-farm',
+      'afu',
+      'zoo',
+      'lab',
+      'other'
+    ].map((v) => [v])
+
+    it.each(cphOriginTypes)(
+      `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
+      (originType) => {
+        const answer = new OriginTypeAnswer(
+          { originType: /** @type {OriginTypeData} */ (originType) },
+          context
+        )
+        const nextPage = page.nextPage(answer, context)
+        expect(nextPage).toBe(cphNumberPage)
+      }
+    )
+
+    it('should return contact tb restricted farm when answer is "unrestricted-farm"', () => {
+      const answer = new OriginTypeAnswer(
+        { originType: 'unrestricted-farm' },
+        context
+      )
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(originContactTbRestrictedFarmPage)
+    })
+  })
+
+  describe('On to the farm (biosecurity feature flag on))', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
     const fiftyPercentOriginTypes = ['market', 'unrestricted-farm'].map((v) => [
@@ -107,7 +146,7 @@ describe('#OriginPage.nextPage', () => {
     ].map((v) => [v])
 
     it.each(cphOriginTypes)(
-      `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
+      `should return originFarmCphPage for ${cphOriginTypes.join(', ')}`,
       (testOriginType) => {
         const answer = new OriginTypeAnswer(
           { originType: /** @type {OriginTypeData} */ (testOriginType) },

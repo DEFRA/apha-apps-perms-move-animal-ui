@@ -6,9 +6,10 @@ import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
+import { config } from '~/src/config/config.js'
+import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-/** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 export class OriginTypePage extends QuestionPage {
@@ -35,6 +36,13 @@ export class OriginTypePage extends QuestionPage {
         return fiftyPercentWarningPage
       }
       return originFarmCphPage
+    }
+
+    if (config.get('featureFlags').biosecurity) {
+      if (answer.value === 'unrestricted-farm') {
+        return originContactTbRestrictedFarmPage
+      }
+      return cphNumberPage
     }
 
     if (answer.value === 'other') {
