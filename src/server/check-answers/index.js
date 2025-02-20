@@ -132,13 +132,6 @@ export class SubmitPageController extends QuestionPageController {
         content: emailContent
       }
 
-      // if (config.get('featureFlags').biosecurity) {
-      //   notifyProps.file = {
-      //     file: _check_and_encode_file(fileData, 2), //base64 string
-      //     filename: 'biosecurity-map.jpg'
-      //   }
-      // }
-
       await sendNotification(notifyProps)
 
       return Promise.resolve(super.handlePost(req, h)).finally(() =>
