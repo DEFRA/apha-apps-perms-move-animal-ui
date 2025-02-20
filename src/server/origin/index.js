@@ -11,6 +11,7 @@ import { fiftyPercentWarning } from './fifty-percent-warning/index.js'
 import { country } from './country/index.js'
 import { originContactTbRestrictedFarm } from './contact-tb-restricted-farm/index.js'
 import { importCph } from './import-cph/index.js'
+import { importAddress } from './import-address/index.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -31,6 +32,7 @@ export const origin = {
         originFarmCph,
         importCph,
         originFarmAddress,
+        importAddress,
         address,
         originSummary,
         country,
