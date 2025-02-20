@@ -23,10 +23,6 @@ class OriginTypePage extends Page {
     return $('[value="tb-restricted-farm"]')
   }
 
-  get unrestrictedFarmRadio() {
-    return $('[value="unrestricted-farm"]')
-  }
-
   get approvedFinishingUnitRadio() {
     return $('#afu')
   }
