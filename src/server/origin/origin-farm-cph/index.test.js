@@ -1,20 +1,21 @@
-import { cphNumberPage, CphNumberPage } from './index.js'
+import { originFarmCphPage, OriginFarmCphPage } from './index.js'
 import { CphNumberAnswer } from '../../common/model/answer/cph-number/cph-number.js'
-import { originAddressPage } from '../address/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { cphNumberPage } from '../cph-number/index.js'
+import { originFarmAddressPage } from '../origin-farm-address/index.js'
 
 const sectionKey = 'origin'
 const question =
-  'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?'
 const questionKey = 'cphNumber'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/origin/cph-number'
+const pageUrl = '/origin/origin-farm-cph'
 
-describe('CphNumberPage', () => {
+describe('OriginFarmCph', () => {
   let page
 
   beforeEach(() => {
-    page = new CphNumberPage()
+    page = new OriginFarmCphPage()
   })
 
   it('should have the correct urlPath', () => {
@@ -33,6 +34,11 @@ describe('CphNumberPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should share a question key with CphNumberPage, since they control the sae data', () => {
+    expect(page.sectionKey).toBe(cphNumberPage.sectionKey)
+    expect(page.questionKey).toBe(cphNumberPage.questionKey)
+  })
+
   it('should have the correct view', () => {
     expect(page.view).toBe(view)
   })
@@ -43,18 +49,16 @@ describe('CphNumberPage', () => {
 
   it('nextPage should return address page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(originAddressPage)
+    expect(nextPage).toBe(originFarmAddressPage)
   })
 
   it('should export page', () => {
-    expect(cphNumberPage).toBeInstanceOf(CphNumberPage)
+    expect(originFarmCphPage).toBeInstanceOf(OriginFarmCphPage)
   })
+})
 
-  describe('#cphNumberPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
-  })
+describePageSnapshot({
+  describes: '#OriginFarmCph.content',
+  it: 'should render expected response and content',
+  pageUrl
 })

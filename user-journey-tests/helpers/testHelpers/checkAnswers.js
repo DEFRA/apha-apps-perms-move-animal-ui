@@ -23,6 +23,33 @@ export const validateOnOffFarm = async (changeLink, valueElement, nextPage) => {
   await validateElementVisibleAndText(valueElement, 'Off the farm or premises')
 }
 
+export const changeOnOffFarmAnswer = async (
+  changeLink,
+  currentSelection,
+  valueElement,
+  nextPage
+) => {
+  await selectElement(changeLink)
+
+  if (currentSelection === 'off') {
+    await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
+    await toFromFarmPage.selectOnFarmAndContinue(nextPage)
+
+    await validateElementVisibleAndText(
+      valueElement,
+      'On to the farm or premises'
+    )
+  } else {
+    await expect(toFromFarmPage.onThefarmRadio).toBeSelected()
+    await toFromFarmPage.selectOffFarmAndContinue(nextPage)
+
+    await validateElementVisibleAndText(
+      valueElement,
+      'Off the farm or premises'
+    )
+  }
+}
+
 export const validateOriginType = async (
   changeLink,
   valueElement,

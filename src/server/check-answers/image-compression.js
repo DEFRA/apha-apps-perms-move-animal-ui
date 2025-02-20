@@ -102,9 +102,9 @@ export const compress = async (buffer) => {
   )
 
   const end = Date.now()
-  const blob = new Blob([finalBuffer])
+
   return {
-    file: new File([blob], 'biosecurity-map.jpg'),
+    file: finalBuffer,
     start,
     end,
     duration: end - start,

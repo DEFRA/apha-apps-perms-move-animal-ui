@@ -41,6 +41,23 @@ class OriginCheckAnswersPage extends Page {
   get addressValue() {
     return $$('.govuk-summary-list__value')[3]
   }
+
+  // Question values
+  get onOffFarmQuestion() {
+    return $$('.govuk-summary-list__key')[0]
+  }
+
+  get originTypeQuestion() {
+    return $$('.govuk-summary-list__key')[1]
+  }
+
+  get parishNumberQuestion() {
+    return $$('.govuk-summary-list__key')[2]
+  }
+
+  get addressQuestion() {
+    return $$('.govuk-summary-list__key')[3]
+  }
 }
 
 export default new OriginCheckAnswersPage()
