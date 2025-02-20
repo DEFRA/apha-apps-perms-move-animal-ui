@@ -103,7 +103,7 @@ export class SubmitPageController extends QuestionPageController {
       const buffer = Buffer.concat(chunks)
 
       const { duration, quality, manipulations } = await compress(buffer)
-      req.logger.info(
+      this.logger.info(
         `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
       )
     }
