@@ -40,5 +40,14 @@ describe('Check your answers test', () => {
       checkAnswersPage.parishNumberQuestion,
       'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?'
     )
+
+    await validateHrefOfElement(
+      checkAnswersPage.changeAddressLink,
+      '/origin/origin-farm-address?redirect_uri=/origin/check-answers'
+    )
+    await validateElementVisibleAndText(
+      checkAnswersPage.addressQuestion,
+      'What is the address of the farm or premises where the animals are moving off?'
+    )
   })
 })
