@@ -66,8 +66,6 @@ describe('Check your answers test', () => {
 
     await originCountryPage.inputTextAndContinue('Algeria')
 
-    browser.debug()
-
     await validateHrefOfElement(
       checkAnswersPage.changeParishNumberLink,
       '/origin/import-cph?redirect_uri=/origin/check-answers'
