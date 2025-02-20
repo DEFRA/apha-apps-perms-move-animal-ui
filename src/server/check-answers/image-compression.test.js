@@ -39,8 +39,7 @@ describe('imageCompression', () => {
     const result = await compress(buffer)
 
     expect(result).toHaveProperty('file')
-    expect(result.file).toBeInstanceOf(File)
-    expect(result.file.name).toBe('biosecurity-map.jpg')
+    expect(result.file).toBeInstanceOf(Buffer)
     expect(result).toHaveProperty('start')
     expect(result).toHaveProperty('end')
     expect(result).toHaveProperty('duration')
