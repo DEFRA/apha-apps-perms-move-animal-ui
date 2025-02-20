@@ -25,9 +25,12 @@ class OriginCountryPage extends Page {
     return super.getErrorLink(id)
   }
 
-  async inputTextAndContinue(text) {
+  async inputTextAndContinue(text, nextPage) {
     await page.typeIntoElement(this.input(), text)
     await super.selectContinue()
+    if (nextPage) {
+      await page.waitForPagePath(nextPage.pagePath)
+    }
   }
 
   async inputErrorTest(textInput, errorMessage) {

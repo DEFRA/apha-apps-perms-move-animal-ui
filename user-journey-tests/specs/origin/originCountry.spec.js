@@ -1,6 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
+import importParishPage from '../../page-objects/origin/importParishPage.js'
 
 describe('Country of import test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -21,7 +22,7 @@ describe('Country of import test', () => {
   })
 
   it('Should input country and continue without producing an error', async () => {
-    await originCountryPage.inputTextAndContinue('France')
+    await originCountryPage.inputTextAndContinue('France', importParishPage)
     await expect(originCountryPage.fieldError()).not.toBeDisplayed()
     await expect(originCountryPage.errorSummary).not.toBeDisplayed()
   })
