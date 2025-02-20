@@ -30,7 +30,7 @@ jest.mock('@aws-sdk/client-s3', () => {
 
 jest.mock('./image-compression.js', () => ({
   compress: jest.fn().mockResolvedValue({
-    file: new File([new Blob()], 'biosecurity-map.jpg'),
+    file: Buffer.from(''),
     start: 0,
     end: 0,
     duration: 0,
