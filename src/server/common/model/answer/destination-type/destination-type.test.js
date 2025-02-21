@@ -1,4 +1,3 @@
-import { spyOnConfig } from '../../../test-helpers/config.js'
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { DestinationTypeAnswer } from './destination-type.js'
 /** @import {DestinationTypePayload} from './destination-type.js' */

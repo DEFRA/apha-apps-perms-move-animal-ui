@@ -4,9 +4,18 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { anotherDestinationPage } from '~/src/server/destination/another-destination/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
+import { ownFarmDestinationCphPage } from '../own-farm-destination-cph/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
+/** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
+
+const offFarmNextPageMapping = {
+  slaughter: destinationGeneralLicencePage,
+  'dedicated-sale': destinationSummaryPage,
+  afu: destinationSummaryPage,
+  other: anotherDestinationPage
+}
 
 export class DestinationTypePage extends QuestionPage {
   urlPath = '/destination/type-of-destination'
@@ -16,16 +25,17 @@ export class DestinationTypePage extends QuestionPage {
 
   Answer = DestinationTypeAnswer
 
-  /** @param {AnswerModel} answer */
+  /**
+   * @param {AnswerModel} answer
+   * @param {RawApplicationState} context
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(answer) {
-    const nextPageMapping = {
-      slaughter: destinationGeneralLicencePage,
-      'dedicated-sale': destinationSummaryPage,
-      afu: destinationSummaryPage,
-      other: anotherDestinationPage
+  nextPage(answer, context) {
+    if (context.origin?.onOffFarm === 'on') {
+      return ownFarmDestinationCphPage
+    } else {
+      return offFarmNextPageMapping[answer.value] ?? anotherDestinationPage
     }
-    return nextPageMapping[answer.value] ?? anotherDestinationPage
   }
 
   /** @param {AnswerErrors} errors */
