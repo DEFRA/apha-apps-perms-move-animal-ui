@@ -14,7 +14,6 @@ const pageUrl = '/destination/type-of-destination'
 const page = new DestinationTypePage()
 
 describe('DestinationTypePage', () => {
-
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -58,7 +57,9 @@ describe('DestinationTypePage.nextPage', () => {
   })
 
   it('nextPage should return exit page when answer is "dedicated-sale"', () => {
-    const answer = new DestinationTypeAnswer({ destinationType: 'dedicated-sale' })
+    const answer = new DestinationTypeAnswer({
+      destinationType: 'dedicated-sale'
+    })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(destinationSummaryPage)
   })
@@ -75,4 +76,3 @@ describe('DestinationTypePage.nextPage', () => {
     expect(nextPage).toBe(anotherDestinationPage)
   })
 })
-
