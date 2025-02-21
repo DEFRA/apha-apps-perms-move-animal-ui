@@ -50,6 +50,11 @@ export class BiosecurityMapAnswer extends AnswerModel {
     return html
   }
 
+  get emailHtml() {
+    const emailHtml = ''
+    return emailHtml
+  }
+
   /**
    * @returns { BiosecurityMapData }
    */
