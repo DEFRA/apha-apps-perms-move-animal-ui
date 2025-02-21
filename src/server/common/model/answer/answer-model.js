@@ -74,6 +74,10 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
+  get emailHtml() {
+    return this.html
+  }
+
   /**
    * @param {AnswerViewModelOptions} _options
    */

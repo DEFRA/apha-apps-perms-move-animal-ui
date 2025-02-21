@@ -87,27 +87,6 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   async handlePost(req, h) {
-    if (config.get('featureFlags').biosecurity) {
-      const obj = await req.s3.send(
-        new GetObjectCommand({
-          Bucket: config.get('fileUpload').bucket ?? '',
-          Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
-            .s3Key
-        })
-      )
-
-      const chunks = []
-      for await (const chunk of obj.Body) {
-        chunks.push(chunk)
-      }
-      const buffer = Buffer.concat(chunks)
-
-      const { duration, quality, manipulations } = await compress(buffer)
-      this.logger.info(
-        `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
-      )
-    }
-
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
@@ -121,10 +100,12 @@ export class SubmitPageController extends QuestionPageController {
     if (isValidPage && isValidApplication) {
       const emailContent = Object.values(application.tasks)
         .flatMap(({ questionPageAnswers }) =>
-          questionPageAnswers.map(
-            ({ page, answer }) =>
-              `## ${page.question}\n${answer.html.replace(/<br \/>/g, '\n')}`
-          )
+          questionPageAnswers
+            .filter(({ page }) => !page.isInterstitial)
+            .map(
+              ({ page, answer }) =>
+                `## ${page.question}\n${answer.emailHtml.replace(/<br \/>/g, '\n')}`
+            )
         )
         .join('\n')
 
@@ -132,11 +113,43 @@ export class SubmitPageController extends QuestionPageController {
         content: emailContent
       }
 
+      if (config.get('featureFlags').biosecurity) {
+        const obj = await req.s3.send(
+          new GetObjectCommand({
+            Bucket: config.get('fileUpload').bucket ?? '',
+            Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
+              .s3Key
+          })
+        )
+
+        const chunks = []
+        for await (const chunk of obj.Body) {
+          chunks.push(chunk)
+        }
+        const buffer = Buffer.concat(chunks)
+
+        const { duration, quality, manipulations, file } =
+          await compress(buffer)
+        this.logger.info(
+          `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
+        )
+
+        const { fileRetention, confirmDownloadConfirmation } =
+          config.get('notify')
+
+        notifyProps.link_to_file = {
+          file: file.toString('base64'),
+          filename: 'Biosecurity-map.jpg',
+          confirm_email_before_download: confirmDownloadConfirmation,
+          retention_period: fileRetention
+        }
+      }
+
       await sendNotification(notifyProps)
 
-      return Promise.resolve(super.handlePost(req, h)).finally(() =>
+      return Promise.resolve(super.handlePost(req, h)).finally(() => {
         req.yar.reset()
-      )
+      })
     }
 
     if (!isValidApplication) {

@@ -56,13 +56,19 @@ export class PageController extends GenericPageController {
   }
 
   handleGet(req, h, opts = {}) {
-    return h.view(this.page.view, {
+    const response = h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
       ...this.page.viewProps(req),
       ...opts
     })
+
+    if (this.page instanceof ExitPage) {
+      response.header('X-Exit-Page', `true; ${this.page.urlPath}`)
+    }
+
+    return response
   }
 
   handlePost(req, h) {

@@ -30,7 +30,7 @@ jest.mock('@aws-sdk/client-s3', () => {
 
 jest.mock('./image-compression.js', () => ({
   compress: jest.fn().mockResolvedValue({
-    file: Buffer.from(''),
+    file: Buffer.from('A STANDARD TEST BUFFER'),
     start: 0,
     end: 0,
     duration: 0,
@@ -196,9 +196,7 @@ const emailContent = [
   '## Which measures are you taking to reduce contamination from wildlife?',
   testBadgersMeasuresLabel,
   '## Upload a biosecurity map',
-  'Map uploaded',
-  '## undefined',
-  'Map uploaded'
+  ''
 ].join('\n')
 
 describe('#CheckAnswers', () => {
@@ -400,6 +398,15 @@ describe('#CheckAnswers', () => {
 
     expect(content).toBe(emailContent)
     expect(mockSendNotification).toHaveBeenCalledTimes(1)
+    expect(mockSendNotification).toHaveBeenCalledWith({
+      content: emailContent,
+      link_to_file: {
+        confirm_email_before_download: false,
+        file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
+        filename: 'Biosecurity-map.jpg',
+        retention_period: '1 week'
+      }
+    })
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
     expect(await session.getState('origin')).toBeUndefined()

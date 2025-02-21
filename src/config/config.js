@@ -259,6 +259,18 @@ export const config = convict({
       format: Number,
       default: 10_000,
       env: 'NOTIFY_TIMEOUT'
+    },
+    fileRetention: {
+      doc: 'How long to retain files for in GOV Notify',
+      format: String,
+      default: '1 week',
+      env: 'NOTIFY_FILE_RETENTION'
+    },
+    confirmDownloadConfirmation: {
+      doc: 'Does the user have to type destination email address before download starts?',
+      format: Boolean,
+      default: false,
+      env: 'NOTIFY_EMAIL_DOWNLOAD_CONFIRMATION'
     }
   },
   aws: {
