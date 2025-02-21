@@ -57,7 +57,9 @@ export class PageController extends GenericPageController {
 
   handleGet(req, h, opts = {}) {
     if (this.page instanceof ExitPage) {
-      h.headers.set('Exit-Page', this.page.urlPath)
+      h.headers = {
+        'Exit-Page': this.page.urlPath
+      }
     }
 
     return h.view(this.page.view, {
