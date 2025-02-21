@@ -11,12 +11,9 @@ const questionKey = 'destinationType'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/type-of-destination'
 
-describe('DestinationTypePage', () => {
-  let page
+const page = new DestinationTypePage()
 
-  beforeEach(() => {
-    page = new DestinationTypePage()
-  })
+describe('DestinationTypePage', () => {
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -42,32 +39,6 @@ describe('DestinationTypePage', () => {
     expect(page.Answer).toBe(DestinationTypeAnswer)
   })
 
-  describe('nextPage', () => {
-    it('nextPage should return general licence page when answer is "slaughter"', () => {
-      const answer = { value: 'slaughter' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationGeneralLicencePage)
-    })
-
-    it('nextPage should return exit page when answer is "dedicated-sale"', () => {
-      const answer = { value: 'dedicated-sale' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationSummaryPage)
-    })
-
-    it('nextPage should return exitPage when answer is "afu"', () => {
-      const answer = { value: 'afu' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationSummaryPage)
-    })
-
-    it('nextPage should return exitPage when answer is "other"', () => {
-      const answer = { value: 'other' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(anotherDestinationPage)
-    })
-  })
-
   it('should export page', () => {
     expect(destinationTypePage).toBeInstanceOf(DestinationTypePage)
   })
@@ -78,3 +49,30 @@ describe('DestinationTypePage', () => {
     pageUrl
   })
 })
+
+describe('DestinationTypePage.nextPage', () => {
+  it('nextPage should return general licence page when answer is "slaughter"', () => {
+    const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(destinationGeneralLicencePage)
+  })
+
+  it('nextPage should return exit page when answer is "dedicated-sale"', () => {
+    const answer = new DestinationTypeAnswer({ destinationType: 'dedicated-sale' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(destinationSummaryPage)
+  })
+
+  it('nextPage should return exitPage when answer is "afu"', () => {
+    const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(destinationSummaryPage)
+  })
+
+  it('nextPage should return exitPage when answer is "other"', () => {
+    const answer = new DestinationTypeAnswer({ destinationType: 'other' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(anotherDestinationPage)
+  })
+})
+
