@@ -1,11 +1,16 @@
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementLicence.js'
 import landingPage from '../../page-objects/landingPage.js'
-import { changeOnOffFarmAnswer } from '../../helpers/testHelpers/checkAnswers.js'
+import {
+  changeOnOffFarmAnswer,
+  changeOption
+} from '../../helpers/testHelpers/checkAnswers.js'
 import {
   validateElementVisibleAndText,
   validateHrefOfElement
 } from '../../helpers/page.js'
+import originTypePage from '../../page-objects/origin/originTypePage.js'
+import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -24,11 +29,11 @@ describe('Check your answers test', () => {
     )
   })
 
-  it('Should verify the existing radio selection and verify resubmission', async () => {
+  it('Should verify the existing radio selection and verify resubmission (moving on the farm)', async () => {
     await checkAnswersPage.navigateToPageAndVerifyTitle()
     await changeOnOffFarmAnswer(
       checkAnswersPage.changeOnOrOffLink,
-      'off',
+      'on',
       checkAnswersPage.onOffFarmValue,
       checkAnswersPage
     )
@@ -48,6 +53,26 @@ describe('Check your answers test', () => {
     await validateElementVisibleAndText(
       checkAnswersPage.addressQuestion,
       'What is the address of the farm or premises where the animals are moving off?'
+    )
+  })
+
+  it('Should verify the existing radio selection and verify resubmission (moving on the farm from import)', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
+    await changeOption(
+      checkAnswersPage.changeOriginTypeLink,
+      originTypePage.selectAfterImportAndContinue.bind(originTypePage),
+      originCountryPage
+    )
+
+    await originCountryPage.inputTextAndContinue('Algeria')
+
+    await validateHrefOfElement(
+      checkAnswersPage.changeParishNumberLink,
+      '/origin/import-cph?redirect_uri=/origin/check-answers'
+    )
+    await validateElementVisibleAndText(
+      checkAnswersPage.parishNumberQuestion,
+      'What is the County Parish Holding (CPH) number of the UK point of entry?'
     )
   })
 })

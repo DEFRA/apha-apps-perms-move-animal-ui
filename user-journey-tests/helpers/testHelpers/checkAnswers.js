@@ -31,7 +31,7 @@ export const changeOnOffFarmAnswer = async (
 ) => {
   await selectElement(changeLink)
 
-  if (currentSelection === 'off') {
+  if (currentSelection === 'on') {
     await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
     await toFromFarmPage.selectOnFarmAndContinue(nextPage)
 
@@ -48,6 +48,15 @@ export const changeOnOffFarmAnswer = async (
       'Off the farm or premises'
     )
   }
+}
+
+export const changeOption = async (
+  changeLink,
+  changeAndContinueAction,
+  nextPage
+) => {
+  await selectElement(changeLink)
+  await changeAndContinueAction(nextPage)
 }
 
 export const validateOriginType = async (
