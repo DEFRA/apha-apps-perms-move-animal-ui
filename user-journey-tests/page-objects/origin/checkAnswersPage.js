@@ -3,6 +3,12 @@ import { Page } from '../page.js'
 const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
+const keyElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__key')
+
+const valueElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__value')
+
 class OriginCheckAnswersPage extends Page {
   pagePath = 'origin/check-answers'
   pageHeading = pageHeadingAndTitle
@@ -27,36 +33,36 @@ class OriginCheckAnswersPage extends Page {
 
   // Answer values
   get onOffFarmValue() {
-    return $$('.govuk-summary-list__value')[0]
+    return valueElementFromChangeLink(this.changeOnOrOffLink)
   }
 
   get originTypeValue() {
-    return $$('.govuk-summary-list__value')[1]
+    return valueElementFromChangeLink(this.changeOriginTypeLink)
   }
 
   get parishNumberValue() {
-    return $$('.govuk-summary-list__value')[2]
+    return valueElementFromChangeLink(this.changeParishNumberLink)
   }
 
   get addressValue() {
-    return $$('.govuk-summary-list__value')[3]
+    return valueElementFromChangeLink(this.changeAddressLink)
   }
 
   // Question values
   get onOffFarmQuestion() {
-    return $$('.govuk-summary-list__key')[0]
+    return keyElementFromChangeLink(this.changeOnOrOffLink)
   }
 
   get originTypeQuestion() {
-    return $$('.govuk-summary-list__key')[1]
+    return keyElementFromChangeLink(this.changeOriginTypeLink)
   }
 
   get parishNumberQuestion() {
-    return $$('.govuk-summary-list__key')[2]
+    return keyElementFromChangeLink(this.changeParishNumberLink)
   }
 
   get addressQuestion() {
-    return $$('.govuk-summary-list__key')[3]
+    return keyElementFromChangeLink(this.changeAddressLink)
   }
 }
 
