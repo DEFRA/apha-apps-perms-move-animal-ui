@@ -92,7 +92,9 @@ describe('Check your answers test - destination', () => {
     )
 
     await selectElement(destinationAnswersPage.changeDestinationLink)
-    await destinationSelectionPage.selectOtherDestinationAndContinue()
+    await destinationSelectionPage.selectOtherDestinationAndContinue(
+      canNotUseServicePage
+    )
     await canNotUseServicePage.selectBackLink()
 
     await waitForPagePath(destinationSelectionPage.pagePath)

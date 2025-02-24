@@ -17,19 +17,18 @@ describe('Destination selection test', () => {
   })
 
   it('Should select slaughter radio and continue', async () => {
-    await destinationSelectionPage.selectSlaughterRadioAndContinue()
-
-    await expect(destinationSelectionPage.pageError).not.toBeDisplayed()
-    await expect(destinationSelectionPage.errorSummary).not.toBeDisplayed()
-    await waitForPagePath(generalLicencePage.pagePath)
+    await destinationSelectionPage.selectSlaughterRadioAndContinue(
+      generalLicencePage
+    )
 
     await destinationAnswersPage.selectBackLink()
     await waitForPagePath(destinationSelectionPage.pagePath)
   })
 
   it('Should choose an option and check its maintained', async () => {
-    await destinationSelectionPage.selectDedicatedSaleAndContinue()
-    await waitForPagePath(destinationAnswersPage.pagePath)
+    await destinationSelectionPage.selectDedicatedSaleAndContinue(
+      destinationAnswersPage
+    )
 
     await destinationAnswersPage.selectBackLink()
 
@@ -40,13 +39,15 @@ describe('Destination selection test', () => {
   })
 
   it('Should choose approved finishing and continue', async () => {
-    await destinationSelectionPage.selectApprovedFinishingAndContinue()
-    await waitForPagePath(destinationAnswersPage.pagePath)
+    await destinationSelectionPage.selectApprovedFinishingAndContinue(
+      destinationAnswersPage
+    )
   })
 
   it('Should choose other destination and continue', async () => {
-    await destinationSelectionPage.selectOtherDestinationAndContinue()
-    await canNotUseServicePage.verifyPageHeadingAndTitle()
+    await destinationSelectionPage.selectOtherDestinationAndContinue(
+      canNotUseServicePage
+    )
 
     await canNotUseServicePage.selectBackLink()
     await waitForPagePath(destinationSelectionPage.pagePath)

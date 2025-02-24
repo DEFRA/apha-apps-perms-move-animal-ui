@@ -1,3 +1,4 @@
+import { waitForPagePath } from '../../helpers/page.js'
 import { Page } from '../page.js'
 
 const pageHeadingAndTitle = 'Where are the animals going to?'
@@ -11,19 +12,27 @@ class DestinationSelectionPage extends Page {
   destinationSelectionError = 'Select where the animals are going'
 
   get slaughterRadio() {
-    return $('#destinationType')
+    return $('input[value="slaughter"]')
   }
 
   get dedicatedSaleRadio() {
-    return $('#dedicated-sale')
+    return $('input[value="dedicated-sale"]')
   }
 
   get approvedFinishingRadio() {
-    return $('#afu')
+    return $('input[value="afu"]')
+  }
+
+  get zooRadio() {
+    return $('input[value="zoo"]')
+  }
+
+  get labRadio() {
+    return $('input[value="lab"]')
   }
 
   get otherDestinationRadio() {
-    return $('#other')
+    return $('input[value="other"]')
   }
 
   radioFieldError() {
@@ -34,20 +43,34 @@ class DestinationSelectionPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async selectSlaughterRadioAndContinue() {
+  async selectSlaughterRadioAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.slaughterRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectDedicatedSaleAndContinue() {
+  async selectDedicatedSaleAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.dedicatedSaleRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectApprovedFinishingAndContinue() {
+  async selectApprovedFinishingAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.approvedFinishingRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectOtherDestinationAndContinue() {
+  async selectZooAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.zooRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectLabAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.labRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectOtherDestinationAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.otherDestinationRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
   async destinationSelectionErrorTest() {
@@ -60,6 +83,12 @@ class DestinationSelectionPage extends Page {
       this.summaryErrorLink(),
       this.slaughterRadio
     )
+  }
+
+  async verifyRadioButtonNumber(expectedCount) {
+    const radioButtons = await $$('.govuk-radios__input').length
+
+    expect(radioButtons).toBe(expectedCount)
   }
 }
 
