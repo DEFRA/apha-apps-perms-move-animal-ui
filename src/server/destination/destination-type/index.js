@@ -4,7 +4,7 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { anotherDestinationPage } from '~/src/server/destination/another-destination/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
-import { ownFarmDestinationCphPage } from '../own-farm-destination-cph/index.js'
+import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -32,7 +32,7 @@ export class DestinationTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
     if (context.origin?.onOffFarm === 'on') {
-      return ownFarmDestinationCphPage
+      return destinationFarmCphPage
     } else {
       return offFarmNextPageMapping[answer.value] ?? anotherDestinationPage
     }
