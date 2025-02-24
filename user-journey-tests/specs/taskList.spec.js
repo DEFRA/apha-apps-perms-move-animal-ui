@@ -14,6 +14,7 @@ import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js
 import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswersPage.js'
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import completeAnimalIdentificationTask from '../helpers/testHelpers/animalIdentification.js'
+import { secureDeviceArray } from '../helpers/constants.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -283,45 +284,47 @@ describe('Task list page test', () => {
   })
 
   it('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
-    await completeBiosecurityMapTask()
-    await taskListPage.navigateToPageAndVerifyTitle()
-    await taskListPage.verifyAllStatus([
-      {
-        position: 1,
-        taskTitle: 'Movement origin',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 2,
-        taskTitle: 'Movement destination',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 3,
-        taskTitle: 'Receiving the licence',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 4,
-        taskTitle: 'Animal identifiers',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 5,
-        taskTitle: 'Biosecurity details',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 6,
-        taskTitle: 'Biosecurity map',
-        expectedStatus: 'Completed'
-      }
-    ])
+    if (!secureDeviceArray.includes(browser.capabilities?.deviceName)) {
+      await completeBiosecurityMapTask()
+      await taskListPage.navigateToPageAndVerifyTitle()
+      await taskListPage.verifyAllStatus([
+        {
+          position: 1,
+          taskTitle: 'Movement origin',
+          expectedStatus: 'Completed'
+        },
+        {
+          position: 2,
+          taskTitle: 'Movement destination',
+          expectedStatus: 'Completed'
+        },
+        {
+          position: 3,
+          taskTitle: 'Receiving the licence',
+          expectedStatus: 'Completed'
+        },
+        {
+          position: 4,
+          taskTitle: 'Animal identifiers',
+          expectedStatus: 'Completed'
+        },
+        {
+          position: 5,
+          taskTitle: 'Biosecurity details',
+          expectedStatus: 'Completed'
+        },
+        {
+          position: 6,
+          taskTitle: 'Biosecurity map',
+          expectedStatus: 'Completed'
+        }
+      ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toContain(
-      'You have completed all sections.'
-    )
-    await taskListPage.selectBiosecurityMapLink()
-    await waitForPagePath(biosecurityMapAnswersPage.pagePath)
+      expect(await taskListPage.getTaskToCompleteCount()).toContain(
+        'You have completed all sections.'
+      )
+      await taskListPage.selectBiosecurityMapLink()
+      await waitForPagePath(biosecurityMapAnswersPage.pagePath)
+    }
   })
 })
