@@ -1,7 +1,7 @@
 import { destinationTypePage, DestinationTypePage } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
-import { ownFarmDestinationCphPage } from '../own-farm-destination-cph/index.js'
+import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { anotherDestinationPage } from '../another-destination/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
@@ -84,10 +84,10 @@ describe('DestinationTypePage.nextPage', () => {
   describe('on the farm', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
-    it('should return destination-cph no matter what the answer', () => {
+    it('should return destination-farm-cph no matter what the answer', () => {
       const answer = new DestinationTypeAnswer(undefined)
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(ownFarmDestinationCphPage)
+      expect(nextPage).toBe(destinationFarmCphPage)
     })
   })
 })
