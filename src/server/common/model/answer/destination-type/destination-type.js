@@ -15,9 +15,9 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
-const onFarmOptions = (app) => {
-  /** @type {Record<string, RadioOption>} */
-  const options = isOriginAfu(app)
+/** @returns {Record<string, RadioOption>} */
+const onFarmOptions = (app) =>
+  isOriginAfu(app)
     ? {
         afu: afuOption
       }
@@ -28,8 +28,6 @@ const onFarmOptions = (app) => {
         lab: { label: 'Laboratory' },
         other: { label: 'Another destination' }
       }
-  return options
-}
 
 const offFarmOptions = {
   slaughter: { label: 'Slaughter' },
