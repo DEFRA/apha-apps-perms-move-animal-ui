@@ -2,12 +2,12 @@ import { waitForExpectedRedirectUri } from '../../helpers/page.js'
 import originCheckAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
 
-describe('General licence page test', () => {
+describe('Fifty percent warning page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await fiftyPercentWarningPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that clicking the GOV.UK Bovine TB guidance page results in navigating to the selected guidance', async () => {
+  it('Should verify that clicking the testing cattle guidance page results in navigating to the selected guidance', async () => {
     await fiftyPercentWarningPage.verifyGetYourCattleTestedLink()
   })
 

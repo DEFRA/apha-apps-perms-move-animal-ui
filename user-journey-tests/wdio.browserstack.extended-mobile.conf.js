@@ -8,8 +8,12 @@ export const config = {
     './specs/finalAnswers.spec.js',
     './specs/submissionConfirmation.spec.js',
     './specs/origin/checkAnswers.spec.js',
+    './specs/origin/fiftyPercentWarning.spec.js',
+    './specs/origin/originType.spec.js',
+    './specs/receiving-the-licence/postExit.spec.js',
     './specs/receiving-the-licence/licenceAnswers.spec.js',
     './specs/biosecurity-map/**/*.js',
+    './specs/destination/generalLicenceCheck.spec.js',
     './specs/finalAnswersDeclarations.spec.js'
   ],
   maxInstances: 7,
