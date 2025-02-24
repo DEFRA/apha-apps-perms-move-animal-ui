@@ -12,6 +12,8 @@ export const config = {
     './specs/receiving-the-licence/licenceAnswers.spec.js',
     './specs/origin/fiftyPercentWarning.spec.js',
     './specs/biosecurity-map/**/*.js',
+    './specs/biosecurity/biosecurityAnswers.spec.js',
+    './specs/biosecurity/biosecDynamicAnswers.spec.js',
     './specs/finalAnswersDeclarations.spec.js'
   ],
   capabilities: [
