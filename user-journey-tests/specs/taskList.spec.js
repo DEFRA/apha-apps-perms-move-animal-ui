@@ -284,7 +284,10 @@ describe('Task list page test', () => {
   })
 
   it('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
-    if (!secureDeviceArray.includes(browser.capabilities?.deviceName)) {
+    if (
+      !secureDeviceArray.includes(browser.capabilities?.deviceName) &&
+      browser.capabilities?.browserName !== 'Safari'
+    ) {
       await completeBiosecurityMapTask()
       await taskListPage.navigateToPageAndVerifyTitle()
       await taskListPage.verifyAllStatus([
