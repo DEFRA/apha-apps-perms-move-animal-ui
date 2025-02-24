@@ -10,7 +10,7 @@ export const config = merge(wdioConf, {
   ],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,
-  maxInstances: 5,
+  maxInstances: 8,
   capabilities: [
     {
       browserName: 'Edge',
@@ -22,12 +22,21 @@ export const config = merge(wdioConf, {
       }
     },
     {
-      browserName: 'Safari',
+      browserName: 'Chrome',
       'bstack:options': {
-        browserVersion: '15.6',
+        browserVersion: 'latest',
+        os: 'Windows',
+        osVersion: '10',
+        sessionName: 'windows-chrome'
+      }
+    },
+    {
+      browserName: 'Chrome',
+      'bstack:options': {
+        browserVersion: 'latest',
         os: 'OS X',
         osVersion: 'Monterey',
-        sessionName: 'osx-safari'
+        sessionName: 'osx-chrome'
       }
     }
   ],

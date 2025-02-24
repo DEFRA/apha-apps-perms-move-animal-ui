@@ -4,15 +4,15 @@ import { config as browserstackBaseConfig } from './wdio.browserstack.conf.js'
 export const config = {
   ...browserstackBaseConfig,
   exclude: [
-    './specs/noJavascript/**/*.spec.js',
+    './specs/noJavascript/**/*.js',
     './specs/finalAnswers.spec.js',
     './specs/submissionConfirmation.spec.js',
     './specs/origin/checkAnswers.spec.js',
     './specs/receiving-the-licence/licenceAnswers.spec.js',
-    './specs/biosecurity-map/biosecurityMapUpload.spec.js',
+    './specs/biosecurity-map/**/*.js',
     './specs/finalAnswersDeclarations.spec.js'
   ],
-  maxInstances: 3,
+  maxInstances: 7,
   capabilities: [
     {
       browserName: 'Safari',
