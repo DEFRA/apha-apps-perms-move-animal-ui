@@ -55,6 +55,17 @@ describe('DestinationType.config.options', () => {
     expect(config.options.zoo.label).toBe('Zoo')
     expect(config.options.lab.label).toBe('Laboratory')
     expect(config.options.other.label).toBe('Another destination')
-    expect(Object.keys(config.options)).toHaveLength(5)
+  })
+
+  it('should have the expected options to select from for on the farm movements when moving from AFU', () => {
+    const context = {
+      origin: { onOffFarm: 'on', originType: 'afu' }
+    }
+    const config = new DestinationTypeAnswer(undefined, context).config
+    expect(Object.keys(config.options)).toHaveLength(1)
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
+    )
   })
 })

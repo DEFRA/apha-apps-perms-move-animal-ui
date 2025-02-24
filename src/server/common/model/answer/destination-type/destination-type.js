@@ -1,5 +1,5 @@
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
-/** @import {RadioButtonConfigFactory} from '../radio-button/radio-button.js' */
+/** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
  * export @typedef {'slaughter' | 'dedicated-sale' | 'afu' | 'other'} DestinationTypeData
@@ -7,6 +7,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  */
 
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
+const isOriginAfu = (app) => app.origin?.originType === 'afu'
 
 const tbRestrictedOption = { label: 'TB restricted farm' }
 const afuOption = {
@@ -14,12 +15,20 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
-const onFarmOptions = {
-  'tb-restricted-farm': tbRestrictedOption,
-  afu: afuOption,
-  zoo: { label: 'Zoo' },
-  lab: { label: 'Laboratory' },
-  other: { label: 'Another destination' }
+const onFarmOptions = (app) => {
+  /** @type {Record<string, RadioOption>} */
+  const options = isOriginAfu(app)
+    ? {
+        afu: afuOption
+      }
+    : {
+        'tb-restricted-farm': tbRestrictedOption,
+        afu: afuOption,
+        zoo: { label: 'Zoo' },
+        lab: { label: 'Laboratory' },
+        other: { label: 'Another destination' }
+      }
+  return options
 }
 
 const offFarmOptions = {
@@ -37,7 +46,7 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfigFactory} */
   static config = (app) => ({
     payloadKey: 'destinationType',
-    options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions,
+    options: isOnToTheFarm(app) ? onFarmOptions(app) : offFarmOptions,
     errors: {
       emptyOptionText: 'Select where the animals are going'
     }
