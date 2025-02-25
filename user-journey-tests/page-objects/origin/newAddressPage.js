@@ -168,7 +168,7 @@ class NewAddressPage extends Page {
     }
   }
 
-  async fillFormFieldsAndSubmit(fields = {}) {
+  async fillFormFieldsAndSubmit(fields = {}, nextPage) {
     const fieldMappings = this.getFieldMappings()
     for (const [field, value] of Object.entries(fields)) {
       const fieldElement = fieldMappings[field]
@@ -181,6 +181,7 @@ class NewAddressPage extends Page {
     }
 
     await super.selectContinue()
+    if (nextPage) await page.waitForPagePath(nextPage.pagePath)
   }
 
   async verifyNoErrorsVisible() {

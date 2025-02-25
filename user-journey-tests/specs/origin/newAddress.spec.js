@@ -1,5 +1,6 @@
 import { browser } from '@wdio/globals'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
+import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 
 const longString = 'a'.repeat(300)
 const longPostcode = 'SW1A2AATEST'
@@ -114,14 +115,17 @@ describe('New address page test', () => {
     })
   })
 
-  it('Should verify successful submission when all fields entered', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit({
-      lineOne: lineOneWhitespace,
-      lineTwo: lineTwoWhitespace,
-      townOrCity: townOrCityWhitespace,
-      county: countyWhitespace,
-      postcode: postcodeValidWhitespace
-    })
+  it('Should verify successful submission and whitespace is removed', async () => {
+    await newAddressPage.fillFormFieldsAndSubmit(
+      {
+        lineOne: lineOneWhitespace,
+        lineTwo: lineTwoWhitespace,
+        townOrCity: townOrCityWhitespace,
+        county: countyWhitespace,
+        postcode: postcodeValidWhitespace
+      },
+      toFromFarmPage
+    )
 
     await newAddressPage.verifyNoErrorsVisible()
     await newAddressPage.selectBackLink()

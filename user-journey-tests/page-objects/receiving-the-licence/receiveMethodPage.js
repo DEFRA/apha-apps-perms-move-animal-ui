@@ -1,3 +1,4 @@
+import { waitForPagePath } from '../../helpers/page.js'
 import { Page } from '../page.js'
 
 const emailId = 'receiveMethod'
@@ -26,12 +27,14 @@ class ReceiveMethodPage extends Page {
     return super.getErrorLink(emailId)
   }
 
-  async selectEmailAndContinue() {
+  async selectEmailAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.emailRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
-  async selectPostAndContinue() {
+  async selectPostAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.postRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
   async receiveMethodErrorTest() {

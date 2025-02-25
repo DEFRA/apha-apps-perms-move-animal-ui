@@ -1,22 +1,20 @@
-import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import { selectElement, waitForPagePath } from '../page.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
+import { navigateToTaskList } from './taskListNav.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
-  await landingPage.navigateToPageAndVerifyTitle()
-  await landingPage.verifyStartNowButton('Start now', true)
-  await taskListPage.selectMovementDestination()
+  await navigateToTaskList()
+  await taskListPage.selectMovementDestination(destinationSelectionPage)
   switch (radioType) {
     case 'slaughter':
       await destinationSelectionPage.selectSlaughterRadioAndContinue(
         generalLicencePage
       )
-      await waitForPagePath(generalLicencePage.pagePath)
       await selectElement(generalLicencePage.continueLink)
       await waitForPagePath(destinationAnswersPage.pagePath)
       break

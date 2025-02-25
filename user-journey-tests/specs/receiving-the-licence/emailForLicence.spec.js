@@ -1,6 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 
 const validSubmissionCheck = async (input, whitespace = false) => {
   let expected
@@ -9,9 +10,8 @@ const validSubmissionCheck = async (input, whitespace = false) => {
   } else {
     expected = input.trim()
   }
-  await emailPage.inputEmailAndContinue(input)
-  await expect(emailPage.emailFieldError()).not.toBeDisplayed()
-  await emailPage.selectBackLink()
+  await emailPage.inputEmailAndContinue(input, licenceAnswersPage)
+  await licenceAnswersPage.selectBackLink()
   await browser.refresh()
   const inputValue = await emailPage.emailAddressInput().getValue()
   expect(inputValue).toBe(expected)
@@ -48,12 +48,6 @@ describe('Email address for licence page test', () => {
 
   it('Should verify that input automatically trims whitespace', async () => {
     await validSubmissionCheck(' batman@gotham.com ', true)
-  })
-
-  it('Should input correct email format and continue without producing an error', async () => {
-    await emailPage.inputEmailAndContinue('bruce.wayne@gotham.com')
-    await expect(emailPage.emailFieldError()).not.toBeDisplayed()
-    await expect(emailPage.errorSummary).not.toBeDisplayed()
   })
 
   it.skip('Should check answer is maintained when submitting after an error', async () => {
