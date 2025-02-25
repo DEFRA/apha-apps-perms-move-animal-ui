@@ -1,4 +1,3 @@
-import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import onFarmAddressPage from '../../page-objects/origin/onFarmAddressPage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
@@ -15,7 +14,7 @@ describe('On farm address page test', () => {
   })
 
   it('Should verify successful submission when all fields entered', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit({
+    await onFarmAddressPage.fillFormFieldsAndSubmit({
       lineOne,
       lineTwo,
       townOrCity,
