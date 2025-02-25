@@ -10,14 +10,14 @@ describe('Destination selection options test', () => {
   })
 
   it('Should verify options when On the farm and AFU IS NOT option selected', async () => {
-    await destinationVariants(true, false)
+    await destinationVariants({ onFarm: true, afu: false })
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await destinationSelectionPage.verifyRadioButtonNumber(5)
     await destinationSelectionPage.selectZooAndContinue(destinationCPHPage)
   })
 
   it('Should verify options when On the farm and AFU IS selected', async () => {
-    await destinationVariants(true, true)
+    await destinationVariants({ onFarm: true, afu: true })
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await destinationSelectionPage.verifyRadioButtonNumber(1)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(

@@ -69,7 +69,7 @@ export const completeOriginTaskAnswersCustom = async (
   await completeOriginTask({ cphNumber, lineOne, townOrCity, postcode })
 }
 
-export const destinationVariants = async (onFarm, afu) => {
+export const destinationVariants = async ({ onFarm, afu }) => {
   let finalPage
   let addressPageType
 
