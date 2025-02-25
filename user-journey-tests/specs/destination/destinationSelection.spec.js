@@ -4,7 +4,7 @@ import { waitForPagePath } from '../../helpers/page.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
-import canNotUseServicePage from '../../page-objects/destination/canNotUseServicePage.js'
+import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
 
 describe('Destination selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -46,10 +46,10 @@ describe('Destination selection test', () => {
 
   it('Should choose other destination and continue', async () => {
     await destinationSelectionPage.selectOtherDestinationAndContinue(
-      canNotUseServicePage
+      contactTbRestrictedFarmExitPage
     )
 
-    await canNotUseServicePage.selectBackLink()
+    await contactTbRestrictedFarmExitPage.selectBackLink()
     await waitForPagePath(destinationSelectionPage.pagePath)
   })
 })
