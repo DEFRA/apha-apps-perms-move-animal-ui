@@ -142,8 +142,9 @@ describe('Check your final answers test', () => {
 
     await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
 
-    await destinationSelectionPage.selectSlaughterRadioAndContinue()
-    await generalLicencePage.verifyPageHeadingAndTitle()
+    await destinationSelectionPage.selectSlaughterRadioAndContinue(
+      generalLicencePage
+    )
     await generalLicencePage.selectContinueLink()
     await finalAnswersPage.verifyPageHeadingAndTitle()
   })

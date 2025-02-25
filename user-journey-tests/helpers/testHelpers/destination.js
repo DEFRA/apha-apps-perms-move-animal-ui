@@ -13,20 +13,24 @@ const completeDestinationTask = async (radioType) => {
   await taskListPage.selectMovementDestination()
   switch (radioType) {
     case 'slaughter':
-      await destinationSelectionPage.selectSlaughterRadioAndContinue()
+      await destinationSelectionPage.selectSlaughterRadioAndContinue(
+        generalLicencePage
+      )
       await waitForPagePath(generalLicencePage.pagePath)
       await selectElement(generalLicencePage.continueLink)
       await waitForPagePath(destinationAnswersPage.pagePath)
       break
 
     case 'dedicated':
-      await destinationSelectionPage.selectDedicatedSaleAndContinue()
-      await waitForPagePath(destinationAnswersPage.pagePath)
+      await destinationSelectionPage.selectDedicatedSaleAndContinue(
+        destinationAnswersPage
+      )
       break
 
     case 'approved':
-      await destinationSelectionPage.selectApprovedFinishingAndContinue()
-      await waitForPagePath(destinationAnswersPage.pagePath)
+      await destinationSelectionPage.selectApprovedFinishingAndContinue(
+        destinationAnswersPage
+      )
       break
 
     default:

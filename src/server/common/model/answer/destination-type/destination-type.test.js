@@ -13,28 +13,59 @@ describe('DestinationType', () => {
   })
 
   it('should have the right payload key', () => {
-    expect(DestinationTypeAnswer.config.payloadKey).toBe('destinationType')
+    expect(DestinationTypeAnswer.config({}).payloadKey).toBe('destinationType')
   })
 
   it('should define the right empty input message', () => {
-    expect(DestinationTypeAnswer.config.errors.emptyOptionText).toBe(
+    expect(DestinationTypeAnswer.config({}).errors.emptyOptionText).toBe(
       'Select where the animals are going'
     )
   })
+})
 
-  it('should have the expected options to select from', () => {
-    expect(Object.keys(DestinationTypeAnswer.config.options)).toHaveLength(4)
-    expect(DestinationTypeAnswer.config.options.slaughter.label).toBe(
-      'Slaughter'
-    )
-    expect(DestinationTypeAnswer.config.options['dedicated-sale'].label).toBe(
+describe('DestinationType.config.options', () => {
+  it('should have the expected options to select from for off the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'off' }
+    }
+    const config = new DestinationTypeAnswer(undefined, context).config
+    expect(Object.keys(config.options)).toHaveLength(4)
+    expect(config.options.slaughter.label).toBe('Slaughter')
+    expect(config.options['dedicated-sale'].label).toBe(
       'Dedicated sale for TB (orange market)'
     )
-    expect(DestinationTypeAnswer.config.options.afu.label).toBe(
-      'Approved finishing unit (AFU)'
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.other.label).toBe('Another destination')
+  })
+
+  it('should have the expected options to select from for on the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'on' }
+    }
+    const config = new DestinationTypeAnswer(undefined, context).config
+    expect(Object.keys(config.options)).toHaveLength(5)
+
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      'TB restricted farm'
     )
-    expect(DestinationTypeAnswer.config.options.other.label).toBe(
-      'Another destination'
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
+    )
+    expect(config.options.zoo.label).toBe('Zoo')
+    expect(config.options.lab.label).toBe('Laboratory')
+    expect(config.options.other.label).toBe('Another destination')
+  })
+
+  it('should have the expected options to select from for on the farm movements when moving from AFU', () => {
+    const context = {
+      origin: { onOffFarm: 'on', originType: 'afu' }
+    }
+    const config = new DestinationTypeAnswer(undefined, context).config
+    expect(Object.keys(config.options)).toHaveLength(1)
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
     )
   })
 })

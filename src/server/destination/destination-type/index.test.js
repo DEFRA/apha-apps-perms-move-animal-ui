@@ -1,6 +1,7 @@
 import { destinationTypePage, DestinationTypePage } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
+import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { anotherDestinationPage } from '../another-destination/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
@@ -11,13 +12,9 @@ const questionKey = 'destinationType'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/type-of-destination'
 
+const page = new DestinationTypePage()
+
 describe('DestinationTypePage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new DestinationTypePage()
-  })
-
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -42,32 +39,6 @@ describe('DestinationTypePage', () => {
     expect(page.Answer).toBe(DestinationTypeAnswer)
   })
 
-  describe('nextPage', () => {
-    it('nextPage should return general licence page when answer is "slaughter"', () => {
-      const answer = { value: 'slaughter' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationGeneralLicencePage)
-    })
-
-    it('nextPage should return exit page when answer is "dedicated-sale"', () => {
-      const answer = { value: 'dedicated-sale' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationSummaryPage)
-    })
-
-    it('nextPage should return exitPage when answer is "afu"', () => {
-      const answer = { value: 'afu' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(destinationSummaryPage)
-    })
-
-    it('nextPage should return exitPage when answer is "other"', () => {
-      const answer = { value: 'other' }
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBe(anotherDestinationPage)
-    })
-  })
-
   it('should export page', () => {
     expect(destinationTypePage).toBeInstanceOf(DestinationTypePage)
   })
@@ -76,5 +47,47 @@ describe('DestinationTypePage', () => {
     describes: 'DestinationTypePage.content',
     it: 'should render expected response and content',
     pageUrl
+  })
+})
+
+describe('DestinationTypePage.nextPage', () => {
+  describe('off the farm', () => {
+    const context = { origin: { onOffFarm: 'off' } }
+
+    it('should return general licence page when answer is "slaughter"', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationGeneralLicencePage)
+    })
+
+    it('should return exit page when answer is "dedicated-sale"', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'dedicated-sale'
+      })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationSummaryPage)
+    })
+
+    it('should return exitPage when answer is "afu"', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationSummaryPage)
+    })
+
+    it('should return exitPage when answer is "other"', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'other' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(anotherDestinationPage)
+    })
+  })
+
+  describe('on the farm', () => {
+    const context = { origin: { onOffFarm: 'on' } }
+
+    it('should return destination-farm-cph no matter what the answer', () => {
+      const answer = new DestinationTypeAnswer(undefined)
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
   })
 })
