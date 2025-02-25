@@ -132,7 +132,8 @@ export class SubmitPageController extends QuestionPageController {
 
         let compressedFile = null
 
-        const isPdf = buffer.subarray(0, 5).toString() === '%PDF-'
+        const mimeOffset = 5
+        const isPdf = buffer.subarray(0, mimeOffset).toString() === '%PDF-'
         if (isPdf) {
           const { duration, reduction, file } = await compressPDF(buffer)
           compressedFile = file
