@@ -69,17 +69,9 @@ export const completeOriginTaskAnswersCustom = async (
   await completeOriginTask({ cphNumber, lineOne, townOrCity, postcode })
 }
 
-export const destinationVariants = async ({ onFarm, afu }) => {
-  let finalPage
-  let addressPageType
-
-  if (onFarm === true) {
-    finalPage = fiftyPercentWarningPage
-    addressPageType = onFarmAddressPage
-  } else {
-    finalPage = checkAnswersPage
-    addressPageType = newAddressPage
-  }
+export const destinationVariants = async (onFarm, afu) => {
+  const finalPage = onFarm ? fiftyPercentWarningPage : checkAnswersPage
+  const addressPageType = onFarm ? onFarmAddressPage : newAddressPage
 
   await navigateToOriginFlow()
 
@@ -108,7 +100,8 @@ export const destinationVariants = async ({ onFarm, afu }) => {
     townOrCity: defaultTownOrCity,
     postcode: defaultPostcode
   })
-  waitForPagePath(finalPage.pagePath)
+
+  await waitForPagePath(finalPage.pagePath)
 }
 
 export default completeOriginTaskAnswers
