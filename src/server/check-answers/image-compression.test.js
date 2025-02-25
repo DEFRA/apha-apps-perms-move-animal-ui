@@ -43,8 +43,7 @@ describe('imageCompression', () => {
     expect(result).toHaveProperty('start')
     expect(result).toHaveProperty('end')
     expect(result).toHaveProperty('duration')
-    expect(result).toHaveProperty('quality')
-    expect(result).toHaveProperty('manipulations')
+    expect(result).toHaveProperty('reduction')
   })
 
   it('should resize the image if width is greater than height', async () => {
@@ -230,18 +229,15 @@ describe('imageCompression', () => {
     const lowerThreshold = targetFileSize * 0.95
     const upperThreshold = targetFileSize
 
-    const { resizedBuffer, quality, manipulations } =
-      await compressToTargetSize(
-        buffer,
-        targetFileSize,
-        lowerThreshold,
-        upperThreshold
-      )
+    const { resizedBuffer } = await compressToTargetSize(
+      buffer,
+      targetFileSize,
+      lowerThreshold,
+      upperThreshold
+    )
 
     expect(resizedBuffer.length).toBeLessThanOrEqual(targetFileSize)
     expect(resizedBuffer.length).toBeGreaterThanOrEqual(lowerThreshold)
-    expect(quality).toBeLessThanOrEqual(100)
-    expect(manipulations).toBeGreaterThan(1)
   })
 
   it('should handle case where buffer size is less than or equal to upper threshold', async () => {
@@ -257,16 +253,13 @@ describe('imageCompression', () => {
     const lowerThreshold = targetFileSize * 0.95
     const upperThreshold = targetFileSize
 
-    const { resizedBuffer, quality, manipulations } =
-      await compressToTargetSize(
-        buffer,
-        targetFileSize,
-        lowerThreshold,
-        upperThreshold
-      )
+    const { resizedBuffer } = await compressToTargetSize(
+      buffer,
+      targetFileSize,
+      lowerThreshold,
+      upperThreshold
+    )
 
     expect(resizedBuffer.length).toBeLessThanOrEqual(targetFileSize)
-    expect(quality).toBe(100)
-    expect(manipulations).toBe(8)
   })
 })
