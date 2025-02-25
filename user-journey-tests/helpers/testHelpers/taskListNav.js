@@ -1,6 +1,6 @@
-import landingPage from '../../page-objects/landingPage'
-import taskListPage from '../../page-objects/taskListPage'
-import { waitForPagePath } from '../page'
+import landingPage from '../../page-objects/landingPage.js'
+import taskListPage from '../../page-objects/taskListPage.js'
+import { waitForPagePath } from '../page.js'
 
 export const navigateToTaskList = async () => {
   await landingPage.navigateToPageAndVerifyTitle()
