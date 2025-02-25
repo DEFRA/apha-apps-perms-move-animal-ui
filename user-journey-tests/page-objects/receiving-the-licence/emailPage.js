@@ -29,9 +29,10 @@ class EmailPage extends Page {
     return super.getErrorLink(emailId)
   }
 
-  async inputEmailAndContinue(text) {
+  async inputEmailAndContinue(text, nextPage) {
     await page.typeIntoElement(this.emailAddressInput(), text)
     await super.selectContinue()
+    if (nextPage) page.waitForPagePath(nextPage.pagePath)
   }
 
   async emailInputErrorTest(textInput, errorMessage) {

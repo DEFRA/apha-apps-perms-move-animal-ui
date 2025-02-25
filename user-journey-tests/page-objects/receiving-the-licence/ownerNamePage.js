@@ -47,10 +47,11 @@ class EmailPage extends Page {
     return super.getErrorLink(lastNameId)
   }
 
-  async inputNameAndContinue(firstName, lastName) {
+  async inputNameAndContinue(firstName, lastName, nextPage) {
     await page.typeIntoElement(this.firstNameInput(), firstName)
     await page.typeIntoElement(this.lastNameInput(), lastName)
     await super.selectContinue()
+    if (nextPage) page.waitForPagePath(nextPage.pagePath)
   }
 
   async verifyFirstNameErrors(single = true) {

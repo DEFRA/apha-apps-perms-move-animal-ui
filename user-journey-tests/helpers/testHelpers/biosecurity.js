@@ -1,4 +1,4 @@
-import landingPage from '../../page-objects/landingPage.js'
+import { navigateToTaskList } from './taskListNav.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
@@ -17,9 +17,8 @@ import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAn
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
-  await landingPage.navigateToPageAndVerifyTitle()
-  await landingPage.verifyStartNowButton('Start now', true)
-  await taskListPage.selectBiosecurityLink()
+  await navigateToTaskList()
+  await taskListPage.selectBiosecurityLink(keptSeparatelyPage)
   switch (radioType) {
     case 'yes':
       await keptSeparatelyPage.selectYesAndContinue(grazingPage)

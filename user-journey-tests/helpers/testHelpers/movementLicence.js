@@ -1,4 +1,3 @@
-import landingPage from '../../page-objects/landingPage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
@@ -10,6 +9,7 @@ import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
 import onFarmAddressPage from '../../page-objects/origin/onFarmAddressPage.js'
+import { navigateToTaskList } from './taskListNav.js'
 
 // Default data
 const defaultLineOne = '37 Made up lane'
@@ -18,11 +18,8 @@ const defaultPostcode = 'SW1A2AA'
 const defaultCphNumber = '12/345/6789'
 
 const navigateToOriginFlow = async () => {
-  await landingPage.navigateToPageAndVerifyTitle()
-  await landingPage.verifyStartNowButton('Start now', true)
-  await waitForPagePath(taskListPage.pagePath)
-  await taskListPage.selectMovementOrigin()
-  await waitForPagePath(toFromFarmPage.pagePath)
+  await navigateToTaskList()
+  await taskListPage.selectMovementOrigin(toFromFarmPage)
 }
 
 // Helper function to complete the origin task
