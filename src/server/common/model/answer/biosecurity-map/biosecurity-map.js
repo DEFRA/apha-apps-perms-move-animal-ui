@@ -1,6 +1,6 @@
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
-import validationSchema from './validation.js'
+import { finalSchema, processingSchema } from './validation.js'
 
 /**
  * @typedef {{
@@ -66,7 +66,11 @@ export class BiosecurityMapAnswer extends AnswerModel {
   }
 
   validate() {
-    return validateAnswerAgainstSchema(validationSchema, this.value)
+    return validateAnswerAgainstSchema(finalSchema, this.value)
+  }
+
+  validateProcessing() {
+    return validateAnswerAgainstSchema(processingSchema, this.value)
   }
 
   /**
