@@ -82,6 +82,17 @@ npm install
 
 ### Development
 
+Initially to enable PDF compression you will need to install GhostScript onto your local machine
+you will then need export a new environment variable that points to the binary
+
+On MacOS machine running zsh this can all be achieved by running
+
+```bash
+brew install ghostscript
+echo "\rexport GS_BINARY=$(which gs)" >> .envrc
+direnv allow
+```
+
 To bring up dependencies run:
 
 ```bash

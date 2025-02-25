@@ -8,7 +8,9 @@ import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
-import { compress } from './image-compression.js'
+import { compress as compressImage } from './image-compression.js'
+import { compress as compressPDF } from './pdf-compression.js'
+import fileSize from '../common/helpers/file-size/file-size.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -128,18 +130,30 @@ export class SubmitPageController extends QuestionPageController {
         }
         const buffer = Buffer.concat(chunks)
 
-        const { duration, quality, manipulations, file } =
-          await compress(buffer)
-        this.logger.info(
-          `Image compression took ${duration}ms at a quality of ${quality}% after ${manipulations} manipulation(s)`
-        )
+        let compressedFile = null
+
+        const mimeOffset = 5
+        const isPdf = buffer.subarray(0, mimeOffset).toString() === '%PDF-'
+        if (isPdf) {
+          const { duration, reduction, file } = await compressPDF(buffer)
+          compressedFile = file
+          this.logger.info(
+            `PDF compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
+          )
+        } else {
+          const { duration, file, reduction } = await compressImage(buffer)
+          compressedFile = file
+          this.logger.info(
+            `Image compression took ${duration}ms at a reduction of ${reduction}%`
+          )
+        }
 
         const { fileRetention, confirmDownloadConfirmation } =
           config.get('notify')
 
         notifyProps.link_to_file = {
-          file: file.toString('base64'),
-          filename: 'Biosecurity-map.jpg',
+          file: compressedFile?.toString('base64'),
+          filename: `Biosecurity-map.${isPdf ? 'pdf' : 'jpg'}`,
           confirm_email_before_download: confirmDownloadConfirmation,
           retention_period: fileRetention
         }
