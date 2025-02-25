@@ -14,11 +14,9 @@ describe('ContactTbRestrictedFarmPage', () => {
     expect(page.view).toBe('destination/contact-tb-restricted-farm/index')
   })
 
-  describe('#ContactTbRestrictedFarmPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'ContactTbRestrictedFarmPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

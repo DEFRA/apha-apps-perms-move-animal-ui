@@ -42,33 +42,31 @@ describe('OnOffFarmPage', () => {
     expect(onOffFarmPage).toBeInstanceOf(OnOffFarmPage)
   })
 
-  describe('#onOffFarmPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
+  describePageSnapshot({
+    describes: 'onOffFarmPage.content',
+    it: 'should render expected response and content',
+    pageUrl
+  })
+
+  describe('OnOffFarmPage.nextPage', () => {
+    it('should return exitPage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is false', () => {
+      spyOnConfig('featureFlags', { biosecurity: false })
+      const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+      const nextPage = page.nextPage(answer)
+      expect(nextPage).toBe(exitPage)
     })
-  })
-})
 
-describe('OnOffFarmPage.nextPage', () => {
-  it('should return exitPage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is false', () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(exitPage)
-  })
+    it('should return originTypePage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is true', () => {
+      spyOnConfig('featureFlags', { biosecurity: true })
+      const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
+      const nextPage = page.nextPage(answer)
+      expect(nextPage).toBe(originTypePage)
+    })
 
-  it('should return originTypePage when answer is "on", if BIOSECURITY_FEATURE_ENABLED is true', () => {
-    spyOnConfig('featureFlags', { biosecurity: true })
-    const answer = new OnOffFarmAnswer({ onOffFarm: 'on' })
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(originTypePage)
-  })
-
-  it('should return originTypePage when answer is "off"', () => {
-    const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(originTypePage)
+    it('should return originTypePage when answer is "off"', () => {
+      const answer = new OnOffFarmAnswer({ onOffFarm: 'off' })
+      const nextPage = page.nextPage(answer)
+      expect(nextPage).toBe(originTypePage)
+    })
   })
 })

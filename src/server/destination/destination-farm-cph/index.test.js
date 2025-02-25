@@ -1,20 +1,20 @@
-import { originAddressPage, OriginAddressPage } from './index.js'
-import { originSummaryPage } from '~/src/server/origin/summary/index.js'
-import { AddressAnswer } from '../../common/model/answer/address/address.js'
+import { destinationFarmCphPage, DestinationFarmCphPage } from './index.js'
+import { CphNumberAnswer } from '../../common/model/answer/cph-number/cph-number.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { destinationFarmAddressPage } from '../destination-farm-address/index.js'
 
-const sectionKey = 'origin'
+const sectionKey = 'destination'
 const question =
-  'What is the address of your farm or premises where the animals are moving off?'
-const questionKey = 'address'
+  'What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?'
+const questionKey = 'destinationFarmCph'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/origin/address'
+const pageUrl = '/destination/destination-farm-cph'
 
-describe('OriginAddressPage', () => {
+describe('DestinationFarmCphPage', () => {
   let page
 
   beforeEach(() => {
-    page = new OriginAddressPage()
+    page = new DestinationFarmCphPage()
   })
 
   it('should have the correct urlPath', () => {
@@ -38,20 +38,20 @@ describe('OriginAddressPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(AddressAnswer)
+    expect(page.Answer).toBe(CphNumberAnswer)
   })
 
-  it('nextPage should return summaryPage', () => {
+  it('nextPage should return address page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(originSummaryPage)
+    expect(nextPage).toBe(destinationFarmAddressPage)
   })
 
   it('should export page', () => {
-    expect(originAddressPage).toBeInstanceOf(OriginAddressPage)
+    expect(destinationFarmCphPage).toBeInstanceOf(DestinationFarmCphPage)
   })
 
   describePageSnapshot({
-    describes: 'originAddressPage.content',
+    describes: 'DestinationFarmCphPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

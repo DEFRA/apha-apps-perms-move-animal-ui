@@ -40,12 +40,10 @@ describe('#exitPageController', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  describe('#originExitPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'originExitPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
 
