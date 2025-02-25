@@ -14,7 +14,7 @@ const status = Joi.object({
   numberOfRejectedFiles: Joi.number().equal(0)
 })
 
-export const value = Joi.object({
+export const finalSchema = Joi.object({
   metadata: Joi.object({
     uploadId: Joi.string().required(),
     uploadUrl: Joi.string().required(),
@@ -23,7 +23,7 @@ export const value = Joi.object({
   status: status.required()
 }).required()
 
-export const processing = Joi.object({
+export const processingSchema = Joi.object({
   metadata: Joi.object({
     uploadId: Joi.string().required(),
     uploadUrl: Joi.string().required(),
