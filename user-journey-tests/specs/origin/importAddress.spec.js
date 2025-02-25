@@ -1,4 +1,3 @@
-import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import importAddressPage from '../../page-objects/origin/importAddressPage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
@@ -15,7 +14,7 @@ describe('import address page test', () => {
   })
 
   it('Should verify successful submission when all fields entered', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit({
+    await importAddressPage.fillFormFieldsAndSubmit({
       lineOne,
       lineTwo,
       townOrCity,
