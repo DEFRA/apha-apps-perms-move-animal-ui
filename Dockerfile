@@ -36,7 +36,7 @@ ENV TZ="Europe/London"
 USER root
 RUN apk update \
     && apk add curl \
-    && apk add ghostscript \
+    && apk add ghostscript=10.04.0-r0 \
     && apk cache clean
 
 USER node
