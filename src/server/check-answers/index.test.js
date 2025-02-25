@@ -75,9 +75,9 @@ const originDefaultState = {
 }
 
 const destinationDefaultState = {
-  destinationType: 'dedicated-sale'
+  destinationType: 'afu'
 }
-const expectedDestinationText = 'Dedicated sale for TB (orange market)'
+const expectedAfuText = 'Approved finishing unit (AFU)'
 
 const licenceDefaultState = {
   emailAddress: testEmailAddress,
@@ -150,7 +150,7 @@ const emailContent = [
   '## Are you moving the animals on or off your farm or premises?',
   'Off the farm or premises',
   '## What type of premises are the animals moving off?',
-  'Approved finishing unit (AFU)',
+  expectedAfuText,
   '## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
   testCphNumber,
   '## What is the address of your farm or premises where the animals are moving off?',
@@ -160,7 +160,7 @@ const emailContent = [
   testAddress.addressCounty,
   testAddress.addressPostcode,
   '## Where are the animals going to?',
-  expectedDestinationText,
+  expectedAfuText,
   '## What is the name of the County Parish Holding (CPH) owner?',
   licenceDefaultState.fullName.firstName +
     ' ' +

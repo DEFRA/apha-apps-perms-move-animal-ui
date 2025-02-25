@@ -29,13 +29,26 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'off' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(4)
+    expect(Object.keys(config.options)).toHaveLength(5)
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      'TB restricted farm'
+    )
     expect(config.options.slaughter.label).toBe('Slaughter')
     expect(config.options['dedicated-sale'].label).toBe(
       'Dedicated sale for TB (orange market)'
     )
     expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
     expect(config.options.other.label).toBe('Another destination')
+  })
+
+  it('should have the expected options to select from for off the farm movements when moving from AFU', () => {
+    const context = {
+      origin: { onOffFarm: 'off', originType: 'afu' }
+    }
+    const config = new DestinationTypeAnswer(undefined, context).config
+    expect(Object.keys(config.options)).toHaveLength(2)
+    expect(config.options.slaughter.label).toBe('Slaughter')
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
   })
 
   it('should have the expected options to select from for on the farm movements', () => {

@@ -67,7 +67,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Where are the animals going to?
     </dt>
     <dd class="govuk-summary-list__value">
-      Dedicated sale for TB (orange market)
+      Approved finishing unit (AFU)
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/submit/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>

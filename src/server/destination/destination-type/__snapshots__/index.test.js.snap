@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DestinationTypePage DestinationTypePage.content should render expected response and content 1`] = `
+exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content should render expected response and content 1`] = `
 "
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
@@ -17,8 +17,14 @@ exports[`DestinationTypePage DestinationTypePage.content should render expected 
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="slaughter">
+        <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="tb-restricted-farm">
         <label class="govuk-label govuk-radios__label" for="destinationType">
+          TB restricted farm
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="slaughter" name="destinationType" type="radio" value="slaughter">
+        <label class="govuk-label govuk-radios__label" for="slaughter">
           Slaughter
         </label>
       </div>
@@ -38,13 +44,72 @@ exports[`DestinationTypePage DestinationTypePage.content should render expected 
         </div>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other" aria-describedby="other-item-hint">
+        <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
           Another destination
         </label>
-        <div id="other-item-hint" class="govuk-hint govuk-radios__hint">
-          For example, a veterinary practice, zoo, or a laboratory
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
         </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Where are the animals going to?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="tb-restricted-farm">
+        <label class="govuk-label govuk-radios__label" for="destinationType">
+          TB restricted farm
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
+        <label class="govuk-label govuk-radios__label" for="afu">
+          Approved finishing unit (AFU)
+        </label>
+        <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+          Including enhanced with grazing (AFUE)
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="zoo" name="destinationType" type="radio" value="zoo">
+        <label class="govuk-label govuk-radios__label" for="zoo">
+          Zoo
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="lab" name="destinationType" type="radio" value="lab">
+        <label class="govuk-label govuk-radios__label" for="lab">
+          Laboratory
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
+        <label class="govuk-label govuk-radios__label" for="other">
+          Another destination
+        </label>
       </div>
     </div>
   </fieldset>
