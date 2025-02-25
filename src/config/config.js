@@ -294,6 +294,12 @@ export const config = convict({
       default: !isProduction,
       env: 'BIOSECURITY_FEATURE_ENABLED'
     }
+  },
+  gsPath: {
+    doc: 'Path of the Ghostscript binary',
+    format: String,
+    default: '/usr/bin/gs',
+    env: 'GS_BINARY'
   }
 })
 

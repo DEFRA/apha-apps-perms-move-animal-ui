@@ -32,8 +32,6 @@ const resizeImage = (buffer, width, height) => {
  * @param {number} upperThreshold
  * @returns {Promise<{
  *  resizedBuffer: Buffer,
- *  quality: number,
- *  manipulations: number
  * }>}
  */
 export const compressToTargetSize = async (
@@ -44,13 +42,10 @@ export const compressToTargetSize = async (
 ) => {
   let low = 0
   let high = 100
-  let quality = 100
-  let manipulations = 1
   let resizedBuffer = buffer
 
   if (buffer.length > upperThreshold) {
     while (low <= high) {
-      manipulations++
       const mid = Math.floor((low + high) / 2)
 
       const tempBuffer = await sharp(resizedBuffer)
@@ -64,7 +59,6 @@ export const compressToTargetSize = async (
         compressedSize >= lowerThreshold
       ) {
         resizedBuffer = tempBuffer
-        quality = mid
         break
       } else if (compressedSize < targetFileSize) {
         low = mid + 1
@@ -75,7 +69,7 @@ export const compressToTargetSize = async (
     }
   }
 
-  return { resizedBuffer, quality, manipulations }
+  return { resizedBuffer }
 }
 
 export const compress = async (buffer) => {
@@ -90,11 +84,7 @@ export const compress = async (buffer) => {
   compressed.jpeg({ progressive: true })
   const resizedBuffer = await compressed.toBuffer()
 
-  const {
-    resizedBuffer: finalBuffer,
-    quality,
-    manipulations
-  } = await compressToTargetSize(
+  const { resizedBuffer: finalBuffer } = await compressToTargetSize(
     resizedBuffer,
     targetFileSize,
     lowerThreshold,
@@ -108,9 +98,8 @@ export const compress = async (buffer) => {
     start,
     end,
     duration: end - start,
-    quality,
-    manipulations,
     originalSize,
+    reduction: 100 - (finalBuffer.length / originalSize) * 100,
     size: finalBuffer.length
   }
 }

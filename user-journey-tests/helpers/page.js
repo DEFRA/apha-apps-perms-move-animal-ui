@@ -157,3 +157,8 @@ export const switchToNewTab = async () => {
   const handles = await browser.getWindowHandles()
   await browser.switchToWindow(handles[1])
 }
+
+export const verifyRadioButtonNumber = async (expectedCount) => {
+  const radioButtons = await $$('.govuk-radios__input').length
+  expect(radioButtons).toBe(expectedCount)
+}

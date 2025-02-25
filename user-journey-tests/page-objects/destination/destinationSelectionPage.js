@@ -84,12 +84,6 @@ class DestinationSelectionPage extends Page {
       this.slaughterRadio
     )
   }
-
-  async verifyRadioButtonNumber(expectedCount) {
-    const radioButtons = await $$('.govuk-radios__input').length
-
-    expect(radioButtons).toBe(expectedCount)
-  }
 }
 
 export default new DestinationSelectionPage()

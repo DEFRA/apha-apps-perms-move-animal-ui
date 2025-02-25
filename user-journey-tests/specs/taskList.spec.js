@@ -1,4 +1,3 @@
-import { waitForPagePath } from '../helpers/page.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -15,6 +14,7 @@ import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswe
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import completeAnimalIdentificationTask from '../helpers/testHelpers/animalIdentification.js'
 import { secureDeviceArray } from '../helpers/constants.js'
+import identificationAnswersPage from '../page-objects/identification/identificationAnswersPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -59,13 +59,12 @@ describe('Task list page test', () => {
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
-    await taskListPage.selectMovementOrigin()
+    await taskListPage.selectMovementOrigin(toFromFarmPage)
     await toFromFarmPage.verifyPageHeadingAndTitle()
   })
 
   it('Should link to receiving the licence first question before an application has been started', async () => {
-    await taskListPage.selectReceiveTheLicence()
-    await waitForPagePath(ownerNamePage.pagePath)
+    await taskListPage.selectReceiveTheLicence(ownerNamePage)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
@@ -105,9 +104,7 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toBe('5 out of 6')
-
-    await taskListPage.selectMovementOrigin()
-    await waitForPagePath(checkAnswersPage.pagePath)
+    await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
   it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
@@ -152,9 +149,7 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 6')
-
-    await taskListPage.selectMovementDestination()
-    await waitForPagePath(destinationAnswersPage.pagePath)
+    await taskListPage.selectMovementDestination(destinationAnswersPage)
   })
 
   it('Should link to receiving licence check-answers page once that selection has been completed', async () => {
@@ -194,9 +189,7 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toContain('3 out of 6')
-    await taskListPage.selectReceiveTheLicence()
-
-    await waitForPagePath(licenceAnswersPage.pagePath)
+    await taskListPage.selectReceiveTheLicence(licenceAnswersPage)
   })
 
   it('Should link to receiving licence check-answers page once that selection has been completed', async () => {
@@ -236,9 +229,7 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 6')
-    await taskListPage.selectReceiveTheLicence()
-
-    await waitForPagePath(licenceAnswersPage.pagePath)
+    await taskListPage.selectAnimalIdentificationLink(identificationAnswersPage)
   })
 
   it('Should link should link to Biosecurity details check-answers page once that section has been complete', async () => {
@@ -278,9 +269,7 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toContain('1 out of 6')
-    await taskListPage.selectBiosecurityLink()
-
-    await waitForPagePath(biosecurityAnswersPage.pagePath)
+    await taskListPage.selectBiosecurityLink(biosecurityAnswersPage)
   })
 
   it('Should link should link to Biosecurity map check-answers page once that section has been complete', async () => {
@@ -326,8 +315,7 @@ describe('Task list page test', () => {
       expect(await taskListPage.getTaskToCompleteCount()).toContain(
         'You have completed all sections.'
       )
-      await taskListPage.selectBiosecurityMapLink()
-      await waitForPagePath(biosecurityMapAnswersPage.pagePath)
+      await taskListPage.selectBiosecurityMapLink(biosecurityMapAnswersPage)
     }
   })
 })

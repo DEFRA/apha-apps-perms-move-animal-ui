@@ -39,6 +39,17 @@ jest.mock('./image-compression.js', () => ({
   })
 }))
 
+jest.mock('./pdf-compression.js', () => ({
+  compress: jest.fn().mockResolvedValue({
+    file: Buffer.from('%PDF-1.4\n...compressed'),
+    start: 0,
+    end: 0,
+    duration: 0,
+    reduction: 50,
+    size: 1000
+  })
+}))
+
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
 }))
@@ -434,6 +445,48 @@ describe('#CheckAnswers', () => {
     const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(content).toBe(emailContent)
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(confirmationUri)
+  })
+
+  it('Should handle PDF compression correctly', async () => {
+    // Mock the S3 response to return a PDF file
+    mockSend.mockImplementationOnce(() => {
+      const filePath = path.resolve('./src/server/check-answers/example.pdf')
+      const fileStream = createReadStream(filePath)
+      return Promise.resolve({
+        Body: fileStream
+      })
+    })
+
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(content).toBe(emailContent)
+    expect(mockSendNotification).toHaveBeenCalledTimes(1)
+    expect(mockSendNotification).toHaveBeenCalledWith({
+      content: emailContent,
+      link_to_file: {
+        confirm_email_before_download: false,
+        file: Buffer.from('%PDF-1.4\n...compressed').toString('base64'),
+        filename: 'Biosecurity-map.pdf',
+        retention_period: '1 week'
+      }
+    })
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })

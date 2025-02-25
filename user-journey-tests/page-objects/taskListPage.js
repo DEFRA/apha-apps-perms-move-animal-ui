@@ -45,28 +45,34 @@ class TaskListPage extends Page {
     return element.getText()
   }
 
-  async selectMovementOrigin() {
+  async selectMovementOrigin(nextPage) {
     await page.selectElement(this.movementOriginLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
-  async selectReceiveTheLicence() {
+  async selectReceiveTheLicence(nextPage) {
     await page.selectElement(this.receivingTheLicenceLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
-  async selectMovementDestination() {
+  async selectMovementDestination(nextPage) {
     await page.selectElement(this.movementDestinationLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
-  async selectAnimalIdentificationLink() {
+  async selectAnimalIdentificationLink(nextPage) {
     await page.selectElement(this.animalIdentifiersLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
-  async selectBiosecurityLink() {
+  async selectBiosecurityLink(nextPage) {
     await page.selectElement(this.biosecurityLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
-  async selectBiosecurityMapLink() {
+  async selectBiosecurityMapLink(nextPage) {
     await page.selectElement(this.biosecurityMapLink)
+    await page.waitForPagePath(nextPage.pagePath)
   }
 
   async verifyStatus({ position, taskTitle, expectedStatus }) {

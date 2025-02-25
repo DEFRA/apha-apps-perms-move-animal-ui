@@ -27,7 +27,11 @@ describe('County parish owner name test', () => {
   it('Should verify successful inputs', async () => {
     const firstName = 'Bruce'
     const lastName = 'Wayne'
-    await ownerNamePage.inputNameAndContinue(firstName, lastName)
+    await ownerNamePage.inputNameAndContinue(
+      firstName,
+      lastName,
+      receiveMethodPage
+    )
     await receiveMethodPage.selectBackLink()
 
     const firstNameInputValue = await ownerNamePage.firstNameInput().getValue()

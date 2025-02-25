@@ -14,15 +14,12 @@ describe('Receive method for licence page test', () => {
   })
 
   it('Should select email and continue', async () => {
-    await receiveMethodPage.selectEmailAndContinue()
-    await expect(receiveMethodPage.pageError).not.toBeDisplayed()
-    await expect(receiveMethodPage.errorSummary).not.toBeDisplayed()
+    await receiveMethodPage.selectEmailAndContinue(emailPage)
     await emailPage.verifyPageHeadingAndTitle()
   })
 
   it('Should choose an option and check its maintained', async () => {
-    await receiveMethodPage.selectEmailAndContinue()
-    await emailPage.verifyPageHeadingAndTitle()
+    await receiveMethodPage.selectEmailAndContinue(emailPage)
     await browser.back()
 
     await browser.refresh()
