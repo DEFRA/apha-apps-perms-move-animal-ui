@@ -43,7 +43,7 @@ export class UploadPlanController extends QuestionPageController {
 
     // save this seperately to see if we've already tried to upload a bio-sec-map already
     const initialState = sectionState?.[this.page.questionKey]
-    const { isValid, errors } = existingAnswer.validate()
+    const { isValid, errors } = existingAnswer.validateProcessing()
 
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
