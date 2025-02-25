@@ -50,11 +50,9 @@ describe('CphNumberPage', () => {
     expect(cphNumberPage).toBeInstanceOf(CphNumberPage)
   })
 
-  describe('#cphNumberPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'cphNumberPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

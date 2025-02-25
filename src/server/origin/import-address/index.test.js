@@ -52,11 +52,9 @@ describe('OriginAddressPage', () => {
     expect(importAddressPage).toBeInstanceOf(ImportAddressPage)
   })
 
-  describe('#originAddressPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'originAddressPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

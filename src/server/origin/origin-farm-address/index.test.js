@@ -53,11 +53,9 @@ describe('OriginAddressPage', () => {
     expect(originFarmAddressPage).toBeInstanceOf(OriginFarmAddressPage)
   })
 
-  describe('#originAddressPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'originFarmAddressPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

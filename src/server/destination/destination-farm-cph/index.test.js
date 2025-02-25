@@ -50,11 +50,9 @@ describe('DestinationFarmCphPage', () => {
     expect(destinationFarmCphPage).toBeInstanceOf(DestinationFarmCphPage)
   })
 
-  describe('#cphNumberPage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'DestinationFarmCphPage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })

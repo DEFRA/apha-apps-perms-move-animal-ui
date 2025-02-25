@@ -13,11 +13,9 @@ describe('#ExitPagePremisesTypeController', () => {
     expect(page.view).toBe('origin/premises-type-exit-page/index')
   })
 
-  describe('#exitPremisesTypePage.content', () => {
-    describePageSnapshot({
-      describes: 'licenceSummaryPage.content',
-      it: 'should render expected response and content',
-      pageUrl
-    })
+  describePageSnapshot({
+    describes: 'exitPremisesTypePage.content',
+    it: 'should render expected response and content',
+    pageUrl
   })
 })
