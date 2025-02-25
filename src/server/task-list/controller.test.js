@@ -18,7 +18,7 @@ const validOriginState = {
 }
 
 const validDestinationState = {
-  destinationType: 'dedicated-sale'
+  destinationType: 'afu'
 }
 
 const validLicenceState = {

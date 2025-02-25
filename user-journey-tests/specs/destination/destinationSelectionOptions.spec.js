@@ -4,6 +4,8 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import { destinationVariants } from '../../helpers/testHelpers/movementLicence.js'
 import { verifyRadioButtonNumber } from '../../helpers/page.js'
+import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
+import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 
 describe('Destination selection options test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -23,6 +25,24 @@ describe('Destination selection options test', () => {
     await verifyRadioButtonNumber(1)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
       destinationCPHPage
+    )
+  })
+
+  it('Should verify options when Off the farm and AFU IS NOT selected', async () => {
+    await destinationVariants(false, false)
+    await destinationSelectionPage.navigateToPageAndVerifyTitle()
+    await verifyRadioButtonNumber(5)
+    await destinationSelectionPage.selectApprovedFinishingAndContinue(
+      destinationAnswersPage
+    )
+  })
+
+  it('Should verify options when Off the farm and AFU IS selected', async () => {
+    await destinationVariants(false, true)
+    await destinationSelectionPage.navigateToPageAndVerifyTitle()
+    await verifyRadioButtonNumber(2)
+    await destinationSelectionPage.selectSlaughterRadioAndContinue(
+      generalLicencePage
     )
   })
 })

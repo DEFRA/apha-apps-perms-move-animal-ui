@@ -3,8 +3,8 @@ import { DestinationTypeAnswer } from '../../common/model/answer/destination-typ
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
-import { anotherDestinationPage } from '../another-destination/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
@@ -42,17 +42,19 @@ describe('DestinationTypePage', () => {
   it('should export page', () => {
     expect(destinationTypePage).toBeInstanceOf(DestinationTypePage)
   })
-
-  describePageSnapshot({
-    describes: 'DestinationTypePage.content',
-    it: 'should render expected response and content',
-    pageUrl
-  })
 })
 
 describe('DestinationTypePage.nextPage', () => {
   describe('off the farm', () => {
     const context = { origin: { onOffFarm: 'off' } }
+
+    it('should return contact tb restricted farm page when answer is "tb-restricted-farm"', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'tb-restricted-farm'
+      })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+    })
 
     it('should return general licence page when answer is "slaughter"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
@@ -77,7 +79,14 @@ describe('DestinationTypePage.nextPage', () => {
     it('should return exitPage when answer is "other"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(anotherDestinationPage)
+      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+    })
+
+    describePageSnapshot({
+      describes: 'DestinationTypePage.content',
+      it: 'should render expected response and content',
+      pageUrl,
+      state: context
     })
   })
 
@@ -88,6 +97,13 @@ describe('DestinationTypePage.nextPage', () => {
       const answer = new DestinationTypeAnswer(undefined)
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
+    describePageSnapshot({
+      describes: 'DestinationTypePage.content',
+      it: 'should render expected response and content',
+      pageUrl,
+      state: context
     })
   })
 })

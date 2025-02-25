@@ -6,7 +6,7 @@ import {
 } from '../../helpers/page.js'
 import completeDestinationTask from '../../helpers/testHelpers/destination.js'
 import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
-import canNotUseServicePage from '../../page-objects/destination/canNotUseServicePage.js'
+import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
@@ -93,9 +93,9 @@ describe('Check your answers test - destination', () => {
 
     await selectElement(destinationAnswersPage.changeDestinationLink)
     await destinationSelectionPage.selectOtherDestinationAndContinue(
-      canNotUseServicePage
+      contactTbRestrictedFarmExitPage
     )
-    await canNotUseServicePage.selectBackLink()
+    await contactTbRestrictedFarmExitPage.selectBackLink()
 
     await waitForPagePath(destinationSelectionPage.pagePath)
     await destinationSelectionPage.selectBackLink()

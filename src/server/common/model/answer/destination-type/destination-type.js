@@ -2,7 +2,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'slaughter' | 'dedicated-sale' | 'afu' | 'other'} DestinationTypeData
+ * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'other'} DestinationTypeData
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 
@@ -29,22 +29,29 @@ const onFarmOptions = (app) =>
         other: { label: 'Another destination' }
       }
 
-const offFarmOptions = {
-  slaughter: { label: 'Slaughter' },
-  'dedicated-sale': { label: 'Dedicated sale for TB (orange market)' },
-  afu: afuOption,
-  other: {
-    label: 'Another destination',
-    hint: 'For example, a veterinary practice, zoo, or a laboratory'
-  }
-}
+/** @returns {Record<string, RadioOption>} */
+const offFarmOptions = (app) =>
+  isOriginAfu(app)
+    ? {
+        slaughter: { label: 'Slaughter' },
+        afu: afuOption
+      }
+    : {
+        'tb-restricted-farm': tbRestrictedOption,
+        slaughter: { label: 'Slaughter' },
+        'dedicated-sale': { label: 'Dedicated sale for TB (orange market)' },
+        afu: afuOption,
+        other: {
+          label: 'Another destination'
+        }
+      }
 
 /** @augments {RadioButtonAnswer<DestinationTypePayload>} */
 export class DestinationTypeAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfigFactory} */
   static config = (app) => ({
     payloadKey: 'destinationType',
-    options: isOnToTheFarm(app) ? onFarmOptions(app) : offFarmOptions,
+    options: isOnToTheFarm(app) ? onFarmOptions(app) : offFarmOptions(app),
     errors: {
       emptyOptionText: 'Select where the animals are going'
     }

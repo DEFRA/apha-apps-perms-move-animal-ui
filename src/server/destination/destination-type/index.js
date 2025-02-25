@@ -5,16 +5,18 @@ import { anotherDestinationPage } from '~/src/server/destination/another-destina
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
+import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 const offFarmNextPageMapping = {
+  'tb-restricted-farm': contactTbRestrictedFarmPage,
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': destinationSummaryPage,
   afu: destinationSummaryPage,
-  other: anotherDestinationPage
+  other: contactTbRestrictedFarmPage
 }
 
 export class DestinationTypePage extends QuestionPage {
