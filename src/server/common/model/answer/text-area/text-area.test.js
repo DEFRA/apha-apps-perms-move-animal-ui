@@ -5,16 +5,27 @@ const maxLengthError = 'TextArea exceeds maximum length (40)'
 const question = 'Enter your answer?'
 
 /** @type {TextAreaConfig} */
-const textAreaConfig = {
+const optionalTextAreaConfig = {
   payloadKey: 'textAreaPayload',
   validation: {
-    maxLength: { value: 40, message: maxLengthError },
+    maxLength: { value: 40, message: maxLengthError }
+  }
+}
+
+const requiredTextAreaConfig = {
+  ...optionalTextAreaConfig,
+  validation: {
+    ...optionalTextAreaConfig.validation,
     empty: { message: 'TextArea must not be empty' }
   }
 }
 
-class TestTextAreaAnswer extends TextAreaAnswer {
-  static config = textAreaConfig
+class TestOptionalTextAreaAnswer extends TextAreaAnswer {
+  static config = optionalTextAreaConfig
+}
+
+class TestRequiredTextAreaAnswer extends TextAreaAnswer {
+  static config = requiredTextAreaConfig
 }
 
 const validPayload = {
@@ -29,7 +40,7 @@ const invalidPayload = {
 describe('TextAreaAnswer.new', () => {
   it('should strip away any irrelevant values', () => {
     const payload = { ...validPayload, nextPage: '/other/page' }
-    const textAreaAnswer = new TestTextAreaAnswer(payload)
+    const textAreaAnswer = new TestOptionalTextAreaAnswer(payload)
 
     expect(textAreaAnswer._data).toEqual(validPayload)
   })
@@ -37,33 +48,37 @@ describe('TextAreaAnswer.new', () => {
 
 describe('TextAreaAnswer.validate', () => {
   it('should error if max length is exceeded', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: longAnswer
     })
     const { isValid, errors } = textAreaAnswer.validate()
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textAreaPayload: { text: textAreaConfig.validation.maxLength.message }
+      textAreaPayload: {
+        text: optionalTextAreaConfig.validation.maxLength.message
+      }
     })
   })
 
   it('should error if max length is exceeded with a whitespace-filled string, if stripWhitespace is not', () => {
     const whitespace = new Array(40).fill(' ').join('')
-    const textAreaAnswer = new TestTextAreaAnswer({
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: `a${whitespace}z`
     })
     const { isValid, errors } = textAreaAnswer.validate()
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textAreaPayload: { text: textAreaConfig.validation.maxLength.message }
+      textAreaPayload: {
+        text: optionalTextAreaConfig.validation.maxLength.message
+      }
     })
   })
 
   it('should not error if the max length is exceeded after trimming input', () => {
     const whitespace = new Array(25).fill(' ').join('')
-    const textAreaAnswer = new TestTextAreaAnswer({
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: `${whitespace}a${whitespace}`
     })
     const { isValid, errors } = textAreaAnswer.validate()
@@ -72,35 +87,77 @@ describe('TextAreaAnswer.validate', () => {
     expect(errors).toEqual({})
   })
 
-  it('should error if the input is empty', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({ textAreaPayload: '' })
-    const { isValid, errors } = textAreaAnswer.validate()
+  describe('when the field is optional (default behaviour)', () => {
+    it('should not error if the input is empty', () => {
+      const textAreaAnswer = new TestOptionalTextAreaAnswer({
+        textAreaPayload: ''
+      })
+      const { isValid, errors } = textAreaAnswer.validate()
 
-    expect(isValid).toBe(false)
-    expect(errors).toEqual({
-      textAreaPayload: { text: textAreaConfig.validation.empty.message }
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
+    })
+
+    it('should not error if the input is empty via being undefined', () => {
+      const textAreaAnswer = new TestOptionalTextAreaAnswer({
+        textAreaPayload: null
+      })
+      const { isValid, errors } = textAreaAnswer.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
+    })
+
+    it('should not error if the input is undefined', () => {
+      const textAreaAnswer = new TestOptionalTextAreaAnswer({
+        textAreaPayload: undefined
+      })
+      const { isValid, errors } = textAreaAnswer.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
     })
   })
 
-  it('should error if the input is empty via being undefined', () => {
-    const textAreaAnswer = new TestTextAreaAnswer()
-    const { isValid, errors } = textAreaAnswer.validate()
+  describe('when the field cannot be empty', () => {
+    it('should error if the input is empty', () => {
+      const textAreaAnswer = new TestRequiredTextAreaAnswer({
+        textAreaPayload: ''
+      })
+      const { isValid, errors } = textAreaAnswer.validate()
 
-    expect(isValid).toBe(false)
-    expect(errors).toEqual({
-      textAreaPayload: { text: textAreaConfig.validation.empty.message }
+      expect(isValid).toBe(false)
+      expect(errors).toEqual({
+        textAreaPayload: {
+          text: requiredTextAreaConfig.validation.empty.message
+        }
+      })
     })
-  })
 
-  it('should error if the input is undefined', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({
-      textAreaPayload: undefined
+    it('should error if the input is empty via being undefined', () => {
+      const textAreaAnswer = new TestRequiredTextAreaAnswer()
+      const { isValid, errors } = textAreaAnswer.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors).toEqual({
+        textAreaPayload: {
+          text: requiredTextAreaConfig.validation.empty.message
+        }
+      })
     })
-    const { isValid, errors } = textAreaAnswer.validate()
 
-    expect(isValid).toBe(false)
-    expect(errors).toEqual({
-      textAreaPayload: { text: textAreaConfig.validation.empty.message }
+    it('should error if the input is undefined', () => {
+      const textAreaAnswer = new TestRequiredTextAreaAnswer({
+        textAreaPayload: undefined
+      })
+      const { isValid, errors } = textAreaAnswer.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors).toEqual({
+        textAreaPayload: {
+          text: requiredTextAreaConfig.validation.empty.message
+        }
+      })
     })
   })
 
@@ -109,9 +166,9 @@ describe('TextAreaAnswer.validate', () => {
 
     class PatternValidationTextAreaAnswer extends TextAreaAnswer {
       static config = {
-        ...textAreaConfig,
+        ...optionalTextAreaConfig,
         validation: {
-          ...textAreaConfig.validation,
+          ...optionalTextAreaConfig.validation,
           pattern: { regex: /^[0-9]+$/, message: regexValidationMessage }
         }
       }
@@ -153,21 +210,21 @@ describe('TextAreaAnswer.validate', () => {
 
 describe('TextAreaAnswer.toState', () => {
   it('should replace missing data with blank string', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({})
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({})
     const data = textAreaAnswer.toState()
 
     expect(data).toBe('')
   })
 
   it('should pass through valid data unaltered', () => {
-    const textAreaAnswer = new TestTextAreaAnswer(validPayload)
+    const textAreaAnswer = new TestOptionalTextAreaAnswer(validPayload)
     const data = textAreaAnswer.toState()
 
     expect(data).toEqual(validPayload.textAreaPayload)
   })
 
   it('should trim whitespace', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: '  test value '
     })
 
@@ -177,35 +234,37 @@ describe('TextAreaAnswer.toState', () => {
 
 describe('TextAreaAnswer.fromState', () => {
   it('should return just the value from the payload', () => {
-    const textAreaAnswer = new TestTextAreaAnswer(validPayload)
+    const textAreaAnswer = new TestOptionalTextAreaAnswer(validPayload)
     const state = textAreaAnswer.toState()
-    expect(TestTextAreaAnswer.fromState(state).value).toEqual(
+    expect(TestOptionalTextAreaAnswer.fromState(state).value).toEqual(
       validPayload.textAreaPayload
     )
   })
 
   it('should return an undefined value if the state is undefined', () => {
-    expect(TestTextAreaAnswer.fromState(undefined).value).toBeUndefined()
+    expect(
+      TestOptionalTextAreaAnswer.fromState(undefined).value
+    ).toBeUndefined()
   })
 
   it('should return an empty object if the state is undefined', () => {
-    expect(TestTextAreaAnswer.fromState(undefined)._data).toEqual({})
+    expect(TestOptionalTextAreaAnswer.fromState(undefined)._data).toEqual({})
   })
 })
 
 describe('TestAnswer.html', () => {
   it('should return the value if present', () => {
-    const textAreaAnswer = new TestTextAreaAnswer(validPayload)
+    const textAreaAnswer = new TestOptionalTextAreaAnswer(validPayload)
     expect(textAreaAnswer.html).toBe(validPayload.textAreaPayload)
   })
 
   it('should return an empty string if payload is not present', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({})
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({})
     expect(textAreaAnswer.html).toBe('')
   })
 
   it('should return a string after replacing newlines with <br>', () => {
-    const textAreaAnswer = new TestTextAreaAnswer({
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: 'line one\nline two'
     })
     expect(textAreaAnswer.html).toBe('line one<br />line two')
@@ -213,7 +272,7 @@ describe('TestAnswer.html', () => {
 })
 
 describe('TestAnswer.viewModel (without any extra options)', () => {
-  const textAreaAnswer = new TestTextAreaAnswer(invalidPayload)
+  const textAreaAnswer = new TestOptionalTextAreaAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', () => {
     expect(textAreaAnswer.viewModel({ validate: false, question })).toEqual({
@@ -246,7 +305,7 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
 describe('TestAnswer.viewModel (with all optional options)', () => {
   /** @type {TextAreaConfig} */
   const textAreaConfigWithExtraOptions = {
-    ...textAreaConfig,
+    ...optionalTextAreaConfig,
     autocomplete: 'input-data',
     spellcheck: false,
     rows: 10,
@@ -289,7 +348,7 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
 
 describe('TextAreaAnswer.template', () => {
   it('should return the textArea model template', () => {
-    const textArea = new TestTextAreaAnswer(validPayload)
+    const textArea = new TestOptionalTextAreaAnswer(validPayload)
     expect(textArea.template).toBe('model/answer/text-area/text-area.njk')
   })
 })

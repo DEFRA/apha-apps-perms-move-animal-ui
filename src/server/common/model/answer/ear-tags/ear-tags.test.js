@@ -22,7 +22,7 @@ describe('Disinfectant', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(EarTagsAnswer.config.validation.empty.message).toBe(
+    expect(EarTagsAnswer.config.validation.empty?.message).toBe(
       'Enter the ear tag numbers of the animals you are planning to move'
     )
   })
