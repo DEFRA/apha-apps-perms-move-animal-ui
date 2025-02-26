@@ -40,7 +40,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Incomplete'
       },
       {
@@ -88,7 +88,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Incomplete'
       },
       {
@@ -133,7 +133,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Incomplete'
       },
       {
@@ -173,7 +173,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Incomplete'
       },
       {
@@ -213,7 +213,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Completed'
       },
       {
@@ -253,7 +253,7 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identifiers',
+        taskTitle: 'Animal identification',
         expectedStatus: 'Completed'
       },
       {
@@ -297,7 +297,7 @@ describe('Task list page test', () => {
         },
         {
           position: 4,
-          taskTitle: 'Animal identifiers',
+          taskTitle: 'Animal identification',
           expectedStatus: 'Completed'
         },
         {

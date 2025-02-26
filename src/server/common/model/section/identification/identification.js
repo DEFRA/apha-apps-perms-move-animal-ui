@@ -26,7 +26,7 @@ export class IdentificationSection extends SectionModel {
   /** @type {SectionConfig} */
   static config = {
     key: 'identification',
-    title: 'Animal identifiers',
+    title: 'Animal identification',
     plugin: identification,
     summaryLink: '/identification/check-answers',
     isEnabled: () => true,

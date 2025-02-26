@@ -35,7 +35,7 @@ describe('Identification.validate', () => {
 describe('Identification.config', () => {
   it('should be as expected', () => {
     expect(IdentificationSection.config.key).toBe('identification')
-    expect(IdentificationSection.config.title).toBe('Animal identifiers')
+    expect(IdentificationSection.config.title).toBe('Animal identification')
     expect(IdentificationSection.config.isVisible({})).toBe(false)
     expect(IdentificationSection.config.isEnabled({})).toBe(true)
     expect(IdentificationSection.config.summaryLink).toBe(

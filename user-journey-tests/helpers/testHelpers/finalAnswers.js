@@ -52,7 +52,7 @@ export const completeApplication = async (originObject, licenceObject) => {
   await taskListPage.navigateToPageAndVerifyTitle()
   await taskListPage.verifyStatus({
     position: 4,
-    taskTitle: 'Animal identifiers',
+    taskTitle: 'Animal identification',
     expectedStatus: 'Completed'
   })
   await completeBiosecurityTask('yes')
