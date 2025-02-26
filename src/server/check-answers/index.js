@@ -1,5 +1,6 @@
 import { GetObjectCommand } from '@aws-sdk/client-s3'
 import { config } from '~/src/config/config.js'
+import Boom from '@hapi/boom'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
@@ -134,7 +135,7 @@ export class SubmitPageController extends QuestionPageController {
 
         const mimeOffset = 5
         const isPdf = buffer.subarray(0, mimeOffset).toString() === '%PDF-'
-        if (isPdf) {
+        if (isPdf && config.get('featureFlags').pdfUpload) {
           const { duration, reduction, file } = await compressPDF(buffer)
           compressedFile = file
           this.logger.info(
@@ -144,7 +145,14 @@ export class SubmitPageController extends QuestionPageController {
           const { duration, file, reduction } = await compressImage(buffer)
           compressedFile = file
           this.logger.info(
-            `Image compression took ${duration}ms at a reduction of ${reduction}%`
+            `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
+          )
+        }
+
+        if (fileSize(compressedFile.length) > 2) {
+          // code to handle file over 2MB
+          return Boom.badImplementation(
+            'Compressed file is too large to send to Notify'
           )
         }
 

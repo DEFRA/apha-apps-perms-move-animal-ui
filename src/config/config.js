@@ -293,6 +293,12 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'BIOSECURITY_FEATURE_ENABLED'
+    },
+    pdfUpload: {
+      doc: 'Feature flag to enable PDF upload',
+      format: Boolean,
+      default: !isProduction,
+      env: 'PDF_UPLOAD_FEATURE_ENABLED'
     }
   },
   gsPath: {

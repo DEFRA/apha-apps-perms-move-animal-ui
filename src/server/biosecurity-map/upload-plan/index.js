@@ -45,12 +45,18 @@ export class UploadPlanController extends QuestionPageController {
     const initialState = sectionState?.[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validateProcessing()
 
+    const mimeTypes = ['image/png', 'image/jpeg']
+
+    if (config.get('featureFlags').pdfUpload) {
+      mimeTypes.push('application/pdf')
+    }
+
     const response = await Wreck.post(`${uploaderUrl}/initiate`, {
       payload: JSON.stringify({
         redirect: this.page.nextPage(req).urlPath,
         s3Bucket: bucket,
         s3Path: path,
-        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf']
+        mimeTypes
       })
     })
 
