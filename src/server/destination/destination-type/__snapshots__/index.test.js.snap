@@ -96,7 +96,7 @@ exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content sh
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="zoo" name="destinationType" type="radio" value="zoo">
         <label class="govuk-label govuk-radios__label" for="zoo">
-          Zoo
+          Zoo with TB restrictions
         </label>
       </div>
       <div class="govuk-radios__item">

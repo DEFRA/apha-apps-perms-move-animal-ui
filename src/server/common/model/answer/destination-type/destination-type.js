@@ -24,7 +24,7 @@ const onFarmOptions = (app) =>
     : {
         'tb-restricted-farm': tbRestrictedOption,
         afu: afuOption,
-        zoo: { label: 'Zoo' },
+        zoo: { label: 'Zoo with TB restrictions' },
         lab: { label: 'Laboratory' },
         other: { label: 'Another destination' }
       }
