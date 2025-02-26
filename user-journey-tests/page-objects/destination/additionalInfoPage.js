@@ -1,7 +1,6 @@
 import { Page } from '../page.js'
 
-const pageHeadingAndTitle =
-  'Enter any additional information (optional)'
+const pageHeadingAndTitle = 'Enter any additional information (optional)'
 
 class AdditionalInfoPage extends Page {
   pagePath = 'destination/any-additional-info'
