@@ -7,22 +7,24 @@ import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-
 import { IdentificationSection } from '../section/identification/identification.js'
 
 /**
+ * @import { SectionModel } from '../section/section-model/section-model.js'
  * @import { RawApplicationState } from '../state/state-manager.js'
  */
 
-// This is a list of all the sections that are implemented in the application.
-// The order in this array drives the order in which the sections are displayed.
-const implementedSections = [
-  OriginSection,
-  DestinationSection,
-  LicenceSection,
-  IdentificationSection,
-  BiosecuritySection,
-  BiosecurityPlanSection
-]
-
 export class ApplicationModel {
   _data
+
+  // This is a list of all the sections that are implemented in the application.
+  // The order in this array drives the order in which the sections are displayed.
+  /** @type {typeof SectionModel[]} */
+  static implementedSections = [
+    OriginSection,
+    DestinationSection,
+    LicenceSection,
+    IdentificationSection,
+    BiosecuritySection,
+    BiosecurityPlanSection
+  ]
 
   constructor(data) {
     this._data = data
@@ -41,9 +43,12 @@ export class ApplicationModel {
     return this._data
   }
 
-  static get visibleSections() {
-    return implementedSections.filter((section) => {
-      return section.config.isVisible
+  /**
+   * @param {RawApplicationState} state
+   */
+  static visibleSections(state) {
+    return this.implementedSections.filter((section) => {
+      return section.config.isVisible(state)
     })
   }
 
@@ -54,7 +59,7 @@ export class ApplicationModel {
   static fromState(state) {
     return new ApplicationModel(
       Object.fromEntries(
-        this.visibleSections.map((section) => [
+        this.visibleSections(state).map((section) => [
           section.config.key,
           section.fromState(state)
         ])

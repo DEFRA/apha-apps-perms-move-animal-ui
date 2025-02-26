@@ -12,7 +12,7 @@ export class LicenceSection extends SectionModel {
     plugin: licence,
     summaryLink: '/receiving-the-licence/check-answers',
     isEnabled: () => true,
-    isVisible: true
+    isVisible: () => true
   }
 
   static firstPageFactory = () => fullNamePage

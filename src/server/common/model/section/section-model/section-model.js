@@ -24,7 +24,7 @@ import { StateManager } from '../../state/state-manager.js'
  *  plugin: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
  *  isEnabled: (app: RawApplicationState) => boolean,
- *  isVisible: boolean
+ *  isVisible: (app: RawApplicationState) => boolean
  * }} SectionConfig
  */
 

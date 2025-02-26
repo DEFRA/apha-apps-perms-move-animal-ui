@@ -13,7 +13,7 @@ export class DestinationSection extends SectionModel {
     plugin: destination,
     summaryLink: '/destination/check-answers',
     isEnabled: (app) => OriginSection.fromState(app).validate().isValid,
-    isVisible: true
+    isVisible: () => true
   }
 
   static firstPageFactory = () => destinationTypePage

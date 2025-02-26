@@ -13,7 +13,7 @@ export class IdentificationSection extends SectionModel {
     plugin: identification,
     summaryLink: '/identification/check-answers',
     isEnabled: () => true,
-    isVisible: config.get('featureFlags')?.biosecurity
+    isVisible: () => config.get('featureFlags')?.biosecurity
   }
 
   static firstPageFactory = () => earTagsPage

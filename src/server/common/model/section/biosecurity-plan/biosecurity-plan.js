@@ -13,7 +13,7 @@ export class BiosecurityPlanSection extends SectionModel {
     plugin: biosecurityPlan,
     summaryLink: '/biosecurity-map/check-answers',
     isEnabled: () => true,
-    isVisible: config.get('featureFlags')?.biosecurity
+    isVisible: () => config.get('featureFlags')?.biosecurity
   }
 
   static firstPageFactory = () => uploadPlanPage

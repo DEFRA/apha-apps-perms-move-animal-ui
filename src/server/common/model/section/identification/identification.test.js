@@ -33,7 +33,7 @@ describe('Identification.config', () => {
   it('should be as expected', () => {
     expect(IdentificationSection.config.key).toBe('identification')
     expect(IdentificationSection.config.title).toBe('Animal identifiers')
-    expect(IdentificationSection.config.isVisible).toBe(true)
+    expect(IdentificationSection.config.isVisible({})).toBe(true)
     expect(IdentificationSection.config.isEnabled({})).toBe(true)
     expect(IdentificationSection.config.summaryLink).toBe(
       '/identification/check-answers'
