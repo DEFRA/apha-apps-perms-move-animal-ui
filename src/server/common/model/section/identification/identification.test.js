@@ -34,11 +34,7 @@ describe('Identification.config', () => {
     expect(IdentificationSection.config.key).toBe('identification')
     expect(IdentificationSection.config.title).toBe('Animal identifiers')
     expect(IdentificationSection.config.isVisible).toBe(true)
-    expect(
-      IdentificationSection.config.isEnabled(
-        /** @type {import('@hapi/hapi').Request} */ ({})
-      )
-    ).toBe(true)
+    expect(IdentificationSection.config.isEnabled({})).toBe(true)
     expect(IdentificationSection.config.summaryLink).toBe(
       '/identification/check-answers'
     )
