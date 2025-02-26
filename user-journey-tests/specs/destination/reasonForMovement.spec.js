@@ -2,7 +2,7 @@ import reasonForMovementPage from '../../page-objects/destination/reasonForMovem
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 import quantityOptionsPage from '../../page-objects/destination/quantityOptionsPage.js'
 
-describe('Paris holding page test', () => {
+describe('Reason for movement page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await reasonForMovementPage.navigateToPageAndVerifyTitle()
