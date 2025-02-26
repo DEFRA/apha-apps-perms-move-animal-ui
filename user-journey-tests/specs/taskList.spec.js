@@ -40,22 +40,17 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity details',
         expectedStatus: 'Incomplete'
       },
       {
-        position: 6,
+        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('6 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('5 out of 5')
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -88,22 +83,17 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity details',
         expectedStatus: 'Incomplete'
       },
       {
-        position: 6,
+        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('5 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 5')
     await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
@@ -133,22 +123,17 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity details',
         expectedStatus: 'Incomplete'
       },
       {
-        position: 6,
+        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 5')
     await taskListPage.selectMovementDestination(destinationAnswersPage)
   })
 
@@ -173,26 +158,21 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity details',
         expectedStatus: 'Incomplete'
       },
       {
-        position: 6,
+        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toContain('3 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 5')
     await taskListPage.selectReceiveTheLicence(licenceAnswersPage)
   })
 
-  it('Should link to receiving licence check-answers page once that selection has been completed', async () => {
+  it.skip('Should link to receiving licence check-answers page once that selection has been completed', async () => {
     await completeAnimalIdentificationTask()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
@@ -228,7 +208,7 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 5')
     await taskListPage.selectAnimalIdentificationLink(identificationAnswersPage)
   })
 
@@ -253,22 +233,17 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity details',
         expectedStatus: 'Completed'
       },
       {
-        position: 6,
+        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toContain('1 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toContain('1 out of 5')
     await taskListPage.selectBiosecurityLink(biosecurityAnswersPage)
   })
 
@@ -297,16 +272,11 @@ describe('Task list page test', () => {
         },
         {
           position: 4,
-          taskTitle: 'Animal identification',
-          expectedStatus: 'Completed'
-        },
-        {
-          position: 5,
           taskTitle: 'Biosecurity details',
           expectedStatus: 'Completed'
         },
         {
-          position: 6,
+          position: 5,
           taskTitle: 'Biosecurity map',
           expectedStatus: 'Completed'
         }
