@@ -10,11 +10,7 @@ const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/any-additional-info'
 
 describe('AdditionalInfoPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new AdditionalInfoPage()
-  })
+  const page = new AdditionalInfoPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
