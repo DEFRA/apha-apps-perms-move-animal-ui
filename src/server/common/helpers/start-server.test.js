@@ -79,7 +79,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"biosecurity":true}`
+        `Feature flags configuration: {"biosecurity":true,"pdfUpload":true}`
       )
     })
   })
