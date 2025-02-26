@@ -1,51 +1,36 @@
-import { Page } from '../page.js'
-import { waitForPagePath } from '../../helpers/page.js'
+/* eslint-disable lines-between-class-members */
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageId = 'manureAndSlurry'
-
+const noInputError =
+  'Select if manure or slurry has been put on the grazing field in the past 60 days'
+const valueArray = ['yes', 'no']
 const pageHeadingAndTitle =
   'Has any manure or slurry been put on the grazing field in the past 60 days?'
 
-class ManureAndSlurryPage extends Page {
+class ManureAndSlurryPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = 'biosecurity/manure-and-slurry'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  manureOrSlurryPageError =
-    'Select if manure or slurry has been put on the grazing field in the past 60 days'
 
-  get yesRadio() {
-    return $(`#${pageId}`)
+  async selectYesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
-  get noRadio() {
-    return $('#no')
-  }
-
-  radioFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  summaryErrorLink() {
-    return super.getErrorLink(pageId)
-  }
-
-  async selectYesAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.yesRadio)
-    await waitForPagePath(newPage.pagePath)
-  }
-
-  async selectNoAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.noRadio)
-    await waitForPagePath(newPage.pagePath)
+  async selectNoAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
   async grazingErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(
-      this.radioFieldError(),
-      this.manureOrSlurryPageError
-    )
-    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.yesRadio)
+    super.radioErrorTest()
   }
 }
 

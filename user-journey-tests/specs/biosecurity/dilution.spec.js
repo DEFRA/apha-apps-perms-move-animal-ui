@@ -22,7 +22,7 @@ describe('Disinfectant dilution page spec', () => {
   it('Should verify that page errors when something other than anumber is entered', async () => {
     await disinfectantDilutionPage.dilutionErrorTest(
       'test',
-      disinfectantDilutionPage.invalidInputError
+      disinfectantDilutionPage.invalidFormatError
     )
   })
 

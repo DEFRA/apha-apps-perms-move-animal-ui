@@ -141,9 +141,9 @@ export const validateAndAdjustEmail = async (
 ) => {
   await selectElement(changeLink)
 
-  const inputValue = await emailPage.emailAddressInput().getValue()
+  const inputValue = await emailPage.textInput().getValue()
   expect(inputValue).toBe(defaultEmail)
-  await clearElement(emailPage.emailAddressInput())
+  await clearElement(emailPage.textInput())
   await emailPage.inputEmailAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)

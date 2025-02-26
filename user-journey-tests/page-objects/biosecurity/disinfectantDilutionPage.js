@@ -1,33 +1,23 @@
-import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
+import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'dilutionRate'
-
 const pageHeadingAndTitle =
   'What dilution rate are you using for your disinfectant?'
+const noInputError = 'Enter the dilution rate'
+const invalidFormatError = 'Enter a number'
 
-class DisinfectantDilutionPage extends Page {
+class DisinfectantDilutionPage extends SingleTextInputPage {
+  constructor() {
+    super({ pageId, noInputError, invalidFormatError })
+  }
+
   pagePath = 'biosecurity/disinfectant-dilution'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
 
-  noInputError = 'Enter the dilution rate'
-  invalidInputError = 'Enter a number'
-
   get dilutionGovLink() {
     return $('a*=disinfectants approved for use in England')
-  }
-
-  dilutionInput() {
-    return super.getInputField(pageId)
-  }
-
-  dilutionFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  dilutionErrorLink() {
-    return super.getErrorLink(pageId)
   }
 
   async verifyDilutionGovLink() {
@@ -37,23 +27,12 @@ class DisinfectantDilutionPage extends Page {
     )
   }
 
-  async inputDilutionAndContinue(text, newPage) {
-    await page.typeIntoElement(this.dilutionInput(), text)
-    await super.selectContinue()
-    if (newPage) {
-      await page.waitForPagePath(newPage.pagePath)
-    }
+  async inputDilutionAndContinue(text, nextPage) {
+    await super.inputTextAndContinue(text, nextPage)
   }
 
   async dilutionErrorTest(textInput, errorMessage) {
-    await this.inputDilutionAndContinue(textInput)
-    await super.verifyErrorsOnPage(this.dilutionFieldError(), errorMessage)
-    await super.verifySummaryErrorLink(
-      this.dilutionErrorLink(),
-      this.dilutionInput()
-    )
-    const inputValue = await this.dilutionInput().getValue()
-    expect(inputValue).toBe(textInput)
+    await super.singleInputErrorTest(textInput, errorMessage)
   }
 }
 
