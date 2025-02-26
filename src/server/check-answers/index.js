@@ -1,6 +1,5 @@
 import { GetObjectCommand } from '@aws-sdk/client-s3'
 import { config } from '~/src/config/config.js'
-import Boom from '@hapi/boom'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
@@ -10,7 +9,6 @@ import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
 import { compress as compressImage } from './image-compression.js'
-import { compress as compressPDF } from './pdf-compression.js'
 import fileSize from '../common/helpers/file-size/file-size.js'
 
 /**
@@ -106,17 +104,12 @@ export class SubmitPageController extends QuestionPageController {
 
       if (config.get('featureFlags').biosecurity) {
         const compressedFile = await this.handleBiosecurityFile(req)
-        if (!compressedFile) {
-          return Boom.badImplementation(
-            'Compressed file is too large to send to Notify'
-          )
-        }
 
         const { fileRetention, confirmDownloadConfirmation } =
           config.get('notify')
         notifyProps.link_to_file = {
           file: compressedFile?.toString('base64'),
-          filename: `Biosecurity-map.${this.isPdf(compressedFile) ? 'pdf' : 'jpg'}`,
+          filename: 'Biosecurity-map.jpg',
           confirm_email_before_download: confirmDownloadConfirmation,
           retention_period: fileRetention
         }
@@ -166,32 +159,13 @@ export class SubmitPageController extends QuestionPageController {
 
     let compressedFile = null
 
-    const mimeOffset = 5
-    const isPdf = buffer.subarray(0, mimeOffset).toString() === '%PDF-'
-    if (isPdf && config.get('featureFlags').pdfUpload) {
-      const { duration, reduction, file } = await compressPDF(buffer)
-      compressedFile = file
-      this.logger.info(
-        `PDF compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
-      )
-    } else {
-      const { duration, file, reduction } = await compressImage(buffer)
-      compressedFile = file
-      this.logger.info(
-        `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
-      )
-    }
-
-    if (fileSize(compressedFile.length) > 2) {
-      return null
-    }
+    const { duration, file, reduction } = await compressImage(buffer)
+    compressedFile = file
+    this.logger.info(
+      `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
+    )
 
     return compressedFile
-  }
-
-  isPdf(buffer) {
-    const mimeOffset = 5
-    return buffer.subarray(0, mimeOffset).toString() === '%PDF-'
   }
 }
 
