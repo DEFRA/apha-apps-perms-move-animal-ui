@@ -8,34 +8,22 @@ import { AddressAnswer } from '../../answer/address/address.js'
 import { OriginTypePage } from '~/src/server/origin/origin-type/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
 import { spyOnConfig } from '../../../test-helpers/config.js'
+import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
-const validAddress = {
-  addressLine1: 'Starfleet Headquarters',
-  addressTown: 'San Francisco',
-  addressPostcode: 'RG24 8RR'
-}
-
-const validState = {
-  onOffFarm: /** @type {OnOffFarmData} */ ('off'),
-  originType: 'afu',
-  cphNumber: '12/345/6789',
-  address: validAddress
-}
-
 const invalidState = {
-  ...validState,
+  ...validOriginSectionState,
   cphNumber: 'not-a-cph'
 }
 
 const exitState = {
-  ...validState,
+  ...validOriginSectionState,
   onOffFarm: /** @type {OnOffFarmData} */ ('on')
 }
 
 const applicationState = {
-  origin: validState
+  origin: validOriginSectionState
 }
 
 describe('SectionModel.questionPageAnswers', () => {
@@ -85,7 +73,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
 describe('SectionModel.validate', () => {
   it('should return valid if all questions in journey are validly answered', () => {
-    const origin = OriginSection.fromState({ origin: validState })
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
 
     expect(origin.validate()).toEqual({ isValid: true })
   })
@@ -119,15 +107,15 @@ describe('SectionModel.validate', () => {
 
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
-    const origin = OriginSection.fromState({ origin: validState })
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
     expect(origin.firstPage).toBeInstanceOf(OnOffFarmPage)
   })
 })
 
 describe('SectionModel.fromState', () => {
   it('should return an instance of the class that produced it', () => {
-    expect(OriginSection.fromState({ origin: validState })).toBeInstanceOf(
-      OriginSection
-    )
+    expect(
+      OriginSection.fromState({ origin: validOriginSectionState })
+    ).toBeInstanceOf(OriginSection)
   })
 })
