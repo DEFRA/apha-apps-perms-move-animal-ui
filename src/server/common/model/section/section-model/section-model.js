@@ -1,5 +1,6 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
+import { StateManager } from '../../state/state-manager.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
@@ -22,7 +23,7 @@ import { ExitPage } from '../../page/exit-page-model.js'
  *  title: string,
  *  plugin: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
- *  isEnabled: (req: Request) => boolean,
+ *  isEnabled: (app: RawApplicationState) => boolean,
  *  isVisible: boolean
  * }} SectionConfig
  */
@@ -136,7 +137,7 @@ export class SectionModel {
         sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
-      isEnabled: this.config.isEnabled(req)
+      isEnabled: this.config.isEnabled(new StateManager(req).toState())
     }
   }
 }

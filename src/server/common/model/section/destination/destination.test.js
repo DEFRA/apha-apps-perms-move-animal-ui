@@ -1,5 +1,6 @@
 import { DestinationTypePage } from '~/src/server/destination/destination-type/index.js'
 import { DestinationSection } from './destination.js'
+import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
 
 /**
  * @import { DestinationTypeData } from '../../answer/destination-type/destination-type.js'
@@ -32,6 +33,23 @@ describe('Destination', () => {
 
       expect(result.isValid).toBe(false)
       expect(result.firstInvalidPage).toBeInstanceOf(DestinationTypePage)
+    })
+  })
+
+  describe('isEnabled', () => {
+    it('should return false if the origin section is not complete', () => {
+      const applicationState = {
+        origin: {}
+      }
+
+      expect(DestinationSection.config.isEnabled(applicationState)).toBe(false)
+    })
+
+    it('should return true if the origin section is complete', () => {
+      const applicationState = {
+        origin: validOriginSectionState
+      }
+      expect(DestinationSection.config.isEnabled(applicationState)).toBe(true)
     })
   })
 })
