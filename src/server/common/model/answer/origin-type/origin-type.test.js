@@ -58,7 +58,7 @@ describe('#OriginType.config', () => {
     expect(config.options['unrestricted-farm'].label).toBe(
       'Unrestricted farm or premises'
     )
-    expect(config.options.zoo.label).toBe('Zoo')
+    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
     expect(config.options.lab.label).toBe('Laboratory')
     expect(config.options.other.label).toBe('Another origin')
   })

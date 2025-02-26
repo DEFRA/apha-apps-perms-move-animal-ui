@@ -37,7 +37,7 @@ const offFarmOptionsBiosecurityTrue = {
   'unrestricted-farm': {
     label: 'Unrestricted farm or premises'
   },
-  zoo: { label: 'Zoo' },
+  zoo: { label: 'Zoo with TB restrictions' },
   lab: { label: 'Laboratory' },
   other: { label: 'Another origin' }
 }
