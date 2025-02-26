@@ -34,7 +34,7 @@ describe('BuildingsHowMinimiseContamination', () => {
 
   it('should define the right empty input message', () => {
     expect(
-      BuildingsHowMinimiseContaminationAnswer.config.validation.empty.message
+      BuildingsHowMinimiseContaminationAnswer.config.validation.empty?.message
     ).toBe('Enter information about how you will reduce building contamination')
   })
 

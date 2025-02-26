@@ -23,7 +23,9 @@ describe('GrazingFieldHowSeparated', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(GrazingFieldHowSeparatedAnswer.config.validation.empty.message).toBe(
+    expect(
+      GrazingFieldHowSeparatedAnswer.config.validation.empty?.message
+    ).toBe(
       'Enter information about how this grazing field is separated from the resident herd'
     )
   })
