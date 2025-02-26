@@ -4,6 +4,7 @@ import { destinationFarmAddress } from './destination-farm-address/index.js'
 import { destinationFarmCph } from './destination-farm-cph/index.js'
 import { destinationType } from './destination-type/index.js'
 import { generalLicence } from './general-licence/index.js'
+import { reasonForMovement } from './reason-for-movement/index.js'
 import { destinationSummary } from './summary/index.js'
 
 /**
@@ -20,7 +21,8 @@ export const destination = {
         anotherDestination,
         contactTbRestrictedFarm,
         destinationFarmCph,
-        destinationFarmAddress
+        destinationFarmAddress,
+        reasonForMovement
       ])
     }
   }
