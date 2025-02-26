@@ -1,6 +1,6 @@
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
-import { ReasonForMovementAnswer } from './movement-reason.js'
-/** @import {ReasonForMovementPayload} from './movement-reason.js' */
+import { ReasonForMovementAnswer } from './reason-for-movement.js'
+/** @import {ReasonForMovementPayload} from './reason-for-movement.js' */
 
 /** @type {ReasonForMovementPayload} */
 const payload = {

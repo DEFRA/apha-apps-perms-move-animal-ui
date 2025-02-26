@@ -1,6 +1,6 @@
 import { reasonForMovementPage, ReasonForMovementPage } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { ReasonForMovementAnswer } from '../../common/model/answer/movement-reason/movement-reason.js'
+import { ReasonForMovementAnswer } from '../../common/model/answer/reason-for-movement/reason-for-movement.js'
 import { quantityOptionsPage } from '../quantity-options/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 

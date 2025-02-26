@@ -1,5 +1,5 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { ReasonForMovementAnswer } from '../../common/model/answer/movement-reason/movement-reason.js'
+import { ReasonForMovementAnswer } from '../../common/model/answer/reason-for-movement/reason-for-movement.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { quantityOptionsPage } from '../quantity-options/index.js'
