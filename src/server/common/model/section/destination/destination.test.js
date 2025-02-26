@@ -1,16 +1,11 @@
 import { DestinationTypePage } from '~/src/server/destination/destination-type/index.js'
 import { DestinationSection } from './destination.js'
-import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
+import {
+  validDestinationSectionState,
+  validOriginSectionState
+} from '../../../test-helpers/journey-state.js'
 
-/**
- * @import { DestinationTypeData } from '../../answer/destination-type/destination-type.js'
- * @type {DestinationTypeData}
- */
-const testDestinationType = 'slaughter'
-
-const destinationData = {
-  destinationType: testDestinationType
-}
+const destinationData = validDestinationSectionState
 
 describe('Destination', () => {
   describe('validate', () => {

@@ -18,7 +18,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Are you moving the animals on or off your farm or premises?
     </dt>
     <dd class="govuk-summary-list__value">
-      Off the farm or premises
+      On to the farm or premises
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/origin/to-or-from-own-premises?redirect_uri=/submit/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
@@ -29,7 +29,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       What type of premises are the animals moving off?
     </dt>
     <dd class="govuk-summary-list__value">
-      Approved finishing unit (AFU)
+      TB restricted farm
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
@@ -37,24 +37,24 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
+      What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
     </dt>
     <dd class="govuk-summary-list__value">
-      12/123/1234
+      12/345/6789
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the address of your farm or premises where the animals are moving off?
+      What is the address of the farm or premises where the animals are moving off?
     </dt>
     <dd class="govuk-summary-list__value">
-      Starfleet Headquarters<br>24-593 Federation Drive<br>San Francisco<br>San Francisco<br>RG24 8RR
+      Starfleet Headquarters<br>San Francisco<br>RG24 8RR
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/address?redirect_uri=/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of your farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/origin-farm-address?redirect_uri=/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
 </dl>
@@ -67,10 +67,32 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Where are the animals going to?
     </dt>
     <dd class="govuk-summary-list__value">
-      Approved finishing unit (AFU)
+      TB restricted farm
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/submit/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      12/345/6789
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/destination/destination-farm-cph?redirect_uri=/submit/check-answers" data-testid="destinationFarmCph-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the address of the farm or premises where the animals are going to?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Starfleet Headquarters<br>San Francisco<br>RG24 8RR
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/destination/destination-farm-address?redirect_uri=/submit/check-answers" data-testid="destinationFarmAddress-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are going to?</span></a>
     </dd>
   </div>
 </dl>
@@ -83,7 +105,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       What is the name of the County Parish Holding (CPH) owner?
     </dt>
     <dd class="govuk-summary-list__value">
-      William T. Riker
+      Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/receiving-the-licence/licence-name?redirect_uri=/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the County Parish Holding (CPH) owner?</span></a>
@@ -105,7 +127,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       What email address would you like the licence sent to?
     </dt>
     <dd class="govuk-summary-list__value">
-      name@example.com
+      kathryn@starfleet.com
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
@@ -121,7 +143,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Enter the ear tag numbers of the animals you are planning to move
     </dt>
     <dd class="govuk-summary-list__value">
-      ear-tags
+      some-ear-tags
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/submit/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers of the animals you are planning to move</span></a>
@@ -159,7 +181,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       How long ago was the field last grazed by cattle?
     </dt>
     <dd class="govuk-summary-list__value">
-      Yesterday
+      yesterday
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by cattle?</span></a>
