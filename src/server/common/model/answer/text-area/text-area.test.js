@@ -88,7 +88,7 @@ describe('TextAreaAnswer.validate', () => {
   })
 
   describe('when the field is optional (default behaviour)', () => {
-    it('should not error if the input is empty', () => {
+    it('should not error if the input is an empty string', () => {
       const textAreaAnswer = new TestOptionalTextAreaAnswer({
         textAreaPayload: ''
       })
@@ -98,24 +98,20 @@ describe('TextAreaAnswer.validate', () => {
       expect(errors).toEqual({})
     })
 
-    it('should not error if the input is empty via being undefined', () => {
+    it('should still error if the input is empty via being undefined', () => {
       const textAreaAnswer = new TestOptionalTextAreaAnswer({
         textAreaPayload: null
       })
-      const { isValid, errors } = textAreaAnswer.validate()
 
-      expect(isValid).toBe(true)
-      expect(errors).toEqual({})
+      expect(textAreaAnswer.validate().isValid).toBe(false)
     })
 
-    it('should not error if the input is undefined', () => {
+    it('should still error if the input is undefined', () => {
       const textAreaAnswer = new TestOptionalTextAreaAnswer({
         textAreaPayload: undefined
       })
-      const { isValid, errors } = textAreaAnswer.validate()
 
-      expect(isValid).toBe(true)
-      expect(errors).toEqual({})
+      expect(textAreaAnswer.validate().isValid).toBe(false)
     })
   })
 
