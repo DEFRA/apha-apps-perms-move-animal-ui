@@ -6,6 +6,7 @@ import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import path from 'path'
 import { createReadStream } from 'fs'
+import { applicationStateWithAnimalIdentifiersSection } from '../common/test-helpers/journey-state.js'
 
 const mockSend = jest.fn().mockImplementation(() => {
   const filePath = path.resolve(
@@ -55,155 +56,75 @@ jest.mock('../common/connectors/notify/notify.js', () => ({
 }))
 const mockSendNotification = /** @type {jest.Mock} */ (sendNotification)
 
-const testCphNumber = '12/123/1234'
-const testAddress = {
-  addressLine1: 'Starfleet Headquarters',
-  addressLine2: '24-593 Federation Drive',
-  addressTown: 'San Francisco',
-  addressCounty: 'San Francisco',
-  addressPostcode: 'RG24 8RR'
-}
-const testEmailAddress = 'name@example.com'
-const testReceiveMethodValue = 'email'
-const testReceiveMethodLabel = 'Email'
-const yesValue = 'yes'
-const yesLabel = 'Yes'
-const testLastGrazedValue = 'Yesterday'
-const testGrazingFieldHowSeparated = 'some details'
-const testBuildingsHowMinimiseContamination = 'somehow'
-const testPeopleDisinfection = 'ppe'
-const testDisinfectant = 'some disinfectant'
-const testDilutionRate = '15'
-const testBadgersMeasures = ['badgerProofFencing']
-const testBadgersMeasuresLabel =
-  'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
-
-const originDefaultState = {
-  onOffFarm: 'off',
-  cphNumber: testCphNumber,
-  originType: 'afu',
-  address: testAddress
-}
-
-const destinationDefaultState = {
-  destinationType: 'afu'
-}
-const expectedAfuText = 'Approved finishing unit (AFU)'
-
-const licenceDefaultState = {
-  emailAddress: testEmailAddress,
-  receiveMethod: testReceiveMethodValue,
-  fullName: {
-    firstName: 'William T.',
-    lastName: 'Riker'
-  }
-}
-
-const identificationsDefaultState = {
-  earTags: 'ear-tags'
-}
-const expectedAnimalIdentifiersText = 'ear-tags'
-
-const biosecurityDefaultState = {
-  keptSeparately: yesValue,
-  grazing: yesValue,
-  lastGrazed: testLastGrazedValue,
-  manureAndSlurry: yesValue,
-  grazingFieldHowSeparated: testGrazingFieldHowSeparated,
-  roadsAndTracks: yesValue,
-  buildingsAnyShared: yesValue,
-  buildingsHowMinimiseContamination: testBuildingsHowMinimiseContamination,
-  peopleDisinfection: testPeopleDisinfection,
-  disinfectant: testDisinfectant,
-  dilutionRate: testDilutionRate,
-  badgers: testBadgersMeasures
-}
-
-const biosecurityMapDefaultState = {
-  'upload-plan': {
-    metadata: {
-      uploadId: '41572cf8-2e37-495e-9ad2-0b0f23f1b277',
-      uploadUrl:
-        'http://localhost:7337/upload-and-scan/41572cf8-2e37-495e-9ad2-0b0f23f1b277',
-      statusUrl:
-        'http://localhost:7337/status/41572cf8-2e37-495e-9ad2-0b0f23f1b277'
-    },
-    status: {
-      uploadStatus: 'ready',
-      metadata: {},
-      form: {
-        crumb: 'QVJdAVFWpx90BqITFf6tFf7CpwJFNn2jGN-8CyKwlO9',
-        nextPage: '',
-        file: {
-          fileId: '3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
-          filename: '34998B77-FB3E-44DB-BC0E-05154D6549E0.jpeg',
-          contentType: 'image/jpeg',
-          fileStatus: 'complete',
-          contentLength: 374478,
-          checksumSha256: '3etoXNlR16WpgCiwylqccFxLVg3OrZvpGUqmigmrhcU=',
-          detectedContentType: 'image/jpeg',
-          s3Key:
-            'biosecurity-map/41572cf8-2e37-495e-9ad2-0b0f23f1b277/3d3c2a09-2888-4199-9bd6-ac7eda3125f0',
-          s3Bucket: 'apha'
-        }
-      },
-      numberOfRejectedFiles: 0
-    }
-  }
-}
-
+const {
+  origin,
+  destination,
+  licence,
+  identification,
+  biosecurity,
+  'biosecurity-map': biosecurityMap
+} = applicationStateWithAnimalIdentifiersSection
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
 const taskListIncompleteUri = '/task-list-incomplete'
 
+const expectedTbRestrictedFarmText = 'TB restricted farm'
+const yesLabel = 'Yes'
+const testBadgersMeasuresLabel =
+  'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
+
 const emailContent = [
   '## Are you moving the animals on or off your farm or premises?',
-  'Off the farm or premises',
+  'On to the farm or premises',
   '## What type of premises are the animals moving off?',
-  expectedAfuText,
-  '## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?',
-  testCphNumber,
-  '## What is the address of your farm or premises where the animals are moving off?',
-  testAddress.addressLine1,
-  testAddress.addressLine2,
-  testAddress.addressTown,
-  testAddress.addressCounty,
-  testAddress.addressPostcode,
+  expectedTbRestrictedFarmText,
+  '## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?',
+  origin.cphNumber,
+  '## What is the address of the farm or premises where the animals are moving off?',
+  origin.address.addressLine1,
+  origin.address.addressTown,
+  origin.address.addressPostcode,
   '## Where are the animals going to?',
-  expectedAfuText,
+  expectedTbRestrictedFarmText,
+  '## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?',
+  destination.destinationFarmCph,
+  '## What is the address of the farm or premises where the animals are going to?',
+  destination.destinationFarmAddress.addressLine1,
+  destination.destinationFarmAddress.addressTown,
+  destination.destinationFarmAddress.addressPostcode,
+  '## What is the reason for the movement?',
+  'Routine restocking',
   '## What is the name of the County Parish Holding (CPH) owner?',
-  licenceDefaultState.fullName.firstName +
-    ' ' +
-    licenceDefaultState.fullName.lastName,
+  licence.fullName.firstName + ' ' + licence.fullName.lastName,
   '## How would you like this licence sent to you?',
-  testReceiveMethodLabel,
+  'Email',
   '## What email address would you like the licence sent to?',
-  testEmailAddress,
+  licence.emailAddress,
   '## Enter the ear tag numbers of the animals you are planning to move',
-  expectedAnimalIdentifiersText,
+  identification.earTags,
   '## Will you separate the incoming cattle from the resident herd?',
   yesLabel,
   '## Will the incoming cattle be grazed?',
   yesLabel,
   '## How long ago was the field last grazed by cattle?',
-  testLastGrazedValue,
+  biosecurity.lastGrazed,
   '## Has any manure or slurry been put on the grazing field in the past 60 days?',
   yesLabel,
   '## How is this grazing field separated from the resident herd?',
-  testGrazingFieldHowSeparated,
+  biosecurity.grazingFieldHowSeparated,
   '## Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?',
   yesLabel,
   '## Will the cattle share any buildings and equipment with the resident herd?',
   yesLabel,
   '## How will you reduce building and equipment contamination?',
-  testBuildingsHowMinimiseContamination,
+  biosecurity.buildingsHowMinimiseContamination,
   '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
-  testPeopleDisinfection,
+  biosecurity.peopleDisinfection,
   '## What disinfectant are you using?',
-  testDisinfectant,
+  biosecurity.disinfectant,
   '## What dilution rate are you using for your disinfectant?',
-  testDilutionRate,
+  biosecurity.dilutionRate,
   '## Which measures are you taking to reduce contamination from wildlife?',
   testBadgersMeasuresLabel,
   '## Upload a biosecurity map',
@@ -222,12 +143,12 @@ describe('#CheckAnswers', () => {
 
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
-    await session.setState('origin', originDefaultState)
-    await session.setState('licence', licenceDefaultState)
-    await session.setState('destination', destinationDefaultState)
-    await session.setState('identification', identificationsDefaultState)
-    await session.setState('biosecurity', biosecurityDefaultState)
-    await session.setState('biosecurity-map', biosecurityMapDefaultState)
+    await session.setState('origin', origin)
+    await session.setState('licence', licence)
+    await session.setState('destination', destination)
+    await session.setState('identification', identification)
+    await session.setState('biosecurity', biosecurity)
+    await session.setState('biosecurity-map', biosecurityMap)
   })
 
   afterAll(async () => {
@@ -359,11 +280,9 @@ describe('#CheckAnswers', () => {
     expect(content).toBe(emailContent)
     expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.serverError)
-    expect(await session.getState('origin')).toEqual(originDefaultState)
-    expect(await session.getState('destination')).toEqual(
-      destinationDefaultState
-    )
-    expect(await session.getState('licence')).toEqual(licenceDefaultState)
+    expect(await session.getState('origin')).toEqual(origin)
+    expect(await session.getState('destination')).toEqual(destination)
+    expect(await session.getState('licence')).toEqual(licence)
   })
 
   it('Should redirect correctly when there is no error', async () => {

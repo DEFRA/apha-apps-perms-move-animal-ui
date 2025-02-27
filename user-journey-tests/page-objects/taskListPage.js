@@ -25,7 +25,7 @@ class TaskListPage extends Page {
   }
 
   get animalIdentifiersLink() {
-    return $('aria/Animal identifiers')
+    return $('aria/Animal identification')
   }
 
   get biosecurityLink() {

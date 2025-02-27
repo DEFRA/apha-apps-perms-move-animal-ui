@@ -44,7 +44,7 @@ export const router = {
 
         // Add routes for the visible sections in the application
         server.register(
-          ApplicationModel.visibleSections.map(
+          ApplicationModel.implementedSections.map(
             (section) => section.config.plugin
           )
         ),

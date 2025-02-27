@@ -12,7 +12,7 @@ export class OriginSection extends SectionModel {
     plugin: origin,
     summaryLink: '/origin/check-answers',
     isEnabled: () => true,
-    isVisible: true
+    isVisible: () => true
   }
 
   static firstPageFactory = () => onOffFarmPage

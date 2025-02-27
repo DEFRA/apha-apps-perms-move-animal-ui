@@ -4,53 +4,9 @@ import { OriginSection } from '../section/origin/origin.js'
 import { DestinationSection } from '../section/destination/destination.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { IdentificationSection } from '../section/identification/identification.js'
+import { applicationStateWithAnimalIdentifiersSection } from '../../test-helpers/journey-state.js'
 
-const originDefaultState = {
-  onOffFarm: 'on',
-  cphNumber: '12/123/1234',
-  address: {
-    addressLine1: 'Starfleet Headquarters',
-    addressLine2: '24-593 Federation Drive',
-    addressTown: 'San Francisco',
-    addressCounty: 'San Francisco',
-    addressPostcode: 'RG24 8RR'
-  }
-}
-
-const licenceDefaultState = {
-  emailAddress: 'name@example.com'
-}
-
-const destinationDefaultState = {
-  destinationType: 'dedicated-sale'
-}
-
-const identificationDefaultState = {
-  earTags: 'some-ear-tags'
-}
-
-const biosecurityDefaultState = {
-  keptSeparately: 'yes',
-  grazing: 'yes',
-  lastGrazed: 'yesterday',
-  manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details',
-  roadsAndTracks: 'yes',
-  buildingsAnyShared: 'yes',
-  buildingsHowMinimiseContamination: 'somehow',
-  peopleDisinfection: 'ppe',
-  disinfectant: 'some disinfectant',
-  dilutionRate: '15',
-  badgers: ['some measures']
-}
-
-const applicationState = {
-  origin: originDefaultState,
-  licence: licenceDefaultState,
-  destination: destinationDefaultState,
-  identification: identificationDefaultState,
-  biosecurity: biosecurityDefaultState
-}
+const applicationState = applicationStateWithAnimalIdentifiersSection
 
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {

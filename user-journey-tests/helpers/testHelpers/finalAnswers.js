@@ -4,7 +4,6 @@ import landingPage from '../../page-objects/landingPage.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
-import completeAnimalIdentificationTask from './animalIdentification.js'
 import completeBiosecurityTask from './biosecurity.js'
 import completeBiosecurityMapTask from './biosecurityMap.js'
 import completeDestinationTask from './destination.js'
@@ -48,24 +47,17 @@ export const completeApplication = async (originObject, licenceObject) => {
     taskTitle: 'Receiving the licence',
     expectedStatus: 'Completed'
   })
-  await completeAnimalIdentificationTask()
-  await taskListPage.navigateToPageAndVerifyTitle()
-  await taskListPage.verifyStatus({
-    position: 4,
-    taskTitle: 'Animal identifiers',
-    expectedStatus: 'Completed'
-  })
   await completeBiosecurityTask('yes')
   await taskListPage.navigateToPageAndVerifyTitle()
   await taskListPage.verifyStatus({
-    position: 5,
+    position: 4,
     taskTitle: 'Biosecurity details',
     expectedStatus: 'Completed'
   })
   await completeBiosecurityMapTask()
   await taskListPage.navigateToPageAndVerifyTitle()
   await taskListPage.verifyStatus({
-    position: 6,
+    position: 5,
     taskTitle: 'Biosecurity map',
     expectedStatus: 'Completed'
   })
