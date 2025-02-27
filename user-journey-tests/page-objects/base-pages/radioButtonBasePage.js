@@ -2,11 +2,10 @@ import { waitForPagePath } from '../../helpers/page.js'
 import { Page } from '../page.js'
 
 class RadioButtonBasePage extends Page {
-  constructor({ pageId, noInputError, invalidFormatError, valueArray }) {
+  constructor({ pageId, noInputError, valueArray }) {
     super()
     this.pageId = pageId
     this.noInputError = noInputError
-    this.invalidFormatError = invalidFormatError
     this.valueArray = valueArray
 
     // Dynamically create getters for each radio button in valueArray
