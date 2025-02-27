@@ -13,8 +13,8 @@ export class PeopleDisinfectionAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'peopleDisinfection',
-    hint: 'For example, using personal protective equipment (PPE) and foot dips',
     rows: 8,
+    isPageHeading: false,
     validation: {
       maxLength: {
         value: 5000,

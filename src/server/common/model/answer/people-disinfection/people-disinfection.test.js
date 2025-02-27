@@ -21,13 +21,15 @@ describe('PeopleDisinfection', () => {
   })
 
   it('should have the right hint', () => {
-    expect(PeopleDisinfectionAnswer.config.hint).toBe(
-      'For example, using personal protective equipment (PPE) and foot dips'
-    )
+    expect(PeopleDisinfectionAnswer.config.hint).toBeUndefined()
   })
 
   it('should have the right number of rows', () => {
     expect(PeopleDisinfectionAnswer.config.rows).toBe(8)
+  })
+
+  it('should have not be a page heading', () => {
+    expect(PeopleDisinfectionAnswer.config.isPageHeading).toBe(false)
   })
 
   it('should define the right empty input message', () => {
