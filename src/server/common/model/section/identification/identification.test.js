@@ -1,7 +1,6 @@
 import { EarTagsPage } from '~/src/server/identification/ear-tags/index.js'
 import { IdentificationSection } from './identification.js'
 import { applicationStateWithAnimalIdentifiersSection } from '../../../test-helpers/journey-state.js'
-import { destinationType } from '~/src/server/destination/destination-type/index.js'
 import { spyOnConfig } from '../../../test-helpers/config.js'
 
 const validIdentificationData = {
@@ -57,7 +56,7 @@ describe('Identification.config.isVisible', () => {
   it('should be visible if moving off from farm, from zoo to zoo', () => {
     const isVisible = IdentificationSection.config.isVisible({
       origin: { ...origin, originType: 'zoo' },
-      destination: { ...destinationType, destinationType: 'zoo' }
+      destination: { ...destination, destinationType: 'zoo' }
     })
 
     expect(isVisible).toBe(true)
@@ -90,6 +89,24 @@ describe('Identification.config.isVisible', () => {
     const isVisible = IdentificationSection.config.isVisible({
       origin: { ...origin, onOffFarm: 'off' },
       destination
+    })
+
+    expect(isVisible).toBe(false)
+  })
+
+  it('should not visible if the origin section is incomplete', () => {
+    const isVisible = IdentificationSection.config.isVisible({
+      origin: { onOffFarm: origin.onOffFarm, originType: origin.originType },
+      destination
+    })
+
+    expect(isVisible).toBe(false)
+  })
+
+  it('should not be visible if the destination section is incomplete', () => {
+    const isVisible = IdentificationSection.config.isVisible({
+      origin,
+      destination: { destinationType: destination.destinationType }
     })
 
     expect(isVisible).toBe(false)
