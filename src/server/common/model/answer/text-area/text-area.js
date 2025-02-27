@@ -10,19 +10,20 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @returns {Joi.Schema}
  */
 const textAreaSchema = ({ payloadKey, validation }) => {
-  let stringValidation = Joi.string().trim().max(validation.maxLength.value)
+  let stringValidation = Joi.string()
+    .required()
+    .trim()
+    .max(validation.maxLength.value)
 
   const messages = {
     'string.max': validation.maxLength.message
   }
 
   if (validation.empty) {
-    stringValidation = stringValidation.required()
     messages['any.required'] = validation.empty.message
     messages['string.empty'] = validation.empty.message
   } else {
-    stringValidation = stringValidation.optional()
-    stringValidation = stringValidation.allow('', null)
+    stringValidation = stringValidation.allow('')
   }
 
   if (validation.pattern) {

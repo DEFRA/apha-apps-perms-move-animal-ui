@@ -4,7 +4,6 @@ import quantityOptionsPage from '../../page-objects/destination/quantityOptionsP
 
 describe('Reason for movement page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
     await reasonForMovementPage.navigateToPageAndVerifyTitle()
   })
 

@@ -95,6 +95,8 @@ const emailContent = [
   destination.destinationFarmAddress.addressPostcode,
   '## What is the reason for the movement?',
   'Routine restocking',
+  '## Will you move more than 75 animals?',
+  yesLabel,
   '## What is the name of the County Parish Holding (CPH) owner?',
   licence.fullName.firstName + ' ' + licence.fullName.lastName,
   '## How would you like this licence sent to you?',
