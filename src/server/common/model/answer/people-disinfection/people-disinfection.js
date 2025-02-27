@@ -13,8 +13,8 @@ export class PeopleDisinfectionAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'peopleDisinfection',
-    hint: 'For example, using personal protective equipment (PPE) and foot dips',
     rows: 8,
+    isPageHeading: false,
     validation: {
       maxLength: {
         value: 5000,
@@ -22,7 +22,7 @@ export class PeopleDisinfectionAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter what measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle'
+          'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
       }
     }
   }

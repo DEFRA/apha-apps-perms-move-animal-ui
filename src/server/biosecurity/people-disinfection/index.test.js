@@ -5,9 +5,9 @@ import { peopleDisinfectionPage, PeopleDisinfectionPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
-  'What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?'
+  'What measures are staff taking to reduce the risk of spreading TB from the resident cattle?'
 const questionKey = 'peopleDisinfection'
-const view = 'common/model/page/question-page.njk'
+const view = 'biosecurity/people-disinfection/index'
 const pageUrl = '/biosecurity/people-disinfection'
 
 describe('PeopleDisinfectionPage', () => {
@@ -23,6 +23,12 @@ describe('PeopleDisinfectionPage', () => {
 
   it('should have the correct question', () => {
     expect(page.question).toBe(question)
+  })
+
+  it('should have the correct heading', () => {
+    expect(page.heading).toBe(
+      'Cleaning and disinfection measures taken by staff'
+    )
   })
 
   it('should have the correct questionKey', () => {

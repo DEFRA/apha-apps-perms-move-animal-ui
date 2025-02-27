@@ -2,6 +2,29 @@
 
 exports[`PeopleDisinfectionPage peopleDisinfectionPage.content should render expected response and content 1`] = `
 "
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cleaning and disinfection measures taken by staff</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        To prevent the spread of TB to the incoming cattle from any resident
+        cattle, staff should have cleaning and disinfection measures in place.
+      </p>
+
+      <p>This can include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>dedicated clothing and personal protective equipment (PPE)</li>
+        <li>cleaning and disinfecting wellington boots, including foot dips</li>
+        <li>
+          cleaning and disinfection measures when contractors arrive and leave
+        </li>
+        <li>dedicated staff looking after the incoming cattle</li>
+      </ul>
+    </div>
+  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -10,15 +33,10 @@ exports[`PeopleDisinfectionPage peopleDisinfectionPage.content should render exp
 
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="peopleDisinfection">
-      What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?
-    </label>
-  </h1>
-  <div id="peopleDisinfection-hint" class="govuk-hint">
-    For example, using personal protective equipment (PPE) and foot dips
-  </div>
-  <textarea class="govuk-textarea" id="peopleDisinfection" name="peopleDisinfection" rows="8" aria-describedby="peopleDisinfection-hint"></textarea>
+  <label class="govuk-label govuk-label--m" for="peopleDisinfection">
+    What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+  </label>
+  <textarea class="govuk-textarea" id="peopleDisinfection" name="peopleDisinfection" rows="8"></textarea>
 </div>
 
 

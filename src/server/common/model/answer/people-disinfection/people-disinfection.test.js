@@ -21,18 +21,20 @@ describe('PeopleDisinfection', () => {
   })
 
   it('should have the right hint', () => {
-    expect(PeopleDisinfectionAnswer.config.hint).toBe(
-      'For example, using personal protective equipment (PPE) and foot dips'
-    )
+    expect(PeopleDisinfectionAnswer.config.hint).toBeUndefined()
   })
 
   it('should have the right number of rows', () => {
     expect(PeopleDisinfectionAnswer.config.rows).toBe(8)
   })
 
+  it('should have not be a page heading', () => {
+    expect(PeopleDisinfectionAnswer.config.isPageHeading).toBe(false)
+  })
+
   it('should define the right empty input message', () => {
     expect(PeopleDisinfectionAnswer.config.validation.empty?.message).toBe(
-      'Enter what measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle'
+      'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
     )
   })
 
