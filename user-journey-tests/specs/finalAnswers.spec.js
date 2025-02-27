@@ -4,7 +4,6 @@ import {
   validateAndAdjustEmail,
   validateAndAdjustOwnerName,
   validateAndAdjustParishNumber,
-  validateAndAdjustSeparateCattle,
   validateOnOffFarm,
   validateOriginType,
   validateReceiveMethod
@@ -14,6 +13,7 @@ import taskListPage from '../page-objects/taskListPage.js'
 import destinationSelectionPage from '../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../page-objects/destination/generalLicencePage.js'
 import { completeApplication } from '../helpers/testHelpers/finalAnswers.js'
+import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 
 const originDefaultObject = {
   defaultCphNumber: '23/678/1234',
@@ -125,5 +125,19 @@ describe('Check your final answers test', () => {
       finalAnswersPage.receiveMethodChange,
       finalAnswersPage.receiveMethodValue
     )
+  })
+
+  it('Should go via the general licence page if the destination type is changed to "slaughter", and end up on task-list incomplete', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+
+    await selectElement(finalAnswersPage.movementDestinationChange)
+
+    await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
+
+    await destinationSelectionPage.selectSlaughterRadioAndContinue(
+      generalLicencePage
+    )
+    await generalLicencePage.selectContinueLink()
+    await taskListIncompletePage.verifyPageHeadingAndTitle()
   })
 })
