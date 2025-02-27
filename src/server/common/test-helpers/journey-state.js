@@ -1,6 +1,7 @@
 /** @import { OnOffFarmData } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 /** @import { DestinationTypeData } from '~/src/server/common/model/answer/destination-type/destination-type.js' */
 /** @import { ReasonForMovementData } from '~/src/server/common/model/answer/reason-for-movement/reason-for-movement.js' */
+/** @import { QuantityOptionsData } from '~/src/server/common/model/answer/quantity-options/quantity-options.js' */
 
 const validCphNumber = '12/345/6789'
 const validOriginType = 'afu'
@@ -27,7 +28,9 @@ export const validDestinationSectionState = {
   destinationFarmCph: validCphNumber,
   destinationFarmAddress: validAddress,
   /** @type {ReasonForMovementData} */
-  reasonForMovement: 'routineRestocking'
+  reasonForMovement: 'routineRestocking',
+  /** @type {QuantityOptionsData} */
+  movingMoreThan75Animals: 'yes'
 }
 
 export const validIdentificationSectionState = {
