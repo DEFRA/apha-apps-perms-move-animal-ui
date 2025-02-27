@@ -2,6 +2,7 @@
 /** @import { DestinationTypeData } from '~/src/server/common/model/answer/destination-type/destination-type.js' */
 /** @import { ReasonForMovementData } from '~/src/server/common/model/answer/reason-for-movement/reason-for-movement.js' */
 /** @import { QuantityOptionsData } from '~/src/server/common/model/answer/quantity-options/quantity-options.js' */
+/** @import { QuantityHalfHerdData } from '~/src/server/common/model/answer/quantity-half-herd/quantity-half-herd.js' */
 
 const validCphNumber = '12/345/6789'
 const validOriginType = 'afu'
@@ -30,7 +31,9 @@ export const validDestinationSectionState = {
   /** @type {ReasonForMovementData} */
   reasonForMovement: 'routineRestocking',
   /** @type {QuantityOptionsData} */
-  movingMoreThan75Animals: 'yes'
+  movingMoreThan75Animals: 'no',
+  /** @type {QuantityHalfHerdData} */
+  movingMoreThanHalfExistingHerd: 'yes'
 }
 
 export const validIdentificationSectionState = {

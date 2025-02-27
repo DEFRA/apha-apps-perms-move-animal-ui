@@ -71,6 +71,7 @@ const taskListIncompleteUri = '/task-list-incomplete'
 
 const expectedTbRestrictedFarmText = 'TB restricted farm'
 const yesLabel = 'Yes'
+const noLabel = 'No'
 const testBadgersMeasuresLabel =
   'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
 
@@ -96,6 +97,8 @@ const emailContent = [
   '## What is the reason for the movement?',
   'Routine restocking',
   '## Will you move more than 75 animals?',
+  noLabel,
+  '## Will the number of cattle be larger than half of the destination herd size?',
   yesLabel,
   '## What is the name of the County Parish Holding (CPH) owner?',
   licence.fullName.firstName + ' ' + licence.fullName.lastName,
