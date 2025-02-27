@@ -68,17 +68,6 @@ describe('Check your answers test - biosecurity', () => {
     )
   })
 
-  it('Should verify the value and href of roads and tracks row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.roadsAndTracksValue,
-      'Yes'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeRoadsAndTracksLink,
-      '/biosecurity/roads-and-tracks?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
   it('Should verify the value and href of shared buildings row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.sharedBuildingsValue,

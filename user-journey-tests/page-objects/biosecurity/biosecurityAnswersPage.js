@@ -76,32 +76,28 @@ class BiosecurityAnswersPage extends Page {
     return $$('.govuk-summary-list__value')[4]
   }
 
-  get roadsAndTracksValue() {
+  get sharedBuildingsValue() {
     return $$('.govuk-summary-list__value')[5]
   }
 
-  get sharedBuildingsValue() {
+  get minimiseContaminationValue() {
     return $$('.govuk-summary-list__value')[6]
   }
 
-  get minimiseContaminationValue() {
+  get peopleDisinfectionValue() {
     return $$('.govuk-summary-list__value')[7]
   }
 
-  get peopleDisinfectionValue() {
+  get whatDisinfectantValue() {
     return $$('.govuk-summary-list__value')[8]
   }
 
-  get whatDisinfectantValue() {
+  get dilutionValue() {
     return $$('.govuk-summary-list__value')[9]
   }
 
-  get dilutionValue() {
-    return $$('.govuk-summary-list__value')[10]
-  }
-
   get wildlifeContaminationValue() {
-    return $$('.govuk-summary-list__value')[11]
+    return $$('.govuk-summary-list__value')[10]
   }
 }
 
