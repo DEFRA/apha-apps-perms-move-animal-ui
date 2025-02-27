@@ -93,6 +93,8 @@ const emailContent = [
   destination.destinationFarmAddress.addressLine1,
   destination.destinationFarmAddress.addressTown,
   destination.destinationFarmAddress.addressPostcode,
+  '## What is the reason for the movement?',
+  'Routine restocking',
   '## What is the name of the County Parish Holding (CPH) owner?',
   licence.fullName.firstName + ' ' + licence.fullName.lastName,
   '## How would you like this licence sent to you?',

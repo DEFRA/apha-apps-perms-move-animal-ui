@@ -95,6 +95,17 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <a class="govuk-link" href="/destination/destination-farm-address?redirect_uri=/submit/check-answers" data-testid="destinationFarmAddress-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are going to?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the reason for the movement?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Routine restocking
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/destination/reason-for-movement?redirect_uri=/submit/check-answers" data-testid="reasonForMovement-change-link">Change<span class="govuk-visually-hidden"> What is the reason for the movement?</span></a>
+    </dd>
+  </div>
 </dl>
 
           <h2 class="govuk-heading-m">Receiving the licence</h2>

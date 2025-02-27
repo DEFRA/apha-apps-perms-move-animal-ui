@@ -1,5 +1,6 @@
 /** @import { OnOffFarmData } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 /** @import { DestinationTypeData } from '~/src/server/common/model/answer/destination-type/destination-type.js' */
+/** @import { ReasonForMovementData } from '~/src/server/common/model/answer/reason-for-movement/reason-for-movement.js' */
 
 const validCphNumber = '12/345/6789'
 const validOriginType = 'afu'
@@ -24,7 +25,9 @@ const testDestinationType = 'slaughter'
 export const validDestinationSectionState = {
   destinationType: testDestinationType,
   destinationFarmCph: validCphNumber,
-  destinationFarmAddress: validAddress
+  destinationFarmAddress: validAddress,
+  /** @type {ReasonForMovementData} */
+  reasonForMovement: 'routineRestocking'
 }
 
 export const validIdentificationSectionState = {
