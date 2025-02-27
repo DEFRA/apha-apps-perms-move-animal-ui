@@ -38,4 +38,16 @@ describe('Kept separately selection test', () => {
 
     await expect(keptSeparatelyPage.noRadio).toBeSelected()
   })
+
+  it('Should choose unknown and check its maintained', async () => {
+    await keptSeparatelyPage.selectUnknownAndContinue(peopleDisinfectionPage)
+
+    await peopleDisinfectionPage.selectBackLink()
+    await waitForPagePath(keptSeparatelyPage.pagePath)
+
+    await browser.refresh()
+    await waitForPagePath(keptSeparatelyPage.pagePath)
+
+    await expect(keptSeparatelyPage.unknownRadio).toBeSelected()
+  })
 })

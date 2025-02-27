@@ -3,7 +3,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfig} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'yes'|'no'} KeptSeparatelyData
+ * export @typedef {'yes'|'no'|'unknown'} KeptSeparatelyData
  * @typedef {{ keptSeparately: KeptSeparatelyData }} KeptSeparatelyPayload
  */
 
@@ -16,11 +16,12 @@ export class KeptSeparatelyAnswer extends RadioButtonAnswer {
     payloadKey: 'keptSeparately',
     options: {
       yes: { label: 'Yes' },
-      no: { label: 'No' }
+      no: { label: 'No' },
+      unknown: { label: "I don't know" }
     },
     errors: {
       emptyOptionText: 'Select if the incoming cattle will be kept separately'
     },
-    layout: 'inline'
+    layout: 'stacked'
   }
 }

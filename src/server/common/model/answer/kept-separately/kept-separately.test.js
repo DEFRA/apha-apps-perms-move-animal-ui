@@ -23,8 +23,11 @@ describe('KeptSeparately', () => {
   })
 
   it('should have the expected options to select from', () => {
-    expect(Object.keys(KeptSeparatelyAnswer.config.options)).toHaveLength(2)
+    expect(Object.keys(KeptSeparatelyAnswer.config.options)).toHaveLength(3)
     expect(KeptSeparatelyAnswer.config.options.yes.label).toBe('Yes')
     expect(KeptSeparatelyAnswer.config.options.no.label).toBe('No')
+    expect(KeptSeparatelyAnswer.config.options.unknown.label).toBe(
+      "I don't know"
+    )
   })
 })
