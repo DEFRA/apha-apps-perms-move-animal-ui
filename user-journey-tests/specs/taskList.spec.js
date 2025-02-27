@@ -2,10 +2,10 @@ import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
 import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
-import completeOriginTaskAnswers from '../helpers/testHelpers/movementLicence.js'
+import { completeOriginTaskAnswersOnFarm } from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
-import completeDestinationTask from '../helpers/testHelpers/destination.js'
+import { completeDestinationTaskOnFarm } from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 import ownerNamePage from '../page-objects/receiving-the-licence/ownerNamePage.js'
 import completeBiosecurityTask from '../helpers/testHelpers/biosecurity.js'
@@ -40,17 +40,12 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Biosecurity details',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('5 out of 5')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 4')
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -63,7 +58,7 @@ describe('Task list page test', () => {
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
-    await completeOriginTaskAnswers()
+    await completeOriginTaskAnswersOnFarm()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
@@ -83,17 +78,12 @@ describe('Task list page test', () => {
       },
       {
         position: 4,
-        taskTitle: 'Biosecurity details',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 5,
         taskTitle: 'Biosecurity map',
         expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 5')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
     await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
@@ -103,7 +93,7 @@ describe('Task list page test', () => {
   })
 
   it('Should verify completed destination task', async () => {
-    await completeDestinationTask('slaughter')
+    await completeDestinationTaskOnFarm()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
