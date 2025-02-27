@@ -32,7 +32,6 @@ describe('GrazingFieldHowSeparated', () => {
     expect(GrazingFieldHowSeparatedAnswer.config.rows).toBe(8)
   })
 
-
   it('should define the right empty input message', () => {
     expect(
       GrazingFieldHowSeparatedAnswer.config.validation.empty?.message
