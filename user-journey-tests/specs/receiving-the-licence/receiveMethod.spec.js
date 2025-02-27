@@ -10,7 +10,7 @@ describe('Receive method for licence page test', () => {
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
-    await receiveMethodPage.receiveMethodErrorTest()
+    await receiveMethodPage.radioErrorTest()
   })
 
   it('Should select email and continue', async () => {
