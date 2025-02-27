@@ -11,7 +11,7 @@ describe('Manure or slurry selection test', () => {
   })
 
   it('Should verify that the manure or slurry page errors when no option is selected', async () => {
-    await manureAndSlurryPage.grazingErrorTest()
+    await manureAndSlurryPage.radioErrorTest()
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
