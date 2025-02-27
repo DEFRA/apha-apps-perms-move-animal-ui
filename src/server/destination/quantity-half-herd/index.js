@@ -9,7 +9,7 @@ export class QuantityHalfHerdPage extends QuestionPage {
   question =
     'Will the number of cattle be larger than half of the destination herd size?'
 
-  questionKey = 'quantityHalfHerd'
+  questionKey = 'movingMoreThanHalfExistingHerd'
 
   Answer = QuantityHalfHerdAnswer
 

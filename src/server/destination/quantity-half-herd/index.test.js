@@ -6,7 +6,7 @@ import { QuantityHalfHerdAnswer } from '../../common/model/answer/quantity-half-
 const sectionKey = 'destination'
 const question =
   'Will the number of cattle be larger than half of the destination herd size?'
-const questionKey = 'quantityHalfHerd'
+const questionKey = 'movingMoreThanHalfExistingHerd'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/quantity-half-herd'
 
