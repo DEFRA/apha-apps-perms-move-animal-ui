@@ -23,8 +23,9 @@ describe('Grazing', () => {
   })
 
   it('should have the expected options to select from', () => {
-    expect(Object.keys(GrazingAnswer.config.options)).toHaveLength(2)
+    expect(Object.keys(GrazingAnswer.config.options)).toHaveLength(3)
     expect(GrazingAnswer.config.options.yes.label).toBe('Yes')
     expect(GrazingAnswer.config.options.no.label).toBe('No')
+    expect(GrazingAnswer.config.options.unknown.label).toBe("I don't know")
   })
 })

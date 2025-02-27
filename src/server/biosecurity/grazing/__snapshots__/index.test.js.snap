@@ -15,7 +15,7 @@ exports[`GrazingPage grazingPage.content should render expected response and con
         Will the incoming cattle be grazed?
       </h1>
     </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="grazing" name="grazing" type="radio" value="yes">
         <label class="govuk-label govuk-radios__label" for="grazing">
@@ -26,6 +26,12 @@ exports[`GrazingPage grazingPage.content should render expected response and con
         <input class="govuk-radios__input" id="no" name="grazing" type="radio" value="no">
         <label class="govuk-label govuk-radios__label" for="no">
           No
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="unknown" name="grazing" type="radio" value="unknown">
+        <label class="govuk-label govuk-radios__label" for="unknown">
+          I don't know
         </label>
       </div>
     </div>
