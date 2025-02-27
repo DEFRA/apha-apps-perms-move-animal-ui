@@ -17,7 +17,7 @@ import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPag
 export const validateOnOffFarm = async (changeLink, valueElement, nextPage) => {
   await selectElement(changeLink)
 
-  await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
+  await expect(toFromFarmPage.offRadio).toBeSelected()
   await toFromFarmPage.selectOffFarmAndContinue(nextPage)
 
   await validateElementVisibleAndText(valueElement, 'Off the farm or premises')
@@ -32,7 +32,7 @@ export const changeOnOffFarmAnswer = async (
   await selectElement(changeLink)
 
   if (currentSelection === 'on') {
-    await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
+    await expect(toFromFarmPage.offRadio).toBeSelected()
     await toFromFarmPage.selectOnFarmAndContinue(nextPage)
 
     await validateElementVisibleAndText(
@@ -40,7 +40,7 @@ export const changeOnOffFarmAnswer = async (
       'On to the farm or premises'
     )
   } else {
-    await expect(toFromFarmPage.onThefarmRadio).toBeSelected()
+    await expect(toFromFarmPage.onRadio).toBeSelected()
     await toFromFarmPage.selectOffFarmAndContinue(nextPage)
 
     await validateElementVisibleAndText(
@@ -66,7 +66,7 @@ export const validateOriginType = async (
 ) => {
   await selectElement(changeLink)
 
-  await expect(originTypePage.tbRestrictedFarmRadio).toBeSelected()
+  await expect(originTypePage['tb-restricted-farmRadio']).toBeSelected()
   await originTypePage.selectApprovedFinishingUnitAndContinue(nextPage)
 
   await validateElementVisibleAndText(
@@ -144,7 +144,7 @@ export const validateAndAdjustEmail = async (
   const inputValue = await emailPage.textInput().getValue()
   expect(inputValue).toBe(defaultEmail)
   await clearElement(emailPage.textInput())
-  await emailPage.inputEmailAndContinue(inputEmail)
+  await emailPage.inputTextAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)
 }

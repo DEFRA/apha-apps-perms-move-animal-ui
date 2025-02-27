@@ -31,13 +31,20 @@ class RadioButtonBasePage extends Page {
     await waitForPagePath(nextPage.pagePath)
   }
 
-  async radioErrorTest() {
+  async radioErrorTest(index) {
     await super.selectContinue()
     await super.verifyErrorsOnPage(this.radioFieldError(), this.noInputError)
-    await super.verifySummaryErrorLink(
-      this.summaryErrorLink(),
-      this[`${this.valueArray[0]}Radio`]
-    )
+    if (!index) {
+      await super.verifySummaryErrorLink(
+        this.summaryErrorLink(),
+        this[`${this.valueArray[0]}Radio`]
+      )
+    } else {
+      await super.verifySummaryErrorLink(
+        this.summaryErrorLink(),
+        this[`${this.valueArray[index]}Radio`]
+      )
+    }
   }
 }
 
