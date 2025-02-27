@@ -49,6 +49,12 @@ describe('GrazingPage', () => {
     expect(nextPage).toBe(roadsAndTracksPage)
   })
 
+  it('nextPage should return roads-and-tracks page when answer is "I dont know"', () => {
+    const answer = new GrazingAnswer({ grazing: 'unknown' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(roadsAndTracksPage)
+  })
+
   it('should export page', () => {
     expect(grazingPage).toBeInstanceOf(GrazingPage)
   })
