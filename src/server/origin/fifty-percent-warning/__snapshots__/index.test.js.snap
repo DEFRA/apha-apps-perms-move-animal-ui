@@ -14,7 +14,7 @@ exports[`DestinationGeneralLicenceController should render the expected content 
       <p>This does not apply if:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>
-          the destination herd is registered to a bovine Tb health scheme.
+          the destination herd is registered to a Bovine TB health scheme.
           Accreditation from the Cattle Health Certification Standards (CHECS)
           must be in place before the breakdown began
         </li>
