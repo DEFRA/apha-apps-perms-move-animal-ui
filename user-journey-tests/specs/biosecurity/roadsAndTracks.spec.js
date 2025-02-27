@@ -11,7 +11,7 @@ describe('Roads and tracks test', () => {
   })
 
   it('Should verify that the kept separately page errors when no option is selected', async () => {
-    await roadsAndTracksPage.roadsAndTracksErrorTest()
+    await roadsAndTracksPage.radioErrorTest()
   })
 
   it('Should select Yes, continue and check its maintained', async () => {

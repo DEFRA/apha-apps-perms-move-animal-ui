@@ -1,7 +1,8 @@
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'peopleDisinfection'
-
+const pageHeadingAndTitle =
+  'What measures are staff taking to reduce the risk of spreading TB from the resident cattle?'
 const noInputError =
   'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
 
@@ -11,18 +12,8 @@ class PeopleDisinfectionPage extends SingleTextInputPage {
   }
 
   pagePath = 'biosecurity/people-disinfection'
-  pageTitle =
-    'What measures are staff taking to reduce the risk of spreading TB from the resident cattle?'
-
-  pageHeading = 'Cleaning and disinfection measures taken by staff'
-
-  async inputPeopleDisinfectionAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async peopleDisinfectionErrorTest(text, errorMessage) {
-    await super.singleInputErrorTest(text, errorMessage)
-  }
+  pageTitle = pageHeadingAndTitle
+  pageHeading = pageHeadingAndTitle
 }
 
 export default new PeopleDisinfectionPage()

@@ -10,14 +10,14 @@ describe('Minimise contamination page test', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await minimiseContaminationPage.minimiseContaminationErrorTest(
+    await minimiseContaminationPage.singleInputErrorTest(
       '',
       minimiseContaminationPage.noInputError
     )
   })
 
   it('Should input correct input and continue without error', async () => {
-    await minimiseContaminationPage.inputMinimiseContaminationAndContinue(
+    await minimiseContaminationPage.inputTextAndContinue(
       'By testing it',
       peopleDisinfectionPage
     )

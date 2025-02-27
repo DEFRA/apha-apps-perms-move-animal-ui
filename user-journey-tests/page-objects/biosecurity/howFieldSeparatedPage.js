@@ -15,14 +15,6 @@ class HowFieldSeparatedPage extends SingleTextInputPage {
   pagePath = 'biosecurity/grazing-field-how-separated'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
-
-  async inputSeparatedGrazingAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async fieldSeparatedErrorTest(textInput, errorMessage) {
-    await super.singleInputErrorTest(textInput, errorMessage)
-  }
 }
 
 export default new HowFieldSeparatedPage()

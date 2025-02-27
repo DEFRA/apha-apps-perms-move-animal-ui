@@ -10,14 +10,14 @@ describe('People disinfection method page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await peopleDisinfectionPage.peopleDisinfectionErrorTest(
+    await peopleDisinfectionPage.singleInputErrorTest(
       '',
       peopleDisinfectionPage.noInputError
     )
   })
 
   it('Should input correct input and continue without error', async () => {
-    await peopleDisinfectionPage.inputPeopleDisinfectionAndContinue(
+    await peopleDisinfectionPage.inputTextAndContinue(
       'By testing it',
       disinfectantPage
     )
