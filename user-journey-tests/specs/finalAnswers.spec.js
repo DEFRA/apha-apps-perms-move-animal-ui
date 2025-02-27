@@ -119,33 +119,11 @@ describe('Check your final answers test', () => {
     )
   })
 
-  it('Should verify the existing separate cattle answer and change it', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await validateAndAdjustSeparateCattle(
-      finalAnswersPage.separateCattleChange,
-      finalAnswersPage.separateCattleValue
-    )
-  })
-
   it('Should verify the method to receive the licence', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     validateReceiveMethod(
       finalAnswersPage.receiveMethodChange,
       finalAnswersPage.receiveMethodValue
     )
-  })
-
-  it('Should go via the general licence page if the destination type is changed to "slaughter"', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-
-    await selectElement(finalAnswersPage.movementDestinationChange)
-
-    await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
-
-    await destinationSelectionPage.selectSlaughterRadioAndContinue(
-      generalLicencePage
-    )
-    await generalLicencePage.selectContinueLink()
-    await finalAnswersPage.verifyPageHeadingAndTitle()
   })
 })

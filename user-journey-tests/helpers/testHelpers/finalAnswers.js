@@ -47,17 +47,10 @@ export const completeApplication = async (originObject, licenceObject) => {
     taskTitle: 'Receiving the licence',
     expectedStatus: 'Completed'
   })
-  await completeBiosecurityTask('yes')
-  await taskListPage.navigateToPageAndVerifyTitle()
-  await taskListPage.verifyStatus({
-    position: 4,
-    taskTitle: 'Biosecurity details',
-    expectedStatus: 'Completed'
-  })
   await completeBiosecurityMapTask()
   await taskListPage.navigateToPageAndVerifyTitle()
   await taskListPage.verifyStatus({
-    position: 5,
+    position: 4,
     taskTitle: 'Biosecurity map',
     expectedStatus: 'Completed'
   })
