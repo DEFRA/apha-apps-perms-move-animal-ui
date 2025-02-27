@@ -13,6 +13,8 @@ export class GrazingFieldHowSeparatedAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'grazingFieldHowSeparated',
+    hint: 'Include the types of fencing you use and distances between them',
+    rows: 8,
     validation: {
       maxLength: {
         value: 5000,

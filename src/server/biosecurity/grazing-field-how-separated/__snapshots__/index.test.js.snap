@@ -15,7 +15,10 @@ exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content shoul
       How is this grazing field separated from the resident herd?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" rows="5"></textarea>
+  <div id="grazingFieldHowSeparated-hint" class="govuk-hint">
+    Include the types of fencing you use and distances between them
+  </div>
+  <textarea class="govuk-textarea" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" rows="8" aria-describedby="grazingFieldHowSeparated-hint"></textarea>
 </div>
 
 
