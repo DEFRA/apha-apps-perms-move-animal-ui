@@ -1,8 +1,8 @@
 import { GrazingAnswer } from '../../common/model/answer/grazing/grazing.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
 import { grazingPage, GrazingPage } from './index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will the incoming cattle be grazed?'
@@ -43,16 +43,16 @@ describe('GrazingPage', () => {
     expect(nextPage).toBe(lastGrazedPage)
   })
 
-  it('nextPage should return roads-and-tracks page when answer is "no"', () => {
+  it('nextPage should return any shared buildings page when answer is "no"', () => {
     const answer = new GrazingAnswer({ grazing: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(roadsAndTracksPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
-  it('nextPage should return roads-and-tracks page when answer is "I dont know"', () => {
+  it('nextPage should return any shared buildings page when answer is "I dont know"', () => {
     const answer = new GrazingAnswer({ grazing: 'unknown' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(roadsAndTracksPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
   it('should export page', () => {

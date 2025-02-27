@@ -71,17 +71,6 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Yes
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/roads-and-tracks?redirect_uri=/biosecurity/check-answers" data-testid="roadsAndTracks-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
       Will the cattle share any buildings and equipment with the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">

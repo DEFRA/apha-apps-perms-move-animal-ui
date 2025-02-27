@@ -1,8 +1,8 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { GrazingAnswer } from '../../common/model/answer/grazing/grazing.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
-import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
 
 export class GrazingPage extends QuestionPage {
   urlPath = '/biosecurity/grazing'
@@ -17,7 +17,7 @@ export class GrazingPage extends QuestionPage {
     if (answer.value === 'yes') {
       return lastGrazedPage
     }
-    return roadsAndTracksPage
+    return buildingsAnySharedPage
   }
 }
 

@@ -3,7 +3,7 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
-import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 
 describe('Grazing selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -28,9 +28,9 @@ describe('Grazing selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await grazingPage.selectNoAndContinue(roadsAndTracksPage)
+    await grazingPage.selectNoAndContinue(anySharedBuildingsPage)
 
-    await roadsAndTracksPage.selectBackLink()
+    await anySharedBuildingsPage.selectBackLink()
     await waitForPagePath(grazingPage.pagePath)
 
     await browser.refresh()

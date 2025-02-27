@@ -7,7 +7,6 @@ import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
-import roadsAndTracksPage from '../../page-objects/biosecurity/roadsAndTracksPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
@@ -27,9 +26,8 @@ const completeBiosecurityTask = async (radioType) => {
       await manureAndSlurryPage.selectYesAndContinue(howFieldSeparatedPage)
       await howFieldSeparatedPage.inputTextAndContinue(
         'Separate grazing',
-        roadsAndTracksPage
+        anySharedBuildingsPage
       )
-      await roadsAndTracksPage.selectYesAndContinue(anySharedBuildingsPage)
       await anySharedBuildingsPage.selectYesAndContinue(
         minimiseContaminationPage
       )
