@@ -22,6 +22,17 @@ describe('GrazingFieldHowSeparated', () => {
     )
   })
 
+  it('should have the right hint text', () => {
+    expect(GrazingFieldHowSeparatedAnswer.config.hint).toBe(
+      'Include the types of fencing you use and distances between them'
+    )
+  })
+
+  it('should be the expected height', () => {
+    expect(GrazingFieldHowSeparatedAnswer.config.rows).toBe(8)
+  })
+
+
   it('should define the right empty input message', () => {
     expect(
       GrazingFieldHowSeparatedAnswer.config.validation.empty?.message
