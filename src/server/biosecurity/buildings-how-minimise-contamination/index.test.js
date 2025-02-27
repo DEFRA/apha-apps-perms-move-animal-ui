@@ -7,10 +7,12 @@ import {
 } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
+const question =
+  'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
 const questionKey = 'buildingsHowMinimiseContamination'
 const view = 'biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'
+const customHeading = 'Shared buildings and equipment'
 
 describe('BuildingsHowMinimiseContaminationPage', () => {
   const page = new BuildingsHowMinimiseContaminationPage()
@@ -29,6 +31,14 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
 
   it('should have the correct questionKey', () => {
     expect(page.questionKey).toBe(questionKey)
+  })
+
+  it('should have the correct heading', () => {
+    expect(page.heading).toBe(customHeading)
+  })
+
+  it('should have the correct title', () => {
+    expect(page.title).toBe(question)
   })
 
   it('should have the correct view', () => {

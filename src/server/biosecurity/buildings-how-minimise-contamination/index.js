@@ -3,12 +3,19 @@ import { BuildingsHowMinimiseContaminationAnswer } from '../../common/model/answ
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
+const customHeading = 'Shared buildings and equipment'
+
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
-  question = 'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
+  question =
+    'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer
+
+  get heading() {
+    return customHeading
+  }
 
   view = 'biosecurity/buildings-how-minimise-contamination/index'
 
