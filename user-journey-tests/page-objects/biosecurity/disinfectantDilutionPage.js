@@ -26,14 +26,6 @@ class DisinfectantDilutionPage extends SingleTextInputPage {
       'http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI'
     )
   }
-
-  async inputDilutionAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async dilutionErrorTest(textInput, errorMessage) {
-    await super.singleInputErrorTest(textInput, errorMessage)
-  }
 }
 
 export default new DisinfectantDilutionPage()

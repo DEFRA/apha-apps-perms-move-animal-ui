@@ -13,14 +13,14 @@ describe('Disinfectant page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await disinfectantPage.disinfectantErrorTest(
+    await disinfectantPage.singleInputErrorTest(
       '',
       disinfectantPage.noInputError
     )
   })
 
   it('Should input correct input and continue without error', async () => {
-    await disinfectantPage.inputDisinfectantAndContinue(
+    await disinfectantPage.inputTextAndContinue(
       'Batman disinfectant',
       disinfectantDilutionPage
     )

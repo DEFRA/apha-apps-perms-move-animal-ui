@@ -12,7 +12,7 @@ describe('Kept separately selection test', () => {
   })
 
   it('Should verify that the kept separately page errors when no option is selected', async () => {
-    await keptSeparatelyPage.keptSeparatelySelectionErrorTest()
+    await keptSeparatelyPage.radioErrorTest()
   })
 
   it('Should select Yes, continue and check its maintained', async () => {

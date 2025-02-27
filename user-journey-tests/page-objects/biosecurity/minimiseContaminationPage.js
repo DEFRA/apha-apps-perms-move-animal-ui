@@ -15,14 +15,6 @@ class MinimiseContaminationPage extends SingleTextInputPage {
   pagePath = 'biosecurity/buildings-how-minimise-contamination'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
-
-  async inputMinimiseContaminationAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async minimiseContaminationErrorTest(textInput, errorMessage) {
-    await super.singleInputErrorTest(textInput, errorMessage)
-  }
 }
 
 export default new MinimiseContaminationPage()
