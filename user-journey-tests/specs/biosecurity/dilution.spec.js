@@ -13,21 +13,21 @@ describe('Disinfectant dilution page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await disinfectantDilutionPage.dilutionErrorTest(
+    await disinfectantDilutionPage.singleInputErrorTest(
       '',
       disinfectantDilutionPage.noInputError
     )
   })
 
   it('Should verify that page errors when something other than anumber is entered', async () => {
-    await disinfectantDilutionPage.dilutionErrorTest(
+    await disinfectantDilutionPage.singleInputErrorTest(
       'test',
       disinfectantDilutionPage.invalidFormatError
     )
   })
 
   it('Should input correct input and continue without error', async () => {
-    await disinfectantDilutionPage.inputDilutionAndContinue(
+    await disinfectantDilutionPage.inputTextAndContinue(
       '1995',
       biosecBadgersPage
     )

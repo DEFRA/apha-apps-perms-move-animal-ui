@@ -12,7 +12,7 @@ describe('Grazing selection test', () => {
   })
 
   it('Should verify that the kept separately page errors when no option is selected', async () => {
-    await grazingPage.grazingErrorTest()
+    await grazingPage.radioErrorTest()
   })
 
   it('Should select Yes, continue and check its maintained', async () => {

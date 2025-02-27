@@ -12,7 +12,7 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should verify that the kept separately page errors when no option is selected', async () => {
-    await anySharedBuildingsPage.sharedBuildingsErrorTest()
+    await anySharedBuildingsPage.radioErrorTest()
   })
 
   it('Should select Yes, continue and check its maintained', async () => {

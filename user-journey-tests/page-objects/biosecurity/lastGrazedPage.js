@@ -13,14 +13,6 @@ class LastGrazedPage extends SingleTextInputPage {
   pagePath = 'biosecurity/last-grazed'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
-
-  async inputLastGrazedAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async lastGrazedErrorTest(textInput, errorMessage) {
-    await super.singleInputErrorTest(textInput, errorMessage)
-  }
 }
 
 export default new LastGrazedPage()
