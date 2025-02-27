@@ -8,7 +8,7 @@ export class QuantityOptionsPage extends QuestionPage {
   urlPath = '/destination/quantity-options'
   sectionKey = 'destination'
   question = 'Will you move more than 75 animals?'
-  questionKey = 'quantityOptions'
+  questionKey = 'movingMoreThan75Animals'
 
   Answer = QuantityOptionsAnswer
 

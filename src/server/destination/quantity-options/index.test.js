@@ -6,7 +6,7 @@ import { destinationSummaryPage } from '../summary/index.js'
 
 const sectionKey = 'destination'
 const question = 'Will you move more than 75 animals?'
-const questionKey = 'quantityOptions'
+const questionKey = 'movingMoreThan75Animals'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/quantity-options'
 
