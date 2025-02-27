@@ -49,6 +49,12 @@ describe('KeptSeparatelyPage', () => {
     expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
+  it('nextPage should return disinfection page when answer is "unknown"', () => {
+    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'unknown' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(peopleDisinfectionPage)
+  })
+
   it('should export page', () => {
     expect(keptSeparatelyPage).toBeInstanceOf(KeptSeparatelyPage)
   })
