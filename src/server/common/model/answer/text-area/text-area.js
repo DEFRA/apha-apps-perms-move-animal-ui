@@ -43,6 +43,7 @@ const textAreaSchema = ({ payloadKey, validation }) => {
  *  rows?: number,
  *  autocomplete?: string,
  *  hint?: string,
+ *  isPageHeading?: boolean,
  *  validation: {
  *    maxLength: { value: number, message: string },
  *    empty?: { message: string },
@@ -107,11 +108,13 @@ export class TextAreaAnswer extends AnswerModel {
    */
   viewModel({ validate, question }) {
     const { payloadKey, spellcheck, autocomplete, rows, hint } = this.config
+    const isPageHeading = this.config.isPageHeading ?? true
+
     const viewModel = {
       label: {
         text: question,
-        classes: 'govuk-label--l',
-        isPageHeading: true
+        classes: isPageHeading ? 'govuk-label--l' : 'govuk-label--m',
+        isPageHeading
       },
       id: payloadKey,
       name: payloadKey,

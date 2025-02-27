@@ -13,8 +13,8 @@ export class BuildingsHowMinimiseContaminationAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'buildingsHowMinimiseContamination',
-    hint: 'For example, disinfection points and measures taken when milking dairy cattle',
     rows: 8,
+    isPageHeading: false,
     validation: {
       maxLength: {
         value: 5000,

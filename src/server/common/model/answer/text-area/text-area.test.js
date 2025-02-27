@@ -302,6 +302,7 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   /** @type {TextAreaConfig} */
   const textAreaConfigWithExtraOptions = {
     ...optionalTextAreaConfig,
+    isPageHeading: false,
     autocomplete: 'input-data',
     spellcheck: false,
     rows: 10,
@@ -316,8 +317,8 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   const expectedViewModel = {
     label: {
       text: question,
-      classes: 'govuk-label--l',
-      isPageHeading: true
+      classes: 'govuk-label--m',
+      isPageHeading: false
     },
     id: 'textAreaPayload',
     name: 'textAreaPayload',

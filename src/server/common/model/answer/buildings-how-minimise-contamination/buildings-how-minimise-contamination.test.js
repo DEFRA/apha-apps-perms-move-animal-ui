@@ -22,14 +22,14 @@ describe('BuildingsHowMinimiseContamination', () => {
     )
   })
 
-  it('should have the right hint', () => {
-    expect(BuildingsHowMinimiseContaminationAnswer.config.hint).toBe(
-      'For example, disinfection points and measures taken when milking dairy cattle'
-    )
-  })
-
   it('should have the right number of rows', () => {
     expect(BuildingsHowMinimiseContaminationAnswer.config.rows).toBe(8)
+  })
+
+  it('should not be a page heading', () => {
+    expect(BuildingsHowMinimiseContaminationAnswer.config.isPageHeading).toBe(
+      false
+    )
   })
 
   it('should define the right empty input message', () => {

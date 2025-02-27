@@ -3,7 +3,7 @@ import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'buildingsHowMinimiseContamination'
 const pageHeadingAndTitle =
-  'How will you reduce building and equipment contamination?'
+  'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
 const noInputError =
   'Enter information about how you will reduce building contamination'
 

@@ -93,13 +93,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you reduce building and equipment contamination?
+      How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
     </dt>
     <dd class="govuk-summary-list__value">
       somehow
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you reduce building and equipment contamination?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
