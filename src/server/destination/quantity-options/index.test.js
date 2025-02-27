@@ -11,11 +11,7 @@ const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/quantity-options'
 
 describe('QuantityOptionsPage', () => {
-  let page
-
-  beforeEach(() => {
-    page = new QuantityOptionsPage()
-  })
+  const page = new QuantityOptionsPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
