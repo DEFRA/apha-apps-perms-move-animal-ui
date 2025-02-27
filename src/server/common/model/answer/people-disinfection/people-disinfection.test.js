@@ -34,7 +34,7 @@ describe('PeopleDisinfection', () => {
 
   it('should define the right empty input message', () => {
     expect(PeopleDisinfectionAnswer.config.validation.empty?.message).toBe(
-      'Enter what measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle'
+      'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
     )
   })
 
