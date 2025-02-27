@@ -6,9 +6,11 @@ import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
-  question = 'How will you reduce building and equipment contamination?'
+  question = 'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer
+
+  view = 'biosecurity/buildings-how-minimise-contamination/index'
 
   nextPage() {
     return peopleDisinfectionPage

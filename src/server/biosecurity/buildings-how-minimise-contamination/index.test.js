@@ -7,9 +7,9 @@ import {
 } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'How will you reduce building and equipment contamination?'
+const question = 'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
 const questionKey = 'buildingsHowMinimiseContamination'
-const view = 'common/model/page/question-page.njk'
+const view = 'biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'
 
 describe('BuildingsHowMinimiseContaminationPage', () => {

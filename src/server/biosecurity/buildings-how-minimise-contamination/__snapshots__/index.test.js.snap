@@ -2,6 +2,32 @@
 
 exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContaminationPage.content should render expected response and content 1`] = `
 "
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        To prevent the spread of TB, cleaning and disinfection measures for
+        shared buildings and equipment should be in place.
+      </p>
+      <p>This can include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>designated disinfection points</li>
+        <li>cleaning and disinfecting shared machinery</li>
+        <li>
+          not sharing equipment or machinery between the groups of incoming and
+          resident cattle
+        </li>
+        <li>
+          cleaning and disinfection measures for shared milking and testing
+          facilities
+        </li>
+      </ul>
+    </div>
+  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -12,13 +38,10 @@ exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContamination
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="buildingsHowMinimiseContamination">
-      How will you reduce building and equipment contamination?
+      How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
     </label>
   </h1>
-  <div id="buildingsHowMinimiseContamination-hint" class="govuk-hint">
-    For example, disinfection points and measures taken when milking dairy cattle
-  </div>
-  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="8" aria-describedby="buildingsHowMinimiseContamination-hint"></textarea>
+  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="8"></textarea>
 </div>
 
 

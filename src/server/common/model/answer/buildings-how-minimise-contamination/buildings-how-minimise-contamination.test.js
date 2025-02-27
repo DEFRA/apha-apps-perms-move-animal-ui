@@ -22,12 +22,6 @@ describe('BuildingsHowMinimiseContamination', () => {
     )
   })
 
-  it('should have the right hint', () => {
-    expect(BuildingsHowMinimiseContaminationAnswer.config.hint).toBe(
-      'For example, disinfection points and measures taken when milking dairy cattle'
-    )
-  })
-
   it('should have the right number of rows', () => {
     expect(BuildingsHowMinimiseContaminationAnswer.config.rows).toBe(8)
   })
