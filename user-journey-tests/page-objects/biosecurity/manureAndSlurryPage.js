@@ -28,10 +28,6 @@ class ManureAndSlurryPage extends RadioButtonBasePage {
   async selectNoAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
-
-  async grazingErrorTest() {
-    super.radioErrorTest()
-  }
 }
 
 export default new ManureAndSlurryPage()

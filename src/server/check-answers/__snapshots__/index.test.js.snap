@@ -111,10 +111,21 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Will you move more than 75 animals?
     </dt>
     <dd class="govuk-summary-list__value">
-      Yes
+      No
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/destination/quantity-options?redirect_uri=/submit/check-answers" data-testid="movingMoreThan75Animals-change-link">Change<span class="govuk-visually-hidden"> Will you move more than 75 animals?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will the number of cattle be larger than half of the destination herd size?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yes
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/destination/quantity-half-herd?redirect_uri=/submit/check-answers" data-testid="movingMoreThanHalfExistingHerd-change-link">Change<span class="govuk-visually-hidden"> Will the number of cattle be larger than half of the destination herd size?</span></a>
     </dd>
   </div>
 </dl>
