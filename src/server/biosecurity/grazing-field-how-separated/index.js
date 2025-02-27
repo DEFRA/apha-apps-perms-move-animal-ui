@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { GrazingFieldHowSeparatedAnswer } from '../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
 export class GrazingFieldHowSeparatedPage extends QuestionPage {
   urlPath = '/biosecurity/grazing-field-how-separated'
@@ -11,7 +11,7 @@ export class GrazingFieldHowSeparatedPage extends QuestionPage {
   Answer = GrazingFieldHowSeparatedAnswer
 
   nextPage() {
-    return roadsAndTracksPage
+    return buildingsAnySharedPage
   }
 }
 

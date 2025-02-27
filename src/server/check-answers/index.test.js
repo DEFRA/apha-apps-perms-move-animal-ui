@@ -118,8 +118,6 @@ const emailContent = [
   yesLabel,
   '## How is this grazing field separated from the resident herd?',
   biosecurity.grazingFieldHowSeparated,
-  '## Will the incoming cattle come into contact with any roads or tracks used by the existing cattle?',
-  yesLabel,
   '## Will the cattle share any buildings and equipment with the resident herd?',
   yesLabel,
   '## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?',

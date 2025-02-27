@@ -1,6 +1,6 @@
 import { GrazingFieldHowSeparatedAnswer } from '../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { roadsAndTracksPage } from '../roads-and-tracks/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import {
   grazingFieldHowSeparatedPage,
   GrazingFieldHowSeparatedPage
@@ -39,9 +39,9 @@ describe('GrazingFieldHowSeparatedPage', () => {
     expect(page.Answer).toBe(GrazingFieldHowSeparatedAnswer)
   })
 
-  it('nextPage should return manure and slurry page', () => {
+  it('nextPage should return any shared buildings page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(roadsAndTracksPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
   it('should export page', () => {
