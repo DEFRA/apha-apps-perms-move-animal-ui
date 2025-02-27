@@ -1,51 +1,35 @@
-import { waitForPagePath } from '../../helpers/page.js'
-import { Page } from '../page.js'
+/* eslint-disable lines-between-class-members */
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageHeadingAndTitle =
   'Will you separate the incoming cattle from the resident herd?'
-
 const pageId = 'keptSeparately'
+const noInputError = 'Select if the incoming cattle will be kept separately'
+const valueArray = ['yes', 'no']
 
-class KeptSeparatelyPage extends Page {
+class KeptSeparatelyPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = 'biosecurity/kept-separately'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  keptSeparatelySelectionError =
-    'Select if the incoming cattle will be kept separately'
 
-  get yesRadio() {
-    return $('#keptSeparately')
+  async selectYesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
-  get noRadio() {
-    return $('#no')
-  }
-
-  radioFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  summaryErrorLink() {
-    return super.getErrorLink(pageId)
-  }
-
-  async selectYesAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.yesRadio)
-    await waitForPagePath(newPage.pagePath)
-  }
-
-  async selectNoAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.noRadio)
-    await waitForPagePath(newPage.pagePath)
+  async selectNoAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
   async keptSeparatelySelectionErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(
-      this.radioFieldError(),
-      this.keptSeparatelySelectionError
-    )
-    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.yesRadio)
+    super.radioErrorTest()
   }
 }
 

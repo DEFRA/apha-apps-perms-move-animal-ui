@@ -1,31 +1,22 @@
-import { Page } from '../page.js'
+/* eslint-disable lines-between-class-members */
 import * as page from '../../helpers/page.js'
+import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'disinfectant'
-
 const pageHeadingAndTitle = 'What disinfectant are you using?'
+const noInputError = 'Enter what disinfectant you are using'
 
-class DisinfectantPage extends Page {
+class DisinfectantPage extends SingleTextInputPage {
+  constructor() {
+    super({ pageId, noInputError })
+  }
+
   pagePath = 'biosecurity/disinfectant'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
 
-  noInputError = 'Enter what disinfectant you are using'
-
   get disinfectantGovLink() {
     return $('a*=disinfectant approved for Tuberculosis')
-  }
-
-  whatDisinfectantInput() {
-    return super.getInputField(pageId)
-  }
-
-  whatDisinfectantFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  whatDisinfectantErrorLink() {
-    return super.getErrorLink(pageId)
   }
 
   async verifyDisinfectantGovLink() {
@@ -35,26 +26,12 @@ class DisinfectantPage extends Page {
     )
   }
 
-  async inputDisinfectantAndContinue(text, newPage) {
-    await page.typeIntoElement(this.whatDisinfectantInput(), text)
-    await super.selectContinue()
-    if (newPage) {
-      await page.waitForPagePath(newPage.pagePath)
-    }
+  async inputDisinfectantAndContinue(text, nextPage) {
+    await super.inputTextAndContinue(text, nextPage)
   }
 
   async disinfectantErrorTest(textInput, errorMessage) {
-    await this.inputDisinfectantAndContinue(textInput)
-    await super.verifyErrorsOnPage(
-      this.whatDisinfectantFieldError(),
-      errorMessage
-    )
-    await super.verifySummaryErrorLink(
-      this.whatDisinfectantErrorLink(),
-      this.whatDisinfectantInput()
-    )
-    const inputValue = await this.whatDisinfectantInput().getValue()
-    expect(inputValue).toBe(textInput)
+    await super.singleInputErrorTest(textInput, errorMessage)
   }
 }
 

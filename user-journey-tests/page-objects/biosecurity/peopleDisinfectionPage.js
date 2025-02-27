@@ -1,52 +1,27 @@
-import { Page } from '../page.js'
-import { waitForPagePath } from '../../helpers/page.js'
-import * as page from '../../helpers/page.js'
+import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'peopleDisinfection'
 
 const pageHeadingAndTitle =
   'What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?'
+const noInputError =
+  'Enter what measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle'
 
-class PeopleDisinfectionPage extends Page {
+class PeopleDisinfectionPage extends SingleTextInputPage {
+  constructor() {
+    super({ pageId, noInputError })
+  }
+
   pagePath = 'biosecurity/people-disinfection'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
 
-  noInputError =
-    'Enter what measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle'
-
-  peopleDisinfectionInput() {
-    return super.getInputField(pageId)
-  }
-
-  peopleDisinfectionFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  peopleDisinfectionErrorLink() {
-    return super.getErrorLink(pageId)
-  }
-
   async inputPeopleDisinfectionAndContinue(text, nextPage) {
-    await page.typeIntoElement(this.peopleDisinfectionInput(), text)
-    await super.selectContinue()
-    if (nextPage) {
-      await waitForPagePath(nextPage.pagePath)
-    }
+    await super.inputTextAndContinue(text, nextPage)
   }
 
-  async peopleDisinfectionErrorTest(textInput, errorMessage) {
-    await this.inputPeopleDisinfectionAndContinue(textInput)
-    await super.verifyErrorsOnPage(
-      this.peopleDisinfectionFieldError(),
-      errorMessage
-    )
-    await super.verifySummaryErrorLink(
-      this.peopleDisinfectionErrorLink(),
-      this.peopleDisinfectionInput()
-    )
-    const inputValue = await this.peopleDisinfectionInput().getValue()
-    expect(inputValue).toBe(textInput)
+  async peopleDisinfectionErrorTest(text, errorMessage) {
+    await super.singleInputErrorTest(text, errorMessage)
   }
 }
 

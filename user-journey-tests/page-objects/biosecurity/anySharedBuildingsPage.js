@@ -1,51 +1,36 @@
-import { waitForPagePath } from '../../helpers/page.js'
-import { Page } from '../page.js'
+/* eslint-disable lines-between-class-members */
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageId = 'buildingsAnyShared'
-
 const pageHeadingAndTitle =
   'Will the cattle share any buildings and equipment with the resident herd?'
+const noInputError =
+  'Select if the cattle will share any buildings with the resident herd'
+const valueArray = ['yes', 'no']
 
-class AnySharedBuildingsPage extends Page {
+class AnySharedBuildingsPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = 'biosecurity/buildings-any-shared'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  sharedBuildingsError =
-    'Select if the cattle will share any buildings with the resident herd'
 
-  get yesRadio() {
-    return $(`#${pageId}`)
+  async selectYesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
-  get noRadio() {
-    return $('#no')
-  }
-
-  radioFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  summaryErrorLink() {
-    return super.getErrorLink(pageId)
-  }
-
-  async selectYesAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.yesRadio)
-    await waitForPagePath(newPage.pagePath)
-  }
-
-  async selectNoAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.noRadio)
-    await waitForPagePath(newPage.pagePath)
+  async selectNoAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
   async sharedBuildingsErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(
-      this.radioFieldError(),
-      this.sharedBuildingsError
-    )
-    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.yesRadio)
+    super.radioErrorTest()
   }
 }
 

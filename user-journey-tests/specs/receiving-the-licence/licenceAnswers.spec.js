@@ -32,7 +32,7 @@ describe('Check your licence answers test', () => {
     await emailPage.selectContinue()
     await licenceAnswersPage.selectBackLink()
 
-    await emailPage.emailAddressInput().isDisplayed()
+    await emailPage.textInput().isDisplayed()
   })
 
   it('Should verify existing name and then changing it', async () => {

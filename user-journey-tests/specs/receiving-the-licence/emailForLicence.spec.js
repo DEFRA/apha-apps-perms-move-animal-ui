@@ -2,6 +2,7 @@ import { browser } from '@wdio/globals'
 
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
+import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 
 const validSubmissionCheck = async (input, whitespace = false) => {
   let expected
@@ -10,10 +11,10 @@ const validSubmissionCheck = async (input, whitespace = false) => {
   } else {
     expected = input.trim()
   }
-  await emailPage.inputEmailAndContinue(input, licenceAnswersPage)
+  await emailPage.inputEmailAndContinue(input, ownerNamePage)
   await licenceAnswersPage.selectBackLink()
   await browser.refresh()
-  const inputValue = await emailPage.emailAddressInput().getValue()
+  const inputValue = await emailPage.textInput().getValue()
   expect(inputValue).toBe(expected)
 }
 
@@ -24,7 +25,7 @@ describe('Email address for licence page test', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await emailPage.emailInputErrorTest('', emailPage.noInputError)
+    await emailPage.singleInputErrorTest('', emailPage.noInputError)
   })
 
   it('Should verify that page errors email is short and invalid', async () => {

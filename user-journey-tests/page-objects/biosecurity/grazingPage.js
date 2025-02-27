@@ -1,49 +1,33 @@
-import { waitForPagePath } from '../../helpers/page.js'
-import { Page } from '../page.js'
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageId = 'grazing'
-
 const pageHeadingAndTitle = 'Will the incoming cattle be grazed?'
+const noInputError = 'Select yes if the incoming cattle will be grazed'
+const valueArray = ['yes', 'no']
 
-class GrazingPage extends Page {
+class GrazingPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = 'biosecurity/grazing'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  grazingPageError = 'Select yes if the incoming cattle will be grazed'
 
-  get yesRadio() {
-    return $(`#${pageId}`)
+  async selectYesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
-  get noRadio() {
-    return $('#no')
-  }
-
-  radioFieldError() {
-    return super.getErrorElement(pageId)
-  }
-
-  summaryErrorLink() {
-    return super.getErrorLink(pageId)
-  }
-
-  async selectYesAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.yesRadio)
-    await waitForPagePath(newPage.pagePath)
-  }
-
-  async selectNoAndContinue(newPage) {
-    await super.selectRadioAndContinue(this.noRadio)
-    await waitForPagePath(newPage.pagePath)
+  async selectNoAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
   async grazingErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(
-      this.radioFieldError(),
-      this.grazingPageError
-    )
-    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.yesRadio)
+    super.radioErrorTest()
   }
 }
 
