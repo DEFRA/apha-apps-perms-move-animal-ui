@@ -12,22 +12,28 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="csrf-value">
         <input type="hidden" name="nextPage" value="">
+        <p>You need to upload a map of the farm or premises.</p>
         <p>
-          You need to upload a map of the farm or premises. The map should not
-          be hand drawn, but you can make annotations to the map of specific
-          locations by hand.
+          We prefer a clear and detailed map, such as a Google map with
+          annotations or a pre-prepared map from an agent or surveyor.
         </p>
         <p>It needs to include:</p>
         <ul class="govuk-body govuk-list--bullet">
           <li>where the incoming cattle will be isolated</li>
-          <li>location of the resident cattle</li>
+          <li>location of the resident cattle and neighbouring cattle</li>
+          <li>
+            minimum distances between the incoming cattle and any resident and
+            neighbouring cattle
+          </li>
           <li>
             movements of the cattle, including where they will graze, be milked,
             and be loaded
           </li>
           <li>location of handling facility</li>
           <li>location of manure or slurry storage</li>
-          <li>location of biosecurity points</li>
+          <li>
+            location of biosecurity points, including badger proof fencing
+          </li>
         </ul>
         <div class="govuk-form-group">
   <label class="govuk-label" for="status.form.file">
