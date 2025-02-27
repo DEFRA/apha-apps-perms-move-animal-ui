@@ -10,6 +10,7 @@ export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   sectionKey = 'biosecurity'
   question =
     'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
+
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer
 

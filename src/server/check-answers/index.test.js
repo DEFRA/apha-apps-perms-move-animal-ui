@@ -117,7 +117,7 @@ const emailContent = [
   yesLabel,
   '## Will the cattle share any buildings and equipment with the resident herd?',
   yesLabel,
-  '## How will you reduce building and equipment contamination?',
+  '## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?',
   biosecurity.buildingsHowMinimiseContamination,
   '## What measures are you taking to minimise the risk of staff working with the incoming cattle spreading contamination onto resident or other cattle?',
   biosecurity.peopleDisinfection,

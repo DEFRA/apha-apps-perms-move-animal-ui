@@ -26,6 +26,12 @@ describe('BuildingsHowMinimiseContamination', () => {
     expect(BuildingsHowMinimiseContaminationAnswer.config.rows).toBe(8)
   })
 
+  it('should not be a page heading', () => {
+    expect(BuildingsHowMinimiseContaminationAnswer.config.isPageHeading).toBe(
+      false
+    )
+  })
+
   it('should define the right empty input message', () => {
     expect(
       BuildingsHowMinimiseContaminationAnswer.config.validation.empty?.message

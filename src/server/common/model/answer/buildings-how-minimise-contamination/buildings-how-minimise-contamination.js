@@ -14,6 +14,7 @@ export class BuildingsHowMinimiseContaminationAnswer extends TextAreaAnswer {
   static config = {
     payloadKey: 'buildingsHowMinimiseContamination',
     rows: 8,
+    isPageHeading: false,
     validation: {
       maxLength: {
         value: 5000,
