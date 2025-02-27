@@ -10,23 +10,21 @@ describe('To from farm page test', () => {
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
-    await toFromFarmPage.toFromFarmErrorTest()
+    await toFromFarmPage.radioErrorTest()
   })
 
   it('Should select on the farm radio and continue', async () => {
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.verifyOnFarmVersion()
   })
 
   it('Should choose an option and check its maintained', async () => {
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     await originTypePage.verifyPageHeadingAndTitle()
-    await originTypePage.verifyOffFarmVersion()
     await browser.back()
 
     await browser.refresh()
     await waitForPagePath(toFromFarmPage.pagePath)
 
-    await expect(toFromFarmPage.offThefarmRadio).toBeSelected()
+    await expect(toFromFarmPage.offRadio).toBeSelected()
   })
 })

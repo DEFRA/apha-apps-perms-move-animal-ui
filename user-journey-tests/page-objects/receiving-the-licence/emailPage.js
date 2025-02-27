@@ -17,14 +17,6 @@ class EmailPage extends SingleTextInputPage {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
   pagePath = 'receiving-the-licence/licence-enter-email-address'
-
-  async inputEmailAndContinue(text, nextPage) {
-    await super.inputTextAndContinue(text, nextPage)
-  }
-
-  async emailInputErrorTest(textInput, errorMessage) {
-    await super.singleInputErrorTest(textInput, errorMessage)
-  }
 }
 
 export default new EmailPage()

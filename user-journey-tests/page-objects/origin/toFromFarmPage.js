@@ -1,50 +1,30 @@
-import { $ } from '@wdio/globals'
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
-import { Page } from '../page.js'
-import { waitForPagePath } from '../../helpers/page.js'
-
+const pageId = 'onOffFarm'
 const pageHeadingAndTitle =
   'Are you moving the animals on or off your farm or premises?'
+const noInputError = 'Select if you are moving cattle on or off your farm'
+const valueArray = ['on', 'off']
 
-class ToFromFarmPage extends Page {
+class ToFromFarmPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = 'origin/to-or-from-own-premises'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  toFromFarmErrorMessage = 'Select if you are moving cattle on or off your farm'
-
-  get onThefarmRadio() {
-    return $('#onOffFarm')
-  }
-
-  get offThefarmRadio() {
-    return $('#off')
-  }
-
-  get onFarmSummaryErrorLink() {
-    return $('[href="#onOffFarm"]')
-  }
-
-  get pageError() {
-    return $('#onOffFarm-error')
-  }
 
   async selectOnFarmAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.onThefarmRadio)
-    await waitForPagePath(nextPage.pagePath)
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
   async selectOffFarmAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.offThefarmRadio)
-    await waitForPagePath(nextPage.pagePath)
-  }
-
-  async toFromFarmErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(this.pageError, this.toFromFarmErrorMessage)
-    await super.verifySummaryErrorLink(
-      this.onFarmSummaryErrorLink,
-      this.onThefarmRadio
-    )
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 }
 

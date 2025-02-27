@@ -26,7 +26,7 @@ const completeLicenceTask = async ({
     receiveMethodPage
   )
   await receiveMethodPage.selectEmailAndContinue(emailPage)
-  await emailPage.inputEmailAndContinue(email, licenceAnswersPage)
+  await emailPage.inputTextAndContinue(email, licenceAnswersPage)
   await licenceAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(licenceAnswersPage.emailValue, email)
 }

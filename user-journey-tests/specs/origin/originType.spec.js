@@ -2,7 +2,7 @@ import { browser, expect } from '@wdio/globals'
 
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import { waitForPagePath } from '../../helpers/page.js'
+import { verifyRadioButtonNumber, waitForPagePath } from '../../helpers/page.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import fiftyPercentPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
@@ -16,19 +16,23 @@ describe('origin type page test (off farm)', () => {
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
-    await originTypePage.originTypeErrorTest()
+    await originTypePage.originTypeErrorTest(2)
   })
 
   it('Should verify that off farm versions are loaded (by default)', async () => {
-    await originTypePage.verifyOffFarmVersion()
+    await verifyRadioButtonNumber(6)
   })
 
   it('Should navigate to cph page if moving off from tb restricted farm', async () => {
-    await originTypePage.selectZooAndContinue(parishHoldingNumberPage)
+    await originTypePage.selectTBRestrictedFarmAndContinue(
+      parishHoldingNumberPage
+    )
   })
 
   it('Should navigate to on farm cph page if coming from afu', async () => {
-    await originTypePage.selectZooAndContinue(parishHoldingNumberPage)
+    await originTypePage.selectApprovedFinishingUnitAndContinue(
+      parishHoldingNumberPage
+    )
   })
 
   it('Should navigate to exit page if moving off from unrestricted premises', async () => {
@@ -61,7 +65,7 @@ describe('origin type page test (off farm)', () => {
     await browser.refresh()
     await waitForPagePath(originTypePage.pagePath)
 
-    await expect(originTypePage.approvedFinishingUnitRadio).toBeSelected()
+    await expect(originTypePage.afuRadio).toBeSelected()
   })
 })
 
@@ -73,7 +77,7 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should verify that on farm options are loaded (if on farm was previously selected)', async () => {
-    await originTypePage.verifyOnFarmVersion()
+    await verifyRadioButtonNumber(8)
   })
 
   it('Should navigate to fifty percent page if coming from market', async () => {
@@ -85,7 +89,7 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should navigate to on farm cph page if coming from tb restricted farm', async () => {
-    await originTypePage.selectZooAndContinue(onFarmCPHPage)
+    await originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
   })
 
   it('Should navigate to on farm cph page if coming from afu', async () => {

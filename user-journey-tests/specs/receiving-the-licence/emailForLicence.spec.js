@@ -11,7 +11,7 @@ const validSubmissionCheck = async (input, whitespace = false) => {
   } else {
     expected = input.trim()
   }
-  await emailPage.inputEmailAndContinue(input, ownerNamePage)
+  await emailPage.inputTextAndContinue(input, ownerNamePage)
   await licenceAnswersPage.selectBackLink()
   await browser.refresh()
   const inputValue = await emailPage.textInput().getValue()
@@ -30,21 +30,24 @@ describe('Email address for licence page test', () => {
 
   it('Should verify that page errors email is short and invalid', async () => {
     const invalidInput = 'batman'
-    await emailPage.emailInputErrorTest(
+    await emailPage.singleInputErrorTest(
       invalidInput,
       emailPage.invalidFormatError
     )
   })
 
   it('Should verify that page errors email has no @', async () => {
-    await emailPage.emailInputErrorTest(
+    await emailPage.singleInputErrorTest(
       'batman.gotham.co.uk',
       emailPage.invalidFormatError
     )
   })
 
   it('Should verify that page errors email has no text after @', async () => {
-    await emailPage.emailInputErrorTest('batman@', emailPage.invalidFormatError)
+    await emailPage.singleInputErrorTest(
+      'batman@',
+      emailPage.invalidFormatError
+    )
   })
 
   it('Should verify that input automatically trims whitespace', async () => {
@@ -53,7 +56,7 @@ describe('Email address for licence page test', () => {
 
   it.skip('Should check answer is maintained when submitting after an error', async () => {
     const validInput = 'batman@gotham.co.uk'
-    await emailPage.emailInputErrorTest('', emailPage.noInputError)
+    await emailPage.singleInputErrorTest('', emailPage.noInputError)
     await validSubmissionCheck(validInput)
   })
 

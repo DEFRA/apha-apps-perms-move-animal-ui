@@ -1,52 +1,29 @@
-import { waitForPagePath } from '../../helpers/page.js'
-import { Page } from '../page.js'
+import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
-const emailId = 'receiveMethod'
-const postId = 'post'
+const pageId = 'receiveMethod'
 const pageHeadingAndTitle = 'How would you like this licence sent to you?'
+const noInputError = 'Select how you would like this licence sent to you'
+const valueArray = ['email', 'post']
 
-class ReceiveMethodPage extends Page {
+class ReceiveMethodPage extends RadioButtonBasePage {
+  constructor() {
+    super({
+      pageId,
+      noInputError,
+      valueArray
+    })
+  }
+
   pagePath = '/receiving-the-licence/licence-email-or-post'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  noSelectionError = 'Select how you would like this licence sent to you'
-
-  get emailRadio() {
-    return super.getInputField(emailId)
-  }
-
-  get postRadio() {
-    return super.getInputField(postId)
-  }
-
-  get receiveMethodRadioError() {
-    return super.getErrorElement(emailId)
-  }
-
-  get receiveMethodSummaryErrorLink() {
-    return super.getErrorLink(emailId)
-  }
 
   async selectEmailAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.emailRadio)
-    await waitForPagePath(nextPage.pagePath)
+    await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
   async selectPostAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.postRadio)
-    await waitForPagePath(nextPage.pagePath)
-  }
-
-  async receiveMethodErrorTest() {
-    await super.selectContinue()
-    await super.verifyErrorsOnPage(
-      this.receiveMethodRadioError,
-      this.noSelectionError
-    )
-    await super.verifySummaryErrorLink(
-      this.receiveMethodSummaryErrorLink,
-      this.emailRadio
-    )
+    await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 }
 
