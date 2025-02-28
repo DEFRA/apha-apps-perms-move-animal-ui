@@ -67,8 +67,7 @@ describe('#taskListController', () => {
     expect(taskTitles).toEqual([
       'Movement origin',
       'Movement destination',
-      'Receiving the licence',
-      'Biosecurity map'
+      'Receiving the licence'
     ])
   })
 
@@ -139,7 +138,7 @@ describe('#taskListController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.ok)
-    expect(payload).toEqual(expect.stringContaining(`4 out of 4`))
+    expect(payload).toEqual(expect.stringContaining(`3 out of 3`))
     expect(payload).toEqual(expect.stringContaining('govuk-button--secondary'))
   })
 
