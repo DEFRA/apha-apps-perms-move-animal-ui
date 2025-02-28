@@ -24,25 +24,42 @@ const navigateToOriginFlow = async () => {
 
 // Helper function to complete the origin task
 const completeOriginTask = async ({
+  onOffFarm = 'off',
   cphNumber = defaultCphNumber,
   lineOne = defaultLineOne,
   townOrCity = defaultTownOrCity,
   postcode = defaultPostcode
 } = {}) => {
   await navigateToOriginFlow()
-  await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
-  await originTypePage.selectTBRestrictedFarmAndContinue(
-    parishHoldingNumberPage
-  )
-  await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
-    cphNumber,
-    newAddressPage
-  )
-  await newAddressPage.fillFormFieldsAndSubmit({
-    lineOne,
-    townOrCity,
-    postcode
-  })
+  if (onOffFarm === 'on') {
+    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
+    await originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
+    await onFarmCPHPage.inputParishHoldingNumberAndContinue(
+      cphNumber,
+      onFarmAddressPage
+    )
+    await onFarmAddressPage.fillFormFieldsAndSubmit({
+      lineOne,
+      townOrCity,
+      postcode
+    })
+    await fiftyPercentWarningPage.selectContinue()
+  } else {
+    await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
+    await originTypePage.selectTBRestrictedFarmAndContinue(
+      parishHoldingNumberPage
+    )
+    await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
+      cphNumber,
+      newAddressPage
+    )
+    await newAddressPage.fillFormFieldsAndSubmit({
+      lineOne,
+      townOrCity,
+      postcode
+    })
+  }
+
   await waitForPagePath(checkAnswersPage.pagePath)
   await checkAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(
@@ -54,6 +71,10 @@ const completeOriginTask = async ({
 // Predefined task completion function
 export const completeOriginTaskAnswers = async () => {
   await completeOriginTask() // Uses default values
+}
+
+export const completeOriginTaskAnswersOnFarm = async () => {
+  await completeOriginTask({ onOffFarm: 'on' }) // Uses default values
 }
 
 // Customizable task completion function

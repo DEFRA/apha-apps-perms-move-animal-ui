@@ -3,8 +3,10 @@ import { Page } from './page.js'
 
 const pageHeadingAndTitle = 'Check your answers before sending your application'
 
-const valueIdentifier = '.govuk-summary-list__value'
 const pageId = 'confirmation'
+
+const valueElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__value')
 
 class FinalAnswersPage extends Page {
   pagePath = '/submit/check-answers'
@@ -21,39 +23,35 @@ class FinalAnswersPage extends Page {
   }
 
   get onOffFarmValue() {
-    return $$(valueIdentifier)[0]
+    return valueElementFromChangeLink(this.onOffFarmChange)
   }
 
   get originTypeValue() {
-    return $$(valueIdentifier)[1]
+    return valueElementFromChangeLink(this.originTypeChange)
   }
 
   get parishNumberValue() {
-    return $$(valueIdentifier)[2]
+    return valueElementFromChangeLink(this.parishHoldingChange)
   }
 
   get addressValue() {
-    return $$(valueIdentifier)[3]
+    return valueElementFromChangeLink(this.addressChange)
   }
 
   get movementDestinationVaue() {
-    return $$(valueIdentifier)[4]
+    return valueElementFromChangeLink(this.movementDestinationChange)
   }
 
   get ownerNameValue() {
-    return $$(valueIdentifier)[5]
+    return valueElementFromChangeLink(this.ownerNameChange)
   }
 
   get receiveMethodValue() {
-    return $$(valueIdentifier)[6]
+    return valueElementFromChangeLink(this.receiveMethodChange)
   }
 
   get emailValue() {
-    return $$(valueIdentifier)[7]
-  }
-
-  get separateCattleValue() {
-    return $$(valueIdentifier)[8]
+    return valueElementFromChangeLink(this.emailChange)
   }
 
   get onOffFarmChange() {
@@ -86,10 +84,6 @@ class FinalAnswersPage extends Page {
 
   get emailChange() {
     return $('[data-testid="emailAddress-change-link"]')
-  }
-
-  get separateCattleChange() {
-    return $('[data-testid="keptSeparately-change-link"]')
   }
 
   get confirmStatementsCheckbox() {
