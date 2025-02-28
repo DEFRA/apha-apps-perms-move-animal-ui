@@ -3,12 +3,16 @@ import {
   validateHrefOfElement
 } from '../../helpers/page.js'
 import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity.js'
+import { completeDestinationTaskOnFarm } from '../../helpers/testHelpers/destination.js'
+import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementLicence.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
   before('Complete answers', async () => {
+    await completeOriginTaskAnswersOnFarm()
+    await completeDestinationTaskOnFarm()
     await completeBiosecurityTask('yes')
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
