@@ -35,7 +35,9 @@ describe('BuildingsHowMinimiseContamination', () => {
   it('should define the right empty input message', () => {
     expect(
       BuildingsHowMinimiseContaminationAnswer.config.validation.empty?.message
-    ).toBe('Enter information about how you will reduce building contamination')
+    ).toBe(
+      'Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle'
+    )
   })
 
   it('should define the right max length and corresponding error message', () => {
