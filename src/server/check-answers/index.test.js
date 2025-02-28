@@ -100,7 +100,7 @@ const emailContent = [
   noLabel,
   '## Will the number of cattle be larger than half of the destination herd size?',
   yesLabel,
-  '## What is the name of the County Parish Holding (CPH) owner?',
+  '## What is the name of the registered owner of the cattle?',
   licence.fullName.firstName + ' ' + licence.fullName.lastName,
   '## How would you like this licence sent to you?',
   'Email',
