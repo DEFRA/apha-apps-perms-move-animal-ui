@@ -80,7 +80,7 @@ describe('#OriginType.config', () => {
     expect(config.options.afu.hint).toBe(
       'Including enhanced with grazing (AFUE)'
     )
-    expect(config.options.zoo.label).toBe('Zoo')
+    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
     expect(config.options.lab.label).toBe('Laboratory')
     expect(config.options['after-import-location'].label).toBe(
       'Location after animals have been imported'
