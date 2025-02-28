@@ -6,7 +6,7 @@ import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise
 
 const sectionKey = 'biosecurity'
 const question =
-  'Will the cattle share any buildings and equipment with the resident herd?'
+  'Will the incoming cattle share any buildings and equipment with the resident herd?'
 const questionKey = 'buildingsAnyShared'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/buildings-any-shared'

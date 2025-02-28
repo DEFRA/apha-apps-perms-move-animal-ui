@@ -45,6 +45,7 @@ const handleConfig = (context, config) => {
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
+ *  hint?: string,
  *  options: Record<string, RadioOption>,
  *  errors: {
  *    emptyOptionText: string
@@ -133,7 +134,7 @@ export class RadioButtonAnswer extends AnswerModel {
    * @param {AnswerViewModelOptions} options
    */
   viewModel({ validate, question }) {
-    const { options, payloadKey, layout } = this.config
+    const { options, payloadKey, layout, hint } = this.config
     const items = Object.entries(options).map(([key, value]) => ({
       id: key,
       value: key,
@@ -157,6 +158,10 @@ export class RadioButtonAnswer extends AnswerModel {
       value: this.value,
       items,
       classes: layout === 'inline' ? 'govuk-radios--inline' : ''
+    }
+
+    if (hint) {
+      model.hint = { text: hint }
     }
 
     if (validate) {

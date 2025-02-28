@@ -3,7 +3,7 @@ import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
 const pageId = 'buildingsAnyShared'
 const pageHeadingAndTitle =
-  'Will the cattle share any buildings and equipment with the resident herd?'
+  'Will the incoming cattle share any buildings and equipment with the resident herd?'
 const noInputError =
   'Select if the cattle will share any buildings with the resident herd'
 

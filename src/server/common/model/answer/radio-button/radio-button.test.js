@@ -19,6 +19,7 @@ const applicationState = { origin: { onOffFarm: 'on' } }
 /** @type {RadioButtonConfig} */
 const defaultConfig = {
   payloadKey: 'test_radio',
+  hint: 'main_hint',
   options: {
     value_1: { label: 'test_label_1' },
     value_2: { label: 'test_label_2', hint: 'test_hint_2' }
@@ -247,7 +248,10 @@ describe('RadioButton', () => {
             text: 'test_hint_2'
           }
         }
-      ]
+      ],
+      hint: {
+        text: 'main_hint'
+      }
     }
 
     it('should return everything (except errors) to render in the template', () => {

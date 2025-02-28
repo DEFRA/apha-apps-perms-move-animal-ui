@@ -31,4 +31,10 @@ describe('BuildingsAnyShared', () => {
     expect(BuildingsAnySharedAnswer.config.options.yes.label).toBe('Yes')
     expect(BuildingsAnySharedAnswer.config.options.no.label).toBe('No')
   })
+
+  it('should have the expected hint', () => {
+    expect(BuildingsAnySharedAnswer.config.hint).toBe(
+      'This includes shared spaces such as pens.'
+    )
+  })
 })
