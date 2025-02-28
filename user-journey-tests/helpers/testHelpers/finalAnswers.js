@@ -1,12 +1,19 @@
+import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import landingPage from '../../page-objects/landingPage.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
+import completeBiosecurityTask from './biosecurity.js'
 import completeBiosecurityMapTask from './biosecurityMap.js'
-import completeDestinationTask from './destination.js'
-import { completeOriginTaskAnswersCustom } from './movementLicence.js'
+import completeDestinationTask, {
+  completeDestinationTaskOnFarm
+} from './destination.js'
+import {
+  completeOriginTaskAnswersCustom,
+  completeOriginTaskAnswersOnFarm
+} from './movementLicence.js'
 import { completeLicenceTaskAnswersCustom } from './receivingLicence.js'
 
 export const completeApplication = async (originObject, licenceObject) => {
@@ -53,5 +60,32 @@ export const completeApplication = async (originObject, licenceObject) => {
     taskTitle: 'Biosecurity map',
     expectedStatus: 'Completed'
   })
+  await finalAnswersPage.navigateToPageAndVerifyTitle()
+}
+
+export const completeApplicationOnFarm = async ({ licence }) => {
+  await landingPage.navigateToPageAndVerifyTitle()
+  await completeOriginTaskAnswersOnFarm()
+  await checkAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+
+  await completeDestinationTaskOnFarm()
+  await destinationAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+
+  await completeLicenceTaskAnswersCustom(
+    licence.emailDefault,
+    licence.firstNameDefault,
+    licence.lastNameDefault
+  )
+  await licenceAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+
+  await completeBiosecurityTask('yes')
+  await biosecurityAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+
+  await completeBiosecurityMapTask()
+  await taskListPage.navigateToPageAndVerifyTitle()
   await finalAnswersPage.navigateToPageAndVerifyTitle()
 }
