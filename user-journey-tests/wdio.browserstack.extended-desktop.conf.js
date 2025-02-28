@@ -14,7 +14,8 @@ export const config = {
     './specs/biosecurity-map/**/*.js',
     './specs/biosecurity/biosecurityAnswers.spec.js',
     './specs/biosecurity/biosecDynamicAnswers.spec.js',
-    './specs/finalAnswersDeclarations.spec.js'
+    './specs/finalAnswersDeclarations.spec.js',
+    './specs/identification/identifiersAnswers.spec.js'
   ],
   capabilities: [
     {
