@@ -5,7 +5,7 @@ const firstNameId = 'firstName'
 const lastNameId = 'lastName'
 
 const pageHeadingAndTitle =
-  'What is the name of the County Parish Holding (CPH) owner?'
+  'What is the name of the registered owner of the cattle?'
 
 class EmailPage extends Page {
   pagePath = '/receiving-the-licence/licence-name'
