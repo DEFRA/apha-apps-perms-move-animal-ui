@@ -47,8 +47,8 @@ const completeBiosecurityTask = async (radioType) => {
         '1995',
         biosecBadgersPage
       )
-      await biosecBadgersPage.selectOptionsAndContinue(
-        [biosecBadgersPage.aluminiumFeedBins],
+      await biosecBadgersPage.inputTextAndContinue(
+        'Badger measures',
         biosecurityAnswersPage
       )
       break
@@ -67,8 +67,8 @@ const completeBiosecurityTask = async (radioType) => {
         '1995',
         biosecBadgersPage
       )
-      await biosecBadgersPage.selectOptionsAndContinue(
-        [biosecBadgersPage.aluminiumFeedBins],
+      await biosecBadgersPage.inputTextAndContinue(
+        'Badger measures',
         biosecurityAnswersPage
       )
       break
