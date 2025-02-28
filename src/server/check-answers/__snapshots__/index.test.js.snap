@@ -168,22 +168,6 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
 </dl>
 
-          <h2 class="govuk-heading-m">Animal identification</h2>
-          
-  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Enter the ear tag numbers of the animals you are planning to move
-    </dt>
-    <dd class="govuk-summary-list__value">
-      some-ear-tags
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/submit/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers of the animals you are planning to move</span></a>
-    </dd>
-  </div>
-</dl>
-
           <h2 class="govuk-heading-m">Biosecurity details</h2>
           
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">

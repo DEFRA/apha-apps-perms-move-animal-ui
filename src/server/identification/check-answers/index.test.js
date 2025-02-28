@@ -1,11 +1,8 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
-import { identificationSummaryPage } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { earTagsPage } from '../ear-tags/index.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -34,7 +31,7 @@ describe('IdentificationSummaryPage', () => {
   it('should render expected response when default state present', async () => {
     await session.setState('identification', defaultState)
 
-    const { payload, statusCode } = await server.inject(
+    const { statusCode } = await server.inject(
       withCsrfProtection(
         {
           method: 'GET',
@@ -46,9 +43,7 @@ describe('IdentificationSummaryPage', () => {
       )
     )
 
-    const document = parseDocument(payload)
-    expect(document.title).toBe(identificationSummaryPage.pageTitle)
-    expect(statusCode).toBe(statusCodes.ok)
+    expect(statusCode).toBe(statusCodes.notFound)
   })
 
   it('should redirect user to kept separately page if they`ve not selected a value', async () => {
@@ -57,7 +52,7 @@ describe('IdentificationSummaryPage', () => {
       earTags: null
     })
 
-    const { statusCode, headers } = await server.inject(
+    const { statusCode } = await server.inject(
       withCsrfProtection(
         {
           method: 'GET',
@@ -69,11 +64,7 @@ describe('IdentificationSummaryPage', () => {
       )
     )
 
-    expect(statusCode).toBe(statusCodes.redirect)
-    expect(statusCode).toBe(statusCodes.redirect)
-    expect(headers.location).toBe(
-      `${earTagsPage.urlPath}?redirect_uri=${identificationSummaryPage.urlPath}`
-    )
+    expect(statusCode).toBe(statusCodes.notFound)
   })
 })
 

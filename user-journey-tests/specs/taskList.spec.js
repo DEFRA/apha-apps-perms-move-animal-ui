@@ -12,9 +12,7 @@ import completeBiosecurityTask from '../helpers/testHelpers/biosecurity.js'
 import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js'
 import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswersPage.js'
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
-import completeAnimalIdentificationTask from '../helpers/testHelpers/animalIdentification.js'
 import { secureDeviceArray } from '../helpers/constants.js'
-import identificationAnswersPage from '../page-objects/identification/identificationAnswersPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -150,46 +148,6 @@ describe('Task list page test', () => {
 
     expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 5')
     await taskListPage.selectReceiveTheLicence(licenceAnswersPage)
-  })
-
-  it.skip('Should link to receiving licence check-answers page once that selection has been completed', async () => {
-    await completeAnimalIdentificationTask()
-    await taskListPage.navigateToPageAndVerifyTitle()
-    await taskListPage.verifyAllStatus([
-      {
-        position: 1,
-        taskTitle: 'Movement origin',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 2,
-        taskTitle: 'Movement destination',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 3,
-        taskTitle: 'Receiving the licence',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 4,
-        taskTitle: 'Animal identification',
-        expectedStatus: 'Completed'
-      },
-      {
-        position: 5,
-        taskTitle: 'Biosecurity details',
-        expectedStatus: 'Incomplete'
-      },
-      {
-        position: 6,
-        taskTitle: 'Biosecurity map',
-        expectedStatus: 'Incomplete'
-      }
-    ])
-
-    expect(await taskListPage.getTaskToCompleteCount()).toContain('2 out of 5')
-    await taskListPage.selectAnimalIdentificationLink(identificationAnswersPage)
   })
 
   it('Should link should link to Biosecurity details check-answers page once that section has been complete', async () => {
