@@ -128,6 +128,14 @@ exports[`#homeController v2 should match v2 content 1`] = `
           from APHA. The pack was posted to you when your herd was placed under
           TB restriction.
         </p>
+        <p class="govuk-body">This licence allows you to move animals:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>from a TB restricted farm direct to slaughter</li>
+          <li>
+            via a slaughter gathering/ red market (if the licence was issued
+            after 30 September 2024)
+          </li>
+        </ul>
         <h2 class="govuk-heading-m">
           Moving animals onto a TB restricted farm
         </h2>
@@ -139,7 +147,8 @@ exports[`#homeController v2 should match v2 content 1`] = `
         </p>
         <p class="govuk-body">
           If you need more information before you apply for a licence, see the
-          <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england">Bovine TB: get your cattle tested in England</a>
+          <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england" class="govuk-link">
+            Bovine TB: get your cattle tested in England</a>
           guidance.
         </p>
         <h2 class="govuk-heading-m">Before you start</h2>
@@ -147,6 +156,7 @@ exports[`#homeController v2 should match v2 content 1`] = `
         <ul class="govuk-list govuk-list--bullet">
           <li>reactors are still on your farm or premises</li>
           <li>cattle are awaiting skin or blood test results</li>
+          <li>TB testing is overdue</li>
         </ul>
         <p class="govuk-body">
           Contact your vet if you are unsure whether the tests have been sent.
@@ -184,7 +194,7 @@ exports[`#homeController v2 should match v2 content 1`] = `
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
   </svg>
 </a>
-        <h3 class="govuk-heading-m">Give feedback</h3>
+        <h2 class="govuk-heading-m">Give feedback</h2>
         <p class="govuk-body">
           Your feedback will help improve this service. You can give feedback by
           <a href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk" target="_blank">completing a short survey (opens in new tab)</a>.

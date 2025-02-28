@@ -15,6 +15,10 @@ class LandingPage extends Page {
     return $('[data-testid="start-now-btn"]')
   }
 
+  async verifyExternalLinks() {
+    return $$('a[href*="https://www.gov.uk"]')
+  }
+
   async verifyStartNowButton(text, click = false) {
     await page.validateElementVisibleAndText(this.startNowButton, text)
     if (click) {
