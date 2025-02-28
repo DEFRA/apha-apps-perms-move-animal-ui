@@ -79,7 +79,9 @@ describe('#Checkbox.validate', () => {
   })
 
   it('should return false for empty', () => {
-    const { isValid, errors } = new TestCheckboxAnswer(undefined).validate()
+    const { isValid, errors } = new TestCheckboxAnswer({
+      test_checkbox: []
+    }).validate()
 
     expect(isValid).toBe(false)
     expect(errors.test_checkbox.text).toBe(checkboxEmptyError)
@@ -97,6 +99,14 @@ describe('#Checkbox.validate', () => {
 
   describe('TestCheckboxAnswerAllOptional', () => {
     it('should not error if no options are selected', () => {
+      const { isValid } = new TestCheckboxAnswerAllOptional({
+        test_checkbox: []
+      }).validate()
+
+      expect(isValid).toBe(true)
+    })
+
+    it('should not error if the question has not yet been answered', () => {
       const { isValid } = new TestCheckboxAnswerAllOptional(
         undefined
       ).validate()
@@ -165,6 +175,28 @@ describe('CheckboxAnswer.template', () => {
   it('should return the radio button model template', () => {
     const radio = new TestCheckboxAnswer(validTestCheckbox)
     expect(radio.template).toBe('model/answer/checkbox/checkbox.njk')
+  })
+})
+
+describe('CheckboxAnswer.html', () => {
+  it('should return the payload with HTML', () => {
+    const checkbox = new TestCheckboxAnswer({
+      test_checkbox: ['badgerProofFencing', 'limitAccessToBadgerHabitat']
+    })
+
+    expect(checkbox.html).toMatchSnapshot()
+  })
+
+  it('should return None for undefined state', () => {
+    const checkbox = new TestCheckboxAnswer(undefined)
+    expect(checkbox.html).toBe('None')
+  })
+
+  it('should return None for an empty list', () => {
+    const checkbox = new TestCheckboxAnswer({
+      test_checkbox: []
+    })
+    expect(checkbox.html).toBe('None')
   })
 })
 
