@@ -37,15 +37,10 @@ describe('Task list page test', () => {
         position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
-      },
-      {
-        position: 4,
-        taskTitle: 'Biosecurity map',
-        expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 3')
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -75,15 +70,10 @@ describe('Task list page test', () => {
         position: 3,
         taskTitle: 'Receiving the licence',
         expectedStatus: 'Incomplete'
-      },
-      {
-        position: 4,
-        taskTitle: 'Biosecurity map',
-        expectedStatus: 'Incomplete'
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 4')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
     await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
