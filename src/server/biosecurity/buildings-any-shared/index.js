@@ -8,7 +8,7 @@ export class BuildingsAnySharedPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-any-shared'
   sectionKey = 'biosecurity'
   question =
-    'Will the cattle share any buildings and equipment with the resident herd?'
+    'Will the incoming cattle share any buildings and equipment with the resident herd?'
 
   questionKey = 'buildingsAnyShared'
   Answer = BuildingsAnySharedAnswer
