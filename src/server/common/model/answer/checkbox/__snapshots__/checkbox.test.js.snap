@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxAnswer.html should return the payload with HTML 1`] = `"Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences<br /><br />Limiting access to badger latrines and setts"`;

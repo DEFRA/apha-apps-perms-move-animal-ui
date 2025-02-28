@@ -13,7 +13,7 @@ import { validateAnswerAgainstSchema } from '../validation.js'
 const createCheckboxSchema = (config) => {
   const optionSchema = Joi.string().valid(...Object.keys(config.options))
 
-  let optionsSchema = Joi.array().items(optionSchema)
+  let optionsSchema = Joi.array().required().items(optionSchema)
 
   if (config.validation.empty) {
     const emptyOptionText = config.validation.empty.message
@@ -81,7 +81,7 @@ export class CheckboxAnswer extends AnswerModel {
   }
 
   get html() {
-    const data = this._data?.[this.config.payloadKey]
+    const data = ensureArray(this._data?.[this.config.payloadKey])
 
     if (data.length === 0) {
       return 'None'
@@ -141,10 +141,9 @@ export class CheckboxAnswer extends AnswerModel {
   }
 
   validate() {
+    const data = this._data?.[this.config.payloadKey]
     return validateAnswerAgainstSchema(createCheckboxSchema(this.config), {
-      [this.config.payloadKey]: ensureArray(
-        this._data?.[this.config.payloadKey]
-      )
+      [this.config.payloadKey]: ensureArray(data)
     })
   }
 
