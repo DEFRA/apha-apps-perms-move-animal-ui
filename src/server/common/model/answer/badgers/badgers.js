@@ -1,36 +1,29 @@
-import { CheckboxAnswer } from '../checkbox/checkbox.js'
-/** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
+import { TextAreaAnswer } from '../text-area/text-area.js'
 
-/** @typedef {{ badgers: CheckboxData }} BadgersPayload */
+/** @import {TextAreaConfig} from '../text-area/text-area.js' */
 
-/** @type {CheckboxConfig} */
-const config = {
-  payloadKey: 'badgers',
-  hint: 'Only select the measures you are taking',
-  options: {
-    badgerProofFencing: {
-      label:
-        'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
-    },
-    aluminiumFeedBins: {
-      label: 'Aluminium feed bins'
-    },
-    limitAccessToBadgerHabitat: {
-      label: 'Limiting access to badger latrines and setts'
-    },
-    troughsAbove90cm: {
-      label: 'Feed and water troughs above 90cm'
-    },
-    licksOutOfReach: {
-      label: 'Mineral licks kept out of reach'
-    },
-    other: {
-      label: 'Other decontamination methods'
+/**
+ * @typedef {{ badgers: string }} BadgersPayload
+ */
+
+/**
+ * @augments {TextAreaAnswer<BadgersPayload>}
+ */
+export class BadgersAnswer extends TextAreaAnswer {
+  /** @type {TextAreaConfig} */
+  static config = {
+    payloadKey: 'badgers',
+    rows: 8,
+    isPageHeading: false,
+    validation: {
+      maxLength: {
+        value: 5000,
+        message: 'Your answer must be no longer than 5000 characters'
+      },
+      empty: {
+        message:
+          'Enter information on what measures you are taking to reduce the risk of infection from badgers and wildlife'
+      }
     }
-  },
-  validation: {}
-}
-
-export class BadgersAnswer extends CheckboxAnswer {
-  static config = config
+  }
 }

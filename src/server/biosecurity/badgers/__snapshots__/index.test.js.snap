@@ -2,69 +2,45 @@
 
 exports[`BadgersPage badgersPage.content should render expected response and content 1`] = `
 "
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Infection from wildlife</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        We need to know what measures are being taken to reduce the risk of
+        infection from badgers and wildlife to the incoming cattle.
+      </p>
+      <p>
+        You need to include information on how you are minimising access to:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>feed stores</li>
+        <li>feed troughs</li>
+        <li>mineral licks and water troughs</li>
+        <li>latrines and setts</li>
+        <li>any other measures</li>
+      </ul>
+    </div>
+  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="badgers-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which measures are you taking to reduce contamination from wildlife?
-      </h1>
-    </legend>
-    <div id="badgers-hint" class="govuk-hint">
-      Only select the measures you are taking
-    </div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers" name="badgers" type="checkbox" value="badgerProofFencing" data-testid="badgerProofFencing-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers">
-          Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-2" name="badgers" type="checkbox" value="aluminiumFeedBins" data-testid="aluminiumFeedBins-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-2">
-          Aluminium feed bins
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-3" name="badgers" type="checkbox" value="limitAccessToBadgerHabitat" data-testid="limitAccessToBadgerHabitat-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-3">
-          Limiting access to badger latrines and setts
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-4" name="badgers" type="checkbox" value="troughsAbove90cm" data-testid="troughsAbove90cm-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-4">
-          Feed and water troughs above 90cm
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-5" name="badgers" type="checkbox" value="licksOutOfReach" data-testid="licksOutOfReach-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-5">
-          Mineral licks kept out of reach
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-6" name="badgers" type="checkbox" value="other" data-testid="other-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-6">
-          Other decontamination methods
-        </label>
-      </div>
-    </div>
-  </fieldset>
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="badgers">
+    How will you reduce the risk of infection from badgers and wildlife?
+  </label>
+  <textarea class="govuk-textarea" id="badgers" name="badgers" rows="8"></textarea>
 </div>
 
-  <p>
-    If there are measures you are not taking but want to find out more,
-    <a href="https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/" target="_blank">
-      read the guidance on the TB Hub</a>
-    (opens in a new tab).
-  </p>
+
+</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
