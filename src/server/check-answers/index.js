@@ -91,10 +91,9 @@ export class SubmitPageController extends QuestionPageController {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
+    const appState = new StateManager(req).toState()
 
-    const application = ApplicationModel.fromState(
-      new StateManager(req).toState()
-    )
+    const application = ApplicationModel.fromState(appState)
 
     const { isValid: isValidApplication } = application.validate()
 
@@ -102,7 +101,7 @@ export class SubmitPageController extends QuestionPageController {
       const emailContent = this.generateEmailContent(application)
       const notifyProps = { content: emailContent }
 
-      if (config.get('featureFlags').biosecurity) {
+      if (application.tasks['biosecurity-map'] !== undefined) {
         const compressedFile = await this.handleBiosecurityFile(req)
 
         const { fileRetention, confirmDownloadConfirmation } =
