@@ -2,7 +2,9 @@ import { BiosecuritySection } from './biosecurity.js'
 import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 import {
   applicationStateWithAnimalIdentifiersSection,
-  validBiosecuritySectionState
+  validBiosecuritySectionState,
+  validOriginSectionState,
+  validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
 import { spyOnConfig } from '../../../test-helpers/config.js'
 /** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
@@ -67,6 +69,15 @@ describe('Biosecurity.config.isVisible', () => {
     expect(isVisible).toBe(false)
   })
 
+  it('should not be visible if movement is off the farm', () => {
+    const isVisible = BiosecuritySection.config.isVisible({
+      origin: validOriginSectionState,
+      destination: validDestinationSectionState
+    })
+
+    expect(isVisible).toBe(false)
+  })
+
   it('should not be visible if destination is AFU', () => {
     const isVisible = BiosecuritySection.config.isVisible({
       origin,
@@ -74,19 +85,6 @@ describe('Biosecurity.config.isVisible', () => {
         /** @type {DestinationTypeData} */
         destinationType: 'afu'
       }
-    })
-
-    expect(isVisible).toBe(false)
-  })
-
-  it('should not be visible if movement is off the farm', () => {
-    const isVisible = BiosecuritySection.config.isVisible({
-      origin: {
-        ...origin,
-        /** @type {OnOffFarmData} */
-        onOffFarm: 'off'
-      },
-      destination
     })
 
     expect(isVisible).toBe(false)

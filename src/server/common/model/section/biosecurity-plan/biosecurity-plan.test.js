@@ -1,7 +1,11 @@
 import { UploadPlanPage } from '~/src/server/biosecurity-map/upload-plan/index.js'
 import { BiosecurityPlanSection } from './biosecurity-plan.js'
 import { spyOnConfig } from '../../../test-helpers/config.js'
-import { applicationStateWithAnimalIdentifiersSection } from '../../../test-helpers/journey-state.js'
+import {
+  applicationStateWithAnimalIdentifiersSection,
+  validOriginSectionState,
+  validDestinationSectionState
+} from '../../../test-helpers/journey-state.js'
 /** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
 /** @import {OnOffFarmData} from '../../answer/on-off-farm/on-off-farm.js' */
 
@@ -128,12 +132,8 @@ describe('Biosecurity.config.isVisible', () => {
 
   it('should not be visible if movement is off the farm', () => {
     const isVisible = BiosecurityPlanSection.config.isVisible({
-      origin: {
-        ...origin,
-        /** @type {OnOffFarmData} */
-        onOffFarm: 'off'
-      },
-      destination
+      origin: validOriginSectionState,
+      destination: validDestinationSectionState
     })
 
     expect(isVisible).toBe(false)
