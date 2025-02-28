@@ -14,7 +14,8 @@ export const config = {
     './specs/receiving-the-licence/licenceAnswers.spec.js',
     './specs/biosecurity-map/**/*.js',
     './specs/destination/generalLicenceCheck.spec.js',
-    './specs/finalAnswersDeclarations.spec.js'
+    './specs/finalAnswersDeclarations.spec.js',
+    './specs/identification/identifiersAnswers.spec.js'
   ],
   maxInstances: 7,
   capabilities: [
