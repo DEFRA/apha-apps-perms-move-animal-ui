@@ -104,8 +104,6 @@ const emailContent = [
   'Email',
   '## What email address would you like the licence sent to?',
   licence.emailAddress,
-  '## Enter the ear tag numbers of the animals you are planning to move',
-  identification.earTags,
   '## Will you separate the incoming cattle from the resident herd?',
   yesLabel,
   '## Will the incoming cattle be grazed?',
