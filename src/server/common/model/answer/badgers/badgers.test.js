@@ -1,49 +1,37 @@
-import { CheckboxAnswer } from '../checkbox/checkbox.js'
+import { TextAreaAnswer } from '../text-area/text-area.js'
 import { BadgersAnswer } from './badgers.js'
+/** @import {BadgersPayload} from './badgers.js' */
 
+const maxLength = 5000
+
+/** @type {BadgersPayload} */
 const payload = {
-  badgers: [
-    'badgerProofFencing',
-    'aluminiumFeedBins',
-    'limitAccessToBadgerHabitat',
-    'troughsAbove90cm',
-    'licksOutOfReach',
-    'other'
-  ]
+  badgers: 'some text'
 }
 
-describe('BadgersAnswer', () => {
-  it('should be a checkbox', () => {
-    expect(new BadgersAnswer(payload)).toBeInstanceOf(CheckboxAnswer)
+describe('Badgers', () => {
+  it('should be a text area', () => {
+    expect(new BadgersAnswer(payload)).toBeInstanceOf(TextAreaAnswer)
   })
 
   it('should have the right payload key', () => {
     expect(BadgersAnswer.config.payloadKey).toBe('badgers')
   })
 
-  it('should have no validation', () => {
-    expect(BadgersAnswer.config.validation).toEqual({})
+  it('should be the expected height', () => {
+    expect(BadgersAnswer.config.rows).toBe(8)
   })
 
-  it('should have the expected options to select from', () => {
-    expect(Object.keys(BadgersAnswer.config.options)).toHaveLength(6)
-    expect(BadgersAnswer.config.options.badgerProofFencing.label).toBe(
-      'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
+  it('should define the right empty input message', () => {
+    expect(BadgersAnswer.config.validation.empty?.message).toBe(
+      'Enter information on what measures you are taking to reduce the risk of infection from badgers and wildlife'
     )
-    expect(BadgersAnswer.config.options.aluminiumFeedBins.label).toBe(
-      'Aluminium feed bins'
-    )
-    expect(BadgersAnswer.config.options.limitAccessToBadgerHabitat.label).toBe(
-      'Limiting access to badger latrines and setts'
-    )
-    expect(BadgersAnswer.config.options.troughsAbove90cm.label).toBe(
-      'Feed and water troughs above 90cm'
-    )
-    expect(BadgersAnswer.config.options.licksOutOfReach.label).toBe(
-      'Mineral licks kept out of reach'
-    )
-    expect(BadgersAnswer.config.options.other.label).toBe(
-      'Other decontamination methods'
+  })
+
+  it('should define the right max length and corresponding error message', () => {
+    expect(BadgersAnswer.config.validation.maxLength.value).toBe(maxLength)
+    expect(BadgersAnswer.config.validation.maxLength.message).toBe(
+      'Your answer must be no longer than 5000 characters'
     )
   })
 })

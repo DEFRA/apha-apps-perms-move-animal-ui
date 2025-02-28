@@ -130,7 +130,7 @@ describe('Check your answers test - biosecurity', () => {
   it('Should verify the value and href of the wildlife row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.wildlifeContaminationValue,
-      'Aluminium feed bins'
+      'Badger measures'
     )
     await validateHrefOfElement(
       biosecurityAnswersPage.wildlifeContaminationLink,

@@ -72,8 +72,6 @@ const taskListIncompleteUri = '/task-list-incomplete'
 const expectedTbRestrictedFarmText = 'TB restricted farm'
 const yesLabel = 'Yes'
 const noLabel = 'No'
-const testBadgersMeasuresLabel =
-  'Badger proof fencing, such as solid aluminium sheeted gates, aluminium sheeting on rail fences, retractable electric fences'
 
 const emailContent = [
   '## Are you moving the animals on or off your farm or premises?',
@@ -128,8 +126,8 @@ const emailContent = [
   biosecurity.disinfectant,
   '## What dilution rate are you using for your disinfectant?',
   biosecurity.dilutionRate,
-  '## Which measures are you taking to reduce contamination from wildlife?',
-  testBadgersMeasuresLabel,
+  '## How will you reduce the risk of infection from badgers and wildlife?',
+  biosecurity.badgers,
   '## Upload a biosecurity map',
   ''
 ].join('\n')

@@ -5,10 +5,11 @@ import { badgersPage, BadgersPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
-  'Which measures are you taking to reduce contamination from wildlife?'
+  'How will you reduce the risk of infection from badgers and wildlife?'
 const questionKey = 'badgers'
 const view = 'biosecurity/badgers/index'
 const pageUrl = '/biosecurity/badgers'
+const customHeading = 'Infection from wildlife'
 
 describe('BadgersPage', () => {
   const page = new BadgersPage()
@@ -19,6 +20,10 @@ describe('BadgersPage', () => {
 
   it('should have the correct sectionKey', () => {
     expect(page.sectionKey).toBe(sectionKey)
+  })
+
+  it('should have the correct heading', () => {
+    expect(page.heading).toBe(customHeading)
   })
 
   it('should have the correct question', () => {
