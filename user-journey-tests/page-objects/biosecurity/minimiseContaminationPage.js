@@ -5,7 +5,7 @@ const pageId = 'buildingsHowMinimiseContamination'
 const pageHeadingAndTitle =
   'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
 const noInputError =
-  'Enter information about how you will reduce building contamination'
+  'Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle'
 
 class MinimiseContaminationPage extends SingleTextInputPage {
   constructor() {

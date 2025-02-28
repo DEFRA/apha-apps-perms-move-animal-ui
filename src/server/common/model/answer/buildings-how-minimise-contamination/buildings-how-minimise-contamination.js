@@ -22,7 +22,7 @@ export class BuildingsHowMinimiseContaminationAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter information about how you will reduce building contamination'
+          'Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle'
       }
     }
   }
