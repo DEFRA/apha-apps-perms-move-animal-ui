@@ -20,6 +20,10 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
+const zooOption = {
+  label: 'Zoo with TB restrictions'
+}
+
 const offFarmOptions = () =>
   config.get('featureFlags').biosecurity
     ? offFarmOptionsBiosecurityTrue
@@ -37,7 +41,7 @@ const offFarmOptionsBiosecurityTrue = {
   'unrestricted-farm': {
     label: 'Unrestricted farm or premises'
   },
-  zoo: { label: 'Zoo with TB restrictions' },
+  zoo: zooOption,
   lab: { label: 'Laboratory' },
   other: { label: 'Another origin' }
 }
@@ -49,7 +53,7 @@ const onFarmOptions = {
   },
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
-  zoo: { label: 'Zoo' },
+  zoo: zooOption,
   lab: { label: 'Laboratory' },
   'after-import-location': {
     label: 'Location after animals have been imported'
