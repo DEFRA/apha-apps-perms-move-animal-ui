@@ -76,6 +76,18 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationSummaryPage)
     })
 
+    it('should return exitPage when answer is "zoo"', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'zoo' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+    })
+
+    it('should return exitPage when answer is "lab"', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'lab' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+    })
+
     it('should return exitPage when answer is "other"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)

@@ -16,6 +16,8 @@ const offFarmNextPageMapping = {
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': destinationSummaryPage,
   afu: destinationSummaryPage,
+  zoo: contactTbRestrictedFarmPage,
+  lab: contactTbRestrictedFarmPage,
   other: contactTbRestrictedFarmPage
 }
 

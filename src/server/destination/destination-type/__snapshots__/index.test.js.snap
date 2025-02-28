@@ -44,6 +44,18 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
         </div>
       </div>
       <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="zoo" name="destinationType" type="radio" value="zoo">
+        <label class="govuk-label govuk-radios__label" for="zoo">
+          Zoo with TB restrictions
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="lab" name="destinationType" type="radio" value="lab">
+        <label class="govuk-label govuk-radios__label" for="lab">
+          Laboratory
+        </label>
+      </div>
+      <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
           Another destination
