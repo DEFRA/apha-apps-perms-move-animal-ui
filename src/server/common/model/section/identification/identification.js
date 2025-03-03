@@ -16,13 +16,15 @@ const isTbRestricted = (premisesType) =>
 const isVisible = (app) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
   const isBiosecurityFlag = config.get('featureFlags')?.biosecurity
+  const originValid = OriginSection.fromState(app).validate().isValid
+  const destinationValid = DestinationSection.fromState(app).validate().isValid
   return (
     isBiosecurityFlag &&
     isOnFarm &&
     isTbRestricted(app.origin?.originType) &&
     isTbRestricted(app.destination?.destinationType) &&
-    OriginSection.fromState(app).validate().isValid &&
-    DestinationSection.fromState(app).validate().isValid
+    originValid &&
+    destinationValid
   )
 }
 

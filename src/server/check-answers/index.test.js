@@ -69,67 +69,6 @@ const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
 const taskListIncompleteUri = '/task-list-incomplete'
 
-const expectedTbRestrictedFarmText = 'TB restricted farm'
-const yesLabel = 'Yes'
-const noLabel = 'No'
-
-const emailContent = [
-  '## Are you moving the animals on or off your farm or premises?',
-  'On to the farm or premises',
-  '## What type of premises are the animals moving off?',
-  expectedTbRestrictedFarmText,
-  '## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?',
-  origin.cphNumber,
-  '## What is the address of the farm or premises where the animals are moving off?',
-  origin.address.addressLine1,
-  origin.address.addressTown,
-  origin.address.addressPostcode,
-  '## Where are the animals going to?',
-  expectedTbRestrictedFarmText,
-  '## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?',
-  destination.destinationFarmCph,
-  '## What is the address of the farm or premises where the animals are going to?',
-  destination.destinationFarmAddress.addressLine1,
-  destination.destinationFarmAddress.addressTown,
-  destination.destinationFarmAddress.addressPostcode,
-  '## What is the reason for the movement?',
-  'Routine restocking',
-  '## Will you move more than 75 animals?',
-  noLabel,
-  '## Will the number of cattle be larger than half of the destination herd size?',
-  yesLabel,
-  '## What is the name of the registered owner of the cattle?',
-  licence.fullName.firstName + ' ' + licence.fullName.lastName,
-  '## How would you like this licence sent to you?',
-  'Email',
-  '## What email address would you like the licence sent to?',
-  licence.emailAddress,
-  '## Will you separate the incoming cattle from the resident herd?',
-  yesLabel,
-  '## Will the incoming cattle be grazed?',
-  yesLabel,
-  '## How long ago was the field last grazed by cattle?',
-  biosecurity.lastGrazed,
-  '## Has any manure or slurry been put on the grazing field in the past 60 days?',
-  yesLabel,
-  '## How is this grazing field separated from the resident herd?',
-  biosecurity.grazingFieldHowSeparated,
-  '## Will the incoming cattle share any buildings and equipment with the resident herd?',
-  yesLabel,
-  '## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?',
-  biosecurity.buildingsHowMinimiseContamination,
-  '## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?',
-  biosecurity.peopleDisinfection,
-  '## What disinfectant are you using?',
-  biosecurity.disinfectant,
-  '## What dilution rate are you using for your disinfectant?',
-  biosecurity.dilutionRate,
-  '## How will you reduce the risk of infection from badgers and wildlife?',
-  biosecurity.badgers,
-  '## Upload a biosecurity map',
-  ''
-].join('\n')
-
 describe('#CheckAnswers', () => {
   /** @type {Server} */
   let server
@@ -276,7 +215,7 @@ describe('#CheckAnswers', () => {
 
     const [{ content }] = mockSendNotification.mock.calls[0]
 
-    expect(content).toBe(emailContent)
+    expect(content).toMatchSnapshot('email-content')
     expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.serverError)
     expect(await session.getState('origin')).toEqual(origin)
@@ -302,7 +241,7 @@ describe('#CheckAnswers', () => {
 
     const [{ content }] = mockSendNotification.mock.calls[0]
 
-    expect(content).toBe(emailContent)
+    expect(content).toMatchSnapshot('email-content')
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })
@@ -325,17 +264,18 @@ describe('#CheckAnswers', () => {
 
     const [{ content }] = mockSendNotification.mock.calls[0]
 
-    expect(content).toBe(emailContent)
+    expect(content).toMatchSnapshot('email-content')
     expect(mockSendNotification).toHaveBeenCalledTimes(1)
-    expect(mockSendNotification).toHaveBeenCalledWith({
-      content: emailContent,
-      link_to_file: {
-        confirm_email_before_download: false,
-        file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
-        filename: 'Biosecurity-map.jpg',
-        retention_period: '1 week'
-      }
-    })
+    expect(mockSendNotification).toHaveBeenCalledWith(
+      expect.objectContaining({
+        link_to_file: {
+          confirm_email_before_download: false,
+          file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
+          filename: 'Biosecurity-map.jpg',
+          retention_period: '1 week'
+        }
+      })
+    )
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
     expect(await session.getState('origin')).toBeUndefined()
@@ -362,7 +302,7 @@ describe('#CheckAnswers', () => {
 
     const [{ content }] = mockSendNotification.mock.calls[0]
 
-    expect(content).toBe(emailContent)
+    expect(content).toMatchSnapshot('email-content')
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })

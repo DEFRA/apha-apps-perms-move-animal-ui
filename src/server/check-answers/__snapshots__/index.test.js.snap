@@ -29,32 +29,10 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       What type of premises are the animals moving off?
     </dt>
     <dd class="govuk-summary-list__value">
-      TB restricted farm
+      Market
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      12/345/6789
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the address of the farm or premises where the animals are moving off?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Starfleet Headquarters<br>San Francisco<br>RG24 8RR
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/origin-farm-address?redirect_uri=/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
 </dl>
@@ -349,4 +327,208 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       </div>
     </form>
         "
+`;
+
+exports[`#CheckAnswers Should redirect correctly when there is no error: email-content 1`] = `
+"## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+## What is the name of the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How is this grazing field separated from the resident herd?
+some details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+## Upload a biosecurity map
+"
+`;
+
+exports[`#CheckAnswers Should send email and redirect correctly when only \`confirm\` present: email-content 1`] = `
+"## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+## What is the name of the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How is this grazing field separated from the resident herd?
+some details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+## Upload a biosecurity map
+"
+`;
+
+exports[`#CheckAnswers Should send email and redirect correctly when only \`other\` present: email-content 1`] = `
+"## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+## What is the name of the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How is this grazing field separated from the resident herd?
+some details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+## Upload a biosecurity map
+"
+`;
+
+exports[`#CheckAnswers should error if email fails ot send for whatever reason: email-content 1`] = `
+"## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+## What is the name of the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How is this grazing field separated from the resident herd?
+some details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+## Upload a biosecurity map
+"
 `;

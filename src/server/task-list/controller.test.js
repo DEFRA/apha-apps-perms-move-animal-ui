@@ -72,6 +72,17 @@ describe('#taskListController', () => {
   })
 
   it('Should return the correct task list items when there is state enough to show all sections', async () => {
+    const { origin, destination } = applicationStateWithAnimalIdentifiersSection
+    await session.setState('origin', {
+      ...origin,
+      onOffFarm: 'on',
+      originType: 'market'
+    })
+    await session.setState('destination', {
+      ...destination,
+      destinationType: 'tb-restircted-farm'
+    })
+
     const { payload } = await server.inject(
       withCsrfProtection(
         {
@@ -90,9 +101,7 @@ describe('#taskListController', () => {
     expect(taskTitles).toEqual([
       'Movement origin',
       'Movement destination',
-      'Receiving the licence',
-      'Biosecurity details',
-      'Biosecurity map'
+      'Receiving the licence'
     ])
   })
 
