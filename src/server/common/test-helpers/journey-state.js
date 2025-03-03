@@ -55,7 +55,7 @@ export const validBiosecuritySectionState = {
   badgers: 'some text'
 }
 
-const validBiosecurityMapSectionState = {
+export const validBiosecurityMapSectionState = {
   'upload-plan': {
     metadata: {
       uploadId: '41572cf8-2e37-495e-9ad2-0b0f23f1b277',
@@ -97,11 +97,11 @@ export const validLicenceSectionState = {
   emailAddress: 'kathryn@starfleet.com'
 }
 
-export const applicationStateWithAnimalIdentifiersSection = {
+export const validApplicationStateWithBioSecurity = {
   origin: {
     ...validOriginSectionState,
     onOffFarm: 'on',
-    originType: 'tb-restricted-farm'
+    originType: 'market'
   },
   destination: {
     ...validDestinationSectionState,

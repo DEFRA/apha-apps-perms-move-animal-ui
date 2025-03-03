@@ -2,7 +2,7 @@ import { UploadPlanPage } from '~/src/server/biosecurity-map/upload-plan/index.j
 import { BiosecurityPlanSection } from './biosecurity-plan.js'
 import { spyOnConfig } from '../../../test-helpers/config.js'
 import {
-  applicationStateWithAnimalIdentifiersSection,
+  validApplicationStateWithBioSecurity,
   validOriginSectionState,
   validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
@@ -86,7 +86,7 @@ describe('Biosecurity.validate', () => {
 describe('Biosecurity.config.isVisible', () => {
   afterEach(jest.restoreAllMocks)
 
-  const { origin, destination } = applicationStateWithAnimalIdentifiersSection
+  const { origin, destination } = validApplicationStateWithBioSecurity
   const appState = { origin, destination }
 
   it('should be not be visible if biosecurity flag is false', () => {
