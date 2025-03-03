@@ -6,7 +6,7 @@ import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import path from 'path'
 import { createReadStream } from 'fs'
-import { applicationStateWithAnimalIdentifiersSection } from '../common/test-helpers/journey-state.js'
+import { validApplicationStateWithBioSecurity } from '../common/test-helpers/journey-state.js'
 
 const mockSend = jest.fn().mockImplementation(() => {
   const filePath = path.resolve(
@@ -63,7 +63,7 @@ const {
   identification,
   biosecurity,
   'biosecurity-map': biosecurityMap
-} = applicationStateWithAnimalIdentifiersSection
+} = validApplicationStateWithBioSecurity
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'

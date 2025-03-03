@@ -97,7 +97,7 @@ export const validLicenceSectionState = {
   emailAddress: 'kathryn@starfleet.com'
 }
 
-export const applicationStateWithAnimalIdentifiersSection = {
+export const validApplicationStateWithBioSecurity = {
   origin: {
     ...validOriginSectionState,
     onOffFarm: 'on',

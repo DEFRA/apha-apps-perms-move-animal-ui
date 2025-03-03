@@ -3,7 +3,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
 import SessionTester from '../common/test-helpers/session-helper.js'
-import { applicationStateWithAnimalIdentifiersSection } from '../common/test-helpers/journey-state.js'
+import { validApplicationStateWithBioSecurity } from '../common/test-helpers/journey-state.js'
 
 const getTaskTitles = (document) =>
   Array.from(document.querySelectorAll('.govuk-task-list__name-and-hint')).map(
@@ -29,7 +29,7 @@ describe('#taskListController', () => {
       identification,
       biosecurity,
       'biosecurity-map': biosecurityMap
-    } = applicationStateWithAnimalIdentifiersSection
+    } = validApplicationStateWithBioSecurity
     await session.setState('origin', origin)
     await session.setState('destination', destination)
     await session.setState('licence', licence)
@@ -72,17 +72,6 @@ describe('#taskListController', () => {
   })
 
   it('Should return the correct task list items when there is state enough to show all sections', async () => {
-    const { origin, destination } = applicationStateWithAnimalIdentifiersSection
-    await session.setState('origin', {
-      ...origin,
-      onOffFarm: 'on',
-      originType: 'market'
-    })
-    await session.setState('destination', {
-      ...destination,
-      destinationType: 'tb-restircted-farm'
-    })
-
     const { payload } = await server.inject(
       withCsrfProtection(
         {
@@ -101,7 +90,9 @@ describe('#taskListController', () => {
     expect(taskTitles).toEqual([
       'Movement origin',
       'Movement destination',
-      'Receiving the licence'
+      'Receiving the licence',
+      'Biosecurity details',
+      'Biosecurity map'
     ])
   })
 
@@ -118,7 +109,7 @@ describe('#taskListController', () => {
   })
 
   it('Should show completed sections', async () => {
-    const { origin } = applicationStateWithAnimalIdentifiersSection
+    const { origin } = validApplicationStateWithBioSecurity
     await session.setState('origin', origin)
 
     const { statusCode, payload } = await server.inject(
