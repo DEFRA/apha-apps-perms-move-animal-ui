@@ -38,11 +38,14 @@ const completeOriginTask = async ({
       cphNumber,
       onFarmAddressPage
     )
-    await onFarmAddressPage.fillFormFieldsAndSubmit({
-      lineOne,
-      townOrCity,
-      postcode
-    })
+    await onFarmAddressPage.fillFormFieldsAndSubmit(
+      {
+        lineOne,
+        townOrCity,
+        postcode
+      },
+      fiftyPercentWarningPage
+    )
     await fiftyPercentWarningPage.selectContinue()
   } else {
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
@@ -102,7 +105,7 @@ export const destinationVariants = async (onFarm, afu) => {
     else
       originTypePage.selectTBRestrictedFarmAndContinue(parishHoldingNumberPage)
   } else {
-    toFromFarmPage.selectOffFarmAndContinue()
+    toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     if (afu)
       originTypePage.selectApprovedFinishingUnitAndContinue(onFarmCPHPage)
     else originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
