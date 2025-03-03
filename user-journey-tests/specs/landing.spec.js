@@ -10,7 +10,8 @@ import accessibilityStatementPage from '../page-objects/accessibilityStatementPa
 
 const expectedLinks = [
   'https://www.gov.uk/',
-  'https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england'
+  'https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england',
+  'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
 ]
 describe('Landing page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -20,9 +21,9 @@ describe('Landing page test', () => {
   it('should have all external links working', async () => {
     const links = await landingPage.verifyExternalLinks()
 
-    links.forEach(async (link) => {
+    for await (const link of links) {
       expect(expectedLinks).toContain(await link.getAttribute('href'))
-    })
+    }
   })
 
   it('Should verify start now button visible on landing page', async () => {
