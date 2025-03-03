@@ -110,6 +110,7 @@ In order to receive emails three **environment variables** need to be set, eithe
 
 ```bash
 NOTIFY_TEMPLATE_ID=value_to_be_provided_by_tech_team
+NOTIFY_TEMPLATE_WITH_FILE_ID=value_to_be_provided_by_tech_team
 NOTIFY_API_KEY=value_to_be_provided_by_tech_team
 NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
 ```

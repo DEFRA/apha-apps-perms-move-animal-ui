@@ -242,6 +242,12 @@ export const config = convict({
       nullable: true,
       env: 'NOTIFY_TEMPLATE_ID'
     },
+    templateWithFileId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'NOTIFY_TEMPLATE_WITH_FILE_ID'
+    },
     apiKey: /** @type {SchemaObj<string | null>} */ {
       format: String,
       default: null,

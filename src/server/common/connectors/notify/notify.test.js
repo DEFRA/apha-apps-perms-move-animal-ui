@@ -46,6 +46,46 @@ describe('sendNotification', () => {
     expect(response).toEqual(mockResponse)
   })
 
+  it('should use the templateWithFileId if a file is included', async () => {
+    const mockResponse = { ok: true }
+    const testData = {
+      content: 'test',
+      link_to_file: {
+        file: '',
+        filename: 'Biosecurity-map.jpg',
+        confirm_email_before_download: true,
+        retention_period: '1 week'
+      }
+    }
+
+    const mockProxyFetch = jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.resolve(mockResponse))
+
+    const response = await sendNotification(testData)
+
+    const [url, options] = mockProxyFetch.mock.calls[0]
+    /**
+     * @type {string | undefined}
+     */
+    // @ts-expect-error: options.body might note be a string
+    const body = options.body
+
+    expect(url).toBe(NOTIFY_URL)
+
+    expect(options.method).toBe('POST')
+    expect(JSON.parse(body ?? '')).toEqual({
+      personalisation: testData,
+      template_id: config.get('notify').templateWithFileId,
+      email_address: config.get('notify').caseDeliveryEmailAddress
+    })
+    expect(options.headers).toEqual({
+      Authorization: 'Bearer mocked-jwt-token'
+    })
+
+    expect(response).toEqual(mockResponse)
+  })
+
   it('should throw an error if the response is not ok', async () => {
     const mockResponse = {
       ok: false,

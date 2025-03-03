@@ -24,6 +24,7 @@ services:
       REDIS_HOST: redis
       USE_SINGLE_INSTANCE_CACHE: true
       NOTIFY_TEMPLATE_ID: ${NOTIFY_TEMPLATE_ID}
+      NOTIFY_TEMPLATE_WITH_FILE_ID: ${NOTIFY_TEMPLATE_WITH_FILE_ID}
       NOTIFY_API_KEY: ${NOTIFY_API_KEY}
       NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS}
       AWS_REGION: eu-west-2
@@ -66,7 +67,7 @@ services:
       S3_ENDPOINT: http://localstack:4566
     networks:
       - cdp-tenant
-  
+
   proxy:
     image: nginxproxy/nginx-proxy:1.4
     ports:
