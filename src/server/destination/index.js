@@ -9,6 +9,7 @@ import { quantityHalfHerd } from './quantity-half-herd/index.js'
 import { quantityOptions } from './quantity-options/index.js'
 import { reasonForMovement } from './reason-for-movement/index.js'
 import { destinationSummary } from './summary/index.js'
+import { destinationNotSupported } from './not-supported-movement-type/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -28,7 +29,8 @@ export const destination = {
         reasonForMovement,
         additionalInfo,
         quantityOptions,
-        quantityHalfHerd
+        quantityHalfHerd,
+        destinationNotSupported
       ])
     }
   }

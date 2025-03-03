@@ -6,6 +6,7 @@ import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
+import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
@@ -21,6 +22,8 @@ const offFarmNextPageMapping = {
   other: contactTbRestrictedFarmPage
 }
 
+const possibleRestricted = ['tb-restricted-farm', 'zoo', 'lab', 'other']
+
 export class DestinationTypePage extends QuestionPage {
   urlPath = '/destination/type-of-destination'
   sectionKey = 'destination'
@@ -30,12 +33,18 @@ export class DestinationTypePage extends QuestionPage {
   Answer = DestinationTypeAnswer
 
   /**
-   * @param {AnswerModel} answer
+   * @param {DestinationTypeAnswer} answer
    * @param {RawApplicationState} context
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
-    if (context.origin?.onOffFarm === 'on') {
+    if (
+      context.origin?.onOffFarm === 'on' &&
+      possibleRestricted.includes(context.origin?.originType) &&
+      possibleRestricted.includes(answer.value)
+    ) {
+      return destinationNotSupportedPage
+    } else if (context.origin?.onOffFarm === 'on') {
       return destinationFarmCphPage
     } else {
       return offFarmNextPageMapping[answer.value] ?? anotherDestinationPage
