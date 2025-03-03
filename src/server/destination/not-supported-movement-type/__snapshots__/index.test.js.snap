@@ -6,9 +6,12 @@ exports[`NotSupportedMovementTypePage #NotSupportedMovementTypePage.content shou
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">This service does not currently support this movement type</h1>
       <div class="govuk-body" data-testid="app-page-body">
-        <p>
-          If you need to move animals from a TB restricted premises to a TB
-          restricted premises
+        <p class="govuk-body">
+          You can only move animals from a TB restricted premises to an approved
+          finishing unit (AFU) with this service.
+        </p>
+        <p class="govuk-body">
+          For movements to other destinations,
           <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
             complete this GOV.UK application form</a>.
         </p>

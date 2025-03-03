@@ -22,7 +22,8 @@ const offFarmNextPageMapping = {
   other: contactTbRestrictedFarmPage
 }
 
-const possibleRestricted = ['tb-restricted-farm', 'zoo', 'lab', 'other']
+const restricted = ['tb-restricted-farm', 'zoo'] // origin
+const possibleRestricted = restricted.concat(['lab', 'other']) // destination
 
 export class DestinationTypePage extends QuestionPage {
   urlPath = '/destination/type-of-destination'
@@ -40,7 +41,7 @@ export class DestinationTypePage extends QuestionPage {
   nextPage(answer, context) {
     if (
       context.origin?.onOffFarm === 'on' &&
-      possibleRestricted.includes(context.origin?.originType) &&
+      restricted.includes(context.origin?.originType) &&
       possibleRestricted.includes(answer.value)
     ) {
       return destinationNotSupportedPage
