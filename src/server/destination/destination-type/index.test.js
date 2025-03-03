@@ -1,10 +1,20 @@
-import { destinationTypePage, DestinationTypePage } from './index.js'
+import {
+  destinationTypePage,
+  DestinationTypePage,
+  possibleRestricted,
+  restricted
+} from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
+import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
+
+/**
+ * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
+ */
 
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
@@ -109,6 +119,29 @@ describe('DestinationTypePage.nextPage', () => {
       const answer = new DestinationTypeAnswer(undefined)
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
+    describe.each(restricted)('restricted originType %s', (originType) => {
+      it.each(possibleRestricted)(
+        'should return movement not supported exit page when destinationType is %s',
+        (destinationType) => {
+          const context = { origin: { onOffFarm: 'on', originType } }
+          const answer = new DestinationTypeAnswer({
+            destinationType: /** @type {DestinationTypeData} */ (
+              destinationType
+            )
+          })
+          const nextPage = page.nextPage(answer, context)
+          expect(nextPage).toBe(destinationNotSupportedPage)
+        }
+      )
+    })
+
+    it('should return movement not supported exit page', () => {
+      const context = { origin: { onOffFarm: 'on', originType: 'zoo' } }
+      const answer = new DestinationTypeAnswer({ destinationType: 'zoo' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationNotSupportedPage)
     })
 
     describePageSnapshot({
