@@ -3,7 +3,7 @@ import { proxyFetch } from '~/src/server/common/helpers/proxy.js'
 import { createToken } from '~/src/server/common/connectors/notify/notify-token-utils.js'
 
 /**
- * @typedef {{ content: string}} NotifyContent
+ * @typedef {{ content: string, link_to_file?: object}} NotifyContent
  */
 
 export const NOTIFY_URL =
@@ -18,7 +18,10 @@ export async function sendNotification(data) {
   const body = JSON.stringify({
     template_id: notifyConfig.templateId,
     email_address: notifyConfig.caseDeliveryEmailAddress,
-    personalisation: data
+    personalisation: {
+      content: data.content,
+      link_to_file: data.link_to_file ?? ''
+    }
   })
 
   let response

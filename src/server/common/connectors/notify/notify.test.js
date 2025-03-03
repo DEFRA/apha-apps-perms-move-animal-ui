@@ -2,7 +2,15 @@ import { NOTIFY_URL, sendNotification } from './notify.js'
 import * as proxyFetchObject from '~/src/server/common/helpers/proxy.js'
 import { config } from '~/src/config/config.js'
 
-const testData = { content: 'test' }
+const testData = {
+  content: 'test',
+  link_to_file: {
+    file: 'base64encodedimage',
+    filename: 'Biosecurity-map.jpg',
+    confirm_email_before_download: true,
+    retention_period: '1 week'
+  }
+}
 
 jest.mock(
   '~/src/server/common/connectors/notify/notify-token-utils.js',
@@ -36,6 +44,41 @@ describe('sendNotification', () => {
     expect(options.method).toBe('POST')
     expect(JSON.parse(body ?? '')).toEqual({
       personalisation: testData,
+      template_id: config.get('notify').templateId,
+      email_address: config.get('notify').caseDeliveryEmailAddress
+    })
+    expect(options.headers).toEqual({
+      Authorization: 'Bearer mocked-jwt-token'
+    })
+
+    expect(response).toEqual(mockResponse)
+  })
+
+  it('should substitute in an empty string if link_to_file is not provided', async () => {
+    const mockResponse = { ok: true }
+    const mockProxyFetch = jest
+      .spyOn(proxyFetchObject, 'proxyFetch')
+      .mockImplementation(() => Promise.resolve(mockResponse))
+
+    const testDataWithoutFile = { content: testData.content }
+
+    const response = await sendNotification(testDataWithoutFile)
+
+    const [url, options] = mockProxyFetch.mock.calls[0]
+    /**
+     * @type {string | undefined}
+     */
+    // @ts-expect-error: options.body might note be a string
+    const body = options.body
+
+    expect(url).toBe(NOTIFY_URL)
+
+    expect(options.method).toBe('POST')
+    expect(JSON.parse(body ?? '')).toEqual({
+      personalisation: {
+        ...testDataWithoutFile,
+        link_to_file: ''
+      },
       template_id: config.get('notify').templateId,
       email_address: config.get('notify').caseDeliveryEmailAddress
     })
