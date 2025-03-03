@@ -137,8 +137,16 @@ exports[`#homeController v2 should match v2 content 1`] = `
           </li>
         </ul>
         <h2 class="govuk-heading-m">
-          Moving animals onto a TB restricted farm
+          Moving animals onto a TB restricted premises
         </h2>
+        <p class="govuk-body">
+          The service does not currently support moving animals from a TB
+          restricted premises to a TB restricted premises. To apply for a
+          licence for this movement type
+          <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england" class="govuk-link">
+            complete this GOV.UK application form.
+          </a>
+        </p>
         <p class="govuk-body">
           If your farm or premises is not under TB restrictions and animals are
           moving onto a TB restricted farm, it is the responsibility of the TB
@@ -146,9 +154,10 @@ exports[`#homeController v2 should match v2 content 1`] = `
           biosecurity practices to process the licence.
         </p>
         <p class="govuk-body">
-          If you need more information before you apply for a licence, see the
+          For more information before you apply for a licence, see the
           <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england" class="govuk-link">
-            Bovine TB: get your cattle tested in England</a>
+            Bovine TB: get your cattle tested in England
+          </a>
           guidance.
         </p>
         <h2 class="govuk-heading-m">Before you start</h2>
