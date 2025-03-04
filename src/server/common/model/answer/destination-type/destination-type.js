@@ -1,3 +1,4 @@
+import { config } from '~/src/config/config.js'
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
@@ -14,6 +15,9 @@ const afuOption = {
   label: 'Approved finishing unit (AFU)',
   hint: 'Including enhanced with grazing (AFUE)'
 }
+const otherOption = { label: 'Another destination' }
+const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
+const slaughterOption = { label: 'Slaughter' }
 
 /** @returns {Record<string, RadioOption>} */
 const onFarmOptions = (app) =>
@@ -26,27 +30,40 @@ const onFarmOptions = (app) =>
         afu: afuOption,
         zoo: { label: 'Zoo with TB restrictions' },
         lab: { label: 'Laboratory' },
-        other: { label: 'Another destination' }
+        other: otherOption
       }
 
+const offFarmOptionsR1 = {
+  slaughter: slaughterOption,
+  'dedicated-sale': dedicatedSaleOption,
+  afu: afuOption,
+  other: {
+    ...otherOption,
+    hint: 'For example, a veterinary practice, zoo, or a laboratory'
+  }
+}
+
 /** @returns {Record<string, RadioOption>} */
-const offFarmOptions = (app) =>
+const offFarmOptionsR2 = (app) =>
   isOriginAfu(app)
     ? {
-        slaughter: { label: 'Slaughter' },
+        slaughter: slaughterOption,
         afu: afuOption
       }
     : {
         'tb-restricted-farm': tbRestrictedOption,
-        slaughter: { label: 'Slaughter' },
-        'dedicated-sale': { label: 'Dedicated sale for TB (orange market)' },
+        slaughter: slaughterOption,
+        'dedicated-sale': dedicatedSaleOption,
         afu: afuOption,
         zoo: { label: 'Zoo with TB restrictions' },
         lab: { label: 'Laboratory' },
-        other: {
-          label: 'Another destination'
-        }
+        other: otherOption
       }
+
+const offFarmOptions = (app) =>
+  config.get('featureFlags').biosecurity
+    ? offFarmOptionsR2(app)
+    : offFarmOptionsR1
 
 /** @augments {RadioButtonAnswer<DestinationTypePayload>} */
 export class DestinationTypeAnswer extends RadioButtonAnswer {
