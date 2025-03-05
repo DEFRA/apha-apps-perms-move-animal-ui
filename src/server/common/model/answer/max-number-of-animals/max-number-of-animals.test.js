@@ -2,8 +2,6 @@ import { TextAnswer } from '../text/text.js'
 import { MaxNumberOfAnimalsAnswer } from './max-number-of-animals.js'
 /** @import {MaxNumberOfAnimalsPayload} from './max-number-of-animals.js' */
 
-const maxLength = 5000
-
 /** @type {MaxNumberOfAnimalsPayload} */
 const payload = {
   maxNumberOfAnimals: '123'
