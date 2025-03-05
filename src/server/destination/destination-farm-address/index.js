@@ -28,8 +28,8 @@ export class DestinationFarmAddressPage extends QuestionPage {
   nextPage(_answer, context) {
     if (context.origin?.onOffFarm === 'on') {
       if (
-        context.origin?.type === 'market' ||
-        context.origin?.type === 'unrestricted-farm'
+        context.origin?.originType === 'market' ||
+        context.origin?.originType === 'unrestricted-farm'
       ) {
         return maxNumberOfAnimalsPage
       } else {
