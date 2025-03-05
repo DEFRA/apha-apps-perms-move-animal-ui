@@ -269,7 +269,7 @@ describe('#CheckAnswers', () => {
     expect(mockSendNotification).toHaveBeenCalledWith(
       expect.objectContaining({
         link_to_file: {
-          confirm_email_before_download: false,
+          confirm_email_before_download: true,
           file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
           filename: 'Biosecurity-map.jpg',
           retention_period: '1 week'
