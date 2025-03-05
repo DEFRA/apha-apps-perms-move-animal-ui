@@ -23,9 +23,6 @@ describe('How many animals page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await howManyAnimalsPage.inputTextAndContinue(
-      '550',
-      reasonForMovementPage
-    )
+    await howManyAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
   })
 })
