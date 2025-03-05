@@ -19,14 +19,14 @@ describe('LastGrazed', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(LastGrazedAnswer.config.validation.empty.message).toBe(
+    expect(LastGrazedAnswer.config.validation.empty?.message).toBe(
       'Enter when the field was last grazed by cattle'
     )
   })
 
   it('should define the right max length and corresponding error message', () => {
-    expect(LastGrazedAnswer.config.validation.maxLength.value).toBe(maxLength)
-    expect(LastGrazedAnswer.config.validation.maxLength.message).toBe(
+    expect(LastGrazedAnswer.config.validation.maxLength?.value).toBe(maxLength)
+    expect(LastGrazedAnswer.config.validation.maxLength?.message).toBe(
       'Your answer must be no longer than 5000 characters'
     )
   })
