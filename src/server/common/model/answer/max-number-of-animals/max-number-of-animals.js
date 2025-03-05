@@ -1,11 +1,11 @@
-import { TextAnswer } from '../text/text.js'
 import Joi from 'joi'
 import { validateAnswerAgainstSchema } from '../validation.js'
+import { NumberAnswer } from '../number/number.js'
 
 const min = 1
 const max = 5000
 
-/** @import { TextConfig } from '../text/text.js' */
+/** @import { NumberConfig } from '../number/number.js' */
 
 /**
  * export @typedef {string} MaxNumberOfAnimalsData
@@ -13,9 +13,9 @@ const max = 5000
  */
 
 /**
- * @augments {TextAnswer<MaxNumberOfAnimalsPayload>}
+ * @augments {NumberAnswer<MaxNumberOfAnimalsPayload>}
  */
-export class MaxNumberOfAnimalsAnswer extends TextAnswer {
+export class MaxNumberOfAnimalsAnswer extends NumberAnswer {
   validate() {
     return validateAnswerAgainstSchema(
       Joi.object({
@@ -37,11 +37,14 @@ export class MaxNumberOfAnimalsAnswer extends TextAnswer {
     )
   }
 
-  /** @type {TextConfig} */
+  /** @type {NumberConfig} */
   static config = {
     payloadKey: 'maxNumberOfAnimals',
     autocomplete: 'maxNumberOfAnimals',
     characterWidth: 2,
-    validation: {}
+    validation: {
+      max: { value: max, message: 'Enter a number 5000 or below' },
+      min: { value: min, message: 'Enter a number 1 or above' }
+    }
   }
 }
