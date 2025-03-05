@@ -19,14 +19,14 @@ describe('CountryAnswer', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(CountryAnswer.config.validation.empty.message).toBe(
+    expect(CountryAnswer.config.validation.empty?.message).toBe(
       'Enter which country the animals are coming from'
     )
   })
 
   it('should define the right max length and corresponding error message', () => {
-    expect(CountryAnswer.config.validation.maxLength.value).toBe(maxLength)
-    expect(CountryAnswer.config.validation.maxLength.message).toBe(
+    expect(CountryAnswer.config.validation.maxLength?.value).toBe(maxLength)
+    expect(CountryAnswer.config.validation.maxLength?.message).toBe(
       'Your answer must be no longer than 255 characters'
     )
   })

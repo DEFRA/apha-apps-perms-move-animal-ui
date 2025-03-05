@@ -1,6 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { maxNumberOfAnimalsPage } from '../max-number-of-animals/index.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 
@@ -26,7 +27,14 @@ export class DestinationFarmAddressPage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer, context) {
     if (context.origin?.onOffFarm === 'on') {
-      return reasonForMovementPage
+      if (
+        context.origin?.originType === 'market' ||
+        context.origin?.originType === 'unrestricted-farm'
+      ) {
+        return maxNumberOfAnimalsPage
+      } else {
+        return reasonForMovementPage
+      }
     } else {
       return destinationSummaryPage
     }

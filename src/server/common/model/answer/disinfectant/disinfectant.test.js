@@ -19,14 +19,16 @@ describe('Disinfectant', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(DisinfectantAnswer.config.validation.empty.message).toBe(
+    expect(DisinfectantAnswer.config.validation.empty?.message).toBe(
       'Enter what disinfectant you are using'
     )
   })
 
   it('should define the right max length and corresponding error message', () => {
-    expect(DisinfectantAnswer.config.validation.maxLength.value).toBe(maxLength)
-    expect(DisinfectantAnswer.config.validation.maxLength.message).toBe(
+    expect(DisinfectantAnswer.config.validation.maxLength?.value).toBe(
+      maxLength
+    )
+    expect(DisinfectantAnswer.config.validation.maxLength?.message).toBe(
       'Your answer must be no longer than 5000 characters'
     )
   })

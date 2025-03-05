@@ -51,7 +51,7 @@ describe('TextAnswer.validate', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textPayload: { text: textConfig.validation.maxLength.message }
+      textPayload: { text: textConfig.validation.maxLength?.message }
     })
   })
 
@@ -64,7 +64,7 @@ describe('TextAnswer.validate', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textPayload: { text: textConfig.validation.maxLength.message }
+      textPayload: { text: textConfig.validation.maxLength?.message }
     })
   })
 
@@ -96,7 +96,7 @@ describe('TextAnswer.validate', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textPayload: { text: textConfig.validation.empty.message }
+      textPayload: { text: textConfig.validation.empty?.message }
     })
   })
 
@@ -106,7 +106,7 @@ describe('TextAnswer.validate', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textPayload: { text: textConfig.validation.empty.message }
+      textPayload: { text: textConfig.validation.empty?.message }
     })
   })
 
@@ -116,7 +116,7 @@ describe('TextAnswer.validate', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      textPayload: { text: textConfig.validation.empty.message }
+      textPayload: { text: textConfig.validation.empty?.message }
     })
   })
 

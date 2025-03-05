@@ -23,14 +23,16 @@ describe('DilutionRate', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(DilutionRateAnswer.config.validation.empty.message).toBe(
+    expect(DilutionRateAnswer.config.validation.empty?.message).toBe(
       'Enter the dilution rate'
     )
   })
 
   it('should define the right max length and corresponding error message', () => {
-    expect(DilutionRateAnswer.config.validation.maxLength.value).toBe(maxLength)
-    expect(DilutionRateAnswer.config.validation.maxLength.message).toBe(
+    expect(DilutionRateAnswer.config.validation.maxLength?.value).toBe(
+      maxLength
+    )
+    expect(DilutionRateAnswer.config.validation.maxLength?.message).toBe(
       'Your answer must be no longer than 5000 characters'
     )
   })
