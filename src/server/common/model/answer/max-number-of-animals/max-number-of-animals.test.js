@@ -39,29 +39,27 @@ describe('MaxNumberOfAnimals', () => {
     const validInputs = ['1', '12', '123']
     const invalidInputs = ['-5', '12.3', 'abc']
 
-    validInputs.forEach((input) => {
-      it(`should return true for valid input ${input}`, () => {
-        const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
-          maxNumberOfAnimals: input
-        })
-        const { isValid, errors } = maxNumberOfAnimals.validate()
-
-        expect(isValid).toBe(true)
-        expect(errors).toEqual({})
+    it.each(validInputs)('should return true for valid input %s', (input) => {
+      const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
+        maxNumberOfAnimals: input
       })
+      const { isValid, errors } = maxNumberOfAnimals.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
     })
 
-    invalidInputs.forEach((input) => {
-      it(`should return false for invalid input: ${input}`, () => {
+    it.each(invalidInputs)(
+      'should return false for invalid input %s',
+      (input) => {
         const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
           maxNumberOfAnimals: input
         })
-
         const { isValid, errors } = maxNumberOfAnimals.validate()
 
         expect(isValid).toBe(false)
         expect(errors.maxNumberOfAnimals.text).toBe('Enter a number')
-      })
-    })
+      }
+    )
   })
 })

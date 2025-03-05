@@ -17,10 +17,17 @@ const wholeNumberRegex = /^\d+$/
 export class MaxNumberOfAnimalsAnswer extends TextAnswer {
   validate() {
     return validateAnswerAgainstSchema(
-      Joi.number().min(1).integer().required().messages({
-        'number.min.base': 'too low',
-        'number.base.integer': 'not an integer number',
-        'any.required': 'Enter how many animals you are planning to move'
+      Joi.object({
+        [MaxNumberOfAnimalsAnswer.config.payloadKey]: Joi.number()
+          .min(1)
+          .integer()
+          .required()
+          .messages({
+            'number.base': 'Enter a number',
+            'number.min': 'too low',
+            'number.integer': 'not an integer number',
+            'any.required': 'Enter how many animals you are planning to move'
+          })
       }),
       this._data ?? {}
     )
