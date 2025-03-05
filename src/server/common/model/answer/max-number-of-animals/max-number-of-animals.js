@@ -20,6 +20,7 @@ export class MaxNumberOfAnimalsAnswer extends TextAnswer {
     return validateAnswerAgainstSchema(
       Joi.object({
         [MaxNumberOfAnimalsAnswer.config.payloadKey]: Joi.number()
+          .empty('')
           .min(min)
           .max(max)
           .integer()
