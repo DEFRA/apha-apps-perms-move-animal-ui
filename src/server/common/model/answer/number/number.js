@@ -13,11 +13,10 @@ export const numberSchema = ({ payloadKey, validation }) => {
 
   const messages = {
     'any.required': validation.empty?.message ?? '',
-    'number.max': validation.max?.message ?? '',
-    'number.min': validation.min?.message ?? '',
-
     'number.base': 'Enter a number',
-    'number.integer': 'Enter a whole number'
+    'number.integer': 'Enter a whole number',
+    'number.max': validation.max?.message ?? '',
+    'number.min': validation.min?.message ?? ''
   }
 
   if (validation.max) {
@@ -27,6 +26,8 @@ export const numberSchema = ({ payloadKey, validation }) => {
   if (validation.min) {
     numberValidation = numberValidation.min(validation.min.value)
   }
+
+  numberValidation = numberValidation.integer()
 
   return Joi.object({
     [payloadKey]: numberValidation.messages(messages)
@@ -47,7 +48,6 @@ export const numberSchema = ({ payloadKey, validation }) => {
  *    max?: { value: number, message: string },
  *    min?: { value: number, message: string },
  *    empty?: { message: string },
- *    pattern?: { regex: RegExp, message: string }
  *  }
  * }} NumberConfig
  */

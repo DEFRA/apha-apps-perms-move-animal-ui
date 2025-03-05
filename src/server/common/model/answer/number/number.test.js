@@ -5,6 +5,10 @@ jest.mock('../validation.js', () => ({
   validateAnswerAgainstSchema: jest.fn()
 }))
 
+const nonNumericInputs = ['abc', '=123']
+const negativeInputs = ['-1', '-99999']
+const nonIntegerInputs = ['0.5', '-0.123', '9999.999']
+
 describe('numberSchema', () => {
   it('should create a schema with required number validation', () => {
     const config = {
@@ -68,27 +72,52 @@ describe('numberSchema', () => {
     )
   })
 
-  it('should return an error message for non-integer value', () => {
-    const config = {
-      payloadKey: 'testKey',
-      validation: {}
+  it.each(nonIntegerInputs)(
+    'should return an error message for non-integer value %s',
+    (input) => {
+      const config = {
+        payloadKey: 'testKey',
+        validation: {}
+      }
+
+      const schema = numberSchema(config)
+      const { error } = schema.validate({ testKey: input })
+
+      expect(error?.details[0].message).toBe('Enter a whole number')
     }
+  )
 
-    const schema = numberSchema(config)
-    const { error } = schema.validate({ testKey: 1.5 })
+  it.each(nonNumericInputs)(
+    'should return an error message for non-number value %s',
+    (input) => {
+      const config = {
+        payloadKey: 'testKey',
+        validation: {}
+      }
 
-    expect(error?.details[0].message).toBe('Enter a whole number')
-  })
+      const schema = numberSchema(config)
+      const { error } = schema.validate({ testKey: input })
 
-  it('should return an error message for non-number value', () => {
-    const config = {
-      payloadKey: 'testKey',
-      validation: {}
+      expect(error?.details[0].message).toBe('Enter a number')
     }
+  )
 
-    const schema = numberSchema(config)
-    const { error } = schema.validate({ testKey: 'abc' })
+  it.each(negativeInputs)(
+    'should return an error message for negative input %s',
+    (input) => {
+      const config = {
+        payloadKey: 'testKey',
+        validation: {
+          min: { value: 1, message: 'Value must be greater than or equal to 1' }
+        }
+      }
 
-    expect(error?.details[0].message).toBe('Enter a number')
-  })
+      const schema = numberSchema(config)
+      const { error } = schema.validate({ testKey: input })
+
+      expect(error?.details[0].message).toBe(
+        'Value must be greater than or equal to 1'
+      )
+    }
+  )
 })
