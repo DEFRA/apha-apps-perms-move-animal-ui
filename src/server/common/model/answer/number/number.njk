@@ -1,0 +1,6 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% call govukFieldset() %}
+  {{ govukInput(answer.viewModel(viewModelOptions)) }}
+{% endcall %}
