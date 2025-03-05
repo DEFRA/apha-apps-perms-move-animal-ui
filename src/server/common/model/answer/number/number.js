@@ -8,7 +8,7 @@ import { validateAnswerAgainstSchema } from '../validation.js'
  * @param {NumberConfig} config
  * @returns {Joi.Schema}
  */
-const numberSchema = ({ payloadKey, validation }) => {
+export const numberSchema = ({ payloadKey, validation }) => {
   let numberValidation = Joi.number().empty('').integer().required()
 
   const messages = {
