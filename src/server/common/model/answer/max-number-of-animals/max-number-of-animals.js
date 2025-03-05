@@ -2,9 +2,10 @@ import { TextAnswer } from '../text/text.js'
 import Joi from 'joi'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
-/** @import { TextConfig } from '../text/text.js' */
+const min = 1
+const max = 5000
 
-const wholeNumberRegex = /^\d+$/
+/** @import { TextConfig } from '../text/text.js' */
 
 /**
  * export @typedef {string} MaxNumberOfAnimalsData
@@ -19,13 +20,15 @@ export class MaxNumberOfAnimalsAnswer extends TextAnswer {
     return validateAnswerAgainstSchema(
       Joi.object({
         [MaxNumberOfAnimalsAnswer.config.payloadKey]: Joi.number()
-          .min(1)
+          .min(min)
+          .max(max)
           .integer()
           .required()
           .messages({
             'number.base': 'Enter a number',
-            'number.min': 'too low',
-            'number.integer': 'not an integer number',
+            'number.min': `Enter a number ${min} or above`,
+            'number.max': `Enter a number ${max} or below`,
+            'number.integer': 'Enter a whole number',
             'any.required': 'Enter how many animals you are planning to move'
           })
       }),
@@ -38,13 +41,6 @@ export class MaxNumberOfAnimalsAnswer extends TextAnswer {
     payloadKey: 'maxNumberOfAnimals',
     autocomplete: 'maxNumberOfAnimals',
     characterWidth: 2,
-    validation: {
-      maxLength: {
-        value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
-      },
-      empty: { message: 'Enter how many animals you are planning to move' },
-      pattern: { regex: wholeNumberRegex, message: 'Enter a number' }
-    }
+    validation: {}
   }
 }

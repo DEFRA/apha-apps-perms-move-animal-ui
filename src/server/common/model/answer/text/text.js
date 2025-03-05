@@ -10,15 +10,16 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @returns {Joi.Schema}
  */
 const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
-  let stringValidation = Joi.string()
-    .trim()
-    .required()
-    .max(validation.maxLength.value)
+  let stringValidation = Joi.string().trim().required()
 
   const messages = {
-    'any.required': validation.empty.message,
-    'string.empty': validation.empty.message,
-    'string.max': validation.maxLength.message
+    'any.required': validation.empty?.message ?? '',
+    'string.empty': validation.empty?.message ?? '',
+    'string.max': validation.maxLength?.message ?? ''
+  }
+
+  if (validation.maxLength) {
+    stringValidation = stringValidation.max(validation.maxLength.value)
   }
 
   if (validation.pattern) {
@@ -48,8 +49,8 @@ const whitespaceRegex = /\s+/g
  *  autocomplete?: string,
  *  hint?: string,
  *  validation: {
- *    maxLength: { value: number, message: string },
- *    empty: { message: string },
+ *    maxLength?: { value: number, message: string },
+ *    empty?: { message: string },
  *    pattern?: { regex: RegExp, message: string }
  *  }
  * }} TextConfig

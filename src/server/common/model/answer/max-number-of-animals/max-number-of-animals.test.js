@@ -20,24 +20,12 @@ describe('MaxNumberOfAnimals', () => {
     )
   })
 
-  it('should define the right empty input message', () => {
-    expect(MaxNumberOfAnimalsAnswer.config.validation.empty.message).toBe(
-      'Enter how many animals you are planning to move'
-    )
-  })
-
-  it('should define the right max length and corresponding error message', () => {
-    expect(MaxNumberOfAnimalsAnswer.config.validation.maxLength.value).toBe(
-      maxLength
-    )
-    expect(MaxNumberOfAnimalsAnswer.config.validation.maxLength.message).toBe(
-      'Your answer must be no longer than 5000 characters'
-    )
-  })
-
   describe('MaxNumberOfAnimalsAnswer.validate', () => {
-    const validInputs = ['1', '12', '123']
-    const invalidInputs = ['-5', '12.3', 'abc']
+    const validInputs = ['1', '12', '123', '5000']
+    const nonNumericInputs = ['abc', '=123']
+    const negativeInputs = ['-1', '-99999']
+    const aboveMaxInputs = ['99999']
+    const nonIntegerInputs = ['0.5', '-0.123', '9999.999']
 
     it.each(validInputs)('should return true for valid input %s', (input) => {
       const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
@@ -49,8 +37,8 @@ describe('MaxNumberOfAnimals', () => {
       expect(errors).toEqual({})
     })
 
-    it.each(invalidInputs)(
-      'should return false for invalid input %s',
+    it.each(nonNumericInputs)(
+      'should return false for non numeric input %s',
       (input) => {
         const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
           maxNumberOfAnimals: input
@@ -61,5 +49,58 @@ describe('MaxNumberOfAnimals', () => {
         expect(errors.maxNumberOfAnimals.text).toBe('Enter a number')
       }
     )
+
+    it.each(negativeInputs)(
+      'should return false for negative input %s',
+      (input) => {
+        const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
+          maxNumberOfAnimals: input
+        })
+        const { isValid, errors } = maxNumberOfAnimals.validate()
+
+        expect(isValid).toBe(false)
+        expect(errors.maxNumberOfAnimals.text).toBe('Enter a number 1 or above')
+      }
+    )
+
+    it.each(aboveMaxInputs)(
+      'should return false for input above the max %s',
+      (input) => {
+        const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
+          maxNumberOfAnimals: input
+        })
+        const { isValid, errors } = maxNumberOfAnimals.validate()
+
+        expect(isValid).toBe(false)
+        expect(errors.maxNumberOfAnimals.text).toBe(
+          'Enter a number 5000 or below'
+        )
+      }
+    )
+
+    it.each(nonIntegerInputs)(
+      'should return false for non integer input %s',
+      (input) => {
+        const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
+          maxNumberOfAnimals: input
+        })
+        const { isValid, errors } = maxNumberOfAnimals.validate()
+
+        expect(isValid).toBe(false)
+        expect(errors.maxNumberOfAnimals.text).toBe('Enter a whole number')
+      }
+    )
+
+    it('should return false for empty input', () => {
+      const maxNumberOfAnimals = new MaxNumberOfAnimalsAnswer({
+        maxNumberOfAnimals: ''
+      })
+      const { isValid, errors } = maxNumberOfAnimals.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.maxNumberOfAnimals.text).toBe(
+        'Enter how many animals you are planning to move'
+      )
+    })
   })
 })
