@@ -27,8 +27,6 @@ export const numberSchema = ({ payloadKey, validation }) => {
     numberValidation = numberValidation.min(validation.min.value)
   }
 
-  numberValidation = numberValidation.integer()
-
   return Joi.object({
     [payloadKey]: numberValidation.messages(messages)
   })
