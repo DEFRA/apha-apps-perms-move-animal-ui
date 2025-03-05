@@ -32,7 +32,7 @@ export const validateAnswerAgainstSchema = (schema, value) => {
 
     return {
       isValid: false,
-      errors: Object.fromEntries(errors ?? [])
+      errors: Object.fromEntries(errors.reverse() ?? [])
     }
   }
 }
