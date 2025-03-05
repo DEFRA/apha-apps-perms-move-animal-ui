@@ -16,7 +16,7 @@ exports[`BuildingsAnySharedPage buildingsAnySharedPage.content should render exp
       </h1>
     </legend>
     <div id="buildingsAnyShared-hint" class="govuk-hint">
-      This includes shared spaces such as pens.
+      This includes shared spaces such as pens
     </div>
     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
       <div class="govuk-radios__item">

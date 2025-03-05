@@ -34,7 +34,7 @@ describe('BuildingsAnyShared', () => {
 
   it('should have the expected hint', () => {
     expect(BuildingsAnySharedAnswer.config.hint).toBe(
-      'This includes shared spaces such as pens.'
+      'This includes shared spaces such as pens'
     )
   })
 })
