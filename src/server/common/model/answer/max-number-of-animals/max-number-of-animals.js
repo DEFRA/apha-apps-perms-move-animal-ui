@@ -1,4 +1,6 @@
 import { TextAnswer } from '../text/text.js'
+import Joi from 'joi'
+import { validateAnswerAgainstSchema } from '../validation.js'
 
 /** @import { TextConfig } from '../text/text.js' */
 
@@ -13,6 +15,17 @@ const wholeNumberRegex = /^\d+$/
  * @augments {TextAnswer<MaxNumberOfAnimalsPayload>}
  */
 export class MaxNumberOfAnimalsAnswer extends TextAnswer {
+  validate() {
+    return validateAnswerAgainstSchema(
+      Joi.number().min(1).integer().required().messages({
+        'number.min.base': 'too low',
+        'number.base.ineger': 'not an integer number',
+        'any.required': 'Enter how many animals you are planning to move'
+      }),
+      this._data ?? {}
+    )
+  }
+
   /** @type {TextConfig} */
   static config = {
     payloadKey: 'maxNumberOfAnimals',
