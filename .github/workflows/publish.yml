@@ -30,10 +30,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-        run: |
+      - run: |
           npm ci
           npm audit --omit=dev
           npm run build
+          npm run format:check
+          npm run lint
           npm test
 
       - name: SonarCloud Scan
