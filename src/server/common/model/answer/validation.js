@@ -30,9 +30,11 @@ export const validateAnswerAgainstSchema = (schema, value) => {
       { text: x.message }
     ])
 
+    errors.reverse()
+
     return {
       isValid: false,
-      errors: Object.fromEntries(errors.toReversed() ?? [])
+      errors: Object.fromEntries(errors ?? [])
     }
   }
 }
