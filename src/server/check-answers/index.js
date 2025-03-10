@@ -138,10 +138,12 @@ export class SubmitPageController extends QuestionPageController {
       lines.push(`# ${task.config.title}`)
       lines.push('')
       lines.push('---')
-      task.questionPageAnswers.forEach(({ page, answer }) => {
-        lines.push(`## ${page.question}`)
-        lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
-      })
+      task.questionPageAnswers
+        .filter(({ page }) => !page.isInterstitial)
+        .forEach(({ page, answer }) => {
+          lines.push(`## ${page.question}`)
+          lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
+        })
     })
 
     return lines.join('\n')
