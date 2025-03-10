@@ -679,3 +679,24 @@ some text
 ## Upload a biosecurity map
 "
 `;
+
+exports[`#CheckAnswers should send email in correct format: email-content-biosec-disabled 1`] = `
+"## Are you moving the animals on or off your farm or premises?
+Off the farm or premises
+## What type of premises are the animals moving off?
+Approved finishing unit (AFU)
+## What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of your farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## Where are the animals going to?
+Slaughter
+## What is the name of the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com"
+`;
