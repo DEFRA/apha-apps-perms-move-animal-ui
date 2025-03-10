@@ -128,6 +128,7 @@ export class SubmitPageController extends QuestionPageController {
     return super.handlePost(req, h)
   }
 
+  /** @param {ApplicationModel} application */
   generateEmailContent(application) {
     /**
      * @type {string[]}
