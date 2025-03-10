@@ -6,7 +6,11 @@ import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import path from 'path'
 import { createReadStream } from 'fs'
-import { validApplicationStateWithBioSecurity } from '../common/test-helpers/journey-state.js'
+import {
+  validApplicationStateWithBioSecurity,
+  validDestinationSectionState,
+  validOriginSectionState
+} from '../common/test-helpers/journey-state.js'
 import { spyOnConfig } from '../common/test-helpers/config.js'
 
 const mockSend = jest.fn().mockImplementation(() => {
@@ -310,6 +314,66 @@ describe('#CheckAnswers', () => {
     expect(content).toMatchSnapshot('email-content')
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
+  })
+
+  it('should send email in correct format', async () => {
+    spyOnConfig('featureFlags', { biosecurity: false })
+
+    await session.setState('origin', validOriginSectionState)
+    await session.setState('destination', validDestinationSectionState)
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(content).toMatchSnapshot('email-content-biosec-disabled')
+  })
+
+  it('should send email in correct format for flag enabled', async () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+
+    await session.setState(
+      'origin',
+      validApplicationStateWithBioSecurity.origin
+    )
+    await session.setState(
+      'destination',
+      validApplicationStateWithBioSecurity.destination
+    )
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(content).toMatchSnapshot('email-content-biosec-enabled')
   })
 })
 
