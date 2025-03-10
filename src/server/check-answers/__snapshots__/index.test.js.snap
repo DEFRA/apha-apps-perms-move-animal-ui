@@ -341,10 +341,16 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
 `;
 
 exports[`#CheckAnswers Should redirect correctly when there is no error: email-content 1`] = `
-"## Are you moving the animals on or off your farm or premises?
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
 ## What type of premises are the animals moving off?
 Market
+# Movement destination
+
+---
 ## Where are the animals going to?
 TB restricted farm
 ## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
@@ -361,12 +367,18 @@ Routine restocking
 No
 ## Will the number of cattle be larger than half of the destination herd size?
 Yes
+# Receiving the licence
+
+---
 ## What is the name of the registered owner of the cattle?
 Kathryn Janeway
 ## How would you like this licence sent to you?
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Biosecurity details
+
+---
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
@@ -389,15 +401,26 @@ some disinfectant
 15
 ## How will you reduce the risk of infection from badgers and wildlife?
 some text
+# Biosecurity map
+
+---
 ## Upload a biosecurity map
+
+## undefined
 "
 `;
 
 exports[`#CheckAnswers Should send email and redirect correctly when only \`confirm\` present: email-content 1`] = `
-"## Are you moving the animals on or off your farm or premises?
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
 ## What type of premises are the animals moving off?
 Market
+# Movement destination
+
+---
 ## Where are the animals going to?
 TB restricted farm
 ## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
@@ -414,12 +437,18 @@ Routine restocking
 No
 ## Will the number of cattle be larger than half of the destination herd size?
 Yes
+# Receiving the licence
+
+---
 ## What is the name of the registered owner of the cattle?
 Kathryn Janeway
 ## How would you like this licence sent to you?
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Biosecurity details
+
+---
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
@@ -442,15 +471,26 @@ some disinfectant
 15
 ## How will you reduce the risk of infection from badgers and wildlife?
 some text
+# Biosecurity map
+
+---
 ## Upload a biosecurity map
+
+## undefined
 "
 `;
 
 exports[`#CheckAnswers Should send email and redirect correctly when only \`other\` present: email-content 1`] = `
-"## Are you moving the animals on or off your farm or premises?
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
 ## What type of premises are the animals moving off?
 Market
+# Movement destination
+
+---
 ## Where are the animals going to?
 TB restricted farm
 ## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
@@ -467,12 +507,18 @@ Routine restocking
 No
 ## Will the number of cattle be larger than half of the destination herd size?
 Yes
+# Receiving the licence
+
+---
 ## What is the name of the registered owner of the cattle?
 Kathryn Janeway
 ## How would you like this licence sent to you?
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Biosecurity details
+
+---
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
@@ -495,15 +541,26 @@ some disinfectant
 15
 ## How will you reduce the risk of infection from badgers and wildlife?
 some text
+# Biosecurity map
+
+---
 ## Upload a biosecurity map
+
+## undefined
 "
 `;
 
 exports[`#CheckAnswers should error if email fails ot send for whatever reason: email-content 1`] = `
-"## Are you moving the animals on or off your farm or premises?
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
 ## What type of premises are the animals moving off?
 Market
+# Movement destination
+
+---
 ## Where are the animals going to?
 TB restricted farm
 ## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
@@ -520,12 +577,18 @@ Routine restocking
 No
 ## Will the number of cattle be larger than half of the destination herd size?
 Yes
+# Receiving the licence
+
+---
 ## What is the name of the registered owner of the cattle?
 Kathryn Janeway
 ## How would you like this licence sent to you?
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Biosecurity details
+
+---
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
@@ -548,6 +611,11 @@ some disinfectant
 15
 ## How will you reduce the risk of infection from badgers and wildlife?
 some text
+# Biosecurity map
+
+---
 ## Upload a biosecurity map
+
+## undefined
 "
 `;
