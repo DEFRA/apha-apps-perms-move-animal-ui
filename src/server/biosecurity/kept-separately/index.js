@@ -2,7 +2,7 @@ import { KeptSeparatelyAnswer } from '~/src/server/common/model/answer/kept-sepa
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { QuestionPageController } from '~/src/server/common/controller/question-page-controller/question-page-controller.js'
 import { grazingPage } from '../grazing/index.js'
-import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 
@@ -19,7 +19,7 @@ export class KeptSeparatelyPage extends QuestionPage {
     if (answer.value === 'yes') {
       return grazingPage
     }
-    return manureAndSlurryPage
+    return manureAndSlurryDetailsPage
   }
 }
 

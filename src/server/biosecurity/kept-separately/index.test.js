@@ -1,7 +1,7 @@
 import { KeptSeparatelyAnswer } from '../../common/model/answer/kept-separately/kept-separately.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { grazingPage } from '../grazing/index.js'
-import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 import { keptSeparatelyPage, KeptSeparatelyPage } from './index.js'
 
 const sectionKey = 'biosecurity'
@@ -46,7 +46,7 @@ describe('KeptSeparatelyPage', () => {
   it('nextPage should return disinfection page when answer is "no"', () => {
     const answer = new KeptSeparatelyAnswer({ keptSeparately: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(manureAndSlurryPage)
+    expect(nextPage).toBe(manureAndSlurryDetailsPage)
   })
 
   it('should export page', () => {
