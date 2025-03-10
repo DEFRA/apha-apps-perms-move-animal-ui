@@ -2,8 +2,8 @@ import { browser, expect } from '@wdio/globals'
 
 import { waitForPagePath } from '../../helpers/page.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
-import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
-import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
+import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
+import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 
 describe('Grazing selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -16,9 +16,9 @@ describe('Grazing selection test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await grazingPage.selectYesAndContinue(lastGrazedPage)
+    await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
 
-    await lastGrazedPage.selectBackLink()
+    await howFieldSeparatedPage.selectBackLink()
     await waitForPagePath(grazingPage.pagePath)
 
     await browser.refresh()
@@ -28,9 +28,9 @@ describe('Grazing selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await grazingPage.selectNoAndContinue(anySharedBuildingsPage)
+    await grazingPage.selectNoAndContinue(manureDetailsPage)
 
-    await anySharedBuildingsPage.selectBackLink()
+    await manureDetailsPage.selectBackLink()
     await waitForPagePath(grazingPage.pagePath)
 
     await browser.refresh()

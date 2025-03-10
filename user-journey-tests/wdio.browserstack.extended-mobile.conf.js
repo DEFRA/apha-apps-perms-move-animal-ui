@@ -17,7 +17,10 @@ export const config = {
     './specs/finalAnswers.onFarm.spec.js',
     './specs/finalAnswersDeclarations.spec.js',
     './specs/identification/identifiersAnswers.spec.js',
-    './specs/biosecurity/biosecDynamicAnswers.spec.js'
+
+    // Add back in
+    './specs/biosecurity/biosecDynamicAnswers.spec.js',
+    './specs/finalAnswers.onFarm.spec.js'
   ],
   maxInstances: 7,
   capabilities: [
