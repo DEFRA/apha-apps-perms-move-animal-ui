@@ -3,7 +3,6 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 
 describe('Kept separately selection test', () => {
