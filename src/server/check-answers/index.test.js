@@ -252,6 +252,10 @@ describe('#CheckAnswers', () => {
   })
 
   it('Should send email and redirect correctly when only `confirm` present', async () => {
+    spyOnConfig('notify', {
+      fileRetention: '1 week',
+      confirmDownloadConfirmation: true
+    })
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
         {
