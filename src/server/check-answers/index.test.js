@@ -311,6 +311,52 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
   })
+
+  // it('should send email in correct format', async () => {
+  //   spyOnConfig('featureFlags', { biosecurity: false })
+  //   await server.inject(
+  //     withCsrfProtection(
+  //       {
+  //         method: 'POST',
+  //         url: checkAnswersUri,
+  //         payload: {
+  //           confirmation: 'other'
+  //         }
+  //       },
+  //       {
+  //         Cookie: session.sessionID
+  //       }
+  //     )
+  //   )
+
+  //   const [{ content }] = mockSendNotification.mock.calls[0]
+
+  //   expect(content).toMatchSnapshot('email-content-biosec-disabled')
+  // })
+
+  it('should send email in correct format for flag enabled', async () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(content).toMatchSnapshot('email-content-biosec-enabled')
+  })
 })
 
 /**
