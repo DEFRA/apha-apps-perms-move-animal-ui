@@ -16,12 +16,11 @@ export class KeptSeparatelyAnswer extends RadioButtonAnswer {
     payloadKey: 'keptSeparately',
     options: {
       yes: { label: 'Yes' },
-      no: { label: 'No' },
-      unknown: { label: "I don't know" }
+      no: { label: 'No' }
     },
     errors: {
       emptyOptionText: 'Select if the incoming cattle will be kept separately'
     },
-    layout: 'stacked'
+    layout: 'inline'
   }
 }
