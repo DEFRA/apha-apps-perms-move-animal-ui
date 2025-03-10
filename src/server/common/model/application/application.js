@@ -10,7 +10,12 @@ import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-
  * @import { RawApplicationState } from '../state/state-manager.js'
  */
 
+/**
+ * @typedef {Record<string, SectionModel>} ApplicationData
+ */
+
 export class ApplicationModel {
+  /** @type {ApplicationData} */
   _data
 
   // This is a list of all the sections that are implemented in the application.
@@ -24,6 +29,7 @@ export class ApplicationModel {
     BiosecurityPlanSection
   ]
 
+  /** @param {ApplicationData} data */
   constructor(data) {
     this._data = data
     Object.seal(this)
@@ -35,7 +41,7 @@ export class ApplicationModel {
 
   /**
    * Getter for tasks.
-   * @returns {Array | object} The data associated with each and every task in the application
+   * @returns {ApplicationData} The data associated with each and every task in the application
    */
   get tasks() {
     return this._data
@@ -57,9 +63,9 @@ export class ApplicationModel {
   static fromState(state) {
     return new ApplicationModel(
       Object.fromEntries(
-        this.visibleSections(state).map((section) => [
-          section.config.key,
-          section.fromState(state)
+        this.visibleSections(state).map((Section) => [
+          Section.config.key,
+          Section.fromState(state)
         ])
       )
     )
