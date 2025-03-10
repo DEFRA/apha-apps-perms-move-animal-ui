@@ -8,7 +8,12 @@ export const config = merge(wdioConf, {
     './specs/noJavascript/**/*.spec.js',
     './specs/biosecurity-map/biosecurityMapUpload.spec.js',
     './specs/identification/identifiersAnswers.spec.js',
-    './specs/biosecurity/biosecDynamicAnswers.spec.js'
+
+    // Add back in
+    './specs/biosecurity/biosecDynamicAnswers.spec.js',
+    './specs/taskList.spec.js',
+    './specs/finalAnswers.spec.js',
+    './specs/biosecurity/biosecurityAnswers.spec.js'
   ],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,

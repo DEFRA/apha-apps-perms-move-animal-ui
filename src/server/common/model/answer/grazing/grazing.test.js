@@ -18,14 +18,13 @@ describe('Grazing', () => {
 
   it('should define the right empty input message', () => {
     expect(GrazingAnswer.config.errors.emptyOptionText).toBe(
-      'Select yes if the incoming cattle will be grazed'
+      'Select if the incoming cattle will be grazed'
     )
   })
 
   it('should have the expected options to select from', () => {
-    expect(Object.keys(GrazingAnswer.config.options)).toHaveLength(3)
+    expect(Object.keys(GrazingAnswer.config.options)).toHaveLength(2)
     expect(GrazingAnswer.config.options.yes.label).toBe('Yes')
     expect(GrazingAnswer.config.options.no.label).toBe('No')
-    expect(GrazingAnswer.config.options.unknown.label).toBe("I don't know")
   })
 })

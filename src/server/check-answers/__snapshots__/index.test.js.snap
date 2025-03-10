@@ -184,28 +184,6 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How long ago was the field last grazed by cattle?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      yesterday
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by cattle?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Has any manure or slurry been put on the grazing field in the past 60 days?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Yes
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/manure-and-slurry?redirect_uri=/submit/check-answers" data-testid="manureAndSlurry-change-link">Change<span class="govuk-visually-hidden"> Has any manure or slurry been put on the grazing field in the past 60 days?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
       How is this grazing field separated from the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
@@ -383,10 +361,6 @@ kathryn@starfleet.com
 Yes
 ## Will the incoming cattle be grazed?
 Yes
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
-Yes
 ## How is this grazing field separated from the resident herd?
 some details
 ## Will the incoming cattle share any buildings and equipment with the resident herd?
@@ -450,10 +424,6 @@ kathryn@starfleet.com
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
-Yes
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
 ## How is this grazing field separated from the resident herd?
 some details
@@ -519,10 +489,6 @@ kathryn@starfleet.com
 Yes
 ## Will the incoming cattle be grazed?
 Yes
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
-Yes
 ## How is this grazing field separated from the resident herd?
 some details
 ## Will the incoming cattle share any buildings and equipment with the resident herd?
@@ -587,10 +553,6 @@ kathryn@starfleet.com
 Yes
 ## Will the incoming cattle be grazed?
 Yes
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
-Yes
 ## How is this grazing field separated from the resident herd?
 some details
 ## Will the incoming cattle share any buildings and equipment with the resident herd?
@@ -654,10 +616,6 @@ kathryn@starfleet.com
 ## Will you separate the incoming cattle from the resident herd?
 Yes
 ## Will the incoming cattle be grazed?
-Yes
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
 ## How is this grazing field separated from the resident herd?
 some details

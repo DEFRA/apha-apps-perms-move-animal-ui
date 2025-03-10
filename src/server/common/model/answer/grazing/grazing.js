@@ -16,12 +16,11 @@ export class GrazingAnswer extends RadioButtonAnswer {
     payloadKey: 'grazing',
     options: {
       yes: { label: 'Yes' },
-      no: { label: 'No' },
-      unknown: { label: "I don't know" }
+      no: { label: 'No' }
     },
     errors: {
-      emptyOptionText: 'Select yes if the incoming cattle will be grazed'
+      emptyOptionText: 'Select if the incoming cattle will be grazed'
     },
-    layout: 'stacked'
+    layout: 'inline'
   }
 }

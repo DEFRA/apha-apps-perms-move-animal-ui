@@ -2,7 +2,7 @@ import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
 const pageId = 'grazing'
 const pageHeadingAndTitle = 'Will the incoming cattle be grazed?'
-const noInputError = 'Select yes if the incoming cattle will be grazed'
+const noInputError = 'Select if the incoming cattle will be grazed'
 
 class GrazingPage extends YesNoRadioPage {
   constructor() {
