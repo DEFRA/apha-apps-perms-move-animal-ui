@@ -16,7 +16,8 @@ export const config = {
     './specs/destination/generalLicenceCheck.spec.js',
     './specs/finalAnswers.onFarm.spec.js',
     './specs/finalAnswersDeclarations.spec.js',
-    './specs/identification/identifiersAnswers.spec.js'
+    './specs/identification/identifiersAnswers.spec.js',
+    './specs/biosecurity/biosecDynamicAnswers.spec.js'
   ],
   maxInstances: 7,
   capabilities: [

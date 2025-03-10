@@ -16,7 +16,8 @@ export const config = {
     './specs/biosecurity/biosecDynamicAnswers.spec.js',
     './specs/finalAnswers.onFarm.spec.js',
     './specs/finalAnswersDeclarations.spec.js',
-    './specs/identification/identifiersAnswers.spec.js'
+    './specs/identification/identifiersAnswers.spec.js',
+    './specs/biosecurity/biosecDynamicAnswers.spec.js'
   ],
   capabilities: [
     {

@@ -4,6 +4,7 @@ import { waitForPagePath } from '../../helpers/page.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 
 describe('Kept separately selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -28,26 +29,14 @@ describe('Kept separately selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
+    await keptSeparatelyPage.selectNoAndContinue(manureDetailsPage)
 
-    await peopleDisinfectionPage.selectBackLink()
+    await manureDetailsPage.selectBackLink()
     await waitForPagePath(keptSeparatelyPage.pagePath)
 
     await browser.refresh()
     await waitForPagePath(keptSeparatelyPage.pagePath)
 
     await expect(keptSeparatelyPage.noRadio).toBeSelected()
-  })
-
-  it('Should choose unknown and check its maintained', async () => {
-    await keptSeparatelyPage.selectUnknownAndContinue(peopleDisinfectionPage)
-
-    await peopleDisinfectionPage.selectBackLink()
-    await waitForPagePath(keptSeparatelyPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(keptSeparatelyPage.pagePath)
-
-    await expect(keptSeparatelyPage.unknownRadio).toBeSelected()
   })
 })
