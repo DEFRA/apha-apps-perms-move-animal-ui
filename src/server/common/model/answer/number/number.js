@@ -9,7 +9,7 @@ import { validateAnswerAgainstSchema } from '../validation.js'
  * @returns {Joi.Schema}
  */
 export const numberSchema = ({ payloadKey, validation }) => {
-  let numberValidation = Joi.number().empty('').integer().required()
+  let numberValidation = Joi.number().empty('').required()
 
   const messages = {
     'any.required': validation.empty?.message ?? '',
@@ -28,7 +28,7 @@ export const numberSchema = ({ payloadKey, validation }) => {
   }
 
   return Joi.object({
-    [payloadKey]: numberValidation.messages(messages)
+    [payloadKey]: numberValidation.messages(messages).integer()
   })
 }
 
