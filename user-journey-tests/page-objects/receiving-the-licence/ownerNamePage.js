@@ -18,7 +18,7 @@ class EmailPage extends DoubleTextInputPage {
       input2Error
     })
   }
-  
+
   pagePath = 'receiving-the-licence/licence-name'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
