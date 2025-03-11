@@ -3,7 +3,7 @@ import { browser, expect } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 
 describe('Shared buildings page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -28,9 +28,9 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await anySharedBuildingsPage.selectNoAndContinue(peopleDisinfectionPage)
+    await anySharedBuildingsPage.selectNoAndContinue(sharedEquipmentPage)
 
-    await peopleDisinfectionPage.selectBackLink()
+    await sharedEquipmentPage.selectBackLink()
     await waitForPagePath(anySharedBuildingsPage.pagePath)
 
     await browser.refresh()

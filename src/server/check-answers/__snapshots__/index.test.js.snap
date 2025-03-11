@@ -228,13 +228,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle share any buildings and equipment with the resident herd?
+      Will the incoming cattle be housed?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/submit/check-answers" data-testid="buildingsAnyShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle share any buildings and equipment with the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/submit/check-answers" data-testid="buildingsAnyShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be housed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -402,7 +402,7 @@ yesterday
 Yes
 ## How will you manage manure and slurry?
 some manure details
-## Will the incoming cattle share any buildings and equipment with the resident herd?
+## Will the incoming cattle be housed?
 Yes
 ## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
 somehow
@@ -472,7 +472,7 @@ yesterday
 Yes
 ## How will you manage manure and slurry?
 some manure details
-## Will the incoming cattle share any buildings and equipment with the resident herd?
+## Will the incoming cattle be housed?
 Yes
 ## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
 somehow
@@ -542,7 +542,7 @@ yesterday
 Yes
 ## How will you manage manure and slurry?
 some manure details
-## Will the incoming cattle share any buildings and equipment with the resident herd?
+## Will the incoming cattle be housed?
 Yes
 ## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
 somehow
@@ -612,7 +612,7 @@ yesterday
 Yes
 ## How will you manage manure and slurry?
 some manure details
-## Will the incoming cattle share any buildings and equipment with the resident herd?
+## Will the incoming cattle be housed?
 Yes
 ## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
 somehow
@@ -682,7 +682,7 @@ yesterday
 Yes
 ## How will you manage manure and slurry?
 some manure details
-## Will the incoming cattle share any buildings and equipment with the resident herd?
+## Will the incoming cattle be housed?
 Yes
 ## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
 somehow
