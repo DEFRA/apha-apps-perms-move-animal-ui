@@ -1,15 +1,15 @@
 import { GrazingFieldHowSeparatedAnswer } from '../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 import {
   grazingFieldHowSeparatedPage,
   GrazingFieldHowSeparatedPage
 } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'How is this grazing field separated from the resident herd?'
+const question =
+  'How will you separate the incoming cattle from the resident herd?'
 const questionKey = 'grazingFieldHowSeparated'
-const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/grazing-field-how-separated'
 
 describe('GrazingFieldHowSeparatedPage', () => {
@@ -32,7 +32,7 @@ describe('GrazingFieldHowSeparatedPage', () => {
   })
 
   it('should have the correct view', () => {
-    expect(page.view).toBe(view)
+    expect(page.view).toBe('biosecurity/grazing-field-how-separated/index.njk')
   })
 
   it('should have the correct Answer model', () => {
@@ -41,7 +41,7 @@ describe('GrazingFieldHowSeparatedPage', () => {
 
   it('nextPage should return any shared buildings page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(buildingsAnySharedPage)
+    expect(nextPage).toBe(lastGrazedPage)
   })
 
   it('should export page', () => {

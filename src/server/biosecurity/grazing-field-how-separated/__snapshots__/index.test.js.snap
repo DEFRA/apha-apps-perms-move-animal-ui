@@ -2,6 +2,21 @@
 
 exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content should render expected response and content 1`] = `
 "
+  <h1 class="govuk-heading-l">Separating the incoming cattle</h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        We need to know what measures are in place to reduce the risk of
+        spreading TB to the incoming cattle from the resident herd.
+      </p>
+      <p>You should include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>minimum distances between incoming cattle and the resident herd</li>
+        <li>the types of fencing you use</li>
+        <li>how grazing fields are kept separate</li>
+      </ul>
+    </div>
+  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -10,15 +25,10 @@ exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content shoul
 
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="grazingFieldHowSeparated">
-      How is this grazing field separated from the resident herd?
-    </label>
-  </h1>
-  <div id="grazingFieldHowSeparated-hint" class="govuk-hint">
-    Include the types of fencing you use and distances between them
-  </div>
-  <textarea class="govuk-textarea" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" rows="8" aria-describedby="grazingFieldHowSeparated-hint"></textarea>
+  <label class="govuk-label govuk-label--m" for="grazingFieldHowSeparated">
+    How will you separate the incoming cattle from the resident herd?
+  </label>
+  <textarea class="govuk-textarea" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" rows="8"></textarea>
 </div>
 
 
