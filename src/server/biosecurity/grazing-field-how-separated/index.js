@@ -1,17 +1,18 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { GrazingFieldHowSeparatedAnswer } from '../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 
 export class GrazingFieldHowSeparatedPage extends QuestionPage {
   urlPath = '/biosecurity/grazing-field-how-separated'
   sectionKey = 'biosecurity'
-  question = 'How is this grazing field separated from the resident herd?'
+  question = 'How will you separate the incoming cattle from the resident herd?'
   questionKey = 'grazingFieldHowSeparated'
   Answer = GrazingFieldHowSeparatedAnswer
+  view = 'biosecurity/grazing-field-how-separated/index.njk'
 
   nextPage() {
-    return buildingsAnySharedPage
+    return lastGrazedPage
   }
 }
 
