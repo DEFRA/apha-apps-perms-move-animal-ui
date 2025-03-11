@@ -215,6 +215,83 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <a class="govuk-link" href="/biosecurity/manure-and-slurry?redirect_uri=/submit/check-answers" data-testid="manureAndSlurry-change-link">Change<span class="govuk-visually-hidden"> Has any manure or slurry been put on the grazing field in the past 60 days?</span></a>
     </dd>
   </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How will you manage manure and slurry?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some manure details
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/manure-and-slurry-details?redirect_uri=/submit/check-answers" data-testid="manureAndSlurryDetails-change-link">Change<span class="govuk-visually-hidden"> How will you manage manure and slurry?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will the incoming cattle share any buildings and equipment with the resident herd?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yes
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/submit/check-answers" data-testid="buildingsAnyShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle share any buildings and equipment with the resident herd?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      somehow
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/submit/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      ppe
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/people-disinfection?redirect_uri=/submit/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> What measures are staff taking to reduce the risk of spreading TB from the resident cattle?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What disinfectant are you using?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some disinfectant
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/disinfectant?redirect_uri=/submit/check-answers" data-testid="disinfectant-change-link">Change<span class="govuk-visually-hidden"> What disinfectant are you using?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What dilution rate are you using for your disinfectant?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      15
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/disinfectant-dilution?redirect_uri=/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> What dilution rate are you using for your disinfectant?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      How will you reduce the risk of infection from badgers and wildlife?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some text
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/biosecurity/badgers?redirect_uri=/submit/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> How will you reduce the risk of infection from badgers and wildlife?</span></a>
+    </dd>
+  </div>
 </dl>
 
           <h2 class="govuk-heading-m">Biosecurity map</h2>
@@ -323,6 +400,20 @@ some details
 yesterday
 ## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
 # Biosecurity map
 
 ---
@@ -379,6 +470,20 @@ some details
 yesterday
 ## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
 # Biosecurity map
 
 ---
@@ -435,6 +540,20 @@ some details
 yesterday
 ## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
 # Biosecurity map
 
 ---
@@ -491,6 +610,20 @@ some details
 yesterday
 ## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
 # Biosecurity map
 
 ---
@@ -547,6 +680,20 @@ some details
 yesterday
 ## Has any manure or slurry been put on the grazing field in the past 60 days?
 Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle share any buildings and equipment with the resident herd?
+Yes
+## How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
 # Biosecurity map
 
 ---

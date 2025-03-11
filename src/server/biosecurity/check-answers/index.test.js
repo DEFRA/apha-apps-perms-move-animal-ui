@@ -6,23 +6,9 @@ import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { biosecuritySummaryPage } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { keptSeparatelyPage } from '../kept-separately/index.js'
+import { validBiosecuritySectionState } from '../../common/test-helpers/journey-state.js'
 
 const pageUrl = '/biosecurity/check-answers'
-
-const defaultState = {
-  keptSeparately: 'yes',
-  grazing: 'yes',
-  lastGrazed: 'yesterday',
-  manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details',
-  roadsAndTracks: 'yes',
-  buildingsAnyShared: 'yes',
-  buildingsHowMinimiseContamination: 'somehow',
-  peopleDisinfection: 'ppe',
-  disinfectant: 'some disinfectant',
-  dilutionRate: '15',
-  badgers: 'some text'
-}
 
 describe('#biosecuritySummaryPage', () => {
   /** @type {Server} */
@@ -41,7 +27,7 @@ describe('#biosecuritySummaryPage', () => {
   })
 
   it('should render expected response when default state present', async () => {
-    await session.setState('biosecurity', defaultState)
+    await session.setState('biosecurity', validBiosecuritySectionState)
 
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
@@ -64,7 +50,7 @@ describe('#biosecuritySummaryPage', () => {
 
   it('should redirect user to kept separately page if they`ve not selected a value', async () => {
     await session.setState('biosecurity', {
-      ...defaultState,
+      ...validBiosecuritySectionState,
       keptSeparately: null
     })
 
@@ -92,7 +78,7 @@ describePageSnapshot({
   describes: '#biosecuritySummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { biosecurity: defaultState }
+  state: { biosecurity: validBiosecuritySectionState }
 })
 
 /**

@@ -46,6 +46,7 @@ export const validBiosecuritySectionState = {
   grazing: 'yes',
   lastGrazed: 'yesterday',
   manureAndSlurry: 'yes',
+  manureAndSlurryDetails: 'some manure details',
   grazingFieldHowSeparated: 'some details',
   roadsAndTracks: 'yes',
   buildingsAnyShared: 'yes',
