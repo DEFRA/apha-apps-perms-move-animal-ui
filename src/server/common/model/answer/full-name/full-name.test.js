@@ -1,4 +1,6 @@
-import { FullNameAnswer } from './fullName.js'
+import { FullNameAnswer } from './full-name.js'
+
+/** @import {FullNameConfig} from '../full-name/full-name.js' */
 
 const maxLength = 50
 
@@ -54,6 +56,77 @@ describe('#FullName.validate', () => {
     expect(errors.lastName.text).toBe(
       `Last name must be no longer than ${maxLength} characters`
     )
+  })
+
+  describe('when the config is overwritten', () => {
+    const newMaxLength = 10
+    const testConfig = {
+      validation: {
+        firstName: {
+          maxLength: {
+            value: newMaxLength,
+            message: 'First name too long'
+          },
+          empty: {
+            message: 'Cannot be empty'
+          }
+        },
+        lastName: {
+          maxLength: {
+            value: newMaxLength,
+            message: 'Last name too long'
+          },
+          empty: {
+            message: 'Cannot be empty'
+          }
+        }
+      }
+    }
+
+    class TestFullNameAnswer extends FullNameAnswer {
+      /** @type {FullNameConfig} */
+      static config = testConfig
+    }
+
+    it('should return false and the overwritten error messages for malformed input', () => {
+      const fullName = new TestFullNameAnswer({
+        firstName: '',
+        lastName: ''
+      })
+
+      const { isValid, errors } = fullName.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.firstName.text).toBe(
+        testConfig.validation.firstName.empty.message
+      )
+
+      expect(errors.lastName.text).toBe(
+        testConfig.validation.lastName.empty.message
+      )
+    })
+
+    it('should return false and the overwritten error messages for input that is too long', () => {
+      const fullName = new TestFullNameAnswer({
+        firstName: Array(newMaxLength + 1)
+          .fill('a')
+          .join(''),
+        lastName: Array(newMaxLength + 1)
+          .fill('a')
+          .join('')
+      })
+
+      const { isValid, errors } = fullName.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors.firstName.text).toBe(
+        testConfig.validation.firstName.maxLength.message
+      )
+
+      expect(errors.lastName.text).toBe(
+        testConfig.validation.lastName.maxLength.message
+      )
+    })
   })
 })
 
@@ -147,6 +220,6 @@ describe('FullName.viewModel', () => {
 describe('FullNameAnswer.template', () => {
   it('should return the full name model template', () => {
     const fullName = new FullNameAnswer(validFullNamePayload)
-    expect(fullName.template).toBe('model/answer/fullName/fullName.njk')
+    expect(fullName.template).toBe('model/answer/full-name/full-name.njk')
   })
 })

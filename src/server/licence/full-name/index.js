@@ -1,4 +1,4 @@
-import { FullNameAnswer } from '~/src/server/common/model/answer/fullName/fullName.js'
+import { FullNameAnswer } from '~/src/server/common/model/answer/full-name/full-name.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 

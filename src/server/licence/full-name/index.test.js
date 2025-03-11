@@ -1,5 +1,5 @@
 import { fullNamePage, FullNamePage } from './index.js'
-import { FullNameAnswer } from '../../common/model/answer/fullName/fullName.js'
+import { FullNameAnswer } from '../../common/model/answer/full-name/full-name.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'

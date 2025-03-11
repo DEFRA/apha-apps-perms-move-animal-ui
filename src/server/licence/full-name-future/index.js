@@ -1,8 +1,8 @@
-import { FullNameAnswer } from '~/src/server/common/model/answer/fullName/fullName.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
+import { FullNameFutureAnswer } from '../../common/model/answer/full-name-future/full-name-future.js'
 
 export class FullNameFuturePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name-future'
@@ -12,7 +12,7 @@ export class FullNameFuturePage extends QuestionPage {
 
   questionKey = 'fullName'
 
-  Answer = FullNameAnswer
+  Answer = FullNameFutureAnswer
 
   nextPage() {
     return receiveMethodPage
