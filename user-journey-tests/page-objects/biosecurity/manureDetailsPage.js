@@ -1,4 +1,4 @@
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage'
+import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'manureAndSlurryDetails'
 const pageHeadingAndTitle = 'How will you manage manure and slurry?'
