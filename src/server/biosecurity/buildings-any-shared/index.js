@@ -2,13 +2,12 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { BuildingsAnySharedAnswer } from '../../common/model/answer/buildings-any-shared/buildings-any-shared.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise-contamination/index.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 
 export class BuildingsAnySharedPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-any-shared'
   sectionKey = 'biosecurity'
-  question =
-    'Will the incoming cattle share any buildings and equipment with the resident herd?'
+  question = 'Will the incoming cattle be housed?'
 
   questionKey = 'buildingsAnyShared'
   Answer = BuildingsAnySharedAnswer
@@ -19,7 +18,7 @@ export class BuildingsAnySharedPage extends QuestionPage {
     if (answer.value === 'yes') {
       return buildingsHowMinimiseContaminationPage
     }
-    return peopleDisinfectionPage
+    return equipmentAnySharedPage
   }
 }
 
