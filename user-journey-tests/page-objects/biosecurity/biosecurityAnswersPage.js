@@ -16,6 +16,10 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="grazing-change-link"]')
   }
 
+  get changeSeparateGrazingLink() {
+    return $('[data-testid="grazingFieldHowSeparated-change-link"]')
+  }
+
   get changeLastGrazedLink() {
     return $('[data-testid="lastGrazed-change-link"]')
   }
@@ -24,8 +28,8 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="manureAndSlurry-change-link"]')
   }
 
-  get changeSeparateGrazingLink() {
-    return $('[data-testid="grazingFieldHowSeparated-change-link"]')
+  get changeManureDetails() {
+    return $('[data-testid="manureAndSlurryDetails-change-link"]')
   }
 
   get changeRoadsAndTracksLink() {
@@ -64,40 +68,44 @@ class BiosecurityAnswersPage extends Page {
     return $$('.govuk-summary-list__value')[1]
   }
 
-  get lastGrazedValue() {
+  get separateGrazingValue() {
     return $$('.govuk-summary-list__value')[2]
   }
 
-  get manureOrSlurryValue() {
+  get lastGrazedValue() {
     return $$('.govuk-summary-list__value')[3]
   }
 
-  get separateGrazingValue() {
+  get manureOrSlurryValue() {
     return $$('.govuk-summary-list__value')[4]
   }
 
-  get sharedBuildingsValue() {
+  get manureDetailsValue() {
     return $$('.govuk-summary-list__value')[5]
   }
 
-  get minimiseContaminationValue() {
+  get sharedBuildingsValue() {
     return $$('.govuk-summary-list__value')[6]
   }
 
-  get peopleDisinfectionValue() {
+  get minimiseContaminationValue() {
     return $$('.govuk-summary-list__value')[7]
   }
 
-  get whatDisinfectantValue() {
+  get peopleDisinfectionValue() {
     return $$('.govuk-summary-list__value')[8]
   }
 
-  get dilutionValue() {
+  get whatDisinfectantValue() {
     return $$('.govuk-summary-list__value')[9]
   }
 
-  get wildlifeContaminationValue() {
+  get dilutionValue() {
     return $$('.govuk-summary-list__value')[10]
+  }
+
+  get wildlifeContaminationValue() {
+    return $$('.govuk-summary-list__value')[11]
   }
 }
 
