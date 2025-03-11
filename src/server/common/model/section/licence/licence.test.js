@@ -1,5 +1,9 @@
+import {
+  FullNameFuturePage,
+  fullNameFuturePage
+} from '~/src/server/licence/full-name-future/index.js'
 import { LicenceSection } from './licence.js'
-import { FullNamePage } from '~/src/server/licence/fullName/index.js'
+import { fullNamePage } from '~/src/server/licence/full-name/index.js'
 
 const testEmail = 'test@domain.com'
 const testFullName = {
@@ -33,7 +37,31 @@ describe('Licence', () => {
       }).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPage).toBeInstanceOf(FullNamePage)
+      expect(result.firstInvalidPage).toBeInstanceOf(FullNameFuturePage)
+    })
+
+    describe('firstPageFactory', () => {
+      it('should return FullNamePage if origin.onOffFarm is "off"', () => {
+        const applicationState = {
+          origin: {
+            onOffFarm: 'off'
+          }
+        }
+
+        const result = LicenceSection.firstPageFactory(applicationState)
+        expect(result).toBe(fullNamePage)
+      })
+
+      it('should return FullNameFuturePage if origin.onOffFarm is "on"', () => {
+        const applicationState = {
+          origin: {
+            onOffFarm: 'on'
+          }
+        }
+
+        const result = LicenceSection.firstPageFactory(applicationState)
+        expect(result).toBe(fullNameFuturePage)
+      })
     })
   })
 })

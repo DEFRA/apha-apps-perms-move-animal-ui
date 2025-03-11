@@ -46,13 +46,13 @@ export class SectionModel {
     return /** @type {any} */ (this.constructor).config
   }
 
-  /** @type {() => QuestionPage} */
+  /** @type {(RawApplicationState?) => QuestionPage} */
   static firstPageFactory
 
-  get firstPage() {
+  getFirstPage(applicationState) {
     return /** @type {typeof SectionModel} */ (
       this.constructor
-    ).firstPageFactory()
+    ).firstPageFactory(applicationState)
   }
 
   /**
@@ -97,7 +97,7 @@ export class SectionModel {
     const sectionData = data[this.config.key]
 
     /** @type {Page} */
-    let page = this.firstPageFactory()
+    let page = this.firstPageFactory(data)
 
     while (page instanceof QuestionPage) {
       const answer = page.Answer.fromState(
@@ -131,13 +131,15 @@ export class SectionModel {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildGdsTaskDetails(req) {
     const sectionValidity = this.validate()
+    const applicationState = new StateManager(req).toState()
     return {
       title: this.config.title,
       initialLink:
-        sectionValidity.firstInvalidPage?.urlPath ?? this.firstPage.urlPath,
+        sectionValidity.firstInvalidPage?.urlPath ??
+        this.getFirstPage(applicationState).urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
-      isEnabled: this.config.isEnabled(new StateManager(req).toState())
+      isEnabled: this.config.isEnabled(applicationState)
     }
   }
 }
