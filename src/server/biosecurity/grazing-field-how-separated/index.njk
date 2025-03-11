@@ -1,0 +1,21 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+{% block heading %}
+  <h1 class="govuk-heading-l">Separating the incoming cattle</h1>
+{% endblock %}
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        We need to know what measures are in place to reduce the risk of
+        spreading TB to the incoming cattle from the resident herd.
+      </p>
+      <p>You should include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>minimum distances between incoming cattle and the resident herd</li>
+        <li>the types of fencing you use</li>
+        <li>how grazing fields are kept separate</li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
