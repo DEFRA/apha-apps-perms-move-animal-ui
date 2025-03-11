@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -64,22 +65,7 @@ export class FullNameAnswer extends AnswerModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {FullNameConfig} */
   static get config() {
-    return {
-      validation: {
-        firstName: {
-          empty: {
-            message:
-              'Enter the first name of the County Parish Holding (CPH) owner'
-          }
-        },
-        lastName: {
-          empty: {
-            message:
-              'Enter the last name of the County Parish Holding (CPH) owner'
-          }
-        }
-      }
-    }
+    throw new NotImplementedError()
   }
 
   get value() {
