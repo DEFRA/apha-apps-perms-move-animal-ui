@@ -7,12 +7,12 @@ import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import { completeDestinationTaskOnFarm } from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
-import ownerNamePage from '../page-objects/receiving-the-licence/ownerNamePage.js'
 import completeBiosecurityTask from '../helpers/testHelpers/biosecurity.js'
 import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js'
 import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswersPage.js'
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import { secureDeviceArray } from '../helpers/constants.js'
+import futureOwnerPage from '../page-objects/receiving-the-licence/futureOwnerPage.js'
 
 describe('Task list page test', () => {
   beforeEach('Navigate to task list page', async () => {
@@ -47,7 +47,7 @@ describe('Task list page test', () => {
   })
 
   it('Should link to receiving the licence first question before an application has been started', async () => {
-    await taskListPage.selectReceiveTheLicence(ownerNamePage)
+    await taskListPage.selectReceiveTheLicence(futureOwnerPage)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
@@ -116,7 +116,7 @@ describe('Task list page test', () => {
   })
 
   it('Should link to receiving licence check-answers page once that selection has been completed', async () => {
-    await completeLicenceTaskAnswers()
+    await completeLicenceTaskAnswers(true)
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {

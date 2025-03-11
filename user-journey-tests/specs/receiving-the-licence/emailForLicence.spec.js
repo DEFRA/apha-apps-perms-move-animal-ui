@@ -2,7 +2,7 @@ import { browser } from '@wdio/globals'
 
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
-import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
+import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
 
 const validSubmissionCheck = async (input, whitespace = false) => {
   let expected
@@ -11,7 +11,7 @@ const validSubmissionCheck = async (input, whitespace = false) => {
   } else {
     expected = input.trim()
   }
-  await emailPage.inputTextAndContinue(input, ownerNamePage)
+  await emailPage.inputTextAndContinue(input, futureOwnerPage)
   await licenceAnswersPage.selectBackLink()
   await browser.refresh()
   const inputValue = await emailPage.textInput().getValue()

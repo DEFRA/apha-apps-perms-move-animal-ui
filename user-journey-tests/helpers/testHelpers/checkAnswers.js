@@ -172,15 +172,15 @@ export const validateAndAdjustOwnerName = async (
 ) => {
   await selectElement(changeLink)
 
-  const firstNameValue = await ownerNamePage.firstNameInput().getValue()
+  const firstNameValue = await ownerNamePage.firstTextInput().getValue()
   expect(firstNameValue).toBe(defaultFirstName)
-  const lastNameValue = await ownerNamePage.lastNameInput().getValue()
+  const lastNameValue = await ownerNamePage.lastTextInput().getValue()
   expect(lastNameValue).toBe(defaultLastName)
 
-  await clearElement(ownerNamePage.firstNameInput())
-  await clearElement(ownerNamePage.lastNameInput())
+  await clearElement(ownerNamePage.firstTextInput())
+  await clearElement(ownerNamePage.lastTextInput())
 
-  await ownerNamePage.inputNameAndContinue(newFirstName, newLastName)
+  await ownerNamePage.inputTextAndContinue(newFirstName, newLastName)
   await validateElementVisibleAndText(
     valueElement,
     `${newFirstName} ${newLastName}`
