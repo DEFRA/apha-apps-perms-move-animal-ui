@@ -9,20 +9,12 @@ export class FullNameFutureAnswer extends FullNameAnswer {
   static config = {
     validation: {
       firstName: {
-        maxLength: {
-          value: 50,
-          message: 'First name must be no longer than 50 characters'
-        },
         empty: {
           message:
             'Enter the first name of who will be the registered owner of the cattle'
         }
       },
       lastName: {
-        maxLength: {
-          value: 50,
-          message: 'Last name must be no longer than 50 characters'
-        },
         empty: {
           message:
             'Enter the last name of who will be the registered owner of the cattle'

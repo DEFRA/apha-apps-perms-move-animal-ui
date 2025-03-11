@@ -5,37 +5,19 @@ import { validateAnswerAgainstSchema } from '../validation.js'
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
 /**
- * export @typedef {{
+ * @typedef {{
  *  validation: {
  *    firstName: {
- *      maxLength?: { value: number, message: string },
  *      empty?: { message: string },
  *    },
  *    lastName: {
- *      maxLength?: { value: number, message: string },
  *      empty?: { message: string },
  *    }
  *  }
  * }} FullNameConfig
  */
 
-const defaultMaxLength = 50
-
-const buildNameValidationSchema = (validation) => {
-  let stringValidation = Joi.string().trim().required()
-
-  const messages = {
-    'any.required': validation.empty?.message ?? '',
-    'string.empty': validation.empty?.message ?? '',
-    'string.max': validation.maxLength?.message ?? ''
-  }
-
-  if (validation.maxLength) {
-    stringValidation = stringValidation.max(validation.maxLength.value)
-  }
-
-  return stringValidation.messages(messages)
-}
+const maxLength = 50
 
 /**
  * @param {FullNameConfig} config
@@ -43,14 +25,30 @@ const buildNameValidationSchema = (validation) => {
  */
 const fullNamePayloadSchema = ({ validation }) => {
   return Joi.object({
-    firstName: buildNameValidationSchema(validation.firstName),
-    lastName: buildNameValidationSchema(validation.lastName)
+    firstName: Joi.string()
+      .trim()
+      .required()
+      .max(maxLength)
+      .messages({
+        'any.required': validation.firstName.empty?.message ?? '',
+        'string.empty': validation.firstName.empty?.message ?? '',
+        'string.max': `First name must be no longer than ${maxLength} characters`
+      }),
+    lastName: Joi.string()
+      .trim()
+      .required()
+      .max(maxLength)
+      .messages({
+        'any.required': validation.lastName.empty?.message ?? '',
+        'string.empty': validation.lastName.empty?.message ?? '',
+        'string.max': `Last name must be no longer than ${maxLength} characters`
+      })
   })
 }
 
 /**
  * export @typedef {{ firstName: string; lastName: string;}} FullNameData
- * export @typedef {{ firstName: string; lastName: string }} FullNamePayload
+ *  @typedef {FullNameData} FullNamePayload
  */
 
 /**
@@ -69,20 +67,12 @@ export class FullNameAnswer extends AnswerModel {
     return {
       validation: {
         firstName: {
-          maxLength: {
-            value: defaultMaxLength,
-            message: `First name must be no longer than ${defaultMaxLength} characters`
-          },
           empty: {
             message:
               'Enter the first name of the County Parish Holding (CPH) owner'
           }
         },
         lastName: {
-          maxLength: {
-            value: defaultMaxLength,
-            message: `Last name must be no longer than ${defaultMaxLength} characters`
-          },
           empty: {
             message:
               'Enter the last name of the County Parish Holding (CPH) owner'
@@ -151,7 +141,7 @@ export class FullNameAnswer extends AnswerModel {
    * @returns { FullNameAnswer}
    */
   static fromState(state) {
-    return new FullNameAnswer(
+    return new this(
       state !== undefined
         ? { firstName: state.firstName, lastName: state.lastName }
         : undefined

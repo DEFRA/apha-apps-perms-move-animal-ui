@@ -59,23 +59,14 @@ describe('#FullName.validate', () => {
   })
 
   describe('when the config is overwritten', () => {
-    const newMaxLength = 10
     const testConfig = {
       validation: {
         firstName: {
-          maxLength: {
-            value: newMaxLength,
-            message: 'First name too long'
-          },
           empty: {
             message: 'Cannot be empty'
           }
         },
         lastName: {
-          maxLength: {
-            value: newMaxLength,
-            message: 'Last name too long'
-          },
           empty: {
             message: 'Cannot be empty'
           }
@@ -103,28 +94,6 @@ describe('#FullName.validate', () => {
 
       expect(errors.lastName.text).toBe(
         testConfig.validation.lastName.empty.message
-      )
-    })
-
-    it('should return false and the overwritten error messages for input that is too long', () => {
-      const fullName = new TestFullNameAnswer({
-        firstName: Array(newMaxLength + 1)
-          .fill('a')
-          .join(''),
-        lastName: Array(newMaxLength + 1)
-          .fill('a')
-          .join('')
-      })
-
-      const { isValid, errors } = fullName.validate()
-
-      expect(isValid).toBe(false)
-      expect(errors.firstName.text).toBe(
-        testConfig.validation.firstName.maxLength.message
-      )
-
-      expect(errors.lastName.text).toBe(
-        testConfig.validation.lastName.maxLength.message
       )
     })
   })
