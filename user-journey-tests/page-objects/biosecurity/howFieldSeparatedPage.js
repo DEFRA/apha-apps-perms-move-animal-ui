@@ -3,7 +3,7 @@ import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
-  'How is this grazing field separated from the resident herd?'
+  'How will you separate the incoming cattle from the resident herd?'
 const noInputError =
   'Enter information about how this grazing field is separated from the resident herd'
 
