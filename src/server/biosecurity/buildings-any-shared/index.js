@@ -9,7 +9,7 @@ export class BuildingsAnySharedPage extends QuestionPage {
   sectionKey = 'biosecurity'
   question = 'Will the incoming cattle be housed?'
 
-  questionKey = 'buildingsAnyShared'
+  questionKey = 'animalsHoused'
   Answer = BuildingsAnySharedAnswer
 
   /** @param {BuildingsAnySharedAnswer} answer */

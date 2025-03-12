@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 
 /**
  * export @typedef {'yes'|'no'} BuildingsAnySharedData
- * @typedef {{ buildingsAnyShared: BuildingsAnySharedData }} BuildingsAnySharedPayload
+ * @typedef {{ animalsHoused: BuildingsAnySharedData }} BuildingsAnySharedPayload
  */
 
 /**
@@ -13,7 +13,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 export class BuildingsAnySharedAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfig} */
   static config = {
-    payloadKey: 'buildingsAnyShared',
+    payloadKey: 'animalsHoused',
     hint: 'This includes shared spaces such as pens',
     options: {
       yes: { label: 'Yes' },

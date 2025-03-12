@@ -16,7 +16,7 @@ const defaultState = {
   manureAndSlurry: 'yes',
   grazingFieldHowSeparated: 'some details',
   roadsAndTracks: 'yes',
-  buildingsAnyShared: 'yes',
+  animalsHoused: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',

@@ -4,7 +4,7 @@ import { BuildingsAnySharedAnswer } from './buildings-any-shared.js'
 
 /** @type {BuildingsAnySharedPayload} */
 const payload = {
-  buildingsAnyShared: 'yes'
+  animalsHoused: 'yes'
 }
 
 describe('BuildingsAnyShared', () => {
@@ -15,9 +15,7 @@ describe('BuildingsAnyShared', () => {
   })
 
   it('should have the right payload key', () => {
-    expect(BuildingsAnySharedAnswer.config.payloadKey).toBe(
-      'buildingsAnyShared'
-    )
+    expect(BuildingsAnySharedAnswer.config.payloadKey).toBe('animalsHoused')
   })
 
   it('should define the right empty input message', () => {

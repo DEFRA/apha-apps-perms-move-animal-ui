@@ -9,24 +9,24 @@ exports[`BuildingsAnySharedPage buildingsAnySharedPage.content should render exp
           <input type="hidden" name="nextPage" value="">
 
 <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="buildingsAnyShared-hint">
+  <fieldset class="govuk-fieldset" aria-describedby="animalsHoused-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
         Will the incoming cattle be housed?
       </h1>
     </legend>
-    <div id="buildingsAnyShared-hint" class="govuk-hint">
+    <div id="animalsHoused-hint" class="govuk-hint">
       This includes shared spaces such as pens
     </div>
     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="buildingsAnyShared" name="buildingsAnyShared" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="buildingsAnyShared">
+        <input class="govuk-radios__input" id="animalsHoused" name="animalsHoused" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="animalsHoused">
           Yes
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="buildingsAnyShared" type="radio" value="no">
+        <input class="govuk-radios__input" id="no" name="animalsHoused" type="radio" value="no">
         <label class="govuk-label govuk-radios__label" for="no">
           No
         </label>
