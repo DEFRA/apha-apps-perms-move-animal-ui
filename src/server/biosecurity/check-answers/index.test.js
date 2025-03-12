@@ -10,21 +10,6 @@ import { validBiosecuritySectionState } from '../../common/test-helpers/journey-
 
 const pageUrl = '/biosecurity/check-answers'
 
-const defaultState = {
-  keptSeparately: 'yes',
-  grazing: 'yes',
-  lastGrazed: 'yesterday',
-  manureAndSlurry: 'yes',
-  grazingFieldHowSeparated: 'some details',
-  roadsAndTracks: 'yes',
-  animalsHoused: 'yes',
-  buildingsHowMinimiseContamination: 'somehow',
-  peopleDisinfection: 'ppe',
-  disinfectant: 'some disinfectant',
-  dilutionRate: '15',
-  badgers: 'some text'
-}
-
 describe('#biosecuritySummaryPage', () => {
   /** @type {Server} */
   let server
