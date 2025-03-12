@@ -28,32 +28,3 @@ exports[`HowManyAnimalsMaximumPage HowManyAnimalsMaximumPage.content should rend
     </form>
         "
 `;
-
-exports[`HowManyAnimalsPage HowManyAnimalsMaximumPage.content should render expected response and content 1`] = `
-"
-    <form method="POST" novalidate="">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <input type="hidden" name="crumb" value="csrf-value">
-          <input type="hidden" name="nextPage" value="">
-
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="howManyAnimalsMaximum">
-      What is the maximum number of animals you are planning to move?
-    </label>
-  </h1>
-  <input class="govuk-input govuk-input--width-2" id="howManyAnimalsMaximum" name="howManyAnimalsMaximum" type="text" autocomplete="howManyAnimalsMaximum">
-</div>
-
-
-</fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
-  Continue
-</button>
-        </div>
-      </div>
-    </form>
-        "
-`;
