@@ -36,7 +36,7 @@ describe('BuildingsHowMinimiseContamination', () => {
     expect(
       BuildingsHowMinimiseContaminationAnswer.config.validation.empty?.message
     ).toBe(
-      'Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle'
+      'Enter how you will minimise the risk of TB infection from the resident cattle to the incoming cattle during housing'
     )
   })
 
