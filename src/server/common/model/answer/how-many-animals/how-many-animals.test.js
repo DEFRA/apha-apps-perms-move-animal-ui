@@ -1,6 +1,6 @@
 import { TextAnswer } from '../text/text.js'
-import { HowManyAnimalsAnswer } from './max-number-of-animals.js'
-/** @import {HowManyAnimalsPayload} from './max-number-of-animals.js' */
+import { HowManyAnimalsAnswer } from './how-many-animals.js'
+/** @import {HowManyAnimalsPayload} from './how-many-animals.js' */
 
 /** @type {HowManyAnimalsPayload} */
 const payload = {

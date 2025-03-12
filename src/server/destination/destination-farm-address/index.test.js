@@ -1,6 +1,7 @@
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { reasonForMovementPage } from '../reason-for-movement/index.js'
+import { howManyAnimalsMaximumPage } from '../how-many-animals-maximum/index.js'
+import { howManyAnimalsPage } from '../how-many-animals/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import {
   destinationFarmAddressPage,
@@ -71,9 +72,17 @@ describe('DestinationFarmAddressPage', () => {
     describe('on the farm', () => {
       const context = { origin: { onOffFarm: 'on' } }
 
-      it('should reason for movement page', () => {
+      it('should return how many animals maximum page if origin is not market or unrestricted farm', () => {
         const nextPage = page.nextPage(null, context)
-        expect(nextPage).toBe(reasonForMovementPage)
+        expect(nextPage).toBe(howManyAnimalsMaximumPage)
+      })
+
+      it('should return how many animals page if origin is market or unrestricted farm', () => {
+        const marketContext = {
+          origin: { onOffFarm: 'on', originType: 'market' }
+        }
+        const nextPage = page.nextPage(null, marketContext)
+        expect(nextPage).toBe(howManyAnimalsPage)
       })
 
       describePageSnapshot({

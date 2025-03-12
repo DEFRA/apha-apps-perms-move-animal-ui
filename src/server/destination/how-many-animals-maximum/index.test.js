@@ -1,19 +1,23 @@
-import { howManyAnimalsPage, HowManyAnimalsPage } from './index.js'
+import {
+  howManyAnimalsMaximumPage,
+  HowManyAnimalsMaximumPage
+} from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { HowManyAnimalsAnswer } from '../../common/model/answer/max-number-of-animals/max-number-of-animals.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
+import { HowManyAnimalsMaximumAnswer } from '../../common/model/answer/how-many-animals-maximum/how-many-animals-maximum.js'
 
 const sectionKey = 'destination'
-const question = 'How many animals are you planning to move?'
-const questionKey = 'howManyAnimals'
+const question =
+  'What is the maximum number of animals you are planning to move?'
+const questionKey = 'howManyAnimalsMaximum'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/destination/how-many-animals'
+const pageUrl = '/destination/how-many-animals-maximum'
 
-describe('HowManyAnimalsPage', () => {
+describe('HowManyAnimalsMaximumPage', () => {
   let page
 
   beforeEach(() => {
-    page = new HowManyAnimalsPage()
+    page = new HowManyAnimalsMaximumPage()
   })
 
   it('should have the correct urlPath', () => {
@@ -37,7 +41,7 @@ describe('HowManyAnimalsPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(HowManyAnimalsAnswer)
+    expect(page.Answer).toBe(HowManyAnimalsMaximumAnswer)
   })
 
   it('nextPage should return address page', () => {
@@ -46,11 +50,11 @@ describe('HowManyAnimalsPage', () => {
   })
 
   it('should export page', () => {
-    expect(howManyAnimalsPage).toBeInstanceOf(HowManyAnimalsPage)
+    expect(howManyAnimalsMaximumPage).toBeInstanceOf(HowManyAnimalsMaximumPage)
   })
 
   describePageSnapshot({
-    describes: 'HowManyAnimalsPage.content',
+    describes: 'HowManyAnimalsMaximumPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

@@ -10,7 +10,8 @@ import { quantityOptions } from './quantity-options/index.js'
 import { reasonForMovement } from './reason-for-movement/index.js'
 import { destinationSummary } from './summary/index.js'
 import { destinationNotSupported } from './not-supported-movement-type/index.js'
-import { howManyAnimals } from './max-number-of-animals/index.js'
+import { howManyAnimals } from './how-many-animals/index.js'
+import { howManyAnimalsMaximum } from './how-many-animals-maximum/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -32,7 +33,8 @@ export const destination = {
         quantityOptions,
         quantityHalfHerd,
         destinationNotSupported,
-        howManyAnimals
+        howManyAnimals,
+        howManyAnimalsMaximum
       ])
     }
   }
