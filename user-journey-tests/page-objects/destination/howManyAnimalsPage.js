@@ -1,8 +1,7 @@
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
-const pageId = 'maxNumberOfAnimals'
-const pageHeadingAndTitle =
-  'Enter the maximum number of animals you are planning to move'
+const pageId = 'howManyAnimals'
+const pageHeadingAndTitle = 'How many animals are you planning to move?'
 const noInputError = 'Enter how many animals you are planning to move'
 const invalidFormatError = 'Enter a number'
 

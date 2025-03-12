@@ -75,13 +75,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Enter the maximum number of animals you are planning to move
+      How many animals are you planning to move?
     </dt>
     <dd class="govuk-summary-list__value">
       1
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/how-many-animals?redirect_uri=/submit/check-answers" data-testid="maxNumberOfAnimals-change-link">Change<span class="govuk-visually-hidden"> Enter the maximum number of animals you are planning to move</span></a>
+      <a class="govuk-link" href="/destination/how-many-animals?redirect_uri=/submit/check-answers" data-testid="howManyAnimals-change-link">Change<span class="govuk-visually-hidden"> How many animals are you planning to move?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -392,7 +392,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## Enter the maximum number of animals you are planning to move
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Routine restocking
@@ -466,7 +466,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## Enter the maximum number of animals you are planning to move
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Routine restocking
@@ -540,7 +540,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## Enter the maximum number of animals you are planning to move
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Routine restocking
@@ -614,7 +614,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## Enter the maximum number of animals you are planning to move
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Routine restocking
@@ -688,7 +688,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## Enter the maximum number of animals you are planning to move
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Routine restocking
