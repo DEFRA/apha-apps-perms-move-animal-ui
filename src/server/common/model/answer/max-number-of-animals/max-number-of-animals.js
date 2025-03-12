@@ -6,18 +6,18 @@ const max = 5000
 /** @import { NumberConfig } from '../number/number.js' */
 
 /**
- * export @typedef {string} MaxNumberOfAnimalsData
- * @typedef {{ maxNumberOfAnimals: string }} MaxNumberOfAnimalsPayload
+ * export @typedef {string} HowManyAnimalsData
+ * @typedef {{ howManyAnimals: string }} HowManyAnimalsPayload
  */
 
 /**
- * @augments {NumberAnswer<MaxNumberOfAnimalsPayload>}
+ * @augments {NumberAnswer<HowManyAnimalsPayload>}
  */
-export class MaxNumberOfAnimalsAnswer extends NumberAnswer {
+export class HowManyAnimalsAnswer extends NumberAnswer {
   /** @type {NumberConfig} */
   static config = {
-    payloadKey: 'maxNumberOfAnimals',
-    autocomplete: 'maxNumberOfAnimals',
+    payloadKey: 'howManyAnimals',
+    autocomplete: 'howManyAnimals',
     characterWidth: 2,
     validation: {
       empty: { message: 'Enter how many animals you are planning to move' },

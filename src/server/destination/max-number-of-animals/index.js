@@ -1,28 +1,28 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { MaxNumberOfAnimalsAnswer } from '../../common/model/answer/max-number-of-animals/max-number-of-animals.js'
+import { HowManyAnimalsAnswer } from '../../common/model/answer/max-number-of-animals/max-number-of-animals.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
 
-export class MaxNumberOfAnimalsPage extends QuestionPage {
+export class HowManyAnimalsPage extends QuestionPage {
   urlPath = '/destination/how-many-animals'
   sectionKey = 'destination'
-  question = 'Enter the maximum number of animals you are planning to move'
-  questionKey = 'maxNumberOfAnimals'
+  question = 'How many animals are you planning to move?'
+  questionKey = 'howManyAnimals'
 
-  Answer = MaxNumberOfAnimalsAnswer
+  Answer = HowManyAnimalsAnswer
 
   nextPage() {
     return reasonForMovementPage
   }
 }
 
-export const maxNumberOfAnimalsPage = new MaxNumberOfAnimalsPage()
+export const howManyAnimalsPage = new HowManyAnimalsPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const maxNumberOfAnimals = new QuestionPageController(
-  maxNumberOfAnimalsPage
+export const howManyAnimals = new QuestionPageController(
+  howManyAnimalsPage
 ).plugin()
 
 /**

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MaxNumberOfAnimalsPage MaxNumberOfAnimalsPage.content should render expected response and content 1`] = `
+exports[`HowManyAnimalsPage HowManyAnimalsPage.content should render expected response and content 1`] = `
 "
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
@@ -11,11 +11,11 @@ exports[`MaxNumberOfAnimalsPage MaxNumberOfAnimalsPage.content should render exp
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="maxNumberOfAnimals">
-      Enter the maximum number of animals you are planning to move
+    <label class="govuk-label govuk-label--l" for="howManyAnimals">
+      How many animals are you planning to move?
     </label>
   </h1>
-  <input class="govuk-input govuk-input--width-2" id="maxNumberOfAnimals" name="maxNumberOfAnimals" type="text" autocomplete="maxNumberOfAnimals">
+  <input class="govuk-input govuk-input--width-2" id="howManyAnimals" name="howManyAnimals" type="text" autocomplete="howManyAnimals">
 </div>
 
 

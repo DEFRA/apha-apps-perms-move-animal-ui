@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { maxNumberOfAnimalsPage } from '../max-number-of-animals/index.js'
+import { howManyAnimalsPage } from '../max-number-of-animals/index.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 
@@ -31,7 +31,7 @@ export class DestinationFarmAddressPage extends QuestionPage {
         context.origin?.originType === 'market' ||
         context.origin?.originType === 'unrestricted-farm'
       ) {
-        return maxNumberOfAnimalsPage
+        return howManyAnimalsPage
       } else {
         return reasonForMovementPage
       }
