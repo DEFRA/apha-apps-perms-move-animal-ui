@@ -11,7 +11,7 @@ const questionKey = 'equipmentShared'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/equipment-any-shared'
 
-describe('BuildingsAnySharedPage', () => {
+describe('EquipmentAnySharedPage', () => {
   const page = new EquipmentAnySharedPage()
 
   it('should have the correct urlPath', () => {
@@ -55,7 +55,7 @@ describe('BuildingsAnySharedPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'buildingsAnySharedPage.content',
+    describes: 'equipmentAnySharedPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
