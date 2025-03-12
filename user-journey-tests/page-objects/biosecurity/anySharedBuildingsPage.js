@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
-const pageId = 'buildingsAnyShared'
+const pageId = 'animalsHoused'
 const pageHeadingAndTitle = 'Will the incoming cattle be housed?'
 const noInputError =
   'Select if the cattle will share any buildings with the resident herd'
