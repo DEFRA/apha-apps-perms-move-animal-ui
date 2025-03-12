@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { EquipmentAnySharedAnswer } from '../../common/model/answer/equipment-any-shared/equipment-any-shared.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { equipmentHowMinimiseContaminationPage } from '../how-minimise-contamination/index.js'
+import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise-contamination/index.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
 export class EquipmentAnySharedPage extends QuestionPage {

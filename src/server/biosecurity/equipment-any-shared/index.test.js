@@ -2,7 +2,7 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 import { equipmentAnySharedPage, EquipmentAnySharedPage } from './index.js'
 import { EquipmentAnySharedAnswer } from '../../common/model/answer/equipment-any-shared/equipment-any-shared.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
-import { equipmentHowMinimiseContaminationPage } from '../how-minimise-contamination/index.js'
+import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise-contamination/index.js'
 
 const sectionKey = 'biosecurity'
 const question =

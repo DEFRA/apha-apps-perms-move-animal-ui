@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EquipmentHowMinimiseContaminationPage equipmentHowMinimiseContaminationPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Shared equipment</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        To prevent the spread of TB, cleaning and disinfection measures for
+        shared equipment should be in place.
+      </p>
+      <p>This can include:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>designated disinfection points</li>
+        <li>cleaning and disinfecting shared machinery</li>
+        <li>
+          not sharing equipment or machinery between the groups of incoming and
+          resident cattle
+        </li>
+        <li>
+          cleaning and disinfection measures for shared milking and handling
+          facilities
+        </li>
+      </ul>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="equipmentHowMinimiseContamination">
+    How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
+  </label>
+  <textarea class="govuk-textarea" id="equipmentHowMinimiseContamination" name="equipmentHowMinimiseContamination" rows="8"></textarea>
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
