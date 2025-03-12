@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="manureAndSlurryDetails">
+      How will you manage manure and slurry?
+    </label>
+  </h1>
+  <div id="manureAndSlurryDetails-hint" class="govuk-hint">
+    For example, preventing cattle access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming cattle
+  </div>
+  <textarea class="govuk-textarea" id="manureAndSlurryDetails" name="manureAndSlurryDetails" rows="8" aria-describedby="manureAndSlurryDetails-hint"></textarea>
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

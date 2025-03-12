@@ -13,6 +13,7 @@ import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
+import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -21,11 +22,15 @@ const completeBiosecurityTask = async (radioType) => {
   switch (radioType) {
     case 'yes':
       await keptSeparatelyPage.selectYesAndContinue(grazingPage)
-      await grazingPage.selectYesAndContinue(lastGrazedPage)
-      await lastGrazedPage.inputTextAndContinue('2 years', manureAndSlurryPage)
-      await manureAndSlurryPage.selectYesAndContinue(howFieldSeparatedPage)
+      await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
       await howFieldSeparatedPage.inputTextAndContinue(
         'Separate grazing',
+        lastGrazedPage
+      )
+      await lastGrazedPage.inputTextAndContinue('2 years', manureAndSlurryPage)
+      await manureAndSlurryPage.selectYesAndContinue(manureDetailsPage)
+      await manureDetailsPage.inputTextAndContinue(
+        'Manure details',
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
@@ -54,7 +59,18 @@ const completeBiosecurityTask = async (radioType) => {
       break
 
     case 'no':
-      await keptSeparatelyPage.selectNoAndContinue(peopleDisinfectionPage)
+      await keptSeparatelyPage.selectNoAndContinue(manureDetailsPage)
+      await manureDetailsPage.inputTextAndContinue(
+        'Manage manure',
+        anySharedBuildingsPage
+      )
+      await anySharedBuildingsPage.selectYesAndContinue(
+        minimiseContaminationPage
+      )
+      await minimiseContaminationPage.inputTextAndContinue(
+        'Minimise contamination',
+        peopleDisinfectionPage
+      )
       await peopleDisinfectionPage.inputTextAndContinue(
         'People disinfection',
         disinfectantPage

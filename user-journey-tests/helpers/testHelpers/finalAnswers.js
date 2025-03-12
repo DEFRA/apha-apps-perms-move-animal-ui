@@ -69,7 +69,8 @@ export const completeApplicationOnFarm = async ({ licence }) => {
   await completeLicenceTaskAnswersCustom(
     licence.emailDefault,
     licence.firstNameDefault,
-    licence.lastNameDefault
+    licence.lastNameDefault,
+    true
   )
   await licenceAnswersPage.selectContinue()
   await taskListPage.verifyPageHeadingAndTitle()

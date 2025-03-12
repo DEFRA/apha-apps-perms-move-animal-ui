@@ -108,7 +108,7 @@ describe('SectionModel.validate', () => {
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
     const origin = OriginSection.fromState({ origin: validOriginSectionState })
-    expect(origin.firstPage).toBeInstanceOf(OnOffFarmPage)
+    expect(origin.getFirstPage()).toBeInstanceOf(OnOffFarmPage)
   })
 })
 

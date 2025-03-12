@@ -23,7 +23,8 @@ describe('Check your licence answers test', () => {
     await completeLicenceTaskAnswersCustom(
       emailDefault,
       firstNameDefault,
-      lastNameDefault
+      lastNameDefault,
+      true
     )
   })
 

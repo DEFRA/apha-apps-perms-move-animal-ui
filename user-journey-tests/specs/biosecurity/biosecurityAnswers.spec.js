@@ -39,6 +39,17 @@ describe('Check your answers test - biosecurity', () => {
     )
   })
 
+  it('Should verify the value and href of separated grazing row', async () => {
+    await validateElementVisibleAndText(
+      biosecurityAnswersPage.separateGrazingValue,
+      'Separate grazing'
+    )
+    await validateHrefOfElement(
+      biosecurityAnswersPage.changeSeparateGrazingLink,
+      '/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers'
+    )
+  })
+
   it('Should verify the value and href of last grazed row', async () => {
     await validateElementVisibleAndText(
       biosecurityAnswersPage.lastGrazedValue,
@@ -61,14 +72,14 @@ describe('Check your answers test - biosecurity', () => {
     )
   })
 
-  it('Should verify the value and href of separated grazing row', async () => {
+  it('Should verify the value and href of manure or slurry details', async () => {
     await validateElementVisibleAndText(
-      biosecurityAnswersPage.separateGrazingValue,
-      'Separate grazing'
+      biosecurityAnswersPage.manureDetailsValue,
+      'Manure details'
     )
     await validateHrefOfElement(
-      biosecurityAnswersPage.changeSeparateGrazingLink,
-      '/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers'
+      biosecurityAnswersPage.changeManureDetails,
+      '/biosecurity/manure-and-slurry-details?redirect_uri=/biosecurity/check-answers'
     )
   })
 

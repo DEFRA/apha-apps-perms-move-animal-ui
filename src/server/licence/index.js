@@ -5,7 +5,8 @@
 
 import { licenceSummary } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
-import { fullName } from './fullName/index.js'
+import { fullNameFuture } from './full-name-future/index.js'
+import { fullName } from './full-name/index.js'
 import { postExit } from './postExitPage/index.js'
 import { receiveMethod } from './receiveMethod/index.js'
 
@@ -18,6 +19,7 @@ export const licence = {
     async register(server) {
       await server.register([
         fullName,
+        fullNameFuture,
         receiveMethod,
         postExit,
         emailAddress,
