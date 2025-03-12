@@ -9,15 +9,15 @@ describe('County parish owner name test', () => {
   })
 
   it('Should verify errors when nothing is submitted', async () => {
-    await ownerNamePage.nameInputErrorTest()
+    await ownerNamePage.inputErrorTest()
   })
 
   it('Should verify just first name error', async () => {
-    await ownerNamePage.verifyFirstNameErrors()
+    await ownerNamePage.verifyFirstInputErrors()
   })
 
   it('Should verify just last name error', async () => {
-    await ownerNamePage.verifyLastNameErrors()
+    await ownerNamePage.verifyLastInputErrors()
   })
 
   it('Should verify errors when character length is exceeded', async () => {
@@ -27,17 +27,17 @@ describe('County parish owner name test', () => {
   it('Should verify successful inputs', async () => {
     const firstName = 'Bruce'
     const lastName = 'Wayne'
-    await ownerNamePage.inputNameAndContinue(
+    await ownerNamePage.inputTextAndContinue(
       firstName,
       lastName,
       receiveMethodPage
     )
     await receiveMethodPage.selectBackLink()
 
-    const firstNameInputValue = await ownerNamePage.firstNameInput().getValue()
+    const firstNameInputValue = await ownerNamePage.firstTextInput().getValue()
     expect(firstNameInputValue).toBe(firstName)
 
-    const lastNameInputValue = await ownerNamePage.lastNameInput().getValue()
+    const lastNameInputValue = await ownerNamePage.lastTextInput().getValue()
     expect(lastNameInputValue).toBe(lastName)
   })
 })
