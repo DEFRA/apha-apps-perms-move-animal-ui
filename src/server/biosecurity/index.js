@@ -12,6 +12,7 @@ import { disinfectantDilution } from './disinfectant-dilution/index.js'
 import { badgers } from './badgers/index.js'
 import { manureAndSlurryDetails } from './manure-and-slurry-details/index.js'
 import { equipmentAnyShared } from './equipment-any-shared/index.js'
+import { equipmentHowMinimiseContamination } from './equipment-how-minimise-contamination/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -30,6 +31,7 @@ export const biosecurity = {
         buildingsAnyShared,
         equipmentAnyShared,
         buildingsHowMinimiseContamination,
+        equipmentHowMinimiseContamination,
         peopleDisinfection,
         disinfectant,
         disinfectantDilution,
