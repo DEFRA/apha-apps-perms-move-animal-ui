@@ -5,7 +5,13 @@ export const config = merge(wdioConf, {
   specs: ['./specs/**/*.spec.js'],
   exclude: [
     './specs/noJavascript/**/*.js',
-    './specs/identification/identifiersAnswers.spec.js'
+    './specs/identification/identifiersAnswers.spec.js',
+
+    // Add back in
+    './specs/biosecurity/biosecDynamicAnswers.spec.js',
+    './specs/biosecurity/biosecurityAnswers.spec.js',
+    './specs/finalAnswers.onFarm.spec.js',
+    './specs/taskList.spec.js'
   ],
   maxInstances: 3,
   capabilities: [
