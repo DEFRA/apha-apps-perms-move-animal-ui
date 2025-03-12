@@ -234,7 +234,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/submit/check-answers" data-testid="buildingsAnyShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be housed?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/submit/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be housed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
