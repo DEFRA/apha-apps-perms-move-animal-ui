@@ -4,10 +4,8 @@ const firstId = 'firstName'
 const lastId = 'lastName'
 const pageHeadingAndTitle =
   'What is the name of the registered owner of the cattle?'
-const input1Error =
-  'Enter the first name of the County Parish Holding (CPH) owner'
-const input2Error =
-  'Enter the last name of the County Parish Holding (CPH) owner'
+const input1Error = 'Enter the first name of the registered owner of the cattle'
+const input2Error = 'Enter the last name of the registered owner of the cattle'
 
 class EmailPage extends DoubleTextInputPage {
   constructor() {

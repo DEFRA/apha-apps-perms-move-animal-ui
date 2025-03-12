@@ -10,14 +10,12 @@ export class OwnerFullNameAnswer extends FullNameAnswer {
     validation: {
       firstName: {
         empty: {
-          message:
-            'Enter the first name of the County Parish Holding (CPH) owner'
+          message: 'Enter the first name of the registered owner of the cattle'
         }
       },
       lastName: {
         empty: {
-          message:
-            'Enter the last name of the County Parish Holding (CPH) owner'
+          message: 'Enter the last name of the registered owner of the cattle'
         }
       }
     }
