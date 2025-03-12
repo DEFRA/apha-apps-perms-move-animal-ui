@@ -22,7 +22,7 @@ export class BuildingsHowMinimiseContaminationAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter how you will minimise the risk from shared buildings and any equipment used for the incoming cattle and any other cattle'
+          'Enter how you will minimise the risk of TB infection from the resident cattle to the incoming cattle during housing'
       }
     }
   }

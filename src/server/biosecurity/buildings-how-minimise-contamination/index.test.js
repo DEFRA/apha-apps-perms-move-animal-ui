@@ -1,6 +1,6 @@
 import { BuildingsHowMinimiseContaminationAnswer } from '../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 import {
   buildingsHowMinimiseContaminationPage,
   BuildingsHowMinimiseContaminationPage
@@ -8,11 +8,11 @@ import {
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
+  'How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?'
 const questionKey = 'buildingsHowMinimiseContamination'
 const view = 'biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'
-const customHeading = 'Shared buildings and equipment'
+const customHeading = 'Housing the incoming cattle'
 
 describe('BuildingsHowMinimiseContaminationPage', () => {
   const page = new BuildingsHowMinimiseContaminationPage()
@@ -49,9 +49,9 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
     expect(page.Answer).toBe(BuildingsHowMinimiseContaminationAnswer)
   })
 
-  it('nextPage should return people disinfection page', () => {
+  it('nextPage should return any shared equipment page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(peopleDisinfectionPage)
+    expect(nextPage).toBe(equipmentAnySharedPage)
   })
 
   it('should export page', () => {

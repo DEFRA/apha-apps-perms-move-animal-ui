@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 
 describe('Minimise contamination page test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -19,7 +19,7 @@ describe('Minimise contamination page test', () => {
   it('Should input correct input and continue without error', async () => {
     await minimiseContaminationPage.inputTextAndContinue(
       'By testing it',
-      peopleDisinfectionPage
+      sharedEquipmentPage
     )
   })
 })

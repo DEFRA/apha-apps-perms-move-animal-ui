@@ -1,15 +1,15 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { BuildingsHowMinimiseContaminationAnswer } from '../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 
-const customHeading = 'Shared buildings and equipment'
+const customHeading = 'Housing the incoming cattle'
 
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
   question =
-    'How will you minimise the risk from buildings and equipment used for the incoming cattle and any other cattle?'
+    'How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?'
 
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer
@@ -21,7 +21,7 @@ export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   view = 'biosecurity/buildings-how-minimise-contamination/index'
 
   nextPage() {
-    return peopleDisinfectionPage
+    return equipmentAnySharedPage
   }
 }
 
