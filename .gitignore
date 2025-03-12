@@ -12,3 +12,5 @@ coverage
 browserstack.err
 local.log
 logs
+src/server/common/services/compress/examples
+src/server/common/services/compress/output

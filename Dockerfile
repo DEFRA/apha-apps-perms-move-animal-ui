@@ -14,10 +14,15 @@ ARG PORT_DEBUG
 ENV PORT=${PORT}
 EXPOSE ${PORT} ${PORT_DEBUG}
 
-COPY --chown=node:node --chmod=755 package*.json ./
-RUN npm install --ignore-scripts
+# COPY --chown=node:node --chmod=755 package*.json ./
+# RUN npm install --ignore-scripts
+USER root
+RUN apk update \
+    && apk add ghostscript=10.04.0-r0
+USER node
+
 COPY --chown=node:node --chmod=755 . .
-RUN npm run build
+RUN npm install
 
 CMD [ "npm", "run", "dev" ]
 
@@ -36,7 +41,6 @@ ENV TZ="Europe/London"
 USER root
 RUN apk update \
     && apk add curl \
-    && apk add ghostscript=10.04.0-r0 \
     && apk cache clean
 
 USER node
