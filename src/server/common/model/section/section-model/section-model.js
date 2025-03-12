@@ -46,7 +46,9 @@ export class SectionModel {
     return /** @type {any} */ (this.constructor).config
   }
 
-  /** @type {(RawApplicationState?) => QuestionPage} */
+  /**
+   * @type {(RawApplicationState?) => QuestionPage}
+   * */
   static firstPageFactory
 
   getFirstPage(applicationState) {

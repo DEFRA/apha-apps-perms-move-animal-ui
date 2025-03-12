@@ -6,7 +6,7 @@ import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will the incoming cattle be housed?'
-const questionKey = 'buildingsAnyShared'
+const questionKey = 'animalsHoused'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/buildings-any-shared'
 
@@ -38,13 +38,13 @@ describe('BuildingsAnySharedPage', () => {
   })
 
   it('nextPage should return how to minimise contamination page when answer is "yes"', () => {
-    const answer = new BuildingsAnySharedAnswer({ buildingsAnyShared: 'yes' })
+    const answer = new BuildingsAnySharedAnswer({ animalsHoused: 'yes' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(buildingsHowMinimiseContaminationPage)
   })
 
   it('nextPage should return people disinfection page when answer is "no"', () => {
-    const answer = new BuildingsAnySharedAnswer({ buildingsAnyShared: 'no' })
+    const answer = new BuildingsAnySharedAnswer({ animalsHoused: 'no' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(equipmentAnySharedPage)
   })

@@ -49,7 +49,7 @@ export const validBiosecuritySectionState = {
   manureAndSlurryDetails: 'some manure details',
   grazingFieldHowSeparated: 'some details',
   roadsAndTracks: 'yes',
-  buildingsAnyShared: 'yes',
+  animalsHoused: 'yes',
   buildingsHowMinimiseContamination: 'somehow',
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',

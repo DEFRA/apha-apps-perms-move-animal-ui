@@ -89,7 +89,7 @@ describe('Check your answers test - biosecurity', () => {
       'Yes'
     )
     await validateHrefOfElement(
-      biosecurityAnswersPage.sharedBuildingsLink,
+      biosecurityAnswersPage.animalsHousedLink,
       '/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers'
     )
   })

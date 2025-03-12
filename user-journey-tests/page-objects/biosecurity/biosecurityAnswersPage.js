@@ -36,8 +36,8 @@ class BiosecurityAnswersPage extends Page {
     return $('[data-testid="roadsAndTracks-change-link"]')
   }
 
-  get sharedBuildingsLink() {
-    return $('[data-testid="buildingsAnyShared-change-link"]')
+  get animalsHousedLink() {
+    return $('[data-testid="animalsHoused-change-link"]')
   }
 
   get minimiseContaminationLink() {
