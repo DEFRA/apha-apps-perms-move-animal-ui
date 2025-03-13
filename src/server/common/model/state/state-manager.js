@@ -1,4 +1,6 @@
 /** @import {Request} from "@hapi/hapi/lib/types/request.js" */
+/** @import { QuestionPage } from "../page/question-page-model.js" */
+/** @import { AnswerModel } from "../answer/answer-model.js" */
 
 /**
  * @typedef {Record<string, any>} RawSectionState
@@ -27,5 +29,16 @@ export class StateManager {
         .map((key) => [key, this._request.yar.get(key)])
         .filter((entry) => entry.at(1) !== null)
     )
+  }
+
+  /**
+   * @param {QuestionPage} page
+   * @param {AnswerModel<any>} answer
+   */
+  set(page, answer) {
+    this._request.yar.set(page.sectionKey, {
+      ...this._request.yar.get(page.sectionKey),
+      [page.questionKey]: answer.toState()
+    })
   }
 }
