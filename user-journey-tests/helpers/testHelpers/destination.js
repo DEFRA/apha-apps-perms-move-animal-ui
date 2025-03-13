@@ -11,7 +11,7 @@ import quantityOptionsPage from '../../page-objects/destination/quantityOptionsP
 import halfHerdPage from '../../page-objects/destination/halfHerdPage.js'
 
 import { navigateToTaskList } from './taskListNav.js'
-import maximumAnimalsPage from '../../page-objects/destination/maximumAnimalsPage.js'
+import howManyAnimalsPage from '../../page-objects/destination/howManyAnimalsPage.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
@@ -59,9 +59,9 @@ export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
       townOrCity: 'The street',
       postcode: 'N11AA'
     },
-    maximumAnimalsPage
+    howManyAnimalsPage
   )
-  await maximumAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
+  await howManyAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
   await reasonForMovementPage.selectRestockingAndContinue(quantityOptionsPage)
   await quantityOptionsPage.selectNoAndContinue(halfHerdPage)
   await halfHerdPage.selectNoAndContinue(destinationAnswersPage)
