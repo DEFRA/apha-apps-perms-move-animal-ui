@@ -95,10 +95,8 @@ export class QuestionPageController extends GenericPageController {
       })
     }
 
-    req.yar.set(this.page.sectionKey, {
-      ...req.yar.get(this.page.sectionKey),
-      [this.page.questionKey]: answer.toState()
-    })
+    const state = new StateManager(req)
+    state.set(this.page, answer)
 
     const nextPage = this.page.nextPage(answer, applicationState)
 

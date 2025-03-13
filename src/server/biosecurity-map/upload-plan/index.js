@@ -66,10 +66,8 @@ export class UploadPlanController extends QuestionPageController {
       metadata: data
     })
 
-    req.yar.set(this.page.sectionKey, {
-      ...req.yar.get(this.page.sectionKey),
-      [this.page.questionKey]: answer.toState()
-    })
+    const state = new StateManager(req)
+    state.set(this.page, answer)
 
     h.headers = {
       'Cache-Control': 'no-store, must-revalidate, max-age=0',

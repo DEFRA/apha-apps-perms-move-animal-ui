@@ -50,10 +50,8 @@ export class UploadProgressController extends QuestionPageController {
       status
     })
 
-    req.yar.set(this.page.sectionKey, {
-      ...req.yar.get(this.page.sectionKey),
-      [this.page.questionKey]: newAnswer.toState()
-    })
+    const state = new StateManager(req)
+    state.set(this.page, newAnswer)
 
     const { isValid } = newAnswer.validate()
     if (!isValid) {
