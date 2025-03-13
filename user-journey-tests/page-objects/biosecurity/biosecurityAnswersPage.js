@@ -92,20 +92,24 @@ class BiosecurityAnswersPage extends Page {
     return $$('.govuk-summary-list__value')[7]
   }
 
-  get peopleDisinfectionValue() {
+  get sharedEquipmentValue() {
     return $$('.govuk-summary-list__value')[8]
   }
 
-  get whatDisinfectantValue() {
+  get peopleDisinfectionValue() {
     return $$('.govuk-summary-list__value')[9]
   }
 
-  get dilutionValue() {
+  get whatDisinfectantValue() {
     return $$('.govuk-summary-list__value')[10]
   }
 
-  get wildlifeContaminationValue() {
+  get dilutionValue() {
     return $$('.govuk-summary-list__value')[11]
+  }
+
+  get wildlifeContaminationValue() {
+    return $$('.govuk-summary-list__value')[12]
   }
 }
 

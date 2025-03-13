@@ -14,6 +14,7 @@ import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectan
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
+import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
@@ -38,8 +39,9 @@ const completeBiosecurityTask = async (radioType) => {
       )
       await minimiseContaminationPage.inputTextAndContinue(
         'Minimise',
-        peopleDisinfectionPage
+        sharedEquipmentPage
       )
+      await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
       await peopleDisinfectionPage.inputTextAndContinue(
         'People disinfection',
         disinfectantPage
@@ -69,8 +71,9 @@ const completeBiosecurityTask = async (radioType) => {
       )
       await minimiseContaminationPage.inputTextAndContinue(
         'Minimise contamination',
-        peopleDisinfectionPage
+        sharedEquipmentPage
       )
+      await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
       await peopleDisinfectionPage.inputTextAndContinue(
         'People disinfection',
         disinfectantPage
