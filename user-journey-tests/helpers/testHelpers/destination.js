@@ -11,6 +11,7 @@ import quantityOptionsPage from '../../page-objects/destination/quantityOptionsP
 import halfHerdPage from '../../page-objects/destination/halfHerdPage.js'
 
 import { navigateToTaskList } from './taskListNav.js'
+import maximumAnimalsPage from '../../page-objects/destination/maximumAnimalsPage.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
@@ -43,7 +44,7 @@ const completeDestinationTask = async (radioType) => {
   await destinationAnswersPage.verifyPageHeadingAndTitle()
 }
 
-export const completeDestinationTaskOnFarm = async () => {
+export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
   await navigateToTaskList()
   await taskListPage.selectMovementDestination(destinationSelectionPage)
 
@@ -58,8 +59,9 @@ export const completeDestinationTaskOnFarm = async () => {
       townOrCity: 'The street',
       postcode: 'N11AA'
     },
-    reasonForMovementPage
+    maximumAnimalsPage
   )
+  await maximumAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
   await reasonForMovementPage.selectRestockingAndContinue(quantityOptionsPage)
   await quantityOptionsPage.selectNoAndContinue(halfHerdPage)
   await halfHerdPage.selectNoAndContinue(destinationAnswersPage)

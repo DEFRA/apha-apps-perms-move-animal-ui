@@ -1,8 +1,8 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { howManyAnimalsPage } from '../max-number-of-animals/index.js'
-import { reasonForMovementPage } from '../reason-for-movement/index.js'
+import { howManyAnimalsMaximumPage } from '../how-many-animals-maximum/index.js'
+import { howManyAnimalsPage } from '../how-many-animals/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 
 /**
@@ -33,7 +33,7 @@ export class DestinationFarmAddressPage extends QuestionPage {
       ) {
         return howManyAnimalsPage
       } else {
-        return reasonForMovementPage
+        return howManyAnimalsMaximumPage
       }
     } else {
       return destinationSummaryPage

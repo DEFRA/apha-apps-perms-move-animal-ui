@@ -1,5 +1,5 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { HowManyAnimalsAnswer } from '../../common/model/answer/max-number-of-animals/max-number-of-animals.js'
+import { HowManyAnimalsAnswer } from '../../common/model/answer/how-many-animals/how-many-animals.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
 
