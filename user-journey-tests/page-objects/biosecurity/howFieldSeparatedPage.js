@@ -5,7 +5,7 @@ const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
   'How will you separate the incoming cattle from the resident herd?'
 const noInputError =
-  'Enter information about how this grazing field is separated from the resident herd'
+  'Enter information about how you will separate the incoming cattle from the resident herd'
 
 class HowFieldSeparatedPage extends SingleTextInputPage {
   constructor() {

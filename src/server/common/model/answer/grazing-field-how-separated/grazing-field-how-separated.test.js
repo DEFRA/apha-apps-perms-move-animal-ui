@@ -30,7 +30,7 @@ describe('GrazingFieldHowSeparated', () => {
     expect(
       GrazingFieldHowSeparatedAnswer.config.validation.empty?.message
     ).toBe(
-      'Enter information about how this grazing field is separated from the resident herd'
+      'Enter information about how you will separate the incoming cattle from the resident herd'
     )
   })
 
