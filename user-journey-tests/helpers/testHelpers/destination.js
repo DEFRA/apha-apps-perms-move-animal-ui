@@ -44,7 +44,7 @@ const completeDestinationTask = async (radioType) => {
   await destinationAnswersPage.verifyPageHeadingAndTitle()
 }
 
-export const completeDestinationTaskOnFarm = async () => {
+export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
   await navigateToTaskList()
   await taskListPage.selectMovementDestination(destinationSelectionPage)
 

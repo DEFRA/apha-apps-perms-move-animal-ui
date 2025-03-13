@@ -5,7 +5,7 @@ import taskListIncompletePage from '../page-objects/taskListIncompletePage.js'
 import { completeOriginTaskAnswersOnFarm } from '../helpers/testHelpers/movementLicence.js'
 import completeLicenceTaskAnswers from '../helpers/testHelpers/receivingLicence.js'
 import licenceAnswersPage from '../page-objects/receiving-the-licence/licenceAnswersPage.js'
-import { completeDestinationTaskOnFarm } from '../helpers/testHelpers/destination.js'
+import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../helpers/testHelpers/destination.js'
 import destinationAnswersPage from '../page-objects/destination/destinationAnswersPage.js'
 import completeBiosecurityTask from '../helpers/testHelpers/biosecurity.js'
 import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js'
@@ -81,7 +81,7 @@ describe('Task list page test', () => {
   })
 
   it('Should verify completed destination task', async () => {
-    await completeDestinationTaskOnFarm()
+    await completeDestinationTaskOnFarmForUnrestrictedOrigin()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {

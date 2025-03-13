@@ -8,7 +8,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import completeBiosecurityTask from './biosecurity.js'
 import completeBiosecurityMapTask from './biosecurityMap.js'
 import completeDestinationTask, {
-  completeDestinationTaskOnFarm
+  completeDestinationTaskOnFarmForUnrestrictedOrigin
 } from './destination.js'
 import {
   completeOriginTaskAnswersCustom,
@@ -62,7 +62,7 @@ export const completeApplicationOnFarm = async ({ licence }) => {
   await checkAnswersPage.selectContinue()
   await taskListPage.verifyPageHeadingAndTitle()
 
-  await completeDestinationTaskOnFarm()
+  await completeDestinationTaskOnFarmForUnrestrictedOrigin()
   await destinationAnswersPage.selectContinue()
   await taskListPage.verifyPageHeadingAndTitle()
 
