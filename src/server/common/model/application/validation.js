@@ -7,7 +7,7 @@ import mapValues from 'lodash/mapValues.js'
 
 /**
  * @typedef {{[key:string]: SectionValidation}} ValidationResult
- * @typedef {{
+ * export @typedef {{
  *   isValid: boolean,
  *   result: ValidationResult
  * }} ApplicationValidationResult
