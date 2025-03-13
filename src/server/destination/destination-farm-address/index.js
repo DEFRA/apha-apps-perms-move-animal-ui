@@ -31,9 +31,9 @@ export class DestinationFarmAddressPage extends QuestionPage {
         context.origin?.originType === 'market' ||
         context.origin?.originType === 'unrestricted-farm'
       ) {
-        return howManyAnimalsPage
-      } else {
         return howManyAnimalsMaximumPage
+      } else {
+        return howManyAnimalsPage
       }
     } else {
       return destinationSummaryPage

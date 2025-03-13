@@ -28,7 +28,7 @@ export const validDestinationSectionState = {
   destinationType: testDestinationType,
   destinationFarmCph: validCphNumber,
   destinationFarmAddress: validAddress,
-  howManyAnimals: '1',
+  howManyAnimalsMaximum: '1',
   /** @type {ReasonForMovementData} */
   reasonForMovement: 'routineRestocking',
   /** @type {QuantityOptionsData} */
