@@ -1,4 +1,4 @@
-import { S3Client } from '@aws-sdk/client-s3'
+import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
 import { config } from '~/src/config/config.js'
 
 const { region, s3Endpoint } = config.get('aws')
@@ -14,7 +14,14 @@ const s3Client = {
         forcePathStyle: options.isDevelopment
       })
 
-      server.decorate('request', 's3', client)
+      server.decorate('request', 's3', (filePath) =>
+        client.send(
+          new GetObjectCommand({
+            Bucket: config.get('fileUpload').bucket ?? '',
+            Key: filePath.status.form.file.s3Key
+          })
+        )
+      )
       server.decorate('server', 's3', client)
 
       server.events.on('stop', () => {

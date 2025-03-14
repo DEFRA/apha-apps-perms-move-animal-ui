@@ -1,4 +1,3 @@
-import { GetObjectCommand } from '@aws-sdk/client-s3'
 import { config } from '~/src/config/config.js'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
@@ -8,8 +7,9 @@ import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
-import { compress as compressImage } from './image-compression.js'
-import fileSize from '../common/helpers/file-size/file-size.js'
+import { fileSizeInMB } from '../common/helpers/file/size.js'
+import { statusCodes } from '../common/constants/status-codes.js'
+import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -105,7 +105,16 @@ export class SubmitPageController extends QuestionPageController {
         config.get('featureFlags').biosecurity &&
         application.tasks['biosecurity-map'] !== undefined
       ) {
-        const compressedFile = await this.handleBiosecurityFile(req)
+        const compressedFile = await handleUploadedFile(
+          req,
+          req.yar.get('biosecurity-map')['upload-plan'],
+          this.logger
+        )
+
+        // Error if the file after compression is still too large
+        if (fileSizeInMB(compressedFile.length) > 2) {
+          return h.view(req.view).code(statusCodes.serverError)
+        }
 
         const { fileRetention, confirmDownloadConfirmation } =
           config.get('notify')
@@ -163,32 +172,6 @@ export class SubmitPageController extends QuestionPageController {
           )
       )
       .join('\n')
-  }
-
-  async handleBiosecurityFile(req) {
-    const obj = await req.s3.send(
-      new GetObjectCommand({
-        Bucket: config.get('fileUpload').bucket ?? '',
-        Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
-          .s3Key
-      })
-    )
-
-    const chunks = []
-    for await (const chunk of obj.Body) {
-      chunks.push(chunk)
-    }
-    const buffer = Buffer.concat(chunks)
-
-    let compressedFile = null
-
-    const { duration, file, reduction } = await compressImage(buffer)
-    compressedFile = file
-    this.logger.info(
-      `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
-    )
-
-    return compressedFile
   }
 }
 
