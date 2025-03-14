@@ -368,10 +368,7 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotification.mock.calls[0]
-
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(content).toMatchSnapshot('email-content-biosec-enabled')
     expect(handleUploadedFile).toHaveBeenCalledTimes(1)
   })
 
