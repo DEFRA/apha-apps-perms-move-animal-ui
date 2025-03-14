@@ -113,7 +113,7 @@ export class SubmitPageController extends QuestionPageController {
 
         // Error if the file after compression is still too large
         if (fileSizeInMB(compressedFile.length) > 2) {
-          return h.view(req.view).code(statusCodes.serverError)
+          return h.view(submitSummaryPage.view).code(statusCodes.serverError)
         }
 
         const { fileRetention, confirmDownloadConfirmation } =
@@ -129,7 +129,7 @@ export class SubmitPageController extends QuestionPageController {
       await sendNotification(notifyProps)
 
       return Promise.resolve(super.handlePost(req, h)).finally(() => {
-        req.yar.reset()
+        // req.yar.reset()
       })
     }
 
