@@ -18,7 +18,7 @@ describe('imageCompression', () => {
 
   beforeEach(async () => {
     buffer = await readFile(
-      path.resolve('./src/server/check-answers/example-portrait.jpg')
+      path.resolve('./src/server/common/helpers/file/example-portrait.jpg')
     )
   })
 

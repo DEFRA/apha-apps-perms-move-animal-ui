@@ -4,57 +4,22 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
-import path from 'path'
-import { createReadStream } from 'fs'
 import {
   validApplicationStateWithBioSecurity,
   validDestinationSectionState,
   validOriginSectionState
 } from '../common/test-helpers/journey-state.js'
 import { spyOnConfig } from '../common/test-helpers/config.js'
+import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 
-const mockSend = jest.fn().mockImplementation(() => {
-  const filePath = path.resolve(
-    './src/server/check-answers/example-portrait.jpg'
-  )
-  const fileStream = createReadStream(filePath)
-  return Promise.resolve({
-    Body: fileStream
-  })
-})
+const testFile = 'test_file'
+const testFileBase64 = 'dGVzdF9maWxl'
 
-jest.mock('@aws-sdk/client-s3', () => {
-  const originalModule = jest.requireActual('@aws-sdk/client-s3')
-  return {
-    ...originalModule,
-    S3Client: jest.fn().mockImplementation(() => ({
-      destroy: jest.fn(),
-      send: mockSend
-    }))
-  }
-})
-
-jest.mock('./image-compression.js', () => ({
-  compress: jest.fn().mockResolvedValue({
-    file: Buffer.from('A STANDARD TEST BUFFER'),
-    start: 0,
-    end: 0,
-    duration: 0,
-    quality: 0,
-    manipulations: 0
-  })
+// Mock the handleUploadedFile function
+jest.mock('../common/helpers/file/file-utils.js', () => ({
+  handleUploadedFile: jest.fn().mockResolvedValue(Buffer.from(testFile))
 }))
-
-jest.mock('./pdf-compression.js', () => ({
-  compress: jest.fn().mockResolvedValue({
-    file: Buffer.from('%PDF-1.4\n...compressed'),
-    start: 0,
-    end: 0,
-    duration: 0,
-    reduction: 50,
-    size: 1000
-  })
-}))
+const mockHandleUploadedFile = /** @type {jest.Mock} */ (handleUploadedFile)
 
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
@@ -279,7 +244,7 @@ describe('#CheckAnswers', () => {
       expect.objectContaining({
         link_to_file: {
           confirm_email_before_download: true,
-          file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
+          file: testFileBase64,
           filename: 'Biosecurity-map.jpg',
           retention_period: '1 week'
         }
@@ -374,6 +339,72 @@ describe('#CheckAnswers', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
     expect(content).toMatchSnapshot('email-content-biosec-enabled')
+  })
+
+  it('should compress the file and send email in correct format for flag enabled', async () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+
+    await session.setState(
+      'origin',
+      validApplicationStateWithBioSecurity.origin
+    )
+    await session.setState(
+      'destination',
+      validApplicationStateWithBioSecurity.destination
+    )
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const [{ content }] = mockSendNotification.mock.calls[0]
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(content).toMatchSnapshot('email-content-biosec-enabled')
+    expect(handleUploadedFile).toHaveBeenCalledTimes(1)
+  })
+
+  it('should compress the file and return a 500 error if the file is too large', async () => {
+    spyOnConfig('featureFlags', { biosecurity: true })
+
+    await session.setState(
+      'origin',
+      validApplicationStateWithBioSecurity.origin
+    )
+    await session.setState(
+      'destination',
+      validApplicationStateWithBioSecurity.destination
+    )
+
+    mockHandleUploadedFile.mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.serverError)
   })
 })
 

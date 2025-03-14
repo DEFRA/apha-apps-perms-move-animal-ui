@@ -1,10 +1,23 @@
 import sharp from 'sharp'
+import {
+  fileSizeInBytes,
+  fileSizeReductionPercentage
+} from '~/src/server/common/helpers/file/size.js'
 
 const maxLongestEdge = 1920
 const maxShortestEdge = 1080
 const minimumThreshold = 0.95
+const defaultWidth = 1920
+const defaultHeight = 1080
 
-const resizeImage = (buffer, width, height) => {
+/**
+ * Resizes an image buffer to specified dimensions while maintaining aspect ratio.
+ * @param {Buffer} buffer - The image buffer to be resized.
+ * @param {number} width - The desired width of the resized image. Defaults to `defaultWidth`.
+ * @param {number} height - The desired height of the resized image. Defaults to `defaultHeight`.
+ * @returns {sharp.Sharp} - A Sharp instance representing the resized image.
+ */
+const resizeImage = (buffer, width = defaultWidth, height = defaultHeight) => {
   const compressed = sharp(buffer)
   if (width > height || width > maxLongestEdge) {
     compressed.resize({
@@ -72,10 +85,24 @@ export const compressToTargetSize = async (
   return { resizedBuffer }
 }
 
+/**
+ * Compresses an image buffer to a target file size
+ * @async
+ * @function
+ * @param {Buffer} buffer - The original image buffer to be compressed.
+ * @returns {Promise<object>} An object containing the compressed image and metadata:
+ * - `file` {Buffer}: The compressed image buffer.
+ * - `start` {number}: The timestamp when the compression started.
+ * - `end` {number}: The timestamp when the compression ended.
+ * - `duration` {number}: The duration of the compression process in milliseconds.
+ * - `originalSize` {number}: The size of the original image buffer in bytes.
+ * - `reduction` {number}: The percentage reduction in file size.
+ * - `size` {number}: The size of the compressed image buffer in bytes.
+ */
 export const compress = async (buffer) => {
   const originalSize = buffer.length
   const start = Date.now()
-  const targetFileSize = 2 * 1024 * 1024 // 2 MB in bytes
+  const targetFileSize = fileSizeInBytes(2)
   const lowerThreshold = targetFileSize * minimumThreshold
   const upperThreshold = targetFileSize
 
@@ -99,7 +126,7 @@ export const compress = async (buffer) => {
     end,
     duration: end - start,
     originalSize,
-    reduction: 100 - (finalBuffer.length / originalSize) * 100,
+    reduction: fileSizeReductionPercentage(originalSize, finalBuffer.length),
     size: finalBuffer.length
   }
 }
