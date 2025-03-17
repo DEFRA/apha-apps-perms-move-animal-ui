@@ -1,101 +1,122 @@
 import { handleUploadedFile } from './file-utils.js'
+import { compressPdf } from './pdf-compression.js'
+import { compress as compressImage } from './image-compression.js'
+import { config } from '~/src/config/config.js'
+import path from 'node:path'
+import { createReadStream } from 'node:fs'
 
-const mockChunk1 = Buffer.from('chunk1')
-const mockChunk2 = Buffer.from('chunk2')
-const fileStream = new ReadableStream({
-  start(controller) {
-    controller.enqueue(mockChunk1)
-    controller.enqueue(mockChunk2)
-    controller.close()
-  }
-})
+jest.mock('./pdf-compression.js')
+jest.mock('./image-compression.js')
+jest.mock('./size.js')
+jest.mock('@aws-sdk/client-s3')
+jest.mock('~/src/config/config.js')
 
 const mockS3Object = {
-  Body: fileStream
+  Body: createReadStream(
+    path.resolve('./src/server/common/helpers/file/example-portrait.jpg')
+  )
 }
 
+const pdfStream = createReadStream(
+  path.resolve('./src/server/common/helpers/file/example.pdf')
+)
+
 const mockS3ObjectPdf = {
-  ...mockS3Object,
+  Body: pdfStream,
   ContentType: 'application/pdf'
 }
 
+jest.mock('./pdf-compression.js', () => ({
+  compressPdf: jest.fn().mockResolvedValue({
+    file: Buffer.from('compressed-pdf'),
+    duration: 100,
+    reduction: 50
+  })
+}))
+jest.mock('./image-compression.js', () => ({
+  compress: jest.fn().mockResolvedValue({
+    file: Buffer.from('compressed-image'),
+    duration: 200,
+    reduction: 30
+  })
+}))
+jest.mock('./size.js', () => ({
+  fileSizeInMB: jest.fn().mockReturnValue(1.5)
+}))
+
+const mockUploadedFile = {
+  status: {
+    form: {
+      file: {
+        s3Key: 'mock-s3-key'
+      }
+    }
+  }
+}
+
 describe('handleUploadedFile', () => {
-  let mockReq, mockLogger, mockS3, mockCompressPdf, mockCompressImage
+  let mockReq, mockLogger
 
   beforeEach(() => {
-    mockLogger = { info: jest.fn() }
-    mockCompressPdf = jest.fn()
-    mockCompressImage = jest.fn()
+    mockReq = {
+      s3: {
+        send: jest.fn()
+      },
+      yar: {
+        get: jest.fn().mockReturnValue({
+          'upload-plan': {
+            status: {
+              form: {
+                file: {
+                  s3Key: 'test-key'
+                }
+              }
+            }
+          }
+        })
+      }
+    }
 
-    jest.mock('./pdf-compression.js', () => ({
-      compressPdf: mockCompressPdf
-    }))
-    jest.mock('./image-compression.js', () => ({
-      compress: mockCompressImage
-    }))
-    jest.mock('./size.js', () => ({
-      fileSizeInMB: jest.fn((size) => size / (1024 * 1024))
-    }))
-  })
+    mockLogger = {
+      info: jest.fn()
+    }
 
-  afterEach(() => {
-    jest.clearAllMocks()
-    jest.resetModules()
-  })
-
-  it('should compress a PDF file and log the details', async () => {
-    mockS3 = jest.fn().mockReturnValue(mockS3ObjectPdf)
-    mockReq = { s3: mockS3 }
-
-    const mockBuffer = Buffer.from('mock-pdf-content')
-    const mockCompressedFile = Buffer.from('compressed-pdf-content')
-    const mockDuration = 100
-    const mockReduction = 50
-
-    mockCompressPdf.mockResolvedValue({
-      file: mockCompressedFile,
-      duration: mockDuration,
-      reduction: mockReduction
+    config.get = jest.fn().mockReturnValue({
+      bucket: 'test-bucket'
     })
+  })
+
+  it('should handle PDF files and log compression details', async () => {
+    mockReq.s3.send.mockResolvedValue(mockS3ObjectPdf)
 
     const result = await handleUploadedFile(
       mockReq,
-      'mock/path/to/file.pdf',
+      mockUploadedFile,
       mockLogger
     )
 
-    expect(result).toBe(mockCompressedFile)
-    expect(mockCompressPdf).toHaveBeenCalledWith(mockBuffer)
+    expect(mockReq.s3.send).toHaveBeenCalled()
+    expect(compressPdf).toHaveBeenCalled()
     expect(mockLogger.info).toHaveBeenCalledWith(
-      `Image compression took ${mockDuration}ms at a reduction of ${mockReduction}% to ${mockCompressedFile.length / (1024 * 1024)} MB`
+      'Image compression took 100ms at a reduction of 50% to 1.5 MB'
     )
+    expect(result).toEqual(Buffer.from('compressed-pdf'))
   })
 
-  it('should compress an image file and log the details', async () => {
-    mockS3 = jest.fn().mockReturnValue(mockS3Object)
-    mockReq = { s3: mockS3 }
-
-    const mockBuffer = Buffer.from('mock-image-content')
-    const mockCompressedFile = Buffer.from('compressed-image-content')
-    const mockDuration = 200
-    const mockReduction = 30
-
-    mockCompressImage.mockResolvedValue({
-      file: mockCompressedFile,
-      duration: mockDuration,
-      reduction: mockReduction
-    })
+  it('should handle image files and log compression details', async () => {
+    mockReq.s3.send.mockResolvedValue(mockS3Object)
 
     const result = await handleUploadedFile(
       mockReq,
-      'mock/path/to/file.jpg',
+      mockUploadedFile,
       mockLogger
     )
 
-    expect(result).toBe(mockCompressedFile)
-    expect(mockCompressImage).toHaveBeenCalledWith(mockBuffer)
+    expect(mockReq.s3.send).toHaveBeenCalled()
+    expect(compressImage).toHaveBeenCalled()
     expect(mockLogger.info).toHaveBeenCalledWith(
-      `Image compression took ${mockDuration}ms at a reduction of ${mockReduction}% to ${mockCompressedFile.length / (1024 * 1024)} MB`
+      'Image compression took 200ms at a reduction of 30% to 1.5 MB'
     )
+    expect(result).toEqual(Buffer.from('compressed-image'))
   })
 })

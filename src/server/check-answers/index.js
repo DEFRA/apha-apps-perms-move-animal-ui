@@ -129,7 +129,7 @@ export class SubmitPageController extends QuestionPageController {
       await sendNotification(notifyProps)
 
       return Promise.resolve(super.handlePost(req, h)).finally(() => {
-        // req.yar.reset()
+        req.yar.reset()
       })
     }
 
