@@ -8,8 +8,7 @@ import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movem
 import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
-describe('Check your answers test - biosecurity', () => {
-  // eslint-disable-next-line no-undef
+describe('Check your answers test - biosecurity map', () => {
   before('Complete answers', async () => {
     await completeOriginTaskAnswersOnFarm()
     await completeDestinationTaskOnFarmForUnrestrictedOrigin()
@@ -17,13 +16,13 @@ describe('Check your answers test - biosecurity', () => {
     await biosecurityMapAnswersPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify the value and href of cattle row', async () => {
+  it('Should verify the value and href of biosecurity map row', async () => {
     await validateElementVisibleAndText(
-      biosecurityMapAnswersPage.biosecMapValue,
+      await biosecurityMapAnswersPage.getValue('biosecMap'),
       'Map uploaded'
     )
     await validateHrefOfElement(
-      biosecurityMapAnswersPage.biosecMapChangeLink,
+      await biosecurityMapAnswersPage.getChangeLink('biosecMap'),
       '/biosecurity-map/upload-plan?redirect_uri=/biosecurity-map/check-answers'
     )
   })

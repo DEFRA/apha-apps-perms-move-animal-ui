@@ -1,6 +1,6 @@
-import { browser, expect } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 
-import { waitForPagePath } from '../../helpers/page.js'
+import { verifySelectionPersistence } from '../../helpers/page.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
@@ -17,25 +17,19 @@ describe('Shared buildings page test', () => {
 
   it('Should select Yes, continue and check its maintained', async () => {
     await anySharedBuildingsPage.selectYesAndContinue(minimiseContaminationPage)
-
-    await minimiseContaminationPage.selectBackLink()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
-
-    await expect(anySharedBuildingsPage.yesRadio).toBeSelected()
+    await verifySelectionPersistence(
+      sharedEquipmentPage,
+      anySharedBuildingsPage,
+      anySharedBuildingsPage.yesRadio
+    )
   })
 
   it('Should choose No and check its maintained', async () => {
     await anySharedBuildingsPage.selectNoAndContinue(sharedEquipmentPage)
-
-    await sharedEquipmentPage.selectBackLink()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(anySharedBuildingsPage.pagePath)
-
-    await expect(anySharedBuildingsPage.noRadio).toBeSelected()
+    await verifySelectionPersistence(
+      sharedEquipmentPage,
+      anySharedBuildingsPage,
+      anySharedBuildingsPage.noRadio
+    )
   })
 })

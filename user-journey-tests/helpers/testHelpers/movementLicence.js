@@ -66,7 +66,7 @@ const completeOriginTask = async ({
   await waitForPagePath(checkAnswersPage.pagePath)
   await checkAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(
-    checkAnswersPage.parishNumberValue,
+    checkAnswersPage.getValue('parishNumber'),
     cphNumber
   )
 }

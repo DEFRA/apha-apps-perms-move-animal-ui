@@ -1,41 +1,34 @@
-import { browser, expect } from '@wdio/globals'
-
-import { waitForPagePath } from '../../helpers/page.js'
+import { browser } from '@wdio/globals'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 import equipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
 import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import { verifySelectionPersistence } from '../../helpers/page.js'
 
-describe('Shared buildings page test', () => {
+describe('Shared Equipment Page Test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
     await browser.reloadSession()
     await sharedEquipmentPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that the kept separately page errors when no option is selected', async () => {
+  it('Should display an error when no option is selected', async () => {
     await sharedEquipmentPage.radioErrorTest()
   })
 
-  it('Should select Yes, continue and check its maintained', async () => {
+  it('Should retain "Yes" selection after navigation and refresh', async () => {
     await sharedEquipmentPage.selectYesAndContinue(equipmentContaminationPage)
-
-    await equipmentContaminationPage.selectBackLink()
-    await waitForPagePath(sharedEquipmentPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(sharedEquipmentPage.pagePath)
-
-    await expect(sharedEquipmentPage.yesRadio).toBeSelected()
+    await verifySelectionPersistence(
+      equipmentContaminationPage,
+      sharedEquipmentPage,
+      sharedEquipmentPage.yesRadio
+    )
   })
 
-  it('Should choose No and check its maintained', async () => {
+  it('Should retain "No" selection after navigation and refresh', async () => {
     await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
-
-    await peopleDisinfectionPage.selectBackLink()
-    await waitForPagePath(sharedEquipmentPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(sharedEquipmentPage.pagePath)
-
-    await expect(sharedEquipmentPage.noRadio).toBeSelected()
+    await verifySelectionPersistence(
+      peopleDisinfectionPage,
+      sharedEquipmentPage,
+      sharedEquipmentPage.noRadio
+    )
   })
 })

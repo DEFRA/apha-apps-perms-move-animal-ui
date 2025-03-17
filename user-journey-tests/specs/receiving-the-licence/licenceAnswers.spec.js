@@ -39,8 +39,8 @@ describe('Check your licence answers test', () => {
   it('Should verify existing name and then changing it', async () => {
     await licenceAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustOwnerName(
-      licenceAnswersPage.changeNameLink,
-      licenceAnswersPage.nameValue,
+      licenceAnswersPage.getChangeLink('name'),
+      licenceAnswersPage.getValue('name'),
       firstNameDefault,
       newFirstName,
       lastNameDefault,
@@ -51,16 +51,16 @@ describe('Check your licence answers test', () => {
   it('Should verify the method to receive the licence', async () => {
     await licenceAnswersPage.navigateToPageAndVerifyTitle()
     validateReceiveMethod(
-      licenceAnswersPage.changeMethodLink,
-      licenceAnswersPage.receiveMethodValue
+      licenceAnswersPage.getChangeLink('receiveMethod'),
+      licenceAnswersPage.getValue('receiveMethod')
     )
   })
 
   it('Should verify the existing email and confirm resubmission', async () => {
     await licenceAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustEmail(
-      licenceAnswersPage.changeEmailLink,
-      licenceAnswersPage.emailValue,
+      licenceAnswersPage.getChangeLink('email'),
+      licenceAnswersPage.getValue('email'),
       emailDefault,
       editedEmail
     )
