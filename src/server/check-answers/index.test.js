@@ -311,15 +311,6 @@ describe('#CheckAnswers', () => {
   it('should send email in correct format for flag enabled', async () => {
     spyOnConfig('featureFlags', { biosecurity: true })
 
-    await session.setState(
-      'origin',
-      validApplicationStateWithBioSecurity.origin
-    )
-    await session.setState(
-      'destination',
-      validApplicationStateWithBioSecurity.destination
-    )
-
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -341,17 +332,8 @@ describe('#CheckAnswers', () => {
     expect(content).toMatchSnapshot('email-content-biosec-enabled')
   })
 
-  it('should compress the file and send email in correct format for flag enabled', async () => {
+  it('should handle the file and send email in correct format for flag enabled', async () => {
     spyOnConfig('featureFlags', { biosecurity: true })
-
-    await session.setState(
-      'origin',
-      validApplicationStateWithBioSecurity.origin
-    )
-    await session.setState(
-      'destination',
-      validApplicationStateWithBioSecurity.destination
-    )
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
@@ -374,15 +356,6 @@ describe('#CheckAnswers', () => {
 
   it('should compress the file and return a 500 error if the file is too large', async () => {
     spyOnConfig('featureFlags', { biosecurity: true })
-
-    await session.setState(
-      'origin',
-      validApplicationStateWithBioSecurity.origin
-    )
-    await session.setState(
-      'destination',
-      validApplicationStateWithBioSecurity.destination
-    )
 
     mockHandleUploadedFile.mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
 

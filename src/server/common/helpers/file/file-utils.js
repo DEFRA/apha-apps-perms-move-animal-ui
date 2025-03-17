@@ -9,7 +9,7 @@ import { config } from '~/src/config/config.js'
  * Compresses the file if it is a PDF or an image, logs the compression details,
  * and returns the processed file.
  * @param {object} req - The request object containing the S3 method to retrieve the file.
- * @param {object} uploadedFile - The path to the file in the S3 bucket.
+ * @param {object} uploadedFile - The file retrieved from the S3 bucket.
  * @param {object} logger - The logger instance used to log compression details.
  * @returns {Promise<Buffer>} - A promise that resolves to the compressed file buffer.
  */
