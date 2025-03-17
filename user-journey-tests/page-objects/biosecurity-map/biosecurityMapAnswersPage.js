@@ -1,4 +1,4 @@
-import { AnswersBasePage } from '../base-pages/answersBasePage'
+import { AnswersBasePage } from '../base-pages/answersBasePage.js'
 
 const pageHeadingAndTitle =
   'Check your answers before you continue your application'
