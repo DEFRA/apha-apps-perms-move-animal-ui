@@ -11,6 +11,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 const redirect = `?redirect_uri=/${biosecurityAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
+  // eslint-disable-next-line no-undef
   before('Complete answers', async () => {
     await completeOriginTaskAnswersOnFarm()
     await completeDestinationTaskOnFarmForUnrestrictedOrigin()

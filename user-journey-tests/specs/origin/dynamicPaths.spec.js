@@ -30,12 +30,6 @@ const questions = {
   addressImport: 'What is the address of the UK point of entry?'
 }
 
-/**
- * Verifies the change link and the corresponding question.
- * @param {string} field - The field name (e.g., 'parishNumber', 'address').
- * @param {string} expectedPath - The expected URL path.
- * @param {string} expectedQuestion - The expected question text.
- */
 const verifyChangeLinkAndQuestion = async (
   field,
   expectedPath,
@@ -52,6 +46,7 @@ const verifyChangeLinkAndQuestion = async (
 }
 
 describe('Check your answers test', () => {
+  // eslint-disable-next-line no-undef
   before('Navigate to check answers page', async () => {
     await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersCustom(

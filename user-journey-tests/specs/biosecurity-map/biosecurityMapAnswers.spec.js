@@ -9,6 +9,7 @@ import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosec
 import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Check your answers test - biosecurity map', () => {
+  // eslint-disable-next-line no-undef
   before('Complete answers', async () => {
     await completeOriginTaskAnswersOnFarm()
     await completeDestinationTaskOnFarmForUnrestrictedOrigin()
