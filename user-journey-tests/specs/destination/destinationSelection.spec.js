@@ -1,6 +1,9 @@
-import { browser, expect } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 
-import { waitForPagePath } from '../../helpers/page.js'
+import {
+  verifySelectionPersistence,
+  waitForPagePath
+} from '../../helpers/page.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
@@ -29,13 +32,11 @@ describe('Destination selection test', () => {
     await destinationSelectionPage.selectDedicatedSaleAndContinue(
       destinationAnswersPage
     )
-
-    await destinationAnswersPage.selectBackLink()
-
-    await browser.refresh()
-    await waitForPagePath(destinationSelectionPage.pagePath)
-
-    await expect(destinationSelectionPage.dedicatedSaleRadio).toBeSelected()
+    await verifySelectionPersistence(
+      destinationAnswersPage,
+      destinationSelectionPage,
+      destinationSelectionPage.dedicatedSaleRadio
+    )
   })
 
   it('Should choose approved finishing and continue', async () => {

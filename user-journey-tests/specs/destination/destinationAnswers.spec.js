@@ -14,7 +14,6 @@ import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 describe('Check your answers test - destination', () => {
-  // eslint-disable-next-line no-undef
   beforeEach('Navigate to check answers page', async () => {
     await browser.reloadSession()
     await completeOriginTaskAnswers()
@@ -24,34 +23,38 @@ describe('Check your answers test - destination', () => {
   it('Should verify slaughter answer and change link', async () => {
     await completeDestinationTask('slaughter')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Slaughter'
     )
 
-    await selectElement(destinationAnswersPage.changeDestinationLink)
+    await selectElement(
+      await destinationAnswersPage.getChangeLink('destinationType')
+    )
     await expect(destinationSelectionPage.slaughterRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
     await generalLicencePage.selectContinueLink()
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Slaughter'
     )
   })
 
-  it('Should verify dedicated sale for tb answer and change link', async () => {
+  it('Should verify dedicated sale for TB answer and change link', async () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Dedicated sale for TB (orange market)'
     )
 
-    await selectElement(destinationAnswersPage.changeDestinationLink)
+    await selectElement(
+      await destinationAnswersPage.getChangeLink('destinationType')
+    )
     await expect(destinationSelectionPage.dedicatedSaleRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Dedicated sale for TB (orange market)'
     )
   })
@@ -59,16 +62,18 @@ describe('Check your answers test - destination', () => {
   it('Should verify approved finishing unit answer and change link', async () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Approved finishing unit (AFU)'
     )
 
-    await selectElement(destinationAnswersPage.changeDestinationLink)
+    await selectElement(
+      await destinationAnswersPage.getChangeLink('destinationType')
+    )
     await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Approved finishing unit (AFU)'
     )
   })
@@ -76,7 +81,7 @@ describe('Check your answers test - destination', () => {
   it('Should verify continue link', async () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Approved finishing unit (AFU)'
     )
 
@@ -87,11 +92,13 @@ describe('Check your answers test - destination', () => {
   it('Should handle "Another destination" as an exit page & redirect users back to the preceding question', async () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
-      destinationAnswersPage.destinationValue,
+      await destinationAnswersPage.getValue('destinationType'),
       'Dedicated sale for TB (orange market)'
     )
 
-    await selectElement(destinationAnswersPage.changeDestinationLink)
+    await selectElement(
+      await destinationAnswersPage.getChangeLink('destinationType')
+    )
     await destinationSelectionPage.selectOtherDestinationAndContinue(
       contactTbRestrictedFarmExitPage
     )
@@ -99,7 +106,9 @@ describe('Check your answers test - destination', () => {
 
     await waitForPagePath(destinationSelectionPage.pagePath)
     await destinationSelectionPage.selectBackLink()
-    await waitForElement(destinationAnswersPage.destinationValue)
+    await waitForElement(
+      await destinationAnswersPage.getValue('destinationType')
+    )
     await browser.refresh()
 
     await waitForPagePath(destinationSelectionPage.pagePath)

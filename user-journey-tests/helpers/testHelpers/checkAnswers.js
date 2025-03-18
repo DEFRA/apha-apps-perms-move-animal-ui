@@ -122,7 +122,8 @@ export const validateAndAdjustAddress = async (
   })
 
   // Expected text must be kept to the left of the page to ensure accuracy in the check
-  const elementText = await checkAnswersPage.addressValue
+  const elementText = await checkAnswersPage
+    .getValue('address')
     .getHTML(false)
     .then((text) => text.replace(/<br\s*\/?>/g, '\n').trim())
   const expectedText = `${lineOne}

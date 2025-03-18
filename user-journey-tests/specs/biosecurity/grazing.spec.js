@@ -1,9 +1,8 @@
-import { browser, expect } from '@wdio/globals'
-
-import { waitForPagePath } from '../../helpers/page.js'
+import { browser } from '@wdio/globals'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
+import { verifySelectionPersistence } from '../../helpers/page.js'
 
 describe('Grazing selection test', () => {
   beforeEach('Reset browser state and navigate to page', async () => {
@@ -17,25 +16,19 @@ describe('Grazing selection test', () => {
 
   it('Should select Yes, continue and check its maintained', async () => {
     await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
-
-    await howFieldSeparatedPage.selectBackLink()
-    await waitForPagePath(grazingPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(grazingPage.pagePath)
-
-    await expect(grazingPage.yesRadio).toBeSelected()
+    await verifySelectionPersistence(
+      howFieldSeparatedPage,
+      grazingPage,
+      grazingPage.yesRadio
+    )
   })
 
   it('Should choose No and check its maintained', async () => {
     await grazingPage.selectNoAndContinue(manureDetailsPage)
-
-    await manureDetailsPage.selectBackLink()
-    await waitForPagePath(grazingPage.pagePath)
-
-    await browser.refresh()
-    await waitForPagePath(grazingPage.pagePath)
-
-    await expect(grazingPage.noRadio).toBeSelected()
+    await verifySelectionPersistence(
+      howFieldSeparatedPage,
+      grazingPage,
+      grazingPage.noRadio
+    )
   })
 })

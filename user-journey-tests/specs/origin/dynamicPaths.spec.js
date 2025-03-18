@@ -12,10 +12,38 @@ import {
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 
+const redirect = `?redirect_uri=/${checkAnswersPage.pagePath}`
+
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
 const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
+
+// Questions for validation
+const questions = {
+  parishFarm:
+    'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?',
+  parishImport:
+    'What is the County Parish Holding (CPH) number of the UK point of entry?',
+  addressFarm:
+    'What is the address of the farm or premises where the animals are moving off?',
+  addressImport: 'What is the address of the UK point of entry?'
+}
+
+const verifyChangeLinkAndQuestion = async (
+  field,
+  expectedPath,
+  expectedQuestion
+) => {
+  await validateHrefOfElement(
+    await checkAnswersPage.getChangeLink(field),
+    `${expectedPath}${redirect}`
+  )
+  await validateElementVisibleAndText(
+    await checkAnswersPage.getQuestion(field),
+    expectedQuestion
+  )
+}
 
 describe('Check your answers test', () => {
   // eslint-disable-next-line no-undef
@@ -32,56 +60,43 @@ describe('Check your answers test', () => {
   it('Should verify the existing radio selection and verify resubmission (moving on the farm)', async () => {
     await checkAnswersPage.navigateToPageAndVerifyTitle()
     await changeOnOffFarmAnswer(
-      checkAnswersPage.changeOnOrOffLink,
+      await checkAnswersPage.getChangeLink('onOffFarm'),
       'on',
-      checkAnswersPage.onOffFarmValue,
+      await checkAnswersPage.getValue('onOffFarm'),
       checkAnswersPage
     )
-    await validateHrefOfElement(
-      checkAnswersPage.changeParishNumberLink,
-      '/origin/origin-farm-cph?redirect_uri=/origin/check-answers'
-    )
-    await validateElementVisibleAndText(
-      checkAnswersPage.parishNumberQuestion,
-      'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?'
-    )
 
-    await validateHrefOfElement(
-      checkAnswersPage.changeAddressLink,
-      '/origin/origin-farm-address?redirect_uri=/origin/check-answers'
+    await verifyChangeLinkAndQuestion(
+      'parishNumber',
+      '/origin/origin-farm-cph',
+      questions.parishFarm
     )
-    await validateElementVisibleAndText(
-      checkAnswersPage.addressQuestion,
-      'What is the address of the farm or premises where the animals are moving off?'
+    await verifyChangeLinkAndQuestion(
+      'address',
+      '/origin/origin-farm-address',
+      questions.addressFarm
     )
   })
 
   it('Should verify the existing radio selection and verify resubmission (moving on the farm from import)', async () => {
     await checkAnswersPage.navigateToPageAndVerifyTitle()
     await changeOption(
-      checkAnswersPage.changeOriginTypeLink,
+      await checkAnswersPage.getChangeLink('originType'),
       originTypePage.selectAfterImportAndContinue.bind(originTypePage),
       originCountryPage
     )
 
     await originCountryPage.inputTextAndContinue('Algeria')
 
-    await validateHrefOfElement(
-      checkAnswersPage.changeParishNumberLink,
-      '/origin/import-cph?redirect_uri=/origin/check-answers'
+    await verifyChangeLinkAndQuestion(
+      'parishNumber',
+      '/origin/import-cph',
+      questions.parishImport
     )
-    await validateElementVisibleAndText(
-      checkAnswersPage.parishNumberQuestion,
-      'What is the County Parish Holding (CPH) number of the UK point of entry?'
-    )
-
-    await validateHrefOfElement(
-      checkAnswersPage.changeAddressLink,
-      '/origin/import-address?redirect_uri=/origin/check-answers'
-    )
-    await validateElementVisibleAndText(
-      checkAnswersPage.addressQuestion,
-      'What is the address of the UK point of entry?'
+    await verifyChangeLinkAndQuestion(
+      'address',
+      '/origin/import-address',
+      questions.addressImport
     )
   })
 })

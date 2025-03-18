@@ -17,7 +17,7 @@ describe('Check dynamic nature of flow - biosecurity', () => {
 
   it('Should verify the flow is dynamic to depending on answers', async () => {
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
-    await selectElement(biosecurityAnswersPage.changeIncomingCattleLink)
+    await selectElement(biosecurityAnswersPage.getChangeLink('incomingCattle'))
     await waitForPagePath(keptSeparatelyPage.pagePath)
     await keptSeparatelyPage.selectYesAndContinue(grazingPage)
   })

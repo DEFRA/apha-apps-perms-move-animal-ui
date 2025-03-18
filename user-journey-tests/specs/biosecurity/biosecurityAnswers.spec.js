@@ -8,6 +8,8 @@ import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movem
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
+const redirect = `?redirect_uri=/${biosecurityAnswersPage.pagePath}`
+
 describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
   before('Complete answers', async () => {
@@ -17,136 +19,80 @@ describe('Check your answers test - biosecurity', () => {
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify the value and href of cattle row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.incomingCattleValue,
-      'Yes'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeIncomingCattleLink,
-      '/biosecurity/kept-separately?redirect_uri=/biosecurity/check-answers'
-    )
-  })
+  const testCases = [
+    {
+      field: 'incomingCattle',
+      expectedValue: 'Yes',
+      expectedHref: `/biosecurity/kept-separately${redirect}`
+    },
+    {
+      field: 'grazing',
+      expectedValue: 'Yes',
+      expectedHref: `/biosecurity/grazing${redirect}`
+    },
+    {
+      field: 'separateGrazing',
+      expectedValue: 'Separate grazing',
+      expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
+    },
+    {
+      field: 'lastGrazed',
+      expectedValue: '2 years',
+      expectedHref: `/biosecurity/last-grazed${redirect}`
+    },
+    {
+      field: 'manureOrSlurry',
+      expectedValue: 'Yes',
+      expectedHref: `/biosecurity/manure-and-slurry${redirect}`
+    },
+    {
+      field: 'manureDetails',
+      expectedValue: 'Manure details',
+      expectedHref: `/biosecurity/manure-and-slurry-details${redirect}`
+    },
+    {
+      field: 'animalsHoused',
+      expectedValue: 'Yes',
+      expectedHref: `/biosecurity/buildings-any-shared${redirect}`
+    },
+    {
+      field: 'minimiseContamination',
+      expectedValue: 'Minimise',
+      expectedHref: `/biosecurity/buildings-how-minimise-contamination${redirect}`
+    },
+    {
+      field: 'peopleDisinfection',
+      expectedValue: 'People disinfection',
+      expectedHref: `/biosecurity/people-disinfection${redirect}`
+    },
+    {
+      field: 'whatDisinfectant',
+      expectedValue: 'Batman disinfectant',
+      expectedHref: `/biosecurity/disinfectant${redirect}`
+    },
+    {
+      field: 'dilution',
+      expectedValue: '1995',
+      expectedHref: `/biosecurity/disinfectant-dilution${redirect}`
+    },
+    {
+      field: 'wildlifeContamination',
+      expectedValue: 'Badger measures',
+      expectedHref: `/biosecurity/badgers${redirect}`
+    }
+  ]
 
-  it('Should verify the value and href of grazing row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.grazingValue,
-      'Yes'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeGrazingLink,
-      '/biosecurity/grazing?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of separated grazing row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.separateGrazingValue,
-      'Separate grazing'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeSeparateGrazingLink,
-      '/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of last grazed row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.lastGrazedValue,
-      '2 years'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeLastGrazedLink,
-      '/biosecurity/last-grazed?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of manure or slurry', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.manureOrSlurryValue,
-      'Yes'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeManureOrSlurryLink,
-      '/biosecurity/manure-and-slurry?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of manure or slurry details', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.manureDetailsValue,
-      'Manure details'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeManureDetails,
-      '/biosecurity/manure-and-slurry-details?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of shared buildings row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.sharedBuildingsValue,
-      'Yes'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.animalsHousedLink,
-      '/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of minimise contamination row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.minimiseContaminationValue,
-      'Minimise'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.minimiseContaminationLink,
-      '/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of people disinfection row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.peopleDisinfectionValue,
-      'People disinfection'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.peopleDisinfectionLink,
-      '/biosecurity/people-disinfection?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of what disinfectant row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.whatDisinfectantValue,
-      'Batman disinfectant'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.whatDisinfectantLink,
-      '/biosecurity/disinfectant?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of the dilution row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.dilutionValue,
-      '1995'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.changeDilutionLink,
-      '/biosecurity/disinfectant-dilution?redirect_uri=/biosecurity/check-answers'
-    )
-  })
-
-  it('Should verify the value and href of the wildlife row', async () => {
-    await validateElementVisibleAndText(
-      biosecurityAnswersPage.wildlifeContaminationValue,
-      'Badger measures'
-    )
-    await validateHrefOfElement(
-      biosecurityAnswersPage.wildlifeContaminationLink,
-      '/biosecurity/badgers?redirect_uri=/biosecurity/check-answers'
-    )
+  testCases.forEach(({ field, expectedValue, expectedHref }) => {
+    it(`Should verify the value and href of ${field} row`, async () => {
+      await validateElementVisibleAndText(
+        await biosecurityAnswersPage.getValue(field),
+        expectedValue
+      )
+      await validateHrefOfElement(
+        await biosecurityAnswersPage.getChangeLink(field),
+        expectedHref
+      )
+    })
   })
 
   it('Should verify continue takes you to task list', async () => {
