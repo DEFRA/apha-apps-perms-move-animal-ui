@@ -105,7 +105,7 @@ export class SubmitPageController extends QuestionPageController {
 
       if (
         config.get('featureFlags').biosecurity &&
-        application.tasks[biosecurityMapKey] !== undefined &&
+        application.tasks[biosecurityMapKey] &&
         req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
           'skipped'
       ) {
