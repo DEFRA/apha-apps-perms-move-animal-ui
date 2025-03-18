@@ -17,6 +17,8 @@ import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
  */
 
 const checkAnswersUrlPath = '/submit/check-answers'
+const biosecurityMapKey = 'biosecurity-map'
+const uploadPlanKey = 'upload-plan'
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -103,13 +105,13 @@ export class SubmitPageController extends QuestionPageController {
 
       if (
         config.get('featureFlags').biosecurity &&
-        application.tasks['biosecurity-map'] !== undefined &&
-        req.yar.get('biosecurity-map')['upload-plan'].status?.uploadStatus !==
+        application.tasks[biosecurityMapKey] !== undefined &&
+        req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
           'skipped'
       ) {
         const compressedFile = await handleUploadedFile(
           req,
-          req.yar.get('biosecurity-map')['upload-plan'],
+          req.yar.get(biosecurityMapKey)[uploadPlanKey],
           this.logger
         )
 
