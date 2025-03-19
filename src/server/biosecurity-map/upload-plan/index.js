@@ -1,16 +1,10 @@
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { config } from '~/src/config/config.js'
-import Wreck from '@hapi/wreck'
 import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
 import { StateManager } from '../../common/model/state/state-manager.js'
-
-/**
- * @import { BiosecurityMapData } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
- * @import { AnswerModel } from '../../common/model/answer/answer-model.js'
- */
+import { uploadFile } from '../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
@@ -29,8 +23,6 @@ export class UploadPlanPage extends QuestionPage {
 
 export class UploadPlanController extends QuestionPageController {
   async handleGet(req, h) {
-    const { bucket, uploaderUrl, path } = config.get('fileUpload')
-
     const applicationState = new StateManager(req).toState()
     const sectionState = req.yar.get(this.page.sectionKey)
 
@@ -45,21 +37,7 @@ export class UploadPlanController extends QuestionPageController {
     const initialState = sectionState?.[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validateProcessing()
 
-    const mimeTypes = ['image/png', 'image/jpeg']
-
-    if (config.get('featureFlags').pdfUpload) {
-      mimeTypes.push('application/pdf')
-    }
-
-    const response = await Wreck.post(`${uploaderUrl}/initiate`, {
-      payload: JSON.stringify({
-        redirect: this.page.nextPage(req).urlPath,
-        s3Bucket: bucket,
-        s3Path: path,
-        mimeTypes,
-        maxFileSize: 1024 * 1024 * 10
-      })
-    })
+    const response = await uploadFile(this.page.nextPage(req).urlPath)
 
     const data = JSON.parse(response.payload.toString())
 
@@ -92,7 +70,8 @@ export class UploadPlanController extends QuestionPageController {
       return super.handleGet(req, h, {
         upload: answer.value,
         errorMessages: this.page.Answer.errorMessages(validationErrors),
-        errors: validationErrors
+        errors: validationErrors,
+        pageTitle: `Error: ${this.page.title}`
       })
     }
 
