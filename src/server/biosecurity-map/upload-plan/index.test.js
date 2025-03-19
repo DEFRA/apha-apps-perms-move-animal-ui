@@ -5,6 +5,7 @@ import Wreck from '@hapi/wreck'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { UploadPlanPage } from './index.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 const page = new UploadPlanPage()
 
@@ -39,6 +40,10 @@ describe('#UploadPlan', () => {
   })
 
   it('should render expected response and content', async () => {
+    spyOnConfig('fileUpload', {
+      bucket: 'apha',
+      path: 'biosecurity-map'
+    })
     const response = await server.inject({
       method: 'GET',
       url: '/biosecurity-map/upload-plan'
@@ -52,7 +57,7 @@ describe('#UploadPlan', () => {
         s3Bucket: 'apha',
         s3Path: 'biosecurity-map',
         mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
-        maxFileSize: 10_1000_1000
+        maxFileSize: 10485760
       })
     })
   })
