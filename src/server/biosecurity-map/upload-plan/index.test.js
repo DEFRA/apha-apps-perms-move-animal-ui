@@ -12,7 +12,7 @@ const page = new UploadPlanPage()
  * @import { IncomingMessage } from 'node:http'
  */
 
-jest.spyOn(Wreck, 'post').mockResolvedValue({
+const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
   res: /** @type {IncomingMessage} */ ({
     statusCode: statusCodes.ok
   }),
@@ -45,6 +45,16 @@ describe('#UploadPlan', () => {
     })
 
     expect(response.statusCode).toBe(statusCodes.ok)
+
+    expect(wreckSpy).toHaveBeenCalledWith(expect.any(String), {
+      payload: JSON.stringify({
+        redirect: page.nextPage().urlPath,
+        s3Bucket: 'apha',
+        s3Path: 'biosecurity-map',
+        mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
+        maxFileSize: 10_1000_1000
+      })
+    })
   })
 
   describe('#errors', () => {
