@@ -12,6 +12,7 @@ import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { ApplicationModel } from './common/model/application/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
+import { a11n } from './auth/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -39,7 +40,8 @@ export const router = {
           taskList,
           taskListIncomplete,
           submit,
-          submitSummary
+          submitSummary,
+          a11n
         ]),
 
         // Add routes for the visible sections in the application

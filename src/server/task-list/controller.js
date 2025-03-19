@@ -10,6 +10,12 @@ const buttonText = 'Review and submit'
  * @satisfies {Partial<ServerRoute>}
  */
 export const taskListGetController = {
+  options: {
+    auth: {
+      mode: 'required',
+      strategy: 'defra-id'
+    }
+  },
   handler(req, h) {
     const visibleSections = Object.values(
       ApplicationModel.fromState(new StateManager(req).toState()).tasks
