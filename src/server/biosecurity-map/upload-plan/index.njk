@@ -10,15 +10,20 @@
   </div>
 {% endblock %}
 {% block form %}
-  <form method="POST" action="{{ upload.metadata.uploadUrl }}" novalidate enctype="multipart/form-data">
+  <form
+    method="POST"
+    action="{{ upload.metadata.uploadUrl }}"
+    novalidate
+    enctype="multipart/form-data"
+  >
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <input type="hidden" name="crumb" value="{{ crumb }}"/>
-        <input type="hidden" name="nextPage" value="{{ nextPage }}"/>
+        <input type="hidden" name="crumb" value="{{ crumb }}" />
+        <input type="hidden" name="nextPage" value="{{ nextPage }}" />
         <p>You need to upload a map of the farm or premises.</p>
         <p>
-          We prefer a clear and detailed map, such as a Google map with annotations or a pre-prepared map from an agent or
-          surveyor.
+          We prefer a clear and detailed map, such as a Google map with
+          annotations or a pre-prepared map from an agent or surveyor.
         </p>
         <p>It needs to include:</p>
         <ul class="govuk-body govuk-list--bullet">
@@ -26,11 +31,11 @@
           <li>location of the resident cattle and neighbouring cattle</li>
           <li>
             minimum distances between the incoming cattle and any resident and
-                                    neighbouring cattle
+            neighbouring cattle
           </li>
           <li>
             movements of the cattle, including where they will graze, be milked,
-                                    and be loaded
+            and be loaded
           </li>
           <li>location of handling facility</li>
           <li>location of manure or slurry storage</li>
@@ -38,7 +43,8 @@
             location of biosecurity points, including badger proof fencing
           </li>
         </ul>
-        {{ govukFileUpload
+        {{
+          govukFileUpload
           ({
               id: "status.form.file",
               name: "file",
@@ -49,28 +55,36 @@
               attributes: {
                 "data-testid": "file-biosecuritymap-upload"
               }
-          }) }}
+          })
+        }}
       </div>
     </div>
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         {% block button %}
-          {{ govukButton({
+          {{
+            govukButton({
               id: "continue-button",
               text: continueButtonText | default('Continue'),
               classes: continueButtonClasses | default('')
-            }) }}
+            })
+          }}
         {% endblock %}
       </div>
     </div>
   </form>
-  {{ appUploadSpinner({
+  {{
+    appUploadSpinner({
       title: "Uploading the biosecurity map",
       subTitle: "This may take a few minutes.",
       formPage: true
-    }) }}
+    })
+  }}
 {% endblock %}
 {% block bodyEnd %}
   {{ super() }}
-  <script type="module" src="{{ getAssetPath('javascripts/file-upload-spinner.js') }}"></script>
+  <script
+    type="module"
+    src="{{ getAssetPath('javascripts/file-upload-spinner.js') }}"
+  ></script>
 {% endblock %}
