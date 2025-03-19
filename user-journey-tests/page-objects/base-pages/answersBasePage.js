@@ -1,8 +1,4 @@
 import { Page } from '../page.js'
-import {
-  valueElementFromChangeLink,
-  keyElementFromChangeLink
-} from '../../helpers/page.js'
 
 class AnswersBasePage extends Page {
   constructor(changeLinks) {
@@ -10,16 +6,22 @@ class AnswersBasePage extends Page {
     this.changeLinks = changeLinks
   }
 
+  keyElementFromChangeLink = (element) =>
+    element.parentElement().parentElement().$('.govuk-summary-list__key')
+
+  valueElementFromChangeLink = (element) =>
+    element.parentElement().parentElement().$('.govuk-summary-list__value')
+
   getChangeLink(key) {
     return $(this.changeLinks[key])
   }
 
   getValue(key) {
-    return valueElementFromChangeLink(this.getChangeLink(key))
+    return this.valueElementFromChangeLink(this.getChangeLink(key))
   }
 
   getQuestion(key) {
-    return keyElementFromChangeLink(this.getChangeLink(key))
+    return this.keyElementFromChangeLink(this.getChangeLink(key))
   }
 }
 
