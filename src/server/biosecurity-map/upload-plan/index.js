@@ -57,7 +57,7 @@ export class UploadPlanController extends QuestionPageController {
         s3Bucket: bucket,
         s3Path: path,
         mimeTypes,
-        maxFileSize: 10_1000_1000
+        maxFileSize: 1024 * 1024 * 10
       })
     })
 
