@@ -8,8 +8,8 @@ import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
 import { fileSizeInMB } from '../common/helpers/file/size.js'
-import { statusCodes } from '../common/constants/status-codes.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
+import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -17,6 +17,8 @@ import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
  */
 
 const checkAnswersUrlPath = '/submit/check-answers'
+const biosecurityMapKey = 'biosecurity-map'
+const uploadPlanKey = 'upload-plan'
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -103,17 +105,19 @@ export class SubmitPageController extends QuestionPageController {
 
       if (
         config.get('featureFlags').biosecurity &&
-        application.tasks['biosecurity-map'] !== undefined
+        application.tasks[biosecurityMapKey] &&
+        req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
+          'skipped'
       ) {
         const compressedFile = await handleUploadedFile(
           req,
-          req.yar.get('biosecurity-map')['upload-plan'],
+          req.yar.get(biosecurityMapKey)[uploadPlanKey],
           this.logger
         )
 
         // Error if the file after compression is still too large
         if (fileSizeInMB(compressedFile.length) > 2) {
-          return h.view(submitSummaryPage.view).code(statusCodes.serverError)
+          return h.redirect(sizeErrorPage.urlPath)
         }
 
         const { fileRetention, confirmDownloadConfirmation } =

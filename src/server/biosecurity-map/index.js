@@ -1,6 +1,7 @@
 import { uploadPlan } from './upload-plan/index.js'
 import { uploadProgress } from './upload-progress/index.js'
 import { biosecurityPlanSummary } from './check-answers/index.js'
+import { sizeError } from './size-error/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -12,7 +13,8 @@ export const biosecurityPlan = {
       await server.register([
         uploadPlan,
         uploadProgress,
-        biosecurityPlanSummary
+        biosecurityPlanSummary,
+        sizeError
       ])
     }
   }

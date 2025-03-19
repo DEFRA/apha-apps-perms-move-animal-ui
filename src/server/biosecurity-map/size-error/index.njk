@@ -1,0 +1,22 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          You must email your biosecurity map to csc.tblicensing@apha.gov.uk
+        </p>
+        <p>In your email include your County Parish Holding (CPH) number.</p>
+        <p>
+          Your application cannot be processed until we receive your biosecurity
+          map.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block questions %}
+{% endblock %}

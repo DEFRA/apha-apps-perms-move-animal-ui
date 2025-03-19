@@ -1,5 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`#CheckAnswers Biosecurity flag enabled should not handle the file and send email in correct format for flag enabled if the file status is already "skipped": email-content-biosec-enabled 1`] = `
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+# Movement destination
+
+---
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the maximum number of animals you are planning to move?
+1
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+# Receiving the licence
+
+---
+## Who will be the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+# Biosecurity details
+
+---
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How will you separate the incoming cattle from the resident herd?
+some details
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle be housed?
+Yes
+## How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
+somehow
+## Will the incoming cattle share any equipment and machinery with the resident herd?
+Yes
+## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+# Biosecurity map
+
+---
+## Upload a biosecurity map
+Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant."
+`;
+
+exports[`#CheckAnswers Biosecurity flag enabled should send email in correct format for flag enabled: email-content-biosec-enabled 1`] = `
+"# Movement origin
+
+---
+## Are you moving the animals on or off your farm or premises?
+On to the farm or premises
+## What type of premises are the animals moving off?
+Market
+# Movement destination
+
+---
+## Where are the animals going to?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+12/345/6789
+## What is the address of the farm or premises where the animals are going to?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
+## What is the maximum number of animals you are planning to move?
+1
+## What is the reason for the movement?
+Routine restocking
+## Will you move more than 75 animals?
+No
+## Will the number of cattle be larger than half of the destination herd size?
+Yes
+# Receiving the licence
+
+---
+## Who will be the registered owner of the cattle?
+Kathryn Janeway
+## How would you like this licence sent to you?
+Email
+## What email address would you like the licence sent to?
+kathryn@starfleet.com
+# Biosecurity details
+
+---
+## Will you separate the incoming cattle from the resident herd?
+Yes
+## Will the incoming cattle be grazed?
+Yes
+## How will you separate the incoming cattle from the resident herd?
+some details
+## How long ago was the field last grazed by cattle?
+yesterday
+## Has any manure or slurry been put on the grazing field in the past 60 days?
+Yes
+## How will you manage manure and slurry?
+some manure details
+## Will the incoming cattle be housed?
+Yes
+## How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
+somehow
+## Will the incoming cattle share any equipment and machinery with the resident herd?
+Yes
+## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
+somehow
+## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+ppe
+## What disinfectant are you using?
+some disinfectant
+## What dilution rate are you using for your disinfectant?
+15
+## How will you reduce the risk of infection from badgers and wildlife?
+some text
+# Biosecurity map
+
+---
+## Upload a biosecurity map
+"
+`;
+
 exports[`#CheckAnswers Should provide expected response 1`] = `
 "
   <div class="govuk-grid-row">
@@ -596,80 +744,6 @@ some text
 `;
 
 exports[`#CheckAnswers should error if email fails ot send for whatever reason: email-content 1`] = `
-"# Movement origin
-
----
-## Are you moving the animals on or off your farm or premises?
-On to the farm or premises
-## What type of premises are the animals moving off?
-Market
-# Movement destination
-
----
-## Where are the animals going to?
-TB restricted farm
-## What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
-12/345/6789
-## What is the address of the farm or premises where the animals are going to?
-Starfleet Headquarters
-San Francisco
-RG24 8RR
-## What is the maximum number of animals you are planning to move?
-1
-## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
-# Receiving the licence
-
----
-## Who will be the registered owner of the cattle?
-Kathryn Janeway
-## How would you like this licence sent to you?
-Email
-## What email address would you like the licence sent to?
-kathryn@starfleet.com
-# Biosecurity details
-
----
-## Will you separate the incoming cattle from the resident herd?
-Yes
-## Will the incoming cattle be grazed?
-Yes
-## How will you separate the incoming cattle from the resident herd?
-some details
-## How long ago was the field last grazed by cattle?
-yesterday
-## Has any manure or slurry been put on the grazing field in the past 60 days?
-Yes
-## How will you manage manure and slurry?
-some manure details
-## Will the incoming cattle be housed?
-Yes
-## How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
-somehow
-## Will the incoming cattle share any equipment and machinery with the resident herd?
-Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
-## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
-ppe
-## What disinfectant are you using?
-some disinfectant
-## What dilution rate are you using for your disinfectant?
-15
-## How will you reduce the risk of infection from badgers and wildlife?
-some text
-# Biosecurity map
-
----
-## Upload a biosecurity map
-"
-`;
-
-exports[`#CheckAnswers should send email in correct format for flag enabled: email-content-biosec-enabled 1`] = `
 "# Movement origin
 
 ---

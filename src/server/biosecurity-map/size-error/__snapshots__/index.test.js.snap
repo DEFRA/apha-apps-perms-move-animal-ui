@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#SizeErrorPage SizeErrorPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">There was a problem uploading your biosecurity map</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          You must email your biosecurity map to csc.tblicensing@apha.gov.uk
+        </p>
+        <p>In your email include your County Parish Holding (CPH) number.</p>
+        <p>
+          Your application cannot be processed until we receive your biosecurity
+          map.
+        </p>
+      </div>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
