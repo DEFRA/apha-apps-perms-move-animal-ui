@@ -56,8 +56,8 @@ describe('Check your final answers test', () => {
   it('Should verify the existing on off farm selection from submission page', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnOffFarm(
-      finalAnswersPage.onOffFarmChange,
-      finalAnswersPage.onOffFarmValue,
+      finalAnswersPage.getChangeLink('onOffFarm'),
+      finalAnswersPage.getValue('onOffFarm'),
       finalAnswersPage
     )
   })
@@ -65,8 +65,8 @@ describe('Check your final answers test', () => {
   it('Should verify the existing origin type selection from submission page', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateOriginType(
-      finalAnswersPage.originTypeChange,
-      finalAnswersPage.originTypeValue,
+      finalAnswersPage.getChangeLink('originType'),
+      finalAnswersPage.getValue('originType'),
       finalAnswersPage
     )
   })
@@ -74,8 +74,8 @@ describe('Check your final answers test', () => {
   it('Should verify the existing cph number then verify changing the cph number from submission page', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustParishNumber(
-      finalAnswersPage.parishHoldingChange,
-      finalAnswersPage.parishNumberValue,
+      finalAnswersPage.getChangeLink('originParishNumber'),
+      finalAnswersPage.getValue('originParishNumber'),
       originDefaultObject.defaultCphNumber,
       parishHoldingInput,
       finalAnswersPage
@@ -85,8 +85,8 @@ describe('Check your final answers test', () => {
   it('Should verify the existing data then verify changing the address', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustAddress(
-      finalAnswersPage.addressChange,
-      finalAnswersPage.addressValue,
+      finalAnswersPage.getChangeLink('originAddress'),
+      finalAnswersPage.getValue('originAddress'),
       {
         lineOne: originDefaultObject.defaultLineOne,
         townOrCity: originDefaultObject.defaultTownOrCity,
@@ -99,8 +99,8 @@ describe('Check your final answers test', () => {
   it('Should verify existing name and then changing it', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustOwnerName(
-      finalAnswersPage.ownerNameChange,
-      finalAnswersPage.ownerNameValue,
+      finalAnswersPage.getChangeLink('ownerName'),
+      finalAnswersPage.getValue('ownerName'),
       licenceDefaultObject.firstNameDefault,
       newFirstName,
       licenceDefaultObject.lastNameDefault,
@@ -108,28 +108,28 @@ describe('Check your final answers test', () => {
     )
   })
 
-  it('Should verify the existing email and confirm resubmission', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    await validateAndAdjustEmail(
-      finalAnswersPage.emailChange,
-      finalAnswersPage.emailValue,
-      licenceDefaultObject.emailDefault,
-      editedEmail
-    )
-  })
-
   it('Should verify the method to receive the licence', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     validateReceiveMethod(
-      finalAnswersPage.receiveMethodChange,
-      finalAnswersPage.receiveMethodValue
+      finalAnswersPage.getChangeLink('receiveMethod'),
+      finalAnswersPage.getValue('receiveMethod')
+    )
+  })
+
+  it('Should verify the existing email and confirm resubmission', async () => {
+    await finalAnswersPage.navigateToPageAndVerifyTitle()
+    await validateAndAdjustEmail(
+      finalAnswersPage.getChangeLink('email'),
+      finalAnswersPage.getValue('email'),
+      licenceDefaultObject.emailDefault,
+      editedEmail
     )
   })
 
   it('Should go via the general licence page if the destination type is changed to "slaughter", and end up on task-list incomplete', async () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
 
-    await selectElement(finalAnswersPage.movementDestinationChange)
+    await selectElement(finalAnswersPage.getChangeLink('destinationType'))
 
     await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
 
