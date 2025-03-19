@@ -1,6 +1,7 @@
-import { uploadFile } from './cdp-uploader.js'
+import { checkStatus, uploadFile } from './cdp-uploader.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
+import { spyOnConfig } from '../../test-helpers/config.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -107,5 +108,38 @@ describe('uploadFile', () => {
         })
       })
     })
+  })
+})
+
+describe('checkStatus', () => {
+  beforeEach(() => {
+    spyOnConfig('fileUpload', mockUploadConfig)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should call Wreck.get with the correct URL', async () => {
+    const wreckSpy = jest.spyOn(Wreck, 'get').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({ status: 'success' })
+    })
+
+    await checkStatus(mockUploadId)
+
+    expect(wreckSpy).toHaveBeenCalledWith(
+      `${mockUploaderUrl}/status/${mockUploadId}`
+    )
+  })
+
+  it('should throw an error if Wreck.get fails', async () => {
+    const mockError = new Error('get failed')
+
+    jest.spyOn(Wreck, 'get').mockRejectedValue(mockError)
+
+    await expect(checkStatus(mockUploadId)).rejects.toThrow('get failed')
   })
 })
