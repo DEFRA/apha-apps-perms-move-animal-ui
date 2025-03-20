@@ -37,7 +37,11 @@ const defraId = {
           useParamsAuth: true,
           auth: oidcConf.authorization_endpoint,
           token: oidcConf.token_endpoint,
-          scope: ['openid', 'offline_access'],
+          scope: [
+            'openid',
+            'offline_access',
+            config.get('auth').defraIdClientId
+          ],
           profile: (credentials, params) => {
             const payload = jwt.token.decode(credentials.token).decoded.payload
             const displayName = [payload.firstName, payload.lastName]
