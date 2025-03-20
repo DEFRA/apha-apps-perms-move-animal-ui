@@ -5,7 +5,7 @@ import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { UploadPlanPage } from './index.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { spyOnConfig } from '../../common/test-helpers/config.js'
-import { uploadFile } from '../../common/connectors/file-upload/cdp-uploader.js'
+import { initiateFileUpload } from '../../common/connectors/file-upload/cdp-uploader.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -24,7 +24,7 @@ const invalidMimeTypeMessage =
   'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
 
 jest.mock('../../common/connectors/file-upload/cdp-uploader.js', () => ({
-  uploadFile: jest.fn().mockResolvedValue({
+  initiateFileUpload: jest.fn().mockResolvedValue({
     res: /** @type {IncomingMessage} */ ({
       statusCode: 200
     }),
@@ -35,7 +35,7 @@ jest.mock('../../common/connectors/file-upload/cdp-uploader.js', () => ({
     })
   })
 }))
-const mockUploadFile = /** @type {jest.Mock} */ (uploadFile)
+const mockInitiateFileUpload = /** @type {jest.Mock} */ (initiateFileUpload)
 
 describe('#UploadPlan', () => {
   describePageSnapshot({
@@ -67,7 +67,7 @@ describe('#UploadPlan', () => {
 
     expect(response.statusCode).toBe(statusCodes.ok)
 
-    expect(mockUploadFile).toHaveBeenCalledWith(uploadStatusUrl)
+    expect(mockInitiateFileUpload).toHaveBeenCalledWith(uploadStatusUrl)
   })
 
   describe('#errors', () => {

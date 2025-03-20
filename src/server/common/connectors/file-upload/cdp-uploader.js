@@ -7,7 +7,7 @@ export async function checkStatus(uploadId) {
   return Wreck.get(`${uploaderUrl}/status/${uploadId}`)
 }
 
-export async function uploadFile(redirectUrl) {
+export async function initiateFileUpload(redirectUrl) {
   const { bucket, uploaderUrl, path } = config.get('fileUpload')
 
   const mimeTypes = ['image/png', 'image/jpeg']

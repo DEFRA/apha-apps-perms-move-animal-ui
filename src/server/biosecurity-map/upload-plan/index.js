@@ -4,7 +4,7 @@ import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
 import { StateManager } from '../../common/model/state/state-manager.js'
-import { uploadFile } from '../../common/connectors/file-upload/cdp-uploader.js'
+import { initiateFileUpload } from '../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
@@ -37,7 +37,7 @@ export class UploadPlanController extends QuestionPageController {
     const initialState = sectionState?.[this.page.questionKey]
     const { isValid, errors } = existingAnswer.validateProcessing()
 
-    const response = await uploadFile(this.page.nextPage(req).urlPath)
+    const response = await initiateFileUpload(this.page.nextPage(req).urlPath)
 
     const data = JSON.parse(response.payload.toString())
 

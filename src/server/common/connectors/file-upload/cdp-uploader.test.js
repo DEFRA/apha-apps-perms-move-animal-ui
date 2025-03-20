@@ -1,4 +1,4 @@
-import { checkStatus, uploadFile } from './cdp-uploader.js'
+import { checkStatus, initiateFileUpload } from './cdp-uploader.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
@@ -25,21 +25,21 @@ const mockUploadConfig = {
   path: mockPath
 }
 
-describe('uploadFile', () => {
+describe('initiateFileUpload', () => {
   beforeEach(() => {
-    config.get = jest.fn().mockImplementation((key) => {
+    jest.spyOn(config, 'get').mockImplementation((key) => {
       if (key === 'fileUpload') {
         return mockUploadConfig
       }
       if (key === 'featureFlags') {
         return { pdfUpload: false }
+      } else {
+        return config.get.bind(config)
       }
     })
   })
 
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
+  afterEach(jest.restoreAllMocks)
 
   it('should call Wreck.post with the correct payload and URL', async () => {
     const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
@@ -53,7 +53,7 @@ describe('uploadFile', () => {
       })
     })
 
-    await uploadFile(mockRedirectUrl)
+    await initiateFileUpload(mockRedirectUrl)
 
     expect(wreckSpy).toHaveBeenCalledWith(`${mockUploaderUrl}/initiate`, {
       payload: JSON.stringify({
@@ -71,17 +71,21 @@ describe('uploadFile', () => {
 
     jest.spyOn(Wreck, 'post').mockRejectedValue(mockError)
 
-    await expect(uploadFile(mockRedirectUrl)).rejects.toThrow('post failed')
+    await expect(initiateFileUpload(mockRedirectUrl)).rejects.toThrow(
+      'post failed'
+    )
   })
 
   describe('when pdfUpload feature flag is enabled', () => {
     it('should include application/pdf in mimeTypes if pdfUpload feature flag is enabled', async () => {
-      config.get = jest.fn().mockImplementation((key) => {
+      jest.spyOn(config, 'get').mockImplementation((key) => {
         if (key === 'fileUpload') {
           return mockUploadConfig
         }
         if (key === 'featureFlags') {
           return { pdfUpload: true }
+        } else {
+          return config.get.bind(config)
         }
       })
 
@@ -96,7 +100,7 @@ describe('uploadFile', () => {
         })
       })
 
-      await uploadFile(mockRedirectUrl)
+      await initiateFileUpload(mockRedirectUrl)
 
       expect(wreckSpy).toHaveBeenCalledWith(`${mockUploaderUrl}/initiate`, {
         payload: JSON.stringify({
@@ -116,9 +120,7 @@ describe('checkStatus', () => {
     spyOnConfig('fileUpload', mockUploadConfig)
   })
 
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
+  afterEach(jest.restoreAllMocks)
 
   it('should call Wreck.get with the correct URL', async () => {
     const wreckSpy = jest.spyOn(Wreck, 'get').mockResolvedValue({
