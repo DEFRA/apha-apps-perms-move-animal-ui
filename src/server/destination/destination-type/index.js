@@ -1,7 +1,6 @@
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { anotherDestinationPage } from '~/src/server/destination/another-destination/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
@@ -48,7 +47,7 @@ export class DestinationTypePage extends QuestionPage {
     } else if (context.origin?.onOffFarm === 'on') {
       return destinationFarmCphPage
     } else {
-      return offFarmNextPageMapping[answer.value] ?? anotherDestinationPage
+      return offFarmNextPageMapping[answer.value]
     }
   }
 
