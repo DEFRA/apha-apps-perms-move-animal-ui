@@ -12,7 +12,7 @@ class BiosecurityMapUploadPage extends Page {
   pageTitle = pageHeadingAndTitle
   noInputError = 'You need to upload your biosecurity map'
   wrongFileTypeError =
-    'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
+    'The selected file must be a PNG, JPEG or PDF'
 
   get fileInput() {
     return $('[data-testid="file-biosecuritymap-upload"]')
@@ -23,7 +23,7 @@ class BiosecurityMapUploadPage extends Page {
   }
 
   inputFieldError() {
-    return super.getErrorElement(pageId)
+    return $('[id="status.form.file-error"]')
   }
 
   summaryErrorLink() {
@@ -44,13 +44,13 @@ class BiosecurityMapUploadPage extends Page {
     await super.selectContinue()
   }
 
-  async uploadFileErrorTest(fileName) {
+  async uploadFileErrorTest(fileName, errorText = this.noInputError) {
     if (fileName) {
       this.uploadFileAndContinue(fileName)
     } else {
       await super.selectContinue()
     }
-    await super.verifyErrorsOnPage(this.inputFieldError(), this.noInputError)
+    await super.verifyErrorsOnPage(this.inputFieldError(), errorText)
     await super.verifySummaryErrorLink(this.summaryErrorLink(), this.fileInput)
   }
 }

@@ -8,13 +8,14 @@ describe('Biosecurity map upload test', () => {
     await mapUploadPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that the page errors when no input is given', () => {
-    mapUploadPage.uploadFileErrorTest()
+  it('Should verify that the page errors when no input is given', async () => {
+    await mapUploadPage.uploadFileErrorTest()
   })
 
-  it('Should verify that the page errors when no input is given', () => {
-    mapUploadPage.uploadFileErrorTest(
-      'user-journey-tests/page-objects/biosecurity-map/testFile.txt'
+  it('Should verify that the page errors when no input is given', async () => {
+    await mapUploadPage.uploadFileErrorTest(
+      'user-journey-tests/page-objects/biosecurity-map/testFile.txt',
+      mapUploadPage.wrongFileTypeError
     )
   })
 
