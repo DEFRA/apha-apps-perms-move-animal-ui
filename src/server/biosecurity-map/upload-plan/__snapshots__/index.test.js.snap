@@ -7,7 +7,7 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
       <h1 class="govuk-heading-l">Upload a biosecurity map</h1>
     </div>
   </div>
-  <form method="POST" action="/upload-and-scan/b18ceadb-afb1-4955-a70b-256bf94444d5" novalidate="" enctype="multipart/form-data">
+  <form method="POST" action="test-upload-url" novalidate="" enctype="multipart/form-data">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="csrf-value">
