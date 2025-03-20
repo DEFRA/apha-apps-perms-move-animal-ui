@@ -1,8 +1,10 @@
 import { Page } from '../page.js'
-import {
-  valueElementFromChangeLink,
-  keyElementFromChangeLink
-} from '../../helpers/page.js'
+
+const keyElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__key')
+
+const valueElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__value')
 
 class AnswersBasePage extends Page {
   constructor(changeLinks) {
