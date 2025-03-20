@@ -4,6 +4,7 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { config } from '~/src/config/config.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
+import { spyOnConfig } from '../common/test-helpers/config.js'
 
 const pageUrl = '/'
 
@@ -35,71 +36,28 @@ describe('#homeController', () => {
     expect(parseDocument(payload).title).toBe(config.get('serviceName'))
   })
 
-  describe('v1', () => {
-    it('should match v1 content', async () => {
-      const featureFlags = {
-        ...config.get('featureFlags'),
-        biosecurity: false
-      }
-      jest.spyOn(config, 'get').mockImplementation((name) => {
-        if (name === 'featureFlags') {
-          return featureFlags
-        } else {
-          return 'Get permission to move animals under disease controls'
+  it('should match content', async () => {
+    spyOnConfig(
+      'serviceName',
+      'Get permission to move animals under disease controls'
+    )
+
+    const { payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: pageUrl
+        },
+        {
+          Cookie: session.sessionID
         }
-      })
-
-      const { payload } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'GET',
-            url: pageUrl
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
       )
+    )
 
-      const content =
-        parseDocument(payload).querySelector('#main-content')?.innerHTML
+    const content =
+      parseDocument(payload).querySelector('#main-content')?.innerHTML
 
-      expect(content).toMatchSnapshot()
-    })
-  })
-
-  describe('v2', () => {
-    it('should match v2 content', async () => {
-      const featureFlags = {
-        ...config.get('featureFlags'),
-        biosecurity: true
-      }
-
-      jest.spyOn(config, 'get').mockImplementation((name) => {
-        if (name === 'featureFlags') {
-          return featureFlags
-        } else {
-          return 'Get permission to move animals under disease controls'
-        }
-      })
-
-      const { payload } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'GET',
-            url: pageUrl
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      const content =
-        parseDocument(payload).querySelector('#main-content')?.innerHTML
-
-      expect(content).toMatchSnapshot()
-    })
+    expect(content).toMatchSnapshot()
   })
 })
 

@@ -7,7 +7,6 @@ import { OriginAddressPage } from '~/src/server/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
 import { OriginTypePage } from '~/src/server/origin/origin-type/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
-import { spyOnConfig } from '../../../test-helpers/config.js'
 import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
@@ -19,7 +18,8 @@ const invalidState = {
 
 const exitState = {
   ...validOriginSectionState,
-  onOffFarm: /** @type {OnOffFarmData} */ ('on')
+  onOffFarm: /** @type {OnOffFarmData} */ ('off'),
+  originType: 'unrestricted-farm'
 }
 
 const applicationState = {
@@ -46,13 +46,14 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 
   it('should short-circuit on an exit page', () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
     const origin = OriginSection.fromState({ origin: exitState })
     const pageAnswers = origin.questionPageAnswers
 
-    expect(pageAnswers).toHaveLength(1)
+    expect(pageAnswers).toHaveLength(2)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
     expect(pageAnswers.at(0)?.answer).toBeInstanceOf(OnOffFarmAnswer)
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(OriginTypePage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(OriginTypeAnswer)
   })
 
   it('should short-circuit on a page with an invalid answer', () => {
@@ -84,7 +85,7 @@ describe('SectionModel.validate', () => {
     const { isValid, firstInvalidPage } = origin.validate()
 
     expect(isValid).toBe(false)
-    expect(firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
+    expect(firstInvalidPage).toBeInstanceOf(OriginTypePage)
   })
 
   it('should return invalid if the section hits a page with an invalid answer', () => {

@@ -1,8 +1,7 @@
 import { UploadPlanPage } from '~/src/server/biosecurity-map/upload-plan/index.js'
 import { BiosecurityPlanSection } from './biosecurity-plan.js'
-import { spyOnConfig } from '../../../test-helpers/config.js'
 import {
-  validApplicationStateWithBioSecurity,
+  validApplicationState,
   validOriginSectionState,
   validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
@@ -86,14 +85,8 @@ describe('Biosecurity.validate', () => {
 describe('Biosecurity.config.isVisible', () => {
   afterEach(jest.restoreAllMocks)
 
-  const { origin, destination } = validApplicationStateWithBioSecurity
+  const { origin, destination } = validApplicationState
   const appState = { origin, destination }
-
-  it('should be not be visible if biosecurity flag is false', () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-    const isVisible = BiosecurityPlanSection.config.isVisible(appState)
-    expect(isVisible).toBe(false)
-  })
 
   it('should be visible if movement is on farm & destination premises is not AFU', () => {
     const isVisible = BiosecurityPlanSection.config.isVisible(appState)

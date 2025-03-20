@@ -1,12 +1,10 @@
 import { originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
-import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
-import { spyOnConfig } from '../../common/test-helpers/config.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
@@ -56,37 +54,8 @@ describe('OriginTypePage', () => {
 })
 
 describe('#OriginPage.nextPage', () => {
-  describe('Off the farm (biosecurity feature flag off)', () => {
+  describe('Off the farm', () => {
     const context = { origin: { onOffFarm: 'off' } }
-
-    beforeEach(() => spyOnConfig('featureFlags', { biosecurity: false }))
-
-    it('should return cphNumberPage when answer is "tb-restricted-farm"', () => {
-      const answer = new OriginTypeAnswer(
-        { originType: 'tb-restricted-farm' },
-        context
-      )
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(cphNumberPage)
-    })
-
-    it('nextPage should return cphNumberPage when answer is "afu"', () => {
-      const answer = new OriginTypeAnswer({ originType: 'afu' }, context)
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(cphNumberPage)
-    })
-
-    it('nextPage should return exitPagePremisesType when answer is "other"', () => {
-      const answer = new OriginTypeAnswer({ originType: 'other' }, context)
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(exitPagePremisesType)
-    })
-  })
-
-  describe('Off the farm (biosecurity feature flag on)', () => {
-    const context = { origin: { onOffFarm: 'off' } }
-
-    beforeEach(() => spyOnConfig('featureFlags', { biosecurity: true }))
 
     const cphOriginTypes = [
       'tb-restricted-farm',
@@ -118,7 +87,7 @@ describe('#OriginPage.nextPage', () => {
     })
   })
 
-  describe('On to the farm (biosecurity feature flag on))', () => {
+  describe('On to the farm', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
     const fiftyPercentOriginTypes = ['market', 'unrestricted-farm'].map((v) => [
