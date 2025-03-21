@@ -1,4 +1,3 @@
-import { spyOnConfig } from '../../../test-helpers/config.js'
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 import { DestinationTypeAnswer } from './destination-type.js'
 /** @import {DestinationTypePayload} from './destination-type.js' */
@@ -61,24 +60,6 @@ describe('DestinationType.config.options', () => {
     expect(Object.keys(config.options)).toHaveLength(2)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
     expect(config.options.afu.label).toBe(afuLabel)
-  })
-
-  it('should have the expected options to select from when the BIOSECURITY_FEATURE_ENABLED is false', () => {
-    const context = {
-      origin: { onOffFarm: 'off' }
-    }
-    spyOnConfig('featureFlags', { biosecurity: false })
-
-    const config = new DestinationTypeAnswer(undefined, context).config
-    expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options['dedicated-sale'].label).toBe(dedicatedSaleLabel)
-    expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.afu.hint).toBe(afuHint)
-    expect(config.options.other.label).toBe(otherLabel)
-    expect(config.options.other.hint).toBe(
-      'For example, a veterinary practice, zoo, or a laboratory'
-    )
-    expect(Object.keys(config.options)).toHaveLength(4)
   })
 
   it('should have the expected options to select from for on the farm movements', () => {

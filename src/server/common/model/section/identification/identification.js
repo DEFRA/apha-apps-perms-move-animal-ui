@@ -1,7 +1,6 @@
 import { SectionModel } from '../section-model/section-model.js'
 import { OriginSection } from '../origin/origin.js'
 import { DestinationSection } from '../destination/destination.js'
-import { config } from '~/src/config/config.js'
 import { identification } from '~/src/server/identification/index.js'
 import { earTagsPage } from '~/src/server/identification/ear-tags/index.js'
 
@@ -15,11 +14,9 @@ const isTbRestricted = (premisesType) =>
 /** @param {RawApplicationState} app */
 const isVisible = (app) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
-  const isBiosecurityFlag = config.get('featureFlags')?.biosecurity
   const originValid = OriginSection.fromState(app).validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
   return (
-    isBiosecurityFlag &&
     isOnFarm &&
     isTbRestricted(app.origin?.originType) &&
     isTbRestricted(app.destination?.destinationType) &&

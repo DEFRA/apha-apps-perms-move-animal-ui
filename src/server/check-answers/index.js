@@ -104,7 +104,6 @@ export class SubmitPageController extends QuestionPageController {
       const notifyProps = { content: emailContent }
 
       if (
-        config.get('featureFlags').biosecurity &&
         application.tasks[biosecurityMapKey] &&
         req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
           'skipped'
@@ -145,37 +144,24 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   generateEmailContent(application) {
-    if (config.get('featureFlags').biosecurity) {
-      /**
-       * @type {string[]}
-       */
-      const lines = []
+    /**
+     * @type {string[]}
+     */
+    const lines = []
 
-      Object.values(application.tasks).forEach((task) => {
-        lines.push(`# ${task.config.title}`)
-        lines.push('')
-        lines.push('---')
-        task.questionPageAnswers
-          .filter(({ page }) => !page.isInterstitial)
-          .forEach(({ page, answer }) => {
-            lines.push(`## ${page.question}`)
-            lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
-          })
-      })
+    Object.values(application.tasks).forEach((task) => {
+      lines.push(`# ${task.config.title}`)
+      lines.push('')
+      lines.push('---')
+      task.questionPageAnswers
+        .filter(({ page }) => !page.isInterstitial)
+        .forEach(({ page, answer }) => {
+          lines.push(`## ${page.question}`)
+          lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
+        })
+    })
 
-      return lines.join('\n')
-    }
-
-    return Object.values(application.tasks)
-      .flatMap(({ questionPageAnswers }) =>
-        questionPageAnswers
-          .filter(({ page }) => !page.isInterstitial)
-          .map(
-            ({ page, answer }) =>
-              `## ${page.question}\n${answer.emailHtml.replace(/<br \/>/g, '\n')}`
-          )
-      )
-      .join('\n')
+    return lines.join('\n')
   }
 }
 

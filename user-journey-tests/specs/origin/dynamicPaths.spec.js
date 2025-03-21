@@ -1,5 +1,5 @@
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
-import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementLicence.js'
+import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementOrigin.js'
 import landingPage from '../../page-objects/landingPage.js'
 import {
   changeOnOffFarmAnswer,

@@ -2,11 +2,9 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { cphNumberPage } from '~/src/server/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
-import { exitPagePremisesType } from '../premises-type-exit-page/index.js'
 import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
-import { config } from '~/src/config/config.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
@@ -38,16 +36,10 @@ export class OriginTypePage extends QuestionPage {
       return originFarmCphPage
     }
 
-    if (config.get('featureFlags').biosecurity) {
-      if (answer.value === 'unrestricted-farm') {
-        return originContactTbRestrictedFarmPage
-      }
-      return cphNumberPage
+    if (answer.value === 'unrestricted-farm') {
+      return originContactTbRestrictedFarmPage
     }
 
-    if (answer.value === 'other') {
-      return exitPagePremisesType
-    }
     return cphNumberPage
   }
 

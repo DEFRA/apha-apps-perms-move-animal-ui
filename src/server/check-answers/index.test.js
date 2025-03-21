@@ -4,11 +4,7 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
-import {
-  validApplicationStateWithBioSecurity,
-  validDestinationSectionState,
-  validOriginSectionState
-} from '../common/test-helpers/journey-state.js'
+import { validApplicationState } from '../common/test-helpers/journey-state.js'
 import { spyOnConfig } from '../common/test-helpers/config.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
@@ -34,7 +30,7 @@ const {
   identification,
   biosecurity,
   'biosecurity-map': biosecurityMap
-} = validApplicationStateWithBioSecurity
+} = validApplicationState
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
@@ -283,11 +279,6 @@ describe('#CheckAnswers', () => {
   })
 
   it('should send email in correct format', async () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-
-    await session.setState('origin', validOriginSectionState)
-    await session.setState('destination', validDestinationSectionState)
-
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -306,116 +297,86 @@ describe('#CheckAnswers', () => {
     const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(content).toMatchSnapshot('email-content-biosec-disabled')
+    expect(content).toMatchSnapshot('email-content')
   })
 
-  describe('Biosecurity flag enabled', () => {
-    beforeEach(() => {
-      spyOnConfig('featureFlags', { biosecurity: true })
-    })
-
-    it('should send email in correct format for flag enabled', async () => {
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'other'
-            }
-          },
-          {
-            Cookie: session.sessionID
+  it('should handle the file and send email in correct format', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      const [{ content }] = mockSendNotification.mock.calls[0]
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(handleUploadedFile).toHaveBeenCalledTimes(1)
+  })
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(content).toMatchSnapshot('email-content-biosec-enabled')
-    })
+  it('should compress the file and redirect to size error page if the file is too large', async () => {
+    mockHandleUploadedFile.mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
 
-    it('should handle the file and send email in correct format for flag enabled', async () => {
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'other'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { statusCode, headers } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(handleUploadedFile).toHaveBeenCalledTimes(1)
-    })
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(sizeErrorPage.urlPath)
+  })
 
-    it('should compress the file and redirect to size error page if the file is too large', async () => {
-      mockHandleUploadedFile.mockResolvedValueOnce(
-        Buffer.alloc(3 * 1024 * 1024)
-      )
+  it('should not handle the file and send email in correct format if the file status is already "skipped"', async () => {
+    const uploadPlan = biosecurityMap['upload-plan']
 
-      const { statusCode, headers } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'other'
-            }
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(sizeErrorPage.urlPath)
-    })
-
-    it('should not handle the file and send email in correct format for flag enabled if the file status is already "skipped"', async () => {
-      const uploadPlan = biosecurityMap['upload-plan']
-
-      await session.setState('biosecurity-map', {
-        ...biosecurityMap,
-        ...{
-          'upload-plan': {
-            ...uploadPlan,
-            status: {
-              ...uploadPlan.status,
-              uploadStatus: 'skipped'
-            }
+    await session.setState('biosecurity-map', {
+      ...biosecurityMap,
+      ...{
+        'upload-plan': {
+          ...uploadPlan,
+          status: {
+            ...uploadPlan.status,
+            uploadStatus: 'skipped'
           }
         }
-      })
-
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'other'
-            }
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(handleUploadedFile).not.toHaveBeenCalled()
-      expect(statusCode).toBe(statusCodes.redirect)
-      const [{ content }] = mockSendNotification.mock.calls[0]
-      expect(content).toMatchSnapshot('email-content-biosec-enabled')
+      }
     })
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(handleUploadedFile).not.toHaveBeenCalled()
+    expect(statusCode).toBe(statusCodes.redirect)
+    const [{ content }] = mockSendNotification.mock.calls[0]
+    expect(content).toMatchSnapshot('email-content')
   })
 })
 

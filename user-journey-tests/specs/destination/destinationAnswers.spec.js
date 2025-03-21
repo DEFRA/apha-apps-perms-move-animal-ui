@@ -5,7 +5,7 @@ import {
   waitForPagePath
 } from '../../helpers/page.js'
 import completeDestinationTask from '../../helpers/testHelpers/destination.js'
-import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
+import completeOriginTaskAnswers from '../../helpers/testHelpers/movementOrigin.js'
 import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'

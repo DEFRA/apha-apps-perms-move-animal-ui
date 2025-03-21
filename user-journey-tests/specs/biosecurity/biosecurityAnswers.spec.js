@@ -4,7 +4,7 @@ import {
 } from '../../helpers/page.js'
 import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity.js'
 import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
-import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementLicence.js'
+import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
@@ -59,6 +59,11 @@ describe('Check your answers test - biosecurity', () => {
       field: 'minimiseContamination',
       expectedValue: 'Minimise',
       expectedHref: `/biosecurity/buildings-how-minimise-contamination${redirect}`
+    },
+    {
+      field: 'sharedEquipment',
+      expectedValue: 'Shared equipment',
+      expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
     },
     {
       field: 'peopleDisinfection',

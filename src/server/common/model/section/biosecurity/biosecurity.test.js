@@ -1,14 +1,12 @@
 import { BiosecuritySection } from './biosecurity.js'
 import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 import {
-  validApplicationStateWithBioSecurity,
+  validApplicationState,
   validBiosecuritySectionState,
   validOriginSectionState,
   validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
-import { spyOnConfig } from '../../../test-helpers/config.js'
 /** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
-/** @import {OnOffFarmData} from '../../answer/on-off-farm/on-off-farm.js' */
 
 const validBiosecurityData = validBiosecuritySectionState
 
@@ -37,14 +35,8 @@ describe('Biosecurity.validate', () => {
 describe('Biosecurity.config.isVisible', () => {
   afterEach(jest.restoreAllMocks)
 
-  const { origin, destination } = validApplicationStateWithBioSecurity
+  const { origin, destination } = validApplicationState
   const appState = { origin, destination }
-
-  it('should be not be visible if biosecurity flag is false', () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-    const isVisible = BiosecuritySection.config.isVisible(appState)
-    expect(isVisible).toBe(false)
-  })
 
   it('should be visible if movement is on farm & destination premises is not AFU', () => {
     const isVisible = BiosecuritySection.config.isVisible(appState)

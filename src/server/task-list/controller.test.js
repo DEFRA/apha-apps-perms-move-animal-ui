@@ -3,7 +3,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { withCsrfProtection } from '../common/test-helpers/csrf.js'
 import SessionTester from '../common/test-helpers/session-helper.js'
-import { validApplicationStateWithBioSecurity } from '../common/test-helpers/journey-state.js'
+import { validApplicationState } from '../common/test-helpers/journey-state.js'
 
 const getTaskTitles = (document) =>
   Array.from(document.querySelectorAll('.govuk-task-list__name-and-hint')).map(
@@ -29,7 +29,7 @@ describe('#taskListController', () => {
       identification,
       biosecurity,
       'biosecurity-map': biosecurityMap
-    } = validApplicationStateWithBioSecurity
+    } = validApplicationState
     await session.setState('origin', origin)
     await session.setState('destination', destination)
     await session.setState('licence', licence)
@@ -109,7 +109,7 @@ describe('#taskListController', () => {
   })
 
   it('Should show completed sections', async () => {
-    const { origin } = validApplicationStateWithBioSecurity
+    const { origin } = validApplicationState
     await session.setState('origin', origin)
 
     const { statusCode, payload } = await server.inject(

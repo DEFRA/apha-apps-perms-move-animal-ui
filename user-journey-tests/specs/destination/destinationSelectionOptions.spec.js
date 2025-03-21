@@ -2,7 +2,7 @@ import { browser } from '@wdio/globals'
 
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
-import { destinationVariants } from '../../helpers/testHelpers/movementLicence.js'
+import { destinationVariants } from '../../helpers/testHelpers/movementOrigin.js'
 import { verifyRadioButtonNumber } from '../../helpers/page.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
