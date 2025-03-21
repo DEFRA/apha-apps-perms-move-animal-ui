@@ -4,7 +4,7 @@ import {
 } from '../../helpers/page.js'
 import completeBiosecurityMapTask from '../../helpers/testHelpers/biosecurityMap.js'
 import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
-import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementLicence.js'
+import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 

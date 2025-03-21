@@ -13,7 +13,7 @@ import completeDestinationTask, {
 import {
   completeOriginTaskAnswersCustom,
   completeOriginTaskAnswersOnFarm
-} from './movementLicence.js'
+} from './movementOrigin.js'
 import { completeLicenceTaskAnswersCustom } from './receivingLicence.js'
 
 export const completeApplication = async (originObject, licenceObject) => {

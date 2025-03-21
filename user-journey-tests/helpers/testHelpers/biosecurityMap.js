@@ -9,7 +9,7 @@ const completeBiosecurityMapTask = async () => {
   await taskListPage.selectBiosecurityMapLink(mapUploadPage)
 
   await mapUploadPage.uploadFileAndContinue(
-    'user-journey-tests/page-objects/biosecurity-map/happy_emoji.jpg'
+    'user-journey-tests/page-objects/biosecurity-map/assets/happy_emoji.jpg'
   )
   await waitForPagePath(biosecurityMapAnswersPage.pagePath)
 }

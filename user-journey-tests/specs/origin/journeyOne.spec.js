@@ -1,5 +1,5 @@
 import landingPage from '../../page-objects/landingPage.js'
-import completeOriginTaskAnswers from '../../helpers/testHelpers/movementLicence.js'
+import completeOriginTaskAnswers from '../../helpers/testHelpers/movementOrigin.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 
 describe('Full journey test 1', () => {
