@@ -76,6 +76,50 @@ describe('Address.validate', () => {
     expect(isValid).toBe(true)
   })
 
+  it('should return false for mandatory field (address line 1) with only spaces', () => {
+    const address = new AddressAnswer({
+      ...validAddress,
+      addressLine1: '   '
+    })
+
+    const { isValid } = address.validate()
+
+    expect(isValid).toBe(false)
+  })
+
+  it('should return false for mandatory field (addressLine1) with only spaces', () => {
+    const address = new AddressAnswer({
+      ...validAddress,
+      addressLine1: '   '
+    })
+
+    const { isValid } = address.validate()
+
+    expect(isValid).toBe(false)
+  })
+
+  it('should return false for mandatory field (addressTown) with only spaces', () => {
+    const address = new AddressAnswer({
+      ...validAddress,
+      addressTown: '   '
+    })
+
+    const { isValid } = address.validate()
+
+    expect(isValid).toBe(false)
+  })
+
+  it('should return false for mandatory field (addressPostcode) with only spaces', () => {
+    const address = new AddressAnswer({
+      ...validAddress,
+      addressPostcode: '   '
+    })
+
+    const { isValid } = address.validate()
+
+    expect(isValid).toBe(false)
+  })
+
   describe('validatePostcode', () => {
     describe('postcode formats', () => {
       const postcodes = [
