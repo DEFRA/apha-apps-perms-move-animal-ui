@@ -297,7 +297,7 @@ describe('#CheckAnswers', () => {
     const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(content).toMatchSnapshot('email-content-biosec-enabled')
+    expect(content).toMatchSnapshot('email-content')
   })
 
   it('should handle the file and send email in correct format', async () => {
@@ -376,7 +376,7 @@ describe('#CheckAnswers', () => {
     expect(handleUploadedFile).not.toHaveBeenCalled()
     expect(statusCode).toBe(statusCodes.redirect)
     const [{ content }] = mockSendNotification.mock.calls[0]
-    expect(content).toMatchSnapshot('email-content-biosec-enabled')
+    expect(content).toMatchSnapshot('email-content')
   })
 })
 

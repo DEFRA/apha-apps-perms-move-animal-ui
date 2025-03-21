@@ -669,7 +669,7 @@ some text
 "
 `;
 
-exports[`#CheckAnswers should not handle the file and send email in correct format if the file status is already "skipped": email-content-biosec-enabled 1`] = `
+exports[`#CheckAnswers should not handle the file and send email in correct format if the file status is already "skipped": email-content 1`] = `
 "# Movement origin
 
 ---
@@ -743,7 +743,7 @@ some text
 Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant."
 `;
 
-exports[`#CheckAnswers should send email in correct format: email-content-biosec-enabled 1`] = `
+exports[`#CheckAnswers should send email in correct format: email-content 1`] = `
 "# Movement origin
 
 ---
