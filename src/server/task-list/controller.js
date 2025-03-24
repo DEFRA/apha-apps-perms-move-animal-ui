@@ -12,8 +12,8 @@ const buttonText = 'Review and submit'
 export const taskListGetController = {
   options: {
     auth: {
-      mode: 'try',
-      strategy: 'defra-id'
+      mode: 'required',
+      strategy: 'session'
     }
   },
   handler(req, h) {

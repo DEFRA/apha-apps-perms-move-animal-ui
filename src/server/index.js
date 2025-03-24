@@ -60,13 +60,14 @@ export async function createServer() {
     segment: 'session'
   })
 
-  await server.register(defraId)
+  // await server.register(defraId)
 
   await server.register([
     requestLogger,
     secureContext,
     pulse,
-    // sessionCache,
+    sessionCache,
+    defraId,
     sessionCookie,
     nunjucksConfig,
     csrfPlugin,
