@@ -12,6 +12,7 @@ class BiosecurityMapUploadPage extends Page {
   pageTitle = pageHeadingAndTitle
   noInputError = 'You need to upload your biosecurity map'
   wrongFileTypeError = 'The selected file must be a PNG, JPEG or PDF'
+  fileSizeError = 'The selected file must be smaller than 10 MB'
 
   get fileInput() {
     return $('[data-testid="file-biosecuritymap-upload"]')
