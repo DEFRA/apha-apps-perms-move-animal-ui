@@ -11,10 +11,7 @@ import { sessionCache } from '~/src/server/common/helpers/session-cache/session-
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
 import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
-import { defraId } from './common/helpers/auth/defra-id.js'
-import { sessionCookie } from './common/helpers/auth/session-cookie.js'
-import { getUserSession } from './common/helpers/auth/get-user-session.js'
-import { dropUserSession } from './common/helpers/auth/drop-user-session.js'
+import { a11n } from './auth/index.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -52,23 +49,13 @@ export async function createServer() {
     ]
   })
 
-  server.decorate('request', 'getUserSession', getUserSession)
-  server.decorate('request', 'dropUserSession', dropUserSession)
-  server.app.cache = server.cache({
-    cache: 'session',
-    expiresIn: 10 * 1000 * 1000,
-    segment: 'session'
-  })
-
-  // await server.register(defraId)
+  await server.register(a11n)
 
   await server.register([
     requestLogger,
     secureContext,
     pulse,
     sessionCache,
-    defraId,
-    sessionCookie,
     nunjucksConfig,
     csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js

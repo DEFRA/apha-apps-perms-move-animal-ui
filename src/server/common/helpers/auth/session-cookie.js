@@ -22,7 +22,10 @@ const sessionCookie = {
           isSecure: config.get('isProduction'),
           ttl: config.get('session').cookie.ttl
         },
-        redirectTo: '/auth/login',
+        redirectTo: (req) => {
+          req.yar.flash('referrer', req.path)
+          return '/auth/login'
+        },
         keepAlive: true,
         validate: async (request, session) => {
           const authedUser = await request.getUserSession()

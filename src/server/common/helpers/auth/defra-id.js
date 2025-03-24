@@ -24,11 +24,7 @@ const defraId = {
       const oidcConf = /** @type {OidcConf} */ (await resp.json())
 
       server.auth.strategy('defra-id', 'bell', {
-        location: (request) => {
-          if (request.info.referrer) {
-            request.yar.flash('referrer', request.info.referrer)
-          }
-
+        location: () => {
           return authCallbackUrl
         },
         provider: {

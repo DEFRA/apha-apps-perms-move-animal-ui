@@ -29,7 +29,7 @@ const authCallbackController = {
 
     const redirect = request.yar.flash('referrer')?.at(0) ?? '/'
 
-    return h.redirect('/task-list')
+    return h.redirect(redirect)
   }
 }
 

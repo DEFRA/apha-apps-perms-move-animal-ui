@@ -1,5 +1,3 @@
-import * as lodash from 'lodash'
-
 import { provideAuthedUser } from '~/src/server/auth/logout/prerequisites/provide-authed-user.js'
 
 const logoutController = {
@@ -9,7 +7,7 @@ const logoutController = {
   handler: (request, h) => {
     const authedUser = request.pre.authedUser
 
-    if (lodash.isEmpty(authedUser)) {
+    if (!authedUser.isAuthenticated) {
       return h.redirect('/')
     }
 
