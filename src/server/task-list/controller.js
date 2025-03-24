@@ -12,7 +12,7 @@ const buttonText = 'Review and submit'
 export const taskListGetController = {
   options: {
     auth: {
-      mode: 'required',
+      mode: 'try',
       strategy: 'defra-id'
     }
   },
