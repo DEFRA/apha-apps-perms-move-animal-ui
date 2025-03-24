@@ -22,7 +22,7 @@ export async function initiateFileUpload(redirectUrl) {
       s3Bucket: bucket,
       s3Path: path,
       mimeTypes,
-      maxFileSize: 1024 * 1024 * 10
+      maxFileSize: 1000 * 1000 * 10
     })
   })
 }
