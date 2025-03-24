@@ -2,7 +2,7 @@ const loginController = {
   options: {
     auth: 'defra-id'
   },
-  handler: (request, h) => {
+  handler: (_request, h) => {
     return h.redirect('/')
   }
 }
