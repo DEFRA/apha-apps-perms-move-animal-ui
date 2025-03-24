@@ -162,3 +162,23 @@ export const verifyRadioButtonNumber = async (expectedCount) => {
   const radioButtons = await $$('.govuk-radios__input').length
   expect(radioButtons).toBe(expectedCount)
 }
+
+export const verifySelectionPersistence = async (
+  currentPage,
+  nextPage,
+  radioButton
+) => {
+  await currentPage.selectBackLink()
+  await waitForPagePath(nextPage.pagePath)
+
+  await browser.refresh()
+  await waitForPagePath(nextPage.pagePath)
+
+  await expect(radioButton).toBeSelected()
+}
+
+export const keyElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__key')
+
+export const valueElementFromChangeLink = (element) =>
+  element.parentElement().parentElement().$('.govuk-summary-list__value')

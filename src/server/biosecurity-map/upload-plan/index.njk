@@ -83,5 +83,8 @@
 {% endblock %}
 {% block bodyEnd %}
   {{ super() }}
-  <script src="{{ getAssetPath('javascripts/file-upload-spinner.js') }}"></script>
+  <script
+    type="module"
+    src="{{ getAssetPath('file-upload-spinner.js') }}"
+  ></script>
 {% endblock %}

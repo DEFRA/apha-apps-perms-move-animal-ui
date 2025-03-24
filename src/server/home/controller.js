@@ -10,14 +10,7 @@ export const homeController = {
     auth: false
   },
   handler(_request, h) {
-    let template = 'home/index'
-
-    const { biosecurity } = config.get('featureFlags')
-    if (biosecurity) {
-      template += '_v2'
-    }
-
-    return h.view(template, {
+    return h.view('home/index', {
       pageTitle: config.get('serviceName'),
       heading: 'Apply for a Bovine Tuberculosis (TB) movement licence'
     })

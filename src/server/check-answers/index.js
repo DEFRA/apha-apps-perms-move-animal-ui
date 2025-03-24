@@ -1,4 +1,3 @@
-import { GetObjectCommand } from '@aws-sdk/client-s3'
 import { config } from '~/src/config/config.js'
 import { sectionToSummary } from '../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../common/model/page/question-page-model.js'
@@ -8,8 +7,9 @@ import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
-import { compress as compressImage } from './image-compression.js'
-import fileSize from '../common/helpers/file-size/file-size.js'
+import { fileSizeInMB } from '../common/helpers/file/size.js'
+import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
+import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -17,6 +17,8 @@ import fileSize from '../common/helpers/file-size/file-size.js'
  */
 
 const checkAnswersUrlPath = '/submit/check-answers'
+const biosecurityMapKey = 'biosecurity-map'
+const uploadPlanKey = 'upload-plan'
 
 class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
@@ -102,10 +104,20 @@ export class SubmitPageController extends QuestionPageController {
       const notifyProps = { content: emailContent }
 
       if (
-        config.get('featureFlags').biosecurity &&
-        application.tasks['biosecurity-map'] !== undefined
+        application.tasks[biosecurityMapKey] &&
+        req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
+          'skipped'
       ) {
-        const compressedFile = await this.handleBiosecurityFile(req)
+        const compressedFile = await handleUploadedFile(
+          req,
+          req.yar.get(biosecurityMapKey)[uploadPlanKey],
+          this.logger
+        )
+
+        // Error if the file after compression is still too large
+        if (fileSizeInMB(compressedFile.length) > 2) {
+          return h.redirect(sizeErrorPage.urlPath)
+        }
 
         const { fileRetention, confirmDownloadConfirmation } =
           config.get('notify')
@@ -132,63 +144,24 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   generateEmailContent(application) {
-    if (config.get('featureFlags').biosecurity) {
-      /**
-       * @type {string[]}
-       */
-      const lines = []
+    /**
+     * @type {string[]}
+     */
+    const lines = []
 
-      Object.values(application.tasks).forEach((task) => {
-        lines.push(`# ${task.config.title}`)
-        lines.push('')
-        lines.push('---')
-        task.questionPageAnswers
-          .filter(({ page }) => !page.isInterstitial)
-          .forEach(({ page, answer }) => {
-            lines.push(`## ${page.question}`)
-            lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
-          })
-      })
+    Object.values(application.tasks).forEach((task) => {
+      lines.push(`# ${task.config.title}`)
+      lines.push('')
+      lines.push('---')
+      task.questionPageAnswers
+        .filter(({ page }) => !page.isInterstitial)
+        .forEach(({ page, answer }) => {
+          lines.push(`## ${page.question}`)
+          lines.push(answer.emailHtml.replace(/<br \/>/g, '\n'))
+        })
+    })
 
-      return lines.join('\n')
-    }
-
-    return Object.values(application.tasks)
-      .flatMap(({ questionPageAnswers }) =>
-        questionPageAnswers
-          .filter(({ page }) => !page.isInterstitial)
-          .map(
-            ({ page, answer }) =>
-              `## ${page.question}\n${answer.emailHtml.replace(/<br \/>/g, '\n')}`
-          )
-      )
-      .join('\n')
-  }
-
-  async handleBiosecurityFile(req) {
-    const obj = await req.s3.send(
-      new GetObjectCommand({
-        Bucket: config.get('fileUpload').bucket ?? '',
-        Key: req.yar.get('biosecurity-map')['upload-plan'].status.form.file
-          .s3Key
-      })
-    )
-
-    const chunks = []
-    for await (const chunk of obj.Body) {
-      chunks.push(chunk)
-    }
-    const buffer = Buffer.concat(chunks)
-
-    let compressedFile = null
-
-    const { duration, file, reduction } = await compressImage(buffer)
-    compressedFile = file
-    this.logger.info(
-      `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSize(file.length)} MB`
-    )
-
-    return compressedFile
+    return lines.join('\n')
   }
 }
 

@@ -1,18 +1,56 @@
 import { selectElement } from '../helpers/page.js'
-import { Page } from './page.js'
+import { AnswersBasePage } from './base-pages/answersBasePage.js'
 
 const pageHeadingAndTitle = 'Check your answers before sending your application'
-
 const pageId = 'confirmation'
 
-const valueElementFromChangeLink = (element) =>
-  element.parentElement().parentElement().$('.govuk-summary-list__value')
-
-class FinalAnswersPage extends Page {
+class FinalAnswersPage extends AnswersBasePage {
   pagePath = '/submit/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
   errorMessage = 'You need to tick a declaration box'
+
+  changeLinks = {
+    // Origin
+    onOffFarm: '[data-testid="onOffFarm-change-link"]',
+    originType: '[data-testid="originType-change-link"]',
+    originParishNumber: '[data-testid="cphNumber-change-link"]',
+    originAddress: '[data-testid="address-change-link"]',
+
+    // Destination
+    destinationType: '[data-testid="destinationType-change-link"]',
+    destinationParishNumber: '[data-testid="destinationFarmCph-change-link"]',
+    destinationAddress: '[data-testid="destinationFarmAddress-change-link"]',
+    maxAnimals: '[data-testid="howManyAnimalsMaximum-change-link"]',
+    reason: '[data-testid="reasonForMovement-change-link"]',
+    additionalInfo: '[data-testid="additionalInfo-change-link"]',
+    over75: '[data-testid="movingMoreThan75Animals-change-link"]',
+    halfHerd: '[data-testid="movingMoreThanHalfExistingHerd-change-link"]',
+
+    // Licence
+    ownerName: '[data-testid="fullName-change-link"]',
+    receiveMethod: '[data-testid="receiveMethod-change-link"]',
+    email: '[data-testid="emailAddress-change-link"]',
+
+    // Biosecurity
+    incomingCattle: '[data-testid="keptSeparately-change-link"]',
+    grazing: '[data-testid="grazing-change-link"]',
+    separateGrazing: '[data-testid="grazingFieldHowSeparated-change-link"]',
+    lastGrazed: '[data-testid="lastGrazed-change-link"]',
+    manureOrSlurry: '[data-testid="manureAndSlurry-change-link"]',
+    manureDetails: '[data-testid="manureAndSlurryDetails-change-link"]',
+    roadsAndTracks: '[data-testid="roadsAndTracks-change-link"]',
+    animalsHoused: '[data-testid="animalsHoused-change-link"]',
+    minimiseContamination:
+      '[data-testid="buildingsHowMinimiseContamination-change-link"]',
+    peopleDisinfection: '[data-testid="peopleDisinfection-change-link"]',
+    whatDisinfectant: '[data-testid="disinfectant-change-link"]',
+    dilution: '[data-testid="dilutionRate-change-link"]',
+    wildlifeContamination: '[data-testid="badgers-change-link"]',
+
+    // Biosecurity-map
+    biosecMap: '[data-testid="upload-plan-change-link"]'
+  }
 
   fieldError() {
     return super.getErrorElement(pageId)
@@ -20,70 +58,6 @@ class FinalAnswersPage extends Page {
 
   summaryErrorLink() {
     return super.getErrorLink(pageId)
-  }
-
-  get onOffFarmValue() {
-    return valueElementFromChangeLink(this.onOffFarmChange)
-  }
-
-  get originTypeValue() {
-    return valueElementFromChangeLink(this.originTypeChange)
-  }
-
-  get parishNumberValue() {
-    return valueElementFromChangeLink(this.parishHoldingChange)
-  }
-
-  get addressValue() {
-    return valueElementFromChangeLink(this.addressChange)
-  }
-
-  get movementDestinationVaue() {
-    return valueElementFromChangeLink(this.movementDestinationChange)
-  }
-
-  get ownerNameValue() {
-    return valueElementFromChangeLink(this.ownerNameChange)
-  }
-
-  get receiveMethodValue() {
-    return valueElementFromChangeLink(this.receiveMethodChange)
-  }
-
-  get emailValue() {
-    return valueElementFromChangeLink(this.emailChange)
-  }
-
-  get onOffFarmChange() {
-    return $('[data-testid="onOffFarm-change-link"]')
-  }
-
-  get originTypeChange() {
-    return $('[data-testid="originType-change-link"]')
-  }
-
-  get parishHoldingChange() {
-    return $('[data-testid="cphNumber-change-link"]')
-  }
-
-  get addressChange() {
-    return $('[data-testid="address-change-link"]')
-  }
-
-  get movementDestinationChange() {
-    return $('[data-testid="destinationType-change-link"]')
-  }
-
-  get ownerNameChange() {
-    return $('[data-testid="fullName-change-link"]')
-  }
-
-  get receiveMethodChange() {
-    return $('[data-testid="receiveMethod-change-link"]')
-  }
-
-  get emailChange() {
-    return $('[data-testid="emailAddress-change-link"]')
   }
 
   get confirmStatementsCheckbox() {

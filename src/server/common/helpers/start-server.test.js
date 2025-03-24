@@ -35,7 +35,6 @@ describe('#startServer', () => {
   beforeAll(async () => {
     process.env = { ...PROCESS_ENV }
     process.env.PORT = '3097' // Set to obscure port to avoid conflicts
-    process.env.BIOSECURITY_FEATURE_ENABLED = 'true'
 
     createServerImport = await import('~/src/server/index.js')
     startServerImport = await import(
@@ -79,7 +78,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"biosecurity":true,"pdfUpload":true}`
+        `Feature flags configuration: {"pdfUpload":true}`
       )
     })
   })

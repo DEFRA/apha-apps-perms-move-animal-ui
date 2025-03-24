@@ -20,6 +20,7 @@ const postcodeRequired = 'Enter postcode'
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
+    .trim()
     .max(maxLength)
     .messages({
       'any.required': addressLine1Required,

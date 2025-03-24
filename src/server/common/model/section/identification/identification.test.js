@@ -8,7 +8,6 @@ import {
   validIdentificationSectionState,
   validBiosecurityMapSectionState
 } from '../../../test-helpers/journey-state.js'
-import { spyOnConfig } from '../../../test-helpers/config.js'
 
 const applicationStateWithAnimalIdentifiersSection = {
   origin: {
@@ -70,12 +69,6 @@ describe('Identification.config.isVisible', () => {
   afterEach(jest.restoreAllMocks)
 
   const { origin, destination } = applicationStateWithAnimalIdentifiersSection
-  const appState = { origin, destination }
-
-  it('should not be visible if biosecurity feature flag is false', () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-    expect(IdentificationSection.config.isVisible(appState)).toBe(false)
-  })
 
   it('should not be visible origin type is not restricted', () => {
     const isVisible = IdentificationSection.config.isVisible({

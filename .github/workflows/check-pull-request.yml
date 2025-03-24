@@ -15,11 +15,10 @@ jobs:
   pr-validator:
     name: Run Pull Request Checks
     env:
-      BIOSECURITY_FEATURE_ENABLED: true
-      UPLOADER_URL: "http://localhost:7337"
-      FILE_S3_BUCKET: "apha"
-      FILE_S3_PATH: "biosecurity-map"
-      CONSUMER_BUCKETS: "apha"
+      UPLOADER_URL: 'http://localhost:7337'
+      FILE_S3_BUCKET: 'apha'
+      FILE_S3_PATH: 'biosecurity-map'
+      CONSUMER_BUCKETS: 'apha'
       MOCK_VIRUS_SCAN_ENABLED: false
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test

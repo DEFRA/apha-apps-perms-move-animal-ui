@@ -4,25 +4,35 @@ import { BiosecurityMapAnswer } from './biosecurity-map.js'
  * @import { BiosecurityMapPayload, BiosecurityMapData } from './biosecurity-map.js'
  */
 
-describe('BiosecurityAnswer', () => {
-  /** @type {BiosecurityMapData} */
-  const mockData = {
-    metadata: {
-      uploadId: '12345',
-      uploadUrl: 'http://example.com/upload',
-      statusUrl: 'http://example.com/status'
+/** @type {BiosecurityMapData} */
+const mockData = {
+  metadata: {
+    uploadId: '12345',
+    uploadUrl: 'http://example.com/upload',
+    statusUrl: 'http://example.com/status'
+  },
+  status: {
+    uploadStatus: 'initiated',
+    metadata: {},
+    form: {
+      crumb: 'crumb',
+      file: {}
     },
-    status: {
-      uploadStatus: 'initiated',
-      metadata: {},
-      form: {
-        crumb: 'crumb',
-        file: {}
-      },
-      numberOfRejectedFiles: 0
-    }
+    numberOfRejectedFiles: 0
   }
+}
 
+/** @type {BiosecurityMapData} */
+const mockSkippedData = {
+  ...mockData,
+  // @ts-expect-error uploadStatus is not assignable to 'skipped' for some reason
+  status: {
+    ...mockData.status,
+    uploadStatus: 'skipped'
+  }
+}
+
+describe('BiosecurityAnswer', () => {
   it('should create an instance from state', () => {
     const answer = BiosecurityMapAnswer.fromState(mockData)
     expect(answer).toBeInstanceOf(BiosecurityMapAnswer)
@@ -56,6 +66,14 @@ describe('BiosecurityAnswer', () => {
     expect(html).toBe('Map uploaded')
   })
 
+  it('should return the correct HTML when skipped', () => {
+    const answer = new BiosecurityMapAnswer(mockSkippedData)
+    const html = answer.html
+    expect(html).toBe(
+      'Applicant must email their biosecurity map to csc.tblicensing@apha.gov.uk<br /><br />The application cannot be processed until it is received.'
+    )
+  })
+
   it('should convert to state correctly', () => {
     const answer = new BiosecurityMapAnswer(mockData)
     const state = answer.toState()
@@ -75,5 +93,32 @@ describe('BiosecurityAnswer', () => {
       metadata: mockData.metadata,
       status: mockData.status
     })
+  })
+
+  it('should return undefined for value if metadata is missing', () => {
+    const answer = new BiosecurityMapAnswer({})
+    expect(answer.value).toBeUndefined()
+  })
+
+  it('should return empty emailHtml when not skipped', () => {
+    const answer = new BiosecurityMapAnswer(mockData)
+    expect(answer.emailHtml).toBe('')
+  })
+
+  it('should return correct emailHtml when skipped', () => {
+    const answer = new BiosecurityMapAnswer(mockSkippedData)
+    expect(answer.emailHtml).toBe(
+      'Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant.'
+    )
+  })
+
+  it('should identify status other than skipped correctly', () => {
+    const answer = new BiosecurityMapAnswer(mockData)
+    expect(answer.isSkipped()).toBe(false)
+  })
+
+  it('should identify skipped status correctly', () => {
+    const answer = new BiosecurityMapAnswer(mockSkippedData)
+    expect(answer.isSkipped()).toBe(true)
   })
 })

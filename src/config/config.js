@@ -294,12 +294,6 @@ export const config = convict({
     }
   },
   featureFlags: {
-    biosecurity: {
-      doc: 'Feature flag to enable biosecurity sections',
-      format: Boolean,
-      default: !isProduction,
-      env: 'BIOSECURITY_FEATURE_ENABLED'
-    },
     pdfUpload: {
       doc: 'Feature flag to enable PDF upload',
       format: Boolean,

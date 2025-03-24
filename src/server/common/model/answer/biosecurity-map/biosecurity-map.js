@@ -9,7 +9,7 @@ import { finalSchema, processingSchema } from './validation.js'
  *   statusUrl: string;
  * }} UploadMetadata
  * @typedef {{
- *   uploadStatus: 'initiated' | 'pending' | 'ready',
+ *   uploadStatus: 'initiated' | 'pending' | 'ready' | 'skipped',
  *   metadata: {},
  *   form: {
  *     crumb: string,
@@ -46,13 +46,17 @@ export class BiosecurityMapAnswer extends AnswerModel {
   }
 
   get html() {
-    const html = 'Map uploaded'
-    return html
+    if (this.isSkipped()) {
+      return 'Applicant must email their biosecurity map to csc.tblicensing@apha.gov.uk<br /><br />The application cannot be processed until it is received.'
+    }
+    return 'Map uploaded'
   }
 
   get emailHtml() {
-    const emailHtml = ''
-    return emailHtml
+    if (this.isSkipped()) {
+      return 'Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant.'
+    }
+    return ''
   }
 
   /**
@@ -90,5 +94,9 @@ export class BiosecurityMapAnswer extends AnswerModel {
     return new BiosecurityMapAnswer(
       state ? { metadata: state.metadata, status: state.status } : undefined
     )
+  }
+
+  isSkipped() {
+    return this.value?.status?.uploadStatus === 'skipped'
   }
 }

@@ -4,57 +4,19 @@ import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../common/test-helpers/session-helper.js'
 import { sendNotification } from '../common/connectors/notify/notify.js'
-import path from 'path'
-import { createReadStream } from 'fs'
-import {
-  validApplicationStateWithBioSecurity,
-  validDestinationSectionState,
-  validOriginSectionState
-} from '../common/test-helpers/journey-state.js'
+import { validApplicationState } from '../common/test-helpers/journey-state.js'
 import { spyOnConfig } from '../common/test-helpers/config.js'
+import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
+import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
-const mockSend = jest.fn().mockImplementation(() => {
-  const filePath = path.resolve(
-    './src/server/check-answers/example-portrait.jpg'
-  )
-  const fileStream = createReadStream(filePath)
-  return Promise.resolve({
-    Body: fileStream
-  })
-})
+const testFile = 'test_file'
+const testFileBase64 = 'dGVzdF9maWxl'
 
-jest.mock('@aws-sdk/client-s3', () => {
-  const originalModule = jest.requireActual('@aws-sdk/client-s3')
-  return {
-    ...originalModule,
-    S3Client: jest.fn().mockImplementation(() => ({
-      destroy: jest.fn(),
-      send: mockSend
-    }))
-  }
-})
-
-jest.mock('./image-compression.js', () => ({
-  compress: jest.fn().mockResolvedValue({
-    file: Buffer.from('A STANDARD TEST BUFFER'),
-    start: 0,
-    end: 0,
-    duration: 0,
-    quality: 0,
-    manipulations: 0
-  })
+// Mock the handleUploadedFile function
+jest.mock('../common/helpers/file/file-utils.js', () => ({
+  handleUploadedFile: jest.fn().mockResolvedValue(Buffer.from(testFile))
 }))
-
-jest.mock('./pdf-compression.js', () => ({
-  compress: jest.fn().mockResolvedValue({
-    file: Buffer.from('%PDF-1.4\n...compressed'),
-    start: 0,
-    end: 0,
-    duration: 0,
-    reduction: 50,
-    size: 1000
-  })
-}))
+const mockHandleUploadedFile = /** @type {jest.Mock} */ (handleUploadedFile)
 
 jest.mock('../common/connectors/notify/notify.js', () => ({
   sendNotification: jest.fn()
@@ -68,7 +30,7 @@ const {
   identification,
   biosecurity,
   'biosecurity-map': biosecurityMap
-} = validApplicationStateWithBioSecurity
+} = validApplicationState
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
@@ -279,7 +241,7 @@ describe('#CheckAnswers', () => {
       expect.objectContaining({
         link_to_file: {
           confirm_email_before_download: true,
-          file: 'QSBTVEFOREFSRCBURVNUIEJVRkZFUg==',
+          file: testFileBase64,
           filename: 'Biosecurity-map.jpg',
           retention_period: '1 week'
         }
@@ -317,11 +279,6 @@ describe('#CheckAnswers', () => {
   })
 
   it('should send email in correct format', async () => {
-    spyOnConfig('featureFlags', { biosecurity: false })
-
-    await session.setState('origin', validOriginSectionState)
-    await session.setState('destination', validDestinationSectionState)
-
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -340,20 +297,66 @@ describe('#CheckAnswers', () => {
     const [{ content }] = mockSendNotification.mock.calls[0]
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(content).toMatchSnapshot('email-content-biosec-disabled')
+    expect(content).toMatchSnapshot('email-content')
   })
 
-  it('should send email in correct format for flag enabled', async () => {
-    spyOnConfig('featureFlags', { biosecurity: true })
+  it('should handle the file and send email in correct format', async () => {
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
 
-    await session.setState(
-      'origin',
-      validApplicationStateWithBioSecurity.origin
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(handleUploadedFile).toHaveBeenCalledTimes(1)
+  })
+
+  it('should compress the file and redirect to size error page if the file is too large', async () => {
+    mockHandleUploadedFile.mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
+
+    const { statusCode, headers } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
     )
-    await session.setState(
-      'destination',
-      validApplicationStateWithBioSecurity.destination
-    )
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(sizeErrorPage.urlPath)
+  })
+
+  it('should not handle the file and send email in correct format if the file status is already "skipped"', async () => {
+    const uploadPlan = biosecurityMap['upload-plan']
+
+    await session.setState('biosecurity-map', {
+      ...biosecurityMap,
+      ...{
+        'upload-plan': {
+          ...uploadPlan,
+          status: {
+            ...uploadPlan.status,
+            uploadStatus: 'skipped'
+          }
+        }
+      }
+    })
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
@@ -370,10 +373,10 @@ describe('#CheckAnswers', () => {
       )
     )
 
-    const [{ content }] = mockSendNotification.mock.calls[0]
-
+    expect(handleUploadedFile).not.toHaveBeenCalled()
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(content).toMatchSnapshot('email-content-biosec-enabled')
+    const [{ content }] = mockSendNotification.mock.calls[0]
+    expect(content).toMatchSnapshot('email-content')
   })
 })
 

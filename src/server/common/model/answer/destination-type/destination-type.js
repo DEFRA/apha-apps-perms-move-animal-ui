@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
@@ -33,18 +32,8 @@ const onFarmOptions = (app) =>
         other: otherOption
       }
 
-const offFarmOptionsR1 = {
-  slaughter: slaughterOption,
-  'dedicated-sale': dedicatedSaleOption,
-  afu: afuOption,
-  other: {
-    ...otherOption,
-    hint: 'For example, a veterinary practice, zoo, or a laboratory'
-  }
-}
-
 /** @returns {Record<string, RadioOption>} */
-const offFarmOptionsR2 = (app) =>
+const offFarmOptions = (app) =>
   isOriginAfu(app)
     ? {
         slaughter: slaughterOption,
@@ -59,11 +48,6 @@ const offFarmOptionsR2 = (app) =>
         lab: { label: 'Laboratory' },
         other: otherOption
       }
-
-const offFarmOptions = (app) =>
-  config.get('featureFlags').biosecurity
-    ? offFarmOptionsR2(app)
-    : offFarmOptionsR1
 
 /** @augments {RadioButtonAnswer<DestinationTypePayload>} */
 export class DestinationTypeAnswer extends RadioButtonAnswer {
