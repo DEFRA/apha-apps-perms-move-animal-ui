@@ -3,7 +3,9 @@ import { StateManager } from './state-manager.js'
 import { originTypePage } from '~/src/server/origin/origin-type/index.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
+/** @import {RawSectionState} from './state-manager.js' */
 
+/** @type {RawSectionState} */
 const origin = {
   onOffFarm: 'on'
 }
@@ -24,12 +26,17 @@ const biosecurity = {
   keptSeperately: 'yes'
 }
 
-const validState = {
+const validSections = {
   origin,
   destination,
   identification,
   licence,
   biosecurity
+}
+
+/** @type {RawApplicationState} */
+const validState = {
+  application: validSections
 }
 
 /**
@@ -47,26 +54,26 @@ describe('StateManager.toState', () => {
   it('extracts the raw application state from a request', () => {
     const request = testRequest(validState)
     const state = new StateManager(request)
-    expect(state.toState()).toEqual(validState)
+    expect(state.toState()).toEqual(validSections)
   })
 
   it('filters out missing sections', () => {
-    const partialState = { origin }
+    const partialState = { application: { origin } }
     const request = testRequest(partialState)
     const state = new StateManager(request)
-    expect(state.toState()).toEqual(partialState)
+    expect(state.toState()).toEqual(partialState.application)
   })
 
   it('returns an empty object if no sections are available', () => {
-    const request = testRequest({})
+    const request = testRequest({ application: {} })
     const state = new StateManager(request)
     expect(state.toState()).toEqual({})
   })
 
   it("should ignore keys it isn't tracking", () => {
-    const request = testRequest({ ...validState, someOtherKey: {} })
+    const request = testRequest({ ...validState, ...{ someOtherKey: {} } })
     const state = new StateManager(request)
-    expect(state.toState()).toEqual(validState)
+    expect(state.toState()).toEqual(validSections)
   })
 })
 
@@ -77,9 +84,14 @@ describe('StateManager.update', () => {
 
     state.set(onOffFarmPage, new onOffFarmPage.Answer({ onOffFarm: 'off' }))
 
-    expect(request.yar.set).toHaveBeenCalledWith(onOffFarmPage.sectionKey, {
-      onOffFarm: 'off'
-    })
+    expect(request.yar.set).toHaveBeenCalledWith(
+      'application',
+      expect.objectContaining({
+        origin: {
+          onOffFarm: 'off'
+        }
+      })
+    )
   })
 
   it('should preserve the existing state', () => {
@@ -88,9 +100,14 @@ describe('StateManager.update', () => {
 
     state.set(originTypePage, new originTypePage.Answer({ originType: 'afu' }))
 
-    expect(request.yar.set).toHaveBeenCalledWith(onOffFarmPage.sectionKey, {
-      onOffFarm: 'on',
-      originType: 'afu'
-    })
+    expect(request.yar.set).toHaveBeenCalledWith(
+      'application',
+      expect.objectContaining({
+        origin: {
+          onOffFarm: 'on',
+          originType: 'afu'
+        }
+      })
+    )
   })
 })

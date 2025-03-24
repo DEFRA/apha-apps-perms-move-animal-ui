@@ -44,7 +44,7 @@ describe('#licenceSummaryPage', () => {
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setState('licence', defaultState)
+      await session.setState('application', { licence: defaultState })
     })
 
     it('should render expected response', async () => {
@@ -70,9 +70,11 @@ describe('#licenceSummaryPage', () => {
     })
 
     it('should redirect user to receive method page if they`ve selected Post', async () => {
-      await session.setState('licence', {
-        ...defaultState,
-        receiveMethod: postMethod
+      await session.setState('application', {
+        licence: {
+          ...defaultState,
+          receiveMethod: postMethod
+        }
       })
 
       const { statusCode, headers } = await server.inject(
@@ -100,7 +102,7 @@ describePageSnapshot({
   describes: '#licenceSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { licence: defaultState }
+  state: { application: { licence: defaultState } }
 })
 
 /**

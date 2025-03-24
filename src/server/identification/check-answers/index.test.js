@@ -29,7 +29,7 @@ describe('IdentificationSummaryPage', () => {
   })
 
   it('should render expected response when default state present', async () => {
-    await session.setState('identification', defaultState)
+    await session.setState('application', { identification: defaultState })
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
@@ -47,9 +47,11 @@ describe('IdentificationSummaryPage', () => {
   })
 
   it('should redirect user to kept separately page if they`ve not selected a value', async () => {
-    await session.setState('identification', {
-      ...defaultState,
-      earTags: null
+    await session.setState('application', {
+      identification: {
+        ...defaultState,
+        earTags: null
+      }
     })
 
     const { statusCode } = await server.inject(
@@ -72,5 +74,5 @@ describePageSnapshot({
   describes: '#IdentificationSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { identification: defaultState }
+  state: { application: { identification: defaultState } }
 })

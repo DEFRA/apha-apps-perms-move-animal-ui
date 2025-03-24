@@ -27,10 +27,8 @@ const {
   origin,
   destination,
   licence,
-  identification,
-  biosecurity,
   'biosecurity-map': biosecurityMap
-} = validApplicationState
+} = validApplicationState.application
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/submit/confirmation'
 const checkAnswersUri = '/submit/check-answers'
@@ -48,12 +46,7 @@ describe('#CheckAnswers', () => {
 
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
-    await session.setState('origin', origin)
-    await session.setState('licence', licence)
-    await session.setState('destination', destination)
-    await session.setState('identification', identification)
-    await session.setState('biosecurity', biosecurity)
-    await session.setState('biosecurity-map', biosecurityMap)
+    await session.setState('application', validApplicationState.application)
   })
 
   afterAll(async () => {
@@ -81,7 +74,7 @@ describe('#CheckAnswers', () => {
   })
 
   it('Should redirect to task-incomplete page if not all answers valid', async () => {
-    await session.setState('origin', {})
+    await session.setState('application', { origin: {} })
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -141,7 +134,7 @@ describe('#CheckAnswers', () => {
   })
 
   it('should not send an email and redirect to task incomplete on POST if application is invalid', async () => {
-    await session.setState('origin', {})
+    await session.setState('application', { origin: {} })
     const { headers, statusCode } = await server.inject(
       withCsrfProtection(
         {
@@ -185,9 +178,11 @@ describe('#CheckAnswers', () => {
     expect(content).toMatchSnapshot('email-content')
     expect(mockSendNotification).toHaveBeenCalledTimes(1)
     expect(statusCode).toBe(statusCodes.serverError)
-    expect(await session.getState('origin')).toEqual(origin)
-    expect(await session.getState('destination')).toEqual(destination)
-    expect(await session.getState('licence')).toEqual(licence)
+    expect((await session.getState('application')).origin).toEqual(origin)
+    expect((await session.getState('application')).destination).toEqual(
+      destination
+    )
+    expect((await session.getState('application')).licence).toEqual(licence)
   })
 
   it('Should redirect correctly when there is no error', async () => {
@@ -345,14 +340,19 @@ describe('#CheckAnswers', () => {
   it('should not handle the file and send email in correct format if the file status is already "skipped"', async () => {
     const uploadPlan = biosecurityMap['upload-plan']
 
-    await session.setState('biosecurity-map', {
-      ...biosecurityMap,
+    await session.setState('application', {
+      ...validApplicationState.application,
       ...{
-        'upload-plan': {
-          ...uploadPlan,
-          status: {
-            ...uploadPlan.status,
-            uploadStatus: 'skipped'
+        'biosecurity-map': {
+          ...biosecurityMap,
+          ...{
+            'upload-plan': {
+              ...uploadPlan,
+              status: {
+                ...uploadPlan.status,
+                uploadStatus: 'skipped'
+              }
+            }
           }
         }
       }

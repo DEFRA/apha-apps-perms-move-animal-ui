@@ -34,7 +34,9 @@ const createRadioSchema = (config) => {
  */
 const handleConfig = (context, config) => {
   if (typeof config === 'function') {
-    return config(context ?? {})
+    return config(
+      context ?? /** @type {RawApplicationState} */ ({ application: {} })
+    )
   } else {
     return config
   }

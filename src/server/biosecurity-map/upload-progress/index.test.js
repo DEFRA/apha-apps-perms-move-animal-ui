@@ -34,18 +34,22 @@ describe('#UploadPlan', () => {
 
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
-    await session.setState(uploadConfig.questionKey, {
-      statusUrl: 'http://localhost/status'
+    await session.setState('application', {
+      [uploadConfig.questionKey]: {
+        statusUrl: 'http://localhost/status'
+      }
     })
   })
 
   beforeEach(async () => {
-    await session.setState(uploadConfig.sectionKey, {
-      [uploadConfig.questionKey]: {
-        metadata: {
-          uploadId: testUploadId,
-          uploadUrl: testUploadUrl,
-          statusUrl: testStatusUrl
+    await session.setState('application', {
+      [uploadConfig.sectionKey]: {
+        [uploadConfig.questionKey]: {
+          metadata: {
+            uploadId: testUploadId,
+            uploadUrl: testUploadUrl,
+            statusUrl: testStatusUrl
+          }
         }
       }
     })

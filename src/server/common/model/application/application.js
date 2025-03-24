@@ -9,11 +9,12 @@ import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-
  * @import { SectionModel } from '../section/section-model/section-model.js'
  * @import { RawApplicationState } from '../state/state-manager.js'
  * @import { ApplicationValidationResult } from './validation.js'
- * @typedef { { [key: string]: SectionModel; } } ApplicationPayload
+ * @typedef {{ [key: string]: SectionModel; }} ApplicationPayload
+ * @typedef {{ application: ApplicationPayload }} ApplicationData
  */
 
 export class ApplicationModel {
-  /** @type {ApplicationPayload} */
+  /** @type {ApplicationData} */
   _data
 
   // This is a list of all the sections that are implemented in the application.
@@ -31,13 +32,15 @@ export class ApplicationModel {
    * @param {ApplicationPayload} data
    */
   constructor(data) {
-    this._data = data
+    this._data = {
+      application: data
+    }
     Object.seal(this)
   }
 
   /** @returns {ApplicationValidationResult} */
   validate() {
-    return validateApplication(this._data)
+    return validateApplication(this._data.application)
   }
 
   /**
@@ -45,7 +48,7 @@ export class ApplicationModel {
    * @returns {ApplicationPayload} The data associated with each and every task in the application
    */
   get tasks() {
-    return this._data
+    return this._data.application
   }
 
   /**

@@ -24,7 +24,7 @@ export class UploadPlanPage extends QuestionPage {
 export class UploadPlanController extends QuestionPageController {
   async handleGet(req, h) {
     const applicationState = new StateManager(req).toState()
-    const sectionState = req.yar.get(this.page.sectionKey)
+    const sectionState = applicationState[this.page.sectionKey]
 
     const existingAnswer = /** @type {BiosecurityMapAnswer} */ (
       this.page.Answer.fromState(

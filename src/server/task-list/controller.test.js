@@ -22,20 +22,7 @@ describe('#taskListController', () => {
 
   beforeEach(async () => {
     session = await SessionTester.create(server)
-    const {
-      origin,
-      destination,
-      licence,
-      identification,
-      biosecurity,
-      'biosecurity-map': biosecurityMap
-    } = validApplicationState
-    await session.setState('origin', origin)
-    await session.setState('destination', destination)
-    await session.setState('licence', licence)
-    await session.setState('identification', identification)
-    await session.setState('biosecurity', biosecurity)
-    await session.setState('biosecurity-map', biosecurityMap)
+    await session.setState('application', validApplicationState)
   })
 
   afterAll(async () => {
@@ -110,7 +97,7 @@ describe('#taskListController', () => {
 
   it('Should show completed sections', async () => {
     const { origin } = validApplicationState
-    await session.setState('origin', origin)
+    await session.setState('application', { origin })
 
     const { statusCode, payload } = await server.inject(
       withCsrfProtection(

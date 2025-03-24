@@ -12,10 +12,10 @@ import { config } from '~/src/config/config.js'
 /** @import { Server } from '@hapi/hapi' */
 
 const question = 'question-text'
-const questionKey = 'questionKey'
+const questionKey = 'question-key'
 const questionView =
   'common/controller/question-page-controller/question-page-controller.test.njk'
-const sectionKey = 'section-key'
+const sectionKey = 'destination'
 const questionUrl = '/question-url'
 const nextQuestionUrl = '/next-question-url'
 const nextOnFarmQuestionUrl = '/next-on-farm-question-url'
@@ -158,8 +158,10 @@ describe('QuestionPageController', () => {
     })
 
     it('should repopulate the form from state', async () => {
-      await session.setState(sectionKey, {
-        [questionKey]: questionValue
+      await session.setState('application', {
+        [sectionKey]: {
+          [questionKey]: questionValue
+        }
       })
       const { payload, statusCode } = await server.inject(
         withCsrfProtection(
@@ -187,10 +189,14 @@ describe('QuestionPageController', () => {
       const originState = {
         onOffFarm: 'on'
       }
-      await session.setState(sectionKey, {
-        [questionKey]: questionValue
+      await session.setState('application', {
+        [sectionKey]: {
+          [questionKey]: questionValue
+        }
       })
-      await session.setState('origin', originState)
+      await session.setState('application', {
+        origin: originState
+      })
 
       jest.spyOn(TestAnswer, 'fromState')
       await server.inject(
@@ -240,9 +246,7 @@ describe('QuestionPageController', () => {
     })
 
     it('should allow routing to depend on application state', async () => {
-      await session.setState('origin', {
-        onOffFarm: 'on'
-      })
+      await session.setState('application', { origin: { onOffFarm: 'on' } })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -434,7 +438,7 @@ describe('QuestionPageController', () => {
       await session.setState(sectionKey, {
         [questionKey]: questionValue
       })
-      await session.setState('origin', originState)
+      await session.setState('application', { origin: originState })
 
       const payload = {
         [questionKey]: 'continue'

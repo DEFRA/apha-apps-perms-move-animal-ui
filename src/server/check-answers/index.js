@@ -105,12 +105,12 @@ export class SubmitPageController extends QuestionPageController {
 
       if (
         application.tasks[biosecurityMapKey] &&
-        req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
+        appState[biosecurityMapKey][uploadPlanKey].status?.uploadStatus !==
           'skipped'
       ) {
         const compressedFile = await handleUploadedFile(
           req,
-          req.yar.get(biosecurityMapKey)[uploadPlanKey],
+          appState[biosecurityMapKey][uploadPlanKey],
           this.logger
         )
 

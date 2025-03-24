@@ -2,7 +2,6 @@ import { ApplicationModel } from './application.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
 import { DestinationSection } from '../section/destination/destination.js'
-import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 
 describe('Application.fromState', () => {
@@ -15,7 +14,6 @@ describe('Application.fromState', () => {
     expect(application.tasks.licence).toBeInstanceOf(LicenceSection)
     expect(application.tasks.identification).toBeUndefined()
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
-    expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 
     expect(application.tasks.origin.questionPageAnswers).toEqual(
       OriginSection.fromState(validApplicationState).questionPageAnswers
@@ -25,9 +23,6 @@ describe('Application.fromState', () => {
     )
     expect(application.tasks.destination.questionPageAnswers).toEqual(
       DestinationSection.fromState(validApplicationState).questionPageAnswers
-    )
-    expect(application.tasks.biosecurity.questionPageAnswers).toEqual(
-      BiosecuritySection.fromState(validApplicationState).questionPageAnswers
     )
   })
 })

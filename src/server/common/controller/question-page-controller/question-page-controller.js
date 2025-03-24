@@ -46,7 +46,7 @@ export class QuestionPageController extends GenericPageController {
 
   handleGet(req, h, args = {}) {
     const applicationState = new StateManager(req).toState()
-    const sectionState = req.yar.get(this.page.sectionKey)
+    const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
       applicationState

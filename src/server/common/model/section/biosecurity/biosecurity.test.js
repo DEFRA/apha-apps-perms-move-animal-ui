@@ -24,7 +24,7 @@ describe('Biosecurity.validate', () => {
 
   it('should return invalid if any nested object is invalid', () => {
     const result = BiosecuritySection.fromState({
-      biosecurity: invalidBiosecurityData
+      application: { biosecurity: invalidBiosecurityData }
     }).validate()
 
     expect(result.isValid).toBe(false)
@@ -36,7 +36,7 @@ describe('Biosecurity.config.isVisible', () => {
   afterEach(jest.restoreAllMocks)
 
   const { origin, destination } = validApplicationState
-  const appState = { origin, destination }
+  const appState = { application: { origin, destination } }
 
   it('should be visible if movement is on farm & destination premises is not AFU', () => {
     const isVisible = BiosecuritySection.config.isVisible(appState)
@@ -45,8 +45,7 @@ describe('Biosecurity.config.isVisible', () => {
 
   it('should not be visible if origin is incomplete', () => {
     const isVisible = BiosecuritySection.config.isVisible({
-      origin: { onOffFarm: origin.onOffFarm },
-      destination
+      application: { origin: { onOffFarm: origin.onOffFarm }, destination }
     })
 
     expect(isVisible).toBe(false)
@@ -54,8 +53,10 @@ describe('Biosecurity.config.isVisible', () => {
 
   it('should not be visible if destination is incomplete', () => {
     const isVisible = BiosecuritySection.config.isVisible({
-      origin,
-      destination: { destinationType: destination.destinationType }
+      application: {
+        origin,
+        destination: { destinationType: destination.destinationType }
+      }
     })
 
     expect(isVisible).toBe(false)
@@ -63,8 +64,10 @@ describe('Biosecurity.config.isVisible', () => {
 
   it('should not be visible if movement is off the farm', () => {
     const isVisible = BiosecuritySection.config.isVisible({
-      origin: validOriginSectionState,
-      destination: validDestinationSectionState
+      application: {
+        origin: validOriginSectionState,
+        destination: validDestinationSectionState
+      }
     })
 
     expect(isVisible).toBe(false)
@@ -72,10 +75,12 @@ describe('Biosecurity.config.isVisible', () => {
 
   it('should not be visible if destination is AFU', () => {
     const isVisible = BiosecuritySection.config.isVisible({
-      origin,
-      destination: {
-        /** @type {DestinationTypeData} */
-        destinationType: 'afu'
+      application: {
+        origin,
+        destination: {
+          /** @type {DestinationTypeData} */
+          destinationType: 'afu'
+        }
       }
     })
 

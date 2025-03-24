@@ -32,8 +32,10 @@ describe('PostExitPageController', () => {
 
   describe('Should process the result and provide expected response', () => {
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
-      await session.setState(receiveMethodPage.sectionKey, {
-        [receiveMethodPage.questionKey]: 'some-other-value'
+      await session.setState('application', {
+        [receiveMethodPage.sectionKey]: {
+          [receiveMethodPage.questionKey]: 'some-other-value'
+        }
       })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(

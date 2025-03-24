@@ -79,19 +79,21 @@ describe('#UploadPlan', () => {
 
     describe('empty file', () => {
       beforeEach(async () => {
-        await session.setState(page.sectionKey, {
-          [page.questionKey]: {
-            metadata: {
-              uploadId: testUploadId,
-              uploadUrl: testUploadUrl,
-              statusUrl: testStatusUrl
-            },
-            status: {
-              uploadStatus: 'ready',
-              metadata: {},
-              form: {
-                crumb: testCrumb,
-                nextPage: ''
+        await session.setState('application', {
+          [page.sectionKey]: {
+            [page.questionKey]: {
+              metadata: {
+                uploadId: testUploadId,
+                uploadUrl: testUploadUrl,
+                statusUrl: testStatusUrl
+              },
+              status: {
+                uploadStatus: 'ready',
+                metadata: {},
+                form: {
+                  crumb: testCrumb,
+                  nextPage: ''
+                }
               }
             }
           }
@@ -117,30 +119,32 @@ describe('#UploadPlan', () => {
 
     describe('invalid mimetype', () => {
       beforeEach(async () => {
-        await session.setState(page.sectionKey, {
-          [page.questionKey]: {
-            metadata: {
-              uploadId: testUploadId,
-              uploadUrl: testUploadUrl,
-              statusUrl: testStatusUrl
-            },
-            status: {
-              uploadStatus: 'ready',
-              metadata: {},
-              form: {
-                crumb: testCrumb,
-                nextPage: '',
-                file: {
-                  fileId: 'file-id',
-                  filename: 'INVALID MIME TYPE TEST',
-                  contentType: 'application/octet-stream',
-                  fileStatus: 'rejected',
-                  contentLength: 8,
-                  hasError: true,
-                  errorMessage: invalidMimeTypeMessage
-                }
+        await session.setState('application', {
+          [page.sectionKey]: {
+            [page.questionKey]: {
+              metadata: {
+                uploadId: testUploadId,
+                uploadUrl: testUploadUrl,
+                statusUrl: testStatusUrl
               },
-              numberOfRejectedFiles: 1
+              status: {
+                uploadStatus: 'ready',
+                metadata: {},
+                form: {
+                  crumb: testCrumb,
+                  nextPage: '',
+                  file: {
+                    fileId: 'file-id',
+                    filename: 'INVALID MIME TYPE TEST',
+                    contentType: 'application/octet-stream',
+                    fileStatus: 'rejected',
+                    contentLength: 8,
+                    hasError: true,
+                    errorMessage: invalidMimeTypeMessage
+                  }
+                },
+                numberOfRejectedFiles: 1
+              }
             }
           }
         })

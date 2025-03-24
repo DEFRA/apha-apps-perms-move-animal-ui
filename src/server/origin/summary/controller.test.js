@@ -36,7 +36,7 @@ describe('#originSummaryController', () => {
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
 
-    await session.setState('origin', defaultState)
+    await session.setState('application', { origin: defaultState })
   })
 
   afterAll(async () => {
@@ -74,9 +74,11 @@ describe('#originSummaryController', () => {
 
   describe('should redirect to specific page when fields are missing from state', () => {
     it('should not show on/off farm text', async () => {
-      await session.setState('origin', {
-        ...defaultState,
-        onOffFarm: undefined
+      await session.setState('application', {
+        origin: {
+          ...defaultState,
+          onOffFarm: undefined
+        }
       })
 
       const { headers, statusCode } = await server.inject(
@@ -98,9 +100,11 @@ describe('#originSummaryController', () => {
     })
 
     it('should not show address text', async () => {
-      await session.setState('origin', {
-        ...defaultState,
-        address: undefined
+      await session.setState('application', {
+        origin: {
+          ...defaultState,
+          address: undefined
+        }
       })
 
       const { headers, statusCode } = await server.inject(
@@ -122,9 +126,11 @@ describe('#originSummaryController', () => {
     })
 
     it('should not show cph number', async () => {
-      await session.setState('origin', {
-        ...defaultState,
-        cphNumber: undefined
+      await session.setState('application', {
+        origin: {
+          ...defaultState,
+          cphNumber: undefined
+        }
       })
 
       const { headers, statusCode } = await server.inject(
@@ -151,7 +157,7 @@ describePageSnapshot({
   describes: '#originSummaryController.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { origin: defaultState }
+  state: { application: { origin: defaultState } }
 })
 
 /**

@@ -59,7 +59,7 @@ describe('#biosecurityPlanSummaryPage', () => {
   })
 
   it('should render expected response when valid file uploaded', async () => {
-    await session.setState('biosecurity-map', defaultState)
+    await session.setState('application', { 'biosecurity-map': defaultState })
 
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
@@ -81,14 +81,16 @@ describe('#biosecurityPlanSummaryPage', () => {
   })
 
   it('should redirect user to upload page if they`ve not selected a file', async () => {
-    await session.setState('biosecurity-map', {
-      'upload-plan': {
-        metadata: {
-          uploadId: '2ac91a2d-1910-48d0-83af-01cbeb370ca2',
-          uploadUrl:
-            'http://localhost:7337/upload-and-scan/2ac91a2d-1910-48d0-83af-01cbeb370ca2',
-          statusUrl:
-            'http://localhost:7337/status/2ac91a2d-1910-48d0-83af-01cbeb370ca2'
+    await session.setState('application', {
+      'biosecurity-map': {
+        'upload-plan': {
+          metadata: {
+            uploadId: '2ac91a2d-1910-48d0-83af-01cbeb370ca2',
+            uploadUrl:
+              'http://localhost:7337/upload-and-scan/2ac91a2d-1910-48d0-83af-01cbeb370ca2',
+            statusUrl:
+              'http://localhost:7337/status/2ac91a2d-1910-48d0-83af-01cbeb370ca2'
+          }
         }
       }
     })
@@ -116,7 +118,7 @@ describePageSnapshot({
   describes: '#biosecurityPlanSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { 'biosecurity-map': defaultState }
+  state: { application: { 'biosecurity-map': defaultState } }
 })
 
 /**

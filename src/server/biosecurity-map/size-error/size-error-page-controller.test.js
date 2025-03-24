@@ -63,7 +63,7 @@ describe('SizeErrorPageController', () => {
 
   describe('Should process the result and provide expected response', () => {
     it('should redirect to final check answers page, updating the uploaded file status & preserving the rest of the section state', async () => {
-      await session.setState('biosecurity-map', defaultState)
+      await session.setState('application', { 'biosecurity-map': defaultState })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {

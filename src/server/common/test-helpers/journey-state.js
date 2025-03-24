@@ -102,17 +102,19 @@ export const validLicenceSectionState = {
 }
 
 export const validApplicationState = {
-  origin: {
-    ...validOriginSectionState,
-    onOffFarm: 'on',
-    originType: 'market'
-  },
-  destination: {
-    ...validDestinationSectionState,
-    destinationType: 'tb-restricted-farm'
-  },
-  identification: validIdentificationSectionState,
-  licence: validLicenceSectionState,
-  biosecurity: validBiosecuritySectionState,
-  'biosecurity-map': validBiosecurityMapSectionState
+  application: {
+    origin: {
+      ...validOriginSectionState,
+      onOffFarm: 'on',
+      originType: 'market'
+    },
+    destination: {
+      ...validDestinationSectionState,
+      destinationType: 'tb-restricted-farm'
+    },
+    identification: validIdentificationSectionState,
+    licence: validLicenceSectionState,
+    biosecurity: validBiosecuritySectionState,
+    'biosecurity-map': validBiosecurityMapSectionState
+  }
 }
