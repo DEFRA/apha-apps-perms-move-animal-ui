@@ -1,5 +1,3 @@
-import Wreck from '@hapi/wreck'
-import { config } from '~/src/config/config.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { uploadProgressPage } from '../upload-progress/index.js'
