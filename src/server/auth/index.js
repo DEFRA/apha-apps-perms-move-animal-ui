@@ -8,7 +8,7 @@ import { sessionCookie } from '../common/helpers/auth/session-cookie.js'
 import { getUserSession } from '../common/helpers/auth/get-user-session.js'
 import { dropUserSession } from '../common/helpers/auth/drop-user-session.js'
 
-const a11n = {
+const authPlugin = {
   plugin: {
     name: 'auth-router',
     register: async (server) => {
@@ -27,4 +27,4 @@ const a11n = {
   }
 }
 
-export { a11n }
+export { authPlugin }

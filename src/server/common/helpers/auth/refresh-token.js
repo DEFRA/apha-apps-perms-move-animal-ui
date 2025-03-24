@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 
 async function refreshAccessToken(request) {
@@ -17,13 +17,12 @@ async function refreshAccessToken(request) {
 
   request.logger.info('Access token expired, refreshing...')
 
-  return await fetch(authedUser.tokenUrl, {
-    method: 'post',
+  return await Wreck.post(authedUser.tokenUrl, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Cache-Control': 'no-cache'
     },
-    body: params
+    payload: params
   })
 }
 

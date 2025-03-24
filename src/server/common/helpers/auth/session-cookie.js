@@ -7,6 +7,7 @@ import {
 } from '~/src/server/common/helpers/auth/user-session.js'
 import { refreshAccessToken } from './refresh-token.js'
 import { config } from '~/src/config/config.js'
+import { statusCodes } from '../../constants/status-codes.js'
 
 const sessionCookie = {
   plugin: {
@@ -36,9 +37,11 @@ const sessionCookie = {
 
           if (tokenHasExpired) {
             const response = await refreshAccessToken(request)
-            const refreshAccessTokenJson = await response.json()
+            const refreshAccessTokenJson = JSON.parse(
+              response.payload.toString()
+            )
 
-            if (!response.ok) {
+            if (response.res.statusCode !== statusCodes.OK) {
               removeUserSession(request)
 
               return { isValid: false }

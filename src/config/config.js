@@ -314,6 +314,12 @@ export const config = convict({
     env: 'GS_BINARY'
   },
   auth: {
+    enabled: {
+      doc: 'DEFRA ID Auth enabled',
+      format: Boolean,
+      env: 'DEFRA_ID_ENABLED',
+      default: false
+    },
     defraIdOidcConfigurationUrl: {
       doc: 'DEFRA ID OIDC Configuration URL',
       format: String,

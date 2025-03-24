@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import Wreck from '@hapi/wreck'
 import jwt from '@hapi/jwt'
 import bell from '@hapi/bell'
 import { config } from '~/src/config/config.js'
@@ -20,8 +20,10 @@ const defraId = {
 
       await server.register(bell)
 
-      const resp = await fetch(oidcConfigurationUrl)
-      const oidcConf = /** @type {OidcConf} */ (await resp.json())
+      const resp = await Wreck.get(oidcConfigurationUrl)
+
+      /** @type {OidcConf} */
+      const oidcConf = JSON.parse(resp.payload.toString())
 
       server.auth.strategy('defra-id', 'bell', {
         location: () => {

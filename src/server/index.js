@@ -11,7 +11,6 @@ import { sessionCache } from '~/src/server/common/helpers/session-cache/session-
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
 import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
-import { a11n } from './auth/index.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -48,8 +47,6 @@ export async function createServer() {
       }
     ]
   })
-
-  await server.register(a11n)
 
   await server.register([
     requestLogger,

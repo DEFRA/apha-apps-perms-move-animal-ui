@@ -1,7 +1,7 @@
+import Wreck from '@hapi/wreck'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { config } from '~/src/config/config.js'
-import Wreck from '@hapi/wreck'
 import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
