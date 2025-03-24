@@ -9,7 +9,7 @@ import { spyOnConfig } from '../../test-helpers/config.js'
 
 jest.mock('@hapi/wreck')
 
-const maxFileSize = 10485760
+const maxFileSize = 10000000
 
 const mockUploaderUrl = 'http://mock-uploader-url'
 const mockBucket = 'mock-bucket'
