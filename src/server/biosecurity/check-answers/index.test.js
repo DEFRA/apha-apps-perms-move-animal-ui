@@ -27,7 +27,7 @@ describe('#biosecuritySummaryPage', () => {
   })
 
   it('should render expected response when default state present', async () => {
-    await session.setState('biosecurity', validBiosecuritySectionState)
+    await session.setSectionState('biosecurity', validBiosecuritySectionState)
 
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
@@ -49,7 +49,7 @@ describe('#biosecuritySummaryPage', () => {
   })
 
   it('should redirect user to kept separately page if they`ve not selected a value', async () => {
-    await session.setState('biosecurity', {
+    await session.setSectionState('biosecurity', {
       ...validBiosecuritySectionState,
       keptSeparately: null
     })

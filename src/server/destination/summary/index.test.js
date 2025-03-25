@@ -33,7 +33,7 @@ describe('#destinationSummaryPage', () => {
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setState('destination', defaultState)
+      await session.setSectionState('destination', defaultState)
     })
 
     it('should render expected response', async () => {
@@ -68,7 +68,7 @@ describe('#destinationSummaryPage', () => {
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setState('destination', defaultState)
+      await session.setSectionState('destination', defaultState)
     })
 
     it('should redirect user to exit page if they`ve exited the journey', async () => {

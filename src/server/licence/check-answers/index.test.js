@@ -44,7 +44,7 @@ describe('#licenceSummaryPage', () => {
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setState('licence', defaultState)
+      await session.setSectionState('licence', defaultState)
     })
 
     it('should render expected response', async () => {
@@ -70,7 +70,7 @@ describe('#licenceSummaryPage', () => {
     })
 
     it('should redirect user to receive method page if they`ve selected Post', async () => {
-      await session.setState('licence', {
+      await session.setSectionState('licence', {
         ...defaultState,
         receiveMethod: postMethod
       })

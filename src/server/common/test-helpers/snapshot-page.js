@@ -29,7 +29,7 @@ export const describePageSnapshot = ({
       session = await SessionTestHelper.create(server)
 
       for (const [key, value] of Object.entries(state)) {
-        await session.setState(key, value)
+        await session.setSectionState(key, value)
       }
     })
 

@@ -32,7 +32,7 @@ describe('PostExitPageController', () => {
 
   describe('Should process the result and provide expected response', () => {
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
-      await session.setState(receiveMethodPage.sectionKey, {
+      await session.setSectionState(receiveMethodPage.sectionKey, {
         [receiveMethodPage.questionKey]: 'some-other-value'
       })
       const { headers, statusCode } = await server.inject(
@@ -53,7 +53,7 @@ describe('PostExitPageController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(emailAddressPage.urlPath)
 
-      const state = await session.getState(receiveMethodPage.sectionKey)
+      const state = await session.getSectionState(receiveMethodPage.sectionKey)
       expect(state[receiveMethodPage.questionKey]).toBe('email')
     })
 
