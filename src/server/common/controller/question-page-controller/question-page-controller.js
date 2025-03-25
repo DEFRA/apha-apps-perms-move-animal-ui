@@ -46,7 +46,7 @@ export class QuestionPageController extends GenericPageController {
 
   handleGet(req, h, args = {}) {
     const applicationState = new StateManager(req).toState()
-    const sectionState = req.yar.get(this.page.sectionKey)
+    const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
       applicationState
@@ -66,7 +66,8 @@ export class QuestionPageController extends GenericPageController {
 
   handlePost(req, h) {
     const payload = /** @type {NextPage} */ (req.payload)
-    const applicationState = new StateManager(req).toState()
+    const state = new StateManager(req)
+    const applicationState = state.toState()
     const Answer = this.page.Answer
     const answer = new Answer(
       /** @type {RawPayload} */ (payload),
@@ -76,11 +77,7 @@ export class QuestionPageController extends GenericPageController {
 
     if (!isValid) {
       this.recordErrors(errors)
-
-      req.yar.set(this.page.sectionKey, {
-        ...req.yar.get(this.page.sectionKey),
-        [this.page.questionKey]: undefined
-      })
+      state.set(this.page, undefined)
 
       return h.view(this.page.view, {
         nextPage: payload.nextPage,
@@ -95,7 +92,6 @@ export class QuestionPageController extends GenericPageController {
       })
     }
 
-    const state = new StateManager(req)
     state.set(this.page, answer)
 
     const nextPage = this.page.nextPage(answer, applicationState)
