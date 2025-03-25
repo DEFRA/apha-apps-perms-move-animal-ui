@@ -30,12 +30,12 @@ describe('#taskListController', () => {
       biosecurity,
       'biosecurity-map': biosecurityMap
     } = validApplicationState
-    await session.setState('origin', origin)
-    await session.setState('destination', destination)
-    await session.setState('licence', licence)
-    await session.setState('identification', identification)
-    await session.setState('biosecurity', biosecurity)
-    await session.setState('biosecurity-map', biosecurityMap)
+    await session.setSectionState('origin', origin)
+    await session.setSectionState('destination', destination)
+    await session.setSectionState('licence', licence)
+    await session.setSectionState('identification', identification)
+    await session.setSectionState('biosecurity', biosecurity)
+    await session.setSectionState('biosecurity-map', biosecurityMap)
   })
 
   afterAll(async () => {
@@ -110,7 +110,7 @@ describe('#taskListController', () => {
 
   it('Should show completed sections', async () => {
     const { origin } = validApplicationState
-    await session.setState('origin', origin)
+    await session.setSectionState('origin', origin)
 
     const { statusCode, payload } = await server.inject(
       withCsrfProtection(

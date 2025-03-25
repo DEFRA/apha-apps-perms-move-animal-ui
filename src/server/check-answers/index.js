@@ -93,9 +93,10 @@ export class SubmitPageController extends QuestionPageController {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
-    const appState = new StateManager(req).toState()
+    const state = new StateManager(req)
+    const applicationState = state.toState()
 
-    const application = ApplicationModel.fromState(appState)
+    const application = ApplicationModel.fromState(applicationState)
 
     const { isValid: isValidApplication } = application.validate()
 
@@ -105,12 +106,12 @@ export class SubmitPageController extends QuestionPageController {
 
       if (
         application.tasks[biosecurityMapKey] &&
-        req.yar.get(biosecurityMapKey)[uploadPlanKey].status?.uploadStatus !==
-          'skipped'
+        applicationState[biosecurityMapKey][uploadPlanKey].status
+          ?.uploadStatus !== 'skipped'
       ) {
         const compressedFile = await handleUploadedFile(
           req,
-          req.yar.get(biosecurityMapKey)[uploadPlanKey],
+          applicationState[biosecurityMapKey][uploadPlanKey],
           this.logger
         )
 

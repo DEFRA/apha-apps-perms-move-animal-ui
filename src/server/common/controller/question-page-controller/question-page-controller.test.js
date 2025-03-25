@@ -12,7 +12,7 @@ import { config } from '~/src/config/config.js'
 /** @import { Server } from '@hapi/hapi' */
 
 const question = 'question-text'
-const questionKey = 'questionKey'
+const questionKey = 'question-key'
 const questionView =
   'common/controller/question-page-controller/question-page-controller.test.njk'
 const sectionKey = 'section-key'
@@ -61,7 +61,7 @@ class TestAnswer extends AnswerModel {
       return {
         isValid: false,
         errors: {
-          questionKey: { text: 'There is a problem' }
+          [questionKey]: { text: 'There is a problem' }
         }
       }
     }
@@ -69,7 +69,7 @@ class TestAnswer extends AnswerModel {
     return {
       isValid: true,
       errors: {
-        questionKey: { text: 'There is no problem' }
+        [questionKey]: { text: 'There is no problem' }
       }
     }
   }
@@ -158,7 +158,7 @@ describe('QuestionPageController', () => {
     })
 
     it('should repopulate the form from state', async () => {
-      await session.setState(sectionKey, {
+      await session.setSectionState(sectionKey, {
         [questionKey]: questionValue
       })
       const { payload, statusCode } = await server.inject(
@@ -187,10 +187,10 @@ describe('QuestionPageController', () => {
       const originState = {
         onOffFarm: 'on'
       }
-      await session.setState(sectionKey, {
+      await session.setSectionState(sectionKey, {
         [questionKey]: questionValue
       })
-      await session.setState('origin', originState)
+      await session.setSectionState('origin', originState)
 
       jest.spyOn(TestAnswer, 'fromState')
       await server.inject(
@@ -206,14 +206,15 @@ describe('QuestionPageController', () => {
       )
 
       expect(TestAnswer.fromState).toHaveBeenCalledWith(questionValue, {
-        origin: originState
+        origin: originState,
+        [sectionKey]: { [questionKey]: questionValue }
       })
     })
   })
 
   describe('POST', () => {
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
-      await session.setState(sectionKey, {
+      await session.setSectionState(sectionKey, {
         someOtherQuestion: 'some-other-answer'
       })
       const { headers, statusCode } = await server.inject(
@@ -234,13 +235,13 @@ describe('QuestionPageController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(nextQuestionUrl)
 
-      const state = await session.getState(sectionKey)
+      const state = await session.getSectionState(sectionKey)
       expect(state[questionKey]).toBe(questionValue)
       expect(state.someOtherQuestion).toBe('some-other-answer')
     })
 
     it('should allow routing to depend on application state', async () => {
-      await session.setState('origin', {
+      await session.setSectionState('origin', {
         onOffFarm: 'on'
       })
       const { headers, statusCode } = await server.inject(
@@ -282,7 +283,7 @@ describe('QuestionPageController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe('/exit')
 
-      const state = await session.getState(sectionKey)
+      const state = await session.getSectionState(sectionKey)
       expect(state[questionKey]).toBe('exit')
     })
 
@@ -346,7 +347,7 @@ describe('QuestionPageController', () => {
       })
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {
-        await session.setState(sectionKey, {
+        await session.setSectionState(sectionKey, {
           [questionKey]: questionValue,
           someOtherQuestion: 'some-other-answer'
         })
@@ -365,7 +366,7 @@ describe('QuestionPageController', () => {
         const document = parseDocument(payload)
         expect(document.title).toBe(`Error: ${question}`)
 
-        const state = await session.getState(sectionKey)
+        const state = await session.getSectionState(sectionKey)
         expect(state[questionKey]).toBeUndefined()
         expect(state.someOtherQuestion).toBe('some-other-answer')
       })
@@ -431,10 +432,10 @@ describe('QuestionPageController', () => {
       const originState = {
         originType: 'afu'
       }
-      await session.setState(sectionKey, {
+      await session.setSectionState(sectionKey, {
         [questionKey]: questionValue
       })
-      await session.setState('origin', originState)
+      await session.setSectionState('origin', originState)
 
       const payload = {
         [questionKey]: 'continue'
@@ -454,7 +455,8 @@ describe('QuestionPageController', () => {
       )
 
       expect(TestAnswerSpy).toHaveBeenCalledWith(payload, {
-        origin: originState
+        origin: originState,
+        [sectionKey]: { [questionKey]: questionValue }
       })
     })
   })
@@ -496,7 +498,9 @@ describe('QuestionPageController', () => {
     })
 
     it('should not go to redirected page on post', async () => {
-      await session.setState(sectionKey, { [questionKey]: 'block-redirect' })
+      await session.setSectionState(sectionKey, {
+        [questionKey]: 'block-redirect'
+      })
 
       const redirectUrl = '/dummy/incorrect-url'
       const { statusCode, headers } = await server.inject(
@@ -521,7 +525,9 @@ describe('QuestionPageController', () => {
     })
 
     it('should add a query string onto tthe overriden url', async () => {
-      await session.setState(sectionKey, { [questionKey]: 'block-redirect' })
+      await session.setSectionState(sectionKey, {
+        [questionKey]: 'block-redirect'
+      })
 
       const redirectUrl = '/dummy/incorrect-url'
       const { statusCode, headers } = await server.inject(
@@ -596,7 +602,7 @@ describe('QuestionPageController', () => {
           errorMessages: [
             { href: `#${questionKey}`, text: 'There is a problem' }
           ],
-          errors: { questionKey: { text: 'There is a problem' } },
+          errors: { [questionKey]: { text: 'There is a problem' } },
           viewModelOptions: { validate: true, question },
           heading: question,
           nextPage: 'test_next_page',

@@ -63,7 +63,7 @@ describe('SizeErrorPageController', () => {
 
   describe('Should process the result and provide expected response', () => {
     it('should redirect to final check answers page, updating the uploaded file status & preserving the rest of the section state', async () => {
-      await session.setState('biosecurity-map', defaultState)
+      await session.setSectionState('biosecurity-map', defaultState)
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -80,7 +80,7 @@ describe('SizeErrorPageController', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(submitSummaryPage.urlPath)
 
-      const state = await session.getState('biosecurity-map')
+      const state = await session.getSectionState('biosecurity-map')
       expect(state['upload-plan'].status.uploadStatus).toBe('skipped')
     })
   })

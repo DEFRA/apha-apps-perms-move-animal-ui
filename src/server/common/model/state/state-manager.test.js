@@ -1,11 +1,11 @@
 import { onOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
 import { StateManager } from './state-manager.js'
-import { originTypePage } from '~/src/server/origin/origin-type/index.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
 
 const origin = {
-  onOffFarm: 'on'
+  onOffFarm: 'on',
+  originType: 'afu'
 }
 
 const licence = {
@@ -38,7 +38,7 @@ const validState = {
  */
 const testRequest = (state) => ({
   yar: {
-    get: jest.fn().mockImplementation((key) => state[key]),
+    get: jest.fn().mockReturnValue(state),
     set: jest.fn()
   }
 })
@@ -48,49 +48,38 @@ describe('StateManager.toState', () => {
     const request = testRequest(validState)
     const state = new StateManager(request)
     expect(state.toState()).toEqual(validState)
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 
   it('filters out missing sections', () => {
     const partialState = { origin }
     const request = testRequest(partialState)
     const state = new StateManager(request)
-    expect(state.toState()).toEqual(partialState)
+    expect(state.toState()).toStrictEqual(partialState)
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 
   it('returns an empty object if no sections are available', () => {
     const request = testRequest({})
     const state = new StateManager(request)
     expect(state.toState()).toEqual({})
-  })
-
-  it("should ignore keys it isn't tracking", () => {
-    const request = testRequest({ ...validState, someOtherKey: {} })
-    const state = new StateManager(request)
-    expect(state.toState()).toEqual(validState)
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 })
 
-describe('StateManager.update', () => {
-  it('extracts the raw application state from a request', () => {
+describe('StateManager.set', () => {
+  it('should preserve the existing state and add set the new values', () => {
     const request = testRequest(validState)
     const state = new StateManager(request)
 
     state.set(onOffFarmPage, new onOffFarmPage.Answer({ onOffFarm: 'off' }))
 
-    expect(request.yar.set).toHaveBeenCalledWith(onOffFarmPage.sectionKey, {
-      onOffFarm: 'off'
-    })
-  })
-
-  it('should preserve the existing state', () => {
-    const request = testRequest(validState)
-    const state = new StateManager(request)
-
-    state.set(originTypePage, new originTypePage.Answer({ originType: 'afu' }))
-
-    expect(request.yar.set).toHaveBeenCalledWith(onOffFarmPage.sectionKey, {
-      onOffFarm: 'on',
-      originType: 'afu'
+    expect(request.yar.set).toHaveBeenCalledWith('application', {
+      ...validState,
+      origin: {
+        ...validState.origin,
+        onOffFarm: 'off'
+      }
     })
   })
 })

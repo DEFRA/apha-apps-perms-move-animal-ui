@@ -36,7 +36,7 @@ describe('#originSummaryController', () => {
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
 
-    await session.setState('origin', defaultState)
+    await session.setSectionState('origin', defaultState)
   })
 
   afterAll(async () => {
@@ -74,7 +74,7 @@ describe('#originSummaryController', () => {
 
   describe('should redirect to specific page when fields are missing from state', () => {
     it('should not show on/off farm text', async () => {
-      await session.setState('origin', {
+      await session.setSectionState('origin', {
         ...defaultState,
         onOffFarm: undefined
       })
@@ -98,7 +98,7 @@ describe('#originSummaryController', () => {
     })
 
     it('should not show address text', async () => {
-      await session.setState('origin', {
+      await session.setSectionState('origin', {
         ...defaultState,
         address: undefined
       })
@@ -122,7 +122,7 @@ describe('#originSummaryController', () => {
     })
 
     it('should not show cph number', async () => {
-      await session.setState('origin', {
+      await session.setSectionState('origin', {
         ...defaultState,
         cphNumber: undefined
       })

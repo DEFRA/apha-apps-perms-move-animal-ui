@@ -59,7 +59,7 @@ describe('#biosecurityPlanSummaryPage', () => {
   })
 
   it('should render expected response when valid file uploaded', async () => {
-    await session.setState('biosecurity-map', defaultState)
+    await session.setSectionState('biosecurity-map', defaultState)
 
     const { payload, statusCode } = await server.inject(
       withCsrfProtection(
@@ -81,7 +81,7 @@ describe('#biosecurityPlanSummaryPage', () => {
   })
 
   it('should redirect user to upload page if they`ve not selected a file', async () => {
-    await session.setState('biosecurity-map', {
+    await session.setSectionState('biosecurity-map', {
       'upload-plan': {
         metadata: {
           uploadId: '2ac91a2d-1910-48d0-83af-01cbeb370ca2',

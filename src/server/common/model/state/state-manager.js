@@ -7,15 +7,6 @@
  * @typedef {Record<string, RawSectionState>} RawApplicationState
  */
 
-const sectionKeys = [
-  'origin',
-  'destination',
-  'licence',
-  'identification',
-  'biosecurity',
-  'biosecurity-map'
-]
-
 export class StateManager {
   /** @param {Request} request */
   constructor(request) {
@@ -24,21 +15,21 @@ export class StateManager {
 
   /** @returns {RawApplicationState} */
   toState() {
-    return Object.fromEntries(
-      sectionKeys
-        .map((key) => [key, this._request.yar.get(key)])
-        .filter((entry) => entry.at(1) !== null)
-    )
+    return this._request.yar.get('application') ?? {}
   }
 
   /**
    * @param {QuestionPage} page
-   * @param {AnswerModel<any>} answer
+   * @param {AnswerModel<any> | undefined} answer
    */
   set(page, answer) {
-    this._request.yar.set(page.sectionKey, {
-      ...this._request.yar.get(page.sectionKey),
-      [page.questionKey]: answer.toState()
+    const currentApplicationState = this.toState()
+    this._request.yar.set('application', {
+      ...currentApplicationState,
+      [page.sectionKey]: {
+        ...currentApplicationState[page.sectionKey],
+        [page.questionKey]: answer ? answer.toState() : undefined
+      }
     })
   }
 }

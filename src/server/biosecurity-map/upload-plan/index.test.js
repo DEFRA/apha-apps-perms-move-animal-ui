@@ -79,7 +79,7 @@ describe('#UploadPlan', () => {
 
     describe('empty file', () => {
       beforeEach(async () => {
-        await session.setState(page.sectionKey, {
+        await session.setSectionState(page.sectionKey, {
           [page.questionKey]: {
             metadata: {
               uploadId: testUploadId,
@@ -117,7 +117,7 @@ describe('#UploadPlan', () => {
 
     describe('invalid mimetype', () => {
       beforeEach(async () => {
-        await session.setState(page.sectionKey, {
+        await session.setSectionState(page.sectionKey, {
           [page.questionKey]: {
             metadata: {
               uploadId: testUploadId,

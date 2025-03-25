@@ -130,9 +130,32 @@ class SessionTester {
    * @param {string} key
    * @param {{[key: string]: any}} state
    */
+  async setSectionState(key, state) {
+    this._logger.info(
+      `Setting section state ${key} to ${JSON.stringify(state)}`
+    )
+    const applicationState = (await this.getState('application')) || {}
+    applicationState[key] = state
+    return this.setState('application', applicationState)
+  }
+
+  /**
+   * @param {string} key
+   * @param {{[key: string]: any}} state
+   */
   async setState(key, state) {
     this._logger.info(`Setting state ${key} to ${JSON.stringify(state)}`)
-    return await setSession(this._server, this._cookie, key, state)
+    return setSession(this._server, this._cookie, key, state)
+  }
+
+  /**
+   * @param {string} key
+   * @returns {Promise<{[key: string]: any}>}
+   */
+  async getSectionState(key) {
+    this._logger.info(`Getting state ${key}`)
+    const applicationState = await this.getState('application')
+    return applicationState?.[key]
   }
 
   /**
@@ -141,7 +164,7 @@ class SessionTester {
    */
   async getState(key) {
     this._logger.info(`Getting state ${key}`)
-    return await getSession(this._server, this._cookie, key)
+    return getSession(this._server, this._cookie, key)
   }
 
   /**
@@ -149,7 +172,7 @@ class SessionTester {
    */
   async getStateKey(key) {
     this._logger.info(`Getting state for ${key}`)
-    return await getSession(this._server, this._cookie, key)
+    return getSession(this._server, this._cookie, key)
   }
 
   get sessionID() {

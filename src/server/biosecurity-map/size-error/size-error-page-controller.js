@@ -10,9 +10,10 @@ export class SizeErrorPageController extends PageController {
   }
 
   handlePost(req, h) {
+    const applicationState = new StateManager(req).toState()
     const uploadPlan = /** @type {BiosecurityMapAnswer} */ (
       BiosecurityMapAnswer.fromState(
-        req.yar.get('biosecurity-map')['upload-plan']
+        applicationState['biosecurity-map']['upload-plan']
       )
     )
     if (uploadPlan.value?.status) {

@@ -28,7 +28,7 @@ export class UploadProgressController extends QuestionPageController {
 
   async handleGet(req, h) {
     const applicationState = new StateManager(req).toState()
-    const sectionState = req.yar.get(this.page.sectionKey)
+    const sectionState = applicationState[this.page.sectionKey]
 
     const answer = /** @type {BiosecurityMapAnswer} */ (
       this.page.Answer.fromState(
