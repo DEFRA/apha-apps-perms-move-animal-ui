@@ -48,6 +48,7 @@ describe('StateManager.toState', () => {
     const request = testRequest(validState)
     const state = new StateManager(request)
     expect(state.toState()).toEqual(validState)
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 
   it('filters out missing sections', () => {
@@ -55,12 +56,14 @@ describe('StateManager.toState', () => {
     const request = testRequest(partialState)
     const state = new StateManager(request)
     expect(state.toState()).toStrictEqual(partialState)
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 
   it('returns an empty object if no sections are available', () => {
     const request = testRequest({})
     const state = new StateManager(request)
     expect(state.toState()).toEqual({})
+    expect(request.yar.get).toHaveBeenCalledWith('application')
   })
 })
 
