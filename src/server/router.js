@@ -22,11 +22,9 @@ export const router = {
     name: 'router',
     async register(server) {
       // // Add the auth stuff
-      /* sonarignore:start */
       if (config.get('auth').enabled) {
         await server.register(authPlugin)
       }
-      /* sonarignore:end */
 
       // do all server registers async of each other (up to 8x faster)
       await Promise.all([
