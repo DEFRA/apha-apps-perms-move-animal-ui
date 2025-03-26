@@ -8,6 +8,8 @@ import {
   validateAndAdjustOwnerName,
   validateReceiveMethod
 } from '../../helpers/testHelpers/checkAnswers.js'
+import signInPage from '../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 const firstNameDefault = 'defaultFirst'
 const lastNameDefault = 'defaultLast'
@@ -18,7 +20,8 @@ const editedEmail = 'edited@email.com'
 
 describe('Check your licence answers test', () => {
   // eslint-disable-next-line no-undef
-  before('Navigate to check answers page', async () => {
+  before('Sign in and complete licence task', async () => {
+    await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()
     await completeLicenceTaskAnswersCustom(
       emailDefault,

@@ -1,11 +1,21 @@
-import { browser } from '@wdio/globals'
+import { expect } from '@wdio/globals'
 
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 import importParishPage from '../../page-objects/origin/importParishPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Country of import test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to country page', async () => {
+    await restoreSession()
     await originCountryPage.navigateToPageAndVerifyTitle()
   })
 
@@ -16,7 +26,7 @@ describe('Country of import test', () => {
     )
   })
 
-  it('Should verify that page errors when too much text is entered is entered', async () => {
+  it('Should verify that page errors when too much text is entered', async () => {
     const longString = new Array(256).fill('a').join('')
     await originCountryPage.singleInputErrorTest(
       longString,

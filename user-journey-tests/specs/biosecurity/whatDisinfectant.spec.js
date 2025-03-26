@@ -1,10 +1,19 @@
-import { browser } from '@wdio/globals'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Disinfectant page spec', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await disinfectantPage.navigateToPageAndVerifyTitle()
   })
 

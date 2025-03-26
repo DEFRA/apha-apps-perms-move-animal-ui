@@ -1,11 +1,18 @@
+import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 import {
   waitForFullPageUrl,
   selectElement,
   waitForPagePath
 } from '../helpers/page.js'
 import privacyPage from '../page-objects/privacyPage.js'
+import signInPage from '../page-objects/signInPage.js'
 
 describe('Privacy policy page test', () => {
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
   beforeEach('Navigate to privacy page', async () => {
     await privacyPage.navigateToPageAndVerifyTitle()
   })
