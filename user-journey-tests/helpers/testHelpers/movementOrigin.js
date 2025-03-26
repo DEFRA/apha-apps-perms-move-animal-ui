@@ -97,17 +97,20 @@ export const destinationVariants = async (onFarm, afu) => {
   await navigateToOriginFlow()
 
   if (onFarm) {
-    toFromFarmPage.selectOnFarmAndContinue(originTypePage)
+    await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
     if (afu)
-      originTypePage.selectApprovedFinishingUnitAndContinue(
+      await originTypePage.selectApprovedFinishingUnitAndContinue(onFarmCPHPage)
+    else await originTypePage.selectLabAndContinue(onFarmCPHPage)
+  } else {
+    await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
+    if (afu)
+      await originTypePage.selectApprovedFinishingUnitAndContinue(
         parishHoldingNumberPage
       )
-    else originTypePage.selectLabAndContinue(parishHoldingNumberPage)
-  } else {
-    toFromFarmPage.selectOffFarmAndContinue(originTypePage)
-    if (afu)
-      originTypePage.selectApprovedFinishingUnitAndContinue(onFarmCPHPage)
-    else originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
+    else
+      await originTypePage.selectTBRestrictedFarmAndContinue(
+        parishHoldingNumberPage
+      )
   }
 
   await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
