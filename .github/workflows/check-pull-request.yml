@@ -23,6 +23,8 @@ jobs:
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
+      GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
+      GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
 
     runs-on: ubuntu-22.04
     steps:
