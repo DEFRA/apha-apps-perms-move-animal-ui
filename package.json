@@ -74,7 +74,8 @@
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
     "sharp": "0.33.5",
-    "undici": "^6.19.8"
+    "undici": "^6.19.8",
+    "uuid": "11.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.6",
