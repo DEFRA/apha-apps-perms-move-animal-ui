@@ -1,16 +1,9 @@
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import halfHerdPage from '../../page-objects/destination/halfHerdPage.js'
 import quantityOptionsPage from '../../page-objects/destination/quantityOptionsPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 describe('Quantity options page test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Navigate to page', async () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await quantityOptionsPage.navigateToPageAndVerifyTitle()
   })
 

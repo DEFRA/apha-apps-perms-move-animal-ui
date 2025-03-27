@@ -1,23 +1,15 @@
+import { browser } from '@wdio/globals'
+
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import { destinationVariants } from '../../helpers/testHelpers/movementOrigin.js'
 import { verifyRadioButtonNumber } from '../../helpers/page.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSessionAdvanced
-} from '../../helpers/authSessionManager.js'
 
 describe('Destination selection options test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session', async () => {
-    await restoreSessionAdvanced()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
   })
 
   it('Should verify options when On the farm and AFU IS NOT option selected', async () => {

@@ -1,15 +1,8 @@
 import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 describe('Future owner spec', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Navigate to page', async () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await futureOwnerPage.navigateToPageAndVerifyTitle()
   })
 
@@ -28,7 +21,6 @@ describe('Future owner spec', () => {
   it('Should verify successful inputs', async () => {
     const firstName = 'Bruce'
     const lastName = 'Wayne'
-
     await futureOwnerPage.inputTextAndContinue(
       firstName,
       lastName,

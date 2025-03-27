@@ -1,21 +1,11 @@
-import { expect } from '@wdio/globals'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
-import signInPage from '../../page-objects/signInPage.js'
+import { browser, expect } from '@wdio/globals'
+import { waitForPagePath } from '../../helpers/page.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
-import { waitForPagePath } from '../../helpers/page.js'
 
 describe('To from farm page test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach(async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await toFromFarmPage.navigateToPageAndVerifyTitle()
   })
 

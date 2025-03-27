@@ -13,8 +13,6 @@ import taskListPage from '../page-objects/taskListPage.js'
 import destinationSelectionPage from '../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../page-objects/destination/generalLicencePage.js'
 import { completeApplication } from '../helpers/testHelpers/finalAnswers.js'
-import signInPage from '../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 
 const originDefaultObject = {
   defaultCphNumber: '23/678/1234',
@@ -41,9 +39,8 @@ const county = 'West new york edited'
 const postcode = 'SW1C 2CC'
 
 describe('Check your final answers test', () => {
-  // eslint-disable-next-line no-undef
+  // eslint-disable-next-line
   before('Navigate to check answers page', async () => {
-    await loginAndSaveSession(signInPage)
     await completeApplication(originDefaultObject, licenceDefaultObject)
   })
 

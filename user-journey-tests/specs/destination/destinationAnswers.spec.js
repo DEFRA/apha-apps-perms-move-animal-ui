@@ -10,23 +10,14 @@ import contactTbRestrictedFarmExitPage from '../../page-objects/destination/cont
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
+import landingPage from '../../page-objects/landingPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSessionAdvanced
-} from '../../helpers/authSessionManager.js'
 
 describe('Check your answers test - destination', () => {
-  // eslint-disable-next-line no-undef
-  before('Sign in and complete origin task', async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSessionAdvanced()
+  beforeEach('Navigate to check answers page', async () => {
+    await browser.reloadSession()
     await completeOriginTaskAnswers()
-    // await landingPage.navigateToPageAndVerifyTitle()
+    await landingPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify slaughter answer and change link', async () => {

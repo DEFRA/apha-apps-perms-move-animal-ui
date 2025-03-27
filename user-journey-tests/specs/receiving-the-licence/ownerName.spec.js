@@ -1,17 +1,10 @@
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 const longString = 'a'.repeat(51)
 
 describe('County parish owner name test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Navigate to page', async () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await ownerNamePage.navigateToPageAndVerifyTitle()
   })
 

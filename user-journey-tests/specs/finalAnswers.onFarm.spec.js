@@ -2,14 +2,10 @@ import finalAnswersPage from '../page-objects/finalAnswersPage.js'
 import submissionConfirmationPage from '../page-objects/submissionConfirmationPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
 import { completeApplicationOnFarm } from '../helpers/testHelpers/finalAnswers.js'
-import signInPage from '../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 
 describe('Check your final answers test', () => {
-  // eslint-disable-next-line no-undef
+  // eslint-disable-next-line
   before('Navigate to check answers page', async () => {
-    await loginAndSaveSession(signInPage)
-
     await completeApplicationOnFarm({
       licence: {
         firstNameDefault: 'firstName',

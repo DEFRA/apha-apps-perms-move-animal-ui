@@ -1,20 +1,9 @@
 import { waitForExpectedRedirectUri } from '../../helpers/page.js'
 import originCheckAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 describe('Fifty percent warning page test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
     await fiftyPercentWarningPage.navigateToPageAndVerifyTitle()
   })
 

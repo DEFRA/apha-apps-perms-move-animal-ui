@@ -1,21 +1,12 @@
 import { browser } from '@wdio/globals'
+
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 describe('Manure or slurry selection test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await manureAndSlurryPage.navigateToPageAndVerifyTitle()
   })
 

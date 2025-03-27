@@ -1,19 +1,10 @@
+import { browser } from '@wdio/globals'
 import reasonForMovementPage from '../../page-objects/destination/reasonForMovementPage.js'
 import maximumAnimalsPage from '../../page-objects/destination/maximumAnimalsPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 describe('How many animals page spec', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await maximumAnimalsPage.navigateToPageAndVerifyTitle()
   })
 
@@ -24,7 +15,7 @@ describe('How many animals page spec', () => {
     )
   })
 
-  it('Should verify that page errors when something other than a number is entered', async () => {
+  it('Should verify that page errors when something other than anumber is entered', async () => {
     await maximumAnimalsPage.singleInputErrorTest(
       'test',
       maximumAnimalsPage.invalidFormatError

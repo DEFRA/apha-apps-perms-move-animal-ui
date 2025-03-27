@@ -8,20 +8,10 @@ import fiftyPercentPage from '../../page-objects/origin/fiftyPercentWarningPage.
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 import contactTbRestrictedFarmExitPage from '../../page-objects/origin/contactTbRestrictedFarmExitPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 describe('origin type page test (off farm)', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to origin type page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await originTypePage.navigateToPageAndVerifyTitle()
   })
 
@@ -80,8 +70,8 @@ describe('origin type page test (off farm)', () => {
 })
 
 describe('origin type page test (on farm)', () => {
-  beforeEach('Restore session, select on farm, and navigate', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await toFromFarmPage.navigateToPageAndVerifyTitle()
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
   })

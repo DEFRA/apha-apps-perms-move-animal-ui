@@ -1,33 +1,26 @@
+import { browser } from '@wdio/globals'
+
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 const validSubmissionCheck = async (input, whitespace = false) => {
-  const expected = whitespace ? input.trim() : input
-
+  let expected
+  if (!whitespace) {
+    expected = input
+  } else {
+    expected = input.trim()
+  }
   await emailPage.inputTextAndContinue(input, futureOwnerPage)
-
-  // Instead of back+refresh, re-navigate directly
-  await emailPage.navigateToPageAndVerifyTitle()
-
-  const inputElement = emailPage.textInput()
-  await inputElement.waitForDisplayed({ timeout: 5000 })
-  const inputValue = await inputElement.getValue()
+  await licenceAnswersPage.selectBackLink()
+  await browser.refresh()
+  const inputValue = await emailPage.textInput().getValue()
   expect(inputValue).toBe(expected)
 }
 
 describe('Email address for licence page test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await emailPage.navigateToPageAndVerifyTitle()
   })
 
@@ -36,7 +29,11 @@ describe('Email address for licence page test', () => {
   })
 
   it('Should verify that page errors email is short and invalid', async () => {
-    await emailPage.singleInputErrorTest('batman', emailPage.invalidFormatError)
+    const invalidInput = 'batman'
+    await emailPage.singleInputErrorTest(
+      invalidInput,
+      emailPage.invalidFormatError
+    )
   })
 
   it('Should verify that page errors email has no @', async () => {

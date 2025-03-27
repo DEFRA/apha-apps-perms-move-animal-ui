@@ -1,10 +1,8 @@
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import destinationAddressPage from '../../page-objects/destination/destinationAddressPage.js'
-import signInPage from '../../page-objects/signInPage.js'
 
-describe('Parish holding page test', () => {
-  beforeEach('Log in and navigate to page', async () => {
-    await signInPage.signInUsingTestCredentials()
+describe('Paris holding page test', () => {
+  beforeEach('Reset browser state and navigate to page', async () => {
     await destinationCPHPage.navigateToPageAndVerifyTitle()
   })
 

@@ -5,9 +5,8 @@ import {
 } from '../helpers/page.js'
 import cookiesPage from '../page-objects/cookiesPage.js'
 import landingPage from '../page-objects/landingPage.js'
+import taskListPage from '../page-objects/taskListPage.js'
 import accessibilityStatementPage from '../page-objects/accessibilityStatementPage.js'
-import { loginAndSaveSession } from '../helpers/authSessionManager.js'
-import signInPage from '../page-objects/signInPage.js'
 
 const expectedLinks = [
   'https://www.gov.uk/',
@@ -15,11 +14,6 @@ const expectedLinks = [
   'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
 ]
 describe('Landing page test', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
   beforeEach('Reset browser state and navigate to page', async () => {
     await landingPage.navigateToPageAndVerifyTitle()
   })
@@ -34,6 +28,14 @@ describe('Landing page test', () => {
 
   it('Should verify start now button visible on landing page', async () => {
     await landingPage.verifyPageHeadingAndTitle()
+    await landingPage.verifyStartNowButton('Start now')
+  })
+
+  it('Should verify that start now navigates you to first question and back link returns you', async () => {
+    await landingPage.verifyStartNowButton('Start now', true)
+    await taskListPage.verifyPageHeadingAndTitle()
+    await taskListPage.selectBackLink()
+
     await landingPage.verifyStartNowButton('Start now')
   })
 

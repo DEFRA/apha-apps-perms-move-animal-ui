@@ -11,8 +11,6 @@ import {
 } from '../../helpers/page.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import originCountryPage from '../../page-objects/origin/originCountryPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 const redirect = `?redirect_uri=/${checkAnswersPage.pagePath}`
 
@@ -21,6 +19,7 @@ const defaultLineOne = 'default line one'
 const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
 
+// Questions for validation
 const questions = {
   parishFarm:
     'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?',
@@ -48,8 +47,7 @@ const verifyChangeLinkAndQuestion = async (
 
 describe('Check your answers test', () => {
   // eslint-disable-next-line no-undef
-  before('Sign in and complete origin task', async () => {
-    await loginAndSaveSession(signInPage)
+  before('Navigate to check answers page', async () => {
     await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersCustom(
       defaultCphNumber,
@@ -59,11 +57,8 @@ describe('Check your answers test', () => {
     )
   })
 
-  beforeEach('Navigate to check answers page', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
-  })
-
   it('Should verify the existing radio selection and verify resubmission (moving on the farm)', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await changeOnOffFarmAnswer(
       await checkAnswersPage.getChangeLink('onOffFarm'),
       'on',
@@ -84,6 +79,7 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing radio selection and verify resubmission (moving on the farm from import)', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await changeOption(
       await checkAnswersPage.getChangeLink('originType'),
       originTypePage.selectAfterImportAndContinue.bind(originTypePage),

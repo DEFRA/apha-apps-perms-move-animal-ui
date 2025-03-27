@@ -56,20 +56,9 @@ export const waitForElement = async (
   }
 }
 
-export const waitForEnabled = async (
-  element,
-  options = { timeout: 10000, timeoutMsg: 'Element was not enabled in time' }
-) => {
-  await browser.waitUntil(async () => await element.isEnabled(), {
-    timeout: options.timeout,
-    timeoutMsg: options.timeoutMsg
-  })
-}
-
 export const selectElement = async (element, hidden = false) => {
   try {
     await waitForElement(element, { visible: !hidden })
-    await element.isEnabled()
     await element.isClickable()
     await element.click()
   } catch (error) {

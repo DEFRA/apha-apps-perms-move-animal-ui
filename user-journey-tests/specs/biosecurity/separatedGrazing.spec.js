@@ -1,19 +1,11 @@
+import { browser } from '@wdio/globals'
+
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
-import signInPage from '../../page-objects/signInPage.js'
-import {
-  loginAndSaveSession,
-  restoreSession
-} from '../../helpers/authSessionManager.js'
 
 describe('Separated grazing page spec', () => {
-  // eslint-disable-next-line no-undef
-  before(async () => {
-    await loginAndSaveSession(signInPage)
-  })
-
-  beforeEach('Restore session and navigate to page', async () => {
-    await restoreSession()
+  beforeEach('Reset browser state and navigate to page', async () => {
+    await browser.reloadSession()
     await howFieldSeparatedPage.navigateToPageAndVerifyTitle()
   })
 
