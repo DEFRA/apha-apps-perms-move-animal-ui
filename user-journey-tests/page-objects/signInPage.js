@@ -11,8 +11,8 @@ class SignInPage extends Page {
   pagePath = 'login/signin/creds'
   pageHeading = 'Sign in using Government Gateway'
   pageTitle = 'Sign in using Government Gateway - Government Gateway - GOV.UK'
-  testId = '316462696033'
-  testPassword = 'defraTest123'
+  testId = process.env.GATEWAY_ID
+  testPassword = process.env.GATEWAY_PASSWORD
 
   get idInput() {
     return $('#user_id')
