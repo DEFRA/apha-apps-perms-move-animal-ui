@@ -1,10 +1,19 @@
-import { browser } from '@wdio/globals'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Disinfectant dilution page spec', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await disinfectantDilutionPage.navigateToPageAndVerifyTitle()
   })
 
@@ -19,7 +28,7 @@ describe('Disinfectant dilution page spec', () => {
     )
   })
 
-  it('Should verify that page errors when something other than anumber is entered', async () => {
+  it('Should verify that page errors when something other than a number is entered', async () => {
     await disinfectantDilutionPage.singleInputErrorTest(
       'test',
       disinfectantDilutionPage.invalidFormatError

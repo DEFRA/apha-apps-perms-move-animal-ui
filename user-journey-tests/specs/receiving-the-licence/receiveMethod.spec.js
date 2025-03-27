@@ -1,11 +1,20 @@
-import { browser } from '@wdio/globals'
 import { waitForPagePath } from '../../helpers/page.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Receive method for licence page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await receiveMethodPage.navigateToPageAndVerifyTitle()
   })
 

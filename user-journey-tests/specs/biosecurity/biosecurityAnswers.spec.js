@@ -7,12 +7,15 @@ import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helper
 import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 const redirect = `?redirect_uri=/${biosecurityAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
   // eslint-disable-next-line no-undef
-  before('Complete answers', async () => {
+  before('Sign in and complete answers', async () => {
+    await loginAndSaveSession(signInPage)
     await completeOriginTaskAnswersOnFarm()
     await completeDestinationTaskOnFarmForUnrestrictedOrigin()
     await completeBiosecurityTask('yes')

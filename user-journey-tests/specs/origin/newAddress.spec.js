@@ -1,6 +1,10 @@
-import { browser } from '@wdio/globals'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 const longString = 'a'.repeat(300)
 const longPostcode = 'SW1A2AATEST'
@@ -19,8 +23,13 @@ const countyWhitespace = ' West new york '
 const postcodeValidWhitespace = ' SW1A 2AA '
 
 describe('New address page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await newAddressPage.navigateToPageAndVerifyTitle()
   })
 
@@ -128,8 +137,7 @@ describe('New address page test', () => {
     )
 
     await newAddressPage.verifyNoErrorsVisible()
-    await newAddressPage.selectBackLink()
-    await browser.refresh()
+    await newAddressPage.navigateToPageAndVerifyTitle()
 
     await newAddressPage.verifyFieldValues({
       lineOne,

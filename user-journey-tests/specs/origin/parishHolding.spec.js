@@ -1,11 +1,20 @@
-import { browser } from '@wdio/globals'
-import { waitForPagePath } from '../../helpers/page.js'
+import { expect } from '@wdio/globals'
 import ParishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
-describe('Paris holding page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+describe('Parish holding page test', () => {
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await ParishHoldingNumberPage.navigateToPageAndVerifyTitle()
   })
 
@@ -42,9 +51,7 @@ describe('Paris holding page test', () => {
       ' 12 / 345 / 6789 ',
       newAddressPage
     )
-    await ParishHoldingNumberPage.selectBackLink()
-    await browser.refresh()
-    await ParishHoldingNumberPage.verifyPageHeadingAndTitle()
+    await ParishHoldingNumberPage.navigateToPageAndVerifyTitle()
     const inputValue = await ParishHoldingNumberPage.cphNumberInput().getValue()
     expect(inputValue).toBe('12/345/6789')
   })
@@ -73,11 +80,7 @@ describe('Paris holding page test', () => {
       validInput,
       newAddressPage
     )
-    await ParishHoldingNumberPage.selectBackLink()
-
-    await browser.refresh()
-    await waitForPagePath(ParishHoldingNumberPage.pagePath)
-
+    await ParishHoldingNumberPage.navigateToPageAndVerifyTitle()
     const inputValue = await ParishHoldingNumberPage.cphNumberInput().getValue()
     expect(inputValue).toBe(validInput)
   })

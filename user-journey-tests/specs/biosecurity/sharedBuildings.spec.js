@@ -1,13 +1,21 @@
-import { browser } from '@wdio/globals'
-
 import { verifySelectionPersistence } from '../../helpers/page.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Shared buildings page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await anySharedBuildingsPage.navigateToPageAndVerifyTitle()
   })
 

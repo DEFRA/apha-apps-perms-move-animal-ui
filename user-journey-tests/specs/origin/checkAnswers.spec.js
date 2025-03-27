@@ -9,6 +9,8 @@ import {
   validateOnOffFarm,
   validateOriginType
 } from '../../helpers/testHelpers/checkAnswers.js'
+import signInPage from '../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -24,7 +26,8 @@ const postcode = 'SW1C 2CC'
 
 describe('Check your answers test', () => {
   // eslint-disable-next-line no-undef
-  before('Navigate to check answers page', async () => {
+  before('Sign in and complete origin task', async () => {
+    await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersCustom(
       defaultCphNumber,
@@ -32,6 +35,10 @@ describe('Check your answers test', () => {
       defaultTownOrCity,
       defaultPostcode
     )
+  })
+
+  beforeEach('Navigate to check answers page', async () => {
+    await checkAnswersPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify the back link is history -1', async () => {
@@ -43,7 +50,6 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing radio selection and verify resubmission', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOnOffFarm(
       checkAnswersPage.getChangeLink('onOffFarm'),
       checkAnswersPage.getValue('onOffFarm'),
@@ -52,7 +58,6 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify origin type selection and verify resubmission', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateOriginType(
       checkAnswersPage.getChangeLink('originType'),
       checkAnswersPage.getValue('originType'),
@@ -61,7 +66,6 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing cph number then verify changing the cph number', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustParishNumber(
       checkAnswersPage.getChangeLink('parishNumber'),
       checkAnswersPage.getValue('parishNumber'),
@@ -72,7 +76,6 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify the existing data then verify changing the address', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustAddress(
       checkAnswersPage.getChangeLink('address'),
       checkAnswersPage.getValue('address'),
@@ -86,7 +89,6 @@ describe('Check your answers test', () => {
   })
 
   it('Should verify submitting answers', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
     await checkAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
     await taskListPage.verifyStatus({

@@ -1,5 +1,3 @@
-import { browser } from '@wdio/globals'
-
 import {
   verifySelectionPersistence,
   waitForPagePath
@@ -8,10 +6,20 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Destination selection test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
   })
 

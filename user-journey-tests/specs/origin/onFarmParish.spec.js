@@ -1,8 +1,10 @@
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import onFarmAddressPage from '../../page-objects/origin/onFarmAddressPage.js'
+import signInPage from '../../page-objects/signInPage.js'
 
-describe('Paris holding page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
+describe('Parish holding page test (on farm)', () => {
+  beforeEach('Log in and navigate to page', async () => {
+    await signInPage.signInUsingTestCredentials()
     await onFarmCPHPage.navigateToPageAndVerifyTitle()
   })
 
