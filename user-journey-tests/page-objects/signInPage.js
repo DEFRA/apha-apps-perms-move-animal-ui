@@ -30,8 +30,8 @@ class SignInPage extends Page {
     await browser.url(taskListPage.pagePath)
     await this.verifyPageHeadingAndTitle()
 
-    await typeIntoElement(this.idInput, this.testId)
-    await typeIntoElement(this.passwordInput, this.testPassword)
+    await typeIntoElement(this.idInput.toString(), this.testId)
+    await typeIntoElement(this.passwordInput.toString(), this.testPassword)
 
     await waitForEnabled(this.signInButton, {
       timeoutMsg:
