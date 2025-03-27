@@ -1,9 +1,11 @@
 import { waitForElement, waitForPagePath } from '../../helpers/page.js'
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
+import signInPage from '../../page-objects/signInPage.js'
 
 describe('Additional info page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
+  beforeEach('Log in and navigate to page', async () => {
+    await signInPage.signInUsingTestCredentials()
     await additionalInfoPage.navigateToPageAndVerifyTitle()
   })
 

@@ -13,8 +13,15 @@ import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswe
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import { secureDeviceArray } from '../helpers/constants.js'
 import futureOwnerPage from '../page-objects/receiving-the-licence/futureOwnerPage.js'
+import { loginAndSaveSession } from '../helpers/authSessionManager.js'
+import signInPage from '../page-objects/signInPage.js'
 
 describe('Task list page test', () => {
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
   beforeEach('Navigate to task list page', async () => {
     await taskListPage.navigateToPageAndVerifyTitle()
   })

@@ -1,8 +1,10 @@
 import importParishPage from '../../page-objects/origin/importParishPage.js'
 import importAddressPage from '../../page-objects/origin/importAddressPage.js'
+import signInPage from '../../page-objects/signInPage.js'
 
 describe('Import CPH number page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
+  beforeEach('Log in and navigate to page', async () => {
+    await signInPage.signInUsingTestCredentials()
     await importParishPage.navigateToPageAndVerifyTitle()
   })
 

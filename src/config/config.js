@@ -12,6 +12,12 @@ const isTest = process.env.NODE_ENV === 'test'
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 export const config = convict({
+  appBaseUrl: {
+    doc: 'Application base URL for after we login',
+    format: String,
+    default: 'http://localhost:3000',
+    env: 'APP_BASE_URL'
+  },
   serviceVersion: {
     doc: 'The service version, this variable is injected into your docker container in CDP environments',
     format: String,
@@ -300,6 +306,39 @@ export const config = convict({
     format: String,
     default: '/usr/bin/gs',
     env: 'GS_BINARY'
+  },
+  auth: {
+    enabled: {
+      doc: 'DEFRA ID Auth enabled',
+      format: Boolean,
+      env: 'DEFRA_ID_ENABLED',
+      default: false
+    },
+    defraIdOidcConfigurationUrl: {
+      doc: 'DEFRA ID OIDC Configuration URL',
+      format: String,
+      env: 'DEFRA_ID_OIDC_CONFIGURATION_URL',
+      default: ''
+    },
+    defraIdServiceId: {
+      doc: 'DEFRA ID Service ID',
+      format: String,
+      env: 'DEFRA_ID_SERVICE_ID',
+      default: ''
+    },
+    defraIdClientId: {
+      doc: 'DEFRA ID Client ID',
+      format: String,
+      env: 'DEFRA_ID_CLIENT_ID',
+      default: ''
+    },
+    defraIdClientSecret: {
+      doc: 'DEFRA ID Client Secret',
+      format: String,
+      sensitive: true,
+      env: 'DEFRA_ID_CLIENT_SECRET',
+      default: ''
+    }
   }
 })
 

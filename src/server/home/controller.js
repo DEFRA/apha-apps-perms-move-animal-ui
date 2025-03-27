@@ -6,6 +6,9 @@ import { config } from '~/src/config/config.js'
  * @satisfies {Partial<ServerRoute>}
  */
 export const homeController = {
+  options: {
+    auth: false
+  },
   handler(_request, h) {
     return h.view('home/index', {
       pageTitle: config.get('serviceName'),

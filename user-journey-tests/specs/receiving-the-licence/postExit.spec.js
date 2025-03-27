@@ -1,7 +1,14 @@
 import postExitPage from '../../page-objects/receiving-the-licence/postExitPage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 describe('Post exit page test', () => {
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
   beforeEach('Navigate to exit page', async () => {
     await postExitPage.navigateToPageAndVerifyTitle()
   })

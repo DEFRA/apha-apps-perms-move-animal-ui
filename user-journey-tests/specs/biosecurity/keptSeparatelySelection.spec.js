@@ -1,13 +1,21 @@
-import { browser } from '@wdio/globals'
-
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import { verifySelectionPersistence } from '../../helpers/page.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Kept separately selection test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await keptSeparatelyPage.navigateToPageAndVerifyTitle()
   })
 

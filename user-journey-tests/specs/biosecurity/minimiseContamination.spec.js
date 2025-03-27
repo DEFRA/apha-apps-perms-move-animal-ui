@@ -1,11 +1,19 @@
-import { browser } from '@wdio/globals'
-
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Minimise contamination page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await minimiseContaminationPage.navigateToPageAndVerifyTitle()
   })
 

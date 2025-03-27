@@ -1,10 +1,19 @@
-import { browser } from '@wdio/globals'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 describe('Biosecurity badgers page spec', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await biosecBadgersPage.navigateToPageAndVerifyTitle()
   })
 

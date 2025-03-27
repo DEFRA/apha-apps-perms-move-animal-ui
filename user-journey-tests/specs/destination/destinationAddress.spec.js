@@ -1,6 +1,7 @@
 import { waitForPagePath } from '../../helpers/page.js'
 import destinationAddressPage from '../../page-objects/destination/destinationAddressPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
+import signInPage from '../../page-objects/signInPage.js'
 
 const lineOne = '37 Made up lane'
 const lineTwo = 'Not real avenue'
@@ -9,7 +10,8 @@ const county = 'West new york'
 const postcodeValid = 'SW1A 2AA'
 
 describe('On farm address page test', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
+  beforeEach('Log in and navigate to page', async () => {
+    await signInPage.signInUsingTestCredentials()
     await destinationAddressPage.navigateToPageAndVerifyTitle()
   })
 

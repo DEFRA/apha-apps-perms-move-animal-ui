@@ -12,7 +12,8 @@ import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { ApplicationModel } from './common/model/application/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
-
+import { authPlugin } from './auth/index.js'
+import { config } from '../config/config.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -20,6 +21,11 @@ export const router = {
   plugin: {
     name: 'router',
     async register(server) {
+      // // Add the auth stuff
+      if (config.get('auth').enabled) {
+        await server.register(authPlugin)
+      }
+
       // do all server registers async of each other (up to 8x faster)
       await Promise.all([
         server.register([inert]),

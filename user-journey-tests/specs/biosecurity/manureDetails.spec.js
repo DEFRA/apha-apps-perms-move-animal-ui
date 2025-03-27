@@ -1,11 +1,19 @@
-import { browser } from '@wdio/globals'
-
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
+import signInPage from '../../page-objects/signInPage.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
-describe('Last grazed page spec', () => {
-  beforeEach('Reset browser state and navigate to page', async () => {
-    await browser.reloadSession()
+describe('Manur details page spec', () => {
+  // eslint-disable-next-line no-undef
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach('Restore session and navigate to page', async () => {
+    await restoreSession()
     await manureDetailsPage.navigateToPageAndVerifyTitle()
   })
 
