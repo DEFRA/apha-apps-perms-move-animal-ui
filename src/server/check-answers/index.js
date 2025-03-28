@@ -109,7 +109,7 @@ export class SubmitPageController extends QuestionPageController {
         applicationState[biosecurityMapKey][uploadPlanKey].status
           ?.uploadStatus !== 'skipped'
       ) {
-        const compressedFile = await handleUploadedFile(
+        const { file: compressedFile, extension } = await handleUploadedFile(
           req,
           applicationState[biosecurityMapKey][uploadPlanKey],
           this.logger
@@ -124,7 +124,7 @@ export class SubmitPageController extends QuestionPageController {
           config.get('notify')
         notifyProps.link_to_file = {
           file: compressedFile?.toString('base64'),
-          filename: 'Biosecurity-map.jpg',
+          filename: `Biosecurity-map.${extension}`,
           confirm_email_before_download: confirmDownloadConfirmation,
           retention_period: fileRetention
         }
