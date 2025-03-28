@@ -48,11 +48,6 @@ export class UploadPlanController extends QuestionPageController {
     const state = new StateManager(req)
     state.set(this.page, answer)
 
-    h.headers = {
-      'Cache-Control': 'no-store, must-revalidate, max-age=0',
-      Pragma: 'no-cache'
-    }
-
     // if we dont have an initialState then its the first time we've visited here
     if (initialState && !isValid) {
       let validationErrors = errors
@@ -75,9 +70,12 @@ export class UploadPlanController extends QuestionPageController {
       })
     }
 
-    return super.handleGet(req, h, {
-      upload: answer.value
-    })
+    return super
+      .handleGet(req, h, {
+        upload: answer.value
+      })
+      .header('Cache-Control', 'no-store, must-revalidate, max-age=0')
+      .header('Pragma', 'no-cache')
   }
 }
 
