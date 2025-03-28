@@ -21,6 +21,9 @@ jobs:
   build:
     if: github.run_number != 1
     name: CDP-build-workflow
+    env:
+      GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
+      GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code

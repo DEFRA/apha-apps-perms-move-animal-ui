@@ -15,6 +15,9 @@ concurrency:
 jobs:
   build:
     name: CDP-build-workflow
+    env: 
+      GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
+      GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
