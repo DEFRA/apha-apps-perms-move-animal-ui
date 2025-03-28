@@ -100,7 +100,7 @@ describe('handleUploadedFile', () => {
     expect(mockLogger.info).toHaveBeenCalledWith(
       'Image compression took 100ms at a reduction of 50% to 1.5 MB'
     )
-    expect(result).toEqual(Buffer.from('compressed-pdf'))
+    expect(result.file).toEqual(Buffer.from('compressed-pdf'))
   })
 
   it('should handle image files and log compression details', async () => {
@@ -117,6 +117,6 @@ describe('handleUploadedFile', () => {
     expect(mockLogger.info).toHaveBeenCalledWith(
       'Image compression took 200ms at a reduction of 30% to 1.5 MB'
     )
-    expect(result).toEqual(Buffer.from('compressed-image'))
+    expect(result.file).toEqual(Buffer.from('compressed-image'))
   })
 })

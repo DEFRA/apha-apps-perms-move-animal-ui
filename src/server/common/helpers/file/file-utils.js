@@ -11,7 +11,7 @@ import { config } from '~/src/config/config.js'
  * @param {object} req - The request object containing the S3 method to retrieve the file.
  * @param {object} uploadedFile - The file retrieved from the S3 bucket.
  * @param {object} logger - The logger instance used to log compression details.
- * @returns {Promise<Buffer>} - A promise that resolves to the compressed file buffer.
+ * @returns {Promise<{file: Buffer, extension: 'pdf' | 'jpg'}>} - A promise that resolves to the compressed file buffer.
  */
 export const handleUploadedFile = async (req, uploadedFile, logger) => {
   const obj = await req.s3.send(
@@ -36,5 +36,8 @@ export const handleUploadedFile = async (req, uploadedFile, logger) => {
     `Image compression took ${duration}ms at a reduction of ${reduction}% to ${fileSizeInMB(file.length)} MB`
   )
 
-  return file
+  return {
+    file,
+    extension: obj.ContentType === 'application/pdf' ? 'pdf' : 'jpg'
+  }
 }

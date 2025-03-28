@@ -14,7 +14,10 @@ const testFileBase64 = 'dGVzdF9maWxl'
 
 // Mock the handleUploadedFile function
 jest.mock('../common/helpers/file/file-utils.js', () => ({
-  handleUploadedFile: jest.fn().mockResolvedValue(Buffer.from(testFile))
+  handleUploadedFile: jest.fn().mockResolvedValue({
+    file: Buffer.from(testFile),
+    extension: 'pdf'
+  })
 }))
 const mockHandleUploadedFile = /** @type {jest.Mock} */ (handleUploadedFile)
 
@@ -242,7 +245,7 @@ describe('#CheckAnswers', () => {
         link_to_file: {
           confirm_email_before_download: true,
           file: testFileBase64,
-          filename: 'Biosecurity-map.jpg',
+          filename: 'Biosecurity-map.pdf',
           retention_period: '1 week'
         }
       })
@@ -321,7 +324,10 @@ describe('#CheckAnswers', () => {
   })
 
   it('should compress the file and redirect to size error page if the file is too large', async () => {
-    mockHandleUploadedFile.mockResolvedValueOnce(Buffer.alloc(3 * 1024 * 1024))
+    mockHandleUploadedFile.mockResolvedValueOnce({
+      file: Buffer.alloc(3 * 1024 * 1024),
+      extension: 'jpg'
+    })
 
     const { statusCode, headers } = await server.inject(
       withCsrfProtection(
