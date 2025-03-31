@@ -339,6 +339,44 @@ export const config = convict({
       env: 'DEFRA_ID_CLIENT_SECRET',
       default: ''
     }
+  },
+  sharepoint: {
+    tenantId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'TENANT_ID'
+    },
+    clientId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'CLIENT_ID'
+    },
+    clientSecret: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'CLIENT_SECRET'
+    },
+    siteId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'SITE_ID'
+    },
+    listId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'LIST_ID'
+    },
+    driveId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'DRIVE_ID'
+    }
   }
 })
 

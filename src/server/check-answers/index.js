@@ -10,6 +10,12 @@ import { StateManager } from '../common/model/state/state-manager.js'
 import { fileSizeInMB } from '../common/helpers/file/size.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
+import {
+  addItem,
+  getItems,
+  uploadFile
+} from '../common/connectors/sharepoint/sharepoint.js'
+import { format } from 'date-fns'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -128,12 +134,30 @@ export class SubmitPageController extends QuestionPageController {
           confirm_email_before_download: confirmDownloadConfirmation,
           retention_period: fileRetention
         }
+
+        /**
+         * SharePoint
+         */
+        const uploadResult = await uploadFile(
+          applicationState.origin.cphNumber?.replace(/\//g, '-') ||
+            applicationState.destination.destinationFarmCph?.replace(
+              /\//g,
+              '-'
+            ) ||
+            'Unknown CPH',
+          `Biosecurity-map_${format(new Date(), 'yyyy-MM-dd_hh-mm-ss')}.${extension}`,
+          compressedFile
+        )
+        console.log(uploadResult)
+        await addItem(applicationState, uploadResult.webUrl)
+        const result = await getItems()
+        console.log(result)
       }
 
-      await sendNotification(notifyProps)
+      // await sendNotification(notifyProps)
 
       return Promise.resolve(super.handlePost(req, h)).finally(() => {
-        req.yar.reset()
+        // req.yar.reset()
       })
     }
 
