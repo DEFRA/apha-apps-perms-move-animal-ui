@@ -36,15 +36,15 @@ export const config = {
         osVersion: 'Monterey',
         sessionName: 'osx-firefox'
       }
-    },
-    {
-      browserName: 'Safari',
-      'bstack:options': {
-        browserVersion: '15.6',
-        os: 'OS X',
-        osVersion: 'Monterey',
-        sessionName: 'osx-safari'
-      }
     }
+    // {
+    //   browserName: 'Safari',
+    //   'bstack:options': {
+    //     browserVersion: '15.6',
+    //     os: 'OS X',
+    //     osVersion: 'Monterey',
+    //     sessionName: 'osx-safari'
+    //   }
+    // }
   ]
 }
