@@ -1,7 +1,7 @@
-import Wreck from '@hapi/wreck'
 import jwt from '@hapi/jwt'
 import bell from '@hapi/bell'
 import { config } from '~/src/config/config.js'
+import { proxyFetch } from '../proxy.js'
 
 /**
  * @typedef {{[key: string]: string}} OidcConf
@@ -20,10 +20,20 @@ const defraId = {
 
       await server.register(bell)
 
-      const resp = await Wreck.get(oidcConfigurationUrl)
+      server.logger.info(
+        'Fetching IdP configuration from',
+        oidcConfigurationUrl
+      )
+
+      const resp = await proxyFetch(oidcConfigurationUrl, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json'
+        }
+      })
 
       /** @type {OidcConf} */
-      const oidcConf = JSON.parse(resp.payload.toString())
+      const oidcConf = await resp.json()
 
       server.auth.strategy('defra-id', 'bell', {
         location: () => {
