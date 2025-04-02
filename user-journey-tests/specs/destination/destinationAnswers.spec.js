@@ -14,7 +14,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
-  restoreSessionAdvanced
+  restoreSession
 } from '../../helpers/authSessionManager.js'
 
 describe('Check your answers test - destination', () => {
@@ -24,7 +24,7 @@ describe('Check your answers test - destination', () => {
   })
 
   beforeEach('Restore session and navigate to page', async () => {
-    await restoreSessionAdvanced()
+    await restoreSession()
     await completeOriginTaskAnswers()
     // await landingPage.navigateToPageAndVerifyTitle()
   })

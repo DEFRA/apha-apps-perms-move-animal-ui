@@ -5,7 +5,3 @@ export async function loginAndSaveSession(signInPage) {
 export async function restoreSession() {
   await browser.deleteCookies('session', 'crumb')
 }
-
-export async function restoreSessionAdvanced() {
-  await restoreSession()
-}

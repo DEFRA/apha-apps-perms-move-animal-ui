@@ -7,7 +7,7 @@ import generalLicencePage from '../../page-objects/destination/generalLicencePag
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
-  restoreSessionAdvanced
+  restoreSession
 } from '../../helpers/authSessionManager.js'
 
 describe('Destination selection options test', () => {
@@ -17,7 +17,7 @@ describe('Destination selection options test', () => {
   })
 
   beforeEach('Restore session', async () => {
-    await restoreSessionAdvanced()
+    await restoreSession()
   })
 
   it('Should verify options when On the farm and AFU IS NOT option selected', async () => {
