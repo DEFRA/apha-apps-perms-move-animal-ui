@@ -10,7 +10,8 @@ jest.mock('hapi-pino', () => ({
   register: (server) => {
     server.decorate('server', 'logger', {
       info: mockHapiLoggerInfo,
-      error: mockHapiLoggerError
+      error: mockHapiLoggerError,
+      debug: jest.fn()
     })
   },
   name: 'mock-hapi-pino'
@@ -19,6 +20,7 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
   createLogger: () => ({
     info: (...args) => mockLoggerInfo(...args),
     error: (...args) => mockLoggerError(...args),
+    debug: jest.fn(),
     child: () => ({
       info: (...args) => mockLoggerInfo(...args)
     })
@@ -78,7 +80,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"pdfUpload":true}`
+        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false}`
       )
     })
   })

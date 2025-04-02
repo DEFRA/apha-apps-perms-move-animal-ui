@@ -114,6 +114,16 @@ NOTIFY_API_KEY=value_to_be_provided_by_tech_team
 NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
 ```
 
+In order to use customer identity/oidc the following environment variables need to be set
+
+```bash
+DEFRA_ID_ENABLED=true
+DEFRA_ID_OIDC_CONFIGURATION_URL=https://your-account.cpdev.cui.defra.gov.uk/idphub/b2c/b2c_1a_cui_cpdev_signupsignin/.well-known/openid-configuration
+DEFRA_ID_SERVICE_ID=value_to_be_provided_by_tech_team
+DEFRA_ID_CLIENT_ID=value_to_be_provided_by_tech_team
+DEFRA_ID_CLIENT_SECRET=value_to_be_provided_by_tech_team
+```
+
 The email address provided will need to be added to a guest list for it to be accepted by notify.
 
 In order to upload files, you need the following environment variables:

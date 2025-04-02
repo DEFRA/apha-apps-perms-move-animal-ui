@@ -10,7 +10,6 @@ async function startServer() {
   const proxy = provideProxy()
   if (proxy?.httpAndHttpsProxyAgent) {
     createLogger().info('Wreck agents setup')
-
     const httpAndHttpsProxyAgent = proxy.httpAndHttpsProxyAgent
 
     Wreck.agents = {
