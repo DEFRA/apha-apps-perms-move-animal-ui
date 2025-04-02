@@ -42,6 +42,8 @@ export async function getItems() {
 
 export async function uploadFile(cphNumber, fileName, file) {
   return graphClient
-    .api(`/drives/${driveId}/items/root:/${cphNumber}/${fileName}:/content`)
+    .api(
+      `/drives/${driveId}/items/root:/Biosecurity Maps/${cphNumber}/${fileName}:/content`
+    )
     .put(file)
 }
