@@ -119,8 +119,8 @@ In order to use customer identity/oidc the following environment variables need 
 ```bash
 DEFRA_ID_ENABLED=true
 DEFRA_ID_OIDC_CONFIGURATION_URL=https://your-account.cpdev.cui.defra.gov.uk/idphub/b2c/b2c_1a_cui_cpdev_signupsignin/.well-known/openid-configuration
-DEFRA_ID_SERVICE_ID=20695fe4-c376-481a-9600-5d68bd8ba4a4
-DEFRA_ID_CLIENT_ID=63f2725d-9ad9-ef11-a730-7c1e524d74bc
+DEFRA_ID_SERVICE_ID=value_to_be_provided_by_tech_team
+DEFRA_ID_CLIENT_ID=value_to_be_provided_by_tech_team
 DEFRA_ID_CLIENT_SECRET=value_to_be_provided_by_tech_team
 ```
 
