@@ -299,6 +299,12 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'PDF_UPLOAD_FEATURE_ENABLED'
+    },
+    authEnabled: {
+      doc: 'DEFRA ID Auth enabled',
+      format: Boolean,
+      env: 'DEFRA_ID_ENABLED',
+      default: false
     }
   },
   gsPath: {
@@ -308,12 +314,6 @@ export const config = convict({
     env: 'GS_BINARY'
   },
   auth: {
-    enabled: {
-      doc: 'DEFRA ID Auth enabled',
-      format: Boolean,
-      env: 'DEFRA_ID_ENABLED',
-      default: false
-    },
     defraIdOidcConfigurationUrl: {
       doc: 'DEFRA ID OIDC Configuration URL',
       format: String,

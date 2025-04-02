@@ -22,7 +22,7 @@ export const router = {
     name: 'router',
     async register(server) {
       // // Add the auth stuff
-      if (config.get('auth').enabled) {
+      if (config.get('featureFlags').authEnabled) {
         await server.register(authPlugin)
       }
 
