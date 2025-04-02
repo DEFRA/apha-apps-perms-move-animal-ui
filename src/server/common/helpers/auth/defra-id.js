@@ -66,11 +66,11 @@ const defraId = {
             }
           }
         },
-        password: config.get('session').cookie.password,
+        password: config.get('auth').cookiePassword,
         clientId,
         clientSecret,
         cookie: 'bell-defra-id',
-        isSecure: false,
+        isSecure: config.get('session.cookie.secure'),
         providerParams: {
           serviceId
         }

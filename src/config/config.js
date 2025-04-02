@@ -338,6 +338,13 @@ export const config = convict({
       sensitive: true,
       env: 'DEFRA_ID_CLIENT_SECRET',
       default: ''
+    },
+    cookiePassword: {
+      doc: 'auth session cookie password',
+      format: String,
+      default: 'the-password-must-be-at-least-32-characters-long-and-unique',
+      env: 'AUTH_COOKIE_PASSWORD',
+      sensitive: true
     }
   }
 })
