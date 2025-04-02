@@ -20,7 +20,7 @@ const sessionCookie = {
           name: 'userSession',
           path: '/',
           password: config.get('session').cookie.password,
-          isSecure: config.get('isProduction'),
+          isSecure: config.get('session.cookie.secure'),
           ttl: config.get('session').cookie.ttl
         },
         redirectTo: (req) => {
