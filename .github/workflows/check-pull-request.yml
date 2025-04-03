@@ -70,6 +70,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup journey test dependencies
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: |
+          npm ci
+          npm audit --omit=dev
+          npm run build
+
       - name: Start docker compose
         env:
           NOTIFY_TEMPLATE_ID: ${{ secrets.NOTIFY_TEMPLATE_ID }}
