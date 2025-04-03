@@ -13,7 +13,6 @@ export class CalvesUnder42DaysOldPage extends QuestionPage {
   Answer = CalvesUnder42DaysOldAnswer
 
   /** @param {CalvesUnder42DaysOldAnswer} answer */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'yes') {
       return oldestCalfDobPage
