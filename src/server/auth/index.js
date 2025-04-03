@@ -18,7 +18,7 @@ const authPlugin = {
       server.app.cache = server.cache({
         cache: 'session',
         expiresIn: 10 * 1000 * 1000,
-        segment: 'session'
+        segment: 'auth-session'
       })
 
       await server.register([inert])
