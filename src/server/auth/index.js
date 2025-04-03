@@ -14,6 +14,7 @@ const authPlugin = {
     register: async (server) => {
       server.decorate('request', 'getUserSession', getUserSession)
       server.decorate('request', 'dropUserSession', dropUserSession)
+
       server.app.cache = server.cache({
         cache: 'session',
         expiresIn: 10 * 1000 * 1000,

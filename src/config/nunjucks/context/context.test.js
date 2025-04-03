@@ -34,7 +34,31 @@ describe('#context', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
+        footerItems: [
+          {
+            attributes: {
+              'data-testid': 'privacy-policy-link'
+            },
+            href: '/privacy-policy',
+            text: 'Privacy'
+          },
+          {
+            attributes: {
+              'data-testid': 'cookies-link'
+            },
+            href: '/cookies',
+            text: 'Cookies'
+          },
+          {
+            attributes: {
+              'data-testid': 'accessibility-statement-link'
+            },
+            href: '/accessibility-statement',
+            text: 'Accessibility statement'
+          }
+        ],
         getAssetPath: expect.any(Function),
+        isAuthenticated: false,
         navigation: [
           {
             isActive: true,
@@ -123,7 +147,31 @@ describe('#context cache', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
+        footerItems: [
+          {
+            attributes: {
+              'data-testid': 'privacy-policy-link'
+            },
+            href: '/privacy-policy',
+            text: 'Privacy'
+          },
+          {
+            attributes: {
+              'data-testid': 'cookies-link'
+            },
+            href: '/cookies',
+            text: 'Cookies'
+          },
+          {
+            attributes: {
+              'data-testid': 'accessibility-statement-link'
+            },
+            href: '/accessibility-statement',
+            text: 'Accessibility statement'
+          }
+        ],
         getAssetPath: expect.any(Function),
+        isAuthenticated: false,
         navigation: [
           {
             isActive: true,
