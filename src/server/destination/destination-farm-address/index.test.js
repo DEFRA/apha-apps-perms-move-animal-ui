@@ -70,19 +70,27 @@ describe('DestinationFarmAddressPage', () => {
     })
 
     describe('on the farm', () => {
-      const context = { origin: { onOffFarm: 'on' } }
+      const context = { origin: { onOffFarm: 'on', originType: 'market' } }
 
-      it('should return how many animals page if origin is not market or unrestricted farm', () => {
+      it('should return how many animals maximum page if origin is not TB restricted farm or Zoo with TB restrictions', () => {
         const nextPage = page.nextPage(null, context)
+        expect(nextPage).toBe(howManyAnimalsMaximumPage)
+      })
+
+      it('should return how many animals page if origin is TB restricted farm', () => {
+        const marketContext = {
+          origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
+        }
+        const nextPage = page.nextPage(null, marketContext)
         expect(nextPage).toBe(howManyAnimalsPage)
       })
 
-      it('should return how many animals maximum page if origin is market or unrestricted farm', () => {
+      it('should return how many animals page if origin is Zoo with TB restrictions', () => {
         const marketContext = {
-          origin: { onOffFarm: 'on', originType: 'market' }
+          origin: { onOffFarm: 'on', originType: 'zoo' }
         }
         const nextPage = page.nextPage(null, marketContext)
-        expect(nextPage).toBe(howManyAnimalsMaximumPage)
+        expect(nextPage).toBe(howManyAnimalsPage)
       })
 
       describePageSnapshot({

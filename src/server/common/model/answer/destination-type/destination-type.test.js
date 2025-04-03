@@ -30,62 +30,96 @@ describe('DestinationType', () => {
       'Select where the animals are going'
     )
   })
-})
 
-describe('DestinationType.config.options', () => {
-  afterEach(jest.resetAllMocks)
+  describe('DestinationType.config.options', () => {
+    afterEach(jest.resetAllMocks)
 
-  it('should have the expected options to select from for off the farm movements', () => {
-    const context = {
-      origin: { onOffFarm: 'off' }
-    }
-    const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(7)
-    expect(config.options['tb-restricted-farm'].label).toBe(
-      tbRestrictedFarmLabel
-    )
-    expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options['dedicated-sale'].label).toBe(dedicatedSaleLabel)
-    expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.zoo.label).toBe(zooLabel)
-    expect(config.options.lab.label).toBe(labLabel)
-    expect(config.options.other.label).toBe(otherLabel)
+    it('should have the expected options to select from for off the farm movements', () => {
+      const context = {
+        origin: { onOffFarm: 'off' }
+      }
+      const config = new DestinationTypeAnswer(undefined, context).config
+      expect(Object.keys(config.options)).toHaveLength(7)
+      expect(config.options['tb-restricted-farm'].label).toBe(
+        tbRestrictedFarmLabel
+      )
+      expect(config.options.slaughter.label).toBe(slaughterLabel)
+      expect(config.options['dedicated-sale'].label).toBe(dedicatedSaleLabel)
+      expect(config.options.afu.label).toBe(afuLabel)
+      expect(config.options.zoo.label).toBe(zooLabel)
+      expect(config.options.lab.label).toBe(labLabel)
+      expect(config.options.other.label).toBe(otherLabel)
+    })
+
+    it('should have the expected options to select from for off the farm movements when moving from AFU', () => {
+      const context = {
+        origin: { onOffFarm: 'off', originType: 'afu' }
+      }
+      const config = new DestinationTypeAnswer(undefined, context).config
+      expect(Object.keys(config.options)).toHaveLength(2)
+      expect(config.options.slaughter.label).toBe(slaughterLabel)
+      expect(config.options.afu.label).toBe(afuLabel)
+    })
+
+    it('should have the expected options to select from for on the farm movements', () => {
+      const context = {
+        origin: { onOffFarm: 'on' }
+      }
+      const config = new DestinationTypeAnswer(undefined, context).config
+      expect(Object.keys(config.options)).toHaveLength(5)
+
+      expect(config.options['tb-restricted-farm'].label).toBe(
+        tbRestrictedFarmLabel
+      )
+      expect(config.options.afu.label).toBe(afuLabel)
+      expect(config.options.afu.hint).toBe(afuHint)
+      expect(config.options.zoo.label).toBe(zooLabel)
+      expect(config.options.lab.label).toBe(labLabel)
+      expect(config.options.other.label).toBe(otherLabel)
+    })
+
+    it('should have the expected options to select from for on the farm movements when moving from AFU', () => {
+      const context = {
+        origin: { onOffFarm: 'on', originType: 'afu' }
+      }
+      const config = new DestinationTypeAnswer(undefined, context).config
+      expect(Object.keys(config.options)).toHaveLength(1)
+      expect(config.options.afu.label).toBe(afuLabel)
+      expect(config.options.afu.hint).toBe(afuHint)
+    })
   })
 
-  it('should have the expected options to select from for off the farm movements when moving from AFU', () => {
-    const context = {
-      origin: { onOffFarm: 'off', originType: 'afu' }
-    }
-    const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(2)
-    expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options.afu.label).toBe(afuLabel)
-  })
+  describe('#DestinationType.isTbRestricted', () => {
+    it('should return true for "tb-restricted-farm"', () => {
+      expect(DestinationTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(
+        true
+      )
+    })
 
-  it('should have the expected options to select from for on the farm movements', () => {
-    const context = {
-      origin: { onOffFarm: 'on' }
-    }
-    const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(5)
+    it('should return true for "zoo"', () => {
+      expect(DestinationTypeAnswer.isTbRestricted('zoo')).toBe(true)
+    })
 
-    expect(config.options['tb-restricted-farm'].label).toBe(
-      tbRestrictedFarmLabel
-    )
-    expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.afu.hint).toBe(afuHint)
-    expect(config.options.zoo.label).toBe(zooLabel)
-    expect(config.options.lab.label).toBe(labLabel)
-    expect(config.options.other.label).toBe(otherLabel)
-  })
+    it('should return false for "afu"', () => {
+      expect(DestinationTypeAnswer.isTbRestricted('afu')).toBe(false)
+    })
 
-  it('should have the expected options to select from for on the farm movements when moving from AFU', () => {
-    const context = {
-      origin: { onOffFarm: 'on', originType: 'afu' }
-    }
-    const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(1)
-    expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.afu.hint).toBe(afuHint)
+    it('should return false for "unrestricted-farm"', () => {
+      expect(DestinationTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(
+        false
+      )
+    })
+
+    it('should return false for undefined', () => {
+      expect(DestinationTypeAnswer.isTbRestricted(undefined)).toBe(false)
+    })
+
+    it('should return false for null', () => {
+      expect(DestinationTypeAnswer.isTbRestricted(null)).toBe(false)
+    })
+
+    it('should return false for an empty string', () => {
+      expect(DestinationTypeAnswer.isTbRestricted('')).toBe(false)
+    })
   })
 })
