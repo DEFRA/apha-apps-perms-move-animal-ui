@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalvesUnder42DaysOldPage calvesUnder42DaysOldPage.content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="calvesUnder42DaysOld-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Will you move any calves under 42 days old?
+      </h1>
+    </legend>
+    <div id="calvesUnder42DaysOld-hint" class="govuk-hint">
+      We need to know if the calves are under 42 days old on the date you are planning to move them
+    </div>
+    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="calvesUnder42DaysOld" name="calvesUnder42DaysOld" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="calvesUnder42DaysOld">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="no" name="calvesUnder42DaysOld" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="no">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
