@@ -21,84 +21,84 @@ describe('OriginType', () => {
       'Select where the animals are moving from'
     )
   })
+})
 
-  describe('#OriginType.config', () => {
-    it('should have the expected options to select from for off the farm movements', () => {
-      const context = {
-        origin: { onOffFarm: 'off' }
-      }
-      const config = new OriginTypeAnswer(undefined, context).config
+describe('OriginType.config', () => {
+  it('should have the expected options to select from for off the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'off' }
+    }
+    const config = new OriginTypeAnswer(undefined, context).config
 
-      expect(Object.keys(config.options)).toHaveLength(6)
-      expect(config.options['tb-restricted-farm'].label).toBe(
-        'TB restricted farm'
-      )
-      expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
-      expect(config.options.afu.hint).toBe(
-        'Including enhanced with grazing (AFUE)'
-      )
-      expect(config.options['unrestricted-farm'].label).toBe(
-        'Unrestricted farm or premises'
-      )
-      expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-      expect(config.options.lab.label).toBe('Laboratory')
-      expect(config.options.other.label).toBe('Another origin')
-    })
-
-    it('should have the expected options to select from for on to the farm movements', () => {
-      const context = {
-        origin: { onOffFarm: 'on' }
-      }
-      const config = new OriginTypeAnswer(undefined, context).config
-
-      expect(config.options.market.label).toBe('Market')
-      expect(config.options['unrestricted-farm'].label).toBe(
-        'Unrestricted farm or premises'
-      )
-      expect(config.options['tb-restricted-farm'].label).toBe(
-        'TB restricted farm'
-      )
-      expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
-      expect(config.options.afu.hint).toBe(
-        'Including enhanced with grazing (AFUE)'
-      )
-      expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-      expect(config.options.lab.label).toBe('Laboratory')
-      expect(config.options['after-import-location'].label).toBe(
-        'Location after animals have been imported'
-      )
-      expect(config.options.other.label).toBe('Another origin')
-      expect(Object.keys(config.options)).toHaveLength(8)
-    })
+    expect(Object.keys(config.options)).toHaveLength(6)
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      'TB restricted farm'
+    )
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
+    )
+    expect(config.options['unrestricted-farm'].label).toBe(
+      'Unrestricted farm or premises'
+    )
+    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
+    expect(config.options.lab.label).toBe('Laboratory')
+    expect(config.options.other.label).toBe('Another origin')
   })
 
-  describe('#OriginType.isTbRestricted', () => {
-    it('should return true for "tb-restricted-farm"', () => {
-      expect(OriginTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(true)
-    })
+  it('should have the expected options to select from for on to the farm movements', () => {
+    const context = {
+      origin: { onOffFarm: 'on' }
+    }
+    const config = new OriginTypeAnswer(undefined, context).config
 
-    it('should return true for "zoo"', () => {
-      expect(OriginTypeAnswer.isTbRestricted('zoo')).toBe(true)
-    })
+    expect(config.options.market.label).toBe('Market')
+    expect(config.options['unrestricted-farm'].label).toBe(
+      'Unrestricted farm or premises'
+    )
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      'TB restricted farm'
+    )
+    expect(config.options.afu.label).toBe('Approved finishing unit (AFU)')
+    expect(config.options.afu.hint).toBe(
+      'Including enhanced with grazing (AFUE)'
+    )
+    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
+    expect(config.options.lab.label).toBe('Laboratory')
+    expect(config.options['after-import-location'].label).toBe(
+      'Location after animals have been imported'
+    )
+    expect(config.options.other.label).toBe('Another origin')
+    expect(Object.keys(config.options)).toHaveLength(8)
+  })
+})
 
-    it('should return false for "afu"', () => {
-      expect(OriginTypeAnswer.isTbRestricted('afu')).toBe(false)
-    })
+describe('OriginType.isTbRestricted', () => {
+  it('should return true for "tb-restricted-farm"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(true)
+  })
 
-    it('should return false for "unrestricted-farm"', () => {
-      expect(OriginTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(false)
-    })
+  it('should return true for "zoo"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('zoo')).toBe(true)
+  })
 
-    it('should return false for undefined', () => {
-      expect(OriginTypeAnswer.isTbRestricted(undefined)).toBe(false)
-    })
+  it('should return false for "afu"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('afu')).toBe(false)
+  })
 
-    it('should return false for null', () => {
-      expect(OriginTypeAnswer.isTbRestricted(null)).toBe(false)
-    })
+  it('should return false for "unrestricted-farm"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(false)
+  })
 
-    it('should return false for an empty string', () => {
-      expect(OriginTypeAnswer.isTbRestricted('')).toBe(false)
-    })
+  it('should return false for undefined', () => {
+    expect(OriginTypeAnswer.isTbRestricted(undefined)).toBe(false)
+  })
+
+  it('should return false for null', () => {
+    expect(OriginTypeAnswer.isTbRestricted(null)).toBe(false)
+  })
+
+  it('should return false for an empty string', () => {
+    expect(OriginTypeAnswer.isTbRestricted('')).toBe(false)
   })
 })
