@@ -59,4 +59,9 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
       emptyOptionText: 'Select where the animals are going'
     }
   })
+
+  /** @returns {boolean} */
+  static isTbRestricted(type) {
+    return ['tb-restricted-farm', 'zoo'].includes(type ?? '')
+  }
 }

@@ -59,4 +59,9 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
       emptyOptionText: 'Select where the animals are moving from'
     }
   })
+
+  /** @returns {boolean} */
+  static isTbRestricted(type) {
+    return ['tb-restricted-farm', 'zoo'].includes(type ?? '')
+  }
 }

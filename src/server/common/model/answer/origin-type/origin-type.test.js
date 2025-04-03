@@ -23,7 +23,7 @@ describe('OriginType', () => {
   })
 })
 
-describe('#OriginType.config', () => {
+describe('OriginType.config', () => {
   it('should have the expected options to select from for off the farm movements', () => {
     const context = {
       origin: { onOffFarm: 'off' }
@@ -70,5 +70,35 @@ describe('#OriginType.config', () => {
     )
     expect(config.options.other.label).toBe('Another origin')
     expect(Object.keys(config.options)).toHaveLength(8)
+  })
+})
+
+describe('OriginType.isTbRestricted', () => {
+  it('should return true for "tb-restricted-farm"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(true)
+  })
+
+  it('should return true for "zoo"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('zoo')).toBe(true)
+  })
+
+  it('should return false for "afu"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('afu')).toBe(false)
+  })
+
+  it('should return false for "unrestricted-farm"', () => {
+    expect(OriginTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(false)
+  })
+
+  it('should return false for undefined', () => {
+    expect(OriginTypeAnswer.isTbRestricted(undefined)).toBe(false)
+  })
+
+  it('should return false for null', () => {
+    expect(OriginTypeAnswer.isTbRestricted(null)).toBe(false)
+  })
+
+  it('should return false for an empty string', () => {
+    expect(OriginTypeAnswer.isTbRestricted('')).toBe(false)
   })
 })

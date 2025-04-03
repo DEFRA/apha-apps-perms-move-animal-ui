@@ -89,3 +89,37 @@ describe('DestinationType.config.options', () => {
     expect(config.options.afu.hint).toBe(afuHint)
   })
 })
+
+describe('DestinationType.isTbRestricted', () => {
+  it('should return true for "tb-restricted-farm"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(
+      true
+    )
+  })
+
+  it('should return true for "zoo"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('zoo')).toBe(true)
+  })
+
+  it('should return false for "afu"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('afu')).toBe(false)
+  })
+
+  it('should return false for "unrestricted-farm"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(
+      false
+    )
+  })
+
+  it('should return false for undefined', () => {
+    expect(DestinationTypeAnswer.isTbRestricted(undefined)).toBe(false)
+  })
+
+  it('should return false for null', () => {
+    expect(DestinationTypeAnswer.isTbRestricted(null)).toBe(false)
+  })
+
+  it('should return false for an empty string', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('')).toBe(false)
+  })
+})

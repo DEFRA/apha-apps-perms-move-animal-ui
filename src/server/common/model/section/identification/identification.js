@@ -3,13 +3,11 @@ import { OriginSection } from '../origin/origin.js'
 import { DestinationSection } from '../destination/destination.js'
 import { identification } from '~/src/server/identification/index.js'
 import { earTagsPage } from '~/src/server/identification/ear-tags/index.js'
+import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
+import { DestinationTypeAnswer } from '../../answer/destination-type/destination-type.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
-
-/** @param {string} premisesType */
-const isTbRestricted = (premisesType) =>
-  ['zoo', 'tb-restricted-farm'].includes(premisesType)
 
 /** @param {RawApplicationState} app */
 const isVisible = (app) => {
@@ -18,8 +16,8 @@ const isVisible = (app) => {
   const destinationValid = DestinationSection.fromState(app).validate().isValid
   return (
     isOnFarm &&
-    isTbRestricted(app.origin?.originType) &&
-    isTbRestricted(app.destination?.destinationType) &&
+    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
+    DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType) &&
     originValid &&
     destinationValid
   )

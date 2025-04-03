@@ -1,5 +1,6 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { AddressAnswer } from '../../common/model/answer/address/address.js'
+import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { howManyAnimalsMaximumPage } from '../how-many-animals-maximum/index.js'
 import { howManyAnimalsPage } from '../how-many-animals/index.js'
@@ -27,13 +28,10 @@ export class DestinationFarmAddressPage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer, context) {
     if (context.origin?.onOffFarm === 'on') {
-      if (
-        context.origin?.originType === 'market' ||
-        context.origin?.originType === 'unrestricted-farm'
-      ) {
-        return howManyAnimalsMaximumPage
-      } else {
+      if (OriginTypeAnswer.isTbRestricted(context.origin?.originType)) {
         return howManyAnimalsPage
+      } else {
+        return howManyAnimalsMaximumPage
       }
     } else {
       return destinationSummaryPage
