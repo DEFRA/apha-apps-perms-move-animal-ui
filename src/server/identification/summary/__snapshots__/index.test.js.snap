@@ -41,7 +41,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       Enter the ear tag numbers for these animals
     </dt>
     <dd class="govuk-summary-list__value">
-      some ear tags
+      some-ear-tags
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/identification/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>

@@ -5,14 +5,9 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { identificationSummaryPage } from './index.js'
+import { validIdentificationSectionState } from '../../common/test-helpers/journey-state.js'
 
 const pageUrl = '/identification/check-answers'
-
-const noCalvesUnder42DaysState = {
-  calvesUnder42DaysOld: 'no',
-  testingDates: 'some dates',
-  earTags: 'some ear tags'
-}
 
 describe('#identificationSummaryPage', () => {
   /** @type {Server} */
@@ -27,14 +22,17 @@ describe('#identificationSummaryPage', () => {
     await server.stop({ timeout: 0 })
   })
 
-  describe('no calves under 42 days old selected', () => {
+  describe('valid state selected', () => {
     /** @type {SessionTestHelper} */
     let session
 
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setSectionState('identification', noCalvesUnder42DaysState)
+      await session.setSectionState(
+        'identification',
+        validIdentificationSectionState
+      )
     })
 
     it('should render expected response', async () => {
@@ -54,7 +52,9 @@ describe('#identificationSummaryPage', () => {
       expect(document.title).toBe(identificationSummaryPage.pageTitle)
       expect(statusCode).toBe(statusCodes.ok)
 
-      expect(payload).toEqual(expect.stringContaining('some ear tags'))
+      expect(payload).toEqual(
+        expect.stringContaining(validIdentificationSectionState.earTags)
+      )
     })
   })
 })
@@ -63,7 +63,7 @@ describePageSnapshot({
   describes: '#identificationSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { identification: noCalvesUnder42DaysState }
+  state: { identification: validIdentificationSectionState }
 })
 
 /**
