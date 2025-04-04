@@ -305,6 +305,12 @@ export const config = convict({
       format: Boolean,
       env: 'DEFRA_ID_ENABLED',
       default: false
+    },
+    animalIdentificationEnabled: {
+      doc: 'Animal identification feature flag',
+      format: Boolean,
+      default: !isProduction,
+      env: 'ANIMAL_IDENTIFICATION_ENABLED'
     }
   },
   gsPath: {
