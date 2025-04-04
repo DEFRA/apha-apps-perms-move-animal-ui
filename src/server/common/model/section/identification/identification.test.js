@@ -1,4 +1,3 @@
-import { EarTagsPage } from '~/src/server/identification/ear-tags/index.js'
 import { IdentificationSection } from './identification.js'
 import {
   validOriginSectionState,
@@ -8,6 +7,7 @@ import {
   validIdentificationSectionState,
   validBiosecurityMapSectionState
 } from '../../../test-helpers/journey-state.js'
+import { CalvesUnder42DaysOldPage } from '~/src/server/identification/calves-under-42-days-old/index.js'
 
 const applicationStateWithAnimalIdentifiersSection = {
   origin: {
@@ -25,12 +25,10 @@ const applicationStateWithAnimalIdentifiersSection = {
   'biosecurity-map': validBiosecurityMapSectionState
 }
 
-const validIdentificationData = {
-  earTags: 'test-ear-tag-content'
-}
+const validIdentificationData = validIdentificationSectionState
 
 const invalidIdentificationData = {
-  earTags: undefined
+  calvesUnder42DaysOld: undefined
 }
 
 describe('Identification.validate', () => {
@@ -49,7 +47,7 @@ describe('Identification.validate', () => {
     }).validate()
 
     expect(result.isValid).toBe(false)
-    expect(result.firstInvalidPage).toBeInstanceOf(EarTagsPage)
+    expect(result.firstInvalidPage).toBeInstanceOf(CalvesUnder42DaysOldPage)
   })
 })
 

@@ -38,6 +38,8 @@ export const validDestinationSectionState = {
 }
 
 export const validIdentificationSectionState = {
+  calvesUnder42DaysOld: 'no',
+  testingDates: 'some dates',
   earTags: 'some-ear-tags'
 }
 
