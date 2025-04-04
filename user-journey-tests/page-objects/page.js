@@ -51,6 +51,14 @@ class Page {
     return $('[data-testid="accessibility-statement-link"]')
   }
 
+  getAccountManagementFooterLink() {
+    return $('aria/Account management')
+  }
+
+  getSignOutFooterLink() {
+    return $('aria/Sign out')
+  }
+
   getErrorSummary() {
     return $('.govuk-error-summary')
   }
