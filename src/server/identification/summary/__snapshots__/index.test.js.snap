@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#identificationSummaryPage.content should render the expected content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before you continue your application</h1>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+  
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will you move any calves under 42 days old?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      No
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/any-calves?redirect_uri=/identification/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What are the dates of the last TB tests for the cattle that are 42 days old or older?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some dates
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/identification/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the cattle that are 42 days old or older?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Enter the ear tag numbers for these animals
+    </dt>
+    <dd class="govuk-summary-list__value">
+      some-ear-tags
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/identification/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
+    </dd>
+  </div>
+</dl>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

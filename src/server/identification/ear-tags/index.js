@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { identificationSummaryPage } from '../check-answers/index.js'
+import { identificationSummaryPage } from '../summary/index.js'
 
 const customHeading =
   'Official ear tag numbers for animals 42 days old or older'
