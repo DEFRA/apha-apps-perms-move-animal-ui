@@ -3,16 +3,23 @@ import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { identificationSummaryPage } from '../check-answers/index.js'
 
+const customHeading =
+  'Official ear tag numbers for animals 42 days old or older'
+
 export class EarTagsPage extends QuestionPage {
   urlPath = '/identification/enter-ear-tags'
   sectionKey = 'identification'
-  question = 'Enter the ear tag numbers of the animals you are planning to move'
+  question = 'Enter the ear tag numbers for these animals'
   questionKey = 'earTags'
   Answer = EarTagsAnswer
 
-  /** @param {EarTagsAnswer} _answer */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_answer) {
+  get heading() {
+    return customHeading
+  }
+
+  view = 'identification/ear-tags/index'
+
+  nextPage() {
     return identificationSummaryPage
   }
 }

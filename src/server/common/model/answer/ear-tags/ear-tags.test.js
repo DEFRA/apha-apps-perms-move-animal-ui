@@ -35,6 +35,16 @@ describe('Disinfectant', () => {
   })
 
   it('should be the right height', () => {
-    expect(EarTagsAnswer.config.rows).toBe(10)
+    expect(EarTagsAnswer.config.rows).toBe(15)
+  })
+
+  it('should not be a page heading', () => {
+    expect(EarTagsAnswer.config.isPageHeading).toBe(false)
+  })
+
+  it('should have the right hint', () => {
+    expect(EarTagsAnswer.config.hint).toBe(
+      'You need to enter each ear tag number on a separate line'
+    )
   })
 })
