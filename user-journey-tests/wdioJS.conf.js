@@ -7,7 +7,7 @@ export const config = merge(wdioConf, {
     './specs/noJavascript/**/*.js',
     './specs/identification/identifiersAnswers.spec.js'
   ],
-  maxInstances: 3,
+  maxInstances: 7,
   capabilities: [
     {
       browserName: 'chrome',
