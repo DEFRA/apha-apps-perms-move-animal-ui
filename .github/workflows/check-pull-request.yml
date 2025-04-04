@@ -96,7 +96,7 @@ jobs:
 
       - name: Run journey tests (split)
         run: |
-          node split-specs.js ${{ matrix.group }} 4 > specs.txt
+          node split-specs.js ${{ matrix.group }} 4
           echo "Running specs for group ${{ matrix.group }}:"
           cat specs.txt
           npx wdio run wdio.conf.js --spec $(cat specs.txt)
