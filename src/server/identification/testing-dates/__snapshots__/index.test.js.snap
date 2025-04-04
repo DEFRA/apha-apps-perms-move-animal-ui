@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestingDatesPage testingDatesPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Testing dates</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        The cattle must have tested negative to a TB skin test within 30 days of
+        the planned movement date.
+      </p>
+      <p>
+        You need to enter the date they were injected on their most recent TB
+        skin test.
+      </p>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="testingDates">
+    What are the dates of the last TB tests for the cattle that are 42 days old or older?
+  </label>
+  <textarea class="govuk-textarea" id="testingDates" name="testingDates" rows="5"></textarea>
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
