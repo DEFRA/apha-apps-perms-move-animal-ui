@@ -7,6 +7,7 @@ import { defraId } from '../common/helpers/auth/defra-id.js'
 import { sessionCookie } from '../common/helpers/auth/session-cookie.js'
 import { getUserSession } from '../common/helpers/auth/get-user-session.js'
 import { dropUserSession } from '../common/helpers/auth/drop-user-session.js'
+import { postLogout } from './post-logout/index.js'
 
 const authPlugin = {
   plugin: {
@@ -23,7 +24,7 @@ const authPlugin = {
 
       await server.register([inert])
       await server.register([defraId, sessionCookie])
-      await server.register([auth, login, logout])
+      await server.register([auth, login, logout, postLogout])
     }
   }
 }

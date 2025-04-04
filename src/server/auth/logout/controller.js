@@ -1,3 +1,4 @@
+import { config } from '~/src/config/config.js'
 import { provideAuthedUser } from '~/src/server/auth/logout/prerequisites/provide-authed-user.js'
 
 const logoutController = {
@@ -11,11 +12,11 @@ const logoutController = {
       return h.redirect('/')
     }
 
-    const referrer = request.info.referrer
     const idTokenHint = authedUser.idToken
+    const redirectUri = `${config.get('appBaseUrl')}/auth/post-logout`
 
     const logoutUrl = encodeURI(
-      `${authedUser.logoutUrl}?id_token_hint=${idTokenHint}&post_logout_redirect_uri=${referrer}`
+      `${authedUser.logoutUrl}?id_token_hint=${idTokenHint}&post_logout_redirect_uri=${redirectUri}`
     )
 
     request.dropUserSession()
