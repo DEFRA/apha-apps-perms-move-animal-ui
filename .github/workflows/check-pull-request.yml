@@ -12,6 +12,45 @@ on:
       - ready_for_review
 
 jobs:
+  sonarcloud:
+    name: SonarCloud Scan
+    runs-on: ubuntu-22.04
+    env:
+      UPLOADER_URL: 'http://localhost:7337'
+      FILE_S3_BUCKET: 'apha'
+      FILE_S3_PATH: 'biosecurity-map'
+      CONSUMER_BUCKETS: 'apha'
+      MOCK_VIRUS_SCAN_ENABLED: false
+      AWS_REGION: eu-west-2
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
+      GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test code and Create Test Coverage Reports
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: |
+          npm ci
+          npm audit --omit=dev
+          npm run build
+          npm run format:check
+          npm run lint
+          npm test
+
+      - name: SonarCloud Scan
+        if: github.actor != 'dependabot[bot]'
+        uses: SonarSource/sonarqube-scan-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   pr-validator:
     name: Run Pull Request Checks
     env:
@@ -31,7 +70,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Test code and Create Test Coverage Reports
+      - name: Setup journey test dependencies
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -40,9 +79,6 @@ jobs:
           npm ci
           npm audit --omit=dev
           npm run build
-          npm run format:check
-          npm run lint
-          npm test
 
       - name: Start docker compose
         env:
@@ -53,13 +89,6 @@ jobs:
 
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
-
-      - name: SonarCloud Scan
-        if: github.actor != 'dependabot[bot]'
-        uses: SonarSource/sonarqube-scan-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Journey tests
         run: |
