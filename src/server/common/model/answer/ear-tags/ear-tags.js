@@ -14,7 +14,9 @@ export class EarTagsAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'earTags',
-    rows: 10,
+    isPageHeading: false,
+    hint: 'You need to enter each ear tag number on a separate line',
+    rows: 15,
     validation: {
       maxLength: {
         value: 5000,
