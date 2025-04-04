@@ -1,5 +1,6 @@
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
+import { calvesUnder42DaysOld } from './calves-under-42-days-old/index.js'
 import { identificationSummary } from './check-answers/index.js'
 import { earTags } from './ear-tags/index.js'
 
@@ -10,7 +11,11 @@ export const identification = {
   plugin: {
     name: 'animal-identification',
     async register(server) {
-      await server.register([earTags, identificationSummary])
+      await server.register([
+        calvesUnder42DaysOld,
+        earTags,
+        identificationSummary
+      ])
     }
   }
 }

@@ -14,6 +14,7 @@ import { ApplicationModel } from './common/model/application/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
 import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
+import { calvesUnder42DaysOld } from './identification/calves-under-42-days-old/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -54,6 +55,9 @@ export const router = {
             (section) => section.config.plugin
           )
         ),
+
+        // Add routes specific to sections not fully implemented yet
+        server.register([calvesUnder42DaysOld]),
 
         // Static assets
         server.register([serveStaticFiles])
