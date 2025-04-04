@@ -56,7 +56,7 @@ describe('EarTagsPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'earTagsPage.content',
+    describes: 'EarTagsPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

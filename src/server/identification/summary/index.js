@@ -1,8 +1,8 @@
 import { Page } from '../../common/model/page/page-model.js'
 
-export class DestinationSummaryPage extends Page {
+export class IdentificationSummaryPage extends Page {
   sectionKey = 'destination'
   urlPath = `/${this.sectionKey}/check-answers`
 }
 
-export const identificationSummaryPage = new DestinationSummaryPage()
+export const identificationSummaryPage = new IdentificationSummaryPage()
