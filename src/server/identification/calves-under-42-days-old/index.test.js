@@ -1,6 +1,6 @@
 import { CalvesUnder42DaysOldAnswer } from '../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { enterTestingDatesPage } from '../enter-testing-dates/index.js'
+import { testingDatesPage } from '../testing-dates/index.js'
 import { oldestCalfDobPage } from '../oldest-calf-dob/index.js'
 import { calvesUnder42DaysOldPage, CalvesUnder42DaysOldPage } from './index.js'
 
@@ -50,7 +50,7 @@ describe('CalvesUnder42DaysOldPage', () => {
       calvesUnder42DaysOld: 'no'
     })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(enterTestingDatesPage)
+    expect(nextPage).toBe(testingDatesPage)
   })
 
   it('should export page', () => {
