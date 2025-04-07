@@ -42,6 +42,11 @@ const footerItems = [
     href: 'https://your-account.cpdev.cui.defra.gov.uk/management',
     text: 'Account management',
     requiresAuth: true
+  },
+  {
+    href: '/auth/logout',
+    text: 'Sign out',
+    requiresAuth: true
   }
 ]
 
