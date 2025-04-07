@@ -11,6 +11,7 @@ import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 /**
  * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
@@ -115,6 +116,10 @@ describe('DestinationTypePage.nextPage', () => {
   describe('on the farm', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
+    beforeAll(() => spyOnConfig('featureFlags', { animalIdentifiers: false }))
+
+    afterAll(jest.resetAllMocks)
+
     it('should return destination-farm-cph no matter what the answer', () => {
       const answer = new DestinationTypeAnswer(undefined)
       const nextPage = page.nextPage(answer, context)
@@ -150,5 +155,25 @@ describe('DestinationTypePage.nextPage', () => {
       pageUrl,
       state: context
     })
+  })
+
+  describe('on the farm (animalIdentifiers feature flag enabled)', () => {
+    beforeAll(() => spyOnConfig('featureFlags', { animalIdentifiers: true }))
+
+    afterAll(jest.resetAllMocks)
+
+    it.each(possibleRestricted)(
+      'should return destination-farm-cph even for restricted -> restricted',
+      (destinationType) => {
+        const context = {
+          origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
+        }
+        const answer = new DestinationTypeAnswer({
+          destinationType: /** @type {DestinationTypeData} */ (destinationType)
+        })
+        const nextPage = page.nextPage(answer, context)
+        expect(nextPage).toBe(destinationFarmCphPage)
+      }
+    )
   })
 })
