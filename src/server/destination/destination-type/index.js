@@ -8,7 +8,6 @@ import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index
 import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-/** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 const offFarmNextPageMapping = {
