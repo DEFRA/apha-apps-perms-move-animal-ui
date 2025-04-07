@@ -1,6 +1,6 @@
 import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { identificationSummaryPage } from '../check-answers/index.js'
+import { identificationSummaryPage } from '../summary/index.js'
 import { earTagsPage, EarTagsPage } from './index.js'
 
 const sectionKey = 'identification'
