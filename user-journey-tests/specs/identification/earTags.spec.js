@@ -4,7 +4,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import earTagsPage from '../../page-objects/identification/earTagsPage.js'
-import identificationAnswersPage from '../../page-objects/identification/identificationAnswersPage.js'
+import calvesPage from '../../page-objects/identification/calvesPage.js'
 
 describe('Disinfectant page spec', () => {
   // eslint-disable-next-line no-undef
@@ -22,9 +22,6 @@ describe('Disinfectant page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await earTagsPage.inputTextAndContinue(
-      'ear tags',
-      identificationAnswersPage
-    )
+    await earTagsPage.inputTextAndContinue('ear tags', calvesPage)
   })
 })
