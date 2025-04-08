@@ -24,7 +24,7 @@ const sessionCookie = {
           ttl: config.get('session').cookie.ttl
         },
         redirectTo: (req) => {
-          req.yar.flash('referrer', req.path)
+          req.yar.flash('referrer', req.path, true)
           return '/auth/login'
         },
         keepAlive: true,
