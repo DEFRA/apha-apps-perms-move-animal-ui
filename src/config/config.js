@@ -306,11 +306,11 @@ export const config = convict({
       env: 'DEFRA_ID_ENABLED',
       default: false
     },
-    animalIdentificationEnabled: {
-      doc: 'Animal identification feature flag',
+    animalIdentifiers: {
+      doc: 'Enables asking for an animals identifiers (to support TB restricted -> TB restricted premises movement types)',
       format: Boolean,
-      default: !isProduction,
-      env: 'ANIMAL_IDENTIFICATION_ENABLED'
+      env: 'ANIMAL_IDENTIFIERS_ENABLED',
+      default: false
     }
   },
   gsPath: {

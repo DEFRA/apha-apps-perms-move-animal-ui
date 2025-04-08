@@ -3,7 +3,6 @@ import { config } from '~/src/config/config.js'
 /* global jest */
 
 const configGet = config.get.bind(config)
-
 /**
  * @param {string} key
  * @param {any} value

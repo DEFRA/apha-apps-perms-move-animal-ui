@@ -2,9 +2,10 @@
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'earTags'
-const pageHeadingAndTitle = 'Enter the ear tag numbers for these animals'
+const pageHeadingAndTitle =
+  'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
 const noInputError =
-  'Enter the ear tag numbers of the animals you are planning to move'
+  'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
 
 class EarTagsPage extends SingleTextInputPage {
   constructor() {
@@ -13,7 +14,7 @@ class EarTagsPage extends SingleTextInputPage {
 
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  pagePath = 'identification/enter-ear-tags'
+  pagePath = 'identification/enter-ear-tags-calves'
 }
 
 export default new EarTagsPage()

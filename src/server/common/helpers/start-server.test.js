@@ -38,6 +38,11 @@ describe('#startServer', () => {
     process.env = { ...PROCESS_ENV }
     process.env.PORT = '3097' // Set to obscure port to avoid conflicts
 
+    // set feature flags to example values
+    process.env.DEFRA_ID_ENABLED = 'false'
+    process.env.PDF_UPLOAD_FEATURE_ENABLED = 'true'
+    process.env.ANIMAL_IDENTIFIERS_ENABLED = 'false'
+
     createServerImport = await import('~/src/server/index.js')
     startServerImport = await import(
       '~/src/server/common/helpers/start-server.js'
@@ -80,7 +85,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false}`
+        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false,"animalIdentifiers":false}`
       )
     })
   })

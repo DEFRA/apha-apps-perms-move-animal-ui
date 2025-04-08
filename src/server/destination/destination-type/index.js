@@ -6,9 +6,9 @@ import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
+import { config } from '~/src/config/config.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
-/** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
 
 const offFarmNextPageMapping = {
@@ -39,6 +39,7 @@ export class DestinationTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
     if (
+      !config.get('featureFlags').animalIdentifiers &&
       context.origin?.onOffFarm === 'on' &&
       restricted.includes(context.origin?.originType) &&
       possibleRestricted.includes(answer.value)
