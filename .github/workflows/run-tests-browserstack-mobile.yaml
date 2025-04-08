@@ -1,8 +1,8 @@
 name: Browserstack extended tests (mobile)
 
 on:
-  schedule:
-    - cron: "0 2 * * *" # Runs at 2am
+  # schedule:
+  #   - cron: "0 2 * * *" # Runs at 2am
   workflow_dispatch: 
 
 env:
