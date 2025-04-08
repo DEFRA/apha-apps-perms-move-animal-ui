@@ -45,7 +45,7 @@ class OldestCalfDOBPage extends Page {
     return super.getErrorLink(pageId)
   }
 
-  async dateErrorTest({ day = '', month = '', year = '' }, errorMessage) {
+  async enterDateAndContinue({ day = '', month = '', year = '' }, nextPage) {
     if (day !== '') {
       await page.typeIntoElement(this.getDayInput(), day)
     }
@@ -57,6 +57,15 @@ class OldestCalfDOBPage extends Page {
     if (year !== '') {
       await page.typeIntoElement(this.getYearInput(), year)
     }
+
+    await super.selectContinue()
+    if (nextPage) {
+      await page.waitForPagePath(nextPage.pagePath)
+    }
+  }
+
+  async dateErrorTest({ day = '', month = '', year = '' }, errorMessage) {
+    await this.enterDateAndContinue({ day, month, year })
 
     await super.verifyErrorsOnPage(this.inputFieldError(), errorMessage)
     await super.verifySummaryErrorLink(this.errorLink(), this.getDayInput())
