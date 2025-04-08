@@ -1,0 +1,381 @@
+import { DateAnswer } from './date.js'
+/** @import {DateConfig, DateData} from './date.js' */
+
+const question = 'Enter your answer?'
+
+/** @type {DateConfig} */
+const dateConfig = {
+  validation: {
+    missingDate: { message: 'Enter a date' },
+    missingDay: { message: 'Enter a day' },
+    missingMonth: { message: 'Enter a month' },
+    missingYear: { message: 'Enter a year' },
+    invalidDay: { message: 'Enter a valid day' },
+    invalidMonth: { message: 'Enter a valid month' },
+    invalidYear: { message: 'Enter a valid year' },
+    invalidDate: { message: 'Enter a date that is in the gregorian calendar' },
+    yearPattern: { message: 'Year must have 4 numbers', pattern: /\d{4}/ },
+    futureDate: { message: 'Date must be in the past' }
+  }
+}
+
+class TestDateAnswer extends DateAnswer {
+  static config = dateConfig
+}
+
+const validPayload = { day: '12', month: '12', year: '2024' }
+const invalidPayload = { day: 'aa', month: 'March', year: '20' }
+
+describe('DateAnswer.new', () => {
+  it('should strip away any irrelevant values', () => {
+    const payload = { ...validPayload, nextPage: '/other/page' }
+    const textAnswer = new TestDateAnswer(payload)
+
+    expect(textAnswer._data).toEqual(validPayload)
+  })
+})
+
+describe('DateAnswer.validate (missing day, month or year)', () => {
+  it('should return true for a valid date', () => {
+    const answer = new TestDateAnswer(validPayload)
+    const { isValid, errors } = answer.validate()
+    expect(isValid).toBe(true)
+    expect(errors).toStrictEqual({})
+  })
+
+  it('should error if the input is undefined', () => {
+    const answer = new TestDateAnswer(undefined)
+    const { isValid, errors, subfields } = answer.validate()
+
+    expect(isValid).toBe(false)
+    expect(errors).toEqual({
+      date: { text: dateConfig.validation.missingDate.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should return missing date if none of the data is present', () => {
+    const answer = new TestDateAnswer(undefined)
+    const { isValid, errors, subfields } = answer.validate()
+
+    expect(isValid).toBe(false)
+    expect(errors).toEqual({
+      date: { text: dateConfig.validation.missingDate.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should return missing day if other fields are present but day is missing', () => {
+    const answer = new TestDateAnswer({ day: '', month: '12', year: '2024' })
+
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.missingDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should return missing month if other fields are present but month is missing', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '', year: '2024' })
+
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.missingMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should return missing year if other fields are present but year is missing', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '12', year: '' })
+
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.missingYear.message }
+    })
+    expect(subfields).toEqual(['year'])
+  })
+
+  it('should give preference to day over month', () => {
+    const answer = new TestDateAnswer({ day: '', month: '', year: '2024' })
+    expect(answer.validate().subfields).toEqual(['day'])
+  })
+
+  it('should give preference to day over year', () => {
+    const answer = new TestDateAnswer({ day: '', month: '12', year: '' })
+    expect(answer.validate().subfields).toEqual(['day'])
+  })
+
+  it('should give preference to month over year', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '', year: '' })
+    expect(answer.validate().subfields).toEqual(['month'])
+  })
+})
+
+describe('DateAnswer.validate (invalid day, month or year)', () => {
+  it('should accept valid day', () => {
+    const answer = new TestDateAnswer({ day: '1', month: '12', year: '2024' })
+    expect(answer.validate().isValid).toBe(true)
+  })
+
+  it('should accept valid day (even with whitespace)', () => {
+    const answer = new TestDateAnswer({
+      day: '  1  ',
+      month: '12',
+      year: '2024'
+    })
+    expect(answer.validate().isValid).toBe(true)
+  })
+
+  it('should reject a day higher than 31', () => {
+    const answer = new TestDateAnswer({ day: '32', month: '12', year: '2024' })
+
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should reject a day lower than 1', () => {
+    const answer = new TestDateAnswer({ day: '0', month: '12', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should reject a non-numeric day', () => {
+    const answer = new TestDateAnswer({
+      day: 'first',
+      month: '12',
+      year: '2024'
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should reject a non-numeric month', () => {
+    const answer = new TestDateAnswer({
+      day: '12',
+      month: 'March',
+      year: '2024'
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a month less than 1', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '0', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a month more than 12', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '13', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a non-numeric year', () => {
+    const answer = new TestDateAnswer({
+      day: '12',
+      month: '12',
+      year: 'nineteen ninety nine'
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidYear.message }
+    })
+    expect(subfields).toEqual(['year'])
+  })
+
+  it("should reject a year that doesn't match the regex", () => {
+    const answer = new TestDateAnswer({ day: '12', month: '12', year: '20' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.yearPattern.message }
+    })
+    expect(subfields).toEqual(['year'])
+  })
+})
+
+describe('DateAnswer.toState', () => {
+  it('should pass through valid data unaltered', () => {
+    const answer = new TestDateAnswer(validPayload)
+    expect(answer.toState()).toEqual(validPayload)
+  })
+
+  it('should trim whitespace', () => {
+    const textAnswer = new TestDateAnswer({
+      day: ' 12 ',
+      month: ' 12 ',
+      year: ' 2024 '
+    })
+
+    expect(textAnswer.toState()).toStrictEqual({
+      day: '12',
+      month: '12',
+      year: '2024'
+    })
+  })
+})
+
+describe('DateAnswer.fromState', () => {
+  it('should return just the value from the payload', () => {
+    const answer = new TestDateAnswer(
+      /** @type {DateData} */ ({ ...validPayload, nextPage: '/foo/bar' })
+    )
+    const state = answer.toState()
+    expect(TestDateAnswer.fromState(state).value).toEqual(validPayload)
+  })
+
+  it('should return an undefined value if the state is undefined', () => {
+    expect(TestDateAnswer.fromState(undefined).value).toBeUndefined()
+  })
+
+  it('should return an undefined _data value if the state is undefined', () => {
+    expect(TestDateAnswer.fromState(undefined)._data).toBeUndefined()
+  })
+})
+
+describe('DateAnswer.html', () => {
+  it('should render valid model, with a human readable month segment', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '1', year: '2024' })
+    expect(answer.html).toBe('12 January 2024')
+  })
+})
+
+describe('DateAnswer.viewModel', () => {
+  const answer = new TestDateAnswer(invalidPayload)
+
+  it('should return data to render without errors (if validate is false)', () => {
+    expect(answer.viewModel({ validate: false, question })).toStrictEqual({
+      fieldset: {
+        legend: {
+          text: question,
+          classes: 'govuk-label--l',
+          isPageHeading: true
+        }
+      },
+      id: 'date',
+      items: [
+        {
+          classes: 'govuk-input--width-2',
+          name: 'day',
+          value: invalidPayload.day
+        },
+        {
+          classes: 'govuk-input--width-2',
+          name: 'month',
+          value: invalidPayload.month
+        },
+        {
+          classes: 'govuk-input--width-4',
+          name: 'year',
+          value: invalidPayload.year
+        }
+      ]
+    })
+  })
+
+  it('should return errors that affect the whole date', () => {
+    const missingDatePayload = { day: '', month: '', year: '' }
+    const answer = new TestDateAnswer(missingDatePayload)
+    expect(answer.viewModel({ validate: true, question })).toStrictEqual({
+      fieldset: {
+        legend: {
+          text: question,
+          classes: 'govuk-label--l',
+          isPageHeading: true
+        }
+      },
+      id: 'date',
+      errorMessage: {
+        text: dateConfig.validation.missingDate.message
+      },
+      items: [
+        {
+          classes: 'govuk-input--width-2 govuk-input--error',
+          name: 'day',
+          value: missingDatePayload.day
+        },
+        {
+          classes: 'govuk-input--width-2 govuk-input--error',
+          name: 'month',
+          value: missingDatePayload.month
+        },
+        {
+          classes: 'govuk-input--width-4 govuk-input--error',
+          name: 'year',
+          value: missingDatePayload.year
+        }
+      ]
+    })
+  })
+
+  it('should return errors that affect only affect one field', () => {
+    const missingDatePayload = { day: '12', month: '', year: '2024' }
+    const answer = new TestDateAnswer(missingDatePayload)
+    expect(answer.viewModel({ validate: true, question })).toStrictEqual({
+      fieldset: {
+        legend: {
+          text: question,
+          classes: 'govuk-label--l',
+          isPageHeading: true
+        }
+      },
+      id: 'date',
+      errorMessage: {
+        text: dateConfig.validation.missingMonth.message
+      },
+      items: [
+        {
+          classes: 'govuk-input--width-2',
+          name: 'day',
+          value: missingDatePayload.day
+        },
+        {
+          classes: 'govuk-input--width-2 govuk-input--error',
+          name: 'month',
+          value: missingDatePayload.month
+        },
+        {
+          classes: 'govuk-input--width-4',
+          name: 'year',
+          value: missingDatePayload.year
+        }
+      ]
+    })
+  })
+})
+
+describe('DateAnswer.template', () => {
+  it('should return the text model template', () => {
+    const text = new TestDateAnswer(validPayload)
+    expect(text.template).toBe('model/answer/date/date.njk')
+  })
+})
