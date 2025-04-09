@@ -14,8 +14,7 @@ const missingSchema = ({ message }) =>
 
 /**
  * export @typedef {{
- *  isPageHeading? : boolean,
- *  hint?: string,
+ *  hint: string,
  *  validation: {
  *    missingDate: { message: string },
  *    missingDay: { message: string },
@@ -238,6 +237,9 @@ export class DateAnswer extends AnswerModel {
         }
       },
       id: 'date',
+      hint: {
+        text: this.config.hint
+      },
       items: [
         {
           classes: classesWithErrors(
