@@ -15,6 +15,7 @@ const isVisible = (app) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
   const originValid = OriginSection.fromState(app).validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
+
   return (
     config.get('featureFlags').animalIdentifiers &&
     originValid &&
