@@ -109,14 +109,14 @@ export class DateAnswer extends AnswerModel {
 
     const convertMessage = (subfield, { isValid, errors }) => ({
       isValid: isValid,
-      errors: { date: errors.value },
+      errors: { [subfield]: errors.value },
       subfields: [subfield]
     })
 
     if (!missingDay.isValid && !missingMonth.isValid && !missingYear.isValid) {
       return {
         isValid: false,
-        errors: { date: { text: validation.missingDate.message } },
+        errors: { day: { text: validation.missingDate.message } },
         subfields: ['day', 'month', 'year']
       }
     } else if (!missingDay.isValid) {
@@ -139,7 +139,7 @@ export class DateAnswer extends AnswerModel {
     if (validDaySchema.validate(this.value?.day).error) {
       return {
         isValid: false,
-        errors: { date: { text: validation.invalidDay.message } },
+        errors: { day: { text: validation.invalidDay.message } },
         subfields: ['day']
       }
     }
@@ -154,7 +154,7 @@ export class DateAnswer extends AnswerModel {
     if (validMonthSchema.validate(this.value?.month).error) {
       return {
         isValid: false,
-        errors: { date: { text: validation.invalidMonth.message } },
+        errors: { month: { text: validation.invalidMonth.message } },
         subfields: ['month']
       }
     }
@@ -162,7 +162,7 @@ export class DateAnswer extends AnswerModel {
     if (numberSchema.validate(this.value?.year).error) {
       return {
         isValid: false,
-        errors: { date: { text: validation.invalidYear.message } },
+        errors: { year: { text: validation.invalidYear.message } },
         subfields: ['year']
       }
     }
@@ -175,7 +175,7 @@ export class DateAnswer extends AnswerModel {
     ) {
       return {
         isValid: false,
-        errors: { date: { text: validation.yearPattern.message } },
+        errors: { year: { text: validation.yearPattern.message } },
         subfields: ['year']
       }
     }
@@ -192,7 +192,7 @@ export class DateAnswer extends AnswerModel {
     if (this.value !== undefined && !isValidDate(this.value)) {
       return {
         isValid: false,
-        errors: { date: { text: validation.invalidDate.message } },
+        errors: { day: { text: validation.invalidDate.message } },
         subfields: ['day', 'month', 'year']
       }
     }
@@ -220,7 +220,9 @@ export class DateAnswer extends AnswerModel {
         : originalClasses
     }
 
-    const errorMessage = isValid ? {} : { text: errors.date.text }
+    const errorMessage = isValid
+      ? {}
+      : { text: errors.day?.text ?? errors.month?.text ?? errors.year?.text }
 
     const viewModel = {
       fieldset: {
