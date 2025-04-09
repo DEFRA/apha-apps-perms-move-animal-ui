@@ -180,6 +180,23 @@ export class DateAnswer extends AnswerModel {
       }
     }
 
+    const isValidDate = ({ year, month, day }) => {
+      const date = new Date(Number(year), Number(month) - 1, Number(day))
+      return (
+        date.getFullYear() === Number(year) &&
+        date.getMonth() === Number(month) - 1 &&
+        date.getDate() === Number(day)
+      )
+    }
+
+    if (this.value !== undefined && !isValidDate(this.value)) {
+      return {
+        isValid: false,
+        errors: { date: { text: validation.invalidDate.message } },
+        subfields: ['day', 'month', 'year']
+      }
+    }
+
     return {
       isValid: true,
       errors: {},

@@ -223,6 +223,34 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
   })
 })
 
+describe('DateAnswer.validate (invalid date)', () => {
+  it('should error for the 31st of a month without a 31st day', () => {
+    const answer = new TestDateAnswer({ day: '31', month: '6', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidDate.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should error for the 29th of a non-leap year', () => {
+    const answer = new TestDateAnswer({ day: '29', month: '2', year: '2025' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      date: { text: dateConfig.validation.invalidDate.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should accept the 29th leap year', () => {
+    const answer = new TestDateAnswer({ day: '29', month: '2', year: '2024' })
+    const { isValid } = answer.validate()
+    expect(isValid).toBe(true)
+  })
+})
+
 describe('DateAnswer.toState', () => {
   it('should pass through valid data unaltered', () => {
     const answer = new TestDateAnswer(validPayload)
@@ -230,13 +258,13 @@ describe('DateAnswer.toState', () => {
   })
 
   it('should trim whitespace', () => {
-    const textAnswer = new TestDateAnswer({
+    const answer = new TestDateAnswer({
       day: ' 12 ',
       month: ' 12 ',
       year: ' 2024 '
     })
 
-    expect(textAnswer.toState()).toStrictEqual({
+    expect(answer.toState()).toStrictEqual({
       day: '12',
       month: '12',
       year: '2024'
