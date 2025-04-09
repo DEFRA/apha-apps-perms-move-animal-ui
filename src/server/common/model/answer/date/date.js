@@ -1,4 +1,3 @@
-import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
@@ -17,7 +16,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  *    invalidMonth: { message: string },
  *    invalidYear: { message: string },
  *    invalidDate: { message: string },
- *    yearPattern: { message: string, pattern: RegExp },
+ *    nonFourDigitYear: { message: string },
  *    futureDate: { message: string }
  *  }
  * }} DateConfig
@@ -101,11 +100,6 @@ export class DateAnswer extends AnswerModel {
     })
 
     /**
-     * @param {string | undefined} value
-     */
-    const isMissing = (value) => value === undefined || value.trim() === ''
-
-    /**
      * @param {keyof DateData} subfield
      * @param {string} message
      * @returns {ValidationResultWithSubfields}
@@ -116,13 +110,24 @@ export class DateAnswer extends AnswerModel {
       subfields: [subfield]
     })
 
-    const isDayMissing = isMissing(this.value?.day)
-    const isMonthMissing = isMissing(this.value?.month)
-    const isYearMissing = isMissing(this.value?.year)
-
     if (this.value === undefined) {
       return allFieldsError(validation.missingDate.message)
     }
+
+    let { year, month, day } = this.value
+    year = year.trim()
+    month = month.trim()
+    day = day.trim()
+
+    /**
+     * @param {string | undefined} value
+     */
+    const isMissing = (value) => value === undefined || value === ''
+
+    const isDayMissing = isMissing(day)
+    const isMonthMissing = isMissing(month)
+    const isYearMissing = isMissing(year)
+
     if (isDayMissing && isMonthMissing && isYearMissing) {
       return allFieldsError(validation.missingDate.message)
     }
@@ -136,48 +141,36 @@ export class DateAnswer extends AnswerModel {
       return fieldError('year', validation.missingYear.message)
     }
 
-    const numberSchema = Joi.string().trim().regex(/^\d+$/)
-    const zeroPaddedSingleDigitSchema = numberSchema.regex(
-      /^((0?[1-9]{1})|([1-9][0-9]))$/
-    )
-    const validDaySchema = zeroPaddedSingleDigitSchema.custom(
-      (value, helper) => {
-        if (Number(value) < 1 || Number(value) > 31) {
-          return helper.message({
-            'object.any': ''
-          })
-        }
-      }
-    )
+    const zeroPaddedRegex = /^((0?[1-9]{1})|([1-9][0-9]))$/
 
-    if (validDaySchema.validate(this.value?.day).error) {
+    /**
+     * @param {string} str
+     * @param {number} min
+     * @param {number} max
+     */
+    const isZeroPaddedDigitBetween = (str, min, max) =>
+      str.match(zeroPaddedRegex) !== null &&
+      Number(str) >= min &&
+      Number(str) <= max
+
+    if (!isZeroPaddedDigitBetween(day, 1, 31)) {
       return fieldError('day', validation.invalidDay.message)
     }
-
-    const validMonthSchema = zeroPaddedSingleDigitSchema.custom(
-      (value, helper) => {
-        if (Number(value) < 1 || Number(value) > 12) {
-          return helper.message({
-            'object.any': ''
-          })
-        }
-      }
-    )
-    if (validMonthSchema.validate(this.value?.month).error) {
+    if (!isZeroPaddedDigitBetween(month, 1, 12)) {
       return fieldError('month', validation.invalidMonth.message)
     }
 
-    if (numberSchema.validate(this.value?.year).error) {
+    /** @param {string} str */
+    const isDigits = (str) => str.match(/^\d*$/) !== null
+
+    /** @param {string} str */
+    const isFourDigits = (str) => str.match(/^\d{4}$/) !== null
+
+    if (!isDigits(year)) {
       return fieldError('year', validation.invalidYear.message)
     }
-
-    if (
-      Joi.string()
-        .trim()
-        .pattern(validation.yearPattern.pattern)
-        .validate(this.value?.year).error
-    ) {
-      return fieldError('year', validation.yearPattern.message)
+    if (!isFourDigits(year)) {
+      return fieldError('year', validation.nonFourDigitYear.message)
     }
 
     /** @param {DateData} value */
@@ -190,7 +183,7 @@ export class DateAnswer extends AnswerModel {
       )
     }
 
-    if (!isValidDate(this.value)) {
+    if (!isValidDate({ year, month, day })) {
       return allFieldsError(validation.invalidDate.message)
     }
 

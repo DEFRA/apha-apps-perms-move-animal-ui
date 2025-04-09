@@ -16,7 +16,7 @@ const dateConfig = {
     invalidMonth: { message: 'Enter a valid month' },
     invalidYear: { message: 'Enter a valid year' },
     invalidDate: { message: 'Enter a date that is in the gregorian calendar' },
-    yearPattern: { message: 'Year must have 4 numbers', pattern: /\d{4}/ },
+    nonFourDigitYear: { message: 'Year must have 4 numbers' },
     futureDate: { message: 'Date must be in the past' }
   }
 }
@@ -288,7 +288,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      'date-year': { text: dateConfig.validation.yearPattern.message }
+      'date-year': { text: dateConfig.validation.nonFourDigitYear.message }
     })
     expect(subfields).toEqual(['year'])
   })
