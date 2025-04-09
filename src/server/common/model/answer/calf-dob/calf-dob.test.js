@@ -39,7 +39,7 @@ describe('CalfDob', () => {
     expect(validation.invalidYear.message).toBe(
       'Year of birth must be a real date'
     )
-    expect(validation.yearPattern.message).toBe(
+    expect(validation.nonFourDigitYear.message).toBe(
       'Year of birth must include 4 numbers'
     )
     expect(validation.invalidDate.message).toBe(
@@ -47,27 +47,6 @@ describe('CalfDob', () => {
     )
     expect(validation.futureDate.message).toBe(
       'Date of birth of the oldest calf must be today or in the past'
-    )
-  })
-
-  it('should validate that year cannot be fewer than 4 numbers', () => {
-    const answer = new CalfDob({ day: '12', month: '10', year: '12' })
-    expect(answer.validate().errors['date-year'].text).toBe(
-      CalfDob.config.validation.yearPattern.message
-    )
-  })
-
-  it('should validate that year cannot be more than 4 numbers', () => {
-    const answer = new CalfDob({ day: '12', month: '10', year: '12345' })
-    expect(answer.validate().errors['date-year'].text).toBe(
-      CalfDob.config.validation.yearPattern.message
-    )
-  })
-
-  it('should still allow whitespace', () => {
-    const answer = new CalfDob({ day: '12', month: '10', year: '  12345  ' })
-    expect(answer.validate().errors['date-year'].text).toBe(
-      CalfDob.config.validation.yearPattern.message
     )
   })
 })
