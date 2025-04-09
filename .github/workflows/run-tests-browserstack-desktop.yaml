@@ -4,6 +4,14 @@ on:
   schedule:
     - cron: "0 1 * * *" # Runs at 1am
   workflow_dispatch: 
+    inputs:
+      exportLogs:
+        description: 'Export docker logs'     
+        required: false
+        default: 'false'
+        options: 
+          - true
+          - false
 
 env:
   AWS_REGION: eu-west-2
@@ -43,12 +51,12 @@ jobs:
           BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
 
       - name: debug
-        if: always()
+        if: ${{ inputs.exportLogs == 'true' }}
         run: |
           docker compose logs > logs.txt
           docker ps
       - name: Upload docker compose logs
-        if: always()
+        if: ${{ inputs.exportLogs == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: docker-compose-logs
