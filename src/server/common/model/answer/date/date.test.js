@@ -2,9 +2,11 @@ import { DateAnswer } from './date.js'
 /** @import {DateConfig, DateData} from './date.js' */
 
 const question = 'Enter your answer?'
+const hint = 'For example, 27 3 2007'
 
 /** @type {DateConfig} */
 const dateConfig = {
+  hint,
   validation: {
     missingDate: { message: 'Enter a date' },
     missingDay: { message: 'Enter a day' },
@@ -309,6 +311,9 @@ describe('DateAnswer.viewModel', () => {
           isPageHeading: true
         }
       },
+      hint: {
+        text: hint
+      },
       id: 'date',
       items: [
         {
@@ -342,6 +347,9 @@ describe('DateAnswer.viewModel', () => {
         }
       },
       id: 'date',
+      hint: {
+        text: hint
+      },
       errorMessage: {
         text: dateConfig.validation.missingDate.message
       },
@@ -377,6 +385,9 @@ describe('DateAnswer.viewModel', () => {
         }
       },
       id: 'date',
+      hint: {
+        text: hint
+      },
       errorMessage: {
         text: dateConfig.validation.missingMonth.message
       },
