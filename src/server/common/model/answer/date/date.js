@@ -1,16 +1,9 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {AnswerValidationResult} from '../validation.js' */
-
-const missingSchema = ({ message }) =>
-  Joi.string().trim().required().messages({
-    'any.required': message,
-    'string.empty': message
-  })
 
 /**
  * export @typedef {{
@@ -29,6 +22,13 @@ const missingSchema = ({ message }) =>
  *  }
  * }} DateConfig
  */
+
+/** @param {DateData | undefined} date */
+const toJSDate = (date) => {
+  return new Date(
+    Date.UTC(Number(date?.year), Number(date?.month) - 1, Number(date?.day))
+  )
+}
 
 /**
  * @typedef {{ day: string, month: string, year: string }} DateData
@@ -62,11 +62,7 @@ export class DateAnswer extends AnswerModel {
   }
 
   get html() {
-    const date = new Date(
-      Number(this.value?.year),
-      Number(this.value?.month) - 1,
-      Number(this.value?.day)
-    )
+    const date = toJSDate(this.value)
     return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`
   }
 
@@ -93,37 +89,51 @@ export class DateAnswer extends AnswerModel {
   /** @returns {ValidationResultWithSubfields} */
   validate() {
     const { validation } = this.config
-    const missingDay = validateAnswerAgainstSchema(
-      missingSchema(validation.missingDay),
-      this.value?.day
-    )
-    const missingMonth = validateAnswerAgainstSchema(
-      missingSchema(validation.missingMonth),
-      this.value?.month
-    )
-    const missingYear = validateAnswerAgainstSchema(
-      missingSchema(validation.missingYear),
-      this.value?.year
-    )
 
-    const convertMessage = (subfield, { isValid, errors }) => ({
-      isValid: isValid,
-      errors: { [`date-${subfield}`]: errors.value },
+    /**
+     * @param {string} message
+     * @returns {ValidationResultWithSubfields}
+     */
+    const allFieldsError = (message) => ({
+      isValid: false,
+      errors: { 'date-day': { text: message } },
+      subfields: ['day', 'month', 'year']
+    })
+
+    /**
+     * @param {string | undefined} value
+     */
+    const isMissing = (value) => value === undefined || value.trim() === ''
+
+    /**
+     * @param {keyof DateData} subfield
+     * @param {string} message
+     * @returns {ValidationResultWithSubfields}
+     */
+    const fieldError = (subfield, message) => ({
+      isValid: false,
+      errors: { [`date-${subfield}`]: { text: message } },
       subfields: [subfield]
     })
 
-    if (!missingDay.isValid && !missingMonth.isValid && !missingYear.isValid) {
-      return {
-        isValid: false,
-        errors: { 'date-day': { text: validation.missingDate.message } },
-        subfields: ['day', 'month', 'year']
-      }
-    } else if (!missingDay.isValid) {
-      return convertMessage('day', missingDay)
-    } else if (!missingMonth.isValid) {
-      return convertMessage('month', missingMonth)
-    } else if (!missingYear.isValid) {
-      return convertMessage('year', missingYear)
+    const isDayMissing = isMissing(this.value?.day)
+    const isMonthMissing = isMissing(this.value?.month)
+    const isYearMissing = isMissing(this.value?.year)
+
+    if (this.value === undefined) {
+      return allFieldsError(validation.missingDate.message)
+    }
+    if (isDayMissing && isMonthMissing && isYearMissing) {
+      return allFieldsError(validation.missingDate.message)
+    }
+    if (isDayMissing) {
+      return fieldError('day', validation.missingDay.message)
+    }
+    if (isMonthMissing) {
+      return fieldError('month', validation.missingMonth.message)
+    }
+    if (isYearMissing) {
+      return fieldError('year', validation.missingYear.message)
     }
 
     const numberSchema = Joi.string().trim().regex(/^\d+$/)
@@ -141,11 +151,7 @@ export class DateAnswer extends AnswerModel {
     )
 
     if (validDaySchema.validate(this.value?.day).error) {
-      return {
-        isValid: false,
-        errors: { 'date-day': { text: validation.invalidDay.message } },
-        subfields: ['day']
-      }
+      return fieldError('day', validation.invalidDay.message)
     }
 
     const validMonthSchema = zeroPaddedSingleDigitSchema.custom(
@@ -158,19 +164,11 @@ export class DateAnswer extends AnswerModel {
       }
     )
     if (validMonthSchema.validate(this.value?.month).error) {
-      return {
-        isValid: false,
-        errors: { 'date-month': { text: validation.invalidMonth.message } },
-        subfields: ['month']
-      }
+      return fieldError('month', validation.invalidMonth.message)
     }
 
     if (numberSchema.validate(this.value?.year).error) {
-      return {
-        isValid: false,
-        errors: { 'date-year': { text: validation.invalidYear.message } },
-        subfields: ['year']
-      }
+      return fieldError('year', validation.invalidYear.message)
     }
 
     if (
@@ -179,44 +177,32 @@ export class DateAnswer extends AnswerModel {
         .pattern(validation.yearPattern.pattern)
         .validate(this.value?.year).error
     ) {
-      return {
-        isValid: false,
-        errors: { 'date-year': { text: validation.yearPattern.message } },
-        subfields: ['year']
-      }
+      return fieldError('year', validation.yearPattern.message)
     }
 
-    const isValidDate = ({ year, month, day }) => {
-      const date = new Date(Number(year), Number(month) - 1, Number(day))
+    /** @param {DateData} value */
+    const isValidDate = (value) => {
+      const date = toJSDate(value)
       return (
-        date.getFullYear() === Number(year) &&
-        date.getMonth() === Number(month) - 1 &&
-        date.getDate() === Number(day)
+        date.getFullYear() === Number(value.year) &&
+        date.getMonth() === Number(value.month) - 1 &&
+        date.getDate() === Number(value.day)
       )
     }
 
-    if (this.value !== undefined && !isValidDate(this.value)) {
-      return {
-        isValid: false,
-        errors: { 'date-day': { text: validation.invalidDate.message } },
-        subfields: ['day', 'month', 'year']
-      }
+    if (!isValidDate(this.value)) {
+      return allFieldsError(validation.invalidDate.message)
     }
+
+    /** @param {Date} date */
     const createDateAsUTC = (date) =>
       new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
 
     const currentDate = createDateAsUTC(new Date())
-    const { year, month, day } = this.value ?? {}
-    const date = new Date(
-      Date.UTC(Number(year), Number(month) - 1, Number(day))
-    )
+    const date = toJSDate(this.value)
 
     if (date > currentDate) {
-      return {
-        isValid: false,
-        errors: { 'date-day': { text: validation.futureDate.message } },
-        subfields: ['day', 'month', 'year']
-      }
+      return allFieldsError(validation.futureDate.message)
     }
 
     return {
