@@ -1,3 +1,5 @@
+import Joi from 'joi'
+import { validateAnswerAgainstSchema } from '../validation.js'
 import { AnswerModel } from '../answer-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
@@ -87,121 +89,93 @@ export class DateAnswer extends AnswerModel {
 
   /** @returns {ValidationResultWithSubfields} */
   validate() {
-    const { validation } = this.config
-
-    /**
-     * @param {string} message
-     * @returns {ValidationResultWithSubfields}
-     */
-    const allFieldsError = (message) => ({
-      isValid: false,
-      errors: { 'date-day': { text: message } },
-      subfields: ['day', 'month', 'year']
+    const schema = Joi.object({
+      day: Joi.string()
+        .pattern(/^\d{1,2}$/)
+        .custom((value, helpers) => {
+          const day = parseInt(value, 10)
+          if (day < 1 || day > 31) {
+            return helpers.error('any.invalid')
+          }
+          return value
+        }, 'Day validation')
+        .required()
+        .messages({
+          'string.pattern.base': 'Day must be a valid number between 1 and 31.',
+          'string.empty': 'Date of birth of the oldest calf must include a day',
+          'any.invalid': 'Day must be a valid number between 1 and 31.',
+          'any.required': 'Day is required.'
+        }),
+      month: Joi.string()
+        .pattern(/^\d{1,2}$/)
+        .custom((value, helpers) => {
+          const month = parseInt(value, 10)
+          if (month < 1 || month > 12) {
+            return helpers.error('any.invalid')
+          }
+          return value
+        }, 'Month validation')
+        .required()
+        .messages({
+          'string.pattern.base':
+            'Month must be a valid number between 1 and 12.',
+          'string.empty':
+            'Date of birth of the oldest calf must include a month',
+          'any.invalid': 'Month must be a valid number between 1 and 12.',
+          'any.required': 'Month is required.'
+        }),
+      year: Joi.string()
+        .pattern(/^\d{4}$/)
+        .custom((value, helpers) => {
+          const year = parseInt(value, 10)
+          if (year < 1000 || year > 9999) {
+            return helpers.error('any.invalid')
+          }
+          return value
+        }, 'Year validation')
+        .required()
+        .messages({
+          'string.pattern.base': 'Day of birth must be a real date',
+          'string.empty':
+            'Date of birth of the oldest calf must include a year',
+          'any.invalid': 'Year of birth must include 4 numbers',
+          'any.required': 'Year is required.'
+        })
     })
+      .custom((value, helpers) => {
+        const { day, month, year } = value
+        const date = new Date(
+          Date.UTC(
+            parseInt(year, 10),
+            parseInt(month, 10) - 1,
+            parseInt(day, 10)
+          )
+        )
+        if (
+          date.getUTCFullYear() !== parseInt(year, 10) ||
+          date.getUTCMonth() !== parseInt(month, 10) - 1 ||
+          date.getUTCDate() !== parseInt(day, 10)
+        ) {
+          return helpers.error('any.invalid')
+        }
+        return value
+      }, 'Date validation')
+      .messages({
+        'any.invalid': 'Day of birth must be a real date'
+      })
 
-    /**
-     * @param {keyof DateData} subfield
-     * @param {string} message
-     * @returns {ValidationResultWithSubfields}
-     */
-    const fieldError = (subfield, message) => ({
-      isValid: false,
-      errors: { [`date-${subfield}`]: { text: message } },
-      subfields: [subfield]
-    })
+    const { errors, isValid } = validateAnswerAgainstSchema(
+      schema,
+      this._data ?? {}
+    )
 
-    if (this.value === undefined) {
-      return allFieldsError(validation.missingDate.message)
-    }
-
-    let { year, month, day } = this.value
-    year = year.trim()
-    month = month.trim()
-    day = day.trim()
-
-    /**
-     * @param {string | undefined} value
-     */
-    const isMissing = (value) => value === undefined || value === ''
-
-    const isDayMissing = isMissing(day)
-    const isMonthMissing = isMissing(month)
-    const isYearMissing = isMissing(year)
-
-    if (isDayMissing && isMonthMissing && isYearMissing) {
-      return allFieldsError(validation.missingDate.message)
-    }
-    if (isDayMissing) {
-      return fieldError('day', validation.missingDay.message)
-    }
-    if (isMonthMissing) {
-      return fieldError('month', validation.missingMonth.message)
-    }
-    if (isYearMissing) {
-      return fieldError('year', validation.missingYear.message)
-    }
-
-    const zeroPaddedRegex = /^((0?[1-9]{1})|([1-9][0-9]))$/
-
-    /**
-     * @param {string} str
-     * @param {number} min
-     * @param {number} max
-     */
-    const isZeroPaddedDigitBetween = (str, min, max) =>
-      str.match(zeroPaddedRegex) !== null &&
-      Number(str) >= min &&
-      Number(str) <= max
-
-    if (!isZeroPaddedDigitBetween(day, 1, 31)) {
-      return fieldError('day', validation.invalidDay.message)
-    }
-    if (!isZeroPaddedDigitBetween(month, 1, 12)) {
-      return fieldError('month', validation.invalidMonth.message)
-    }
-
-    /** @param {string} str */
-    const isDigits = (str) => str.match(/^\d*$/) !== null
-
-    /** @param {string} str */
-    const isFourDigits = (str) => str.match(/^\d{4}$/) !== null
-
-    if (!isDigits(year)) {
-      return fieldError('year', validation.invalidYear.message)
-    }
-    if (!isFourDigits(year)) {
-      return fieldError('year', validation.nonFourDigitYear.message)
-    }
-
-    /** @param {DateData} value */
-    const isValidDate = (value) => {
-      const date = toJSDate(value)
-      return (
-        date.getFullYear() === Number(value.year) &&
-        date.getMonth() === Number(value.month) - 1 &&
-        date.getDate() === Number(value.day)
-      )
-    }
-
-    if (!isValidDate({ year, month, day })) {
-      return allFieldsError(validation.invalidDate.message)
-    }
-
-    /** @param {Date} date */
-    const createDateAsUTC = (date) =>
-      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-
-    const currentDate = createDateAsUTC(new Date())
-    const date = toJSDate(this.value)
-
-    if (date > currentDate) {
-      return allFieldsError(validation.futureDate.message)
-    }
+    /** @type {(keyof DateData)[]} */
+    const subfields = Object.keys(errors)
 
     return {
-      isValid: true,
-      errors: {},
-      subfields: []
+      errors,
+      isValid,
+      subfields
     }
   }
 
