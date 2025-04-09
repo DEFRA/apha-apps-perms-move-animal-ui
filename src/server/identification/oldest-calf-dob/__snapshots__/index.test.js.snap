@@ -10,7 +10,7 @@ exports[`OldestCalfDobPage oldestCalfDobPage.content should render expected resp
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" role="group">
-    <legend class="govuk-fieldset__legend govuk-label--l">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
         What is the date of birth of the oldest calf under 42 days old?
       </h1>
