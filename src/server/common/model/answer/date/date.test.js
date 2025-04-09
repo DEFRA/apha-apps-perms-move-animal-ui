@@ -117,15 +117,24 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
 })
 
 describe('DateAnswer.validate (invalid day, month or year)', () => {
-  it('should accept valid day', () => {
+  it('should accept valid day, month and year', () => {
     const answer = new TestDateAnswer({ day: '1', month: '12', year: '2024' })
     expect(answer.validate().isValid).toBe(true)
   })
 
-  it('should accept valid day (even with whitespace)', () => {
+  it('should accept valid day, month and year (even with whitespace)', () => {
     const answer = new TestDateAnswer({
       day: '  1  ',
-      month: '12',
+      month: ' 12 ',
+      year: '  2024   '
+    })
+    expect(answer.validate().isValid).toBe(true)
+  })
+
+  it('should accept valid day & month (even a single 0 prefix for single-digit days)', () => {
+    const answer = new TestDateAnswer({
+      day: '01',
+      month: '02',
       year: '2024'
     })
     expect(answer.validate().isValid).toBe(true)
@@ -166,6 +175,36 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     expect(subfields).toEqual(['day'])
   })
 
+  it('should reject a day with double-digits and a zero prefix', () => {
+    const answer = new TestDateAnswer({ day: '012', month: '12', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should reject a day with more than one zero prefix', () => {
+    const answer = new TestDateAnswer({ day: '002', month: '12', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
+  it('should reject a day two zeros alone', () => {
+    const answer = new TestDateAnswer({ day: '00', month: '12', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': { text: dateConfig.validation.invalidDay.message }
+    })
+    expect(subfields).toEqual(['day'])
+  })
+
   it('should reject a non-numeric month', () => {
     const answer = new TestDateAnswer({
       day: '12',
@@ -192,6 +231,36 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
 
   it('should reject a month more than 12', () => {
     const answer = new TestDateAnswer({ day: '12', month: '13', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a month with double-digits and a zero prefix', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '012', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a month with more than one zero prefix', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '003', year: '2024' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
+    })
+    expect(subfields).toEqual(['month'])
+  })
+
+  it('should reject a month with two zeros alone', () => {
+    const answer = new TestDateAnswer({ day: '12', month: '00', year: '2024' })
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
@@ -303,6 +372,20 @@ describe('DateAnswer.toState', () => {
     expect(answer.toState()).toStrictEqual({
       day: '12',
       month: '12',
+      year: '2024'
+    })
+  })
+
+  it('should drop 0 prefixes from single-digit days and months', () => {
+    const answer = new TestDateAnswer({
+      day: '01',
+      month: '02',
+      year: ' 2024 '
+    })
+
+    expect(answer.toState()).toStrictEqual({
+      day: '1',
+      month: '2',
       year: '2024'
     })
   })
