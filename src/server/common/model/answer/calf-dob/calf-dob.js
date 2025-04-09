@@ -23,9 +23,8 @@ export class CalfDob extends DateAnswer {
           'Month of birth of the oldest calf must be a number between 1 and 12'
       },
       invalidYear: { message: 'Year of birth must be a real date' },
-      yearPattern: {
-        message: 'Year of birth must include 4 numbers',
-        pattern: /^\d{4}$/
+      nonFourDigitYear: {
+        message: 'Year of birth must include 4 numbers'
       },
       invalidDate: { message: 'Day of birth must be a real date' },
       futureDate: {
