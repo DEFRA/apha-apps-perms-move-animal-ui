@@ -195,6 +195,22 @@ export class DateAnswer extends AnswerModel {
         subfields: ['day', 'month', 'year']
       }
     }
+    const createDateAsUTC = (date) =>
+      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+
+    const currentDate = createDateAsUTC(new Date())
+    const { year, month, day } = this.value ?? {}
+    const date = new Date(
+      Date.UTC(Number(year), Number(month) - 1, Number(day))
+    )
+
+    if (date > currentDate) {
+      return {
+        isValid: false,
+        errors: { 'date-day': { text: validation.futureDate.message } },
+        subfields: ['day', 'month', 'year']
+      }
+    }
 
     return {
       isValid: true,
