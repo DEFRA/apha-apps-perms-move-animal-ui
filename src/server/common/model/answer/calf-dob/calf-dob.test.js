@@ -48,21 +48,21 @@ describe('CalfDob', () => {
 
   it('should validate that year cannot be fewer than 4 numbers', () => {
     const answer = new CalfDob({ day: '12', month: '10', year: '12' })
-    expect(answer.validate().errors.date.text).toBe(
+    expect(answer.validate().errors.year.text).toBe(
       CalfDob.config.validation.yearPattern.message
     )
   })
 
   it('should validate that year cannot be more than 4 numbers', () => {
     const answer = new CalfDob({ day: '12', month: '10', year: '12345' })
-    expect(answer.validate().errors.date.text).toBe(
+    expect(answer.validate().errors.year.text).toBe(
       CalfDob.config.validation.yearPattern.message
     )
   })
 
   it('should still allow whitespace', () => {
     const answer = new CalfDob({ day: '12', month: '10', year: '  12345  ' })
-    expect(answer.validate().errors.date.text).toBe(
+    expect(answer.validate().errors.year.text).toBe(
       CalfDob.config.validation.yearPattern.message
     )
   })
