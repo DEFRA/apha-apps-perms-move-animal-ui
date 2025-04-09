@@ -253,6 +253,40 @@ describe('DateAnswer.validate (invalid date)', () => {
   })
 })
 
+describe('DateAnswer.validation (future date)', () => {
+  beforeAll(() => {
+    jest.useFakeTimers()
+    // 1 April 2025
+    jest.setSystemTime(new Date('2025-04-01'))
+  })
+
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+
+  it('should accept dates that are in the past', () => {
+    const answer = new TestDateAnswer({ day: '1', month: '3', year: '2025' })
+    const { isValid } = answer.validate()
+    expect(isValid).toBe(true)
+  })
+
+  it("should accept today's date that are in the past", () => {
+    const answer = new TestDateAnswer({ day: '1', month: '4', year: '2025' })
+    const { isValid } = answer.validate()
+    expect(isValid).toBe(true)
+  })
+
+  it('should reject dates that are in the future', () => {
+    const answer = new TestDateAnswer({ day: '2', month: '4', year: '2025' })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': { text: dateConfig.validation.futureDate.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+})
+
 describe('DateAnswer.toState', () => {
   it('should pass through valid data unaltered', () => {
     const answer = new TestDateAnswer(validPayload)
