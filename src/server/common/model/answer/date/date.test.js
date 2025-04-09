@@ -49,7 +49,7 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      day: { text: dateConfig.validation.missingDate.message }
+      'date-day': { text: dateConfig.validation.missingDate.message }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
   })
@@ -60,7 +60,7 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
 
     expect(isValid).toBe(false)
     expect(errors).toEqual({
-      day: { text: dateConfig.validation.missingDate.message }
+      'date-day': { text: dateConfig.validation.missingDate.message }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
   })
@@ -71,7 +71,7 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.missingDay.message }
+      'date-day': { text: dateConfig.validation.missingDay.message }
     })
     expect(subfields).toEqual(['day'])
   })
@@ -82,7 +82,7 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      month: { text: dateConfig.validation.missingMonth.message }
+      'date-month': { text: dateConfig.validation.missingMonth.message }
     })
     expect(subfields).toEqual(['month'])
   })
@@ -93,7 +93,7 @@ describe('DateAnswer.validate (missing day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      year: { text: dateConfig.validation.missingYear.message }
+      'date-year': { text: dateConfig.validation.missingYear.message }
     })
     expect(subfields).toEqual(['year'])
   })
@@ -135,7 +135,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.invalidDay.message }
+      'date-day': { text: dateConfig.validation.invalidDay.message }
     })
     expect(subfields).toEqual(['day'])
   })
@@ -145,7 +145,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.invalidDay.message }
+      'date-day': { text: dateConfig.validation.invalidDay.message }
     })
     expect(subfields).toEqual(['day'])
   })
@@ -159,7 +159,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.invalidDay.message }
+      'date-day': { text: dateConfig.validation.invalidDay.message }
     })
     expect(subfields).toEqual(['day'])
   })
@@ -173,7 +173,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      month: { text: dateConfig.validation.invalidMonth.message }
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
     })
     expect(subfields).toEqual(['month'])
   })
@@ -183,7 +183,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      month: { text: dateConfig.validation.invalidMonth.message }
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
     })
     expect(subfields).toEqual(['month'])
   })
@@ -193,7 +193,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      month: { text: dateConfig.validation.invalidMonth.message }
+      'date-month': { text: dateConfig.validation.invalidMonth.message }
     })
     expect(subfields).toEqual(['month'])
   })
@@ -207,7 +207,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      year: { text: dateConfig.validation.invalidYear.message }
+      'date-year': { text: dateConfig.validation.invalidYear.message }
     })
     expect(subfields).toEqual(['year'])
   })
@@ -217,7 +217,7 @@ describe('DateAnswer.validate (invalid day, month or year)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      year: { text: dateConfig.validation.yearPattern.message }
+      'date-year': { text: dateConfig.validation.yearPattern.message }
     })
     expect(subfields).toEqual(['year'])
   })
@@ -229,7 +229,7 @@ describe('DateAnswer.validate (invalid date)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.invalidDate.message }
+      'date-day': { text: dateConfig.validation.invalidDate.message }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
   })
@@ -239,7 +239,7 @@ describe('DateAnswer.validate (invalid date)', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      day: { text: dateConfig.validation.invalidDate.message }
+      'date-day': { text: dateConfig.validation.invalidDate.message }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
   })
@@ -305,7 +305,7 @@ describe('DateAnswer.viewModel', () => {
       fieldset: {
         legend: {
           text: question,
-          classes: 'govuk-label--l',
+          classes: 'govuk-fieldset__legend--l',
           isPageHeading: true
         }
       },
@@ -337,7 +337,7 @@ describe('DateAnswer.viewModel', () => {
       fieldset: {
         legend: {
           text: question,
-          classes: 'govuk-label--l',
+          classes: 'govuk-fieldset__legend--l',
           isPageHeading: true
         }
       },
@@ -372,7 +372,7 @@ describe('DateAnswer.viewModel', () => {
       fieldset: {
         legend: {
           text: question,
-          classes: 'govuk-label--l',
+          classes: 'govuk-fieldset__legend--l',
           isPageHeading: true
         }
       },
