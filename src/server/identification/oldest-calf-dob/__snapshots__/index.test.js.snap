@@ -9,12 +9,15 @@ exports[`OldestCalfDobPage oldestCalfDobPage.content should render expected resp
           <input type="hidden" name="nextPage" value="">
 
 <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" role="group">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
         What is the date of birth of the oldest calf under 42 days old?
       </h1>
     </legend>
+    <div id="date-hint" class="govuk-hint">
+      For example, 7 3 2025
+    </div>
     <div class="govuk-date-input" id="date">
       <div class="govuk-date-input__item">
         <div class="govuk-form-group">
