@@ -18,6 +18,7 @@ import { calvesUnder42DaysOld } from './identification/calves-under-42-days-old/
 import { testingDates } from './identification/testing-dates/index.js'
 import { earTags } from './identification/ear-tags/index.js'
 import { identificationSummary } from './identification/summary/index.js'
+import { oldestCalfDob } from './identification/oldest-calf-dob/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -64,7 +65,8 @@ export const router = {
           calvesUnder42DaysOld,
           testingDates,
           earTags,
-          identificationSummary
+          identificationSummary,
+          oldestCalfDob
         ]),
 
         // Static assets
