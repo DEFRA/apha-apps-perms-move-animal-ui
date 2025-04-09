@@ -84,8 +84,8 @@ export class DateAnswer extends AnswerModel {
     const year = this.value?.year
 
     return {
-      day: day !== undefined ? day.trim() : '',
-      month: month !== undefined ? month.trim() : '',
+      day: day !== undefined ? Number(day.trim()).toString() : '',
+      month: month !== undefined ? Number(month.trim()).toString() : '',
       year: year !== undefined ? year.trim() : ''
     }
   }
@@ -127,13 +127,18 @@ export class DateAnswer extends AnswerModel {
     }
 
     const numberSchema = Joi.string().trim().regex(/^\d+$/)
-    const validDaySchema = numberSchema.custom((value, helper) => {
-      if (Number(value) < 1 || Number(value) > 31) {
-        return helper.message({
-          'object.any': ''
-        })
+    const zeroPaddedSingleDigitSchema = numberSchema.regex(
+      /^((0?[1-9]{1})|([1-9][0-9]))$/
+    )
+    const validDaySchema = zeroPaddedSingleDigitSchema.custom(
+      (value, helper) => {
+        if (Number(value) < 1 || Number(value) > 31) {
+          return helper.message({
+            'object.any': ''
+          })
+        }
       }
-    })
+    )
 
     if (validDaySchema.validate(this.value?.day).error) {
       return {
@@ -143,13 +148,15 @@ export class DateAnswer extends AnswerModel {
       }
     }
 
-    const validMonthSchema = numberSchema.custom((value, helper) => {
-      if (Number(value) < 1 || Number(value) > 12) {
-        return helper.message({
-          'object.any': ''
-        })
+    const validMonthSchema = zeroPaddedSingleDigitSchema.custom(
+      (value, helper) => {
+        if (Number(value) < 1 || Number(value) > 12) {
+          return helper.message({
+            'object.any': ''
+          })
+        }
       }
-    })
+    )
     if (validMonthSchema.validate(this.value?.month).error) {
       return {
         isValid: false,
