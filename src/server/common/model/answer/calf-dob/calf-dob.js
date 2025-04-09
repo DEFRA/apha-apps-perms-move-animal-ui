@@ -5,7 +5,7 @@ import { DateAnswer } from '../date/date.js'
 export class CalfDob extends DateAnswer {
   /** @type {DateConfig} */
   static config = {
-    isPageHeading: true,
+    hint: 'For example, 7 3 2025',
     validation: {
       missingDate: { message: 'Enter the oldest calf’s date of birth' },
       missingDay: {

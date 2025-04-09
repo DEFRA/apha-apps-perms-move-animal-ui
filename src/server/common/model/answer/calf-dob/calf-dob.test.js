@@ -12,6 +12,10 @@ describe('CalfDob', () => {
     expect(new CalfDob(payload)).toBeInstanceOf(DateAnswer)
   })
 
+  it('should have the right hint', () => {
+    expect(CalfDob.config.hint).toBe('For example, 7 3 2025')
+  })
+
   it('should have the expected validation params', () => {
     const { validation } = CalfDob.config
     expect(validation.missingDate.message).toBe(
