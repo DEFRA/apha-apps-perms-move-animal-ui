@@ -11,6 +11,10 @@ class DestinationSelectionPage extends Page {
   pageTitle = pageHeadingAndTitle
   destinationSelectionError = 'Select where the animals are going'
 
+  get tbRestrictedRadio() {
+    return $('input[value="tb-restricted-farm"]')
+  }
+
   get slaughterRadio() {
     return $('input[value="slaughter"]')
   }
@@ -41,6 +45,11 @@ class DestinationSelectionPage extends Page {
 
   summaryErrorLink() {
     return super.getErrorLink(pageId)
+  }
+
+  async selectTbRestrictedFarm(nextPage) {
+    await super.selectRadioAndContinue(this.tbRestrictedRadio)
+    await waitForPagePath(nextPage.pagePath)
   }
 
   async selectSlaughterRadioAndContinue(nextPage) {
