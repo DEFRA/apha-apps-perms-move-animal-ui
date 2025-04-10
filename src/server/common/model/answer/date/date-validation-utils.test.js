@@ -5,9 +5,10 @@ import {
   createError,
   isZeroPaddedDigitBetween,
   allFieldsError,
-  fieldError
+  fieldError,
+  isValidDate
 } from './date-validation-utils.js'
-import { YEAR_MONTHS } from '../../../helpers/date.js'
+import { YEAR_MONTHS } from './date-utils.js'
 
 const invalidDateMessage = 'Invalid date'
 
@@ -41,6 +42,18 @@ describe('date-validation-utils', () => {
     it('should return false for a string with less or more than four digits', () => {
       expect(isFourDigits('123')).toBe(false)
       expect(isFourDigits('12345')).toBe(false)
+    })
+  })
+
+  describe('isValidDate', () => {
+    it('should return true for a valid date', () => {
+      const dateData = { day: '15', month: '08', year: '2023' }
+      expect(isValidDate(dateData)).toBe(true)
+    })
+
+    it('should return false for an invalid date', () => {
+      const dateData = { day: '32', month: '13', year: '2023' }
+      expect(isValidDate(dateData)).toBe(false)
     })
   })
 

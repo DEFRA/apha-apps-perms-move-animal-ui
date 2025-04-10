@@ -1,4 +1,4 @@
-import { toJSDate, isValidDate, isFutureDate, createDateAsUTC } from './date.js'
+import { toJSDate, isFutureDate, createDateAsUTC } from './date-utils.js'
 
 describe('Date Helpers', () => {
   describe('toJSDate', () => {
@@ -11,18 +11,6 @@ describe('Date Helpers', () => {
     it('should handle undefined input gracefully', () => {
       const result = toJSDate(undefined)
       expect(result.toString()).toBe('Invalid Date')
-    })
-  })
-
-  describe('isValidDate', () => {
-    it('should return true for a valid date', () => {
-      const dateData = { day: '15', month: '08', year: '2023' }
-      expect(isValidDate(dateData)).toBe(true)
-    })
-
-    it('should return false for an invalid date', () => {
-      const dateData = { day: '32', month: '13', year: '2023' }
-      expect(isValidDate(dateData)).toBe(false)
     })
   })
 
