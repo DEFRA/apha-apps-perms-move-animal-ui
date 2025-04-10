@@ -18,6 +18,7 @@ jobs:
     env: 
       GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
+      DEFRA_ID_ENABLED: false
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -31,7 +32,6 @@ jobs:
           GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
           GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
-          DEFRA_ID_ENABLED: false
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
 
