@@ -36,16 +36,6 @@ export const toBSTDate = (date) => {
   )
 }
 
-/** @param {DateData} value */
-export const isValidDate = (value) => {
-  const date = toJSDate(value)
-  return (
-    date.getFullYear() === Number(value.year) &&
-    date.getMonth() === Number(value.month) - 1 &&
-    date.getDate() === Number(value.day)
-  )
-}
-
 /**
  * @param {DateData} inputDate
  * @returns {number}

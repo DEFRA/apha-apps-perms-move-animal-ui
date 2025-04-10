@@ -1,7 +1,7 @@
-import { toBSTDate } from './date.js'
+import { toBSTDate } from './date-utils.js'
 
 /**
- *  @import { DateData } from '../../../helpers/date.js'
+ * @import { DateData } from './date-utils.js'
  * @import { ValidationResultWithSubfields } from './date.js'
  */
 

@@ -1,11 +1,10 @@
 import { TZDate } from '@date-fns/tz'
 import {
-  toBSTDate,
-  isFutureDate,
   createTZDate,
-  differenceInDaysWithToday
-} from './date.js'
-import { isValidDate } from '../model/answer/date/date-validation-utils.js'
+  differenceInDaysWithToday,
+  isFutureDate,
+  toBSTDate
+} from './date-utils.js'
 
 describe('Date Helpers', () => {
   describe('toBSTDate', () => {
@@ -24,18 +23,6 @@ describe('Date Helpers', () => {
       expect(bstDate.getFullYear()).toBeNaN()
       expect(bstDate.getMonth()).toBeNaN()
       expect(bstDate.getDate()).toBeNaN()
-    })
-  })
-
-  describe('isValidDate', () => {
-    it('should return true for a valid date', () => {
-      const dateData = { day: '15', month: '08', year: '2023' }
-      expect(isValidDate(dateData)).toBe(true)
-    })
-
-    it('should return false for an invalid date', () => {
-      const dateData = { day: '32', month: '13', year: '2023' }
-      expect(isValidDate(dateData)).toBe(false)
     })
   })
 
