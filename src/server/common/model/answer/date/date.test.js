@@ -1,7 +1,7 @@
 import { DateAnswer } from './date.js'
 /**
  * @import { DateConfig } from './date.js'
- * @import { DateData } from '../../../helpers/date.js'
+ * @import { DateData } from './date-utils.js'
  */
 
 const question = 'Enter your answer?'
