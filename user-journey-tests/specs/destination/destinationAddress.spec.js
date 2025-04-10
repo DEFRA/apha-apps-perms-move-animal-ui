@@ -1,3 +1,4 @@
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import destinationAddressPage from '../../page-objects/destination/destinationAddressPage.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
@@ -11,7 +12,7 @@ const postcodeValid = 'SW1A 2AA'
 
 describe('On farm address page test', () => {
   beforeEach('Log in and navigate to page', async () => {
-    await signInPage.signInUsingTestCredentials()
+    await loginAndSaveSession(signInPage)
     await destinationAddressPage.navigateToPageAndVerifyTitle()
   })
 
