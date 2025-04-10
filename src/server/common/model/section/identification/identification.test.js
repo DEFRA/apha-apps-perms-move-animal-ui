@@ -8,6 +8,7 @@ import {
   validBiosecurityMapSectionState
 } from '../../../test-helpers/journey-state.js'
 import { CalvesUnder42DaysOldPage } from '~/src/server/identification/calves-under-42-days-old/index.js'
+import { spyOnConfig } from '../../../test-helpers/config.js'
 
 const applicationStateWithAnimalIdentifiersSection = {
   origin: {
@@ -68,7 +69,20 @@ describe('Identification.config.isVisible', () => {
 
   const { origin, destination } = applicationStateWithAnimalIdentifiersSection
 
-  it('should not be visible origin type is not restricted', () => {
+  it('should not be visible if the feature flag for this section is not enabled', () => {
+    spyOnConfig('featureFlags', {
+      animalIdentifiers: false
+    })
+
+    const isVisible = IdentificationSection.config.isVisible({
+      origin,
+      destination
+    })
+
+    expect(isVisible).toBe(false)
+  })
+
+  it('should not be visible if origin type is not restricted', () => {
     const isVisible = IdentificationSection.config.isVisible({
       origin: { ...origin, originType: 'afu' },
       destination
@@ -77,7 +91,7 @@ describe('Identification.config.isVisible', () => {
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible destination type is not restricted', () => {
+  it('should not be visible if destination type is not restricted', () => {
     const isVisible = IdentificationSection.config.isVisible({
       origin,
       destination: { ...destination, destinationType: 'afu' }
@@ -111,5 +125,18 @@ describe('Identification.config.isVisible', () => {
     })
 
     expect(isVisible).toBe(false)
+  })
+
+  it('should be visible if feature flag for this section is enabled and all other conditions met', () => {
+    spyOnConfig('featureFlags', {
+      animalIdentifiers: true
+    })
+
+    const isVisible = IdentificationSection.config.isVisible({
+      origin,
+      destination
+    })
+
+    expect(isVisible).toBe(true)
   })
 })

@@ -30,7 +30,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       What are the dates of the last TB tests for the cattle that are 42 days old or older?
     </dt>
     <dd class="govuk-summary-list__value">
-      some dates
+      01/01/2025
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/identification/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the cattle that are 42 days old or older?</span></a>
@@ -41,7 +41,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       Enter the ear tag numbers for these animals
     </dt>
     <dd class="govuk-summary-list__value">
-      some-ear-tags
+      123456
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/identification/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>

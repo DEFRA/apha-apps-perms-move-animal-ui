@@ -4,6 +4,7 @@ import { OriginSection } from '../section/origin/origin.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
 import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
+import { IdentificationSection } from '../section/identification/identification.js'
 
 /**
  * @import { SectionModel } from '../section/section-model/section-model.js'
@@ -23,6 +24,7 @@ export class ApplicationModel {
     OriginSection,
     DestinationSection,
     LicenceSection,
+    IdentificationSection,
     BiosecuritySection,
     BiosecurityPlanSection
   ]

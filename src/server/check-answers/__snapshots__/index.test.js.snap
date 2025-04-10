@@ -89,7 +89,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       What is the reason for the movement?
     </dt>
     <dd class="govuk-summary-list__value">
-      Routine restocking
+      Welfare
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/destination/reason-for-movement?redirect_uri=/submit/check-answers" data-testid="reasonForMovement-change-link">Change<span class="govuk-visually-hidden"> What is the reason for the movement?</span></a>
@@ -97,24 +97,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will you move more than 75 animals?
+      Enter any additional information (optional)
     </dt>
     <dd class="govuk-summary-list__value">
-      No
+      
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/quantity-options?redirect_uri=/submit/check-answers" data-testid="movingMoreThan75Animals-change-link">Change<span class="govuk-visually-hidden"> Will you move more than 75 animals?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the number of cattle be larger than half of the destination herd size?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Yes
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/quantity-half-herd?redirect_uri=/submit/check-answers" data-testid="movingMoreThanHalfExistingHerd-change-link">Change<span class="govuk-visually-hidden"> Will the number of cattle be larger than half of the destination herd size?</span></a>
+      <a class="govuk-link" href="/destination/any-additional-info?redirect_uri=/submit/check-answers" data-testid="additionalInfo-change-link">Change<span class="govuk-visually-hidden"> Enter any additional information (optional)</span></a>
     </dd>
   </div>
 </dl>
@@ -395,11 +384,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---
@@ -469,11 +456,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---
@@ -543,11 +528,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---
@@ -617,11 +600,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---
@@ -691,11 +672,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---
@@ -765,11 +744,9 @@ RG24 8RR
 ## What is the maximum number of animals you are planning to move?
 1
 ## What is the reason for the movement?
-Routine restocking
-## Will you move more than 75 animals?
-No
-## Will the number of cattle be larger than half of the destination herd size?
-Yes
+Welfare
+## Enter any additional information (optional)
+None
 # Receiving the licence
 
 ---

@@ -28,19 +28,21 @@ export const validDestinationSectionState = {
   destinationType: testDestinationType,
   destinationFarmCph: validCphNumber,
   destinationFarmAddress: validAddress,
+  howManyAnimals: '1',
   howManyAnimalsMaximum: '1',
   /** @type {ReasonForMovementData} */
-  reasonForMovement: 'routineRestocking',
+  reasonForMovement: 'welfare',
   /** @type {QuantityOptionsData} */
   movingMoreThan75Animals: 'no',
   /** @type {QuantityHalfHerdData} */
-  movingMoreThanHalfExistingHerd: 'yes'
+  movingMoreThanHalfExistingHerd: 'yes',
+  additionalInfo: ''
 }
 
 export const validIdentificationSectionState = {
   calvesUnder42DaysOld: 'no',
-  testingDates: 'some dates',
-  earTags: 'some-ear-tags'
+  testingDates: '01/01/2025',
+  earTags: '123456'
 }
 
 export const validBiosecuritySectionState = {

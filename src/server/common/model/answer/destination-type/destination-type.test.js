@@ -111,6 +111,14 @@ describe('DestinationType.isTbRestricted', () => {
     )
   })
 
+  it('should return true for "lab"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('lab')).toBe(true)
+  })
+
+  it('should return true for "other"', () => {
+    expect(DestinationTypeAnswer.isTbRestricted('other')).toBe(true)
+  })
+
   it('should return false for undefined', () => {
     expect(DestinationTypeAnswer.isTbRestricted(undefined)).toBe(false)
   })

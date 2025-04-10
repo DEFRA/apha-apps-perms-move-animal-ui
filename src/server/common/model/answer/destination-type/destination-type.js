@@ -62,6 +62,6 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
 
   /** @returns {boolean} */
   static isTbRestricted(type) {
-    return ['tb-restricted-farm', 'zoo'].includes(type ?? '')
+    return ['tb-restricted-farm', 'zoo', 'lab', 'other'].includes(type ?? '')
   }
 }
