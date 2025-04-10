@@ -6,16 +6,12 @@ export class EarTagsCalvesPage extends Page {
   urlPath = `/${this.sectionKey}/enter-ear-tags-calves`
 }
 
-export class EarTagsCalvesController extends PageController {
-  pluginName = 'ear-tags-calves'
-}
-
 export const earTagsCalvesPage = new EarTagsCalvesPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const identificationWarning = new EarTagsCalvesController(
+export const identificationWarning = new PageController(
   earTagsCalvesPage
 ).plugin()
 

@@ -21,16 +21,12 @@ export class IdentificationWarningPage extends Page {
   }
 }
 
-export class IdentificationWarningController extends PageController {
-  pluginName = 'identification-warning'
-}
-
 export const identificationWarningPage = new IdentificationWarningPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const identificationWarning = new IdentificationWarningController(
+export const identificationWarning = new PageController(
   identificationWarningPage
 ).plugin()
 
