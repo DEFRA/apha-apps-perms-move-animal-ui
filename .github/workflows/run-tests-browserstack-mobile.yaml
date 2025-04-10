@@ -42,6 +42,7 @@ jobs:
         env:
           BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
           BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
+          DEFRA_ID_ENABLED: false
 
       - name: cleanup
         if: always()
