@@ -2,23 +2,23 @@ import { AnswerModel } from '../answer-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import {
   isFutureDate,
-  isValidDate,
   MONTH_DAYS,
   toJSDate,
   YEAR_MONTHS
-} from '../../../helpers/date.js'
+} from './date-utils.js'
 import {
   allFieldsError,
   fieldError,
   isDigits,
   isFourDigits,
   isMissing,
-  isZeroPaddedDigitBetween
+  isZeroPaddedDigitBetween,
+  isValidDate
 } from './date-validation-utils.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {AnswerValidationResult} from '../validation.js' */
-/** @import {DateData} from '../../../helpers/date.js' */
+/** @import {DateData} from './date-utils.js' */
 
 /**
  * export @typedef {{
