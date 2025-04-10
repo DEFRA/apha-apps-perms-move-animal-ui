@@ -33,7 +33,7 @@ const auth = {
             request.logger.info('User has been successfully authenticated')
           }
 
-          const redirect = request.yar.flash('referrer')?.at(0) ?? '/'
+          const redirect = request.yar.flash('referrer') ?? '/'
 
           return h.redirect(redirect)
         }
