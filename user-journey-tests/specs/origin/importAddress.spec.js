@@ -1,6 +1,7 @@
 import importAddressPage from '../../page-objects/origin/importAddressPage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import fiftyPercentWarningPage from '../../page-objects/origin/fiftyPercentWarningPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 const lineOne = '37 Made up lane'
@@ -11,7 +12,7 @@ const postcodeValid = 'SW1A 2AA'
 
 describe('import address page test', () => {
   beforeEach('Log in and navigate to page', async () => {
-    await signInPage.signInUsingTestCredentials()
+    await loginAndSaveSession(signInPage)
     await importAddressPage.navigateToPageAndVerifyTitle()
   })
 

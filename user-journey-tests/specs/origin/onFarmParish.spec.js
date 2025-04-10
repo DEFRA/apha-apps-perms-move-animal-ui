@@ -1,10 +1,11 @@
 import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import onFarmAddressPage from '../../page-objects/origin/onFarmAddressPage.js'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('Parish holding page test (on farm)', () => {
   beforeEach('Log in and navigate to page', async () => {
-    await signInPage.signInUsingTestCredentials()
+    await loginAndSaveSession(signInPage)
     await onFarmCPHPage.navigateToPageAndVerifyTitle()
   })
 
