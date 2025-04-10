@@ -1,5 +1,8 @@
 export async function loginAndSaveSession(signInPage) {
-  if (process.env.DEFRA_ID_ENABLED === 'false') {
+  const defraIdEnabled =
+    (process.env.DEFRA_ID_ENABLED || '').trim().toLowerCase() !== 'false'
+
+  if (!defraIdEnabled) {
     return
   }
 
