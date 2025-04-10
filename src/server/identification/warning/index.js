@@ -5,6 +5,7 @@ import { earTagsCalvesPage } from '../ear-tag-calves/index.js'
 export class IdentificationWarningPage extends Page {
   pageTitle = 'Your application might be unsuccessful'
   sectionKey = 'identification'
+  pageKey = 'warning'
   urlPath = `/${this.sectionKey}/warning`
   isInterstitial = true
 

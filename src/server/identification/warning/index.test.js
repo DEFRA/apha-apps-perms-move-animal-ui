@@ -1,8 +1,4 @@
-import {
-  IdentificationWarningPage,
-  IdentificationWarningController,
-  identificationWarningPage
-} from './index.js'
+import { IdentificationWarningPage } from './index.js'
 
 describe('IdentificationWarningPage', () => {
   let page
@@ -42,21 +38,5 @@ describe('IdentificationWarningPage', () => {
     expect(viewProps).toEqual({
       nextPage: '/identification/enter-ear-tags-calves'
     })
-  })
-})
-
-describe('IdentificationWarningController', () => {
-  let controller
-
-  beforeEach(() => {
-    controller = new IdentificationWarningController(identificationWarningPage)
-  })
-
-  test('should have the correct plugin name', () => {
-    expect(controller.pluginName).toBe('identification-warning')
-  })
-
-  test('should be instantiated with the correct page', () => {
-    expect(controller.page).toBe(identificationWarningPage)
   })
 })
