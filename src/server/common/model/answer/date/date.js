@@ -1,8 +1,24 @@
 import { AnswerModel } from '../answer-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import {
+  isFutureDate,
+  isValidDate,
+  MONTH_DAYS,
+  toJSDate,
+  YEAR_MONTHS
+} from '../../../helpers/date.js'
+import {
+  allFieldsError,
+  fieldError,
+  isDigits,
+  isFourDigits,
+  isMissing,
+  isZeroPaddedDigitBetween
+} from './date-validation-utils.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {AnswerValidationResult} from '../validation.js' */
+/** @import {DateData} from '../../../helpers/date.js' */
 
 /**
  * export @typedef {{
@@ -20,17 +36,6 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  *    futureDate: { message: string }
  *  }
  * }} DateConfig
- */
-
-/** @param {DateData | undefined} date */
-const toJSDate = (date) => {
-  return new Date(
-    Date.UTC(Number(date?.year), Number(date?.month) - 1, Number(date?.day))
-  )
-}
-
-/**
- * @typedef {{ day: string, month: string, year: string }} DateData
  */
 
 /**
@@ -89,27 +94,6 @@ export class DateAnswer extends AnswerModel {
   validate() {
     const { validation } = this.config
 
-    /**
-     * @param {string} message
-     * @returns {ValidationResultWithSubfields}
-     */
-    const allFieldsError = (message) => ({
-      isValid: false,
-      errors: { 'date-day': { text: message } },
-      subfields: ['day', 'month', 'year']
-    })
-
-    /**
-     * @param {keyof DateData} subfield
-     * @param {string} message
-     * @returns {ValidationResultWithSubfields}
-     */
-    const fieldError = (subfield, message) => ({
-      isValid: false,
-      errors: { [`date-${subfield}`]: { text: message } },
-      subfields: [subfield]
-    })
-
     if (this.value === undefined) {
       return allFieldsError(validation.missingDate.message)
     }
@@ -119,52 +103,30 @@ export class DateAnswer extends AnswerModel {
     month = month.trim()
     day = day.trim()
 
-    /**
-     * @param {string | undefined} value
-     */
-    const isMissing = (value) => value === undefined || value === ''
+    const isMissingDay = isMissing(day)
+    const isMissingMonth = isMissing(month)
+    const isMissingYear = isMissing(year)
 
-    const isDayMissing = isMissing(day)
-    const isMonthMissing = isMissing(month)
-    const isYearMissing = isMissing(year)
-
-    if (isDayMissing && isMonthMissing && isYearMissing) {
+    if (isMissingDay && isMissingMonth && isMissingYear) {
       return allFieldsError(validation.missingDate.message)
     }
-    if (isDayMissing) {
+    if (isMissingDay) {
       return fieldError('day', validation.missingDay.message)
     }
-    if (isMonthMissing) {
+    if (isMissingMonth) {
       return fieldError('month', validation.missingMonth.message)
     }
-    if (isYearMissing) {
+    if (isMissingYear) {
       return fieldError('year', validation.missingYear.message)
     }
 
-    const zeroPaddedRegex = /^((0?[1-9]{1})|([1-9][0-9]))$/
-
-    /**
-     * @param {string} str
-     * @param {number} min
-     * @param {number} max
-     */
-    const isZeroPaddedDigitBetween = (str, min, max) =>
-      str.match(zeroPaddedRegex) !== null &&
-      Number(str) >= min &&
-      Number(str) <= max
-
-    if (!isZeroPaddedDigitBetween(day, 1, 31)) {
+    if (!isZeroPaddedDigitBetween(day, 1, MONTH_DAYS)) {
       return fieldError('day', validation.invalidDay.message)
     }
-    if (!isZeroPaddedDigitBetween(month, 1, 12)) {
+
+    if (!isZeroPaddedDigitBetween(month, 1, YEAR_MONTHS)) {
       return fieldError('month', validation.invalidMonth.message)
     }
-
-    /** @param {string} str */
-    const isDigits = (str) => str.match(/^\d*$/) !== null
-
-    /** @param {string} str */
-    const isFourDigits = (str) => str.match(/^\d{4}$/) !== null
 
     if (!isDigits(year)) {
       return fieldError('year', validation.invalidYear.message)
@@ -173,28 +135,11 @@ export class DateAnswer extends AnswerModel {
       return fieldError('year', validation.nonFourDigitYear.message)
     }
 
-    /** @param {DateData} value */
-    const isValidDate = (value) => {
-      const date = toJSDate(value)
-      return (
-        date.getFullYear() === Number(value.year) &&
-        date.getMonth() === Number(value.month) - 1 &&
-        date.getDate() === Number(value.day)
-      )
-    }
-
     if (!isValidDate({ year, month, day })) {
       return allFieldsError(validation.invalidDate.message)
     }
 
-    /** @param {Date} date */
-    const createDateAsUTC = (date) =>
-      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-
-    const currentDate = createDateAsUTC(new Date())
-    const date = toJSDate(this.value)
-
-    if (date > currentDate) {
+    if (isFutureDate(this.value)) {
       return allFieldsError(validation.futureDate.message)
     }
 
