@@ -304,13 +304,13 @@ export const config = convict({
       doc: 'DEFRA ID Auth enabled',
       format: Boolean,
       env: 'DEFRA_ID_ENABLED',
-      default: false
+      default: !isProduction
     },
     animalIdentifiers: {
       doc: 'Enables asking for an animals identifiers (to support TB restricted -> TB restricted premises movement types)',
       format: Boolean,
       env: 'ANIMAL_IDENTIFIERS_ENABLED',
-      default: false
+      default: !isProduction
     }
   },
   gsPath: {
