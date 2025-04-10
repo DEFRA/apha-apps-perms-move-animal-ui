@@ -1,5 +1,8 @@
 import { DateAnswer } from './date.js'
-/** @import {DateConfig, DateData} from './date.js' */
+/**
+ * @import { DateConfig } from './date.js'
+ * @import { DateData } from '../../../helpers/date.js'
+ */
 
 const question = 'Enter your answer?'
 const hint = 'For example, 27 3 2007'
