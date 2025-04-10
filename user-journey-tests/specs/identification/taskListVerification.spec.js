@@ -13,10 +13,13 @@ describe('Identification - task list appearance', () => {
     await taskListPage.navigateToPageAndVerifyTitle()
   })
 
-  beforeEach(async () => [await restoreSession()])
+  beforeEach(restoreSession)
 
   it('Should verify identification appears when tb restricted options selected', async () => {
-    await enableIdentification()
+    await enableIdentification({
+      originZoo: false,
+      destinationZoo: false
+    })
     await taskListPage.verifyStatus({
       position: 4,
       taskTitle: 'Animal identification',
@@ -25,7 +28,10 @@ describe('Identification - task list appearance', () => {
   })
 
   it('Should verify identification appears when zoo options selected', async () => {
-    await enableIdentification(true, true)
+    await enableIdentification({
+      originZoo: true,
+      destinationZoo: true
+    })
     await taskListPage.verifyStatus({
       position: 4,
       taskTitle: 'Animal identification',

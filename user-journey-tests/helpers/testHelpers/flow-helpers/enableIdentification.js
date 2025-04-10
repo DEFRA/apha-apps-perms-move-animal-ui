@@ -13,10 +13,7 @@ import toFromFarmPage from '../../../page-objects/origin/toFromFarmPage'
 import taskListPage from '../../../page-objects/taskListPage'
 import { waitForPagePath } from '../../page'
 
-export const enableIdentification = async (
-  originZoo = false,
-  destinationZoo = false
-) => {
+export const enableIdentification = async ({ originZoo, destinationZoo }) => {
   // Origin
   await taskListPage.selectMovementOrigin(toFromFarmPage)
   await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
