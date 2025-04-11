@@ -1,4 +1,4 @@
-import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
+import { EarTagsCalvesAnswer } from '../../common/model/answer/ear-tags/ear-tags-calves.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { cattleOver42DaysPage } from '../cattle-over-42-days-old/index.js'
 import { earTagsCalvesPage, EarTagsCalvesPage } from './index.js'
@@ -43,7 +43,7 @@ describe('EarTagsCalvesPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(EarTagsAnswer)
+    expect(page.Answer).toBe(EarTagsCalvesAnswer)
   })
 
   it('nextPage should return identification summary page', () => {

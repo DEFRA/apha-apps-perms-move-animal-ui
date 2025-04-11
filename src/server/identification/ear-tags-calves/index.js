@@ -1,5 +1,5 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
+import { EarTagsCalvesAnswer } from '../../common/model/answer/ear-tags/ear-tags-calves.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { cattleOver42DaysPage } from '../cattle-over-42-days-old/index.js'
 
@@ -12,7 +12,7 @@ export class EarTagsCalvesPage extends QuestionPage {
     'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
 
   questionKey = 'earTagsCalves'
-  Answer = EarTagsAnswer
+  Answer = EarTagsCalvesAnswer
 
   view = 'identification/ear-tags-calves/index'
 
