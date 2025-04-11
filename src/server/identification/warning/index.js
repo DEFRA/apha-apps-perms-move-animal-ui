@@ -1,6 +1,6 @@
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
-import { earTagsCalvesPage } from '../ear-tag-calves/index.js'
+import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
 
 export class IdentificationWarningPage extends Page {
   pageTitle = 'Your application might be unsuccessful'
