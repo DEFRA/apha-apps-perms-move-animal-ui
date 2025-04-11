@@ -6,7 +6,7 @@ import {
 import earTagsCalvesPage from '../../page-objects/identification/earTagsCalvesPage.js'
 import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42DaysPage.js'
 
-describe('Disinfectant page spec', () => {
+describe('Ear tags calves - page spec', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
