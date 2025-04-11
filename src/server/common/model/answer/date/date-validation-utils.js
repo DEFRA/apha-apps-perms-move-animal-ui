@@ -8,9 +8,7 @@ import { toBSTDate } from './date-utils.js'
 /** @param {string} str */
 export const isDigits = (str) => str.match(/^\d*$/) !== null
 
-/**
- * @param {string | undefined} value
- */
+/** @param {string | undefined} value */
 export const isMissing = (value) => !value
 
 /** @param {string} str */
