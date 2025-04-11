@@ -1,4 +1,4 @@
-import { toJSDate } from './date-utils.js'
+import { toBSTDate } from './date-utils.js'
 
 /**
  * @import { DateData } from './date-utils.js'
@@ -18,7 +18,7 @@ export const isFourDigits = (str) => str.match(/^\d{4}$/) !== null
 
 /** @param {DateData} value */
 export const isValidDate = (value) => {
-  const date = toJSDate(value)
+  const date = toBSTDate(value)
   return (
     date.getFullYear() === Number(value.year) &&
     date.getMonth() === Number(value.month) - 1 &&
