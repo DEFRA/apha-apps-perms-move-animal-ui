@@ -2,7 +2,7 @@ import { TZDate } from '@date-fns/tz'
 import { differenceInCalendarDays } from 'date-fns'
 
 /**
- * @typedef {{ day: string, month: string, year: string }} DateData
+ * @typedef {{ day: string | undefined, month: string | undefined, year: string | undefined }} DateData
  */
 
 export const MONTH_DAYS = 31
@@ -53,20 +53,6 @@ export const isValidDate = (value) => {
 export const differenceInDaysWithToday = (inputDate) => {
   const currentDate = createTZDate(new Date())
   const dateToCompare = toBSTDate(inputDate)
-
-  // console.log('=====================')
-
-  // console.log(`current server date: ${currentDate.toString()}`)
-  // console.log(`user entered date: ${dateToCompare.toString()}`)
-
-  // console.log(
-  //   `differenceInDays with TZ: ${differenceInDays(currentDate, dateToCompare, { in: tz('Europe/London') })}`
-  // )
-  // console.log(
-  //   `differenceInDays: ${differenceInDays(currentDate, dateToCompare)}`
-  // )
-  // console.log('=====================')
-
   return differenceInCalendarDays(currentDate, dateToCompare)
 }
 

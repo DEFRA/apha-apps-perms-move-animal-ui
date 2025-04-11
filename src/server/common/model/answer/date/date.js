@@ -99,9 +99,9 @@ export class DateAnswer extends AnswerModel {
     }
 
     let { year, month, day } = this.value
-    year = year.trim()
-    month = month.trim()
-    day = day.trim()
+    year = year?.trim() ?? ''
+    month = month?.trim() ?? ''
+    day = day?.trim() ?? ''
 
     const isMissingDay = isMissing(day)
     const isMissingMonth = isMissing(month)
