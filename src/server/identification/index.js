@@ -5,6 +5,7 @@ import { identificationWarning } from './warning/index.js'
 import { earTags } from './ear-tags/index.js'
 import { identificationSummary } from './summary/index.js'
 import { testingDates } from './testing-dates/index.js'
+import { earTagsCalves } from './ear-tags-calves/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -17,6 +18,7 @@ export const identification = {
         calvesUnder42DaysOld,
         testingDates,
         earTags,
+        earTagsCalves,
         identificationSummary,
         identificationWarning
       ])

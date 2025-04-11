@@ -1,0 +1,22 @@
+{% extends 'layouts/questions.njk' %}
+{% block heading %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+    </div>
+  </div>
+{% endblock %}
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        You need to identify the calves using the official ear tags bought from
+        an approved supplier.
+      </p>
+      <p>
+        The ear tag must include the country code, herd number and six-digit
+        official ear tag number. For example, UK12345678910.
+      </p>
+    </div>
+  </div>
+{% endblock %}
