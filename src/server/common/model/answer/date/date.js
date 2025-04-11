@@ -3,7 +3,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import {
   isFutureDate,
   MONTH_DAYS,
-  toJSDate,
+  toBSTDate,
   YEAR_MONTHS
 } from './date-utils.js'
 import {
@@ -66,7 +66,7 @@ export class DateAnswer extends AnswerModel {
   }
 
   get html() {
-    const date = toJSDate(this.value)
+    const date = toBSTDate(this.value)
     return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`
   }
 
