@@ -4,7 +4,7 @@ import {
   isFutureDate,
   isValidDate,
   MONTH_DAYS,
-  toJSDate,
+  toBSTDate,
   YEAR_MONTHS
 } from '../../../helpers/date.js'
 import {
@@ -66,7 +66,7 @@ export class DateAnswer extends AnswerModel {
   }
 
   get html() {
-    const date = toJSDate(this.value)
+    const date = toBSTDate(this.value)
     return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`
   }
 
