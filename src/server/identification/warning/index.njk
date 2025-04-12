@@ -1,6 +1,6 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% extends 'layouts/questions.njk' %}
-{% block form %}
+{% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
@@ -13,12 +13,16 @@
           Calves 42 days old or older must be tested for TB for a licence to be
           granted.
         </p>
-        {{
-          govukButton({
-            text: "Continue",
-            href: nextPage
-          })
-        }}
+        <form action="{{ continueUrl }}" method="get" novalidate="">
+          <button
+            type="submit"
+            class="govuk-button"
+            data-module="govuk-button"
+            id="continue-button"
+          >
+            Continue
+          </button>
+        </form>
       </div>
     </div>
   </div>
