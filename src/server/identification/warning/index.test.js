@@ -1,3 +1,4 @@
+import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
 import { IdentificationWarningPage } from './index.js'
 
 describe('IdentificationWarningPage', () => {
@@ -7,36 +8,31 @@ describe('IdentificationWarningPage', () => {
     page = new IdentificationWarningPage()
   })
 
-  test('should have the correct page title', () => {
+  it('should have the correct page title', () => {
     expect(page.pageTitle).toBe('Your application might be unsuccessful')
   })
 
-  test('should have the correct section key', () => {
+  it('should have the correct section key', () => {
     expect(page.sectionKey).toBe('identification')
   })
 
-  test('should have the correct URL path', () => {
+  it('should have the correct URL path', () => {
     expect(page.urlPath).toBe('/identification/warning')
   })
 
-  test('should be an interstitial page', () => {
-    expect(page.isInterstitial).toBe(true)
+  it('should override redirects', () => {
+    expect(page.overrideRedirects).toBe(true)
   })
 
-  test('should have the correct view', () => {
+  it('should have the correct view', () => {
     expect(page.view).toBe('identification/warning/index')
   })
 
-  test('should return the correct next page', () => {
-    const nextPage = page.nextPage()
-    expect(nextPage).toBeDefined()
-    expect(nextPage.urlPath).toBe('/identification/enter-ear-tags-calves')
+  it('should return the correct next page', () => {
+    expect(page.nextPage()).toBe(earTagsCalvesPage)
   })
 
-  test('should return the correct view properties', () => {
-    const viewProps = page.viewProps()
-    expect(viewProps).toEqual({
-      nextPage: '/identification/enter-ear-tags-calves'
-    })
+  it('should be able ot calculate the next page URL as a string for the template', () => {
+    expect(page.viewProps().continueUrl).toBe(earTagsCalvesPage.urlPath)
   })
 })
