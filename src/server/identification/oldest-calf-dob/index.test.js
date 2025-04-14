@@ -3,6 +3,14 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
 import { identificationWarningPage } from '../warning/index.js'
 import { oldestCalfDobPage, OldestCalfDobPage } from './index.js'
+import { differenceInDaysWithToday } from '../../common/model/answer/date/date-utils.js'
+
+jest.mock('../../common/model/answer/date/date-utils.js', () => ({
+  differenceInDaysWithToday: jest.fn()
+}))
+const mockDifferenceInDaysWithToday = /** @type {jest.Mock} */ (
+  differenceInDaysWithToday
+)
 
 const sectionKey = 'identification'
 const question =
@@ -43,6 +51,8 @@ describe('OldestCalfDobPage', () => {
   })
 
   it('nextPage should return identificationWarningPage when the calf is older than 35 days', () => {
+    mockDifferenceInDaysWithToday.mockReturnValue(36)
+    // give the answer any value as it is mocked and will be ignored
     const answer = new CalfDob({
       day: '1',
       month: '1',
@@ -53,11 +63,12 @@ describe('OldestCalfDobPage', () => {
   })
 
   it('nextPage should return earTagsCalvesPage when the calf is 35 days old or younger', () => {
-    const today = new Date()
+    mockDifferenceInDaysWithToday.mockReturnValue(35)
+    // give the answer any value as it is mocked and will be ignored
     const answer = new CalfDob({
-      day: today.getDate().toString(),
-      month: (today.getMonth() + 1).toString(),
-      year: today.getFullYear().toString()
+      day: '1',
+      month: '1',
+      year: '2020'
     })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(earTagsCalvesPage)
