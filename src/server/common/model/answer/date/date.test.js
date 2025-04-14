@@ -329,7 +329,6 @@ describe('DateAnswer.validate (invalid date)', () => {
 describe('DateAnswer.validation', () => {
   it('should accept dates that are in the past', () => {
     const yesterday = subDays(new Date(), 1)
-
     const answer = new TestDateAnswer({
       day: yesterday.getDate().toString(),
       month: (yesterday.getMonth() + 1).toString(),
@@ -355,7 +354,7 @@ describe('DateAnswer.validation', () => {
     const answer = new TestDateAnswer({
       day: tomorrow.getDate().toString(),
       month: (tomorrow.getMonth() + 1).toString(),
-      year: tomorrow.getFullYear().toString()
+      year: '2050'
     })
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
