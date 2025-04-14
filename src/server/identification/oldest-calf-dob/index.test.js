@@ -1,5 +1,7 @@
 import { CalfDob } from '../../common/model/answer/calf-dob/calf-dob.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
+import { identificationWarningPage } from '../warning/index.js'
 import { oldestCalfDobPage, OldestCalfDobPage } from './index.js'
 
 const sectionKey = 'identification'
@@ -36,24 +38,29 @@ describe('OldestCalfDobPage', () => {
     expect(page.Answer).toBe(CalfDob)
   })
 
-  it('nextPage should return how to minimise contamination page when answer is "yes"', () => {
-    // const answer = new CalvesUnder42DaysOldAnswer({
-    //   calvesUnder42DaysOld: 'yes'
-    // })
-    // const nextPage = page.nextPage(answer)
-    // expect(nextPage).toBe(oldestCalfDobPage)
-  })
-
-  it('nextPage should return people disinfection page when answer is "no"', () => {
-    // const answer = new CalvesUnder42DaysOldAnswer({
-    //   calvesUnder42DaysOld: 'no'
-    // })
-    // const nextPage = page.nextPage(answer)
-    // expect(nextPage).toBe(testingDatesPage)
-  })
-
   it('should export page', () => {
     expect(oldestCalfDobPage).toBeInstanceOf(OldestCalfDobPage)
+  })
+
+  it('nextPage should return identificationWarningPage when the calf is older than 35 days', () => {
+    const answer = new CalfDob({
+      day: '1',
+      month: '1',
+      year: '2020'
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(identificationWarningPage)
+  })
+
+  it('nextPage should return earTagsCalvesPage when the calf is 35 days old or younger', () => {
+    const today = new Date()
+    const answer = new CalfDob({
+      day: today.getDate().toString(),
+      month: (today.getMonth() + 1).toString(),
+      year: today.getFullYear().toString()
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(earTagsCalvesPage)
   })
 
   describePageSnapshot({
