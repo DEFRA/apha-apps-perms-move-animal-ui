@@ -53,14 +53,16 @@ describe('Date Helpers', () => {
     it('should create a TZDate object with the same date and time as the input Date object', () => {
       const inputDate = new Date('2025-04-10T10:30:45.123Z')
       const tzDate = createTZDate(inputDate)
+
       expect(tzDate).toBeInstanceOf(TZDate)
-      expect(tzDate.getFullYear()).toBe(inputDate.getFullYear())
-      expect(tzDate.getMonth()).toBe(inputDate.getMonth())
-      expect(tzDate.getDate()).toBe(inputDate.getDate())
-      expect(tzDate.getHours()).toBe(inputDate.getHours())
-      expect(tzDate.getMinutes()).toBe(inputDate.getMinutes())
-      expect(tzDate.getSeconds()).toBe(inputDate.getSeconds())
-      expect(tzDate.getMilliseconds()).toBe(inputDate.getMilliseconds())
+      expect(tzDate.timeZone).toBe('Europe/London')
+      expect(tzDate.getUTCFullYear()).toBe(inputDate.getUTCFullYear())
+      expect(tzDate.getUTCMonth()).toBe(inputDate.getUTCMonth())
+      expect(tzDate.getUTCDate()).toBe(inputDate.getUTCDate())
+      expect(tzDate.getUTCHours()).toBe(inputDate.getUTCHours())
+      expect(tzDate.getUTCMinutes()).toBe(inputDate.getUTCMinutes())
+      expect(tzDate.getUTCSeconds()).toBe(inputDate.getUTCSeconds())
+      expect(tzDate.getUTCMilliseconds()).toBe(inputDate.getUTCMilliseconds())
     })
   })
 
