@@ -70,6 +70,7 @@ export function context(request) {
     breadcrumbs: [],
     navigation: buildNavigation(request),
     isAuthenticated: isAuthenticated(request),
+    features: config.get('featureFlags'),
     footerItems: footerItems.filter((item) => {
       if (!item.requiresAuth) {
         return true

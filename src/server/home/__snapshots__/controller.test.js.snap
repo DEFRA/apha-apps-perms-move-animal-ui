@@ -5,8 +5,11 @@ exports[`#homeController should match content 1`] = `
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
-        <h1 class="govuk-heading-l">Get permission to move animals under disease controls</h1>
-        <h2 class="govuk-heading-m">What this service can be used for</h2>
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h1 class="govuk-heading-l">
+            Get permission to move animals under disease controls
+          </h1>
+        </div>
         <p class="govuk-body">
           You can use this service to apply for a Bovine Tuberculosis (TB)
           movement licence.
@@ -16,12 +19,12 @@ exports[`#homeController should match content 1`] = `
           restrictions, you must apply for a licence with the Animal and Plant
           Health Agency (APHA).
         </p>
-        <h2 class="govuk-heading-m">
+        <h3 class="govuk-heading-m">
           Moving animals off a TB restricted farm to go to slaughter
-        </h2>
+        </h3>
         <p class="govuk-body">
-          If you are moving animals from a TB restricted farm to slaughter, you
-          do not need to use this service to apply for a licence.
+          You do not need to use this service to apply for a licence for this
+          movement type.
         </p>
         <p class="govuk-body">
           You should have a general licence in the information pack sent to you
@@ -36,35 +39,26 @@ exports[`#homeController should match content 1`] = `
             after 30 September 2024)
           </li>
         </ul>
-        <h2 class="govuk-heading-m">
-          Moving animals onto a TB restricted premises
-        </h2>
-        <p class="govuk-body">
-          The service does not currently support moving animals from a TB
-          restricted premises to a TB restricted premises. To apply for a
-          licence for this movement type
-          <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england" class="govuk-link">
-            complete this GOV.UK application form.
-          </a>
-        </p>
+        <h3 class="govuk-heading-m">
+          Moving animals onto a TB restricted farm
+        </h3>
         <p class="govuk-body">
           If your farm or premises is not under TB restrictions and animals are
-          moving onto a TB restricted farm, it is the responsibility of the TB
-          restricted farm to apply for a licence. We need details about their
-          biosecurity practices to process the licence.
+          moving onto a TB restricted farm, the TB restricted farm needs to
+          apply for a licence. We need details about their biosecurity practices
+          to process the licence.
         </p>
         <p class="govuk-body">
-          For more information before you apply for a licence, see the
+          If you need more information before you apply for a licence, see the
           <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england" class="govuk-link">
-            Bovine TB: get your cattle tested in England
-          </a>
+            Bovine TB: get your cattle tested in England</a>
           guidance.
         </p>
-        <h2 class="govuk-heading-m">Before you start</h2>
-        <p class="govuk-body">Licences cannot be assessed or issued if:</p>
+        <h3 class="govuk-heading-m">Before you start</h3>
+        <p class="govuk-body">APHA cannot process or issue a licence if:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>reactors are still on your farm or premises</li>
-          <li>cattle are awaiting skin or blood test results</li>
+          <li>animals are awaiting skin or blood test results</li>
           <li>TB testing is overdue</li>
         </ul>
         <p class="govuk-body">
@@ -72,46 +66,48 @@ exports[`#homeController should match content 1`] = `
           If APHA has not received the tests, there could be delays in
           processing your licence.
         </p>
-        <p class="govuk-body">
-          To apply for a licence, you need the following information:
-        </p>
+        <p class="govuk-body">Depending on the movement type, you may need:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>name of the County Parish Holding (CPH) owner</li>
           <li>
-            County Parish Holding (CPH) number and address where the animals are
-            moving from
+            the county parish holding (CPH) number and address where the animals
+            are moving from
           </li>
           <li>
             where the animals are moving to, for example the type of market
           </li>
-          <li>email address to send the licence to</li>
+          <li>an email address to send the licence to</li>
         </ul>
         <p class="govuk-body">
+          If animals are moving onto your farm or premises, you need to enter
+          information about your biosecurity practices that reduce the risk of
+          spreading TB. You also need to upload a biosecurity map.
+        </p>
+        <p class="govuk-body">
           It can take up to 5 working days to process your application. It may
-          take longer if veterinary checks are required, or we need further
+          take longer if veterinary checks are needed, or if we need further
           information.
         </p>
-        <h2 class="govuk-heading-m">Get help</h2>
+        <h3 class="govuk-heading-m">Get help</h3>
         <p class="govuk-body">
           If you need help using the service you can call 03000 200 301 and
           choose the option for TB licencing. Lines are open from Monday to
           Friday between 8.30am and 5pm.
         </p>
-        <a href="task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
-  Start now
-  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
-  </svg>
-</a>
-        <h2 class="govuk-heading-m">Give feedback</h2>
+        <a class="gem-c-button govuk-button govuk-button--start " role="button" rel="external" data-module="govuk-button" draggable="false" href="start-router">
+          Start now
+          <svg class="govuk-button__start-icon govuk-!-display-none-print" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" focusable="false" aria-hidden="true">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+          </svg>
+        </a>
+        <h3 class="govuk-heading-m">Give feedback</h3>
         <p class="govuk-body">
           Your feedback will help improve this service. You can give feedback by
-          <a href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk" target="_blank">completing a short survey (opens in new tab)</a>.
+          <a href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk" class="govuk-link" target="_blank">completing a short survey (opens in new tab)</a>.
         </p>
         <p class="govuk-body">You can also find the survey link on the:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>feedback banner at the top of the page throughout the service</li>
-          <li>confirmation page once you complete your application</li>
+          <li>confirmation page after you complete your application</li>
         </ul>
       </div>
     </div>
