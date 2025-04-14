@@ -1,3 +1,4 @@
+import { addDays, subDays } from 'date-fns'
 import { DateAnswer } from './date.js'
 /**
  * @import { DateConfig } from './date.js'
@@ -325,31 +326,37 @@ describe('DateAnswer.validate (invalid date)', () => {
   })
 })
 
-describe('DateAnswer.validation (future date)', () => {
-  beforeAll(() => {
-    jest.useFakeTimers()
-    // 1 April 2025
-    jest.setSystemTime(new Date('2025-04-01'))
-  })
-
-  afterAll(() => {
-    jest.useRealTimers()
-  })
-
+describe('DateAnswer.validation', () => {
   it('should accept dates that are in the past', () => {
-    const answer = new TestDateAnswer({ day: '1', month: '3', year: '2025' })
+    const yesterday = subDays(new Date(), 1)
+
+    const answer = new TestDateAnswer({
+      day: yesterday.getDate().toString(),
+      month: (yesterday.getMonth() + 1).toString(),
+      year: yesterday.getFullYear().toString()
+    })
     const { isValid } = answer.validate()
     expect(isValid).toBe(true)
   })
 
-  it("should accept today's date that are in the past", () => {
-    const answer = new TestDateAnswer({ day: '1', month: '4', year: '2025' })
+  it("should accept today's date", () => {
+    const today = new Date()
+    const answer = new TestDateAnswer({
+      day: today.getDate().toString(),
+      month: (today.getMonth() + 1).toString(),
+      year: today.getFullYear().toString()
+    })
     const { isValid } = answer.validate()
     expect(isValid).toBe(true)
   })
 
   it('should reject dates that are in the future', () => {
-    const answer = new TestDateAnswer({ day: '2', month: '4', year: '2025' })
+    const tomorrow = addDays(new Date(), 1)
+    const answer = new TestDateAnswer({
+      day: tomorrow.getDate().toString(),
+      month: (tomorrow.getMonth() + 1).toString(),
+      year: tomorrow.getFullYear().toString()
+    })
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
