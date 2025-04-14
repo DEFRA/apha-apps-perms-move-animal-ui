@@ -5,6 +5,7 @@ import {
   isFutureDate,
   toBSTDate
 } from './date-utils.js'
+import { subDays } from 'date-fns'
 
 describe('Date Helpers', () => {
   describe('toBSTDate', () => {
@@ -89,7 +90,7 @@ describe('Date Helpers', () => {
 
     describe('when the server is in a different timezone', () => {
       beforeEach(() => {
-        jest.useFakeTimers('modern')
+        jest.useFakeTimers()
       })
 
       afterEach(() => {
@@ -98,8 +99,7 @@ describe('Date Helpers', () => {
 
       it('should return 0 if the given date when coverted to BST is actually the current date', () => {
         const currentDate = new Date()
-        const yesterday = new Date()
-        yesterday.setDate(yesterday.getDate() - 1)
+        const yesterday = subDays(currentDate, 1)
 
         const dateData = {
           day: currentDate.getUTCDate().toString(),
@@ -129,8 +129,7 @@ describe('Date Helpers', () => {
 
       it('should return -1 if the given date when coverted to BST is one day before current date', () => {
         const currentDate = new Date()
-        const yesterday = new Date()
-        yesterday.setDate(yesterday.getDate() - 1)
+        const yesterday = subDays(currentDate, 1)
 
         const dateData = {
           day: currentDate.getUTCDate().toString(),
