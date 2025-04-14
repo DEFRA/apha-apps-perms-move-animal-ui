@@ -28,8 +28,6 @@ Frontend to the 'Get permission to move animals under disease controls' service.
     - [Development image](#development-image)
     - [Production image](#production-image)
     - [Docker Compose](#docker-compose)
-    - [Dependabot](#dependabot)
-    - [SonarCloud](#sonarcloud)
   - [Licence](#licence)
     - [About the licence](#about-the-licence)
 
@@ -236,4 +234,3 @@ information providers in the public sector to license the use and re-use of thei
 licence.
 
 It is designed to encourage use and re-use of information freely and flexibly, with only a few conditions.
-
