@@ -43,7 +43,6 @@ const sessionCookie = {
 
             if (response.res.statusCode !== statusCodes.OK) {
               removeUserSession(request)
-
               return { isValid: false }
             }
 

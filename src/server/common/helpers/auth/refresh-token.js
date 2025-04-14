@@ -1,5 +1,5 @@
 import { config } from '~/src/config/config.js'
-import { proxyFetch } from '../proxy.js'
+import Wreck from '@hapi/wreck'
 
 async function refreshAccessToken(request) {
   const authedUser = await request.getUserSession()
@@ -17,13 +17,13 @@ async function refreshAccessToken(request) {
 
   request.logger.info('Access token expired, refreshing...')
 
-  return await proxyFetch(authedUser.tokenUrl, {
+  return Wreck.post(authedUser.tokenUrl, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Cache-Control': 'no-cache'
     },
-    body: params,
-    method: 'POST'
+    payload: params,
+    rejectUnauthorized: false
   })
 }
 

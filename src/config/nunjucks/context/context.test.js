@@ -34,6 +34,11 @@ describe('#context', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
+        features: {
+          animalIdentifiers: true,
+          authEnabled: false,
+          pdfUpload: true
+        },
         footerItems: [
           {
             attributes: {
@@ -147,6 +152,11 @@ describe('#context cache', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
+        features: {
+          animalIdentifiers: true,
+          authEnabled: false,
+          pdfUpload: true
+        },
         footerItems: [
           {
             attributes: {
