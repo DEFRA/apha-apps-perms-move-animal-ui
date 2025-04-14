@@ -97,7 +97,7 @@ describe('Date Helpers', () => {
         jest.useRealTimers()
       })
 
-      it('should return 0 if the given date when coverted to BST is actually the current date', () => {
+      it('should return 0 if the given date when coverted to UTC is actually the current date', () => {
         const currentDate = new Date()
         const yesterday = subDays(currentDate, 1)
 
@@ -125,36 +125,6 @@ describe('Date Helpers', () => {
 
         const difference = differenceInDaysWithToday(dateData)
         expect(difference).toBe(0)
-      })
-
-      it('should return -1 if the given date when coverted to BST is one day before current date', () => {
-        const currentDate = new Date()
-        const yesterday = subDays(currentDate, 1)
-
-        const dateData = {
-          day: currentDate.getUTCDate().toString(),
-          month: (currentDate.getUTCMonth() + 1).toString(),
-          year: currentDate.getUTCFullYear().toString()
-        }
-
-        // setting the system time to a date that is one day before the current date
-        // and in BST timezone it is also one day before the current date
-        jest.setSystemTime(
-          new Date(
-            Date.UTC(
-              yesterday.getUTCFullYear(),
-              yesterday.getUTCMonth(),
-              yesterday.getUTCDate(),
-              0,
-              30,
-              0,
-              0
-            )
-          )
-        )
-
-        const difference = differenceInDaysWithToday(dateData)
-        expect(difference).toBe(-1)
       })
     })
   })

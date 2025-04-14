@@ -20,7 +20,8 @@ export const createTZDate = (inputDate) =>
     inputDate.getHours(),
     inputDate.getMinutes(),
     inputDate.getSeconds(),
-    inputDate.getMilliseconds()
+    inputDate.getMilliseconds(),
+    Intl.DateTimeFormat().resolvedOptions().timeZone
   )
 
 /**
@@ -43,6 +44,7 @@ export const toBSTDate = (date) => {
 export const differenceInDaysWithToday = (inputDate) => {
   const currentDate = createTZDate(new Date())
   const dateToCompare = toBSTDate(inputDate)
+
   return differenceInCalendarDays(currentDate, dateToCompare)
 }
 
