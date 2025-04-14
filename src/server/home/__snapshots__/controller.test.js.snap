@@ -93,12 +93,12 @@ exports[`#homeController should match content 1`] = `
           choose the option for TB licencing. Lines are open from Monday to
           Friday between 8.30am and 5pm.
         </p>
-        <a class="gem-c-button govuk-button govuk-button--start " role="button" rel="external" data-module="govuk-button" draggable="false" href="start-router">
-          Start now
-          <svg class="govuk-button__start-icon govuk-!-display-none-print" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" focusable="false" aria-hidden="true">
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
-          </svg>
-        </a>
+        <a href="task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
+  Start now
+  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+  </svg>
+</a>
         <h3 class="govuk-heading-m">Give feedback</h3>
         <p class="govuk-body">
           Your feedback will help improve this service. You can give feedback by
