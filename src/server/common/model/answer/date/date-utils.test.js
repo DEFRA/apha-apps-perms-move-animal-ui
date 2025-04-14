@@ -90,6 +90,7 @@ describe('Date Helpers', () => {
     describe('when the server is in a different timezone', () => {
       beforeEach(() => {
         jest.useFakeTimers('modern')
+        console.log('test')
       })
 
       afterEach(() => {
