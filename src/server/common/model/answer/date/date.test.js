@@ -350,11 +350,11 @@ describe('DateAnswer.validation', () => {
   })
 
   it('should reject dates that are in the future', () => {
-    const tomorrow = addDays(new Date(), 1)
+    const tomorrow = addDays(new Date(), 2)
     const answer = new TestDateAnswer({
       day: tomorrow.getDate().toString(),
       month: (tomorrow.getMonth() + 1).toString(),
-      year: '2050'
+      year: tomorrow.getFullYear().toString()
     })
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
