@@ -22,7 +22,7 @@ export const createTZDate = (inputDate) =>
     inputDate.getSeconds(),
     inputDate.getMilliseconds(),
     Intl.DateTimeFormat().resolvedOptions().timeZone
-  )
+  ).withTimeZone('Europe/London')
 
 /**
  * Converts a DateData object to a TZDate object assuming BST timezone
