@@ -3,6 +3,7 @@
 import { calvesUnder42DaysOld } from './calves-under-42-days-old/index.js'
 import { identificationWarning } from './warning/index.js'
 import { earTags } from './ear-tags/index.js'
+import { oldestCalfDob } from './oldest-calf-dob/index.js'
 import { identificationSummary } from './summary/index.js'
 import { testingDates } from './testing-dates/index.js'
 import { earTagsCalves } from './ear-tags-calves/index.js'
@@ -20,6 +21,7 @@ export const identification = {
         earTags,
         earTagsCalves,
         identificationSummary,
+        oldestCalfDob,
         identificationWarning
       ])
     }

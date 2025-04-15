@@ -28,8 +28,6 @@ Frontend to the 'Get permission to move animals under disease controls' service.
     - [Development image](#development-image)
     - [Production image](#production-image)
     - [Docker Compose](#docker-compose)
-    - [Dependabot](#dependabot)
-    - [SonarCloud](#sonarcloud)
   - [Licence](#licence)
     - [About the licence](#about-the-licence)
 

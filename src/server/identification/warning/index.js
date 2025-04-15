@@ -1,13 +1,14 @@
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
 import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
+import { calculateNextPage } from '../../common/helpers/next-page.js'
 
 export class IdentificationWarningPage extends Page {
   pageTitle = 'Your application might be unsuccessful'
   sectionKey = 'identification'
   pageKey = 'warning'
   urlPath = `/${this.sectionKey}/warning`
-  isInterstitial = true
+  overrideRedirects = true
 
   view = `identification/warning/index`
 
@@ -15,9 +16,12 @@ export class IdentificationWarningPage extends Page {
     return earTagsCalvesPage
   }
 
-  viewProps() {
+  viewProps(req) {
     return {
-      nextPage: this.nextPage().urlPath
+      continueUrl: calculateNextPage(
+        req?.query?.redirect_uri,
+        this.nextPage().urlPath
+      )
     }
   }
 }
@@ -28,7 +32,10 @@ export const identificationWarningPage = new IdentificationWarningPage()
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const identificationWarning = new PageController(
-  identificationWarningPage
+  identificationWarningPage,
+  {
+    methods: ['GET']
+  }
 ).plugin()
 
 /**
