@@ -82,6 +82,22 @@ describe('Date Input Page Validation (single error shown)', () => {
     )
   })
 
+  it('prioritises no input over invalid errors', async () => {
+    await oldestCalfDobPage.dateErrorTest(
+      { day: '40', month: '', year: '23' },
+      oldestCalfDobPage.noMonthError,
+      'month'
+    )
+  })
+
+  it('prioritises invalid errors over future date', async () => {
+    await oldestCalfDobPage.dateErrorTest(
+      { day: '40', month: '03', year: '2070' },
+      oldestCalfDobPage.dayFormatError,
+      'day'
+    )
+  })
+
   it('shows future date error when date is tomorrow', async () => {
     const tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate() + 1)
