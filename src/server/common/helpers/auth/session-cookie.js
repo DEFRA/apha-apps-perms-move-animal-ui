@@ -36,6 +36,7 @@ const sessionCookie = {
           )
 
           if (tokenHasExpired) {
+            server.logger.info(`Session expired, refreshing...`)
             const response = await refreshAccessToken(request)
             const refreshAccessTokenJson = JSON.parse(
               response.payload.toString()
@@ -43,7 +44,6 @@ const sessionCookie = {
 
             if (response.res.statusCode !== statusCodes.OK) {
               removeUserSession(request)
-
               return { isValid: false }
             }
 
@@ -57,6 +57,8 @@ const sessionCookie = {
               credentials: updatedSession
             }
           }
+
+          server.logger.info(`Session valid`)
 
           const userSession = await server.app.cache.get(session.sessionId)
 

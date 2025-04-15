@@ -2,7 +2,7 @@
 import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
-const pageId = 'identification-oldest-calf-dob-date-input'
+const pageId = 'date'
 const pageHeadingAndTitle =
   'What is the date of birth of the oldest calf under 42 days old?'
 
@@ -26,7 +26,7 @@ class OldestCalfDOBPage extends Page {
     'Date of birth of the oldest calf must be today or in the past'
 
   getDayInput() {
-    return super.getInputField(pageId)
+    return super.getInputField(`${pageId}-day`)
   }
 
   getMonthInput() {
@@ -41,8 +41,8 @@ class OldestCalfDOBPage extends Page {
     return super.getErrorElement(pageId)
   }
 
-  errorLink() {
-    return super.getErrorLink(pageId)
+  errorLink(id) {
+    return super.getErrorLink(id)
   }
 
   async enterDateAndContinue({ day = '', month = '', year = '' }, nextPage) {
@@ -64,11 +64,18 @@ class OldestCalfDOBPage extends Page {
     }
   }
 
-  async dateErrorTest({ day = '', month = '', year = '' }, errorMessage) {
+  async dateErrorTest(
+    { day = '', month = '', year = '' },
+    errorMessage,
+    focus = 'day'
+  ) {
     await this.enterDateAndContinue({ day, month, year })
 
     await super.verifyErrorsOnPage(this.inputFieldError(), errorMessage)
-    await super.verifySummaryErrorLink(this.errorLink(), this.getDayInput())
+    await super.verifySummaryErrorLink(
+      this.errorLink(`${pageId}-${focus}`),
+      this.getDayInput()
+    )
   }
 }
 
