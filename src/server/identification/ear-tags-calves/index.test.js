@@ -1,6 +1,6 @@
 import { EarTagsCalvesAnswer } from '../../common/model/answer/ear-tags/ear-tags-calves.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { cattleOver42DaysPage } from '../cattle-over-42-days-old/index.js'
+import { animals42DaysOldOrOlderPage } from '../animals-42-days-old-or-older/index.js'
 import { earTagsCalvesPage, EarTagsCalvesPage } from './index.js'
 
 const sectionKey = 'identification'
@@ -48,7 +48,7 @@ describe('EarTagsCalvesPage', () => {
 
   it('nextPage should return identification summary page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(cattleOver42DaysPage)
+    expect(nextPage).toBe(animals42DaysOldOrOlderPage)
   })
 
   it('should export page', () => {
