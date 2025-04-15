@@ -1,6 +1,7 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
 import { StateManager } from '../../state/state-manager.js'
+import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
@@ -101,21 +102,25 @@ export class SectionModel {
     /** @type {Page} */
     let page = this.firstPageFactory(data)
 
-    while (page instanceof QuestionPage) {
-      const answer = page.Answer.fromState(
-        sectionData?.[page.questionKey],
-        data
-      )
-      pages.push({
-        kind: 'Question',
-        page,
-        answer
-      })
-      if (!answer.validate().isValid) {
-        break
+    while (!(page instanceof ExitPage) && !(page instanceof SummaryPage)) {
+      if (page instanceof QuestionPage) {
+        const answer = page.Answer.fromState(
+          sectionData?.[page.questionKey],
+          data
+        )
+        pages.push({
+          kind: 'Question',
+          page,
+          answer
+        })
+        if (!answer.validate().isValid) {
+          break
+        }
+        page = page.nextPage(answer, data)
+      } else {
+        pages.push({ kind: 'NonQuestion', page })
+        page = page.nextPage()
       }
-
-      page = page.nextPage(answer, data)
     }
 
     if (!(page instanceof QuestionPage)) {
