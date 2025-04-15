@@ -6,6 +6,7 @@ async function refreshAccessToken(request) {
   const refreshToken = authedUser?.refreshToken ?? null
   const clientId = config.get('auth').defraIdClientId
   const clientSecret = config.get('auth').defraIdClientSecret
+  const serviceId = config.get('auth').defraIdServiceId
 
   const params = new URLSearchParams()
 
@@ -13,7 +14,10 @@ async function refreshAccessToken(request) {
   params.append('client_secret', clientSecret)
   params.append('grant_type', 'refresh_token')
   params.append('refresh_token', refreshToken)
-  params.append('scope', `${clientId} openid profile email offline_access`)
+  params.append(
+    'scope',
+    `${clientId} ${serviceId} openid profile email offline_access`
+  )
 
   request.logger.info('Access token expired, refreshing...')
 
@@ -22,7 +26,7 @@ async function refreshAccessToken(request) {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Cache-Control': 'no-cache'
     },
-    payload: params,
+    payload: params.toString(),
     rejectUnauthorized: false
   })
 }
