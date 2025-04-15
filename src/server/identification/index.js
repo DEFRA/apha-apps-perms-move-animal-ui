@@ -7,6 +7,7 @@ import { oldestCalfDob } from './oldest-calf-dob/index.js'
 import { identificationSummary } from './summary/index.js'
 import { testingDates } from './testing-dates/index.js'
 import { earTagsCalves } from './ear-tags-calves/index.js'
+import { animals42DaysOldOrOlder } from './animals-42-days-old-or-older/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -22,7 +23,8 @@ export const identification = {
         earTagsCalves,
         identificationSummary,
         oldestCalfDob,
-        identificationWarning
+        identificationWarning,
+        animals42DaysOldOrOlder
       ])
     }
   }
