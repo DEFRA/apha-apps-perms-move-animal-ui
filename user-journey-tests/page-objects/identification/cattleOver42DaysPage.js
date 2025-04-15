@@ -7,7 +7,7 @@ const pageHeadingAndTitle =
 const noInputError =
   'Select if you are also moving any animals 42 days old or older'
 
-class Animals42DaysOldOrOlderPage extends YesNoRadioPage {
+class CattleOver42DaysPage extends YesNoRadioPage {
   constructor() {
     super({
       pageId,
@@ -20,4 +20,4 @@ class Animals42DaysOldOrOlderPage extends YesNoRadioPage {
   pageTitle = pageHeadingAndTitle
 }
 
-export default new Animals42DaysOldOrOlderPage()
+export default new CattleOver42DaysPage()

@@ -4,7 +4,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import earTagsCalvesPage from '../../page-objects/identification/earTagsCalvesPage.js'
-import animals42DaysOldOrOlderPage from '../../page-objects/identification/animals42DaysOldOrOlderPage.js'
+import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42DaysPage.js'
 
 describe('Ear tags calves - page spec', () => {
   // eslint-disable-next-line no-undef
@@ -27,7 +27,7 @@ describe('Ear tags calves - page spec', () => {
   it('Should input correct input and continue without error', async () => {
     await earTagsCalvesPage.inputTextAndContinue(
       'ear tags',
-      animals42DaysOldOrOlderPage
+      cattleOver42DaysPage
     )
   })
 })
