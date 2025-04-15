@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
-const pageId = 'calvesOver42DaysOld'
+const pageId = 'animals42DaysOldOrOlder'
 const pageHeadingAndTitle =
   'Are you also moving any animals 42 days old or older?'
 const noInputError =
