@@ -8,6 +8,20 @@ import { AddressAnswer } from '../../answer/address/address.js'
 import { OriginTypePage } from '~/src/server/origin/origin-type/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
 import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
+import { subDays } from 'date-fns'
+import { Animals42DaysOldOrOlderPage } from '~/src/server/identification/animals-42-days-old-or-older/index.js'
+import { CalvesUnder42DaysOldPage } from '~/src/server/identification/calves-under-42-days-old/index.js'
+import { EarTagsCalvesPage } from '~/src/server/identification/ear-tags-calves/index.js'
+import { EarTagsPage } from '~/src/server/identification/ear-tags/index.js'
+import { OldestCalfDobPage } from '~/src/server/identification/oldest-calf-dob/index.js'
+import { TestingDatesPage } from '~/src/server/identification/testing-dates/index.js'
+import { Animals42DaysOldOrOlderAnswer } from '../../answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
+import { CalfDob } from '../../answer/calf-dob/calf-dob.js'
+import { CalvesUnder42DaysOldAnswer } from '../../answer/calves-under-42-days-old/calves-under-42-days-old.js'
+import { EarTagsCalvesAnswer } from '../../answer/ear-tags/ear-tags-calves.js'
+import { EarTagsAnswer } from '../../answer/ear-tags/ear-tags.js'
+import { TestingDatesAnswer } from '../../answer/testing-dates/testing-dates.js'
+import { IdentificationSection } from '../identification/identification.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
@@ -24,6 +38,26 @@ const exitState = {
 
 const applicationState = {
   origin: validOriginSectionState
+}
+
+// This date will force a warning to be shown in animal identification section
+const date36DaysOld = subDays(new Date(), 36)
+
+const identificationStateWithWarning = {
+  calvesUnder42DaysOld: 'yes',
+  earTagsCalves: 'some_tags',
+  oldestCalfDob: {
+    day: date36DaysOld.getDate().toString(),
+    month: (date36DaysOld.getMonth() + 1).toString(),
+    year: date36DaysOld.getFullYear().toString()
+  },
+  animals42DaysOldOrOlder: 'yes',
+  testingDates: '01/01/2023',
+  earTags: 'some_other_tags'
+}
+
+const applicationStateWithWarning = {
+  identification: identificationStateWithWarning
 }
 
 describe('SectionModel.questionPageAnswers', () => {
@@ -69,6 +103,32 @@ describe('SectionModel.questionPageAnswers', () => {
 
     expect(pageAnswers.at(2)?.page).toBeInstanceOf(CphNumberPage)
     expect(pageAnswers.at(2)?.answer).toBeInstanceOf(CphNumberAnswer)
+  })
+
+  it('should NOT short-circuit on a warning page if there are more answers after it', () => {
+    const origin = IdentificationSection.fromState(applicationStateWithWarning)
+    const pageAnswers = origin.questionPageAnswers
+
+    expect(pageAnswers).toHaveLength(6)
+    expect(pageAnswers.at(0)?.page).toBeInstanceOf(CalvesUnder42DaysOldPage)
+    expect(pageAnswers.at(0)?.answer).toBeInstanceOf(CalvesUnder42DaysOldAnswer)
+
+    expect(pageAnswers.at(1)?.page).toBeInstanceOf(OldestCalfDobPage)
+    expect(pageAnswers.at(1)?.answer).toBeInstanceOf(CalfDob)
+
+    expect(pageAnswers.at(2)?.page).toBeInstanceOf(EarTagsCalvesPage)
+    expect(pageAnswers.at(2)?.answer).toBeInstanceOf(EarTagsCalvesAnswer)
+
+    expect(pageAnswers.at(3)?.page).toBeInstanceOf(Animals42DaysOldOrOlderPage)
+    expect(pageAnswers.at(3)?.answer).toBeInstanceOf(
+      Animals42DaysOldOrOlderAnswer
+    )
+
+    expect(pageAnswers.at(4)?.page).toBeInstanceOf(TestingDatesPage)
+    expect(pageAnswers.at(4)?.answer).toBeInstanceOf(TestingDatesAnswer)
+
+    expect(pageAnswers.at(5)?.page).toBeInstanceOf(EarTagsPage)
+    expect(pageAnswers.at(5)?.answer).toBeInstanceOf(EarTagsAnswer)
   })
 })
 

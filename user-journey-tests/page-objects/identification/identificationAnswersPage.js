@@ -11,7 +11,10 @@ class IdentificationAnswersPage extends AnswersBasePage {
   changeLinks = {
     calvesUnder42: '[data-testid="calvesUnder42DaysOld-change-link"]',
     tbTestDates: '[data-testid="testingDates-change-link"]',
-    earTags: '[data-testid="earTags-change-link"]'
+    earTags: '[data-testid="earTags-change-link"]',
+    oldestDOB: '[data-testid="oldestCalfDob-change-link"]',
+    earTagsCalves: '[data-testid="earTagsCalves-change-link"]',
+    cattleOver42: '[data-testid="animals42DaysOldOrOlder-change-link"]'
   }
 }
 
