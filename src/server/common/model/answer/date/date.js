@@ -223,7 +223,7 @@ export class DateAnswer extends AnswerModel {
   }
 
   /**
-   * @param {object} fields
+   * @param {DateData} fields
    */
   _extractFields({ day, month, year }) {
     return /** @type {DateData} */ ({ day, month, year })

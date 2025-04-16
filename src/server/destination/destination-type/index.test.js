@@ -132,6 +132,7 @@ describe('DestinationTypePage.nextPage', () => {
         (destinationType) => {
           const context = { origin: { onOffFarm: 'on', originType } }
           const answer = new DestinationTypeAnswer({
+            /* eslint-disable-next-line object-shorthand */
             destinationType: /** @type {DestinationTypeData} */ (
               destinationType
             )
@@ -169,6 +170,7 @@ describe('DestinationTypePage.nextPage', () => {
           origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
         }
         const answer = new DestinationTypeAnswer({
+          /* eslint-disable-next-line object-shorthand */
           destinationType: /** @type {DestinationTypeData} */ (destinationType)
         })
         const nextPage = page.nextPage(answer, context)

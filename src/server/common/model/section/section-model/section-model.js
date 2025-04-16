@@ -48,8 +48,8 @@ export class SectionModel {
   }
 
   /**
-   * @type {(RawApplicationState?) => QuestionPage}
-   * */
+   * @type {(RawApplicationState) => QuestionPage}
+   */
   static firstPageFactory
 
   getFirstPage(applicationState) {
