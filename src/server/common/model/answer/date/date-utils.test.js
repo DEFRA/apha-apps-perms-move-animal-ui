@@ -49,26 +49,20 @@ describe('Date Helpers', () => {
     })
 
     it('should return false if current date matches in BST, even UTC-based system time is showing the previous day', () => {
-      const systemDateTime = new TZDate(
-        '2025-04-01T00:30:00',
-        'Europe/London'
-      ).withTimeZone('UTC')
-      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
-
-      jest.setSystemTime(systemDateTime)
+      jest.setSystemTime(
+        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+      )
+      expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
       const currentDate = { day: '01', month: '04', year: '2025' }
       expect(isFutureDate(currentDate)).toBe(false)
     })
 
     it('should return false if the current date matches UTC-based system time (since that will be behind BST in all cases)', () => {
-      const systemDateTime = new TZDate(
-        '2025-04-01T00:30:00',
-        'Europe/London'
-      ).withTimeZone('UTC')
-      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
-
-      jest.setSystemTime(systemDateTime)
+      jest.setSystemTime(
+        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+      )
+      expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
       const currentDate = { day: '31', month: '03', year: '2025' }
       expect(isFutureDate(currentDate)).toBe(false)
@@ -102,11 +96,10 @@ describe('Date Helpers', () => {
     })
 
     it('should return 0 if the given date when coverted to UTC is actually the current date', () => {
-      const systemDateTime = new TZDate(
-        '2025-04-01T00:30:00',
-        'Europe/London'
-      ).withTimeZone('UTC')
-      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
+      jest.setSystemTime(
+        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+      )
+      expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
       const currentDate = { day: '01', month: '04', year: '2025' }
       const difference = differenceInDaysWithToday(currentDate)
@@ -114,11 +107,10 @@ describe('Date Helpers', () => {
     })
 
     it('should return 1 if the given date when coverted to BST is one day after UTC current date', () => {
-      const systemDateTime = new TZDate(
-        '2025-04-01T00:30:00',
-        'Europe/London'
-      ).withTimeZone('UTC')
-      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
+      jest.setSystemTime(
+        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+      )
+      expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
       const currentDate = { day: '31', month: '03', year: '2025' }
       const difference = differenceInDaysWithToday(currentDate)
