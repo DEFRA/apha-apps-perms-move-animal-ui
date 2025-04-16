@@ -28,7 +28,7 @@ describe('Date Helpers', () => {
   describe('isFutureDate', () => {
     beforeEach(() => {
       jest.useFakeTimers()
-      jest.setSystemTime(new TZDate('2025-04-01T00:00:00', 'Europe/London'))
+      jest.setSystemTime(new TZDate('2025-04-01T00:00:00+01:00'))
     })
 
     afterAll(jest.useRealTimers)
@@ -50,7 +50,7 @@ describe('Date Helpers', () => {
 
     it('should return false if current date matches in BST, even UTC-based system time is showing the previous day', () => {
       jest.setSystemTime(
-        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+        new TZDate('2025-04-01T00:30:00+01:00').withTimeZone('UTC')
       )
       expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
@@ -60,7 +60,7 @@ describe('Date Helpers', () => {
 
     it('should return false if the current date matches UTC-based system time (since that will be behind BST in all cases)', () => {
       jest.setSystemTime(
-        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+        new TZDate('2025-04-01T00:30:00+01:00').withTimeZone('UTC')
       )
       expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
@@ -72,7 +72,7 @@ describe('Date Helpers', () => {
   describe('differenceInDaysWithToday', () => {
     beforeEach(() => {
       jest.useFakeTimers()
-      jest.setSystemTime(new TZDate('2025-04-01T00:00:00', 'Europe/London'))
+      jest.setSystemTime(new TZDate('2025-04-01T00:00:00+01:00'))
     })
 
     afterAll(jest.useRealTimers)
@@ -97,7 +97,7 @@ describe('Date Helpers', () => {
 
     it('should return 0 if the given date is actually the current date (when compared on the basis of BST)', () => {
       jest.setSystemTime(
-        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+        new TZDate('2025-04-01T00:30:00+01:00').withTimeZone('UTC')
       )
       expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
@@ -108,7 +108,7 @@ describe('Date Helpers', () => {
 
     it('should return 1 if the given date is before the current date (when compared on the basis of BST)', () => {
       jest.setSystemTime(
-        new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
+        new TZDate('2025-04-01T00:30:00+01:00').withTimeZone('UTC')
       )
       expect(new Date().toISOString()).toBe('2025-03-31T23:30:00.000Z')
 
