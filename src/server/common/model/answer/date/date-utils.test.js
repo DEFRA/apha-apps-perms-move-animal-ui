@@ -1,6 +1,5 @@
 import { TZDate } from '@date-fns/tz'
 import {
-  createTZDate,
   differenceInDaysWithToday,
   isFutureDate,
   toBSTDate
@@ -28,41 +27,52 @@ describe('Date Helpers', () => {
   })
 
   describe('isFutureDate', () => {
+    beforeEach(() => {
+      jest.useFakeTimers()
+      jest.setSystemTime(new TZDate('2025-04-01T00:00:00', 'Europe/London'))
+    })
+
+    afterAll(jest.useRealTimers)
+
     it('should return true for a future date', () => {
-      const futureDate = { day: '15', month: '08', year: '3000' }
+      const futureDate = { day: '02', month: '04', year: '2025' }
       expect(isFutureDate(futureDate)).toBe(true)
     })
 
     it('should return false for a past date', () => {
-      const pastDate = { day: '15', month: '08', year: '2000' }
+      const pastDate = { day: '31', month: '03', year: '2025' }
       expect(isFutureDate(pastDate)).toBe(false)
     })
 
     it('should return false for the current date', () => {
-      const currentDate = new Date()
-      const dateData = {
-        day: String(currentDate.getUTCDate()).padStart(2, '0'),
-        month: String(currentDate.getUTCMonth() + 1).padStart(2, '0'),
-        year: String(currentDate.getUTCFullYear())
-      }
-      expect(isFutureDate(dateData)).toBe(false)
+      const currentDate = { day: '01', month: '04', year: '2025' }
+      expect(isFutureDate(currentDate)).toBe(false)
     })
-  })
 
-  describe('createTZDate', () => {
-    it('should create a TZDate object with the same date and time as the input Date object', () => {
-      const inputDate = new Date('2025-04-10T10:30:45.123Z')
-      const tzDate = createTZDate(inputDate)
+    it('should return false if current date matches in BST, even UTC-based system time is showing the previous day', () => {
+      const systemDateTime = new TZDate(
+        '2025-04-01T00:30:00',
+        'Europe/London'
+      ).withTimeZone('UTC')
+      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
 
-      expect(tzDate).toBeInstanceOf(TZDate)
-      expect(tzDate.timeZone).toBe('Europe/London')
-      expect(tzDate.getUTCFullYear()).toBe(inputDate.getUTCFullYear())
-      expect(tzDate.getUTCMonth()).toBe(inputDate.getUTCMonth())
-      expect(tzDate.getUTCDate()).toBe(inputDate.getUTCDate())
-      expect(tzDate.getUTCHours()).toBe(inputDate.getUTCHours())
-      expect(tzDate.getUTCMinutes()).toBe(inputDate.getUTCMinutes())
-      expect(tzDate.getUTCSeconds()).toBe(inputDate.getUTCSeconds())
-      expect(tzDate.getUTCMilliseconds()).toBe(inputDate.getUTCMilliseconds())
+      jest.setSystemTime(systemDateTime)
+
+      const currentDate = { day: '01', month: '04', year: '2025' }
+      expect(isFutureDate(currentDate)).toBe(false)
+    })
+
+    it('should return false if the current date matches UTC-based system time (since that will be behind BST in all cases)', () => {
+      const systemDateTime = new TZDate(
+        '2025-04-01T00:30:00',
+        'Europe/London'
+      ).withTimeZone('UTC')
+      expect(systemDateTime.toISOString()).toBe('2025-03-31T23:30:00.000+00:00')
+
+      jest.setSystemTime(systemDateTime)
+
+      const currentDate = { day: '31', month: '03', year: '2025' }
+      expect(isFutureDate(currentDate)).toBe(false)
     })
   })
 
