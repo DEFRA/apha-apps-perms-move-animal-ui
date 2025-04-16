@@ -58,8 +58,6 @@ const sessionCookie = {
             }
           }
 
-          server.logger.info(`Session valid`)
-
           const userSession = await server.app.cache.get(session.sessionId)
 
           if (userSession) {
