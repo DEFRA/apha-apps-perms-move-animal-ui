@@ -36,11 +36,17 @@ export class PageController extends GenericPageController {
   plugin() {
     /** @type {ServerRoute<ReqRefDefaults>[]} */
     const handlers = this.options.methods.map((method) => {
-      return {
+      const handler = {
         method,
         path: this.page.urlPath,
         handler: this[`${method.toLowerCase()}Handler`].bind(this)
       }
+      if (!this.page.auth) {
+        handler.options = {
+          auth: false
+        }
+      }
+      return handler
     })
 
     return {
