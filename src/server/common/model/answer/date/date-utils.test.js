@@ -95,7 +95,7 @@ describe('Date Helpers', () => {
       expect(difference).toBe(0)
     })
 
-    it('should return 0 if the given date when coverted to BST is actually the current date', () => {
+    it('should return 0 if the given date is actually the current date (when both are converted to BST)', () => {
       jest.setSystemTime(
         new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
       )
@@ -106,7 +106,7 @@ describe('Date Helpers', () => {
       expect(difference).toBe(0)
     })
 
-    it('should return 1 if the given date when coverted to BST before the current date', () => {
+    it('should return 1 if the given date is before the current date (when both are converted to BST)', () => {
       jest.setSystemTime(
         new TZDate('2025-04-01T00:30:00', 'Europe/London').withTimeZone('UTC')
       )
