@@ -69,6 +69,7 @@ describe('#OriginPage.nextPage', () => {
       `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
       (originType) => {
         const answer = new OriginTypeAnswer(
+          /* eslint-disable-next-line object-shorthand */
           { originType: /** @type {OriginTypeData} */ (originType) },
           context
         )
