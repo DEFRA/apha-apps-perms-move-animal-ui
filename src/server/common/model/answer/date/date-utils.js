@@ -9,22 +9,6 @@ export const MONTH_DAYS = 31
 export const YEAR_MONTHS = 12
 
 /**
- * Creates a TZ Date object using the given date
- * @param {Date} inputDate
- */
-export const createTZDate = (inputDate) =>
-  new TZDate(
-    inputDate.getFullYear(),
-    inputDate.getMonth(),
-    inputDate.getDate(),
-    inputDate.getHours(),
-    inputDate.getMinutes(),
-    inputDate.getSeconds(),
-    inputDate.getMilliseconds(),
-    Intl.DateTimeFormat().resolvedOptions().timeZone
-  ).withTimeZone('Europe/London')
-
-/**
  * Converts a DateData object to a TZDate object assuming BST timezone
  * @param {DateData | undefined} date
  */
@@ -42,7 +26,7 @@ export const toBSTDate = (date) => {
  * @returns {number}
  */
 export const differenceInDaysWithToday = (inputDate) => {
-  const currentDate = createTZDate(new Date())
+  const currentDate = new Date()
   const dateToCompare = toBSTDate(inputDate)
 
   return differenceInCalendarDays(currentDate, dateToCompare)
