@@ -87,7 +87,7 @@ class Page {
 
   async verifyPrivateBetaBanner(
     feedbackText = 'feedback',
-    bannerText = 'Private beta'
+    bannerText = 'Beta'
   ) {
     await this.verifyFeedbackLink(feedbackText)
     await page.validateElementVisibleAndText(
