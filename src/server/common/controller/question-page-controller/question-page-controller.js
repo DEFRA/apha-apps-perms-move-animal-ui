@@ -15,6 +15,7 @@ export class QuestionPageController extends GenericPageController {
   constructor(page) {
     super(page)
     this.page = page
+    this.errorKey = `errors:${this.page.sectionKey}:${this.page.questionKey}`
   }
 
   /** @returns {ServerRegisterPluginObject<void>} */
@@ -52,27 +53,30 @@ export class QuestionPageController extends GenericPageController {
       applicationState
     )
 
-    const errors = req.yar.flash('errors')
-    const errorMessages = req.yar.flash('errorMessages')
+    const pageError = req.yar.get(this.errorKey)
+
+    const titlePrefix = pageError?.errors?.length > 0 ? 'Error: ' : ''
 
     return h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
-      pageTitle: this.page.title,
+      pageTitle: `${titlePrefix} ${this.page.title}`,
       heading: this.page.heading,
-      value: answer.value,
-      answer,
+      answer: pageError ? this.page.Answer.fromState(pageError?.value) : answer,
       viewModelOptions: {
-        validate: errors.length > 0,
+        validate: Object.keys(pageError?.errors ?? []).length > 0,
         question: this.page.question
       },
       ...args,
-      errors: errors.length ? errors : undefined,
-      errorMessages: errorMessages.length ? errorMessages : undefined,
+      errors: pageError?.errors.length ? pageError?.errors : undefined,
+      errorMessages: pageError?.errorMessages.length
+        ? pageError?.errorMessages
+        : undefined,
       ...this.page.viewProps(req)
     })
   }
 
   handlePost(req, h) {
+    req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
     const state = new StateManager(req)
     const applicationState = state.toState()
@@ -87,8 +91,11 @@ export class QuestionPageController extends GenericPageController {
       this.recordErrors(errors)
       state.set(this.page, undefined)
 
-      req.yar.flash('errors', errors)
-      req.yar.flash('errorMessages', Answer.errorMessages(errors))
+      req.yar.set(this.errorKey, {
+        errors,
+        errorMessages: Answer.errorMessages(errors),
+        value: answer.value
+      })
 
       return h.redirect(this.page.urlPath)
     }
