@@ -554,12 +554,14 @@ describe('QuestionPageController', () => {
 
   describe('View render', () => {
     const h = {
-      view: jest.fn().mockReturnValue('view')
+      view: jest.fn().mockReturnValue('view'),
+      redirect: jest.fn()
     }
     const request = {
       yar: {
         get: jest.fn(),
-        set: jest.fn()
+        set: jest.fn(),
+        flash: jest.fn()
       },
       query: {
         redirect_uri: 'redirect_uri'
@@ -595,21 +597,17 @@ describe('QuestionPageController', () => {
 
       const result = controller.postHandler(postRequest, h)
 
-      expect(h.view).toHaveBeenCalledTimes(1)
-      expect(h.view).toHaveBeenCalledWith(
-        questionView,
-        expect.objectContaining({
-          errorMessages: [
-            { href: `#${questionKey}`, text: 'There is a problem' }
-          ],
-          errors: { [questionKey]: { text: 'There is a problem' } },
-          viewModelOptions: { validate: true, question },
-          heading: question,
-          nextPage: 'test_next_page',
-          pageTitle: `Error: ${question}`,
-          value: undefined
-        })
-      )
+      expect(h.redirect).toHaveBeenCalledTimes(1)
+      expect(request.yar.flash).toHaveBeenCalledTimes(2)
+      expect(h.yar.flash.mock.calls[0]).toEqual([
+        'errors',
+        { [questionKey]: { text: 'There is a problem' } }
+      ])
+
+      expect(h.yar.flash.mock.calls[1]).toEqual([
+        'errorMessages',
+        [{ href: `#${questionKey}`, text: 'There is a problem' }]
+      ])
 
       const viewArgs = h.view.mock.calls[0][1]
       expect(viewArgs.answer).toBeInstanceOf(TestAnswer)

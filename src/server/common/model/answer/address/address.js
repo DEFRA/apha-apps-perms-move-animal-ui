@@ -79,7 +79,7 @@ export class AddressAnswer extends AnswerModel {
   get value() {
     const trimmedValues = Object.fromEntries(
       Object.entries(this._data ?? {})
-        .map(([key, value]) => [key, value.trim()])
+        .map(([key, value]) => [key, value?.trim()])
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value !== '')
     )

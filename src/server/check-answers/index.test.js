@@ -119,10 +119,26 @@ describe('#CheckAnswers', () => {
   })
 
   it('should not send an email on POST and display an error if a declaration is missing', async () => {
-    const { payload, statusCode } = await server.inject(
+    const { headers, statusCode } = await server.inject(
       withCsrfProtection(
         {
           method: 'POST',
+          url: checkAnswersUri,
+          payload: {}
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(checkAnswersUri)
+
+    const { payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
           url: checkAnswersUri,
           payload: {}
         },
@@ -140,7 +156,6 @@ describe('#CheckAnswers', () => {
     )
 
     expect(sendNotification).not.toHaveBeenCalled()
-    expect(statusCode).toBe(statusCodes.ok)
   })
 
   it('should not send an email and redirect to task incomplete on POST if application is invalid', async () => {

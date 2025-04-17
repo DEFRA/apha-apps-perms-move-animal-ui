@@ -15,6 +15,7 @@ export class QuestionPageController extends GenericPageController {
   constructor(page) {
     super(page)
     this.page = page
+    this.errorKey = `errors:${this.page.sectionKey}:${this.page.questionKey}`
   }
 
   /** @returns {ServerRegisterPluginObject<void>} */
@@ -52,19 +53,30 @@ export class QuestionPageController extends GenericPageController {
       applicationState
     )
 
+    const pageError = req.yar.get(this.errorKey)
+
+    const titlePrefix = pageError?.errors?.length > 0 ? 'Error: ' : ''
+
     return h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
-      pageTitle: this.page.title,
+      pageTitle: `${titlePrefix} ${this.page.title}`,
       heading: this.page.heading,
-      value: answer.value,
-      answer,
-      viewModelOptions: { validate: false, question: this.page.question },
-      ...this.page.viewProps(req),
-      ...args
+      answer: pageError ? this.page.Answer.fromState(pageError?.value) : answer,
+      viewModelOptions: {
+        validate: Object.keys(pageError?.errors ?? []).length > 0,
+        question: this.page.question
+      },
+      ...args,
+      errors: pageError?.errors.length ? pageError?.errors : undefined,
+      errorMessages: pageError?.errorMessages.length
+        ? pageError?.errorMessages
+        : undefined,
+      ...this.page.viewProps(req)
     })
   }
 
   handlePost(req, h) {
+    req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
     const state = new StateManager(req)
     const applicationState = state.toState()
@@ -79,17 +91,13 @@ export class QuestionPageController extends GenericPageController {
       this.recordErrors(errors)
       state.set(this.page, undefined)
 
-      return h.view(this.page.view, {
-        nextPage: payload.nextPage,
-        pageTitle: `Error: ${this.page.title}`,
-        heading: this.page.heading,
-        value: answer.value,
-        answer,
-        viewModelOptions: { validate: true, question: this.page.question },
+      req.yar.set(this.errorKey, {
         errors,
         errorMessages: Answer.errorMessages(errors),
-        ...this.page.viewProps(req)
+        value: answer.value
       })
+
+      return h.redirect(this.page.urlPath)
     }
 
     state.set(this.page, answer)
