@@ -11,6 +11,7 @@ import { sessionCache } from '~/src/server/common/helpers/session-cache/session-
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
 import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
+import { disableClientCache } from './common/helpers/client-cache.js/client-cache.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -58,6 +59,7 @@ export async function createServer() {
     router // Register all the controllers/routes defined in src/server/router.js
   ])
 
+  server.ext('onPreResponse', disableClientCache)
   server.ext('onPreResponse', catchAll)
 
   return server
