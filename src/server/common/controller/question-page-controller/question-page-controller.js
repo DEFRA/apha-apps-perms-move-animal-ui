@@ -52,15 +52,23 @@ export class QuestionPageController extends GenericPageController {
       applicationState
     )
 
+    const errors = req.yar.flash('errors')
+    const errorMessages = req.yar.flash('errorMessages')
+
     return h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,
       heading: this.page.heading,
       value: answer.value,
       answer,
-      viewModelOptions: { validate: false, question: this.page.question },
-      ...this.page.viewProps(req),
-      ...args
+      viewModelOptions: {
+        validate: errors.length > 0,
+        question: this.page.question
+      },
+      ...args,
+      errors: errors.length ? errors : undefined,
+      errorMessages: errorMessages.length ? errorMessages : undefined,
+      ...this.page.viewProps(req)
     })
   }
 
@@ -79,17 +87,10 @@ export class QuestionPageController extends GenericPageController {
       this.recordErrors(errors)
       state.set(this.page, undefined)
 
-      return h.view(this.page.view, {
-        nextPage: payload.nextPage,
-        pageTitle: `Error: ${this.page.title}`,
-        heading: this.page.heading,
-        value: answer.value,
-        answer,
-        viewModelOptions: { validate: true, question: this.page.question },
-        errors,
-        errorMessages: Answer.errorMessages(errors),
-        ...this.page.viewProps(req)
-      })
+      req.yar.flash('errors', errors)
+      req.yar.flash('errorMessages', Answer.errorMessages(errors))
+
+      return h.redirect(this.page.urlPath)
     }
 
     state.set(this.page, answer)
