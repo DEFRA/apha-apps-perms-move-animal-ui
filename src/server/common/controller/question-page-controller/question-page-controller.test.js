@@ -619,7 +619,7 @@ describe('QuestionPageController', () => {
         errors: {
           [questionKey]: { text: 'There is a problem' }
         },
-        value: 'ERROR'
+        payload: { [questionKey]: 'ERROR' }
       }
       request.yar.get.mockImplementation((name) =>
         name === `errors:${sectionKey}:${questionKey}` ? errorState : undefined
