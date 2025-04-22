@@ -611,6 +611,40 @@ describe('QuestionPageController', () => {
       expect(result).toBe('view')
     })
 
+    it('GET should render when erroring with expected arguments', () => {
+      const errorState = {
+        errorMessages: [
+          { href: `#${questionKey}`, text: 'There is a problem' }
+        ],
+        errors: {
+          [questionKey]: { text: 'There is a problem' }
+        },
+        value: 'ERROR'
+      }
+      request.yar.get.mockImplementation((name) =>
+        name === `errors:${sectionKey}:${questionKey}` ? errorState : undefined
+      )
+      const result = controller.getHandler(request, h)
+
+      expect(h.view).toHaveBeenCalledTimes(1)
+      expect(h.view).toHaveBeenCalledWith(
+        questionView,
+        expect.objectContaining({
+          heading: question,
+          nextPage: 'redirect_uri',
+          pageTitle: `Error: ${question}`,
+          errorMessages: errorState.errorMessages,
+          errors: errorState.errors,
+          viewModelOptions: { validate: true, question }
+        })
+      )
+
+      const viewArgs = h.view.mock.calls[0][1]
+      expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
+
+      expect(result).toBe('view')
+    })
+
     it('POST should render view with expected arguments', () => {
       const postRequest = {
         ...request,
