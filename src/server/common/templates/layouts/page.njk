@@ -42,6 +42,10 @@
       })
     }}
   {% endif %}
+
+  {% if isAuthenticated %}
+    {% include "../partials/userDetails.njk" %}
+  {% endif %}
   {% block metaBeforeContent %}
     {{
       govukBackLink({
@@ -61,18 +65,7 @@
 {% block content %}
 {% endblock %}
 {% block footer %}
-  <div class="govuk-width-container">
-    <p class="govuk-body govuk-body-s" data-testid="help-footer-text">
-      If you need help with the service you can call 03000 200 301
-    </p>
-  </div>
-  {{
-    govukFooter({
-      meta: {
-        items: footerItems
-      }
-    })
-  }}
+  {% include "../partials/footer.njk" %}
 {% endblock %}
 {% block bodyEnd %}
   <script type="module" src="{{ getAssetPath('application.js') }}"></script>

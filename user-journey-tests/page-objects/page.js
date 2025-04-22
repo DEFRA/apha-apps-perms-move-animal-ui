@@ -52,11 +52,11 @@ class Page {
   }
 
   getAccountManagementFooterLink() {
-    return $('aria/Account management')
+    return $('=Manage account')
   }
 
   getSignOutFooterLink() {
-    return $('aria/Sign out')
+    return $('=Sign out')
   }
 
   getErrorSummary() {

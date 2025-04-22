@@ -16,40 +16,6 @@ const manifestPath = path.join(
 /** @type {Record<string, string> | undefined} */
 let webpackManifest
 
-const footerItems = [
-  {
-    href: '/privacy-policy',
-    text: 'Privacy',
-    attributes: {
-      'data-testid': 'privacy-policy-link'
-    }
-  },
-  {
-    href: '/cookies',
-    text: 'Cookies',
-    attributes: {
-      'data-testid': 'cookies-link'
-    }
-  },
-  {
-    href: '/accessibility-statement',
-    text: 'Accessibility statement',
-    attributes: {
-      'data-testid': 'accessibility-statement-link'
-    }
-  },
-  {
-    href: 'https://your-account.cpdev.cui.defra.gov.uk/management',
-    text: 'Account management',
-    requiresAuth: true
-  },
-  {
-    href: '/auth/logout',
-    text: 'Sign out',
-    requiresAuth: true
-  }
-]
-
 /**
  * @param {Request | null} request
  */
@@ -70,18 +36,9 @@ export function context(request) {
     breadcrumbs: [],
     navigation: buildNavigation(request),
     isAuthenticated: isAuthenticated(request),
+    displayName: request?.auth?.credentials?.displayName,
     features: config.get('featureFlags'),
-    footerItems: footerItems.filter((item) => {
-      if (!item.requiresAuth) {
-        return true
-      }
-
-      return isAuthenticated(request)
-    }),
-
-    /**
-     * @param {string} asset
-     */
+    /** @param {string} asset */
     getAssetPath(asset) {
       const webpackAssetPath = webpackManifest?.[asset]
       return `${assetPath}/${webpackAssetPath ?? asset}`
