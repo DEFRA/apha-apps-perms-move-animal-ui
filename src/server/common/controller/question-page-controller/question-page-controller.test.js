@@ -307,18 +307,23 @@ describe('QuestionPageController', () => {
 
     it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
       const { headers, statusCode } = await server.inject(
-        withCsrfProtection({
-          method: 'POST',
-          url: questionUrl,
-          payload: {
-            [questionKey]: questionValue,
-            nextPage: redirectUri
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              [questionKey]: questionValue,
+              nextPage: redirectUri
+            }
+          },
+          {
+            Cookie: session.sessionID
           }
-        })
+        )
       )
 
-      expect(headers.location).toBe(redirectUri)
       expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(redirectUri)
     })
 
     describe('when the answer is invalid', () => {
@@ -327,23 +332,45 @@ describe('QuestionPageController', () => {
       })
 
       it('should display an error to the user if answer is invalid', async () => {
-        const { payload, statusCode } = await server.inject(
-          withCsrfProtection({
-            method: 'POST',
-            url: questionUrl
-          })
+        const errorValue = 'ERROR'
+        const { headers, statusCode } = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                [questionKey]: errorValue
+              }
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
         )
 
-        const document = parseDocument(payload)
-        expect(document.title).toBe(`Error: ${question}`)
-        expect(payload).toEqual(expect.stringContaining('There is a problem'))
-        expect(
-          /** @type {HTMLInputElement} */ (
-            document.querySelector(questionElementSelector)
-          )?.value
-        ).toBe('')
+        expect(statusCode).toBe(statusCodes.redirect)
+        expect(headers.location).toBe(questionUrl)
 
-        expect(statusCode).toBe(statusCodes.ok)
+        const erroredGET = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'GET',
+              url: questionUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        const erroredDocument = parseDocument(erroredGET.payload)
+        const input = erroredDocument.querySelector(
+          `input[name="questionName"]`
+        )
+
+        expect(erroredGET.statusCode).toBe(statusCodes.ok)
+        expect(erroredDocument.title).toBe(`Error: ${question}`)
+        expect(input?.getAttribute('value')).toBe(errorValue)
       })
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {
@@ -351,7 +378,8 @@ describe('QuestionPageController', () => {
           [questionKey]: questionValue,
           someOtherQuestion: 'some-other-answer'
         })
-        const { payload } = await server.inject(
+
+        const { statusCode } = await server.inject(
           withCsrfProtection(
             {
               method: 'POST',
@@ -363,8 +391,7 @@ describe('QuestionPageController', () => {
           )
         )
 
-        const document = parseDocument(payload)
-        expect(document.title).toBe(`Error: ${question}`)
+        expect(statusCode).toBe(statusCodes.redirect)
 
         const state = await session.getSectionState(sectionKey)
         expect(state[questionKey]).toBeUndefined()
@@ -374,7 +401,7 @@ describe('QuestionPageController', () => {
       it('Should display an error and set next page appropriately', async () => {
         const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
-        const { payload, statusCode } = await server.inject(
+        const { headers, statusCode } = await server.inject(
           withCsrfProtection({
             method: 'POST',
             url: questionUrl,
@@ -384,14 +411,8 @@ describe('QuestionPageController', () => {
           })
         )
 
-        expect(parseDocument(payload).title).toBe(`Error: ${question}`)
-        expect(payload).toEqual(
-          expect.stringContaining(
-            `<input type="hidden" name="nextPage" value="${redirectUri}" />`
-          )
-        )
-
-        expect(statusCode).toBe(statusCodes.ok)
+        expect(statusCode).toBe(statusCodes.redirect)
+        expect(headers.location).toBe(questionUrl)
 
         expect(errorHandlerSpy).toHaveBeenCalledWith({
           [questionKey]: { text: 'There is a problem' }
@@ -406,7 +427,7 @@ describe('QuestionPageController', () => {
         it('Should report errors appropriately', async () => {
           const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
-          const { payload } = await server.inject(
+          const { headers, statusCode } = await server.inject(
             withCsrfProtection({
               method: 'POST',
               url: questionUrl,
@@ -416,7 +437,8 @@ describe('QuestionPageController', () => {
             })
           )
 
-          expect(parseDocument(payload).title).toBe(`Error: ${question}`)
+          expect(statusCode).toBe(statusCodes.redirect)
+          expect(headers.location).toBe(questionUrl)
           expect(errorHandlerSpy).toHaveBeenCalledWith({
             [questionKey]: { text: 'There is a problem' }
           })
@@ -554,12 +576,14 @@ describe('QuestionPageController', () => {
 
   describe('View render', () => {
     const h = {
-      view: jest.fn().mockReturnValue('view')
+      view: jest.fn().mockReturnValue('view'),
+      redirect: jest.fn()
     }
     const request = {
       yar: {
         get: jest.fn(),
-        set: jest.fn()
+        set: jest.fn(),
+        clear: jest.fn()
       },
       query: {
         redirect_uri: 'redirect_uri'
@@ -587,27 +611,31 @@ describe('QuestionPageController', () => {
       expect(result).toBe('view')
     })
 
-    it('POST should render view with expected arguments', () => {
-      const postRequest = {
-        ...request,
-        payload: { nextPage: 'test_next_page' }
+    it('GET should render when erroring with expected arguments', () => {
+      const errorState = {
+        errorMessages: [
+          { href: `#${questionKey}`, text: 'There is a problem' }
+        ],
+        errors: {
+          [questionKey]: { text: 'There is a problem' }
+        },
+        payload: { [questionKey]: 'ERROR' }
       }
-
-      const result = controller.postHandler(postRequest, h)
+      request.yar.get.mockImplementation((name) =>
+        name === `errors:${sectionKey}:${questionKey}` ? errorState : undefined
+      )
+      const result = controller.getHandler(request, h)
 
       expect(h.view).toHaveBeenCalledTimes(1)
       expect(h.view).toHaveBeenCalledWith(
         questionView,
         expect.objectContaining({
-          errorMessages: [
-            { href: `#${questionKey}`, text: 'There is a problem' }
-          ],
-          errors: { [questionKey]: { text: 'There is a problem' } },
-          viewModelOptions: { validate: true, question },
           heading: question,
-          nextPage: 'test_next_page',
+          nextPage: 'redirect_uri',
           pageTitle: `Error: ${question}`,
-          value: undefined
+          errorMessages: errorState.errorMessages,
+          errors: errorState.errors,
+          viewModelOptions: { validate: true, question }
         })
       )
 
@@ -615,6 +643,37 @@ describe('QuestionPageController', () => {
       expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
 
       expect(result).toBe('view')
+    })
+
+    it('POST should render view with expected arguments', () => {
+      const payload = {
+        nextPage: 'test_next_page',
+        [questionKey]: 'ERROR'
+      }
+      const postRequest = {
+        ...request,
+        payload
+      }
+
+      controller.postHandler(postRequest, h)
+
+      expect(h.redirect).toHaveBeenCalledTimes(1)
+      expect(request.yar.clear).toHaveBeenCalledTimes(1)
+      expect(request.yar.clear).toHaveBeenCalledWith(
+        `errors:${sectionKey}:${questionKey}`
+      )
+      expect(request.yar.set.mock.calls[1]).toStrictEqual([
+        `errors:${sectionKey}:${questionKey}`,
+        {
+          errorMessages: [
+            { href: `#${questionKey}`, text: 'There is a problem' }
+          ],
+          errors: {
+            [questionKey]: { text: 'There is a problem' }
+          },
+          payload
+        }
+      ])
     })
   })
 })
