@@ -1,7 +1,10 @@
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 const longString = 'a'.repeat(51)
 
@@ -12,6 +15,7 @@ describe('County parish owner name test', () => {
   })
 
   beforeEach('Navigate to page', async () => {
+    await restoreSession()
     await ownerNamePage.navigateToPageAndVerifyTitle()
   })
 
