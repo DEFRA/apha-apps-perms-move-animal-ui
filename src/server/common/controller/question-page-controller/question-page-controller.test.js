@@ -646,12 +646,13 @@ describe('QuestionPageController', () => {
     })
 
     it('POST should render view with expected arguments', () => {
+      const payload = {
+        nextPage: 'test_next_page',
+        [questionKey]: 'ERROR'
+      }
       const postRequest = {
         ...request,
-        payload: {
-          nextPage: 'test_next_page',
-          [questionKey]: 'ERROR'
-        }
+        payload
       }
 
       controller.postHandler(postRequest, h)
@@ -670,7 +671,7 @@ describe('QuestionPageController', () => {
           errors: {
             [questionKey]: { text: 'There is a problem' }
           },
-          value: 'ERROR'
+          payload
         }
       ])
     })

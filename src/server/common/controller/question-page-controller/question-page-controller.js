@@ -59,7 +59,7 @@ export class QuestionPageController extends GenericPageController {
       return h.view(this.page.view, {
         nextPage: req.query.redirect_uri,
         heading: this.page.heading,
-        answer: this.page.Answer.fromState(pageError?.value, applicationState),
+        answer: new this.page.Answer(pageError.payload, applicationState),
         pageTitle: `Error: ${this.page.title}`,
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
@@ -106,7 +106,7 @@ export class QuestionPageController extends GenericPageController {
       req.yar.set(this.errorKey, {
         errors,
         errorMessages: Answer.errorMessages(errors),
-        value: answer.value
+        payload
       })
 
       return h.redirect(this.page.urlPath)
