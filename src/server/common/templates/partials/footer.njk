@@ -1,0 +1,34 @@
+<div class="govuk-width-container">
+  <p class="govuk-body govuk-body-s" data-testid="help-footer-text">
+    If you need help with the service you can call 03000 200 301
+  </p>
+</div>
+{{
+  govukFooter({
+    meta: {
+      items: [
+        {
+          href: "/privacy-policy",
+          text: "Privacy",
+          attributes: {
+            'data-testid': 'privacy-policy-link'
+          }
+        },
+        {
+          href: "/cookies",
+          text: "Cookies",
+          attributes: {
+            'data-testid': 'cookies-link'
+          }
+        },
+        {
+          href: "/accessibility-statement",
+          text: "Accessibility statement",
+          attributes: {
+            'data-testid': 'accessibility-statement-link'
+          }
+        }
+      ]
+    }
+  })
+}}

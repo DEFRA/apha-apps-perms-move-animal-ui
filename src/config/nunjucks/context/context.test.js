@@ -39,29 +39,7 @@ describe('#context', () => {
           authEnabled: false,
           pdfUpload: true
         },
-        footerItems: [
-          {
-            attributes: {
-              'data-testid': 'privacy-policy-link'
-            },
-            href: '/privacy-policy',
-            text: 'Privacy'
-          },
-          {
-            attributes: {
-              'data-testid': 'cookies-link'
-            },
-            href: '/cookies',
-            text: 'Cookies'
-          },
-          {
-            attributes: {
-              'data-testid': 'accessibility-statement-link'
-            },
-            href: '/accessibility-statement',
-            text: 'Accessibility statement'
-          }
-        ],
+        displayName: undefined,
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
         navigation: [
@@ -157,31 +135,9 @@ describe('#context cache', () => {
           authEnabled: false,
           pdfUpload: true
         },
-        footerItems: [
-          {
-            attributes: {
-              'data-testid': 'privacy-policy-link'
-            },
-            href: '/privacy-policy',
-            text: 'Privacy'
-          },
-          {
-            attributes: {
-              'data-testid': 'cookies-link'
-            },
-            href: '/cookies',
-            text: 'Cookies'
-          },
-          {
-            attributes: {
-              'data-testid': 'accessibility-statement-link'
-            },
-            href: '/accessibility-statement',
-            text: 'Accessibility statement'
-          }
-        ],
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
+        displayName: undefined,
         navigation: [
           {
             isActive: true,
