@@ -9,7 +9,7 @@ export class Page {
   isInterstitial = false
 
   /** @type {boolean} */
-  auth = true
+  skipAuth = false
 
   /** @type {string | null} */
   urlKey = null

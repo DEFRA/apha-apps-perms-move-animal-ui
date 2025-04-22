@@ -55,8 +55,8 @@ describe('Page', () => {
     expect(page.isInterstitial).toBe(false)
   })
 
-  it('should have auth set to true by default', () => {
-    expect(page.auth).toBe(true)
+  it('should have skipAuth set to false by default', () => {
+    expect(page.skipAuth).toBe(false)
   })
 
   it('should have overrideRedirects set to false by default', () => {

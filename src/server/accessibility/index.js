@@ -4,7 +4,7 @@ import { PageController } from '~/src/server/common/controller/page-controller/p
 const pageTitle = 'Accessibility statement'
 
 export class AccessibilityStatementPage extends Page {
-  auth = false
+  skipAuth = true
   sectionKey = 'policies'
   key = 'accessibility-statement'
   pageTitle = pageTitle

@@ -41,7 +41,7 @@ export class PageController extends GenericPageController {
         path: this.page.urlPath,
         handler: this[`${method.toLowerCase()}Handler`].bind(this)
       }
-      if (!this.page.auth) {
+      if (this.page.skipAuth) {
         handler.options = {
           auth: false
         }
