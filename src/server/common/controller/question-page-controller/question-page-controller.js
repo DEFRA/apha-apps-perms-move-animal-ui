@@ -55,21 +55,14 @@ export class QuestionPageController extends GenericPageController {
 
     const pageError = req.yar.get(this.errorKey)
 
-    const errorProps = {}
     if (pageError) {
-      errorProps.pageTitle = `Error: ${this.page.title}`
-      errorProps.errors = pageError.errors
-      errorProps.errorMessages = pageError.errorMessages
-      errorProps.viewModelOptions = {
-        validate: true,
-        question: this.page.question
-      }
-
       return h.view(this.page.view, {
         nextPage: req.query.redirect_uri,
         heading: this.page.heading,
         answer: this.page.Answer.fromState(pageError?.value, applicationState),
-        ...errorProps,
+        pageTitle: `Error: ${this.page.title}`,
+        errors: pageError.errors,
+        errorMessages: pageError.errorMessages,
         viewModelOptions: {
           validate: true,
           question: this.page.question
