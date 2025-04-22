@@ -68,17 +68,12 @@ export class QuestionPageController extends GenericPageController {
       return h.view(this.page.view, {
         nextPage: req.query.redirect_uri,
         heading: this.page.heading,
-        answer: pageError
-          ? this.page.Answer.fromState(pageError?.value)
-          : answer,
+        answer: this.page.Answer.fromState(pageError?.value, applicationState),
         ...errorProps,
-        viewModelOptions: Object.assign(
-          {
-            validate: false,
-            question: this.page.question
-          },
-          errorProps.viewModelOptions
-        ),
+        viewModelOptions: {
+          validate: true,
+          question: this.page.question
+        },
         ...args,
         ...this.page.viewProps(req)
       })

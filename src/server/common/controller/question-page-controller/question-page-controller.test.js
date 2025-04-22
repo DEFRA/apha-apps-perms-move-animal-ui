@@ -307,18 +307,23 @@ describe('QuestionPageController', () => {
 
     it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
       const { headers, statusCode } = await server.inject(
-        withCsrfProtection({
-          method: 'POST',
-          url: questionUrl,
-          payload: {
-            [questionKey]: questionValue,
-            nextPage: redirectUri
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              [questionKey]: questionValue,
+              nextPage: redirectUri
+            }
+          },
+          {
+            Cookie: session.sessionID
           }
-        })
+        )
       )
 
-      expect(headers.location).toBe(redirectUri)
       expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(redirectUri)
     })
 
     describe('when the answer is invalid', () => {
@@ -327,15 +332,45 @@ describe('QuestionPageController', () => {
       })
 
       it('should display an error to the user if answer is invalid', async () => {
+        const errorValue = 'ERROR'
         const { headers, statusCode } = await server.inject(
-          withCsrfProtection({
-            method: 'POST',
-            url: questionUrl
-          })
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                [questionKey]: errorValue
+              }
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
         )
 
         expect(statusCode).toBe(statusCodes.redirect)
         expect(headers.location).toBe(questionUrl)
+
+        const erroredGET = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'GET',
+              url: questionUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        const erroredDocument = parseDocument(erroredGET.payload)
+        const input = erroredDocument.querySelector(
+          `input[name="questionName"]`
+        )
+
+        expect(erroredGET.statusCode).toBe(statusCodes.ok)
+        expect(erroredDocument.title).toBe(`Error: ${question}`)
+        expect(input?.getAttribute('value')).toBe(errorValue)
       })
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {
@@ -586,7 +621,10 @@ describe('QuestionPageController', () => {
 
       expect(h.redirect).toHaveBeenCalledTimes(1)
       expect(request.yar.clear).toHaveBeenCalledTimes(1)
-      expect(request.yar.set.mock.calls[1]).toEqual([
+      expect(request.yar.clear).toHaveBeenCalledWith(
+        `errors:${sectionKey}:${questionKey}`
+      )
+      expect(request.yar.set.mock.calls[1]).toStrictEqual([
         `errors:${sectionKey}:${questionKey}`,
         {
           errorMessages: [
@@ -594,7 +632,8 @@ describe('QuestionPageController', () => {
           ],
           errors: {
             [questionKey]: { text: 'There is a problem' }
-          }
+          },
+          value: undefined
         }
       ])
     })
