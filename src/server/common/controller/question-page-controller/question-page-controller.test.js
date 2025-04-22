@@ -327,23 +327,15 @@ describe('QuestionPageController', () => {
       })
 
       it('should display an error to the user if answer is invalid', async () => {
-        const { payload, statusCode } = await server.inject(
+        const { headers, statusCode } = await server.inject(
           withCsrfProtection({
             method: 'POST',
             url: questionUrl
           })
         )
 
-        const document = parseDocument(payload)
-        expect(document.title).toBe(`Error: ${question}`)
-        expect(payload).toEqual(expect.stringContaining('There is a problem'))
-        expect(
-          /** @type {HTMLInputElement} */ (
-            document.querySelector(questionElementSelector)
-          )?.value
-        ).toBe('')
-
-        expect(statusCode).toBe(statusCodes.ok)
+        expect(statusCode).toBe(statusCodes.redirect)
+        expect(headers.location).toBe(questionUrl)
       })
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {
@@ -351,7 +343,8 @@ describe('QuestionPageController', () => {
           [questionKey]: questionValue,
           someOtherQuestion: 'some-other-answer'
         })
-        const { payload } = await server.inject(
+
+        const { statusCode } = await server.inject(
           withCsrfProtection(
             {
               method: 'POST',
@@ -363,8 +356,7 @@ describe('QuestionPageController', () => {
           )
         )
 
-        const document = parseDocument(payload)
-        expect(document.title).toBe(`Error: ${question}`)
+        expect(statusCode).toBe(statusCodes.redirect)
 
         const state = await session.getSectionState(sectionKey)
         expect(state[questionKey]).toBeUndefined()
@@ -374,7 +366,7 @@ describe('QuestionPageController', () => {
       it('Should display an error and set next page appropriately', async () => {
         const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
-        const { payload, statusCode } = await server.inject(
+        const { headers, statusCode } = await server.inject(
           withCsrfProtection({
             method: 'POST',
             url: questionUrl,
@@ -384,14 +376,8 @@ describe('QuestionPageController', () => {
           })
         )
 
-        expect(parseDocument(payload).title).toBe(`Error: ${question}`)
-        expect(payload).toEqual(
-          expect.stringContaining(
-            `<input type="hidden" name="nextPage" value="${redirectUri}" />`
-          )
-        )
-
-        expect(statusCode).toBe(statusCodes.ok)
+        expect(statusCode).toBe(statusCodes.redirect)
+        expect(headers.location).toBe(questionUrl)
 
         expect(errorHandlerSpy).toHaveBeenCalledWith({
           [questionKey]: { text: 'There is a problem' }
@@ -406,7 +392,7 @@ describe('QuestionPageController', () => {
         it('Should report errors appropriately', async () => {
           const errorHandlerSpy = jest.spyOn(controller, 'recordErrors')
 
-          const { payload } = await server.inject(
+          const { headers, statusCode } = await server.inject(
             withCsrfProtection({
               method: 'POST',
               url: questionUrl,
@@ -416,7 +402,8 @@ describe('QuestionPageController', () => {
             })
           )
 
-          expect(parseDocument(payload).title).toBe(`Error: ${question}`)
+          expect(statusCode).toBe(statusCodes.redirect)
+          expect(headers.location).toBe(questionUrl)
           expect(errorHandlerSpy).toHaveBeenCalledWith({
             [questionKey]: { text: 'There is a problem' }
           })
@@ -561,7 +548,7 @@ describe('QuestionPageController', () => {
       yar: {
         get: jest.fn(),
         set: jest.fn(),
-        flash: jest.fn()
+        clear: jest.fn()
       },
       query: {
         redirect_uri: 'redirect_uri'
@@ -595,24 +582,21 @@ describe('QuestionPageController', () => {
         payload: { nextPage: 'test_next_page' }
       }
 
-      const result = controller.postHandler(postRequest, h)
+      controller.postHandler(postRequest, h)
 
       expect(h.redirect).toHaveBeenCalledTimes(1)
-      expect(request.yar.flash).toHaveBeenCalledTimes(2)
-      expect(h.yar.flash.mock.calls[0]).toEqual([
-        'errors',
-        { [questionKey]: { text: 'There is a problem' } }
+      expect(request.yar.clear).toHaveBeenCalledTimes(1)
+      expect(request.yar.set.mock.calls[1]).toEqual([
+        `errors:${sectionKey}:${questionKey}`,
+        {
+          errorMessages: [
+            { href: `#${questionKey}`, text: 'There is a problem' }
+          ],
+          errors: {
+            [questionKey]: { text: 'There is a problem' }
+          }
+        }
       ])
-
-      expect(h.yar.flash.mock.calls[1]).toEqual([
-        'errorMessages',
-        [{ href: `#${questionKey}`, text: 'There is a problem' }]
-      ])
-
-      const viewArgs = h.view.mock.calls[0][1]
-      expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
-
-      expect(result).toBe('view')
     })
   })
 })
