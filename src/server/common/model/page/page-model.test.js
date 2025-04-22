@@ -11,8 +11,8 @@ describe('Page', () => {
     expect(page).toHaveProperty('urlPath')
   })
 
-  it('should have a urlKey', () => {
-    expect(page).toHaveProperty('urlKey')
+  it('should have urlKey set to null by default', () => {
+    expect(page.urlKey).toBeNull()
   })
 
   it('should have a sectionKey', () => {
@@ -49,5 +49,17 @@ describe('Page', () => {
 
   it('should return an empty object for viewProps', () => {
     expect(page.viewProps()).toEqual({})
+  })
+
+  it('should have isInterstitial set to false by default', () => {
+    expect(page.isInterstitial).toBe(false)
+  })
+
+  it('should have skipAuth set to false by default', () => {
+    expect(page.skipAuth).toBe(false)
+  })
+
+  it('should have overrideRedirects set to false by default', () => {
+    expect(page.overrideRedirects).toBe(false)
   })
 })

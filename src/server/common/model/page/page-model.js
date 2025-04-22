@@ -8,6 +8,9 @@ export class Page {
   /** @type {boolean} */
   isInterstitial = false
 
+  /** @type {boolean} */
+  skipAuth = false
+
   /** @type {string | null} */
   urlKey = null
 
