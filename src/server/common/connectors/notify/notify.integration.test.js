@@ -13,7 +13,7 @@ describe('sendNotification (integration)', () => {
     const configGet = config.get.bind(config)
     const notifyConfig = {
       ...config.get('notify'),
-      timeout: 0
+      timeout: 1 // setting timeout to 1ms as 0ms means no timeout when using Wreck
     }
     jest.spyOn(config, 'get').mockImplementation((name) => {
       if (name === 'notify') {
@@ -28,7 +28,7 @@ describe('sendNotification (integration)', () => {
     const result = sendNotification(testData)
 
     await expect(result).rejects.toThrow(
-      'Request to GOV.uk notify timed out after 0ms'
+      'Request to GOV.uk notify timed out after 1ms'
     )
   })
 })

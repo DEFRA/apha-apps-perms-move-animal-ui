@@ -1,20 +1,15 @@
-import nock from 'nock'
-import { ProxyAgent } from 'undici'
-
 import { config } from '~/src/config/config.js'
-import { provideProxy, proxyFetch } from '~/src/server/common/helpers/proxy.js'
+import { provideProxy } from '~/src/server/common/helpers/proxy.js'
 
 const mockLoggerDebug = jest.fn()
 jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
   createLogger: () => ({ debug: (...args) => mockLoggerDebug(...args) })
 }))
 
-const fetchSpy = jest.spyOn(global, 'fetch')
 const httpProxyUrl = 'http://proxy.example.com'
 const httpsProxyUrl = 'https://proxy.example.com'
 const httpPort = 80
 const httpsPort = 443
-const statusCodeOk = 200
 
 describe('#provideProxy', () => {
   describe('When a Proxy URL has not been set', () => {
@@ -72,64 +67,6 @@ describe('#provideProxy', () => {
       expect(result).toHaveProperty('url')
       expect(result).toHaveProperty('proxyAgent')
       expect(result).toHaveProperty('httpAndHttpsProxyAgent')
-    })
-  })
-})
-
-describe('#proxyFetch', () => {
-  const secureUrl = 'https://beepboopbeep.com'
-
-  test('Should pass options through', async () => {
-    config.set('httpProxy', null)
-    config.set('httpsProxy', null)
-    nock(secureUrl).get('/').reply(statusCodeOk, 'OK')
-
-    await proxyFetch(secureUrl, { method: 'GET' })
-
-    expect(fetchSpy).toHaveBeenCalledWith(secureUrl, { method: 'GET' })
-  })
-
-  describe('When no Proxy is configured', () => {
-    test('Should fetch without Proxy Agent', async () => {
-      config.set('httpProxy', null)
-      config.set('httpsProxy', null)
-      nock(secureUrl).get('/').reply(statusCodeOk, 'OK')
-
-      await proxyFetch(secureUrl, {})
-
-      expect(fetchSpy).toHaveBeenCalledWith(secureUrl, {})
-    })
-  })
-
-  describe('When proxy is configured', () => {
-    beforeEach(async () => {
-      config.set('httpProxy', httpsProxyUrl)
-      nock(secureUrl).get('/').reply(statusCodeOk, 'OK')
-
-      await proxyFetch(secureUrl, {})
-    })
-
-    test('Should fetch with Proxy Agent', () => {
-      expect(fetchSpy).toHaveBeenCalledWith(
-        secureUrl,
-        expect.objectContaining({
-          dispatcher: expect.any(ProxyAgent)
-        })
-      )
-    })
-
-    test('Should make expected set up message', () => {
-      expect(mockLoggerDebug).toHaveBeenNthCalledWith(
-        1,
-        `Proxy set up using ${httpsProxyUrl}:${httpsPort}`
-      )
-    })
-
-    test('Should make expected fetching via the proxy message', () => {
-      expect(mockLoggerDebug).toHaveBeenNthCalledWith(
-        2,
-        `Fetching: ${secureUrl.toString()} via the proxy: ${httpsProxyUrl}:${httpsPort}`
-      )
     })
   })
 })
