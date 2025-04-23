@@ -2,6 +2,7 @@ import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
 import { StateManager } from '../../model/state/state-manager.js'
+import { nextPageRedirect } from '../../helpers/next-page-redirect/index.js'
 
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
@@ -109,7 +110,7 @@ export class QuestionPageController extends GenericPageController {
         payload
       })
 
-      return h.redirect(this.page.urlPath)
+      return h.redirect(nextPageRedirect(this.page, req.query))
     }
 
     state.set(this.page, answer)
@@ -120,13 +121,7 @@ export class QuestionPageController extends GenericPageController {
       return h.redirect(nextPage.urlPath)
     } else {
       if (nextPage.overrideRedirects) {
-        const query = new URLSearchParams(req.query)
-        let url = nextPage.urlPath
-
-        if (query.size > 0) {
-          url += `?${query.toString()}`
-        }
-        return h.redirect(url)
+        return h.redirect(nextPageRedirect(nextPage, req.query))
       }
 
       return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))
