@@ -3,7 +3,7 @@ export const nextPageRedirect = (nextPage, query) => {
   let url = nextPage.urlPath
 
   if (queryParams.size > 0) {
-    url += `?${queryParams.toString()}`
+    url += `?${decodeURIComponent(queryParams.toString())}`
   }
 
   return url

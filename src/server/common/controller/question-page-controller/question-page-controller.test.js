@@ -331,13 +331,14 @@ describe('QuestionPageController', () => {
         validationSpy.mockReturnValue({ isValid: false, errors: {} })
       })
 
-      it('should display an error to the user if answer is invalid', async () => {
+      it('should display an error to the user if answer is invalid, preserving redirect_uri', async () => {
         const errorValue = 'ERROR'
+        const questionUrlWithRedirectUri = `${questionUrl}?redirect_uri=/next/page`
         const { headers, statusCode } = await server.inject(
           withCsrfProtection(
             {
               method: 'POST',
-              url: questionUrl,
+              url: questionUrlWithRedirectUri,
               payload: {
                 [questionKey]: errorValue
               }
@@ -349,7 +350,7 @@ describe('QuestionPageController', () => {
         )
 
         expect(statusCode).toBe(statusCodes.redirect)
-        expect(headers.location).toBe(questionUrl)
+        expect(headers.location).toBe(questionUrlWithRedirectUri)
 
         const erroredGET = await server.inject(
           withCsrfProtection(
