@@ -16,12 +16,12 @@ if (process.env.DEFRA_ID_ENABLED !== 'false') {
     })
 
     it('Should verify account management link', async () => {
-      await selectElement(taskListPage.getAccountManagementFooterLink())
+      await selectElement(taskListPage.getAccountManagementLink())
       await waitForPagePath('/management/account-management/me')
     })
 
     it('Shoud verify sign out flow navigates you to home page with no session', async () => {
-      await selectElement(taskListPage.getSignOutFooterLink())
+      await selectElement(taskListPage.getSignOutLink())
       await landingPage.verifyPageHeadingAndTitle()
       await selectElement(landingPage.startNowButton)
       await waitForPagePath('/login/signin/creds')
