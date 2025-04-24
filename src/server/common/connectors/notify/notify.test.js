@@ -21,8 +21,6 @@ const timeout = config.get('notify').timeout
 const templateId = config.get('notify').templateId
 const caseDeliveryEmailAddress = config.get('notify').caseDeliveryEmailAddress
 
-jest.mock('@hapi/wreck')
-
 jest.mock(
   '~/src/server/common/connectors/notify/notify-token-utils.js',
   () => ({
@@ -78,7 +76,7 @@ describe('sendNotification', () => {
 
       expect(url).toBe(NOTIFY_URL)
 
-      expect(JSON.parse(payload ?? '')).toEqual({
+      expect(JSON.parse(payload)).toEqual({
         personalisation: {
           ...testDataWithoutFile,
           link_to_file: ''
