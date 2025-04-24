@@ -1,4 +1,5 @@
 import {
+  selectElement,
   validateElementVisibleAndText,
   validateHrefOfElement
 } from '../../helpers/page.js'
@@ -56,8 +57,24 @@ describe('Check your answers test - biosecurity', () => {
     })
   })
 
-  it.skip('Should verify continue takes you to task list', async () => {
+  it('Should verify continue takes you to task list', async () => {
     await identificationAnswersPage.selectContinue()
     await taskListPage.verifyPageHeadingAndTitle()
+  })
+
+  it('Should verify redirect URI is maintained when page errors from change', async () => {
+    await identificationAnswersPage.navigateToPageAndVerifyTitle()
+    await selectElement(identificationAnswersPage.getChangeLink('tbTestDates'))
+
+    const urlBeforeError = await browser.getUrl()
+
+    await testingDatesPage.singleInputErrorTest(
+      '',
+      testingDatesPage.noInputError
+    )
+
+    const urlAfterError = await browser.getUrl()
+
+    expect(urlAfterError).toEqual(urlBeforeError)
   })
 })
