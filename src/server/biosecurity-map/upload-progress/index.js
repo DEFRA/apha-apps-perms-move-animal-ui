@@ -49,7 +49,7 @@ export class UploadProgressController extends QuestionPageController {
     if (
       !(status.form.file && status.numberOfRejectedFiles > 0) &&
       answer.value?.status?.form.file &&
-      status.uploadStatus !== 'pending'
+      answer.value?.status?.form.file.fileStatus !== 'pending'
     ) {
       status = {
         ...answer.value.status,
