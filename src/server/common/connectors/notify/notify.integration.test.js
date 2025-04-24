@@ -1,4 +1,3 @@
-import { createServer } from '~/src/server/index.js'
 import { sendNotification } from './notify.js'
 import { config } from '~/src/config/config.js'
 import { createBackendServer } from '../../test-helpers/backend-server.js'
@@ -10,17 +9,19 @@ jest.mock(
   })
 )
 
+const testTimeout = 100
+const backendPort = 3001
+
 describe('sendNotification (integration)', () => {
   let server
 
   beforeAll(async () => {
-    server = await createBackendServer(3001, [
+    server = await createBackendServer(backendPort, [
       {
         method: 'POST',
         path: '/mock-notify',
-        handler: (req, res) => {
-          console.log('IN HANDLER')
-
+        handler: async (req, res) => {
+          await new Promise((resolve) => setTimeout(resolve, testTimeout + 1))
           return res.response(req.payload).code(200)
         }
       }
@@ -32,13 +33,11 @@ describe('sendNotification (integration)', () => {
   })
 
   it('should abort if the configured timeout is hit', async () => {
-
-
     const configGet = config.get.bind(config)
     const notifyConfig = {
       ...config.get('notify'),
-      timeout: 10000,
-      url: 'http://localhost:3001/mock-notify'
+      timeout: testTimeout,
+      url: `http://localhost:${backendPort}/mock-notify`
     }
     jest.spyOn(config, 'get').mockImplementation((name) => {
       if (name === 'notify') {
@@ -53,7 +52,7 @@ describe('sendNotification (integration)', () => {
     const result = sendNotification(testData)
 
     await expect(result).rejects.toThrow(
-      'Request to GOV.uk notify timed out after 1ms'
+      `Request to GOV.uk notify timed out after ${testTimeout}ms`
     )
   })
 })

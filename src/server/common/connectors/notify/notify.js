@@ -33,8 +33,6 @@ export async function sendNotification(data) {
       timeout: notifyConfig.timeout
     })
   } catch (err) {
-    console.log(err)
-
     if (err.output?.statusCode === statusCodes.gatewayTimeout) {
       throw new Error(
         `Request to GOV.uk notify timed out after ${notifyConfig.timeout}ms`
