@@ -7,14 +7,11 @@ import { statusCodes } from '../../constants/status-codes.js'
  * @typedef {{ content: string, link_to_file?: object}} NotifyContent
  */
 
-export const NOTIFY_URL =
-  'https://api.notifications.service.gov.uk/v2/notifications/email'
-
 /**
  * @param {NotifyContent} data
  */
 export async function sendNotification(data) {
-  const { timeout, ...notifyConfig } = config.get('notify')
+  const { ...notifyConfig } = config.get('notify')
 
   const payload = JSON.stringify({
     template_id: notifyConfig.templateId,
@@ -28,16 +25,20 @@ export async function sendNotification(data) {
   let response
 
   try {
-    response = await Wreck.post(NOTIFY_URL, {
+    response = await Wreck.post(notifyConfig.url, {
       payload,
       headers: {
         Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
       },
-      timeout
+      timeout: notifyConfig.timeout
     })
   } catch (err) {
+    console.log(err)
+
     if (err.output?.statusCode === statusCodes.gatewayTimeout) {
-      throw new Error(`Request to GOV.uk notify timed out after ${timeout}ms`)
+      throw new Error(
+        `Request to GOV.uk notify timed out after ${notifyConfig.timeout}ms`
+      )
     } else if (err.data) {
       const errors = JSON.parse(err.data.payload?.toString())
       const errorMessages = errors.errors.map((error) => error.message)

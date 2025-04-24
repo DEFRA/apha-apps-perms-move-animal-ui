@@ -242,6 +242,13 @@ export const config = convict({
     }
   },
   notify: {
+    url: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default:
+        'https://api.notifications.service.gov.uk/v2/notifications/email',
+      nullable: false,
+      env: 'NOTIFY_URL'
+    },
     templateId: /** @type {SchemaObj<string | null>} */ {
       format: String,
       default: null,

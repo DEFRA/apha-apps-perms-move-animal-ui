@@ -8,16 +8,16 @@ async function startServer() {
   let server
 
   const proxy = provideProxy()
-  if (proxy?.httpAndHttpsProxyAgent) {
-    createLogger().info('Wreck agents setup')
-    const httpAndHttpsProxyAgent = proxy.httpAndHttpsProxyAgent
+  // if (proxy?.httpAndHttpsProxyAgent) {
+  //   createLogger().info('Wreck agents setup')
+  //   const httpAndHttpsProxyAgent = proxy.httpAndHttpsProxyAgent
 
-    Wreck.agents = {
-      https: httpAndHttpsProxyAgent,
-      http: httpAndHttpsProxyAgent,
-      httpsAllowUnauthorized: httpAndHttpsProxyAgent
-    }
-  }
+  //   Wreck.agents = {
+  //     https: httpAndHttpsProxyAgent,
+  //     http: httpAndHttpsProxyAgent,
+  //     httpsAllowUnauthorized: httpAndHttpsProxyAgent
+  //   }
+  // }
 
   try {
     server = await createServer()

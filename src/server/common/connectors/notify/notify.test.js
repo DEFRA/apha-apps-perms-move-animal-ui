@@ -1,4 +1,4 @@
-import { NOTIFY_URL, sendNotification } from './notify.js'
+import { sendNotification } from './notify.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 import { statusCodes } from '../../constants/status-codes.js'
@@ -17,9 +17,7 @@ const testData = {
   }
 }
 
-const timeout = config.get('notify').timeout
-const templateId = config.get('notify').templateId
-const caseDeliveryEmailAddress = config.get('notify').caseDeliveryEmailAddress
+const { ...notifyConfig } = config.get('notify')
 
 jest.mock(
   '~/src/server/common/connectors/notify/notify-token-utils.js',
@@ -52,17 +50,17 @@ describe('sendNotification', () => {
       const [url, options] = wreckSpy.mock.calls[0]
       const payload = options.payload
 
-      expect(url).toBe(NOTIFY_URL)
+      expect(url).toBe(notifyConfig.url)
 
       expect(JSON.parse(payload ?? '')).toEqual({
         personalisation: testData,
-        template_id: templateId,
-        email_address: caseDeliveryEmailAddress
+        template_id: notifyConfig.templateId,
+        email_address: notifyConfig.caseDeliveryEmailAddress
       })
       expect(options?.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
       })
-      expect(options?.timeout).toBe(timeout)
+      expect(options?.timeout).toBe(notifyConfig.timeout)
       expect(response).toEqual(mockResponse)
     })
 
@@ -74,20 +72,20 @@ describe('sendNotification', () => {
       const [url, options] = wreckSpy.mock.calls[0]
       const payload = options.payload
 
-      expect(url).toBe(NOTIFY_URL)
+      expect(url).toBe(notifyConfig.url)
 
       expect(JSON.parse(payload)).toEqual({
         personalisation: {
           ...testDataWithoutFile,
           link_to_file: ''
         },
-        template_id: templateId,
-        email_address: caseDeliveryEmailAddress
+        template_id: notifyConfig.templateId,
+        email_address: notifyConfig.caseDeliveryEmailAddress
       })
       expect(options.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
       })
-      expect(options?.timeout).toBe(timeout)
+      expect(options?.timeout).toBe(notifyConfig.timeout)
       expect(response).toEqual(mockResponse)
     })
   })
@@ -101,7 +99,7 @@ describe('sendNotification', () => {
       })
 
       await expect(sendNotification(testData)).rejects.toThrow(
-        `Request to GOV.uk notify timed out after ${timeout}ms`
+        `Request to GOV.uk notify timed out after ${notifyConfig.timeout}ms`
       )
     })
 
