@@ -39,7 +39,23 @@ export class UploadProgressController extends QuestionPageController {
 
     const response = await checkStatus(answer.value?.metadata?.uploadId)
 
-    const status = JSON.parse(response.payload.toString())
+    let status = JSON.parse(response.payload.toString())
+
+    // checks
+    // 1. did user submit any rejected files?
+    // 2. dis the submit a file at all?
+    // 2. is the new upload (if any) finished?
+
+    if (
+      !(status.form.file && status.numberOfRejectedFiles > 0) &&
+      answer.value?.status?.form.file &&
+      status.uploadStatus !== 'pending'
+    ) {
+      status = {
+        ...answer.value.status,
+        uploadStatus: status.uploadStatus
+      }
+    }
 
     const newAnswer = new this.page.Answer({
       ...answer.value,
