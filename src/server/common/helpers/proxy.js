@@ -45,28 +45,4 @@ function provideProxy() {
   }
 }
 
-/**
- * Provide fetch with dispatcher ProxyAgent when http/s proxy url config has been set
- * @param {string | URL } url
- * @param {RequestInit} options
- * @returns {Promise}
- */
-function proxyFetch(url, options) {
-  const proxy = provideProxy()
-
-  if (!proxy) {
-    return fetch(url, options)
-  }
-
-  logger.debug(
-    `Fetching: ${url.toString()} via the proxy: ${proxy?.url.origin}:${proxy.port}`
-  )
-
-  return fetch(url, {
-    ...options,
-    // @ts-expect-error dispatcher has not been added to types
-    dispatcher: proxy.proxyAgent
-  })
-}
-
-export { proxyFetch, provideProxy }
+export { provideProxy }
