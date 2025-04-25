@@ -13,6 +13,10 @@ const auth = {
         },
         handler: async (request, h) => {
           if (request.auth.isAuthenticated) {
+            server.logger.info(
+              'User journey: user has successfully authenticated via DEFRA CustomerIdentity'
+            )
+
             const { profile } = request.auth.credentials
             const expiresInSeconds = request.auth.credentials.expiresIn
             const expiresInMilliSeconds = expiresInSeconds * 1000
