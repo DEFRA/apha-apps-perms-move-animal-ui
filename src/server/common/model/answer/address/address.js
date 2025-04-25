@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
+import sanitizeHtml from 'sanitize-html'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -19,6 +20,14 @@ const postcodeRequired = 'Enter postcode'
 
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
+    .custom((value) => {
+      const clean = sanitizeHtml(value, {
+        allowedTags: [],
+        allowedAttributes: {}
+      })
+      console.log(clean)
+      return clean
+    })
     .required()
     .trim()
     .max(maxLength)
@@ -77,14 +86,22 @@ export class AddressAnswer extends AnswerModel {
    * @returns {AddressData | undefined}
    */
   get value() {
-    const trimmedValues = Object.fromEntries(
+    const sanitisedValues = Object.fromEntries(
       Object.entries(this._data ?? {})
-        .map(([key, value]) => [key, value?.trim()])
+        .map(([key, value]) => [
+          key,
+          sanitizeHtml(value, {
+            allowedTags: [],
+            allowedAttributes: {}
+          })?.trim()
+        ])
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value !== '')
     )
 
-    return Object.keys(trimmedValues).length === 0 ? undefined : trimmedValues
+    return Object.keys(sanitisedValues).length === 0
+      ? undefined
+      : sanitisedValues
   }
 
   get html() {
