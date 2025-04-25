@@ -70,6 +70,66 @@ describe('#UploadPlan', () => {
     expect(mockInitiateFileUpload).toHaveBeenCalledWith(uploadStatusUrl)
   })
 
+  describe('User revists page', () => {
+    let session
+
+    beforeEach(async () => {
+      session = await SessionTestHelper.create(server)
+    })
+
+    beforeEach(async () => {
+      await session.setSectionState(page.sectionKey, {
+        [page.questionKey]: {
+          metadata: {
+            uploadId: testUploadId,
+            uploadUrl: testUploadUrl,
+            statusUrl: testStatusUrl
+          },
+          status: {
+            uploadStatus: 'ready',
+            metadata: {},
+            form: {
+              crumb: testCrumb,
+              nextPage: '',
+              file: {
+                fileId: '73ee6bac-dfae-4886-b56e-a2658a7905aa',
+                filename: '34998B77-FB3E-44DB-BC0E-05154D6549E0.jpeg',
+                contentType: 'image/jpeg',
+                fileStatus: 'complete',
+                contentLength: 374478,
+                checksumSha256: '3etoXNlR16WpgCiwylqccFxLVg3OrZvpGUqmigmrhcU=',
+                detectedContentType: 'image/jpeg',
+                s3Key: 'biosecurity-map/PRESET-key',
+                s3Bucket: 'apha'
+              }
+            }
+          }
+        }
+      })
+    })
+
+    it('should retain the original file if user doesnt interact with file upload', async () => {
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: uploadPlanUrl
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(mockInitiateFileUpload).toHaveBeenCalled()
+
+      const section = await session.getSectionState(page.sectionKey)
+      expect(section[page.questionKey].status.form.file.s3Key).toBe(
+        'biosecurity-map/PRESET-key'
+      )
+    })
+  })
+
   describe('#errors', () => {
     let session
 
