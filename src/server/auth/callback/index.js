@@ -35,6 +35,10 @@ const auth = {
             request.cookieAuth.set({ sessionId })
 
             request.logger.info('User has been successfully authenticated')
+          } else {
+            server.logger.warn(
+              'User journey: user was not authenticated via DEFRA CustomerIdentity'
+            )
           }
 
           const redirect = request.yar.flash('referrer') ?? '/'
