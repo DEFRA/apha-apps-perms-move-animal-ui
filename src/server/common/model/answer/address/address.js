@@ -18,22 +18,22 @@ const addressLine1Required =
 const addressTownRequired = 'Enter town or city'
 const postcodeRequired = 'Enter postcode'
 
+const sanitise = (value, helpers) => {
+  const clean = sanitizeHtml(value, {
+    allowedTags: [],
+    allowedAttributes: {}
+  })
+  if (clean !== value) {
+    // handle the sanitization
+    return helpers.error('string.sanitized')
+  }
+  return clean
+}
+
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
-    .custom((value, helpers) => {
-      const clean = sanitizeHtml(value, {
-        allowedTags: [],
-        allowedAttributes: {}
-      })
-
-      if (clean !== value) {
-        // handle the sanitization
-        return helpers.error('string.sanitized')
-      }
-
-      return clean
-    })
+    .custom(sanitise)
     .required()
     .trim()
     .max(maxLength)
