@@ -24,6 +24,10 @@ const sessionCookie = {
           ttl: config.get('session').cookie.ttl
         },
         redirectTo: (req) => {
+          server.logger.info(
+            'User journey: user has been sent to DEFRA CustomerIdentity for sign in'
+          )
+
           req.yar.flash('referrer', req.path, true)
           return '/auth/login'
         },
