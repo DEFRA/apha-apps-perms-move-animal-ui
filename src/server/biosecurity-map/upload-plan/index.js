@@ -42,7 +42,8 @@ export class UploadPlanController extends QuestionPageController {
     const data = JSON.parse(response.payload.toString())
 
     const answer = new this.page.Answer({
-      metadata: data
+      metadata: data,
+      status: existingAnswer.value?.status
     })
 
     const state = new StateManager(req)

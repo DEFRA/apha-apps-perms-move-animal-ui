@@ -3,7 +3,10 @@ import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosec
 import mapUploadPage from '../../page-objects/biosecurity-map/mapUploadPage.js'
 import uploadLoadingPage from '../../page-objects/biosecurity-map/uploadLoadingPage.js'
 import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../../helpers/authSessionManager.js'
 
 const assetsPath = 'user-journey-tests/page-objects/biosecurity-map/assets'
 const testFiles = {
@@ -26,6 +29,10 @@ describe('Biosecurity map upload tests', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
+  })
+
+  beforeEach(async () => {
+    await restoreSession()
   })
 
   beforeEach('Navigate to the biosecurity map upload page', async () => {
