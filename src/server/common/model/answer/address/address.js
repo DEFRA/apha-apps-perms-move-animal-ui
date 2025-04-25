@@ -1,7 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
-import sanitizeHtml from 'sanitize-html'
+import { sanitise, validateAnswerAgainstSchema } from '../validation.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -18,18 +17,6 @@ const addressLine1Required =
 const addressTownRequired = 'Enter town or city'
 const postcodeRequired = 'Enter postcode'
 
-const sanitise = (value, helpers) => {
-  const clean = sanitizeHtml(value, {
-    allowedTags: [],
-    allowedAttributes: {}
-  })
-  if (clean !== value) {
-    // handle the sanitization
-    return helpers.error('string.sanitized')
-  }
-  return clean
-}
-
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
@@ -44,12 +31,15 @@ const addressPayloadSchema = Joi.object({
       'string.sanitized': addressLine1Required
     }),
   addressLine2: Joi.string()
+    .custom(sanitise)
     .allow('')
     .max(maxLength)
     .messages({
-      'string.max': maxLengthMessage('Address line 2')
+      'string.max': maxLengthMessage('Address line 2'),
+      'string.sanitized': addressLine1Required
     }),
   addressTown: Joi.string()
+    .custom(sanitise)
     .required()
     .trim()
     .max(maxLength)
@@ -59,12 +49,14 @@ const addressPayloadSchema = Joi.object({
       'string.max': maxLengthMessage('Address town')
     }),
   addressCounty: Joi.string()
+    .custom(sanitise)
     .allow('')
     .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address county')
     }),
   addressPostcode: Joi.string()
+    .custom(sanitise)
     .required()
     .replace(' ', '')
     .pattern(postcodeRegex)
@@ -93,22 +85,14 @@ export class AddressAnswer extends AnswerModel {
    * @returns {AddressData | undefined}
    */
   get value() {
-    const sanitisedValues = Object.fromEntries(
+    const trimmedValues = Object.fromEntries(
       Object.entries(this._data ?? {})
-        .map(([key, value]) => [
-          key,
-          sanitizeHtml(value, {
-            allowedTags: [],
-            allowedAttributes: {}
-          })?.trim()
-        ])
+        .map(([key, value]) => [key, value?.trim()])
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value !== '')
     )
 
-    return Object.keys(sanitisedValues).length === 0
-      ? undefined
-      : sanitisedValues
+    return Object.keys(trimmedValues).length === 0 ? undefined : trimmedValues
   }
 
   get html() {
