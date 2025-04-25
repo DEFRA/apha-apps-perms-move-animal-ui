@@ -138,6 +138,9 @@ class Page {
     await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
     await this.verifyPrivateBetaBanner()
     await this.verifyFooter()
+    if (process.env.DEFRA_ID_ENABLED !== 'false') {
+      await this.verifyAccountManagementAppears()
+    }
   }
 
   async verifyPageHeadingAndTitle() {
