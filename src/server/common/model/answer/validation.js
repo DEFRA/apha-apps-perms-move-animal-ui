@@ -54,7 +54,7 @@ export const sanitise = (value, helpers) => {
   })
   if (clean !== value) {
     // handle the sanitization
-    return helpers.error('string.sanitized')
+    return helpers.error('string.sanitized', { value })
   }
   return clean
 }

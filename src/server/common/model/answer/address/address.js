@@ -36,7 +36,7 @@ const addressPayloadSchema = Joi.object({
     .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address line 2'),
-      'string.sanitized': addressLine1Required
+      'string.sanitized': 'You entered a dodgy value'
     }),
   addressTown: Joi.string()
     .custom(sanitise)
