@@ -43,7 +43,7 @@ export class UploadPlanController extends QuestionPageController {
 
     const answer = new this.page.Answer({
       metadata: data,
-      status: existingAnswer.value?.status ?? undefined
+      status: existingAnswer.value?.status
     })
 
     const state = new StateManager(req)
