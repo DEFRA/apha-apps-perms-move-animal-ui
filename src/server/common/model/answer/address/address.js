@@ -20,12 +20,18 @@ const postcodeRequired = 'Enter postcode'
 
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
-    .custom((value) => {
+    .required()
+    .custom((value, helpers) => {
       const clean = sanitizeHtml(value, {
         allowedTags: [],
         allowedAttributes: {}
       })
-      console.log(clean)
+
+      if (clean !== value) {
+        // handle the sanitization
+        return helpers.error('string.sanitized')
+      }
+
       return clean
     })
     .required()
@@ -34,7 +40,8 @@ const addressPayloadSchema = Joi.object({
     .messages({
       'any.required': addressLine1Required,
       'string.empty': addressLine1Required,
-      'string.max': maxLengthMessage('Address line 1')
+      'string.max': maxLengthMessage('Address line 1'),
+      'string.sanitized': addressLine1Required
     }),
   addressLine2: Joi.string()
     .allow('')
