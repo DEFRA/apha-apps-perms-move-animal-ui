@@ -51,12 +51,12 @@ class Page {
     return $('[data-testid="accessibility-statement-link"]')
   }
 
-  getAccountManagementFooterLink() {
-    return $('=Manage account')
+  getAccountManagementLink() {
+    return $('[data-testid="manage-account-link"]')
   }
 
-  getSignOutFooterLink() {
-    return $('=Sign out')
+  getSignOutLink() {
+    return $('[data-testid="sign-out-link"]')
   }
 
   getErrorSummary() {
@@ -123,6 +123,14 @@ class Page {
     await page.validateHrefOfElement(
       this.getAccessibilityFooterLink(),
       '/accessibility-statement'
+    )
+  }
+
+  async verifyAccountManagementAppears() {
+    await page.validateElementVisibleAndText(this.getSignOutLink(), 'Sign out')
+    await page.validateElementVisibleAndText(
+      this.getAccountManagementLink(),
+      'Manage account'
     )
   }
 

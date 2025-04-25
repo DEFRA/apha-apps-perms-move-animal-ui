@@ -3,9 +3,13 @@
 >
   {{ displayName }}
   <span class="govuk-!-margin-left-3"
-    ><a href="https://your-account.cpdev.cui.defra.gov.uk/management"
+    ><a
+      data-testid="manage-account-link"
+      href="https://your-account.cpdev.cui.defra.gov.uk/management"
       >Manage account</a
     ></span
   >
-  <span class="govuk-!-margin-left-3"><a href="/auth/logout">Sign out</a></span>
+  <span class="govuk-!-margin-left-3"
+    ><a data-testid="sign-out-link" href="/auth/logout">Sign out</a></span
+  >
 </p>
