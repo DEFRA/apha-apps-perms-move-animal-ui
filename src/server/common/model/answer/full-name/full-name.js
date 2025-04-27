@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import { sanitise, validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { sanitiseValue } from '../../../helpers/sanitise.js'
 
@@ -28,22 +28,26 @@ const maxLength = 50
 const fullNamePayloadSchema = ({ validation }) => {
   return Joi.object({
     firstName: Joi.string()
+      .custom(sanitise)
       .trim()
       .required()
       .max(maxLength)
       .messages({
         'any.required': validation.firstName.empty?.message ?? '',
         'string.empty': validation.firstName.empty?.message ?? '',
-        'string.max': `First name must be no longer than ${maxLength} characters`
+        'string.max': `First name must be no longer than ${maxLength} characters`,
+        'string.sanitisedEmpty': validation.firstName.empty?.message ?? ''
       }),
     lastName: Joi.string()
+      .custom(sanitise)
       .trim()
       .required()
       .max(maxLength)
       .messages({
         'any.required': validation.lastName.empty?.message ?? '',
         'string.empty': validation.lastName.empty?.message ?? '',
-        'string.max': `Last name must be no longer than ${maxLength} characters`
+        'string.max': `Last name must be no longer than ${maxLength} characters`,
+        'string.sanitisedEmpty': validation.lastName.empty?.message ?? ''
       })
   })
 }

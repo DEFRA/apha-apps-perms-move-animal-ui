@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import { sanitise, validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { sanitiseValue } from '../../../helpers/sanitise.js'
 
@@ -11,12 +11,13 @@ import { sanitiseValue } from '../../../helpers/sanitise.js'
  * @returns {Joi.Schema}
  */
 const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
-  let stringValidation = Joi.string().trim().required()
+  let stringValidation = Joi.string().custom(sanitise).trim().required()
 
   const messages = {
     'any.required': validation.empty?.message ?? '',
     'string.empty': validation.empty?.message ?? '',
-    'string.max': validation.maxLength?.message ?? ''
+    'string.max': validation.maxLength?.message ?? '',
+    'string.sanitisedEmpty': validation.empty?.message ?? ''
   }
 
   if (validation.maxLength) {

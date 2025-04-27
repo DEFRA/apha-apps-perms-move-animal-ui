@@ -44,21 +44,18 @@ export const validateAnswerAgainstSchema = (schema, value) => {
  * If the sanitised value differs from the original, an error is returned.
  * @param {string} value - The input value to be sanitised.
  * @param {object} helpers - An object containing helper functions for validation.
+ * @param {object} options - Additional options.
  * @returns {string|Error} - The sanitised value if no changes were made, or an error if sanitization occurred.
  */
-export const sanitise = (value, helpers) => {
+export const sanitise = (value, helpers, options = { optional: false }) => {
   const clean = sanitizeHtml(value, {
     allowedTags: [],
     allowedAttributes: {}
   })
 
-  // This error could cause issues when we don't really want to show an error
-  // for instance when the field is optional and result is empty string
-  // BUT if we are happy to have a generic error message every time we have done
-  // some sanitisation we can uncomment this
-
-  // if (clean !== value) {
-  //   return helpers.error('string.sanitised')
-  // }
+  if (!options.optional && !clean) {
+    // return an error if the value is not optional and the sanitised value is an empty string (or falsy)
+    return helpers.error('string.sanitisedEmpty')
+  }
   return clean
 }

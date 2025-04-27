@@ -20,56 +20,52 @@ const postcodeRequired = 'Enter postcode'
 
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
+    .custom(sanitise)
     .required()
-    // if we use this validation we need to handle the scenario where
-    // the user enters a value that becomes empty after sanitisation
-    // but this can be a problem when we allow empty values
-    // as in these cases we need a new error message
-    // .custom(sanitise)
     .trim()
     .max(maxLength)
     .messages({
       'any.required': addressLine1Required,
       'string.empty': addressLine1Required,
-      'string.max': maxLengthMessage('Address line 1')
-      // 'string.sanitised': addressLine1Required
+      'string.max': maxLengthMessage('Address line 1'),
+      'string.sanitisedEmpty': addressLine1Required
     }),
   addressLine2: Joi.string()
-    .custom(sanitise)
+    // Using a wrapper function to specify that the field is optional
+    .custom((value, helpers) => sanitise(value, helpers, { optional: true }))
     .allow('')
     .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address line 2')
     }),
   addressTown: Joi.string()
-    // .custom(sanitise)
+    .custom(sanitise)
     .required()
     .trim()
     .max(maxLength)
     .messages({
       'any.required': addressTownRequired,
       'string.empty': addressTownRequired,
-      'string.max': maxLengthMessage('Address town')
-      // 'string.sanitised': addressTownRequired
+      'string.max': maxLengthMessage('Address town'),
+      'string.sanitisedEmpty': addressTownRequired
     }),
   addressCounty: Joi.string()
-    .custom(sanitise)
+    .custom((value, helpers) => sanitise(value, helpers, { optional: true }))
     .allow('')
     .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address county')
-      // 'string.sanitised': 'You entered a dodgy value'
     }),
   addressPostcode: Joi.string()
-    // .custom(sanitise)
+    .custom(sanitise)
     .required()
     .replace(' ', '')
     .pattern(postcodeRegex)
     .messages({
       'any.required': postcodeRequired,
       'string.empty': postcodeRequired,
-      'string.pattern.base': 'Enter a full UK postcode'
-      // 'string.sanitised': postcodeRequired
+      'string.pattern.base': 'Enter a full UK postcode',
+      'string.sanitisedEmpty': postcodeRequired
     })
 }).required()
 
