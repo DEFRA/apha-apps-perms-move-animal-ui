@@ -80,12 +80,11 @@ describe('#FullName.validate', () => {
 })
 
 describe('#FullName.toState', () => {
-  it('should replace missing data with blank string', () => {
+  it('should replace missing data with undefined', () => {
     const fullName = new FullNameAnswer()
     const data = fullName.toState()
 
-    expect(data.firstName).toBe('')
-    expect(data.lastName).toBe('')
+    expect(data).toBeUndefined()
   })
 
   it('should pass through valid data unaltered', () => {
@@ -116,10 +115,6 @@ describe('#FullName.fromState', () => {
       firstName: 'Jean-Luc',
       lastName: 'Picard'
     })
-  })
-
-  it('should return an undefined value if the state is undefined', () => {
-    expect(TestFullNameAnswer.fromState(undefined).value).toBeUndefined()
   })
 
   it('should return an empty object if the state is undefined', () => {

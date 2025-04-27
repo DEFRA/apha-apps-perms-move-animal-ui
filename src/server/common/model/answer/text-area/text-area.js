@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { sanitiseValue } from '../../../helpers/sanitise.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 
@@ -77,11 +78,11 @@ export class TextAreaAnswer extends AnswerModel {
    * @returns {string | undefined}
    */
   get value() {
-    return this._data?.[this.config.payloadKey]
+    return sanitiseValue(this._data?.[this.config.payloadKey])
   }
 
   get html() {
-    return this._data?.[this.config.payloadKey]?.replace(/\n/g, '<br />') ?? ''
+    return this.value?.replace(/\n/g, '<br />') ?? ''
   }
 
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style

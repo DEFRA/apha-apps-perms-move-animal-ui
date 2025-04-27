@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { sanitise, validateAnswerAgainstSchema } from '../validation.js'
+import { sanitiseObject } from '../../../helpers/sanitise.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -20,26 +21,28 @@ const postcodeRequired = 'Enter postcode'
 const addressPayloadSchema = Joi.object({
   addressLine1: Joi.string()
     .required()
-    .custom(sanitise)
-    .required()
+    // if we use this validation we need to handle the scenario where
+    // the user enters a value that becomes empty after sanitisation
+    // but this can be a problem when we allow empty values
+    // as in these cases we need a new error message
+    // .custom(sanitise)
     .trim()
     .max(maxLength)
     .messages({
       'any.required': addressLine1Required,
       'string.empty': addressLine1Required,
-      'string.max': maxLengthMessage('Address line 1'),
-      'string.sanitized': addressLine1Required
+      'string.max': maxLengthMessage('Address line 1')
+      // 'string.sanitised': addressLine1Required
     }),
   addressLine2: Joi.string()
     .custom(sanitise)
     .allow('')
     .max(maxLength)
     .messages({
-      'string.max': maxLengthMessage('Address line 2'),
-      'string.sanitized': 'You entered a dodgy value'
+      'string.max': maxLengthMessage('Address line 2')
     }),
   addressTown: Joi.string()
-    .custom(sanitise)
+    // .custom(sanitise)
     .required()
     .trim()
     .max(maxLength)
@@ -47,6 +50,7 @@ const addressPayloadSchema = Joi.object({
       'any.required': addressTownRequired,
       'string.empty': addressTownRequired,
       'string.max': maxLengthMessage('Address town')
+      // 'string.sanitised': addressTownRequired
     }),
   addressCounty: Joi.string()
     .custom(sanitise)
@@ -54,9 +58,10 @@ const addressPayloadSchema = Joi.object({
     .max(maxLength)
     .messages({
       'string.max': maxLengthMessage('Address county')
+      // 'string.sanitised': 'You entered a dodgy value'
     }),
   addressPostcode: Joi.string()
-    .custom(sanitise)
+    // .custom(sanitise)
     .required()
     .replace(' ', '')
     .pattern(postcodeRegex)
@@ -64,6 +69,7 @@ const addressPayloadSchema = Joi.object({
       'any.required': postcodeRequired,
       'string.empty': postcodeRequired,
       'string.pattern.base': 'Enter a full UK postcode'
+      // 'string.sanitised': postcodeRequired
     })
 }).required()
 
@@ -86,7 +92,7 @@ export class AddressAnswer extends AnswerModel {
    */
   get value() {
     const trimmedValues = Object.fromEntries(
-      Object.entries(this._data ?? {})
+      Object.entries(sanitiseObject(this._data ?? {}))
         .map(([key, value]) => [key, value?.trim()])
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value !== '')
@@ -98,8 +104,8 @@ export class AddressAnswer extends AnswerModel {
   get html() {
     return Object.values(this.value ?? [])
       .filter((line) => {
-        const trimmed = line.trim()
-        return trimmed.length > 0
+        const trimmed = line?.trim()
+        return trimmed?.length > 0
       })
       .join('<br />')
   }

@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { sanitiseValue } from '../../../helpers/sanitise.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -72,15 +73,14 @@ export class FullNameAnswer extends AnswerModel {
     if (!this._data?.firstName && !this._data?.lastName) {
       return undefined
     }
-
     return {
-      firstName: this._data?.firstName,
-      lastName: this._data?.lastName
+      firstName: sanitiseValue(this._data?.firstName ?? '') ?? '',
+      lastName: sanitiseValue(this._data?.lastName ?? '') ?? ''
     }
   }
 
   get html() {
-    return `${this._data?.firstName ?? ''} ${this._data?.lastName ?? ''}`
+    return `${this.value?.firstName ?? ''} ${this.value?.lastName ?? ''}`
   }
 
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
@@ -89,13 +89,10 @@ export class FullNameAnswer extends AnswerModel {
   }
 
   /**
-   * @returns { FullNameData }
+   * @returns { FullNameData | undefined }
    */
   toState() {
-    return {
-      firstName: this._data?.firstName.trim() ?? '',
-      lastName: this._data?.lastName.trim() ?? ''
-    }
+    return this.value
   }
 
   validate() {
