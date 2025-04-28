@@ -50,4 +50,18 @@ describe('sanitiseObject', () => {
     const result = sanitiseObject(input)
     expect(result).toEqual(expectedOutput)
   })
+
+  it('should handle non string values', () => {
+    const input = {
+      key1: '<div>Value1</div>',
+      key2: 123456
+    }
+    const expectedOutput = {
+      key1: undefined,
+      key2: 123456
+    }
+
+    const result = sanitiseObject(input)
+    expect(result).toEqual(expectedOutput)
+  })
 })
