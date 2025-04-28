@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { escapeHtml } from '../../../helpers/html-escape.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -80,7 +81,9 @@ export class FullNameAnswer extends AnswerModel {
   }
 
   get html() {
-    return `${this._data?.firstName ?? ''} ${this._data?.lastName ?? ''}`
+    return escapeHtml(
+      `${this._data?.firstName ?? ''} ${this._data?.lastName ?? ''}`
+    )
   }
 
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style

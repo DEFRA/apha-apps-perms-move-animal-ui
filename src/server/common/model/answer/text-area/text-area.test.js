@@ -265,6 +265,24 @@ describe('TestAnswer.html', () => {
     })
     expect(textAreaAnswer.html).toBe('line one<br />line two')
   })
+
+  it('should return the escaped value if present', () => {
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
+      textAreaPayload: '<script>alert("XSS")</script>'
+    })
+    expect(textAreaAnswer.html).toBe(
+      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
+    )
+  })
+
+  it('should return the escaped value and replace newlines with <br>', () => {
+    const textAreaAnswer = new TestOptionalTextAreaAnswer({
+      textAreaPayload: '<script>alert("XSS")</script>\nline two'
+    })
+    expect(textAreaAnswer.html).toBe(
+      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;<br />line two'
+    )
+  })
 })
 
 describe('TestAnswer.viewModel (without any extra options)', () => {
