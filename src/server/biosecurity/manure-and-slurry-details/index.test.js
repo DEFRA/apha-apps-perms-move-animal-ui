@@ -1,6 +1,6 @@
 import { ManureAndSlurryDetailsAnswer } from '../../common/model/answer/manure-and-slurry-details/manure-and-slurry-details.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { disinfectantPage } from '../disinfectant/index.js'
 import {
   manureAndSlurryDetailsPage,
   ManureAndSlurryDetailsPage
@@ -39,9 +39,9 @@ describe('manureAndSlurryDetails', () => {
     expect(page.Answer).toBe(ManureAndSlurryDetailsAnswer)
   })
 
-  it('nextPage should return any shared buildings page', () => {
+  it('nextPage should return disinfectant page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(buildingsAnySharedPage)
+    expect(nextPage).toBe(disinfectantPage)
   })
 
   it('should export page', () => {

@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { PeopleDisinfectionAnswer } from '../../common/model/answer/people-disinfection/people-disinfection.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { disinfectantPage } from '../disinfectant/index.js'
+import { badgersPage } from '../badgers/index.js'
 
 const customHeading = 'Cleaning and disinfection measures taken by staff'
 
@@ -21,7 +21,7 @@ export class PeopleDisinfectionPage extends QuestionPage {
   }
 
   nextPage() {
-    return disinfectantPage
+    return badgersPage
   }
 }
 
