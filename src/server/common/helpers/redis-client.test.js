@@ -47,7 +47,8 @@ describe('#buildRedisClient', () => {
             db: 0,
             password: 'pass',
             tls: {},
-            username: 'user'
+            username: 'user',
+            enableReadyCheck: false
           },
           slotsRefreshTimeout: 10000
         }
