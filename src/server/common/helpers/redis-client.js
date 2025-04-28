@@ -43,6 +43,7 @@ export function buildRedisClient(redisConfig) {
       host,
       db,
       keyPrefix,
+      enableReadyCheck: false,
       ...credentials,
       ...tls
     })
@@ -59,6 +60,7 @@ export function buildRedisClient(redisConfig) {
         slotsRefreshTimeout: 10000,
         dnsLookup: (address, callback) => callback(null, address),
         redisOptions: {
+          enableReadyCheck: false,
           db,
           ...credentials,
           ...tls
