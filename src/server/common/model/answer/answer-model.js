@@ -1,3 +1,4 @@
+import { escapeMarkdown } from '../../helpers/escape-text.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /** @import {AnswerErrors, AnswerValidationResult} from './validation.js' */
 /** @import {RawApplicationState} from '../state/state-manager.js' */
@@ -75,7 +76,7 @@ export class AnswerModel {
   }
 
   get emailHtml() {
-    return this.html
+    return escapeMarkdown(this.html)
   }
 
   /**

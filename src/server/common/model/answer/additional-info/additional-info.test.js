@@ -44,4 +44,11 @@ describe('AdditionalInfo', () => {
     const answer = new AdditionalInfoAnswer({ additionalInfo: 'Some info' })
     expect(answer.emailHtml).toBe('Some info')
   })
+
+  it('should return escaped HTML when additionalInfo is not empty', () => {
+    const answer = new AdditionalInfoAnswer({
+      additionalInfo: '[evil-link](example.com)'
+    })
+    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
+  })
 })
