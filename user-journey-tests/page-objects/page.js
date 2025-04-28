@@ -135,9 +135,19 @@ class Page {
   }
 
   async navigateToPageAndVerifyTitle() {
+    const defraIdEnabled =
+      (process.env.DEFRA_ID_ENABLED || '').trim().toLowerCase() !== 'false'
     await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
     await this.verifyPrivateBetaBanner()
     await this.verifyFooter()
+
+    if (
+      defraIdEnabled &&
+      this.pagePath !== '/' &&
+      this.pagePath !== 'privacy-policy'
+    ) {
+      await this.verifyAccountManagementAppears()
+    }
   }
 
   async verifyPageHeadingAndTitle() {
