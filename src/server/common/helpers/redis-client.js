@@ -43,6 +43,7 @@ export function buildRedisClient(redisConfig) {
       host,
       db,
       keyPrefix,
+      enableReadyCheck: false,
       ...credentials,
       ...tls
     })
