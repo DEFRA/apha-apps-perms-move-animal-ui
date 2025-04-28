@@ -272,7 +272,7 @@ describe('Address.html', () => {
       addressPostcode: 'RG24 8RR'
     })
     const expectedHtml = [
-      '&lt;script&gt;alert("XSS")&lt;/script&gt;',
+      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;',
       'San &lt;b&gt;Francisco&lt;/b&gt;',
       'RG24 8RR'
     ].join('<br />')

@@ -271,7 +271,7 @@ describe('TestAnswer.html', () => {
       textAreaPayload: '<script>alert("XSS")</script>'
     })
     expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert("XSS")&lt;/script&gt;'
+      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
     )
   })
 
@@ -280,7 +280,7 @@ describe('TestAnswer.html', () => {
       textAreaPayload: '<script>alert("XSS")</script>\nline two'
     })
     expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert("XSS")&lt;/script&gt;<br />line two'
+      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;<br />line two'
     )
   })
 })
