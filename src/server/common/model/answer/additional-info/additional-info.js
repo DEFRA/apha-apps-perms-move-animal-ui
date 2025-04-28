@@ -1,3 +1,4 @@
+import { escapeMarkdown } from '../../../helpers/escape-text.js'
 import { TextAreaAnswer } from '../text-area/text-area.js'
 
 /** @import {TextAreaConfig} from '../text-area/text-area.js' */
@@ -27,6 +28,6 @@ export class AdditionalInfoAnswer extends TextAreaAnswer {
     if (data.length === 0) {
       return 'None'
     }
-    return this.html
+    return escapeMarkdown(this.html)
   }
 }

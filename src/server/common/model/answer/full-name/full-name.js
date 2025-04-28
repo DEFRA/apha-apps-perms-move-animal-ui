@@ -2,7 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
-import { escapeHtml } from '../../../helpers/html-escape.js'
+import { escapeHtml } from '../../../helpers/escape-text.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
