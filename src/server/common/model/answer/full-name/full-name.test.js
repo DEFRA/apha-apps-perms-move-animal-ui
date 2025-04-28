@@ -139,6 +139,14 @@ describe('#FullName.html', () => {
     const fullName = new TestFullNameAnswer()
     expect(fullName.html).toBe(' ')
   })
+
+  it('should return the escaped fullName', () => {
+    const fullName = new TestFullNameAnswer({
+      firstName: '<Jean>',
+      lastName: '<Picard>'
+    })
+    expect(fullName.html).toBe('&lt;Jean&gt; &lt;Picard&gt;')
+  })
 })
 
 describe('FullName.viewModel', () => {

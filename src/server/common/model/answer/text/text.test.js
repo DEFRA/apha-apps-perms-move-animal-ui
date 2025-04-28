@@ -227,6 +227,12 @@ describe('TestAnswer.html', () => {
     const textAnswer = new TestTextAnswer({})
     expect(textAnswer.html).toBe('')
   })
+
+  it('should return the escaped HTML value if present', () => {
+    const payload = { textPayload: '<script>alert("XSS")</script>' }
+    const textAnswer = new TestTextAnswer(payload)
+    expect(textAnswer.html).toBe('&lt;script&gt;alert("XSS")&lt;/script&gt;')
+  })
 })
 
 describe('TestAnswer.viewModel (without any extra options)', () => {

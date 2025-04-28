@@ -264,6 +264,21 @@ describe('Address.html', () => {
 
     expect(address.html).toBe('')
   })
+
+  it('should escape HTML characters in the address fields', () => {
+    const address = new AddressAnswer({
+      addressLine1: '<script>alert("XSS")</script>',
+      addressTown: 'San <b>Francisco</b>',
+      addressPostcode: 'RG24 8RR'
+    })
+    const expectedHtml = [
+      '&lt;script&gt;alert("XSS")&lt;/script&gt;',
+      'San &lt;b&gt;Francisco&lt;/b&gt;',
+      'RG24 8RR'
+    ].join('<br />')
+
+    expect(address.html).toBe(expectedHtml)
+  })
 })
 
 describe('Address.viewModel', () => {
