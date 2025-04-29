@@ -39,14 +39,14 @@ const options = [
   '9'
 ]
 
-const pick = (options) => {
+const pick = () => {
   return options[Math.floor(crypto.randomInt(0, options.length))]
 }
 
 const generateSegment = () => {
   return new Array(4)
     .fill(null)
-    .map(() => pick(options))
+    .map(() => pick())
     .join('')
 }
 
