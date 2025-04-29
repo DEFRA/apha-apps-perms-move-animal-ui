@@ -36,7 +36,7 @@ class ConfirmationController extends PageController {
   handleGet(req, h) {
     if (
       config.get('clearSessionDebug') === true ||
-      config.get('env') !== 'development'
+      config.get('env') === 'production'
     ) {
       req.yar.reset()
     }
