@@ -10,6 +10,7 @@ import { StateManager } from '../common/model/state/state-manager.js'
 import { fileSizeInMB } from '../common/helpers/file/size.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
+import { getApplicationReference } from '../common/helpers/application-reference/index.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -101,7 +102,9 @@ export class SubmitPageController extends QuestionPageController {
     const { isValid: isValidApplication } = application.validate()
 
     if (isValidPage && isValidApplication) {
-      const emailContent = this.generateEmailContent(application)
+      const reference = getApplicationReference()
+      req.yar.set('applicationReference', reference, true)
+      const emailContent = this.generateEmailContent(application, reference)
       const notifyProps = { content: emailContent }
 
       if (
@@ -132,9 +135,7 @@ export class SubmitPageController extends QuestionPageController {
 
       await sendNotification(notifyProps)
 
-      return Promise.resolve(super.handlePost(req, h)).finally(() => {
-        req.yar.reset()
-      })
+      return super.handlePost(req, h)
     }
 
     if (!isValidApplication) {
@@ -144,11 +145,17 @@ export class SubmitPageController extends QuestionPageController {
     return super.handlePost(req, h)
   }
 
-  generateEmailContent(application) {
+  generateEmailContent(application, reference) {
     /**
      * @type {string[]}
      */
     const lines = []
+
+    lines.push(`# Application reference`)
+    lines.push(reference)
+
+    lines.push('')
+    lines.push('---')
 
     Object.values(application.tasks).forEach((task) => {
       lines.push(`# ${task.config.title}`)

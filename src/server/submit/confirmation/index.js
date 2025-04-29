@@ -1,3 +1,4 @@
+import { config } from '~/src/config/config.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
 import { Page } from '../../common/model/page/page-model.js'
 
@@ -23,11 +24,30 @@ export class ConfirmationPage extends Page {
 
   pageTitle = title
   pageHeading = title
+
+  viewProps(req) {
+    return {
+      referenceHTML: `Your reference number<br /><b>${req.yar.get('applicationReference')}</b>`
+    }
+  }
+}
+
+class ConfirmationController extends PageController {
+  handleGet(req, h) {
+    if (config.get('clearSessionDebug') === true) {
+      req.yar.reset()
+    }
+
+    return super.handleGet(req, h)
+  }
 }
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const submitConfirmation = new PageController(new ConfirmationPage(), {
-  methods: ['GET']
-}).plugin()
+export const submitConfirmation = new ConfirmationController(
+  new ConfirmationPage(),
+  {
+    methods: ['GET']
+  }
+).plugin()

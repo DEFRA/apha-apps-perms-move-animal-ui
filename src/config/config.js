@@ -359,6 +359,12 @@ export const config = convict({
       env: 'AUTH_COOKIE_PASSWORD',
       sensitive: true
     }
+  },
+  clearSessionDebug: {
+    doc: 'Clear session on logout',
+    format: Boolean,
+    default: true,
+    env: 'CLEAR_SESSION_ON_SEND'
   }
 })
 
