@@ -33,6 +33,14 @@ const completeBiosecurityTask = async (radioType) => {
       await manureAndSlurryPage.selectYesAndContinue(manureDetailsPage)
       await manureDetailsPage.inputTextAndContinue(
         'Manure details',
+        disinfectantPage
+      )
+      await disinfectantPage.inputTextAndContinue(
+        'Batman disinfectant',
+        disinfectantDilutionPage
+      )
+      await disinfectantDilutionPage.inputTextAndContinue(
+        '1995',
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
@@ -49,14 +57,6 @@ const completeBiosecurityTask = async (radioType) => {
       )
       await peopleDisinfectionPage.inputTextAndContinue(
         'People disinfection',
-        disinfectantPage
-      )
-      await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
-      )
-      await disinfectantDilutionPage.inputTextAndContinue(
-        '1995',
         biosecBadgersPage
       )
       await biosecBadgersPage.inputTextAndContinue(
@@ -69,6 +69,14 @@ const completeBiosecurityTask = async (radioType) => {
       await keptSeparatelyPage.selectNoAndContinue(manureDetailsPage)
       await manureDetailsPage.inputTextAndContinue(
         'Manage manure',
+        disinfectantPage
+      )
+      await disinfectantPage.inputTextAndContinue(
+        'Batman disinfectant',
+        disinfectantDilutionPage
+      )
+      await disinfectantDilutionPage.inputTextAndContinue(
+        '1995',
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
@@ -81,14 +89,6 @@ const completeBiosecurityTask = async (radioType) => {
       await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
       await peopleDisinfectionPage.inputTextAndContinue(
         'People disinfection',
-        disinfectantPage
-      )
-      await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
-      )
-      await disinfectantDilutionPage.inputTextAndContinue(
-        '1995',
         biosecBadgersPage
       )
       await biosecBadgersPage.inputTextAndContinue(

@@ -1,10 +1,10 @@
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
-import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 
 describe('Disinfectant dilution page spec', () => {
   // eslint-disable-next-line no-undef
@@ -38,7 +38,7 @@ describe('Disinfectant dilution page spec', () => {
   it('Should input correct input and continue without error', async () => {
     await disinfectantDilutionPage.inputTextAndContinue(
       '1995',
-      biosecBadgersPage
+      anySharedBuildingsPage
     )
   })
 })
