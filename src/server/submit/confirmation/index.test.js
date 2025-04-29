@@ -89,7 +89,6 @@ describe('# Confirmation handler', () => {
 
   it('Should clear the session on display', async () => {
     spyOnConfig('clearSessionDebug', true)
-    // spyOnConfig('env', 'development')
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
