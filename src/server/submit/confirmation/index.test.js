@@ -110,6 +110,30 @@ describe('# Confirmation handler', () => {
     expect(await session.getSectionState('submit')).toBeUndefined()
   })
 
+  it('Should always clear the session on display in prod', async () => {
+    spyOnConfig('clearSessionDebug', true)
+    spyOnConfig('env', 'production')
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: pageUrl
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.ok)
+
+    expect(await session.getSectionState('origin')).toBeUndefined()
+    expect(await session.getSectionState('destination')).toBeUndefined()
+    expect(await session.getSectionState('licence')).toBeUndefined()
+    expect(await session.getSectionState('submit')).toBeUndefined()
+  })
+
   afterAll(async () => {
     await server.stop({ timeout: 0 })
   })
