@@ -27,7 +27,7 @@ jest.mock('../common/connectors/notify/notify.js', () => ({
 const mockSendNotification = /** @type {jest.Mock} */ (sendNotification)
 
 jest.mock('../common/helpers/application-reference/index.js', () => ({
-  getApplicationReference: jest.fn().mockReturnValue('TB-1234-5678')
+  getApplicationReference: jest.fn().mockReturnValue('TB-XXXX-XXXX')
 }))
 
 const {
