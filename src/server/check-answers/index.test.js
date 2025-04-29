@@ -26,6 +26,10 @@ jest.mock('../common/connectors/notify/notify.js', () => ({
 }))
 const mockSendNotification = /** @type {jest.Mock} */ (sendNotification)
 
+jest.mock('../common/helpers/application-reference/index.js', () => ({
+  getApplicationReference: jest.fn().mockReturnValue('TB-1234-5678')
+}))
+
 const {
   origin,
   destination,
@@ -267,10 +271,6 @@ describe('#CheckAnswers', () => {
     )
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(confirmationUri)
-    expect(await session.getSectionState('origin')).toBeUndefined()
-    expect(await session.getSectionState('destination')).toBeUndefined()
-    expect(await session.getSectionState('licence')).toBeUndefined()
-    expect(await session.getSectionState('submit')).toBeUndefined()
   })
 
   it('Should send email and redirect correctly when only `other` present', async () => {

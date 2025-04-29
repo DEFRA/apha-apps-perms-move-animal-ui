@@ -363,7 +363,11 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
 `;
 
 exports[`#CheckAnswers Should redirect correctly when there is no error: email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
@@ -435,7 +439,11 @@ some text
 `;
 
 exports[`#CheckAnswers Should send email and redirect correctly when only \`confirm\` present: email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
@@ -507,7 +515,11 @@ some text
 `;
 
 exports[`#CheckAnswers Should send email and redirect correctly when only \`other\` present: email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
@@ -579,7 +591,11 @@ some text
 `;
 
 exports[`#CheckAnswers should error if email fails ot send for whatever reason: email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
@@ -651,7 +667,11 @@ some text
 `;
 
 exports[`#CheckAnswers should not handle the file and send email in correct format if the file status is already "skipped": email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
@@ -723,7 +743,11 @@ Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed versi
 `;
 
 exports[`#CheckAnswers should send email in correct format: email-content 1`] = `
-"# Movement origin
+"# Application reference
+TB-1234-5678
+
+---
+# Movement origin
 
 ---
 ## Are you moving the animals on or off your farm or premises?
