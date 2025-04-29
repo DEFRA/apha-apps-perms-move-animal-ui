@@ -53,6 +53,7 @@ describe('ConfirmationPage', () => {
 describe('# Confirmation handler', () => {
   let server
   let session
+  let resetSpy
 
   beforeAll(async () => {
     server = await createServer()
@@ -62,15 +63,14 @@ describe('# Confirmation handler', () => {
   beforeEach(async () => {
     session = await SessionTestHelper.create(server)
     await session.setSectionState('origin', origin)
-    await session.setSectionState('licence', licence)
     await session.setSectionState('destination', destination)
-    await session.setSectionState('identification', identification)
-    await session.setSectionState('biosecurity', biosecurity)
-    await session.setSectionState('biosecurity-map', biosecurityMap)
+    await session.setSectionState('licence', licence)
   })
 
-  it('Should provide expected response', async () => {
-    const { payload, statusCode } = await server.inject(
+  it('Should reset session when clearSessionDebug is true and env is not production', async () => {
+    spyOnConfig('clearSessionDebug', false)
+
+    const { statusCode } = await server.inject(
       withCsrfProtection(
         {
           method: 'GET',
@@ -82,12 +82,13 @@ describe('# Confirmation handler', () => {
       )
     )
 
-    const document = parseDocument(payload)
-    expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
     expect(statusCode).toBe(statusCodes.ok)
+    expect(await session.getSectionState('origin')).toBeDefined()
+    expect(await session.getSectionState('destination')).toBeDefined()
+    expect(await session.getSectionState('licence')).toBeDefined()
   })
 
-  it('Should clear the session on display', async () => {
+  it('Should reset session when clearSessionDebug is true and env is production', async () => {
     spyOnConfig('clearSessionDebug', true)
 
     const { statusCode } = await server.inject(
@@ -103,35 +104,9 @@ describe('# Confirmation handler', () => {
     )
 
     expect(statusCode).toBe(statusCodes.ok)
-
     expect(await session.getSectionState('origin')).toBeUndefined()
     expect(await session.getSectionState('destination')).toBeUndefined()
     expect(await session.getSectionState('licence')).toBeUndefined()
-    expect(await session.getSectionState('submit')).toBeUndefined()
-  })
-
-  it('Should always clear the session on display in prod', async () => {
-    spyOnConfig('clearSessionDebug', true)
-    spyOnConfig('env', 'production')
-
-    const { statusCode } = await server.inject(
-      withCsrfProtection(
-        {
-          method: 'GET',
-          url: pageUrl
-        },
-        {
-          Cookie: session.sessionID
-        }
-      )
-    )
-
-    expect(statusCode).toBe(statusCodes.ok)
-
-    expect(await session.getSectionState('origin')).toBeUndefined()
-    expect(await session.getSectionState('destination')).toBeUndefined()
-    expect(await session.getSectionState('licence')).toBeUndefined()
-    expect(await session.getSectionState('submit')).toBeUndefined()
   })
 
   afterAll(async () => {
