@@ -42,7 +42,7 @@ describe('Security test html input', () => {
     expect(scriptTags).toHaveLength(0)
 
     // 3. Confirm injected JavaScript did NOT execute (i.e. window.hacked was not set)
-    const wasHacked = await browser.execute(() => window.hacked === true)
-    expect(wasHacked).toBe(false)
+    const wasHacked = await browser.execute(() => window.hacked)
+    expect(wasHacked).toBe(undefined || null)
   })
 })
