@@ -1,10 +1,10 @@
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
-import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 describe('Manur details page spec', () => {
   // eslint-disable-next-line no-undef
@@ -25,9 +25,6 @@ describe('Manur details page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await manureDetailsPage.inputTextAndContinue(
-      '2 years',
-      anySharedBuildingsPage
-    )
+    await manureDetailsPage.inputTextAndContinue('2 years', disinfectantPage)
   })
 })

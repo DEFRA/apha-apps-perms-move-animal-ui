@@ -1,6 +1,6 @@
 import { PeopleDisinfectionAnswer } from '../../common/model/answer/people-disinfection/people-disinfection.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { disinfectantPage } from '../disinfectant/index.js'
+import { badgersPage } from '../badgers/index.js'
 import { peopleDisinfectionPage, PeopleDisinfectionPage } from './index.js'
 
 const sectionKey = 'biosecurity'
@@ -45,7 +45,7 @@ describe('PeopleDisinfectionPage', () => {
 
   it('nextPage should return disinfectant page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(disinfectantPage)
+    expect(nextPage).toBe(badgersPage)
   })
 
   it('should export page', () => {
