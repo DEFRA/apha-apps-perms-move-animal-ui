@@ -3,7 +3,6 @@ import { ConfirmationPage } from './index.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { validApplicationState } from '../../common/test-helpers/journey-state.js'
 import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
-import { parseDocument } from '../../common/test-helpers/dom.js'
 import { statusCodes } from '../../common/constants/status-codes.js'
 import { spyOnConfig } from '../../common/test-helpers/config.js'
 
@@ -13,14 +12,7 @@ const urlKey = 'submit-confirmation'
 const view = 'submit/confirmation/index'
 const pageUrl = '/submit/confirmation'
 
-const {
-  origin,
-  destination,
-  licence,
-  identification,
-  biosecurity,
-  'biosecurity-map': biosecurityMap
-} = validApplicationState
+const { origin, destination, licence } = validApplicationState
 
 describe('ConfirmationPage', () => {
   let page
@@ -53,7 +45,6 @@ describe('ConfirmationPage', () => {
 describe('# Confirmation handler', () => {
   let server
   let session
-  let resetSpy
 
   beforeAll(async () => {
     server = await createServer()
