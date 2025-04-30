@@ -2,6 +2,7 @@ import { emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
@@ -47,6 +48,24 @@ describe('EmailAddressPage', () => {
 
   it('should export page', () => {
     expect(emailAddressPage).toBeInstanceOf(EmailAddressPage)
+  })
+})
+
+describe('#hint text turned off', () => {
+  spyOnConfig('featureFlags', {
+    emailConfirmation: false
+  })
+
+  describePageSnapshot({
+    describes: 'EmailAddressPage.content',
+    it: 'should render expected response and content',
+    pageUrl
+  })
+})
+
+describe('#hint text turned on', () => {
+  spyOnConfig('featureFlags', {
+    emailConfirmation: true
   })
 
   describePageSnapshot({
