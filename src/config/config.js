@@ -273,23 +273,27 @@ export const config = convict({
       default: false,
       env: 'NOTIFY_EMAIL_DOWNLOAD_CONFIRMATION'
     },
-    caseDeliveryTemplateId: /** @type {SchemaObj<string | null>} */ {
-      format: String,
-      default: null,
-      nullable: true,
-      env: 'NOTIFY_CASE_DELIVERY_TEMPLATE_ID'
+    caseDelivery: {
+      templateId: /** @type {SchemaObj<string | null>} */ {
+        format: String,
+        default: null,
+        nullable: true,
+        env: 'NOTIFY_CASE_DELIVERY_TEMPLATE_ID'
+      },
+      emailAddress: /** @type {SchemaObj<string | null>} */ {
+        format: String,
+        default: null,
+        nullable: true,
+        env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
+      }
     },
-    caseDeliveryEmailAddress: /** @type {SchemaObj<string | null>} */ {
-      format: String,
-      default: null,
-      nullable: true,
-      env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
-    },
-    applicantConfirmationTemplateId: /** @type {SchemaObj<string | null>} */ {
-      format: String,
-      default: null,
-      nullable: true,
-      env: 'NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID'
+    applicantConfirmation: {
+      templateId: /** @type {SchemaObj<string | null>} */ {
+        format: String,
+        default: null,
+        nullable: true,
+        env: 'NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID'
+      }
     }
   },
   aws: {

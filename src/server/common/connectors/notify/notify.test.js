@@ -54,8 +54,8 @@ describe('sendEmailToCaseWorker', () => {
 
       expect(JSON.parse(payload ?? '')).toEqual({
         personalisation: testData,
-        template_id: notifyConfig.caseDeliveryTemplateId,
-        email_address: notifyConfig.caseDeliveryEmailAddress
+        template_id: notifyConfig.caseDelivery.templateId,
+        email_address: notifyConfig.caseDelivery.emailAddress
       })
       expect(options?.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
@@ -79,8 +79,8 @@ describe('sendEmailToCaseWorker', () => {
           ...testDataWithoutFile,
           link_to_file: ''
         },
-        template_id: notifyConfig.caseDeliveryTemplateId,
-        email_address: notifyConfig.caseDeliveryEmailAddress
+        template_id: notifyConfig.caseDelivery.templateId,
+        email_address: notifyConfig.caseDelivery.emailAddress
       })
       expect(options.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
@@ -182,7 +182,7 @@ describe('sendEmailToApplicant', () => {
           application_reference_number: testData.reference
         },
         email_address: testData.email,
-        template_id: notifyConfig.applicantConfirmationTemplateId
+        template_id: notifyConfig.applicantConfirmation.templateId
       })
       expect(options?.headers).toEqual({
         Authorization: 'Bearer mocked-jwt-token'
