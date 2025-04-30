@@ -249,23 +249,11 @@ export const config = convict({
       nullable: false,
       env: 'NOTIFY_URL'
     },
-    templateId: /** @type {SchemaObj<string | null>} */ {
-      format: String,
-      default: null,
-      nullable: true,
-      env: 'NOTIFY_TEMPLATE_ID'
-    },
     apiKey: /** @type {SchemaObj<string | null>} */ {
       format: String,
       default: null,
       nullable: true,
       env: 'NOTIFY_API_KEY'
-    },
-    caseDeliveryEmailAddress: /** @type {SchemaObj<string | null>} */ {
-      format: String,
-      default: null,
-      nullable: true,
-      env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
     },
     timeout: {
       doc: 'Timeout for notify requests in milliseconds',
@@ -284,6 +272,24 @@ export const config = convict({
       format: Boolean,
       default: false,
       env: 'NOTIFY_EMAIL_DOWNLOAD_CONFIRMATION'
+    },
+    caseDeliveryTemplateId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'NOTIFY_CASE_DELIVERY_TEMPLATE_ID'
+    },
+    caseDeliveryEmailAddress: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS'
+    },
+    applicantConfirmationTemplateId: /** @type {SchemaObj<string | null>} */ {
+      format: String,
+      default: null,
+      nullable: true,
+      env: 'NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID'
     }
   },
   aws: {
@@ -318,6 +324,12 @@ export const config = convict({
       format: Boolean,
       env: 'ANIMAL_IDENTIFIERS_ENABLED',
       default: !isProduction
+    },
+    emailConfirmation: {
+      doc: 'Feature flag to enable confirmation email',
+      format: Boolean,
+      default: !isProduction,
+      env: 'EMAIL_CONFIRMATION_ENABLED'
     }
   },
   gsPath: {

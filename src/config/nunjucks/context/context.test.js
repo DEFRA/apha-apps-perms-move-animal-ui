@@ -37,6 +37,7 @@ describe('#context', () => {
         features: {
           animalIdentifiers: true,
           authEnabled: false,
+          emailConfirmation: true,
           pdfUpload: true
         },
         displayName: undefined,
@@ -133,6 +134,7 @@ describe('#context cache', () => {
         features: {
           animalIdentifiers: true,
           authEnabled: false,
+          emailConfirmation: true,
           pdfUpload: true
         },
         getAssetPath: expect.any(Function),

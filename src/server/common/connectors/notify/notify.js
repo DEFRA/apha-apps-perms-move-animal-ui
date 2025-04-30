@@ -4,29 +4,60 @@ import { createToken } from '~/src/server/common/connectors/notify/notify-token-
 import { statusCodes } from '../../constants/status-codes.js'
 
 /**
- * @typedef {{ content: string, link_to_file?: object}} NotifyContent
+ * @typedef {{ content: string, link_to_file?: object}} CaseWorkerEmailParams
+ * @typedef {{ applicant_name: string, application_reference_number: string }} ApplicantEmailParams
+ * @typedef {{ email: string, fullName: string, reference: string }} ApplicantEmailData
+ * @typedef {{ template_id: string | null , email_address: string | null, personalisation: CaseWorkerEmailParams | ApplicantEmailParams }} NotifyPayload
  */
 
 /**
- * @param {NotifyContent} data
+ * @param {CaseWorkerEmailParams} data
  */
-export async function sendNotification(data) {
-  const { ...notifyConfig } = config.get('notify')
+export async function sendEmailToCaseWorker(data) {
+  const { caseDeliveryTemplateId, caseDeliveryEmailAddress } =
+    config.get('notify')
 
-  const payload = JSON.stringify({
-    template_id: notifyConfig.templateId,
-    email_address: notifyConfig.caseDeliveryEmailAddress,
+  const payload = {
+    template_id: caseDeliveryTemplateId,
+    email_address: caseDeliveryEmailAddress,
     personalisation: {
       content: data.content,
       link_to_file: data.link_to_file ?? ''
     }
-  })
+  }
+
+  return sendNotification(payload)
+}
+
+/**
+ * @param {ApplicantEmailData} data
+ */
+export async function sendEmailToApplicant(data) {
+  const { applicantConfirmationTemplateId } = config.get('notify')
+
+  const payload = {
+    template_id: applicantConfirmationTemplateId,
+    email_address: data.email,
+    personalisation: {
+      applicant_name: data.fullName,
+      application_reference_number: data.reference
+    }
+  }
+
+  return sendNotification(payload)
+}
+
+/**
+ * @param {NotifyPayload} payload
+ */
+async function sendNotification(payload) {
+  const { ...notifyConfig } = config.get('notify')
 
   let response
 
   try {
     response = await Wreck.post(notifyConfig.url, {
-      payload,
+      payload: JSON.stringify(payload),
       headers: {
         Authorization: 'Bearer ' + createToken(notifyConfig.apiKey)
       },

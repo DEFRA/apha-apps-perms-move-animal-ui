@@ -1,4 +1,4 @@
-import { sendNotification } from './notify.js'
+import { sendEmailToCaseWorker } from './notify.js'
 import { config } from '~/src/config/config.js'
 import { createBackendServer } from '../../test-helpers/backend-server.js'
 
@@ -49,7 +49,7 @@ describe('sendNotification (integration)', () => {
 
     const testData = { content: 'test' }
 
-    const result = sendNotification(testData)
+    const result = sendEmailToCaseWorker(testData)
 
     await expect(result).rejects.toThrow(
       `Request to GOV.uk notify timed out after ${testTimeout}ms`

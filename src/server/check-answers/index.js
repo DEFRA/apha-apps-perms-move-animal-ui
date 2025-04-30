@@ -5,7 +5,10 @@ import { QuestionPageController } from '../common/controller/question-page-contr
 import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../common/model/page/page-model.js'
 import { ApplicationModel } from '../common/model/application/application.js'
-import { sendNotification } from '../common/connectors/notify/notify.js'
+import {
+  sendEmailToApplicant,
+  sendEmailToCaseWorker
+} from '../common/connectors/notify/notify.js'
 import { StateManager } from '../common/model/state/state-manager.js'
 import { fileSizeInMB } from '../common/helpers/file/size.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
@@ -133,7 +136,14 @@ export class SubmitPageController extends QuestionPageController {
         }
       }
 
-      await sendNotification(notifyProps)
+      await sendEmailToCaseWorker(notifyProps)
+      if (config.get('featureFlags').emailConfirmation) {
+        await sendEmailToApplicant({
+          email: applicationState.licence.emailAddress,
+          fullName: `${applicationState.licence.fullName.firstName} ${applicationState.licence.fullName.lastName}`,
+          reference: reference ?? ''
+        })
+      }
 
       return super.handlePost(req, h)
     }
