@@ -15,7 +15,7 @@ const originDefaultObject = {
 const licenceDefaultObject = {
   firstNameDefault: 'firstName',
   lastNameDefault: 'lastName',
-  emailDefault: 'default@email.com'
+  emailDefault: 'eoin.corr@esynergy.co.uk'
 }
 
 describe('declarations', () => {

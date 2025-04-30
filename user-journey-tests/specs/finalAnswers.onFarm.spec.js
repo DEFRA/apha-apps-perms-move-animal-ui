@@ -14,7 +14,7 @@ describe('Check your final answers test', () => {
       licence: {
         firstNameDefault: 'firstName',
         lastNameDefault: 'lastName',
-        emailDefault: 'default@email.com'
+        emailDefault: 'eoin.corr@esynergy.co.uk'
       }
     })
   })
