@@ -130,6 +130,12 @@ describe('#CheckAnswers', () => {
   })
 
   describe('when email confirmation to the applicant is disabled', () => {
+    beforeEach(() => {
+      spyOnConfig('featureFlags', {
+        emailConfirmation: false
+      })
+    })
+
     it('should not send an email on POST and display an error if a declaration is missing', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
