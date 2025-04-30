@@ -11,8 +11,6 @@ const emptyAddressError =
 const invalidAddressError =
   'Enter an email address in the correct format, like name@example.com'
 
-const confirmationEnabled = config.get('featureFlags').emailConfirmation
-
 /**
  * export @typedef {string} EmailAddressData
  * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
@@ -30,14 +28,21 @@ export class EmailAddressAnswer extends TextAnswer {
     spellcheck: false,
     autocomplete: 'email-address',
     characterWidth: 20,
-    hint:
-      (confirmationEnabled &&
-        'A confirmation email will also be sent to this address') ||
-      undefined,
     validation: {
       pattern: { regex: emailAddressRegex, message: invalidAddressError },
       maxLength: { value: maxLength, message: invalidAddressError },
       empty: { message: emptyAddressError }
     }
+  }
+
+  get config() {
+    const answerConfig = EmailAddressAnswer.config
+
+    if (config.get('featureFlags').emailConfirmation) {
+      answerConfig.hint =
+        'A confirmation email will also be sent to this address'
+    }
+
+    return answerConfig
   }
 }

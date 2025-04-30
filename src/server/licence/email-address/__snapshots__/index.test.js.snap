@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#hint text turned off EmailAddressPage.content should render expected response and content 1`] = `
+exports[`#hint text turned off Should respond with expected output 1`] = `
 "
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
@@ -15,10 +15,7 @@ exports[`#hint text turned off EmailAddressPage.content should render expected r
       What email address would you like the licence sent to?
     </label>
   </h1>
-  <div id="emailAddress-hint" class="govuk-hint">
-    A confirmation email will also be sent to this address
-  </div>
-  <input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="email" spellcheck="false" aria-describedby="emailAddress-hint" autocomplete="email-address">
+  <input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="email" spellcheck="false" autocomplete="email-address">
 </div>
 
 
@@ -32,7 +29,7 @@ exports[`#hint text turned off EmailAddressPage.content should render expected r
         "
 `;
 
-exports[`#hint text turned on EmailAddressPage.content should render expected response and content 1`] = `
+exports[`#hint text turned on Should respond with expected output 1`] = `
 "
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">

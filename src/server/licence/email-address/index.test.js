@@ -1,8 +1,11 @@
+import { createServer } from '~/src/server/index.js'
 import { emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../common/model/answer/email/email-address.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { spyOnConfig } from '../../common/test-helpers/config.js'
+import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
+import { parseDocument } from '../../common/test-helpers/dom.js'
+import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
@@ -52,25 +55,91 @@ describe('EmailAddressPage', () => {
 })
 
 describe('#hint text turned off', () => {
-  spyOnConfig('featureFlags', {
-    emailConfirmation: false
+  let server
+  let session
+
+  beforeAll(async () => {
+    spyOnConfig('featureFlags', {
+      emailConfirmation: false
+    })
+    server = await createServer()
+    await server.initialize()
   })
 
-  describePageSnapshot({
-    describes: 'EmailAddressPage.content',
-    it: 'should render expected response and content',
-    pageUrl
+  beforeEach(async () => {
+    session = await SessionTestHelper.create(server)
+
+    // for (const [key, value] of Object.entries(state)) {
+    //   await session.setSectionState(key, value)
+    // }
+  })
+
+  afterAll(async () => {
+    await server.stop({ timeout: 0 })
+  })
+
+  it('Should respond with expected output', async () => {
+    const { payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: pageUrl
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const content =
+      parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+    expect(content).toMatchSnapshot()
+    expect(content).not.toContain(
+      'A confirmation email will also be sent to this address'
+    )
   })
 })
 
 describe('#hint text turned on', () => {
-  spyOnConfig('featureFlags', {
-    emailConfirmation: true
+  let server
+  let session
+
+  beforeAll(async () => {
+    spyOnConfig('featureFlags', {
+      emailConfirmation: true
+    })
+    server = await createServer()
+    await server.initialize()
   })
 
-  describePageSnapshot({
-    describes: 'EmailAddressPage.content',
-    it: 'should render expected response and content',
-    pageUrl
+  beforeEach(async () => {
+    session = await SessionTestHelper.create(server)
+  })
+
+  afterAll(async () => {
+    await server.stop({ timeout: 0 })
+  })
+
+  it('Should respond with expected output', async () => {
+    const { payload } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: pageUrl
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    const content =
+      parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+    expect(content).toMatchSnapshot()
+    expect(content).toContain(
+      'A confirmation email will also be sent to this address'
+    )
   })
 })
