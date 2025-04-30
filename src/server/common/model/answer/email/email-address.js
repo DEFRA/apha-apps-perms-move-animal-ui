@@ -1,3 +1,4 @@
+import { config } from '~/src/config/config.js'
 import { TextAnswer } from '../text/text.js'
 
 /** @import {TextConfig} from '../text/text.js' */
@@ -32,5 +33,16 @@ export class EmailAddressAnswer extends TextAnswer {
       maxLength: { value: maxLength, message: invalidAddressError },
       empty: { message: emptyAddressError }
     }
+  }
+
+  get config() {
+    const answerConfig = EmailAddressAnswer.config
+
+    if (config.get('featureFlags').emailConfirmation) {
+      answerConfig.hint =
+        'A confirmation email will also be sent to this address'
+    }
+
+    return answerConfig
   }
 }
