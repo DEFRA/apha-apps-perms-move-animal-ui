@@ -9,7 +9,7 @@ import { validateElementVisibleAndText } from '../page.js'
 import { navigateToTaskList } from './taskListNav.js'
 
 // Default data
-const defaultEmail = 'batman@gotham.gov.uk'
+const defaultEmail = 'eoin.corr@esynergy.co.uk'
 const defaultFirstName = 'Bruce'
 const defaultLastName = 'Wayne'
 
