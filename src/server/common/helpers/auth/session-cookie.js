@@ -33,45 +33,50 @@ const sessionCookie = {
         },
         keepAlive: true,
         validate: async (request, session) => {
-          const authedUser = await request.getUserSession()
+          try {
+            const authedUser = await request.getUserSession()
 
-          const tokenHasExpired = isPast(
-            subMinutes(parseISO(authedUser.expiresAt), 1)
-          )
-
-          if (tokenHasExpired) {
-            server.logger.info(`Session expired, refreshing...`)
-            const response = await refreshAccessToken(request)
-            const refreshAccessTokenJson = JSON.parse(
-              response.payload.toString()
+            const tokenHasExpired = isPast(
+              subMinutes(parseISO(authedUser.expiresAt), 1)
             )
 
-            if (response.res.statusCode !== statusCodes.OK) {
-              removeUserSession(request)
-              return { isValid: false }
+            if (tokenHasExpired) {
+              server.logger.info(`Session expired, refreshing...`)
+              const response = await refreshAccessToken(request)
+              const refreshAccessTokenJson = JSON.parse(
+                response.payload.toString()
+              )
+
+              if (response.res.statusCode !== statusCodes.OK) {
+                removeUserSession(request)
+                return { isValid: false }
+              }
+
+              const updatedSession = await updateUserSession(
+                request,
+                refreshAccessTokenJson
+              )
+
+              return {
+                isValid: true,
+                credentials: updatedSession
+              }
             }
 
-            const updatedSession = await updateUserSession(
-              request,
-              refreshAccessTokenJson
-            )
+            const userSession = await server.app.cache.get(session.sessionId)
 
-            return {
-              isValid: true,
-              credentials: updatedSession
+            if (userSession) {
+              return {
+                isValid: true,
+                credentials: userSession
+              }
             }
+
+            return { isValid: false }
+          } catch (e) {
+            request.logger.warn('User session cache missing')
+            return { isValid: false }
           }
-
-          const userSession = await server.app.cache.get(session.sessionId)
-
-          if (userSession) {
-            return {
-              isValid: true,
-              credentials: userSession
-            }
-          }
-
-          return { isValid: false }
         }
       })
 
