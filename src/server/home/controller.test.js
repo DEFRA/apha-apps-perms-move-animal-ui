@@ -36,28 +36,69 @@ describe('#homeController', () => {
     expect(parseDocument(payload).title).toBe(config.get('serviceName'))
   })
 
-  it('should match content', async () => {
-    spyOnConfig(
-      'serviceName',
-      'Get permission to move animals under disease controls'
-    )
-
-    const { payload } = await server.inject(
-      withCsrfProtection(
-        {
-          method: 'GET',
-          url: pageUrl
-        },
-        {
-          Cookie: session.sessionID
-        }
+  describe('content checks', () => {
+    beforeEach(() => {
+      spyOnConfig(
+        'serviceName',
+        'Get permission to move animals under disease controls'
       )
-    )
+    })
 
-    const content =
-      parseDocument(payload).querySelector('#main-content')?.innerHTML
+    describe('when auth is enabled', () => {
+      beforeEach(() => {
+        spyOnConfig('featureFlags', {
+          authEnabled: true,
+          animalIdentifiers: true
+        })
+      })
 
-    expect(content).toMatchSnapshot()
+      it('should match content', async () => {
+        const { payload } = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'GET',
+              url: pageUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        const content =
+          parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+        expect(content).toMatchSnapshot()
+      })
+    })
+
+    describe('when auth is disabled', () => {
+      beforeEach(() => {
+        spyOnConfig('featureFlags', {
+          authEnabled: false,
+          animalIdentifiers: true
+        })
+      })
+
+      it('should match content', async () => {
+        const { payload } = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'GET',
+              url: pageUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        const content =
+          parseDocument(payload).querySelector('#main-content')?.innerHTML
+
+        expect(content).toMatchSnapshot()
+      })
+    })
   })
 })
 
