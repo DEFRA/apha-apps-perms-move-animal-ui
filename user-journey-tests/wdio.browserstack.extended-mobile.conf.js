@@ -20,16 +20,16 @@ export const config = {
   ],
   maxInstances: 7,
   capabilities: [
-    // {
-    //   browserName: 'Safari',
-    //   'bstack:options': {
-    //     os: 'iOS',
-    //     osVersion: '15.6',
-    //     deviceName: 'iPhone 13',
-    //     realMobile: true,
-    //     sessionName: 'ios-safari'
-    //   }
-    // },
+    {
+      browserName: 'Safari',
+      'bstack:options': {
+        os: 'iOS',
+        osVersion: '15.6',
+        deviceName: 'iPhone 13',
+        realMobile: true,
+        sessionName: 'ios-safari'
+      }
+    },
     {
       browserName: 'Chrome',
       'bstack:options': {
