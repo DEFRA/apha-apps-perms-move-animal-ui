@@ -1,6 +1,11 @@
+import { config } from '~/src/config/config.js'
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
+
+const authRequired = config.get('featureFlags').authRequired
+const authEnabaled = config.get('featureFlags').authEnabled
+
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
 /** @import { Page } from '../../model/page/page-model.js' */
@@ -44,6 +49,15 @@ export class PageController extends GenericPageController {
       if (this.page.skipAuth) {
         handler.options = {
           auth: false
+        }
+      } else {
+        if (authEnabaled && !authRequired) {
+          handler.options = {
+            auth: {
+              strategy: 'session',
+              mode: 'optional'
+            }
+          }
         }
       }
       return handler
