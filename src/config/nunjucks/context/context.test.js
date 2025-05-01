@@ -37,6 +37,7 @@ describe('#context', () => {
         features: {
           animalIdentifiers: true,
           authEnabled: false,
+          authRequired: false,
           emailConfirmation: true,
           pdfUpload: true
         },
@@ -134,6 +135,7 @@ describe('#context cache', () => {
         features: {
           animalIdentifiers: true,
           authEnabled: false,
+          authRequired: false,
           emailConfirmation: true,
           pdfUpload: true
         },

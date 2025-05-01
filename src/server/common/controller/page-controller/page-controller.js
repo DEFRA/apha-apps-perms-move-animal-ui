@@ -1,10 +1,7 @@
-import { config } from '~/src/config/config.js'
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
-
-const authRequired = config.get('featureFlags').authRequired
-const authEnabaled = config.get('featureFlags').authEnabled
+import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
@@ -46,19 +43,10 @@ export class PageController extends GenericPageController {
         path: this.page.urlPath,
         handler: this[`${method.toLowerCase()}Handler`].bind(this)
       }
-      if (this.page.skipAuth) {
-        handler.options = {
-          auth: false
-        }
-      } else {
-        if (authEnabaled && !authRequired) {
-          handler.options = {
-            auth: {
-              strategy: 'session',
-              mode: 'optional'
-            }
-          }
-        }
+      const authOptions = getAuthOptions(this.page.skipAuth)
+
+      if (authOptions) {
+        handler.options = { ...authOptions }
       }
       return handler
     })

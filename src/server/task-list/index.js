@@ -1,8 +1,8 @@
-import { config } from '~/src/config/config.js'
 import {
   taskListGetController,
   taskListPostController
 } from '~/src/server/task-list/controller.js'
+import { getAuthOptions } from '../common/helpers/auth/toggles-helper.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -13,34 +13,18 @@ export const taskList = {
     name: 'task-list',
 
     register(server) {
-      const authRequired = config.get('featureFlags').authRequired
-      const authEnabaled = config.get('featureFlags').authEnabled
-
-      let routeOptions = {}
-
-      if (authEnabaled && !authRequired) {
-        routeOptions = {
-          options: {
-            auth: {
-              strategy: 'session',
-              mode: authRequired ? 'required' : 'optional'
-            }
-          }
-        }
-      }
-
       server.route([
         {
           method: 'GET',
           path: '/task-list',
           ...taskListGetController,
-          ...routeOptions
+          options: { ...getAuthOptions() }
         },
         {
           method: 'POST',
           path: '/task-list',
           ...taskListPostController,
-          ...routeOptions
+          options: { ...getAuthOptions() }
         }
       ])
     }
