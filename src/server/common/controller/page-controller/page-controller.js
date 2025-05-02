@@ -1,6 +1,8 @@
 import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
+import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
+
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
 /** @import { Page } from '../../model/page/page-model.js' */
@@ -36,17 +38,14 @@ export class PageController extends GenericPageController {
   plugin() {
     /** @type {ServerRoute<ReqRefDefaults>[]} */
     const handlers = this.options.methods.map((method) => {
-      const handler = {
+      return {
         method,
         path: this.page.urlPath,
-        handler: this[`${method.toLowerCase()}Handler`].bind(this)
-      }
-      if (this.page.skipAuth) {
-        handler.options = {
-          auth: false
+        handler: this[`${method.toLowerCase()}Handler`].bind(this),
+        options: {
+          ...getAuthOptions(this.page.skipAuth)
         }
       }
-      return handler
     })
 
     return {

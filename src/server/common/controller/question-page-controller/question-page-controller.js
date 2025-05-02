@@ -3,6 +3,7 @@ import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
 import { StateManager } from '../../model/state/state-manager.js'
 import { nextPageRedirect } from '../../helpers/next-page-redirect/index.js'
+import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
@@ -29,16 +30,22 @@ export class QuestionPageController extends GenericPageController {
 
         /** @param {Server} server */
         register: (server) => {
+          const options = {
+            ...getAuthOptions(this.page.skipAuth)
+          }
+
           server.route([
             {
               method: 'GET',
               path: this.page.urlPath,
-              handler: this.getHandler.bind(this)
+              handler: this.getHandler.bind(this),
+              options
             },
             {
               method: 'POST',
               path: this.page.urlPath,
-              handler: this.postHandler.bind(this)
+              handler: this.postHandler.bind(this),
+              options
             }
           ])
         }

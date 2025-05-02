@@ -1,6 +1,7 @@
 /** @import SummaryPage from '../../model/page/summary-page/SummaryPageModel.js' */
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
+import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 import { StateManager } from '../../model/state/state-manager.js'
 import { sectionToSummary } from '../../templates/macros/create-summary.js'
 import GenericPageController from '../generic-page-controller/index.js'
@@ -35,16 +36,21 @@ export class SummaryPageController extends GenericPageController {
 
         /** @param {Server} server */
         register: (server) => {
+          const options = {
+            ...getAuthOptions(this.page.skipAuth)
+          }
           server.route([
             {
               method: 'GET',
               path: this.urlPath,
-              handler: this.getHandler.bind(this)
+              handler: this.getHandler.bind(this),
+              options
             },
             {
               method: 'POST',
               path: this.urlPath,
-              handler: this.postHandler.bind(this)
+              handler: this.postHandler.bind(this),
+              options
             }
           ])
         }
