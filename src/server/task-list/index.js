@@ -18,13 +18,13 @@ export const taskList = {
           method: 'GET',
           path: '/task-list',
           ...taskListGetController,
-          options: { ...getAuthOptions() }
+          options: { ...getAuthOptions(false) }
         },
         {
           method: 'POST',
           path: '/task-list',
           ...taskListPostController,
-          options: { ...getAuthOptions() }
+          options: { ...getAuthOptions(false) }
         }
       ])
     }
