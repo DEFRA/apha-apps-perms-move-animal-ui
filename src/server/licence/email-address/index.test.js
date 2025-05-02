@@ -96,7 +96,7 @@ describe('#hint text turned off', () => {
 
     expect(content).toMatchSnapshot()
     expect(content).not.toContain(
-      'A confirmation email will also be sent to this address'
+      'A confirmation email will also be sent to this email address'
     )
   })
 })
@@ -139,7 +139,7 @@ describe('#hint text turned on', () => {
 
     expect(content).toMatchSnapshot()
     expect(content).toContain(
-      'A confirmation email will also be sent to this address'
+      'A confirmation email will also be sent to this email address'
     )
   })
 })

@@ -40,7 +40,7 @@ export class EmailAddressAnswer extends TextAnswer {
 
     if (config.get('featureFlags').emailConfirmation) {
       answerConfig.hint =
-        'A confirmation email will also be sent to this address'
+        'A confirmation email will also be sent to this email address'
     }
 
     return answerConfig

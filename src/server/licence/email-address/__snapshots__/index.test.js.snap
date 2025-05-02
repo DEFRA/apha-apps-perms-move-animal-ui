@@ -45,7 +45,7 @@ exports[`#hint text turned on Should respond with expected output 1`] = `
     </label>
   </h1>
   <div id="emailAddress-hint" class="govuk-hint">
-    A confirmation email will also be sent to this address
+    A confirmation email will also be sent to this email address
   </div>
   <input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="email" spellcheck="false" aria-describedby="emailAddress-hint" autocomplete="email-address">
 </div>
