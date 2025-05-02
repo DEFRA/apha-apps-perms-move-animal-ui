@@ -46,6 +46,7 @@ services:
       DEFRA_ID_CLIENT_SECRET: ${DEFRA_ID_CLIENT_SECRET}
       GATEWAY_ID: ${GATEWAY_ID}
       GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
+      AUTH_REQUIRED: ${AUTH_REQUIRED}
     networks:
       - cdp-tenant
 
