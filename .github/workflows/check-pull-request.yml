@@ -64,6 +64,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: test
       GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
+      AUTH_REQUIRED: true
 
     runs-on: ubuntu-22.04
     steps:
