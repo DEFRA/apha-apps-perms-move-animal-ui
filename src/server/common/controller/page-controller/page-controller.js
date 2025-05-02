@@ -42,7 +42,9 @@ export class PageController extends GenericPageController {
         method,
         path: this.page.urlPath,
         handler: this[`${method.toLowerCase()}Handler`].bind(this),
-        options: getAuthOptions(this.page.skipAuth)
+        options: {
+          ...getAuthOptions(this.page.skipAuth)
+        }
       }
     })
 
