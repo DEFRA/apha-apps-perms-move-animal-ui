@@ -30,9 +30,7 @@ export class QuestionPageController extends GenericPageController {
 
         /** @param {Server} server */
         register: (server) => {
-          const authOptions = /* @type {any} */ getAuthOptions(
-            this.page.skipAuth
-          )
+          const authOptions = getAuthOptions(this.page.skipAuth)
 
           server.route([
             {
