@@ -38,17 +38,12 @@ export class PageController extends GenericPageController {
   plugin() {
     /** @type {ServerRoute<ReqRefDefaults>[]} */
     const handlers = this.options.methods.map((method) => {
-      const handler = {
+      return {
         method,
         path: this.page.urlPath,
-        handler: this[`${method.toLowerCase()}Handler`].bind(this)
+        handler: this[`${method.toLowerCase()}Handler`].bind(this),
+        options: getAuthOptions(this.page.skipAuth)
       }
-      const authOptions = getAuthOptions(this.page.skipAuth)
-
-      if (authOptions) {
-        handler.options = { ...authOptions }
-      }
-      return handler
     })
 
     return {

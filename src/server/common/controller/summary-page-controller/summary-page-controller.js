@@ -36,24 +36,21 @@ export class SummaryPageController extends GenericPageController {
 
         /** @param {Server} server */
         register: (server) => {
-          const authOptions = getAuthOptions(this.page.skipAuth)
-
+          const options = {
+            ...getAuthOptions(this.page.skipAuth)
+          }
           server.route([
             {
               method: 'GET',
               path: this.urlPath,
               handler: this.getHandler.bind(this),
-              options: {
-                ...authOptions
-              }
+              options
             },
             {
               method: 'POST',
               path: this.urlPath,
               handler: this.postHandler.bind(this),
-              options: {
-                ...authOptions
-              }
+              options
             }
           ])
         }
