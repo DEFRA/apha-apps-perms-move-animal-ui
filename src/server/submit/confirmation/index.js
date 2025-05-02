@@ -34,11 +34,13 @@ export class ConfirmationPage extends Page {
 
 class ConfirmationController extends PageController {
   handleGet(req, h) {
+    const resp = super.handleGet(req, h)
+
     if (config.get('clearSessionDebug') === true) {
       req.yar.reset()
     }
 
-    return super.handleGet(req, h)
+    return resp
   }
 }
 
