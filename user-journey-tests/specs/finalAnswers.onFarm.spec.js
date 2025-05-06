@@ -4,6 +4,7 @@ import taskListPage from '../page-objects/taskListPage.js'
 import { completeApplicationOnFarm } from '../helpers/testHelpers/finalAnswers.js'
 import signInPage from '../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
+import { waitForEmail } from '../helpers/emailHelpers/getLatestEmail.js'
 
 describe('Check your final answers test', () => {
   // eslint-disable-next-line no-undef
@@ -37,5 +38,25 @@ describe('Check your final answers test', () => {
     await finalAnswersPage.navigateToPageAndVerifyTitle()
     await finalAnswersPage.selectADeclarationAndContinue()
     await submissionConfirmationPage.verifyPageHeadingAndTitle()
+
+    const isLocalChrome =
+      browser.capabilities.browserName === 'chrome' &&
+      !browser.capabilities['bstack:options']
+
+    if (isLocalChrome) {
+      const referenceNumber =
+        await submissionConfirmationPage.getReferenceNumber()
+
+      const email = await waitForEmail(
+        'eoin.corr@esynergy.co.uk',
+        'Apply for a Bovine Tuberculosis (TB) movement licence'
+      )
+
+      expect(email.subject).toContain(
+        'Bovine Tuberculosis (TB) movement licence'
+      )
+      expect(email.status).toMatch(/created|sending|delivered/)
+      expect(email.body).toContain(referenceNumber)
+    }
   })
 })

@@ -8,6 +8,21 @@ class SubmissionConfirmationPage extends Page {
   get slaText() {
     return $('[data-testid="sla-text"]')
   }
+
+  get referenceNumberElement() {
+    return $('div.govuk-panel__body')
+  }
+
+  async getReferenceNumber() {
+    const text = await this.referenceNumberElement.getText()
+    const match = text.match(/TB-[A-Z0-9]{4}-[A-Z0-9]{4}/)
+
+    if (!match) {
+      throw new Error('Reference number not found on confirmation page')
+    }
+
+    return match[0]
+  }
 }
 
 export default new SubmissionConfirmationPage()
