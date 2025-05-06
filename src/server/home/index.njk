@@ -106,7 +106,7 @@
           take longer if veterinary checks are needed, or if we need further
           information.
         </p>
-        {% if features.authEnabled %}
+        {% if features.authEnabled and features.authRequired %}
           <h3 class="govuk-heading-m">Logging into the service</h3>
           <p class="govuk-body">
             You need a Defra account to use this service. You can register for
@@ -128,7 +128,7 @@
           govukButton({ text: "Start now", href:"task-list",
           isStartButton: true, attributes: "data-testid='start-now-btn'" })
         }}
-        {% if features.authEnabled %}
+        {% if features.authEnabled and features.authRequired %}
           <h3 class="govuk-heading-m">Get help</h3>
           <p class="govuk-body">
             If you need help using the service you can call 03000 200 301 and

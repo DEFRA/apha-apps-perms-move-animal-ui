@@ -327,7 +327,7 @@ export const config = convict({
       doc: 'DEFRA ID Auth required',
       format: Boolean,
       env: 'AUTH_REQUIRED',
-      default: false
+      default: !isProduction
     },
     animalIdentifiers: {
       doc: 'Enables asking for an animals identifiers (to support TB restricted -> TB restricted premises movement types)',

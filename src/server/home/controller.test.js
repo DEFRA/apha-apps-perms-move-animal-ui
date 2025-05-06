@@ -48,6 +48,7 @@ describe('#homeController', () => {
       beforeEach(() => {
         spyOnConfig('featureFlags', {
           authEnabled: true,
+          authRequired: true,
           animalIdentifiers: true
         })
       })
