@@ -39,24 +39,11 @@ const pick = () => {
 }
 
 const generateSegment = () => {
-  return new Array(4)
-    .fill(null)
-    .map(() => pick())
-    .join('')
+  return new Array(4).fill(null).map(pick).join('')
 }
 
-function* applicationReferenceGenerator() {
-  while (true) {
-    const partOne = generateSegment()
-    const partTwo = generateSegment()
-    yield `TB-${partOne}-${partTwo}`
-  }
+export const getApplicationReference = () => {
+  const partOne = generateSegment()
+  const partTwo = generateSegment()
+  return `TB-${partOne}-${partTwo}`
 }
-
-const referenceGenerator = applicationReferenceGenerator()
-
-const getApplicationReference = () => {
-  return referenceGenerator.next().value
-}
-
-export { getApplicationReference }
