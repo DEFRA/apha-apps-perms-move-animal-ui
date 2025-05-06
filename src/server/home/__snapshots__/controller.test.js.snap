@@ -202,14 +202,11 @@ exports[`#homeController content checks when auth is enabled should match conten
           take longer if veterinary checks are needed, or if we need further
           information.
         </p>
-          <h3 class="govuk-heading-m">Logging into the service</h3>
+          <h3 class="govuk-heading-m">Get help</h3>
           <p class="govuk-body">
-            You need a Defra account to use this service. You can register for
-            one using your Government Gateway log in details.
-          </p>
-          <p class="govuk-body">
-            After you log in you need to enter your contact information, and
-            details about your business if you have one.
+            If you need help using the service you can call 03000 200 301 and
+            choose the option for TB licencing. Lines are open from Monday to
+            Friday between 8.30am and 5pm.
           </p>
         <a href="task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
@@ -217,12 +214,6 @@ exports[`#homeController content checks when auth is enabled should match conten
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
   </svg>
 </a>
-          <h3 class="govuk-heading-m">Get help</h3>
-          <p class="govuk-body">
-            If you need help using the service you can call 03000 200 301 and
-            choose the option for TB licencing. Lines are open from Monday to
-            Friday between 8.30am and 5pm.
-          </p>
         <h3 class="govuk-heading-m">Give feedback</h3>
         <p class="govuk-body">
           Your feedback will help improve this service. You can give feedback by
