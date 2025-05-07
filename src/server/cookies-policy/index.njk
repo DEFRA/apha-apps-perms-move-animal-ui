@@ -46,6 +46,30 @@
                 4 hours since you last used the website
               </td>
             </tr>
+            {% if features.authEnabled and features.authRequired %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" style="word-break: break-all">
+                  userSession
+                </td>
+                <td class="govuk-table__cell">
+                  Used to store proof you have signed in using Defra
+                  CustomerIdentity and to store your profile data
+                </td>
+                <td class="govuk-table__cell">
+                  4 hours since you last used the website
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" style="word-break: break-all">
+                  defra-bell-id
+                </td>
+                <td class="govuk-table__cell">
+                  Used to store your details and to sign you in with Defra
+                  CustomerIdentity
+                </td>
+                <td class="govuk-table__cell">Until you close your browser</td>
+              </tr>
+            {% endif %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell" style="word-break: break-all">
                 crumb

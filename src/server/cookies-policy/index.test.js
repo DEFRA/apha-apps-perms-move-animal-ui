@@ -1,3 +1,4 @@
+import {} from '../common/test-helpers/config.js'
 import { describePageSnapshot } from '../common/test-helpers/snapshot-page.js'
 
 describePageSnapshot({
