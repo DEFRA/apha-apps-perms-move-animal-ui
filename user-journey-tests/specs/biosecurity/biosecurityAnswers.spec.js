@@ -85,7 +85,7 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'wildlifeContamination',
-      expectedValue: 'Badger measures',
+      expectedValue: 'None',
       expectedHref: `/biosecurity/badgers${redirect}`
     }
   ]
