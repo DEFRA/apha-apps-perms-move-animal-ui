@@ -20,8 +20,7 @@ const defraId = {
       await server.register(bell)
 
       server.logger.info(
-        'Fetching IdP configuration from',
-        oidcConfigurationUrl
+        `Fetching IdP configuration from ${oidcConfigurationUrl}`
       )
 
       const response = await Wreck.get(oidcConfigurationUrl, {
