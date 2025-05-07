@@ -17,16 +17,17 @@ describe('Biosecurity badgers page spec', () => {
     await biosecBadgersPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is entered', async () => {
-    await biosecBadgersPage.singleInputErrorTest(
-      '',
-      biosecBadgersPage.noInputError
-    )
+  it('Should verify that all checkboxes exist and submit with no options selected', async () => {
+    await biosecBadgersPage.verifyAllCheckboxesExist()
+    await biosecBadgersPage.selectMeasuresAndContinue([], keptSeparatelyPage)
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await biosecBadgersPage.inputTextAndContinue(
-      'Badger measures',
+  it('Should input selection on multiple checkboxes and verify sumbit', async () => {
+    await biosecBadgersPage.selectMeasuresAndContinue(
+      [
+        biosecBadgersPage.aluminiumFeedBins,
+        biosecBadgersPage.badgerProofFencing
+      ],
       keptSeparatelyPage
     )
   })

@@ -159,13 +159,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you reduce the risk of infection from badgers and wildlife?
+      Which measures are you taking to reduce the risk of infection from wildlife?
     </dt>
     <dd class="govuk-summary-list__value">
-      some text
+      Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/badgers?redirect_uri=/biosecurity/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> How will you reduce the risk of infection from badgers and wildlife?</span></a>
+      <a class="govuk-link" href="/biosecurity/badgers?redirect_uri=/biosecurity/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> Which measures are you taking to reduce the risk of infection from wildlife?</span></a>
     </dd>
   </div>
 </dl>

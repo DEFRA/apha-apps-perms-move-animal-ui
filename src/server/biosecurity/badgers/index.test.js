@@ -1,15 +1,15 @@
 import { BadgersAnswer } from '../../common/model/answer/badgers/badgers.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { biosecuritySummaryPage } from '../check-answers/index.js'
+import { otherWildlifeMeasuresPage } from '../other-wildlife-measures/index.js'
 import { badgersPage, BadgersPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you reduce the risk of infection from badgers and wildlife?'
+  'Which measures are you taking to reduce the risk of infection from wildlife?'
 const questionKey = 'badgers'
 const view = 'biosecurity/badgers/index'
 const pageUrl = '/biosecurity/badgers'
-const customHeading = 'Infection from wildlife'
 
 describe('BadgersPage', () => {
   const page = new BadgersPage()
@@ -20,10 +20,6 @@ describe('BadgersPage', () => {
 
   it('should have the correct sectionKey', () => {
     expect(page.sectionKey).toBe(sectionKey)
-  })
-
-  it('should have the correct heading', () => {
-    expect(page.heading).toBe(customHeading)
   })
 
   it('should have the correct question', () => {
@@ -42,9 +38,18 @@ describe('BadgersPage', () => {
     expect(page.Answer).toBe(BadgersAnswer)
   })
 
-  it('nextPage should return summary page for the biosecurity section', () => {
-    const nextPage = page.nextPage()
+  it('nextPage should return biosecurity summary page when the answer does not include "other"', () => {
+    const answer = new BadgersAnswer({ badgers: ['badgerProofFencing'] })
+    const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(biosecuritySummaryPage)
+  })
+
+  it('nextPage should return other wildlife measures page when the answer includes "other"', () => {
+    const answer = new BadgersAnswer({
+      badgers: ['badgerProofFencing', 'other']
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(otherWildlifeMeasuresPage)
   })
 
   it('should export page', () => {
