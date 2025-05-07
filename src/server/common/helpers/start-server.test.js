@@ -42,6 +42,7 @@ describe('#startServer', () => {
     process.env.DEFRA_ID_ENABLED = 'false'
     process.env.PDF_UPLOAD_FEATURE_ENABLED = 'true'
     process.env.ANIMAL_IDENTIFIERS_ENABLED = 'false'
+    process.env.AUTH_REQUIRED = 'true'
 
     createServerImport = await import('~/src/server/index.js')
     startServerImport = await import(
