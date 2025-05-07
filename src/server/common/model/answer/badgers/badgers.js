@@ -1,29 +1,44 @@
-import { TextAreaAnswer } from '../text-area/text-area.js'
+import { CheckboxAnswer } from '../checkbox/checkbox.js'
 
-/** @import {TextAreaConfig} from '../text-area/text-area.js' */
+/** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
 
 /**
- * @typedef {{ badgers: string }} BadgersPayload
+ * @typedef {{ badgers: CheckboxData }} BadgersPayload
  */
 
 /**
- * @augments {TextAreaAnswer<BadgersPayload>}
+ * @augments {CheckboxAnswer<BadgersPayload>}
  */
-export class BadgersAnswer extends TextAreaAnswer {
-  /** @type {TextAreaConfig} */
+export class BadgersAnswer extends CheckboxAnswer {
+  /** @type {CheckboxConfig} */
   static config = {
     payloadKey: 'badgers',
-    rows: 8,
-    isPageHeading: false,
-    validation: {
-      maxLength: {
-        value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+    isPageHeading: true,
+    hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    options: {
+      badgerProofFencing: {
+        label:
+          'Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences'
       },
-      empty: {
-        message:
-          'Enter information on what measures you are taking to reduce the risk of infection from badgers and wildlife'
+      aluminiumFeedBins: {
+        label: 'Aluminium feed bins'
+      },
+      limitAccessToBadgerHabitat: {
+        label: 'Limiting access to badger latrines and setts'
+      },
+      troughsAbove90cm: {
+        label: 'Feed and water troughs raised above 90cm'
+      },
+      securedFeedStores: {
+        label: 'Feed stores are secured'
+      },
+      licksOutOfReach: {
+        label: 'Mineral licks kept out of reach of wildlife'
+      },
+      other: {
+        label: 'Other measures to reduce the risk of infection'
       }
-    }
+    },
+    validation: {}
   }
 }

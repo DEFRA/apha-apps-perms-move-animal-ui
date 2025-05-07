@@ -60,7 +60,7 @@ export const validBiosecuritySectionState = {
   peopleDisinfection: 'ppe',
   disinfectant: 'some disinfectant',
   dilutionRate: '15',
-  badgers: 'some text'
+  badgers: 'badgerProofFencing'
 }
 
 export const validBiosecurityMapSectionState = {

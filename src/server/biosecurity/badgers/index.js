@@ -2,8 +2,7 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { BadgersAnswer } from '../../common/model/answer/badgers/badgers.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { biosecuritySummaryPage } from '../check-answers/index.js'
-
-const customHeading = 'Infection from wildlife'
+import { otherWildlifeMeasuresPage } from '../other-wildlife-measures/index.js'
 
 export class BadgersPage extends QuestionPage {
   view = `biosecurity/badgers/index`
@@ -11,17 +10,18 @@ export class BadgersPage extends QuestionPage {
   urlPath = '/biosecurity/badgers'
   sectionKey = 'biosecurity'
   question =
-    'How will you reduce the risk of infection from badgers and wildlife?'
+    'Which measures are you taking to reduce the risk of infection from wildlife?'
 
   questionKey = 'badgers'
   Answer = BadgersAnswer
 
-  get heading() {
-    return customHeading
-  }
-
-  nextPage() {
-    return biosecuritySummaryPage
+  /** @param {BadgersAnswer} answer */
+  nextPage(answer) {
+    if (answer.value?.includes('other')) {
+      return otherWildlifeMeasuresPage
+    } else {
+      return biosecuritySummaryPage
+    }
   }
 }
 
