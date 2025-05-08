@@ -41,7 +41,6 @@ describe('#startServer', () => {
     // set feature flags to example values
     process.env.DEFRA_ID_ENABLED = 'false'
     process.env.PDF_UPLOAD_FEATURE_ENABLED = 'true'
-    process.env.ANIMAL_IDENTIFIERS_ENABLED = 'false'
     process.env.AUTH_REQUIRED = 'true'
 
     createServerImport = await import('~/src/server/index.js')
@@ -86,7 +85,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false,"authRequired":true,"animalIdentifiers":false,"emailConfirmation":true}`
+        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false,"authRequired":true,"emailConfirmation":true}`
       )
     })
   })

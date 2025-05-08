@@ -329,12 +329,6 @@ export const config = convict({
       env: 'AUTH_REQUIRED',
       default: !isProduction
     },
-    animalIdentifiers: {
-      doc: 'Enables asking for an animals identifiers (to support TB restricted -> TB restricted premises movement types)',
-      format: Boolean,
-      env: 'ANIMAL_IDENTIFIERS_ENABLED',
-      default: !isProduction
-    },
     emailConfirmation: {
       doc: 'Feature flag to enable confirmation email',
       format: Boolean,

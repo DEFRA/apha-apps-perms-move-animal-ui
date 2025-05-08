@@ -1,7 +1,6 @@
 import {
   destinationTypePage,
   DestinationTypePage,
-  possibleRestricted,
   restricted
 } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
@@ -10,8 +9,6 @@ import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
-import { destinationNotSupportedPage } from '../not-supported-movement-type/index.js'
-import { spyOnConfig } from '../../common/test-helpers/config.js'
 
 /**
  * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
@@ -116,8 +113,6 @@ describe('DestinationTypePage.nextPage', () => {
   describe('on the farm', () => {
     const context = { origin: { onOffFarm: 'on' } }
 
-    beforeAll(() => spyOnConfig('featureFlags', { animalIdentifiers: false }))
-
     afterAll(jest.resetAllMocks)
 
     it('should return destination-farm-cph no matter what the answer', () => {
@@ -126,44 +121,7 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmCphPage)
     })
 
-    describe.each(restricted)('restricted originType %s', (originType) => {
-      it.each(possibleRestricted)(
-        'should return movement not supported exit page when destinationType is %s',
-        (destinationType) => {
-          const context = { origin: { onOffFarm: 'on', originType } }
-          const answer = new DestinationTypeAnswer({
-            /* eslint-disable-next-line object-shorthand */
-            destinationType: /** @type {DestinationTypeData} */ (
-              destinationType
-            )
-          })
-          const nextPage = page.nextPage(answer, context)
-          expect(nextPage).toBe(destinationNotSupportedPage)
-        }
-      )
-    })
-
-    it('should return movement not supported exit page', () => {
-      const context = { origin: { onOffFarm: 'on', originType: 'zoo' } }
-      const answer = new DestinationTypeAnswer({ destinationType: 'zoo' })
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(destinationNotSupportedPage)
-    })
-
-    describePageSnapshot({
-      describes: 'DestinationTypePage.content',
-      it: 'should render expected response and content',
-      pageUrl,
-      state: context
-    })
-  })
-
-  describe('on the farm (animalIdentifiers feature flag enabled)', () => {
-    beforeAll(() => spyOnConfig('featureFlags', { animalIdentifiers: true }))
-
-    afterAll(jest.resetAllMocks)
-
-    it.each(possibleRestricted)(
+    it.each(restricted)(
       'should return destination-farm-cph even for restricted -> restricted',
       (destinationType) => {
         const context = {
@@ -177,5 +135,12 @@ describe('DestinationTypePage.nextPage', () => {
         expect(nextPage).toBe(destinationFarmCphPage)
       }
     )
+
+    describePageSnapshot({
+      describes: 'DestinationTypePage.content',
+      it: 'should render expected response and content',
+      pageUrl,
+      state: context
+    })
   })
 })

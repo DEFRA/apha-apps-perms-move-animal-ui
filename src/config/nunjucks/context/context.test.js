@@ -35,7 +35,6 @@ describe('#context', () => {
         assetPath: '/public/assets',
         breadcrumbs: [],
         features: {
-          animalIdentifiers: true,
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
@@ -133,7 +132,6 @@ describe('#context cache', () => {
         assetPath: '/public/assets',
         breadcrumbs: [],
         features: {
-          animalIdentifiers: true,
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
