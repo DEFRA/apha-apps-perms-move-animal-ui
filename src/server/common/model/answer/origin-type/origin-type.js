@@ -30,8 +30,8 @@ const offFarmOptions = {
     label: 'Unrestricted farm or premises'
   },
   zoo: zooOption,
-  lab: { label: 'Laboratory' },
-  other: { label: 'Another origin' }
+  lab: { label: 'Laboratory with TB restrictions' },
+  other: { label: 'Another origin with TB restrictions' }
 }
 
 const onFarmOptions = {
@@ -42,11 +42,11 @@ const onFarmOptions = {
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
   zoo: zooOption,
-  lab: { label: 'Laboratory' },
+  lab: { label: 'Laboratory with TB restrictions' },
   'after-import-location': {
     label: 'Location after animals have been imported'
   },
-  other: { label: 'Another origin' }
+  other: { label: 'Another origin with TB restrictions' }
 }
 
 /** @augments {RadioButtonAnswer<OriginTypePayload>} */
@@ -62,6 +62,6 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
 
   /** @returns {boolean} */
   static isTbRestricted(type) {
-    return ['tb-restricted-farm', 'zoo'].includes(type ?? '')
+    return ['tb-restricted-farm', 'zoo', 'other', 'lab'].includes(type ?? '')
   }
 }
