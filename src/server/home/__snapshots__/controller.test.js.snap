@@ -20,24 +20,53 @@ exports[`#homeController content checks when auth is disabled should match conte
           Health Agency (APHA).
         </p>
         <h3 class="govuk-heading-m">
-          Moving animals off a TB restricted farm to go to slaughter
+          Check if a licence has been sent to you before you apply
         </h3>
         <p class="govuk-body">
-          You do not need to use this service to apply for a licence for this
-          movement type.
+          You do not need to use this service to apply for a licence to move
+          animals off a TB restricted farm to go to slaughter.
         </p>
         <p class="govuk-body">
           You should have a general licence in the information pack sent to you
           from APHA. The pack was posted to you when your herd was placed under
-          TB restriction.
+          TB restriction. This licence allows you to move animals:
         </p>
-        <p class="govuk-body">This licence allows you to move animals:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>from a TB restricted farm direct to slaughter</li>
           <li>
-            via a slaughter gathering/ red market (if the licence was issued
+            via a slaughter gathering or red market (if the licence was issued
             after 30 September 2024)
           </li>
+        </ul>
+        <h3 class="govuk-heading-m">
+          Movement types you can use this service for
+        </h3>
+        <p class="govuk-body">
+          You can use this service if you are moving animals from one of these
+          origins:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>market</li>
+          <li>TB restricted farm</li>
+          <li>premises with TB restrictions</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
+          <li>unrestricted farm or premises</li>
+          <li>location after the animals have been imported</li>
+        </ul>
+        <p class="govuk-body">
+          And they are going to one of these destinations:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>slaughter or a red market</li>
+          <li>dedicated sale for TB (orange market)</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
+          <li>TB restricted farm</li>
         </ul>
         <h3 class="govuk-heading-m">
           Moving animals onto a TB restricted farm
@@ -135,24 +164,53 @@ exports[`#homeController content checks when auth is enabled should match conten
           Health Agency (APHA).
         </p>
         <h3 class="govuk-heading-m">
-          Moving animals off a TB restricted farm to go to slaughter
+          Check if a licence has been sent to you before you apply
         </h3>
         <p class="govuk-body">
-          You do not need to use this service to apply for a licence for this
-          movement type.
+          You do not need to use this service to apply for a licence to move
+          animals off a TB restricted farm to go to slaughter.
         </p>
         <p class="govuk-body">
           You should have a general licence in the information pack sent to you
           from APHA. The pack was posted to you when your herd was placed under
-          TB restriction.
+          TB restriction. This licence allows you to move animals:
         </p>
-        <p class="govuk-body">This licence allows you to move animals:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>from a TB restricted farm direct to slaughter</li>
           <li>
-            via a slaughter gathering/ red market (if the licence was issued
+            via a slaughter gathering or red market (if the licence was issued
             after 30 September 2024)
           </li>
+        </ul>
+        <h3 class="govuk-heading-m">
+          Movement types you can use this service for
+        </h3>
+        <p class="govuk-body">
+          You can use this service if you are moving animals from one of these
+          origins:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>market</li>
+          <li>TB restricted farm</li>
+          <li>premises with TB restrictions</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
+          <li>unrestricted farm or premises</li>
+          <li>location after the animals have been imported</li>
+        </ul>
+        <p class="govuk-body">
+          And they are going to one of these destinations:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>slaughter or a red market</li>
+          <li>dedicated sale for TB (orange market)</li>
+          <li>
+            approved finishing unit (AFU), including enhanced with grazing
+            (AFUE)
+          </li>
+          <li>TB restricted farm</li>
         </ul>
         <h3 class="govuk-heading-m">
           Moving animals onto a TB restricted farm
@@ -217,6 +275,12 @@ exports[`#homeController content checks when auth is enabled should match conten
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
   </svg>
 </a>
+          <h3 class="govuk-heading-m">Using and sharing your information</h3>
+          <p class="govuk-body">
+            How we use your personal data is set out in the
+            <a href="../../privacy-policy" class="govuk-link" target="_blank">endemic disease privacy notice (opens in a new tab)</a>
+            .
+          </p>
           <h3 class="govuk-heading-m">Get help</h3>
           <p class="govuk-body">
             If you need help using the service you can call 03000 200 301 and
