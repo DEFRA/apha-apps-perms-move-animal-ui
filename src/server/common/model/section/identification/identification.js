@@ -5,7 +5,6 @@ import { identification } from '~/src/server/identification/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
 import { DestinationTypeAnswer } from '../../answer/destination-type/destination-type.js'
 import { calvesUnder42DaysOldPage } from '~/src/server/identification/calves-under-42-days-old/index.js'
-import { config } from '~/src/config/config.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -17,7 +16,6 @@ const isVisible = (app) => {
   const destinationValid = DestinationSection.fromState(app).validate().isValid
 
   return (
-    config.get('featureFlags').animalIdentifiers &&
     originValid &&
     destinationValid &&
     isOnFarm &&
