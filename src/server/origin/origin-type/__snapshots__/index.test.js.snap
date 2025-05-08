@@ -46,13 +46,13 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="lab" name="originType" type="radio" value="lab">
         <label class="govuk-label govuk-radios__label" for="lab">
-          Laboratory
+          Laboratory with TB restrictions
         </label>
       </div>
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
-          Another origin
+          Another origin with TB restrictions
         </label>
       </div>
     </div>

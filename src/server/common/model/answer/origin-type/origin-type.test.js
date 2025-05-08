@@ -42,8 +42,10 @@ describe('OriginType.config', () => {
       'Unrestricted farm or premises'
     )
     expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-    expect(config.options.lab.label).toBe('Laboratory')
-    expect(config.options.other.label).toBe('Another origin')
+    expect(config.options.lab.label).toBe('Laboratory with TB restrictions')
+    expect(config.options.other.label).toBe(
+      'Another origin with TB restrictions'
+    )
   })
 
   it('should have the expected options to select from for on to the farm movements', () => {
@@ -64,11 +66,13 @@ describe('OriginType.config', () => {
       'Including enhanced with grazing (AFUE)'
     )
     expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-    expect(config.options.lab.label).toBe('Laboratory')
+    expect(config.options.lab.label).toBe('Laboratory with TB restrictions')
     expect(config.options['after-import-location'].label).toBe(
       'Location after animals have been imported'
     )
-    expect(config.options.other.label).toBe('Another origin')
+    expect(config.options.other.label).toBe(
+      'Another origin with TB restrictions'
+    )
     expect(Object.keys(config.options)).toHaveLength(8)
   })
 })

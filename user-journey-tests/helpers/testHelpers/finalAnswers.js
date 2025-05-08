@@ -1,10 +1,12 @@
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
+import identificationAnswersPage from '../../page-objects/identification/identificationAnswersPage.js'
 import landingPage from '../../page-objects/landingPage.js'
 import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
+import { completeIdentificationTaskLongWay } from './animalIdentification.js'
 import completeBiosecurityTask from './biosecurity.js'
 import completeBiosecurityMapTask from './biosecurityMap.js'
 import completeDestinationTask, {
@@ -73,6 +75,10 @@ export const completeApplicationOnFarm = async ({ licence }) => {
     true
   )
   await licenceAnswersPage.selectContinue()
+  await taskListPage.verifyPageHeadingAndTitle()
+
+  await completeIdentificationTaskLongWay()
+  await identificationAnswersPage.selectContinue()
   await taskListPage.verifyPageHeadingAndTitle()
 
   await completeBiosecurityTask('yes')
