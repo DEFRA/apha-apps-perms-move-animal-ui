@@ -22,7 +22,7 @@ export class OtherWildlifeMeasuresAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter information what other measures are you taking to reduce the risk of spreading TB'
+          'Enter information what on other measures are you taking to reduce the risk of spreading TB'
       }
     }
   }
