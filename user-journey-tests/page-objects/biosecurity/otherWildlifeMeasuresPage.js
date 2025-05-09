@@ -5,7 +5,7 @@ const pageId = 'otherWildlifeMeasures'
 const pageHeadingAndTitle =
   'What other measures are you taking to reduce the risk of spreading TB?'
 const noInputError =
-  'Enter information what on other measures are you taking to reduce the risk of spreading TB'
+  'Enter information on what other measures are you taking to reduce the risk of spreading TB'
 
 class MinimiseContaminationPage extends SingleTextInputPage {
   constructor() {
