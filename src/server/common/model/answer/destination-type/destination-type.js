@@ -14,7 +14,7 @@ const afuOption = {
   label: 'Approved finishing unit (AFU)',
   hint: 'Including enhanced with grazing (AFUE)'
 }
-const otherOption = { label: 'Another destination' }
+const otherOption = { label: 'Another destination with TB restrictions' }
 const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
 const slaughterOption = { label: 'Slaughter' }
 
@@ -28,7 +28,7 @@ const onFarmOptions = (app) =>
         'tb-restricted-farm': tbRestrictedOption,
         afu: afuOption,
         zoo: { label: 'Zoo with TB restrictions' },
-        lab: { label: 'Laboratory' },
+        lab: { label: 'Laboratory with TB restrictions' },
         other: otherOption
       }
 
@@ -45,7 +45,7 @@ const offFarmOptions = (app) =>
         'dedicated-sale': dedicatedSaleOption,
         afu: afuOption,
         zoo: { label: 'Zoo with TB restrictions' },
-        lab: { label: 'Laboratory' },
+        lab: { label: 'Laboratory with TB restrictions' },
         other: otherOption
       }
 
@@ -62,6 +62,6 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
 
   /** @returns {boolean} */
   static isTbRestricted(type) {
-    return ['tb-restricted-farm', 'zoo', 'lab', 'other'].includes(type ?? '')
+    return ['tb-restricted-farm', 'zoo', 'other', 'lab'].includes(type ?? '')
   }
 }

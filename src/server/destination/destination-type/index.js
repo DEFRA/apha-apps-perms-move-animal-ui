@@ -19,9 +19,6 @@ const offFarmNextPageMapping = {
   other: contactTbRestrictedFarmPage
 }
 
-export const restricted = ['tb-restricted-farm', 'zoo'] // origin
-export const possibleRestricted = restricted.concat(['lab', 'other']) // destination
-
 export class DestinationTypePage extends QuestionPage {
   urlPath = '/destination/type-of-destination'
   sectionKey = 'destination'

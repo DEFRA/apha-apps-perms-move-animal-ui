@@ -13,8 +13,8 @@ const dedicatedSaleLabel = 'Dedicated sale for TB (orange market)'
 const afuLabel = 'Approved finishing unit (AFU)'
 const afuHint = 'Including enhanced with grazing (AFUE)'
 const zooLabel = 'Zoo with TB restrictions'
-const labLabel = 'Laboratory'
-const otherLabel = 'Another destination'
+const labLabel = 'Laboratory with TB restrictions'
+const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {
   it('should be a radio button', () => {

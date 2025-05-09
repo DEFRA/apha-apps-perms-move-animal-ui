@@ -1,8 +1,4 @@
-import {
-  destinationTypePage,
-  DestinationTypePage,
-  restricted
-} from './index.js'
+import { destinationTypePage, DestinationTypePage } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
@@ -121,7 +117,7 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmCphPage)
     })
 
-    it.each(restricted)(
+    it.each(['tb-restricted-farm', 'zoo', 'lab', 'other'])(
       'should return destination-farm-cph even for restricted -> restricted',
       (destinationType) => {
         const context = {
