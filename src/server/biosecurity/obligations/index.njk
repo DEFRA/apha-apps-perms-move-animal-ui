@@ -1,0 +1,41 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+{% block heading %}
+  <h1 class="govuk-heading-l">Biosecurity on your farm or premises</h1>
+{% endblock %}
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        You must answer the questions in this section as accurately as you can.
+      </p>
+      <p>
+        It is important you take the time to consider your biosecurity measures
+        and the steps you are taking to prevent the spread of TB.
+      </p>
+      <p>
+        A vet will review your answers and decide on the outcome of your
+        application.
+      </p>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Guidance on biosecurity
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            Read the GOV.UK guidance on
+            <a
+              target="_blank"
+              href="https://www.gov.uk/guidance/protect-cattle-against-tb-infection-in-high-and-low-incidence-areas"
+            >
+              how to protect cattle against TB infection</a
+            >
+            (opens in new tab).
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+{% endblock %}
