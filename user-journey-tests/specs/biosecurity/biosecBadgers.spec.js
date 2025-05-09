@@ -5,6 +5,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import otherWildlifeMeasuresPage from '../../page-objects/biosecurity/otherWildlifeMeasuresPage.js'
 
 describe('Biosecurity badgers page spec', () => {
   // eslint-disable-next-line no-undef
@@ -29,6 +30,13 @@ describe('Biosecurity badgers page spec', () => {
         biosecBadgersPage.badgerProofFencing
       ],
       keptSeparatelyPage
+    )
+  })
+
+  it('Should input other measures and verify other measures page is reached', async () => {
+    await biosecBadgersPage.selectMeasuresAndContinue(
+      [biosecBadgersPage.otherMeasures],
+      otherWildlifeMeasuresPage
     )
   })
 })
