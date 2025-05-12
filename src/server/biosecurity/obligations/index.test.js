@@ -7,6 +7,7 @@ const sectionKey = 'biosecurity'
 const questionKey = 'biosecurityObligationsAcknowledged'
 const view = 'biosecurity/obligations/index.njk'
 const pageUrl = '/biosecurity/biosecurity-intro'
+const question = 'Biosecurity on your farm or premises'
 
 describe('ObligationsPage', () => {
   const page = new ObligationsPage()
@@ -19,12 +20,20 @@ describe('ObligationsPage', () => {
     expect(page.sectionKey).toBe(sectionKey)
   })
 
+  it('should have the correct question', () => {
+    expect(page.question).toBe(question)
+  })
+
   it('should have the correct questionKey', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
   it('should have the correct view', () => {
     expect(page.view).toBe(view)
+  })
+
+  it('should have the correct isInterstitial', () => {
+    expect(page.isInterstitial).toBe(true)
   })
 
   it('should have the correct Answer model', () => {
