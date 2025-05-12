@@ -1,11 +1,11 @@
 import { BiosecuritySection } from './biosecurity.js'
-import { KeptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 import {
   validApplicationState,
   validBiosecuritySectionState,
   validOriginSectionState,
   validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
+import { ObligationsPage } from '~/src/server/biosecurity/obligations/index.js'
 /** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
 
 const validBiosecurityData = validBiosecuritySectionState
@@ -28,7 +28,7 @@ describe('Biosecurity.validate', () => {
     }).validate()
 
     expect(result.isValid).toBe(false)
-    expect(result.firstInvalidPage).toBeInstanceOf(KeptSeparatelyPage)
+    expect(result.firstInvalidPage).toBeInstanceOf(ObligationsPage)
   })
 })
 

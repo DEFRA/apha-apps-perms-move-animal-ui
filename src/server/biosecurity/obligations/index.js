@@ -6,7 +6,7 @@ import { keptSeparatelyPage } from '../kept-separately/index.js'
 export class ObligationsPage extends QuestionPage {
   urlPath = '/biosecurity/biosecurity-intro'
   sectionKey = 'biosecurity'
-  questionKey = 'biosecurityObligations'
+  questionKey = 'biosecurityObligationsAcknowledged'
   view = 'biosecurity/obligations/index.njk'
   isInterstitial = true
 

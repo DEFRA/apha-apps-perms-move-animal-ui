@@ -46,6 +46,7 @@ export const validIdentificationSectionState = {
 }
 
 export const validBiosecuritySectionState = {
+  biosecurityObligationsAcknowledged: 'yes',
   keptSeparately: 'yes',
   grazing: 'yes',
   lastGrazed: 'yesterday',
