@@ -16,11 +16,15 @@ import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAn
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 import equipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
+import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
+import { waitForPagePath } from '../page.js'
 
 // Helper function to complete the origin task
 const completeBiosecurityTask = async (radioType) => {
   await navigateToTaskList()
-  await taskListPage.selectBiosecurityLink(keptSeparatelyPage)
+  await taskListPage.selectBiosecurityLink(biosecIntroPage)
+  await biosecIntroPage.selectContinue()
+  await waitForPagePath(keptSeparatelyPage.pagePath)
   switch (radioType) {
     case 'yes':
       await keptSeparatelyPage.selectYesAndContinue(grazingPage)

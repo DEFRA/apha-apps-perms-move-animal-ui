@@ -1,11 +1,11 @@
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
-import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import otherWildlifeMeasuresPage from '../../page-objects/biosecurity/otherWildlifeMeasuresPage.js'
+import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 
 describe('Biosecurity badgers page spec', () => {
   // eslint-disable-next-line no-undef
@@ -20,7 +20,7 @@ describe('Biosecurity badgers page spec', () => {
 
   it('Should verify that all checkboxes exist and submit with no options selected', async () => {
     await biosecBadgersPage.verifyAllCheckboxesExist()
-    await biosecBadgersPage.selectMeasuresAndContinue([], keptSeparatelyPage)
+    await biosecBadgersPage.selectMeasuresAndContinue([], biosecIntroPage)
   })
 
   it('Should input selection on multiple checkboxes and verify sumbit', async () => {
@@ -29,7 +29,7 @@ describe('Biosecurity badgers page spec', () => {
         biosecBadgersPage.aluminiumFeedBins,
         biosecBadgersPage.badgerProofFencing
       ],
-      keptSeparatelyPage
+      biosecIntroPage
     )
   })
 

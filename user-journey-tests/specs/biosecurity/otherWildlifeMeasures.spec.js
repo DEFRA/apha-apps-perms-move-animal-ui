@@ -4,7 +4,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import otherWildlifeMeasuresPage from '../../page-objects/biosecurity/otherWildlifeMeasuresPage.js'
-import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
+import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 
 describe('Minimise contamination page test', () => {
   // eslint-disable-next-line no-undef
@@ -27,7 +27,7 @@ describe('Minimise contamination page test', () => {
   it('Should input correct input and continue without error', async () => {
     await otherWildlifeMeasuresPage.inputTextAndContinue(
       'Other measures',
-      keptSeparatelyPage
+      biosecIntroPage
     )
   })
 })
