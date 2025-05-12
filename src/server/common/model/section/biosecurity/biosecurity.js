@@ -1,7 +1,7 @@
-import { keptSeparatelyPage } from '~/src/server/biosecurity/kept-separately/index.js'
 import { SectionModel } from '../section-model/section-model.js'
 import { biosecurity } from '~/src/server/biosecurity/index.js'
 import { biosecuritySectionIsVisible } from '../visibility.js'
+import { obligationsPage } from '~/src/server/biosecurity/obligations/index.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 
@@ -16,5 +16,5 @@ export class BiosecuritySection extends SectionModel {
     isVisible: biosecuritySectionIsVisible
   }
 
-  static firstPageFactory = () => keptSeparatelyPage
+  static firstPageFactory = () => obligationsPage
 }

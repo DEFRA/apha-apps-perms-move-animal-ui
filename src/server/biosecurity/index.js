@@ -14,6 +14,7 @@ import { manureAndSlurryDetails } from './manure-and-slurry-details/index.js'
 import { equipmentAnyShared } from './equipment-any-shared/index.js'
 import { equipmentHowMinimiseContamination } from './equipment-how-minimise-contamination/index.js'
 import { otherWildlifeMeasures } from './other-wildlife-measures/index.js'
+import { obligations } from './obligations/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -23,6 +24,7 @@ export const biosecurity = {
     name: 'biosecurity',
     async register(server) {
       await server.register([
+        obligations,
         keptSeparately,
         grazing,
         lastGrazed,
