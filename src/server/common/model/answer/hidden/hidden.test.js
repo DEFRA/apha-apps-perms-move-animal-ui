@@ -3,11 +3,12 @@ import { HiddenAnswer } from './hidden.js'
 /** @import {HiddenAnswerConfig} from './hidden.js' */
 
 const question = 'Enter your answer?'
+const configuredHiddenValue = 'yes'
 
 /** @type {HiddenAnswerConfig} */
 const hiddenAnswerConfig = {
   payloadKey: 'hiddenAnswerPayload',
-  value: 'some value'
+  value: configuredHiddenValue
 }
 
 class TestHiddenAnswer extends HiddenAnswer {
@@ -15,7 +16,7 @@ class TestHiddenAnswer extends HiddenAnswer {
 }
 
 const validPayload = {
-  hiddenAnswerPayload: 'some text'
+  hiddenAnswerPayload: configuredHiddenValue
 }
 
 describe('HiddenAnswer.new', () => {
@@ -36,7 +37,7 @@ describe('HiddenAnswer.validate', () => {
     expect(errors).toEqual({})
   })
 
-  it('should pass validation if the input is not undefined', () => {
+  it('should pass validation if the input value matches the configured one', () => {
     const hiddenAnswer = new TestHiddenAnswer(validPayload)
     const { isValid, errors } = hiddenAnswer.validate()
 

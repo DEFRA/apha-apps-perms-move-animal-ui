@@ -51,7 +51,7 @@ export class HiddenAnswer extends AnswerModel {
   }
 
   validate() {
-    return { isValid: !!this.value, errors: {} }
+    return { isValid: this.value === this.config.value, errors: {} }
   }
 
   /**
