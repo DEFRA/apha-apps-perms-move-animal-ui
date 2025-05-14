@@ -1,5 +1,4 @@
 import { taskListIncompleteGetController } from '~/src/server/task-list-incomplete/controller.js'
-import { getAuthOptions } from '../common/helpers/auth/toggles-helper.js'
 
 /**
  * Sets up the routes used in the home page.
@@ -17,9 +16,6 @@ export const taskListIncomplete = {
         {
           method: 'GET',
           path: '/task-list-incomplete',
-          options: {
-            ...getAuthOptions(false)
-          },
           ...taskListIncompleteGetController
         }
       ])
