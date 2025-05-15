@@ -63,6 +63,8 @@ jobs:
       - name: Journey tests
         run: |
           npm run user-journey-test
+        env:
+          GOV_NOTIFY_API_KEY: ${{ secrets.GOV_NOTIFY_API_KEY }}
 
       - name: cleanup
         if: always()
