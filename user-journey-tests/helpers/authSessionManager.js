@@ -10,5 +10,14 @@ export async function loginAndSaveSession(signInPage) {
 }
 
 export async function restoreSession() {
-  await browser.deleteCookies('session', 'crumb')
+  const allCookies = await browser.getCookies()
+  const cookieNames = allCookies.map((cookie) => cookie.name)
+
+  if (cookieNames.includes('session')) {
+    await browser.deleteCookies('session')
+  }
+
+  if (cookieNames.includes('crumb')) {
+    await browser.deleteCookies('crumb')
+  }
 }
