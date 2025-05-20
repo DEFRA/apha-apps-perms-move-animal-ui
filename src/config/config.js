@@ -379,7 +379,7 @@ export const config = convict({
       doc: 'DEFRA ID Manage account url',
       format: String,
       env: 'DEFRA_ID_MANAGE_ACCOUNT_URL',
-      default: ''
+      default: 'https://your-account.cpdev.cui.defra.gov.uk/management'
     }
   },
   clearSessionDebug: {
