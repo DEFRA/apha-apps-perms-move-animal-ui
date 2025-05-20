@@ -34,6 +34,7 @@ export function context(request) {
     serviceName: config.get('serviceName'),
     serviceUrl: '/',
     breadcrumbs: [],
+    manageAccountUrl: config.get('auth').manageAccountUrl,
     navigation: buildNavigation(request),
     isAuthenticated: isAuthenticated(request),
     displayName: request?.auth?.credentials?.displayName,

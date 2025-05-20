@@ -374,6 +374,12 @@ export const config = convict({
       default: 'the-password-must-be-at-least-32-characters-long-and-unique',
       env: 'AUTH_COOKIE_PASSWORD',
       sensitive: true
+    },
+    manageAccountUrl: {
+      doc: 'DEFRA ID Manage account url',
+      format: String,
+      env: 'DEFRA_ID_MANAGE_ACCOUNT_URL',
+      default: ''
     }
   },
   clearSessionDebug: {

@@ -1,3 +1,5 @@
+import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
+
 const mockReadFileSync = jest.fn()
 const mockLoggerError = jest.fn()
 
@@ -11,17 +13,21 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
 
 describe('#context', () => {
   const mockRequest = { path: '/' }
+  const manageAccountUrl =
+    'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
 
   describe('When webpack manifest file read succeeds', () => {
     let contextImport
 
     beforeAll(async () => {
+      spyOnConfig('auth', { manageAccountUrl })
       contextImport = await import('~/src/config/nunjucks/context/context.js')
     })
 
     beforeEach(() => {
       // Return JSON string
+
       mockReadFileSync.mockReturnValue(`{
         "application.js": "javascripts/application.js",
         "stylesheets/application.scss": "stylesheets/application.css"
@@ -43,6 +49,7 @@ describe('#context', () => {
         displayName: undefined,
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
+        manageAccountUrl,
         navigation: [
           {
             isActive: true,
@@ -81,6 +88,7 @@ describe('#context', () => {
     let contextImport
 
     beforeAll(async () => {
+      spyOnConfig('auth', { manageAccountUrl })
       contextImport = await import('~/src/config/nunjucks/context/context.js')
     })
 
@@ -100,24 +108,29 @@ describe('#context', () => {
 
 describe('#context cache', () => {
   const mockRequest = { path: '/' }
+  const manageAccountUrl =
+    'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
 
   describe('Webpack manifest file cache', () => {
     let contextImport
 
     beforeAll(async () => {
+      spyOnConfig('auth', { manageAccountUrl })
       contextImport = await import('~/src/config/nunjucks/context/context.js')
     })
 
     beforeEach(() => {
-      // Return JSON string
+      // Mock values before context is called
       mockReadFileSync.mockReturnValue(`{
-        "application.js": "javascripts/application.js",
-        "stylesheets/application.scss": "stylesheets/application.css"
-      }`)
+      "application.js": "javascripts/application.js",
+      "stylesheets/application.scss": "stylesheets/application.css"
+    }`)
 
       contextResult = contextImport.context(mockRequest)
     })
+
+    afterEach(jest.restoreAllMocks)
 
     test('Should read file', () => {
       expect(mockReadFileSync).toHaveBeenCalled()
@@ -139,6 +152,7 @@ describe('#context cache', () => {
         },
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
+        manageAccountUrl,
         displayName: undefined,
         navigation: [
           {
