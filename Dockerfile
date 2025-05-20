@@ -35,8 +35,7 @@ ENV TZ="Europe/London"
 # CDP PLATFORM HEALTHCHECK REQUIREMENT
 USER root
 RUN apk update \
-    && apk add curl \
-    && apk add ghostscript=10.04.0-r0 \
+    && apk add curl ghostscript \
     && apk cache clean
 
 USER node
