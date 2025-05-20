@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import { addSeconds } from 'date-fns'
+import { retrieveReferrer } from '~/src/server/common/helpers/auth/referrer.js'
 
 const auth = {
   plugin: {
@@ -41,9 +42,7 @@ const auth = {
             )
           }
 
-          const redirect = request.yar.flash('referrer') ?? '/'
-
-          return h.redirect(redirect)
+          return h.redirect(retrieveReferrer(request))
         }
       })
     }

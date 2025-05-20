@@ -8,6 +8,7 @@ import {
 import { refreshAccessToken } from './refresh-token.js'
 import { config } from '~/src/config/config.js'
 import { statusCodes } from '../../constants/status-codes.js'
+import { storeReferrer } from './referrer.js'
 
 const sessionCookie = {
   plugin: {
@@ -28,7 +29,7 @@ const sessionCookie = {
             'User journey: user has been sent to DEFRA CustomerIdentity for sign in'
           )
 
-          req.yar.flash('referrer', req.path, true)
+          storeReferrer(req)
           return '/auth/login'
         },
         keepAlive: true,
