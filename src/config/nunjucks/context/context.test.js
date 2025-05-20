@@ -88,7 +88,6 @@ describe('#context', () => {
     let contextImport
 
     beforeAll(async () => {
-      spyOnConfig('auth', { manageAccountUrl })
       contextImport = await import('~/src/config/nunjucks/context/context.js')
     })
 
