@@ -26,10 +26,7 @@ class SignInPage extends Page {
     return $('#continue')
   }
 
-  async signInUsingTestCredentials() {
-    await browser.url(taskListPage.pagePath)
-    await this.verifyPageHeadingAndTitle()
-
+  async submitWithTestCredentials() {
     await typeIntoElement(this.idInput, this.testId.toString())
     await typeIntoElement(this.passwordInput, this.testPassword.toString())
 
@@ -41,6 +38,14 @@ class SignInPage extends Page {
     await expect(this.signInButton).toBeEnabled()
 
     await selectElement(this.signInButton)
+  }
+
+  async signInUsingTestCredentials() {
+    await browser.url(taskListPage.pagePath)
+    await this.verifyPageHeadingAndTitle()
+
+    await this.submitWithTestCredentials()
+
     await waitForPagePath(taskListPage.pagePath)
   }
 }

@@ -29,7 +29,7 @@ const sessionCookie = {
             'User journey: user has been sent to DEFRA CustomerIdentity for sign in'
           )
 
-          storeReferrer(req)
+          storeReferrer(req, req.path)
           return '/auth/login'
         },
         keepAlive: true,
