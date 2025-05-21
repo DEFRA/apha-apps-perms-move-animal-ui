@@ -1,4 +1,5 @@
 import { retrieveReferrer, storeReferrer } from './referrer.js'
+/** @import {Request} from '@hapi/hapi' */
 
 const referrerKey = 'referrer'
 
@@ -10,7 +11,8 @@ describe('retrieveReferrer', () => {
       }
     }
     request.yar.flash.mockReturnValueOnce(value)
-    return request
+    // @ts-expect-error mock does not contain all expected fields
+    return /** @type {Request} */ (request)
   }
 
   it('should return a single item if one exists', () => {
@@ -28,16 +30,19 @@ describe('retrieveReferrer', () => {
 
 describe('storeReferrer', () => {
   it('should flash referrer using override', () => {
-    const request = {
+    // @ts-expect-error mock does not contain all expected fields
+    const request = /** @type {Request} */ ({
       yar: {
         flash: jest.fn()
       }
-    }
+    })
 
     storeReferrer(request, '/my-page')
 
-    expect(request.yar.flash).toHaveBeenCalledWith(referrerKey, '/my-page', {
-      isOverride: true
-    })
+    expect(request.yar.flash).toHaveBeenCalledWith(
+      referrerKey,
+      '/my-page',
+      true
+    )
   })
 })
