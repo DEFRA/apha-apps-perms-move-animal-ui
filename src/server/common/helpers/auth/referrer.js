@@ -5,7 +5,6 @@ const key = 'referrer'
 /**
  * @param {Request} request
  * @param {string} value
- * @returns undefined
  */
 export const storeReferrer = (request, value) => {
   request.yar.flash(key, value, true)
@@ -13,7 +12,7 @@ export const storeReferrer = (request, value) => {
 
 /**
  * @param {Request} request
- * @return string
+ * @returns string
  */
 export const retrieveReferrer = (request) => {
   const value = request.yar.flash(key)
