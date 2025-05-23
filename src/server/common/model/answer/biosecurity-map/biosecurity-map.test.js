@@ -32,6 +32,9 @@ const mockSkippedData = {
   }
 }
 
+const skippedMessage =
+  'Missing biosecurity map. Applicant needs to email it to csc.tblicensing@apha.gov.uk'
+
 describe('BiosecurityAnswer', () => {
   it('should create an instance from state', () => {
     const answer = BiosecurityMapAnswer.fromState(mockData)
@@ -69,9 +72,7 @@ describe('BiosecurityAnswer', () => {
   it('should return the correct HTML when skipped', () => {
     const answer = new BiosecurityMapAnswer(mockSkippedData)
     const html = answer.html
-    expect(html).toBe(
-      'Applicant must email their biosecurity map to csc.tblicensing@apha.gov.uk<br /><br />The application cannot be processed until it is received.'
-    )
+    expect(html).toBe(skippedMessage)
   })
 
   it('should convert to state correctly', () => {
@@ -107,9 +108,7 @@ describe('BiosecurityAnswer', () => {
 
   it('should return correct emailHtml when skipped', () => {
     const answer = new BiosecurityMapAnswer(mockSkippedData)
-    expect(answer.emailHtml).toBe(
-      'Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant.'
-    )
+    expect(answer.emailHtml).toBe(skippedMessage)
   })
 
   it('should identify status other than skipped correctly', () => {
