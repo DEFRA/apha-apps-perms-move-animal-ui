@@ -739,7 +739,7 @@ Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and ra
 
 ---
 ## Upload a biosecurity map
-Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant."
+Missing biosecurity map. Applicant needs to email it to csc.tblicensing@apha.gov.uk"
 `;
 
 exports[`#CheckAnswers when email confirmation to the applicant is disabled should send email in correct format: email-content 1`] = `
@@ -1271,7 +1271,7 @@ Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and ra
 
 ---
 ## Upload a biosecurity map
-Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant."
+Missing biosecurity map. Applicant needs to email it to csc.tblicensing@apha.gov.uk"
 `;
 
 exports[`#CheckAnswers when email confirmation to the applicant is enabled should send emails in correct format: email-content 1`] = `
