@@ -5,6 +5,14 @@ import { DestinationSection } from '../section/destination/destination.js'
 import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 
+describe('Application.applicationData', () => {
+  it('should render application data in the datastructure expected', () => {
+    const application = ApplicationModel.fromState(validApplicationState)
+
+    expect(application.applicationData).toMatchSnapshot()
+  })
+})
+
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {
     const application = ApplicationModel.fromState(validApplicationState)
