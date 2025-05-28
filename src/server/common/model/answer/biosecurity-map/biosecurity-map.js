@@ -27,6 +27,9 @@ import { finalSchema, processingSchema } from './validation.js'
  * }} BiosecurityMapPayload
  */
 
+const skippedMessage =
+  'Missing biosecurity map. Applicant needs to email it to csc.tblicensing@apha.gov.uk'
+
 /**
  * @augments AnswerModel<BiosecurityMapPayload>
  */
@@ -47,14 +50,14 @@ export class BiosecurityMapAnswer extends AnswerModel {
 
   get html() {
     if (this.isSkipped()) {
-      return 'Applicant must email their biosecurity map to csc.tblicensing@apha.gov.uk<br /><br />The application cannot be processed until it is received.'
+      return skippedMessage
     }
     return 'Map uploaded'
   }
 
   get emailHtml() {
     if (this.isSkipped()) {
-      return 'Missing biosecurity map. Check the CSC TB licencing mailbox for an emailed version from the applicant.'
+      return skippedMessage
     }
     return ''
   }
