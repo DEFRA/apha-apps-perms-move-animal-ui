@@ -35,8 +35,11 @@ describe('OtherWildlifeMeasures', () => {
     ).toBe('Your answer must be no longer than 5000 characters')
   })
 
-  it('should not specify an empty validation message', () => {
+  it('should specify an empty validation message', () => {
     expect(OtherWildlifeMeasuresAnswer.config.validation.empty).toBeDefined()
+    expect(OtherWildlifeMeasuresAnswer.config.validation.empty?.message).toBe(
+      'Enter information on what other measures are you taking to reduce the risk of spreading TB'
+    )
   })
 
   it('should return "None" when otherWildlifeMeasures is an empty string', () => {

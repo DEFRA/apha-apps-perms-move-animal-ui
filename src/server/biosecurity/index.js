@@ -15,6 +15,7 @@ import { equipmentAnyShared } from './equipment-any-shared/index.js'
 import { equipmentHowMinimiseContamination } from './equipment-how-minimise-contamination/index.js'
 import { otherWildlifeMeasures } from './other-wildlife-measures/index.js'
 import { obligations } from './obligations/index.js'
+import { otherEquipmentMeasures } from './other-equipment-measures/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -35,6 +36,7 @@ export const biosecurity = {
         equipmentAnyShared,
         buildingsHowMinimiseContamination,
         equipmentHowMinimiseContamination,
+        otherEquipmentMeasures,
         peopleDisinfection,
         disinfectant,
         disinfectantDilution,
