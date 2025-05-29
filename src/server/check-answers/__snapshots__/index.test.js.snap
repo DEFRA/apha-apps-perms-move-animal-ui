@@ -272,13 +272,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
+      Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
     </dt>
     <dd class="govuk-summary-list__value">
-      somehow
+      Designated disinfection points
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-how-minimise-contamination?redirect_uri=/submit/check-answers" data-testid="equipmentHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?</span></a>
+      <a class="govuk-link" href="/biosecurity/equipment-how-minimise-contamination?redirect_uri=/submit/check-answers" data-testid="equipmentHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -425,8 +425,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -501,8 +501,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -577,8 +577,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -653,8 +653,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -729,8 +729,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -805,8 +805,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -881,8 +881,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -957,8 +957,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -1033,8 +1033,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -1109,8 +1109,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -1185,8 +1185,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -1261,8 +1261,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
@@ -1337,8 +1337,8 @@ Yes
 somehow
 ## Will the incoming cattle share any equipment and machinery with the resident herd?
 Yes
-## How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-somehow
+## Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+Designated disinfection points
 ## What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
 ppe
 ## Which measures are you taking to reduce the risk of infection from wildlife?
