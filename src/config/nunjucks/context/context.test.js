@@ -44,7 +44,8 @@ describe('#context', () => {
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
-          pdfUpload: true
+          pdfUpload: true,
+          sendToCaseManagement: true
         },
         displayName: undefined,
         getAssetPath: expect.any(Function),
@@ -147,7 +148,8 @@ describe('#context cache', () => {
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
-          pdfUpload: true
+          pdfUpload: true,
+          sendToCaseManagement: true
         },
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
