@@ -65,7 +65,7 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'sharedEquipment',
-      expectedValue: 'Shared equipment',
+      expectedValue: 'Designated disinfection points',
       expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
     },
     {
