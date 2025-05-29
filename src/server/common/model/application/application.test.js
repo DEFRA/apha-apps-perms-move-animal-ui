@@ -9,7 +9,7 @@ describe('Application.applicationData', () => {
   it('should render application data in the datastructure expected', () => {
     const application = ApplicationModel.fromState(validApplicationState)
 
-    expect(application.applicationData).toMatchSnapshot()
+    expect(application.caseManagementData).toMatchSnapshot()
   })
 })
 

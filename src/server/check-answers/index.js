@@ -105,44 +105,49 @@ export class SubmitPageController extends QuestionPageController {
     const { isValid: isValidApplication } = application.validate()
 
     if (isValidPage && isValidApplication) {
-      const reference = getApplicationReference()
-      req.yar.set('applicationReference', reference, true)
-      const emailContent = this.generateEmailContent(application, reference)
-      const notifyProps = { content: emailContent }
+      if (!config.get('featureFlags').sendToCaseManagement) {
+        const reference = getApplicationReference()
+        req.yar.set('applicationReference', reference, true)
+        const emailContent = this.generateEmailContent(application, reference)
+        const notifyProps = { content: emailContent }
 
-      if (
-        application.tasks[biosecurityMapKey] &&
-        applicationState[biosecurityMapKey][uploadPlanKey].status
-          ?.uploadStatus !== 'skipped'
-      ) {
-        const { file: compressedFile, extension } = await handleUploadedFile(
-          req,
-          applicationState[biosecurityMapKey][uploadPlanKey],
-          this.logger
-        )
+        if (
+          application.tasks[biosecurityMapKey] &&
+          applicationState[biosecurityMapKey][uploadPlanKey].status
+            ?.uploadStatus !== 'skipped'
+        ) {
+          const { file: compressedFile, extension } = await handleUploadedFile(
+            req,
+            applicationState[biosecurityMapKey][uploadPlanKey],
+            this.logger
+          )
 
-        // Error if the file after compression is still too large
-        if (fileSizeInMB(compressedFile.length) > 2) {
-          return h.redirect(sizeErrorPage.urlPath)
+          // Error if the file after compression is still too large
+          if (fileSizeInMB(compressedFile.length) > 2) {
+            return h.redirect(sizeErrorPage.urlPath)
+          }
+
+          const { fileRetention, confirmDownloadConfirmation } =
+            config.get('notify')
+          notifyProps.link_to_file = {
+            file: compressedFile?.toString('base64'),
+            filename: `Biosecurity-map.${extension}`,
+            confirm_email_before_download: confirmDownloadConfirmation,
+            retention_period: fileRetention
+          }
         }
 
-        const { fileRetention, confirmDownloadConfirmation } =
-          config.get('notify')
-        notifyProps.link_to_file = {
-          file: compressedFile?.toString('base64'),
-          filename: `Biosecurity-map.${extension}`,
-          confirm_email_before_download: confirmDownloadConfirmation,
-          retention_period: fileRetention
+        await sendEmailToCaseWorker(notifyProps)
+        if (config.get('featureFlags').emailConfirmation) {
+          await sendEmailToApplicant({
+            email: applicationState.licence.emailAddress,
+            fullName: `${applicationState.licence.fullName.firstName} ${applicationState.licence.fullName.lastName}`,
+            reference: reference ?? ''
+          })
         }
-      }
-
-      await sendEmailToCaseWorker(notifyProps)
-      if (config.get('featureFlags').emailConfirmation) {
-        await sendEmailToApplicant({
-          email: applicationState.licence.emailAddress,
-          fullName: `${applicationState.licence.fullName.firstName} ${applicationState.licence.fullName.lastName}`,
-          reference: reference ?? ''
-        })
+      } else {
+        const { message } = await application.send()
+        req.yar.set('applicationReference', message)
       }
 
       return super.handlePost(req, h)
