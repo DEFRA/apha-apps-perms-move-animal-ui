@@ -20,11 +20,11 @@ describe('Biosecurity badgers page spec', () => {
 
   it('Should verify that all checkboxes exist and submit with no options selected', async () => {
     await biosecBadgersPage.verifyAllCheckboxesExist()
-    await biosecBadgersPage.selectMeasuresAndContinue([], biosecIntroPage)
+    await biosecBadgersPage.selectCheckboxesAndContinue([], biosecIntroPage)
   })
 
   it('Should input selection on multiple checkboxes and verify sumbit', async () => {
-    await biosecBadgersPage.selectMeasuresAndContinue(
+    await biosecBadgersPage.selectCheckboxesAndContinue(
       [
         biosecBadgersPage.aluminiumFeedBins,
         biosecBadgersPage.badgerProofFencing
@@ -34,8 +34,8 @@ describe('Biosecurity badgers page spec', () => {
   })
 
   it('Should input other measures and verify other measures page is reached', async () => {
-    await biosecBadgersPage.selectMeasuresAndContinue(
-      [biosecBadgersPage.otherMeasures],
+    await biosecBadgersPage.selectCheckboxesAndContinue(
+      [biosecBadgersPage.other],
       otherWildlifeMeasuresPage
     )
   })

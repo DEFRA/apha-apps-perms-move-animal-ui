@@ -5,6 +5,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import otherEquipmentMeasuresPage from '../../page-objects/biosecurity/otherEquipmentMeasuresPage.js'
 
 describe('Equipment contamination page spec', () => {
   // eslint-disable-next-line no-undef
@@ -18,16 +19,20 @@ describe('Equipment contamination page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await EquipmentContaminationPage.singleInputErrorTest(
-      '',
-      EquipmentContaminationPage.noInputError
-    )
+    await EquipmentContaminationPage.checkboxErrorTest()
   })
 
   it('Should input correct input and continue without error', async () => {
-    await EquipmentContaminationPage.inputTextAndContinue(
-      'Shared equipment',
+    await EquipmentContaminationPage.selectCheckboxesAndContinue(
+      [EquipmentContaminationPage.disinfectingMilkingAndHandling],
       peopleDisinfectionPage
+    )
+  })
+
+  it('Should verify other option takes to correct page', async () => {
+    await EquipmentContaminationPage.selectCheckboxesAndContinue(
+      [EquipmentContaminationPage.other],
+      otherEquipmentMeasuresPage
     )
   })
 })

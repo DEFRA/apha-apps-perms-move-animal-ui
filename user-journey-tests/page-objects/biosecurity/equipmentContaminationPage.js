@@ -1,19 +1,31 @@
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'equipmentHowMinimiseContamination'
 const pageHeadingAndTitle =
-  'How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?'
+  'Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
 const noInputError =
-  'Enter how you will minimise the risk of spread of TB infection to the incoming cattle when using shared equipment'
+  'Select which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
 
-class EquipmentContaminationPage extends SingleTextInputPage {
-  constructor() {
-    super({ pageId, noInputError })
-  }
+const checkboxIds = [
+  'designatedDisinfectionPoints',
+  'disinfectingMachinery',
+  'disinfectingMilkingAndHandling',
+  'equipmentNotShared',
+  'other'
+]
 
+class EquipmentDisinfectionMeasuresPage extends CheckboxBasePage {
   pagePath = 'biosecurity/equipment-how-minimise-contamination'
-  pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
+  pageTitle = pageHeadingAndTitle
+
+  constructor() {
+    super({
+      checkboxIds,
+      pageId,
+      noInputError
+    })
+  }
 }
 
-export default new EquipmentContaminationPage()
+export default new EquipmentDisinfectionMeasuresPage()
