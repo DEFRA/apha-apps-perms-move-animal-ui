@@ -1,3 +1,5 @@
+import Wreck from '@hapi/wreck'
+
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
@@ -6,6 +8,8 @@ import { validateApplication } from './validation.js'
 import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
 import { IdentificationSection } from '../section/identification/identification.js'
 import { HiddenAnswer } from '../answer/hidden/hidden.js'
+import { statusCodes } from '../../constants/status-codes.js'
+import { config } from '~/src/config/config.js'
 
 /**
  * @import { SectionModel, QuestionPageAnswer } from '../section/section-model/section-model.js'
@@ -60,12 +64,27 @@ export class ApplicationModel {
     })
   }
 
-  get applicationData() {
+  async send() {
+    const data = this.caseManagementData
+
+    const resp = await Wreck.post(
+      `${config.get('caseManagementApi').baseUrl}/submit`,
+      {
+        payload: data
+      }
+    )
+
+    if (resp.res.statusCode === statusCodes.ok) {
+      return JSON.parse(resp.payload.toString())
+    }
+  }
+
+  get caseManagementData() {
     const sections = this.tasks
 
     /** @param {QuestionPageAnswer} questionPageAnswer */
     const answerForQuestionPage = ({ answer }) => ({
-      type: answer.constructor.name,
+      type: answer.type,
       value: answer.toState(),
       displayText: answer.html
     })
