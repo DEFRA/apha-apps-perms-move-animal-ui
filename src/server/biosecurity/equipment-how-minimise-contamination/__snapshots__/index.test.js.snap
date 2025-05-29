@@ -2,48 +2,57 @@
 
 exports[`EquipmentHowMinimiseContaminationPage equipmentHowMinimiseContaminationPage.content should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Shared equipment</h1>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        To prevent the spread of TB, cleaning and disinfection measures for
-        shared equipment should be in place.
-      </p>
-      <p>This can include:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>designated disinfection points</li>
-        <li>cleaning and disinfecting shared machinery</li>
-        <li>
-          not sharing equipment or machinery between the groups of incoming and
-          resident cattle
-        </li>
-        <li>
-          cleaning and disinfection measures for shared milking and handling
-          facilities
-        </li>
-      </ul>
-    </div>
-  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="equipmentHowMinimiseContamination">
-    How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?
-  </label>
-  <textarea class="govuk-textarea" id="equipmentHowMinimiseContamination" name="equipmentHowMinimiseContamination" rows="8"></textarea>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="equipmentHowMinimiseContamination-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
+      </h1>
+    </legend>
+    <div id="equipmentHowMinimiseContamination-hint" class="govuk-hint">
+      Only select the measures you are taking. You do not need to select them all to receive your licence.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="equipmentHowMinimiseContamination" name="equipmentHowMinimiseContamination" type="checkbox" value="designatedDisinfectionPoints" data-testid="designatedDisinfectionPoints-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="equipmentHowMinimiseContamination">
+          Designated disinfection points
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="equipmentHowMinimiseContamination-2" name="equipmentHowMinimiseContamination" type="checkbox" value="disinfectingMachinery" data-testid="disinfectingMachinery-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="equipmentHowMinimiseContamination-2">
+          Cleaning and disinfecting shared machinery
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="equipmentHowMinimiseContamination-3" name="equipmentHowMinimiseContamination" type="checkbox" value="disinfectingMilkingAndHandling" data-testid="disinfectingMilkingAndHandling-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="equipmentHowMinimiseContamination-3">
+          Cleaning and disinfecting shared milking and handling facilities
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="equipmentHowMinimiseContamination-4" name="equipmentHowMinimiseContamination" type="checkbox" value="equipmentNotShared" data-testid="equipmentNotShared-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="equipmentHowMinimiseContamination-4">
+          Equipment is not shared between the incoming animals and the resident herd
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="equipmentHowMinimiseContamination-5" name="equipmentHowMinimiseContamination" type="checkbox" value="other" data-testid="other-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="equipmentHowMinimiseContamination-5">
+          Other cleaning and disinfection measures
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
