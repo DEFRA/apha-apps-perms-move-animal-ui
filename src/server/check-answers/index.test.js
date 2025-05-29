@@ -251,6 +251,10 @@ describe('#CheckAnswers', () => {
         fileRetention: '1 week',
         confirmDownloadConfirmation: true
       })
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: false,
+        emailConfirmation: true
+      })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -571,6 +575,10 @@ describe('#CheckAnswers', () => {
       spyOnConfig('notify', {
         fileRetention: '1 week',
         confirmDownloadConfirmation: true
+      })
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: false,
+        emailConfirmation: true
       })
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(

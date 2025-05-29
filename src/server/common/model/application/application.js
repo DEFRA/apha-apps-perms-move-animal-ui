@@ -76,6 +76,10 @@ export class ApplicationModel {
 
     if (resp.res.statusCode === statusCodes.ok) {
       return JSON.parse(resp.payload.toString())
+    } else {
+      throw new Error(
+        `Failed to send application to case management API: ${resp.res.statusCode} - ${resp.payload.toString()}`
+      )
     }
   }
 
