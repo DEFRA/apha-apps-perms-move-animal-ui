@@ -1,17 +1,21 @@
-import { TextAreaAnswer } from '../text-area/text-area.js'
+import { CheckboxAnswer } from '../checkbox/checkbox.js'
 import { PeopleDisinfectionAnswer } from './people-disinfection.js'
 /** @import {PeopleDisinfectionPayload} from './people-disinfection.js' */
 
-const maxLength = 5000
-
 /** @type {PeopleDisinfectionPayload} */
 const payload = {
-  peopleDisinfection: 'somehow'
+  peopleDisinfection: [
+    'ppe',
+    'disinfectingBoots',
+    'disinfectingOnArrivalAndDeparture',
+    'dedicatedStaff',
+    'other'
+  ]
 }
 
-describe('PeopleDisinfection', () => {
-  it('should be a text area', () => {
-    expect(new PeopleDisinfectionAnswer(payload)).toBeInstanceOf(TextAreaAnswer)
+describe('PeopleDisinfectionAnswer', () => {
+  it('should be a checkbox', () => {
+    expect(new PeopleDisinfectionAnswer(payload)).toBeInstanceOf(CheckboxAnswer)
   })
 
   it('should have the right payload key', () => {
@@ -20,30 +24,29 @@ describe('PeopleDisinfection', () => {
     )
   })
 
-  it('should have the right hint', () => {
-    expect(PeopleDisinfectionAnswer.config.hint).toBeUndefined()
+  it('should have no validation', () => {
+    expect(PeopleDisinfectionAnswer.config.validation).toEqual({})
   })
 
-  it('should have the right number of rows', () => {
-    expect(PeopleDisinfectionAnswer.config.rows).toBe(8)
-  })
-
-  it('should have not be a page heading', () => {
-    expect(PeopleDisinfectionAnswer.config.isPageHeading).toBe(false)
-  })
-
-  it('should define the right empty input message', () => {
-    expect(PeopleDisinfectionAnswer.config.validation.empty?.message).toBe(
-      'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
+  it('should have the expected options to select from', () => {
+    expect(Object.keys(PeopleDisinfectionAnswer.config.options)).toHaveLength(5)
+    expect(PeopleDisinfectionAnswer.config.options.ppe.label).toBe(
+      'Dedicated clothing and personal protective equipment (PPE)'
     )
-  })
-
-  it('should define the right max length and corresponding error message', () => {
-    expect(PeopleDisinfectionAnswer.config.validation.maxLength.value).toBe(
-      maxLength
+    expect(
+      PeopleDisinfectionAnswer.config.options.disinfectingBoots.label
+    ).toBe('Cleaning and disinfecting wellington boots, including foot dips')
+    expect(
+      PeopleDisinfectionAnswer.config.options.disinfectingOnArrivalAndDeparture
+        .label
+    ).toBe(
+      'Cleaning and disinfection measures when contractor arrive and leave'
     )
-    expect(PeopleDisinfectionAnswer.config.validation.maxLength.message).toBe(
-      'Your answer must be no longer than 5000 characters'
+    expect(PeopleDisinfectionAnswer.config.options.dedicatedStaff.label).toBe(
+      'Dedicated staff looking after the incoming animals'
+    )
+    expect(PeopleDisinfectionAnswer.config.options.other.label).toBe(
+      'Other cleaning and disinfection measures'
     )
   })
 })

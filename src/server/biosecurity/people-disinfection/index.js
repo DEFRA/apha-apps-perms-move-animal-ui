@@ -2,26 +2,24 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { PeopleDisinfectionAnswer } from '../../common/model/answer/people-disinfection/people-disinfection.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { badgersPage } from '../badgers/index.js'
-
-const customHeading = 'Cleaning and disinfection measures taken by staff'
+import { otherStaffMeasuresPage } from '../other-staff-measures/index.js'
 
 export class PeopleDisinfectionPage extends QuestionPage {
   urlPath = '/biosecurity/people-disinfection'
   sectionKey = 'biosecurity'
   question =
-    'What measures are staff taking to reduce the risk of spreading TB from the resident cattle?'
+    'Which measures are staff taking to reduce the risk of spreading TB?'
 
   questionKey = 'peopleDisinfection'
   Answer = PeopleDisinfectionAnswer
 
-  view = 'biosecurity/people-disinfection/index'
-
-  get heading() {
-    return customHeading
-  }
-
-  nextPage() {
-    return badgersPage
+  /** @param {PeopleDisinfectionAnswer} answer */
+  nextPage(answer) {
+    if (answer.value?.includes('other')) {
+      return otherStaffMeasuresPage
+    } else {
+      return badgersPage
+    }
   }
 }
 

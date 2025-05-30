@@ -58,7 +58,7 @@ export const validBiosecuritySectionState = {
   buildingsHowMinimiseContamination: 'somehow',
   equipmentShared: 'yes',
   equipmentHowMinimiseContamination: ['designatedDisinfectionPoints'],
-  peopleDisinfection: 'ppe',
+  peopleDisinfection: ['ppe'],
   disinfectant: 'some disinfectant',
   dilutionRate: '15',
   badgers: ['badgerProofFencing']
