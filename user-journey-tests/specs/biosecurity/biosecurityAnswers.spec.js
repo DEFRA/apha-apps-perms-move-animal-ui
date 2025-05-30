@@ -70,7 +70,8 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'peopleDisinfection',
-      expectedValue: 'People disinfection',
+      expectedValue:
+        'Dedicated clothing and personal protective equipment (PPE)',
       expectedHref: `/biosecurity/people-disinfection${redirect}`
     },
     {
