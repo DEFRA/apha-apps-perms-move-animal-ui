@@ -68,7 +68,7 @@ export const setSession = async (server, sessionCookie, key, session) => {
   return JSON.parse(payload)
 }
 
-export const getSession = async (server, sessionCookie, key) => {
+export const getSession = async (server, sessionCookie, key, json = true) => {
   const { payload } = await server.inject(
     withCsrfProtection(
       {
@@ -88,7 +88,7 @@ export const getSession = async (server, sessionCookie, key) => {
     return
   }
 
-  return JSON.parse(payload)
+  return json ? JSON.parse(payload) : payload
 }
 
 class SessionTester {
@@ -165,6 +165,15 @@ class SessionTester {
   async getState(key) {
     this._logger.info(`Getting state ${key}`)
     return getSession(this._server, this._cookie, key)
+  }
+
+  /**
+   * @param {string} key
+   * @returns {Promise<unknown>}
+   */
+  async getRawState(key) {
+    this._logger.info(`Getting raw state ${key}`)
+    return getSession(this._server, this._cookie, key, false)
   }
 
   /**
