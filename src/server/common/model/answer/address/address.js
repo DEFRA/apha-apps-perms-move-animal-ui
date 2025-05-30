@@ -74,6 +74,11 @@ const addressPayloadSchema = Joi.object({
  * @augments AnswerModel<AddressData>
  */
 export class AddressAnswer extends AnswerModel {
+  get type() {
+    const type = 'address'
+    return type
+  }
+
   /**
    * @returns {AddressData | undefined}
    */

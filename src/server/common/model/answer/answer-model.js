@@ -21,6 +21,20 @@ export class AnswerModel {
   /** @type {RawApplicationState | undefined} */
   _context
 
+  /** @type {String} */
+  get type() {
+    const type = 'text'
+    return type
+  }
+
+  get data() {
+    return {
+      type: this.type,
+      value: this.toState(),
+      displayText: this.html
+    }
+  }
+
   /**
    * @param {Payload} [data]
    * @param {RawApplicationState} [context]

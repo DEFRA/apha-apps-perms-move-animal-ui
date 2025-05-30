@@ -57,6 +57,11 @@ const fullNamePayloadSchema = ({ validation }) => {
  * @augments AnswerModel<FullNamePayload>
  */
 export class FullNameAnswer extends AnswerModel {
+  get type() {
+    const type = 'name'
+    return type
+  }
+
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {FullNameConfig} */
   get config() {

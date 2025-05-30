@@ -334,6 +334,26 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'EMAIL_CONFIRMATION_ENABLED'
+    },
+    sendToCaseManagement: {
+      doc: 'Feature flag to enable sending to case management',
+      format: Boolean,
+      default: !isProduction,
+      env: 'SEND_TO_CASE_MANAGEMENT_ENABLED'
+    }
+  },
+  caseManagementApi: {
+    baseUrl: {
+      doc: 'Case Management API base URL',
+      format: String,
+      default: 'http://localhost:3001',
+      env: 'CASE_MANAGEMENT_URL'
+    },
+    timeout: {
+      doc: 'Timeout for case management API requests in milliseconds',
+      format: Number,
+      default: 10_000,
+      env: 'CASE_MANAGEMENT_API_TIMEOUT'
     }
   },
   gsPath: {

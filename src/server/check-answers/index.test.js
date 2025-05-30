@@ -8,9 +8,16 @@ import {
   sendEmailToCaseWorker
 } from '../common/connectors/notify/notify.js'
 import { validApplicationState } from '../common/test-helpers/journey-state.js'
-import { spyOnConfig } from '../common/test-helpers/config.js'
+import { spyOnConfig, spyOnConfigMany } from '../common/test-helpers/config.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
+
+import Wreck from '@hapi/wreck'
+import { config } from '~/src/config/config.js'
+
+/**
+ * @import { IncomingMessage } from 'http'
+ */
 
 const testFile = 'test_file'
 const testFileBase64 = 'dGVzdF9maWxl'
@@ -247,10 +254,17 @@ describe('#CheckAnswers', () => {
     })
 
     it('Should send email and redirect correctly when only `confirm` present', async () => {
-      spyOnConfig('notify', {
-        fileRetention: '1 week',
-        confirmDownloadConfirmation: true
+      spyOnConfigMany({
+        notify: {
+          fileRetention: '1 week',
+          confirmDownloadConfirmation: true
+        },
+        featureFlags: {
+          sendToCaseManagement: false,
+          emailConfirmation: true
+        }
       })
+
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -568,10 +582,17 @@ describe('#CheckAnswers', () => {
     })
 
     it('Should send emails and redirect correctly when only `confirm` present', async () => {
-      spyOnConfig('notify', {
-        fileRetention: '1 week',
-        confirmDownloadConfirmation: true
+      spyOnConfigMany({
+        notify: {
+          fileRetention: '1 week',
+          confirmDownloadConfirmation: true
+        },
+        featureFlags: {
+          sendToCaseManagement: false,
+          emailConfirmation: true
+        }
       })
+
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -754,6 +775,80 @@ describe('#CheckAnswers', () => {
       expect(mockSendEmailToApplicant).toHaveBeenCalledWith(
         expectedApplicantEmailParams
       )
+    })
+  })
+
+  describe('when sendToCaseManagement feature flag is enabled', () => {
+    it('should give the user a 500 error if the case management API doesnt work for what ever reason', async () => {
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: true
+      })
+
+      jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 502
+        }),
+        payload: ''
+      })
+
+      const { statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri,
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.serverError)
+    })
+
+    it('should send the application to case management and redirect to confirmation page', async () => {
+      const dummyReferenceNumber = '12-1234-1234'
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: true
+      })
+
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 200
+        }),
+        payload: JSON.stringify({
+          message: dummyReferenceNumber
+        })
+      })
+
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri,
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(confirmationUri)
+
+      const refNum = await session.getRawState('applicationReference')
+      expect(refNum).toBe(dummyReferenceNumber)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+      expect(wreckSpy.mock.calls[0][0]).toBe(
+        `${config.get('caseManagementApi').baseUrl}/submit`
+      )
+      expect(sendEmailToCaseWorker).not.toHaveBeenCalled()
     })
   })
 })

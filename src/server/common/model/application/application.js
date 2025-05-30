@@ -1,3 +1,5 @@
+import Wreck from '@hapi/wreck'
+
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
@@ -5,9 +7,11 @@ import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
 import { validateApplication } from './validation.js'
 import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
 import { IdentificationSection } from '../section/identification/identification.js'
+import { HiddenAnswer } from '../answer/hidden/hidden.js'
+import { config } from '~/src/config/config.js'
 
 /**
- * @import { SectionModel } from '../section/section-model/section-model.js'
+ * @import { SectionModel, QuestionPageAnswer } from '../section/section-model/section-model.js'
  * @import { RawApplicationState } from '../state/state-manager.js'
  * @import { ApplicationValidationResult } from './validation.js'
  * @typedef { { [key: string]: SectionModel; } } ApplicationPayload
@@ -57,6 +61,47 @@ export class ApplicationModel {
     return this.implementedSections.filter((section) => {
       return section.config.isVisible(state)
     })
+  }
+
+  async send() {
+    try {
+      const data = this.caseManagementData
+
+      const resp = await Wreck.post(
+        `${config.get('caseManagementApi').baseUrl}/submit`,
+        {
+          payload: data
+        }
+      )
+
+      return JSON.parse(resp.payload.toString())
+    } catch (e) {
+      throw new Error(`Failed to send application to case management API`)
+    }
+  }
+
+  get caseManagementData() {
+    const sections = this.tasks
+
+    /** @param {SectionModel} section */
+    const questionAnswersForSection = (section) =>
+      section.questionPageAnswers
+        .filter(({ answer, page }) => {
+          return !(answer instanceof HiddenAnswer || page.isInterstitial)
+        })
+        .map((questionPageAnswer) => ({
+          question: questionPageAnswer.page.question,
+          questionKey: questionPageAnswer.page.questionKey,
+          answer: questionPageAnswer.answer.data
+        }))
+
+    return {
+      sections: Object.values(sections).map((section) => ({
+        sectionKey: section.config.key,
+        title: section.config.title,
+        questionAnswers: questionAnswersForSection(section)
+      }))
+    }
   }
 
   /**
