@@ -46,6 +46,11 @@ import {
  * @augments {AnswerModel<DateData>}
  */
 export class DateAnswer extends AnswerModel {
+  get type() {
+    const type = 'date'
+    return type
+  }
+
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {DateConfig} */
   get config() {
