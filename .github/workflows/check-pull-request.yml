@@ -89,6 +89,7 @@ jobs:
           NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           AUTH_REQUIRED: true
+          SEND_TO_CASE_MANAGEMENT_ENABLED: true
 
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
