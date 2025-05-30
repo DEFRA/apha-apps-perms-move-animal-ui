@@ -8,7 +8,6 @@ import { validateApplication } from './validation.js'
 import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
 import { IdentificationSection } from '../section/identification/identification.js'
 import { HiddenAnswer } from '../answer/hidden/hidden.js'
-import { statusCodes } from '../../constants/status-codes.js'
 import { config } from '~/src/config/config.js'
 
 /**
@@ -65,42 +64,35 @@ export class ApplicationModel {
   }
 
   async send() {
-    const data = this.caseManagementData
+    try {
+      const data = this.caseManagementData
 
-    const resp = await Wreck.post(
-      `${config.get('caseManagementApi').baseUrl}/submit`,
-      {
-        payload: data
-      }
-    )
-
-    if (resp.res.statusCode === statusCodes.ok) {
-      return JSON.parse(resp.payload.toString())
-    } else {
-      throw new Error(
-        `Failed to send application to case management API: ${resp.res.statusCode} - ${resp.payload.toString()}`
+      const resp = await Wreck.post(
+        `${config.get('caseManagementApi').baseUrl}/submit`,
+        {
+          payload: data
+        }
       )
+
+      return JSON.parse(resp.payload.toString())
+    } catch (e) {
+      throw new Error(`Failed to send application to case management API`)
     }
   }
 
   get caseManagementData() {
     const sections = this.tasks
 
-    /** @param {QuestionPageAnswer} questionPageAnswer */
-    const answerForQuestionPage = ({ answer }) => ({
-      type: answer.type,
-      value: answer.toState(),
-      displayText: answer.html
-    })
-
     /** @param {SectionModel} section */
     const questionAnswersForSection = (section) =>
       section.questionPageAnswers
-        .filter(({ answer }) => !(answer instanceof HiddenAnswer))
+        .filter(({ answer, page }) => {
+          return !(answer instanceof HiddenAnswer || page.isInterstitial)
+        })
         .map((questionPageAnswer) => ({
           question: questionPageAnswer.page.question,
           questionKey: questionPageAnswer.page.questionKey,
-          answer: answerForQuestionPage(questionPageAnswer)
+          answer: questionPageAnswer.answer.data
         }))
 
     return {
