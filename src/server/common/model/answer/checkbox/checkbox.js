@@ -63,6 +63,12 @@ export class CheckboxAnswer extends AnswerModel {
     return /** @type {any} */ (this.constructor).config
   }
 
+  /** @type {String} */
+  get type() {
+    const type = 'checkbox'
+    return type
+  }
+
   // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {CheckboxConfig} */
   static get config() {

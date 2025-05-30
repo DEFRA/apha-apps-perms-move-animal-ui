@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application.applicationData should render application data in the datastructure expected 1`] = `
+{
+  "sections": [
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "On to the farm or premises",
+            "type": "text",
+            "value": "on",
+          },
+          "question": "Are you moving the animals on or off your farm or premises?",
+          "questionKey": "onOffFarm",
+        },
+        {
+          "answer": {
+            "displayText": "Market",
+            "type": "text",
+            "value": "market",
+          },
+          "question": "What type of premises are the animals moving off?",
+          "questionKey": "originType",
+        },
+      ],
+      "sectionKey": "origin",
+      "title": "Movement origin",
+    },
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "TB restricted farm",
+            "type": "text",
+            "value": "tb-restricted-farm",
+          },
+          "question": "Where are the animals going to?",
+          "questionKey": "destinationType",
+        },
+        {
+          "answer": {
+            "displayText": "12/345/6789",
+            "type": "text",
+            "value": "12/345/6789",
+          },
+          "question": "What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?",
+          "questionKey": "destinationFarmCph",
+        },
+        {
+          "answer": {
+            "displayText": "Starfleet Headquarters<br />San Francisco<br />RG24 8RR",
+            "type": "address",
+            "value": {
+              "addressLine1": "Starfleet Headquarters",
+              "addressPostcode": "RG24 8RR",
+              "addressTown": "San Francisco",
+            },
+          },
+          "question": "What is the address of the farm or premises where the animals are going to?",
+          "questionKey": "destinationFarmAddress",
+        },
+        {
+          "answer": {
+            "displayText": "1",
+            "type": "text",
+            "value": "1",
+          },
+          "question": "What is the maximum number of animals you are planning to move?",
+          "questionKey": "howManyAnimalsMaximum",
+        },
+        {
+          "answer": {
+            "displayText": "Welfare",
+            "type": "text",
+            "value": "welfare",
+          },
+          "question": "What is the reason for the movement?",
+          "questionKey": "reasonForMovement",
+        },
+        {
+          "answer": {
+            "displayText": "",
+            "type": "text",
+            "value": "",
+          },
+          "question": "Enter any additional information (optional)",
+          "questionKey": "additionalInfo",
+        },
+      ],
+      "sectionKey": "destination",
+      "title": "Movement destination",
+    },
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "Kathryn Janeway",
+            "type": "name",
+            "value": {
+              "firstName": "Kathryn",
+              "lastName": "Janeway",
+            },
+          },
+          "question": "Who will be the registered owner of the cattle?",
+          "questionKey": "fullName",
+        },
+        {
+          "answer": {
+            "displayText": "Email",
+            "type": "text",
+            "value": "email",
+          },
+          "question": "How would you like this licence sent to you?",
+          "questionKey": "receiveMethod",
+        },
+        {
+          "answer": {
+            "displayText": "kathryn@starfleet.com",
+            "type": "text",
+            "value": "kathryn@starfleet.com",
+          },
+          "question": "What email address would you like the licence sent to?",
+          "questionKey": "emailAddress",
+        },
+      ],
+      "sectionKey": "licence",
+      "title": "Receiving the licence",
+    },
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "Yes",
+            "type": "text",
+            "value": "yes",
+          },
+          "question": "Will you separate the incoming cattle from the resident herd?",
+          "questionKey": "keptSeparately",
+        },
+        {
+          "answer": {
+            "displayText": "Yes",
+            "type": "text",
+            "value": "yes",
+          },
+          "question": "Will the incoming cattle be grazed?",
+          "questionKey": "grazing",
+        },
+        {
+          "answer": {
+            "displayText": "some details",
+            "type": "text",
+            "value": "some details",
+          },
+          "question": "How will you separate the incoming cattle from the resident herd?",
+          "questionKey": "grazingFieldHowSeparated",
+        },
+        {
+          "answer": {
+            "displayText": "yesterday",
+            "type": "text",
+            "value": "yesterday",
+          },
+          "question": "How long ago was the field last grazed by cattle?",
+          "questionKey": "lastGrazed",
+        },
+        {
+          "answer": {
+            "displayText": "Yes",
+            "type": "text",
+            "value": "yes",
+          },
+          "question": "Has any manure or slurry been put on the grazing field in the past 60 days?",
+          "questionKey": "manureAndSlurry",
+        },
+        {
+          "answer": {
+            "displayText": "some manure details",
+            "type": "text",
+            "value": "some manure details",
+          },
+          "question": "How will you manage manure and slurry?",
+          "questionKey": "manureAndSlurryDetails",
+        },
+        {
+          "answer": {
+            "displayText": "some disinfectant",
+            "type": "text",
+            "value": "some disinfectant",
+          },
+          "question": "What disinfectant are you using?",
+          "questionKey": "disinfectant",
+        },
+        {
+          "answer": {
+            "displayText": "15",
+            "type": "text",
+            "value": "15",
+          },
+          "question": "What dilution rate are you using for your disinfectant?",
+          "questionKey": "dilutionRate",
+        },
+        {
+          "answer": {
+            "displayText": "Yes",
+            "type": "text",
+            "value": "yes",
+          },
+          "question": "Will the incoming cattle be housed?",
+          "questionKey": "animalsHoused",
+        },
+        {
+          "answer": {
+            "displayText": "somehow",
+            "type": "text",
+            "value": "somehow",
+          },
+          "question": "How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?",
+          "questionKey": "buildingsHowMinimiseContamination",
+        },
+        {
+          "answer": {
+            "displayText": "Yes",
+            "type": "text",
+            "value": "yes",
+          },
+          "question": "Will the incoming cattle share any equipment and machinery with the resident herd?",
+          "questionKey": "equipmentShared",
+        },
+        {
+          "answer": {
+            "displayText": "somehow",
+            "type": "text",
+            "value": "somehow",
+          },
+          "question": "How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?",
+          "questionKey": "equipmentHowMinimiseContamination",
+        },
+        {
+          "answer": {
+            "displayText": "ppe",
+            "type": "text",
+            "value": "ppe",
+          },
+          "question": "What measures are staff taking to reduce the risk of spreading TB from the resident cattle?",
+          "questionKey": "peopleDisinfection",
+        },
+        {
+          "answer": {
+            "displayText": "Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences",
+            "type": "checkbox",
+            "value": [
+              "badgerProofFencing",
+            ],
+          },
+          "question": "Which measures are you taking to reduce the risk of infection from wildlife?",
+          "questionKey": "badgers",
+        },
+      ],
+      "sectionKey": "biosecurity",
+      "title": "Biosecurity details",
+    },
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "Map uploaded",
+            "type": "file",
+            "value": {
+              "path": "biosecurity-map/41572cf8-2e37-495e-9ad2-0b0f23f1b277/3d3c2a09-2888-4199-9bd6-ac7eda3125f0",
+              "skipped": false,
+            },
+          },
+          "question": "Upload a biosecurity map",
+          "questionKey": "upload-plan",
+        },
+      ],
+      "sectionKey": "biosecurity-map",
+      "title": "Biosecurity map",
+    },
+  ],
+}
+`;

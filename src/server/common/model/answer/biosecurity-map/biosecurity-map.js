@@ -48,6 +48,26 @@ export class BiosecurityMapAnswer extends AnswerModel {
     }
   }
 
+  /** @type {String} */
+  get type() {
+    const type = 'file'
+    return type
+  }
+
+  /**
+   * @return {any}
+   */
+  get data() {
+    return {
+      type: this.type,
+      value: {
+        path: this._data?.status?.form.file.s3Key,
+        skipped: this.isSkipped()
+      },
+      displayText: this.html
+    }
+  }
+
   get html() {
     if (this.isSkipped()) {
       return skippedMessage
