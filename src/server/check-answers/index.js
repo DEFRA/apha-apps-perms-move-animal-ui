@@ -93,6 +93,67 @@ export class SubmitPageController extends QuestionPageController {
     return super.handleGet(req, h)
   }
 
+  async _handleDirectEmail(req, h) {
+    const state = new StateManager(req)
+    const applicationState = state.toState()
+
+    const application = ApplicationModel.fromState(applicationState)
+
+    const reference = getApplicationReference()
+    req.yar.set('applicationReference', reference, true)
+    const emailContent = this.generateEmailContent(application, reference)
+    const notifyProps = { content: emailContent }
+
+    if (
+      application.tasks[biosecurityMapKey] &&
+      applicationState[biosecurityMapKey][uploadPlanKey].status
+        ?.uploadStatus !== 'skipped'
+    ) {
+      const { file: compressedFile, extension } = await handleUploadedFile(
+        req,
+        applicationState[biosecurityMapKey][uploadPlanKey],
+        this.logger
+      )
+
+      // Error if the file after compression is still too large
+      if (fileSizeInMB(compressedFile.length) > 2) {
+        return h.redirect(sizeErrorPage.urlPath)
+      }
+
+      const { fileRetention, confirmDownloadConfirmation } =
+        config.get('notify')
+      notifyProps.link_to_file = {
+        file: compressedFile?.toString('base64'),
+        filename: `Biosecurity-map.${extension}`,
+        confirm_email_before_download: confirmDownloadConfirmation,
+        retention_period: fileRetention
+      }
+    }
+
+    await sendEmailToCaseWorker(notifyProps)
+    if (config.get('featureFlags').emailConfirmation) {
+      await sendEmailToApplicant({
+        email: applicationState.licence.emailAddress,
+        fullName: `${applicationState.licence.fullName.firstName} ${applicationState.licence.fullName.lastName}`,
+        reference: reference ?? ''
+      })
+    }
+
+    return super.handlePost(req, h)
+  }
+
+  async _handleToCaeManagementApi(req, h) {
+    const state = new StateManager(req)
+    const applicationState = state.toState()
+
+    const application = ApplicationModel.fromState(applicationState)
+
+    const { message } = await application.send()
+    req.yar.set('applicationReference', message)
+
+    return super.handlePost(req, h)
+  }
+
   async handlePost(req, h) {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
@@ -106,51 +167,10 @@ export class SubmitPageController extends QuestionPageController {
 
     if (isValidPage && isValidApplication) {
       if (!config.get('featureFlags').sendToCaseManagement) {
-        const reference = getApplicationReference()
-        req.yar.set('applicationReference', reference, true)
-        const emailContent = this.generateEmailContent(application, reference)
-        const notifyProps = { content: emailContent }
-
-        if (
-          application.tasks[biosecurityMapKey] &&
-          applicationState[biosecurityMapKey][uploadPlanKey].status
-            ?.uploadStatus !== 'skipped'
-        ) {
-          const { file: compressedFile, extension } = await handleUploadedFile(
-            req,
-            applicationState[biosecurityMapKey][uploadPlanKey],
-            this.logger
-          )
-
-          // Error if the file after compression is still too large
-          if (fileSizeInMB(compressedFile.length) > 2) {
-            return h.redirect(sizeErrorPage.urlPath)
-          }
-
-          const { fileRetention, confirmDownloadConfirmation } =
-            config.get('notify')
-          notifyProps.link_to_file = {
-            file: compressedFile?.toString('base64'),
-            filename: `Biosecurity-map.${extension}`,
-            confirm_email_before_download: confirmDownloadConfirmation,
-            retention_period: fileRetention
-          }
-        }
-
-        await sendEmailToCaseWorker(notifyProps)
-        if (config.get('featureFlags').emailConfirmation) {
-          await sendEmailToApplicant({
-            email: applicationState.licence.emailAddress,
-            fullName: `${applicationState.licence.fullName.firstName} ${applicationState.licence.fullName.lastName}`,
-            reference: reference ?? ''
-          })
-        }
+        return await this._handleDirectEmail(req, h)
       } else {
-        const { message } = await application.send()
-        req.yar.set('applicationReference', message)
+        return await this._handleToCaeManagementApi(req, h)
       }
-
-      return super.handlePost(req, h)
     }
 
     if (!isValidApplication) {
