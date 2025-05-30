@@ -8,7 +8,7 @@ import {
   sendEmailToCaseWorker
 } from '../common/connectors/notify/notify.js'
 import { validApplicationState } from '../common/test-helpers/journey-state.js'
-import { spyOnConfig } from '../common/test-helpers/config.js'
+import { spyOnConfig, spyOnConfigMany } from '../common/test-helpers/config.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
@@ -254,14 +254,17 @@ describe('#CheckAnswers', () => {
     })
 
     it('Should send email and redirect correctly when only `confirm` present', async () => {
-      spyOnConfig('notify', {
-        fileRetention: '1 week',
-        confirmDownloadConfirmation: true
+      spyOnConfigMany({
+        notify: {
+          fileRetention: '1 week',
+          confirmDownloadConfirmation: true
+        },
+        featureFlags: {
+          sendToCaseManagement: false,
+          emailConfirmation: true
+        }
       })
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: false,
-        emailConfirmation: true
-      })
+
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -579,14 +582,17 @@ describe('#CheckAnswers', () => {
     })
 
     it('Should send emails and redirect correctly when only `confirm` present', async () => {
-      spyOnConfig('notify', {
-        fileRetention: '1 week',
-        confirmDownloadConfirmation: true
+      spyOnConfigMany({
+        notify: {
+          fileRetention: '1 week',
+          confirmDownloadConfirmation: true
+        },
+        featureFlags: {
+          sendToCaseManagement: false,
+          emailConfirmation: true
+        }
       })
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: false,
-        emailConfirmation: true
-      })
+
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {

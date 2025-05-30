@@ -17,3 +17,12 @@ export const spyOnConfig = (key, value) => {
   })
   return config
 }
+
+export const spyOnConfigMany = (mockConfig) => {
+  jest.spyOn(config, 'get').mockImplementation((name) => {
+    if (name)
+      return mockConfig[name] !== undefined ? mockConfig[name] : configGet(name)
+  })
+
+  return config
+}
