@@ -230,20 +230,24 @@ exports[`Application.applicationData should render application data in the datas
         },
         {
           "answer": {
-            "displayText": "somehow",
-            "type": "text",
-            "value": "somehow",
+            "displayText": "Designated disinfection points",
+            "type": "checkbox",
+            "value": [
+              "designatedDisinfectionPoints",
+            ],
           },
-          "question": "How will you minimise the risk of spread of TB infection to the incoming cattle when using shared equipment?",
+          "question": "Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?",
           "questionKey": "equipmentHowMinimiseContamination",
         },
         {
           "answer": {
-            "displayText": "ppe",
-            "type": "text",
-            "value": "ppe",
+            "displayText": "Dedicated clothing and personal protective equipment (PPE)",
+            "type": "checkbox",
+            "value": [
+              "ppe",
+            ],
           },
-          "question": "What measures are staff taking to reduce the risk of spreading TB from the resident cattle?",
+          "question": "Which measures are staff taking to reduce the risk of spreading TB?",
           "questionKey": "peopleDisinfection",
         },
         {
