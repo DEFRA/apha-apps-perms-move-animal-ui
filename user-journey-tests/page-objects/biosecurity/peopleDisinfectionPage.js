@@ -1,19 +1,28 @@
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
+
+const checkboxIds = [
+  'ppe',
+  'disinfectingBoots',
+  'disinfectingOnArrivalAndDeparture',
+  'dedicatedStaff',
+  'other'
+]
 
 const pageId = 'peopleDisinfection'
 const pageHeadingAndTitle =
-  'What measures are staff taking to reduce the risk of spreading TB from the resident cattle?'
-const noInputError =
-  'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
+  'Which measures are staff taking to reduce the risk of spreading TB?'
 
-class PeopleDisinfectionPage extends SingleTextInputPage {
-  constructor() {
-    super({ pageId, noInputError })
-  }
-
+class PeopleDisinfectionPage extends CheckboxBasePage {
   pagePath = 'biosecurity/people-disinfection'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
+
+  constructor() {
+    super({
+      checkboxIds,
+      pageId
+    })
+  }
 }
 
 export default new PeopleDisinfectionPage()

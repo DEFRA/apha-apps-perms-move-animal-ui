@@ -4,9 +4,10 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import otherStaffMeasuresPage from '../../page-objects/biosecurity/otherStaffMeasuresPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 
-describe('People disinfection method page spec', () => {
+describe('Equipment contamination page spec', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
@@ -17,17 +18,17 @@ describe('People disinfection method page spec', () => {
     await peopleDisinfectionPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is entered', async () => {
-    await peopleDisinfectionPage.singleInputErrorTest(
-      '',
-      peopleDisinfectionPage.noInputError
+  it('Should input correct input and continue without error', async () => {
+    await peopleDisinfectionPage.selectCheckboxesAndContinue(
+      [peopleDisinfectionPage.ppe],
+      biosecBadgersPage
     )
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await peopleDisinfectionPage.inputTextAndContinue(
-      'By testing it',
-      biosecBadgersPage
+  it('Should verify other option takes to correct page', async () => {
+    await peopleDisinfectionPage.selectCheckboxesAndContinue(
+      [peopleDisinfectionPage.other],
+      otherStaffMeasuresPage
     )
   })
 })

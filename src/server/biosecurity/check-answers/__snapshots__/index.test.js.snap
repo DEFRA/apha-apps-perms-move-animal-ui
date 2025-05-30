@@ -148,13 +148,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
+      Which measures are staff taking to reduce the risk of spreading TB?
     </dt>
     <dd class="govuk-summary-list__value">
-      ppe
+      Dedicated clothing and personal protective equipment (PPE)
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/people-disinfection?redirect_uri=/biosecurity/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> What measures are staff taking to reduce the risk of spreading TB from the resident cattle?</span></a>
+      <a class="govuk-link" href="/biosecurity/people-disinfection?redirect_uri=/biosecurity/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> Which measures are staff taking to reduce the risk of spreading TB?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

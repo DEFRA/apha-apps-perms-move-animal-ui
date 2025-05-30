@@ -2,45 +2,57 @@
 
 exports[`PeopleDisinfectionPage peopleDisinfectionPage.content should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Cleaning and disinfection measures taken by staff</h1>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        To prevent the spread of TB to the incoming cattle from any resident
-        cattle, staff should have cleaning and disinfection measures in place.
-      </p>
-
-      <p>This can include:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>dedicated clothing and personal protective equipment (PPE)</li>
-        <li>cleaning and disinfecting wellington boots, including foot dips</li>
-        <li>
-          cleaning and disinfection measures when contractors arrive and leave
-        </li>
-        <li>dedicated staff looking after the incoming cattle</li>
-      </ul>
-    </div>
-  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="peopleDisinfection">
-    What measures are staff taking to reduce the risk of spreading TB from the resident cattle?
-  </label>
-  <textarea class="govuk-textarea" id="peopleDisinfection" name="peopleDisinfection" rows="8"></textarea>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="peopleDisinfection-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which measures are staff taking to reduce the risk of spreading TB?
+      </h1>
+    </legend>
+    <div id="peopleDisinfection-hint" class="govuk-hint">
+      Only select the measures you are taking. You do not need to select them all to receive your licence.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="peopleDisinfection" name="peopleDisinfection" type="checkbox" value="ppe" data-testid="ppe-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="peopleDisinfection">
+          Dedicated clothing and personal protective equipment (PPE)
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="peopleDisinfection-2" name="peopleDisinfection" type="checkbox" value="disinfectingBoots" data-testid="disinfectingBoots-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="peopleDisinfection-2">
+          Cleaning and disinfecting wellington boots, including foot dips
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="peopleDisinfection-3" name="peopleDisinfection" type="checkbox" value="disinfectingOnArrivalAndDeparture" data-testid="disinfectingOnArrivalAndDeparture-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="peopleDisinfection-3">
+          Cleaning and disinfection measures when contractor arrive and leave
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="peopleDisinfection-4" name="peopleDisinfection" type="checkbox" value="dedicatedStaff" data-testid="dedicatedStaff-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="peopleDisinfection-4">
+          Dedicated staff looking after the incoming animals
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="peopleDisinfection-5" name="peopleDisinfection" type="checkbox" value="other" data-testid="other-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="peopleDisinfection-5">
+          Other cleaning and disinfection measures
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>

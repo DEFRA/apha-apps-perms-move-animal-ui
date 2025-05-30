@@ -59,8 +59,8 @@ const completeBiosecurityTask = async (radioType) => {
         [equipmentContaminationPage.designatedDisinfectionPoints],
         peopleDisinfectionPage
       )
-      await peopleDisinfectionPage.inputTextAndContinue(
-        'People disinfection',
+      await peopleDisinfectionPage.selectCheckboxesAndContinue(
+        [peopleDisinfectionPage.ppe],
         biosecBadgersPage
       )
       await biosecBadgersPage.selectCheckboxesAndContinue(
@@ -91,8 +91,8 @@ const completeBiosecurityTask = async (radioType) => {
         sharedEquipmentPage
       )
       await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
-      await peopleDisinfectionPage.inputTextAndContinue(
-        'People disinfection',
+      await peopleDisinfectionPage.selectCheckboxesAndContinue(
+        [peopleDisinfectionPage.ppe],
         biosecBadgersPage
       )
       await biosecBadgersPage.selectCheckboxesAndContinue(

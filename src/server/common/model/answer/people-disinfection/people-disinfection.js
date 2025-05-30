@@ -1,29 +1,38 @@
-import { TextAreaAnswer } from '../text-area/text-area.js'
+import { CheckboxAnswer } from '../checkbox/checkbox.js'
 
-/** @import {TextAreaConfig} from '../text-area/text-area.js' */
+/** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
 
 /**
- * @typedef {{ peopleDisinfection: string }} PeopleDisinfectionPayload
+ * @typedef {{ peopleDisinfection: CheckboxData }} PeopleDisinfectionPayload
  */
 
 /**
- * @augments {TextAreaAnswer<PeopleDisinfectionPayload>}
+ * @augments {CheckboxAnswer<PeopleDisinfectionPayload>}
  */
-export class PeopleDisinfectionAnswer extends TextAreaAnswer {
-  /** @type {TextAreaConfig} */
+export class PeopleDisinfectionAnswer extends CheckboxAnswer {
+  /** @type {CheckboxConfig} */
   static config = {
     payloadKey: 'peopleDisinfection',
-    rows: 8,
-    isPageHeading: false,
-    validation: {
-      maxLength: {
-        value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+    isPageHeading: true,
+    hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    options: {
+      ppe: {
+        label: 'Dedicated clothing and personal protective equipment (PPE)'
       },
-      empty: {
-        message:
-          'Enter what measures are staff taking to reduce the risk of spreading TB from the resident cattle'
+      disinfectingBoots: {
+        label: 'Cleaning and disinfecting wellington boots, including foot dips'
+      },
+      disinfectingOnArrivalAndDeparture: {
+        label:
+          'Cleaning and disinfection measures when contractor arrive and leave'
+      },
+      dedicatedStaff: {
+        label: 'Dedicated staff looking after the incoming animals'
+      },
+      other: {
+        label: 'Other cleaning and disinfection measures'
       }
-    }
+    },
+    validation: {}
   }
 }
