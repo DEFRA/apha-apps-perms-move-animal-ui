@@ -3,7 +3,7 @@ import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'otherStaffMeasures'
 const pageHeadingAndTitle =
-  'What other measures are in place to clean and disinfect staff to reduce the risk of spreading TB?'
+  'What other measures are staff taking to reduce the risk of spreading TB?'
 const noInputError =
   'Enter what other measures staff are taking to reduce the risk of spreading TB'
 

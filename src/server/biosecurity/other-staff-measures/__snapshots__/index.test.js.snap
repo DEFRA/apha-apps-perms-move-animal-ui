@@ -12,7 +12,7 @@ exports[`OtherStaffMeasures otherStaffMeasures.content should render expected re
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="otherStaffMeasures">
-      What other measures are in place to clean and disinfect staff to reduce the risk of spreading TB?
+      What other measures are staff taking to reduce the risk of spreading TB?
     </label>
   </h1>
   <textarea class="govuk-textarea" id="otherStaffMeasures" name="otherStaffMeasures" rows="6"></textarea>

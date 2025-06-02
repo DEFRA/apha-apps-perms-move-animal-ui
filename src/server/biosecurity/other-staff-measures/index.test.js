@@ -5,7 +5,7 @@ import { otherStaffMeasuresPage, OtherStaffMeasuresPage } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
-  'What other measures are in place to clean and disinfect staff to reduce the risk of spreading TB?'
+  'What other measures are staff taking to reduce the risk of spreading TB?'
 const questionKey = 'otherStaffMeasures'
 const pageUrl = '/biosecurity/other-staff-measures'
 
