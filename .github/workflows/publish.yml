@@ -57,6 +57,7 @@ jobs:
           GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           AUTH_REQUIRED: true
+          SEND_TO_CASE_MANAGEMENT_ENABLED: false
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
 
