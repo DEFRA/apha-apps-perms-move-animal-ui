@@ -39,7 +39,7 @@ describe('OtherEquipmentMeasures', () => {
   it('should specify an empty validation message', () => {
     expect(OtherEquipmentMeasuresAnswer.config.validation.empty).toBeDefined()
     expect(OtherEquipmentMeasuresAnswer.config.validation.empty?.message).toBe(
-      'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
+      'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
     )
   })
 
