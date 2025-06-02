@@ -22,7 +22,7 @@ export class OtherEquipmentMeasuresAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
+          'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
       }
     }
   }

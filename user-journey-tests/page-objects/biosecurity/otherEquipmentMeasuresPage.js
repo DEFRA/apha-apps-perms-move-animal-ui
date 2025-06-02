@@ -5,7 +5,7 @@ const pageId = 'otherEquipmentMeasures'
 const pageHeadingAndTitle =
   'What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
 const noInputError =
-  'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
+  'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
 
 class OtherEquipmentMeasuresPage extends SingleTextInputPage {
   constructor() {
