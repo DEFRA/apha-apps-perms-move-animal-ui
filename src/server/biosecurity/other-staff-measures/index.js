@@ -7,7 +7,7 @@ export class OtherStaffMeasuresPage extends QuestionPage {
   urlPath = '/biosecurity/other-staff-measures'
   sectionKey = 'biosecurity'
   question =
-    'What other measures are in place to clean and disinfect staff to reduce the risk of spreading TB?'
+    'What other measures are staff taking to reduce the risk of spreading TB?'
 
   questionKey = 'otherStaffMeasures'
 
