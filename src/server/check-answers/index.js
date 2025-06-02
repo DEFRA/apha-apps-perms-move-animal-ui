@@ -93,7 +93,7 @@ export class SubmitPageController extends QuestionPageController {
     return super.handleGet(req, h)
   }
 
-  async _handleToCaeManagementApi(req, h) {
+  async _handleToCaseManagementApi(req, h) {
     const state = new StateManager(req)
     const applicationState = state.toState()
 
@@ -119,10 +119,9 @@ export class SubmitPageController extends QuestionPageController {
     if (isValidPage && isValidApplication) {
       if (
         config.get('featureFlags').sendToCaseManagement ||
-        (req.query['case-management-api'] === 'true' &&
-          !config.get('featureFlags').sendToCaseManagement)
+        req.query['case-management-api'] === 'true'
       ) {
-        return await this._handleToCaeManagementApi(req, h)
+        return await this._handleToCaseManagementApi(req, h)
       } else {
         return await this._handleDirectEmail(req, h)
       }
