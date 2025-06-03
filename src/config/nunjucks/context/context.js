@@ -39,6 +39,7 @@ export function context(request) {
     isAuthenticated: isAuthenticated(request),
     displayName: request?.auth?.credentials?.displayName,
     features: config.get('featureFlags'),
+    uuid: /** @type {{ uuid?: string }} */ (request?.app)?.uuid,
     /** @param {string} asset */
     getAssetPath(asset) {
       const webpackAssetPath = webpackManifest?.[asset]

@@ -50,7 +50,10 @@
     {{
       govukBackLink({
         text: "Back",
-        href: "javascript:window.history.back()"
+        attributes: {
+          "id": "back-link"
+        },
+        href: "#"
       })
     }}
     <noscript>
@@ -68,5 +71,9 @@
   {% include "../partials/footer.njk" %}
 {% endblock %}
 {% block bodyEnd %}
-  <script type="module" src="{{ getAssetPath('application.js') }}"></script>
+  <script
+    type="module"
+    src="{{ getAssetPath('application.js') }}"
+    nonce="{{uuid}}"
+  ></script>
 {% endblock %}
