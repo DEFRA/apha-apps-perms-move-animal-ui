@@ -93,6 +93,48 @@ export class SubmitPageController extends QuestionPageController {
     return super.handleGet(req, h)
   }
 
+  async _handleToCaseManagementApi(req, h) {
+    const state = new StateManager(req)
+    const applicationState = state.toState()
+
+    const application = ApplicationModel.fromState(applicationState)
+
+    const { message } = await application.send()
+    req.yar.set('applicationReference', message)
+
+    return super.handlePost(req, h)
+  }
+
+  async handlePost(req, h) {
+    const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
+    const confirmation = new ConfirmationAnswer(payload)
+    const { isValid: isValidPage } = confirmation.validate()
+    const state = new StateManager(req)
+    const applicationState = state.toState()
+
+    const application = ApplicationModel.fromState(applicationState)
+
+    const { isValid: isValidApplication } = application.validate()
+
+    if (isValidPage && isValidApplication) {
+      if (
+        config.get('featureFlags').sendToCaseManagement ||
+        req.query['case-management-api'] === 'true'
+      ) {
+        return await this._handleToCaseManagementApi(req, h)
+      } else {
+        return await this._handleDirectEmail(req, h)
+      }
+    }
+
+    if (!isValidApplication) {
+      return h.redirect('/task-list-incomplete')
+    }
+
+    return super.handlePost(req, h)
+  }
+
+  // TODO: DELETE BELOW START: WHEN CMAPI IS APPROVED
   async _handleDirectEmail(req, h) {
     const state = new StateManager(req)
     const applicationState = state.toState()
@@ -142,44 +184,6 @@ export class SubmitPageController extends QuestionPageController {
     return super.handlePost(req, h)
   }
 
-  async _handleToCaeManagementApi(req, h) {
-    const state = new StateManager(req)
-    const applicationState = state.toState()
-
-    const application = ApplicationModel.fromState(applicationState)
-
-    const { message } = await application.send()
-    req.yar.set('applicationReference', message)
-
-    return super.handlePost(req, h)
-  }
-
-  async handlePost(req, h) {
-    const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
-    const confirmation = new ConfirmationAnswer(payload)
-    const { isValid: isValidPage } = confirmation.validate()
-    const state = new StateManager(req)
-    const applicationState = state.toState()
-
-    const application = ApplicationModel.fromState(applicationState)
-
-    const { isValid: isValidApplication } = application.validate()
-
-    if (isValidPage && isValidApplication) {
-      if (!config.get('featureFlags').sendToCaseManagement) {
-        return await this._handleDirectEmail(req, h)
-      } else {
-        return await this._handleToCaeManagementApi(req, h)
-      }
-    }
-
-    if (!isValidApplication) {
-      return h.redirect('/task-list-incomplete')
-    }
-
-    return super.handlePost(req, h)
-  }
-
   generateEmailContent(application, reference) {
     /**
      * @type {string[]}
@@ -207,6 +211,7 @@ export class SubmitPageController extends QuestionPageController {
     return lines.join('\n')
   }
 }
+// TODO: DELETE BELOW END: WHEN CMAPI IS APPROVED
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}

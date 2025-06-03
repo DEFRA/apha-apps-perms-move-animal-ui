@@ -779,6 +779,48 @@ describe('#CheckAnswers', () => {
   })
 
   describe('when sendToCaseManagement feature flag is enabled', () => {
+    it('should send the application to case management when feature flag is disabled but query string present', async () => {
+      const dummyReferenceNumber = '12-1234-1234'
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: false
+      })
+
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 200
+        }),
+        payload: JSON.stringify({
+          message: dummyReferenceNumber
+        })
+      })
+
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri + '?case-management-api=true',
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(confirmationUri)
+
+      const refNum = await session.getRawState('applicationReference')
+      expect(refNum).toBe(dummyReferenceNumber)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+      expect(wreckSpy.mock.calls[0][0]).toBe(
+        `${config.get('caseManagementApi').baseUrl}/submit`
+      )
+      expect(sendEmailToCaseWorker).not.toHaveBeenCalled()
+    })
+
     it('should give the user a 500 error if the case management API doesnt work for what ever reason', async () => {
       spyOnConfig('featureFlags', {
         sendToCaseManagement: true
