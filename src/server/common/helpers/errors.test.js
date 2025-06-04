@@ -49,7 +49,8 @@ describe('#catchAll', () => {
   const mockToolkitCode = jest.fn()
   const mockToolkit = {
     view: mockToolkitView.mockReturnThis(),
-    code: mockToolkitCode.mockReturnThis()
+    code: mockToolkitCode.mockReturnThis(),
+    header: jest.fn()
   }
 
   it('should provide expected "Not Found" page', () => {
@@ -147,6 +148,58 @@ describe('#catchAll', () => {
     expect(mockWarnLogger).not.toHaveBeenCalled()
     expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
   })
+
+  const features = [
+    'geolocation',
+    'microphone',
+    'camera',
+    'fullscreen',
+    'payment',
+    'usb',
+    'vr',
+    'accelerometer',
+    'ambient-light-sensor',
+    'autoplay',
+    'battery',
+    'display-capture',
+    'document-domain',
+    'encrypted-media',
+    'execution-while-not-rendered',
+    'execution-while-out-of-viewport',
+    'gyroscope',
+    'magnetometer',
+    'midi',
+    'picture-in-picture',
+    'publickey-credentials-get',
+    'screen-wake-lock',
+    'sync-xhr',
+    'web-share',
+    'xr-spatial-tracking'
+  ]
+
+  it.each(features)(
+    'should set Permissions-Policy header to disallow %s',
+    (feature) => {
+      const mockToolkitHeader = jest.fn().mockReturnThis()
+      const mockToolkit = {
+        view: mockToolkitView.mockReturnThis(),
+        code: mockToolkitCode.mockReturnThis(),
+        header: mockToolkitHeader
+      }
+
+      // @ts-expect-error - Testing purposes only
+      catchAll(mockRequest(statusCodes.notFound), mockToolkit)
+
+      // Find the Permissions-Policy header argument
+      const headerCall = mockToolkitHeader.mock.calls.find(
+        ([name]) => name === 'Permissions-Policy'
+      )
+      expect(headerCall).toBeDefined()
+      const headerValue = headerCall[1]
+
+      expect(headerValue).toContain(`${feature}=()`)
+    }
+  )
 })
 
 /**

@@ -47,6 +47,10 @@ export function catchAll(request, h) {
       message: errorMessage
     })
     .code(statusCode)
+    .header(
+      'Permissions-Policy',
+      'geolocation=(), microphone=(), camera=(), fullscreen=(), payment=(), usb=(), vr=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), gyroscope=(), magnetometer=(), midi=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), web-share=(), xr-spatial-tracking=()'
+    )
 }
 
 /**
