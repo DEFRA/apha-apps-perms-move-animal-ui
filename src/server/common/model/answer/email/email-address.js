@@ -9,14 +9,12 @@ const tldsPath = path.resolve(
   path.dirname(new URL(import.meta.url).pathname),
   'tlds.txt'
 )
-let tldPattern = ''
-const tlds = fs
+const tldPattern = fs
   .readFileSync(tldsPath, 'utf-8')
   .split('\n')
   .map((line) => line.trim())
   .filter((line) => line && !line.startsWith('#'))
   .join('|')
-tldPattern = tlds
 
 const emailAddressRegex = new RegExp(
   `^[^@\\s]+@[^@\\s]+\\.(${tldPattern})$`,
