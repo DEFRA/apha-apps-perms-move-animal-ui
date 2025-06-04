@@ -19,18 +19,18 @@ const validEmailAddresses = [
   'email-with-dash@domain-one.com',
   '_______@domain.com',
   'email@domain.name',
-  'email@domain.superlongtld',
   'email@domain.co.jp',
   'firstname-lastname@domain.com',
-  'info@german-financial-services.reallylongarbitrarytldthatiswaytoohugejustincase',
-  'technically..valid@domain.com',
-  'info@german-financial-services.vermögensberatung',
-  'japanese-info@例え.テスト'
+  'technically..valid@domain.com'
 ]
 const invalidEmailAddresses = [
+  'info@german-financial-services.vermögensberatung',
+  'japanese-info@例え.テスト',
+  'info@german-financial-services.reallylongarbitrarytldthatiswaytoohugejustincase',
   'plainaddress',
   '@no-local-part.com',
-  'no-at.domain.com'
+  'no-at.domain.com',
+  'email@domain.superlongtld'
 ]
 
 describe('EmailAddressAnswer', () => {
