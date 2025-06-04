@@ -1,6 +1,6 @@
 const generateContentSecurityPolicyHeaders = (request) => [
   "default-src 'self';",
-  "image-src 'self' https://www.nationalarchives.gov.uk/;",
+  "img-src 'self' https://www.nationalarchives.gov.uk/;",
   `script-src 'nonce-${request.app.uuid}' strict-dynamic;`,
   "frame-ancestors 'none';"
 ]

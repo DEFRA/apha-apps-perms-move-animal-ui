@@ -17,7 +17,7 @@ describe('addSecurityHeaders', () => {
 
     expect(headerMock).toHaveBeenCalledWith(
       'Content-Security-Policy',
-      `default-src 'self'; image-src 'self' https://www.nationalarchives.gov.uk/; script-src 'nonce-${uuid}' strict-dynamic; frame-ancestors 'none';`
+      `default-src 'self'; img-src 'self' https://www.nationalarchives.gov.uk/; script-src 'nonce-${uuid}' strict-dynamic; frame-ancestors 'none';`
     )
     expect(result).toBe(h.continue)
   })
