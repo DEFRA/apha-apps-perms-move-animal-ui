@@ -1,9 +1,32 @@
 import { config } from '~/src/config/config.js'
 import { TextAnswer } from '../text/text.js'
+import fs from 'fs'
+import path from 'path'
 
 /** @import {TextConfig} from '../text/text.js' */
 
-const emailAddressRegex = /^[^@]+@[^@]+$/
+const tldsPath = path.resolve(
+  path.dirname(new URL(import.meta.url).pathname),
+  'tlds.txt'
+)
+let tldPattern = ''
+try {
+  const tlds = fs
+    .readFileSync(tldsPath, 'utf-8')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'))
+    .join('|')
+  tldPattern = tlds
+} catch (e) {
+  // fallback to a generic pattern if file read fails
+  tldPattern = '[a-z]{2,}'
+}
+
+const emailAddressRegex = new RegExp(
+  `^[^@\\s]+@[^@\\s]+\\.(${tldPattern})$`,
+  'i'
+)
 
 const maxLength = 255
 const emptyAddressError =
