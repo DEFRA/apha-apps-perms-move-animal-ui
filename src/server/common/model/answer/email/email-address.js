@@ -10,18 +10,13 @@ const tldsPath = path.resolve(
   'tlds.txt'
 )
 let tldPattern = ''
-try {
-  const tlds = fs
-    .readFileSync(tldsPath, 'utf-8')
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => line && !line.startsWith('#'))
-    .join('|')
-  tldPattern = tlds
-} catch (e) {
-  // fallback to a generic pattern if file read fails
-  tldPattern = '[a-z]{2,}'
-}
+const tlds = fs
+  .readFileSync(tldsPath, 'utf-8')
+  .split('\n')
+  .map((line) => line.trim())
+  .filter((line) => line && !line.startsWith('#'))
+  .join('|')
+tldPattern = tlds
 
 const emailAddressRegex = new RegExp(
   `^[^@\\s]+@[^@\\s]+\\.(${tldPattern})$`,
