@@ -12,7 +12,7 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
 }))
 
 describe('#context', () => {
-  const mockRequest = { path: '/' }
+  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
@@ -36,7 +36,7 @@ describe('#context', () => {
       contextResult = contextImport.context(mockRequest)
     })
 
-    test('Should provide expected context', () => {
+    it('Should provide expected context', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
@@ -47,6 +47,7 @@ describe('#context', () => {
           pdfUpload: true,
           sendToCaseManagement: true
         },
+        uuid: 'unique-identifier',
         displayName: undefined,
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
@@ -69,7 +70,7 @@ describe('#context', () => {
     })
 
     describe('With valid asset path', () => {
-      test('Should provide expected asset path', () => {
+      it('Should provide expected asset path', () => {
         expect(contextResult.getAssetPath('application.js')).toBe(
           '/public/javascripts/application.js'
         )
@@ -77,7 +78,7 @@ describe('#context', () => {
     })
 
     describe('With invalid asset path', () => {
-      test('Should provide expected asset', () => {
+      it('Should provide expected asset', () => {
         expect(contextResult.getAssetPath('an-image.png')).toBe(
           '/public/an-image.png'
         )
@@ -98,7 +99,7 @@ describe('#context', () => {
       contextResult = contextImport.context(mockRequest)
     })
 
-    test('Should log that the Webpack Manifest file is not available', () => {
+    it('Should log that the Webpack Manifest file is not available', () => {
       expect(mockLoggerError).toHaveBeenCalledWith(
         'Webpack assets-manifest.json not found'
       )
@@ -107,7 +108,7 @@ describe('#context', () => {
 })
 
 describe('#context cache', () => {
-  const mockRequest = { path: '/' }
+  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
@@ -132,15 +133,15 @@ describe('#context cache', () => {
 
     afterEach(jest.restoreAllMocks)
 
-    test('Should read file', () => {
+    it('Should read file', () => {
       expect(mockReadFileSync).toHaveBeenCalled()
     })
 
-    test('Should use cache', () => {
+    it('Should use cache', () => {
       expect(mockReadFileSync).not.toHaveBeenCalled()
     })
 
-    test('Should provide expected context', () => {
+    it('Should provide expected context', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets',
         breadcrumbs: [],
@@ -151,6 +152,7 @@ describe('#context cache', () => {
           pdfUpload: true,
           sendToCaseManagement: true
         },
+        uuid: 'unique-identifier',
         getAssetPath: expect.any(Function),
         isAuthenticated: false,
         manageAccountUrl,

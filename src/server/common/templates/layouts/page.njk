@@ -3,6 +3,8 @@
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% set cspNonce = uuid %}
+
 {% block head %}
   <link
     href="{{ getAssetPath('stylesheets/application.scss') }}"
@@ -50,7 +52,10 @@
     {{
       govukBackLink({
         text: "Back",
-        href: "javascript:window.history.back()"
+        attributes:{
+          "id": "back-link"
+        },
+        href: "#"
       })
     }}
     <noscript>
@@ -68,5 +73,10 @@
   {% include "../partials/footer.njk" %}
 {% endblock %}
 {% block bodyEnd %}
-  <script type="module" src="{{ getAssetPath('application.js') }}"></script>
+  <script
+    type="module"
+    src="{{ getAssetPath('application.js') }}"
+    nonce="{{uuid}}"
+    defer
+  ></script>
 {% endblock %}
