@@ -1,6 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { catchAll } from '~/src/server/common/helpers/errors.js'
+import { catchAll, features } from '~/src/server/common/helpers/errors.js'
 
 describe('#errors', () => {
   /** @type {Server} */
@@ -148,34 +148,6 @@ describe('#catchAll', () => {
     expect(mockWarnLogger).not.toHaveBeenCalled()
     expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
   })
-
-  const features = [
-    'geolocation',
-    'microphone',
-    'camera',
-    'fullscreen',
-    'payment',
-    'usb',
-    'vr',
-    'accelerometer',
-    'ambient-light-sensor',
-    'autoplay',
-    'battery',
-    'display-capture',
-    'document-domain',
-    'encrypted-media',
-    'execution-while-not-rendered',
-    'execution-while-out-of-viewport',
-    'gyroscope',
-    'magnetometer',
-    'midi',
-    'picture-in-picture',
-    'publickey-credentials-get',
-    'screen-wake-lock',
-    'sync-xhr',
-    'web-share',
-    'xr-spatial-tracking'
-  ]
 
   it.each(features)(
     'should set Permissions-Policy header to disallow %s',

@@ -1,5 +1,48 @@
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 
+export const features = [
+  'accelerometer',
+  'ambient-light-sensor',
+  'attribution-reporting',
+  'autoplay',
+  'bluetooth',
+  'browsing-topics',
+  'camera',
+  'compute-pressure',
+  'cross-origin-isolated',
+  'deferred-fetch',
+  'deferred-fetch-minimal',
+  'display-capture',
+  'encrypted-media',
+  'fullscreen',
+  'gamepad',
+  'geolocation',
+  'gyroscope',
+  'hid',
+  'identity-credentials-get',
+  'idle-detection',
+  'language-detector',
+  'local-fonts',
+  'magnetometer',
+  'microphone',
+  'midi',
+  'otp-credentials',
+  'payment',
+  'picture-in-picture',
+  'publickey-credentials-create',
+  'publickey-credentials-get',
+  'screen-wake-lock',
+  'serial',
+  'speaker-selection',
+  'storage-access',
+  'translator',
+  'summarizer',
+  'usb',
+  'web-share',
+  'window-management',
+  'xr-spatial-tracking'
+]
+
 /**
  * @param {number} statusCode
  */
@@ -49,7 +92,7 @@ export function catchAll(request, h) {
     .code(statusCode)
     .header(
       'Permissions-Policy',
-      'geolocation=(), microphone=(), camera=(), fullscreen=(), payment=(), usb=(), vr=(), accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), gyroscope=(), magnetometer=(), midi=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), web-share=(), xr-spatial-tracking=()'
+      features.map((feature) => `${feature}=()`).join(',')
     )
 }
 
