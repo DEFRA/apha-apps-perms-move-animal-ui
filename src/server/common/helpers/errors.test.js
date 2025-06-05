@@ -1,6 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { catchAll } from '~/src/server/common/helpers/errors.js'
+import { catchAll, features } from '~/src/server/common/helpers/errors.js'
 
 describe('#errors', () => {
   /** @type {Server} */
@@ -49,7 +49,8 @@ describe('#catchAll', () => {
   const mockToolkitCode = jest.fn()
   const mockToolkit = {
     view: mockToolkitView.mockReturnThis(),
-    code: mockToolkitCode.mockReturnThis()
+    code: mockToolkitCode.mockReturnThis(),
+    header: jest.fn()
   }
 
   it('should provide expected "Not Found" page', () => {
@@ -147,6 +148,30 @@ describe('#catchAll', () => {
     expect(mockWarnLogger).not.toHaveBeenCalled()
     expect(mockErrorLogger).toHaveBeenCalledWith(mockStack)
   })
+
+  it.each(features)(
+    'should set Permissions-Policy header to disallow %s',
+    (feature) => {
+      const mockToolkitHeader = jest.fn().mockReturnThis()
+      const mockToolkit = {
+        view: mockToolkitView.mockReturnThis(),
+        code: mockToolkitCode.mockReturnThis(),
+        header: mockToolkitHeader
+      }
+
+      // @ts-expect-error - Testing purposes only
+      catchAll(mockRequest(statusCodes.notFound), mockToolkit)
+
+      // Find the Permissions-Policy header argument
+      const headerCall = mockToolkitHeader.mock.calls.find(
+        ([name]) => name === 'Permissions-Policy'
+      )
+      expect(headerCall).toBeDefined()
+      const headerValue = headerCall[1]
+
+      expect(headerValue).toContain(`${feature}=()`)
+    }
+  )
 })
 
 /**
