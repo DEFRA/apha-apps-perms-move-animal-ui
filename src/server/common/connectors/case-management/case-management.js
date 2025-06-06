@@ -8,7 +8,7 @@ export const submitApplication = async (application) => {
   const { baseUrl, timeout } = config.get('caseManagementApi')
   let response
   try {
-    response = await Wreck.post(baseUrl, {
+    response = await Wreck.post(`${baseUrl}/submit`, {
       payload: application.caseManagementData,
       timeout
     })

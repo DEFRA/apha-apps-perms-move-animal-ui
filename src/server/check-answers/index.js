@@ -14,6 +14,7 @@ import { fileSizeInMB } from '../common/helpers/file/size.js'
 import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 import { getApplicationReference } from '../common/helpers/application-reference/index.js'
+import { submitApplication } from '../common/connectors/case-management/case-management.js'
 
 /**
  * @import {NextPage} from '../common/helpers/next-page.js'
@@ -99,7 +100,7 @@ export class SubmitPageController extends QuestionPageController {
 
     const application = ApplicationModel.fromState(applicationState)
 
-    const { message } = await application.send()
+    const { message } = await submitApplication(application)
     req.yar.set('applicationReference', message)
 
     return super.handlePost(req, h)

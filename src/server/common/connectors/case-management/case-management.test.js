@@ -25,7 +25,7 @@ describe('CaseManagement.submitApplication', () => {
 
     const response = await submitApplication(application)
 
-    expect(Wreck.post).toHaveBeenCalledWith(baseUrl, {
+    expect(Wreck.post).toHaveBeenCalledWith(`${baseUrl}/submit`, {
       payload: application.caseManagementData,
       timeout
     })

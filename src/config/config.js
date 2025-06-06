@@ -352,7 +352,7 @@ export const config = convict({
     timeout: {
       doc: 'Timeout for case management API requests in milliseconds',
       format: Number,
-      default: 10_000,
+      default: 30_000,
       env: 'CASE_MANAGEMENT_API_TIMEOUT'
     }
   },
