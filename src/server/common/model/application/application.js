@@ -1,5 +1,3 @@
-import Wreck from '@hapi/wreck'
-
 import { DestinationSection } from '../section/destination/destination.js'
 import { LicenceSection } from '../section/licence/licence.js'
 import { OriginSection } from '../section/origin/origin.js'
@@ -8,7 +6,6 @@ import { validateApplication } from './validation.js'
 import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
 import { IdentificationSection } from '../section/identification/identification.js'
 import { HiddenAnswer } from '../answer/hidden/hidden.js'
-import { config } from '~/src/config/config.js'
 
 /**
  * @import { SectionModel, QuestionPageAnswer } from '../section/section-model/section-model.js'
@@ -61,23 +58,6 @@ export class ApplicationModel {
     return this.implementedSections.filter((section) => {
       return section.config.isVisible(state)
     })
-  }
-
-  async send() {
-    try {
-      const data = this.caseManagementData
-
-      const resp = await Wreck.post(
-        `${config.get('caseManagementApi').baseUrl}/submit`,
-        {
-          payload: data
-        }
-      )
-
-      return JSON.parse(resp.payload.toString())
-    } catch (e) {
-      throw new Error(`Failed to send application to case management API`)
-    }
   }
 
   get caseManagementData() {
