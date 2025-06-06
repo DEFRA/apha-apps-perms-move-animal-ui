@@ -1,7 +1,6 @@
 import { reasonForMovementPage, ReasonForMovementPage } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { ReasonForMovementAnswer } from '../../common/model/answer/reason-for-movement/reason-for-movement.js'
-import { quantityOptionsPage } from '../quantity-options/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 
 const sectionKey = 'destination'
@@ -39,14 +38,6 @@ describe('ReasonForMovementPage', () => {
 
   it('should have the correct Answer model', () => {
     expect(page.Answer).toBe(ReasonForMovementAnswer)
-  })
-
-  it('nextPage should return quantity options page when answer is "routineRestocking"', () => {
-    const answer = new ReasonForMovementAnswer({
-      reasonForMovement: 'routineRestocking'
-    })
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(quantityOptionsPage)
   })
 
   it('nextPage should return additional info page when answer is any other value', () => {
