@@ -7,11 +7,9 @@ import destinationAnswersPage from '../../page-objects/destination/destinationAn
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import destinationAddressPage from '../../page-objects/destination/destinationAddressPage.js'
 import reasonForMovementPage from '../../page-objects/destination/reasonForMovementPage.js'
-import quantityOptionsPage from '../../page-objects/destination/quantityOptionsPage.js'
-import halfHerdPage from '../../page-objects/destination/halfHerdPage.js'
-
 import { navigateToTaskList } from './taskListNav.js'
 import howManyAnimalsPage from '../../page-objects/destination/howManyAnimalsPage.js'
+import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
@@ -62,9 +60,9 @@ export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
     howManyAnimalsPage
   )
   await howManyAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
-  await reasonForMovementPage.selectRestockingAndContinue(quantityOptionsPage)
-  await quantityOptionsPage.selectNoAndContinue(halfHerdPage)
-  await halfHerdPage.selectNoAndContinue(destinationAnswersPage)
+  await reasonForMovementPage.selectRestockingAndContinue(additionalInfoPage)
+  await additionalInfoPage.selectContinue()
+  await waitForPagePath(destinationAnswersPage.pagePath)
 }
 
 export default completeDestinationTask
