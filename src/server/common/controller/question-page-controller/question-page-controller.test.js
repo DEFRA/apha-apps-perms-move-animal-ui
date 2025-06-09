@@ -26,6 +26,13 @@ const validationSpy = jest
   .spyOn(AnswerModel.prototype, 'validate')
   .mockReturnValue({ isValid: true, errors: {} })
 const redirectUri = '/redirect-uri'
+const mockHeaderFn = jest.fn()
+
+const mockView = {
+  header: mockHeaderFn
+}
+
+mockHeaderFn.mockReturnValue(mockView)
 
 const TestAnswerSpy = jest.fn()
 
@@ -577,7 +584,9 @@ describe('QuestionPageController', () => {
 
   describe('View render', () => {
     const h = {
-      view: jest.fn().mockReturnValue('view'),
+      view: jest.fn().mockImplementation(() => {
+        return mockView
+      }),
       redirect: jest.fn()
     }
     const request = {
@@ -609,7 +618,7 @@ describe('QuestionPageController', () => {
       const viewArgs = h.view.mock.calls[0][1]
       expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
 
-      expect(result).toBe('view')
+      expect(result).toBe(mockView)
     })
 
     it('GET should render when erroring with expected arguments', () => {
@@ -643,7 +652,7 @@ describe('QuestionPageController', () => {
       const viewArgs = h.view.mock.calls[0][1]
       expect(viewArgs.answer).toBeInstanceOf(TestAnswer)
 
-      expect(result).toBe('view')
+      expect(result).toBe(mockView)
     })
 
     it('POST should render view with expected arguments', () => {

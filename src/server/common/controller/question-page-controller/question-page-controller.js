@@ -4,6 +4,7 @@ import GenericPageController from '../generic-page-controller/index.js'
 import { StateManager } from '../../model/state/state-manager.js'
 import { nextPageRedirect } from '../../helpers/next-page-redirect/index.js'
 import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
+import { features } from '../../helpers/errors.js'
 
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
@@ -64,35 +65,45 @@ export class QuestionPageController extends GenericPageController {
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
-      return h.view(this.page.view, {
+      return h
+        .view(this.page.view, {
+          nextPage: req.query.redirect_uri,
+          heading: this.page.heading,
+          answer: new this.page.Answer(pageError.payload, applicationState),
+          pageTitle: `Error: ${this.page.title}`,
+          errors: pageError.errors,
+          errorMessages: pageError.errorMessages,
+          viewModelOptions: {
+            validate: true,
+            question: this.page.question
+          },
+          ...args,
+          ...this.page.viewProps(req)
+        })
+        .header(
+          'Permissions-Policy',
+          features.map((feature) => `${feature}=()`).join(',')
+        )
+    }
+
+    return h
+      .view(this.page.view, {
         nextPage: req.query.redirect_uri,
+        pageTitle: this.page.title,
         heading: this.page.heading,
-        answer: new this.page.Answer(pageError.payload, applicationState),
-        pageTitle: `Error: ${this.page.title}`,
-        errors: pageError.errors,
-        errorMessages: pageError.errorMessages,
+        value: answer.value,
+        answer,
         viewModelOptions: {
-          validate: true,
+          validate: false,
           question: this.page.question
         },
         ...args,
         ...this.page.viewProps(req)
       })
-    }
-
-    return h.view(this.page.view, {
-      nextPage: req.query.redirect_uri,
-      pageTitle: this.page.title,
-      heading: this.page.heading,
-      value: answer.value,
-      answer,
-      viewModelOptions: {
-        validate: false,
-        question: this.page.question
-      },
-      ...args,
-      ...this.page.viewProps(req)
-    })
+      .header(
+        'Permissions-Policy',
+        features.map((feature) => `${feature}=()`).join(',')
+      )
   }
 
   handlePost(req, h) {
