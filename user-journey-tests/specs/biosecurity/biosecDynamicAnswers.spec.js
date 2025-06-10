@@ -1,7 +1,5 @@
 import { selectElement, waitForPagePath } from '../../helpers/page.js'
 import completeBiosecurityTask from '../../helpers/testHelpers/biosecurity.js'
-import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
-import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
@@ -12,9 +10,7 @@ describe('Check dynamic nature of flow - biosecurity', () => {
   // eslint-disable-next-line no-undef
   before('Sign in and complete answers', async () => {
     await loginAndSaveSession(signInPage)
-    await completeOriginTaskAnswersOnFarm()
-    await completeDestinationTaskOnFarmForUnrestrictedOrigin()
-    await completeBiosecurityTask('no')
+    await completeBiosecurityTask('no', true)
     await biosecurityAnswersPage.navigateToPageAndVerifyTitle()
   })
 

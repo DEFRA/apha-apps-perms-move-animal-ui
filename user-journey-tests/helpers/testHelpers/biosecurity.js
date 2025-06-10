@@ -20,9 +20,13 @@ import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 import { waitForPagePath } from '../page.js'
 
 // Helper function to complete the origin task
-const completeBiosecurityTask = async (radioType) => {
-  await navigateToTaskList()
-  await taskListPage.selectBiosecurityLink(biosecIntroPage)
+const completeBiosecurityTask = async (radioType, direct = false) => {
+  if (!direct) {
+    await navigateToTaskList()
+    await taskListPage.selectBiosecurityLink(biosecIntroPage)
+  } else {
+    await biosecIntroPage.navigateToPageAndVerifyTitle()
+  }
   await biosecIntroPage.selectContinue()
   await waitForPagePath(keptSeparatelyPage.pagePath)
   switch (radioType) {

@@ -4,9 +4,13 @@ import { waitForPagePath } from '../page.js'
 import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import { navigateToTaskList } from './taskListNav.js'
 
-const completeBiosecurityMapTask = async () => {
-  await navigateToTaskList()
-  await taskListPage.selectBiosecurityMapLink(mapUploadPage)
+const completeBiosecurityMapTask = async (direct = false) => {
+  if (!direct) {
+    await navigateToTaskList()
+    await taskListPage.selectBiosecurityMapLink(mapUploadPage)
+  } else {
+    await mapUploadPage.navigateToPageAndVerifyTitle()
+  }
 
   await mapUploadPage.uploadFileAndContinue(
     'user-journey-tests/page-objects/biosecurity-map/assets/happy_emoji.jpg'
