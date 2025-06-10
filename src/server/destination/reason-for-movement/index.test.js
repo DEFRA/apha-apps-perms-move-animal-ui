@@ -2,6 +2,7 @@ import { reasonForMovementPage, ReasonForMovementPage } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { ReasonForMovementAnswer } from '../../common/model/answer/reason-for-movement/reason-for-movement.js'
 import { additionalInfoPage } from '../additional-info/index.js'
+import { restockAnimalPage } from '../restock-animals/index.js'
 
 const sectionKey = 'destination'
 const question = 'What is the reason for the movement?'
@@ -44,6 +45,14 @@ describe('ReasonForMovementPage', () => {
     const answer = new ReasonForMovementAnswer({ reasonForMovement: 'other' })
     const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(additionalInfoPage)
+  })
+
+  it('nextPage should return page specifying what type of animal', () => {
+    const answer = new ReasonForMovementAnswer({
+      reasonForMovement: 'routineRestocking'
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(restockAnimalPage)
   })
 
   it('should export page', () => {
