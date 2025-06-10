@@ -13,7 +13,7 @@ const payload = {
   ]
 }
 
-describe('BadgersAnswer', () => {
+describe('RestockReasonsAnswer', () => {
   it('should be a checkbox', () => {
     expect(new RestockReasonsAnswer(payload)).toBeInstanceOf(CheckboxAnswer)
   })
