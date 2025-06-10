@@ -3,8 +3,6 @@ import {
   validateHrefOfElement
 } from '../../helpers/page.js'
 import completeBiosecurityMapTask from '../../helpers/testHelpers/biosecurityMap.js'
-import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
-import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
@@ -14,9 +12,7 @@ describe('Check your answers test - biosecurity map', () => {
   // eslint-disable-next-line no-undef
   before('Sign in and complete answers', async () => {
     await loginAndSaveSession(signInPage)
-    await completeOriginTaskAnswersOnFarm()
-    await completeDestinationTaskOnFarmForUnrestrictedOrigin()
-    await completeBiosecurityMapTask()
+    await completeBiosecurityMapTask(true)
     await biosecurityMapAnswersPage.navigateToPageAndVerifyTitle()
   })
 
