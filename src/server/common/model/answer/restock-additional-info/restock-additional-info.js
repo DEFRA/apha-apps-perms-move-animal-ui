@@ -14,7 +14,7 @@ export class RestockAdditionalInfoAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'restockAdditionalInfo',
-    rows: 10,
+    rows: 5,
     validation: {
       empty: {
         message: 'Enter the reason for restocking'
