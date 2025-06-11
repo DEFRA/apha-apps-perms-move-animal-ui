@@ -1,8 +1,8 @@
 import { RestockReasonsAnswer } from '../../common/model/answer/restock-reasons/restock-reasons.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { otherRestockReasonPage } from '../other-restock-reason/index.js'
 import { RestockReasonPage, restockReasonPage } from './index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
+import { restockAdditionalInfoPage } from '../restock-additional-info/index.js'
 
 const sectionKey = 'destination'
 const question = 'Which reasons do you have for restocking?'
@@ -45,7 +45,7 @@ describe('RestockReasonPage', () => {
       restockReasons: ['fattening', 'other']
     })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(otherRestockReasonPage)
+    expect(nextPage).toBe(restockAdditionalInfoPage)
   })
 
   it('should export page', () => {
