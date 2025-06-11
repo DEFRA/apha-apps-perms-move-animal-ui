@@ -3,8 +3,8 @@ import {
   RestockAdditionalInfoPage
 } from './index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { destinationSummaryPage } from '../summary/index.js'
 import { RestockAdditionalInfoAnswer } from '../../common/model/answer/restock-additional-info/restock-additional-info.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 const sectionKey = 'destination'
 const question = 'What is the reason for restocking?'
@@ -41,7 +41,7 @@ describe('RestockAdditionalInfoPage', () => {
 
   it('nextPage should return destination summary page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(destinationSummaryPage)
+    expect(nextPage).toBe(additionalInfoPage)
   })
 
   it('should export page', () => {
