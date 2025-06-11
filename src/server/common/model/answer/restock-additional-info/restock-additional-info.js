@@ -16,6 +16,9 @@ export class RestockAdditionalInfoAnswer extends TextAreaAnswer {
     payloadKey: 'restockAdditionalInfo',
     rows: 10,
     validation: {
+      empty: {
+        message: 'Enter the reason for restocking'
+      },
       maxLength: {
         value: 5000,
         message: 'Your answer must be no longer than 5000 characters'
