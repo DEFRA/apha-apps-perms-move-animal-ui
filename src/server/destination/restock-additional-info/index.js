@@ -1,7 +1,7 @@
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { RestockAdditionalInfoAnswer } from '../../common/model/answer/restock-additional-info/restock-additional-info.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { destinationSummaryPage } from '../summary/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 export class RestockAdditionalInfoPage extends QuestionPage {
   urlPath = '/destination/restocking-additional-info-reason-other'
@@ -12,7 +12,7 @@ export class RestockAdditionalInfoPage extends QuestionPage {
   Answer = RestockAdditionalInfoAnswer
 
   nextPage() {
-    return destinationSummaryPage
+    return additionalInfoPage
   }
 }
 
