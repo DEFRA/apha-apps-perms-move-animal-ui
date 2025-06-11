@@ -23,7 +23,7 @@ describe('AdditionalInfo', () => {
   })
 
   it('should have the right number of rows', () => {
-    expect(RestockAdditionalInfoAnswer.config.rows).toBe(10)
+    expect(RestockAdditionalInfoAnswer.config.rows).toBe(5)
   })
 
   it('should define the right max length and corresponding error message', () => {
@@ -36,7 +36,9 @@ describe('AdditionalInfo', () => {
   })
 
   it('should not specify an empty validation message', () => {
-    expect(RestockAdditionalInfoAnswer.config.validation.empty).toBeUndefined()
+    expect(RestockAdditionalInfoAnswer.config.validation.empty?.message).toBe(
+      'Enter the reason for restocking'
+    )
   })
 
   it('should return "None" when additionalInfo is an empty string', () => {

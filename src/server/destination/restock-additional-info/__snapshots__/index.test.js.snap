@@ -15,7 +15,7 @@ exports[`RestockAdditionalInfoPage RestockAdditionalInfoPage.content should rend
       What is the reason for restocking?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="restockAdditionalInfo" name="restockAdditionalInfo" rows="10"></textarea>
+  <textarea class="govuk-textarea" id="restockAdditionalInfo" name="restockAdditionalInfo" rows="5"></textarea>
 </div>
 
 
