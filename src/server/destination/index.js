@@ -10,6 +10,7 @@ import { destinationSummary } from './summary/index.js'
 import { howManyAnimals } from './how-many-animals/index.js'
 import { howManyAnimalsMaximum } from './how-many-animals-maximum/index.js'
 import { restockReason } from './restock-reason/index.js'
+import { restockAnimal } from './restock-animals/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -30,7 +31,8 @@ export const destination = {
         quantityHalfHerd,
         howManyAnimals,
         howManyAnimalsMaximum,
-        restockReason
+        restockReason,
+        restockAnimal
       ])
     }
   }
