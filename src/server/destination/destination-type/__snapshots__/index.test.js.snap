@@ -56,8 +56,8 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="isoUnit" name="destinationType" type="radio" value="isoUnit">
-        <label class="govuk-label govuk-radios__label" for="isoUnit">
+        <input class="govuk-radios__input" id="iso-unit" name="destinationType" type="radio" value="iso-unit">
+        <label class="govuk-label govuk-radios__label" for="iso-unit">
           TB isolation unit
         </label>
       </div>

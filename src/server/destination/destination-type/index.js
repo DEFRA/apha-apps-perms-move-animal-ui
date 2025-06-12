@@ -37,7 +37,7 @@ export class DestinationTypePage extends QuestionPage {
     if (context.origin?.onOffFarm === 'on') {
       return destinationFarmCphPage
     } else {
-      if (answer.value === 'isoUnit') {
+      if (answer.value === 'iso-unit') {
         return isolationUnitExitPage
       }
 

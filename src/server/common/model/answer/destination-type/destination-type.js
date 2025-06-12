@@ -2,7 +2,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'zoo' | 'lab' | 'isoUnit' | 'other'} DestinationTypeData
+ * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'zoo' | 'lab' | 'iso-unit' | 'other'} DestinationTypeData
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 
@@ -46,7 +46,7 @@ const offFarmOptions = (app) =>
         afu: afuOption,
         zoo: { label: 'Zoo with TB restrictions' },
         lab: { label: 'Laboratory with TB restrictions' },
-        isoUnit: { label: 'TB isolation unit' },
+        'iso-unit': { label: 'TB isolation unit' },
         other: otherOption
       }
 

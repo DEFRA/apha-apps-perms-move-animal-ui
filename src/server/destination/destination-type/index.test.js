@@ -67,8 +67,8 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationGeneralLicencePage)
     })
 
-    it('should return the isolation unit exit page of that is slected', () => {
-      const answer = new DestinationTypeAnswer({ destinationType: 'isoUnit' })
+    it('should return the isolation unit exit page of that is selected', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'iso-unit' })
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(isolationUnitExitPage)
     })

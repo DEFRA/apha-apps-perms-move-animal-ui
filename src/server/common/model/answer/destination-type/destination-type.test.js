@@ -50,7 +50,7 @@ describe('DestinationType.config.options', () => {
     expect(config.options.afu.label).toBe(afuLabel)
     expect(config.options.zoo.label).toBe(zooLabel)
     expect(config.options.lab.label).toBe(labLabel)
-    expect(config.options.isoUnit.label).toBe(isoUnitLabel)
+    expect(config.options['iso-unit'].label).toBe(isoUnitLabel)
     expect(config.options.other.label).toBe(otherLabel)
   })
 
