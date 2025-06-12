@@ -10,6 +10,9 @@ import reasonForMovementPage from '../../page-objects/destination/reasonForMovem
 import { navigateToTaskList } from './taskListNav.js'
 import howManyAnimalsPage from '../../page-objects/destination/howManyAnimalsPage.js'
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
+import animalTypePage from '../../page-objects/destination/animalTypePage.js'
+import restockingReasonPage from '../../page-objects/destination/restockingReasonPage.js'
+import otherRestockingReasonPage from '../../page-objects/destination/otherRestockingReasonPage.js'
 
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
@@ -60,7 +63,19 @@ export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
     howManyAnimalsPage
   )
   await howManyAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
-  await reasonForMovementPage.selectRestockingAndContinue(additionalInfoPage)
+  await reasonForMovementPage.selectRestockingAndContinue(animalTypePage)
+  await animalTypePage.selectCheckboxesAndContinue(
+    [animalTypePage.cows],
+    restockingReasonPage
+  )
+  await restockingReasonPage.selectCheckboxesAndContinue(
+    [restockingReasonPage.other],
+    otherRestockingReasonPage
+  )
+  await otherRestockingReasonPage.inputTextAndContinue(
+    'Other restocking reason',
+    additionalInfoPage
+  )
   await additionalInfoPage.selectContinue()
   await waitForPagePath(destinationAnswersPage.pagePath)
 }

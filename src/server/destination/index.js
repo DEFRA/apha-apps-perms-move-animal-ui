@@ -9,6 +9,9 @@ import { reasonForMovement } from './reason-for-movement/index.js'
 import { destinationSummary } from './summary/index.js'
 import { howManyAnimals } from './how-many-animals/index.js'
 import { howManyAnimalsMaximum } from './how-many-animals-maximum/index.js'
+import { restockReason } from './restock-reason/index.js'
+import { restockAnimal } from './restock-animals/index.js'
+import { restockAdditionalInfo } from './restock-additional-info/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -28,7 +31,10 @@ export const destination = {
         additionalInfo,
         quantityHalfHerd,
         howManyAnimals,
-        howManyAnimalsMaximum
+        howManyAnimalsMaximum,
+        restockReason,
+        restockAnimal,
+        restockAdditionalInfo
       ])
     }
   }

@@ -2,6 +2,7 @@ import { QuestionPageController } from '../../common/controller/question-page-co
 import { ReasonForMovementAnswer } from '../../common/model/answer/reason-for-movement/reason-for-movement.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { additionalInfoPage } from '../additional-info/index.js'
+import { restockAnimalPage } from '../restock-animals/index.js'
 
 export class ReasonForMovementPage extends QuestionPage {
   urlPath = '/destination/reason-for-movement'
@@ -11,7 +12,11 @@ export class ReasonForMovementPage extends QuestionPage {
 
   Answer = ReasonForMovementAnswer
 
-  nextPage() {
+  nextPage(answer) {
+    if (answer.value === 'routineRestocking') {
+      return restockAnimalPage
+    }
+
     return additionalInfoPage
   }
 }
