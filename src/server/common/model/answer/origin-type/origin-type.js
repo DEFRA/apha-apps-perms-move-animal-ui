@@ -31,6 +31,7 @@ const offFarmOptions = {
   },
   zoo: zooOption,
   lab: { label: 'Laboratory with TB restrictions' },
+  'iso-unit': { label: 'TB isolation unit' },
   other: { label: 'Another origin with TB restrictions' }
 }
 

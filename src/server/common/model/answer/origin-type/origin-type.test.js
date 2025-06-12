@@ -30,7 +30,7 @@ describe('OriginType.config', () => {
     }
     const config = new OriginTypeAnswer(undefined, context).config
 
-    expect(Object.keys(config.options)).toHaveLength(6)
+    expect(Object.keys(config.options)).toHaveLength(7)
     expect(config.options['tb-restricted-farm'].label).toBe(
       'TB restricted farm'
     )
@@ -43,6 +43,7 @@ describe('OriginType.config', () => {
     )
     expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
     expect(config.options.lab.label).toBe('Laboratory with TB restrictions')
+    expect(config.options['iso-unit'].label).toBe('TB isolation unit')
     expect(config.options.other.label).toBe(
       'Another origin with TB restrictions'
     )
