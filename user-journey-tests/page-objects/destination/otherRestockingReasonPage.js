@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
-const pageId = ''
+const pageId = 'restockAdditionalInfo'
 const pageHeadingAndTitle = 'What is the reason for restocking?'
 const noInputError = 'Enter the reason for restocking'
 

@@ -2,6 +2,7 @@ import reasonForMovementPage from '../../page-objects/destination/reasonForMovem
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+import animalTypePage from '../../page-objects/destination/animalTypePage.js'
 
 describe('Reason for movement page test', () => {
   // eslint-disable-next-line no-undef
@@ -14,7 +15,7 @@ describe('Reason for movement page test', () => {
   })
 
   it('Should chose restocking and verify correct next page', async () => {
-    await reasonForMovementPage.selectRestockingAndContinue(additionalInfoPage)
+    await reasonForMovementPage.selectRestockingAndContinue(animalTypePage)
   })
 
   it('Should chose breeding male and verify correct next page', async () => {
