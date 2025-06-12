@@ -14,6 +14,7 @@ const afuLabel = 'Approved finishing unit (AFU)'
 const afuHint = 'Including enhanced with grazing (AFUE)'
 const zooLabel = 'Zoo with TB restrictions'
 const labLabel = 'Laboratory with TB restrictions'
+const isoUnitLabel = 'TB isolation unit'
 const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {
@@ -40,7 +41,7 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'off' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(7)
+    expect(Object.keys(config.options)).toHaveLength(8)
     expect(config.options['tb-restricted-farm'].label).toBe(
       tbRestrictedFarmLabel
     )
@@ -49,6 +50,7 @@ describe('DestinationType.config.options', () => {
     expect(config.options.afu.label).toBe(afuLabel)
     expect(config.options.zoo.label).toBe(zooLabel)
     expect(config.options.lab.label).toBe(labLabel)
+    expect(config.options.isoUnit.label).toBe(isoUnitLabel)
     expect(config.options.other.label).toBe(otherLabel)
   })
 

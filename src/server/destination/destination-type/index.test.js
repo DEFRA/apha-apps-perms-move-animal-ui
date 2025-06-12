@@ -5,6 +5,7 @@ import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
+import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
 
 /**
  * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
@@ -64,6 +65,12 @@ describe('DestinationTypePage.nextPage', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(destinationGeneralLicencePage)
+    })
+
+    it('should return the isolation unit exit page of that is slected', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'isoUnit' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(isolationUnitExitPage)
     })
 
     it('should return exit page when answer is "dedicated-sale"', () => {
