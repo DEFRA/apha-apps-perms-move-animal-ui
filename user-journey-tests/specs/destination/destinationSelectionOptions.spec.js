@@ -1,7 +1,7 @@
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import { destinationVariants } from '../../helpers/testHelpers/movementOrigin.js'
-import { verifyRadioButtonNumber } from '../../helpers/page.js'
+import { verifyRadioButtonNumber, waitForElement } from '../../helpers/page.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import signInPage from '../../page-objects/signInPage.js'
@@ -9,6 +9,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import serviceUnavailablePage from '../../page-objects/destination/serviceUnavailablePage.js'
 
 describe('Destination selection options test', () => {
   // eslint-disable-next-line no-undef
@@ -39,10 +40,19 @@ describe('Destination selection options test', () => {
   it('Should verify options when Off the farm and AFU IS NOT selected', async () => {
     await destinationVariants(false, false)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
-    await verifyRadioButtonNumber(7)
+    await verifyRadioButtonNumber(8)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
       destinationAnswersPage
     )
+  })
+
+  it('Should verify options when Off the farm and AFU IS NOT selected', async () => {
+    await destinationVariants(false, false)
+    await destinationSelectionPage.navigateToPageAndVerifyTitle()
+    await destinationSelectionPage.selectTBIsolationUnitAndContunue(
+      serviceUnavailablePage
+    )
+    await waitForElement(serviceUnavailablePage.govUkFormLink)
   })
 
   it('Should verify options when Off the farm and AFU IS selected', async () => {
