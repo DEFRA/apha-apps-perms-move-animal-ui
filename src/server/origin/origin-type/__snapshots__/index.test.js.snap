@@ -50,6 +50,12 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
         </label>
       </div>
       <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="iso-unit" name="originType" type="radio" value="iso-unit">
+        <label class="govuk-label govuk-radios__label" for="iso-unit">
+          TB isolation unit
+        </label>
+      </div>
+      <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
           Another origin with TB restrictions

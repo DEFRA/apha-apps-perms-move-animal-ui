@@ -49,9 +49,7 @@ const completeOriginTask = async ({
     await fiftyPercentWarningPage.selectContinue()
   } else {
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
-    await originTypePage.selectTBRestrictedFarmAndContinue(
-      parishHoldingNumberPage
-    )
+    await originTypePage.selectTbRestrictedFarm(parishHoldingNumberPage)
     await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(
       cphNumber,
       newAddressPage
@@ -99,18 +97,15 @@ export const destinationVariants = async (onFarm, afu) => {
   if (onFarm) {
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
     if (afu)
-      await originTypePage.selectApprovedFinishingUnitAndContinue(onFarmCPHPage)
+      await originTypePage.selectApprovedFinishingAndContinue(onFarmCPHPage)
     else await originTypePage.selectLabAndContinue(onFarmCPHPage)
   } else {
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     if (afu)
-      await originTypePage.selectApprovedFinishingUnitAndContinue(
+      await originTypePage.selectApprovedFinishingAndContinue(
         parishHoldingNumberPage
       )
-    else
-      await originTypePage.selectTBRestrictedFarmAndContinue(
-        parishHoldingNumberPage
-      )
+    else await originTypePage.selectTbRestrictedFarm(parishHoldingNumberPage)
   }
 
   await parishHoldingNumberPage.inputParishHoldingNumberAndContinue(

@@ -35,6 +35,10 @@ class DestinationSelectionPage extends Page {
     return $('input[value="lab"]')
   }
 
+  get tbIsolationUnit() {
+    return $('input[value="iso-unit"]')
+  }
+
   get otherDestinationRadio() {
     return $('input[value="other"]')
   }
@@ -74,6 +78,11 @@ class DestinationSelectionPage extends Page {
 
   async selectLabAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.labRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectTBIsolationUnitAndContunue(nextPage) {
+    await super.selectRadioAndContinue(this.tbIsolationUnit)
     await waitForPagePath(nextPage.pagePath)
   }
 

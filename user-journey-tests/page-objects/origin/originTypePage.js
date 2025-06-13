@@ -11,6 +11,7 @@ const valueArray = [
   'zoo',
   'lab',
   'after-import-location',
+  'iso-unit',
   'other'
 ]
 
@@ -35,11 +36,11 @@ class OriginTypePage extends RadioButtonBasePage {
     await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
-  async selectTBRestrictedFarmAndContinue(nextPage) {
+  async selectTbRestrictedFarm(nextPage) {
     await super.selectRadioAndContinue(valueArray[2], nextPage)
   }
 
-  async selectApprovedFinishingUnitAndContinue(nextPage) {
+  async selectApprovedFinishingAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[3], nextPage)
   }
 
@@ -55,8 +56,12 @@ class OriginTypePage extends RadioButtonBasePage {
     await super.selectRadioAndContinue(valueArray[6], nextPage)
   }
 
-  async selectAnotherTypeOfPremisesAndContinue(nextPage) {
+  async selectIsoUnitAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[7], nextPage)
+  }
+
+  async selectAnotherTypeOfPremisesAndContinue(nextPage) {
+    await super.selectRadioAndContinue(valueArray[8], nextPage)
   }
 
   async originTypeErrorTest(valueIndex) {

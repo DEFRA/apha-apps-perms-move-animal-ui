@@ -30,17 +30,15 @@ describe('origin type page test (off farm)', () => {
   })
 
   it('Should verify that off farm versions are loaded (by default)', async () => {
-    await verifyRadioButtonNumber(6)
+    await verifyRadioButtonNumber(7)
   })
 
   it('Should navigate to cph page if moving off from tb restricted farm', async () => {
-    await originTypePage.selectTBRestrictedFarmAndContinue(
-      parishHoldingNumberPage
-    )
+    await originTypePage.selectTbRestrictedFarm(parishHoldingNumberPage)
   })
 
   it('Should navigate to on farm cph page if coming from afu', async () => {
-    await originTypePage.selectApprovedFinishingUnitAndContinue(
+    await originTypePage.selectApprovedFinishingAndContinue(
       parishHoldingNumberPage
     )
   })
@@ -66,7 +64,7 @@ describe('origin type page test (off farm)', () => {
   })
 
   it('Should choose an option and check its maintained', async () => {
-    await originTypePage.selectApprovedFinishingUnitAndContinue(
+    await originTypePage.selectApprovedFinishingAndContinue(
       parishHoldingNumberPage
     )
     await parishHoldingNumberPage.verifyPageHeadingAndTitle()
@@ -99,11 +97,11 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should navigate to on farm cph page if coming from tb restricted farm', async () => {
-    await originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
+    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   })
 
   it('Should navigate to on farm cph page if coming from afu', async () => {
-    await originTypePage.selectApprovedFinishingUnitAndContinue(onFarmCPHPage)
+    await originTypePage.selectApprovedFinishingAndContinue(onFarmCPHPage)
   })
 
   it('Should navigate to on farm cph page if coming from zoo', async () => {

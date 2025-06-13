@@ -18,7 +18,7 @@ export const enableIdentification = async ({ originZoo, destinationZoo }) => {
   await taskListPage.selectMovementOrigin(toFromFarmPage)
   await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
   if (!originZoo) {
-    await originTypePage.selectTBRestrictedFarmAndContinue(onFarmCPHPage)
+    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   } else {
     await originTypePage.selectZooAndContinue(onFarmCPHPage)
   }

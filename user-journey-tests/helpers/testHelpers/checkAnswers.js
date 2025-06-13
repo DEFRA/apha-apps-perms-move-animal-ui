@@ -67,7 +67,7 @@ export const validateOriginType = async (
   await selectElement(changeLink)
 
   await expect(originTypePage['tb-restricted-farmRadio']).toBeSelected()
-  await originTypePage.selectApprovedFinishingUnitAndContinue(nextPage)
+  await originTypePage.selectApprovedFinishingAndContinue(nextPage)
 
   await validateElementVisibleAndText(
     valueElement,
