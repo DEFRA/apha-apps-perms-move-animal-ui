@@ -31,7 +31,7 @@ export class AnswerModel {
     return {
       type: this.type,
       value: this.toState(),
-      displayText: this.html
+      displayText: this.html.replace(/<br \/>/g, '\n')
     }
   }
 
