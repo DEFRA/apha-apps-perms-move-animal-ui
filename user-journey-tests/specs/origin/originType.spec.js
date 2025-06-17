@@ -114,7 +114,9 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should navigate to on farm cph page if coming from other origin', async () => {
-    await originTypePage.selectAnotherTypeOfPremisesAndContinue(originTypeOtherPage)
+    await originTypePage.selectAnotherTypeOfPremisesAndContinue(
+      originTypeOtherPage
+    )
   })
 
   it('Should verify country page if coming from import', async () => {

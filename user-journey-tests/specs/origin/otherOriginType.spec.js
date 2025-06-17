@@ -25,6 +25,9 @@ describe('Origin type other page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await originTypeOtherPage.inputTextAndContinue('Other origin type', onFarmCPHPage)
+    await originTypeOtherPage.inputTextAndContinue(
+      'Other origin type',
+      onFarmCPHPage
+    )
   })
 })
