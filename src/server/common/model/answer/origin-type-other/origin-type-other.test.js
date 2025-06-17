@@ -10,7 +10,7 @@ const payload = {
 }
 
 describe('OriginTypeOther', () => {
-  it('should be a text area', () => {
+  it('should be a text answer', () => {
     expect(new OriginTypeOtherAnswer(payload)).toBeInstanceOf(TextAnswer)
   })
 
