@@ -13,6 +13,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import originTypeOtherPage from '../../page-objects/origin/originTypeOtherPage.js'
 
 describe('origin type page test (off farm)', () => {
   // eslint-disable-next-line no-undef
@@ -59,7 +60,7 @@ describe('origin type page test (off farm)', () => {
 
   it('Should navigate to on farm cph page if moving off from other origin', async () => {
     await originTypePage.selectAnotherTypeOfPremisesAndContinue(
-      parishHoldingNumberPage
+      originTypeOtherPage
     )
   })
 
@@ -113,7 +114,7 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should navigate to on farm cph page if coming from other origin', async () => {
-    await originTypePage.selectAnotherTypeOfPremisesAndContinue(onFarmCPHPage)
+    await originTypePage.selectAnotherTypeOfPremisesAndContinue(originTypeOtherPage)
   })
 
   it('Should verify country page if coming from import', async () => {
