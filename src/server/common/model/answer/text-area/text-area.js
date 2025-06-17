@@ -74,10 +74,6 @@ export class TextAreaAnswer extends AnswerModel {
     throw new NotImplementedError()
   }
 
-  static Factory(config) {
-    return new this(config)
-  }
-
   /**
    * @returns {string | undefined}
    */
