@@ -6,6 +6,7 @@ import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
+import { originTypeOtherPage } from '../origin-type-other/index.js'
 
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
 
@@ -57,13 +58,9 @@ describe('#OriginPage.nextPage', () => {
   describe('Off the farm', () => {
     const context = { origin: { onOffFarm: 'off' } }
 
-    const cphOriginTypes = [
-      'tb-restricted-farm',
-      'afu',
-      'zoo',
-      'lab',
-      'other'
-    ].map((v) => [v])
+    const cphOriginTypes = ['tb-restricted-farm', 'afu', 'zoo', 'lab'].map(
+      (v) => [v]
+    )
 
     it.each(cphOriginTypes)(
       `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
@@ -107,13 +104,9 @@ describe('#OriginPage.nextPage', () => {
       }
     )
 
-    const cphOriginTypes = [
-      'tb-restricted-farm',
-      'afu',
-      'zoo',
-      'lab',
-      'other'
-    ].map((v) => [v])
+    const cphOriginTypes = ['tb-restricted-farm', 'afu', 'zoo', 'lab'].map(
+      (v) => [v]
+    )
 
     it.each(cphOriginTypes)(
       `should return originFarmCphPage for ${cphOriginTypes.join(', ')}`,
@@ -126,6 +119,12 @@ describe('#OriginPage.nextPage', () => {
         expect(nextPage).toBe(originFarmCphPage)
       }
     )
+
+    it('should redirect to the new page if other is selected', () => {
+      const answer = new OriginTypeAnswer({ originType: 'other' }, context)
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(originTypeOtherPage)
+    })
 
     it('nextPage should return origin country when moving on from an import', () => {
       const answer = new OriginTypeAnswer(

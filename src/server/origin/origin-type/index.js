@@ -6,6 +6,7 @@ import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
+import { originTypeOtherPage } from '../origin-type-other/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
@@ -26,21 +27,21 @@ export class OriginTypePage extends QuestionPage {
   nextPage(answer, context) {
     const isOnFarm = context.origin?.onOffFarm === 'on'
 
-    if (isOnFarm) {
-      if (answer.value === 'after-import-location') {
-        return countryPage
-      }
-      if (['market', 'unrestricted-farm'].includes(answer.value)) {
+    switch (true) {
+      case isOnFarm && answer.value === 'market':
+      case isOnFarm && answer.value === 'unrestricted-farm':
         return fiftyPercentWarningPage
-      }
-      return originFarmCphPage
+      case isOnFarm && answer.value === 'after-import-location':
+        return countryPage
+      case !isOnFarm && answer.value === 'unrestricted-farm':
+        return originContactTbRestrictedFarmPage
+      case answer.value === 'other':
+        return originTypeOtherPage
+      case isOnFarm:
+        return originFarmCphPage
+      default:
+        return cphNumberPage
     }
-
-    if (answer.value === 'unrestricted-farm') {
-      return originContactTbRestrictedFarmPage
-    }
-
-    return cphNumberPage
   }
 
   /** @param {AnswerErrors} errors */
