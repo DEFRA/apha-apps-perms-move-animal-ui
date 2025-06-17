@@ -37,13 +37,6 @@ describe('OriginTypeOther', () => {
     )
   })
 
-  it('should return "None" when additionalInfo is an empty string', () => {
-    const answer = new OriginTypeOtherAnswer({
-      originTypeOther: ''
-    })
-    expect(answer.emailHtml).toBe('None')
-  })
-
   it('should return the HTML when additionalInfo is not empty', () => {
     const answer = new OriginTypeOtherAnswer({
       originTypeOther: 'Some info'

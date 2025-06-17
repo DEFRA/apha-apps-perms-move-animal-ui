@@ -38,15 +38,12 @@ export class OriginTypePage extends QuestionPage {
    * Function to handle logic that only looks at one condition
    */
   _handleAnswerOnly(answer, isOnFarm) {
-    switch (answer.value) {
-      case 'other':
-        return originTypeOtherPage
-      default:
-        if (isOnFarm) {
-          return originFarmCphPage
-        }
-
-        return cphNumberPage
+    if (answer.value === 'other') {
+      return originTypeOtherPage
+    } else if (isOnFarm) {
+      return originFarmCphPage
+    } else {
+      return cphNumberPage
     }
   }
 
@@ -55,11 +52,10 @@ export class OriginTypePage extends QuestionPage {
    * plus another condition (eg answer value)
    */
   _handleOffFarmChange(answer) {
-    switch (answer.value) {
-      case 'unrestricted-farm':
-        return originContactTbRestrictedFarmPage
-      default:
-        return this._handleAnswerOnly(answer, false)
+    if (answer.value === 'unrestricted-farm') {
+      return originContactTbRestrictedFarmPage
+    } else {
+      return this._handleAnswerOnly(answer, false)
     }
   }
 
@@ -68,14 +64,12 @@ export class OriginTypePage extends QuestionPage {
    * plus another condition (eg answer value)
    */
   _handleOnFarmChange(answer) {
-    switch (answer.value) {
-      case 'market':
-      case 'unrestricted-farm':
-        return fiftyPercentWarningPage
-      case 'after-import-location':
-        return countryPage
-      default:
-        return this._handleAnswerOnly(answer, true)
+    if (answer.value === 'market' || answer.value === 'unrestricted-farm') {
+      return fiftyPercentWarningPage
+    } else if (answer.value === 'after-import-location') {
+      return countryPage
+    } else {
+      return this._handleAnswerOnly(answer, true)
     }
   }
 

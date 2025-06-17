@@ -27,10 +27,6 @@ export class OriginTypeOtherAnswer extends TextAnswer {
   }
 
   get emailHtml() {
-    const data = this._data?.[this.config.payloadKey]
-    if (data.length === 0) {
-      return 'None'
-    }
     return escapeMarkdown(this.html)
   }
 }
