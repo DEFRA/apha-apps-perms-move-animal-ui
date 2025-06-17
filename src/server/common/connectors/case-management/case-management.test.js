@@ -1,3 +1,4 @@
+import { statusCodes } from '../../constants/status-codes.js'
 import { ApplicationModel } from '../../model/application/application.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { submitApplication } from './case-management.js'
@@ -16,10 +17,14 @@ describe('CaseManagement.submitApplication', () => {
   afterAll(jest.resetAllMocks)
 
   it('should send an application to the case management backend', async () => {
-    const expectedResponse = { message: 'TB-1234-ABCD' }
+    const expectedResponse = {
+      message: 'TB-1234-ABCD'
+    }
+
     wreckMock.mockResolvedValue(
       /** @type {any} */ ({
-        payload: JSON.stringify(expectedResponse)
+        payload: JSON.stringify(expectedResponse),
+        res: { statusCode: statusCodes.ok }
       })
     )
 
@@ -30,14 +35,9 @@ describe('CaseManagement.submitApplication', () => {
       timeout
     })
 
-    expect(response).toStrictEqual(expectedResponse)
-  })
-
-  it('should throw an error if Wreck errors', async () => {
-    wreckMock.mockRejectedValue(new Error('any error'))
-    const application = ApplicationModel.fromState(validApplicationState)
-    await expect(submitApplication(application)).rejects.toThrow(
-      'Failed to send application to case management API: any error'
-    )
+    expect(response).toStrictEqual({
+      payload: expectedResponse,
+      statusCode: 200
+    })
   })
 })

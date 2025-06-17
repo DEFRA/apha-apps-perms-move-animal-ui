@@ -779,6 +779,65 @@ describe('#CheckAnswers', () => {
   })
 
   describe('when sendToCaseManagement feature flag is enabled', () => {
+    it('should return a 500 error if submit fails for any other reason', async () => {
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 400
+        }),
+        payload: JSON.stringify({
+          message: 'An error occured'
+        })
+      })
+
+      const { statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri + '?case-management-api=true',
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.serverError)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    })
+
+    it('should redirect to the sizze error page if the file is too large', async () => {
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 413
+        }),
+        payload: JSON.stringify({
+          message: 'File too large'
+        })
+      })
+
+      const { headers, statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri + '?case-management-api=true',
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(sizeErrorPage.urlPath)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    })
+
     it('should send the application to case management when feature flag is disabled but query string present', async () => {
       const dummyReferenceNumber = '12-1234-1234'
       spyOnConfig('featureFlags', {
