@@ -49,7 +49,9 @@ exports[`Application.applicationData should render application data in the datas
         },
         {
           "answer": {
-            "displayText": "Starfleet Headquarters<br />San Francisco<br />RG24 8RR",
+            "displayText": "Starfleet Headquarters
+San Francisco
+RG24 8RR",
             "type": "address",
             "value": {
               "addressLine1": "Starfleet Headquarters",
