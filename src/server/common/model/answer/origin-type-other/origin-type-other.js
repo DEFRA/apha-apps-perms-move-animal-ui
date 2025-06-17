@@ -1,4 +1,3 @@
-import { escapeMarkdown } from '../../../helpers/escape-text.js'
 import { TextAnswer } from '../text/text.js'
 
 /** @import {TextConfig} from '../text/text.js' */
@@ -24,9 +23,5 @@ export class OriginTypeOtherAnswer extends TextAnswer {
         message: 'Your answer must be no longer than 5000 characters'
       }
     }
-  }
-
-  get emailHtml() {
-    return escapeMarkdown(this.html)
   }
 }

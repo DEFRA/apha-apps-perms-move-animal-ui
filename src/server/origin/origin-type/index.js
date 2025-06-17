@@ -28,49 +28,43 @@ export class OriginTypePage extends QuestionPage {
     const isOnFarm = context.origin?.onOffFarm === 'on'
 
     if (isOnFarm) {
-      return this._handleOnFarmChange(answer)
+      return this._onFarmNextPage(answer)
     } else {
-      return this._handleOffFarmChange(answer)
+      return this._offFarmNextPage(answer)
     }
   }
 
   /**
-   * Function to handle logic that only looks at one condition
+   * @param {OriginTypeAnswer} answer
    */
-  _handleAnswerOnly(answer, isOnFarm) {
-    if (answer.value === 'other') {
-      return originTypeOtherPage
-    } else if (isOnFarm) {
-      return originFarmCphPage
-    } else {
-      return cphNumberPage
-    }
-  }
-
-  /**
-   * Function to handle logic for when the animals are moving off the farm
-   * plus another condition (eg answer value)
-   */
-  _handleOffFarmChange(answer) {
+  _offFarmNextPage(answer) {
     if (answer.value === 'unrestricted-farm') {
       return originContactTbRestrictedFarmPage
-    } else {
-      return this._handleAnswerOnly(answer, false)
     }
+
+    if (answer.value === 'other') {
+      return originTypeOtherPage
+    }
+
+    return cphNumberPage
   }
 
   /**
-   * Function to handle logic for when the animals are moving on to the farm
-   * plus another condition (eg answer value)
+   * @param {OriginTypeAnswer} answer
    */
-  _handleOnFarmChange(answer) {
+  _onFarmNextPage(answer) {
     if (answer.value === 'market' || answer.value === 'unrestricted-farm') {
       return fiftyPercentWarningPage
-    } else if (answer.value === 'after-import-location') {
-      return countryPage
-    } else {
-      return this._handleAnswerOnly(answer, true)
     }
+
+    if (answer.value === 'after-import-location') {
+      return countryPage
+    }
+
+    if (answer.value === 'other') {
+      return originTypeOtherPage
+    }
+    return originFarmCphPage
   }
 
   /** @param {AnswerErrors} errors */
