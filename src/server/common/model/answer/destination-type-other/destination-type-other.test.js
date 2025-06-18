@@ -9,7 +9,7 @@ const payload = {
   destinationTypeOther: 'other origin type'
 }
 
-describe('OriginTypeOther', () => {
+describe('DestinationTypeOther', () => {
   it('should be a text answer', () => {
     expect(new DestinationTypeOtherAnswer(payload)).toBeInstanceOf(TextAnswer)
   })
@@ -39,14 +39,14 @@ describe('OriginTypeOther', () => {
     )
   })
 
-  it('should return the HTML when additionalInfo is not empty', () => {
+  it('should return the HTML when destinationTypeOther is not empty', () => {
     const answer = new DestinationTypeOtherAnswer({
       destinationTypeOther: 'Some info'
     })
     expect(answer.emailHtml).toBe('Some info')
   })
 
-  it('should return escaped HTML when additionalInfo is not empty', () => {
+  it('should return escaped HTML when destinationTypeOther is not empty', () => {
     const answer = new DestinationTypeOtherAnswer({
       destinationTypeOther: '[evil-link](example.com)'
     })

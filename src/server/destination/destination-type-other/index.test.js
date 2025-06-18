@@ -10,7 +10,7 @@ const questionKey = 'destinationTypeOther'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/type-of-origin-other'
 
-describe('OriginTypeOtherPage', () => {
+describe('DestinationTypeOtherPage', () => {
   const page = new DestinationTypeOtherPage()
 
   it('should have the correct urlPath', () => {
@@ -47,7 +47,7 @@ describe('OriginTypeOtherPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'RestockAdditionalInfoPage.content',
+    describes: 'DestinationTypeOtherPage.content',
     it: 'should render expected response and content',
     pageUrl
   })
