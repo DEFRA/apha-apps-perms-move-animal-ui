@@ -13,6 +13,7 @@ import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
 import Wreck from '@hapi/wreck'
+import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
 
 /**
@@ -809,13 +810,10 @@ describe('#CheckAnswers', () => {
     })
 
     it('should redirect to the sizze error page if the file is too large', async () => {
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 413
-        }),
-        payload: JSON.stringify({
-          message: 'File too large'
-        })
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation(() => {
+        const error = Boom.badRequest('Dummy error')
+        error.output.statusCode = statusCodes.fileTooLarge
+        throw error
       })
 
       const { headers, statusCode } = await server.inject(

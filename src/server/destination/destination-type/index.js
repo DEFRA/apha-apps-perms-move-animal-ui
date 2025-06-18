@@ -6,6 +6,7 @@ import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
+import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
@@ -35,14 +36,26 @@ export class DestinationTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
     if (context.origin?.onOffFarm === 'on') {
-      return destinationFarmCphPage
+      return this._onFarmNextPage(answer)
     } else {
-      if (answer.value === 'iso-unit') {
-        return isolationUnitExitPage
-      }
-
-      return offFarmNextPageMapping[answer.value]
+      return this._offFarmNextPage(answer)
     }
+  }
+
+  _onFarmNextPage(answer) {
+    if (answer.value === 'other') {
+      return destinationTypeOtherPage
+    }
+
+    return destinationFarmCphPage
+  }
+
+  _offFarmNextPage(answer) {
+    if (answer.value === 'iso-unit') {
+      return isolationUnitExitPage
+    }
+
+    return offFarmNextPageMapping[answer.value]
   }
 
   /** @param {AnswerErrors} errors */

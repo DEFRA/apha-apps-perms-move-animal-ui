@@ -6,6 +6,7 @@ import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
+import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 
 /**
  * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
@@ -124,7 +125,13 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmCphPage)
     })
 
-    it.each(['tb-restricted-farm', 'zoo', 'lab', 'other'])(
+    it('should go to the correct page if other is selected', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'other' })
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationTypeOtherPage)
+    })
+
+    it.each(['tb-restricted-farm', 'zoo', 'lab'])(
       'should return destination-farm-cph even for restricted -> restricted',
       (destinationType) => {
         const context = {
