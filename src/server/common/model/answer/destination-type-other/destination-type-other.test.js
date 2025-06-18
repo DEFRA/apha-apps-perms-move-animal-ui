@@ -6,7 +6,7 @@ const maxLength = 5000
 
 /** @type {DestinationTypeOtherPayload} */
 const payload = {
-  destinationTypeOther: 'other origin type'
+  destinationTypeOther: 'other destination type'
 }
 
 describe('DestinationTypeOther', () => {
