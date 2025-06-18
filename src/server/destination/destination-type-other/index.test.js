@@ -8,7 +8,7 @@ const question =
   'What type of premises with TB restrictions are the animals moving off?'
 const questionKey = 'destinationTypeOther'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/destination/type-of-origin-other'
+const pageUrl = '/destination/type-of-destination-other'
 
 describe('DestinationTypeOtherPage', () => {
   const page = new DestinationTypeOtherPage()
