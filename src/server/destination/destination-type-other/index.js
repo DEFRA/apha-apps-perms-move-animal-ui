@@ -4,7 +4,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 
 export class DestinationTypeOtherPage extends QuestionPage {
-  urlPath = '/destination/type-of-origin-other'
+  urlPath = '/destination/type-of-destination-other'
   sectionKey = 'destination'
   questionKey = 'destinationTypeOther'
   question =
