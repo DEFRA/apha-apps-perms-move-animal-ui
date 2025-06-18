@@ -101,14 +101,11 @@ export class SubmitPageController extends QuestionPageController {
 
     const application = ApplicationModel.fromState(applicationState)
 
-    let uploadResponse
-
     try {
-      uploadResponse = await submitApplication(application)
       const {
         payload: { message },
         statusCode
-      } = uploadResponse
+      } = await submitApplication(application)
 
       if (statusCode !== statusCodes.ok) {
         throw new Error(
