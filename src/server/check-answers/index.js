@@ -107,23 +107,22 @@ export class SubmitPageController extends QuestionPageController {
         statusCode
       } = await submitApplication(application)
 
-      switch (statusCode) {
-        case statusCodes.ok:
-          break
-        case statusCodes.fileTooLarge:
-          return h.redirect(sizeErrorPage.urlPath)
-        default:
-          throw new Error(
-            `Unhandled status code from case management API: ${statusCode}`
-          )
+      if (statusCode !== statusCodes.ok) {
+        throw new Error(
+          `Unhandled status code from case management API: ${statusCode}`
+        )
       }
 
       req.yar.set('applicationReference', message)
       return super.handlePost(req, h)
     } catch (err) {
-      throw new Error(
-        `Failed to send application to case management API: ${err.message}`
-      )
+      if (err.output.statusCode === statusCodes.fileTooLarge) {
+        return h.redirect(sizeErrorPage.urlPath)
+      } else {
+        throw new Error(
+          `Failed to send application to case management API: ${err.message}`
+        )
+      }
     }
   }
 

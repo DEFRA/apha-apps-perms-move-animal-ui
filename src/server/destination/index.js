@@ -13,6 +13,7 @@ import { isolationUnitExit } from './isolation-unit-exit-page/index.js'
 import { restockReason } from './restock-reason/index.js'
 import { restockAnimal } from './restock-animals/index.js'
 import { restockAdditionalInfo } from './restock-additional-info/index.js'
+import { destinationTypeOther } from './destination-type-other/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -22,6 +23,7 @@ export const destination = {
     name: 'destination',
     async register(server) {
       await server.register([
+        destinationTypeOther,
         destinationType,
         generalLicence,
         destinationSummary,
