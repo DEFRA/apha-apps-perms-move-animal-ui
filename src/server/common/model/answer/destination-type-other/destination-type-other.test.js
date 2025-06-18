@@ -6,10 +6,10 @@ const maxLength = 5000
 
 /** @type {DestinationTypeOtherPayload} */
 const payload = {
-  destinationTypeOther: 'other origin type'
+  destinationTypeOther: 'other destination type'
 }
 
-describe('OriginTypeOther', () => {
+describe('DestinationTypeOther', () => {
   it('should be a text answer', () => {
     expect(new DestinationTypeOtherAnswer(payload)).toBeInstanceOf(TextAnswer)
   })
