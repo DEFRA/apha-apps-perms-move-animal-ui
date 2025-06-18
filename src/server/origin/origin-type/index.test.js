@@ -75,6 +75,12 @@ describe('#OriginPage.nextPage', () => {
       }
     )
 
+    it('should redirect to the relevant page if other is chosen', () => {
+      const answer = new OriginTypeAnswer({ originType: 'other' }, context)
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(originTypeOtherPage)
+    })
+
     it('should return contact tb restricted farm when answer is "unrestricted-farm"', () => {
       const answer = new OriginTypeAnswer(
         { originType: 'unrestricted-farm' },
