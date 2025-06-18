@@ -10,6 +10,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import serviceUnavailablePage from '../../page-objects/destination/serviceUnavailablePage.js'
+import otherDestinationTypePage from '../../page-objects/destination/otherDestinationTypePage.js'
 
 describe('Destination selection options test', () => {
   // eslint-disable-next-line no-undef
@@ -26,6 +27,14 @@ describe('Destination selection options test', () => {
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await verifyRadioButtonNumber(5)
     await destinationSelectionPage.selectZooAndContinue(destinationCPHPage)
+  })
+
+  it('Should verify other selection when On the farm and AFU IS NOT option selected', async () => {
+    await destinationVariants(true, false)
+    await destinationSelectionPage.navigateToPageAndVerifyTitle()
+    await destinationSelectionPage.selectOtherDestinationAndContinue(
+      otherDestinationTypePage
+    )
   })
 
   it('Should verify options when On the farm and AFU IS selected', async () => {

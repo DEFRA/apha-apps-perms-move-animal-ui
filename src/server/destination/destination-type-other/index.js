@@ -8,7 +8,7 @@ export class DestinationTypeOtherPage extends QuestionPage {
   sectionKey = 'destination'
   questionKey = 'destinationTypeOther'
   question =
-    'What type of premises with TB restrictions are the animals moving off?'
+    'What type of premises with TB restrictions are the animals going to?'
 
   Answer = DestinationTypeOtherAnswer
 
