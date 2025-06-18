@@ -5,6 +5,7 @@ import { nunjucksConfig } from '~/src/config/nunjucks/nunjucks.js'
 import { router } from './router.js'
 import { requestLogger } from '~/src/server/common/helpers/logging/request-logger.js'
 import { catchAll } from '~/src/server/common/helpers/errors.js'
+import { allRequests } from '~/src/server/common/helpers/headers/index.js'
 import { secureContext } from '~/src/server/common/helpers/secure-context/index.js'
 import { sessionCache } from '~/src/server/common/helpers/session-cache/session-cache.js'
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
@@ -63,6 +64,7 @@ export async function createServer() {
   server.ext('onRequest', addUUIDToRequest)
   server.ext('onPreResponse', disableClientCache)
   server.ext('onPreResponse', catchAll)
+  server.ext('onPreResponse', allRequests)
   server.ext('onPreResponse', addSecurityHeaders)
 
   return server
