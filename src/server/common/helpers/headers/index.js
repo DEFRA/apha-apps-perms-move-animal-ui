@@ -41,7 +41,8 @@ export const features = [
   'xr-spatial-tracking'
 ]
 
-const headers = {
+export const headers = {
+  'Cross-Origin-Resource-Policy': 'same-origin',
   'Cross-Origin-Embedder-Policy': 'require-corp',
   'Permissions-Policy': features.map((feature) => `${feature}=()`).join(',')
 }
