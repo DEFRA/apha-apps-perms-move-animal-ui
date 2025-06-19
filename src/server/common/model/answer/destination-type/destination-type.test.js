@@ -69,14 +69,9 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'off', originType: 'iso-unit' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(5)
+    expect(Object.keys(config.options)).toHaveLength(2)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
     expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options['tb-restricted-farm'].label).toBe(
-      tbRestrictedFarmLabel
-    )
-    expect(config.options.other.label).toBe(otherLabel)
-    expect(config.options['dedicated-sale'].label).toBe(dedicatedSaleLabel)
   })
 
   it('should have the expected options to select from for on the farm movements', () => {

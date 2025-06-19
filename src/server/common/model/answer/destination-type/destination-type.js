@@ -45,10 +45,7 @@ const offFarmOptions = (app) => {
   if (isOriginIsoUnit(app)) {
     return {
       slaughter: slaughterOption,
-      'dedicated-sale': dedicatedSaleOption,
-      afu: afuOption,
-      'tb-restricted-farm': tbRestrictedOption,
-      other: otherOption
+      afu: afuOption
     }
   }
 
