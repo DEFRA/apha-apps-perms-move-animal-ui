@@ -88,7 +88,7 @@ export const completeOriginTaskAnswersCustom = async (
   await completeOriginTask({ cphNumber, lineOne, townOrCity, postcode })
 }
 
-export const destinationVariants = async (onFarm, afu) => {
+export const destinationVariants = async (onFarm, afu, isoUnit = false) => {
   const finalPage = onFarm ? fiftyPercentWarningPage : checkAnswersPage
   const addressPageType = onFarm ? onFarmAddressPage : newAddressPage
 
@@ -105,6 +105,8 @@ export const destinationVariants = async (onFarm, afu) => {
       await originTypePage.selectApprovedFinishingAndContinue(
         parishHoldingNumberPage
       )
+    else if (isoUnit)
+      await originTypePage.selectIsoUnitAndContinue(parishHoldingNumberPage)
     else await originTypePage.selectTbRestrictedFarm(parishHoldingNumberPage)
   }
 

@@ -72,4 +72,13 @@ describe('Destination selection options test', () => {
       generalLicencePage
     )
   })
+
+  it('Should verify iso unit selection when Off the farm generates 2 options', async () => {
+    await destinationVariants(false, false, true)
+    await destinationSelectionPage.navigateToPageAndVerifyTitle()
+    await verifyRadioButtonNumber(2)
+    await destinationSelectionPage.selectSlaughterRadioAndContinue(
+      generalLicencePage
+    )
+  })
 })
