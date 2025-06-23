@@ -11,6 +11,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Destination selection test', () => {
   // eslint-disable-next-line no-undef
@@ -38,10 +39,10 @@ describe('Destination selection test', () => {
 
   it('Should choose an option and check its maintained', async () => {
     await destinationSelectionPage.selectDedicatedSaleAndContinue(
-      destinationAnswersPage
+      additionalInfoPage
     )
     await verifySelectionPersistence(
-      destinationAnswersPage,
+      additionalInfoPage,
       destinationSelectionPage,
       destinationSelectionPage.dedicatedSaleRadio
     )
@@ -49,7 +50,7 @@ describe('Destination selection test', () => {
 
   it('Should choose approved finishing and continue', async () => {
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
-      destinationAnswersPage
+      additionalInfoPage
     )
   })
 

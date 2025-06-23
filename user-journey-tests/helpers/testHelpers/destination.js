@@ -1,5 +1,4 @@
 import taskListPage from '../../page-objects/taskListPage.js'
-
 import { selectElement, waitForPagePath } from '../page.js'
 import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
@@ -14,6 +13,11 @@ import animalTypePage from '../../page-objects/destination/animalTypePage.js'
 import restockingReasonPage from '../../page-objects/destination/restockingReasonPage.js'
 import otherRestockingReasonPage from '../../page-objects/destination/otherRestockingReasonPage.js'
 
+const passAdditionalInfo = async () => {
+  await additionalInfoPage.selectContinue()
+  await waitForPagePath(destinationAnswersPage.pagePath)
+}
+
 // Helper function to complete the origin task
 const completeDestinationTask = async (radioType) => {
   await navigateToTaskList()
@@ -24,19 +28,22 @@ const completeDestinationTask = async (radioType) => {
         generalLicencePage
       )
       await selectElement(generalLicencePage.continueLink)
-      await waitForPagePath(destinationAnswersPage.pagePath)
+      await waitForPagePath(additionalInfoPage.pagePath)
+      await passAdditionalInfo()
       break
 
     case 'dedicated':
       await destinationSelectionPage.selectDedicatedSaleAndContinue(
-        destinationAnswersPage
+        additionalInfoPage
       )
+      await passAdditionalInfo()
       break
 
     case 'approved':
       await destinationSelectionPage.selectApprovedFinishingAndContinue(
-        destinationAnswersPage
+        additionalInfoPage
       )
+      await passAdditionalInfo()
       break
 
     default:
