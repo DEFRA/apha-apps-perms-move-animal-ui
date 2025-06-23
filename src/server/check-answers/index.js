@@ -100,7 +100,6 @@ export class SubmitPageController extends QuestionPageController {
     const applicationState = state.toState()
 
     const application = ApplicationModel.fromState(applicationState)
-
     try {
       const {
         payload: { message },
