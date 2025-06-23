@@ -15,6 +15,7 @@ const offFarmNextPageMapping = {
   'tb-restricted-farm': contactTbRestrictedFarmPage,
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': destinationSummaryPage,
+  'iso-unit': isolationUnitExitPage,
   afu: destinationSummaryPage,
   zoo: contactTbRestrictedFarmPage,
   lab: contactTbRestrictedFarmPage,
@@ -51,10 +52,6 @@ export class DestinationTypePage extends QuestionPage {
   }
 
   _offFarmNextPage(answer) {
-    if (answer.value === 'iso-unit') {
-      return isolationUnitExitPage
-    }
-
     return offFarmNextPageMapping[answer.value]
   }
 
