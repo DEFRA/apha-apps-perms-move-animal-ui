@@ -1,12 +1,12 @@
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { destinationSummaryPage } from '../summary/index.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../common/model/state/state-manager.js' */
@@ -14,9 +14,9 @@ import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 const offFarmNextPageMapping = {
   'tb-restricted-farm': contactTbRestrictedFarmPage,
   slaughter: destinationGeneralLicencePage,
-  'dedicated-sale': destinationSummaryPage,
+  'dedicated-sale': additionalInfoPage,
   'iso-unit': isolationUnitExitPage,
-  afu: destinationSummaryPage,
+  afu: additionalInfoPage,
   zoo: contactTbRestrictedFarmPage,
   lab: contactTbRestrictedFarmPage,
   other: contactTbRestrictedFarmPage

@@ -1,7 +1,7 @@
 import { Page } from '../../common/model/page/page-model.js'
 import { PageController } from '../../common/controller/page-controller/page-controller.js'
-import { DestinationSummaryPage } from '../summary/index.js'
 import { calculateNextPage } from '../../common/helpers/next-page.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -19,7 +19,7 @@ export class DestinationGeneralLicencePage extends Page {
   overrideRedirects = true
 
   nextPage() {
-    return new DestinationSummaryPage()
+    return additionalInfoPage
   }
 
   viewProps(req) {

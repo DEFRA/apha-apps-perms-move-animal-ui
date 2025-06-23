@@ -23,7 +23,7 @@ exports[`DestinationGeneralLicenceController should render the expected content 
         </p>
 
         <p>
-          <a href="/destination/check-answers">Continue</a>
+          <a href="/destination/any-additional-info">Continue</a>
         </p>
       </div>
     </div>
