@@ -25,7 +25,6 @@ describe('Check your answers test - destination', () => {
   beforeEach('Restore session and navigate to page', async () => {
     await restoreSession()
     await completeOriginTaskAnswers()
-    // await landingPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify slaughter answer and change link', async () => {
