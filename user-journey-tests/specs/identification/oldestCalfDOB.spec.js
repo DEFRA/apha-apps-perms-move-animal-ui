@@ -100,7 +100,7 @@ describe('Date Input Page Validation (single error shown)', () => {
 
   it('shows future date error when date is tomorrow', async () => {
     const tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate() + 1)
+    await tomorrow.setDate(tomorrow.getDate() + 1)
 
     await oldestCalfDobPage.dateErrorTest(
       formatDateObject(tomorrow),
