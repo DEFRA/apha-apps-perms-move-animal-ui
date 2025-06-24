@@ -4,6 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { ExoticStateManager } from '../../state-manager.js'
+import { exoticWhatAreYouMovingAdditionalPage } from '../what-are-you-moving-additional/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -36,8 +37,15 @@ export class ExoticWhatAreYouMoving extends QuestionPage {
 
   Answer = WhatAreYouMovingAnswer
 
-  /** @returns {Page} */
-  nextPage() {
+  /**
+   * @param {WhatAreYouMovingAnswer} answer
+   * @returns {Page}
+   */
+  nextPage(answer) {
+    if (answer.value !== 'animals') {
+      return exoticWhatAreYouMovingAdditionalPage
+    }
+
     throw new NotImplementedError()
   }
 }
