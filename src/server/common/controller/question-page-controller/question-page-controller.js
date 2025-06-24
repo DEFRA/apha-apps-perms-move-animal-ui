@@ -13,10 +13,12 @@ import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 export class QuestionPageController extends GenericPageController {
   /**
    * @param {QuestionPage} page
+   * @param {typeof StateManager | undefined} StateManagerImplementation
    */
-  constructor(page) {
+  constructor(page, StateManagerImplementation) {
     super(page)
     this.page = page
+    this.StateManager = StateManagerImplementation ?? StateManager
     this.errorKey = `errors:${this.page.sectionKey}:${this.page.questionKey}`
   }
 

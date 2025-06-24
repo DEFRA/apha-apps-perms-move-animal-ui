@@ -4,6 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { exoticWhatAreYouMovingPage } from '../what-are-you-moving/index.js'
+import { ExoticStateManager } from '../../state-manager.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -51,5 +52,5 @@ export const exoticTypeOfMovementPage = new ExoticTypeOfMovement()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const exoticTypeOfMovement = new QuestionPageController(exoticTypeOfMovementPage).plugin()
+export const exoticTypeOfMovement = new QuestionPageController(exoticTypeOfMovementPage, ExoticStateManager).plugin()
 
