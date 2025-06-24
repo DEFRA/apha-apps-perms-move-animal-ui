@@ -14,21 +14,14 @@ import { HiddenAnswer } from '../answer/hidden/hidden.js'
  * @typedef { { [key: string]: SectionModel; } } ApplicationPayload
  */
 
-export class ApplicationModel {
+export class ApplicationModelAbstract {
   /** @type {ApplicationPayload} */
   _data
 
   // This is a list of all the sections that are implemented in the application.
   // The order in this array drives the order in which the sections are displayed.
   /** @type {typeof SectionModel[]} */
-  static implementedSections = [
-    OriginSection,
-    DestinationSection,
-    LicenceSection,
-    IdentificationSection,
-    BiosecuritySection,
-    BiosecurityPlanSection
-  ]
+  static implementedSections
 
   /**
    * @param {ApplicationPayload} data
@@ -98,4 +91,16 @@ export class ApplicationModel {
       )
     )
   }
+}
+
+export class ApplicationModel extends ApplicationModelAbstract {
+  /** @type {typeof SectionModel[]} */
+  static implementedSections = [
+    OriginSection,
+    DestinationSection,
+    LicenceSection,
+    IdentificationSection,
+    BiosecuritySection,
+    BiosecurityPlanSection
+  ]
 }
