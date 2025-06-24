@@ -2,6 +2,7 @@ import SummaryPage from '../../common/model/page/summary-page/SummaryPageModel.j
 import { SummaryPageController } from '../../common/controller/summary-page-controller/summary-page-controller.js'
 
 import { LicenceSection } from '~/src/server/common/model/section/licence/licence.js'
+import { ExoticStateManager } from '../../exotics/state-manager.js'
 
 export class LicenceSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'
@@ -18,7 +19,8 @@ export const licenceSummaryPage = new LicenceSummaryPage()
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const licenceSummary = new SummaryPageController(
-  new LicenceSummaryPage()
+  new LicenceSummaryPage(),
+  ExoticStateManager
 ).plugin()
 
 /**

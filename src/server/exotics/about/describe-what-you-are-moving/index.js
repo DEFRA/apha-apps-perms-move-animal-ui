@@ -4,6 +4,7 @@ import { NotImplementedError } from '~/src/server/common/helpers/not-implemented
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { ExoticStateManager } from '../../state-manager.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
+import { exoticAboutSummaryPage } from '../check-answers/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -35,7 +36,7 @@ export class ExoticDescribeWhatYouAreMoving extends QuestionPage {
 
   /** @returns {Page} */
   nextPage() {
-    throw new NotImplementedError()
+    return exoticAboutSummaryPage
   }
 }
 

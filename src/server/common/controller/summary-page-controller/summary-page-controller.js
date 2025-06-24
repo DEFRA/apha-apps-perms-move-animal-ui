@@ -18,9 +18,11 @@ export class SummaryPageController extends GenericPageController {
 
   /**
    * @param {SummaryPage} page
+   * @param {typeof StateManager | undefined} StateManagerImplementation?
    */
-  constructor(page) {
+  constructor(page, StateManagerImplementation) {
     super(page)
+    this.StateManager = StateManagerImplementation ?? StateManager
     this.page = page
   }
 
@@ -59,7 +61,7 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handleGet(req, res) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 
     const { isValid, firstInvalidPage } = section.validate()
