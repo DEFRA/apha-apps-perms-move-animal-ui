@@ -3,6 +3,7 @@ import { QuestionPageController } from '../../../common/controller/question-page
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
 import { Page } from '~/src/server/common/model/page/page-model.js'
+import { exoticWhatAreYouMovingPage } from '../what-are-you-moving/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -14,7 +15,7 @@ export class TypeOfMovementAnswer extends RadioButtonAnswer {
     payloadKey: 'typeOfMovement',
     options: {
       on: { label: 'Onto a farm or premises' },
-      off: { label: 'off a farm of premises' },
+      off: { label: 'Off a farm of premises' },
       visit: { label: 'Visit to a farm of premises' }
     },
     errors: {
@@ -26,16 +27,21 @@ export class TypeOfMovementAnswer extends RadioButtonAnswer {
 
 export class ExoticTypeOfMovement extends QuestionPage {
   urlPath = '/exotic/about/type-of-movement'
-  sectionKey = 'origin'
-
+  sectionKey = 'about'
   question = 'Which type of movement does your application relate to?'
-
   questionKey = 'typeOfMovement'
 
   Answer = TypeOfMovementAnswer
 
-  /** @returns {Page} */
-  nextPage() {
+  /**
+   * @param {TypeOfMovementAnswer} answer
+   * @returns {Page}
+   */
+  nextPage(answer) {
+    if (answer.value !== 'visit') {
+      return exoticWhatAreYouMovingPage
+    }
+
     throw new NotImplementedError()
   }
 }

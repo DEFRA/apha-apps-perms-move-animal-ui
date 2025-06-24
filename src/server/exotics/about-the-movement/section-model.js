@@ -1,6 +1,7 @@
 import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { SectionModel } from '../../common/model/section/section-model/section-model.js'
 import { exoticTypeOfMovement } from './type-of-movement/index.js'
+import { exoticWhatAreYouMoving } from './what-are-you-moving/index.js'
 
 /**
  * @import {SectionConfig} from '../../common/model/section/section-model/section-model.js'
@@ -11,7 +12,8 @@ const plugin = {
     name: 'about',
     async register(server) {
       await server.register([
-        exoticTypeOfMovement
+        exoticTypeOfMovement,
+        exoticWhatAreYouMoving
       ])
     }
   }
