@@ -31,7 +31,15 @@ describe('CaseManagement.submitApplication', () => {
     const response = await submitApplication(application)
 
     expect(Wreck.post).toHaveBeenCalledWith(`${baseUrl}/submit`, {
-      payload: application.caseManagementData,
+      payload: {
+        journeyVersion: {
+          major: 1,
+          minor: 0
+        },
+        journeyId:
+          'GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND',
+        ...application.caseManagementData
+      },
       timeout
     })
 

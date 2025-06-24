@@ -16,12 +16,36 @@ exports[`Application.applicationData should render application data in the datas
         },
         {
           "answer": {
-            "displayText": "Market",
+            "displayText": "TB restricted farm",
             "type": "text",
-            "value": "market",
+            "value": "tb-restricted-farm",
           },
-          "question": "What type of premises are the animals moving off?",
+          "question": "Which type of premises are the animals moving off?",
           "questionKey": "originType",
+        },
+        {
+          "answer": {
+            "displayText": "12/345/6789",
+            "type": "text",
+            "value": "12/345/6789",
+          },
+          "question": "What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?",
+          "questionKey": "cphNumber",
+        },
+        {
+          "answer": {
+            "displayText": "Starfleet Headquarters
+San Francisco
+RG24 8RR",
+            "type": "address",
+            "value": {
+              "addressLine1": "Starfleet Headquarters",
+              "addressPostcode": "RG24 8RR",
+              "addressTown": "San Francisco",
+            },
+          },
+          "question": "What is the address of the farm or premises where the animals are moving off?",
+          "questionKey": "address",
         },
       ],
       "sectionKey": "origin",
@@ -68,8 +92,8 @@ RG24 8RR",
             "type": "text",
             "value": "1",
           },
-          "question": "What is the maximum number of animals you are planning to move?",
-          "questionKey": "howManyAnimalsMaximum",
+          "question": "How many animals are you planning to move?",
+          "questionKey": "howManyAnimals",
         },
         {
           "answer": {
@@ -128,6 +152,39 @@ RG24 8RR",
       ],
       "sectionKey": "licence",
       "title": "Receiving the licence",
+    },
+    {
+      "questionAnswers": [
+        {
+          "answer": {
+            "displayText": "No",
+            "type": "text",
+            "value": "no",
+          },
+          "question": "Will you move any calves under 42 days old?",
+          "questionKey": "calvesUnder42DaysOld",
+        },
+        {
+          "answer": {
+            "displayText": "01/01/2025",
+            "type": "text",
+            "value": "01/01/2025",
+          },
+          "question": "What are the dates of the last TB tests for the cattle that are 42 days old or older?",
+          "questionKey": "testingDates",
+        },
+        {
+          "answer": {
+            "displayText": "123456",
+            "type": "text",
+            "value": "123456",
+          },
+          "question": "Enter the ear tag numbers for these animals",
+          "questionKey": "earTags",
+        },
+      ],
+      "sectionKey": "identification",
+      "title": "Animal identification",
     },
     {
       "questionAnswers": [

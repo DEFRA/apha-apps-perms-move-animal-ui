@@ -7,8 +7,6 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  */
 
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
-const isOriginAfu = (app) => app.origin?.originType === 'afu'
-const isOriginIsoUnit = (app) => app.origin?.originType === 'iso-unit'
 
 const tbRestrictedOption = { label: 'TB restricted farm' }
 const afuOption = {
@@ -19,46 +17,60 @@ const otherOption = { label: 'Another destination with TB restrictions' }
 const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
 const slaughterOption = { label: 'Slaughter' }
 
-/** @returns {Record<string, RadioOption>} */
-const onFarmOptions = (app) =>
-  isOriginAfu(app)
-    ? {
-        afu: afuOption
-      }
-    : {
-        'tb-restricted-farm': tbRestrictedOption,
-        afu: afuOption,
-        zoo: { label: 'Zoo with TB restrictions' },
-        lab: { label: 'Laboratory with TB restrictions' },
-        other: otherOption
-      }
+const isTbRestricted = (app) => {
+  const originType = app.origin?.originType
+  return ['tb-restricted-farm', 'other'].includes(originType)
+}
 
 /** @returns {Record<string, RadioOption>} */
-const offFarmOptions = (app) => {
-  if (isOriginAfu(app)) {
+const getDestinationOptions = (app) => {
+  const isOntoFarm = isOnToTheFarm(app)
+  const isOffFarm = !isOntoFarm
+
+  const isOriginTbResticted = isTbRestricted(app)
+
+  if (isOntoFarm && app.origin?.originType !== 'afu') {
+    return {
+      'tb-restricted-farm': tbRestrictedOption,
+      afu: afuOption,
+      other: otherOption
+    }
+  }
+
+  if (isOntoFarm && app.origin?.originType === 'afu') {
+    return {
+      afu: afuOption,
+      other: otherOption
+    }
+  }
+
+  if (isOffFarm && isOriginTbResticted) {
+    return {
+      slaughter: slaughterOption,
+      'dedicated-sale': dedicatedSaleOption,
+      afu: afuOption,
+      'tb-restricted-farm': tbRestrictedOption,
+      'iso-unit': { label: 'TB isolation unit' },
+      other: otherOption
+    }
+  }
+
+  if (isOffFarm && app.origin?.originType === 'iso-unit') {
     return {
       slaughter: slaughterOption,
       afu: afuOption
     }
   }
 
-  if (isOriginIsoUnit(app)) {
+  if (isOffFarm && app.origin?.originType === 'afu') {
     return {
       slaughter: slaughterOption,
-      afu: afuOption
+      afu: afuOption,
+      other: otherOption
     }
   }
 
-  return {
-    'tb-restricted-farm': tbRestrictedOption,
-    slaughter: slaughterOption,
-    'dedicated-sale': dedicatedSaleOption,
-    afu: afuOption,
-    zoo: { label: 'Zoo with TB restrictions' },
-    lab: { label: 'Laboratory with TB restrictions' },
-    'iso-unit': { label: 'TB isolation unit' },
-    other: otherOption
-  }
+  return {}
 }
 
 /** @augments {RadioButtonAnswer<DestinationTypePayload>} */
@@ -66,7 +78,7 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
   /** @type {RadioButtonConfigFactory} */
   static config = (app) => ({
     payloadKey: 'destinationType',
-    options: isOnToTheFarm(app) ? onFarmOptions(app) : offFarmOptions(app),
+    options: getDestinationOptions(app),
     errors: {
       emptyOptionText: 'Select where the animals are going'
     }
@@ -74,6 +86,6 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
 
   /** @returns {boolean} */
   static isTbRestricted(type) {
-    return ['tb-restricted-farm', 'zoo', 'other', 'lab'].includes(type ?? '')
+    return ['tb-restricted-farm', 'other'].includes(type ?? '')
   }
 }

@@ -110,7 +110,7 @@ export const validApplicationState = {
   origin: {
     ...validOriginSectionState,
     onOffFarm: 'on',
-    originType: 'market'
+    originType: 'tb-restricted-farm'
   },
   destination: {
     ...validDestinationSectionState,

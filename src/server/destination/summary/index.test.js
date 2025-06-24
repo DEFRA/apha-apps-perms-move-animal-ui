@@ -1,7 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
 import { destinationSummaryPage } from './index.js'
 import { destinationTypePage } from '../destination-type/index.js'
@@ -25,37 +24,6 @@ describe('#destinationSummaryPage', () => {
 
   afterAll(async () => {
     await server.stop({ timeout: 0 })
-  })
-
-  describe('slaughter answer selected', () => {
-    /** @type {SessionTestHelper} */
-    let session
-
-    beforeEach(async () => {
-      session = await SessionTestHelper.create(server)
-
-      await session.setSectionState('destination', defaultState)
-    })
-
-    it('should render expected response', async () => {
-      const { payload, statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'GET',
-            url: pageUrl
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      const document = parseDocument(payload)
-      expect(document.title).toBe(destinationSummaryPage.pageTitle)
-      expect(statusCode).toBe(statusCodes.ok)
-
-      expect(payload).toEqual(expect.stringContaining('Slaughter'))
-    })
   })
 
   describe('other answer selected', () => {

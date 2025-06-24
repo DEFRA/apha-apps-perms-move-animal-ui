@@ -26,13 +26,35 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What type of premises are the animals moving off?
+      Which type of premises are the animals moving off?
     </dt>
     <dd class="govuk-summary-list__value">
-      Market
+      TB restricted farm
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
+      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      12/345/6789
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is the address of the farm or premises where the animals are moving off?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Starfleet Headquarters<br>San Francisco<br>RG24 8RR
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/origin/origin-farm-address?redirect_uri=/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
 </dl>
@@ -75,13 +97,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the maximum number of animals you are planning to move?
+      How many animals are you planning to move?
     </dt>
     <dd class="govuk-summary-list__value">
       1
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/how-many-animals-maximum?redirect_uri=/submit/check-answers" data-testid="howManyAnimalsMaximum-change-link">Change<span class="govuk-visually-hidden"> What is the maximum number of animals you are planning to move?</span></a>
+      <a class="govuk-link" href="/destination/how-many-animals?redirect_uri=/submit/check-answers" data-testid="howManyAnimals-change-link">Change<span class="govuk-visually-hidden"> How many animals are you planning to move?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -142,6 +164,44 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+    </dd>
+  </div>
+</dl>
+
+          <h2 class="govuk-heading-m">Animal identification</h2>
+          
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Will you move any calves under 42 days old?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      No
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/any-calves?redirect_uri=/submit/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What are the dates of the last TB tests for the cattle that are 42 days old or older?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      01/01/2025
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/submit/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the cattle that are 42 days old or older?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      Enter the ear tag numbers for these animals
+    </dt>
+    <dd class="govuk-summary-list__value">
+      123456
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/identification/enter-ear-tags?redirect_uri=/submit/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
     </dd>
   </div>
 </dl>
@@ -372,8 +432,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -385,7 +451,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -400,6 +466,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -448,8 +523,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -461,7 +542,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -476,6 +557,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -524,8 +614,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -537,7 +633,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -552,6 +648,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -600,8 +705,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -613,7 +724,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -628,6 +739,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -676,8 +796,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -689,7 +815,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -704,6 +830,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -752,8 +887,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -765,7 +906,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -780,6 +921,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -828,8 +978,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -841,7 +997,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -856,6 +1012,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -904,8 +1069,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -917,7 +1088,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -932,6 +1103,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -980,8 +1160,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -993,7 +1179,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -1008,6 +1194,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -1056,8 +1251,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -1069,7 +1270,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -1084,6 +1285,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -1132,8 +1342,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -1145,7 +1361,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -1160,6 +1376,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -1208,8 +1433,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -1221,7 +1452,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -1236,6 +1467,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---
@@ -1284,8 +1524,14 @@ TB-XXXX-XXXX
 ---
 ## Are you moving the animals on or off your farm or premises?
 On to the farm or premises
-## What type of premises are the animals moving off?
-Market
+## Which type of premises are the animals moving off?
+TB restricted farm
+## What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+12/345/6789
+## What is the address of the farm or premises where the animals are moving off?
+Starfleet Headquarters
+San Francisco
+RG24 8RR
 # Movement destination
 
 ---
@@ -1297,7 +1543,7 @@ TB restricted farm
 Starfleet Headquarters
 San Francisco
 RG24 8RR
-## What is the maximum number of animals you are planning to move?
+## How many animals are you planning to move?
 1
 ## What is the reason for the movement?
 Welfare
@@ -1312,6 +1558,15 @@ Kathryn Janeway
 Email
 ## What email address would you like the licence sent to?
 kathryn@starfleet.com
+# Animal identification
+
+---
+## Will you move any calves under 42 days old?
+No
+## What are the dates of the last TB tests for the cattle that are 42 days old or older?
+01/01/2025
+## Enter the ear tag numbers for these animals
+123456
 # Biosecurity details
 
 ---

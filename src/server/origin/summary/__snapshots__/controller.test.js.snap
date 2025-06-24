@@ -27,13 +27,13 @@ exports[`#originSummaryController.content should render the expected content 1`]
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What type of premises are the animals moving off?
+      Which type of premises are the animals moving off?
     </dt>
     <dd class="govuk-summary-list__value">
       Approved finishing unit (AFU)
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/origin/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> What type of premises are the animals moving off?</span></a>
+      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/origin/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
