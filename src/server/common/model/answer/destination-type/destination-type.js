@@ -6,8 +6,6 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 
-const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
-
 const tbRestrictedOption = { label: 'TB restricted farm' }
 const afuOption = {
   label: 'Approved finishing unit (AFU)',
@@ -17,19 +15,21 @@ const otherOption = { label: 'Another destination with TB restrictions' }
 const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
 const slaughterOption = { label: 'Slaughter' }
 
-const isTbRestricted = (app) => {
-  const originType = app.origin?.originType
-  return ['tb-restricted-farm', 'other'].includes(originType)
-}
-
 /** @returns {Record<string, RadioOption>} */
 const getDestinationOptions = (app) => {
-  const isOntoFarm = isOnToTheFarm(app)
-  const isOffFarm = !isOntoFarm
+  const originType = app.origin?.originType
+  const isOntoFarm = app.origin?.onOffFarm === 'on'
+  const isOriginTbRestricted = ['tb-restricted-farm', 'other'].includes(
+    originType
+  )
 
-  const isOriginTbResticted = isTbRestricted(app)
-
-  if (isOntoFarm && app.origin?.originType !== 'afu') {
+  if (isOntoFarm) {
+    if (originType === 'afu') {
+      return {
+        afu: afuOption,
+        other: otherOption
+      }
+    }
     return {
       'tb-restricted-farm': tbRestrictedOption,
       afu: afuOption,
@@ -37,14 +37,7 @@ const getDestinationOptions = (app) => {
     }
   }
 
-  if (isOntoFarm && app.origin?.originType === 'afu') {
-    return {
-      afu: afuOption,
-      other: otherOption
-    }
-  }
-
-  if (isOffFarm && isOriginTbResticted) {
+  if (isOriginTbRestricted) {
     return {
       slaughter: slaughterOption,
       'dedicated-sale': dedicatedSaleOption,
@@ -55,14 +48,14 @@ const getDestinationOptions = (app) => {
     }
   }
 
-  if (isOffFarm && app.origin?.originType === 'iso-unit') {
+  if (originType === 'iso-unit') {
     return {
       slaughter: slaughterOption,
       afu: afuOption
     }
   }
 
-  if (isOffFarm && app.origin?.originType === 'afu') {
+  if (originType === 'afu') {
     return {
       slaughter: slaughterOption,
       afu: afuOption,
