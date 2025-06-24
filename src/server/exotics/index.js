@@ -1,7 +1,7 @@
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 import { ApplicationModelAbstract } from '../common/model/application/application.js'
-import { ExoticAboutSection } from './about-the-movement/section-model.js'
+import { ExoticAboutSection } from './about/section-model.js'
 
 class ExoticsApplicationModel extends ApplicationModelAbstract {
   static implementedSections = [
