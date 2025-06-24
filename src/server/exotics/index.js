@@ -13,7 +13,7 @@ class ExoticsApplicationModel extends ApplicationModelAbstract {
  */
 export const exotics = {
   plugin: {
-    name: 'receiving-the-licence',
+    name: 'exotics',
     async register(server) {
       server.register(
         ExoticsApplicationModel.implementedSections.map(
@@ -23,6 +23,3 @@ export const exotics = {
     }
   }
 }
-
-
-
