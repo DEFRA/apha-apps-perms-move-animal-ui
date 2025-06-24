@@ -10,7 +10,8 @@ import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js
 const pageUrl = '/destination/check-answers'
 
 const defaultState = {
-  destinationType: 'slaughter'
+  destinationType: 'slaughter',
+  additionalInfo: ''
 }
 
 describe('#destinationSummaryPage', () => {

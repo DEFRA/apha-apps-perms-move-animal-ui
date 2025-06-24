@@ -63,7 +63,7 @@ export class CheckboxAnswer extends AnswerModel {
     return /** @type {any} */ (this.constructor).config
   }
 
-  /** @type {String} */
+  /** @type {string} */
   get type() {
     const type = 'checkbox'
     return type

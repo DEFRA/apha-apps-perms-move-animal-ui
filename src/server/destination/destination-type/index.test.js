@@ -2,11 +2,11 @@ import { destinationTypePage, DestinationTypePage } from './index.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
-import { destinationSummaryPage } from '../summary/index.js'
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 /**
  * @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js'
@@ -79,13 +79,13 @@ describe('DestinationTypePage.nextPage', () => {
         destinationType: 'dedicated-sale'
       })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(destinationSummaryPage)
+      expect(nextPage).toBe(additionalInfoPage)
     })
 
     it('should return exitPage when answer is "afu"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(destinationSummaryPage)
+      expect(nextPage).toBe(additionalInfoPage)
     })
 
     it('should return exitPage when answer is "zoo"', () => {

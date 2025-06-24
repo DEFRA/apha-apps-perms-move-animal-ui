@@ -2,7 +2,6 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import { destinationVariants } from '../../helpers/testHelpers/movementOrigin.js'
 import { verifyRadioButtonNumber, waitForElement } from '../../helpers/page.js'
-import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
@@ -11,6 +10,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 import serviceUnavailablePage from '../../page-objects/destination/serviceUnavailablePage.js'
 import otherDestinationTypePage from '../../page-objects/destination/otherDestinationTypePage.js'
+import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Destination selection options test', () => {
   // eslint-disable-next-line no-undef
@@ -51,7 +51,7 @@ describe('Destination selection options test', () => {
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await verifyRadioButtonNumber(8)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
-      destinationAnswersPage
+      additionalInfoPage
     )
   })
 

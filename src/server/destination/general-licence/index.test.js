@@ -1,5 +1,5 @@
 import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { DestinationSummaryPage } from '../summary/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 import { DestinationGeneralLicencePage } from './index.js'
 
 /** @import { Server } from '@hapi/hapi' */
@@ -10,7 +10,7 @@ const urlKey = 'use-general-licence'
 const view = 'destination/general-licence/index'
 const pageUrl = '/destination/use-general-licence'
 
-const nextPage = new DestinationSummaryPage()
+const nextPage = additionalInfoPage
 const page = new DestinationGeneralLicencePage()
 
 describe('DestinationGeneralLicencePage', () => {

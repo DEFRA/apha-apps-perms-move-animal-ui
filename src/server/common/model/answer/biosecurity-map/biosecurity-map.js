@@ -48,14 +48,14 @@ export class BiosecurityMapAnswer extends AnswerModel {
     }
   }
 
-  /** @type {String} */
+  /** @type {string} */
   get type() {
     const type = 'file'
     return type
   }
 
   /**
-   * @return {any}
+   * @returns {any}
    */
   get data() {
     return {
