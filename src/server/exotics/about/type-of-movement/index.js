@@ -20,8 +20,7 @@ export class TypeOfMovementAnswer extends RadioButtonAnswer {
       visit: { label: 'Visit to a farm of premises' }
     },
     errors: {
-      emptyOptionText:
-        'Select the movement type'
+      emptyOptionText: 'Select the movement type'
     }
   }
 }
@@ -52,5 +51,7 @@ export const exoticTypeOfMovementPage = new ExoticTypeOfMovement()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const exoticTypeOfMovement = new QuestionPageController(exoticTypeOfMovementPage, ExoticStateManager).plugin()
-
+export const exoticTypeOfMovement = new QuestionPageController(
+  exoticTypeOfMovementPage,
+  ExoticStateManager
+).plugin()

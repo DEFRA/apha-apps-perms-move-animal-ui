@@ -18,13 +18,12 @@ export class WhatAreYouMovingAnswer extends RadioButtonAnswer {
       animals: { label: 'Animals' },
       carcasses: { label: 'Carcasses' },
       'animal-by-products': { label: 'Animal by-products' },
-      'equipment': { label: 'Machinery and equipment' },
+      equipment: { label: 'Machinery and equipment' },
       'bedding-and-feed': { label: 'Livestock bedding and feed' },
-      'other': { label: 'Something else' }
+      other: { label: 'Something else' }
     },
     errors: {
-      emptyOptionText:
-        'Select what you are moving'
+      emptyOptionText: 'Select what you are moving'
     }
   }
 }
@@ -55,4 +54,7 @@ export const exoticWhatAreYouMovingPage = new ExoticWhatAreYouMoving()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const exoticWhatAreYouMoving = new QuestionPageController(exoticWhatAreYouMovingPage, ExoticStateManager).plugin()
+export const exoticWhatAreYouMoving = new QuestionPageController(
+  exoticWhatAreYouMovingPage,
+  ExoticStateManager
+).plugin()

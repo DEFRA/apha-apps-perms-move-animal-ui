@@ -1,21 +1,21 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { ExoticStateManager } from '../../state-manager.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { exoticHowMuchAreYouMovingPage } from '../how-much-are-you-moving/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 /** @import {TextAreaConfig} from '~/src/server/common/model/answer/text-area/text-area.js' */
 
-export class WhatAreYouMovingAdditionalAnswer extends TextAreaAnswer {
+export class DescribeWhatYouAreMovingAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
-    payloadKey: 'whatAreYouMovingAdditional',
+    payloadKey: 'describeWhatYouAreMoving',
     validation: {
       empty: {
-        message: 'Enter information about what you are moving'
+        message: 'Enter information on what you are moving'
       },
       maxLength: {
         message: 'Answer must be no longer than 5000 characters long',
@@ -25,27 +25,27 @@ export class WhatAreYouMovingAdditionalAnswer extends TextAreaAnswer {
   }
 }
 
-export class ExoticWhatAreYouMovingAdditional extends QuestionPage {
-  urlPath = '/exotic/about/what-are-you-moving-additional'
+export class ExoticDescribeWhatYouAreMoving extends QuestionPage {
+  urlPath = '/exotic/about/describe-what-you-are-moving'
   sectionKey = 'about'
-  question = 'What are you moving?'
-  questionKey = 'whatAreYouMovingAdditional'
+  question = 'Describe what you are moving'
+  questionKey = 'describeWhatYouAreMoving'
 
-  Answer = WhatAreYouMovingAdditionalAnswer
+  Answer = DescribeWhatYouAreMovingAnswer
 
   /** @returns {Page} */
   nextPage() {
-    return exoticHowMuchAreYouMovingPage
+    throw new NotImplementedError()
   }
 }
 
-export const exoticWhatAreYouMovingAdditionalPage =
-  new ExoticWhatAreYouMovingAdditional()
+export const exoticDescribeWhatYouAreMovingPage =
+  new ExoticDescribeWhatYouAreMoving()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const exoticWhatAreYouMovingAdditional = new QuestionPageController(
-  exoticWhatAreYouMovingAdditionalPage,
+export const exoticDescribeWhatYouAreMoving = new QuestionPageController(
+  exoticDescribeWhatYouAreMovingPage,
   ExoticStateManager
 ).plugin()

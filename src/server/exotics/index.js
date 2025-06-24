@@ -4,9 +4,7 @@ import { ApplicationModelAbstract } from '../common/model/application/applicatio
 import { ExoticAboutSection } from './about/section-model.js'
 
 class ExoticsApplicationModel extends ApplicationModelAbstract {
-  static implementedSections = [
-    ExoticAboutSection
-  ]
+  static implementedSections = [ExoticAboutSection]
 }
 /**
  * @satisfies {ServerRegisterPluginObject<void>}

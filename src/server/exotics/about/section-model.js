@@ -1,5 +1,7 @@
 import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { SectionModel } from '../../common/model/section/section-model/section-model.js'
+import { exoticDescribeWhatYouAreMoving } from './describe-what-you-are-moving/index.js'
+import { exoticHowMuchAreYouMoving } from './how-much-are-you-moving/index.js'
 import { exoticTypeOfMovement } from './type-of-movement/index.js'
 import { exoticWhatAreYouMovingAdditional } from './what-are-you-moving-additional/index.js'
 import { exoticWhatAreYouMoving } from './what-are-you-moving/index.js'
@@ -15,7 +17,9 @@ const plugin = {
       await server.register([
         exoticTypeOfMovement,
         exoticWhatAreYouMoving,
-        exoticWhatAreYouMovingAdditional
+        exoticWhatAreYouMovingAdditional,
+        exoticHowMuchAreYouMoving,
+        exoticDescribeWhatYouAreMoving
       ])
     }
   }
@@ -32,5 +36,7 @@ export class ExoticAboutSection extends SectionModel {
     isVisible: () => true
   }
 
-  static firstPageFactory = () => { throw new NotImplementedError() } // TODO
+  static firstPageFactory = () => {
+    throw new NotImplementedError()
+  } // TODO
 }
