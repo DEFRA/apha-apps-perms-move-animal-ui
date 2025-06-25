@@ -19,7 +19,7 @@ exports[`#destinationSummaryPage.content should render the expected content 1`] 
       Where are the animals going to?
     </dt>
     <dd class="govuk-summary-list__value">
-      
+      Slaughter
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/destination/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>

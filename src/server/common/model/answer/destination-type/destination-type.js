@@ -15,16 +15,19 @@ const otherOption = { label: 'Another destination with TB restrictions' }
 const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
 const slaughterOption = { label: 'Slaughter' }
 
+const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
+const isOriginAfu = (app) => app.origin?.originType === 'afu'
+const isOriginIsoUnit = (app) => app.origin?.originType === 'iso-unit'
+
 /** @returns {Record<string, RadioOption>} */
 const getDestinationOptions = (app) => {
   const originType = app.origin?.originType
-  const isOntoFarm = app.origin?.onOffFarm === 'on'
   const isOriginTbRestricted = ['tb-restricted-farm', 'other'].includes(
     originType
   )
 
-  if (isOntoFarm) {
-    if (originType === 'afu') {
+  if (isOnToTheFarm(app)) {
+    if (isOriginAfu(app)) {
       return {
         afu: afuOption,
         other: otherOption
@@ -48,14 +51,14 @@ const getDestinationOptions = (app) => {
     }
   }
 
-  if (originType === 'iso-unit') {
+  if (isOriginIsoUnit(app)) {
     return {
       slaughter: slaughterOption,
       afu: afuOption
     }
   }
 
-  if (originType === 'afu') {
+  if (isOriginAfu(app)) {
     return {
       slaughter: slaughterOption,
       afu: afuOption,
@@ -63,7 +66,14 @@ const getDestinationOptions = (app) => {
     }
   }
 
-  return {}
+  return {
+    slaughter: slaughterOption,
+    'dedicated-sale': dedicatedSaleOption,
+    afu: afuOption,
+    'tb-restricted-farm': tbRestrictedOption,
+    'iso-unit': { label: 'TB isolation unit' },
+    other: otherOption
+  }
 }
 
 /** @augments {RadioButtonAnswer<DestinationTypePayload>} */
