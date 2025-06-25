@@ -3,7 +3,10 @@ import { SectionModel } from '../../common/model/section/section-model/section-m
 import { exoticAboutSummary } from './check-answers/index.js'
 import { exoticDescribeWhatYouAreMoving } from './describe-what-you-are-moving/index.js'
 import { exoticHowMuchAreYouMoving } from './how-much-are-you-moving/index.js'
-import { exoticTypeOfMovement, exoticTypeOfMovementPage } from './type-of-movement/index.js'
+import {
+  exoticTypeOfMovement,
+  exoticTypeOfMovementPage
+} from './type-of-movement/index.js'
 import { exoticWhatAreYouMovingAdditional } from './what-are-you-moving-additional/index.js'
 import { exoticWhatAreYouMoving } from './what-are-you-moving/index.js'
 

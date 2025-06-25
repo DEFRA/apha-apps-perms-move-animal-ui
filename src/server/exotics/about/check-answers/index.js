@@ -23,7 +23,6 @@ export const exoticAboutSummary = new SummaryPageController(
   ExoticStateManager
 ).plugin()
 
-
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */

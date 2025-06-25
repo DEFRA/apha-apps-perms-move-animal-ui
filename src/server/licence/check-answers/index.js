@@ -19,8 +19,7 @@ export const licenceSummaryPage = new LicenceSummaryPage()
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const licenceSummary = new SummaryPageController(
-  new LicenceSummaryPage(),
-  ExoticStateManager
+  new LicenceSummaryPage()
 ).plugin()
 
 /**
