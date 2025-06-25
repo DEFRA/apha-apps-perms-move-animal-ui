@@ -1,4 +1,3 @@
-import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { SectionModel } from '../../common/model/section/section-model/section-model.js'
 import { exoticAboutSummary } from './check-answers/index.js'
 import { exoticDescribeWhatYouAreMoving } from './describe-what-you-are-moving/index.js'

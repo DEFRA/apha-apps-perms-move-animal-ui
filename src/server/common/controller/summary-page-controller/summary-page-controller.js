@@ -16,6 +16,9 @@ export class SummaryPageController extends GenericPageController {
   /** @type {string} */
   heading
 
+  /** @type {string} */
+  taskListPath = '/task-list'
+
   /**
    * @param {SummaryPage} page
    * @param {typeof StateManager} [StateManagerImplementation]
@@ -79,6 +82,6 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handlePost(_req, res) {
-    return res.redirect('/task-list')
+    return res.redirect(this.taskListPath)
   }
 }

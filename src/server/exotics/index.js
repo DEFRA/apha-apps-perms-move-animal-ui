@@ -1,11 +1,9 @@
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-import { ApplicationModelAbstract } from '../common/model/application/application.js'
-import { ExoticAboutSection } from './about/section-model.js'
+import { ExoticsApplicationModel } from './application.js'
+import { exoticSubmitSummary } from './check-answers/index.js'
+import { exoticTaskList } from './task-list/index.js'
 
-class ExoticsApplicationModel extends ApplicationModelAbstract {
-  static implementedSections = [ExoticAboutSection]
-}
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
@@ -13,7 +11,9 @@ export const exotics = {
   plugin: {
     name: 'exotics',
     async register(server) {
-      server.register(
+      await server.register([exoticTaskList, exoticSubmitSummary])
+
+      await server.register(
         ExoticsApplicationModel.implementedSections.map(
           (section) => section.config.plugin
         )

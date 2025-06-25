@@ -1,13 +1,13 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
-import { Page } from '~/src/server/common/model/page/page-model.js'
 import { ExoticStateManager } from '../../state-manager.js'
 import { exoticWhatAreYouMovingAdditionalPage } from '../what-are-you-moving-additional/index.js'
+import { notImplementedPage } from '../not-implemented/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
+/** @import { Page } from '~/src/server/common/model/page/page-model.js' */
 /** @import {RadioButtonConfig} from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 
 export class WhatAreYouMovingAnswer extends RadioButtonAnswer {
@@ -45,7 +45,7 @@ export class ExoticWhatAreYouMoving extends QuestionPage {
       return exoticWhatAreYouMovingAdditionalPage
     }
 
-    throw new NotImplementedError()
+    return notImplementedPage
   }
 }
 

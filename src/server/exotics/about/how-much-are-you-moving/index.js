@@ -1,12 +1,11 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
-import { NotImplementedError } from '~/src/server/common/helpers/not-implemented-error.js'
-import { Page } from '~/src/server/common/model/page/page-model.js'
 import { ExoticStateManager } from '../../state-manager.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
 import { exoticDescribeWhatYouAreMovingPage } from '../describe-what-you-are-moving/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+/** @import { Page } from '~/src/server/common/model/page/page-model.js' */
 
 /** @import {TextAreaConfig} from '~/src/server/common/model/answer/text-area/text-area.js' */
 
