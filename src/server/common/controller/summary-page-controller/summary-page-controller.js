@@ -18,7 +18,7 @@ export class SummaryPageController extends GenericPageController {
 
   /**
    * @param {SummaryPage} page
-   * @param {typeof StateManager | undefined} StateManagerImplementation?
+   * @param {typeof StateManager} [StateManagerImplementation]
    */
   constructor(page, StateManagerImplementation) {
     super(page)
