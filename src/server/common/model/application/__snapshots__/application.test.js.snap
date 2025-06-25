@@ -2,6 +2,10 @@
 
 exports[`Application.applicationData should render application data in the datastructure expected 1`] = `
 {
+  "journeyVersion": {
+    "major": 1,
+    "minor": 1,
+  },
   "sections": [
     {
       "questionAnswers": [

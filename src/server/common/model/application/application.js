@@ -52,6 +52,18 @@ export class ApplicationModel {
   }
 
   /**
+   * Getter for version of the journey
+   * @returns {{ major: number, minor: number }}
+   * @readonly
+   */
+  get version() {
+    return {
+      major: 1,
+      minor: 1
+    }
+  }
+
+  /**
    * @param {RawApplicationState} state
    */
   static visibleSections(state) {
@@ -76,6 +88,7 @@ export class ApplicationModel {
         }))
 
     return {
+      journeyVersion: this.version,
       sections: Object.values(sections).map((section) => ({
         sectionKey: section.config.key,
         title: section.config.title,

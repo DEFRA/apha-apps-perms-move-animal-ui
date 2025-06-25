@@ -32,10 +32,6 @@ describe('CaseManagement.submitApplication', () => {
 
     expect(Wreck.post).toHaveBeenCalledWith(`${baseUrl}/submit`, {
       payload: {
-        journeyVersion: {
-          major: 1,
-          minor: 0
-        },
         journeyId:
           'GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND',
         ...application.caseManagementData

@@ -19,10 +19,6 @@ export const submitApplication = async (application) => {
 
   const response = await Wreck.post(`${baseUrl}/submit`, {
     payload: {
-      journeyVersion: {
-        major: 1,
-        minor: 0
-      },
       journeyId: getJourneyId(),
       ...application.caseManagementData
     },
