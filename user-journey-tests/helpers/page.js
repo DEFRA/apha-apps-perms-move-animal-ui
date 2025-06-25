@@ -110,10 +110,21 @@ export const selectLinkAndVerifyTitleInNewTab = async (
   await verifyPageTitle(pageTitle)
 }
 
-export const validateElementVisibleAndText = async (element, text) => {
+export const validateElementVisibleAndText = async (
+  element,
+  text,
+  useRegex = false
+) => {
   try {
     await waitForElement(element, { visible: true })
-    await expect(element).toHaveTextContaining(text)
+    const actualText = await element.getText()
+
+    if (useRegex) {
+      const regex = typeof text === 'string' ? new RegExp(text) : text
+      expect(actualText).toMatch(regex)
+    } else {
+      await expect(element).toHaveTextContaining(text)
+    }
   } catch (error) {
     throw new Error(
       `Failed to validate text for element - ${await element.selector}: ${error}`

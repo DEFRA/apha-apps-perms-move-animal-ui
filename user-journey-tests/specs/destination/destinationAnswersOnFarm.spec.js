@@ -32,8 +32,9 @@ describe('Check your answers test - destination', () => {
     },
     {
       field: 'address',
-      expectedValue: '123\nThe street\nN11AA',
-      expectedHref: `/destination/destination-farm-address${redirect}`
+      expectedValue: /123\s*The street\s*N11AA/,
+      expectedHref: `/destination/destination-farm-address${redirect}`,
+      useRegex: true
     },
     {
       field: 'maxAnimals',
@@ -67,18 +68,21 @@ describe('Check your answers test - destination', () => {
     }
   ]
 
-  testCases.forEach(({ field, expectedValue, expectedHref }) => {
-    it(`Should verify the value and href of ${field} row`, async () => {
-      await validateElementVisibleAndText(
-        await destinationAnswersPage.getValue(field),
-        expectedValue
-      )
-      await validateHrefOfElement(
-        await destinationAnswersPage.getChangeLink(field),
-        expectedHref
-      )
-    })
-  })
+  testCases.forEach(
+    ({ field, expectedValue, expectedHref, useRegex = false }) => {
+      it(`Should verify the value and href of ${field} row`, async () => {
+        await validateElementVisibleAndText(
+          await destinationAnswersPage.getValue(field),
+          expectedValue,
+          useRegex
+        )
+        await validateHrefOfElement(
+          await destinationAnswersPage.getChangeLink(field),
+          expectedHref
+        )
+      })
+    }
+  )
 
   it('Should verify continue takes you to task list', async () => {
     await destinationAnswersPage.selectContinue()
