@@ -12,7 +12,7 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        What type of premises are the animals moving off?
+        Which type of premises are the animals moving off?
       </h1>
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
@@ -38,18 +38,6 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="zoo" name="originType" type="radio" value="zoo">
-        <label class="govuk-label govuk-radios__label" for="zoo">
-          Zoo with TB restrictions
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="lab" name="originType" type="radio" value="lab">
-        <label class="govuk-label govuk-radios__label" for="lab">
-          Laboratory with TB restrictions
-        </label>
-      </div>
-      <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="iso-unit" name="originType" type="radio" value="iso-unit">
         <label class="govuk-label govuk-radios__label" for="iso-unit">
           TB isolation unit
@@ -58,7 +46,7 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
-          Another origin with TB restrictions
+          Another TB restrictied origin
         </label>
       </div>
     </div>

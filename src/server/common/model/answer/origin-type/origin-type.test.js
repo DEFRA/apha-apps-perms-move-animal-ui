@@ -30,7 +30,7 @@ describe('OriginType.config', () => {
     }
     const config = new OriginTypeAnswer(undefined, context).config
 
-    expect(Object.keys(config.options)).toHaveLength(7)
+    expect(Object.keys(config.options)).toHaveLength(5)
     expect(config.options['tb-restricted-farm'].label).toBe(
       'TB restricted farm'
     )
@@ -41,12 +41,8 @@ describe('OriginType.config', () => {
     expect(config.options['unrestricted-farm'].label).toBe(
       'Unrestricted farm or premises'
     )
-    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-    expect(config.options.lab.label).toBe('Laboratory with TB restrictions')
     expect(config.options['iso-unit'].label).toBe('TB isolation unit')
-    expect(config.options.other.label).toBe(
-      'Another origin with TB restrictions'
-    )
+    expect(config.options.other.label).toBe('Another TB restrictied origin')
   })
 
   it('should have the expected options to select from for on to the farm movements', () => {
@@ -55,10 +51,6 @@ describe('OriginType.config', () => {
     }
     const config = new OriginTypeAnswer(undefined, context).config
 
-    expect(config.options.market.label).toBe('Market')
-    expect(config.options['unrestricted-farm'].label).toBe(
-      'Unrestricted farm or premises'
-    )
     expect(config.options['tb-restricted-farm'].label).toBe(
       'TB restricted farm'
     )
@@ -66,15 +58,11 @@ describe('OriginType.config', () => {
     expect(config.options.afu.hint).toBe(
       'Including enhanced with grazing (AFUE)'
     )
-    expect(config.options.zoo.label).toBe('Zoo with TB restrictions')
-    expect(config.options.lab.label).toBe('Laboratory with TB restrictions')
     expect(config.options['after-import-location'].label).toBe(
       'Location after animals have been imported'
     )
-    expect(config.options.other.label).toBe(
-      'Another origin with TB restrictions'
-    )
-    expect(Object.keys(config.options)).toHaveLength(8)
+    expect(config.options.other.label).toBe('Another TB restrictied origin')
+    expect(Object.keys(config.options)).toHaveLength(5)
   })
 })
 

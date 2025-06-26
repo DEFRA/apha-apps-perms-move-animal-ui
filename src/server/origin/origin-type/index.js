@@ -14,7 +14,7 @@ import { originTypeOtherPage } from '../origin-type-other/index.js'
 export class OriginTypePage extends QuestionPage {
   urlPath = '/origin/type-of-origin'
   sectionKey = 'origin'
-  question = 'What type of premises are the animals moving off?'
+  question = 'Which type of premises are the animals moving off?'
   questionKey = 'originType'
 
   Answer = OriginTypeAnswer

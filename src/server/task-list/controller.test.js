@@ -91,6 +91,7 @@ describe('#taskListController', () => {
       'Movement origin',
       'Movement destination',
       'Receiving the licence',
+      'Animal identification',
       'Biosecurity details',
       'Biosecurity map'
     ])

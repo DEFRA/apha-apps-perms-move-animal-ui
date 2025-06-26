@@ -25,8 +25,8 @@ describe('Destination selection options test', () => {
   it('Should verify options when On the farm and AFU IS NOT option selected', async () => {
     await destinationVariants(true, false)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
-    await verifyRadioButtonNumber(5)
-    await destinationSelectionPage.selectZooAndContinue(destinationCPHPage)
+    await verifyRadioButtonNumber(3)
+    await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
   })
 
   it('Should verify other selection when On the farm and AFU IS NOT option selected', async () => {
@@ -40,7 +40,7 @@ describe('Destination selection options test', () => {
   it('Should verify options when On the farm and AFU IS selected', async () => {
     await destinationVariants(true, true)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
-    await verifyRadioButtonNumber(1)
+    await verifyRadioButtonNumber(2)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
       destinationCPHPage
     )
@@ -49,7 +49,7 @@ describe('Destination selection options test', () => {
   it('Should verify options when Off the farm and AFU IS NOT selected', async () => {
     await destinationVariants(false, false)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
-    await verifyRadioButtonNumber(8)
+    await verifyRadioButtonNumber(6)
     await destinationSelectionPage.selectApprovedFinishingAndContinue(
       additionalInfoPage
     )
@@ -67,7 +67,7 @@ describe('Destination selection options test', () => {
   it('Should verify options when Off the farm and AFU IS selected', async () => {
     await destinationVariants(false, true)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
-    await verifyRadioButtonNumber(2)
+    await verifyRadioButtonNumber(3)
     await destinationSelectionPage.selectSlaughterRadioAndContinue(
       generalLicencePage
     )

@@ -9,12 +9,8 @@ const payload = {
 
 const tbRestrictedFarmLabel = 'TB restricted farm'
 const slaughterLabel = 'Slaughter'
-const dedicatedSaleLabel = 'Dedicated sale for TB (orange market)'
 const afuLabel = 'Approved finishing unit (AFU)'
 const afuHint = 'Including enhanced with grazing (AFUE)'
-const zooLabel = 'Zoo with TB restrictions'
-const labLabel = 'Laboratory with TB restrictions'
-const isoUnitLabel = 'TB isolation unit'
 const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {
@@ -38,20 +34,12 @@ describe('DestinationType.config.options', () => {
 
   it('should have the expected options to select from for off the farm movements', () => {
     const context = {
-      origin: { onOffFarm: 'off' }
+      origin: { onOffFarm: 'off', originType: 'iso-unit' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(8)
-    expect(config.options['tb-restricted-farm'].label).toBe(
-      tbRestrictedFarmLabel
-    )
+    expect(Object.keys(config.options)).toHaveLength(2)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options['dedicated-sale'].label).toBe(dedicatedSaleLabel)
     expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.zoo.label).toBe(zooLabel)
-    expect(config.options.lab.label).toBe(labLabel)
-    expect(config.options['iso-unit'].label).toBe(isoUnitLabel)
-    expect(config.options.other.label).toBe(otherLabel)
   })
 
   it('should have the expected options to select from for off the farm movements when moving from AFU', () => {
@@ -59,9 +47,10 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'off', originType: 'afu' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(2)
+    expect(Object.keys(config.options)).toHaveLength(3)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
     expect(config.options.afu.label).toBe(afuLabel)
+    expect(config.options.other.label).toBe(otherLabel)
   })
 
   it('should have the expected options to select from for off the farm movements when moving from iso unit', () => {
@@ -79,15 +68,13 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'on' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(5)
+    expect(Object.keys(config.options)).toHaveLength(3)
 
     expect(config.options['tb-restricted-farm'].label).toBe(
       tbRestrictedFarmLabel
     )
     expect(config.options.afu.label).toBe(afuLabel)
     expect(config.options.afu.hint).toBe(afuHint)
-    expect(config.options.zoo.label).toBe(zooLabel)
-    expect(config.options.lab.label).toBe(labLabel)
     expect(config.options.other.label).toBe(otherLabel)
   })
 
@@ -96,9 +83,10 @@ describe('DestinationType.config.options', () => {
       origin: { onOffFarm: 'on', originType: 'afu' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(1)
+    expect(Object.keys(config.options)).toHaveLength(2)
     expect(config.options.afu.label).toBe(afuLabel)
     expect(config.options.afu.hint).toBe(afuHint)
+    expect(config.options.other.label).toBe(otherLabel)
   })
 })
 
@@ -109,10 +97,6 @@ describe('DestinationType.isTbRestricted', () => {
     )
   })
 
-  it('should return true for "zoo"', () => {
-    expect(DestinationTypeAnswer.isTbRestricted('zoo')).toBe(true)
-  })
-
   it('should return false for "afu"', () => {
     expect(DestinationTypeAnswer.isTbRestricted('afu')).toBe(false)
   })
@@ -121,10 +105,6 @@ describe('DestinationType.isTbRestricted', () => {
     expect(DestinationTypeAnswer.isTbRestricted('unrestricted-farm')).toBe(
       false
     )
-  })
-
-  it('should return true for "lab"', () => {
-    expect(DestinationTypeAnswer.isTbRestricted('lab')).toBe(true)
   })
 
   it('should return true for "other"', () => {

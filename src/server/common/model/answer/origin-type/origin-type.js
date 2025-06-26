@@ -19,9 +19,7 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
-const zooOption = {
-  label: 'Zoo with TB restrictions'
-}
+const otherOption = { label: 'Another TB restrictied origin' }
 
 const offFarmOptions = {
   'tb-restricted-farm': tbRestrictedOption,
@@ -29,25 +27,20 @@ const offFarmOptions = {
   'unrestricted-farm': {
     label: 'Unrestricted farm or premises'
   },
-  zoo: zooOption,
-  lab: { label: 'Laboratory with TB restrictions' },
   'iso-unit': { label: 'TB isolation unit' },
-  other: { label: 'Another origin with TB restrictions' }
+  other: otherOption
 }
 
 const onFarmOptions = {
-  market: { label: 'Market' },
   'unrestricted-farm': {
-    label: 'Unrestricted farm or premises'
+    label: 'Unrestricted farms and markets'
   },
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
-  zoo: zooOption,
-  lab: { label: 'Laboratory with TB restrictions' },
   'after-import-location': {
     label: 'Location after animals have been imported'
   },
-  other: { label: 'Another origin with TB restrictions' }
+  other: otherOption
 }
 
 /** @augments {RadioButtonAnswer<OriginTypePayload>} */

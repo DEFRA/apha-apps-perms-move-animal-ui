@@ -21,7 +21,6 @@ describe('Application.fromState', () => {
 
     expect(application.tasks.origin).toBeInstanceOf(OriginSection)
     expect(application.tasks.licence).toBeInstanceOf(LicenceSection)
-    expect(application.tasks.identification).toBeUndefined()
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
     expect(application.tasks.biosecurity).toBeInstanceOf(BiosecuritySection)
 

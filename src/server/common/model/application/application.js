@@ -52,6 +52,24 @@ export class ApplicationModel {
   }
 
   /**
+   * Getter for version of the journey
+   * @returns {{ major: number, minor: number }}
+   * @readonly
+   */
+  get version() {
+    return {
+      major: 1,
+      minor: 1
+    }
+  }
+
+  get journeyId() {
+    const journeyId =
+      'GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND'
+    return journeyId
+  }
+
+  /**
    * @param {RawApplicationState} state
    */
   static visibleSections(state) {
@@ -76,6 +94,8 @@ export class ApplicationModel {
         }))
 
     return {
+      journeyVersion: this.version,
+      journeyId: this.journeyId,
       sections: Object.values(sections).map((section) => ({
         sectionKey: section.config.key,
         title: section.config.title,

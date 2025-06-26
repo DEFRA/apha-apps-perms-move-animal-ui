@@ -27,14 +27,6 @@ class DestinationSelectionPage extends Page {
     return $('input[value="afu"]')
   }
 
-  get zooRadio() {
-    return $('input[value="zoo"]')
-  }
-
-  get labRadio() {
-    return $('input[value="lab"]')
-  }
-
   get tbIsolationUnit() {
     return $('input[value="iso-unit"]')
   }
@@ -68,16 +60,6 @@ class DestinationSelectionPage extends Page {
 
   async selectApprovedFinishingAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.approvedFinishingRadio)
-    await waitForPagePath(nextPage.pagePath)
-  }
-
-  async selectZooAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.zooRadio)
-    await waitForPagePath(nextPage.pagePath)
-  }
-
-  async selectLabAndContinue(nextPage) {
-    await super.selectRadioAndContinue(this.labRadio)
     await waitForPagePath(nextPage.pagePath)
   }
 

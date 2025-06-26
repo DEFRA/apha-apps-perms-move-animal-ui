@@ -11,7 +11,7 @@ import { originTypeOtherPage } from '../origin-type-other/index.js'
 /** @import { OriginTypeData } from '../../common/model/answer/origin-type/origin-type.js' */
 
 const sectionKey = 'origin'
-const question = 'What type of premises are the animals moving off?'
+const question = 'Which type of premises are the animals moving off?'
 const questionKey = 'originType'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/type-of-origin'

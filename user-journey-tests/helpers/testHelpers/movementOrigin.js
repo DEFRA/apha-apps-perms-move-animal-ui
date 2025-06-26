@@ -33,7 +33,7 @@ const completeOriginTask = async ({
   await navigateToOriginFlow()
   if (onOffFarm === 'on') {
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-    await originTypePage.selectLabAndContinue(onFarmCPHPage)
+    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
     await onFarmCPHPage.inputParishHoldingNumberAndContinue(
       cphNumber,
       onFarmAddressPage
@@ -98,7 +98,7 @@ export const destinationVariants = async (onFarm, afu, isoUnit = false) => {
     await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
     if (afu)
       await originTypePage.selectApprovedFinishingAndContinue(onFarmCPHPage)
-    else await originTypePage.selectLabAndContinue(onFarmCPHPage)
+    else await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   } else {
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     if (afu)
