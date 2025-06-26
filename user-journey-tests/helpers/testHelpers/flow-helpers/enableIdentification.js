@@ -20,7 +20,7 @@ export const enableIdentification = async ({ originZoo, destinationZoo }) => {
   if (!originZoo) {
     await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   } else {
-    await originTypePage.selectZooAndContinue(onFarmCPHPage)
+    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   }
   await onFarmCPHPage.inputParishHoldingNumberAndContinue(
     '12/123/1234',
@@ -41,7 +41,7 @@ export const enableIdentification = async ({ originZoo, destinationZoo }) => {
   if (!destinationZoo) {
     await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
   } else {
-    await destinationSelectionPage.selectZooAndContinue(destinationCPHPage)
+    await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
   }
 
   await destinationCPHPage.inputParishHoldingNumberAndContinue(

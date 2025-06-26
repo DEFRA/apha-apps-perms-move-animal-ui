@@ -1,15 +1,12 @@
 import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageId = 'originType'
-const pageHeadingAndTitle = 'What type of premises are the animals moving off?'
+const pageHeadingAndTitle = 'Which type of premises are the animals moving off?'
 const noInputError = 'Select where the animals are moving from'
 const valueArray = [
-  'market',
   'unrestricted-farm',
   'tb-restricted-farm',
   'afu',
-  'zoo',
-  'lab',
   'after-import-location',
   'iso-unit',
   'other'
@@ -28,40 +25,28 @@ class OriginTypePage extends RadioButtonBasePage {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
-  async selectMarketAndContinue(nextPage) {
+  async selectUnrestrictedPremisesAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[0], nextPage)
   }
 
-  async selectUnrestrictedPremisesAndContinue(nextPage) {
+  async selectTbRestrictedFarm(nextPage) {
     await super.selectRadioAndContinue(valueArray[1], nextPage)
   }
 
-  async selectTbRestrictedFarm(nextPage) {
+  async selectApprovedFinishingAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[2], nextPage)
   }
 
-  async selectApprovedFinishingAndContinue(nextPage) {
+  async selectAfterImportAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[3], nextPage)
   }
 
-  async selectZooAndContinue(nextPage) {
+  async selectIsoUnitAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[4], nextPage)
   }
 
-  async selectLabAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[5], nextPage)
-  }
-
-  async selectAfterImportAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[6], nextPage)
-  }
-
-  async selectIsoUnitAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[7], nextPage)
-  }
-
   async selectAnotherTypeOfPremisesAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[8], nextPage)
+    await super.selectRadioAndContinue(valueArray[5], nextPage)
   }
 
   async originTypeErrorTest(valueIndex) {

@@ -56,7 +56,7 @@ export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
   await navigateToTaskList()
   await taskListPage.selectMovementDestination(destinationSelectionPage)
 
-  await destinationSelectionPage.selectLabAndContinue(destinationCPHPage)
+  await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
   await destinationCPHPage.inputParishHoldingNumberAndContinue(
     '12/123/1234',
     destinationAddressPage
