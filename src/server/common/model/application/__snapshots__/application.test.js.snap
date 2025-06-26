@@ -2,6 +2,7 @@
 
 exports[`Application.applicationData should render application data in the datastructure expected 1`] = `
 {
+  "journeyId": "GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND",
   "journeyVersion": {
     "major": 1,
     "minor": 1,
