@@ -7,7 +7,10 @@
  * @typedef {Record<string, RawSectionState>} RawApplicationState
  */
 
-export class StateManager {
+export class StateManagerAbstract {
+  /** @type {string} */
+  applicationKey
+
   /** @param {Request} request */
   constructor(request) {
     this._request = request
@@ -15,7 +18,7 @@ export class StateManager {
 
   /** @returns {RawApplicationState} */
   toState() {
-    return this._request.yar.get('application') ?? {}
+    return this._request.yar.get(this.applicationKey) ?? {}
   }
 
   /**
@@ -24,7 +27,7 @@ export class StateManager {
    */
   set(page, answer) {
     const currentApplicationState = this.toState()
-    this._request.yar.set('application', {
+    this._request.yar.set(this.applicationKey, {
       ...currentApplicationState,
       [page.sectionKey]: {
         ...currentApplicationState[page.sectionKey],
@@ -32,4 +35,8 @@ export class StateManager {
       }
     })
   }
+}
+
+export class StateManager extends StateManagerAbstract {
+  applicationKey = 'application'
 }

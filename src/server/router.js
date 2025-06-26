@@ -14,6 +14,7 @@ import { ApplicationModel } from './common/model/application/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
 import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
+import { exotics } from './exotics/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -55,6 +56,8 @@ export const router = {
             (section) => section.config.plugin
           )
         ),
+
+        server.register(exotics),
 
         // Static assets
         server.register([serveStaticFiles])

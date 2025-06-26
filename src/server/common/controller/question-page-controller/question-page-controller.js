@@ -13,10 +13,12 @@ import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 export class QuestionPageController extends GenericPageController {
   /**
    * @param {QuestionPage} page
+   * @param {typeof StateManager | undefined} StateManagerImplementation
    */
-  constructor(page) {
+  constructor(page, StateManagerImplementation) {
     super(page)
     this.page = page
+    this.StateManager = StateManagerImplementation ?? StateManager
     this.errorKey = `errors:${this.page.sectionKey}:${this.page.questionKey}`
   }
 
@@ -54,7 +56,7 @@ export class QuestionPageController extends GenericPageController {
   }
 
   handleGet(req, h, args = {}) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
@@ -98,7 +100,7 @@ export class QuestionPageController extends GenericPageController {
   handlePost(req, h) {
     req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
-    const state = new StateManager(req)
+    const state = new this.StateManager(req)
     const applicationState = state.toState()
     const Answer = this.page.Answer
     const answer = new Answer(

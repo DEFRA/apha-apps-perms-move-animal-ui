@@ -16,11 +16,16 @@ export class SummaryPageController extends GenericPageController {
   /** @type {string} */
   heading
 
+  /** @type {string} */
+  taskListPath = '/task-list'
+
   /**
    * @param {SummaryPage} page
+   * @param {typeof StateManager} [StateManagerImplementation]
    */
-  constructor(page) {
+  constructor(page, StateManagerImplementation) {
     super(page)
+    this.StateManager = StateManagerImplementation ?? StateManager
     this.page = page
   }
 
@@ -59,7 +64,7 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handleGet(req, res) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 
     const { isValid, firstInvalidPage } = section.validate()
@@ -77,6 +82,6 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handlePost(_req, res) {
-    return res.redirect('/task-list')
+    return res.redirect(this.taskListPath)
   }
 }
