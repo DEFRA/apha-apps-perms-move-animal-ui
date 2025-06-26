@@ -31,7 +31,7 @@ describe('origin type page test (off farm)', () => {
   })
 
   it('Should verify that off farm versions are loaded (by default)', async () => {
-    await verifyRadioButtonNumber(7)
+    await verifyRadioButtonNumber(5)
   })
 
   it('Should navigate to cph page if moving off from tb restricted farm', async () => {
@@ -48,14 +48,6 @@ describe('origin type page test (off farm)', () => {
     await originTypePage.selectUnrestrictedPremisesAndContinue(
       contactTbRestrictedFarmExitPage
     )
-  })
-
-  it('Should navigate to on farm cph page if moving off from zoo', async () => {
-    await originTypePage.selectZooAndContinue(parishHoldingNumberPage)
-  })
-
-  it('Should navigate to on farm cph page if moving off from lab', async () => {
-    await originTypePage.selectLabAndContinue(parishHoldingNumberPage)
   })
 
   it('Should navigate to on farm cph page if moving off from other origin', async () => {
@@ -86,11 +78,7 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should verify that on farm options are loaded (if on farm was previously selected)', async () => {
-    await verifyRadioButtonNumber(8)
-  })
-
-  it('Should navigate to fifty percent page if coming from market', async () => {
-    await originTypePage.selectMarketAndContinue(fiftyPercentPage)
+    await verifyRadioButtonNumber(5)
   })
 
   it('Should navigate to fifty percent page if coming from unrestricted premises', async () => {
@@ -103,14 +91,6 @@ describe('origin type page test (on farm)', () => {
 
   it('Should navigate to on farm cph page if coming from afu', async () => {
     await originTypePage.selectApprovedFinishingAndContinue(onFarmCPHPage)
-  })
-
-  it('Should navigate to on farm cph page if coming from zoo', async () => {
-    await originTypePage.selectZooAndContinue(onFarmCPHPage)
-  })
-
-  it('Should navigate to on farm cph page if coming from lab', async () => {
-    await originTypePage.selectLabAndContinue(onFarmCPHPage)
   })
 
   it('Should navigate to on farm cph page if coming from other origin', async () => {
