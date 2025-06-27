@@ -1,25 +1,25 @@
 import { config } from '~/src/config/config.js'
-import { sectionToSummary } from '../common/templates/macros/create-summary.js'
-import { QuestionPage } from '../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
-import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
-import { Page } from '../common/model/page/page-model.js'
-import { ApplicationModel } from '../common/model/application/application.js'
+import { sectionToSummary } from '../../common/templates/macros/create-summary.js'
+import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
+import { Page } from '../../common/model/page/page-model.js'
+import { ApplicationModel } from '../../common/model/application/application.js'
 import {
   sendEmailToApplicant,
   sendEmailToCaseWorker
-} from '../common/connectors/notify/notify.js'
-import { StateManager } from '../common/model/state/state-manager.js'
-import { fileSizeInMB } from '../common/helpers/file/size.js'
-import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
-import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
-import { getApplicationReference } from '../common/helpers/application-reference/index.js'
-import { submitApplication } from '../common/connectors/case-management/case-management.js'
-import { statusCodes } from '../common/constants/status-codes.js'
+} from '../../common/connectors/notify/notify.js'
+import { StateManager } from '../../common/model/state/state-manager.js'
+import { fileSizeInMB } from '../../common/helpers/file/size.js'
+import { handleUploadedFile } from '../../common/helpers/file/file-utils.js'
+import { sizeErrorPage } from '../../biosecurity-map/size-error/index.js'
+import { getApplicationReference } from '../../common/helpers/application-reference/index.js'
+import { submitApplication } from '../../common/connectors/case-management/case-management.js'
+import { statusCodes } from '../../common/constants/status-codes.js'
 
 /**
- * @import {NextPage} from '../common/helpers/next-page.js'
- * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
+ * @import {NextPage} from '../../common/helpers/next-page.js'
+ * @import {ConfirmationPayload} from '../../common/model/answer/confirmation/confirmation.js'
  */
 
 const checkAnswersUrlPath = '/submit/check-answers'
@@ -49,7 +49,7 @@ export class SubmitSummaryPage extends QuestionPage {
 
   urlPath = `/${this.sectionKey}/${this.questionKey}`
 
-  view = `check-answers/index`
+  view = `tb/check-answers/index`
 
   Answer = ConfirmationAnswer
 

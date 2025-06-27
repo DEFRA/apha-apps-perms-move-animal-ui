@@ -1,5 +1,5 @@
-import { ApplicationModel } from '../common/model/application/application.js'
-import { StateManager } from '../common/model/state/state-manager.js'
+import { ApplicationModel } from '../../common/model/application/application.js'
+import { StateManager } from '../../common/model/state/state-manager.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -25,7 +25,7 @@ export const taskListGetController = {
         return section.validate().isValid
       }).length
 
-    return h.view('task-list/index', {
+    return h.view('tb/task-list/index', {
       pageTitle,
       heading,
       gdsTasks,

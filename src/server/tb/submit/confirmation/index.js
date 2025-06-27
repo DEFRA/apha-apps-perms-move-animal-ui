@@ -1,6 +1,6 @@
 import { config } from '~/src/config/config.js'
-import { PageController } from '../../common/controller/page-controller/page-controller.js'
-import { Page } from '../../common/model/page/page-model.js'
+import { PageController } from '../../../common/controller/page-controller/page-controller.js'
+import { Page } from '../../../common/model/page/page-model.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -12,7 +12,7 @@ export class ConfirmationPage extends Page {
   sectionKey = 'confirmation'
   urlKey = 'submit-confirmation'
   urlPath = '/submit/confirmation'
-  view = 'submit/confirmation/index'
+  view = 'tb/submit/confirmation/index'
 
   // sends metric that the page was served
   reportMetrics = {

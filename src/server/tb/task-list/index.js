@@ -1,8 +1,8 @@
 import {
   taskListGetController,
   taskListPostController
-} from '~/src/server/task-list/controller.js'
-import { getAuthOptions } from '../common/helpers/auth/toggles-helper.js'
+} from '~/src/server/tb/task-list/controller.js'
+import { getAuthOptions } from '../../common/helpers/auth/toggles-helper.js'
 
 /**
  * Sets up the routes used in the home page.

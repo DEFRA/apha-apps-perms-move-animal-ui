@@ -1,9 +1,9 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import { withCsrfProtection } from '../common/test-helpers/csrf.js'
-import SessionTester from '../common/test-helpers/session-helper.js'
-import { validApplicationState } from '../common/test-helpers/journey-state.js'
+import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
+import SessionTester from '../../common/test-helpers/session-helper.js'
+import { validApplicationState } from '../../common/test-helpers/journey-state.js'
 
 const getTaskTitles = (document) =>
   Array.from(document.querySelectorAll('.govuk-task-list__name-and-hint')).map(

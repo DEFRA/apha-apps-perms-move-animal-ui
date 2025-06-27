@@ -1,15 +1,15 @@
-import { createServer } from '../../index.js'
+import { createServer } from '../../../index.js'
 import { ConfirmationPage } from './index.js'
-import SessionTestHelper from '../../common/test-helpers/session-helper.js'
-import { validApplicationState } from '../../common/test-helpers/journey-state.js'
-import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
-import { statusCodes } from '../../common/constants/status-codes.js'
-import { spyOnConfig } from '../../common/test-helpers/config.js'
+import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
+import { validApplicationState } from '../../../common/test-helpers/journey-state.js'
+import { withCsrfProtection } from '../../../common/test-helpers/csrf.js'
+import { statusCodes } from '../../../common/constants/status-codes.js'
+import { spyOnConfig } from '../../../common/test-helpers/config.js'
 
 const sectionKey = 'confirmation'
 const heading = 'Your animal disease movement licence application'
 const urlKey = 'submit-confirmation'
-const view = 'submit/confirmation/index'
+const view = 'tb/submit/confirmation/index'
 const pageUrl = '/submit/confirmation'
 
 const { origin, destination, licence } = validApplicationState

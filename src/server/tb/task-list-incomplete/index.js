@@ -1,5 +1,5 @@
-import { taskListIncompleteGetController } from '~/src/server/task-list-incomplete/controller.js'
-import { getAuthOptions } from '../common/helpers/auth/toggles-helper.js'
+import { taskListIncompleteGetController } from '~/src/server/tb/task-list-incomplete/controller.js'
+import { getAuthOptions } from '../../common/helpers/auth/toggles-helper.js'
 
 /**
  * Sets up the routes used in the home page.

@@ -2,7 +2,7 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
-import { submitSummaryPage } from '../../check-answers/index.js'
+import { submitSummaryPage } from '../../tb/check-answers/index.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
