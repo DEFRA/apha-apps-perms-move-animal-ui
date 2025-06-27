@@ -1,16 +1,13 @@
-import { DestinationSection } from '../section/destination/destination.js'
-import { LicenceSection } from '../section/licence/licence.js'
-import { OriginSection } from '../section/origin/origin.js'
-import { BiosecuritySection } from '../section/biosecurity/biosecurity.js'
-import { validateApplication } from './validation.js'
-import { BiosecurityPlanSection } from '../section/biosecurity-plan/biosecurity-plan.js'
-import { IdentificationSection } from '../section/identification/identification.js'
-import { HiddenAnswer } from '../answer/hidden/hidden.js'
+import { validateApplication } from '~/src/server/common/model/application/validation.js'
+import { HiddenAnswer } from '~/src/server/common/model/answer/hidden/hidden.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+
+/* eslint-disable jsdoc/require-returns-check */
 
 /**
- * @import { SectionModel, QuestionPageAnswer } from '../section/section-model/section-model.js'
- * @import { RawApplicationState } from '../state/state-manager.js'
- * @import { ApplicationValidationResult } from './validation.js'
+ * @import { SectionModel } from '~/src/server/common/model/section/section-model/section-model.js'
+ * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
+ * @import { ApplicationValidationResult } from '~/src/server/common/model/application/validation.js'
  * @typedef { { [key: string]: SectionModel; } } ApplicationPayload
  */
 
@@ -21,14 +18,17 @@ export class ApplicationModel {
   // This is a list of all the sections that are implemented in the application.
   // The order in this array drives the order in which the sections are displayed.
   /** @type {typeof SectionModel[]} */
-  static implementedSections = [
-    OriginSection,
-    DestinationSection,
-    LicenceSection,
-    IdentificationSection,
-    BiosecuritySection,
-    BiosecurityPlanSection
-  ]
+  static implementedSections
+
+  /** @returns {{ major: number, minor: number }} */
+  get version() {
+    throw new NotImplementedError()
+  }
+
+  /** @returns {string} */
+  get journeyId() {
+    throw new NotImplementedError()
+  }
 
   /**
    * @param {ApplicationPayload} data
@@ -49,24 +49,6 @@ export class ApplicationModel {
    */
   get tasks() {
     return this._data
-  }
-
-  /**
-   * Getter for version of the journey
-   * @returns {{ major: number, minor: number }}
-   * @readonly
-   */
-  get version() {
-    return {
-      major: 1,
-      minor: 1
-    }
-  }
-
-  get journeyId() {
-    const journeyId =
-      'GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND'
-    return journeyId
   }
 
   /**
@@ -109,7 +91,7 @@ export class ApplicationModel {
    * @returns {ApplicationModel}
    */
   static fromState(state) {
-    return new ApplicationModel(
+    return new this(
       Object.fromEntries(
         this.visibleSections(state).map((section) => [
           section.config.key,

@@ -1,14 +1,7 @@
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
 
-/** @import { ApplicationModel } from '../../model/application/application.js' */
-
-/**
- * Function to calculate the journey id when foot and mouth etc are supported
- * @returns {string}
- */
-export const getJourneyId = () =>
-  'GET_PERMISSION_TO_MOVE_ANIMALS_UNDER_DISEASE_CONTROLS_TB_ENGLAND'
+/** @import { ApplicationModel } from '~/src/server/common/model/application/application.js' */
 
 /**
  * @param {ApplicationModel} application

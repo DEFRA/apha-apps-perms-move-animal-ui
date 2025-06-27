@@ -81,7 +81,6 @@ export class CheckboxAnswer extends AnswerModel {
       : undefined
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/checkbox/checkbox.njk'
   }

@@ -77,7 +77,10 @@ module.exports = {
         'n/no-extraneous-require': 'off',
         'n/no-extraneous-import': 'off',
         'n/no-missing-require': 'off',
-        'n/no-missing-import': 'off'
+        'n/no-missing-import': 'off',
+
+        // turn off warnings for using getters to use read-only fields
+        '@typescript-eslint/class-literal-property-style': 'off'
       },
       settings: {
         'import/parsers': {
