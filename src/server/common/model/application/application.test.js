@@ -2,6 +2,7 @@ import { OriginSection } from '../section/origin/origin.js'
 import { DestinationSection } from '../section/destination/destination.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { ApplicationModel } from './application.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 class TestApplication extends ApplicationModel {
   static implementedSections = [OriginSection, DestinationSection]
@@ -42,5 +43,17 @@ describe('Application.fromState', () => {
     expect(application.tasks.destination.questionPageAnswers).toEqual(
       DestinationSection.fromState(validApplicationState).questionPageAnswers
     )
+  })
+})
+
+describe('Application.version', () => {
+  it('should throw if not overridden', () => {
+    expect(() => new ApplicationModel({}).version).toThrow(NotImplementedError)
+  })
+})
+
+describe('Application.journeyId', () => {
+  it('should throw if not overriden', () => {
+    expect(() => new ApplicationModel({}).version).toThrow(NotImplementedError)
   })
 })
