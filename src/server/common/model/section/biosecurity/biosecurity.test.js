@@ -5,7 +5,7 @@ import {
   validOriginSectionState,
   validDestinationSectionState
 } from '../../../test-helpers/journey-state.js'
-import { ObligationsPage } from '~/src/server/biosecurity/obligations/index.js'
+import { ObligationsPage } from '~/src/server/tb/biosecurity/obligations/index.js'
 /** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
 
 const validBiosecurityData = validBiosecuritySectionState
