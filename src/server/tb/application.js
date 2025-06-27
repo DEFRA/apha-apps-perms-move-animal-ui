@@ -1,7 +1,7 @@
 import { DestinationSection } from '../common/model/section/destination/destination.js'
 import { LicenceSection } from '../common/model/section/licence/licence.js'
 import { OriginSection } from '../common/model/section/origin/origin.js'
-import { BiosecuritySection } from '../common/model/section/biosecurity/biosecurity.js'
+import { BiosecuritySection } from './biosecurity/section.js'
 import { BiosecurityPlanSection } from '../common/model/section/biosecurity-plan/biosecurity-plan.js'
 import { IdentificationSection } from '../common/model/section/identification/identification.js'
 import { ApplicationModel } from '../common/model/application/application.js'

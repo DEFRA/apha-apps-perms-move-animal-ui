@@ -2,7 +2,7 @@ import { TbSectionModel } from '../../../../tb/section-model.js'
 import { onOffFarmPage } from '../../../../tb/origin/on-off-farm/index.js'
 import { origin } from '~/src/server/tb/origin/index.js'
 
-/** @import {SectionConfig} from '../../../../tb/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 export class OriginSection extends TbSectionModel {
   /** @type {SectionConfig} */

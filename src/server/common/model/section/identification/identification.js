@@ -6,7 +6,7 @@ import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
 import { DestinationTypeAnswer } from '../../answer/destination-type/destination-type.js'
 import { calvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
 
-/** @import {SectionConfig} from '../../../../tb/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /** @param {RawApplicationState} app */
