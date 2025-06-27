@@ -1,15 +1,15 @@
-import { QuestionPage } from '../../page/question-page-model.js'
-import { ExitPage } from '../../page/exit-page-model.js'
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
-import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
+import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
 
 /**
- * @import { Page } from '../../page/page-model.js'
- * @import {AnswerModel} from '../../answer/answer-model.js'
- * @import {RawApplicationState, StateManager} from '../../state/state-manager.js'
+ * @import { Page } from '~/src/server/common/model/page/page-model.js'
+ * @import {AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
+ * @import {RawApplicationState, StateManager} from '~/src/server/common/model/state/state-manager.js'
  */
 
 /**
@@ -153,11 +153,3 @@ export class SectionModel {
     }
   }
 }
-
-export class TbSectionModel {
-  StateManager = TbStateManager
-}
-
-/**
- * import {Request} from '@hapi/hapi'
- */

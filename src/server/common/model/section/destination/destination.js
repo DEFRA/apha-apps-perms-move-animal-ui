@@ -1,11 +1,11 @@
 import { destination } from '~/src/server/tb/destination/index.js'
 import { OriginSection } from '../origin/origin.js'
-import { SectionModel } from '../section-model/section-model.js'
+import { TbSectionModel } from '../../../../tb/section-model.js'
 import { destinationTypePage } from '~/src/server/tb/destination/destination-type/index.js'
 
-/** @import {SectionConfig} from '../section-model/section-model.js' */
+/** @import {SectionConfig} from '../../../../tb/section-model.js' */
 
-export class DestinationSection extends SectionModel {
+export class DestinationSection extends TbSectionModel {
   /** @type {SectionConfig} */
   static config = {
     key: 'destination',
