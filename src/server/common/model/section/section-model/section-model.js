@@ -1,6 +1,5 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
-import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
