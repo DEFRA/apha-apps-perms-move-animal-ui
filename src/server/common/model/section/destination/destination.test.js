@@ -1,4 +1,4 @@
-import { DestinationTypePage } from '~/src/server/destination/destination-type/index.js'
+import { DestinationTypePage } from '~/src/server/tb/destination/destination-type/index.js'
 import { DestinationSection } from './destination.js'
 import {
   validDestinationSectionState,

@@ -1,6 +1,6 @@
 import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
 import { OriginSection } from './origin.js'
-import { OnOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
+import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 
 describe('Origin', () => {
   describe('validate', () => {

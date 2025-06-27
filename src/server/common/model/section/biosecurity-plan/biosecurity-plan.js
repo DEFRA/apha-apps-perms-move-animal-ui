@@ -1,6 +1,6 @@
-import { uploadPlanPage } from '~/src/server/biosecurity-map/upload-plan/index.js'
+import { uploadPlanPage } from '~/src/server/tb/biosecurity-map/upload-plan/index.js'
 import { SectionModel } from '../section-model/section-model.js'
-import { biosecurityPlan } from '~/src/server/biosecurity-map/index.js'
+import { biosecurityPlan } from '~/src/server/tb/biosecurity-map/index.js'
 import { biosecuritySectionIsVisible } from '../visibility.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */

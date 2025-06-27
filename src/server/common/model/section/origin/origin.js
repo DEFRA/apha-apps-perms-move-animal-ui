@@ -1,6 +1,6 @@
 import { SectionModel } from '../section-model/section-model.js'
-import { onOffFarmPage } from '../../../../origin/on-off-farm/index.js'
-import { origin } from '~/src/server/origin/index.js'
+import { onOffFarmPage } from '../../../../tb/origin/on-off-farm/index.js'
+import { origin } from '~/src/server/tb/origin/index.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 

@@ -1,9 +1,9 @@
 import {
   FullNameFuturePage,
   fullNameFuturePage
-} from '~/src/server/licence/full-name-future/index.js'
+} from '~/src/server/tb/licence/full-name-future/index.js'
 import { LicenceSection } from './licence.js'
-import { fullNamePage } from '~/src/server/licence/full-name/index.js'
+import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
 
 const testEmail = 'test@domain.com'
 const testFullName = {

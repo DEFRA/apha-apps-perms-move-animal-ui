@@ -1,4 +1,4 @@
-import { UploadPlanPage } from '~/src/server/biosecurity-map/upload-plan/index.js'
+import { UploadPlanPage } from '~/src/server/tb/biosecurity-map/upload-plan/index.js'
 import { BiosecurityPlanSection } from './biosecurity-plan.js'
 import {
   validApplicationState,

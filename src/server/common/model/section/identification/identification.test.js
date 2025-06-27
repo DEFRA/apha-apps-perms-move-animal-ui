@@ -7,7 +7,7 @@ import {
   validIdentificationSectionState,
   validBiosecurityMapSectionState
 } from '../../../test-helpers/journey-state.js'
-import { CalvesUnder42DaysOldPage } from '~/src/server/identification/calves-under-42-days-old/index.js'
+import { CalvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
 
 const applicationStateWithAnimalIdentifiersSection = {
   origin: {

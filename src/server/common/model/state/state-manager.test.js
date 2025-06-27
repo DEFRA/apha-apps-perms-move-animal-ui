@@ -1,4 +1,4 @@
-import { onOffFarmPage } from '~/src/server/origin/on-off-farm/index.js'
+import { onOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 import { StateManager } from './state-manager.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
