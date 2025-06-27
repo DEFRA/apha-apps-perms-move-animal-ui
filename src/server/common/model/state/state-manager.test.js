@@ -1,7 +1,9 @@
 import { onOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
-import { StateManager } from './state-manager.js'
+import { StateManagerAbstract } from './state-manager.js'
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
+/** @import {Request} from '@hapi/hapi' */
 
 const origin = {
   onOffFarm: 'on',
@@ -43,43 +45,55 @@ const testRequest = (state) => ({
   }
 })
 
+class TestStateManager extends StateManagerAbstract {
+  get key(){
+    return 'test-key'
+  }
+}
+
 describe('StateManager.toState', () => {
   it('extracts the raw application state from a request', () => {
     const request = testRequest(validState)
-    const state = new StateManager(request)
+    const state = new TestStateManager(request)
     expect(state.toState()).toEqual(validState)
-    expect(request.yar.get).toHaveBeenCalledWith('application')
+    expect(request.yar.get).toHaveBeenCalledWith('test-key')
   })
 
   it('filters out missing sections', () => {
     const partialState = { origin }
     const request = testRequest(partialState)
-    const state = new StateManager(request)
+    const state = new TestStateManager(request)
     expect(state.toState()).toStrictEqual(partialState)
-    expect(request.yar.get).toHaveBeenCalledWith('application')
+    expect(request.yar.get).toHaveBeenCalledWith('test-key')
   })
 
   it('returns an empty object if no sections are available', () => {
     const request = testRequest({})
-    const state = new StateManager(request)
+    const state = new TestStateManager(request)
     expect(state.toState()).toEqual({})
-    expect(request.yar.get).toHaveBeenCalledWith('application')
+    expect(request.yar.get).toHaveBeenCalledWith('test-key')
   })
 })
 
 describe('StateManager.set', () => {
   it('should preserve the existing state and add set the new values', () => {
     const request = testRequest(validState)
-    const state = new StateManager(request)
+    const state = new TestStateManager(request)
 
     state.set(onOffFarmPage, new onOffFarmPage.Answer({ onOffFarm: 'off' }))
 
-    expect(request.yar.set).toHaveBeenCalledWith('application', {
+    expect(request.yar.set).toHaveBeenCalledWith('test-key', {
       ...validState,
       origin: {
         ...validState.origin,
         onOffFarm: 'off'
       }
     })
+  })
+})
+
+describe('StateManager.key', () => {
+  it('should throw NotImplementedError', () => {
+    expect(() => new StateManagerAbstract(/** @type {Request} */({})).key).toThrow(NotImplementedError)
   })
 })
