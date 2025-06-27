@@ -1,7 +1,7 @@
 import { submitSummaryPage } from '../../check-answers/index.js'
 import { PageController } from '../../../common/controller/page-controller/page-controller.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
-import { TbStateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { uploadPlanPage } from '../upload-plan/index.js'
 
 export class SizeErrorPageController extends PageController {

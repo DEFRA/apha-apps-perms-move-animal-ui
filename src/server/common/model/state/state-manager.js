@@ -40,8 +40,4 @@ export class StateManager {
     })
   }
 }
-export class TbStateManager extends StateManager {
-  get key() {
-    return 'application'
-  }
-}
+

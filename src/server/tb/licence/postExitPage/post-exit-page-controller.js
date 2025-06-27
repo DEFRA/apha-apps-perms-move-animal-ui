@@ -1,6 +1,6 @@
 import { PageController } from '../../../common/controller/page-controller/page-controller.js'
 import { ReceiveMethodAnswer } from '../../../common/model/answer/receiveMethod/receiveMethod.js'
-import { TbStateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { emailAddressPage } from '../email-address/index.js'
 import { receiveMethodPage } from '../receiveMethod/index.js'
 

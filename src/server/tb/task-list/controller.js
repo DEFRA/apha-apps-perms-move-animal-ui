@@ -1,5 +1,5 @@
 import { TbApplicationModel } from '../application.js'
-import { TbStateManager } from '../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle

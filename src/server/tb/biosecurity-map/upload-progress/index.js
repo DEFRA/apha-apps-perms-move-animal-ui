@@ -4,7 +4,7 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadConfig } from '../upload-config.js'
 import { UploadPlanPage } from '../upload-plan/index.js'
 import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
-import { TbStateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadProgressPage extends QuestionPage {

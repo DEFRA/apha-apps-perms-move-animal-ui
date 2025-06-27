@@ -9,7 +9,7 @@ import {
   sendEmailToApplicant,
   sendEmailToCaseWorker
 } from '../../common/connectors/notify/notify.js'
-import { TbStateManager } from '../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { fileSizeInMB } from '../../common/helpers/file/size.js'
 import { handleUploadedFile } from '../../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'

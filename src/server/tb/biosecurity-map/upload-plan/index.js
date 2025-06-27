@@ -3,7 +3,7 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
-import { TbStateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadPlanPage extends QuestionPage {
