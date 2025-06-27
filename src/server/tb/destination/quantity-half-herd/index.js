@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { QuantityHalfHerdAnswer } from '../../../common/model/answer/quantity-half-herd/quantity-half-herd.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { destinationSummaryPage } from '../summary/index.js'
@@ -23,7 +23,7 @@ export const quantityHalfHerdPage = new QuantityHalfHerdPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const quantityHalfHerd = new QuestionPageController(
+export const quantityHalfHerd = new TbQuestionPageController(
   new QuantityHalfHerdPage()
 ).plugin()
 

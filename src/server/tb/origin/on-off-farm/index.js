@@ -5,7 +5,7 @@
 
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { originTypePage } from '../origin-type/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
@@ -39,7 +39,7 @@ export const onOffFarmPage = new OnOffFarmPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const onOffFarm = new QuestionPageController(
+export const onOffFarm = new TbQuestionPageController(
   new OnOffFarmPage()
 ).plugin()
 

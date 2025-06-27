@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { OtherWildlifeMeasuresAnswer } from '../../../common/model/answer/other-wildlife-measures/other-wildlife-measures.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { biosecuritySummaryPage } from '../check-answers/index.js'
@@ -23,7 +23,7 @@ export const otherWildlifeMeasuresPage = new OtherWildlifeMeasuresPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const otherWildlifeMeasures = new QuestionPageController(
+export const otherWildlifeMeasures = new TbQuestionPageController(
   otherWildlifeMeasuresPage
 ).plugin()
 

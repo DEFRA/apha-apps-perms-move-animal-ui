@@ -1,7 +1,7 @@
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { originSummaryPage } from '~/src/server/tb/origin/summary/index.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -32,4 +32,4 @@ export const originAddressPage = new OriginAddressPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const address = new QuestionPageController(originAddressPage).plugin()
+export const address = new TbQuestionPageController(originAddressPage).plugin()

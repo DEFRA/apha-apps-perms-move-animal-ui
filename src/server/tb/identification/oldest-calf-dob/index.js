@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { CalfDob } from '../../../common/model/answer/calf-dob/calf-dob.js'
 import { differenceInDaysWithToday } from '../../../common/model/answer/date/date-utils.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
@@ -34,6 +34,6 @@ export const oldestCalfDobPage = new OldestCalfDobPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const oldestCalfDob = new QuestionPageController(
+export const oldestCalfDob = new TbQuestionPageController(
   oldestCalfDobPage
 ).plugin()

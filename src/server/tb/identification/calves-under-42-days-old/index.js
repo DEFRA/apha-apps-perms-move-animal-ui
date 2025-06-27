@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { CalvesUnder42DaysOldAnswer } from '../../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { testingDatesPage } from '../testing-dates/index.js'
@@ -26,7 +26,7 @@ export const calvesUnder42DaysOldPage = new CalvesUnder42DaysOldPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const calvesUnder42DaysOld = new QuestionPageController(
+export const calvesUnder42DaysOld = new TbQuestionPageController(
   calvesUnder42DaysOldPage
 ).plugin()
 

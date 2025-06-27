@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { RestockReasonsAnswer } from '../../../common/model/answer/restock-reasons/restock-reasons.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { additionalInfoPage } from '../additional-info/index.js'
@@ -27,7 +27,7 @@ export const restockReasonPage = new RestockReasonPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const restockReason = new QuestionPageController(
+export const restockReason = new TbQuestionPageController(
   restockReasonPage
 ).plugin()
 

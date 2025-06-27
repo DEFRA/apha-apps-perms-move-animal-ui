@@ -1,7 +1,7 @@
 import { submitSummaryPage } from '../../check-answers/index.js'
 import { PageController } from '../../../common/controller/page-controller/page-controller.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
-import { StateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { uploadPlanPage } from '../upload-plan/index.js'
 
 export class SizeErrorPageController extends PageController {
@@ -10,7 +10,7 @@ export class SizeErrorPageController extends PageController {
   }
 
   handlePost(req, h) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     const uploadPlan = /** @type {BiosecurityMapAnswer} */ (
       BiosecurityMapAnswer.fromState(
         applicationState['biosecurity-map']['upload-plan']
@@ -20,7 +20,7 @@ export class SizeErrorPageController extends PageController {
       uploadPlan.value.status.uploadStatus = 'skipped'
     }
 
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     state.set(uploadPlanPage, uploadPlan)
 
     return h.redirect(this.nextPage().urlPath)

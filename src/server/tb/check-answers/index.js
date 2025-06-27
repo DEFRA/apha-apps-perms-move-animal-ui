@@ -1,7 +1,7 @@
 import { config } from '~/src/config/config.js'
 import { sectionToSummary } from '../../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../question-page-controller.js'
 import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../../common/model/page/page-model.js'
 import { TbApplicationModel } from '../application.js'
@@ -9,7 +9,7 @@ import {
   sendEmailToApplicant,
   sendEmailToCaseWorker
 } from '../../common/connectors/notify/notify.js'
-import { StateManager } from '../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { fileSizeInMB } from '../../common/helpers/file/size.js'
 import { handleUploadedFile } from '../../common/helpers/file/file-utils.js'
 import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
@@ -59,7 +59,7 @@ export class SubmitSummaryPage extends QuestionPage {
 
   viewProps(req) {
     const tasks = TbApplicationModel.fromState(
-      new StateManager(req).toState()
+      new TbStateManager(req).toState()
     ).tasks
 
     const summary = Object.fromEntries(
@@ -78,14 +78,14 @@ export class SubmitSummaryPage extends QuestionPage {
 
 export const submitSummaryPage = new SubmitSummaryPage()
 
-export class SubmitPageController extends QuestionPageController {
+export class SubmitPageController extends TbQuestionPageController {
   constructor() {
     super(new SubmitSummaryPage())
   }
 
   handleGet(req, h) {
     const { isValid } = TbApplicationModel.fromState(
-      new StateManager(req).toState()
+      new TbStateManager(req).toState()
     ).validate()
 
     if (!isValid) {
@@ -96,7 +96,7 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   async _handleToCaseManagementApi(req, h) {
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     const applicationState = state.toState()
 
     const application = TbApplicationModel.fromState(applicationState)
@@ -130,7 +130,7 @@ export class SubmitPageController extends QuestionPageController {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     const applicationState = state.toState()
 
     const application = TbApplicationModel.fromState(applicationState)
@@ -157,7 +157,7 @@ export class SubmitPageController extends QuestionPageController {
 
   // TODO: DELETE BELOW START: WHEN CMAPI IS APPROVED
   async _handleDirectEmail(req, h) {
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     const applicationState = state.toState()
 
     const application = TbApplicationModel.fromState(applicationState)

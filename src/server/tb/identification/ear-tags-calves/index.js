@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { EarTagsCalvesAnswer } from '../../../common/model/answer/ear-tags/ear-tags-calves.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { animals42DaysOldOrOlderPage } from '../animals-42-days-old-or-older/index.js'
@@ -30,7 +30,7 @@ export const earTagsCalvesPage = new EarTagsCalvesPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const earTagsCalves = new QuestionPageController(
+export const earTagsCalves = new TbQuestionPageController(
   earTagsCalvesPage
 ).plugin()
 

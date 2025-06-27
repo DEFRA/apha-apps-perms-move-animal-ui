@@ -1,9 +1,9 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
-import { StateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadPlanPage extends QuestionPage {
@@ -21,9 +21,9 @@ export class UploadPlanPage extends QuestionPage {
   }
 }
 
-export class UploadPlanController extends QuestionPageController {
+export class UploadPlanController extends TbQuestionPageController {
   async handleGet(req, h) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]
 
     const existingAnswer = /** @type {BiosecurityMapAnswer} */ (
@@ -46,7 +46,7 @@ export class UploadPlanController extends QuestionPageController {
       status: existingAnswer.value?.status
     })
 
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     state.set(this.page, answer)
 
     // if we dont have an initialState then its the first time we've visited here

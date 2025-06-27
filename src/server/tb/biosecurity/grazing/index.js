@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { GrazingAnswer } from '../../../common/model/answer/grazing/grazing.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
@@ -26,7 +26,7 @@ export const grazingPage = new GrazingPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const grazing = new QuestionPageController(grazingPage).plugin()
+export const grazing = new TbQuestionPageController(grazingPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

@@ -1,6 +1,6 @@
 import { KeptSeparatelyAnswer } from '~/src/server/common/model/answer/kept-separately/kept-separately.js'
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
-import { QuestionPageController } from '~/src/server/common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '~/src/server/tb/question-page-controller.js'
 import { grazingPage } from '../grazing/index.js'
 import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
@@ -28,7 +28,7 @@ export const keptSeparatelyPage = new KeptSeparatelyPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const keptSeparately = new QuestionPageController(
+export const keptSeparately = new TbQuestionPageController(
   keptSeparatelyPage
 ).plugin()
 

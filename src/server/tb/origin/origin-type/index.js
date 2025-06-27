@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { cphNumberPage } from '~/src/server/tb/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../../common/model/answer/origin-type/origin-type.js'
 import { countryPage } from '../country/index.js'
@@ -81,7 +81,7 @@ export const originTypePage = new OriginTypePage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originType = new QuestionPageController(
+export const originType = new TbQuestionPageController(
   new OriginTypePage()
 ).plugin()
 

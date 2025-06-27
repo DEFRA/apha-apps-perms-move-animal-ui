@@ -1,6 +1,6 @@
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
@@ -69,7 +69,7 @@ export const destinationTypePage = new DestinationTypePage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const destinationType = new QuestionPageController(
+export const destinationType = new TbQuestionPageController(
   new DestinationTypePage()
 ).plugin()
 

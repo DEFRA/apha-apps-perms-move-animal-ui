@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { EquipmentAnySharedAnswer } from '../../../common/model/answer/equipment-any-shared/equipment-any-shared.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise-contamination/index.js'
@@ -28,7 +28,7 @@ export const equipmentAnySharedPage = new EquipmentAnySharedPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const equipmentAnyShared = new QuestionPageController(
+export const equipmentAnyShared = new TbQuestionPageController(
   equipmentAnySharedPage
 ).plugin()
 

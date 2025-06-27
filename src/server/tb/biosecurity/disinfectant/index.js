@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { DisinfectantAnswer } from '../../../common/model/answer/disinfectant/disinfectant.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { disinfectantDilutionPage } from '../disinfectant-dilution/index.js'
@@ -29,7 +29,7 @@ export const disinfectantPage = new DisinfectantPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const disinfectant = new QuestionPageController(
+export const disinfectant = new TbQuestionPageController(
   disinfectantPage
 ).plugin()
 

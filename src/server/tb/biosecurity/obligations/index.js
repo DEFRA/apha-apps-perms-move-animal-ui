@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BiosecurityObligationsAnswer } from '../../../common/model/answer/biosecurity-obligations/biosecurity-obligations.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { keptSeparatelyPage } from '../kept-separately/index.js'
@@ -23,7 +23,9 @@ export const obligationsPage = new ObligationsPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const obligations = new QuestionPageController(obligationsPage).plugin()
+export const obligations = new TbQuestionPageController(
+  obligationsPage
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

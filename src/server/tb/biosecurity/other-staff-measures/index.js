@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { OtherStaffMeasuresAnswer } from '../../../common/model/answer/other-staff-measures/other-staff-measures.js'
 import { badgersPage } from '../badgers/index.js'
 
@@ -23,7 +23,7 @@ export const otherStaffMeasuresPage = new OtherStaffMeasuresPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const otherStaffMeasures = new QuestionPageController(
+export const otherStaffMeasures = new TbQuestionPageController(
   otherStaffMeasuresPage
 ).plugin()
 

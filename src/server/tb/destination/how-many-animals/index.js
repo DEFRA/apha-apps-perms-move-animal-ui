@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { HowManyAnimalsAnswer } from '../../../common/model/answer/how-many-animals/how-many-animals.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
@@ -21,7 +21,7 @@ export const howManyAnimalsPage = new HowManyAnimalsPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const howManyAnimals = new QuestionPageController(
+export const howManyAnimals = new TbQuestionPageController(
   howManyAnimalsPage
 ).plugin()
 

@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { PeopleDisinfectionAnswer } from '../../../common/model/answer/people-disinfection/people-disinfection.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { badgersPage } from '../badgers/index.js'
@@ -28,7 +28,7 @@ export const peopleDisinfectionPage = new PeopleDisinfectionPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const peopleDisinfection = new QuestionPageController(
+export const peopleDisinfection = new TbQuestionPageController(
   peopleDisinfectionPage
 ).plugin()
 

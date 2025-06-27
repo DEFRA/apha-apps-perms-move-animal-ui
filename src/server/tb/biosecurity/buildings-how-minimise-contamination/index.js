@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
@@ -31,7 +31,7 @@ export const buildingsHowMinimiseContaminationPage =
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const buildingsHowMinimiseContamination = new QuestionPageController(
+export const buildingsHowMinimiseContamination = new TbQuestionPageController(
   buildingsHowMinimiseContaminationPage
 ).plugin()
 

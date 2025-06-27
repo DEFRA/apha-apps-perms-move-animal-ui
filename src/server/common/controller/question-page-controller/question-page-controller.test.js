@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../model/page/question-page-model.js'
-import { QuestionPageController } from './question-page-controller.js'
+import { TbQuestionPageController } from '../../../tb/question-page-controller.js'
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
@@ -123,7 +123,7 @@ class NextOnFarmTestPage extends TestPage {
   urlPath = nextOnFarmQuestionUrl
 }
 
-const controller = new QuestionPageController(new TestPage())
+const controller = new TbQuestionPageController(new TestPage())
 
 describe('QuestionPageController', () => {
   /** @type {Server} */

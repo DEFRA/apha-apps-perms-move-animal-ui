@@ -1,5 +1,5 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
-import { SummaryPageController } from '../../../common/controller/summary-page-controller/summary-page-controller.js'
+import { TbSummaryPageController } from '../../summary-page-controller.js'
 
 import { BiosecurityPlanSection } from '~/src/server/common/model/section/biosecurity-plan/biosecurity-plan.js'
 
@@ -17,7 +17,7 @@ export const biosecurityPlanSummaryPage = new BiosecurityPlanSummaryPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const biosecurityPlanSummary = new SummaryPageController(
+export const biosecurityPlanSummary = new TbSummaryPageController(
   new BiosecurityPlanSummaryPage()
 ).plugin()
 

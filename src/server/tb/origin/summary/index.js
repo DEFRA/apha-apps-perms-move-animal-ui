@@ -1,5 +1,5 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
-import { SummaryPageController } from '../../../common/controller/summary-page-controller/summary-page-controller.js'
+import { TbSummaryPageController } from '../../summary-page-controller.js'
 
 import { OriginSection } from '~/src/server/common/model/section/origin/origin.js'
 
@@ -16,7 +16,7 @@ export const originSummaryPage = new OriginSummaryPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originSummary = new SummaryPageController(
+export const originSummary = new TbSummaryPageController(
   new OriginSummaryPage()
 ).plugin()
 

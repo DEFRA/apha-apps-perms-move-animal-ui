@@ -1,6 +1,6 @@
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -25,6 +25,6 @@ export const importAddressPage = new ImportAddressPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const importAddress = new QuestionPageController(
+export const importAddress = new TbQuestionPageController(
   importAddressPage
 ).plugin()

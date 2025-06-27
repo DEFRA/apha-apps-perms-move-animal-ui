@@ -1,5 +1,5 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
-import { SummaryPageController } from '../../../common/controller/summary-page-controller/summary-page-controller.js'
+import { TbSummaryPageController } from '../../summary-page-controller.js'
 
 import { LicenceSection } from '~/src/server/common/model/section/licence/licence.js'
 
@@ -17,7 +17,7 @@ export const licenceSummaryPage = new LicenceSummaryPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const licenceSummary = new SummaryPageController(
+export const licenceSummary = new TbSummaryPageController(
   new LicenceSummaryPage()
 ).plugin()
 

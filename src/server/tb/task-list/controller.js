@@ -1,5 +1,5 @@
 import { TbApplicationModel } from '../application.js'
-import { StateManager } from '../../common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/tb/state-manager.js'
 
 const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
 const heading = pageTitle
@@ -12,7 +12,7 @@ const buttonText = 'Review and submit'
 export const taskListGetController = {
   handler(req, h) {
     const visibleSections = Object.values(
-      TbApplicationModel.fromState(new StateManager(req).toState()).tasks
+      TbApplicationModel.fromState(new TbStateManager(req).toState()).tasks
     )
 
     const gdsTasks = visibleSections.map((section) => {

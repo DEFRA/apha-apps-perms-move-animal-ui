@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { RestockAnimalsAnswer } from '../../../common/model/answer/restock-animals/restock-animals.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { restockReasonPage } from '../restock-reason/index.js'
@@ -21,7 +21,7 @@ export const restockAnimalPage = new RestockAnimalPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const restockAnimal = new QuestionPageController(
+export const restockAnimal = new TbQuestionPageController(
   restockAnimalPage
 ).plugin()
 

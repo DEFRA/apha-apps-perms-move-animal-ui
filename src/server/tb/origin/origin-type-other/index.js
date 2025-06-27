@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { OriginTypeOtherAnswer } from '../../../common/model/answer/origin-type-other/origin-type-other.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
@@ -22,7 +22,7 @@ export const originTypeOtherPage = new OriginTypeOtherPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originTypeOther = new QuestionPageController(
+export const originTypeOther = new TbQuestionPageController(
   originTypeOtherPage
 ).plugin()
 
