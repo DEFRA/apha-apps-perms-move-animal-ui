@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import { OtherEquipmentMeasuresAnswer } from '../../../common/model/answer/other-equipment-measures/other-equipment-measures.js'
 
@@ -23,7 +23,7 @@ export const otherEquipmentMeasuresPage = new OtherEquipmentMeasuresPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const otherEquipmentMeasures = new QuestionPageController(
+export const otherEquipmentMeasures = new TbQuestionPageController(
   otherEquipmentMeasuresPage
 ).plugin()
 

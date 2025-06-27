@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BadgersAnswer } from '../../../common/model/answer/badgers/badgers.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { biosecuritySummaryPage } from '../check-answers/index.js'
@@ -30,7 +30,7 @@ export const badgersPage = new BadgersPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const badgers = new QuestionPageController(badgersPage).plugin()
+export const badgers = new TbQuestionPageController(badgersPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

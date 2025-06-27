@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { ReasonForMovementAnswer } from '../../../common/model/answer/reason-for-movement/reason-for-movement.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { additionalInfoPage } from '../additional-info/index.js'
@@ -26,7 +26,7 @@ export const reasonForMovementPage = new ReasonForMovementPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const reasonForMovement = new QuestionPageController(
+export const reasonForMovement = new TbQuestionPageController(
   new ReasonForMovementPage()
 ).plugin()
 

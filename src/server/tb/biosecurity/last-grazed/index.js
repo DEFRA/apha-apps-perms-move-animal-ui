@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { LastGrazedAnswer } from '../../../common/model/answer/last-grazed/last-grazed.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
@@ -20,7 +20,7 @@ export const lastGrazedPage = new LastGrazedPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const lastGrazed = new QuestionPageController(lastGrazedPage).plugin()
+export const lastGrazed = new TbQuestionPageController(lastGrazedPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { ManureAndSlurryDetailsAnswer } from '../../../common/model/answer/manure-and-slurry-details/manure-and-slurry-details.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { disinfectantPage } from '../disinfectant/index.js'
@@ -21,7 +21,7 @@ export const manureAndSlurryDetailsPage = new ManureAndSlurryDetailsPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const manureAndSlurryDetails = new QuestionPageController(
+export const manureAndSlurryDetails = new TbQuestionPageController(
   manureAndSlurryDetailsPage
 ).plugin()
 

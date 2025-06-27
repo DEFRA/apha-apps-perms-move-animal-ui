@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { CountryAnswer } from '../../../common/model/answer/country/country.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { importCphPage } from '../import-cph/index.js'
@@ -22,4 +22,4 @@ export const countryPage = new CountryPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const country = new QuestionPageController(countryPage).plugin()
+export const country = new TbQuestionPageController(countryPage).plugin()

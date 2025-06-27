@@ -1,7 +1,7 @@
 import { config } from '~/src/config/config.js'
 import { sectionToSummary } from '../../common/templates/macros/create-summary.js'
 import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../question-page-controller.js'
 import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../../common/model/page/page-model.js'
 import { TbApplicationModel } from '../application.js'
@@ -78,7 +78,7 @@ export class SubmitSummaryPage extends QuestionPage {
 
 export const submitSummaryPage = new SubmitSummaryPage()
 
-export class SubmitPageController extends QuestionPageController {
+export class SubmitPageController extends TbQuestionPageController {
   constructor() {
     super(new SubmitSummaryPage())
   }

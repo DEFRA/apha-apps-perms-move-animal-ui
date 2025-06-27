@@ -1,6 +1,6 @@
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadConfig } from '../upload-config.js'
 import { UploadPlanPage } from '../upload-plan/index.js'
 import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
@@ -23,7 +23,7 @@ export class UploadProgressPage extends QuestionPage {
   }
 }
 
-export class UploadProgressController extends QuestionPageController {
+export class UploadProgressController extends TbQuestionPageController {
   pluginName = 'biosecurity-map-uploading'
 
   async handleGet(req, h) {

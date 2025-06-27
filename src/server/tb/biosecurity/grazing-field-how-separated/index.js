@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { GrazingFieldHowSeparatedAnswer } from '../../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
@@ -21,7 +21,7 @@ export const grazingFieldHowSeparatedPage = new GrazingFieldHowSeparatedPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const grazingFieldHowSeparated = new QuestionPageController(
+export const grazingFieldHowSeparated = new TbQuestionPageController(
   grazingFieldHowSeparatedPage
 ).plugin()
 

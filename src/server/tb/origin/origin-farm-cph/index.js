@@ -5,7 +5,7 @@
 
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { originFarmAddressPage } from '../origin-farm-address/index.js'
 
 export class OriginFarmCphPage extends QuestionPage {
@@ -30,7 +30,7 @@ export const originFarmCphPage = new OriginFarmCphPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originFarmCph = new QuestionPageController(
+export const originFarmCph = new TbQuestionPageController(
   originFarmCphPage
 ).plugin()
 

@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { earTagsPage } from '../ear-tags/index.js'
@@ -30,7 +30,7 @@ export const testingDatesPage = new TestingDatesPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const testingDates = new QuestionPageController(
+export const testingDates = new TbQuestionPageController(
   testingDatesPage
 ).plugin()
 

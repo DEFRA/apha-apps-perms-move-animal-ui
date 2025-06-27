@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BuildingsAnySharedAnswer } from '../../../common/model/answer/buildings-any-shared/buildings-any-shared.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise-contamination/index.js'
@@ -27,7 +27,7 @@ export const buildingsAnySharedPage = new BuildingsAnySharedPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const buildingsAnyShared = new QuestionPageController(
+export const buildingsAnyShared = new TbQuestionPageController(
   buildingsAnySharedPage
 ).plugin()
 

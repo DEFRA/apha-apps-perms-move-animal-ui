@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadProgressPage } from '../upload-progress/index.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
@@ -21,7 +21,7 @@ export class UploadPlanPage extends QuestionPage {
   }
 }
 
-export class UploadPlanController extends QuestionPageController {
+export class UploadPlanController extends TbQuestionPageController {
   async handleGet(req, h) {
     const applicationState = new StateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]

@@ -6,7 +6,7 @@
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { originAddressPage } from '../address/index.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 
 export class CphNumberPage extends QuestionPage {
   urlPath = '/origin/cph-number'
@@ -30,7 +30,7 @@ export const cphNumberPage = new CphNumberPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const cphNumber = new QuestionPageController(cphNumberPage).plugin()
+export const cphNumber = new TbQuestionPageController(cphNumberPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'

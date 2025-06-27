@@ -1,6 +1,6 @@
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -27,6 +27,6 @@ export const originFarmAddressPage = new OriginFarmAddressPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const originFarmAddress = new QuestionPageController(
+export const originFarmAddress = new TbQuestionPageController(
   originFarmAddressPage
 ).plugin()

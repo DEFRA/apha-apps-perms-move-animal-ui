@@ -1,14 +1,14 @@
-import { calculateNextPage } from '../../helpers/next-page.js'
-import { ExitPage } from '../../model/page/exit-page-model.js'
-import GenericPageController from '../generic-page-controller/index.js'
-import { StateManager } from '../../model/state/state-manager.js'
-import { nextPageRedirect } from '../../helpers/next-page-redirect/index.js'
-import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
+import { calculateNextPage } from '~/src/server/common/helpers/next-page.js'
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
+import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
+import { StateManager } from '~/src/server/common/model/state/state-manager.js'
+import { nextPageRedirect } from '~/src/server/common/helpers/next-page-redirect/index.js'
+import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
 
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
-/** @import { NextPage } from '../../helpers/next-page.js' */
-/** @import { RawPayload } from '../../model/answer/answer-model.js' */
-/** @import { QuestionPage } from '../../model/page/question-page-model.js' */
+/** @import { NextPage } from '~/src/server/common/helpers/next-page.js' */
+/** @import { RawPayload } from '~/src/server/common/model/answer/answer-model.js' */
+/** @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js' */
 
 export class QuestionPageController extends GenericPageController {
   /**

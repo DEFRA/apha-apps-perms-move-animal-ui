@@ -1,5 +1,5 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
 import { FullNameFutureAnswer } from '../../../common/model/answer/full-name-future/full-name-future.js'
@@ -23,7 +23,7 @@ export const fullNameFuturePage = new FullNameFuturePage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const fullNameFuture = new QuestionPageController(
+export const fullNameFuture = new TbQuestionPageController(
   fullNameFuturePage
 ).plugin()
 

@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { DestinationTypeOtherAnswer } from '../../../common/model/answer/destination-type-other/destination-type-other.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
@@ -22,7 +22,7 @@ export const destinationTypeOtherPage = new DestinationTypeOtherPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const destinationTypeOther = new QuestionPageController(
+export const destinationTypeOther = new TbQuestionPageController(
   destinationTypeOtherPage
 ).plugin()
 

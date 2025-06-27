@@ -1,4 +1,4 @@
-import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TbQuestionPageController } from '../../question-page-controller.js'
 import { EarTagsAnswer } from '../../../common/model/answer/ear-tags/ear-tags.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { identificationSummaryPage } from '../summary/index.js'
@@ -29,7 +29,7 @@ export const earTagsPage = new EarTagsPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const earTags = new QuestionPageController(earTagsPage).plugin()
+export const earTags = new TbQuestionPageController(earTagsPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
