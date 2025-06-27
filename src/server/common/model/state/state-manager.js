@@ -9,7 +9,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
  * @typedef {Record<string, RawSectionState>} RawApplicationState
  */
 
-export class StateManagerAbstract {
+export class StateManager {
   /** @returns {string} */
   get key() {
     throw new NotImplementedError()
@@ -40,7 +40,7 @@ export class StateManagerAbstract {
     })
   }
 }
-export class StateManager extends StateManagerAbstract {
+export class TbStateManager extends StateManager {
   get key() {
     return 'application'
   }

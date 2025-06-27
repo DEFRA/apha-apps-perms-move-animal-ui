@@ -1,5 +1,5 @@
 import { onOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
-import { StateManagerAbstract } from './state-manager.js'
+import { StateManager } from './state-manager.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
@@ -45,7 +45,7 @@ const testRequest = (state) => ({
   }
 })
 
-class TestStateManager extends StateManagerAbstract {
+class TestStateManager extends StateManager {
   get key() {
     return 'test-key'
   }
@@ -94,8 +94,8 @@ describe('StateManager.set', () => {
 
 describe('StateManager.key', () => {
   it('should throw NotImplementedError', () => {
-    expect(
-      () => new StateManagerAbstract(/** @type {Request} */ ({})).key
-    ).toThrow(NotImplementedError)
+    expect(() => new StateManager(/** @type {Request} */ ({})).key).toThrow(
+      NotImplementedError
+    )
   })
 })

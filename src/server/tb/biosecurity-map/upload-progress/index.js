@@ -4,7 +4,7 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadConfig } from '../upload-config.js'
 import { UploadPlanPage } from '../upload-plan/index.js'
 import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
-import { StateManager } from '../../../common/model/state/state-manager.js'
+import { TbStateManager } from '../../../common/model/state/state-manager.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadProgressPage extends QuestionPage {
@@ -27,7 +27,7 @@ export class UploadProgressController extends TbQuestionPageController {
   pluginName = 'biosecurity-map-uploading'
 
   async handleGet(req, h) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]
 
     const answer = /** @type {BiosecurityMapAnswer} */ (
@@ -46,7 +46,7 @@ export class UploadProgressController extends TbQuestionPageController {
       status
     })
 
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     state.set(this.page, newAnswer)
 
     const { isValid } = newAnswer.validate()

@@ -1,5 +1,4 @@
 import {
-  QuestionPageController,
   TbQuestionPageController
 } from '../../question-page-controller.js'
 import { CphNumberAnswer } from '../../../common/model/answer/cph-number/cph-number.js'

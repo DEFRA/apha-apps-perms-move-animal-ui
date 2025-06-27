@@ -1,6 +1,6 @@
 import { QuestionPage } from '../../page/question-page-model.js'
 import { ExitPage } from '../../page/exit-page-model.js'
-import { StateManager } from '../../state/state-manager.js'
+import { TbStateManager } from '../../state/state-manager.js'
 import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -138,7 +138,7 @@ export class SectionModel {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildGdsTaskDetails(req) {
     const sectionValidity = this.validate()
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     return {
       title: this.config.title,
       initialLink:

@@ -2,7 +2,7 @@
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
 import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
-import { StateManager } from '../../model/state/state-manager.js'
+import { TbStateManager } from '../../model/state/state-manager.js'
 import { sectionToSummary } from '../../templates/macros/create-summary.js'
 import GenericPageController from '../generic-page-controller/index.js'
 
@@ -59,7 +59,7 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handleGet(req, res) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 
     const { isValid, firstInvalidPage } = section.validate()

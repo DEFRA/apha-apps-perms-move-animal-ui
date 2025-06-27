@@ -1,5 +1,4 @@
 import {
-  QuestionPageController,
   TbQuestionPageController
 } from '../../question-page-controller.js'
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'

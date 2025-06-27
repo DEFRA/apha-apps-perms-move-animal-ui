@@ -1,7 +1,7 @@
 import { calculateNextPage } from '~/src/server/common/helpers/next-page.js'
 import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
-import { StateManager } from '~/src/server/common/model/state/state-manager.js'
+import { TbStateManager } from '~/src/server/common/model/state/state-manager.js'
 import { nextPageRedirect } from '~/src/server/common/helpers/next-page-redirect/index.js'
 import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
 
@@ -54,7 +54,7 @@ export class QuestionPageController extends GenericPageController {
   }
 
   handleGet(req, h, args = {}) {
-    const applicationState = new StateManager(req).toState()
+    const applicationState = new TbStateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
@@ -98,7 +98,7 @@ export class QuestionPageController extends GenericPageController {
   handlePost(req, h) {
     req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
-    const state = new StateManager(req)
+    const state = new TbStateManager(req)
     const applicationState = state.toState()
     const Answer = this.page.Answer
     const answer = new Answer(
