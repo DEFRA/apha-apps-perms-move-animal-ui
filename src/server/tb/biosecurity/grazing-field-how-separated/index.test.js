@@ -32,7 +32,9 @@ describe('GrazingFieldHowSeparatedPage', () => {
   })
 
   it('should have the correct view', () => {
-    expect(page.view).toBe('tb/biosecurity/grazing-field-how-separated/index.njk')
+    expect(page.view).toBe(
+      'tb/biosecurity/grazing-field-how-separated/index.njk'
+    )
   })
 
   it('should have the correct Answer model', () => {
