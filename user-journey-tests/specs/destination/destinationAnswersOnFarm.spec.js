@@ -73,7 +73,11 @@ describe('Check your answers test - destination', () => {
 
       if (Array.isArray(expectedValue)) {
         const actualValue = await element.getText()
-        expect(expectedValue).toContain(actualValue)
+        const normalisedValue = actualValue.replace(/\s+/g, ' ').trim()
+        const normalisedExpectedValues = expectedValue.map((v) =>
+          v.replace(/\s+/g, ' ').trim()
+        )
+        expect(normalisedExpectedValues).toContain(normalisedValue)
       } else {
         await validateElementVisibleAndText(element, expectedValue)
       }
