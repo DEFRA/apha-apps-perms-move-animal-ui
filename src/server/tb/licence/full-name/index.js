@@ -1,8 +1,8 @@
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
 
 import { receiveMethodPage } from '../receiveMethod/index.js'
-import { OwnerFullNameAnswer } from '../../common/model/answer/owner-full-name/owner-full-name.js'
+import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-name/owner-full-name.js'
 
 export class FullNamePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name'

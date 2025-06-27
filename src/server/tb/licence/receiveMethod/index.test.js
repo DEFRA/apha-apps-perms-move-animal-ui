@@ -1,8 +1,8 @@
 import { receiveMethodPage, ReceiveMethodPage } from './index.js'
-import { ReceiveMethodAnswer } from '../../common/model/answer/receiveMethod/receiveMethod.js'
+import { ReceiveMethodAnswer } from '../../../common/model/answer/receiveMethod/receiveMethod.js'
 import { emailAddressPage } from '../email-address/index.js'
 import { postExitPage } from '../postExitPage/index.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 
 // TODO: import next page object
 

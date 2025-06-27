@@ -1,4 +1,4 @@
-import { ExitPage } from '../../common/model/page/exit-page-model.js'
+import { ExitPage } from '../../../common/model/page/exit-page-model.js'
 import { PostExitPageController } from './post-exit-page-controller.js'
 
 /**
@@ -10,7 +10,7 @@ export class PostExitPage extends ExitPage {
     '/receiving-the-licence/licence-select-post-can-not-use-this-service'
 
   pageTitle = 'This service does not currently send licences by post'
-  view = `licence/postExitPage/index`
+  view = `tb/licence/postExitPage/index`
   key = 'post'
   sectionKey = 'licence'
 

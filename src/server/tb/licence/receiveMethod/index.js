@@ -4,8 +4,8 @@
  */
 
 import { ReceiveMethodAnswer } from '~/src/server/common/model/answer/receiveMethod/receiveMethod.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
 
 import { emailAddressPage } from '../email-address/index.js'
 import { postExitPage } from '../postExitPage/index.js'

@@ -1,7 +1,7 @@
-import { licence } from '~/src/server/licence/index.js'
+import { licence } from '~/src/server/tb/licence/index.js'
 import { SectionModel } from '../section-model/section-model.js'
-import { fullNamePage } from '~/src/server/licence/full-name/index.js'
-import { fullNameFuturePage } from '~/src/server/licence/full-name-future/index.js'
+import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
+import { fullNameFuturePage } from '~/src/server/tb/licence/full-name-future/index.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 

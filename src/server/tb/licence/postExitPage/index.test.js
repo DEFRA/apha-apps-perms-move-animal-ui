@@ -1,10 +1,10 @@
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { PostExitPage } from './index.js'
 
 const sectionKey = 'licence'
 const key = 'post'
 const pageTitle = 'This service does not currently send licences by post'
-const view = 'licence/postExitPage/index'
+const view = 'tb/licence/postExitPage/index'
 const pageUrl =
   '/receiving-the-licence/licence-select-post-can-not-use-this-service'
 const continueButtonText = 'Continue with email'

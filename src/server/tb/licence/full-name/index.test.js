@@ -1,7 +1,7 @@
 import { fullNamePage, FullNamePage } from './index.js'
 import { receiveMethodPage } from '../receiveMethod/index.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { OwnerFullNameAnswer } from '../../common/model/answer/owner-full-name/owner-full-name.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-name/owner-full-name.js'
 
 const sectionKey = 'licence'
 const question = 'What is the name of the registered owner of the cattle?'
