@@ -9,7 +9,7 @@ import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
 /**
  * @import { Page } from '../../page/page-model.js'
  * @import {AnswerModel} from '../../answer/answer-model.js'
- * @import {RawApplicationState} from '../../state/state-manager.js'
+ * @import {RawApplicationState, StateManager} from '../../state/state-manager.js'
  */
 
 /**
@@ -34,6 +34,9 @@ import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
  */
 
 export class SectionModel {
+  /** @type {typeof StateManager} */
+  StateManager
+
   /** @type {SectionPayload} */
   _data
 
@@ -92,7 +95,7 @@ export class SectionModel {
 
   /**
    * @param {RawApplicationState} data
-   * @returns {SectionModel}
+   * @returns {TbSectionModel}
    */
   static fromState(data) {
     /** @type {SectionPayload} */
@@ -138,7 +141,7 @@ export class SectionModel {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildGdsTaskDetails(req) {
     const sectionValidity = this.validate()
-    const applicationState = new TbStateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     return {
       title: this.config.title,
       initialLink:
@@ -149,6 +152,10 @@ export class SectionModel {
       isEnabled: this.config.isEnabled(applicationState)
     }
   }
+}
+
+export class TbSectionModel {
+  StateManager = TbStateManager
 }
 
 /**
