@@ -46,7 +46,7 @@ const testRequest = (state) => ({
 })
 
 class TestStateManager extends StateManagerAbstract {
-  get key(){
+  get key() {
     return 'test-key'
   }
 }
@@ -94,6 +94,8 @@ describe('StateManager.set', () => {
 
 describe('StateManager.key', () => {
   it('should throw NotImplementedError', () => {
-    expect(() => new StateManagerAbstract(/** @type {Request} */({})).key).toThrow(NotImplementedError)
+    expect(
+      () => new StateManagerAbstract(/** @type {Request} */ ({})).key
+    ).toThrow(NotImplementedError)
   })
 })

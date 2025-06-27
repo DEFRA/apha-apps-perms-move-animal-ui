@@ -1,4 +1,7 @@
-import { QuestionPageController, TbQuestionPageController } from '../../question-page-controller.js'
+import {
+  QuestionPageController,
+  TbQuestionPageController
+} from '../../question-page-controller.js'
 import { CphNumberAnswer } from '../../../common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { destinationFarmAddressPage } from '../destination-farm-address/index.js'

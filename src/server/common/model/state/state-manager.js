@@ -2,7 +2,7 @@
 /** @import { QuestionPage } from "../page/question-page-model.js" */
 /** @import { AnswerModel } from "../answer/answer-model.js" */
 
-import { NotImplementedError } from "../../helpers/not-implemented-error.js"
+import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
  * @typedef {Record<string, any>} RawSectionState
@@ -12,7 +12,7 @@ import { NotImplementedError } from "../../helpers/not-implemented-error.js"
 export class StateManagerAbstract {
   /** @returns {string} */
   get key() {
-    throw new NotImplementedError
+    throw new NotImplementedError()
   }
 
   /** @param {Request} request */
@@ -39,7 +39,6 @@ export class StateManagerAbstract {
       }
     })
   }
-
 }
 export class StateManager extends StateManagerAbstract {
   get key() {

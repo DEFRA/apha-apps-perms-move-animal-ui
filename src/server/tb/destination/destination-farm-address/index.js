@@ -1,4 +1,7 @@
-import { QuestionPageController, TbQuestionPageController } from '../../question-page-controller.js'
+import {
+  QuestionPageController,
+  TbQuestionPageController
+} from '../../question-page-controller.js'
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { OriginTypeAnswer } from '../../../common/model/answer/origin-type/origin-type.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'

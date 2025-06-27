@@ -23,7 +23,9 @@ export const obligationsPage = new ObligationsPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const obligations = new TbQuestionPageController(obligationsPage).plugin()
+export const obligations = new TbQuestionPageController(
+  obligationsPage
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
