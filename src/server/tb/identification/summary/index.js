@@ -1,5 +1,5 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
-import { SummaryPageController } from '../../../common/controller/summary-page-controller/summary-page-controller.js'
+import { TbSummaryPageController } from '../../summary-page-controller.js'
 import { IdentificationSection } from '~/src/server/common/model/section/identification/identification.js'
 
 export class IdentificationSummaryPage extends SummaryPage {
@@ -15,7 +15,7 @@ export const identificationSummaryPage = new IdentificationSummaryPage()
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const identificationSummary = new SummaryPageController(
+export const identificationSummary = new TbSummaryPageController(
   new IdentificationSummaryPage()
 ).plugin()
 

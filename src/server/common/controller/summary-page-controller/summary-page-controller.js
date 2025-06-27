@@ -1,12 +1,15 @@
-/** @import SummaryPage from '../../model/page/summary-page/SummaryPageModel.js' */
+/** @import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js' */
+/** @import { StateManager } from '~/src/server/common/model/state/state-manager.js' */
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
-import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
-import { TbStateManager } from '../../model/state/state-manager.js'
-import { sectionToSummary } from '../../templates/macros/create-summary.js'
-import GenericPageController from '../generic-page-controller/index.js'
+import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
+import { sectionToSummary } from '~/src/server/common/templates/macros/create-summary.js'
+import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
 
 export class SummaryPageController extends GenericPageController {
+  /** @type {typeof StateManager} */
+  StateManager
+
   /** @type {string} */
   indexView = 'common/controller/summary-page-controller/index.njk'
 
@@ -59,7 +62,7 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handleGet(req, res) {
-    const applicationState = new TbStateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 
     const { isValid, firstInvalidPage } = section.validate()

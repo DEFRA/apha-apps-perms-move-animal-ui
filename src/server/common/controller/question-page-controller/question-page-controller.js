@@ -11,7 +11,7 @@ import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.
 /** @import { StateManager } from '~/src/server/common/model/state/state-manager.js' */
 
 export class QuestionPageController extends GenericPageController {
-  /** @type {StateManager} */
+  /** @type {typeof StateManager} */
   StateManager
 
   /**
