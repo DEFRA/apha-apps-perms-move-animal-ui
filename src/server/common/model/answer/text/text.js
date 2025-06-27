@@ -89,7 +89,6 @@ export class TextAnswer extends AnswerModel {
     return escapeHtml(this._data?.[this.config.payloadKey] ?? '')
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/text/text.njk'
   }

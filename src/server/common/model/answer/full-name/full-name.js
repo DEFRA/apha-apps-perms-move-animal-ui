@@ -91,7 +91,6 @@ export class FullNameAnswer extends AnswerModel {
     )
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/full-name/full-name.njk'
   }

@@ -1,12 +1,12 @@
 import { statusCodes } from '../../constants/status-codes.js'
-import { ApplicationModel } from '../../model/application/application.js'
+import { TbApplicationModel } from '../../../tb/application.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { submitApplication } from './case-management.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 
 describe('CaseManagement.submitApplication', () => {
-  const application = ApplicationModel.fromState(validApplicationState)
+  const application = TbApplicationModel.fromState(validApplicationState)
   const { baseUrl, timeout } = config.get('caseManagementApi')
   let wreckMock
 

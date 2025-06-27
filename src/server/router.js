@@ -10,7 +10,7 @@ import { submit } from './tb/submit/index.js'
 import { submitSummary } from './tb/check-answers/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
-import { ApplicationModel } from './common/model/application/application.js'
+import { TbApplicationModel } from './tb/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
 import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
@@ -51,7 +51,7 @@ export const router = {
 
         // Add routes for the visible sections in the application
         server.register(
-          ApplicationModel.implementedSections.map(
+          TbApplicationModel.implementedSections.map(
             (section) => section.config.plugin
           )
         ),

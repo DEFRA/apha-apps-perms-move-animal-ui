@@ -75,7 +75,6 @@ export class DateAnswer extends AnswerModel {
     return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/date/date.njk'
   }

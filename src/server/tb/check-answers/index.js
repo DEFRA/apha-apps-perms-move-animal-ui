@@ -4,7 +4,7 @@ import { QuestionPage } from '../../common/model/page/question-page-model.js'
 import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
 import { ConfirmationAnswer } from '../../common/model/answer/confirmation/confirmation.js'
 import { Page } from '../../common/model/page/page-model.js'
-import { ApplicationModel } from '../../common/model/application/application.js'
+import { TbApplicationModel } from '../application.js'
 import {
   sendEmailToApplicant,
   sendEmailToCaseWorker
@@ -58,7 +58,7 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   viewProps(req) {
-    const tasks = ApplicationModel.fromState(
+    const tasks = TbApplicationModel.fromState(
       new StateManager(req).toState()
     ).tasks
 
@@ -84,7 +84,7 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   handleGet(req, h) {
-    const { isValid } = ApplicationModel.fromState(
+    const { isValid } = TbApplicationModel.fromState(
       new StateManager(req).toState()
     ).validate()
 
@@ -99,7 +99,7 @@ export class SubmitPageController extends QuestionPageController {
     const state = new StateManager(req)
     const applicationState = state.toState()
 
-    const application = ApplicationModel.fromState(applicationState)
+    const application = TbApplicationModel.fromState(applicationState)
 
     try {
       const {
@@ -133,7 +133,7 @@ export class SubmitPageController extends QuestionPageController {
     const state = new StateManager(req)
     const applicationState = state.toState()
 
-    const application = ApplicationModel.fromState(applicationState)
+    const application = TbApplicationModel.fromState(applicationState)
 
     const { isValid: isValidApplication } = application.validate()
 
@@ -160,7 +160,7 @@ export class SubmitPageController extends QuestionPageController {
     const state = new StateManager(req)
     const applicationState = state.toState()
 
-    const application = ApplicationModel.fromState(applicationState)
+    const application = TbApplicationModel.fromState(applicationState)
 
     const reference = getApplicationReference()
     req.yar.set('applicationReference', reference, true)

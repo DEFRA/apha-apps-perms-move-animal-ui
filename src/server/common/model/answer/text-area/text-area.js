@@ -90,7 +90,6 @@ export class TextAreaAnswer extends AnswerModel {
     )
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/text-area/text-area.njk'
   }

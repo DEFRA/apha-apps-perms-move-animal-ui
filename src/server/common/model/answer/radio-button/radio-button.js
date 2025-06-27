@@ -95,7 +95,6 @@ export class RadioButtonAnswer extends AnswerModel {
     return this.config.options[value]?.label ?? ''
   }
 
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get template() {
     return 'model/answer/radio-button/radio-button.njk'
   }
