@@ -10,7 +10,7 @@ import {
 import { validApplicationState } from '../../common/test-helpers/journey-state.js'
 import { spyOnConfig, spyOnConfigMany } from '../../common/test-helpers/config.js'
 import { handleUploadedFile } from '../../common/helpers/file/file-utils.js'
-import { sizeErrorPage } from '../../biosecurity-map/size-error/index.js'
+import { sizeErrorPage } from '../biosecurity-map/size-error/index.js'
 
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'

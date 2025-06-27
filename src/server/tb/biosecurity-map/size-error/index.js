@@ -1,4 +1,4 @@
-import { ExitPage } from '../../common/model/page/exit-page-model.js'
+import { ExitPage } from '../../../common/model/page/exit-page-model.js'
 import { SizeErrorPageController } from './size-error-page-controller.js'
 
 /**
@@ -9,7 +9,7 @@ export class SizeErrorPage extends ExitPage {
   urlPath = '/biosecurity-map/size-error'
 
   pageTitle = 'There was a problem uploading your biosecurity map'
-  view = `biosecurity-map/size-error/index`
+  view = `tb/biosecurity-map/size-error/index`
   key = 'size-error'
   sectionKey = 'biosecurity-map'
 }

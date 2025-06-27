@@ -1,10 +1,10 @@
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { SizeErrorPage } from './index.js'
 
 const sectionKey = 'biosecurity-map'
 const key = 'size-error'
 const pageTitle = 'There was a problem uploading your biosecurity map'
-const view = 'biosecurity-map/size-error/index'
+const view = 'tb/biosecurity-map/size-error/index'
 const pageUrl = '/biosecurity-map/size-error'
 
 describe('#SizeErrorPage', () => {

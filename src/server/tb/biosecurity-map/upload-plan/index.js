@@ -1,10 +1,10 @@
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
 import { uploadProgressPage } from '../upload-progress/index.js'
-import { BiosecurityMapAnswer } from '../../common/model/answer/biosecurity-map/biosecurity-map.js'
+import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { uploadConfig } from '../upload-config.js'
-import { StateManager } from '../../common/model/state/state-manager.js'
-import { initiateFileUpload } from '../../common/connectors/file-upload/cdp-uploader.js'
+import { StateManager } from '../../../common/model/state/state-manager.js'
+import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
@@ -12,7 +12,7 @@ export class UploadPlanPage extends QuestionPage {
   questionKey = uploadConfig.questionKey
   urlPath = `/${this.sectionKey}/${this.questionKey}`
 
-  view = `biosecurity-map/upload-plan/index`
+  view = `tb/biosecurity-map/upload-plan/index`
 
   Answer = BiosecurityMapAnswer
 

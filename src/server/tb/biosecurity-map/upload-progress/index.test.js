@@ -1,9 +1,9 @@
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import SessionTestHelper from '../../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { uploadConfig } from '../upload-config.js'
-import { checkStatus } from '../../common/connectors/file-upload/cdp-uploader.js'
+import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -18,7 +18,7 @@ const uploadProgressUrl = '/biosecurity-map/uploading'
 const checkAnswersUrl = '/biosecurity-map/check-answers'
 const uploadPlanUrl = '/biosecurity-map/upload-plan'
 
-jest.mock('../../common/connectors/file-upload/cdp-uploader.js', () => ({
+jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
   checkStatus: jest.fn()
 }))
 const mockCheckStatus = /** @type {jest.Mock} */ (checkStatus)

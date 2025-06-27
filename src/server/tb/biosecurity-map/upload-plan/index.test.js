@@ -1,11 +1,11 @@
 import { createServer } from '~/src/server/index.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import SessionTestHelper from '../../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { UploadPlanPage } from './index.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import { spyOnConfig } from '../../common/test-helpers/config.js'
-import { initiateFileUpload } from '../../common/connectors/file-upload/cdp-uploader.js'
+import { spyOnConfig } from '../../../common/test-helpers/config.js'
+import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-uploader.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -23,7 +23,7 @@ const uploadStatusUrl = '/biosecurity-map/uploading'
 const invalidMimeTypeMessage =
   'The selected file must be a BMP, GIF, JPEG, SVG, TIF, WEBP, APNG, AVIF or PDF'
 
-jest.mock('../../common/connectors/file-upload/cdp-uploader.js', () => ({
+jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
   initiateFileUpload: jest.fn().mockResolvedValue({
     res: /** @type {IncomingMessage} */ ({
       statusCode: 200
