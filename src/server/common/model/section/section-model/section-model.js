@@ -94,7 +94,7 @@ export class SectionModel {
 
   /**
    * @param {RawApplicationState} data
-   * @returns {TbSectionModel}
+   * @returns {SectionModel}
    */
   static fromState(data) {
     /** @type {SectionPayload} */
