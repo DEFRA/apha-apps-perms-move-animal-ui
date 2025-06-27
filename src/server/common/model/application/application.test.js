@@ -1,5 +1,5 @@
-import { OriginSection } from '../section/origin/origin.js'
-import { DestinationSection } from '../section/destination/destination.js'
+import { OriginSection } from '../../../tb/origin/section.js'
+import { DestinationSection } from '../../../tb/destination/section.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { ApplicationModel } from './application.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'

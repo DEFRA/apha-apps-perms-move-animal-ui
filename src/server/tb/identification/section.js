@@ -1,12 +1,12 @@
-import { SectionModel } from '../section-model/section-model.js'
-import { OriginSection } from '../origin/origin.js'
-import { DestinationSection } from '../destination/destination.js'
+import { TbSectionModel } from '../section-model.js'
+import { OriginSection } from '../origin/section.js'
+import { DestinationSection } from '../destination/section.js'
 import { identification } from '~/src/server/tb/identification/index.js'
-import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
-import { DestinationTypeAnswer } from '../../answer/destination-type/destination-type.js'
+import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
+import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { calvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
 
-/** @import {SectionConfig} from '../section-model/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /** @param {RawApplicationState} app */
@@ -24,7 +24,7 @@ const isVisible = (app) => {
   )
 }
 
-export class IdentificationSection extends SectionModel {
+export class IdentificationSection extends TbSectionModel {
   /** @type {SectionConfig} */
   static config = {
     key: 'identification',

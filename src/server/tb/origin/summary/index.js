@@ -1,7 +1,7 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
 import { TbSummaryPageController } from '../../summary-page-controller.js'
 
-import { OriginSection } from '~/src/server/common/model/section/origin/origin.js'
+import { OriginSection } from '~/src/server/tb/origin/section.js'
 
 export class OriginSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'

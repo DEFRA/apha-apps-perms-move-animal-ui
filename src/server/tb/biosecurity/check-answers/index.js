@@ -1,7 +1,7 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
 import { TbSummaryPageController } from '../../summary-page-controller.js'
 
-import { BiosecuritySection } from '~/src/server/common/model/section/biosecurity/biosecurity.js'
+import { BiosecuritySection } from '~/src/server/tb/biosecurity/section.js'
 
 export class BiosecuritySummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'

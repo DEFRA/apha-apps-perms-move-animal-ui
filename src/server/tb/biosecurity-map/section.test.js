@@ -1,12 +1,12 @@
 import { UploadPlanPage } from '~/src/server/tb/biosecurity-map/upload-plan/index.js'
-import { BiosecurityPlanSection } from './biosecurity-plan.js'
+import { BiosecurityPlanSection } from './section.js'
 import {
   validApplicationState,
   validOriginSectionState,
   validDestinationSectionState
-} from '../../../test-helpers/journey-state.js'
-/** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
-/** @import {OnOffFarmData} from '../../answer/on-off-farm/on-off-farm.js' */
+} from '../../common/test-helpers/journey-state.js'
+/** @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js' */
+/** @import {OnOffFarmData} from '../../common/model/answer/on-off-farm/on-off-farm.js' */
 
 const validBiosecurityPlanData = {
   'upload-plan': {

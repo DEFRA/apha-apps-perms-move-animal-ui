@@ -1,15 +1,14 @@
-import { QuestionPage } from '../../page/question-page-model.js'
-import { ExitPage } from '../../page/exit-page-model.js'
-import { TbStateManager } from '~/src/server/tb/state-manager.js'
-import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
+import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
 
 /**
- * @import { Page } from '../../page/page-model.js'
- * @import {AnswerModel} from '../../answer/answer-model.js'
- * @import {RawApplicationState} from '../../state/state-manager.js'
+ * @import { Page } from '~/src/server/common/model/page/page-model.js'
+ * @import {AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
+ * @import {RawApplicationState, StateManager} from '~/src/server/common/model/state/state-manager.js'
  */
 
 /**
@@ -34,6 +33,9 @@ import SummaryPage from '../../page/summary-page/SummaryPageModel.js'
  */
 
 export class SectionModel {
+  /** @type {typeof StateManager} */
+  StateManager
+
   /** @type {SectionPayload} */
   _data
 
@@ -138,7 +140,7 @@ export class SectionModel {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   buildGdsTaskDetails(req) {
     const sectionValidity = this.validate()
-    const applicationState = new TbStateManager(req).toState()
+    const applicationState = new this.StateManager(req).toState()
     return {
       title: this.config.title,
       initialLink:
@@ -150,7 +152,3 @@ export class SectionModel {
     }
   }
 }
-
-/**
- * import {Request} from '@hapi/hapi'
- */

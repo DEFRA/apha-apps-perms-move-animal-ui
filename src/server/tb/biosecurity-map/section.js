@@ -1,11 +1,11 @@
 import { uploadPlanPage } from '~/src/server/tb/biosecurity-map/upload-plan/index.js'
-import { SectionModel } from '../section-model/section-model.js'
+import { TbSectionModel } from '../section-model.js'
 import { biosecurityPlan } from '~/src/server/tb/biosecurity-map/index.js'
-import { biosecuritySectionIsVisible } from '../visibility.js'
+import { biosecuritySectionIsVisible } from '../../common/model/section/visibility.js'
 
-/** @import {SectionConfig} from '../section-model/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
-export class BiosecurityPlanSection extends SectionModel {
+export class BiosecurityPlanSection extends TbSectionModel {
   /** @type {SectionConfig} */
   static config = {
     key: 'biosecurity-map',

@@ -1,12 +1,12 @@
-import { BiosecuritySection } from './biosecurity.js'
+import { BiosecuritySection } from './section.js'
 import {
   validApplicationState,
   validBiosecuritySectionState,
   validOriginSectionState,
   validDestinationSectionState
-} from '../../../test-helpers/journey-state.js'
+} from '../../common/test-helpers/journey-state.js'
 import { ObligationsPage } from '~/src/server/tb/biosecurity/obligations/index.js'
-/** @import {DestinationTypeData} from '../../answer/destination-type/destination-type.js' */
+/** @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js' */
 
 const validBiosecurityData = validBiosecuritySectionState
 

@@ -1,7 +1,7 @@
 import { CphNumberPage } from '~/src/server/tb/origin/cph-number/index.js'
 import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
-import { OriginSection } from '../origin/origin.js'
+import { OriginSection } from '../../../../tb/origin/section.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
 import { OriginAddressPage } from '~/src/server/tb/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
@@ -21,7 +21,7 @@ import { CalvesUnder42DaysOldAnswer } from '../../answer/calves-under-42-days-ol
 import { EarTagsCalvesAnswer } from '../../answer/ear-tags/ear-tags-calves.js'
 import { EarTagsAnswer } from '../../answer/ear-tags/ear-tags.js'
 import { TestingDatesAnswer } from '../../answer/testing-dates/testing-dates.js'
-import { IdentificationSection } from '../identification/identification.js'
+import { IdentificationSection } from '../../../../tb/identification/section.js'
 
 /** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 
