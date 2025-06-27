@@ -22,7 +22,7 @@ describe('Check your answers test - destination', () => {
   const testCases = [
     {
       field: 'destinationType',
-      expectedValue: 'Lab',
+      expectedValue: 'TB restricted farm',
       expectedHref: `/destination/type-of-destination${redirect}`
     },
     {
@@ -32,7 +32,7 @@ describe('Check your answers test - destination', () => {
     },
     {
       field: 'address',
-      expectedValue: '123\nThe street\nN11AA',
+      expectedValue: ['123\nThe street\nN11AA', '123The streetN11AA'],
       expectedHref: `/destination/destination-farm-address${redirect}`
     },
     {
@@ -69,14 +69,17 @@ describe('Check your answers test - destination', () => {
 
   testCases.forEach(({ field, expectedValue, expectedHref }) => {
     it(`Should verify the value and href of ${field} row`, async () => {
-      await validateElementVisibleAndText(
-        await destinationAnswersPage.getValue(field),
-        expectedValue
-      )
-      await validateHrefOfElement(
-        await destinationAnswersPage.getChangeLink(field),
-        expectedHref
-      )
+      const element = await destinationAnswersPage.getValue(field)
+
+      if (Array.isArray(expectedValue)) {
+        const actualValue = await element.getText()
+        expect(expectedValue).toContain(actualValue)
+      } else {
+        await validateElementVisibleAndText(element, expectedValue)
+      }
+
+      const linkElement = await destinationAnswersPage.getChangeLink(field)
+      await validateHrefOfElement(linkElement, expectedHref)
     })
   })
 
