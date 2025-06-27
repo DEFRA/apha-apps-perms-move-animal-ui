@@ -1,5 +1,5 @@
-import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
-import { OriginSection } from './origin.js'
+import { validOriginSectionState } from '../../common/test-helpers/journey-state.js'
+import { OriginSection } from './section.js'
 import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 
 describe('Origin', () => {

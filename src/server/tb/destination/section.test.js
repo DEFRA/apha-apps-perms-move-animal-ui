@@ -1,9 +1,9 @@
 import { DestinationTypePage } from '~/src/server/tb/destination/destination-type/index.js'
-import { DestinationSection } from './destination.js'
+import { DestinationSection } from './section.js'
 import {
   validDestinationSectionState,
   validOriginSectionState
-} from '../../../test-helpers/journey-state.js'
+} from '../../common/test-helpers/journey-state.js'
 
 const destinationData = validDestinationSectionState
 

@@ -1,4 +1,4 @@
-import { IdentificationSection } from './identification.js'
+import { IdentificationSection } from './section.js'
 import {
   validOriginSectionState,
   validDestinationSectionState,
@@ -6,7 +6,7 @@ import {
   validBiosecuritySectionState,
   validIdentificationSectionState,
   validBiosecurityMapSectionState
-} from '../../../test-helpers/journey-state.js'
+} from '../../common/test-helpers/journey-state.js'
 import { CalvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
 
 const applicationStateWithAnimalIdentifiersSection = {

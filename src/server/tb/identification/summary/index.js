@@ -1,6 +1,6 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
 import { TbSummaryPageController } from '../../summary-page-controller.js'
-import { IdentificationSection } from '~/src/server/common/model/section/identification/identification.js'
+import { IdentificationSection } from '~/src/server/tb/identification/section.js'
 
 export class IdentificationSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'

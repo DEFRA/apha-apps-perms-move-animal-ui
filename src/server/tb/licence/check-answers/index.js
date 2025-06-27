@@ -1,7 +1,7 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
 import { TbSummaryPageController } from '../../summary-page-controller.js'
 
-import { LicenceSection } from '~/src/server/common/model/section/licence/licence.js'
+import { LicenceSection } from '~/src/server/tb/licence/section.js'
 
 export class LicenceSummaryPage extends SummaryPage {
   pageTitle = 'Check your answers before you continue your application'

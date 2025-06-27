@@ -1,5 +1,5 @@
 import { licence } from '~/src/server/tb/licence/index.js'
-import { TbSectionModel } from '../../../../tb/section-model.js'
+import { TbSectionModel } from '../section-model.js'
 import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
 import { fullNameFuturePage } from '~/src/server/tb/licence/full-name-future/index.js'
 

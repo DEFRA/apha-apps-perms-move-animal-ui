@@ -1,5 +1,5 @@
-import { OriginSection } from './origin/origin.js'
-import { DestinationSection } from './destination/destination.js'
+import { OriginSection } from '../../../tb/origin/section.js'
+import { DestinationSection } from '../../../tb/destination/section.js'
 
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
