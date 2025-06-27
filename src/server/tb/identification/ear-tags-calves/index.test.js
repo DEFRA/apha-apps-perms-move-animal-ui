@@ -1,18 +1,18 @@
-import { EarTagsAnswer } from '../../common/model/answer/ear-tags/ear-tags.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
-import { identificationSummaryPage } from '../summary/index.js'
-import { earTagsPage, EarTagsPage } from './index.js'
+import { EarTagsCalvesAnswer } from '../../../common/model/answer/ear-tags/ear-tags-calves.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { animals42DaysOldOrOlderPage } from '../animals-42-days-old-or-older/index.js'
+import { earTagsCalvesPage, EarTagsCalvesPage } from './index.js'
 
 const sectionKey = 'identification'
-const question = 'Enter the ear tag numbers for these animals'
-const questionKey = 'earTags'
-const view = 'identification/ear-tags/index'
-const pageUrl = '/identification/enter-ear-tags'
-const customHeading =
-  'Official ear tag numbers for animals 42 days old or older'
+const question =
+  'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
+const questionKey = 'earTagsCalves'
+const view = 'tb/identification/ear-tags-calves/index'
+const pageUrl = '/identification/enter-ear-tags-calves'
+const customHeading = 'Official ear tag numbers for calves under 42 days old'
 
-describe('EarTagsPage', () => {
-  const page = new EarTagsPage()
+describe('EarTagsCalvesPage', () => {
+  const page = new EarTagsCalvesPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -43,20 +43,20 @@ describe('EarTagsPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(EarTagsAnswer)
+    expect(page.Answer).toBe(EarTagsCalvesAnswer)
   })
 
   it('nextPage should return identification summary page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(identificationSummaryPage)
+    expect(nextPage).toBe(animals42DaysOldOrOlderPage)
   })
 
   it('should export page', () => {
-    expect(earTagsPage).toBeInstanceOf(EarTagsPage)
+    expect(earTagsCalvesPage).toBeInstanceOf(EarTagsCalvesPage)
   })
 
   describePageSnapshot({
-    describes: 'EarTagsPage.content',
+    describes: 'EarTagsCalvesPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

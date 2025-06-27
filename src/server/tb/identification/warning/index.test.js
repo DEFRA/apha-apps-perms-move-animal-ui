@@ -25,7 +25,7 @@ describe('IdentificationWarningPage', () => {
   })
 
   it('should have the correct view', () => {
-    expect(page.view).toBe('identification/warning/index')
+    expect(page.view).toBe('tb/identification/warning/index')
   })
 
   it('should return the correct next page', () => {

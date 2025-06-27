@@ -2,10 +2,10 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SessionTestHelper from '../../common/test-helpers/session-helper.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { identificationSummaryPage } from './index.js'
-import { validIdentificationSectionState } from '../../common/test-helpers/journey-state.js'
+import { validIdentificationSectionState } from '../../../common/test-helpers/journey-state.js'
 
 const pageUrl = '/identification/check-answers'
 

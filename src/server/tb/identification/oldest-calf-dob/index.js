@@ -1,7 +1,7 @@
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { CalfDob } from '../../common/model/answer/calf-dob/calf-dob.js'
-import { differenceInDaysWithToday } from '../../common/model/answer/date/date-utils.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { CalfDob } from '../../../common/model/answer/calf-dob/calf-dob.js'
+import { differenceInDaysWithToday } from '../../../common/model/answer/date/date-utils.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
 import { identificationWarningPage } from '../warning/index.js'
 

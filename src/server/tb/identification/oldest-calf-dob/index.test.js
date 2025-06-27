@@ -1,11 +1,11 @@
-import { CalfDob } from '../../common/model/answer/calf-dob/calf-dob.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { CalfDob } from '../../../common/model/answer/calf-dob/calf-dob.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
 import { identificationWarningPage } from '../warning/index.js'
 import { oldestCalfDobPage, OldestCalfDobPage } from './index.js'
-import { differenceInDaysWithToday } from '../../common/model/answer/date/date-utils.js'
+import { differenceInDaysWithToday } from '../../../common/model/answer/date/date-utils.js'
 
-jest.mock('../../common/model/answer/date/date-utils.js', () => ({
+jest.mock('~/src/server/common/model/answer/date/date-utils.js', () => ({
   differenceInDaysWithToday: jest.fn()
 }))
 const mockDifferenceInDaysWithToday = /** @type {jest.Mock} */ (

@@ -1,6 +1,6 @@
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { EarTagsCalvesAnswer } from '../../common/model/answer/ear-tags/ear-tags-calves.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { EarTagsCalvesAnswer } from '../../../common/model/answer/ear-tags/ear-tags-calves.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { animals42DaysOldOrOlderPage } from '../animals-42-days-old-or-older/index.js'
 
 const customHeading = 'Official ear tag numbers for calves under 42 days old'
@@ -14,7 +14,7 @@ export class EarTagsCalvesPage extends QuestionPage {
   questionKey = 'earTagsCalves'
   Answer = EarTagsCalvesAnswer
 
-  view = 'identification/ear-tags-calves/index'
+  view = 'tb/identification/ear-tags-calves/index'
 
   get heading() {
     return customHeading

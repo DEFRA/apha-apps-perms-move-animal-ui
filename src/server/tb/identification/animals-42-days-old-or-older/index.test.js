@@ -1,6 +1,6 @@
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { testingDatesPage } from '../testing-dates/index.js'
-import { Animals42DaysOldOrOlderAnswer } from '../../common/model/answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
+import { Animals42DaysOldOrOlderAnswer } from '../../../common/model/answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
 import {
   animals42DaysOldOrOlderPage,
   Animals42DaysOldOrOlderPage

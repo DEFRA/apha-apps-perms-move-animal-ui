@@ -1,6 +1,6 @@
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { CalvesUnder42DaysOldAnswer } from '../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { CalvesUnder42DaysOldAnswer } from '../../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { testingDatesPage } from '../testing-dates/index.js'
 import { oldestCalfDobPage } from '../oldest-calf-dob/index.js'
 

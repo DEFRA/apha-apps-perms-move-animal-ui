@@ -1,5 +1,5 @@
-import { CalvesUnder42DaysOldAnswer } from '../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { CalvesUnder42DaysOldAnswer } from '../../../common/model/answer/calves-under-42-days-old/calves-under-42-days-old.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { testingDatesPage } from '../testing-dates/index.js'
 import { oldestCalfDobPage } from '../oldest-calf-dob/index.js'
 import { calvesUnder42DaysOldPage, CalvesUnder42DaysOldPage } from './index.js'

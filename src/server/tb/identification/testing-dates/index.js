@@ -1,6 +1,6 @@
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { TestingDatesAnswer } from '../../common/model/answer/testing-dates/testing-dates.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { earTagsPage } from '../ear-tags/index.js'
 
 const customHeading = 'Testing dates'
@@ -18,7 +18,7 @@ export class TestingDatesPage extends QuestionPage {
     return customHeading
   }
 
-  view = 'identification/testing-dates/index'
+  view = 'tb/identification/testing-dates/index'
 
   nextPage() {
     return earTagsPage

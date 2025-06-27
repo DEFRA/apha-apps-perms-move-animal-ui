@@ -1,5 +1,5 @@
-import { TestingDatesAnswer } from '../../common/model/answer/testing-dates/testing-dates.js'
-import { describePageSnapshot } from '../../common/test-helpers/snapshot-page.js'
+import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { earTagsPage } from '../ear-tags/index.js'
 import { testingDatesPage, TestingDatesPage } from './index.js'
 
@@ -8,7 +8,7 @@ const question =
   'What are the dates of the last TB tests for the cattle that are 42 days old or older?'
 
 const questionKey = 'testingDates'
-const view = 'identification/testing-dates/index'
+const view = 'tb/identification/testing-dates/index'
 const pageUrl = '/identification/enter-testing-dates'
 const customHeading = 'Testing dates'
 

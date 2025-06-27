@@ -1,6 +1,6 @@
-import { QuestionPageController } from '../../common/controller/question-page-controller/question-page-controller.js'
-import { Animals42DaysOldOrOlderAnswer } from '../../common/model/answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
-import { QuestionPage } from '../../common/model/page/question-page-model.js'
+import { QuestionPageController } from '../../../common/controller/question-page-controller/question-page-controller.js'
+import { Animals42DaysOldOrOlderAnswer } from '../../../common/model/answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
+import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { identificationSummaryPage } from '../summary/index.js'
 import { testingDatesPage } from '../testing-dates/index.js'
 

@@ -1,7 +1,7 @@
-import { Page } from '../../common/model/page/page-model.js'
-import { PageController } from '../../common/controller/page-controller/page-controller.js'
+import { Page } from '../../../common/model/page/page-model.js'
+import { PageController } from '../../../common/controller/page-controller/page-controller.js'
 import { earTagsCalvesPage } from '../ear-tags-calves/index.js'
-import { calculateNextPage } from '../../common/helpers/next-page.js'
+import { calculateNextPage } from '../../../common/helpers/next-page.js'
 
 export class IdentificationWarningPage extends Page {
   pageTitle = 'Your application might be unsuccessful'
@@ -10,7 +10,7 @@ export class IdentificationWarningPage extends Page {
   urlPath = `/${this.sectionKey}/warning`
   overrideRedirects = true
 
-  view = `identification/warning/index`
+  view = `tb/identification/warning/index`
 
   nextPage() {
     return earTagsCalvesPage
