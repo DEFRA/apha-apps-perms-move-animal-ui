@@ -1,7 +1,7 @@
-import { destination } from '~/src/server/destination/index.js'
+import { destination } from '~/src/server/tb/destination/index.js'
 import { OriginSection } from '../origin/origin.js'
 import { SectionModel } from '../section-model/section-model.js'
-import { destinationTypePage } from '~/src/server/destination/destination-type/index.js'
+import { destinationTypePage } from '~/src/server/tb/destination/destination-type/index.js'
 
 /** @import {SectionConfig} from '../section-model/section-model.js' */
 
