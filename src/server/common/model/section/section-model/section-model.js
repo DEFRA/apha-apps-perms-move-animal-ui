@@ -33,9 +33,6 @@ import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPage
  */
 
 export class SectionModel {
-  /** @type {typeof StateManager} */
-  StateManager
-
   /** @type {SectionPayload} */
   _data
 
@@ -134,13 +131,12 @@ export class SectionModel {
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
-   * @param {Request} req
+   * @param {RawApplicationState} applicationState
    * @returns {object}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildGdsTaskDetails(req) {
+  buildGdsTaskDetails(applicationState) {
     const sectionValidity = this.validate()
-    const applicationState = new this.StateManager(req).toState()
     return {
       title: this.config.title,
       initialLink:

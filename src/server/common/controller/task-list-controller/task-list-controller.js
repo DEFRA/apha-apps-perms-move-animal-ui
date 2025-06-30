@@ -1,18 +1,31 @@
-import { TbApplicationModel } from '../application.js'
-import { TbStateManager } from '~/src/server/tb/state-manager.js'
+import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
 
-const pageTitle = 'Your Bovine Tuberculosis (TB) movement licence application'
-const heading = pageTitle
-const buttonText = 'Review and submit'
+/** @import { StateManager } from '../../model/state/state-manager.js' */
+/** @import { ApplicationModel } from '../../model/application/application.js' */
+/** @import { ServerRoute } from '@hapi/hapi' */
 
-/**
- * A GDS styled example task list page controller.
- * @satisfies {Partial<ServerRoute>}
- */
-export const taskListGetController = {
-  handler(req, h) {
-    const applicationState = new TbStateManager(req).toState()
-    const application = TbApplicationModel.fromState(applicationState)
+export class TaskListController {
+  /** @type {typeof ApplicationModel} */
+  ApplicationModel
+
+  /** @type {typeof StateManager} */
+  StateManager
+
+  /** @type {string} */
+  pageTitleAndHeading
+
+  /** @type {string} */
+  buttonText
+
+  /** @type {string} */
+  urlPath
+
+  /** @type {string} */
+  submitUrlPath
+
+  taskListGetHandler(req, h) {
+    const applicationState = new this.StateManager(req).toState()
+    const application = this.ApplicationModel.fromState(applicationState)
     const visibleSections = Object.values(application.tasks)
 
     const gdsTasks = visibleSections.map((section) => {
@@ -25,23 +38,45 @@ export const taskListGetController = {
         return section.validate().isValid
       }).length
 
-    return h.view('tb/task-list/index', {
-      pageTitle,
-      heading,
+    return h.view('common/controller/task-list-controller/index.njk', {
+      pageTitle: this.pageTitleAndHeading,
+      heading: this.pageTitleAndHeading,
       gdsTasks,
       incompleteTasks,
-      buttonText
+      buttonText: this.buttonText
     })
   }
-}
 
-/**
- * A GDS styled example task list page controller.
- * @satisfies {Partial<ServerRoute>}
- */
-export const taskListPostController = {
-  handler(_req, h) {
-    return h.redirect('/submit/check-answers')
+  taskListPostHandler(_req, h) {
+    return h.redirect(this.submitUrlPath)
+  }
+
+  plugin() {
+    const options = {}
+
+    /** @type {ServerRoute[]} */
+    const routes = [
+      {
+        method: 'GET',
+        path: this.urlPath,
+        handler: this.taskListGetHandler.bind(this),
+        options
+      }, {
+        method: 'POST',
+        path: this.urlPath,
+        handler: this.taskListPostHandler.bind(this),
+        options
+      }
+    ]
+
+    return {
+      plugin: {
+        name: `task-list-${this.constructor.name}`,
+        register(server) {
+          server.route(routes)
+        }
+      }
+    }
   }
 }
 
@@ -91,7 +126,3 @@ function buildGdsTaskItem({
     status
   }
 }
-
-/**
- * @import { ServerRoute } from '@hapi/hapi'
- */

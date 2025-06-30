@@ -1,4 +1,4 @@
-import { TbSectionModel } from '../section-model.js'
+import { SectionModel } from '~/src/server/common/model/section/section-model/section-model.js'
 import { OriginSection } from '../origin/section.js'
 import { DestinationSection } from '../destination/section.js'
 import { identification } from '~/src/server/tb/identification/index.js'
@@ -24,7 +24,7 @@ const isVisible = (app) => {
   )
 }
 
-export class IdentificationSection extends TbSectionModel {
+export class IdentificationSection extends SectionModel {
   /** @type {SectionConfig} */
   static config = {
     key: 'identification',
