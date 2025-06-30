@@ -2,7 +2,7 @@ import { config } from '~/src/config/config.js'
 
 /**
  *
- * @param {boolean} skipAuth
+ * @param {boolean} [skipAuth]
  * @returns {{
  *   auth: false
  * } | {

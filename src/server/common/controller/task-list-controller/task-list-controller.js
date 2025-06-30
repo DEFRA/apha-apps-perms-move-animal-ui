@@ -52,7 +52,9 @@ export class TaskListController {
   }
 
   plugin() {
-    const options = {}
+    const options = {
+      ...getAuthOptions()
+    }
 
     /** @type {ServerRoute[]} */
     const routes = [
@@ -61,7 +63,8 @@ export class TaskListController {
         path: this.urlPath,
         handler: this.taskListGetHandler.bind(this),
         options
-      }, {
+      },
+      {
         method: 'POST',
         path: this.urlPath,
         handler: this.taskListPostHandler.bind(this),

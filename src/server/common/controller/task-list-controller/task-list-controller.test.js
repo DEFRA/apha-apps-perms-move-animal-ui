@@ -12,6 +12,7 @@ import {
   validOriginSectionState
 } from '../../test-helpers/journey-state.js'
 import { parseDocument } from '../../test-helpers/dom.js'
+import { spyOnConfig } from '../../test-helpers/config.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -55,6 +56,8 @@ describe('TaskListController', () => {
     session = await SessionTester.create(server)
   })
 
+  afterEach(jest.restoreAllMocks)
+
   afterAll(async () => {
     await server.stop({ timeout: 0 })
   })
@@ -63,6 +66,50 @@ describe('TaskListController', () => {
     expect(controller.plugin().plugin.name).toBe(
       'task-list-TestTaskListController'
     )
+  })
+
+  it("should have no auth options if auth isn't required", () => {
+    spyOnConfig('featureFlags', {
+      authEnabled: false,
+      authRequired: false
+    })
+
+    const serverSpy = {
+      route: jest.fn()
+    }
+    controller.plugin().plugin.register(serverSpy)
+
+    const registeredRoutes = serverSpy.route.mock.calls[0][0]
+
+    expect(registeredRoutes[0].options).toEqual({})
+    expect(registeredRoutes[1].options).toEqual({})
+  })
+
+  it('should have auth options if auth is required', () => {
+    spyOnConfig('featureFlags', {
+      authEnabled: true,
+      authRequired: true
+    })
+
+    const serverSpy = {
+      route: jest.fn()
+    }
+    controller.plugin().plugin.register(serverSpy)
+
+    const registeredRoutes = serverSpy.route.mock.calls[0][0]
+
+    expect(registeredRoutes[0].options).toEqual({
+      auth: {
+        strategy: 'session',
+        mode: 'required'
+      }
+    })
+    expect(registeredRoutes[1].options).toEqual({
+      auth: {
+        strategy: 'session',
+        mode: 'required'
+      }
+    })
   })
 
   it('should render an empty application (complete with "cannot start yet" sections)', async () => {
@@ -130,7 +177,6 @@ describe('TaskListController', () => {
     expect(statusCode).toBe(statusCodes.ok)
     expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
   })
-
 
   it('should respond to a form submission by redirecting the user to the submit path', async () => {
     const { headers, statusCode } = await server.inject(
