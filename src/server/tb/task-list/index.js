@@ -1,44 +1,19 @@
-import {
-  taskListGetController,
-  taskListPostController
-} from '~/src/server/tb/task-list/controller.js'
-import { getAuthOptions } from '../../common/helpers/auth/toggles-helper.js'
+import { TaskListController } from '../../common/controller/task-list-controller/task-list-controller.js'
+import { TbApplicationModel } from '../application.js'
+import { TbStateManager } from '../state-manager.js'
 
-/**
- * Sets up the routes used in the home page.
- * These routes are registered in src/server/router.js.
- */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-/**
- * @satisfies {ServerRegisterPluginObject<void>}
- */
-export const taskList = {
-  plugin: {
-    name: 'task-list',
+class TbTaskListController extends TaskListController {
+  ApplicationModel = TbApplicationModel
+  StateManager = TbStateManager
 
-    register(server) {
-      const options = {
-        ...getAuthOptions(false)
-      }
-
-      server.route([
-        {
-          method: 'GET',
-          path: '/task-list',
-          ...taskListGetController,
-          options
-        },
-        {
-          method: 'POST',
-          path: '/task-list',
-          ...taskListPostController,
-          options
-        }
-      ])
-    }
-  }
+  pageTitleAndHeading = 'Your Bovine Tuberculosis (TB) movement licence application'
+  buttonText = 'Review and submit'
+  urlPath = '/task-list'
+  submitUrlPath = '/submit/check-answers'
 }
 
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const taskList = new TbTaskListController().plugin()
+

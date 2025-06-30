@@ -14,8 +14,7 @@ describe('#taskListController', () => {
   /** @type {Server} */
   let server
   let session
-
-  beforeAll(async () => {
+beforeAll(async () => {
     server = await createServer()
     await server.initialize()
   })
