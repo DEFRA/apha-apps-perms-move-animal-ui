@@ -5,18 +5,18 @@ import { PageController } from '../../../common/controller/page-controller/page-
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */
 
-export class AfuToAfuExitPage extends ExitPage {
-  urlPath = '/destination/can-not-use-service-afu-only-off'
+export class AfuOnlyOnExitPage extends ExitPage {
+  urlPath = '/destination/can-not-use-service-afu-only-on'
   pageTitle = 'This service is not available for your movement type'
-  view = `tb/destination/afu-to-afu-exit-page/index`
-  key = 'ExitPageAfuToAfu'
+  view = `tb/destination/afu-only-on-exit-page/index`
+  key = 'ExitPageOnlyOn'
   sectionKey = 'destination'
 }
-export const afuToAfuExitPage = new AfuToAfuExitPage()
+export const afuOnlyOnExitPage = new AfuOnlyOnExitPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const afuToAfuExit = new PageController(afuToAfuExitPage, {
+export const afuOnlyOnExit = new PageController(afuOnlyOnExitPage, {
   methods: ['GET']
 }).plugin()
