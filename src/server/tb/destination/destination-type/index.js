@@ -5,8 +5,10 @@ import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
-import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
+import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
+import { destinationTypeOtherPage } from '../destination-type-other/index.js'
+import { afuOnlyOnExitPage } from '../afu-only-on-exit-page/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../../common/model/state/state-manager.js' */
@@ -37,13 +39,17 @@ export class DestinationTypePage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
     if (context.origin?.onOffFarm === 'on') {
-      return this._onFarmNextPage(answer)
+      return this._onFarmNextPage(answer, context)
     } else {
-      return this._offFarmNextPage(answer)
+      return this._offFarmNextPage(answer, context)
     }
   }
 
-  _onFarmNextPage(answer) {
+  _onFarmNextPage(answer, context) {
+    if (context.origin?.originType === 'afu' && answer.value === 'other') {
+      return afuOnlyOnExitPage
+    }
+
     if (answer.value === 'other') {
       return destinationTypeOtherPage
     }
@@ -51,7 +57,11 @@ export class DestinationTypePage extends QuestionPage {
     return destinationFarmCphPage
   }
 
-  _offFarmNextPage(answer) {
+  _offFarmNextPage(answer, context) {
+    if (context.origin?.originType === 'afu' && answer.value === 'other') {
+      return afuOnlyOffExitPage
+    }
+
     return offFarmNextPageMapping[answer.value]
   }
 

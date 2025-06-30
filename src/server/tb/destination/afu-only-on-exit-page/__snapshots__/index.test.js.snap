@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#AfuToAfuExitPage AfuToAfuExitPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          This service does not allow movements onto your premises from approved
+          finishing unit (AFU) unless your premises is an AFU.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
