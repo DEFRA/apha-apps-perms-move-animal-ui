@@ -14,6 +14,7 @@ import { restockReason } from './restock-reason/index.js'
 import { restockAnimal } from './restock-animals/index.js'
 import { restockAdditionalInfo } from './restock-additional-info/index.js'
 import { destinationTypeOther } from './destination-type-other/index.js'
+import { afuToAfuExit } from './afu-to-afu-exit-page/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -38,7 +39,8 @@ export const destination = {
         isolationUnitExit,
         restockReason,
         restockAnimal,
-        restockAdditionalInfo
+        restockAdditionalInfo,
+        afuToAfuExit
       ])
     }
   }
