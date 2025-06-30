@@ -4,11 +4,13 @@ import { TbStateManager } from '../state-manager.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-class TbTaskListController extends TaskListController {
+export class TbTaskListController extends TaskListController {
   ApplicationModel = TbApplicationModel
   StateManager = TbStateManager
 
-  pageTitleAndHeading = 'Your Bovine Tuberculosis (TB) movement licence application'
+  pageTitleAndHeading =
+    'Your Bovine Tuberculosis (TB) movement licence application'
+
   buttonText = 'Review and submit'
   urlPath = '/task-list'
   submitUrlPath = '/submit/check-answers'
@@ -16,4 +18,3 @@ class TbTaskListController extends TaskListController {
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
 export const taskList = new TbTaskListController().plugin()
-
