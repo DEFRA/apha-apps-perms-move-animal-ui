@@ -3,12 +3,13 @@
 import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { movementType } from './movement-type/index.js'
+import { whatIsMoving } from './what-is-moving/index.js'
 
 const plugin = {
   plugin: {
     name: 'exotics-about',
     async register(server) {
-      await server.register([movementType])
+      await server.register([movementType, whatIsMoving])
     }
   }
 }

@@ -1,15 +1,16 @@
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { Answer, movementTypePage } from './index.js'
+import { Answer, whatIsMovingPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { WhatIsMovingPage } from '../what-is-moving/index.js'
-import { CheckAnswersPage } from '../check-answers/index.js'
+import { SelectAnimalsPage } from '../select-animals/index.js'
+import { EnterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
 
+const page = whatIsMovingPage
 const payload = {
-  movementType: 'visit'
+  whatIsMoving: 'carcasses'
 }
 const sectionKey = 'about'
-const questionKey = 'movementType'
-const pageUrl = '/exotics/about-the-movement/movement-type'
+const questionKey = 'whatIsMoving'
+const pageUrl = '/exotics/about-the-movement/what-is-moving'
 
 describe('Answer', () => {
   it('should be a radio button', () => {
@@ -22,14 +23,12 @@ describe('Answer', () => {
 
   it('should define the right empty input message', () => {
     expect(Answer.config.errors.emptyOptionText).toBe(
-      'Select the movement type'
+      'Select what you are moving'
     )
   })
 })
 
-describe('MovementTypePage', () => {
-  const page = movementTypePage
-
+describe('WhatIsMovingPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -47,22 +46,17 @@ describe('MovementTypePage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return WhatIsMovingPage for onto farm', () => {
-      const answer = new Answer({ movementType: 'onto-premises' })
+    it.each([
+      ['live-animals', SelectAnimalsPage],
+      ['carcasses', EnterWhatIsMovingPage],
+      ['animal-by-products-and-waste', EnterWhatIsMovingPage],
+      ['equipment', EnterWhatIsMovingPage],
+      ['bedding-and-feed', EnterWhatIsMovingPage],
+      ['other', EnterWhatIsMovingPage]
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(WhatIsMovingPage)
-    })
-
-    it('should return WhatIsMovingPage off of farm', () => {
-      const answer = new Answer({ movementType: 'off-premises' })
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(WhatIsMovingPage)
-    })
-
-    it('should return CheckAnswersPage for visit', () => {
-      const answer = new Answer({ movementType: 'visit' })
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
+      expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
 
