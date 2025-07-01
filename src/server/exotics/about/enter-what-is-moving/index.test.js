@@ -59,8 +59,7 @@ describe('EnterWhatIsMovingPage', () => {
 
   describe('nextPage', () => {
     it('should return EnterWhatIsMovingQuantity for any value', () => {
-      const answer = new Answer(payload)
-      const nextPage = page.nextPage(answer)
+      const nextPage = page.nextPage()
       expect(nextPage).toBeInstanceOf(EnterWhatIsMovingQuantityPage)
     })
   })
