@@ -14,6 +14,7 @@ import { TbApplicationModel } from './tb/application.js'
 import { s3Client } from './common/plugins/s3/index.js'
 import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
+import { ExoticsApplicationModel } from './exotics/application.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -59,6 +60,14 @@ export const router = {
         // Static assets
         server.register([serveStaticFiles])
       ])
+
+      if (config.get('featureFlags').exoticsJourney) {
+        await server.register(
+          ExoticsApplicationModel.implementedSections.map(
+            (section) => section.config.plugin
+          )
+        )
+      }
     }
   }
 }
