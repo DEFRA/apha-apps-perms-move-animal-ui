@@ -47,22 +47,14 @@ describe('MovementTypePage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return WhatIsMovingPage for onto farm', () => {
-      const answer = new Answer({ movementType: 'onto-premises' })
+    it.each([
+      ['onto-premises', WhatIsMovingPage],
+      ['off-premises', WhatIsMovingPage],
+      ['visit', CheckAnswersPage]
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(WhatIsMovingPage)
-    })
-
-    it('should return WhatIsMovingPage off of farm', () => {
-      const answer = new Answer({ movementType: 'off-premises' })
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(WhatIsMovingPage)
-    })
-
-    it('should return CheckAnswersPage for visit', () => {
-      const answer = new Answer({ movementType: 'visit' })
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
+      expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
 
