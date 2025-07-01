@@ -44,6 +44,7 @@ describe('#context', () => {
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
+          exoticsJourney: true,
           pdfUpload: true,
           sendToCaseManagement: true
         },
@@ -149,6 +150,7 @@ describe('#context cache', () => {
           authEnabled: false,
           authRequired: true,
           emailConfirmation: true,
+          exoticsJourney: true,
           pdfUpload: true,
           sendToCaseManagement: true
         },
