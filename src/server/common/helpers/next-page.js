@@ -1,6 +1,6 @@
-export const calculateNextPage = (redirect, original) => {
+export const calculateNextPage = (prefix = '', redirect, original) => {
   if (redirect && redirect !== '') {
-    return redirect
+    return prefix + redirect
   } else {
     return original
   }

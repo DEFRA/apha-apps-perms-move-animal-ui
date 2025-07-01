@@ -110,6 +110,10 @@ export class QuestionPageController extends GenericPageController {
     )
     const { isValid, errors } = answer.validate()
 
+    const fullPath = req.path ?? ''
+    const routePath = this.page.urlPath
+    const prefix = fullPath.replace(routePath, '') || ''
+
     if (!isValid) {
       this.recordErrors(errors)
       state.set(this.page, undefined)
@@ -120,7 +124,7 @@ export class QuestionPageController extends GenericPageController {
         payload
       })
 
-      return h.redirect(nextPageRedirect(this.page, req.query))
+      return h.redirect(nextPageRedirect(prefix, this.page, req.query))
     }
 
     state.set(this.page, answer)
@@ -128,13 +132,15 @@ export class QuestionPageController extends GenericPageController {
     const nextPage = this.page.nextPage(answer, applicationState)
 
     if (nextPage instanceof ExitPage) {
-      return h.redirect(nextPage.urlPath)
+      return h.redirect(prefix + nextPage.urlPath)
     } else {
       if (nextPage.overrideRedirects) {
-        return h.redirect(nextPageRedirect(nextPage, req.query))
+        return h.redirect(nextPageRedirect(prefix, nextPage, req.query))
       }
 
-      return h.redirect(calculateNextPage(payload.nextPage, nextPage.urlPath))
+      return h.redirect(
+        calculateNextPage(payload.nextPage, prefix + nextPage.urlPath)
+      )
     }
   }
 }

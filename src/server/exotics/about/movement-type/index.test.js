@@ -9,7 +9,7 @@ const payload = {
 }
 const sectionKey = 'about'
 const questionKey = 'movementType'
-const pageUrl = '/exotics/about-the-movement/movement-type'
+const pageUrl = '/about-the-movement/movement-type'
 
 describe('Answer', () => {
   it('should be a radio button', () => {
