@@ -340,6 +340,12 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'SEND_TO_CASE_MANAGEMENT_ENABLED'
+    },
+    exoticsJourney: {
+      doc: 'Feature flag to enable the exotics journey',
+      format: Boolean,
+      default: !isProduction,
+      env: 'EXOTICS_JOURNEY_ENABLED'
     }
   },
   caseManagementApi: {
