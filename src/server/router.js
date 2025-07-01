@@ -61,11 +61,12 @@ export const router = {
         server.register([serveStaticFiles])
       ])
 
-
       if (config.get('featureFlags').exoticsJourney) {
-        await server.register(ExoticsApplicationModel.implementedSections.map(
-          (section) => section.config.plugin
-        ))
+        await server.register(
+          ExoticsApplicationModel.implementedSections.map(
+            (section) => section.config.plugin
+          )
+        )
       }
     }
   }

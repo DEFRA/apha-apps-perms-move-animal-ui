@@ -1,4 +1,4 @@
-import { AboutSection } from "./section.js"
+import { AboutSection } from './section.js'
 
 describe('AboutSection', () => {
   it('should have the correct configuration', () => {

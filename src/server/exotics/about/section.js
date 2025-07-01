@@ -2,12 +2,13 @@
 
 import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { ExoticsSectionModel } from '../section-model.js'
+import { movementType } from './movement-type/index.js'
 
 const plugin = {
   plugin: {
     name: 'exotics-about',
     async register(server) {
-      await server.register([])
+      await server.register([movementType])
     }
   }
 }
@@ -24,6 +25,6 @@ export class AboutSection extends ExoticsSectionModel {
   }
 
   static firstPageFactory = () => {
-    throw new NotImplementedError
+    throw new NotImplementedError()
   }
 }

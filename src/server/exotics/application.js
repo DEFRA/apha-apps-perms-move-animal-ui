@@ -7,9 +7,7 @@ import { AboutSection } from './about/section.js'
 
 export class ExoticsApplicationModel extends ApplicationModel {
   /** @type {typeof SectionModel[]} */
-  static implementedSections = [
-    AboutSection
-  ]
+  static implementedSections = [AboutSection]
 
   get version() {
     return {
