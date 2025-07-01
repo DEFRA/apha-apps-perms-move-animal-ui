@@ -1,21 +1,21 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { EnterWhatIsMovingQuantityPage } from '../enter-what-is-moving-quantity/index.js'
-import { Answer, enterWhatIsMovingPage } from './index.js'
-import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
+import { Answer, enterWhatIsMovingQuantityPage } from './index.js'
+import { EnterWhatIsMovingDescriptionPage } from '../enter-what-is-moving-description/index.js'
+import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
 
 const sectionKey = 'about'
-const questionKey = 'whatAreYouMovingDetails'
+const questionKey = 'howMuchAreYouMoving'
 const pageUrl =
-  '/exotics/about-the-movement/what-is-moving/enter-what-is-moving'
-const page = enterWhatIsMovingPage
+  '/exotics/about-the-movement/what-is-moving/enter-what-is-moving/quantity'
+const page = enterWhatIsMovingQuantityPage
 
 const payload = {
   [questionKey]: 'some text'
 }
 
 describe('Answer', () => {
-  it('should be a text input', () => {
-    expect(new Answer(payload)).toBeInstanceOf(TextAnswer)
+  it('should be a text area input', () => {
+    expect(new Answer(payload)).toBeInstanceOf(TextAreaAnswer)
   })
 
   it('should have the right payload key', () => {
@@ -24,23 +24,19 @@ describe('Answer', () => {
 
   it('should define the right empty input message', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'Enter information about what you are moving'
+      'Enter how much you are moving'
     )
-  })
-
-  it('should strip whitespace', () => {
-    expect(Answer.config.stripWhitespace).toBe(true)
   })
 
   it('should define the right max lengnth input message', () => {
     expect(Answer.config.validation.maxLength).toStrictEqual({
-      value: 100,
-      message: 'Your answer must be no longer than 100 characters'
+      value: 5000,
+      message: 'Your answer must be no longer than 5000 characters'
     })
   })
 })
 
-describe('EnterWhatIsMovingPage', () => {
+describe('EnterWhatIsMovingQuantityPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -60,7 +56,7 @@ describe('EnterWhatIsMovingPage', () => {
   describe('nextPage', () => {
     it('should return EnterWhatIsMovingQuantity for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(EnterWhatIsMovingQuantityPage)
+      expect(nextPage).toBeInstanceOf(EnterWhatIsMovingDescriptionPage)
     })
   })
 
