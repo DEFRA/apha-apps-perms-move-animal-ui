@@ -214,7 +214,7 @@ exports[`#homeController content checks when auth is enabled should match conten
             (AFUE)
           </li>
           <li>TB restricted farm</li>
-          <li>Premises with TB restrictions</li>
+          <li>premises with TB restrictions</li>
         </ul>
         <h3 class="govuk-heading-m">
           Moving animals onto a TB restricted farm
