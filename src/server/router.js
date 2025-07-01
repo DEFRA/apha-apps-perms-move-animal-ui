@@ -65,7 +65,12 @@ export const router = {
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin
-          )
+          ),
+          {
+            routes: {
+              prefix: '/exotics'
+            }
+          }
         )
       }
     }

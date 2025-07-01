@@ -25,7 +25,7 @@ export class Answer extends RadioButtonAnswer {
 }
 
 export class MovementTypePage extends QuestionPage {
-  urlPath = '/exotics/about-the-movement/movement-type'
+  urlPath = '/about-the-movement/movement-type'
   sectionKey = 'about'
   question = 'Which type of movement does your application relate to?'
 
