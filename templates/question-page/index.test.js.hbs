@@ -44,8 +44,10 @@ describe('EnterWhatIsMovingDescriptionPage', () => {
 
   describe('nextPage', () => {
     it('should return EnterWhatIsMovingDescriptionPage for any value', () => {
-      const nextPage = page.nextPage()
+      const answer = new Answer(payload)
+      const nextPage = page.nextPage(answer)
       // TEMPLATE-TODO: replace with actual next page
+      // expect(nextPage).toBeInstanceOf(...)
     })
   })
 
