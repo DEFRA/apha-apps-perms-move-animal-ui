@@ -1,5 +1,5 @@
 import merge from 'deepmerge'
-import { config as wdioConf } from './wdio.conf.js'
+import { config as wdioConf } from '../wdio.conf.js'
 
 export const config = merge(wdioConf, {
   specs: ['./specs/**/*.spec.js'],

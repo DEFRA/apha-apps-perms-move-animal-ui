@@ -34,11 +34,11 @@
     "start": "NODE_ENV=production node --use-strict .",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module",
     "user-journey-test": "npm run user-journey-test:js",
-    "user-journey-test:js": "wdio run ./user-journey-tests/wdioJS.conf.js",
-    "user-journey-test:nojs": "wdio run ./user-journey-tests/wdioNoJS.conf.js",
-    "user-journey-test:bs": "wdio run ./user-journey-tests/wdio.browserstack.conf.js",
-    "user-journey-test:bs-extended-desktop": "wdio run ./user-journey-tests/wdio.browserstack.extended-desktop.conf.js",
-    "user-journey-test:bs-extended-mobile": "wdio run ./user-journey-tests/wdio.browserstack.extended-mobile.conf.js"
+    "user-journey-test:js": "wdio run ./user-journey-tests/TB/wdioJS.conf.js",
+    "user-journey-test:nojs": "wdio run ./user-journey-tests/TB/wdioNoJS.conf.js",
+    "user-journey-test:bs": "wdio run ./user-journey-tests/TB/wdio.browserstack.conf.js",
+    "user-journey-test:bs-extended-desktop": "wdio run ./user-journey-tests/TB/wdio.browserstack.extended-desktop.conf.js",
+    "user-journey-test:bs-extended-mobile": "wdio run ./user-journey-tests/TB/wdio.browserstack.extended-mobile.conf.js"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",

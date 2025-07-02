@@ -1,5 +1,5 @@
 import { $ } from '@wdio/globals'
-import { Page } from '../page-objects/page.js'
+import { Page } from './page.js'
 
 const pageHeadingAndTitle = 'Privacy Policy'
 

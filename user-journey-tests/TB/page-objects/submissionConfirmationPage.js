@@ -1,4 +1,4 @@
-import { Page } from '../page-objects/page.js'
+import { Page } from './page.js'
 
 class SubmissionConfirmationPage extends Page {
   pagePath = '/submit/confirmation'
