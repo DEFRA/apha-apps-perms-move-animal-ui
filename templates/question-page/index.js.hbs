@@ -1,0 +1,43 @@
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { {{pascalCase journey}}QuestionPageController } from '~/src/server/{{journey}}/question-page-controller.js'
+import { {{pascalCase questionType}}Answer } from '~/src/server/common/model/answer/{{questionType}}/{{questionType}}.js'
+
+// TEMPLATE-TODO: import next page
+
+/** @import { {{pascalCase questionType}}Config } from '~/src/server/common/model/answer/{{questionType}}/{{questionType}}.js' */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+const questionKey = '{{camelCase questionKey}}'
+
+export class Answer extends {{pascalCase questionType}}Answer {
+  // TEMPLATE-TODO: update config as needed
+
+  /** @type { {{pascalCase questionType}}Config } */
+  static config = {
+    payloadKey: questionKey,
+    validation: {}
+  }
+}
+
+export class {{pascalCase questionKey}}Page extends QuestionPage {
+  urlPath = '{{path}}'
+
+  questionKey = questionKey
+  sectionKey = '{{camelCase sectionKey}}'
+  question = '{{question}}'
+
+  Answer = Answer
+
+  nextPage() {
+    // TEMPLATE-TODO: replace with actual next page
+    throw new Error('Next page not defined')
+  }
+}
+
+export const {{camelCase questionKey}}Page =
+  new {{pascalCase questionKey}}Page()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const enterWhatIsMovingDescription = new {{pascalCase journey}}QuestionPageController(
+  {{camelCase questionKey}}Page
+).plugin()
