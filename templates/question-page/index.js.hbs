@@ -1,0 +1,43 @@
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { ExoticsQuestionPageController } from '../../question-page-controller.js'
+import { {{camelCase questionType}}Answer } from '~/src/server/common/model/answer/{{questionType}}/{{questionType}}.js'
+
+// TODO: import next page
+
+/** @import { {{camelCase questionType}}Config } from '~/src/server/common/model/answer/{{questionType}}/{{questionType}}.js' */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+const questionKey = '{{questionKey}}'
+
+export class Answer extends {{camelCase questionType}}Answer {
+  // TODO: update config as needed
+
+  /** @type { {{camelCase questionType}}Config } */
+  static config = {
+    payloadKey: '{{questionKey}}',
+    validation: {}
+  }
+}
+
+export class {{upperFirst className}}Page extends QuestionPage {
+  urlPath = '{{pageURL}}'
+
+  questionKey = questionKey
+  sectionKey = '{{sectionKey}}'
+  question = '{{question}}'
+
+  Answer = Answer
+
+  nextPage() {
+    // TODO: replace with actual next page
+    throw new Error('Next page not defined')
+  }
+}
+
+export const {{lowerFirst className}}Page =
+  new {{upperFirst className}}Page()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const enterWhatIsMovingDescription = new ExoticsQuestionPageController(
+  {{lowerFirst className}}Page
+).plugin()
