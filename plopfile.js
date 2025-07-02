@@ -110,7 +110,10 @@ export default function (plop) {
         type: 'add',
         path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase questionKey}}/index.test.js',
         templateFile: 'templates/question-page/index.test.js.hbs'
-      }
+      },
+      '\x1b[41m\x1b[37m\x1b[1m IMPORTANT \x1b[0m',
+      "⚠️\tYou will need to manually add it to the section's index.js file.\x1b[0m\t  ⚠️",
+      '⚠️\tYou must now fill out the templated areas, search for `//TEMPLATE-TODO`\t  ⚠️'
     ]
   })
 }
