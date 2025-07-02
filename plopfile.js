@@ -1,4 +1,5 @@
-import glob from 'glob'
+import { readdir, access } from 'fs/promises'
+import { join } from 'path'
 
 export default function (plop) {
   plop.setGenerator('Question page', {
@@ -14,15 +15,21 @@ export default function (plop) {
         type: 'list',
         name: 'sectionKey',
         message: 'Section key',
-        choices: (answers) => {
-          const sectionFiles = glob.sync(
-            `src/server/${answers.journey}/*/section.js`
-          )
+        choices: async (answers) => {
+          const journeyPath = `src/server/${answers.journey}`
+          const sections = await readdir(journeyPath, { withFileTypes: true })
 
-          const sectionKeys = sectionFiles.map((file) => {
-            const parts = file.split('/')
-            return parts[parts.length - 2]
-          })
+          const sectionKeys = []
+          for (const section of sections) {
+            if (section.isDirectory()) {
+              try {
+                await access(join(journeyPath, section.name, 'section.js'))
+                sectionKeys.push(section.name)
+              } catch {
+                // section.js doesn't exist, skip this directory
+              }
+            }
+          }
 
           return sectionKeys.length > 0 ? sectionKeys : ['about']
         }
