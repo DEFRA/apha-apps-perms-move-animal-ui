@@ -1,5 +1,5 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, {{camelCase className}}Page } from './index.js'
+import { Answer, {{camelCase questionKey}}Page } from './index.js'
 import { {{pascalCase questionType}}Answer } from '~/src/server/common/model/answer/{{questionType}}/{{questionType}}.js'
 
 // TEMPLATE-TODO: import next page
@@ -7,7 +7,7 @@ import { {{pascalCase questionType}}Answer } from '~/src/server/common/model/ans
 const sectionKey = '{{camelCase sectionKey}}'
 const questionKey = '{{questionKey}}'
 const pageUrl = '{{path}}'
-const page = {{camelCase className}}Page
+const page = {{camelCase questionKey}}Page
 
 const payload = {
   [questionKey]: 'some text'

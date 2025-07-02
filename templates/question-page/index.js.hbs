@@ -19,7 +19,7 @@ export class Answer extends {{pascalCase questionType}}Answer {
   }
 }
 
-export class {{pascalCase className}}Page extends QuestionPage {
+export class {{pascalCase questionKey}}Page extends QuestionPage {
   urlPath = '{{path}}'
 
   questionKey = questionKey
@@ -34,10 +34,10 @@ export class {{pascalCase className}}Page extends QuestionPage {
   }
 }
 
-export const {{camelCase className}}Page =
-  new {{pascalCase className}}Page()
+export const {{camelCase questionKey}}Page =
+  new {{pascalCase questionKey}}Page()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
 export const enterWhatIsMovingDescription = new {{pascalCase journey}}QuestionPageController(
-  {{camelCase className}}Page
+  {{camelCase questionKey}}Page
 ).plugin()

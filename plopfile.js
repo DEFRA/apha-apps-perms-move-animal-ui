@@ -7,14 +7,22 @@ export default function (plop) {
     prompts: [
       {
         type: 'list',
+        name: 'questionType',
+        message: 'Question type',
+        choices: ['text', 'text-area', 'radio', 'checkbox']
+      },
+      {
+        type: 'list',
         name: 'journey',
-        message: 'Journey type',
+        message: (answers) =>
+          `What journey are you adding this ${answers.questionType} question to?`,
         choices: ['tb', 'exotics']
       },
       {
         type: 'list',
         name: 'sectionKey',
-        message: 'Section key',
+        message: (answers) =>
+          `What section of ${answers.journey} is this question being added to?`,
         choices: async (answers) => {
           const journeyPath = `src/server/${answers.journey}`
           const sections = await readdir(journeyPath, { withFileTypes: true })
@@ -31,45 +39,75 @@ export default function (plop) {
             }
           }
 
-          return sectionKeys.length > 0 ? sectionKeys : ['about']
+          if (sectionKeys.length === 0) {
+            throw new Error(
+              `No valid sections found in ${journeyPath}. Please create a section first.`
+            )
+          }
+
+          return sectionKeys
         }
       },
       {
         type: 'input',
         name: 'questionKey',
-        message: 'Question key (eg. cphNumber)'
+        message: 'What is the question key of the new question?',
+        validate: (input) => {
+          if (!input || input.trim() === '') {
+            return 'Question key cannot be empty.'
+          }
+          if (!/^[a-zA-Z]+$/.test(input)) {
+            return 'Question key must contain only letters.'
+          }
+          return true
+        },
+        transform: (input) => input.trim()
       },
       {
         type: 'input',
         name: 'question',
-        message: 'Question text?'
-      },
-      {
-        type: 'list',
-        name: 'questionType',
-        message: 'Question type',
-        choices: ['text', 'text-area', 'radio-button', 'checkbox']
+        message: 'What is the question text of the new question?',
+        validate: (input) => {
+          if (!input || input.trim() === '') {
+            return 'Question text cannot be empty.'
+          }
+          return true
+        },
+        transform: (input) => {
+          const trimmed = input.trim()
+          const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1)
+          return capitalized.endsWith('?') ? capitalized : `${capitalized}?`
+        }
       },
       {
         type: 'input',
         name: 'path',
-        message: 'Page URL'
-      },
-      {
-        type: 'input',
-        name: 'className',
-        message: 'What is the base of the class name(s)?'
+        message: 'What is the url path of the new question?',
+        validate: (input) => {
+          if (!input || input.trim() === '') {
+            return 'URL path cannot be empty.'
+          }
+          return true
+        },
+        transform: (input) => {
+          const trimmed = input.trim()
+          const urlFriendly = trimmed
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-_/]/g, '')
+          return urlFriendly.startsWith('/') ? urlFriendly : `/${urlFriendly}`
+        }
       }
     ],
     actions: [
       {
         type: 'add',
-        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase className}}/index.js',
+        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase questionKey}}/index.js',
         templateFile: 'templates/question-page/index.js.hbs'
       },
       {
         type: 'add',
-        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase className}}/index.test.js',
+        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase questionKey}}/index.test.js',
         templateFile: 'templates/question-page/index.test.js.hbs'
       }
     ]
