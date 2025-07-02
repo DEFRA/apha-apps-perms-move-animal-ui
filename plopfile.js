@@ -8,21 +8,21 @@ export default function (plop) {
       {
         type: 'list',
         name: 'questionType',
-        message: 'Question type',
+        message: 'What \x1b[33mtype\x1b[0m of question are you adding?',
         choices: ['text', 'text-area', 'radio', 'checkbox']
       },
       {
         type: 'list',
         name: 'journey',
         message: (answers) =>
-          `What journey are you adding this ${answers.questionType} question to?`,
+          `What \x1b[33mjourney\x1b[0m are you adding this ${answers.questionType} question to?`,
         choices: ['tb', 'exotics']
       },
       {
         type: 'list',
         name: 'sectionKey',
         message: (answers) =>
-          `What section of ${answers.journey} is this question being added to?`,
+          `What \x1b[33msection\x1b[0m of ${answers.journey} is this question being added to?`,
         choices: async (answers) => {
           const journeyPath = `src/server/${answers.journey}`
           const sections = await readdir(journeyPath, { withFileTypes: true })
@@ -51,7 +51,7 @@ export default function (plop) {
       {
         type: 'input',
         name: 'questionKey',
-        message: 'What is the question key of the new question?',
+        message: 'What is the \x1b[33mquestion key\x1b[0m of the new question?',
         validate: (input) => {
           if (!input || input.trim() === '') {
             return 'Question key cannot be empty.'
@@ -66,7 +66,8 @@ export default function (plop) {
       {
         type: 'input',
         name: 'question',
-        message: 'What is the question text of the new question?',
+        message:
+          'What is the \x1b[33mquestion text\x1b[0m of the new question?',
         validate: (input) => {
           if (!input || input.trim() === '') {
             return 'Question text cannot be empty.'
@@ -82,7 +83,7 @@ export default function (plop) {
       {
         type: 'input',
         name: 'path',
-        message: 'What is the url path of the new question?',
+        message: 'What is the \x1b[33murl path\x1b[0m of the new question?',
         validate: (input) => {
           if (!input || input.trim() === '') {
             return 'URL path cannot be empty.'
