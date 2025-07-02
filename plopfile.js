@@ -20,8 +20,8 @@ export default function (plop) {
       },
       {
         type: 'input',
-        name: 'sectionKey (e.g. about)',
-        message: 'section key'
+        name: 'sectionKey',
+        message: 'section key (e.g. about)'
       },
       {
         type: 'input',
