@@ -16,7 +16,7 @@ export class Answer extends RadioButtonAnswer {
     options: {
       'onto-premises': { label: 'Onto a farm or premises' },
       'off-premises': { label: 'Off a farm or premises' },
-      visit: { label: 'Visit to a farm or premises' }
+      visit: { label: 'A visit to a farm or premises' }
     },
     errors: {
       emptyOptionText: 'Select the movement type'
