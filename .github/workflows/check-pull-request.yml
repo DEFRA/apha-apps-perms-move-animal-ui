@@ -64,7 +64,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: test
       GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
-      AUTH_REQUIRED: false
+      DEFRA_ID_ENABLED: false
 
     runs-on: ubuntu-22.04
     steps:
@@ -88,7 +88,7 @@ jobs:
           NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${{ secrets.NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS }}
           NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
-          AUTH_REQUIRED: false
+          DEFRA_ID_ENABLED: false
           SEND_TO_CASE_MANAGEMENT_ENABLED: false
 
         run: |
