@@ -8,22 +8,20 @@ export default function (plop) {
         type: 'list',
         name: 'journey',
         message: 'Journey type',
-        choices: ['tb', 'exotics'] // Added 'tb' based on your workspace
+        choices: ['tb', 'exotics']
       },
       {
         type: 'list',
         name: 'sectionKey',
         message: 'Section key',
         choices: (answers) => {
-          // Find all section.js files in the selected journey
           const sectionFiles = glob.sync(
             `src/server/${answers.journey}/*/section.js`
           )
 
-          // Extract the folder names (section keys)
           const sectionKeys = sectionFiles.map((file) => {
             const parts = file.split('/')
-            return parts[parts.length - 2] // Get the folder name before section.js
+            return parts[parts.length - 2]
           })
 
           return sectionKeys.length > 0 ? sectionKeys : ['about']
