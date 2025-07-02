@@ -1,0 +1,36 @@
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { {{journey}}QuestionPageController } from '../../question-page-controller.js'
+
+const questionKey = '{{questionKey}}'
+
+/** @import { TodoConfig } from '~/src/server/common/model/answer/todo/todo.js' */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+// ... TODO - replace answer type & config type
+export class Answer extends TodoAnswer {
+  /** @type {TodoConfig} */
+  static config = {
+    payloadKey: questionKey,
+    // ... TODO - define options
+  }
+}
+
+export class {{pascalCase pageName}}Page extends QuestionPage {
+  urlPath = '{{urlPath}}'
+  questionKey = questionKey
+  sectionKey = '{{sectionKey}}'
+  question = '{{question}}'
+
+  Answer = Answer
+
+  nextPage() {
+    throw new Error('Not Implemented')
+  }
+}
+
+export const {{pageName}}Page = new {{pascalCase pageName}}Page()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const {{pageName}} = new {{journey}}QuestionPageController(
+  {{pageName}}Page
+).plugin()
