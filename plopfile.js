@@ -1,28 +1,33 @@
-import path from 'node:path'
+import glob from 'glob'
 
 export default function (plop) {
-  plop.setHelper('camelCase', (text) => {
-    const camelCased = text.replace(/-([a-z])/g, (match, letter) =>
-      letter.toUpperCase()
-    )
-    return camelCased.charAt(0).toUpperCase() + camelCased.slice(1)
-  })
-
-  plop.setHelper('upperFirst', (text) => {
-    return text.charAt(0).toUpperCase() + text.slice(1)
-  })
-
-  plop.setHelper('lowerFirst', (text) => {
-    return text.charAt(0).toLowerCase() + text.slice(1)
-  })
-
   plop.setGenerator('Question page', {
     description: 'This will create a question page',
     prompts: [
       {
-        type: 'input',
+        type: 'list',
+        name: 'journey',
+        message: 'Journey type',
+        choices: ['tb', 'exotics'] // Added 'tb' based on your workspace
+      },
+      {
+        type: 'list',
         name: 'sectionKey',
-        message: 'Section key (eg. origin)'
+        message: 'Section key',
+        choices: (answers) => {
+          // Find all section.js files in the selected journey
+          const sectionFiles = glob.sync(
+            `src/server/${answers.journey}/*/section.js`
+          )
+
+          // Extract the folder names (section keys)
+          const sectionKeys = sectionFiles.map((file) => {
+            const parts = file.split('/')
+            return parts[parts.length - 2] // Get the folder name before section.js
+          })
+
+          return sectionKeys.length > 0 ? sectionKeys : ['about']
+        }
       },
       {
         type: 'input',
@@ -43,7 +48,7 @@ export default function (plop) {
       {
         type: 'input',
         name: 'path',
-        message: 'page URL'
+        message: 'Page URL'
       },
       {
         type: 'input',
@@ -54,10 +59,13 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path:
-          path.relative(plop.getPlopfilePath(), process.cwd()) +
-          '/{{questionKey}}/index.js',
+        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase className}}/index.js',
         templateFile: 'templates/question-page/index.js.hbs'
+      },
+      {
+        type: 'add',
+        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase className}}/index.test.js',
+        templateFile: 'templates/question-page/index.test.js.hbs'
       }
     ]
   })
