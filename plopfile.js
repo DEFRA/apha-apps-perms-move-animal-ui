@@ -48,7 +48,7 @@ export default function (plop) {
         type: 'list',
         name: 'questionType',
         message: 'Question type',
-        choices: ['text', 'text-area', 'radio', 'checkbox']
+        choices: ['text', 'text-area', 'radio-button', 'checkbox']
       },
       {
         type: 'input',
