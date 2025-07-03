@@ -24,6 +24,16 @@ describe('Answer', () => {
   })
 
   // TEMPLATE-TODO: test the config
+
+  {{#if (eq questionType 'radio-button')}}
+  it.each([
+    {{{choicesArray choices}}}
+  ])('for %s should return %s', (value, expectedPage) => {
+    const answer = new Answer({ [questionKey]: value })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBeInstanceOf(expectedPage)
+  })
+  {{/if}}
 })
 
 describe('{{pascalCase questionKey}}Page', () => {
