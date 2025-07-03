@@ -31,6 +31,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Run template check
+        run: ./template-check.sh
+        shell: bash
+
       - name: Test code and Create Test Coverage Reports
         uses: actions/setup-node@v4
         with:
