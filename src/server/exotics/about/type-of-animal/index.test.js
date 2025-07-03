@@ -25,7 +25,7 @@ describe('Answer', () => {
   })
 
   it('should have the right error on empty options', () => {
-    expect(Answer.config.errors.emptyOptionText).toBe(
+    expect(Answer.config.validation.empty).toBe(
       'Select the type of animal you are moving'
     )
   })
