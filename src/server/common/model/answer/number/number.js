@@ -38,7 +38,7 @@ export const numberSchema = ({ payloadKey, validation }) => {
  *  stripWhitespace?: boolean,
  *  type?: 'email',               // the default is number, so no need to specify
  *  spellcheck?: false,
- *  characterWidth?: 2 | 10 | 20,
+ *  characterWidth?: 2 | 4 | 10 | 20,
  *  isPageHeading? : boolean,
  *  autocomplete?: string,
  *  hint?: string,
