@@ -11,7 +11,7 @@ const page = numberOfAnimalsPage
 const question = 'How many animals are you planning to move?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 123
 }
 
 describe('Answer', () => {
