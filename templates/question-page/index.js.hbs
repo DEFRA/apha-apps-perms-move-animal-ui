@@ -15,6 +15,9 @@ export class Answer extends {{pascalCase questionType}}Answer {
   /** @type { {{pascalCase questionType}}Config } */
   static config = {
     payloadKey: questionKey,
+    {{#if questionHint}}
+    hint: '{{questionHint}}',
+    {{/if}}
     validation: {},
   }
 }
