@@ -1,7 +1,51 @@
-import { Page } from '~/src/server/common/model/page/page-model.js'
+import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
+import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
+import { whatIsMovingPurposePage } from '../what-is-moving-purpose/index.js'
 
-export class NumberOfAnimalsPage extends Page {
+/** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+const questionKey = 'numberOfAnimals'
+
+export class Answer extends NumberAnswer {
+  /** @type { NumberConfig } */
+  static config = {
+    payloadKey: questionKey,
+    characterWidth: 4,
+    validation: {
+      empty: {
+        message: 'Enter how many animals you are planning to move'
+      },
+      min: {
+        value: 1,
+        message: 'Enter a number 1 or above'
+      },
+      max: {
+        value: 1000,
+        message: 'Enter a number 1000 or below'
+      }
+    }
+  }
+}
+
+export class NumberOfAnimalsPage extends QuestionPage {
   urlPath = '/exotics/about-the-movement/what-is-moving/select-animals/quantity'
+
+  questionKey = questionKey
+  sectionKey = 'about'
+  question = 'How many animals are you planning to move?'
+
+  Answer = Answer
+
+  nextPage() {
+    return whatIsMovingPurposePage
+  }
 }
 
 export const numberOfAnimalsPage = new NumberOfAnimalsPage()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const numberOfAnimals = new ExoticsQuestionPageController(
+  numberOfAnimalsPage
+).plugin()
