@@ -1,6 +1,7 @@
 import { journeyPrompt } from './prompts/journey-prompt.js'
 import { questionKeyPrompt } from './prompts/question-key-prompt.js'
 import { questionPrompt } from './prompts/question-prompt.js'
+import { questionTypePrompt } from './prompts/question-type-prompt.js'
 import { sectionKeyPrompt } from './prompts/section-key-prompt.js'
 import { urlPathPrompt } from './prompts/url-path-prompt.js'
 
@@ -30,6 +31,7 @@ export default function (plop) {
       sectionKeyPrompt,
       questionKeyPrompt,
       questionPrompt,
+      questionTypePrompt,
       urlPathPrompt
     ],
     actions: [
