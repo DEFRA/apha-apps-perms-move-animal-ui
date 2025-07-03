@@ -1,5 +1,5 @@
 import merge from 'deepmerge'
-import { config as wdioConf } from './wdio.conf.js'
+import { config as wdioConf } from '../wdio.conf.js'
 
 // These capabilites should run as part of the publish yaml as an initial check before publishing
 export const config = merge(wdioConf, {

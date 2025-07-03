@@ -8,7 +8,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 
-const assetsPath = 'user-journey-tests/page-objects/biosecurity-map/assets'
+const assetsPath = 'user-journey-tests/TB/page-objects/biosecurity-map/assets'
 const testFiles = {
   invalidType: `${assetsPath}/test_file.txt`,
   oversized: `${assetsPath}/large_file.jpg`,
