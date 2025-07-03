@@ -2,6 +2,7 @@
 
 import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { ExoticsSectionModel } from '../section-model.js'
+import { animalsId } from './animals-id/index.js'
 import { currentPurposeOfAnimals } from './current-purpose-of-animals/index.js'
 import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
@@ -25,7 +26,8 @@ const plugin = {
         typeOfAnimal,
         typeOfAnimalOther,
         numberOfAnimals,
-        currentPurposeOfAnimals
+        currentPurposeOfAnimals,
+        animalsId
       ])
     }
   }
