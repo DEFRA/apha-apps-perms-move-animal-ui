@@ -14,7 +14,6 @@ export class Answer extends TextAnswer {
     payloadKey: questionKey,
     stripWhitespace: true,
     characterWidth: 20,
-    spellcheck: true,
     validation: {
       empty: {
         message: 'Enter the species type you are moving'

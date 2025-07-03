@@ -23,8 +23,8 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should have spellcheck enabled', () => {
-    expect(Answer.config.spellcheck).toBe(true)
+  it('should have spellcheck not to be set to false', () => {
+    expect(Answer.config.spellcheck).not.toBe(false)
   })
 
   it('should have stripWhitespace true', () => {
