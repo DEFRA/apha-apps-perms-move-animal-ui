@@ -53,7 +53,7 @@ export default function (plop) {
         templateFile: 'templates/question-page/index.test.js.hbs'
       },
       (answers) => {
-        const folderPath = `src/server/${answers.journey}/${answers.sectionKey}/${answers.questionKey.toLowerCase()}/`
+        const folderPath = `src/server/${answers.journey}/${answers.sectionKey}/${plop.getHelper('kebabCase')(answers.questionKey)}/`
 
         try {
           execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
