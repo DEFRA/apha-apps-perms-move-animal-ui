@@ -26,11 +26,11 @@ export class Answer extends TextAreaAnswer {
 
 export class EnterWhatIsMovingDescriptionPage extends QuestionPage {
   urlPath =
-    '/about-the-movement/what-is-moving/enter-what-is-moving/description'
+    '/exotics/about-the-movement/what-is-moving/enter-what-is-moving/description'
 
   questionKey = questionKey
   sectionKey = 'about'
-  question = 'What are you moving?'
+  question = 'Describe what you are moving'
 
   Answer = Answer
 

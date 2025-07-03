@@ -17,8 +17,7 @@ export class Answer extends TextAreaAnswer {
     rows: 10,
     validation: {
       empty: {
-        message:
-          'You must provide the ID numbers for the animals you are moving'
+        message: 'Enter the ID numbers for the animals you are moving'
       },
       maxLength: {
         value: 10000,

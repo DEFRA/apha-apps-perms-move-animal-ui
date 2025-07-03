@@ -38,7 +38,7 @@ describe('Answer', () => {
 
   it('should have validation for empty input', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'You must provide the ID numbers for the animals you are moving'
+      'Enter the ID numbers for the animals you are moving'
     )
   })
 

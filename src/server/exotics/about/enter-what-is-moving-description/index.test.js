@@ -6,7 +6,7 @@ import { CheckAnswersPage } from '../check-answers/index.js'
 const sectionKey = 'about'
 const questionKey = 'whatAreYouMovingDescrition'
 const pageUrl =
-  '/about-the-movement/what-is-moving/enter-what-is-moving/description'
+  '/exotics/about-the-movement/what-is-moving/enter-what-is-moving/description'
 const page = enterWhatIsMovingDescriptionPage
 
 const payload = {
