@@ -20,8 +20,8 @@ export class ReasonForMovementAnswer extends RadioButtonAnswer {
       welfare: { label: 'Welfare', hint: 'Including moving pregnant females' },
       other: { label: 'Something else' }
     },
-    errors: {
-      emptyOptionText: 'Select the reason for movement'
+    validation: {
+      empty: 'Select the reason for movement'
     },
     layout: 'stacked'
   }

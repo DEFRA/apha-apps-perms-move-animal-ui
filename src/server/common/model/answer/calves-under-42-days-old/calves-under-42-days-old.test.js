@@ -21,7 +21,7 @@ describe('CalvesUnder42DaysOld', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(CalvesUnder42DaysOldAnswer.config.errors.emptyOptionText).toBe(
+    expect(CalvesUnder42DaysOldAnswer.config.validation.empty).toBe(
       'Select if you will move any calves under 42 days old'
     )
   })

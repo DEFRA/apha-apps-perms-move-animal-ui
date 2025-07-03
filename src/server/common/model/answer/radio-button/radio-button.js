@@ -13,7 +13,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @returns {Joi.Schema}
  */
 const createRadioSchema = (config) => {
-  const { emptyOptionText } = config.errors
+  const { empty: emptyOptionText } = config.validation
   return Joi.object({
     [config.payloadKey]: Joi.string()
       .required()
@@ -47,8 +47,8 @@ const handleConfig = (context, config) => {
  *  payloadKey: string,
  *  hint?: string,
  *  options: Record<string, RadioOption>,
- *  errors: {
- *    emptyOptionText: string
+ *  validation: {
+ *    empty: string
  *  }
  * layout?: RadioButtonLayout
  * }} RadioButtonConfig

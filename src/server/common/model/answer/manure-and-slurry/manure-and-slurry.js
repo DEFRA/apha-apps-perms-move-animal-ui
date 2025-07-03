@@ -18,8 +18,8 @@ export class ManureAndSlurryAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       no: { label: 'No' }
     },
-    errors: {
-      emptyOptionText:
+    validation: {
+      empty:
         'Select if manure or slurry has been put on the grazing field in the past 60 days'
     },
     layout: 'inline'

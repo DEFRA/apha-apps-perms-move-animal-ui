@@ -23,8 +23,8 @@ describe('RestockAnimalsAnswer', () => {
   })
 
   it('should have no validation', () => {
-    expect(RestockAnimalsAnswer.config.errors).toEqual({
-      emptyOptionText: {
+    expect(RestockAnimalsAnswer.config.validation).toEqual({
+      empty: {
         message: 'Select which types of animals you are restocking'
       }
     })

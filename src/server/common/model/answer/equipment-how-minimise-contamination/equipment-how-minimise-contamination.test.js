@@ -29,8 +29,7 @@ describe('EquipmentHowMinimiseContamination', () => {
 
   it('should define the right empty input message', () => {
     expect(
-      EquipmentHowMinimiseContaminationAnswer.config.errors.emptyOptionText
-        ?.message
+      EquipmentHowMinimiseContaminationAnswer.config.validation.empty?.message
     ).toBe(
       'Select which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
     )

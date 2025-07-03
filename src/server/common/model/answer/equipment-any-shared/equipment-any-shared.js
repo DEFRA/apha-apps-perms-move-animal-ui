@@ -18,8 +18,8 @@ export class EquipmentAnySharedAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       no: { label: 'No' }
     },
-    errors: {
-      emptyOptionText:
+    validation: {
+      empty:
         'Select if the incoming cattle will share any equipment and machinery with the resident herd'
     },
     layout: 'inline'

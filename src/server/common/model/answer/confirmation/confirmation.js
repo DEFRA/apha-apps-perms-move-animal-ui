@@ -18,8 +18,8 @@ const config = {
         'I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge'
     }
   },
-  errors: {
-    emptyOptionText: { message: checkboxEmptyError }
+  validation: {
+    empty: { message: checkboxEmptyError }
   }
 }
 

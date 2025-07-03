@@ -23,8 +23,8 @@ export class Answer extends RadioButtonAnswer {
       'bedding-and-feed': { label: 'Livestock bedding and feed' },
       other: { label: 'Something else' }
     },
-    errors: {
-      emptyOptionText: 'Select what you are moving'
+    validation: {
+      empty: 'Select what you are moving'
     }
   }
 }

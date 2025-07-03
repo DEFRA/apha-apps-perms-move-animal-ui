@@ -18,9 +18,8 @@ export class Animals42DaysOldOrOlderAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       no: { label: 'No' }
     },
-    errors: {
-      emptyOptionText:
-        'Select if you are also moving any animals 42 days old or older'
+    validation: {
+      empty: 'Select if you are also moving any animals 42 days old or older'
     },
     layout: 'inline'
   }

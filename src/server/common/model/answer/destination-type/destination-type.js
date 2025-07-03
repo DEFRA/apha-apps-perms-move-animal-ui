@@ -82,8 +82,8 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
   static config = (app) => ({
     payloadKey: 'destinationType',
     options: getDestinationOptions(app),
-    errors: {
-      emptyOptionText: 'Select where the animals are going'
+    validation: {
+      empty: 'Select where the animals are going'
     }
   })
 

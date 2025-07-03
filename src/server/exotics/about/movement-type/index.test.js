@@ -21,9 +21,7 @@ describe('Answer', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(Answer.config.errors.emptyOptionText).toBe(
-      'Select the movement type'
-    )
+    expect(Answer.config.validation.empty).toBe('Select the movement type')
   })
 })
 

@@ -33,6 +33,6 @@ export class PeopleDisinfectionAnswer extends CheckboxAnswer {
         label: 'Other cleaning and disinfection measures'
       }
     },
-    errors: {}
+    validation: {}
   }
 }
