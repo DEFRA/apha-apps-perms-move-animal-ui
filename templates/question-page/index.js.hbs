@@ -15,7 +15,16 @@ export class Answer extends {{pascalCase questionType}}Answer {
   /** @type { {{pascalCase questionType}}Config } */
   static config = {
     payloadKey: questionKey,
-    validation: {}
+    {{#if (eq questionType 'radio-button')}}
+    options: {{{choicesObject choices}}},
+    errors: {
+      emptyOptionText:
+        '// TEMPLATE-TODO: replace with actual error message for empty option'
+    }
+    {{else}}
+    validation: {},
+    errors: {}
+    {{/if}}
   }
 }
 
@@ -38,6 +47,6 @@ export const {{camelCase questionKey}}Page =
   new {{pascalCase questionKey}}Page()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const {{camelCase questionKey}} = new {{pascalCase journey}}QuestionPageController(
+export const enterWhatIsMovingDescription = new {{pascalCase journey}}QuestionPageController(
   {{camelCase questionKey}}Page
 ).plugin()
