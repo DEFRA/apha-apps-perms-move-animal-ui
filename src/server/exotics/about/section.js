@@ -1,11 +1,10 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
-import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
-import { movementType } from './movement-type/index.js'
+import { movementType, movementTypePage } from './movement-type/index.js'
 import { typeOfAnimalOther } from './type-of-animal-other/index.js'
 import { typeOfAnimal } from './type-of-animal/index.js'
 import { whatIsMoving } from './what-is-moving/index.js'
@@ -38,7 +37,5 @@ export class AboutSection extends ExoticsSectionModel {
     isVisible: () => true
   }
 
-  static firstPageFactory = () => {
-    throw new NotImplementedError()
-  }
+  static firstPageFactory = () => movementTypePage
 }
