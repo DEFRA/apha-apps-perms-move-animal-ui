@@ -11,5 +11,3 @@ process.on('unhandledRejection', (error) => {
   logger.error(error)
   process.exitCode = 1
 })
-
-// TEMPLATE-TODO: Add any additional server startup logic here
