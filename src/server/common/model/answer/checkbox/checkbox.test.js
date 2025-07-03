@@ -17,8 +17,8 @@ const config = {
       label: 'Limiting access to badger latrines and setts'
     }
   },
-  validation: {
-    empty: { message: checkboxEmptyError }
+  errors: {
+    emptyOptionText: { message: checkboxEmptyError }
   }
 }
 
@@ -27,7 +27,7 @@ class TestCheckboxAnswer extends CheckboxAnswer {
 }
 
 class TestCheckboxAnswerAllOptional extends CheckboxAnswer {
-  static config = { ...config, validation: {} }
+  static config = { ...config, errors: {} }
 }
 
 const validTestCheckbox = { test_checkbox: ['badgerProofFencing'] }

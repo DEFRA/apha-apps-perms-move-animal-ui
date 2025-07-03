@@ -25,7 +25,7 @@ describe('PeopleDisinfectionAnswer', () => {
   })
 
   it('should have no validation', () => {
-    expect(PeopleDisinfectionAnswer.config.validation).toEqual({})
+    expect(PeopleDisinfectionAnswer.config.errors).toEqual({})
   })
 
   it('should have the expected options to select from', () => {

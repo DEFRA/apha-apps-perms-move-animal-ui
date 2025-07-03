@@ -34,8 +34,8 @@ export class EquipmentHowMinimiseContaminationAnswer extends CheckboxAnswer {
         label: 'Other cleaning and disinfection measures'
       }
     },
-    validation: {
-      empty: {
+    errors: {
+      emptyOptionText: {
         message:
           'Select which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
       }

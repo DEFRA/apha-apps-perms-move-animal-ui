@@ -13,7 +13,7 @@ describe('ConfirmationAnswer', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(ConfirmationAnswer.config.validation.empty?.message).toBe(
+    expect(ConfirmationAnswer.config.errors.emptyOptionText?.message).toBe(
       'You need to tick a declaration box'
     )
   })
