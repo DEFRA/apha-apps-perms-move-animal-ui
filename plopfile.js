@@ -12,40 +12,6 @@ export default function (plop) {
     return a === b
   })
 
-  plop.setHelper('choicesObject', (choices) => {
-    const kebabCase = plop.getHelper('kebabCase')
-    const sentenceCase = plop.getHelper('sentenceCase')
-    const choicesArr = choices.split(',')
-
-    if (!choicesArr || !Array.isArray(choicesArr)) return '{}'
-
-    const choicesObj = {}
-    choicesArr.forEach((choice) => {
-      const key = kebabCase(choice.trim())
-      const label = sentenceCase(choice.trim())
-
-      choicesObj[key] = { label }
-    })
-
-    return JSON.stringify(choicesObj, null, 2)
-  })
-
-  plop.setHelper('choicesArray', (choices) => {
-    const choicesArr = choices.split(',')
-    const kebabCase = plop.getHelper('kebabCase')
-
-    return JSON.stringify(
-      choicesArr.map((choice) => {
-        return [
-          kebabCase(choice),
-          'TEMPLATE-TODO: change to the correct next page'
-        ]
-      }),
-      null,
-      2
-    )
-  })
-
   plop.setGenerator('Stub page', {
     description:
       'This will create a stub page that can be routed to via nextPage',
