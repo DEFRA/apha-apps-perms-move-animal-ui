@@ -33,7 +33,7 @@ export class AnimalsIdPage extends QuestionPage {
 
   questionKey = questionKey
   sectionKey = 'about'
-  question = 'What are the ID numbers for animals you are moving?'
+  question = 'What are the ID numbers for the animals you are moving?'
 
   Answer = Answer
 
