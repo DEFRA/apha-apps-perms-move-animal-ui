@@ -15,8 +15,8 @@ const createCheckboxSchema = (config) => {
 
   let optionsSchema = Joi.array().required().items(optionSchema)
 
-  if (config.errors.emptyOptionText) {
-    const emptyOptionText = config.errors.emptyOptionText.message
+  if (config.validation.empty) {
+    const emptyOptionText = config.validation.empty.message
     optionsSchema = optionsSchema.min(1).messages({
       'array.min': emptyOptionText
     })
@@ -42,8 +42,8 @@ const ensureArray = (value) => {
  *   options: Record<string, CheckboxOption>,
  *   hint?: string,
  *   isPageHeading? : boolean,
- *   errors: {
- *     emptyOptionText?: { message: string }
+ *   validation: {
+ *     empty?: { message: string }
  *   }
  * }} CheckboxConfig
  */

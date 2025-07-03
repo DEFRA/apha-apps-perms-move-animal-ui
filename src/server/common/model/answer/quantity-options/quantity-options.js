@@ -19,8 +19,8 @@ export class QuantityOptionsAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       unknown: { label: "I don't know" }
     },
-    errors: {
-      emptyOptionText: 'Select if you will move more than 75 animals'
+    validation: {
+      empty: 'Select if you will move more than 75 animals'
     },
     layout: 'stacked'
   }

@@ -18,8 +18,8 @@ export class Answer extends RadioButtonAnswer {
       'off-premises': { label: 'Off a farm or premises' },
       visit: { label: 'A visit to a farm or premises' }
     },
-    errors: {
-      emptyOptionText: 'Select the movement type'
+    validation: {
+      empty: 'Select the movement type'
     }
   }
 }

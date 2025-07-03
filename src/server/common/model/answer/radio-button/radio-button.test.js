@@ -24,8 +24,8 @@ const defaultConfig = {
     value_1: { label: 'test_label_1' },
     value_2: { label: 'test_label_2', hint: 'test_hint_2' }
   },
-  errors: {
-    emptyOptionText: 'Select an option'
+  validation: {
+    empty: 'Select an option'
   }
 }
 
@@ -97,9 +97,7 @@ describe('RadioButton', () => {
       ).validate()
 
       expect(isValid).toBe(false)
-      expect(errors.test_radio.text).toBe(
-        testRadioConfig({}).errors.emptyOptionText
-      )
+      expect(errors.test_radio.text).toBe(testRadioConfig({}).validation.empty)
     })
 
     it('should return false for an invalid', () => {
@@ -110,9 +108,7 @@ describe('RadioButton', () => {
       const { isValid, errors } = testInstance.validate()
 
       expect(isValid).toBe(false)
-      expect(errors.test_radio.text).toBe(
-        testRadioConfig({}).errors.emptyOptionText
-      )
+      expect(errors.test_radio.text).toBe(testRadioConfig({}).validation.empty)
     })
 
     it('should return false for values that would be valid, but whose predicates fail', () => {
@@ -123,9 +119,7 @@ describe('RadioButton', () => {
       const { isValid, errors } = testInstance.validate()
 
       expect(isValid).toBe(false)
-      expect(errors.test_radio.text).toBe(
-        testRadioConfig({}).errors.emptyOptionText
-      )
+      expect(errors.test_radio.text).toBe(testRadioConfig({}).validation.empty)
     })
 
     it('should return true or values that are only valid because their predicates pass', () => {

@@ -39,6 +39,6 @@ export class BadgersAnswer extends CheckboxAnswer {
         label: 'Other measures to reduce the risk of infection'
       }
     },
-    errors: {}
+    validation: {}
   }
 }

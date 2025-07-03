@@ -32,8 +32,8 @@ export class RestockReasonsAnswer extends CheckboxAnswer {
         label: 'Something else'
       }
     },
-    errors: {
-      emptyOptionText: {
+    validation: {
+      empty: {
         message: 'Select the reasons you have for restocking'
       }
     }

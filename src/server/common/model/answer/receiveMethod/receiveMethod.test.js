@@ -17,7 +17,7 @@ describe('ReceiveMethod', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(ReceiveMethodAnswer.config.errors.emptyOptionText).toBe(
+    expect(ReceiveMethodAnswer.config.validation.empty).toBe(
       'Select how you would like this licence sent to you'
     )
   })

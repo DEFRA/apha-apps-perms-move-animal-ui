@@ -8,9 +8,8 @@ const onOffFarmConfig = {
     on: { label: 'On to the farm or premises' },
     off: { label: 'Off the farm or premises' }
   },
-  errors: {
-    emptyOptionText:
-      'Select if you are moving cattle on or off your farm or premises'
+  validation: {
+    empty: 'Select if you are moving cattle on or off your farm or premises'
   }
 }
 

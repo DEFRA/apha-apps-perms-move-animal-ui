@@ -25,7 +25,7 @@ describe('BadgersAnswer', () => {
   })
 
   it('should have no validation', () => {
-    expect(BadgersAnswer.config.errors).toEqual({})
+    expect(BadgersAnswer.config.validation).toEqual({})
   })
 
   it('should have the expected options to select from', () => {

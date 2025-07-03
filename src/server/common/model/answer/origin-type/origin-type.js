@@ -49,8 +49,8 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
   static config = (app) => ({
     payloadKey: 'originType',
     options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions,
-    errors: {
-      emptyOptionText: 'Select where the animals are moving from'
+    validation: {
+      empty: 'Select where the animals are moving from'
     }
   })
 

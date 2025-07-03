@@ -19,8 +19,8 @@ export class CalvesUnder42DaysOldAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       no: { label: 'No' }
     },
-    errors: {
-      emptyOptionText: 'Select if you will move any calves under 42 days old'
+    validation: {
+      empty: 'Select if you will move any calves under 42 days old'
     },
     layout: 'inline'
   }
