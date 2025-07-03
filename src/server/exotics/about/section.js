@@ -1,6 +1,7 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { ExoticsSectionModel } from '../section-model.js'
+import { checkAnswers } from './check-answers/index.js'
 import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
@@ -20,7 +21,8 @@ const plugin = {
         enterWhatIsMovingQuantity,
         enterWhatIsMovingDescription,
         typeOfAnimal,
-        typeOfAnimalOther
+        typeOfAnimalOther,
+        checkAnswers
       ])
     }
   }
@@ -32,7 +34,7 @@ export class AboutSection extends ExoticsSectionModel {
     key: 'about',
     title: 'About the movement',
     plugin,
-    summaryLink: '/exotics/about/check-answers',
+    summaryLink: '/exotics/about-the-movement/check-answers',
     isEnabled: () => true,
     isVisible: () => true
   }
