@@ -5,16 +5,12 @@ import { numberOfAnimalsPage } from '../number-of-animals/index.js'
 import { typeOfBirdsPage } from '../type-of-birds/index.js'
 import { typeOfAnimalOtherPage } from '../type-of-animal-other/index.js'
 
-// TEMPLATE-TODO: import next page
-
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 const questionKey = 'typeOfAnimal'
 
 export class Answer extends RadioButtonAnswer {
-  // TEMPLATE-TODO: update config as needed
-
   /** @type { RadioButtonConfig } */
   static config = {
     payloadKey: questionKey,

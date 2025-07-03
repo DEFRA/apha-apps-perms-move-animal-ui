@@ -5,8 +5,6 @@ import { TypeOfBirdsPage } from '../type-of-birds/index.js'
 import { TypeOfAnimalOtherPage } from '../type-of-animal-other/index.js'
 import { NumberOfAnimalsPage } from '../number-of-animals/index.js'
 
-// TEMPLATE-TODO: import next page
-
 const sectionKey = 'about'
 const questionKey = 'typeOfAnimal'
 const pageUrl = '/exotics/about-the-movement/what-is-moving/select-animals'
