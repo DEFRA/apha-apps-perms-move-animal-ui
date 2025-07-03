@@ -19,6 +19,9 @@ export class SummaryPageController extends GenericPageController {
   /** @type {string} */
   heading
 
+  /** @type {string} */
+  taskListUrl
+
   /**
    * @param {SummaryPage} page
    */
@@ -80,6 +83,6 @@ export class SummaryPageController extends GenericPageController {
   }
 
   handlePost(_req, res) {
-    return res.redirect('/task-list')
+    return res.redirect(this.taskListUrl)
   }
 }

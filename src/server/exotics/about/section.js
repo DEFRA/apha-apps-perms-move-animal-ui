@@ -1,13 +1,13 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
-import { NotImplementedError } from '../../common/helpers/not-implemented-error.js'
 import { ExoticsSectionModel } from '../section-model.js'
+import { checkAnswers } from './check-answers/index.js'
 import { animalsId } from './animals-id/index.js'
 import { currentPurposeOfAnimals } from './current-purpose-of-animals/index.js'
 import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
-import { movementType } from './movement-type/index.js'
+import { movementType, movementTypePage } from './movement-type/index.js'
 import { numberOfAnimals } from './number-of-animals/index.js'
 import { typeOfAnimalOther } from './type-of-animal-other/index.js'
 import { typeOfAnimal } from './type-of-animal/index.js'
@@ -27,7 +27,8 @@ const plugin = {
         typeOfAnimalOther,
         numberOfAnimals,
         currentPurposeOfAnimals,
-        animalsId
+        animalsId,
+        checkAnswers
       ])
     }
   }
@@ -39,12 +40,10 @@ export class AboutSection extends ExoticsSectionModel {
     key: 'about',
     title: 'About the movement',
     plugin,
-    summaryLink: '/exotics/about/check-answers',
+    summaryLink: '/exotics/about-the-movement/check-answers',
     isEnabled: () => true,
     isVisible: () => true
   }
 
-  static firstPageFactory = () => {
-    throw new NotImplementedError()
-  }
+  static firstPageFactory = () => movementTypePage
 }
