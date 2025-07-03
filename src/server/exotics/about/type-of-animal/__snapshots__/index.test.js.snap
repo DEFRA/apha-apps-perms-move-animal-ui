@@ -49,7 +49,7 @@ exports[`TypeOfAnimalPage content should render expected response and content 1`
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="camelids" name="typeOfAnimal" type="radio" value="camelids">
         <label class="govuk-label govuk-radios__label" for="camelids">
-          Camelids (such as llamas and alpacas) 
+          Camelids (such as llamas and alpacas)
         </label>
       </div>
       <div class="govuk-radios__item">

@@ -20,7 +20,7 @@ export class Answer extends RadioButtonAnswer {
       pigs: { label: 'Pigs' },
       birds: { label: 'Birds' },
       horses: { label: 'Horses' },
-      camelids: { label: 'Camelids (such as llamas and alpacas) ' },
+      camelids: { label: 'Camelids (such as llamas and alpacas)' },
       other: { label: 'Another type of animal' }
     },
     errors: {
