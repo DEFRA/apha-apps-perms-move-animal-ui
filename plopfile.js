@@ -40,7 +40,6 @@ const sectionKeyPrompt = {
   }
 }
 
-
 const questionKeyPrompt = {
   type: 'input',
   name: 'questionKey',
@@ -70,9 +69,9 @@ const urlPathPrompt = {
   transform: (input) => {
     const trimmed = input.trim()
     const urlFriendly = trimmed
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9\-_/]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9\-_/]/g, '')
     return urlFriendly.startsWith('/') ? urlFriendly : `/${urlFriendly}`
   }
 }
@@ -111,7 +110,7 @@ export default function (plop) {
         type: 'input',
         name: 'question',
         message:
-        'What is the \x1b[33mquestion text\x1b[0m of the new question?',
+          'What is the \x1b[33mquestion text\x1b[0m of the new question?',
         validate: (input) => {
           if (!input || input.trim() === '') {
             return 'Question text cannot be empty.'
