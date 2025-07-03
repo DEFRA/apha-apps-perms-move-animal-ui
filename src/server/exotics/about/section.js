@@ -6,6 +6,7 @@ import { enterWhatIsMovingDescription } from './enter-what-is-moving-description
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
 import { movementType } from './movement-type/index.js'
+import { typeOfAnimal } from './type-of-animal/index.js'
 import { whatIsMoving } from './what-is-moving/index.js'
 
 const plugin = {
@@ -17,7 +18,8 @@ const plugin = {
         whatIsMoving,
         enterWhatIsMoving,
         enterWhatIsMovingQuantity,
-        enterWhatIsMovingDescription
+        enterWhatIsMovingDescription,
+        typeOfAnimal
       ])
     }
   }
