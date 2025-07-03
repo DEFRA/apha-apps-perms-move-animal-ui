@@ -19,8 +19,8 @@ export class QuantityHalfHerdAnswer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       unknown: { label: "I don't know" }
     },
-    errors: {
-      emptyOptionText:
+    validation: {
+      empty:
         'Select if the number of cattle will be larger than half of the destination herd size'
     },
     layout: 'stacked'

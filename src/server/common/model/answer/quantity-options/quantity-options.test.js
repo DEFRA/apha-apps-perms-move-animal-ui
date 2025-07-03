@@ -17,7 +17,7 @@ describe('QuantityOptions', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(QuantityOptionsAnswer.config.errors.emptyOptionText).toBe(
+    expect(QuantityOptionsAnswer.config.validation.empty).toBe(
       'Select if you will move more than 75 animals'
     )
   })

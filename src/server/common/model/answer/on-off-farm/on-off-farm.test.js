@@ -17,7 +17,7 @@ describe('OnOffFarm', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(OnOffFarmAnswer.config.errors.emptyOptionText).toBe(
+    expect(OnOffFarmAnswer.config.validation.empty).toBe(
       'Select if you are moving cattle on or off your farm or premises'
     )
   })

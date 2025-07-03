@@ -19,7 +19,7 @@ describe('ReasonForMovement', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(ReasonForMovementAnswer.config.errors.emptyOptionText).toBe(
+    expect(ReasonForMovementAnswer.config.validation.empty).toBe(
       'Select the reason for movement'
     )
   })

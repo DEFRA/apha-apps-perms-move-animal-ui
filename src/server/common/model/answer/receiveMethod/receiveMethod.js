@@ -15,8 +15,8 @@ export class ReceiveMethodAnswer extends RadioButtonAnswer {
       email: { label: 'Email' },
       post: { label: 'Post' }
     },
-    errors: {
-      emptyOptionText: 'Select how you would like this licence sent to you'
+    validation: {
+      empty: 'Select how you would like this licence sent to you'
     }
   }
 }

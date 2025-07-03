@@ -23,8 +23,8 @@ export class Answer extends RadioButtonAnswer {
       camelids: { label: 'Camelids (such as llamas and alpacas) ' },
       other: { label: 'Another type of animal' }
     },
-    errors: {
-      emptyOptionText: 'Select the type of animal you are moving'
+    validation: {
+      empty: 'Select the type of animal you are moving'
     }
   }
 }

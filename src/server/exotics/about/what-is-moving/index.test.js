@@ -22,9 +22,7 @@ describe('Answer', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(Answer.config.errors.emptyOptionText).toBe(
-      'Select what you are moving'
-    )
+    expect(Answer.config.validation.empty).toBe('Select what you are moving')
   })
 })
 
