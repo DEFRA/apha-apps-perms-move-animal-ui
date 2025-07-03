@@ -1,7 +1,100 @@
 import { readdir, access } from 'fs/promises'
 import { join } from 'path'
 
+const journeyPrompt = {
+  type: 'list',
+  name: 'journey',
+  message: (answers) =>
+    `What \x1b[33mjourney\x1b[0m are you adding this ${answers.questionType} question to?`,
+  choices: ['tb', 'exotics']
+}
+
+const sectionKeyPrompt = {
+  type: 'list',
+  name: 'sectionKey',
+  message: (answers) =>
+    `What \x1b[33msection\x1b[0m of ${answers.journey} is this question being added to?`,
+  choices: async (answers) => {
+    const journeyPath = `src/server/${answers.journey}`
+    const sections = await readdir(journeyPath, { withFileTypes: true })
+
+    const sectionKeys = []
+    for (const section of sections) {
+      if (section.isDirectory()) {
+        try {
+          await access(join(journeyPath, section.name, 'section.js'))
+          sectionKeys.push(section.name)
+        } catch {
+          // section.js doesn't exist, skip this directory
+        }
+      }
+    }
+
+    if (sectionKeys.length === 0) {
+      throw new Error(
+        `No valid sections found in ${journeyPath}. Please create a section first.`
+      )
+    }
+
+    return sectionKeys
+  }
+}
+
+
+const questionKeyPrompt = {
+  type: 'input',
+  name: 'questionKey',
+  message: 'What is the \x1b[33mquestion key\x1b[0m of the new question?',
+  validate: (input) => {
+    if (!input || input.trim() === '') {
+      return 'Question key cannot be empty.'
+    }
+    if (!/^[a-zA-Z]+$/.test(input)) {
+      return 'Question key must contain only letters.'
+    }
+    return true
+  },
+  transform: (input) => input.trim()
+}
+
+const urlPathPrompt = {
+  type: 'input',
+  name: 'path',
+  message: 'What is the \x1b[33murl path\x1b[0m of the new question?',
+  validate: (input) => {
+    if (!input || input.trim() === '') {
+      return 'URL path cannot be empty.'
+    }
+    return true
+  },
+  transform: (input) => {
+    const trimmed = input.trim()
+    const urlFriendly = trimmed
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9\-_/]/g, '')
+    return urlFriendly.startsWith('/') ? urlFriendly : `/${urlFriendly}`
+  }
+}
+
 export default function (plop) {
+  plop.setGenerator('Basic page', {
+    description: 'This will create a bare bones page that can be routed to',
+    prompts: [
+      journeyPrompt,
+      sectionKeyPrompt,
+      questionKeyPrompt,
+      urlPathPrompt
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase questionKey}}/index.js',
+        templateFile: 'templates/basic-page/index.js.hbs'
+      }
+    ]
+  })
+
   plop.setGenerator('Question page', {
     description: 'This will create a question page',
     prompts: [
@@ -9,65 +102,16 @@ export default function (plop) {
         type: 'list',
         name: 'questionType',
         message: 'What \x1b[33mtype\x1b[0m of question are you adding?',
-        choices: ['text', 'text-area', 'radio', 'checkbox']
+        choices: ['text', 'text-area', 'radio-button', 'checkbox', 'number']
       },
-      {
-        type: 'list',
-        name: 'journey',
-        message: (answers) =>
-          `What \x1b[33mjourney\x1b[0m are you adding this ${answers.questionType} question to?`,
-        choices: ['tb', 'exotics']
-      },
-      {
-        type: 'list',
-        name: 'sectionKey',
-        message: (answers) =>
-          `What \x1b[33msection\x1b[0m of ${answers.journey} is this question being added to?`,
-        choices: async (answers) => {
-          const journeyPath = `src/server/${answers.journey}`
-          const sections = await readdir(journeyPath, { withFileTypes: true })
-
-          const sectionKeys = []
-          for (const section of sections) {
-            if (section.isDirectory()) {
-              try {
-                await access(join(journeyPath, section.name, 'section.js'))
-                sectionKeys.push(section.name)
-              } catch {
-                // section.js doesn't exist, skip this directory
-              }
-            }
-          }
-
-          if (sectionKeys.length === 0) {
-            throw new Error(
-              `No valid sections found in ${journeyPath}. Please create a section first.`
-            )
-          }
-
-          return sectionKeys
-        }
-      },
-      {
-        type: 'input',
-        name: 'questionKey',
-        message: 'What is the \x1b[33mquestion key\x1b[0m of the new question?',
-        validate: (input) => {
-          if (!input || input.trim() === '') {
-            return 'Question key cannot be empty.'
-          }
-          if (!/^[a-zA-Z]+$/.test(input)) {
-            return 'Question key must contain only letters.'
-          }
-          return true
-        },
-        transform: (input) => input.trim()
-      },
+      journeyPrompt,
+      sectionKeyPrompt,
+      questionKeyPrompt,
       {
         type: 'input',
         name: 'question',
         message:
-          'What is the \x1b[33mquestion text\x1b[0m of the new question?',
+        'What is the \x1b[33mquestion text\x1b[0m of the new question?',
         validate: (input) => {
           if (!input || input.trim() === '') {
             return 'Question text cannot be empty.'
@@ -80,31 +124,14 @@ export default function (plop) {
           return capitalized.endsWith('?') ? capitalized : `${capitalized}?`
         }
       },
-      {
-        type: 'input',
-        name: 'path',
-        message: 'What is the \x1b[33murl path\x1b[0m of the new question?',
-        validate: (input) => {
-          if (!input || input.trim() === '') {
-            return 'URL path cannot be empty.'
-          }
-          return true
-        },
-        transform: (input) => {
-          const trimmed = input.trim()
-          const urlFriendly = trimmed
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[^a-z0-9\-_/]/g, '')
-          return urlFriendly.startsWith('/') ? urlFriendly : `/${urlFriendly}`
-        }
-      }
+      urlPathPrompt
     ],
     actions: [
       {
         type: 'add',
         path: 'src/server/{{camelCase journey}}/{{sectionKey}}/{{kebabCase questionKey}}/index.js',
-        templateFile: 'templates/question-page/index.js.hbs'
+        templateFile: 'templates/question-page/index.js.hbs',
+        force: true
       },
       {
         type: 'add',
