@@ -32,7 +32,7 @@ jobs:
           GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
           GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
-          AUTH_REQUIRED: false
+          DEFRA_ID_ENABLED: false
           SEND_TO_CASE_MANAGEMENT_ENABLED: false
         run: |
           docker compose up --wait-timeout 300 -d --quiet-pull
