@@ -6,6 +6,7 @@ import { questionPrompt } from './prompts/question-prompt.js'
 import { questionTypePrompt } from './prompts/question-type-prompt.js'
 import { sectionKeyPrompt } from './prompts/section-key-prompt.js'
 import { urlPathPrompt } from './prompts/url-path-prompt.js'
+import { questionHintPrompt } from './prompts/question-hint-prompt.js'
 
 export default function (plop) {
   plop.setHelper('eq', (a, b) => {
@@ -37,6 +38,7 @@ export default function (plop) {
       sectionKeyPrompt,
       questionKeyPrompt,
       questionPrompt,
+      questionHintPrompt,
       questionTypePrompt,
       urlPathPrompt
     ],
