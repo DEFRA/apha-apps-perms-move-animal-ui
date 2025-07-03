@@ -1,0 +1,8 @@
+import { Page } from '~/src/server/common/model/page/page-model.js'
+
+export class {{pascalCase questionKey}}Page extends Page {
+  urlPath = '{{path}}'
+}
+
+export const {{camelCase questionKey}}Page =
+  new {{pascalCase questionKey}}Page()

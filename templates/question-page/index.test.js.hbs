@@ -8,6 +8,7 @@ const sectionKey = '{{camelCase sectionKey}}'
 const questionKey = '{{questionKey}}'
 const pageUrl = '{{path}}'
 const page = {{camelCase questionKey}}Page
+const question = '{{question}}'
 
 const payload = {
   [questionKey]: 'some text'
@@ -25,7 +26,7 @@ describe('Answer', () => {
   // TEMPLATE-TODO: test the config
 })
 
-describe('EnterWhatIsMovingDescriptionPage', () => {
+describe('{{pascalCase questionKey}}Page', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -38,12 +39,16 @@ describe('EnterWhatIsMovingDescriptionPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct question', () => {
+    expect(page.question).toBe(question)
+  })
+
   it('should have the correct Answer model', () => {
     expect(page.Answer).toBe(Answer)
   })
 
   describe('nextPage', () => {
-    it('should return EnterWhatIsMovingDescriptionPage for any value', () => {
+    it('should return TEMPLATE-TODO for any value', () => {
       const answer = new Answer(payload)
       const nextPage = page.nextPage(answer)
       // TEMPLATE-TODO: replace with actual next page
