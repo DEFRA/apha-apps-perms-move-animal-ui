@@ -27,7 +27,7 @@ describe('Answer', () => {
 
   {{#if (eq questionType 'radio-button')}}
   it.each([
-    {{{choicesArray choices}}}
+    ['option', nextPage]  // TEMPLATE-TODO: replace with actual next page for each option
   ])('for %s should return %s', (value, expectedPage) => {
     const answer = new Answer({ [questionKey]: value })
     const nextPage = page.nextPage(answer)

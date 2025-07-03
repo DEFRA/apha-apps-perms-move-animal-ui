@@ -6,7 +6,6 @@ import { questionPrompt } from './prompts/question-prompt.js'
 import { questionTypePrompt } from './prompts/question-type-prompt.js'
 import { sectionKeyPrompt } from './prompts/section-key-prompt.js'
 import { urlPathPrompt } from './prompts/url-path-prompt.js'
-import { radioChoicePrompt } from './prompts/radio-button-choices.js'
 
 export default function (plop) {
   plop.setHelper('eq', (a, b) => {
@@ -73,7 +72,6 @@ export default function (plop) {
       questionKeyPrompt,
       questionPrompt,
       questionTypePrompt,
-      radioChoicePrompt,
       urlPathPrompt
     ],
     actions: [
