@@ -35,8 +35,8 @@ export class RestockAnimalsAnswer extends CheckboxAnswer {
         label: 'Suckling calves'
       }
     },
-    validation: {
-      empty: {
+    errors: {
+      emptyOptionText: {
         message: 'Select which types of animals you are restocking'
       }
     }
