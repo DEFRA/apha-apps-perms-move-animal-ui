@@ -12,6 +12,7 @@ import { numberOfAnimals } from './number-of-animals/index.js'
 import { typeOfAnimalOther } from './type-of-animal-other/index.js'
 import { typeOfAnimal } from './type-of-animal/index.js'
 import { whatIsMoving } from './what-is-moving/index.js'
+import { typeOfBird } from './type-of-bird/index.js'
 
 const plugin = {
   plugin: {
@@ -28,7 +29,8 @@ const plugin = {
         numberOfAnimals,
         currentPurposeOfAnimals,
         animalsId,
-        checkAnswers
+        checkAnswers,
+        typeOfBird
       ])
     }
   }
