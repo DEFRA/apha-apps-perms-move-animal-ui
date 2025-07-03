@@ -2,16 +2,12 @@
 
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
-import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
-import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
-import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
-import { movementType, movementTypePage } from './movement-type/index.js'
 import { animalsId } from './animals-id/index.js'
 import { currentPurposeOfAnimals } from './current-purpose-of-animals/index.js'
 import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
-import { movementType } from './movement-type/index.js'
+import { movementType, movementTypePage } from './movement-type/index.js'
 import { numberOfAnimals } from './number-of-animals/index.js'
 import { typeOfAnimalOther } from './type-of-animal-other/index.js'
 import { typeOfAnimal } from './type-of-animal/index.js'
@@ -29,10 +25,10 @@ const plugin = {
         enterWhatIsMovingDescription,
         typeOfAnimal,
         typeOfAnimalOther,
-        checkAnswers
         numberOfAnimals,
         currentPurposeOfAnimals,
-        animalsId
+        animalsId,
+        checkAnswers
       ])
     }
   }
