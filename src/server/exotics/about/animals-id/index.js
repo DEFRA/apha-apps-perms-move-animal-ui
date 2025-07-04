@@ -20,8 +20,8 @@ export class Answer extends TextAreaAnswer {
         message: 'Enter the ID numbers for the animals you are moving'
       },
       maxLength: {
-        value: 10000,
-        message: 'ID numbers must be 1000 characters or less'
+        value: 5000,
+        message: 'Your answer must be no longer than 5000 characters'
       }
     }
   }
