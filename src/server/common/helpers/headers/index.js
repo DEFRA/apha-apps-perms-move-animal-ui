@@ -46,7 +46,8 @@ export const headers = {
   'Cross-Origin-Embedder-Policy': 'require-corp',
   'Cross-Origin-Opener-Policy': 'same-origin',
   'Permissions-Policy': features.map((feature) => `${feature}=()`).join(','),
-  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload'
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'Referrer-Policy': 'strict-origin-when-cross-origin'
 }
 
 /**
