@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { numberOfAnimalsPage } from '../number-of-animals/index.js'
-import { typeOfBirdOtherPage } from '../type-of-bird-other/index.js'
+import { typeOfBirdUncommonPage } from '../type-of-bird-uncommon/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -53,7 +53,7 @@ export class TypeOfBirdPage extends QuestionPage {
 
   nextPage(answer) {
     if (answer.value === 'other') {
-      return typeOfBirdOtherPage
+      return typeOfBirdUncommonPage
     }
     return numberOfAnimalsPage
   }
