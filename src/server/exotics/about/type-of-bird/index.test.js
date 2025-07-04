@@ -23,6 +23,22 @@ describe('Answer', () => {
   it('should have the right payload key', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
+
+  it('should have validation for empty input', () => {
+    expect(Answer.config.validation.empty).toBe(
+      'Select what type of bird you are moving'
+    )
+  })
+
+  it('should have the correct options', () => {
+    expect(Answer.config.options.chickens.label).toBe('Chickens')
+    expect(Answer.config.options.turkeys.label).toBe('Turkeys')
+    expect(Answer.config.options.ducks.label).toBe('Ducks')
+    expect(Answer.config.options.geese.label).toBe('Geese')
+    expect(Answer.config.options['birds-of-prey'].label).toBe('Birds of prey')
+    expect(Answer.config.options['racing-pigeons'].label).toBe('Racing pigeons')
+    expect(Answer.config.options.other.label).toBe('Another type of bird')
+  })
 })
 
 describe('TypeOfBirdPage', () => {
