@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, numberOfAnimalsPage } from './index.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { WhatIsMovingPurposePage } from '../what-is-moving-purpose/index.js'
+import { CurrentPurposeOfAnimalsPage } from '../current-purpose-of-animals/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'numberOfAnimals'
@@ -66,9 +66,9 @@ describe('NumberOfAnimalsPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return whatIsMovingPurposePage for any value', () => {
+    it('should return CurrentPurposeOfAnimalsPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(WhatIsMovingPurposePage)
+      expect(nextPage).toBeInstanceOf(CurrentPurposeOfAnimalsPage)
     })
   })
 

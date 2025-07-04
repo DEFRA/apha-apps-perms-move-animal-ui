@@ -1,8 +1,8 @@
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { Answer, whatIsMovingPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { SelectAnimalsPage } from '../select-animals/index.js'
 import { EnterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
+import { TypeOfAnimalPage } from '../type-of-animal/index.js'
 
 const page = whatIsMovingPage
 const payload = {
@@ -45,7 +45,7 @@ describe('WhatIsMovingPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['live-animals', SelectAnimalsPage],
+      ['live-animals', TypeOfAnimalPage],
       ['carcasses', EnterWhatIsMovingPage],
       ['animal-by-products-and-waste', EnterWhatIsMovingPage],
       ['equipment', EnterWhatIsMovingPage],

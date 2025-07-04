@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '../../question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { selectAnimalsPage } from '../select-animals/index.js'
 import { enterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
+import { typeOfAnimalPage } from '../type-of-animal/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -40,7 +40,7 @@ export class WhatIsMovingPage extends QuestionPage {
   /** @param {Answer} answer */
   nextPage(answer) {
     if (answer.value === 'live-animals') {
-      return selectAnimalsPage
+      return typeOfAnimalPage
     }
 
     return enterWhatIsMovingPage

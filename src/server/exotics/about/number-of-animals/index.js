@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { whatIsMovingPurposePage } from '../what-is-moving-purpose/index.js'
+import { currentPurposeOfAnimalsPage } from '../current-purpose-of-animals/index.js'
 
 /** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -39,7 +39,7 @@ export class NumberOfAnimalsPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return whatIsMovingPurposePage
+    return currentPurposeOfAnimalsPage
   }
 }
 
