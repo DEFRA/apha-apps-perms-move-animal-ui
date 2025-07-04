@@ -2,7 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, typeOfBirdPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { NumberOfAnimalsPage } from '../number-of-animals/index.js'
-import { TypeOfBirdOtherPage } from '../type-of-bird-other/index.js'
+import { TypeOfBirdUncommonPage } from '../type-of-bird-uncommon/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'typeOfBird'
@@ -70,7 +70,7 @@ describe('TypeOfBirdPage', () => {
       ['geese', NumberOfAnimalsPage],
       ['birds-of-prey', NumberOfAnimalsPage],
       ['racing-pigeons', NumberOfAnimalsPage],
-      ['other', TypeOfBirdOtherPage]
+      ['other', TypeOfBirdUncommonPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
