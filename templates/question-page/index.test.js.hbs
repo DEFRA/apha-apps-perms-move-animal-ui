@@ -24,16 +24,6 @@ describe('Answer', () => {
   })
 
   // TEMPLATE-TODO: test the config
-
-  {{#if (eq questionType 'radio-button')}}
-  it.each([
-    ['option', nextPage]  // TEMPLATE-TODO: replace with actual next page for each option
-  ])('for %s should return %s', (value, expectedPage) => {
-    const answer = new Answer({ [questionKey]: value })
-    const nextPage = page.nextPage(answer)
-    expect(nextPage).toBeInstanceOf(expectedPage)
-  })
-  {{/if}}
 })
 
 describe('{{pascalCase questionKey}}Page', () => {
@@ -58,11 +48,21 @@ describe('{{pascalCase questionKey}}Page', () => {
   })
 
   describe('nextPage', () => {
+    {{#if (eq questionType 'radio-button')}}
+    it.each([
+      ['option', nextPage]  // TEMPLATE-TODO: replace with actual next page for each option
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
+      const nextPage = page.nextPage(answer)
+      expect(nextPage).toBeInstanceOf(expectedPage)
+    })
+    {{else}}
     it('should return TEMPLATE-TODO for any value', () => {
       const answer = new Answer(payload)
       const nextPage = page.nextPage(answer)
       expect(nextPage).toBeInstanceOf(TEMPLATE-TODO)
     })
+    {{/if}}
   })
 
   describePageSnapshot({
