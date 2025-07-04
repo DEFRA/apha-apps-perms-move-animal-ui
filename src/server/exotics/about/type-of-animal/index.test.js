@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, typeOfAnimalPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { TypeOfBirdsPage } from '../type-of-birds/index.js'
+import { TypeOfBirdPage } from '../type-of-bird/index.js'
 import { TypeOfAnimalOtherPage } from '../type-of-animal-other/index.js'
 import { NumberOfAnimalsPage } from '../number-of-animals/index.js'
 
@@ -56,7 +56,7 @@ describe('TypeOfAnimalPage', () => {
     it('should return TypeOfBird for birds', () => {
       const answer = new Answer({ [questionKey]: 'birds' })
       const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(TypeOfBirdsPage)
+      expect(nextPage).toBeInstanceOf(TypeOfBirdPage)
     })
 
     it('should return TypeOfAnimalOther for other', () => {
