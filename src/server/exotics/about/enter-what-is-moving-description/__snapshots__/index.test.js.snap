@@ -12,7 +12,7 @@ exports[`EnterWhatIsMovingDescriptionPage content should render expected respons
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="whatAreYouMovingDescrition">
-      What are you moving?
+      Describe what you are moving
     </label>
   </h1>
   <textarea class="govuk-textarea" id="whatAreYouMovingDescrition" name="whatAreYouMovingDescrition" rows="10" spellcheck="false"></textarea>

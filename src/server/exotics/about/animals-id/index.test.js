@@ -38,14 +38,14 @@ describe('Answer', () => {
 
   it('should have validation for empty input', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'You must provide the ID numbers for the animals you are moving'
+      'Enter the ID numbers for the animals you are moving'
     )
   })
 
   it('should have validation for maximum length', () => {
-    expect(Answer.config.validation.maxLength.value).toBe(10000)
+    expect(Answer.config.validation.maxLength.value).toBe(5000)
     expect(Answer.config.validation.maxLength.message).toBe(
-      'ID numbers must be 1000 characters or less'
+      'Your answer must be no longer than 5000 characters'
     )
   })
 })
