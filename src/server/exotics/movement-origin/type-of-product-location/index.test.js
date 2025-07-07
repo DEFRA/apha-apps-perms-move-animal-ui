@@ -10,7 +10,7 @@ const page = typeOfProductLocationPage
 const question = 'Where are the products located?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'other'
 }
 
 describe('Answer', () => {
