@@ -26,7 +26,7 @@ describe('Answer', () => {
 
   it('should have validation for empty input', () => {
     expect(Answer.config.validation.empty).toBe(
-      'Select which types of birds you are moving'
+      'Select what type of bird you are moving'
     )
   })
 

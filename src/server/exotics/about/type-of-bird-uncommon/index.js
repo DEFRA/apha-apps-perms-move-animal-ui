@@ -34,7 +34,7 @@ export class Answer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select which types of birds you are moving'
+      empty: 'Select what type of bird you are moving'
     }
   }
 }
