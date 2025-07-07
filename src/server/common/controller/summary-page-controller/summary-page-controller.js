@@ -38,7 +38,7 @@ export class SummaryPageController extends GenericPageController {
   plugin() {
     return {
       plugin: {
-        name: `${this.page.sectionKey}-check-answers`,
+        name: `${this.StateManager.key}-${this.page.sectionKey}-check-answers`,
 
         /** @param {Server} server */
         register: (server) => {

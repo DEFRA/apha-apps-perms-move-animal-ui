@@ -1,0 +1,18 @@
+import { checkAnswersPage } from './check-answers/index.js'
+import { {{pascalCase sectionKey}}Section } from './section.js'
+
+describe('{{pascalCase sectionKey}}Section', () => {
+  it('should have the correct configuration', () => {
+    expect({{pascalCase sectionKey}}Section.config.key).toBe('{{camelCase sectionKey}}')
+    expect({{pascalCase sectionKey}}Section.config.title).toBe('{{sentenceCase sectionTitle}}')
+  })
+
+  it('should have the right check answers page link', () => {
+    expect({{pascalCase sectionKey}}Section.config.summaryLink).toBe(checkAnswersPage.urlPath)
+  })
+
+  it('should have the correct first page', () => {
+    // TEMPLATE -TODO: update test to check start page factory
+    expect({{pascalCase sectionKey}}Section.firstPageFactory()).toBeInstanceOf(null)
+  })
+})
