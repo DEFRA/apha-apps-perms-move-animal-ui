@@ -1,7 +1,5 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
-import { whatIsMovingPage } from '../about/what-is-moving/index.js'
-// sonar-disable-next-line jsarchitecture:S7197
 import { checkAnswers } from './check-answers/index.js'
 import { ExoticsSectionModel } from '../section-model.js'
 
@@ -25,5 +23,9 @@ export class MovementOriginSection extends ExoticsSectionModel {
     isVisible: () => true
   }
 
-  static firstPageFactory = () => whatIsMovingPage
+  static firstPageFactory = () => {
+    throw new Error(
+      'Movement origin section does not have a first page factory defined'
+    )
+  }
 }
