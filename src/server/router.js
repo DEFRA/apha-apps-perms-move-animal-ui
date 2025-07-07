@@ -17,6 +17,7 @@ import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
 import { typeOfProductLocation } from './exotics/movement-origin/type-of-product-location/index.js'
+import { productLocationHasACphNumber } from './exotics/movement-origin/product-location-has-a-cph-number/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -67,7 +68,10 @@ export const router = {
         await server.register([exoticsTaskList])
 
         // TODO: remove this when origin section for exotics is implemented and move it to that section
-        await server.register([typeOfProductLocation])
+        await server.register([
+          typeOfProductLocation,
+          productLocationHasACphNumber
+        ])
 
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
