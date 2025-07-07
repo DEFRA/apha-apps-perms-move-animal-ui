@@ -9,7 +9,6 @@ describe('MovementOriginSection', () => {
   })
 
   it('should have the right check answers page link', () => {
-    // TEMPLATE -TODO: update test to check start summary page
     expect(MovementOriginSection.config.summaryLink).toBe(
       checkAnswersPage.urlPath
     )
