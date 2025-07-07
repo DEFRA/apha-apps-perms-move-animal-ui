@@ -12,6 +12,7 @@ import {
 } from './type-of-product-location/index.js'
 import { productLocationHasACphNumber } from './product-location-has-a-cph-number/index.js'
 import { AboutSection } from '../about/section.js'
+import { productLocationCphNumber } from './product-location-cph-number/index.js'
 
 const plugin = {
   plugin: {
@@ -21,7 +22,8 @@ const plugin = {
         checkAnswers,
         typeOfAnimalLocation,
         typeOfProductLocation,
-        productLocationHasACphNumber
+        productLocationHasACphNumber,
+        productLocationCphNumber
       ])
     }
   }
