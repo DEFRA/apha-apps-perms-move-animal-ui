@@ -5,7 +5,7 @@ import { ExoticsSectionModel } from '../section-model.js'
 
 const plugin = {
   plugin: {
-    name: 'movementOrigin',
+    name: 'exotics-movementOrigin',
     async register(server) {
       await server.register([checkAnswers])
     }

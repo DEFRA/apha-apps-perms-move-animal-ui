@@ -5,7 +5,7 @@ import { checkAnswers } from './check-answers/index.js'
 
 const plugin = {
   plugin: {
-    name: '{{camelCase sectionKey}}',
+    name: '{{camelCase journey}}-{{camelCase sectionKey}}',
     async register(server) {
       await server.register([
         checkAnswers
