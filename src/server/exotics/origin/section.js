@@ -2,12 +2,26 @@
 
 import { checkAnswers } from './check-answers/index.js'
 import { ExoticsSectionModel } from '../section-model.js'
+import {
+  typeOfAnimalLocation,
+  typeOfAnimalLocationPage
+} from './type-of-animal-location/index.js'
+import {
+  typeOfProductLocation,
+  typeOfProductLocationPage
+} from './type-of-product-location/index.js'
+import { productLocationHasACphNumber } from './product-location-has-a-cph-number/index.js'
 
 const plugin = {
   plugin: {
     name: 'exotics-origin',
     async register(server) {
-      await server.register([checkAnswers])
+      await server.register([
+        checkAnswers,
+        typeOfAnimalLocation,
+        typeOfProductLocation,
+        productLocationHasACphNumber
+      ])
     }
   }
 }
@@ -23,7 +37,11 @@ export class OriginSection extends ExoticsSectionModel {
     isVisible: () => true
   }
 
-  static firstPageFactory = () => {
-    throw new Error('Origin section does not have a first page factory defined')
+  static firstPageFactory = (state) => {
+    if (state.about.whatIsMoving === 'live-animals') {
+      return typeOfAnimalLocationPage
+    }
+
+    return typeOfProductLocationPage
   }
 }

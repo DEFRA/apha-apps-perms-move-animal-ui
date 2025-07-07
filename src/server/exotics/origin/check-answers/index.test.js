@@ -37,7 +37,13 @@ describe('CheckAnswersPage', () => {
   })
 
   it('should return the right section', () => {
-    expect(page.sectionFactory({})).toBeInstanceOf(OriginSection)
+    expect(
+      page.sectionFactory({
+        about: {
+          whatIsMoving: 'animals'
+        }
+      })
+    ).toBeInstanceOf(OriginSection)
   })
 
   it('should have a url key of', () => {
