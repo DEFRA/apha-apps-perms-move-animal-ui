@@ -8,7 +8,7 @@ exports[`ExoticsTaskListController ExoticsTaskListController should have the exp
         <h1 class="govuk-heading-l">Your foot and mouth disease movement licence application</h1>
           <p>
             You have
-            <span data="test-id-task-to-complete-count">1 out of 1</span>
+            <span data="test-id-task-to-complete-count">2 out of 2</span>
             sections left to complete.
           </p>
         
@@ -20,6 +20,18 @@ exports[`ExoticsTaskListController ExoticsTaskListController should have the exp
       </a>
     </div>
     <div class="govuk-task-list__status" id="task-list-1-status">
+      <strong class="govuk-tag govuk-tag--blue">
+        Incomplete
+      </strong>
+    </div>
+  </li>
+  <li class="govuk-task-list__item govuk-task-list__item--with-link">
+    <div class="govuk-task-list__name-and-hint">
+      <a class="govuk-link govuk-task-list__link" href="/exotics/about-the-movement/what-is-moving" aria-describedby="task-list-2-status">
+        Movement origin
+      </a>
+    </div>
+    <div class="govuk-task-list__status" id="task-list-2-status">
       <strong class="govuk-tag govuk-tag--blue">
         Incomplete
       </strong>

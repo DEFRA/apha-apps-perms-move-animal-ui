@@ -1,0 +1,32 @@
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+
+import { ExoticsSectionModel } from '../section-model.js'
+import { checkAnswers } from './check-answers/index.js'
+
+const plugin = {
+  plugin: {
+    name: '{{camelCase sectionKey}}',
+    async register(server) {
+      await server.register([
+        checkAnswers
+      ])
+    }
+  }
+}
+
+// TEMPLATE-TODO: Add this section to the router
+
+export class {{pascalCase sectionKey}}Section extends ExoticsSectionModel {
+  /** @type {SectionConfig} */
+  static config = {
+    key: '{{camelCase sectionKey}}',
+    title: '{{sentenceCase sectionTitle}}',
+    plugin,
+    summaryLink: '/{{kebabCase journey}}/{{kebabCase sectionKey}}/check-answers',
+    isEnabled: () => true,
+    isVisible: () => true
+  }
+
+  // TEMPLATE-TODO: Add your first page logic here
+  static firstPageFactory = () => null
+}

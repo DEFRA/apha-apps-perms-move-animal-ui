@@ -7,10 +7,56 @@ import { questionTypePrompt } from './prompts/question-type-prompt.js'
 import { sectionKeyPrompt } from './prompts/section-key-prompt.js'
 import { urlPathPrompt } from './prompts/url-path-prompt.js'
 import { questionHintPrompt } from './prompts/question-hint-prompt.js'
+import { sectionTitlePrompt } from './prompts/section-title-prompt.js'
+import { newSectionKeyPrompt } from './prompts/new-section-key-prompt.js'
 
 export default function (plop) {
   plop.setHelper('eq', (a, b) => {
     return a === b
+  })
+
+  plop.setGenerator('Section', {
+    description: 'This will create a section within the selected journey',
+    prompts: [journeyPrompt, newSectionKeyPrompt, sectionTitlePrompt],
+    actions: [
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/section.js',
+        templateFile: 'templates/section/section.js.hbs'
+      },
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/section.test.js',
+        templateFile: 'templates/section/section.test.js.hbs'
+      },
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/check-answers/index.js',
+        templateFile: 'templates/section/check-answers.js.hbs'
+      },
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/check-answers/index.test.js',
+        templateFile: 'templates/section/check-answers.test.js.hbs'
+      },
+      (answers) => {
+        const folderPath = `src/server/${answers.journey}/${answers.sectionKey}/`
+
+        try {
+          execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
+          return `ESLint completed for ${folderPath}`
+        } catch (error) {
+          return `ESLint warning: ${error.message}`
+        }
+      },
+      '\x1b[41m\x1b[37m\x1b[1m IMPORTANT \x1b[0m',
+      "⚠️\tYou will need to manually add it to the section's index.js file.\x1b[0m\t  ⚠️",
+      '⚠️\tYou must now fill out the templated areas, search for `//TEMPLATE-TODO`\t  ⚠️'
+    ]
   })
 
   plop.setGenerator('Stub page', {
