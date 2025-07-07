@@ -49,5 +49,6 @@ export class AboutSection extends ExoticsSectionModel {
     isVisible: () => true
   }
 
+  // TODO: update once the new page is implemented
   static firstPageFactory = () => movementTypePage
 }
