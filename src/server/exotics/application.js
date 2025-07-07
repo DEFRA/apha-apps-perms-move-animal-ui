@@ -1,6 +1,6 @@
 import { ApplicationModel } from '../common/model/application/application.js'
 import { AboutSection } from './about/section.js'
-import { MovementOriginSection } from './movement-origin/section.js'
+import { OriginSection } from './origin/section.js'
 
 /**
  * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
@@ -8,7 +8,7 @@ import { MovementOriginSection } from './movement-origin/section.js'
 
 export class ExoticsApplicationModel extends ApplicationModel {
   /** @type {typeof SectionModel[]} */
-  static implementedSections = [AboutSection, MovementOriginSection]
+  static implementedSections = [AboutSection, OriginSection]
 
   get version() {
     return {

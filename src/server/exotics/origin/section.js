@@ -5,17 +5,17 @@ import { ExoticsSectionModel } from '../section-model.js'
 
 const plugin = {
   plugin: {
-    name: 'exotics-movementOrigin',
+    name: 'exotics-origin',
     async register(server) {
       await server.register([checkAnswers])
     }
   }
 }
 
-export class MovementOriginSection extends ExoticsSectionModel {
+export class OriginSection extends ExoticsSectionModel {
   /** @type {SectionConfig} */
   static config = {
-    key: 'movementOrigin',
+    key: 'origin',
     title: 'Movement origin',
     plugin,
     summaryLink: '/exotics/movement-origin/check-answers',
@@ -24,8 +24,6 @@ export class MovementOriginSection extends ExoticsSectionModel {
   }
 
   static firstPageFactory = () => {
-    throw new Error(
-      'Movement origin section does not have a first page factory defined'
-    )
+    throw new Error('Origin section does not have a first page factory defined')
   }
 }

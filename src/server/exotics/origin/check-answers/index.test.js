@@ -1,5 +1,5 @@
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { MovementOriginSection } from '../section.js'
+import { OriginSection } from '../section.js'
 import { CheckAnswersPage } from './index.js'
 import { createServer } from '~/src/server/index.js'
 
@@ -29,7 +29,7 @@ describe('CheckAnswersPage', () => {
   })
 
   it('should have the expected section key', () => {
-    expect(page.sectionKey).toBe('movementOrigin')
+    expect(page.sectionKey).toBe('origin')
   })
 
   it('should have the expected page url path', () => {
@@ -37,7 +37,7 @@ describe('CheckAnswersPage', () => {
   })
 
   it('should return the right section', () => {
-    expect(page.sectionFactory({})).toBeInstanceOf(MovementOriginSection)
+    expect(page.sectionFactory({})).toBeInstanceOf(OriginSection)
   })
 
   it('should have a url key of', () => {

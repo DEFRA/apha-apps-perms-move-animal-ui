@@ -12,6 +12,11 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 export class StateManager {
   /** @returns {string} */
   get key() {
+    return StateManager.key
+  }
+
+  /** @returns {string} */
+  static get key() {
     throw new NotImplementedError()
   }
 
