@@ -1,7 +1,7 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { whatIsMovingPage } from '../about/what-is-moving/index.js'
-// sonar-disable-next-line javascript:S7197
+// sonar-disable-next-line jsarchitecture:S7197
 import { checkAnswers } from './check-answers/index.js'
 import { ExoticsSectionModel } from '../section-model.js'
 
