@@ -1,8 +1,9 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { whatIsMovingPage } from '../about/what-is-moving/index.js'
-import { ExoticsSectionModel } from '../section-model.js'
+// sonar-disable-next-line javascript:S4502
 import { checkAnswers } from './check-answers/index.js'
+import { ExoticsSectionModel } from '../section-model.js'
 
 const plugin = {
   plugin: {
