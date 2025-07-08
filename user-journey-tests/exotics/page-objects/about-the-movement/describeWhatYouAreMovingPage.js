@@ -12,6 +12,7 @@ class DescribeWhatYouAreMovingPage extends SingleTextInputPage {
 
   pagePath =
     'exotics/about-the-movement/what-is-moving/enter-what-is-moving/description'
+
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 }
