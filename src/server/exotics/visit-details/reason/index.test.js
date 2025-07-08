@@ -27,6 +27,9 @@ describe('Answer', () => {
     expect(Answer.config.validation.maxLength.message).toBe(
       'Your answer must be no longer than 5000 characters'
     )
+    expect(Answer.config.validation.empty?.message).toBe(
+      'Enter the reason for the visit'
+    )
   })
 })
 

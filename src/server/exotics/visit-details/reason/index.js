@@ -15,6 +15,9 @@ export class Answer extends TextAreaAnswer {
     hint: 'For example, routine restocking or welfare',
     rows: 10,
     validation: {
+      empty: {
+        message: 'Enter the reason for the visit'
+      },
       maxLength: {
         value: 5_000,
         message: 'Your answer must be no longer than 5000 characters'
