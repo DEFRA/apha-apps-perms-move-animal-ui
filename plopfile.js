@@ -15,6 +15,43 @@ export default function (plop) {
     return a === b
   })
 
+  plop.setGenerator('Exit page', {
+    description: 'This will create an exit page',
+    prompts: [
+      journeyPrompt,
+      sectionKeyPrompt,
+      {
+        ...questionKeyPrompt,
+        message: 'What is the \x1b[33mpage key\x1b[0m of the new page?'
+      },
+      {
+        ...questionPrompt,
+        message: 'What is the \x1b[33mheading\x1b[0m of the new exit page?'
+      },
+      urlPathPrompt
+    ],
+    actions: [
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index.js',
+        templateFile: 'templates/exit-page/index.js.hbs'
+      },
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index.test.js',
+        templateFile: 'templates/exit-page/index.test.js.hbs'
+      },
+      {
+        type: 'add',
+        force: true,
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index.njk',
+        templateFile: 'templates/exit-page/index.njk.hbs'
+      }
+    ]
+  })
+
   plop.setGenerator('Section', {
     description: 'This will create a section within the selected journey',
     prompts: [journeyPrompt, newSectionKeyPrompt, sectionTitlePrompt],

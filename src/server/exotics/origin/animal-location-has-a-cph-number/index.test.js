@@ -1,8 +1,8 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, animalLocationHasACphNumberPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { CphExitPage } from '../cph-exit/index.js'
 import { AnimalLocationCphNumberPage } from '../animal-location-cph-number/index.js'
+import { CphNeededExitPage } from '../cph-needed/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'animalLocationHasACphNumber'
@@ -72,7 +72,7 @@ describe('AnimalLocationHasACphNumberPage', () => {
   describe('nextPage', () => {
     it.each([
       ['yes', AnimalLocationCphNumberPage],
-      ['no', CphExitPage]
+      ['no', CphNeededExitPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)

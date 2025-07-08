@@ -1,0 +1,22 @@
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
+import { PageController } from '~/src/server/common/controller/page-controller/page-controller.js'
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
+
+export class {{pascalCase questionKey}}ExitPage extends ExitPage {
+  urlPath = '{{path}}'
+  pageTitle = '{{sentenceCase question}}'
+  view = '{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index'
+  key = '{{camelCase questionKey}}'
+  sectionKey = '{{camelCase sectionKey}}`'
+}
+export const {{camelCase questionKey}}ExitPage = new {{pascalCase questionKey}}ExitPage()
+
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
+export const {{pascalCase questionKey}} = new PageController({{camelCase questionKey}}ExitPage, {
+  methods: ['GET']
+}).plugin()
