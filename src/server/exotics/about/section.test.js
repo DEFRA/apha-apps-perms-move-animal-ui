@@ -1,3 +1,7 @@
+import {
+  aboutSectionNonVisitComplete,
+  aboutSectionVisitComplete
+} from '../../common/test-helpers/exotic/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { MovementTypePage } from './movement-type/index.js'
 import { AboutSection } from './section.js'
@@ -14,5 +18,16 @@ describe('AboutSection', () => {
 
   it('should have the correct first page', () => {
     expect(AboutSection.firstPageFactory()).toBeInstanceOf(MovementTypePage)
+  })
+
+  it('should return valid for valid journeys', () => {
+    expect(
+      AboutSection.fromState({ about: aboutSectionVisitComplete }).validate()
+        .isValid
+    ).toBe(true)
+    expect(
+      AboutSection.fromState({ about: aboutSectionNonVisitComplete }).validate()
+        .isValid
+    ).toBe(true)
   })
 })

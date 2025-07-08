@@ -6,7 +6,7 @@ import { checkAnswersPage } from '../check-answers/index.js'
 /** @import { TextAreaConfig } from '~/src/server/common/model/answer/text-area/text-area.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'whatAreYouMovingDescrition'
+const questionKey = 'whatAreYouMovingDescription'
 
 export class Answer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */

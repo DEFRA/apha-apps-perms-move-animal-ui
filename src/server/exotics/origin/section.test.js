@@ -1,15 +1,10 @@
+import { aboutSectionNonVisitComplete } from '../../common/test-helpers/exotic/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { OriginSection } from './section.js'
 import { TypeOfAnimalLocationPage } from './type-of-animal-location/index.js'
 import { TypeOfProductLocationPage } from './type-of-product-location/index.js'
 
-const validAboutState = {
-  movementType: 'onto-premises',
-  whatIsMoving: 'equipment',
-  whatAreYouMovingDetails: 'Tractor',
-  howMuchAreYouMoving: 'just the one',
-  whatAreYouMovingDescrition: 'A grey tractor'
-}
+const validAboutState = aboutSectionNonVisitComplete
 
 describe('OriginSection', () => {
   it('should have the correct configuration', () => {

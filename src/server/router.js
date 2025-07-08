@@ -65,7 +65,6 @@ export const router = {
 
       if (config.get('featureFlags').exoticsJourney) {
         await server.register([exoticsTaskList])
-        await server.register([reason])
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin

@@ -1,6 +1,7 @@
 import { ApplicationModel } from '../common/model/application/application.js'
 import { AboutSection } from './about/section.js'
 import { OriginSection } from './origin/section.js'
+import { VisitDetailsSection } from './visit-details/section.js'
 
 /**
  * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
@@ -8,7 +9,11 @@ import { OriginSection } from './origin/section.js'
 
 export class ExoticsApplicationModel extends ApplicationModel {
   /** @type {typeof SectionModel[]} */
-  static implementedSections = [AboutSection, OriginSection]
+  static implementedSections = [
+    AboutSection,
+    OriginSection,
+    VisitDetailsSection
+  ]
 
   get version() {
     return {
