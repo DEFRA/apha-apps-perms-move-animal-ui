@@ -37,7 +37,7 @@ export class TypeOfProductLocationPage extends QuestionPage {
   urlPath = '/exotics/movement-origin/product-location'
 
   questionKey = questionKey
-  sectionKey = 'movementOrigin'
+  sectionKey = 'origin'
   question = 'Where are the products located?'
 
   Answer = Answer

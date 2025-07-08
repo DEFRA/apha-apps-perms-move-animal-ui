@@ -11,7 +11,7 @@ export class ProductLocationCphNumberPage extends QuestionPage {
   urlPath = '/exotics/movement-origin/product-location/cph-number'
 
   questionKey = questionKey
-  sectionKey = 'about'
+  sectionKey = 'origin'
   question = 'What is the CPH number for the origin premises?'
 
   Answer = CphNumberAnswer
