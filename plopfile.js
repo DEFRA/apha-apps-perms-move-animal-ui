@@ -11,6 +11,8 @@ import { sectionTitlePrompt } from './prompts/section-title-prompt.js'
 import { newSectionKeyPrompt } from './prompts/new-section-key-prompt.js'
 
 export default function (plop) {
+  const kebabCase = plop.getHelper('kebabCase')
+
   plop.setHelper('eq', (a, b) => {
     return a === b
   })
@@ -44,7 +46,7 @@ export default function (plop) {
         templateFile: 'templates/section/check-answers.test.js.hbs'
       },
       (answers) => {
-        const folderPath = `src/server/${answers.journey}/${answers.sectionKey}/`
+        const folderPath = `src/server/${answers.journey}/${kebabCase(answers.sectionKey)}/`
 
         try {
           execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
@@ -101,7 +103,7 @@ export default function (plop) {
         templateFile: 'templates/question-page/index.test.js.hbs'
       },
       (answers) => {
-        const folderPath = `src/server/${answers.journey}/${answers.sectionKey}/${plop.getHelper('kebabCase')(answers.questionKey)}/`
+        const folderPath = `src/server/${answers.journey}/${kebabCase(answers.sectionKey)}/${kebabCase(answers.questionKey)}/`
 
         try {
           execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
