@@ -15,4 +15,4 @@ class EnterWhatIsMovingPage extends SingleTextInputPage {
   pageTitle = pageHeadingAndTitle
 }
 
-export { EnterWhatIsMovingPage }
+export default new EnterWhatIsMovingPage()

@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { productLocationCphNumberPage } from '../product-location-cph-number/index.js'
-import { originAddressPage } from '../origin-address/index.js'
+import { addressPage } from '../address/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -40,7 +40,7 @@ export class ProductLocationHasACphNumberPage extends QuestionPage {
       return productLocationCphNumberPage
     }
 
-    return originAddressPage
+    return addressPage
   }
 }
 

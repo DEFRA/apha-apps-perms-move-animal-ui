@@ -1,6 +1,6 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
-import { originAddressPage } from '../origin-address/index.js'
+import { addressPage } from '../address/index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -17,7 +17,7 @@ export class ProductLocationCphNumberPage extends QuestionPage {
   Answer = CphNumberAnswer
 
   nextPage() {
-    return originAddressPage
+    return addressPage
   }
 }
 

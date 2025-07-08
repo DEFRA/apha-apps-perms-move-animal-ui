@@ -12,7 +12,7 @@ const page = typeOfAnimalPage
 const question = 'Which type of animal are you moving?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'cattle'
 }
 
 describe('Answer', () => {

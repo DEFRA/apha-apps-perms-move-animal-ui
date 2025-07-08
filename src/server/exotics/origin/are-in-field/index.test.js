@@ -11,7 +11,7 @@ const page = areInFieldPage
 const question = 'Are the animals you plan to move in a field?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'yes'
 }
 
 describe('Answer', () => {

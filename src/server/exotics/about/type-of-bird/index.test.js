@@ -12,7 +12,7 @@ const page = typeOfBirdPage
 const question = 'What type of bird are you moving?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'other'
 }
 
 describe('Answer', () => {

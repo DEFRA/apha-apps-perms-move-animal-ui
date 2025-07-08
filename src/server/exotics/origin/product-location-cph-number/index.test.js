@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { productLocationCphNumberPage } from './index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
-import { OriginAddressPage } from '../origin-address/index.js'
+import { AddressPage } from '../address/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'productLocationCphNumber'
@@ -33,7 +33,7 @@ describe('ProductLocationCphNumberPage', () => {
   describe('nextPage', () => {
     it('should return originAddressPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(OriginAddressPage)
+      expect(nextPage).toBeInstanceOf(AddressPage)
     })
   })
 

@@ -18,4 +18,4 @@ class HowMuchAreYouMovingPage extends SingleTextInputPage {
   pageTitle = pageHeadingAndTitle
 }
 
-export { HowMuchAreYouMovingPage }
+export default new HowMuchAreYouMovingPage()
