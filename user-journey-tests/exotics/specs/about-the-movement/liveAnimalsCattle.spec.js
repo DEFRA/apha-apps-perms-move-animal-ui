@@ -59,6 +59,11 @@ describe('About the movement - Onto > Live animals > cattle', async () => {
   })
 
   it('Runs the cattle journey and checks answers and change links', async () => {
+    await taskListPage.verifyStatus({
+      position: 1,
+      taskTitle: 'About the movement',
+      expectedStatus: 'Incomplete'
+    })
     await taskListPage.selectAboutMovement(movementTypePage)
     await movementTypePage.selectRadioAndContinue(
       getInput('movementType'),
