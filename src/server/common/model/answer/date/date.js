@@ -33,7 +33,7 @@ import {
  *    invalidYear: { message: string },
  *    invalidDate: { message: string },
  *    nonFourDigitYear: { message: string },
- *    futureDate: { message: string }
+ *    futureDate?: { message: string }
  *  }
  * }} DateConfig
  */
@@ -143,7 +143,7 @@ export class DateAnswer extends AnswerModel {
       return allFieldsError(validation.invalidDate.message)
     }
 
-    if (isFutureDate(this.value)) {
+    if (validation.futureDate && isFutureDate(this.value)) {
       return allFieldsError(validation.futureDate.message)
     }
 

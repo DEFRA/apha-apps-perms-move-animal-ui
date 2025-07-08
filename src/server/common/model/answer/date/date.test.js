@@ -9,7 +9,7 @@ const question = 'Enter your answer?'
 const hint = 'For example, 27 3 2007'
 
 /** @type {DateConfig} */
-const dateConfig = {
+const dateConfigFutureAllowed = {
   hint,
   validation: {
     missingDate: { message: 'Enter a date' },
@@ -20,9 +20,21 @@ const dateConfig = {
     invalidMonth: { message: 'Enter a valid month' },
     invalidYear: { message: 'Enter a valid year' },
     invalidDate: { message: 'Enter a date that is in the gregorian calendar' },
-    nonFourDigitYear: { message: 'Year must have 4 numbers' },
+    nonFourDigitYear: { message: 'Year must have 4 numbers' }
+  }
+}
+
+/** @type {DateConfig} */
+const dateConfig = {
+  hint,
+  validation: {
+    ...dateConfigFutureAllowed.validation,
     futureDate: { message: 'Date must be in the past' }
   }
+}
+
+class TestDateAnswerFutureAllowed extends DateAnswer {
+  static config = dateConfigFutureAllowed
 }
 
 class TestDateAnswer extends DateAnswer {
@@ -359,9 +371,20 @@ describe('DateAnswer.validation', () => {
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
-      'date-day': { text: dateConfig.validation.futureDate.message }
+      'date-day': { text: dateConfig.validation.futureDate?.message }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should NOT reject dates that are in the future if no futureDate message is provided', () => {
+    const tomorrow = addDays(new Date(), 2)
+    const answer = new TestDateAnswerFutureAllowed({
+      day: tomorrow.getDate().toString(),
+      month: (tomorrow.getMonth() + 1).toString(),
+      year: tomorrow.getFullYear().toString()
+    })
+    const { isValid } = answer.validate()
+    expect(isValid).toBe(true)
   })
 })
 

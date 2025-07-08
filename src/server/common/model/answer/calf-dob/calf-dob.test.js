@@ -45,7 +45,7 @@ describe('CalfDob', () => {
     expect(validation.invalidDate.message).toBe(
       'Day of birth must be a real date'
     )
-    expect(validation.futureDate.message).toBe(
+    expect(validation.futureDate?.message).toBe(
       'Date of birth of the oldest calf must be today or in the past'
     )
   })
