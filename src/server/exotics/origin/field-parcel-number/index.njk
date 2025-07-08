@@ -1,0 +1,27 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% extends 'layouts/questions.njk' %}
+
+{% block heading %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ heading }}</h1>
+    </div>
+  </div>
+{% endblock %}
+
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        You can
+        <a
+          href="https://www.gov.uk/guidance/digital-maps-in-the-rural-payments-service-check-and-change-mapping-updates"
+          target="_blank"
+        >
+          check on the Rural Payments service (opens in a new tab)</a
+        >
+        for details of your field parcel number.
+      </p>
+    </div>
+  </div>
+{% endblock %}
