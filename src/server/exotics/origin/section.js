@@ -11,6 +11,7 @@ import {
   typeOfProductLocationPage
 } from './type-of-product-location/index.js'
 import { productLocationHasACphNumber } from './product-location-has-a-cph-number/index.js'
+import { AboutSection } from '../about/section.js'
 
 const plugin = {
   plugin: {
@@ -33,8 +34,10 @@ export class OriginSection extends ExoticsSectionModel {
     title: 'Movement origin',
     plugin,
     summaryLink: '/exotics/movement-origin/check-answers',
-    isEnabled: () => true,
-    isVisible: () => true
+    isEnabled: (state) => state.about.movementType !== 'visit',
+    isVisible: (state) =>
+      AboutSection.fromState(state).validate() &&
+      state.about.movementType !== 'visit'
   }
 
   static firstPageFactory = (state) => {

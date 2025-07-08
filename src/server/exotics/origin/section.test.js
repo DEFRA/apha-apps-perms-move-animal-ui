@@ -32,4 +32,41 @@ describe('OriginSection', () => {
       })
     ).toBeInstanceOf(TypeOfProductLocationPage)
   })
+
+  it('should returned as enabled when the movement type is not visit', () => {
+    const state = {
+      about: {
+        movementType: 'not-visit'
+      }
+    }
+    expect(OriginSection.config.isEnabled(state)).toBe(true)
+  })
+
+  it('should not be enabled when the movement type is visit', () => {
+    const state = {
+      about: {
+        movementType: 'visit'
+      }
+    }
+    expect(OriginSection.config.isEnabled(state)).toBe(false)
+  })
+
+  it('should be visible when the about section is valid and movement type is not visit', () => {
+    const state = {
+      about: {
+        movementType: 'not-visit'
+      }
+    }
+    expect(OriginSection.config.isVisible(state)).toBe(true)
+  })
+
+  it('should not be visible when the about section is invalid or movement type is visit', () => {
+    const state = {
+      about: {
+        movementType: 'visit'
+      }
+    }
+
+    expect(OriginSection.config.isVisible(state)).toBe(false)
+  })
 })
