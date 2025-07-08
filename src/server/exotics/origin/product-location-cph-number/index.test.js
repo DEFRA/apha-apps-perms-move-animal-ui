@@ -3,7 +3,7 @@ import { productLocationCphNumberPage } from './index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { OriginAddressPage } from '../origin-address/index.js'
 
-const sectionKey = 'about'
+const sectionKey = 'origin'
 const questionKey = 'productLocationCphNumber'
 const pageUrl = '/exotics/movement-origin/product-location/cph-number'
 const page = productLocationCphNumberPage

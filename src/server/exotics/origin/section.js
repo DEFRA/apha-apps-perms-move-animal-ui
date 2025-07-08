@@ -14,6 +14,7 @@ import { productLocationHasACphNumber } from './product-location-has-a-cph-numbe
 import { AboutSection } from '../about/section.js'
 import { productLocationCphNumber } from './product-location-cph-number/index.js'
 import { animalLocationHasACphNumber } from './animal-location-has-a-cph-number/index.js'
+import { areInField } from './are-in-field/index.js'
 
 const plugin = {
   plugin: {
@@ -25,7 +26,8 @@ const plugin = {
         typeOfProductLocation,
         productLocationHasACphNumber,
         productLocationCphNumber,
-        animalLocationHasACphNumber
+        animalLocationHasACphNumber,
+        areInField
       ])
     }
   }

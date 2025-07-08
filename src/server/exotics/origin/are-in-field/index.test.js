@@ -1,16 +1,17 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, typeOfProductLocationPage } from './index.js'
+import { Answer, areInFieldPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { ProductLocationHasACphNumberPage } from '../product-location-has-a-cph-number/index.js'
+import { FieldParcelNumberPage } from '../field-parcel-number/index.js'
+import { LatitudeAndLongitudePage } from '../latitude-and-longitude/index.js'
 
 const sectionKey = 'origin'
-const questionKey = 'typeOfProductLocation'
-const pageUrl = '/exotics/movement-origin/product-location'
-const page = typeOfProductLocationPage
-const question = 'Where are the products located?'
+const questionKey = 'areInField'
+const pageUrl = '/exotics/movement-origin/animals-in-field'
+const page = areInFieldPage
+const question = 'Are the animals you plan to move in a field?'
 
 const payload = {
-  [questionKey]: 'other'
+  [questionKey]: 'some text'
 }
 
 describe('Answer', () => {
@@ -24,12 +25,12 @@ describe('Answer', () => {
 
   it('should define the right empty input message', () => {
     expect(Answer.config.validation.empty).toBe(
-      'Select the location of the products'
+      'Select if the animals you plan to move are in a field'
     )
   })
 })
 
-describe('TypeOfProductLocationPage', () => {
+describe('AreInFieldPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -51,9 +52,13 @@ describe('TypeOfProductLocationPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return ProductLocationHasACphNumberPage for any value', () => {
-      const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(ProductLocationHasACphNumberPage)
+    it.each([
+      ['yes', FieldParcelNumberPage],
+      ['no', LatitudeAndLongitudePage]
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
+      const nextPage = page.nextPage(answer)
+      expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
 
