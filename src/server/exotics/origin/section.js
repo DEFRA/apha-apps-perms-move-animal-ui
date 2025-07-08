@@ -17,6 +17,7 @@ import { animalLocationHasACphNumber } from './animal-location-has-a-cph-number/
 import { areInField } from './are-in-field/index.js'
 import { address } from './address/index.js'
 import { cphNeeded } from './cph-needed/index.js'
+import { fieldParcelNumber } from './field-parcel-number/index.js'
 
 const plugin = {
   plugin: {
@@ -31,7 +32,8 @@ const plugin = {
         animalLocationHasACphNumber,
         address,
         areInField,
-        cphNeeded
+        cphNeeded,
+        fieldParcelNumber
       ])
     }
   }
