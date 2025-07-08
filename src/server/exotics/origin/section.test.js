@@ -3,6 +3,14 @@ import { OriginSection } from './section.js'
 import { TypeOfAnimalLocationPage } from './type-of-animal-location/index.js'
 import { TypeOfProductLocationPage } from './type-of-product-location/index.js'
 
+const validAboutState = {
+  movementType: 'onto-premises',
+  whatIsMoving: 'equipment',
+  whatAreYouMovingDetails: 'Tractor',
+  howMuchAreYouMoving: 'just the one',
+  whatAreYouMovingDescrition: 'A grey tractor'
+}
+
 describe('OriginSection', () => {
   it('should have the correct configuration', () => {
     expect(OriginSection.config.key).toBe('origin')
@@ -36,7 +44,7 @@ describe('OriginSection', () => {
   it('should returned as enabled when the movement type is not visit', () => {
     const state = {
       about: {
-        movementType: 'not-visit'
+        ...validAboutState
       }
     }
     expect(OriginSection.config.isEnabled(state)).toBe(true)
@@ -45,6 +53,7 @@ describe('OriginSection', () => {
   it('should not be enabled when the movement type is visit', () => {
     const state = {
       about: {
+        ...validAboutState,
         movementType: 'visit'
       }
     }
@@ -54,7 +63,7 @@ describe('OriginSection', () => {
   it('should be visible when the about section is valid and movement type is not visit', () => {
     const state = {
       about: {
-        movementType: 'not-visit'
+        ...validAboutState
       }
     }
     expect(OriginSection.config.isVisible(state)).toBe(true)
@@ -63,6 +72,7 @@ describe('OriginSection', () => {
   it('should not be visible when the about section is invalid or movement type is visit', () => {
     const state = {
       about: {
+        ...validAboutState,
         movementType: 'visit'
       }
     }

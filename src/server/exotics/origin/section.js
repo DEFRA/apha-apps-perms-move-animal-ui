@@ -34,9 +34,11 @@ export class OriginSection extends ExoticsSectionModel {
     title: 'Movement origin',
     plugin,
     summaryLink: '/exotics/movement-origin/check-answers',
-    isEnabled: (state) => state.about.movementType !== 'visit',
+    isEnabled: (state) =>
+      AboutSection.fromState(state).validate().isValid &&
+      state.about?.movementType !== 'visit',
     isVisible: (state) =>
-      AboutSection.fromState(state).validate() &&
+      AboutSection.fromState(state).validate().isValid &&
       state.about.movementType !== 'visit'
   }
 
