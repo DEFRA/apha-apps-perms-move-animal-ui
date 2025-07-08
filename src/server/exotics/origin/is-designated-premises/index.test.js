@@ -1,18 +1,18 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, productLocationHasACphNumberPage } from './index.js'
+import { Answer, isDesignatedPremisesPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { ProductLocationCphNumberPage } from '../product-location-cph-number/index.js'
-import { AddressPage } from '../address/index.js'
+import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
+
+// TEMPLATE-TODO: import next page
 
 const sectionKey = 'origin'
-const questionKey = 'productLocationHasACphNumber'
-const pageUrl = '/exotics/movement-origin/product-location/cph-yes-no'
-const page = productLocationHasACphNumberPage
-const question =
-  'Does the origin premises have a county parish holding (CPH) number?'
+const questionKey = 'isDesignatedPremises'
+const pageUrl = '/exotics/movement-origin/designated-premise'
+const page = isDesignatedPremisesPage
+const question = 'Is the premises designated?'
 
 const payload = {
-  [questionKey]: 'yes'
+  [questionKey]: 'some text'
 }
 
 describe('Answer', () => {
@@ -27,18 +27,19 @@ describe('Answer', () => {
   it('should have the correct options in config', () => {
     expect(Answer.config.options).toEqual({
       yes: { label: 'Yes' },
-      no: { label: 'No' }
+      no: { label: 'No' },
+      unknown: { label: "I don't know" }
     })
   })
 
-  it('should define the right empty input message', () => {
-    expect(Answer.config.validation.empty).toBe(
-      'Select if the origin premises has a CPH number'
-    )
+  it('should have the correct validation message in config', () => {
+    expect(Answer.config.validation).toEqual({
+      empty: 'Enter what animals are on the premises'
+    })
   })
 })
 
-describe('ProductLocationHasACphNumberPage', () => {
+describe('IsDesignatedPremisesPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -61,11 +62,10 @@ describe('ProductLocationHasACphNumberPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['yes', ProductLocationCphNumberPage],
-      ['no', AddressPage]
+      ['yes', AnimalsOnPremisesPage],
+      ['no', AnimalsOnPremisesPage]
     ])('for %s should return %s', (value, expectedPage) => {
-      const answer = new Answer({ [questionKey]: value })
-      const nextPage = page.nextPage(answer)
+      const nextPage = page.nextPage()
       expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
