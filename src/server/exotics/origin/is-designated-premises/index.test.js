@@ -10,7 +10,7 @@ const page = isDesignatedPremisesPage
 const question = 'Is the premises designated?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'yes'
 }
 
 describe('Answer', () => {
@@ -32,7 +32,7 @@ describe('Answer', () => {
 
   it('should have the correct validation message in config', () => {
     expect(Answer.config.validation).toEqual({
-      empty: 'Enter what animals are on the premises'
+      empty: 'Select if the premises is designated'
     })
   })
 })

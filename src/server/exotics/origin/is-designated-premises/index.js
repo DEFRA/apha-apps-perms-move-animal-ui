@@ -19,7 +19,7 @@ export class Answer extends RadioButtonAnswer {
       unknown: { label: "I don't know" }
     },
     validation: {
-      empty: 'Enter what animals are on the premises'
+      empty: 'Select if the premises is designated'
     }
   }
 }
