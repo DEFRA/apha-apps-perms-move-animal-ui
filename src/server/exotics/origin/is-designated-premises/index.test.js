@@ -3,8 +3,6 @@ import { Answer, isDesignatedPremisesPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
 
-// TEMPLATE-TODO: import next page
-
 const sectionKey = 'origin'
 const questionKey = 'isDesignatedPremises'
 const pageUrl = '/exotics/movement-origin/designated-premise'
