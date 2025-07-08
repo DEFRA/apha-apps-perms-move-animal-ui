@@ -17,4 +17,4 @@ class MovementTypePage extends RadioButtonBasePage {
   }
 }
 
-export { MovementTypePage }
+export default new MovementTypePage()

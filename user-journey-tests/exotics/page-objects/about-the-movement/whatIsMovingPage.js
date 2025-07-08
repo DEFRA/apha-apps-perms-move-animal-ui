@@ -23,4 +23,4 @@ class WhatIsMovingPage extends RadioButtonBasePage {
   }
 }
 
-export { WhatIsMovingPage }
+export default new WhatIsMovingPage()
