@@ -51,7 +51,7 @@ export class TypeOfAnimalLocationPage extends QuestionPage {
     return stubPage
   }
 
-  _isDomesticResidence(answer, state) {
+  _isDomesticResidence(_answer, state) {
     if (
       ['pigs', 'sheep-and-goats', 'cattle'].includes(state?.about?.typeOfAnimal)
     ) {
