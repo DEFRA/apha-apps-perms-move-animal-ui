@@ -23,6 +23,13 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
+  it('should have the correct options in config', () => {
+    expect(Answer.config.options).toEqual({
+      yes: { label: 'Yes' },
+      no: { label: 'No' }
+    })
+  })
+
   it('should define the right empty input message', () => {
     expect(Answer.config.validation.empty).toBe(
       'Select if the animals you plan to move are in a field'

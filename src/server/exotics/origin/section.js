@@ -18,6 +18,7 @@ import { areInField } from './are-in-field/index.js'
 import { address } from './address/index.js'
 import { cphNeeded } from './cph-needed/index.js'
 import { fieldParcelNumber } from './field-parcel-number/index.js'
+import { isDesignatedPremises } from './is-designated-premises/index.js'
 
 const plugin = {
   plugin: {
@@ -33,7 +34,8 @@ const plugin = {
         address,
         areInField,
         cphNeeded,
-        fieldParcelNumber
+        fieldParcelNumber,
+        isDesignatedPremises
       ])
     }
   }
