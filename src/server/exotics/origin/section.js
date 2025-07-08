@@ -16,6 +16,7 @@ import { productLocationCphNumber } from './product-location-cph-number/index.js
 import { animalLocationHasACphNumber } from './animal-location-has-a-cph-number/index.js'
 import { areInField } from './are-in-field/index.js'
 import { address } from './address/index.js'
+import { cphNeeded } from './cph-needed/index.js'
 
 const plugin = {
   plugin: {
@@ -29,7 +30,8 @@ const plugin = {
         productLocationCphNumber,
         animalLocationHasACphNumber,
         address,
-        areInField
+        areInField,
+        cphNeeded
       ])
     }
   }

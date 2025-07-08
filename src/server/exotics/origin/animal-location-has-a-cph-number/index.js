@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { cphExitPage } from '../cph-exit/index.js'
 import { animalLocationCphNumberPage } from '../animal-location-cph-number/index.js'
+import { cphNeededExitPage } from '../cph-needed/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -43,7 +43,7 @@ export class AnimalLocationHasACphNumberPage extends QuestionPage {
       return animalLocationCphNumberPage
     }
 
-    return cphExitPage
+    return cphNeededExitPage
   }
 }
 
