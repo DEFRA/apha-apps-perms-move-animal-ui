@@ -1,13 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, typeOfAnimalLocationPage } from './index.js'
+import { Answer, animalLocationHasACphNumberPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { StubPage } from '../stub/index.js'
+import { CphExitPage } from '../cph-exit/index.js'
+import { AnimalLocationCphNumberPage } from '../animal-location-cph-number/index.js'
 
 const sectionKey = 'origin'
-const questionKey = 'typeOfAnimalLocation'
-const pageUrl = '/exotics/movement-origin/animal-location'
-const page = typeOfAnimalLocationPage
-const question = 'Where are the animals kept?'
+const questionKey = 'animalLocationHasACphNumber'
+const pageUrl = '/exotics/movement-origin/animal-location/cph-yes-no'
+const page = animalLocationHasACphNumberPage
+const question =
+  'Does the origin premises have a county parish holding (CPH) number?'
 
 const payload = {
   [questionKey]: 'some text'
@@ -22,24 +24,31 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should have a config object', () => {
-    expect(Answer.config).toBeDefined()
-    expect(typeof Answer.config).toBe('object')
+  it('should have the correct options in config', () => {
+    expect(Answer.config.options).toEqual({
+      yes: { label: 'Yes' },
+      no: { label: 'No' }
+    })
   })
 
-  it('should have the correct label in config', () => {
-    expect(Answer.config.options.farm.label).toBe('Farm')
-    expect(Answer.config.options['corporate-holding'].label).toBe(
-      'Corporate holding'
-    )
-    expect(Answer.config.options['domestic-residence'].label).toBe(
-      'Domestic residence'
-    )
-    expect(Answer.config.options.other.label).toBe('Other')
+  it('should have the correct validation message in config', () => {
+    expect(Answer.config.validation).toEqual({
+      empty: 'Select if the origin premises has a CPH number'
+    })
+  })
+
+  it('should set value from payload', () => {
+    const answer = new Answer({ [questionKey]: 'yes' })
+    expect(answer.value).toBe('yes')
+  })
+
+  it('should return undefined for value if not in payload', () => {
+    const answer = new Answer({})
+    expect(answer.value).toBeUndefined()
   })
 })
 
-describe('TypeOfAnimalLocationPage', () => {
+describe('AnimalLocationHasACphNumberPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -62,10 +71,8 @@ describe('TypeOfAnimalLocationPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['farm', StubPage],
-      ['corporate-holding', StubPage],
-      ['domestic-residence', StubPage],
-      ['other', StubPage]
+      ['yes', AnimalLocationCphNumberPage],
+      ['no', CphExitPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)

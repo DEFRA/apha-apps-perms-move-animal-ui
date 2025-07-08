@@ -2,6 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { stubPage } from '../stub/index.js'
+import { animalLocationHasACphNumberPage } from '../animal-location-has-a-cph-number/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -42,7 +43,21 @@ export class TypeOfAnimalLocationPage extends QuestionPage {
 
   Answer = Answer
 
-  nextPage() {
+  nextPage(answer, state) {
+    if (answer.value === 'domestic-residence') {
+      return this._isDomesticResidence(answer, state)
+    }
+
+    return stubPage
+  }
+
+  _isDomesticResidence(answer, state) {
+    if (
+      ['pigs', 'sheep-and-goats', 'cattle'].includes(state?.about?.typeOfAnimal)
+    ) {
+      return animalLocationHasACphNumberPage
+    }
+
     return stubPage
   }
 }
