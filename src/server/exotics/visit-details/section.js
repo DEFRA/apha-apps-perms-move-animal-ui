@@ -4,6 +4,7 @@
 import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { date } from './date/index.js'
 import { isDurationMoreThanOneDay } from './is-duration-more-than-one-day/index.js'
 import { reason, reasonPage } from './reason/index.js'
 
@@ -11,7 +12,12 @@ const plugin = {
   plugin: {
     name: 'exotics-visitDetails',
     async register(server) {
-      await server.register([checkAnswers, reason, isDurationMoreThanOneDay])
+      await server.register([
+        checkAnswers,
+        reason,
+        isDurationMoreThanOneDay,
+        date
+      ])
     }
   }
 }
