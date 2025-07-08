@@ -2,7 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, productLocationHasACphNumberPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { ProductLocationCphNumberPage } from '../product-location-cph-number/index.js'
-import { OriginAddressPage } from '../origin-address/index.js'
+import { AddressPage } from '../address/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'productLocationHasACphNumber'
@@ -55,7 +55,7 @@ describe('ProductLocationHasACphNumberPage', () => {
   describe('nextPage', () => {
     it.each([
       ['yes', ProductLocationCphNumberPage],
-      ['no', OriginAddressPage]
+      ['no', AddressPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)

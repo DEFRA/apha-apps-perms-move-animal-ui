@@ -10,7 +10,7 @@ const page = typeOfAnimalLocationPage
 const question = 'Where are the animals kept?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'other'
 }
 
 describe('Answer', () => {
