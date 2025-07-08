@@ -56,7 +56,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   pr-validator:
-    name: Run Pull Request Checks
+    name: Run Journey Tests
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        test-suite:
+          - user-journey-test
+          - exotics-journey-test
     env:
       UPLOADER_URL: 'http://localhost:7337'
       FILE_S3_BUCKET: 'apha'
@@ -70,17 +76,18 @@ jobs:
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
       DEFRA_ID_ENABLED: false
 
-    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup journey test dependencies
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - run: |
+
+      - name: Install dependencies
+        run: |
           npm ci
           npm audit --omit=dev
           npm run build
@@ -94,32 +101,25 @@ jobs:
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
           SEND_TO_CASE_MANAGEMENT_ENABLED: false
+        run: docker compose up --wait-timeout 300 -d --quiet-pull
 
-        run: |
-          docker compose up --wait-timeout 300 -d --quiet-pull
+      - name: Run ${{ matrix.test-suite }}
+        run: npm run ${{ matrix.test-suite }}
 
-      - name: Journey tests
-        run: |
-          npm run user-journey-test
-
-      - name: debug
-        if: always()
-        run: |
-          docker compose logs > logs.txt
-          docker ps
       - name: Upload allure report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
+          name: allure-report-${{ matrix.test-suite }}
           path: ./allure-report
+
       - name: Upload docker compose logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: docker-compose-logs
+          name: docker-compose-logs-${{ matrix.test-suite }}
           path: ./logs.txt
 
-      - name: cleanup
+      - name: Cleanup
         if: always()
         run: docker compose down
