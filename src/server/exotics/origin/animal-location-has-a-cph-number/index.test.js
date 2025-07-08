@@ -12,7 +12,7 @@ const question =
   'Does the origin premises have a county parish holding (CPH) number?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'yes'
 }
 
 describe('Answer', () => {

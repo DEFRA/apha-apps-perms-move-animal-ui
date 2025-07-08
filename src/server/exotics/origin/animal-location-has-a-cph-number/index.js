@@ -13,6 +13,7 @@ export class Answer extends RadioButtonAnswer {
   /** @type { RadioButtonConfig } */
   static config = {
     payloadKey: questionKey,
+    layout: 'inline',
     options: {
       yes: {
         label: 'Yes'
