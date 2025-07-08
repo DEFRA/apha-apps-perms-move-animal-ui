@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { ProductLocationCphNumberPage } from '../product-location-cph-number/index.js'
 import { OriginAddressPage } from '../origin-address/index.js'
 
-const sectionKey = 'movementOrigin'
+const sectionKey = 'origin'
 const questionKey = 'productLocationHasACphNumber'
 const pageUrl = '/exotics/movement-origin/product-location/cph-yes-no'
 const page = productLocationHasACphNumberPage

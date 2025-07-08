@@ -1,13 +1,13 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { productLocationCphNumberPage } from '../product-location-cph-number/index.js'
-import { originAddressPage } from '../origin-address/index.js'
+import { fieldParcelNumberPage } from '../field-parcel-number/index.js'
+import { latitudeAndLongitudePage } from '../latitude-and-longitude/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'productLocationHasACphNumber'
+const questionKey = 'areInField'
 
 export class Answer extends RadioButtonAnswer {
   /** @type { RadioButtonConfig } */
@@ -18,36 +18,34 @@ export class Answer extends RadioButtonAnswer {
       no: { label: 'No' }
     },
     validation: {
-      empty: 'Select if the origin premises has a CPH number'
+      empty: 'Select if the animals you plan to move are in a field'
     },
     layout: 'inline'
   }
 }
 
-export class ProductLocationHasACphNumberPage extends QuestionPage {
-  urlPath = '/exotics/movement-origin/product-location/cph-yes-no'
+export class AreInFieldPage extends QuestionPage {
+  urlPath = '/exotics/movement-origin/animals-in-field'
 
   questionKey = questionKey
   sectionKey = 'origin'
-  question =
-    'Does the origin premises have a county parish holding (CPH) number?'
+  question = 'Are the animals you plan to move in a field?'
 
   Answer = Answer
 
   /** @param {Answer} answer */
   nextPage(answer) {
     if (answer.value === 'yes') {
-      return productLocationCphNumberPage
+      return fieldParcelNumberPage
     }
 
-    return originAddressPage
+    return latitudeAndLongitudePage
   }
 }
 
-export const productLocationHasACphNumberPage =
-  new ProductLocationHasACphNumberPage()
+export const areInFieldPage = new AreInFieldPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const productLocationHasACphNumber = new ExoticsQuestionPageController(
-  productLocationHasACphNumberPage
+export const areInField = new ExoticsQuestionPageController(
+  areInFieldPage
 ).plugin()
