@@ -14,7 +14,7 @@ exports[`VisitResponsiblePersonNamePage content should render expected response 
       Who is responsible for the premises where the visit is happening?
     </h1>
   </legend>
-    <p class="govuk-body">This is the person we will issue the licence to</p>
+    <p class="govuk-body">This is the person we will issue the licence to.</p>
   <div class="govuk-form-group">
   <label class="govuk-label" for="firstName">
     First name

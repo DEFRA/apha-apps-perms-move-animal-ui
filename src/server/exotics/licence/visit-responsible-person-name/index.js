@@ -11,7 +11,7 @@ const questionKey = 'visitResponsiblePersonName'
 export class Answer extends FullNameAnswer {
   /** @type { FullNameConfig } */
   static config = {
-    explanation: 'This is the person we will issue the licence to',
+    explanation: 'This is the person we will issue the licence to.',
     validation: {
       firstName: {
         empty: {
