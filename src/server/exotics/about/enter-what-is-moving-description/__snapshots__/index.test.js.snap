@@ -15,7 +15,7 @@ exports[`EnterWhatIsMovingDescriptionPage content should render expected respons
       Describe what you are moving
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="whatAreYouMovingDescription" name="whatAreYouMovingDescription" rows="10" spellcheck="false"></textarea>
+  <textarea class="govuk-textarea" id="whatAreYouMovingDescription" name="whatAreYouMovingDescription" rows="4" spellcheck="false"></textarea>
 </div>
 
 
