@@ -13,6 +13,9 @@
     }
   })
 %}
+  {% if viewModel.explanationText %}
+    <p class="govuk-body">{{ viewModel.explanationText }}</p>
+  {% endif %}
   {{
     govukInput
     ({
