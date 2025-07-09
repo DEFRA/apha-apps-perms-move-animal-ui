@@ -14,19 +14,21 @@ exports[`VisitResponsiblePersonNamePage content should render expected response 
       Who is responsible for the premises where the visit is happening?
     </h1>
   </legend>
-    <p class="govuk-body">This is the person we will issue the licence to.</p>
+    <div id="explanation">
+      <p class="govuk-body">This is the person we will issue the licence to.</p>
+    </div>
   <div class="govuk-form-group">
   <label class="govuk-label" for="firstName">
     First name
   </label>
-  <input class="govuk-input govuk-input--width-20" id="firstName" name="firstName" type="text">
+  <input class="govuk-input govuk-input--width-20" id="firstName" name="firstName" type="text" aria-describedby="explanation">
 </div>
 
   <div class="govuk-form-group">
   <label class="govuk-label" for="lastName">
     Last name
   </label>
-  <input class="govuk-input govuk-input--width-20" id="lastName" name="lastName" type="text">
+  <input class="govuk-input govuk-input--width-20" id="lastName" name="lastName" type="text" aria-describedby="explanation">
 </div>
 
 

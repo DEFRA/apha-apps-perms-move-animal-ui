@@ -14,7 +14,9 @@
   })
 %}
   {% if viewModel.explanation %}
-    <p class="govuk-body">{{ viewModel.explanation }}</p>
+    <div id="explanation">
+      <p class="govuk-body">{{ viewModel.explanation }}</p>
+    </div>
   {% endif %}
   {{
     govukInput
@@ -29,7 +31,8 @@
         name: "firstName",
         errorMessage: errors.firstName,
         value: value.firstName,
-        classes: "govuk-input--width-20"
+        classes: "govuk-input--width-20",
+        describedBy: 'explanation' if viewModel.explanation else ''
     })
   }}
   {{
@@ -45,7 +48,8 @@
         name: "lastName",
         errorMessage: errors.lastName,
         value: value.lastName,
-        classes: "govuk-input--width-20"
+        classes: "govuk-input--width-20",
+        describedBy: 'explanation' if viewModel.explanation else ''
     })
   }}
 {% endcall %}
