@@ -18,7 +18,7 @@ exports[`ReasonPage content should render expected response and content 1`] = `
   <div id="reason-hint" class="govuk-hint">
     For example, routine restocking or welfare
   </div>
-  <textarea class="govuk-textarea" id="reason" name="reason" rows="10" aria-describedby="reason-hint"></textarea>
+  <textarea class="govuk-textarea" id="reason" name="reason" rows="4" aria-describedby="reason-hint"></textarea>
 </div>
 
 

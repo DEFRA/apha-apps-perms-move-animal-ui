@@ -13,7 +13,7 @@ export class Answer extends TextAreaAnswer {
   static config = {
     payloadKey: questionKey,
     hint: 'For example, routine restocking or welfare',
-    rows: 10,
+    rows: 4,
     validation: {
       empty: {
         message: 'Enter the reason for the visit'
