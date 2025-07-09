@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { cphNumberPage } from '../cph-number/index.js'
-import { cphExitPage } from '../cph-exit/index.js'
+import { cphNeededExitPage } from '../cph-needed/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -41,7 +41,7 @@ export class HasACphNumberPage extends QuestionPage {
 
   nextPage(answer) {
     if (answer.value === 'no') {
-      return cphExitPage
+      return cphNeededExitPage
     }
 
     return cphNumberPage
