@@ -14,7 +14,11 @@ class WhatIsMovingAnswersPage extends AnswersBasePage {
     typeOfAnimal: '[data-testid="typeOfAnimal-change-link"]',
     numberOfAnimals: '[data-testid="numberOfAnimals-change-link"]',
     currentPurpose: '[data-testid="currentPurposeOfAnimals-change-link"]',
-    animalIds: '[data-testid="animalsId-change-link"]'
+    animalIds: '[data-testid="animalsId-change-link"]',
+    whatAreYouMoving: '[data-testid="whatAreYouMovingDetails-change-link"]',
+    howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]',
+    describeWhatYouAreMoving:
+      '[data-testid="whatAreYouMovingDescrition-change-link"]'
   }
 }
 
