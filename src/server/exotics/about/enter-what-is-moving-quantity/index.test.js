@@ -22,6 +22,10 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
+  it('should have 2 rows', () => {
+    expect(Answer.config.rows).toBe(2)
+  })
+
   it('should define the right empty input message', () => {
     expect(Answer.config.validation.empty?.message).toBe(
       'Enter how much you are moving'

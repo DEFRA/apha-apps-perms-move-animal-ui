@@ -15,7 +15,7 @@ exports[`EnterWhatIsMovingQuantityPage content should render expected response a
       How much are you moving?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="howMuchAreYouMoving" name="howMuchAreYouMoving" rows="10"></textarea>
+  <textarea class="govuk-textarea" id="howMuchAreYouMoving" name="howMuchAreYouMoving" rows="2"></textarea>
 </div>
 
 
