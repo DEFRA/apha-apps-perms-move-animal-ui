@@ -3,7 +3,9 @@ import { RadioButtonBasePage } from '../../../base-pages/radioButtonBasePage.js'
 const pageHeadingAndTitle = 'What type of bird are you moving?'
 
 class TypeOfUncommonBirdPage extends RadioButtonBasePage {
-  pagePath = 'exotics/about-the-movement/type-of-bird-uncommon'
+  pagePath =
+    'exotics/about-the-movement/what-is-moving/select-animals/birds/other-birds'
+
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
