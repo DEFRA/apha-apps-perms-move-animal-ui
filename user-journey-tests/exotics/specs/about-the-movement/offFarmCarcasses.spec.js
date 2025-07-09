@@ -43,14 +43,14 @@ const getExpected = (key) => journeyData[key].expected ?? journeyData[key]
 const getExpectedHref = (key) =>
   `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
-describe('About the movement - Onto > Live animals > cattle', async () => {
+describe('About the movement - Off > carcasses', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
   })
 
-  it('Runs the cattle journey and checks answers and change links', async () => {
+  it('Runs the carcasses journey and checks answers and change links', async () => {
     await movementTypePage.selectRadioAndContinue(
       getInput('movementType'),
       whatIsMovingPage
