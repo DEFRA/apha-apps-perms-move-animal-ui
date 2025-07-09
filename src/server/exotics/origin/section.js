@@ -65,7 +65,7 @@ export class OriginSection extends ExoticsSectionModel {
   }
 
   static firstPageFactory = (state) => {
-    if (state.about.whatIsMoving === 'live-animals') {
+    if (state.about?.whatIsMoving === 'live-animals') {
       return typeOfAnimalLocationPage
     }
 
