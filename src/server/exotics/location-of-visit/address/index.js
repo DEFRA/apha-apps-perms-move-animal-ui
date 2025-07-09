@@ -4,7 +4,6 @@ import { AddressAnswer } from '~/src/server/common/model/answer/address/address.
 import { inRpaRegisteredFieldPage } from '../in-rpa-registered-field/index.js'
 import { animalsOnsitePage } from '../animals-onsite/index.js'
 
-/** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 const questionKey = 'address'

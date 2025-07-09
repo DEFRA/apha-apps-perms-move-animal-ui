@@ -40,7 +40,7 @@ describe('AddressPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return InRpaRegisteredFieldPage for any value', () => {
+    it('should return InRpaRegisteredFieldPage for domestic residence', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
         typeOfLocation: 'domestic-residence'
@@ -48,7 +48,7 @@ describe('AddressPage', () => {
       expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
     })
 
-    it('should return AnimalsOnsitePage for any value', () => {
+    it('should return AnimalsOnsitePage for any other value', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
         typeOfLocation: 'other'
