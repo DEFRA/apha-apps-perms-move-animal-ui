@@ -3,6 +3,8 @@
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { cphNumber } from './cph-number/index.js'
+import { fieldParcelNumber } from './field-parcel-number/index.js'
+import { inRpaRegisteredField } from './in-rpa-registered-field/index.js'
 import {
   locationOfVisit,
   locationOfVisitPage
@@ -12,7 +14,13 @@ const plugin = {
   plugin: {
     name: 'exotics-locationOfVisit',
     async register(server) {
-      await server.register([checkAnswers, locationOfVisit, cphNumber])
+      await server.register([
+        checkAnswers,
+        locationOfVisit,
+        cphNumber,
+        inRpaRegisteredField,
+        fieldParcelNumber
+      ])
     }
   }
 }
