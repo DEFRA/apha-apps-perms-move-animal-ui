@@ -17,7 +17,7 @@ export class Answer extends DateAnswer {
         message: 'Enter the expected visit date'
       },
       missingDay: {
-        message: 'Enter the expected visit date'
+        message: 'Expected visit date must include a day'
       },
       missingMonth: {
         message: 'Expected visit date must include a month'
