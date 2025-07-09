@@ -10,8 +10,6 @@ import { latitudeAndLongitudePage } from '../latitude-and-longitude/index.js'
 const questionKey = 'inRpaRegisteredField'
 
 export class Answer extends RadioButtonAnswer {
-  // TEMPLATE-TODO: update config as needed
-
   /** @type { RadioButtonConfig } */
   static config = {
     payloadKey: questionKey,
