@@ -1,12 +1,12 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, locationOfVisitPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
+import { cphNumberPage } from '../cph-number/index.js'
 import { hasACphNumberPage } from '../has-a-cph-number/index.js'
 import { addressPage } from '../address/index.js'
-import { cphNumberPage } from '../cph-number/index.js'
 
-const sectionKey = 'visitDetails'
-const questionKey = 'locationOfVisit'
+const sectionKey = 'locationOfVisit'
+const questionKey = 'typeOfLocation'
 const pageUrl = '/exotics/location-of-visit/visit'
 const page = locationOfVisitPage
 const question = 'Where will the visit take place?'
@@ -70,32 +70,30 @@ describe('LocationOfVisitPage', () => {
       ['farm', cphNumberPage],
       ['corporate-holding', cphNumberPage],
       ['other', cphNumberPage]
-    ])('for %s should return cphNumberPage', (value, expectedPage) => {
+    ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
       expect(nextPage).toBe(expectedPage)
     })
 
-    describe('for domestic-residence', () => {
-      it.each([
-        ['pigs', hasACphNumberPage],
-        ['sheep-and-goats', hasACphNumberPage],
-        ['cattle', hasACphNumberPage],
-        ['birds', addressPage],
-        ['other-animal', addressPage]
-      ])(
-        'with typeOfAnimal %s should return %s',
-        (typeOfAnimal, expectedPage) => {
-          const answer = new Answer({ [questionKey]: 'domestic-residence' })
-          const state = { about: { typeOfAnimal } }
-          const nextPage = page.nextPage(answer, state)
-          expect(nextPage).toBe(expectedPage)
-        }
-      )
+    describe('domestic-residence', () => {
+      const answer = new Answer({ [questionKey]: 'domestic-residence' })
 
-      it('with no state should return addressPage', () => {
-        const answer = new Answer({ [questionKey]: 'domestic-residence' })
-        const nextPage = page.nextPage(answer)
+      it('should return cphNumberPage for pigs, sheep-and-goats, or cattle', () => {
+        const state = { about: { typeOfAnimal: 'pigs' } }
+        const nextPage = page.nextPage(answer, state)
+        expect(nextPage).toBe(hasACphNumberPage)
+      })
+
+      it('should return hasACphNumberPage for pigs, sheep-and-goats, or cattle', () => {
+        const state = { about: { typeOfAnimal: 'sheep-and-goats' } }
+        const nextPage = page.nextPage(answer, state)
+        expect(nextPage).toBe(hasACphNumberPage)
+      })
+
+      it('should return addressPage for other animals', () => {
+        const state = { about: { typeOfAnimal: 'dogs' } }
+        const nextPage = page.nextPage(answer, state)
         expect(nextPage).toBe(addressPage)
       })
     })

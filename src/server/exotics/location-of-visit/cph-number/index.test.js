@@ -3,7 +3,7 @@ import { cphNumberPage } from './index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { AddressPage } from '../address/index.js'
 
-const sectionKey = 'visitDetails'
+const sectionKey = 'locationOfVisit'
 const questionKey = 'cphNumber'
 const pageUrl = '/exotics/location-of-visit/cph-number'
 const page = cphNumberPage

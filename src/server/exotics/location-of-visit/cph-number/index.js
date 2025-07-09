@@ -12,7 +12,7 @@ export class CphNumberPage extends QuestionPage {
   urlPath = '/exotics/location-of-visit/cph-number'
 
   questionKey = questionKey
-  sectionKey = 'visitDetails'
+  sectionKey = 'locationOfVisit'
   question = 'What is the CPH number for premises where the visit is happening?'
 
   Answer = CphNumberAnswer
