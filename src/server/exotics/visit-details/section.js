@@ -4,6 +4,7 @@
 import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { cphNumber } from './cph-number/index.js'
 import { date } from './date/index.js'
 import { isDurationMoreThanOneDay } from './is-duration-more-than-one-day/index.js'
 import { locationOfVisit } from './location-of-visit/index.js'
@@ -20,7 +21,8 @@ const plugin = {
         isDurationMoreThanOneDay,
         date,
         multipleDates,
-        locationOfVisit
+        locationOfVisit,
+        cphNumber
       ])
     }
   }
