@@ -17,25 +17,25 @@ exports[`LocationOfVisitPage content should render expected response and content
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="locationOfVisit" name="locationOfVisit" type="radio" value="farm">
-        <label class="govuk-label govuk-radios__label" for="locationOfVisit">
+        <input class="govuk-radios__input" id="typeOfLocation" name="typeOfLocation" type="radio" value="farm">
+        <label class="govuk-label govuk-radios__label" for="typeOfLocation">
           Farm
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="corporate-holding" name="locationOfVisit" type="radio" value="corporate-holding">
+        <input class="govuk-radios__input" id="corporate-holding" name="typeOfLocation" type="radio" value="corporate-holding">
         <label class="govuk-label govuk-radios__label" for="corporate-holding">
           Corporate holding
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="domestic-residence" name="locationOfVisit" type="radio" value="domestic-residence">
+        <input class="govuk-radios__input" id="domestic-residence" name="typeOfLocation" type="radio" value="domestic-residence">
         <label class="govuk-label govuk-radios__label" for="domestic-residence">
           Domestic residence
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="locationOfVisit" type="radio" value="other">
+        <input class="govuk-radios__input" id="other" name="typeOfLocation" type="radio" value="other">
         <label class="govuk-label govuk-radios__label" for="other">
           Another location (such as a zoo or show)
         </label>
