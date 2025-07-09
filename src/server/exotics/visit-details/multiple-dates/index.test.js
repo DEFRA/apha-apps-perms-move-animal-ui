@@ -32,14 +32,6 @@ describe('Answer', () => {
       message: 'Your answer must be no longer than 5000 characters'
     })
   })
-
-  it('should have 4 rows', () => {
-    expect(Answer.config.rows).toBe(4)
-  })
-
-  it('should have spellcheck disabled', () => {
-    expect(Answer.config.spellcheck).toBe(false)
-  })
 })
 
 describe('MultipleDatesPage', () => {

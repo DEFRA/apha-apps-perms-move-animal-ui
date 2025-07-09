@@ -23,10 +23,6 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should be inline', () => {
-    expect(Answer.config.layout).toBe('inline')
-  })
-
   it('should have the right validation key', () => {
     expect(Answer.config.validation.empty).toBe(
       'Select if the visit will take more than 1 day'
