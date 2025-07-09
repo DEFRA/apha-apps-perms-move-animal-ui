@@ -1,8 +1,8 @@
-import { SingleInputBasePage } from '../../../base-pages/singleInputBasePage.js'
+import { SingleTextInputPage } from '../../../base-pages/singleTextInputPage.js'
 
 const pageHeadingAndTitle = 'What type of bird are you moving?'
 
-class BirdTypeInputPage extends SingleInputBasePage {
+class BirdTypeInputPage extends SingleTextInputPage {
   pagePath =
     'exotics/about-the-movement/what-is-moving/select-animals/birds/enter-bird-type'
 
