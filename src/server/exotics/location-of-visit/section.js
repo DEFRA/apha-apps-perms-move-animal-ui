@@ -5,6 +5,8 @@ import { checkAnswers } from './check-answers/index.js'
 import { cphNeeded } from './cph-needed/index.js'
 import { cphNumber } from './cph-number/index.js'
 import { hasACphNumber } from './has-a-cph-number/index.js'
+import { fieldParcelNumber } from './field-parcel-number/index.js'
+import { inRpaRegisteredField } from './in-rpa-registered-field/index.js'
 import {
   locationOfVisit,
   locationOfVisitPage
@@ -19,7 +21,9 @@ const plugin = {
         locationOfVisit,
         cphNumber,
         hasACphNumber,
-        cphNeeded
+        cphNeeded,
+        inRpaRegisteredField,
+        fieldParcelNumber
       ])
     }
   }
