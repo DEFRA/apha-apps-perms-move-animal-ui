@@ -4,7 +4,7 @@ import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-
 import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'about'
-const questionKey = 'whatAreYouMovingDescrition'
+const questionKey = 'whatAreYouMovingDescription'
 const pageUrl =
   '/exotics/about-the-movement/what-is-moving/enter-what-is-moving/description'
 const page = enterWhatIsMovingDescriptionPage
