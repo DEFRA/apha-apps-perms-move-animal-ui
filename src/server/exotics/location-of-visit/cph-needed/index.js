@@ -10,7 +10,7 @@ export class CphNeededExitPage extends ExitPage {
   pageTitle = 'You need a cph number to continue your application'
   view = 'exotics/location-of-visit/cph-needed/index'
   key = 'cphNeeded'
-  sectionKey = 'locationOfVisit`'
+  sectionKey = 'locationOfVisit'
 }
 export const cphNeededExitPage = new CphNeededExitPage()
 
