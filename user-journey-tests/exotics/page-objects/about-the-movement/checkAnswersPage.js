@@ -18,7 +18,7 @@ class WhatIsMovingAnswersPage extends AnswersBasePage {
     whatAreYouMoving: '[data-testid="whatAreYouMovingDetails-change-link"]',
     howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]',
     describeWhatYouAreMoving:
-      '[data-testid="whatAreYouMovingDescrition-change-link"]'
+      '[data-testid="whatAreYouMovingDescription-change-link"]'
   }
 }
 

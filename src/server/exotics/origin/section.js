@@ -22,6 +22,7 @@ import { isDesignatedPremises } from './is-designated-premises/index.js'
 import { latitudeAndLongitude } from './latitude-and-longitude/index.js'
 import { animalLocationCphNumber } from './animal-location-cph-number/index.js'
 import { typeOfAnimalLocationOther } from './type-of-animal-location-other/index.js'
+import { animalsOnPremises } from './animals-on-premises/index.js'
 
 const plugin = {
   plugin: {
@@ -41,7 +42,8 @@ const plugin = {
         isDesignatedPremises,
         latitudeAndLongitude,
         animalLocationCphNumber,
-        typeOfAnimalLocationOther
+        typeOfAnimalLocationOther,
+        animalsOnPremises
       ])
     }
   }

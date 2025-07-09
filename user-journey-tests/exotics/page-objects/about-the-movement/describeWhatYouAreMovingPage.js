@@ -5,7 +5,7 @@ const pageHeadingAndTitle = 'What are you moving?'
 class DescribeWhatYouAreMovingPage extends SingleTextInputPage {
   constructor() {
     super({
-      pageId: 'whatAreYouMovingDescrition',
+      pageId: 'whatAreYouMovingDescription',
       noInputError: 'Enter information on what you are moving'
     })
   }
