@@ -1,10 +1,10 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { stubPage } from '../stub/index.js'
 import { animalLocationHasACphNumberPage } from '../animal-location-has-a-cph-number/index.js'
 import { animalLocationCphNumberPage } from '../animal-location-cph-number/index.js'
 import { addressPage } from '../address/index.js'
+import { typeOfAnimalLocationOtherPage } from '../type-of-animal-location-other/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -51,7 +51,7 @@ export class TypeOfAnimalLocationPage extends QuestionPage {
     }
 
     if (answer.value === 'other') {
-      return stubPage
+      return typeOfAnimalLocationOtherPage
     }
 
     return animalLocationCphNumberPage
