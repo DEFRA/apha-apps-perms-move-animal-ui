@@ -16,6 +16,7 @@ import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
+import { inRpaRegisteredField } from './exotics/location-of-visit/in-rpa-registered-field/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -24,7 +25,6 @@ export const router = {
   plugin: {
     name: 'router',
     async register(server) {
-      // // Add the auth stuff
       if (config.get('featureFlags').authEnabled) {
         await server.register(authPlugin)
       }
@@ -64,6 +64,10 @@ export const router = {
 
       if (config.get('featureFlags').exoticsJourney) {
         await server.register([exoticsTaskList])
+
+        // TODO: remove this when location of the visit section for exotics is implemented and move it to that section
+        await server.register([inRpaRegisteredField])
+
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin
