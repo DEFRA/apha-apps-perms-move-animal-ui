@@ -11,6 +11,7 @@ import {
   locationOfVisit,
   locationOfVisitPage
 } from './type-of-location/index.js'
+import { address } from './address/index.js'
 
 const plugin = {
   plugin: {
@@ -23,7 +24,8 @@ const plugin = {
         hasACphNumber,
         cphNeeded,
         inRpaRegisteredField,
-        fieldParcelNumber
+        fieldParcelNumber,
+        address
       ])
     }
   }
