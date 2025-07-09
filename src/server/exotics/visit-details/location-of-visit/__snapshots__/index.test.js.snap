@@ -2,20 +2,53 @@
 
 exports[`LocationOfVisitPage content should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row app-heading" data-testid="app-heading">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
-      404
-    </h1>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
 
-  </div>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Where will the visit take place?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="locationOfVisit" name="locationOfVisit" type="radio" value="farm">
+        <label class="govuk-label govuk-radios__label" for="locationOfVisit">
+          Farm
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="corporate-holding" name="locationOfVisit" type="radio" value="corporate-holding">
+        <label class="govuk-label govuk-radios__label" for="corporate-holding">
+          Corporate holding
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="domestic-residence" name="locationOfVisit" type="radio" value="domestic-residence">
+        <label class="govuk-label govuk-radios__label" for="domestic-residence">
+          Domestic residence
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="other" name="locationOfVisit" type="radio" value="other">
+        <label class="govuk-label govuk-radios__label" for="other">
+          Another location (such as a zoo or show)
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>Page not found</p>
-    </div>
-  </div>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
         "
 `;
