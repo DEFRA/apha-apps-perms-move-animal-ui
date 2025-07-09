@@ -15,7 +15,6 @@ describe('LocationOfVisitSection', () => {
   })
 
   it('should have the correct first page', () => {
-    // TEMPLATE -TODO: update test to check start page factory
     expect(LocationOfVisitSection.firstPageFactory()).toBeInstanceOf(
       LocationOfVisitPage
     )
