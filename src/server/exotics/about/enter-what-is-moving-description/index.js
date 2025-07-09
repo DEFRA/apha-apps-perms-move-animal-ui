@@ -12,7 +12,7 @@ export class Answer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: questionKey,
-    rows: 10,
+    rows: 4,
     spellcheck: false,
     validation: {
       maxLength: {
