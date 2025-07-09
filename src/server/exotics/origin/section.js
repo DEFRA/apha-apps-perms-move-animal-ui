@@ -20,6 +20,7 @@ import { cphNeeded } from './cph-needed/index.js'
 import { fieldParcelNumber } from './field-parcel-number/index.js'
 import { isDesignatedPremises } from './is-designated-premises/index.js'
 import { latitudeAndLongitude } from './latitude-and-longitude/index.js'
+import { animalLocationCphNumber } from './animal-location-cph-number/index.js'
 
 const plugin = {
   plugin: {
@@ -37,7 +38,8 @@ const plugin = {
         cphNeeded,
         fieldParcelNumber,
         isDesignatedPremises,
-        latitudeAndLongitude
+        latitudeAndLongitude,
+        animalLocationCphNumber
       ])
     }
   }
