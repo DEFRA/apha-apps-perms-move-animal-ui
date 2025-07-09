@@ -1,15 +1,16 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { fieldParcelNumberPage } from './index.js'
+import { latitudeAndLongitudePage } from './index.js'
 import { IsDesignatedPremisesPage } from '../is-designated-premises/index.js'
-import { FieldParcelNumberAnswer } from '../../common/model/answer/field-parcel-number/field-parcel-number.js'
+import { LatitudeAndLongitudeAnswer } from '../../common/model/answer/latitude-and-longitude/latitude-and-longitude.js'
 
-const sectionKey = 'origin'
-const questionKey = 'fieldParcelNumber'
-const pageUrl = '/exotics/movement-origin/field-parcel-number'
-const page = fieldParcelNumberPage
-const question = 'What is the field parcel number? '
+const sectionKey = 'locationOfVisit'
+const questionKey = 'latitudeAndLongitude'
+const pageUrl = '/exotics/location-of-visit/location-details'
+const page = latitudeAndLongitudePage
+const question =
+  'What are the latitude and longitude measurements for the location of the visit?'
 
-describe('FieldParcelNumberPage', () => {
+describe('LatitudeAndLongitudePage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -27,12 +28,12 @@ describe('FieldParcelNumberPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(FieldParcelNumberAnswer)
+    expect(page.Answer).toBe(LatitudeAndLongitudeAnswer)
   })
 
   it('should have the correct view', () => {
     expect(page.view).toBe(
-      'exotics/common/templates/field-parcel-number/index.njk'
+      'exotics/common/templates/latitude-and-longitude/index.njk'
     )
   })
 
