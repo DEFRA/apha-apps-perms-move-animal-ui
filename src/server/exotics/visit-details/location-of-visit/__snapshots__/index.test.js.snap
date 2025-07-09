@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationOfVisitPage content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row app-heading" data-testid="app-heading">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
+      404
+    </h1>
+
+  </div>
+</div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Page not found</p>
+    </div>
+  </div>
+        "
+`;
