@@ -8,6 +8,7 @@ import { escapeHtml } from '../../../helpers/escape-text.js'
 
 /**
  * @typedef {{
+ *  explanation?: string,
  *  validation: {
  *    firstName: {
  *      empty?: { message: string },
@@ -117,6 +118,10 @@ export class FullNameAnswer extends AnswerModel {
    */
   viewModel({ validate, question }) {
     const viewModel = { value: this.value, question }
+
+    if (this.config.explanation) {
+      viewModel.explanation = this.config.explanation
+    }
 
     if (validate) {
       viewModel.errors = this.validate().errors

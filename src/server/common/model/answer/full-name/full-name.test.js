@@ -3,6 +3,7 @@ import { FullNameAnswer } from './full-name.js'
 /** @import {FullNameConfig} from '../full-name/full-name.js' */
 
 const maxLength = 50
+const explanation = 'test hint'
 
 const validFullNamePayload = {
   firstName: 'Jean-Luc',
@@ -10,6 +11,7 @@ const validFullNamePayload = {
 }
 
 const testConfig = {
+  explanation,
   validation: {
     firstName: {
       empty: {
@@ -161,7 +163,8 @@ describe('FullName.viewModel', () => {
   it('should return the value without errors (if validate is false)', () => {
     expect(name.viewModel({ validate: false, question })).toEqual({
       value: name.value,
-      question
+      question,
+      explanation
     })
   })
 
@@ -169,7 +172,8 @@ describe('FullName.viewModel', () => {
     expect(name.viewModel({ validate: true, question })).toEqual({
       value: name.value,
       errors: name.validate().errors,
-      question
+      question,
+      explanation
     })
   })
 })
