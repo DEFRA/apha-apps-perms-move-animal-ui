@@ -15,6 +15,14 @@ class TaskListPage extends Page {
     return $('aria/About the movement')
   }
 
+  get movementOriginLink() {
+    return $('aria/Movement origin')
+  }
+
+  get visitDetailsLink() {
+    return $('aria/Visit details')
+  }
+
   get reviewLink() {
     return $('aria/Review and submit')
   }
@@ -26,6 +34,16 @@ class TaskListPage extends Page {
 
   async selectAboutMovement(nextPage) {
     await page.selectElement(this.aboutMovementLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectMovementOrigin(nextPage) {
+    await page.selectElement(this.movementOriginLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectVisitDetails(nextPage) {
+    await page.selectElement(this.visitDetailsLink)
     await page.waitForPagePath(nextPage.pagePath)
   }
 
