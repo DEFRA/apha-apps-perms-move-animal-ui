@@ -24,7 +24,9 @@ describe('Answer', () => {
     const { validation } = Answer.config
 
     expect(validation.missingDate.message).toBe('Enter the expected visit date')
-    expect(validation.missingDay.message).toBe('Enter the expected visit date')
+    expect(validation.missingDay.message).toBe(
+      'Expected visit date must include a day'
+    )
     expect(validation.missingMonth.message).toBe(
       'Expected visit date must include a month'
     )
