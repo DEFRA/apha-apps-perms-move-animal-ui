@@ -3,9 +3,9 @@ import { fieldParcelNumberPage } from './index.js'
 import { IsDesignatedPremisesPage } from '../is-designated-premises/index.js'
 import { FieldParcelNumberAnswer } from '../../common/model/answer/field-parcel-number/field-parcel-number.js'
 
-const sectionKey = 'origin'
+const sectionKey = 'locationOfVisit'
 const questionKey = 'fieldParcelNumber'
-const pageUrl = '/exotics/movement-origin/field-parcel-number'
+const pageUrl = '/exotics/location-of-visit/field-parcel-number'
 const page = fieldParcelNumberPage
 const question = 'What is the field parcel number? '
 
