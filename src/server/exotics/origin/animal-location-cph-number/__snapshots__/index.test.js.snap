@@ -2,20 +2,32 @@
 
 exports[`AnimalLocationCphNumberPage content should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row app-heading" data-testid="app-heading">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
-      404
-    </h1>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
 
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="cphNumber">
+      What is the CPH number for the origin premises?
+    </label>
+  </h1>
+  <div id="cphNumber-hint" class="govuk-hint">
+    For example, 12/345/6789
   </div>
+  <input class="govuk-input govuk-input--width-10" id="cphNumber" name="cphNumber" type="text" aria-describedby="cphNumber-hint" autocomplete="cph-number">
 </div>
 
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>Page not found</p>
-    </div>
-  </div>
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
         "
 `;
