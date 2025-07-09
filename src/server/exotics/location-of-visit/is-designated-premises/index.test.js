@@ -1,11 +1,11 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { isDesignatedPremisesPage } from './index.js'
-import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
 import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-premises/designated-premises.js'
+import { AnimalsOnsitePage } from '../animals-onsite/index.js'
 
-const sectionKey = 'origin'
+const sectionKey = 'locationOfVisit'
 const questionKey = 'isDesignatedPremises'
-const pageUrl = '/exotics/movement-origin/designated-premise'
+const pageUrl = '/exotics/location-of-visit/designated-premise'
 const page = isDesignatedPremisesPage
 const question = 'Is the premises designated?'
 
@@ -32,9 +32,9 @@ describe('IsDesignatedPremisesPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['yes', AnimalsOnPremisesPage],
-      ['no', AnimalsOnPremisesPage],
-      ['unknown', AnimalsOnPremisesPage]
+      ['yes', AnimalsOnsitePage],
+      ['no', AnimalsOnsitePage],
+      ['unknown', AnimalsOnsitePage]
     ])('for %s should return %s', (value, expectedPage) => {
       const nextPage = page.nextPage()
       expect(nextPage).toBeInstanceOf(expectedPage)
