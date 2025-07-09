@@ -1,9 +1,9 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, typeOfAnimalLocationPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { StubPage } from '../stub/index.js'
 import { AnimalLocationCphNumberPage } from '../animal-location-cph-number/index.js'
 import { AddressPage } from '../address/index.js'
+import { TypeOfAnimalLocationOtherPage } from '../type-of-animal-location-other/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'typeOfAnimalLocation'
@@ -67,7 +67,7 @@ describe('TypeOfAnimalLocationPage', () => {
       ['farm', AnimalLocationCphNumberPage],
       ['corporate-holding', AnimalLocationCphNumberPage],
       ['domestic-residence', AddressPage],
-      ['other', StubPage]
+      ['other', TypeOfAnimalLocationOtherPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
