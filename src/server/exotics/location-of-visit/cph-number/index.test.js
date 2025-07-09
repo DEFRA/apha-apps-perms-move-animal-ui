@@ -1,15 +1,16 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { fieldParcelNumberPage } from './index.js'
-import { IsDesignatedPremisesPage } from '../is-designated-premises/index.js'
-import { FieldParcelNumberAnswer } from '../../common/model/answer/field-parcel-number/field-parcel-number.js'
+import { cphNumberPage } from './index.js'
+import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
+import { AddressPage } from '../address/index.js'
 
-const sectionKey = 'origin'
-const questionKey = 'fieldParcelNumber'
-const pageUrl = '/exotics/movement-origin/field-parcel-number'
-const page = fieldParcelNumberPage
-const question = 'What is the field parcel number? '
+const sectionKey = 'locationOfVisit'
+const questionKey = 'cphNumber'
+const pageUrl = '/exotics/location-of-visit/cph-number'
+const page = cphNumberPage
+const question =
+  'What is the CPH number for premises where the visit is happening?'
 
-describe('FieldParcelNumberPage', () => {
+describe('CphNumberPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -27,13 +28,13 @@ describe('FieldParcelNumberPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(FieldParcelNumberAnswer)
+    expect(page.Answer).toBe(CphNumberAnswer)
   })
 
   describe('nextPage', () => {
-    it('should return IsDesignatedPremisesPage for any value', () => {
+    it('should return AddressPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(IsDesignatedPremisesPage)
+      expect(nextPage).toBeInstanceOf(AddressPage)
     })
   })
 
