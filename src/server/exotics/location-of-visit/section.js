@@ -2,6 +2,7 @@
 
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { cphNeeded } from './cph-needed/index.js'
 import { cphNumber } from './cph-number/index.js'
 import { hasACphNumber } from './has-a-cph-number/index.js'
 import {
@@ -17,7 +18,8 @@ const plugin = {
         checkAnswers,
         locationOfVisit,
         cphNumber,
-        hasACphNumber
+        hasACphNumber,
+        cphNeeded
       ])
     }
   }
