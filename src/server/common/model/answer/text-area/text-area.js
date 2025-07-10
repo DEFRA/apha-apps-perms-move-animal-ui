@@ -40,7 +40,7 @@ const textAreaSchema = ({ payloadKey, validation }) => {
 /**
  * export @typedef {{
  *  payloadKey: string,
- *  spellcheck?: false,
+ *  spellcheck?: boolean,
  *  rows?: number,
  *  autocomplete?: string,
  *  hint?: string,

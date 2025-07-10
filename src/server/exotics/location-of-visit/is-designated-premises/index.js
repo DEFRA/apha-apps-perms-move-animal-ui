@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-premises/designated-premises.js'
-import { animalsOnsitePage } from '../animals-onsite/index.js'
+import { animalsOnPremisesPage } from '../animals-on-premises/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -17,7 +17,7 @@ export class IsDesignatedPremisesPage extends QuestionPage {
   Answer = DesignatedPremisesAnswer
 
   nextPage() {
-    return animalsOnsitePage
+    return animalsOnPremisesPage
   }
 }
 
