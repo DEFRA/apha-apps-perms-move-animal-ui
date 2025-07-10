@@ -6,14 +6,14 @@ import birdTypeInputPage from '../../page-objects/about-the-movement/birdTypeInp
 import TypeOfUncommonBirdPage from '../../page-objects/about-the-movement/uncommonBirdTypePage.js'
 import animalsQuantityPage from '../../page-objects/about-the-movement/animalsQuantityPage.js'
 
-describe('About the movement - Onto > Live animals > cattle', async () => {
+describe('About the movement - Birds flow', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await animalTypePage.navigateToPageAndVerifyTitle()
   })
 
-  it('Runs the cattle journey and checks answers and change links', async () => {
+  it('Runs through the birds journey pages', async () => {
     await animalTypePage.selectRadioAndContinue('birds', whatTypeOfBirdsPage)
     await whatTypeOfBirdsPage.selectRadioAndContinue(
       'other',
