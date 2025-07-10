@@ -3,7 +3,7 @@
  * These routes are registered in src/server/router.js.
  */
 
-import { EmailAddressAnswer } from '../../../common/model/answer/email/email-address.js'
+import { EmailAddressAnswer } from '../../../common/model/answer/email-address/email-address.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'

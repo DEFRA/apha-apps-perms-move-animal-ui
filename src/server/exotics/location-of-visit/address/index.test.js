@@ -2,7 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { addressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { InRpaRegisteredFieldPage } from '../in-rpa-registered-field/index.js'
-import { AnimalsOnsitePage } from '../animals-onsite/index.js'
+import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
 
 const sectionKey = 'locationOfVisit'
 const questionKey = 'address'
@@ -43,7 +43,9 @@ describe('AddressPage', () => {
     it('should return InRpaRegisteredFieldPage for domestic residence', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
-        typeOfLocation: 'domestic-residence'
+        locationOfVisit: {
+          typeOfLocation: 'domestic-residence'
+        }
       })
       expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
     })
@@ -51,9 +53,11 @@ describe('AddressPage', () => {
     it('should return AnimalsOnsitePage for any other value', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
-        typeOfLocation: 'other'
+        locationOfVisit: {
+          typeOfLocation: 'other'
+        }
       })
-      expect(nextPage).toBeInstanceOf(AnimalsOnsitePage)
+      expect(nextPage).toBeInstanceOf(AnimalsOnPremisesPage)
     })
   })
 
