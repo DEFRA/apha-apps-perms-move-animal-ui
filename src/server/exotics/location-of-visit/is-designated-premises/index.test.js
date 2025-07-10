@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { isDesignatedPremisesPage } from './index.js'
 import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-premises/designated-premises.js'
-import { AnimalsOnsitePage } from '../animals-onsite/index.js'
+import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
 
 const sectionKey = 'locationOfVisit'
 const questionKey = 'isDesignatedPremises'
@@ -32,9 +32,9 @@ describe('IsDesignatedPremisesPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['yes', AnimalsOnsitePage],
-      ['no', AnimalsOnsitePage],
-      ['unknown', AnimalsOnsitePage]
+      ['yes', AnimalsOnPremisesPage],
+      ['no', AnimalsOnPremisesPage],
+      ['unknown', AnimalsOnPremisesPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const nextPage = page.nextPage()
       expect(nextPage).toBeInstanceOf(expectedPage)
