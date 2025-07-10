@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { responsiblePersonNamePage } from '../responsible-person-name/index.js'
-import { hasACphNumberPage } from '../has-a-cph-number/index.js'
+import { cphNumberKnownPage } from '../cph-number-known/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
@@ -28,7 +28,7 @@ export class AddressPage extends QuestionPage {
         context.about?.typeOfAnimal
       )
     ) {
-      return hasACphNumberPage
+      return cphNumberKnownPage
     }
 
     return responsiblePersonNamePage

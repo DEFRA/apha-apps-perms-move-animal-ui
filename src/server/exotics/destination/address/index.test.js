@@ -3,9 +3,7 @@ import { addressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { aboutSectionVisitComplete } from '~/src/server/common/test-helpers/exotic/journey-state.js'
 import { ResponsiblePersonNamePage } from '../responsible-person-name/index.js'
-import { HasACphNumberPage } from '../has-a-cph-number/index.js'
-
-// TEMPLATE-TODO: import next page
+import { CphNumberKnownPage } from '../cph-number-known/index.js'
 
 const sectionKey = 'destination'
 const questionKey = 'address'
@@ -40,7 +38,7 @@ describe('AddressPage', () => {
       (typeOfAnimal) => {
         const state = { about: { typeOfAnimal } }
         const nextPage = page.nextPage(/** @type {AddressAnswer} */ ({}), state)
-        expect(nextPage).toBeInstanceOf(HasACphNumberPage)
+        expect(nextPage).toBeInstanceOf(CphNumberKnownPage)
       }
     )
 
