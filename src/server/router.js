@@ -18,6 +18,7 @@ import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
 import { visitResponsiblePersonName } from './exotics/licence/visit-responsible-person-name/index.js'
 import { originResponsiblePersonName } from './exotics/licence/origin-responsible-person-name/index.js'
+import { keeperName } from './exotics/licence/keeper-name/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -69,7 +70,8 @@ export const router = {
         // TODO: remove this when Receiving the licence section for exotics is implemented and move it to that section
         await server.register([
           visitResponsiblePersonName,
-          originResponsiblePersonName
+          originResponsiblePersonName,
+          keeperName
         ])
 
         await server.register(
