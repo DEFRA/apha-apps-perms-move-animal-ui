@@ -12,7 +12,7 @@ export class DesignatedPremisesAnswer extends RadioButtonAnswer {
   /** @type { RadioButtonConfig } */
   static config = {
     payloadKey: 'isDesignatedPremises',
-    hint: 'A designated premises has government approval to undertake certain animal-related activities, such as moving eggs.',
+    hint: 'A designated premises has government approval to undertake certain animal-related activities, such as moving eggs',
     options: {
       yes: { label: 'Yes' },
       no: { label: 'No' },

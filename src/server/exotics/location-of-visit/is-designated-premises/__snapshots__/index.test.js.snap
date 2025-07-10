@@ -16,7 +16,7 @@ exports[`IsDesignatedPremisesPage content should render expected response and co
       </h1>
     </legend>
     <div id="isDesignatedPremises-hint" class="govuk-hint">
-      A designated premises has government approval to undertake certain animal-related activities, such as moving eggs.
+      A designated premises has government approval to undertake certain animal-related activities, such as moving eggs
     </div>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">

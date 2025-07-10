@@ -22,7 +22,7 @@ describe('DesignatedPremisesAnswer', () => {
 
   it('should have the right hint', () => {
     expect(DesignatedPremisesAnswer.config.hint).toBe(
-      'A designated premises has government approval to undertake certain animal-related activities, such as moving eggs.'
+      'A designated premises has government approval to undertake certain animal-related activities, such as moving eggs'
     )
   })
 
