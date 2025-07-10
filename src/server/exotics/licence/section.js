@@ -5,6 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { emailOrPost } from './email-or-post/index.js'
+import { email } from './email/index.js'
 import { keeperName, keeperNamePage } from './keeper-name/index.js'
 import {
   originResponsiblePersonName,
@@ -24,6 +25,7 @@ const plugin = {
         originResponsiblePersonName,
         keeperName,
         emailOrPost,
+        email,
         checkAnswers
       ])
     }

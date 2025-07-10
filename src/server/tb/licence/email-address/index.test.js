@@ -1,7 +1,7 @@
 import { createServer } from '~/src/server/index.js'
 import { emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
-import { EmailAddressAnswer } from '../../../common/model/answer/email/email-address.js'
+import { EmailAddressAnswer } from '../../../common/model/answer/email-address/email-address.js'
 import { spyOnConfig } from '../../../common/test-helpers/config.js'
 import { withCsrfProtection } from '../../../common/test-helpers/csrf.js'
 import { parseDocument } from '../../../common/test-helpers/dom.js'
