@@ -6,13 +6,20 @@ import { ExoticsSectionModel } from '../section-model.js'
 import { address } from './address/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import { cphNumberKnown } from './cph-number-known/index.js'
+import { cphNumber } from './cph-number/index.js'
 import { typeOfLocation, typeOfLocationPage } from './type-of-location/index.js'
 
 const plugin = {
   plugin: {
     name: 'exotics-destination',
     async register(server) {
-      await server.register([checkAnswers, typeOfLocation, address, cphNumberKnown])
+      await server.register([
+        checkAnswers,
+        typeOfLocation,
+        address,
+        cphNumberKnown,
+        cphNumber
+      ])
     }
   }
 }
