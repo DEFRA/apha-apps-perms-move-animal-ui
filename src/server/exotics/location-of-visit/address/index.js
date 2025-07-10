@@ -19,7 +19,7 @@ export class AddressPage extends QuestionPage {
   Answer = AddressAnswer
 
   nextPage(_answer, context) {
-    if (context.typeOfLocation === 'domestic-residence') {
+    if (context.locationOfVisit.typeOfLocation !== 'domestic-residence') {
       return inRpaRegisteredFieldPage
     }
 

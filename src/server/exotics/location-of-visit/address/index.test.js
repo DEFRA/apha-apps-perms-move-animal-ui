@@ -43,17 +43,21 @@ describe('AddressPage', () => {
     it('should return InRpaRegisteredFieldPage for any value', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
-        typeOfLocation: 'domestic-residence'
+        locationOfVisit: {
+          typeOfLocation: 'domestic-residence'
+        }
       })
-      expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
+      expect(nextPage).toBeInstanceOf(AnimalsOnsitePage)
     })
 
     it('should return AnimalsOnsitePage for any value', () => {
       const answer = new page.Answer(validAddress)
       const nextPage = page.nextPage(answer, {
-        typeOfLocation: 'other'
+        locationOfVisit: {
+          typeOfLocation: 'other'
+        }
       })
-      expect(nextPage).toBeInstanceOf(AnimalsOnsitePage)
+      expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
     })
   })
 
