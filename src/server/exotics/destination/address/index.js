@@ -24,6 +24,7 @@ export class AddressPage extends QuestionPage {
    */
   nextPage(_answer, context) {
     if (
+      context.about?.whatIsMoving === 'live-animals' &&
       ['pigs', 'sheep-and-goats', 'cattle'].includes(
         context.about?.typeOfAnimal
       )

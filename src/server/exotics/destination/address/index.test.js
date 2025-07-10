@@ -1,7 +1,10 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { addressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
-import { aboutSectionVisitComplete } from '~/src/server/common/test-helpers/exotic/journey-state.js'
+import {
+  aboutSectionNonVisitComplete,
+  aboutSectionVisitComplete
+} from '~/src/server/common/test-helpers/exotic/journey-state.js'
 import { ResponsiblePersonNamePage } from '../responsible-person-name/index.js'
 import { CphNumberKnownPage } from '../cph-number-known/index.js'
 
@@ -34,11 +37,32 @@ describe('AddressPage', () => {
 
   describe('nextPage', () => {
     it.each([['pigs'], ['sheep-and-goats'], ['cattle']])(
-      'should return for %s',
+      'should return CphNumberKnownPage for %s, if the movement is for live animals',
       (typeOfAnimal) => {
-        const state = { about: { typeOfAnimal } }
+        const state = {
+          about: {
+            aboutSectionNonVisitComplete,
+            typeOfAnimal,
+            whatIsMoving: 'live-animals'
+          }
+        }
         const nextPage = page.nextPage(/** @type {AddressAnswer} */ ({}), state)
         expect(nextPage).toBeInstanceOf(CphNumberKnownPage)
+      }
+    )
+
+    it.each([['pigs'], ['sheep-and-goats'], ['cattle']])(
+      'should return ResponsiblePersonNamePage for %s, if the movement is NOT live animals',
+      (typeOfAnimal) => {
+        const state = {
+          about: {
+            aboutSectionNonVisitComplete,
+            typeOfAnimal,
+            whatIsMoving: 'carcasses'
+          }
+        }
+        const nextPage = page.nextPage(/** @type {AddressAnswer} */ ({}), state)
+        expect(nextPage).toBeInstanceOf(ResponsiblePersonNamePage)
       }
     )
 
