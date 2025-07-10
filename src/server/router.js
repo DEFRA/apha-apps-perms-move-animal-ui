@@ -17,6 +17,7 @@ import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
 import { visitResponsiblePersonName } from './exotics/licence/visit-responsible-person-name/index.js'
+import { typeOfLocation } from './exotics/destination/type-of-location/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -73,6 +74,9 @@ export const router = {
             (section) => section.config.plugin
           )
         )
+
+        // TODO: remove this when Movement destination for exotics is implemented
+        await server.register([typeOfLocation])
       }
     }
   }
