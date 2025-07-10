@@ -1,16 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { visitResponsiblePersonNamePage } from './index.js'
-import { EmailOrPostPage } from '../email-or-post/index.js'
-import { LicenceFullNameAnswer } from '../../common/model/answer/licence-full-name/licence-full-name.js'
+import { emailPage } from './index.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
+import { EmailAddressAnswer } from '~/src/server/common/model/answer/email-address/email-address.js'
 
 const sectionKey = 'licence'
-const questionKey = 'visitResponsiblePersonName'
-const pageUrl = '/exotics/receiving-the-licence/visit/responsible-person-name'
-const page = visitResponsiblePersonNamePage
-const question =
-  'Who is responsible for the premises where the visit is happening?'
+const questionKey = 'email'
+const pageUrl = '/exotics/receiving-the-licence/enter-email-address'
+const page = emailPage
+const question = 'What email address would you like the licence sent to?'
 
-describe('VisitResponsiblePersonNamePage', () => {
+describe('EmailPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -28,13 +27,13 @@ describe('VisitResponsiblePersonNamePage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(LicenceFullNameAnswer)
+    expect(page.Answer).toBe(EmailAddressAnswer)
   })
 
   describe('nextPage', () => {
-    it('should return EmailOrPostPage for any value', () => {
+    it('should return CheckAnswersPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(EmailOrPostPage)
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
   })
 

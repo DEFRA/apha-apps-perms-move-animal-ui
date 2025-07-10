@@ -5,14 +5,14 @@ import { LicenceFullNameAnswer } from '../../common/model/answer/licence-full-na
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'visitResponsiblePersonName'
+const questionKey = 'originResponsiblePersonName'
 
-export class VisitResponsiblePersonNamePage extends QuestionPage {
-  urlPath = '/exotics/receiving-the-licence/visit/responsible-person-name'
+export class OriginResponsiblePersonNamePage extends QuestionPage {
+  urlPath = '/exotics/receiving-the-licence/origin/responsible-person-name'
 
   questionKey = questionKey
   sectionKey = 'licence'
-  question = 'Who is responsible for the premises where the visit is happening?'
+  question = 'Who is responsible for the origin premises?'
 
   Answer = LicenceFullNameAnswer
 
@@ -21,10 +21,10 @@ export class VisitResponsiblePersonNamePage extends QuestionPage {
   }
 }
 
-export const visitResponsiblePersonNamePage =
-  new VisitResponsiblePersonNamePage()
+export const originResponsiblePersonNamePage =
+  new OriginResponsiblePersonNamePage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const visitResponsiblePersonName = new ExoticsQuestionPageController(
-  visitResponsiblePersonNamePage
+export const originResponsiblePersonName = new ExoticsQuestionPageController(
+  originResponsiblePersonNamePage
 ).plugin()

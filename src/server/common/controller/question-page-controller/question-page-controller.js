@@ -29,7 +29,7 @@ export class QuestionPageController extends GenericPageController {
       plugin: {
         name:
           this.pluginName ??
-          `${this.page.sectionKey}-${this.page.constructor.name}`,
+          `${this.StateManager.key}-${this.page.sectionKey}-${this.page.constructor.name}`,
 
         /** @param {Server} server */
         register: (server) => {

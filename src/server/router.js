@@ -16,7 +16,6 @@ import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
-import { visitResponsiblePersonName } from './exotics/licence/visit-responsible-person-name/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -64,10 +63,6 @@ export const router = {
 
       if (config.get('featureFlags').exoticsJourney) {
         await server.register([exoticsTaskList])
-
-        // TODO: remove this when Receiving the licence section for exotics is implemented and move it to that section
-        await server.register([visitResponsiblePersonName])
-
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin

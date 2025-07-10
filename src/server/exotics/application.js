@@ -1,5 +1,6 @@
 import { ApplicationModel } from '../common/model/application/application.js'
 import { AboutSection } from './about/section.js'
+import { LicenceSection } from './licence/section.js'
 import { LocationOfVisitSection } from './location-of-visit/section.js'
 import { OriginSection } from './origin/section.js'
 import { VisitDetailsSection } from './visit-details/section.js'
@@ -14,7 +15,8 @@ export class ExoticsApplicationModel extends ApplicationModel {
     AboutSection,
     OriginSection,
     VisitDetailsSection,
-    LocationOfVisitSection
+    LocationOfVisitSection,
+    LicenceSection
   ]
 
   get version() {
