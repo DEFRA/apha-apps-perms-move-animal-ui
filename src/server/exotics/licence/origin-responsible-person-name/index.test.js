@@ -1,16 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { visitResponsiblePersonNamePage } from './index.js'
+import { originResponsiblePersonNamePage } from './index.js'
 import { EmailOrPostPage } from '../email-or-post/index.js'
 import { LicenceFullNameAnswer } from '../../common/model/answer/licence-full-name/licence-full-name.js'
 
 const sectionKey = 'licence'
-const questionKey = 'visitResponsiblePersonName'
-const pageUrl = '/exotics/receiving-the-licence/visit/responsible-person-name'
-const page = visitResponsiblePersonNamePage
-const question =
-  'Who is responsible for the premises where the visit is happening?'
+const questionKey = 'originResponsiblePersonName'
+const pageUrl = '/exotics/receiving-the-licence/origin/responsible-person-name'
+const page = originResponsiblePersonNamePage
+const question = 'Who is responsible for the origin premises?'
 
-describe('VisitResponsiblePersonNamePage', () => {
+describe('OriginResponsiblePersonNamePage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
