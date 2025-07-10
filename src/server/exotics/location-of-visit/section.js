@@ -12,6 +12,8 @@ import {
   locationOfVisitPage
 } from './type-of-location/index.js'
 import { address } from './address/index.js'
+import { latitudeAndLongitude } from './latitude-and-longitude/index.js'
+import { isDesignatedPremises } from './is-designated-premises/index.js'
 
 const plugin = {
   plugin: {
@@ -25,7 +27,9 @@ const plugin = {
         cphNeeded,
         inRpaRegisteredField,
         fieldParcelNumber,
-        address
+        address,
+        latitudeAndLongitude,
+        isDesignatedPremises
       ])
     }
   }

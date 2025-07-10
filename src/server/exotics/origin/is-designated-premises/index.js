@@ -1,28 +1,11 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
-import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { animalsOnPremisesPage } from '../animals-on-premises/index.js'
+import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-premises/designated-premises.js'
 
-/** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 const questionKey = 'isDesignatedPremises'
-
-export class Answer extends RadioButtonAnswer {
-  /** @type { RadioButtonConfig } */
-  static config = {
-    payloadKey: questionKey,
-    hint: 'A designated premises has government approval to undertake certain animal-related activities, such as moving eggs.',
-    options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' },
-      unknown: { label: "I don't know" }
-    },
-    validation: {
-      empty: 'Select if the premises is designated'
-    }
-  }
-}
 
 export class IsDesignatedPremisesPage extends QuestionPage {
   urlPath = '/exotics/movement-origin/designated-premise'
@@ -31,7 +14,7 @@ export class IsDesignatedPremisesPage extends QuestionPage {
   sectionKey = 'origin'
   question = 'Is the premises designated?'
 
-  Answer = Answer
+  Answer = DesignatedPremisesAnswer
 
   nextPage() {
     return animalsOnPremisesPage
