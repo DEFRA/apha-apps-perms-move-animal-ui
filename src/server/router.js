@@ -74,9 +74,6 @@ export const router = {
             (section) => section.config.plugin
           )
         )
-
-        // TODO: remove this when Movement destination for exotics is implemented
-        await server.register([typeOfLocation])
       }
     }
   }
