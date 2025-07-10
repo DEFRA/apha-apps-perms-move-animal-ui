@@ -19,7 +19,7 @@ export class Answer extends TextAnswer {
         message: 'Your answer must be no longer than 100 characters'
       },
       empty: {
-        message: 'Enter the location of where the animals are kept'
+        message: 'Enter the type of premises where the animals are kept'
       }
     }
   }
