@@ -1,5 +1,5 @@
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
-import { {{pascalCase sectionKey}}Section } from '../section.js'
+import { MovementDetailsSection } from '../section.js'
 import { CheckAnswersPage } from './index.js'
 import { createServer } from '~/src/server/index.js'
 
@@ -29,19 +29,19 @@ describe('CheckAnswersPage', () => {
   })
 
   it('should have the expected section key', () => {
-    expect(page.sectionKey).toBe('{{camelCase sectionKey}}')
+    expect(page.sectionKey).toBe('movementDetails')
   })
 
   it('should have the expected page url path', () => {
-    expect(page.urlPath).toBe('/{{kebabCase journey}}/{{kebabCase sectionTitle}}/check-answers')
+    expect(page.urlPath).toBe('/exotics/movement-details/check-answers')
   })
 
   it('should return the right section', () => {
-    expect(page.sectionFactory({})).toBeInstanceOf({{pascalCase sectionKey}}Section)
+    expect(page.sectionFactory({})).toBeInstanceOf(MovementDetailsSection)
   })
 
   it('should have a url key of', () => {
-    expect(page.urlKey).toBe('{{kebabCase journey}}/{{kebabCase sectionTitle}}')
+    expect(page.urlKey).toBe('exotics/movement-details')
   })
 
   it('should have been registered as a route', async () => {
