@@ -7,6 +7,7 @@ import { address } from './address/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import { cphNumberKnown } from './cph-number-known/index.js'
 import { cphNumber } from './cph-number/index.js'
+import { responsiblePersonName } from './responsible-person-name/index.js'
 import { typeOfLocation, typeOfLocationPage } from './type-of-location/index.js'
 
 const plugin = {
@@ -18,7 +19,8 @@ const plugin = {
         typeOfLocation,
         address,
         cphNumberKnown,
-        cphNumber
+        cphNumber,
+        responsiblePersonName
       ])
     }
   }
