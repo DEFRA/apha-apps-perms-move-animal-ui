@@ -15,7 +15,7 @@ describe('TbTaskListController', () => {
 
     expect(controller.urlPath).toBe('/task-list')
     expect(controller.buttonText).toBe('Review and submit')
-    expect(controller.submitUrlPath).toBe('/submit/check-answers')
+    expect(controller.submitUrlPath).toBe('/tb/submit/check-answers')
     expect(controller.pageTitleAndHeading).toBe(
       'Your Bovine Tuberculosis (TB) movement licence application'
     )

@@ -2,7 +2,7 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
-import { submitSummaryPage } from '../../check-answers/index.js'
+import { tbSubmitSummaryPage } from '../../check-answers/index.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
@@ -78,7 +78,7 @@ describe('SizeErrorPageController', () => {
       )
 
       expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(submitSummaryPage.urlPath)
+      expect(headers.location).toBe(tbSubmitSummaryPage.urlPath)
 
       const state = await session.getSectionState('biosecurity-map')
       expect(state['upload-plan'].status.uploadStatus).toBe('skipped')
