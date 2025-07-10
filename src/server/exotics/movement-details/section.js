@@ -5,6 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { date } from './date/index.js'
+import { isDurationMoreThanOneDay } from './is-duration-more-than-one-day/index.js'
 import { maximumNumberOfJourneys } from './maximum-number-of-journeys/index.js'
 import { reason, reasonPage } from './reason/index.js'
 
@@ -16,7 +17,8 @@ const plugin = {
         checkAnswers,
         reason,
         maximumNumberOfJourneys,
-        date
+        date,
+        isDurationMoreThanOneDay
       ])
     }
   }
