@@ -3,6 +3,8 @@ import { ExoticsQuestionPageController } from '~/src/server/exotics/question-pag
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { addressPage } from '../address/index.js'
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
