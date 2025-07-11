@@ -1,0 +1,16 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>Contact the destination to get their CPH number.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block questions %}
+  <input type="hidden" name="cphNumberKnown" value="yes" />
+{% endblock %}
