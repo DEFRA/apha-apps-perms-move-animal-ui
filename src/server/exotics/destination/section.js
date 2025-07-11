@@ -5,6 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { address } from './address/index.js'
 import { checkAnswers } from './check-answers/index.js'
+import { cphNeeded } from './cph-needed/index.js'
 import { cphNumberKnown } from './cph-number-known/index.js'
 import { cphNumber } from './cph-number/index.js'
 import { responsiblePersonName } from './responsible-person-name/index.js'
@@ -20,7 +21,8 @@ const plugin = {
         address,
         cphNumberKnown,
         cphNumber,
-        responsiblePersonName
+        responsiblePersonName,
+        cphNeeded
       ])
     }
   }
