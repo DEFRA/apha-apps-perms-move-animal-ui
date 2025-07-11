@@ -13,7 +13,7 @@ export class TbTaskListController extends TaskListController {
 
   buttonText = 'Review and submit'
   urlPath = '/task-list'
-  submitUrlPath = '/submit/check-answers'
+  submitUrlPath = '/tb/submit/check-answers'
 }
 
 /** @satisfies {ServerRegisterPluginObject<void>} */

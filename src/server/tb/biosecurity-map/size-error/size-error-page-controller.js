@@ -1,4 +1,3 @@
-import { submitSummaryPage } from '../../check-answers/index.js'
 import { PageController } from '../../../common/controller/page-controller/page-controller.js'
 import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-map/biosecurity-map.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
@@ -6,7 +5,7 @@ import { uploadPlanPage } from '../upload-plan/index.js'
 
 export class SizeErrorPageController extends PageController {
   nextPage() {
-    return submitSummaryPage
+    return { urlPath: '/tb/submit/check-answers' }
   }
 
   handlePost(req, h) {

@@ -19,6 +19,9 @@ export class QuestionPage extends Page {
   /** @type {AnswerModelClass<AnswerPayload>} */
   Answer
 
+  ApplicationModel
+  StateManager
+
   view = 'common/model/page/question-page.njk'
 
   /** @returns {string} */

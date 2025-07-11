@@ -7,7 +7,6 @@ import { taskList } from './tb/task-list/index.js'
 import { taskListIncomplete } from './tb/task-list-incomplete/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
 import { submit } from './tb/submit/index.js'
-import { submitSummary } from './tb/check-answers/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { TbApplicationModel } from './tb/application.js'
@@ -16,6 +15,8 @@ import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
+import { exoticsSubmitSummary } from './exotics/check-answers/index.js'
+import { tbSubmitSummary } from './tb/check-answers/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -43,11 +44,14 @@ export const router = {
           home,
           privacyPolicy,
           cookiesPolicy,
-          accessibilityStatement,
+          accessibilityStatement
+        ]),
+
+        server.register([
           taskList,
           taskListIncomplete,
           submit,
-          submitSummary
+          tbSubmitSummary
         ]),
 
         // Add routes for the visible sections in the application
@@ -62,7 +66,7 @@ export const router = {
       ])
 
       if (config.get('featureFlags').exoticsJourney) {
-        await server.register([exoticsTaskList])
+        await server.register([exoticsTaskList, exoticsSubmitSummary])
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin
