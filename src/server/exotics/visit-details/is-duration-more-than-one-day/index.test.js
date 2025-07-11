@@ -11,7 +11,7 @@ const page = isDurationMoreThanOneDayPage
 const question = 'Will the visit take more than 1 day? '
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'yes'
 }
 
 describe('Answer', () => {
