@@ -13,7 +13,7 @@ export class ExoticsSubmitSummaryPage extends SubmitSummaryPage {
   StateManager = ExoticsStateManager
   ApplicationModel = ExoticsApplicationModel
 
-  urlPath = `/exotics/submit`
+  urlPath = `/exotics/submit/check-answers`
 
   key = 'exotics-submit-summary'
 }

@@ -77,7 +77,7 @@ export class SubmitPageController extends QuestionPageController {
   }
 
   async _handleToCaseManagementApi(req, h) {
-    const state = new this.StateManager(req)
+    const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
     const application = this.page.ApplicationModel.fromState(applicationState)
@@ -112,7 +112,7 @@ export class SubmitPageController extends QuestionPageController {
     const payload = /** @type {ConfirmationPayload & NextPage} */ (req.payload)
     const confirmation = new ConfirmationAnswer(payload)
     const { isValid: isValidPage } = confirmation.validate()
-    const state = new this.StateManager(req)
+    const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
     const application = this.page.ApplicationModel.fromState(applicationState)
