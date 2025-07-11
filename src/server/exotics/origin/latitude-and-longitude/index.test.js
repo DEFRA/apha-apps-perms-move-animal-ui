@@ -1,41 +1,14 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, latitudeAndLongitudePage } from './index.js'
-import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
+import { latitudeAndLongitudePage } from './index.js'
 import { IsDesignatedPremisesPage } from '../is-designated-premises/index.js'
+import { LatitudeAndLongitudeAnswer } from '../../common/model/answer/latitude-and-longitude/latitude-and-longitude.js'
 
 const sectionKey = 'origin'
 const questionKey = 'latitudeAndLongitude'
 const pageUrl = '/exotics/movement-origin/location-details'
 const page = latitudeAndLongitudePage
 const question =
-  'What are the latitude and longitude measurements for the origin premises? '
-
-const payload = {
-  [questionKey]: 'some text'
-}
-
-describe('Answer', () => {
-  it('should be a Text input', () => {
-    expect(new Answer(payload)).toBeInstanceOf(TextAnswer)
-  })
-
-  it('should have the right payload key', () => {
-    expect(Answer.config.payloadKey).toBe(questionKey)
-  })
-
-  it('should define the right empty input message', () => {
-    expect(Answer.config.validation.empty?.message).toBe(
-      'Enter the latitude and longitude measurements'
-    )
-  })
-
-  it('should define the right max lengnth input message', () => {
-    expect(Answer.config.validation.maxLength).toStrictEqual({
-      value: 100,
-      message: 'Your answer must be no longer than 100 characters'
-    })
-  })
-})
+  'What are the latitude and longitude measurements for the origin premises?'
 
 describe('LatitudeAndLongitudePage', () => {
   it('should have the correct urlPath', () => {
@@ -55,7 +28,13 @@ describe('LatitudeAndLongitudePage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(Answer)
+    expect(page.Answer).toBe(LatitudeAndLongitudeAnswer)
+  })
+
+  it('should have the correct view', () => {
+    expect(page.view).toBe(
+      'exotics/common/templates/latitude-and-longitude/index.njk'
+    )
   })
 
   describe('nextPage', () => {

@@ -1,4 +1,5 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
@@ -12,6 +13,10 @@ import {
   locationOfVisitPage
 } from './type-of-location/index.js'
 import { address } from './address/index.js'
+import { latitudeAndLongitude } from './latitude-and-longitude/index.js'
+import { isDesignatedPremises } from './is-designated-premises/index.js'
+import { animalsOnPremises } from './animals-on-premises/index.js'
+import { AboutSection } from '../about/section.js'
 
 const plugin = {
   plugin: {
@@ -25,10 +30,21 @@ const plugin = {
         cphNeeded,
         inRpaRegisteredField,
         fieldParcelNumber,
-        address
+        address,
+        latitudeAndLongitude,
+        isDesignatedPremises,
+        animalsOnPremises
       ])
     }
   }
+}
+
+/** @param {RawApplicationState} app */
+const sectionAvailable = (app) => {
+  return (
+    app.about?.movementType === 'visit' &&
+    AboutSection.fromState(app).validate().isValid
+  )
 }
 
 export class LocationOfVisitSection extends ExoticsSectionModel {
@@ -38,8 +54,8 @@ export class LocationOfVisitSection extends ExoticsSectionModel {
     title: 'Location of visit',
     plugin,
     summaryLink: '/exotics/location-of-visit/check-answers',
-    isEnabled: () => true,
-    isVisible: () => true
+    isEnabled: sectionAvailable,
+    isVisible: sectionAvailable
   }
 
   static firstPageFactory = () => locationOfVisitPage

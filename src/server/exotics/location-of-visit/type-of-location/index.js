@@ -49,6 +49,7 @@ export class LocationOfVisitPage extends QuestionPage {
     }
 
     if (
+      state.about?.whatIsMoving === 'live-animals' &&
       ['pigs', 'sheep-and-goats', 'cattle'].includes(state?.about?.typeOfAnimal)
     ) {
       return hasACphNumberPage

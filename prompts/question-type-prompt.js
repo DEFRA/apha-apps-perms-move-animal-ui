@@ -9,6 +9,8 @@ export const questionTypePrompt = {
     'text',
     'text-area',
     'date',
-    'full-name'
+    'full-name',
+    'address',
+    'email-address'
   ]
 }

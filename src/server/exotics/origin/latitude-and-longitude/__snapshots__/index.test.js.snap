@@ -24,7 +24,7 @@ exports[`LatitudeAndLongitudePage content should render expected response and co
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="latitudeAndLongitude">
-    What are the latitude and longitude measurements for the origin premises? 
+    What are the latitude and longitude measurements for the origin premises?
   </label>
   <input class="govuk-input govuk-input--width-20" id="latitudeAndLongitude" name="latitudeAndLongitude" type="text" spellcheck="false">
 </div>

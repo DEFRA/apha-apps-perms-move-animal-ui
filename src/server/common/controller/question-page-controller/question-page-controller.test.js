@@ -148,7 +148,7 @@ describe('QuestionPageController', () => {
 
   it('should take the plugin name from the section and class name of the page', () => {
     expect(/** @type {any} */ (controller.plugin()).plugin.name).toBe(
-      `${sectionKey}-TestPage`
+      `${controller.StateManager.key}-${sectionKey}-TestPage`
     )
   })
 

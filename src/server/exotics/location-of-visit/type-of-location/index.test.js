@@ -78,21 +78,26 @@ describe('LocationOfVisitPage', () => {
 
     describe('domestic-residence', () => {
       const answer = new Answer({ [questionKey]: 'domestic-residence' })
+      const liveAnimals = {
+        whatIsMoving: 'live-animals'
+      }
 
       it('should return cphNumberPage for pigs, sheep-and-goats, or cattle', () => {
-        const state = { about: { typeOfAnimal: 'pigs' } }
+        const state = { about: { ...liveAnimals, typeOfAnimal: 'pigs' } }
         const nextPage = page.nextPage(answer, state)
         expect(nextPage).toBe(hasACphNumberPage)
       })
 
       it('should return hasACphNumberPage for pigs, sheep-and-goats, or cattle', () => {
-        const state = { about: { typeOfAnimal: 'sheep-and-goats' } }
+        const state = {
+          about: { ...liveAnimals, typeOfAnimal: 'sheep-and-goats' }
+        }
         const nextPage = page.nextPage(answer, state)
         expect(nextPage).toBe(hasACphNumberPage)
       })
 
       it('should return addressPage for other animals', () => {
-        const state = { about: { typeOfAnimal: 'dogs' } }
+        const state = { about: { ...liveAnimals, typeOfAnimal: 'dogs' } }
         const nextPage = page.nextPage(answer, state)
         expect(nextPage).toBe(addressPage)
       })

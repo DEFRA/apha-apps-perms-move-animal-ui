@@ -30,6 +30,12 @@ describe('FieldParcelNumberPage', () => {
     expect(page.Answer).toBe(FieldParcelNumberAnswer)
   })
 
+  it('should have the correct view', () => {
+    expect(page.view).toBe(
+      'exotics/common/templates/field-parcel-number/index.njk'
+    )
+  })
+
   describe('nextPage', () => {
     it('should return IsDesignatedPremisesPage for any value', () => {
       const nextPage = page.nextPage()

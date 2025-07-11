@@ -28,7 +28,7 @@ describe('Answer', () => {
 
   it('should have validation for empty input', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'Enter the location of where the animals are kept'
+      'Enter the type of premises where the animals are kept'
     )
   })
 
