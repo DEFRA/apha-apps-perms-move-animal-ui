@@ -47,7 +47,7 @@ describe('AddressPage', () => {
           typeOfLocation: 'domestic-residence'
         }
       })
-      expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
+      expect(nextPage).toBeInstanceOf(AnimalsOnPremisesPage)
     })
 
     it('should return AnimalsOnsitePage for any other value', () => {
@@ -57,7 +57,7 @@ describe('AddressPage', () => {
           typeOfLocation: 'other'
         }
       })
-      expect(nextPage).toBeInstanceOf(AnimalsOnPremisesPage)
+      expect(nextPage).toBeInstanceOf(InRpaRegisteredFieldPage)
     })
   })
 
