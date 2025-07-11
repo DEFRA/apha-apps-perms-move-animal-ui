@@ -4,14 +4,14 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { MultipleDatesPage } from '../multiple-dates/index.js'
 import { DatePage } from '../date/index.js'
 
-const sectionKey = 'visitDetails'
+const sectionKey = 'movementDetails'
 const questionKey = 'isDurationMoreThanOneDay'
-const pageUrl = '/exotics/visit-details/duration-more-than-one-day'
+const pageUrl = '/exotics/movement-details/duration-more-than-one-day'
 const page = isDurationMoreThanOneDayPage
-const question = 'Will the visit take more than 1 day? '
+const question = 'Will the movement take more than 1 day?'
 
 const payload = {
-  [questionKey]: 'yes'
+  [questionKey]: 'some text'
 }
 
 describe('Answer', () => {
@@ -23,9 +23,9 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should have the right validation key', () => {
+  it('should define the right empty validation message', () => {
     expect(Answer.config.validation.empty).toBe(
-      'Select if the visit will take more than 1 day'
+      'Select if the movement will take more than 1 day'
     )
   })
 })
