@@ -4,13 +4,14 @@
 import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { maximumNumberOfJourneys } from './maximum-number-of-journeys/index.js'
 import { reason, reasonPage } from './reason/index.js'
 
 const plugin = {
   plugin: {
     name: 'exotics-movementDetails',
     async register(server) {
-      await server.register([checkAnswers, reason])
+      await server.register([checkAnswers, reason, maximumNumberOfJourneys])
     }
   }
 }
