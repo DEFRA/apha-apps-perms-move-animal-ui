@@ -7,6 +7,7 @@ import { checkAnswers } from './check-answers/index.js'
 import { date } from './date/index.js'
 import { isDurationMoreThanOneDay } from './is-duration-more-than-one-day/index.js'
 import { maximumNumberOfJourneys } from './maximum-number-of-journeys/index.js'
+import { multipleDates } from './multiple-dates/index.js'
 import { reason, reasonPage } from './reason/index.js'
 
 const plugin = {
@@ -18,7 +19,8 @@ const plugin = {
         reason,
         maximumNumberOfJourneys,
         date,
-        isDurationMoreThanOneDay
+        isDurationMoreThanOneDay,
+        multipleDates
       ])
     }
   }
