@@ -2,15 +2,15 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SessionTestHelper from '../common/test-helpers/session-helper.js'
+import SessionTestHelper from '../../test-helpers/session-helper.js'
 import {
   sendEmailToApplicant,
   sendEmailToCaseWorker
-} from '../common/connectors/notify/notify.js'
-import { validApplicationState } from '../common/test-helpers/journey-state.js'
-import { spyOnConfig, spyOnConfigMany } from '../common/test-helpers/config.js'
-import { handleUploadedFile } from '../common/helpers/file/file-utils.js'
-import { sizeErrorPage } from '../tb/biosecurity-map/size-error/index.js'
+} from '../../connectors/notify/notify.js'
+import { validApplicationState } from '../../test-helpers/journey-state.js'
+import { spyOnConfig, spyOnConfigMany } from '../../test-helpers/config.js'
+import { handleUploadedFile } from '../../helpers/file/file-utils.js'
+import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
 
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
@@ -54,7 +54,7 @@ const {
   'biosecurity-map': biosecurityMap
 } = validApplicationState
 const pageTitle = 'Check your answers before sending your application'
-const confirmationUri = '/submit/confirmation'
+const confirmationUri = '/tb/submit/confirmation'
 const checkAnswersUri = '/tb/submit/check-answers'
 const taskListIncompleteUri = '/task-list-incomplete'
 
@@ -208,7 +208,7 @@ describe('#CheckAnswers', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(confirmationUri)
 
-      const refNum = await session.getRawState('applicationReference')
+      const refNum = await session.getRawState('tb-applicationReference')
       expect(refNum).toBe(dummyReferenceNumber)
       expect(wreckSpy).toHaveBeenCalledTimes(1)
       expect(wreckSpy.mock.calls[0][0]).toBe(
@@ -280,7 +280,7 @@ describe('#CheckAnswers', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(confirmationUri)
 
-      const refNum = await session.getRawState('applicationReference')
+      const refNum = await session.getRawState('tb-applicationReference')
       expect(refNum).toBe(dummyReferenceNumber)
       expect(wreckSpy).toHaveBeenCalledTimes(1)
       expect(wreckSpy.mock.calls[0][0]).toBe(

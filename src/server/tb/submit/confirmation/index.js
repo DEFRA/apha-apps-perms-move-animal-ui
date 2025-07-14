@@ -1,6 +1,7 @@
-import { config } from '~/src/config/config.js'
-import { PageController } from '../../../common/controller/page-controller/page-controller.js'
-import { Page } from '../../../common/model/page/page-model.js'
+import {
+  ConfirmationController,
+  ConfirmationPage
+} from '~/src/server/common/controller/submit-controller/confirmation/index.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -8,47 +9,23 @@ import { Page } from '../../../common/model/page/page-model.js'
 
 const title = 'Your animal disease movement licence application'
 
-export class ConfirmationPage extends Page {
-  sectionKey = 'confirmation'
-  urlKey = 'submit-confirmation'
-  urlPath = '/submit/confirmation'
-  view = 'tb/submit/confirmation/index'
-
-  // sends metric that the page was served
-  reportMetrics = {
-    get: {
-      request: false,
-      response: true
-    }
-  }
-
+export class TbConfirmationPage extends ConfirmationPage {
+  namespace = 'tb'
+  urlKey = 'tb-submit-confirmation'
+  urlPath = '/tb/submit/confirmation'
   pageTitle = title
   pageHeading = title
-
-  viewProps(req) {
-    return {
-      referenceHTML: `Your reference number<br /><b>${req.yar.get('applicationReference')}</b>`
-    }
-  }
 }
 
-class ConfirmationController extends PageController {
-  handleGet(req, h) {
-    const resp = super.handleGet(req, h)
+export const tbConfirmationPage = new TbConfirmationPage()
 
-    if (config.get('clearSessionDebug') === true) {
-      req.yar.reset()
-    }
-
-    return resp
-  }
-}
+class TbConfirmationController extends ConfirmationController {}
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const submitConfirmation = new ConfirmationController(
-  new ConfirmationPage(),
+export const tbSubmitConfirmation = new TbConfirmationController(
+  new TbConfirmationPage(),
   {
     methods: ['GET']
   }

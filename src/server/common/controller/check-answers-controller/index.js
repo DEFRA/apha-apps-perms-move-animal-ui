@@ -1,14 +1,14 @@
-import { sectionToSummary } from '../common/templates/macros/create-summary.js'
-import { QuestionPage } from '../common/model/page/question-page-model.js'
-import { ConfirmationAnswer } from '../common/model/answer/confirmation/confirmation.js'
-import { Page } from '../common/model/page/page-model.js'
-import { submitApplication } from '../common/connectors/case-management/case-management.js'
-import { statusCodes } from '../common/constants/status-codes.js'
-import { QuestionPageController } from '../common/controller/question-page-controller/question-page-controller.js'
+import { sectionToSummary } from '../../templates/macros/create-summary.js'
+import { QuestionPage } from '../../model/page/question-page-model.js'
+import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
+import { Page } from '../../model/page/page-model.js'
+import { submitApplication } from '../../connectors/case-management/case-management.js'
+import { statusCodes } from '../../constants/status-codes.js'
+import { QuestionPageController } from '../question-page-controller/question-page-controller.js'
 
 /**
- * @import {NextPage} from '../common/helpers/next-page.js'
- * @import {ConfirmationPayload} from '../common/model/answer/confirmation/confirmation.js'
+ * @import {NextPage} from '../../helpers/next-page.js'
+ * @import {ConfirmationPayload} from '../../model/answer/confirmation/confirmation.js'
  */
 
 const checkAnswersUrlPath = '/tb/submit/check-answers'
@@ -34,7 +34,7 @@ export class SubmitSummaryPage extends QuestionPage {
   sectionKey = 'submit'
   questionKey = 'check-answers'
 
-  view = `check-answers/index`
+  view = `common/controller/check-answers-controller/index`
 
   Answer = ConfirmationAnswer
 
@@ -64,6 +64,9 @@ export class SubmitSummaryPage extends QuestionPage {
 export const submitSummaryPage = new SubmitSummaryPage()
 
 export class SubmitPageController extends QuestionPageController {
+  namespace = ''
+  fileTooLargePath = ''
+
   handleGet(req, h) {
     const { isValid } = this.page.ApplicationModel.fromState(
       new this.StateManager(req).toState()
@@ -94,12 +97,11 @@ export class SubmitPageController extends QuestionPageController {
         )
       }
 
-      req.yar.set('applicationReference', message)
+      req.yar.set(`${this.namespace}-applicationReference`, message)
       return super.handlePost(req, h)
     } catch (err) {
       if (err.output.statusCode === statusCodes.fileTooLarge) {
-        // TEMPLATE-TODO: send this somewhere sensible
-        return h.redirect('/biosecurity-map/size-error')
+        return h.redirect(this.fileTooLargePath)
       } else {
         throw new Error(
           `Failed to send application to case management API: ${err.message}`
