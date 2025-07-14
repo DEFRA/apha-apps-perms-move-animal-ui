@@ -73,7 +73,7 @@ export class SubmitPageController extends QuestionPageController {
     ).validate()
 
     if (!isValid) {
-      return h.redirect('/task-list-incomplete')
+      return h.redirect(`/${this.namespace}/task-list-incomplete`)
     }
 
     return super.handleGet(req, h)
@@ -126,7 +126,7 @@ export class SubmitPageController extends QuestionPageController {
     }
 
     if (!isValidApplication) {
-      return h.redirect('/task-list-incomplete')
+      return h.redirect(`/${this.namespace}/task-list-incomplete`)
     }
 
     return super.handlePost(req, h)
