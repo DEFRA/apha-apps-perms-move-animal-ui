@@ -346,6 +346,12 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'EXOTICS_JOURNEY_ENABLED'
+    },
+    prototypeMode: {
+      doc: 'Feature flag to turn the service into prototype mode for user research purposes',
+      format: Boolean,
+      default: false,
+      env: 'PROTOTYPE_MODE_ENABLED'
     }
   },
   caseManagementApi: {
