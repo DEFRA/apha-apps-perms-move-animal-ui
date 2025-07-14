@@ -1,11 +1,4 @@
 import SessionTestHelper from '../../common/test-helpers/session-helper.js'
-// import { createServer } from '~/src/server/index.js'
-// import { validApplicationState } from '../../test-helpers/journey-state.js'
-// import { ConfirmationPage } from './index.js'
-// import { spyOnConfig } from '../../test-helpers/config.js'
-// import { withCsrfProtection } from '../../test-helpers/csrf.js'
-// import { statusCodes } from '../../constants/status-codes.js'
-
 import { ConfirmationPage } from '../../common/controller/submit-controller/index.js'
 import { createServer } from '../../index.js'
 import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
