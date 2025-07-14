@@ -3,11 +3,10 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { taskList } from './tb/task-list/index.js'
-import { taskListIncomplete } from './tb/task-list-incomplete/index.js'
+import { tbTaskList } from './tb/task-list/index.js'
+import { tbTaskListIncomplete } from './tb/task-list-incomplete/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
-import { submit } from './tb/submit/index.js'
-import { submitSummary } from './tb/check-answers/index.js'
+import { tbSubmit } from './tb/submit/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { TbApplicationModel } from './tb/application.js'
@@ -16,6 +15,10 @@ import { authPlugin } from './auth/index.js'
 import { config } from '../config/config.js'
 import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
+import { exoticsSubmitSummary } from './exotics/check-answers/index.js'
+import { tbSubmitSummary } from './tb/check-answers/index.js'
+import { exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
+import { exoticsSubmit } from './exotics/submit/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -43,11 +46,14 @@ export const router = {
           home,
           privacyPolicy,
           cookiesPolicy,
-          accessibilityStatement,
-          taskList,
-          taskListIncomplete,
-          submit,
-          submitSummary
+          accessibilityStatement
+        ]),
+
+        server.register([
+          tbTaskList,
+          tbTaskListIncomplete,
+          tbSubmit,
+          tbSubmitSummary
         ]),
 
         // Add routes for the visible sections in the application
@@ -62,7 +68,12 @@ export const router = {
       ])
 
       if (config.get('featureFlags').exoticsJourney) {
-        await server.register([exoticsTaskList])
+        await server.register([
+          exoticsTaskList,
+          exoticsSubmitSummary,
+          exoticsTaskListIncomplete,
+          exoticsSubmit
+        ])
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin

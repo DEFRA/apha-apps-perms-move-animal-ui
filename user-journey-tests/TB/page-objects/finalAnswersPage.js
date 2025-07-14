@@ -5,7 +5,7 @@ const pageHeadingAndTitle = 'Check your answers before sending your application'
 const pageId = 'confirmation'
 
 class FinalAnswersPage extends AnswersBasePage {
-  pagePath = '/submit/check-answers'
+  pagePath = '/tb/submit/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
   errorMessage = 'You need to tick a declaration box'

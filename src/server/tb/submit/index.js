@@ -1,13 +1,13 @@
-import { submitConfirmation } from './confirmation/index.js'
+import { tbSubmitConfirmation } from './confirmation/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const submit = {
+export const tbSubmit = {
   plugin: {
-    name: 'submit',
+    name: 'tb-submit',
     async register(server) {
-      await server.register([submitConfirmation])
+      await server.register([tbSubmitConfirmation])
     }
   }
 }

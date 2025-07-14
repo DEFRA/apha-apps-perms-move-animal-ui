@@ -5,7 +5,7 @@ const sectionKey = 'biosecurity-map'
 const key = 'size-error'
 const pageTitle = 'There was a problem uploading your biosecurity map'
 const view = 'tb/biosecurity-map/size-error/index'
-const pageUrl = '/biosecurity-map/size-error'
+const pageUrl = '/tb/biosecurity-map/size-error'
 
 describe('#SizeErrorPage', () => {
   let page

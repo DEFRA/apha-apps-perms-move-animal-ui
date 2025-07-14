@@ -9,21 +9,21 @@ import {
 
 const title = 'Your animal disease movement licence application'
 
-export class TbConfirmationPage extends ConfirmationPage {
-  namespace = 'tb'
-  key = 'tb-submit-confirmation'
-  urlPath = '/tb/submit/confirmation'
+export class ExoticsConfirmationPage extends ConfirmationPage {
+  namespace = 'exotics'
+  key = 'exotics-submit-confirmation'
+  urlPath = '/exotics/submit/confirmation'
   pageTitle = title
   pageHeading = title
 }
 
-export const tbConfirmationPage = new TbConfirmationPage()
+export const exoticsConfirmationPage = new ExoticsConfirmationPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const tbSubmitConfirmation = new ConfirmationController(
-  tbConfirmationPage,
+export const exoticsSubmitConfirmation = new ConfirmationController(
+  exoticsConfirmationPage,
   {
     methods: ['GET']
   }
