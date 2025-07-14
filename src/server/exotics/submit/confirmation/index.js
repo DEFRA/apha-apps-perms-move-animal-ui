@@ -1,7 +1,7 @@
 import {
   ConfirmationController,
   ConfirmationPage
-} from '~/src/server/common/controller/submit-controller/confirmation/index.js'
+} from '~/src/server/common/controller/submit-controller/index.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -10,7 +10,7 @@ import {
 const title = 'Your animal disease movement licence application'
 
 export class ExoticsConfirmationPage extends ConfirmationPage {
-  namespace = 'texotics'
+  namespace = 'exotics'
   urlKey = 'exotics-submit-confirmation'
   urlPath = '/exotics/submit/confirmation'
   pageTitle = title

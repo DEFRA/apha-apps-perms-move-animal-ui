@@ -1,15 +1,15 @@
-import SessionTestHelper from '../../../test-helpers/session-helper.js'
+import SessionTestHelper from '../../test-helpers/session-helper.js'
 import { createServer } from '~/src/server/index.js'
-import { validApplicationState } from '../../../test-helpers/journey-state.js'
+import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { ConfirmationPage } from './index.js'
-import { spyOnConfig } from '../../../test-helpers/config.js'
-import { withCsrfProtection } from '../../../test-helpers/csrf.js'
-import { statusCodes } from '../../../constants/status-codes.js'
+import { spyOnConfig } from '../../test-helpers/config.js'
+import { withCsrfProtection } from '../../test-helpers/csrf.js'
+import { statusCodes } from '../../constants/status-codes.js'
 
 const sectionKey = 'confirmation'
 const heading = 'Your animal disease movement licence application'
 const urlKey = 'submit-confirmation'
-const view = 'common/controller/submit-controller/confirmation/index'
+const view = 'common/controller/submit-controller/index'
 const pageUrl = '/tb/submit/confirmation'
 
 const { origin, destination, licence } = validApplicationState

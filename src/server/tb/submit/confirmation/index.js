@@ -1,7 +1,7 @@
 import {
   ConfirmationController,
   ConfirmationPage
-} from '~/src/server/common/controller/submit-controller/confirmation/index.js'
+} from '~/src/server/common/controller/submit-controller/index.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
@@ -25,7 +25,7 @@ class TbConfirmationController extends ConfirmationController {}
  * @satisfies {ServerRegisterPluginObject<void>}
  */
 export const tbSubmitConfirmation = new TbConfirmationController(
-  new TbConfirmationPage(),
+  tbConfirmationPage,
   {
     methods: ['GET']
   }
