@@ -3,13 +3,9 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../test-helpers/session-helper.js'
-import {
-  sendEmailToApplicant,
-  sendEmailToCaseWorker
-} from '../../connectors/notify/notify.js'
+import { sendEmailToCaseWorker } from '../../connectors/notify/notify.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
-import { spyOnConfig, spyOnConfigMany } from '../../test-helpers/config.js'
-import { handleUploadedFile } from '../../helpers/file/file-utils.js'
+import { spyOnConfig } from '../../test-helpers/config.js'
 import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
 
 import Wreck from '@hapi/wreck'
@@ -21,7 +17,6 @@ import { config } from '~/src/config/config.js'
  */
 
 const testFile = 'test_file'
-const testFileBase64 = 'dGVzdF9maWxl'
 
 // Mock the handleUploadedFile function
 jest.mock('~/src/server/common/helpers/file/file-utils.js', () => ({
@@ -30,16 +25,11 @@ jest.mock('~/src/server/common/helpers/file/file-utils.js', () => ({
     extension: 'pdf'
   })
 }))
-const mockHandleUploadedFile = /** @type {jest.Mock} */ (handleUploadedFile)
 
 jest.mock('~/src/server/common/connectors/notify/notify.js', () => ({
   sendEmailToApplicant: jest.fn(),
   sendEmailToCaseWorker: jest.fn()
 }))
-const mockSendEmailToApplicant = /** @type {jest.Mock} */ (sendEmailToApplicant)
-const mockSendEmailToCaseWorker = /** @type {jest.Mock} */ (
-  sendEmailToCaseWorker
-)
 
 jest.mock('~/src/server/common/helpers/application-reference/index.js', () => ({
   getApplicationReference: jest.fn().mockReturnValue('TB-XXXX-XXXX')
@@ -56,7 +46,6 @@ const {
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/tb/submit/confirmation'
 const checkAnswersUri = '/tb/submit/check-answers'
-const taskListIncompleteUri = '/task-list-incomplete'
 
 describe('#CheckAnswers', () => {
   /** @type {Server} */

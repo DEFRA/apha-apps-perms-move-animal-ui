@@ -6,7 +6,7 @@ import { tbSubmitSummaryPage } from '../../check-answers/index.js'
 
 /** @import { Server } from '@hapi/hapi' */
 
-const pageUrl = '/biosecurity-map/size-error'
+const pageUrl = '/tb/biosecurity-map/size-error'
 
 const defaultState = {
   'upload-plan': {

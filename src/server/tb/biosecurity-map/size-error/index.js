@@ -6,7 +6,7 @@ import { SizeErrorPageController } from './size-error-page-controller.js'
  */
 
 export class SizeErrorPage extends ExitPage {
-  urlPath = '/biosecurity-map/size-error'
+  urlPath = '/tb/biosecurity-map/size-error'
 
   pageTitle = 'There was a problem uploading your biosecurity map'
   view = `tb/biosecurity-map/size-error/index`
