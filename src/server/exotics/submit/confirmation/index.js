@@ -19,12 +19,10 @@ export class ExoticsConfirmationPage extends ConfirmationPage {
 
 export const exoticsConfirmationPage = new ExoticsConfirmationPage()
 
-class ExoticsConfirmationController extends ConfirmationController {}
-
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const exoticsSubmitConfirmation = new ExoticsConfirmationController(
+export const exoticsSubmitConfirmation = new ConfirmationController(
   exoticsConfirmationPage,
   {
     methods: ['GET']

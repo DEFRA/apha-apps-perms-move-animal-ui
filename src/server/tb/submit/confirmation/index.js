@@ -19,12 +19,10 @@ export class TbConfirmationPage extends ConfirmationPage {
 
 export const tbConfirmationPage = new TbConfirmationPage()
 
-class TbConfirmationController extends ConfirmationController {}
-
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const tbSubmitConfirmation = new TbConfirmationController(
+export const tbSubmitConfirmation = new ConfirmationController(
   tbConfirmationPage,
   {
     methods: ['GET']
