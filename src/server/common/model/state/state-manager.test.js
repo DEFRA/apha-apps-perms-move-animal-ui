@@ -1,6 +1,7 @@
 import { onOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 import { StateManager } from './state-manager.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { ActionableExitPage } from '../page/actionable-exit-page-model.js'
 
 /** @import {RawApplicationState} from './state-manager.js' */
 /** @import {Request} from '@hapi/hapi' */
@@ -76,7 +77,7 @@ describe('StateManager.toState', () => {
 })
 
 describe('StateManager.set', () => {
-  it('should preserve the existing state and add set the new values', () => {
+  it('should preserve the existing state and add set the new values if it is a QuestionPage', () => {
     const request = testRequest(validState)
     const state = new TestStateManager(request)
 
@@ -89,6 +90,16 @@ describe('StateManager.set', () => {
         onOffFarm: 'off'
       }
     })
+  })
+
+  it('should not modify the state if it is NOT a QuestionPage', () => {
+    const page = new ActionableExitPage()
+    const request = testRequest(validState)
+    const state = new TestStateManager(request)
+
+    state.set(page, undefined)
+
+    expect(request.yar.set).not.toHaveBeenCalled()
   })
 })
 
