@@ -3,10 +3,10 @@ import inert from '@hapi/inert'
 import { health } from '~/src/server/health/index.js'
 import { home } from '~/src/server/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
-import { taskList } from './tb/task-list/index.js'
+import { tbTaskList } from './tb/task-list/index.js'
 import { tbTaskListIncomplete } from './tb/task-list-incomplete/index.js'
 import { privacyPolicy } from './privacy-policy/index.js'
-import { submit } from './tb/submit/index.js'
+import { tbSubmit } from './tb/submit/index.js'
 import { cookiesPolicy } from './cookies-policy/index.js'
 import { accessibilityStatement } from './accessibility/index.js'
 import { TbApplicationModel } from './tb/application.js'
@@ -18,6 +18,7 @@ import { exoticsTaskList } from './exotics/task-list/index.js'
 import { exoticsSubmitSummary } from './exotics/check-answers/index.js'
 import { tbSubmitSummary } from './tb/check-answers/index.js'
 import { exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
+import { exoticsSubmit } from './exotics/submit/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -49,9 +50,9 @@ export const router = {
         ]),
 
         server.register([
-          taskList,
+          tbTaskList,
           tbTaskListIncomplete,
-          submit,
+          tbSubmit,
           tbSubmitSummary
         ]),
 
@@ -70,7 +71,8 @@ export const router = {
         await server.register([
           exoticsTaskList,
           exoticsSubmitSummary,
-          exoticsTaskListIncomplete
+          exoticsTaskListIncomplete,
+          exoticsSubmit
         ])
         await server.register(
           ExoticsApplicationModel.implementedSections.map(

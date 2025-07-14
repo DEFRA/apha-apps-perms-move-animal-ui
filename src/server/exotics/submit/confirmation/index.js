@@ -11,7 +11,7 @@ const title = 'Your animal disease movement licence application'
 
 export class ExoticsConfirmationPage extends ConfirmationPage {
   namespace = 'exotics'
-  urlKey = 'exotics-submit-confirmation'
+  key = 'exotics-submit-confirmation'
   urlPath = '/exotics/submit/confirmation'
   pageTitle = title
   pageHeading = title

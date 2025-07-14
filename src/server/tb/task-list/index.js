@@ -17,4 +17,4 @@ export class TbTaskListController extends TaskListController {
 }
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const taskList = new TbTaskListController().plugin()
+export const tbTaskList = new TbTaskListController().plugin()

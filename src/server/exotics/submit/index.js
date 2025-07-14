@@ -3,7 +3,7 @@ import { exoticsSubmitConfirmation } from './confirmation/index.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const submit = {
+export const exoticsSubmit = {
   plugin: {
     name: 'exotics-submit',
     async register(server) {

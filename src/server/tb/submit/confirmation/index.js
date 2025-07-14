@@ -11,7 +11,7 @@ const title = 'Your animal disease movement licence application'
 
 export class TbConfirmationPage extends ConfirmationPage {
   namespace = 'tb'
-  urlKey = 'tb-submit-confirmation'
+  key = 'tb-submit-confirmation'
   urlPath = '/tb/submit/confirmation'
   pageTitle = title
   pageHeading = title
