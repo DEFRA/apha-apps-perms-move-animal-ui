@@ -4,6 +4,7 @@ import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { submitApplication } from './case-management.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
+import { spyOnConfig } from '../../test-helpers/config.js'
 
 describe('CaseManagement.submitApplication', () => {
   const application = TbApplicationModel.fromState(validApplicationState)
@@ -34,6 +35,25 @@ describe('CaseManagement.submitApplication', () => {
       payload: application.caseManagementData,
       timeout
     })
+
+    expect(response).toStrictEqual({
+      payload: expectedResponse,
+      statusCode: 200
+    })
+  })
+
+  it('should not send an application if prototype mode is enabled, and send back a stubbed response', async () => {
+    spyOnConfig('featureFlags', {
+      prototypeMode: true
+    })
+
+    const expectedResponse = {
+      message: 'EX-12AB-34CD'
+    }
+
+    const response = await submitApplication(application)
+
+    expect(Wreck.post).not.toHaveBeenCalled()
 
     expect(response).toStrictEqual({
       payload: expectedResponse,

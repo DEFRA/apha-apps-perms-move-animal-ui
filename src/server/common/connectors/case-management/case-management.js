@@ -8,6 +8,15 @@ import Wreck from '@hapi/wreck'
  * @returns {Promise<{statusCode: number | undefined, payload: any}>}
  */
 export const submitApplication = async (application) => {
+  if (config.get('featureFlags').prototypeMode) {
+    return {
+      statusCode: 200,
+      payload: {
+        message: 'EX-12AB-34CD'
+      }
+    }
+  }
+
   const { baseUrl, timeout } = config.get('caseManagementApi')
 
   const response = await Wreck.post(`${baseUrl}/submit`, {
