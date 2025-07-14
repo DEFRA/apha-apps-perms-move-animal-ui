@@ -83,23 +83,19 @@ export class QuestionPageController extends GenericPageController {
       })
     }
 
-    try {
-      return h.view(this.page.view, {
-        nextPage: req.query.redirect_uri,
-        pageTitle: this.page.title,
-        heading: this.page.heading,
-        value: answer.value,
-        answer,
-        viewModelOptions: {
-          validate: false,
-          question: this.page.question
-        },
-        ...args,
-        ...this.page.viewProps(req)
-      })
-    } catch (e) {
-      req.logger.error(e)
-    }
+    return h.view(this.page.view, {
+      nextPage: req.query.redirect_uri,
+      pageTitle: this.page.title,
+      heading: this.page.heading,
+      value: answer.value,
+      answer,
+      viewModelOptions: {
+        validate: false,
+        question: this.page.question
+      },
+      ...args,
+      ...this.page.viewProps(req)
+    })
   }
 
   handlePost(req, h) {
