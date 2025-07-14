@@ -5,7 +5,7 @@ const pageHeadingAndTitle =
   'You need to complete all of the sections before you review and submit'
 
 class TaskListIncompletePage extends Page {
-  pagePath = 'task-list-incomplete'
+  pagePath = '/tb/task-list-incomplete'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
