@@ -9,14 +9,14 @@ import { getAuthOptions } from '../../common/helpers/auth/toggles-helper.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const tbTaskListIncomplete = {
+export const exoticsTaskListIncomplete = {
   plugin: {
-    name: 'tb-task-list-incomplete',
+    name: 'exotics-task-list-incomplete',
     register(server) {
       server.route([
         {
           method: 'GET',
-          path: '/tb/task-list-incomplete',
+          path: '/exotics/task-list-incomplete',
           options: {
             ...getAuthOptions(false)
           },
