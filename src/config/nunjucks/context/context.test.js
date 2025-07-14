@@ -46,7 +46,8 @@ describe('#context', () => {
           emailConfirmation: true,
           exoticsJourney: true,
           pdfUpload: true,
-          sendToCaseManagement: true
+          sendToCaseManagement: true,
+          prototypeMode: false
         },
         uuid: 'unique-identifier',
         displayName: undefined,
@@ -152,7 +153,8 @@ describe('#context cache', () => {
           emailConfirmation: true,
           exoticsJourney: true,
           pdfUpload: true,
-          sendToCaseManagement: true
+          sendToCaseManagement: true,
+          prototypeMode: false
         },
         uuid: 'unique-identifier',
         getAssetPath: expect.any(Function),
