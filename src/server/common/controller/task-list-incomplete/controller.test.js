@@ -18,7 +18,7 @@ describe('#taskListIncompleteController', () => {
   it('Should provide expected response', async () => {
     const { payload, statusCode } = await server.inject({
       method: 'GET',
-      url: '/task-list-incomplete'
+      url: '/tb/task-list-incomplete'
     })
 
     expect(parseDocument(payload).title).toBe(

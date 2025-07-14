@@ -9,7 +9,7 @@ const buttonText = 'Go to your application'
  */
 export const taskListIncompleteGetController = {
   handler(_req, h) {
-    return h.view('tb/task-list-incomplete/index', {
+    return h.view('common/controller/task-list-incomplete/index', {
       pageTitle,
       heading,
       buttonText
