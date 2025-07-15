@@ -46,7 +46,6 @@ services:
       GATEWAY_ID: ${GATEWAY_ID}
       GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
       AUTH_REQUIRED: ${AUTH_REQUIRED}
-      PROTOTYPE_MODE_ENABLED: ${PROTOTYPE_MODE_ENABLED}
     networks:
       - cdp-tenant
 
@@ -77,6 +76,38 @@ services:
     networks:
       - cdp-tenant
 
+  backend:
+    image: defradigital/apha-apps-perms-case-mgmt-api:latest
+    ports:
+      - '3001:3001'
+    links:
+      - 'localstack:localstack'
+      - 'mongodb:mongodb'
+    depends_on:
+      localstack:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    env_file:
+      - 'compose/aws.env'
+    environment:
+      PORT: 3001
+      NODE_ENV: development
+      LOCALSTACK_ENDPOINT: http://localstack:4566
+      MONGO_URI: mongodb://mongodb:27017/
+      SHAREPOINT_TB25_TENANT_ID: ${SHAREPOINT_TB25_TENANT_ID}
+      SHAREPOINT_TB25_CLIENT_ID: ${SHAREPOINT_TB25_CLIENT_ID}
+      SHAREPOINT_TB25_CLIENT_SECRET: ${SHAREPOINT_TB25_CLIENT_SECRET}
+      SHAREPOINT_TB25_SITE_ID: ${SHAREPOINT_TB25_SITE_ID}
+      SHAREPOINT_TB25_LIST_ID: ${SHAREPOINT_TB25_LIST_ID}
+      SHAREPOINT_TB25_DRIVE_ID: ${SHAREPOINT_TB25_DRIVE_ID}
+      SHAREPOINT_TB25_FOLDER_PATH: ${SHAREPOINT_TB25_FOLDER_PATH}
+    networks:
+      - cdp-tenant
+    volumes:
+      - ./src:/home/node/src
+      - ./package.json:/home/node/package.json
+
   proxy:
     image: nginxproxy/nginx-proxy:1.4
     ports:
@@ -89,6 +120,16 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - cdp-tenant
+
+  mongodb:
+    image: mongo:6.0.13
+    networks:
+      - cdp-tenant
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb-data:/data
+    restart: always
 
   localstack:
     image: localstack/localstack:3.0.2
@@ -116,3 +157,6 @@ services:
 networks:
   cdp-tenant:
     driver: bridge
+
+volumes:
+  mongodb-data:
