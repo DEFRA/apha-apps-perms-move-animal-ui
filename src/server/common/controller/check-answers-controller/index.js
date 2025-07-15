@@ -85,32 +85,29 @@ export class SubmitPageController extends QuestionPageController {
 
     const application = this.page.ApplicationModel.fromState(applicationState)
 
-    req.yar.set(`${this.namespace}-applicationReference`, 'DUMMY-REFERENCE')
-    return super.handlePost(req, h)
+    try {
+      const {
+        payload: { message },
+        statusCode
+      } = await submitApplication(application)
 
-    // try {
-    //   const {
-    //     payload: { message },
-    //     statusCode
-    //   } = await submitApplication(application)
+      if (statusCode !== statusCodes.ok) {
+        throw new Error(
+          `Unhandled status code from case management API: ${statusCode}`
+        )
+      }
 
-    //   if (statusCode !== statusCodes.ok) {
-    //     throw new Error(
-    //       `Unhandled status code from case management API: ${statusCode}`
-    //     )
-    //   }
-
-    //   req.yar.set(`${this.namespace}-applicationReference`, message)
-    //   return super.handlePost(req, h)
-    // } catch (err) {
-    //   if (err.output.statusCode === statusCodes.fileTooLarge) {
-    //     return h.redirect(this.fileTooLargePath)
-    //   } else {
-    //     throw new Error(
-    //       `Failed to send application to case management API: ${err.message}`
-    //     )
-    //   }
-    // }
+      req.yar.set(`${this.namespace}-applicationReference`, message)
+      return super.handlePost(req, h)
+    } catch (err) {
+      if (err.output.statusCode === statusCodes.fileTooLarge) {
+        return h.redirect(this.fileTooLargePath)
+      } else {
+        throw new Error(
+          `Failed to send application to case management API: ${err.message}`
+        )
+      }
+    }
   }
 
   async handlePost(req, h) {

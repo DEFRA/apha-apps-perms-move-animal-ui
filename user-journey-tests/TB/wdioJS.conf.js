@@ -2,7 +2,7 @@ import merge from 'deepmerge'
 import { config as wdioConf } from '../wdio.conf.js'
 
 export const config = merge(wdioConf, {
-  specs: ['./specs/**/newAddress.spec.js'],
+  specs: ['./specs/**/*.spec.js'],
   exclude: [
     './specs/noJavascript/**/*.js',
     './specs/identification/identifiersAnswers.spec.js',
