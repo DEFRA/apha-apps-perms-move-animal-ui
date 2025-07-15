@@ -100,7 +100,6 @@ jobs:
           NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
-          SEND_TO_CASE_MANAGEMENT_ENABLED: false
         run: docker compose up --wait-timeout 300 -d --quiet-pull
 
       - name: Run ${{ matrix.test-suite }}

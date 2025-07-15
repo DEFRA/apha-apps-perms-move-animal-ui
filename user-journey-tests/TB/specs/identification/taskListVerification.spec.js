@@ -1,19 +1,21 @@
 import {
   loginAndSaveSession,
   restoreSession
-} from '../../helpers/authSessionManager'
+} from '../../helpers/authSessionManager.js'
 import { enableIdentification } from '../../helpers/testHelpers/flow-helpers/enableIdentification.js'
-import taskListPage from '../../page-objects/taskListPage'
+import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('Identification - task list appearance', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
-    await taskListPage.navigateToPageAndVerifyTitle()
   })
 
-  beforeEach(restoreSession)
+  beforeEach(async () => {
+    await restoreSession()
+    await taskListPage.navigateToPageAndVerifyTitle()
+  })
 
   it('Should verify identification appears when tb restricted options selected', async () => {
     await enableIdentification({

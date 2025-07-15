@@ -46,7 +46,6 @@ describe('#context', () => {
           emailConfirmation: true,
           exoticsJourney: true,
           pdfUpload: true,
-          sendToCaseManagement: true,
           prototypeMode: false
         },
         uuid: 'unique-identifier',
@@ -153,7 +152,6 @@ describe('#context cache', () => {
           emailConfirmation: true,
           exoticsJourney: true,
           pdfUpload: true,
-          sendToCaseManagement: true,
           prototypeMode: false
         },
         uuid: 'unique-identifier',
