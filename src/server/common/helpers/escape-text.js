@@ -6,17 +6,3 @@ export const escapeHtml = (unsafe) => {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 }
-
-export const escapeMarkdown = (unsafe) => {
-  return unsafe
-    ?.replaceAll('\\', '\\\\')
-    .replaceAll('`', '\\`')
-    .replaceAll('*', '\\*')
-    .replaceAll('_', '\\_')
-    .replaceAll('{', '\\{')
-    .replaceAll('}', '\\}')
-    .replaceAll('[', '\\[')
-    .replaceAll(']', '\\]')
-    .replaceAll('(', '\\(')
-    .replaceAll(')', '\\)')
-}
