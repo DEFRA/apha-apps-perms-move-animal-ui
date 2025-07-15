@@ -84,21 +84,4 @@ describe('AnswerModel', () => {
       }
     ])
   })
-
-  it('should return escaped markdown of the html content', () => {
-    const unsafeContent = '[evil-link](example.com)'
-    const escapedContent = '\\[evil-link\\]\\(example.com\\)'
-
-    class AnswerModelWithHtml extends AnswerModel {
-      get html() {
-        return unsafeContent
-      }
-    }
-
-    expect(new AnswerModelWithHtml().emailHtml).toBe(escapedContent)
-  })
-
-  it('should throw NotImplementedError if html getter is not implemented', () => {
-    expect(() => answer.emailHtml).toThrow(NotImplementedError)
-  })
 })

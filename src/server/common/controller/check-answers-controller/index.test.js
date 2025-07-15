@@ -16,23 +16,9 @@ import { config } from '~/src/config/config.js'
  * @import { IncomingMessage } from 'http'
  */
 
-const testFile = 'test_file'
-
-// Mock the handleUploadedFile function
-jest.mock('~/src/server/common/helpers/file/file-utils.js', () => ({
-  handleUploadedFile: jest.fn().mockResolvedValue({
-    file: Buffer.from(testFile),
-    extension: 'pdf'
-  })
-}))
-
 jest.mock('~/src/server/common/connectors/notify/notify.js', () => ({
   sendEmailToApplicant: jest.fn(),
   sendEmailToCaseWorker: jest.fn()
-}))
-
-jest.mock('~/src/server/common/helpers/application-reference/index.js', () => ({
-  getApplicationReference: jest.fn().mockReturnValue('TB-XXXX-XXXX')
 }))
 
 const {

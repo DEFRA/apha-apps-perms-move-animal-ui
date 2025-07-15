@@ -38,18 +38,4 @@ describe('DestinationTypeOther', () => {
       'Enter the premises type'
     )
   })
-
-  it('should return the HTML when destinationTypeOther is not empty', () => {
-    const answer = new DestinationTypeOtherAnswer({
-      destinationTypeOther: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when destinationTypeOther is not empty', () => {
-    const answer = new DestinationTypeOtherAnswer({
-      destinationTypeOther: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })

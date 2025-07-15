@@ -40,25 +40,4 @@ describe('AdditionalInfo', () => {
       'Enter the reason for restocking'
     )
   })
-
-  it('should return "None" when additionalInfo is an empty string', () => {
-    const answer = new RestockAdditionalInfoAnswer({
-      restockAdditionalInfo: ''
-    })
-    expect(answer.emailHtml).toBe('None')
-  })
-
-  it('should return the HTML when additionalInfo is not empty', () => {
-    const answer = new RestockAdditionalInfoAnswer({
-      restockAdditionalInfo: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when additionalInfo is not empty', () => {
-    const answer = new RestockAdditionalInfoAnswer({
-      restockAdditionalInfo: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })

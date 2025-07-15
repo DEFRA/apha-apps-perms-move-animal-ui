@@ -40,25 +40,4 @@ describe('OtherStaffMeasures', () => {
       'Enter what other measures staff are taking to reduce the risk of spreading TB'
     )
   })
-
-  it('should return "None" when otherStaffMeasures is an empty string', () => {
-    const answer = new OtherStaffMeasuresAnswer({
-      otherStaffMeasures: ''
-    })
-    expect(answer.emailHtml).toBe('None')
-  })
-
-  it('should return the HTML when otherStaffMeasures is not empty', () => {
-    const answer = new OtherStaffMeasuresAnswer({
-      otherStaffMeasures: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when otherStaffMeasures is not empty', () => {
-    const answer = new OtherStaffMeasuresAnswer({
-      otherStaffMeasures: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })
