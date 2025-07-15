@@ -75,13 +75,6 @@ export class BiosecurityMapAnswer extends AnswerModel {
     return 'Map uploaded'
   }
 
-  get emailHtml() {
-    if (this.isSkipped()) {
-      return skippedMessage
-    }
-    return ''
-  }
-
   /**
    * @returns { BiosecurityMapData }
    */

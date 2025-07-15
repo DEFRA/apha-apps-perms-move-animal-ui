@@ -36,18 +36,4 @@ describe('OriginTypeOther', () => {
       'Enter the premises type'
     )
   })
-
-  it('should return the HTML when additionalInfo is not empty', () => {
-    const answer = new OriginTypeOtherAnswer({
-      originTypeOther: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when additionalInfo is not empty', () => {
-    const answer = new OriginTypeOtherAnswer({
-      originTypeOther: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })

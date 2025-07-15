@@ -42,25 +42,4 @@ describe('OtherEquipmentMeasures', () => {
       'Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB'
     )
   })
-
-  it('should return "None" when otherEquipmentMeasures is an empty string', () => {
-    const answer = new OtherEquipmentMeasuresAnswer({
-      otherEquipmentMeasures: ''
-    })
-    expect(answer.emailHtml).toBe('None')
-  })
-
-  it('should return the HTML when otherEquipmentMeasures is not empty', () => {
-    const answer = new OtherEquipmentMeasuresAnswer({
-      otherEquipmentMeasures: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when otherEquipmentMeasures is not empty', () => {
-    const answer = new OtherEquipmentMeasuresAnswer({
-      otherEquipmentMeasures: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })

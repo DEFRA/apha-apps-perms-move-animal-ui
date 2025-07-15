@@ -1,4 +1,3 @@
-import { escapeMarkdown } from '../../../helpers/escape-text.js'
 import { TextAreaAnswer } from '../text-area/text-area.js'
 
 /** @import {TextAreaConfig} from '../text-area/text-area.js' */
@@ -25,13 +24,5 @@ export class OtherWildlifeMeasuresAnswer extends TextAreaAnswer {
           'Enter information on what other measures are you taking to reduce the risk of spreading TB'
       }
     }
-  }
-
-  get emailHtml() {
-    const data = this._data?.[this.config.payloadKey]
-    if (data.length === 0) {
-      return 'None'
-    }
-    return escapeMarkdown(this.html)
   }
 }

@@ -101,16 +101,6 @@ describe('BiosecurityAnswer', () => {
     expect(answer.value).toBeUndefined()
   })
 
-  it('should return empty emailHtml when not skipped', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
-    expect(answer.emailHtml).toBe('')
-  })
-
-  it('should return correct emailHtml when skipped', () => {
-    const answer = new BiosecurityMapAnswer(mockSkippedData)
-    expect(answer.emailHtml).toBe(skippedMessage)
-  })
-
   it('should identify status other than skipped correctly', () => {
     const answer = new BiosecurityMapAnswer(mockData)
     expect(answer.isSkipped()).toBe(false)

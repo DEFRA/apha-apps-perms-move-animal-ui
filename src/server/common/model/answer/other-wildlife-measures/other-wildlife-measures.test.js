@@ -41,25 +41,4 @@ describe('OtherWildlifeMeasures', () => {
       'Enter information on what other measures are you taking to reduce the risk of spreading TB'
     )
   })
-
-  it('should return "None" when otherWildlifeMeasures is an empty string', () => {
-    const answer = new OtherWildlifeMeasuresAnswer({
-      otherWildlifeMeasures: ''
-    })
-    expect(answer.emailHtml).toBe('None')
-  })
-
-  it('should return the HTML when otherWildlifeMeasures is not empty', () => {
-    const answer = new OtherWildlifeMeasuresAnswer({
-      otherWildlifeMeasures: 'Some info'
-    })
-    expect(answer.emailHtml).toBe('Some info')
-  })
-
-  it('should return escaped HTML when otherWildlifeMeasures is not empty', () => {
-    const answer = new OtherWildlifeMeasuresAnswer({
-      otherWildlifeMeasures: '[evil-link](example.com)'
-    })
-    expect(answer.emailHtml).toBe('\\[evil-link\\]\\(example.com\\)')
-  })
 })
