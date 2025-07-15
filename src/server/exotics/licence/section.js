@@ -11,6 +11,7 @@ import {
   originResponsiblePersonName,
   originResponsiblePersonNamePage
 } from './origin-responsible-person-name/index.js'
+import { postUnavailable } from './post-unavailable/index.js'
 import {
   visitResponsiblePersonName,
   visitResponsiblePersonNamePage
@@ -25,6 +26,7 @@ const plugin = {
         originResponsiblePersonName,
         keeperName,
         emailOrPost,
+        postUnavailable,
         email,
         checkAnswers
       ])
