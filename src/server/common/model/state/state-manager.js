@@ -1,6 +1,8 @@
+import { QuestionPage } from '../page/question-page-model.js'
+
 /** @import {Request} from "@hapi/hapi/lib/types/request.js" */
-/** @import { QuestionPage } from "../page/question-page-model.js" */
 /** @import { AnswerModel } from "../answer/answer-model.js" */
+/** @import { ExitPage } from '../page/exit-page-model.js' */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
@@ -31,17 +33,19 @@ export class StateManager {
   }
 
   /**
-   * @param {QuestionPage} page
+   * @param {QuestionPage|ExitPage} page
    * @param {AnswerModel<any> | undefined} answer
    */
   set(page, answer) {
     const currentApplicationState = this.toState()
-    this._request.yar.set(this.key, {
-      ...currentApplicationState,
-      [page.sectionKey]: {
-        ...currentApplicationState[page.sectionKey],
-        [page.questionKey]: answer ? answer.toState() : undefined
-      }
-    })
+    if (page instanceof QuestionPage) {
+      this._request.yar.set(this.key, {
+        ...currentApplicationState,
+        [page.sectionKey]: {
+          ...currentApplicationState[page.sectionKey],
+          [page.questionKey]: answer ? answer.toState() : undefined
+        }
+      })
+    }
   }
 }
