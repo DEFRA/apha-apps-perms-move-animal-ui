@@ -9,11 +9,7 @@ import { OriginSection } from './origin/section.js'
 import { VisitDetailsSection } from './visit-details/section.js'
 
 describe('ExoticsApplicationModel', () => {
-  let model
-
-  beforeEach(() => {
-    model = new ExoticsApplicationModel({})
-  })
+  const model = new ExoticsApplicationModel({})
 
   it('should extend ApplicationModel', () => {
     expect(model).toBeInstanceOf(ApplicationModel)
