@@ -4,7 +4,7 @@ import { YesNoRadioPage } from '../../../../base-pages/yesNoRadioBase.js'
 const pageHeadingAndTitle = 'Is the premises designated?'
 
 class DesignatedPremisesPage extends YesNoRadioPage {
-  pagePath = 'exotics/movement-origin/designated-premise'
+  pagePath = 'exotics/movement-origin/designated-premises'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 

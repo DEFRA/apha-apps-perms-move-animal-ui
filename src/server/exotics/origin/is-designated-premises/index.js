@@ -8,7 +8,7 @@ import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-p
 const questionKey = 'isDesignatedPremises'
 
 export class IsDesignatedPremisesPage extends QuestionPage {
-  urlPath = '/exotics/movement-origin/designated-premise'
+  urlPath = '/exotics/movement-origin/designated-premises'
 
   questionKey = questionKey
   sectionKey = 'origin'

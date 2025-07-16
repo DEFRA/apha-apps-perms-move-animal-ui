@@ -5,7 +5,7 @@ import { DesignatedPremisesAnswer } from '../../common/model/answer/designated-p
 
 const sectionKey = 'origin'
 const questionKey = 'isDesignatedPremises'
-const pageUrl = '/exotics/movement-origin/designated-premise'
+const pageUrl = '/exotics/movement-origin/designated-premises'
 const page = isDesignatedPremisesPage
 const question = 'Is the premises designated?'
 

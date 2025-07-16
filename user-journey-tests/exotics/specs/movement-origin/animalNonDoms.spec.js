@@ -49,7 +49,7 @@ const journeyData = {
   },
   isDesignatedPremises: {
     expected: 'No',
-    hrefSuffix: 'designated-premise'
+    hrefSuffix: 'designated-premises'
   },
   animalsOnPremises: {
     expected: 'Lions',

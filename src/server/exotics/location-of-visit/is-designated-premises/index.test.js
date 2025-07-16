@@ -5,7 +5,7 @@ import { AnimalsOnPremisesPage } from '../animals-on-premises/index.js'
 
 const sectionKey = 'locationOfVisit'
 const questionKey = 'isDesignatedPremises'
-const pageUrl = '/exotics/location-of-visit/designated-premise'
+const pageUrl = '/exotics/location-of-visit/designated-premises'
 const page = isDesignatedPremisesPage
 const question = 'Is the premises designated?'
 
