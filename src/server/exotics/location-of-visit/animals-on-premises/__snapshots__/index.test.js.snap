@@ -15,7 +15,7 @@ exports[`AnimalsOnPremisesPage content should render expected response and conte
       What animals are on the premises?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="animalsOnPremises" name="animalsOnPremises" rows="4"></textarea>
+  <textarea class="govuk-textarea" id="animalsOnPremises" name="animalsOnPremises" rows="4" spellcheck="false"></textarea>
 </div>
 
 
