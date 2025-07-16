@@ -1,0 +1,65 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{%
+  extends
+  'layouts/page.njk'
+%}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
+          <h1 class="govuk-heading-l">Move animals under disease controls</h1>
+        </div>
+        <p class="govuk-body">
+          Use this service to apply for a movement licence during a foot and
+          mouth disease outbreak.
+        </p>
+        <h3 class="govuk-heading-m">What you can apply for</h3>
+        <p class="govuk-body">
+          You can use this service to apply for a licence to:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>move animals or items onto a farm or premises</li>
+          <li>move animals or items off a farm or premises</li>
+          <li>
+            enable visits to your premises, for example for vet inspections or
+            vaccinations
+          </li>
+        </ul>
+        <h3 class="govuk-heading-m">Before you start</h3>
+        <p class="govuk-body">
+          APHA need these details to process your application:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            details about the origin, including location and who is responsible
+            for the farm or premises
+          </li>
+          <li>ID numbers if you are moving animals</li>
+          <li>reason and dates for the movement or visit</li>
+        </ul>
+        {{
+          govukButton({ text: "Start now", href:"task-list",
+          isStartButton: true, attributes: "data-testid='start-now-btn'" })
+        }}
+        <h3 class="govuk-heading-m">Using and sharing your information</h3>
+        <p class="govuk-body">
+          How we use your personal data is set out in the
+          <a
+            href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory."
+            class="govuk-link"
+            target="_blank"
+            >exotic, notifiable and reportable diseases privacy notice (opens in
+            a new tab)</a
+          >
+          .
+        </p>
+        <h3 class="govuk-heading-m">Get help</h3>
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301. Lines
+          are open from Monday to Friday between 8.30am and 5pm.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
