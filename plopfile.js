@@ -58,12 +58,7 @@ export default function (plop) {
 
   plop.setGenerator('Content page', {
     description: 'This will create a generic content page',
-    prompts: [
-      journeyPrompt,
-      pageNamePrompt,
-      urlPathPrompt,
-      headingPrompt
-    ],
+    prompts: [journeyPrompt, pageNamePrompt, urlPathPrompt, headingPrompt],
     actions: [
       {
         type: 'add',
