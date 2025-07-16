@@ -15,12 +15,12 @@ export class ExoticsApplicationModel extends ApplicationModel {
   /** @type {typeof SectionModel[]} */
   static implementedSections = [
     AboutSection,
-    OriginSection,
-    VisitDetailsSection,
     LocationOfVisitSection,
+    VisitDetailsSection,
+    OriginSection,
+    MovementDetailsSection,
     DestinationSection,
-    LicenceSection,
-    MovementDetailsSection
+    LicenceSection
   ]
 
   get version() {
