@@ -37,7 +37,7 @@ describe('Answer', () => {
       'Expected visit day must be a real date'
     )
     expect(validation.invalidMonth.message).toBe(
-      'Expected visit date must be a number between 1 and 12'
+      'Expected visit month must be a number between 1 and 12'
     )
     expect(validation.invalidYear.message).toBe(
       'Expected visit year must be a real date'
