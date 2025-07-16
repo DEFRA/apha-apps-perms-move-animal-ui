@@ -8,7 +8,7 @@ import { animalsOnPremisesPage } from '../animals-on-premises/index.js'
 const questionKey = 'isDesignatedPremises'
 
 export class IsDesignatedPremisesPage extends QuestionPage {
-  urlPath = '/exotics/location-of-visit/designated-premise'
+  urlPath = '/exotics/location-of-visit/designated-premises'
 
   questionKey = questionKey
   sectionKey = 'locationOfVisit'
