@@ -17,7 +17,7 @@ import { ExoticsApplicationModel } from './exotics/application.js'
 import { exoticsTaskList } from './exotics/task-list/index.js'
 import { exoticsSubmitSummary } from './exotics/check-answers/index.js'
 import { tbSubmitSummary } from './tb/check-answers/index.js'
-import { exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
+import { taskListIncomplete as exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
 import { exoticsSubmit } from './exotics/submit/index.js'
 
 /**

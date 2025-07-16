@@ -9,6 +9,8 @@ import { urlPathPrompt } from './prompts/url-path-prompt.js'
 import { questionHintPrompt } from './prompts/question-hint-prompt.js'
 import { sectionTitlePrompt } from './prompts/section-title-prompt.js'
 import { newSectionKeyPrompt } from './prompts/new-section-key-prompt.js'
+import { pageNamePrompt } from './prompts/page-name-prompt.js'
+import { headingPrompt } from './prompts/heading-prompt.js'
 
 export default function (plop) {
   const kebabCase = plop.getHelper('kebabCase')
@@ -50,6 +52,28 @@ export default function (plop) {
         force: true,
         path: 'src/server/{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index.njk',
         templateFile: 'templates/exit-page/index.njk.hbs'
+      }
+    ]
+  })
+
+  plop.setGenerator('Content page', {
+    description: 'This will create a generic content page',
+    prompts: [journeyPrompt, pageNamePrompt, urlPathPrompt, headingPrompt],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase pageName}}/index.js',
+        templateFile: 'templates/content-page/index.js.hbs'
+      },
+      {
+        type: 'add',
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase pageName}}/index.test.js',
+        templateFile: 'templates/content-page/index.test.js.hbs'
+      },
+      {
+        type: 'add',
+        path: 'src/server/{{kebabCase journey}}/{{kebabCase pageName}}/index.njk',
+        templateFile: 'templates/content-page/index.njk.hbs'
       }
     ]
   })

@@ -1,0 +1,24 @@
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+
+import { PageController } from '~/src/server/common/controller/page-controller/page-controller.js'
+import { Page } from '~/src/server/common/model/page/page-model.js'
+
+const pageHeadingAndTitle =
+  '{{sentenceCase heading}}'
+
+export class {{pascalCase pageName}}Page extends Page {
+  view = '{{kebabCase journey}}/{{kebabCase pageName}}/index.njk'
+  urlPath = '{{path}}'
+  pageTitle = pageHeadingAndTitle
+  pageHeading = pageHeadingAndTitle
+}
+
+export const {{camelCase pageName}}Page = new {{pascalCase pageName}}Page()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const {{camelCase pageName}} = new PageController(
+  {{camelCase pageName}}Page,
+  {
+    methods: ['GET']
+  }
+).plugin()

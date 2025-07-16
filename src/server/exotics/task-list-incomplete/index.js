@@ -1,32 +1,21 @@
-import { taskListIncompleteGetController } from '../../common/controller/task-list-incomplete/controller.js'
-import { getAuthOptions } from '../../common/helpers/auth/toggles-helper.js'
+/** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-/**
- * Sets up the routes used in the home page.
- * These routes are registered in src/server/router.js.
- */
+import { PageController } from '~/src/server/common/controller/page-controller/page-controller.js'
+import { Page } from '~/src/server/common/model/page/page-model.js'
 
-/**
- * @satisfies {ServerRegisterPluginObject<void>}
- */
-export const exoticsTaskListIncomplete = {
-  plugin: {
-    name: 'exotics-task-list-incomplete',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: '/exotics/task-list-incomplete',
-          options: {
-            ...getAuthOptions(false)
-          },
-          ...taskListIncompleteGetController
-        }
-      ])
-    }
-  }
+const pageHeadingAndTitle =
+  'You need to complete all of the sections before you review and submit'
+
+export class TaskListIncompletePage extends Page {
+  view = 'exotics/task-list-incomplete/index.njk'
+  urlPath = '/exotics/task-list-incomplete'
+  pageTitle = pageHeadingAndTitle
+  pageHeading = pageHeadingAndTitle
 }
 
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */
+export const taskListIncompletePage = new TaskListIncompletePage()
+
+/** @satisfies {ServerRegisterPluginObject<void>} */
+export const taskListIncomplete = new PageController(taskListIncompletePage, {
+  methods: ['GET']
+}).plugin()
