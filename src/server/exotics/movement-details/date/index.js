@@ -29,7 +29,7 @@ export class Answer extends DateAnswer {
         message: 'Expected movement day must be a real date'
       },
       invalidMonth: {
-        message: 'Expected movement date must be a number between 1 and 12'
+        message: 'Expected movement month must be a number between 1 and 12'
       },
       invalidYear: {
         message: 'Expected movement year must be a real date'

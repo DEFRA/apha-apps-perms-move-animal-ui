@@ -39,7 +39,7 @@ describe('Answer', () => {
       'Expected movement day must be a real date'
     )
     expect(validation.invalidMonth.message).toBe(
-      'Expected movement date must be a number between 1 and 12'
+      'Expected movement month must be a number between 1 and 12'
     )
     expect(validation.invalidYear.message).toBe(
       'Expected movement year must be a real date'

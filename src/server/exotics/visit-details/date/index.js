@@ -29,7 +29,7 @@ export class Answer extends DateAnswer {
         message: 'Expected visit day must be a real date'
       },
       invalidMonth: {
-        message: 'Expected visit date must be a number between 1 and 12'
+        message: 'Expected visit month must be a number between 1 and 12'
       },
       invalidYear: {
         message: 'Expected visit year must be a real date'
