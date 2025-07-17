@@ -4,16 +4,13 @@ import { PageController } from '~/src/server/common/controller/page-controller/p
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { config } from '~/src/config/config.js'
 
-const pageHeadingAndTitle =
-  'Apply for a Bovine Tuberculosis (TB) movement licence'
-
 export class HomePage extends Page {
   key = 'home'
   sectionKey = 'tb'
   view = 'tb/home/index.njk'
   urlPath = '/'
   pageTitle = config.get('serviceName')
-  pageHeading = pageHeadingAndTitle
+  pageHeading = 'Get permission to move animals under disease controls'
 }
 
 export const homePage = new HomePage()
