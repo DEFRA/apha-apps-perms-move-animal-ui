@@ -6,6 +6,14 @@ import { {{camelCase pageName}}Page } from './index.js'
 describe('{{pascalCase pageName}}Page', () => {
   const page = {{camelCase pageName}}Page
 
+  it('should have the right key', () => {
+    expect(page.key).toBe('{{camelCase pageName}}')
+  })
+
+  it('should have the right section key', () => {
+    expect(page.sectionKey).toBe('{{camelCase sectionKey}}')
+  })
+
   it('should have the right view', () => {
     expect(page.view).toBe('{{kebabCase journey}}/{{kebabCase pageName}}/index.njk')
   })

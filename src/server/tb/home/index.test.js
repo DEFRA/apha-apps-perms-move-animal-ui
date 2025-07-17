@@ -2,13 +2,13 @@ import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { config } from '~/src/config/config.js'
-import SessionTestHelper from '../common/test-helpers/session-helper.js'
-import { withCsrfProtection } from '../common/test-helpers/csrf.js'
-import { spyOnConfig } from '../common/test-helpers/config.js'
+import SessionTestHelper from '~/src/server/common/test-helpers/session-helper.js'
+import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
+import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
 
 const pageUrl = '/'
 
-describe('#homeController', () => {
+describe('HomePage', () => {
   /** @type {Server} */
   let server
   let session

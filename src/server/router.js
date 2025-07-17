@@ -1,7 +1,7 @@
 import inert from '@hapi/inert'
 
 import { health } from '~/src/server/health/index.js'
-import { home } from '~/src/server/home/index.js'
+import { home as tbHome } from '~/src/server/tb/home/index.js'
 import { serveStaticFiles } from '~/src/server/common/helpers/serve-static-files.js'
 import { tbTaskList } from './tb/task-list/index.js'
 import { tbTaskListIncomplete } from './tb/task-list-incomplete/index.js'
@@ -19,6 +19,7 @@ import { exoticsSubmitSummary } from './exotics/check-answers/index.js'
 import { tbSubmitSummary } from './tb/check-answers/index.js'
 import { taskListIncomplete as exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
 import { exoticsSubmit } from './exotics/submit/index.js'
+import { home as exoticsHome } from './exotics/home/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -43,7 +44,7 @@ export const router = {
 
         // Application specific routes, add your own routes here
         server.register([
-          home,
+          tbHome,
           privacyPolicy,
           cookiesPolicy,
           accessibilityStatement
@@ -69,6 +70,7 @@ export const router = {
 
       if (config.get('featureFlags').exoticsJourney) {
         await server.register([
+          exoticsHome,
           exoticsTaskList,
           exoticsSubmitSummary,
           exoticsTaskListIncomplete,

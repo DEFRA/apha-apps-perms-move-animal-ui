@@ -7,6 +7,8 @@ const pageHeadingAndTitle =
   '{{sentenceCase heading}}'
 
 export class {{pascalCase pageName}}Page extends Page {
+  key = '{{camelCase pageName}}'
+  sectionKey = '{{camelCase journey}}'
   view = '{{kebabCase journey}}/{{kebabCase pageName}}/index.njk'
   urlPath = '{{path}}'
   pageTitle = pageHeadingAndTitle

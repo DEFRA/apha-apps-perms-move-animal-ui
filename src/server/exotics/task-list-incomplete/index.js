@@ -7,6 +7,8 @@ const pageHeadingAndTitle =
   'You need to complete all of the sections before you review and submit'
 
 export class TaskListIncompletePage extends Page {
+  key = 'taskListIncomplete'
+  sectionKey = 'exotics'
   view = 'exotics/task-list-incomplete/index.njk'
   urlPath = '/exotics/task-list-incomplete'
   pageTitle = pageHeadingAndTitle
