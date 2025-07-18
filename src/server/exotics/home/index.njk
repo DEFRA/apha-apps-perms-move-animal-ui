@@ -32,12 +32,23 @@
         </p>
         <ul class="govuk-list govuk-list--bullet">
           <li>
-            details about the origin, including location and who is responsible
-            for the farm or premises
+            details about the origin or visit location, including who is
+            responsible for the farm or premises
           </li>
           <li>ID numbers if you are moving animals</li>
           <li>reason and dates for the movement or visit</li>
         </ul>
+        {% if features.authEnabled and features.authRequired %}
+          <h3 class="govuk-heading-m">Signing into the service</h3>
+          <p class="govuk-body">
+            You need a Defra account to use this service. You can register for
+            one using your Government Gateway sign in details.
+          </p>
+          <p class="govuk-body">
+            After you sign in you need to enter your contact information, and
+            details about your business if you have one.
+          </p>
+        {% endif %}
         {{
           govukButton({ text: "Start now", href:"task-list",
           isStartButton: true, attributes: "data-testid='start-now-btn'" })

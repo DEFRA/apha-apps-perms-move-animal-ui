@@ -6,6 +6,7 @@ import { Page } from '~/src/server/common/model/page/page-model.js'
 const pageHeadingAndTitle = 'Move animals under disease controls'
 
 export class HomePage extends Page {
+  skipAuth = true
   key = 'home'
   sectionKey = 'exotics'
   view = 'exotics/home/index.njk'

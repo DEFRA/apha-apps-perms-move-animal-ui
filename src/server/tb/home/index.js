@@ -5,6 +5,7 @@ import { Page } from '~/src/server/common/model/page/page-model.js'
 import { config } from '~/src/config/config.js'
 
 export class HomePage extends Page {
+  skipAuth = true
   key = 'home'
   sectionKey = 'tb'
   view = 'tb/home/index.njk'
