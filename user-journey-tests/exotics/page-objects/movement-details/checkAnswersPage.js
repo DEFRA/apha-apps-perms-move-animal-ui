@@ -10,8 +10,10 @@ class MovementDetailsAnswersPage extends AnswersBasePage {
 
   changeLinks = {
     reason: '[data-testid="reason-change-link"]',
-    maximumNumberOfJourneys: '[data-testid="maximumNumberOfJourneys-change-link"]',
-    isDurationMoreThanOneDay: '[data-testid="isDurationMoreThanOneDay-change-link"]',
+    maximumNumberOfJourneys:
+      '[data-testid="maximumNumberOfJourneys-change-link"]',
+    isDurationMoreThanOneDay:
+      '[data-testid="isDurationMoreThanOneDay-change-link"]',
     multipleDates: '[data-testid="multipleDates-change-link"]',
     date: '[data-testid="date-change-link"]'
   }

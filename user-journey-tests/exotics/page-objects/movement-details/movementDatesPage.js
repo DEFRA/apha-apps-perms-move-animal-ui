@@ -1,6 +1,7 @@
 import { SingleTextInputPage } from '../../../base-pages/singleTextInputPage.js'
 
-const pageHeadingAndTitle = 'What are the dates for when you expect the movement to take place?'
+const pageHeadingAndTitle =
+  'What are the dates for when you expect the movement to take place?'
 
 class MovementDatesPage extends SingleTextInputPage {
   constructor() {

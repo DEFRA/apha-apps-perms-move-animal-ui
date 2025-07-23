@@ -1,7 +1,6 @@
 import { YesNoRadioPage } from '../../../base-pages/yesNoRadioBase.js'
 
-const pageHeadingAndTitle =
-  'Will the movement take more than 1 day?'
+const pageHeadingAndTitle = 'Will the movement take more than 1 day?'
 
 class MoreThanOneDayPage extends YesNoRadioPage {
   pagePath = 'exotics/movement-details/duration-more-than-one-day'

@@ -62,9 +62,7 @@ describe('Visit details - more than one date', async () => {
       maxJourneysPage
     )
     await maxJourneysPage.inputTextAndContinue(2, moreThanOneDayPage)
-    await moreThanOneDayPage.selectYesAndContinue(
-      movementDatesPage
-    )
+    await moreThanOneDayPage.selectYesAndContinue(movementDatesPage)
     await movementDatesPage.inputTextAndContinue(
       'movement dates',
       checkAnswersPage
