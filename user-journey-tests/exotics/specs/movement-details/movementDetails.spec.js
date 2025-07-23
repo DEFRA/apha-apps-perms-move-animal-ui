@@ -36,7 +36,7 @@ const getExpected = (key) => journeyData[key].expected
 const getExpectedHref = (key) =>
   `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
-describe('Visit details - more than one date', async () => {
+describe('Movement details - more than one date', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)

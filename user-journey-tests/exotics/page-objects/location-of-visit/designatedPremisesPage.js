@@ -1,9 +1,10 @@
-import { YesNoRadioPage } from '../../../../base-pages/yesNoRadioBase.js'
+// pageobjects/ProductLocationHasCPHPage.js
+import { YesNoRadioPage } from '../../../base-pages/yesNoRadioBase.js'
 
 const pageHeadingAndTitle = 'Is the premises designated?'
 
 class DesignatedPremisesPage extends YesNoRadioPage {
-  pagePath = 'exotics/movement-origin/designated-premises'
+  pagePath = 'exotics/location-of-visit/designated-premises'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 

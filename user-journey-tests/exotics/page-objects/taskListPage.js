@@ -27,6 +27,10 @@ class TaskListPage extends Page {
     return $('aria/Movement destination')
   }
 
+  get locationOfVisitLink() {
+    return $('aria/Location of visit')
+  }
+
   get visitDetailsLink() {
     return $('aria/Visit details')
   }
@@ -61,6 +65,11 @@ class TaskListPage extends Page {
 
   async selectMovementDestination(nextPage) {
     await page.selectElement(this.movementDestinationLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectLocationOfVisit(nextPage) {
+    await page.selectElement(this.locationOfVisitLink)
     await page.waitForPagePath(nextPage.pagePath)
   }
 

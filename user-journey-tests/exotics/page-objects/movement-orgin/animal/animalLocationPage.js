@@ -1,4 +1,3 @@
-// pageobjects/TypeOfAnimalLocationPage.js
 import { RadioButtonBasePage } from '../../../../base-pages/radioButtonBasePage.js'
 
 const pageHeadingAndTitle = 'Where are the animals kept?'
