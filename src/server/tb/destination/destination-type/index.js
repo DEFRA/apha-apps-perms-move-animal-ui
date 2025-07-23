@@ -9,6 +9,7 @@ import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { afuOnlyOnExitPage } from '../afu-only-on-exit-page/index.js'
+import { destinationFarmAddressPage } from '../destination-farm-address/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../../common/model/state/state-manager.js' */
@@ -60,6 +61,17 @@ export class DestinationTypePage extends QuestionPage {
   _offFarmNextPage(answer, context) {
     if (context.origin?.originType === 'afu' && answer.value === 'other') {
       return afuOnlyOffExitPage
+    }
+
+    if (
+      context.origin?.originType === 'iso-unit' &&
+      answer.value === 'slaughter'
+    ) {
+      return destinationFarmAddressPage
+    }
+
+    if (context.origin?.originType === 'iso-unit' && answer.value === 'afu') {
+      return destinationFarmCphPage
     }
 
     return offFarmNextPageMapping[answer.value]
