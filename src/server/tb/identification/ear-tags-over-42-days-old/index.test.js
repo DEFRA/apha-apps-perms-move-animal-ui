@@ -1,18 +1,18 @@
 import { EarTagsAnswer } from '../../../common/model/answer/ear-tags/ear-tags.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { identificationSummaryPage } from '../summary/index.js'
-import { earTagsPage, EarTagsPage } from './index.js'
+import { earTagsOver42DaysOldPage, EarTagsOver42DaysOldPage } from './index.js'
 
 const sectionKey = 'identification'
 const question = 'Enter the ear tag numbers for these animals'
 const questionKey = 'earTags'
 const view = 'tb/identification/ear-tags/index'
-const pageUrl = '/identification/enter-ear-tags'
+const pageUrl = '/identification/enter-ear-tags-over-42-days'
 const customHeading =
   'Official ear tag numbers for animals 42 days old or older'
 
-describe('EarTagsPage', () => {
-  const page = new EarTagsPage()
+describe('EarTagsOver42DaysOldPage', () => {
+  const page = new EarTagsOver42DaysOldPage()
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
@@ -52,11 +52,11 @@ describe('EarTagsPage', () => {
   })
 
   it('should export page', () => {
-    expect(earTagsPage).toBeInstanceOf(EarTagsPage)
+    expect(earTagsOver42DaysOldPage).toBeInstanceOf(EarTagsOver42DaysOldPage)
   })
 
   describePageSnapshot({
-    describes: 'EarTagsPage.content',
+    describes: 'EarTagsOver42DaysOldPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

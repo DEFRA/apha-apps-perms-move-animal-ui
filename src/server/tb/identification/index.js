@@ -2,7 +2,7 @@
 
 import { calvesUnder42DaysOld } from './calves-under-42-days-old/index.js'
 import { identificationWarning } from './warning/index.js'
-import { earTags } from './ear-tags/index.js'
+import { earTagsOver42DaysOld } from './ear-tags-over-42-days-old/index.js'
 import { oldestCalfDob } from './oldest-calf-dob/index.js'
 import { identificationSummary } from './summary/index.js'
 import { testingDates } from './testing-dates/index.js'
@@ -19,7 +19,7 @@ export const identification = {
       await server.register([
         calvesUnder42DaysOld,
         testingDates,
-        earTags,
+        earTagsOver42DaysOld,
         earTagsCalves,
         identificationSummary,
         oldestCalfDob,

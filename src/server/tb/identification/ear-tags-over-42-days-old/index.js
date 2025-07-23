@@ -6,8 +6,8 @@ import { identificationSummaryPage } from '../summary/index.js'
 const customHeading =
   'Official ear tag numbers for animals 42 days old or older'
 
-export class EarTagsPage extends QuestionPage {
-  urlPath = '/identification/enter-ear-tags'
+export class EarTagsOver42DaysOldPage extends QuestionPage {
+  urlPath = '/identification/enter-ear-tags-over-42-days'
   sectionKey = 'identification'
   question = 'Enter the ear tag numbers for these animals'
   questionKey = 'earTags'
@@ -24,12 +24,14 @@ export class EarTagsPage extends QuestionPage {
   }
 }
 
-export const earTagsPage = new EarTagsPage()
+export const earTagsOver42DaysOldPage = new EarTagsOver42DaysOldPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const earTags = new TbQuestionPageController(earTagsPage).plugin()
+export const earTagsOver42DaysOld = new TbQuestionPageController(
+  earTagsOver42DaysOldPage
+).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
