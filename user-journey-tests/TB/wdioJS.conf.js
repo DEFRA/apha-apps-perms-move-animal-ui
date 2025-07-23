@@ -7,7 +7,7 @@ export const config = merge(wdioConf, {
     './specs/noJavascript/**/*.js',
     './specs/identification/identifiersAnswers.spec.js',
     './specs/destination/destinationAnswersOnFarm.spec.js',
-    'specs/destination/destinationAddress.spec.js'
+    './specs/destination/destinationAddress.spec.js'
   ],
   maxInstances: 7,
   capabilities: [

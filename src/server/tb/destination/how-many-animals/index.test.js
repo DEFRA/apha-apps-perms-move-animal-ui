@@ -2,6 +2,8 @@ import { howManyAnimalsPage, HowManyAnimalsPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { HowManyAnimalsAnswer } from '../../../common/model/answer/how-many-animals/how-many-animals.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
+import { dateOfMovementPage } from '../date-of-movement/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
 
 const sectionKey = 'destination'
 const question = 'How many animals are you planning to move?'
@@ -40,8 +42,24 @@ describe('HowManyAnimalsPage', () => {
     expect(page.Answer).toBe(HowManyAnimalsAnswer)
   })
 
-  it('nextPage should return address page', () => {
-    const nextPage = page.nextPage()
+  it('should return dateOfMovementPage when moving off the iso-unit to slaughter', () => {
+    const nextPage = page.nextPage(null, {
+      origin: { onOffFarm: 'off', originType: 'iso-unit' },
+      destination: { destinationType: 'slaughter' }
+    })
+    expect(nextPage).toBe(dateOfMovementPage)
+  })
+
+  it('should return additionalInfoPage when moving off the iso-unit to afu', () => {
+    const nextPage = page.nextPage(null, {
+      origin: { onOffFarm: 'off', originType: 'iso-unit' },
+      destination: { destinationType: 'afu' }
+    })
+    expect(nextPage).toBe(additionalInfoPage)
+  })
+
+  it('nextPage should return address page as default', () => {
+    const nextPage = page.nextPage(null, {})
     expect(nextPage).toBe(reasonForMovementPage)
   })
 
