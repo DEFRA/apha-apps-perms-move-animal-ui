@@ -1,7 +1,7 @@
 import calvesPage from '../../page-objects/identification/calvesPage.js'
 import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42DaysPage.js'
 import earTagsCalvesPage from '../../page-objects/identification/earTagsCalvesPage.js'
-import earTagsPage from '../../page-objects/identification/earTagsPage.js'
+import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 import identificationAnswersPage from '../../page-objects/identification/identificationAnswersPage.js'
 import identificationWarningPage from '../../page-objects/identification/identificationWarningPage.js'
 import oldestCalfDobPage from '../../page-objects/identification/oldestCalfDobPage.js'
@@ -23,6 +23,12 @@ export const completeIdentificationTaskLongWay = async () => {
     cattleOver42DaysPage
   )
   await cattleOver42DaysPage.selectYesAndContinue(testingDatesPage)
-  await testingDatesPage.inputTextAndContinue('21/09/1995', earTagsPage)
-  await earTagsPage.inputTextAndContinue('ear tags', identificationAnswersPage)
+  await testingDatesPage.inputTextAndContinue(
+    '21/09/1995',
+    earTagsOver42DaysOldPage
+  )
+  await earTagsOver42DaysOldPage.inputTextAndContinue(
+    'ear tags',
+    identificationAnswersPage
+  )
 }

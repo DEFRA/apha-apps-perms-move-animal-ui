@@ -7,7 +7,7 @@ const pageHeadingAndTitle =
 const noInputError =
   'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
 
-class EarTagsPage extends SingleTextInputPage {
+class EarTagsCalvesPage extends SingleTextInputPage {
   constructor() {
     super({ pageId, noInputError })
   }
@@ -17,4 +17,4 @@ class EarTagsPage extends SingleTextInputPage {
   pagePath = 'identification/enter-ear-tags-calves'
 }
 
-export default new EarTagsPage()
+export default new EarTagsCalvesPage()
