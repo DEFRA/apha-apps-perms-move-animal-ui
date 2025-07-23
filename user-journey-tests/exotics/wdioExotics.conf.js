@@ -2,7 +2,7 @@ import merge from 'deepmerge'
 import { config as wdioConf } from '../wdio.conf.js'
 
 export const config = merge(wdioConf, {
-  specs: ['./specs/location-of-visit/visitLocationDoms.spec.js'],
+  specs: ['./specs/**/*.spec.js'],
   exclude: [],
   maxInstances: 7,
   capabilities: [
@@ -10,7 +10,7 @@ export const config = merge(wdioConf, {
       browserName: 'chrome',
       browserVersion: 'stable',
       'goog:chromeOptions': {
-        args: ['disable-gpu']
+        args: ['headless', 'disable-gpu']
       }
     }
   ]
