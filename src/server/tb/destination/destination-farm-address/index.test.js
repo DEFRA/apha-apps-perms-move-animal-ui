@@ -55,7 +55,7 @@ describe('DestinationFarmAddressPage', () => {
     describe('off the farm', () => {
       const context = { origin: { onOffFarm: 'off' } }
 
-      it('should return howManyAnimalsPage if coming from iso0unit', () => {
+      it('should return howManyAnimalsPage if coming from iso-unit', () => {
         const nextPage = page.nextPage(null, {
           ...context,
           origin: {
