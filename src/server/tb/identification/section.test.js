@@ -121,4 +121,20 @@ describe('Identification.config.isVisible', () => {
 
     expect(isVisible).toBe(true)
   })
+
+  it('should be visible if moving off of an iso-unit', () => {
+    const isVisible = IdentificationSection.config.isVisible({
+      origin: {
+        ...origin,
+        onOffFarm: 'off',
+        originType: 'iso-unit'
+      },
+      destination: {
+        ...destination,
+        destinationType: 'slaughter' // valid destinationType for iso-unit
+      }
+    })
+
+    expect(isVisible).toBe(true)
+  })
 })

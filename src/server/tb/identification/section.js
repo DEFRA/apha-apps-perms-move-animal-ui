@@ -18,9 +18,10 @@ const isVisible = (app) => {
   return (
     originValid &&
     destinationValid &&
-    isOnFarm &&
-    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
-    DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)
+    ((isOnFarm &&
+      OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
+      DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)) ||
+      (app.origin.onOffFarm === 'off' && app.origin.originType === 'iso-unit'))
   )
 }
 
