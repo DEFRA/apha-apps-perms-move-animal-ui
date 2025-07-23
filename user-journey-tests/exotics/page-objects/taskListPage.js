@@ -79,7 +79,7 @@ class TaskListPage extends Page {
   }
 
   async selectReceivingLicence(nextPage) {
-    await page.selectElement(this.receivingLicenceLinkLink)
+    await page.selectElement(this.receivingLicenceLink)
     await page.waitForPagePath(nextPage.pagePath)
   }
 
