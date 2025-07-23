@@ -4,7 +4,6 @@ import { OriginTypeAnswer } from '../../../common/model/answer/origin-type/origi
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { howManyAnimalsMaximumPage } from '../how-many-animals-maximum/index.js'
 import { howManyAnimalsPage } from '../how-many-animals/index.js'
-import { destinationSummaryPage } from '../summary/index.js'
 
 /**
  * @import { AnswerModel } from '../../../common/model/answer/answer-model.js'
@@ -27,15 +26,16 @@ export class DestinationFarmAddressPage extends QuestionPage {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(_answer, context) {
-    if (context.origin?.onOffFarm === 'on') {
-      if (OriginTypeAnswer.isTbRestricted(context.origin?.originType)) {
-        return howManyAnimalsPage
-      } else {
-        return howManyAnimalsMaximumPage
-      }
-    } else {
-      return destinationSummaryPage
+    if (
+      (context.origin?.onOffFarm === 'on' &&
+        OriginTypeAnswer.isTbRestricted(context.origin?.originType)) ||
+      (context.origin?.onOffFarm === 'off' &&
+        context.origin?.originType === 'iso-unit')
+    ) {
+      return howManyAnimalsPage
     }
+
+    return howManyAnimalsMaximumPage
   }
 }
 

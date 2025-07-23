@@ -2,7 +2,6 @@ import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { howManyAnimalsMaximumPage } from '../how-many-animals-maximum/index.js'
 import { howManyAnimalsPage } from '../how-many-animals/index.js'
-import { destinationSummaryPage } from '../summary/index.js'
 import {
   destinationFarmAddressPage,
   DestinationFarmAddressPage
@@ -56,9 +55,20 @@ describe('DestinationFarmAddressPage', () => {
     describe('off the farm', () => {
       const context = { origin: { onOffFarm: 'off' } }
 
-      it('should return summary page', () => {
+      it('should return howManyAnimalsPage if coming from iso-unit', () => {
+        const nextPage = page.nextPage(null, {
+          ...context,
+          origin: {
+            onOffFarm: 'off',
+            originType: 'iso-unit'
+          }
+        })
+        expect(nextPage).toBe(howManyAnimalsPage)
+      })
+
+      it('should return howManyAnimalsMaximumPage', () => {
         const nextPage = page.nextPage(null, context)
-        expect(nextPage).toBe(destinationSummaryPage)
+        expect(nextPage).toBe(howManyAnimalsMaximumPage)
       })
 
       describePageSnapshot({
