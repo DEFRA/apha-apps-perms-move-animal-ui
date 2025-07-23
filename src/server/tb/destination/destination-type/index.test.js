@@ -9,6 +9,7 @@ import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
 import { afuOnlyOnExitPage } from '../afu-only-on-exit-page/index.js'
+import { destinationFarmAddressPage } from '../destination-farm-address/index.js'
 
 /**
  * @import {DestinationTypeData} from '../../../common/model/answer/destination-type/destination-type.js'
@@ -55,6 +56,30 @@ describe('DestinationTypePage', () => {
 describe('DestinationTypePage.nextPage', () => {
   describe('off the farm', () => {
     const context = { origin: { onOffFarm: 'off' } }
+
+    it('should return destinationFarmAddressPage when going from iso-unit to slaughter', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
+      const nextPage = page.nextPage(answer, {
+        origin: {
+          onOffFarm: 'off',
+          originType: 'iso-unit'
+        }
+      })
+
+      expect(nextPage).toBe(destinationFarmAddressPage)
+    })
+
+    it('should return destinationFarmCphPage when going from iso-unit to afu', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+      const nextPage = page.nextPage(answer, {
+        origin: {
+          onOffFarm: 'off',
+          originType: 'iso-unit'
+        }
+      })
+
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
 
     it('should return contact tb restricted farm page when answer is "tb-restricted-farm"', () => {
       const answer = new DestinationTypeAnswer({
