@@ -3,7 +3,7 @@ import { YesNoRadioPage } from '../../../base-pages/yesNoRadioBase.js'
 const pageHeadingAndTitle = 'Will the visit be at an RPA registered field?'
 
 class RegisteredFieldPage extends YesNoRadioPage {
-  pagePath = 'exotics/movement-origin/rpa-field'
+  pagePath = 'exotics/location-of-visit/rpa-field'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 

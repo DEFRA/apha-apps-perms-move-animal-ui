@@ -44,7 +44,7 @@ describe('Location of visit - doms', async () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('Should complete the movement origin section', async () => {
+  it('Should complete the location of visit section for doms', async () => {
     await taskListPage.selectLocationOfVisit(whereVisitWillTakePlacePage)
     await whereVisitWillTakePlacePage.selectRadioAndContinue(
       'domestic-residence',
