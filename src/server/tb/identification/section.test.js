@@ -135,7 +135,7 @@ describe('Identification.startPageFactory', () => {
   })
 
   describe('coming from iso-unit', () => {
-    it('should return earTagsPage if destination type is iso-unit', () => {
+    it('should return earTagsPage if destination type is slaughter', () => {
       const startPage = IdentificationSection.firstPageFactory({
         origin: { onOffFarm: 'off', originType: 'iso-unit' },
         destination: { destinationType: 'slaughter' }
