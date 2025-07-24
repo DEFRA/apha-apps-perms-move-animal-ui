@@ -5,7 +5,7 @@ import { AdditionalInfoPage } from '../additional-info/index.js'
 
 const sectionKey = 'destination'
 const questionKey = 'movementDate'
-const pageUrl = '/destination/any-additional-info'
+const pageUrl = '/destination/date-of-movement'
 const page = movementDatePage
 const question = 'What date will the animals move off the farm or premises?'
 

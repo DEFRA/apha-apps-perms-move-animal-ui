@@ -56,7 +56,7 @@ export class Answer extends DateAnswer {
 }
 
 export class MovementDatePage extends QuestionPage {
-  urlPath = '/destination/any-additional-info'
+  urlPath = '/destination/date-of-movement'
 
   questionKey = questionKey
   sectionKey = 'destination'
