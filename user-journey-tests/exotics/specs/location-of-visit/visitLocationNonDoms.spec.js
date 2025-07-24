@@ -29,10 +29,10 @@ const journeyData = {
     expected: 'line one\nts and cs\nb908dg',
     hrefSuffix: 'address'
   },
-  // inRpaRegisteredField: {
-  //   expected: 'No',
-  //   hrefSuffix: 'rpa-field'
-  // },
+  inRpaRegisteredField: {
+    expected: 'No',
+    hrefSuffix: 'rpa-field'
+  },
   latitudeAndLongitude: {
     expected: 'LAT AND LONG',
     hrefSuffix: 'location-details'
