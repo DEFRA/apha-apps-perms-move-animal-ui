@@ -134,21 +134,23 @@ describe('Identification.startPageFactory', () => {
     expect(startPage).toBeInstanceOf(CalvesUnder42DaysOldPage)
   })
 
-  it('should return earTagsPage if origin is off farm and origin type is iso-unit', () => {
-    const startPage = IdentificationSection.firstPageFactory({
-      origin: { onOffFarm: 'off', originType: 'iso-unit' },
-      destination: { destinationType: 'slaughter' }
+  describe('coming from iso-unit', () => {
+    it('should return earTagsPage if destination type is iso-unit', () => {
+      const startPage = IdentificationSection.firstPageFactory({
+        origin: { onOffFarm: 'off', originType: 'iso-unit' },
+        destination: { destinationType: 'slaughter' }
+      })
+
+      expect(startPage).toBeInstanceOf(EarTagsPage)
     })
 
-    expect(startPage).toBeInstanceOf(EarTagsPage)
-  })
+    it('should return testingDatesPage if destination type is afu', () => {
+      const startPage = IdentificationSection.firstPageFactory({
+        origin: { onOffFarm: 'off', originType: 'iso-unit' },
+        destination: { destinationType: 'afu' }
+      })
 
-  it('should return testingDatesPage if origin is off farm and origin type is afu', () => {
-    const startPage = IdentificationSection.firstPageFactory({
-      origin: { onOffFarm: 'off', originType: 'iso-unit' },
-      destination: { destinationType: 'afu' }
+      expect(startPage).toBeInstanceOf(TestingDatesPage)
     })
-
-    expect(startPage).toBeInstanceOf(TestingDatesPage)
   })
 })

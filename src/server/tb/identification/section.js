@@ -38,18 +38,15 @@ export class IdentificationSection extends SectionModel {
   }
 
   static firstPageFactory = (context) => {
-    if (context.origin?.onOffFarm === 'off') {
-      if (
-        context.origin?.originType === 'iso-unit' &&
-        context.destination?.destinationType === 'slaughter'
-      ) {
+    if (
+      context.origin?.onOffFarm === 'off' &&
+      context.origin?.originType === 'iso-unit'
+    ) {
+      if (context.destination?.destinationType === 'slaughter') {
         return earTagsPage
       }
 
-      if (
-        context.origin?.originType === 'iso-unit' &&
-        context.destination?.destinationType === 'afu'
-      ) {
+      if (context.destination?.destinationType === 'afu') {
         return testingDatesPage
       }
     }
