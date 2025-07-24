@@ -2,8 +2,8 @@ import { howManyAnimalsPage, HowManyAnimalsPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { HowManyAnimalsAnswer } from '../../../common/model/answer/how-many-animals/how-many-animals.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
-import { dateOfMovementPage } from '../date-of-movement/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
+import { movementDatePage } from '../movement-date/index.js'
 
 const sectionKey = 'destination'
 const question = 'How many animals are you planning to move?'
@@ -47,7 +47,7 @@ describe('HowManyAnimalsPage', () => {
       origin: { onOffFarm: 'off', originType: 'iso-unit' },
       destination: { destinationType: 'slaughter' }
     })
-    expect(nextPage).toBe(dateOfMovementPage)
+    expect(nextPage).toBe(movementDatePage)
   })
 
   it('should return additionalInfoPage when moving off the iso-unit to afu', () => {

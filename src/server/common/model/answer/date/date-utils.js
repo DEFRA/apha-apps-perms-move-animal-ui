@@ -39,3 +39,11 @@ export const differenceInDaysWithToday = (inputDate) => {
 export const isFutureDate = (inputDate) => {
   return differenceInDaysWithToday(inputDate) < 0
 }
+
+/**
+ * @param {DateData} inputDate
+ * @returns {boolean}
+ */
+export const isPastDate = (inputDate) => {
+  return differenceInDaysWithToday(inputDate) > 0
+}
