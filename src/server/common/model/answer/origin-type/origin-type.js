@@ -19,7 +19,7 @@ const afuOption = {
   hint: 'Including enhanced with grazing (AFUE)'
 }
 
-const otherOption = { label: 'Another TB restrictied origin' }
+const otherOption = { label: 'Another TB restricted origin' }
 
 const offFarmOptions = {
   'tb-restricted-farm': tbRestrictedOption,
