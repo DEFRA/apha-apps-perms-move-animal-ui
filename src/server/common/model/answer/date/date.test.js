@@ -406,11 +406,11 @@ describe('DateAnswer.validation', () => {
   })
 
   it('should accept dates that are today', () => {
-    const yesterday = new Date()
+    const today = new Date()
     const answer = new TestDateAnswerPastDisallowed({
-      day: yesterday.getDate().toString(),
-      month: (yesterday.getMonth() + 1).toString(),
-      year: yesterday.getFullYear().toString()
+      day: today.getDate().toString(),
+      month: (today.getMonth() + 1).toString(),
+      year: today.getFullYear().toString()
     })
     const { isValid, errors, subfields } = answer.validate()
     expect(isValid).toBe(false)
