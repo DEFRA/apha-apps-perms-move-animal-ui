@@ -2,6 +2,7 @@ import { TZDate } from '@date-fns/tz'
 import {
   differenceInDaysWithToday,
   isFutureDate,
+  isPastDate,
   toBSTDate
 } from './date-utils.js'
 
@@ -23,6 +24,25 @@ describe('Date Helpers', () => {
       expect(bstDate.getMonth()).toBeNaN()
       expect(bstDate.getDate()).toBeNaN()
     })
+  })
+
+  describe('isPastDate', () => {
+    beforeEach(() => {
+      jest.useFakeTimers()
+      jest.setSystemTime(new TZDate('2025-04-01T00:00:00+01:00'))
+    })
+
+    it('should return true for a past date', () => {
+      const pastDate = { day: '31', month: '03', year: '2024' }
+      expect(isPastDate(pastDate)).toBe(true)
+    })
+
+    it('should return false for a future date', () => {
+      const pastDate = { day: '31', month: '03', year: '2026' }
+      expect(isPastDate(pastDate)).toBe(false)
+    })
+
+    afterAll(jest.useRealTimers)
   })
 
   describe('isFutureDate', () => {
