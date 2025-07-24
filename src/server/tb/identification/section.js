@@ -5,6 +5,8 @@ import { identification } from '~/src/server/tb/identification/index.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 import { DestinationTypeAnswer } from '../../common/model/answer/destination-type/destination-type.js'
 import { calvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
+import { earTagsPage } from './ear-tags/index.js'
+import { testingDatesPage } from './testing-dates/index.js'
 
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -35,5 +37,17 @@ export class IdentificationSection extends SectionModel {
     isVisible
   }
 
-  static firstPageFactory = () => calvesUnder42DaysOldPage
+  static firstPageFactory = (context) => {
+    if (context.origin?.onOffFarm === 'off') {
+      if (context.origin?.originType === 'iso-unit') {
+        return earTagsPage
+      }
+
+      if (context.origin?.originType === 'afu') {
+        return testingDatesPage
+      }
+    }
+
+    return calvesUnder42DaysOldPage
+  }
 }

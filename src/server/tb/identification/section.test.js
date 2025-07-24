@@ -8,6 +8,8 @@ import {
   validBiosecurityMapSectionState
 } from '../../common/test-helpers/journey-state.js'
 import { CalvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
+import { EarTagsPage } from './ear-tags/index.js'
+import { TestingDatesPage } from './testing-dates/index.js'
 
 const applicationStateWithAnimalIdentifiersSection = {
   origin: {
@@ -120,5 +122,31 @@ describe('Identification.config.isVisible', () => {
     })
 
     expect(isVisible).toBe(true)
+  })
+})
+
+describe('Identification.startPageFactory', () => {
+  it('should return calvesUnder42DaysOldPage if origin is on farm', () => {
+    const startPage = IdentificationSection.firstPageFactory({
+      origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
+    })
+
+    expect(startPage).toBeInstanceOf(CalvesUnder42DaysOldPage)
+  })
+
+  it('should return earTagsPage if origin is off farm and origin type is iso-unit', () => {
+    const startPage = IdentificationSection.firstPageFactory({
+      origin: { onOffFarm: 'off', originType: 'iso-unit' }
+    })
+
+    expect(startPage).toBeInstanceOf(EarTagsPage)
+  })
+
+  it('should return testingDatesPage if origin is off farm and origin type is afu', () => {
+    const startPage = IdentificationSection.firstPageFactory({
+      origin: { onOffFarm: 'off', originType: 'afu' }
+    })
+
+    expect(startPage).toBeInstanceOf(TestingDatesPage)
   })
 })
