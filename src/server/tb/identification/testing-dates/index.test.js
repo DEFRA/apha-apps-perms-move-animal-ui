@@ -1,6 +1,6 @@
 import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { earTagsPage } from '../ear-tags/index.js'
+import { earTagsOver42DaysOldPage } from '../ear-tags-over-42-days-old/index.js'
 import { testingDatesPage, TestingDatesPage } from './index.js'
 
 const sectionKey = 'identification'
@@ -49,7 +49,7 @@ describe('TestingDatesPage', () => {
 
   it('nextPage should return enter ear tags page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(earTagsPage)
+    expect(nextPage).toBe(earTagsOver42DaysOldPage)
   })
 
   it('should export page', () => {

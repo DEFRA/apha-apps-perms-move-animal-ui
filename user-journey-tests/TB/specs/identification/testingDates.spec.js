@@ -4,7 +4,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import testingDatesPage from '../../page-objects/identification/testingDatesPage.js'
-import earTagsPage from '../../page-objects/identification/earTagsPage.js'
+import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 
 describe('Disinfectant page spec', () => {
   // eslint-disable-next-line no-undef
@@ -25,6 +25,9 @@ describe('Disinfectant page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await testingDatesPage.inputTextAndContinue('21/09/1995', earTagsPage)
+    await testingDatesPage.inputTextAndContinue(
+      '21/09/1995',
+      earTagsOver42DaysOldPage
+    )
   })
 })

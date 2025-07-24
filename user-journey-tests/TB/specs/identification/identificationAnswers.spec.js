@@ -9,7 +9,7 @@ import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import identificationAnswersPage from '../../page-objects/identification/identificationAnswersPage.js'
 import calvesPage from '../../page-objects/identification/calvesPage.js'
 import testingDatesPage from '../../page-objects/identification/testingDatesPage.js'
-import earTagsPage from '../../page-objects/identification/earTagsPage.js'
+import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 
 const redirect = `?redirect_uri=/${identificationAnswersPage.pagePath}`
 
@@ -19,8 +19,11 @@ describe('Check your answers test - biosecurity', () => {
     await loginAndSaveSession(signInPage)
     await calvesPage.navigateToPageAndVerifyTitle()
     await calvesPage.selectNoAndContinue(testingDatesPage)
-    await testingDatesPage.inputTextAndContinue('21/09/1995', earTagsPage)
-    await earTagsPage.inputTextAndContinue(
+    await testingDatesPage.inputTextAndContinue(
+      '21/09/1995',
+      earTagsOver42DaysOldPage
+    )
+    await earTagsOver42DaysOldPage.inputTextAndContinue(
       'ear tags',
       identificationAnswersPage
     )
@@ -40,7 +43,7 @@ describe('Check your answers test - biosecurity', () => {
     {
       field: 'earTags',
       expectedValue: 'ear tags',
-      expectedHref: `/identification/enter-ear-tags${redirect}`
+      expectedHref: `/identification/enter-ear-tags-over-42-days${redirect}`
     }
   ]
 

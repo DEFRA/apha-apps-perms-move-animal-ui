@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EarTagsPage EarTagsPage.content should render expected response and content 1`] = `
+exports[`EarTagsOver42DaysOldPage EarTagsOver42DaysOldPage.content should render expected response and content 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Official ear tag numbers for animals being moved</h1>
+      <h1 class="govuk-heading-l">Official ear tag numbers for animals 42 days old or older</h1>
     </div>
   </div>
   <div class="govuk-grid-row">
@@ -28,7 +28,7 @@ exports[`EarTagsPage EarTagsPage.content should render expected response and con
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="earTags">
-    Enter the ear tag numbers
+    Enter the ear tag numbers for these animals
   </label>
   <div id="earTags-hint" class="govuk-hint">
     You need to enter each ear tag number on a separate line

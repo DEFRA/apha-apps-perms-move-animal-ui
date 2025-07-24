@@ -3,7 +3,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
-import earTagsPage from '../../page-objects/identification/earTagsPage.js'
+import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 import calvesPage from '../../page-objects/identification/calvesPage.js'
 
 describe('Disinfectant page spec', () => {
@@ -14,14 +14,17 @@ describe('Disinfectant page spec', () => {
 
   beforeEach('Restore session and navigate to page', async () => {
     await restoreSession()
-    await earTagsPage.navigateToPageAndVerifyTitle()
+    await earTagsOver42DaysOldPage.navigateToPageAndVerifyTitle()
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await earTagsPage.singleInputErrorTest('', earTagsPage.noInputError)
+    await earTagsOver42DaysOldPage.singleInputErrorTest(
+      '',
+      earTagsOver42DaysOldPage.noInputError
+    )
   })
 
   it('Should input correct input and continue without error', async () => {
-    await earTagsPage.inputTextAndContinue('ear tags', calvesPage)
+    await earTagsOver42DaysOldPage.inputTextAndContinue('ear tags', calvesPage)
   })
 })

@@ -9,7 +9,7 @@ import oldestCalfDobPage from '../../page-objects/identification/oldestCalfDobPa
 import testingDatesPage from '../../page-objects/identification/testingDatesPage.js'
 import earTagsCalvesPage from '../../page-objects/identification/earTagsCalvesPage.js'
 import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42DaysPage.js'
-import earTagsPage from '../../page-objects/identification/earTagsPage.js'
+import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 import identificationAnswersPage from '../../page-objects/identification/identificationAnswersPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { completeIdentificationTaskLongWay } from '../../helpers/testHelpers/animalIdentification.js'
@@ -52,7 +52,7 @@ describe('Identification journey spec (with warning page)', () => {
     {
       field: 'earTags',
       expectedValue: 'ear tags',
-      expectedHref: `/${earTagsPage.pagePath}${redirect}`
+      expectedHref: `/${earTagsOver42DaysOldPage.pagePath}${redirect}`
     }
   ]
 
