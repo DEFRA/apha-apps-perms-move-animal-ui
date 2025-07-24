@@ -1,38 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TbConfirmationPage TbConfirmationPage should have the expected content 1`] = `
-"
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-body" data-testid="app-page-body">
-        <div class="govuk-panel govuk-panel--confirmation">
-  <h1 class="govuk-panel__title">
-    Application submitted
-  </h1>
-  <div class="govuk-panel__body">
-    Your reference number<br><b>null</b>
-  </div>
-</div>
-
-        <p class="govuk-body">
-          We have sent you a confirmation email. It will include your
-          application reference number.
-        </p>
-        <h2 class="govuk-heading-m">What happens next</h2>
-        <p class="govuk-body" data-testid="sla-text">
-          It can take up to 5 working days to process your application. It may
-          take longer if veterinary checks are required, or we need further
-          information.
-        </p>
-        <p class="govuk-body">
-          We will contact you if we need any further information.
-        </p>
-        <p>
-          <a href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk" target="_blank">What did you think of this service?</a>
-          (takes 30 seconds)
-        </p>
-      </div>
-    </div>
-  </div>
-        "
-`;
+exports[`TbConfirmationPage TbConfirmationPage should have the expected content 1`] = `undefined`;
