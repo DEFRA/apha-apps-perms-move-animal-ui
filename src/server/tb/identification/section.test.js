@@ -136,7 +136,8 @@ describe('Identification.startPageFactory', () => {
 
   it('should return earTagsPage if origin is off farm and origin type is iso-unit', () => {
     const startPage = IdentificationSection.firstPageFactory({
-      origin: { onOffFarm: 'off', originType: 'iso-unit' }
+      origin: { onOffFarm: 'off', originType: 'iso-unit' },
+      destination: { destinationType: 'slaughter' }
     })
 
     expect(startPage).toBeInstanceOf(EarTagsPage)
@@ -144,7 +145,8 @@ describe('Identification.startPageFactory', () => {
 
   it('should return testingDatesPage if origin is off farm and origin type is afu', () => {
     const startPage = IdentificationSection.firstPageFactory({
-      origin: { onOffFarm: 'off', originType: 'afu' }
+      origin: { onOffFarm: 'off', originType: 'iso-unit' },
+      destination: { destinationType: 'afu' }
     })
 
     expect(startPage).toBeInstanceOf(TestingDatesPage)

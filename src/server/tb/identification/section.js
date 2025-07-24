@@ -39,11 +39,17 @@ export class IdentificationSection extends SectionModel {
 
   static firstPageFactory = (context) => {
     if (context.origin?.onOffFarm === 'off') {
-      if (context.origin?.originType === 'iso-unit') {
+      if (
+        context.origin?.originType === 'iso-unit' &&
+        context.destination?.destinationType === 'slaughter'
+      ) {
         return earTagsPage
       }
 
-      if (context.origin?.originType === 'afu') {
+      if (
+        context.origin?.originType === 'iso-unit' &&
+        context.destination?.destinationType === 'afu'
+      ) {
         return testingDatesPage
       }
     }
