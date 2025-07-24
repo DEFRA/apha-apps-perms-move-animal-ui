@@ -5,30 +5,25 @@ import movementTypePage from '../../page-objects/about-the-movement/movementType
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
-import reasonForMovementPage from '../../page-objects/movement-details/reasonForMovementPage.js'
-import maxJourneysPage from '../../page-objects/movement-details/maxJourneysPage.js'
-import moreThanOneDayPage from '../../page-objects/movement-details/moreThanOneDayPage.js'
-import movementDatesPage from '../../page-objects/movement-details/movementDatesPage.js'
-import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
+import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
+import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
+import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
 
-const basePath = '/exotics/movement-details'
+const basePath = '/exotics/receiving-the-licence'
 const redirectUri = `${basePath}/check-answers`
 const journeyData = {
-  reason: {
-    expected: 'reason for movement',
-    hrefSuffix: 'reason'
+  name: {
+    expected: 'FirstName LastName',
+    hrefSuffix: 'visit/responsible-person-name'
   },
-  maximumNumberOfJourneys: {
-    expected: '2',
-    hrefSuffix: 'maximum-number-of-journeys'
+  receiveMethod: {
+    expected: 'Email',
+    hrefSuffix: 'email-or-post'
   },
-  isDurationMoreThanOneDay: {
-    expected: 'Yes',
-    hrefSuffix: 'duration-more-than-one-day'
-  },
-  multipleDates: {
-    expected: 'movement dates',
-    hrefSuffix: 'multiple-dates'
+  email: {
+    expected: 'test@test.co.uk',
+    hrefSuffix: 'enter-email-address'
   }
 }
 
@@ -36,12 +31,12 @@ const getExpected = (key) => journeyData[key].expected
 const getExpectedHref = (key) =>
   `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
-describe('Movement details - more than one date', async () => {
+describe('Receiving the licence - visit', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('onto-premises')
+    await completeAboutMovementSection('visit')
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -49,24 +44,21 @@ describe('Movement details - more than one date', async () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('Should complete the visit details flow', async () => {
+  it('Should complete the receiving the licence section for a visit', async () => {
     await taskListPage.verifyStatus({
-      position: 3,
-      taskTitle: 'Movement details',
+      position: 4,
+      taskTitle: 'Receiving the licence',
       expectedStatus: 'Incomplete'
     })
 
-    await taskListPage.selectMovementDetails(reasonForMovementPage)
-    await reasonForMovementPage.inputTextAndContinue(
-      'reason for movement',
-      maxJourneysPage
+    await taskListPage.selectReceivingLicence(whoIsResponsiblePage)
+    await whoIsResponsiblePage.inputTextAndContinue(
+      'FirstName',
+      'LastName',
+      receiveMethodPage
     )
-    await maxJourneysPage.inputTextAndContinue(2, moreThanOneDayPage)
-    await moreThanOneDayPage.selectYesAndContinue(movementDatesPage)
-    await movementDatesPage.inputTextAndContinue(
-      'movement dates',
-      checkAnswersPage
-    )
+    await receiveMethodPage.selectEmailAndContinue(emailPage)
+    await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
     for (const key of Object.keys(journeyData)) {
       const valueEl = await checkAnswersPage.getValue(key)
@@ -80,8 +72,8 @@ describe('Movement details - more than one date', async () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 3,
-      taskTitle: 'Movement details',
+      position: 4,
+      taskTitle: 'Receiving the licence',
       expectedStatus: 'Completed'
     })
   })

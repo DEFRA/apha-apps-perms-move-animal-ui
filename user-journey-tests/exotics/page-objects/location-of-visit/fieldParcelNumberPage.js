@@ -1,4 +1,4 @@
-import { SingleTextInputPage } from '../../../../base-pages/singleTextInputPage.js'
+import { SingleTextInputPage } from '../../../base-pages/singleTextInputPage.js'
 
 const pageHeadingAndTitle = 'What is the field parcel number?'
 
@@ -10,7 +10,7 @@ class FieldParcelNumberPage extends SingleTextInputPage {
     })
   }
 
-  pagePath = 'exotics/movement-origin/field-parcel-number'
+  pagePath = 'exotics/location-of-visit/field-parcel-number'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 }
