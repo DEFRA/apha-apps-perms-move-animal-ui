@@ -405,6 +405,23 @@ describe('DateAnswer.validation', () => {
     expect(subfields).toEqual(['day', 'month', 'year'])
   })
 
+  it('should accept dates that are today', () => {
+    const yesterday = new Date()
+    const answer = new TestDateAnswerPastDisallowed({
+      day: yesterday.getDate().toString(),
+      month: (yesterday.getMonth() + 1).toString(),
+      year: yesterday.getFullYear().toString()
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': {
+        text: dateConfigPastDisallowed.validation.pastDate?.message
+      }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
   it('should NOT reject dates that are in the future if no futureDate message is provided', () => {
     const tomorrow = addDays(new Date(), 2)
     const answer = new TestDateAnswerFutureAllowed({
