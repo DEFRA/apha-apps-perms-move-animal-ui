@@ -6,7 +6,7 @@ import { FieldParcelNumberPage } from '../field-parcel-number/index.js'
 
 const sectionKey = 'locationOfVisit'
 const questionKey = 'inRpaRegisteredField'
-const pageUrl = '/exotics/movement-origin/rpa-field'
+const pageUrl = '/exotics/location-of-visit/rpa-field'
 const page = inRpaRegisteredFieldPage
 const question = 'Will the visit be at an RPA registered field?'
 

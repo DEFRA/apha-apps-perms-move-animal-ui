@@ -29,10 +29,10 @@ const journeyData = {
     expected: 'line one\nts and cs\nb908dg',
     hrefSuffix: 'address'
   },
-  // inRpaRegisteredField: {
-  //   expected: 'No',
-  //   hrefSuffix: 'rpa-field'
-  // },
+  inRpaRegisteredField: {
+    expected: 'No',
+    hrefSuffix: 'rpa-field'
+  },
   latitudeAndLongitude: {
     expected: 'LAT AND LONG',
     hrefSuffix: 'location-details'
@@ -64,7 +64,7 @@ describe('Location of visit - non doms', async () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('Should complete the movement origin section', async () => {
+  it('Should complete the location of visit section for non doms', async () => {
     await taskListPage.verifyStatus({
       position: 2,
       taskTitle: 'Location of visit',
