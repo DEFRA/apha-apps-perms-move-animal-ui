@@ -28,7 +28,7 @@ describe('TestingDates', () => {
 
   it('should define the right empty input message', () => {
     expect(TestingDatesAnswer.config.validation.empty?.message).toBe(
-      'Enter the dates when cattle over 42 days old were last tested for TB'
+      'Enter the dates when animals over 42 days old were last tested for TB'
     )
   })
 

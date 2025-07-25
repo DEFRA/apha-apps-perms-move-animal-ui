@@ -28,7 +28,7 @@ exports[`TestingDatesPage testingDatesPage.content should render expected respon
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="testingDates">
-    What are the dates of the last TB tests for the cattle that are 42 days old or older?
+    What are the dates of the last TB tests for the animals that are 42 days old or older?
   </label>
   <textarea class="govuk-textarea" id="testingDates" name="testingDates" rows="5"></textarea>
 </div>

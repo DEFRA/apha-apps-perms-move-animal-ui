@@ -10,7 +10,7 @@ export class TestingDatesPage extends QuestionPage {
   urlPath = '/identification/enter-testing-dates'
   sectionKey = 'identification'
   question =
-    'What are the dates of the last TB tests for the cattle that are 42 days old or older?'
+    'What are the dates of the last TB tests for the animals that are 42 days old or older?'
 
   questionKey = 'testingDates'
   Answer = TestingDatesAnswer
