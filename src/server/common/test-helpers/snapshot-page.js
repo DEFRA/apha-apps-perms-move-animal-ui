@@ -8,14 +8,13 @@ import SessionTestHelper from './session-helper.js'
 /* global expect, it, beforeAll, beforeEach, afterAll, describe */
 
 /**
- * @param {{describes: string, it: string, pageUrl: string, state?: any; rawState?: any }} options
+ * @param {{describes: string, it: string, pageUrl: string, state?: { application?: any; raw?: any;}; }} options
  */
 export const describePageSnapshot = ({
   describes,
   it: itDescription,
   pageUrl,
-  state = {},
-  rawState = {}
+  state
 }) => {
   describe(describes, () => {
     /** @type {Server} */
@@ -29,11 +28,11 @@ export const describePageSnapshot = ({
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      for (const [key, value] of Object.entries(state)) {
+      for (const [key, value] of Object.entries(state?.application ?? {})) {
         await session.setSectionState(key, value)
       }
 
-      for (const [key, value] of Object.entries(rawState)) {
+      for (const [key, value] of Object.entries(state?.raw ?? {})) {
         await session.setState(key, value)
       }
     })

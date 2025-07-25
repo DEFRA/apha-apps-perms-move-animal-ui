@@ -26,8 +26,10 @@ describe('TbConfirmationPage', () => {
     describes: 'TbConfirmationPage',
     it: 'should have the expected content',
     pageUrl: page.urlPath,
-    rawState: {
-      'tb-applicationReference': 'TB-EXAM-PLE!'
+    state: {
+      raw: {
+        'tb-applicationReference': 'TB-EXAM-PLE!'
+      }
     }
   })
 })

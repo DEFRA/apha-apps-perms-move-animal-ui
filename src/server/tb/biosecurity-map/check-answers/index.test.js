@@ -116,7 +116,9 @@ describePageSnapshot({
   describes: '#biosecurityPlanSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { 'biosecurity-map': defaultState }
+  state: {
+    application: { 'biosecurity-map': defaultState }
+  }
 })
 
 /**

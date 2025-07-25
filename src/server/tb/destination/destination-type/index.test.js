@@ -137,7 +137,9 @@ describe('DestinationTypePage.nextPage', () => {
       describes: 'DestinationTypePage.content',
       it: 'should render expected response and content',
       pageUrl,
-      state: context
+      state: {
+        application: context
+      }
     })
   })
 
@@ -201,7 +203,7 @@ describe('DestinationTypePage.nextPage', () => {
       describes: 'DestinationTypePage.content',
       it: 'should render expected response and content',
       pageUrl,
-      state: context
+      state: { application: context }
     })
   })
 })

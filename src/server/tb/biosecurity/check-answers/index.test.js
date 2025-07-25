@@ -78,7 +78,9 @@ describePageSnapshot({
   describes: '#biosecuritySummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { biosecurity: validBiosecuritySectionState }
+  state: {
+    application: { biosecurity: validBiosecuritySectionState }
+  }
 })
 
 /**
