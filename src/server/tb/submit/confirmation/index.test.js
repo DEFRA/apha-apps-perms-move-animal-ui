@@ -25,6 +25,9 @@ describe('TbConfirmationPage', () => {
   describePageSnapshot({
     describes: 'TbConfirmationPage',
     it: 'should have the expected content',
-    pageUrl: page.urlPath
+    pageUrl: page.urlPath,
+    rawState: {
+      'tb-applicationReference': 'TB-EXAM-PLE!'
+    }
   })
 })

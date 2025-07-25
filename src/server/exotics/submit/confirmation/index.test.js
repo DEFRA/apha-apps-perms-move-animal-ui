@@ -26,8 +26,8 @@ describe('ExoticsConfirmationPage', () => {
     describes: 'ExoticsConfirmationPage',
     it: 'should have the expected content',
     pageUrl: page.urlPath,
-    state: {
-      'exotics-applicationReference': 'TB-EXAM-PLE!'
+    rawState: {
+      'exotics-applicationReference': 'EX-EXAM-PLE!'
     }
   })
 })
