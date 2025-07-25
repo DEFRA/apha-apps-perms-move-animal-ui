@@ -9,7 +9,7 @@ const onOffFarmConfig = {
     off: { label: 'Off the farm or premises' }
   },
   validation: {
-    empty: 'Select if you are moving cattle on or off your farm or premises'
+    empty: 'Select if you are moving animals on or off your farm or premises'
   }
 }
 
