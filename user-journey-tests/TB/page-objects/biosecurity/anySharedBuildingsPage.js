@@ -2,9 +2,8 @@
 import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
 const pageId = 'animalsHoused'
-const pageHeadingAndTitle = 'Will the incoming cattle be housed?'
-const noInputError =
-  'Select if the cattle will share any buildings with the resident herd'
+const pageHeadingAndTitle = 'Will the incoming animals be housed?'
+const noInputError = 'Select if the animals will be housed'
 
 class AnySharedBuildingsPage extends YesNoRadioPage {
   constructor() {
