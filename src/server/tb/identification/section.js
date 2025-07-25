@@ -14,15 +14,18 @@ import { testingDatesPage } from './testing-dates/index.js'
 /** @param {RawApplicationState} app */
 const isVisible = (app) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
+  const isOffFarmIsoUnit =
+    app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
   const originValid = OriginSection.fromState(app).validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
+  const bothTbRestricted =
+    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
+    DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)
 
   return (
     originValid &&
     destinationValid &&
-    isOnFarm &&
-    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
-    DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)
+    ((isOnFarm && bothTbRestricted) || isOffFarmIsoUnit)
   )
 }
 
