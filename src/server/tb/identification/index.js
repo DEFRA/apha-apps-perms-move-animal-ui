@@ -8,6 +8,7 @@ import { identificationSummary } from './summary/index.js'
 import { testingDates } from './testing-dates/index.js'
 import { earTagsCalves } from './ear-tags-calves/index.js'
 import { animals42DaysOldOrOlder } from './animals-42-days-old-or-older/index.js'
+import { earTagsOver42DaysOld } from './ear-tags-over-42-days-old/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -20,6 +21,7 @@ export const identification = {
         calvesUnder42DaysOld,
         testingDates,
         earTags,
+        earTagsOver42DaysOld,
         earTagsCalves,
         identificationSummary,
         oldestCalfDob,

@@ -151,7 +151,9 @@ describePageSnapshot({
   describes: '#originSummaryController.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { origin: defaultState }
+  state: {
+    application: { origin: defaultState }
+  }
 })
 
 /**

@@ -19,8 +19,24 @@ class TaskListPage extends Page {
     return $('aria/Movement origin')
   }
 
+  get movementDetailsLink() {
+    return $('aria/Movement details')
+  }
+
+  get movementDestinationLink() {
+    return $('aria/Movement destination')
+  }
+
+  get locationOfVisitLink() {
+    return $('aria/Location of visit')
+  }
+
   get visitDetailsLink() {
     return $('aria/Visit details')
+  }
+
+  get receivingLicenceLink() {
+    return $('aria/Receiving the licence')
   }
 
   get reviewLink() {
@@ -42,8 +58,28 @@ class TaskListPage extends Page {
     await page.waitForPagePath(nextPage.pagePath)
   }
 
+  async selectMovementDetails(nextPage) {
+    await page.selectElement(this.movementDetailsLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectMovementDestination(nextPage) {
+    await page.selectElement(this.movementDestinationLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectLocationOfVisit(nextPage) {
+    await page.selectElement(this.locationOfVisitLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
   async selectVisitDetails(nextPage) {
     await page.selectElement(this.visitDetailsLink)
+    await page.waitForPagePath(nextPage.pagePath)
+  }
+
+  async selectReceivingLicence(nextPage) {
+    await page.selectElement(this.receivingLicenceLink)
     await page.waitForPagePath(nextPage.pagePath)
   }
 

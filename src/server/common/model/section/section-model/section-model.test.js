@@ -12,7 +12,7 @@ import { subDays } from 'date-fns'
 import { Animals42DaysOldOrOlderPage } from '~/src/server/tb/identification/animals-42-days-old-or-older/index.js'
 import { CalvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
 import { EarTagsCalvesPage } from '~/src/server/tb/identification/ear-tags-calves/index.js'
-import { EarTagsPage } from '~/src/server/tb/identification/ear-tags/index.js'
+import { EarTagsOver42DaysOldPage } from '~/src/server/tb/identification/ear-tags-over-42-days-old/index.js'
 import { OldestCalfDobPage } from '~/src/server/tb/identification/oldest-calf-dob/index.js'
 import { TestingDatesPage } from '~/src/server/tb/identification/testing-dates/index.js'
 import { Animals42DaysOldOrOlderAnswer } from '../../answer/animals-42-days-old-or-older/animals-42-days-old-or-older.js'
@@ -127,7 +127,7 @@ describe('SectionModel.questionPageAnswers', () => {
     expect(pageAnswers.at(4)?.page).toBeInstanceOf(TestingDatesPage)
     expect(pageAnswers.at(4)?.answer).toBeInstanceOf(TestingDatesAnswer)
 
-    expect(pageAnswers.at(5)?.page).toBeInstanceOf(EarTagsPage)
+    expect(pageAnswers.at(5)?.page).toBeInstanceOf(EarTagsOver42DaysOldPage)
     expect(pageAnswers.at(5)?.answer).toBeInstanceOf(EarTagsAnswer)
   })
 })

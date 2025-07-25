@@ -75,7 +75,9 @@ describe('DestinationFarmAddressPage', () => {
         describes: 'DestinationFarmAddressPage.content',
         it: 'should render expected response and content',
         pageUrl,
-        state: context
+        state: {
+          application: context
+        }
       })
     })
 
@@ -107,7 +109,9 @@ describe('DestinationFarmAddressPage', () => {
         describes: 'DestinationFarmAddressPage.content',
         it: 'should render expected response and content',
         pageUrl,
-        state: context
+        state: {
+          application: context
+        }
       })
     })
   })

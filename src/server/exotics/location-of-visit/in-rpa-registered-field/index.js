@@ -25,7 +25,7 @@ export class Answer extends RadioButtonAnswer {
 }
 
 export class InRpaRegisteredFieldPage extends QuestionPage {
-  urlPath = '/exotics/movement-origin/rpa-field'
+  urlPath = '/exotics/location-of-visit/rpa-field'
 
   questionKey = questionKey
   sectionKey = 'locationOfVisit'

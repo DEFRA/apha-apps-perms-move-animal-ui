@@ -2,6 +2,7 @@ import { AnswerModel } from '../answer-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import {
   isFutureDate,
+  isPastDate,
   MONTH_DAYS,
   toBSTDate,
   YEAR_MONTHS
@@ -34,6 +35,7 @@ import {
  *    invalidDate: { message: string },
  *    nonFourDigitYear: { message: string },
  *    futureDate?: { message: string }
+ *    pastDate?: { message: string }
  *  }
  * }} DateConfig
  */
@@ -145,6 +147,10 @@ export class DateAnswer extends AnswerModel {
 
     if (validation.futureDate && isFutureDate(this.value)) {
       return allFieldsError(validation.futureDate.message)
+    }
+
+    if (validation.pastDate && isPastDate(this.value)) {
+      return allFieldsError(validation.pastDate.message)
     }
 
     return {

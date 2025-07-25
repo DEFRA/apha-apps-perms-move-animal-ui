@@ -10,7 +10,7 @@ exports[`ExoticsConfirmationPage ExoticsConfirmationPage should have the expecte
     Application submitted
   </h1>
   <div class="govuk-panel__body">
-    Your reference number<br><b>null</b>
+    Your reference number<br><b>EX-EXAM-PLE!</b>
   </div>
 </div>
 

@@ -41,6 +41,18 @@ class TestDateAnswer extends DateAnswer {
   static config = dateConfig
 }
 
+const dateConfigPastDisallowed = {
+  hint,
+  validation: {
+    ...dateConfigFutureAllowed.validation,
+    pastDate: { message: 'Date must be in the past' }
+  }
+}
+
+class TestDateAnswerPastDisallowed extends DateAnswer {
+  static config = dateConfigPastDisallowed
+}
+
 const validPayload = { day: '12', month: '12', year: '2024' }
 const invalidPayload = { day: 'aa', month: 'March', year: '20' }
 
@@ -372,6 +384,40 @@ describe('DateAnswer.validation', () => {
     expect(isValid).toBe(false)
     expect(errors).toStrictEqual({
       'date-day': { text: dateConfig.validation.futureDate?.message }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should reject dates that are in the past', () => {
+    const yesterday = subDays(new Date(), 2)
+    const answer = new TestDateAnswerPastDisallowed({
+      day: yesterday.getDate().toString(),
+      month: (yesterday.getMonth() + 1).toString(),
+      year: yesterday.getFullYear().toString()
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': {
+        text: dateConfigPastDisallowed.validation.pastDate?.message
+      }
+    })
+    expect(subfields).toEqual(['day', 'month', 'year'])
+  })
+
+  it('should accept dates that are today', () => {
+    const today = new Date()
+    const answer = new TestDateAnswerPastDisallowed({
+      day: today.getDate().toString(),
+      month: (today.getMonth() + 1).toString(),
+      year: today.getFullYear().toString()
+    })
+    const { isValid, errors, subfields } = answer.validate()
+    expect(isValid).toBe(false)
+    expect(errors).toStrictEqual({
+      'date-day': {
+        text: dateConfigPastDisallowed.validation.pastDate?.message
+      }
     })
     expect(subfields).toEqual(['day', 'month', 'year'])
   })

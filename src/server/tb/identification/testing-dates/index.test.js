@@ -1,5 +1,6 @@
 import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { earTagsOver42DaysOldPage } from '../ear-tags-over-42-days-old/index.js'
 import { earTagsPage } from '../ear-tags/index.js'
 import { testingDatesPage, TestingDatesPage } from './index.js'
 
@@ -48,7 +49,14 @@ describe('TestingDatesPage', () => {
   })
 
   it('nextPage should return enter ear tags page', () => {
-    const nextPage = page.nextPage()
+    const nextPage = page.nextPage(null, {})
+    expect(nextPage).toBe(earTagsOver42DaysOldPage)
+  })
+
+  it('nextPage should return the correct page for moving off of an iso-unit', () => {
+    const nextPage = page.nextPage(null, {
+      origin: { onOffFarm: 'off', originType: 'iso-unit' }
+    })
     expect(nextPage).toBe(earTagsPage)
   })
 

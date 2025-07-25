@@ -1,7 +1,6 @@
 import { SingleTextInputPage } from '../../../../base-pages/singleTextInputPage.js'
 
-const pageHeadingAndTitle =
-  'What are the latitude and longitude measurements for the origin premises?'
+const pageHeadingAndTitle = 'What is the field parcel number?'
 
 class FieldParcelNumberPage extends SingleTextInputPage {
   constructor() {

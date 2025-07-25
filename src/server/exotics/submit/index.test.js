@@ -48,6 +48,8 @@ describe('# Confirmation handler', () => {
   })
 
   it('should be able to access the exotics confirmation page', async () => {
+    await session.setState(`exotics-applicationReference`, 'TB-EXAM-PLE!')
+
     const { statusCode } = await server.inject(
       withCsrfProtection(
         {

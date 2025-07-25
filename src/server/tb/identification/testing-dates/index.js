@@ -1,6 +1,7 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { TestingDatesAnswer } from '../../../common/model/answer/testing-dates/testing-dates.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
+import { earTagsOver42DaysOldPage } from '../ear-tags-over-42-days-old/index.js'
 import { earTagsPage } from '../ear-tags/index.js'
 
 const customHeading = 'Testing dates'
@@ -20,8 +21,15 @@ export class TestingDatesPage extends QuestionPage {
 
   view = 'tb/identification/testing-dates/index'
 
-  nextPage() {
-    return earTagsPage
+  nextPage(_answer, context) {
+    if (
+      context.origin?.onOffFarm === 'off' &&
+      context.origin?.originType === 'iso-unit'
+    ) {
+      return earTagsPage
+    }
+
+    return earTagsOver42DaysOldPage
   }
 }
 

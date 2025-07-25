@@ -1,4 +1,3 @@
-// pageobjects/ProductLocationHasCPHPage.js
 import { YesNoRadioPage } from '../../../../base-pages/yesNoRadioBase.js'
 
 const pageHeadingAndTitle = 'Is the premises designated?'

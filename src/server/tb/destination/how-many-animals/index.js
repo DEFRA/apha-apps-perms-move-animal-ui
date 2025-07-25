@@ -2,6 +2,8 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { HowManyAnimalsAnswer } from '../../../common/model/answer/how-many-animals/how-many-animals.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { reasonForMovementPage } from '../reason-for-movement/index.js'
+import { additionalInfoPage } from '../additional-info/index.js'
+import { movementDatePage } from '../movement-date/index.js'
 
 export class HowManyAnimalsPage extends QuestionPage {
   urlPath = '/destination/how-many-animals'
@@ -11,7 +13,20 @@ export class HowManyAnimalsPage extends QuestionPage {
 
   Answer = HowManyAnimalsAnswer
 
-  nextPage() {
+  nextPage(_answer, context) {
+    if (
+      context.origin?.onOffFarm === 'off' &&
+      context.origin?.originType === 'iso-unit'
+    ) {
+      if (context.destination?.destinationType === 'slaughter') {
+        return movementDatePage
+      }
+
+      if (context.destination?.destinationType === 'afu') {
+        return additionalInfoPage
+      }
+    }
+
     return reasonForMovementPage
   }
 }

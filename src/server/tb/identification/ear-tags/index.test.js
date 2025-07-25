@@ -4,12 +4,11 @@ import { identificationSummaryPage } from '../summary/index.js'
 import { earTagsPage, EarTagsPage } from './index.js'
 
 const sectionKey = 'identification'
-const question = 'Enter the ear tag numbers for these animals'
+const question = 'Enter the ear tag numbers'
 const questionKey = 'earTags'
 const view = 'tb/identification/ear-tags/index'
 const pageUrl = '/identification/enter-ear-tags'
-const customHeading =
-  'Official ear tag numbers for animals 42 days old or older'
+const customHeading = 'Official ear tag numbers for animals being moved'
 
 describe('EarTagsPage', () => {
   const page = new EarTagsPage()
