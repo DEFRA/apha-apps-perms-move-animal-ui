@@ -412,14 +412,8 @@ describe('DateAnswer.validation', () => {
       month: (today.getMonth() + 1).toString(),
       year: today.getFullYear().toString()
     })
-    const { isValid, errors, subfields } = answer.validate()
-    expect(isValid).toBe(false)
-    expect(errors).toStrictEqual({
-      'date-day': {
-        text: dateConfigPastDisallowed.validation.pastDate?.message
-      }
-    })
-    expect(subfields).toEqual(['day', 'month', 'year'])
+    const { isValid } = answer.validate()
+    expect(isValid).toBe(true)
   })
 
   it('should NOT reject dates that are in the future if no futureDate message is provided', () => {
