@@ -12,7 +12,7 @@ exports[`BuildingsAnySharedPage buildingsAnySharedPage.content should render exp
   <fieldset class="govuk-fieldset" aria-describedby="animalsHoused-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        Will the incoming cattle be housed?
+        Will the incoming animals be housed?
       </h1>
     </legend>
     <div id="animalsHoused-hint" class="govuk-hint">

@@ -46,7 +46,7 @@ describe('FiftyPercentWarningPage', () => {
 })
 
 describePageSnapshot({
-  describes: 'DestinationGeneralLicenceController',
+  describes: 'FiftyPercentWarningPage',
   it: 'should render the expected content',
   pageUrl: page.urlPath
 })

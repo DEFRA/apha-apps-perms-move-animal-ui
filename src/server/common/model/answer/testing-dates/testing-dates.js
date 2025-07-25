@@ -22,7 +22,7 @@ export class TestingDatesAnswer extends TextAreaAnswer {
       },
       empty: {
         message:
-          'Enter the dates when cattle over 42 days old were last tested for TB'
+          'Enter the dates when animals over 42 days old were last tested for TB'
       }
     }
   }

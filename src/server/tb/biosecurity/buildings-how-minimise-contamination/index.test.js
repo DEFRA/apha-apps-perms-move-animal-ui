@@ -8,7 +8,7 @@ import {
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?'
+  'How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?'
 const questionKey = 'buildingsHowMinimiseContamination'
 const view = 'tb/biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'

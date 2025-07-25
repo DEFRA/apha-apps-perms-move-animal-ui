@@ -16,13 +16,13 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Who will be the registered owner of the cattle?
+      Who will be the registered owner of the animals?
     </dt>
     <dd class="govuk-summary-list__value">
       test_name test_surname
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the cattle?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

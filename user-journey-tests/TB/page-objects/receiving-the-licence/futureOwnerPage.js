@@ -2,11 +2,11 @@ import { DoubleTextInputPage } from '../base-pages/doubleTextInputPage.js'
 
 const firstId = 'firstName'
 const lastId = 'lastName'
-const pageHeadingAndTitle = 'Who will be the registered owner of the cattle?'
+const pageHeadingAndTitle = 'Who will be the registered owner of the animals?'
 const input1Error =
-  'Enter the first name of who will be the registered owner of the cattle'
+  'Enter the first name of who will be the registered owner of the animals'
 const input2Error =
-  'Enter the last name of who will be the registered owner of the cattle'
+  'Enter the last name of who will be the registered owner of the animals'
 
 class FutureOwnerPage extends DoubleTextInputPage {
   constructor() {

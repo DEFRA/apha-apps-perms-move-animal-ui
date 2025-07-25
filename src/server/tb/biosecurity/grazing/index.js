@@ -7,7 +7,7 @@ import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.j
 export class GrazingPage extends QuestionPage {
   urlPath = '/biosecurity/grazing'
   sectionKey = 'biosecurity'
-  question = 'Will the incoming cattle be grazed?'
+  question = 'Will the incoming animals be grazed?'
   questionKey = 'grazing'
   Answer = GrazingAnswer
 

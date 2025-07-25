@@ -2,9 +2,9 @@ import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
 const pageId = 'equipmentShared'
 const pageHeadingAndTitle =
-  'Will the incoming cattle share any equipment and machinery with the resident herd?'
+  'Will the incoming animals share any equipment and machinery with the resident herd?'
 const noInputError =
-  'Select if the incoming cattle will share any equipment and machinery with the resident herd'
+  'Select if the incoming animals will share any equipment and machinery with the resident herd'
 
 class SharedEquimentPage extends YesNoRadioPage {
   constructor() {

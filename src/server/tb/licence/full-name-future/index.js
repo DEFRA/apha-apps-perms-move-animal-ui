@@ -8,7 +8,7 @@ export class FullNameFuturePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name-future'
   sectionKey = 'licence'
 
-  question = 'Who will be the registered owner of the cattle?'
+  question = 'Who will be the registered owner of the animals?'
 
   questionKey = 'fullName'
 

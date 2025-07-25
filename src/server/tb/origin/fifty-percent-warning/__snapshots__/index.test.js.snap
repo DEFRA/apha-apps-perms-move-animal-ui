@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DestinationGeneralLicenceController should render the expected content 1`] = `
+exports[`FiftyPercentWarningPage should render the expected content 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -19,7 +19,7 @@ exports[`DestinationGeneralLicenceController should render the expected content 
           must be in place before the breakdown began
         </li>
         <li>
-          the cattle are moving to any type of approved or licenced finishing
+          the animals are moving to any type of approved or licenced finishing
           unit, or to a TB isolation unit
         </li>
       </ul>

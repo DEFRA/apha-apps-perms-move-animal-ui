@@ -3,9 +3,9 @@ import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
-  'How will you separate the incoming cattle from the resident herd?'
+  'How will you separate the incoming animals from the resident herd?'
 const noInputError =
-  'Enter information about how you will separate the incoming cattle from the resident herd'
+  'Enter information about how you will separate the incoming animals from the resident herd'
 
 class HowFieldSeparatedPage extends SingleTextInputPage {
   constructor() {

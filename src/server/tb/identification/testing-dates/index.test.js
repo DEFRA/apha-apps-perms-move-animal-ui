@@ -6,7 +6,7 @@ import { testingDatesPage, TestingDatesPage } from './index.js'
 
 const sectionKey = 'identification'
 const question =
-  'What are the dates of the last TB tests for the cattle that are 42 days old or older?'
+  'What are the dates of the last TB tests for the animals that are 42 days old or older?'
 
 const questionKey = 'testingDates'
 const view = 'tb/identification/testing-dates/index'

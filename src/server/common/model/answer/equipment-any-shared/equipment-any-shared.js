@@ -20,7 +20,7 @@ export class EquipmentAnySharedAnswer extends RadioButtonAnswer {
     },
     validation: {
       empty:
-        'Select if the incoming cattle will share any equipment and machinery with the resident herd'
+        'Select if the incoming animals will share any equipment and machinery with the resident herd'
     },
     layout: 'inline'
   }

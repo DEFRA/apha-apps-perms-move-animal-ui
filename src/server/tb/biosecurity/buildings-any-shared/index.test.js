@@ -5,7 +5,7 @@ import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise
 import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'Will the incoming cattle be housed?'
+const question = 'Will the incoming animals be housed?'
 const questionKey = 'animalsHoused'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/buildings-any-shared'

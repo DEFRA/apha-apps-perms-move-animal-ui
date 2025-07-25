@@ -2,9 +2,9 @@
 import { YesNoRadioPage } from '../base-pages/yesNoRadioBase.js'
 
 const pageHeadingAndTitle =
-  'Will you separate the incoming cattle from the resident herd?'
+  'Will you separate the incoming animals from the resident herd?'
 const pageId = 'keptSeparately'
-const noInputError = 'Select if the incoming cattle will be kept separately'
+const noInputError = 'Select if the incoming animals will be kept separately'
 
 class KeptSeparatelyPage extends YesNoRadioPage {
   constructor() {

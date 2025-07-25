@@ -18,7 +18,7 @@ describe('Grazing', () => {
 
   it('should define the right empty input message', () => {
     expect(GrazingAnswer.config.validation.empty).toBe(
-      'Select if the incoming cattle will be grazed'
+      'Select if the incoming animals will be grazed'
     )
   })
 

@@ -8,10 +8,10 @@ describe('OwnerFullNameAnswer', () => {
 
   it('should define the right empty input messages', () => {
     expect(OwnerFullNameAnswer.config.validation.firstName.empty?.message).toBe(
-      'Enter the first name of the registered owner of the cattle'
+      'Enter the first name of the registered owner of the animals'
     )
     expect(OwnerFullNameAnswer.config.validation.lastName.empty?.message).toBe(
-      'Enter the last name of the registered owner of the cattle'
+      'Enter the last name of the registered owner of the animals'
     )
   })
 })

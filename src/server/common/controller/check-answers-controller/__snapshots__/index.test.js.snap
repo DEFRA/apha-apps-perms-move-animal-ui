@@ -135,13 +135,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Who will be the registered owner of the cattle?
+      Who will be the registered owner of the animals?
     </dt>
     <dd class="govuk-summary-list__value">
       Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/tb/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the cattle?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/tb/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -184,13 +184,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What are the dates of the last TB tests for the cattle that are 42 days old or older?
+      What are the dates of the last TB tests for the animals that are 42 days old or older?
     </dt>
     <dd class="govuk-summary-list__value">
       01/01/2025
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/tb/submit/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the cattle that are 42 days old or older?</span></a>
+      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/tb/submit/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the animals that are 42 days old or older?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -211,46 +211,46 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will you separate the incoming cattle from the resident herd?
+      Will you separate the incoming animals from the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/tb/submit/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming cattle from the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/tb/submit/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming animals from the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle be grazed?
+      Will the incoming animals be grazed?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/tb/submit/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be grazed?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/tb/submit/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be grazed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you separate the incoming cattle from the resident herd?
+      How will you separate the incoming animals from the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       some details
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/tb/submit/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How will you separate the incoming cattle from the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/tb/submit/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How will you separate the incoming animals from the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How long ago was the field last grazed by cattle?
+      How long ago was the field last grazed by the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       yesterday
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/tb/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by cattle?</span></a>
+      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/tb/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -299,35 +299,35 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle be housed?
+      Will the incoming animals be housed?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be housed?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be housed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
+      How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
     </dt>
     <dd class="govuk-summary-list__value">
       somehow
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/tb/submit/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/tb/submit/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle share any equipment and machinery with the resident herd?
+      Will the incoming animals share any equipment and machinery with the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle share any equipment and machinery with the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals share any equipment and machinery with the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

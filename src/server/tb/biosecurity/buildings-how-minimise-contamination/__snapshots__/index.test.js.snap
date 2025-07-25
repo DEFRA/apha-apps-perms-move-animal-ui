@@ -10,13 +10,13 @@ exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContamination
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p>
-        Measures should be in place to prevent the spread of TB when the
-        incoming cattle are housed or have access to shared buildings.
+        You should have measures in place to prevent the spread of TB when the
+        incoming animals are housed or have access to shared buildings.
       </p>
       <p>You should include:</p>
       <ul class="govuk-list govuk-list--bullet">
         <li>
-          how the incoming cattle will be separated from any resident cattle
+          how the incoming animals will be separated from the resident herd
         </li>
         <li>
           cleaning and disinfection measures for housing and shared buildings,
@@ -34,7 +34,7 @@ exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContamination
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="buildingsHowMinimiseContamination">
-    How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
+    How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
   </label>
   <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="8"></textarea>
 </div>

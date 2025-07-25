@@ -6,7 +6,7 @@ import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise
 
 const sectionKey = 'biosecurity'
 const question =
-  'Will the incoming cattle share any equipment and machinery with the resident herd?'
+  'Will the incoming animals share any equipment and machinery with the resident herd?'
 const questionKey = 'equipmentShared'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/equipment-any-shared'
