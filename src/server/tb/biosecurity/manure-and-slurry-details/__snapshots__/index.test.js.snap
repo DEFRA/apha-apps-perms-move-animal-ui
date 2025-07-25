@@ -16,7 +16,7 @@ exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content should render
     </label>
   </h1>
   <div id="manureAndSlurryDetails-hint" class="govuk-hint">
-    For example, preventing cattle access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming cattle
+    For example, preventing animal access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming animals
   </div>
   <textarea class="govuk-textarea" id="manureAndSlurryDetails" name="manureAndSlurryDetails" rows="8" aria-describedby="manureAndSlurryDetails-hint"></textarea>
 </div>

@@ -24,7 +24,7 @@ describe('ManureAndSlurryDetails', () => {
 
   it('should have the right hint text', () => {
     expect(ManureAndSlurryDetailsAnswer.config.hint).toBe(
-      'For example, preventing cattle access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming cattle'
+      'For example, preventing animal access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming animals'
     )
   })
 

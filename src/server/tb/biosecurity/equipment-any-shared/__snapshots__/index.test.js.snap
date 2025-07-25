@@ -12,7 +12,7 @@ exports[`EquipmentAnySharedPage equipmentAnySharedPage.content should render exp
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        Will the incoming cattle share any equipment and machinery with the resident herd?
+        Will the incoming animals share any equipment and machinery with the resident herd?
       </h1>
     </legend>
     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">

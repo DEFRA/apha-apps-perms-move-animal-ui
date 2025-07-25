@@ -20,8 +20,7 @@ export class BuildingsAnySharedAnswer extends RadioButtonAnswer {
       no: { label: 'No' }
     },
     validation: {
-      empty:
-        'Select if the cattle will share any buildings with the resident herd'
+      empty: 'Select if the animals will be housed'
     },
     layout: 'inline'
   }

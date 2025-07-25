@@ -49,13 +49,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How long ago was the field last grazed by cattle?
+      How long ago was the field last grazed by the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       yesterday
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/biosecurity/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by cattle?</span></a>
+      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/biosecurity/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -104,35 +104,35 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle be housed?
+      Will the incoming animals be housed?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be housed?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/biosecurity/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be housed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?
+      How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
     </dt>
     <dd class="govuk-summary-list__value">
       somehow
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle share any equipment and machinery with the resident herd?
+      Will the incoming animals share any equipment and machinery with the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/biosecurity/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle share any equipment and machinery with the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/biosecurity/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals share any equipment and machinery with the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

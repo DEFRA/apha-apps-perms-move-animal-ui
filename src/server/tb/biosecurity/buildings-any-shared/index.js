@@ -7,7 +7,7 @@ import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 export class BuildingsAnySharedPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-any-shared'
   sectionKey = 'biosecurity'
-  question = 'Will the incoming cattle be housed?'
+  question = 'Will the incoming animals be housed?'
 
   questionKey = 'animalsHoused'
   Answer = BuildingsAnySharedAnswer

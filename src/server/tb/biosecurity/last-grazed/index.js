@@ -6,7 +6,7 @@ import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
 export class LastGrazedPage extends QuestionPage {
   urlPath = '/biosecurity/last-grazed'
   sectionKey = 'biosecurity'
-  question = 'How long ago was the field last grazed by cattle?'
+  question = 'How long ago was the field last grazed by the resident herd?'
   questionKey = 'lastGrazed'
   Answer = LastGrazedAnswer
 

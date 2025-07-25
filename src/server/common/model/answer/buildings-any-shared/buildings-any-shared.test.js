@@ -20,7 +20,7 @@ describe('BuildingsAnyShared', () => {
 
   it('should define the right empty input message', () => {
     expect(BuildingsAnySharedAnswer.config.validation.empty).toBe(
-      'Select if the cattle will share any buildings with the resident herd'
+      'Select if the animals will be housed'
     )
   })
 

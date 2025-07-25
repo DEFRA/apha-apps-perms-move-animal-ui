@@ -9,7 +9,7 @@ export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
   question =
-    'How will you minimise the risk of TB infection from the resident cattle to the incoming cattle during housing?'
+    'How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?'
 
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer

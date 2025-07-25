@@ -20,7 +20,7 @@ describe('LastGrazed', () => {
 
   it('should define the right empty input message', () => {
     expect(LastGrazedAnswer.config.validation.empty?.message).toBe(
-      'Enter when the field was last grazed by cattle'
+      'Enter when the field was last grazed by the resident herd'
     )
   })
 

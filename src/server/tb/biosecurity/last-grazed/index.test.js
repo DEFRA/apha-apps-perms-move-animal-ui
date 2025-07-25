@@ -4,7 +4,7 @@ import { manureAndSlurryPage } from '../manure-and-slurry/index.js'
 import { lastGrazedPage, LastGrazedPage } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'How long ago was the field last grazed by cattle?'
+const question = 'How long ago was the field last grazed by the resident herd?'
 const questionKey = 'lastGrazed'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/last-grazed'

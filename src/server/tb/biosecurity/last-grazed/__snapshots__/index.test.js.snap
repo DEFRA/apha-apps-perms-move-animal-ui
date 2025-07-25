@@ -12,7 +12,7 @@ exports[`LastGrazedPage lastGrazedPage.content should render expected response a
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="lastGrazed">
-      How long ago was the field last grazed by cattle?
+      How long ago was the field last grazed by the resident herd?
     </label>
   </h1>
   <input class="govuk-input govuk-input--width-10" id="lastGrazed" name="lastGrazed" type="text">
