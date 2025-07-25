@@ -8,13 +8,14 @@ import SessionTestHelper from './session-helper.js'
 /* global expect, it, beforeAll, beforeEach, afterAll, describe */
 
 /**
- * @param {{describes: string, it: string, pageUrl: string, state?: any }} options
+ * @param {{describes: string, it: string, pageUrl: string, state?: any; rawState?: any }} options
  */
 export const describePageSnapshot = ({
   describes,
   it: itDescription,
   pageUrl,
-  state = {}
+  state = {},
+  rawState = {}
 }) => {
   describe(describes, () => {
     /** @type {Server} */
@@ -30,6 +31,10 @@ export const describePageSnapshot = ({
 
       for (const [key, value] of Object.entries(state)) {
         await session.setSectionState(key, value)
+      }
+
+      for (const [key, value] of Object.entries(rawState)) {
+        await session.setState(key, value)
       }
     })
 
