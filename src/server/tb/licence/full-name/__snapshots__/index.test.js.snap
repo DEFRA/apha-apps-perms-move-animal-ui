@@ -11,7 +11,7 @@ exports[`FullNamePage FullNamePage.content should render expected response and c
 <fieldset class="govuk-fieldset">
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
     <h1 class="govuk-fieldset__heading">
-      What is the name of the registered owner of the cattle?
+      What is the name of the registered owner of the animals?
     </h1>
   </legend>
   <div class="govuk-form-group">

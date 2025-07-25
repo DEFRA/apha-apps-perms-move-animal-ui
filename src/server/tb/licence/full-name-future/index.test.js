@@ -4,7 +4,7 @@ import { fullNameFuturePage, FullNameFuturePage } from './index.js'
 import { FullNameFutureAnswer } from '../../../common/model/answer/full-name-future/full-name-future.js'
 
 const sectionKey = 'licence'
-const question = 'Who will be the registered owner of the cattle?'
+const question = 'Who will be the registered owner of the animals?'
 const questionKey = 'fullName'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-name-future'

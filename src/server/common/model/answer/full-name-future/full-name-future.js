@@ -11,13 +11,13 @@ export class FullNameFutureAnswer extends FullNameAnswer {
       firstName: {
         empty: {
           message:
-            'Enter the first name of who will be the registered owner of the cattle'
+            'Enter the first name of who will be the registered owner of the animals'
         }
       },
       lastName: {
         empty: {
           message:
-            'Enter the last name of who will be the registered owner of the cattle'
+            'Enter the last name of who will be the registered owner of the animals'
         }
       }
     }

@@ -11,7 +11,7 @@ exports[`FullNameFuturePage FullNameFuturePage.content should render expected re
 <fieldset class="govuk-fieldset">
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
     <h1 class="govuk-fieldset__heading">
-      Who will be the registered owner of the cattle?
+      Who will be the registered owner of the animals?
     </h1>
   </legend>
   <div class="govuk-form-group">

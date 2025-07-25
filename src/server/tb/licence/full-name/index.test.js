@@ -4,7 +4,7 @@ import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page
 import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-name/owner-full-name.js'
 
 const sectionKey = 'licence'
-const question = 'What is the name of the registered owner of the cattle?'
+const question = 'What is the name of the registered owner of the animals?'
 const questionKey = 'fullName'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-name'
