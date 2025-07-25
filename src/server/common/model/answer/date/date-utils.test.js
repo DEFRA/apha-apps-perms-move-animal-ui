@@ -42,6 +42,11 @@ describe('Date Helpers', () => {
       expect(isPastDate(pastDate)).toBe(false)
     })
 
+    it('should return false for the current date', () => {
+      const currentDate = { day: '01', month: '04', year: '2025' }
+      expect(isPastDate(currentDate)).toBe(false)
+    })
+
     afterAll(jest.useRealTimers)
   })
 
