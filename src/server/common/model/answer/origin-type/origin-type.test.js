@@ -42,7 +42,7 @@ describe('OriginType.config', () => {
       'Unrestricted farm or premises'
     )
     expect(config.options['iso-unit'].label).toBe('TB isolation unit')
-    expect(config.options.other.label).toBe('Another TB restrictied origin')
+    expect(config.options.other.label).toBe('Another TB restricted origin')
   })
 
   it('should have the expected options to select from for on to the farm movements', () => {
@@ -61,7 +61,7 @@ describe('OriginType.config', () => {
     expect(config.options['after-import-location'].label).toBe(
       'Location after animals have been imported'
     )
-    expect(config.options.other.label).toBe('Another TB restrictied origin')
+    expect(config.options.other.label).toBe('Another TB restricted origin')
     expect(Object.keys(config.options)).toHaveLength(5)
   })
 })
