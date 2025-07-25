@@ -12,7 +12,7 @@ exports[`KeptSeparatelyPage keptSeparatelyPage.content should render expected re
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        Will you separate the incoming cattle from the resident herd?
+        Will you separate the incoming animals from the resident herd?
       </h1>
     </legend>
     <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">

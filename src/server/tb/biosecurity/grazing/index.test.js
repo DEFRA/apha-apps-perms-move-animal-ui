@@ -5,7 +5,7 @@ import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.j
 import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'Will the incoming cattle be grazed?'
+const question = 'Will the incoming animals be grazed?'
 const questionKey = 'grazing'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/grazing'

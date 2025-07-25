@@ -5,7 +5,8 @@ import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.j
 import { keptSeparatelyPage, KeptSeparatelyPage } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'Will you separate the incoming cattle from the resident herd?'
+const question =
+  'Will you separate the incoming animals from the resident herd?'
 const questionKey = 'keptSeparately'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/biosecurity/kept-separately'

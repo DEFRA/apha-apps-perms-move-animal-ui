@@ -18,7 +18,7 @@ describe('KeptSeparately', () => {
 
   it('should define the right empty input message', () => {
     expect(KeptSeparatelyAnswer.config.validation.empty).toBe(
-      'Select if the incoming cattle will be kept separately'
+      'Select if the incoming animals will be kept separately'
     )
   })
 

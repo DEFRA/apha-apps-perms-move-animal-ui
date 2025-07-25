@@ -19,7 +19,7 @@ export class KeptSeparatelyAnswer extends RadioButtonAnswer {
       no: { label: 'No' }
     },
     validation: {
-      empty: 'Select if the incoming cattle will be kept separately'
+      empty: 'Select if the incoming animals will be kept separately'
     },
     layout: 'inline'
   }

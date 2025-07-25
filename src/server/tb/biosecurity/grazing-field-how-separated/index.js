@@ -6,7 +6,9 @@ import { lastGrazedPage } from '../last-grazed/index.js'
 export class GrazingFieldHowSeparatedPage extends QuestionPage {
   urlPath = '/biosecurity/grazing-field-how-separated'
   sectionKey = 'biosecurity'
-  question = 'How will you separate the incoming cattle from the resident herd?'
+  question =
+    'How will you separate the incoming animals from the resident herd?'
+
   questionKey = 'grazingFieldHowSeparated'
   Answer = GrazingFieldHowSeparatedAnswer
   view = 'tb/biosecurity/grazing-field-how-separated/index.njk'

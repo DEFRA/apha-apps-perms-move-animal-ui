@@ -8,7 +8,7 @@ import {
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you separate the incoming cattle from the resident herd?'
+  'How will you separate the incoming animals from the resident herd?'
 const questionKey = 'grazingFieldHowSeparated'
 const pageUrl = '/biosecurity/grazing-field-how-separated'
 

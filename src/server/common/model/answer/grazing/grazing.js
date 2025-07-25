@@ -19,7 +19,7 @@ export class GrazingAnswer extends RadioButtonAnswer {
       no: { label: 'No' }
     },
     validation: {
-      empty: 'Select if the incoming cattle will be grazed'
+      empty: 'Select if the incoming animals will be grazed'
     },
     layout: 'inline'
   }

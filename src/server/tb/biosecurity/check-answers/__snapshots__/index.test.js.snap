@@ -16,35 +16,35 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will you separate the incoming cattle from the resident herd?
+      Will you separate the incoming animals from the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/biosecurity/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming cattle from the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/biosecurity/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming animals from the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming cattle be grazed?
+      Will the incoming animals be grazed?
     </dt>
     <dd class="govuk-summary-list__value">
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/biosecurity/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming cattle be grazed?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/biosecurity/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be grazed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you separate the incoming cattle from the resident herd?
+      How will you separate the incoming animals from the resident herd?
     </dt>
     <dd class="govuk-summary-list__value">
       some details
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How will you separate the incoming cattle from the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How will you separate the incoming animals from the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

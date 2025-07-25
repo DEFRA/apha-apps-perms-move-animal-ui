@@ -9,7 +9,7 @@ import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.j
 export class KeptSeparatelyPage extends QuestionPage {
   urlPath = '/biosecurity/kept-separately'
   sectionKey = 'biosecurity'
-  question = 'Will you separate the incoming cattle from the resident herd?'
+  question = 'Will you separate the incoming animals from the resident herd?'
   questionKey = 'keptSeparately'
   Answer = KeptSeparatelyAnswer
 
