@@ -10,7 +10,7 @@ exports[`TbConfirmationPage TbConfirmationPage should have the expected content 
     Application submitted
   </h1>
   <div class="govuk-panel__body">
-    Your reference number<br><b>null</b>
+    Your reference number<br><b>TB-EXAM-PLE!</b>
   </div>
 </div>
 

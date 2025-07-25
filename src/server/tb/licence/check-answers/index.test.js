@@ -100,7 +100,9 @@ describePageSnapshot({
   describes: '#licenceSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { licence: defaultState }
+  state: {
+    application: { licence: defaultState }
+  }
 })
 
 /**

@@ -63,7 +63,9 @@ describePageSnapshot({
   describes: '#identificationSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { identification: validIdentificationSectionState }
+  state: {
+    application: { identification: validIdentificationSectionState }
+  }
 })
 
 /**

@@ -65,7 +65,9 @@ describePageSnapshot({
   describes: '#destinationSummaryPage.content',
   it: 'should render the expected content',
   pageUrl,
-  state: { destination: defaultState }
+  state: {
+    application: { destination: defaultState }
+  }
 })
 
 /**
