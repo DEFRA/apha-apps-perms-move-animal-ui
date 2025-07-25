@@ -26,7 +26,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: test
       GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
-
+      SHAREPOINT_TB25_INTEGRATION_ENABLED: false      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -100,7 +100,7 @@ jobs:
           NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
-        run: docker compose up --wait-timeout 300 -d --quiet-pull
+        run: docker compose --profile github up --wait-timeout 300 -d --quiet-pull
 
       - name: Run ${{ matrix.test-suite }}
         run: npm run ${{ matrix.test-suite }}
