@@ -1,7 +1,7 @@
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import destinationAddressPage from '../../page-objects/destination/destinationAddressPage.js'
-import destinationSelectionPage from '../../page-objects/destination/destinationSelectionPage.js'
+import maximumAnimalsPage from '../../page-objects/destination/maximumAnimalsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 const lineOne = '37 Made up lane'
@@ -25,6 +25,6 @@ describe('On farm address page test', () => {
       postcode: postcodeValid
     })
 
-    await waitForPagePath(destinationSelectionPage.pagePath)
+    await waitForPagePath(maximumAnimalsPage.pagePath)
   })
 })
