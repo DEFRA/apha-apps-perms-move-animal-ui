@@ -38,13 +38,13 @@ exports[`#originSummaryController.content should render the expected content 1`]
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?
+      What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?
     </dt>
     <dd class="govuk-summary-list__value">
       12/123/1234
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/origin/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/origin/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

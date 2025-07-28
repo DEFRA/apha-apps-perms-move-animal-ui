@@ -23,9 +23,9 @@ const defaultPostcode = 'NB2A 1GG'
 
 const questions = {
   parishFarm:
-    'What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?',
+    'What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?',
   parishImport:
-    'What is the County Parish Holding (CPH) number of the UK point of entry?',
+    'What is the county parish holding (CPH) number of the UK point of entry?',
   addressFarm:
     'What is the address of the farm or premises where the animals are moving off?',
   addressImport: 'What is the address of the UK point of entry?'

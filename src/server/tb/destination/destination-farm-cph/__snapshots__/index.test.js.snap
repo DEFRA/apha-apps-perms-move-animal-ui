@@ -12,7 +12,7 @@ exports[`DestinationFarmCphPage DestinationFarmCphPage.content should render exp
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="cphNumber">
-      What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+      What is the county parish holding (CPH) number of the farm or premises where the animals are going to?
     </label>
   </h1>
   <div id="cphNumber-hint" class="govuk-hint">

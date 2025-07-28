@@ -13,7 +13,7 @@ export class CphNumberPage extends QuestionPage {
   sectionKey = 'origin'
 
   question =
-    'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+    'What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?'
 
   questionKey = 'cphNumber'
 

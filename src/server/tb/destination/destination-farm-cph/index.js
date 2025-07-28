@@ -7,7 +7,7 @@ export class DestinationFarmCphPage extends QuestionPage {
   urlPath = '/destination/destination-farm-cph'
   sectionKey = 'destination'
   question =
-    'What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?'
+    'What is the county parish holding (CPH) number of the farm or premises where the animals are going to?'
 
   questionKey = 'destinationFarmCph'
 

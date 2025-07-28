@@ -5,7 +5,7 @@ import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page
 
 const sectionKey = 'origin'
 const question =
-  'What is the County Parish Holding (CPH) number of your farm or premises where the animals are moving off?'
+  'What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?'
 const questionKey = 'cphNumber'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/cph-number'

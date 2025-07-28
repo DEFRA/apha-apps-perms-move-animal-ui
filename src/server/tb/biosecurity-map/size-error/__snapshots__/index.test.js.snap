@@ -9,7 +9,7 @@ exports[`#SizeErrorPage SizeErrorPage.content should render expected response an
         <p>
           You must email your biosecurity map to csc.tblicensing@apha.gov.uk
         </p>
-        <p>In your email include your County Parish Holding (CPH) number.</p>
+        <p>In your email include your county parish holding (CPH) number.</p>
         <p>
           Your application cannot be processed until we receive your biosecurity
           map.
