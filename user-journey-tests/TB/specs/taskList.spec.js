@@ -12,7 +12,6 @@ import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js
 import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswersPage.js'
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import { secureDeviceArray } from '../helpers/constants.js'
-import futureOwnerPage from '../page-objects/receiving-the-licence/futureOwnerPage.js'
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 import signInPage from '../page-objects/signInPage.js'
 import identificationAnswersPage from '../page-objects/identification/identificationAnswersPage.js'
