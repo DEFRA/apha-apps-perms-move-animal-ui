@@ -10,8 +10,8 @@ exports[`TestingDatesPage testingDatesPage.content should render expected respon
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p>
-        The cattle must have tested negative to a TB skin test within 30 days of
-        the planned movement date.
+        The animals must have tested negative to a TB skin test within 30 days
+        of the planned movement date.
       </p>
       <p>
         You need to enter the date they were injected on their most recent TB
