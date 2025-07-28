@@ -6,7 +6,7 @@ import { importAddressPage } from '../import-address/index.js'
 
 const sectionKey = 'origin'
 const question =
-  'What is the County Parish Holding (CPH) number of the UK point of entry?'
+  'What is the county parish holding (CPH) number of the UK point of entry?'
 const questionKey = 'cphNumber'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/origin/import-cph'

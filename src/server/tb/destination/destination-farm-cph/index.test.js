@@ -5,7 +5,7 @@ import { destinationFarmAddressPage } from '../destination-farm-address/index.js
 
 const sectionKey = 'destination'
 const question =
-  'What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?'
+  'What is the county parish holding (CPH) number of the farm or premises where the animals are going to?'
 const questionKey = 'destinationFarmCph'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/destination/destination-farm-cph'

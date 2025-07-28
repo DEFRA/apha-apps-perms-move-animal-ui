@@ -37,13 +37,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?
+      What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?
     </dt>
     <dd class="govuk-summary-list__value">
       12/345/6789
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -75,13 +75,13 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?
+      What is the county parish holding (CPH) number of the farm or premises where the animals are going to?
     </dt>
     <dd class="govuk-summary-list__value">
       12/345/6789
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/destination-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="destinationFarmCph-change-link">Change<span class="govuk-visually-hidden"> What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?</span></a>
+      <a class="govuk-link" href="/destination/destination-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="destinationFarmCph-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are going to?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

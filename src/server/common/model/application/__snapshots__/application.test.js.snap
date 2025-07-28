@@ -34,7 +34,7 @@ exports[`Application.applicationData should render application data in the datas
             "type": "text",
             "value": "12/345/6789",
           },
-          "question": "What is the County Parish Holding (CPH) number of the farm or premises where the animals are moving off?",
+          "question": "What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?",
           "questionKey": "cphNumber",
         },
         {
@@ -73,7 +73,7 @@ RG24 8RR",
             "type": "text",
             "value": "12/345/6789",
           },
-          "question": "What is the County Parish Holding (CPH) number of the farm or premises where the animals are going to?",
+          "question": "What is the county parish holding (CPH) number of the farm or premises where the animals are going to?",
           "questionKey": "destinationFarmCph",
         },
         {

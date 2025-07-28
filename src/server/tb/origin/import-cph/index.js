@@ -8,7 +8,7 @@ export class ImportCphPage extends QuestionPage {
   urlPath = '/origin/import-cph'
   key = 'ImportCphPage'
   question =
-    'What is the County Parish Holding (CPH) number of the UK point of entry?'
+    'What is the county parish holding (CPH) number of the UK point of entry?'
 
   sectionKey = 'origin'
   questionKey = 'cphNumber'
