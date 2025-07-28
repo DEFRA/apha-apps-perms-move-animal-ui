@@ -19,7 +19,12 @@ const applicationStateWithAnimalIdentifiersSection = {
   },
   destination: {
     ...validDestinationSectionState,
-    destinationType: 'tb-restricted-farm'
+    destinationType: 'tb-restricted-farm',
+    movementDate: {
+      day: '01',
+      month: '01',
+      year: '2300'
+    }
   },
   identification: validIdentificationSectionState,
   licence: validLicenceSectionState,
@@ -119,6 +124,22 @@ describe('Identification.config.isVisible', () => {
     const isVisible = IdentificationSection.config.isVisible({
       origin,
       destination
+    })
+
+    expect(isVisible).toBe(true)
+  })
+
+  it('should be visible if moving off of an iso-unit', () => {
+    const isVisible = IdentificationSection.config.isVisible({
+      origin: {
+        ...origin,
+        onOffFarm: 'off',
+        originType: 'iso-unit'
+      },
+      destination: {
+        ...destination,
+        destinationType: 'slaughter' // valid destinationType for iso-unit
+      }
     })
 
     expect(isVisible).toBe(true)
