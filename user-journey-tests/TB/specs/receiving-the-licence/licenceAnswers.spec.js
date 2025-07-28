@@ -10,6 +10,7 @@ import {
 } from '../../helpers/testHelpers/checkAnswers.js'
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 
 const firstNameDefault = 'defaultFirst'
 const lastNameDefault = 'defaultLast'
@@ -23,6 +24,7 @@ describe('Check your licence answers test', () => {
   before('Sign in and complete licence task', async () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()
+    await completeOriginTaskAnswersOnFarm()
     await completeLicenceTaskAnswersCustom(
       emailDefault,
       firstNameDefault,

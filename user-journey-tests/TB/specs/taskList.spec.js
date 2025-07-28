@@ -12,7 +12,6 @@ import completeBiosecurityMapTask from '../helpers/testHelpers/biosecurityMap.js
 import biosecurityAnswersPage from '../page-objects/biosecurity/biosecurityAnswersPage.js'
 import biosecurityMapAnswersPage from '../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import { secureDeviceArray } from '../helpers/constants.js'
-import futureOwnerPage from '../page-objects/receiving-the-licence/futureOwnerPage.js'
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 import signInPage from '../page-objects/signInPage.js'
 import identificationAnswersPage from '../page-objects/identification/identificationAnswersPage.js'
@@ -43,7 +42,7 @@ describe('Task list page test', () => {
       {
         position: 3,
         taskTitle: 'Receiving the licence',
-        expectedStatus: 'Incomplete'
+        expectedStatus: 'Cannot start yet'
       }
     ])
 
@@ -53,10 +52,6 @@ describe('Task list page test', () => {
   it('Should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin(toFromFarmPage)
     await toFromFarmPage.verifyPageHeadingAndTitle()
-  })
-
-  it('Should link to receiving the licence first question before an application has been started', async () => {
-    await taskListPage.selectReceiveTheLicence(futureOwnerPage)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {

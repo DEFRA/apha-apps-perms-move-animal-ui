@@ -4,6 +4,7 @@ import {
 } from '~/src/server/tb/licence/full-name-future/index.js'
 import { LicenceSection } from './section.js'
 import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
+import { validOriginSectionState } from '../../common/test-helpers/journey-state.js'
 
 const testEmail = 'test@domain.com'
 const testFullName = {
@@ -62,6 +63,26 @@ describe('Licence', () => {
         const result = LicenceSection.firstPageFactory(applicationState)
         expect(result).toBe(fullNameFuturePage)
       })
+    })
+  })
+
+  describe('isEnabled', () => {
+    it('should return true if OriginSection is valid', () => {
+      const app = {
+        origin: validOriginSectionState
+      }
+
+      const result = LicenceSection.config.isEnabled(app)
+      expect(result).toBe(true)
+    })
+
+    it('should return false if OriginSection is invalid', () => {
+      const app = {
+        origin: {}
+      }
+
+      const result = LicenceSection.config.isEnabled(app)
+      expect(result).toBe(false)
     })
   })
 })
