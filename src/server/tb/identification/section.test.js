@@ -19,7 +19,12 @@ const applicationStateWithAnimalIdentifiersSection = {
   },
   destination: {
     ...validDestinationSectionState,
-    destinationType: 'tb-restricted-farm'
+    destinationType: 'tb-restricted-farm',
+    movementDate: {
+      day: '01',
+      month: '01',
+      year: '2300'
+    }
   },
   identification: validIdentificationSectionState,
   licence: validLicenceSectionState,
