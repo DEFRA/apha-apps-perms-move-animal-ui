@@ -43,7 +43,7 @@ describe('Task list page test', () => {
       {
         position: 3,
         taskTitle: 'Receiving the licence',
-        expectedStatus: 'Incomplete'
+        expectedStatus: 'Cannot start yet'
       }
     ])
 
@@ -53,10 +53,6 @@ describe('Task list page test', () => {
   it('Should link to movement origin first question before an application has been started', async () => {
     await taskListPage.selectMovementOrigin(toFromFarmPage)
     await toFromFarmPage.verifyPageHeadingAndTitle()
-  })
-
-  it('Should link to receiving the licence first question before an application has been started', async () => {
-    await taskListPage.selectReceiveTheLicence(futureOwnerPage)
   })
 
   it('Should link to movement origin summary once that selection has been completed', async () => {
