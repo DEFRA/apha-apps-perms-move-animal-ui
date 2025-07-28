@@ -3,7 +3,7 @@ import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/a
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 
-const customHeading = 'Housing the incoming cattle'
+const customHeading = 'Housing the incoming animals'
 
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'

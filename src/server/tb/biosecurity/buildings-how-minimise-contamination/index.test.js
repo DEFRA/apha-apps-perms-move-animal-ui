@@ -12,7 +12,7 @@ const question =
 const questionKey = 'buildingsHowMinimiseContamination'
 const view = 'tb/biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'
-const customHeading = 'Housing the incoming cattle'
+const customHeading = 'Housing the incoming animals'
 
 describe('BuildingsHowMinimiseContaminationPage', () => {
   const page = new BuildingsHowMinimiseContaminationPage()
