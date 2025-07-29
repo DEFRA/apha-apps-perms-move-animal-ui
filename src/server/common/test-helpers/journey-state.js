@@ -102,7 +102,6 @@ export const validLicenceSectionState = {
     firstName: 'Kathryn',
     lastName: 'Janeway'
   },
-  receiveMethod: 'email',
   emailAddress: 'kathryn@starfleet.com'
 }
 

@@ -14,7 +14,6 @@ const testFullName = {
 
 const licenceData = {
   emailAddress: testEmail,
-  receiveMethod: 'email',
   fullName: testFullName
 }
 

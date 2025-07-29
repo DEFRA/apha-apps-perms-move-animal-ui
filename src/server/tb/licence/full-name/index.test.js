@@ -1,7 +1,7 @@
 import { fullNamePage, FullNamePage } from './index.js'
-import { receiveMethodPage } from '../receiveMethod/index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-name/owner-full-name.js'
+import { emailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
 const question = 'What is the name of the registered owner of the animals?'
@@ -43,7 +43,7 @@ describe('FullNamePage', () => {
   it('nextPage should return correct next page', () => {
     const nextPage = page.nextPage()
 
-    expect(nextPage).toBe(receiveMethodPage)
+    expect(nextPage).toBe(emailAddressPage)
   })
 
   it('should export page', () => {
