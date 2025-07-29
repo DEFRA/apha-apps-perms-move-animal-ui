@@ -183,8 +183,11 @@ describe('#CheckAnswers', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(confirmationUri)
 
-      const { reference } = await session.getState('tb-confirmation-details')
+      const { reference, 'state-key': stateKey } = await session.getState(
+        'tb-confirmation-details'
+      )
       expect(reference).toBe(dummyReferenceNumber)
+      expect(stateKey).toBe('application')
       expect(wreckSpy).toHaveBeenCalledTimes(1)
       expect(wreckSpy.mock.calls[0][0]).toBe(
         `${config.get('caseManagementApi').baseUrl}/submit`

@@ -54,8 +54,8 @@ describe('# Confirmation handler', () => {
     await session.setSectionState('licence', licence)
   })
 
-  it('Should reset session when clearSessionDebug is true and env is not production', async () => {
-    spyOnConfig('clearSessionDebug', false)
+  it('Should not reset session when clearSessionDebug is true and env is not production', async () => {
+    spyOnConfig('clearSessionOnSend', false)
 
     await session.setState('tb-confirmation-details', {
       reference: 'TB-EXAM-PLE!',
@@ -82,7 +82,7 @@ describe('# Confirmation handler', () => {
   })
 
   it('Should reset session when clearSessionDebug is true and env is production', async () => {
-    spyOnConfig('clearSessionDebug', true)
+    spyOnConfig('clearSessionOnSend', true)
 
     await session.setState('tb-confirmation-details', {
       reference: 'TB-EXAM-PLE!',

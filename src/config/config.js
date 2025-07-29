@@ -408,8 +408,8 @@ export const config = convict({
       default: 'https://your-account.cpdev.cui.defra.gov.uk/management'
     }
   },
-  clearSessionDebug: {
-    doc: 'Clear session on logout',
+  clearSessionOnSend: {
+    doc: 'Clear session on application send',
     format: Boolean,
     default: true,
     env: 'CLEAR_SESSION_ON_SEND'
