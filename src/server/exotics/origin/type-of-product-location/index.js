@@ -17,11 +17,11 @@ export class Answer extends RadioButtonAnswer {
         label: 'Farm'
       },
       'corporate-holding': {
-        label: 'Corporate holding',
+        label: 'Commercial holding or premises',
         hint: 'Such as a food business or animal feed company'
       },
       'domestic-residence': {
-        label: 'Domestic residence'
+        label: 'Smallholding or domestic residence'
       },
       other: {
         label: 'Another location'

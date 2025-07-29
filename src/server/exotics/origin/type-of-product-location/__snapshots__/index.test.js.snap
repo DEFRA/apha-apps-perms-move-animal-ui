@@ -25,7 +25,7 @@ exports[`TypeOfProductLocationPage content should render expected response and c
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="corporate-holding" name="typeOfProductLocation" type="radio" value="corporate-holding" aria-describedby="corporate-holding-item-hint">
         <label class="govuk-label govuk-radios__label" for="corporate-holding">
-          Corporate holding
+          Commercial holding or premises
         </label>
         <div id="corporate-holding-item-hint" class="govuk-hint govuk-radios__hint">
           Such as a food business or animal feed company
@@ -34,7 +34,7 @@ exports[`TypeOfProductLocationPage content should render expected response and c
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="domestic-residence" name="typeOfProductLocation" type="radio" value="domestic-residence">
         <label class="govuk-label govuk-radios__label" for="domestic-residence">
-          Domestic residence
+          Smallholding or domestic residence
         </label>
       </div>
       <div class="govuk-radios__item">
