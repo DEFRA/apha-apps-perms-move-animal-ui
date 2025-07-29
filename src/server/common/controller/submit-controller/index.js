@@ -53,7 +53,8 @@ export class ConfirmationController extends PageController {
     const resp = super.handleGet(req, h)
 
     if (config.get('clearSessionDebug') === true) {
-      req.yar.reset()
+      req.yar.clear(req.yar.get('state-key'))
+      req.yar.clear('state-key')
     }
 
     return resp

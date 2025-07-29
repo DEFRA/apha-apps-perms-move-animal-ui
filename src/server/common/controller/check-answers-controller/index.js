@@ -98,6 +98,7 @@ export class SubmitPageController extends QuestionPageController {
       }
 
       req.yar.set(`${this.namespace}-applicationReference`, message)
+      req.yar.set(`state-key`, state.key)
       return super.handlePost(req, h)
     } catch (err) {
       if (err.output.statusCode === statusCodes.fileTooLarge) {
