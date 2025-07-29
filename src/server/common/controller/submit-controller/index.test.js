@@ -57,8 +57,10 @@ describe('# Confirmation handler', () => {
   it('Should reset session when clearSessionDebug is true and env is not production', async () => {
     spyOnConfig('clearSessionDebug', false)
 
-    await session.setState('tb-applicationReference', 'TB-EXAM-PLE!')
-    await session.setState('state-key', 'application')
+    await session.setState('tb-confirmation-details', {
+      reference: 'TB-EXAM-PLE!',
+      'state-key': 'application'
+    })
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
@@ -76,13 +78,16 @@ describe('# Confirmation handler', () => {
     expect(await session.getSectionState('origin')).toBeDefined()
     expect(await session.getSectionState('destination')).toBeDefined()
     expect(await session.getSectionState('licence')).toBeDefined()
+    expect(await session.getRawState('tb-confirmation-details')).toBeDefined()
   })
 
   it('Should reset session when clearSessionDebug is true and env is production', async () => {
     spyOnConfig('clearSessionDebug', true)
 
-    await session.setState(`tb-applicationReference`, 'TB-EXAM-PLE!')
-    await session.setState('state-key', 'application')
+    await session.setState('tb-confirmation-details', {
+      reference: 'TB-EXAM-PLE!',
+      'state-key': 'application'
+    })
 
     const { statusCode } = await server.inject(
       withCsrfProtection(
@@ -100,8 +105,7 @@ describe('# Confirmation handler', () => {
     expect(await session.getSectionState('origin')).toBeUndefined()
     expect(await session.getSectionState('destination')).toBeUndefined()
     expect(await session.getSectionState('licence')).toBeUndefined()
-    expect(await session.getState('state-key')).toBeUndefined()
-    expect(await session.getRawState('tb-applicationReference')).toBeDefined()
+    expect(await session.getRawState('tb-confirmation-details')).toBeDefined()
   })
 
   it('should redirect to incomplete if there is no reference in session', async () => {

@@ -183,8 +183,8 @@ describe('#CheckAnswers', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(confirmationUri)
 
-      const refNum = await session.getRawState('tb-applicationReference')
-      expect(refNum).toBe(dummyReferenceNumber)
+      const { reference } = await session.getState('tb-confirmation-details')
+      expect(reference).toBe(dummyReferenceNumber)
       expect(wreckSpy).toHaveBeenCalledTimes(1)
       expect(wreckSpy.mock.calls[0][0]).toBe(
         `${config.get('caseManagementApi').baseUrl}/submit`
@@ -255,8 +255,9 @@ describe('#CheckAnswers', () => {
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(confirmationUri)
 
-      const refNum = await session.getRawState('tb-applicationReference')
-      expect(refNum).toBe(dummyReferenceNumber)
+      const { reference } = await session.getState('tb-confirmation-details')
+
+      expect(reference).toBe(dummyReferenceNumber)
       expect(wreckSpy).toHaveBeenCalledTimes(1)
       expect(wreckSpy.mock.calls[0][0]).toBe(
         `${config.get('caseManagementApi').baseUrl}/submit`
