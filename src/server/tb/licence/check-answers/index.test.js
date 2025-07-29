@@ -14,11 +14,13 @@ const defaultState = {
   emailAddress: testEmail
 }
 
-describePageSnapshot({
-  describes: '#licenceSummaryPage.content',
-  it: 'should render the expected content',
-  pageUrl,
-  state: {
-    application: { licence: defaultState }
-  }
+describe('#licenceSummaryPage', () => {
+  describePageSnapshot({
+    describes: '#licenceSummaryPage.content',
+    it: 'should render the expected content',
+    pageUrl,
+    state: {
+      application: { licence: defaultState }
+    }
+  })
 })
