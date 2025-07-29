@@ -1,5 +1,5 @@
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
-import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
+import emailAddressPage from '../../page-objects/receiving-the-licence/emailAddressPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -41,9 +41,9 @@ describe('County parish owner name test', () => {
     await ownerNamePage.inputTextAndContinue(
       firstName,
       lastName,
-      receiveMethodPage
+      emailAddressPage
     )
-    await receiveMethodPage.selectBackLink()
+    await emailAddressPage.selectBackLink()
 
     const firstNameInputValue = await ownerNamePage.firstTextInput().getValue()
     expect(firstNameInputValue).toBe(firstName)

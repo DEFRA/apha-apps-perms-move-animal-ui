@@ -2,7 +2,6 @@ import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
 import licenceAnswersPage from '../../page-objects/receiving-the-licence/licenceAnswersPage.js'
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
-import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 
 import { validateElementVisibleAndText } from '../page.js'
@@ -23,20 +22,11 @@ const completeLicenceTask = async ({
   await navigateToTaskList()
   if (!on) {
     await taskListPage.selectReceiveTheLicence(ownerNamePage)
-    await ownerNamePage.inputTextAndContinue(
-      firstName,
-      lastName,
-      receiveMethodPage
-    )
+    await ownerNamePage.inputTextAndContinue(firstName, lastName, emailPage)
   } else {
     await taskListPage.selectReceiveTheLicence(futureOwnerPage)
-    await futureOwnerPage.inputTextAndContinue(
-      firstName,
-      lastName,
-      receiveMethodPage
-    )
+    await futureOwnerPage.inputTextAndContinue(firstName, lastName, emailPage)
   }
-  await receiveMethodPage.selectEmailAndContinue(emailPage)
   await emailPage.inputTextAndContinue(email, licenceAnswersPage)
   await licenceAnswersPage.verifyPageHeadingAndTitle()
   await validateElementVisibleAndText(

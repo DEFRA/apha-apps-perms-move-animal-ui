@@ -1,6 +1,6 @@
 import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
-import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import signInPage from '../../page-objects/signInPage.js'
+import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 describe('Future owner spec', () => {
@@ -29,12 +29,8 @@ describe('Future owner spec', () => {
     const firstName = 'Bruce'
     const lastName = 'Wayne'
 
-    await futureOwnerPage.inputTextAndContinue(
-      firstName,
-      lastName,
-      receiveMethodPage
-    )
-    await receiveMethodPage.selectBackLink()
+    await futureOwnerPage.inputTextAndContinue(firstName, lastName, emailPage)
+    await emailPage.selectBackLink()
 
     const firstNameInputValue = await futureOwnerPage
       .firstTextInput()
