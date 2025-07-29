@@ -31,7 +31,7 @@ exports[`MovementTypePage content should render expected response and content 1`
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="visit" name="movementType" type="radio" value="visit">
         <label class="govuk-label govuk-radios__label" for="visit">
-          A short term visit or activity on a farm or premises
+          A short-term visit or activity on a farm or premises
         </label>
       </div>
     </div>
