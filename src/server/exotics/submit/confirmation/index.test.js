@@ -28,7 +28,10 @@ describe('ExoticsConfirmationPage', () => {
     pageUrl: page.urlPath,
     state: {
       raw: {
-        'exotics-applicationReference': 'EX-EXAM-PLE!'
+        'exotics-confirmation-details': {
+          reference: 'EX-EXAM-PLE!',
+          'state-key': 'application'
+        }
       }
     }
   })

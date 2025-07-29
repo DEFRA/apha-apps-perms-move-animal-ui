@@ -32,9 +32,9 @@ export class ConfirmationPage extends Page {
   }
 
   viewProps(req) {
-    const ref = req.yar.get(`${this.namespace}-applicationReference`)
+    const { reference } = req.yar.get(`${this.namespace}-confirmation-details`)
     return {
-      referenceHTML: `Your reference number<br /><b>${ref}</b>`
+      referenceHTML: `Your reference number<br /><b>${reference}</b>`
     }
   }
 }
@@ -42,9 +42,11 @@ export class ConfirmationPage extends Page {
 export class ConfirmationController extends PageController {
   handleGet(req, h) {
     const page = /** @type {ConfirmationPage} */ (this.page)
-    const ref = req.yar.get(`${page.namespace}-applicationReference`)
 
-    if (!ref) {
+    const { reference, 'state-key': stateKey } =
+      req.yar.get(`${page.namespace}-confirmation-details`) ?? {}
+
+    if (!reference) {
       req.logger.warn('Application reference missing on confirmation page')
       // If the reference is not set, redirect to the start page
       return h.redirect(page.incompletePageUrl)
@@ -52,8 +54,8 @@ export class ConfirmationController extends PageController {
 
     const resp = super.handleGet(req, h)
 
-    if (config.get('clearSessionDebug') === true) {
-      req.yar.reset()
+    if (config.get('clearSessionOnSend') === true) {
+      req.yar.clear(stateKey)
     }
 
     return resp

@@ -28,7 +28,10 @@ describe('TbConfirmationPage', () => {
     pageUrl: page.urlPath,
     state: {
       raw: {
-        'tb-applicationReference': 'TB-EXAM-PLE!'
+        'tb-confirmation-details': {
+          reference: 'TB-EXAM-PLE!',
+          'state-key': 'application'
+        }
       }
     }
   })

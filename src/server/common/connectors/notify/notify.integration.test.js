@@ -10,7 +10,7 @@ jest.mock(
 )
 
 const testTimeout = 100
-const backendPort = 3001
+const backendPort = 3005
 
 describe('sendNotification (integration)', () => {
   let server
