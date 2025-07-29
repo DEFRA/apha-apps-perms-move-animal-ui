@@ -12,7 +12,7 @@ export class Answer extends TextAreaAnswer {
   /** @type { TextAreaConfig } */
   static config = {
     payloadKey: questionKey,
-    hint: 'For example, routine restocking or welfare',
+    hint: 'For example, for slaughter or moving for selling purposes',
     spellcheck: true,
     rows: 4,
     validation: {
