@@ -18,6 +18,11 @@ exports[`TbConfirmationPage TbConfirmationPage should have the expected content 
           We have sent you a confirmation email. It will include your
           application reference number.
         </p>
+        <p class="govuk-body">
+          If approved, your licence will also be sent by email. You can contact
+          the APHA helpline on 03000 200 301 if you have any issues receiving
+          it.
+        </p>
         <h2 class="govuk-heading-m">What happens next</h2>
         <p class="govuk-body" data-testid="sla-text">
           It can take up to 5 working days to process your application. It may
