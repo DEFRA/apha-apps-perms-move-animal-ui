@@ -65,10 +65,7 @@ export async function createServer() {
   ])
 
   await server.register({
-    plugin: {
-      ...defraForms,
-      dependencies: ['@hapi/vision', ...defraForms.dependencies]
-    },
+    plugin: defraForms,
     options: {
       cacheName: config.get('session').cache.name,
       nunjucks: {
