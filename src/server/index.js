@@ -15,7 +15,7 @@ import { disableClientCache } from './common/helpers/client-cache.js/client-cach
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
 import services from './common/helpers/form-runner/index.js'
-import plugin from '@defra/forms-engine-plugin'
+import defraForms from '@defra/forms-engine-plugin'
 import { context } from '../config/nunjucks/context/context.js'
 
 export async function createServer() {
@@ -66,10 +66,11 @@ export async function createServer() {
 
   await server.register({
     plugin: {
-      ...plugin,
-      dependencies: ['@hapi/vision', ...plugin.dependencies]
+      ...defraForms,
+      dependencies: ['@hapi/vision', ...defraForms.dependencies]
     },
     options: {
+      cacheName: config.get('session').cache.name,
       nunjucks: {
         paths: [
           path.resolve(

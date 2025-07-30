@@ -11,12 +11,14 @@ const user = { id: 'example-user', displayName: 'Example user' }
 /**
  * @param {QuestionPage} page
  * @param {string} nextPath
+ * @param {string} urlPath
  * @returns {PageQuestion}
  **/
 const page = (page, urlPath, nextPath) => ({
   path: urlPath,
   title: page.question,
   components: [component(page)],
+  section: page.sectionKey,
   next: [
     {
       path: nextPath
