@@ -1,8 +1,8 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 
-import { receiveMethodPage } from '../receiveMethod/index.js'
 import { FullNameFutureAnswer } from '../../../common/model/answer/full-name-future/full-name-future.js'
+import { emailAddressPage } from '../email-address/index.js'
 
 export class FullNameFuturePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name-future'
@@ -15,7 +15,7 @@ export class FullNameFuturePage extends QuestionPage {
   Answer = FullNameFutureAnswer
 
   nextPage() {
-    return receiveMethodPage
+    return emailAddressPage
   }
 }
 export const fullNameFuturePage = new FullNameFuturePage()

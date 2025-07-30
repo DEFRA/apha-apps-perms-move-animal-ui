@@ -5,8 +5,7 @@ import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import {
   validateAndAdjustEmail,
-  validateAndAdjustOwnerName,
-  validateReceiveMethod
+  validateAndAdjustOwnerName
 } from '../../helpers/testHelpers/checkAnswers.js'
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
@@ -50,14 +49,6 @@ describe('Check your licence answers test', () => {
       newFirstName,
       lastNameDefault,
       newLastName
-    )
-  })
-
-  it('Should verify the method to receive the licence', async () => {
-    await licenceAnswersPage.navigateToPageAndVerifyTitle()
-    validateReceiveMethod(
-      licenceAnswersPage.getChangeLink('receiveMethod'),
-      licenceAnswersPage.getValue('receiveMethod')
     )
   })
 

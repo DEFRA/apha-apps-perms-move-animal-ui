@@ -1,28 +1,14 @@
 import { createServer } from '~/src/server/index.js'
-import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { validLicenceSectionState } from '~/src/server/common/test-helpers/journey-state.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
-import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { licenceSummaryPage } from './index.js'
-import { receiveMethodPage } from '../receiveMethod/index.js'
-import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+/** @import { Server } from '@hapi/hapi' */
 
 const pageUrl = '/receiving-the-licence/check-answers'
-
-const testName = 'test_name'
-const testSurname = 'test_surname'
-const emailMethod = 'email'
-const postMethod = 'post'
-const testEmail = 'test@email.com'
-
-const defaultState = {
-  fullName: {
-    firstName: testName,
-    lastName: testSurname
-  },
-  receiveMethod: emailMethod,
-  emailAddress: testEmail
-}
 
 describe('#licenceSummaryPage', () => {
   /** @type {Server} */
@@ -37,14 +23,14 @@ describe('#licenceSummaryPage', () => {
     await server.stop({ timeout: 0 })
   })
 
-  describe('email method selected', () => {
+  describe('valid state selected', () => {
     /** @type {SessionTestHelper} */
     let session
 
     beforeEach(async () => {
       session = await SessionTestHelper.create(server)
 
-      await session.setSectionState('licence', defaultState)
+      await session.setSectionState('licence', validLicenceSectionState)
     })
 
     it('should render expected response', async () => {
@@ -65,32 +51,7 @@ describe('#licenceSummaryPage', () => {
       expect(statusCode).toBe(statusCodes.ok)
 
       expect(payload).toEqual(
-        expect.stringContaining(`${testName} ${testSurname}`)
-      )
-    })
-
-    it('should redirect user to receive method page if they`ve selected Post', async () => {
-      await session.setSectionState('licence', {
-        ...defaultState,
-        receiveMethod: postMethod
-      })
-
-      const { statusCode, headers } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'GET',
-            url: pageUrl
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(
-        `${receiveMethodPage.urlPath}?redirect_uri=${licenceSummaryPage.urlPath}`
+        expect.stringContaining(validLicenceSectionState.emailAddress)
       )
     })
   })
@@ -101,10 +62,6 @@ describePageSnapshot({
   it: 'should render the expected content',
   pageUrl,
   state: {
-    application: { licence: defaultState }
+    application: { licence: validLicenceSectionState }
   }
 })
-
-/**
- * @import { Server } from '@hapi/hapi'
- */

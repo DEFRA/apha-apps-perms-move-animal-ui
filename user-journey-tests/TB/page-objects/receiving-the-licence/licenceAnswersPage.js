@@ -10,7 +10,6 @@ class LicenceCheckAnswersPage extends AnswersBasePage {
 
   changeLinks = {
     name: '[data-testid="fullName-change-link"]',
-    receiveMethod: '[data-testid="receiveMethod-change-link"]',
     email: '[data-testid="emailAddress-change-link"]'
   }
 }

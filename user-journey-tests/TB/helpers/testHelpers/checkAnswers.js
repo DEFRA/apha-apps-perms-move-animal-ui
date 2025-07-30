@@ -10,7 +10,6 @@ import {
 } from '../page.js'
 import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
-import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 
@@ -186,13 +185,4 @@ export const validateAndAdjustOwnerName = async (
     valueElement,
     `${newFirstName} ${newLastName}`
   )
-}
-
-export const validateReceiveMethod = async (changeLink, valueElement) => {
-  await selectElement(changeLink)
-
-  await expect(receiveMethodPage.emailRadio).toBeSelected()
-  await receiveMethodPage.selectEmailAndContinue()
-
-  await validateElementVisibleAndText(valueElement, 'Email')
 }

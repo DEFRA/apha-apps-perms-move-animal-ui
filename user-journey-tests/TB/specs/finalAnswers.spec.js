@@ -5,8 +5,7 @@ import {
   validateAndAdjustOwnerName,
   validateAndAdjustParishNumber,
   validateOnOffFarm,
-  validateOriginType,
-  validateReceiveMethod
+  validateOriginType
 } from '../helpers/testHelpers/checkAnswers.js'
 import finalAnswersPage from '../page-objects/finalAnswersPage.js'
 import taskListPage from '../page-objects/taskListPage.js'
@@ -108,14 +107,6 @@ describe('Check your final answers test', () => {
       newFirstName,
       licenceDefaultObject.lastNameDefault,
       newLastName
-    )
-  })
-
-  it('Should verify the method to receive the licence', async () => {
-    await finalAnswersPage.navigateToPageAndVerifyTitle()
-    validateReceiveMethod(
-      finalAnswersPage.getChangeLink('receiveMethod'),
-      finalAnswersPage.getValue('receiveMethod')
     )
   })
 
