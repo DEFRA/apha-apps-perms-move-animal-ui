@@ -10,7 +10,6 @@ class CheckAnswersPage extends AnswersBasePage {
 
   changeLinks = {
     name: '[data-testid="visitResponsiblePersonName-change-link"]',
-    receiveMethod: '[data-testid="emailOrPost-change-link"]',
     email: '[data-testid="email-change-link"]'
   }
 }

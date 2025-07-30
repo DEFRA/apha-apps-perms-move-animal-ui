@@ -4,14 +4,12 @@
 import { AboutSection } from '../about/section.js'
 import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
-import { emailOrPost } from './email-or-post/index.js'
 import { email } from './email/index.js'
 import { keeperName, keeperNamePage } from './keeper-name/index.js'
 import {
   originResponsiblePersonName,
   originResponsiblePersonNamePage
 } from './origin-responsible-person-name/index.js'
-import { postUnavailable } from './post-unavailable/index.js'
 import {
   visitResponsiblePersonName,
   visitResponsiblePersonNamePage
@@ -25,8 +23,6 @@ const plugin = {
         visitResponsiblePersonName,
         originResponsiblePersonName,
         keeperName,
-        emailOrPost,
-        postUnavailable,
         email,
         checkAnswers
       ])
