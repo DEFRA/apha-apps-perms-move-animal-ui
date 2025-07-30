@@ -1,33 +1,43 @@
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
-{% extends
-  'layouts/page.njk' %}
-{% block metaBeforeContent %}{% endblock %}
+{%
+  extends
+  'layouts/page.njk'
+%}
+{% block metaBeforeContent %}
+{% endblock %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
-        {{ govukPanel({
+        {{
+          govukPanel({
             titleText: 'Application submitted',
             html: referenceHTML
-          }) }}
+          })
+        }}
         <p class="govuk-body">
-          We have sent you a confirmation email. It will include your application reference number.
+          We have sent you a confirmation email. It will include your
+          application reference number.
         </p>
         <p class="govuk-body">
-          If approved, your licence will also be sent by email. You can contact the TB helpline on 03000 200 301 if you have any
-          issues receiving it.
+          If approved, your licence will also be sent by email. You can contact
+          the TB helpline on 03000 200 301 if you have any issues receiving it.
         </p>
         <h2 class="govuk-heading-m">What happens next</h2>
         <p class="govuk-body" data-testid="sla-text">
-          It can take up to 5 working days to process your application. It may take longer if veterinary checks are required, or
-          we need further information.
+          It can take up to 5 working days to process your application. It may
+          take longer if veterinary checks are required, or we need further
+          information.
         </p>
         <p class="govuk-body">
           We will contact you if we need any further information.
         </p>
         <p>
-          <a href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk" target="_blank">What did you think of this
-            service?</a>
+          <a
+            href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk"
+            target="_blank"
+            >What did you think of this service?</a
+          >
           (takes 30 seconds)
         </p>
       </div>
