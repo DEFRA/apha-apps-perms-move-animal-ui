@@ -83,7 +83,7 @@ export async function createServer() {
           ),
           path.resolve(config.get('root'), './src/server/common/components')
         ],
-        baseLayoutPath: 'form-page.njk'
+        baseLayoutPath: 'page.njk'
       },
       baseUrl: config.get('appBaseUrl'),
       viewContext: context,
