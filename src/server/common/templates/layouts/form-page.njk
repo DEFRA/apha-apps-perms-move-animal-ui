@@ -1,0 +1,83 @@
+{% extends "govuk/template.njk" %}
+{% from "heading/macro.njk" import appHeading %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block head %}
+  <link
+    href="{{ getAssetPath('stylesheets/application.scss') }}"
+    rel="stylesheet"
+  />
+  <!-- stop index bot indexing any page that uses this template -->
+  <meta name="robots" content="noindex, nofollow" />
+{% endblock %}
+{% block header %}
+  {{
+    govukHeader({
+      homepageUrl: "https://www.gov.uk/",
+      classes: "app-header",
+      containerClasses: "govuk-width-container",
+      serviceName: serviceName,
+      serviceUrl: serviceUrl,
+      useTudorCrown: true
+    })
+  }}
+{% endblock %}
+{% block pageTitle %}
+  {{ pageTitle }}
+{% endblock %}
+{% block beforeContent %}
+  {% if features.prototypeMode %}
+    {{
+      govukPhaseBanner({
+        tag: {
+          text: 'Prototype'
+        },
+        html: 'This is a service prototype.'
+      })
+    }}
+  {% else %}
+    {{
+      govukPhaseBanner({
+        tag: {
+          text: 'Beta'
+        },
+        html: 'This is a new service. Help us improve it and <a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">give your feedback (opens in new tab)</a>.'
+      })
+    }}
+  {% endif %}
+  {% if breadcrumbs.length > 1 %}
+    {{
+      appBreadcrumbs({
+        items: breadcrumbs
+      })
+    }}
+  {% endif %}
+
+  {% if isAuthenticated %}
+    {% include "../partials/userDetails.njk" %}
+  {% endif %}
+  {% block metaBeforeContent %}
+    {{
+      govukBackLink({
+        text: "Back",
+        attributes:{
+          "id": "back-link"
+        },
+        href: "#"
+      })
+    }}
+    <noscript>
+      <style>
+        .govuk-back-link {
+          display: none;
+        }
+      </style>
+    </noscript>
+  {% endblock %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+  {% include "../partials/footer.njk" %}
+{% endblock %}

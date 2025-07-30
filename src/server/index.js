@@ -14,6 +14,9 @@ import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
 import { disableClientCache } from './common/helpers/client-cache.js/client-cache.js'
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
+import services from './common/helpers/form-runner/index.js'
+import plugin from '@defra/forms-engine-plugin'
+import { context } from '../config/nunjucks/context/context.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -60,6 +63,32 @@ export async function createServer() {
     csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js
   ])
+
+  await server.register({
+    plugin: {
+      ...plugin,
+      dependencies: ['@hapi/vision', ...plugin.dependencies]
+    },
+    options: {
+      nunjucks: {
+        paths: [
+          path.resolve(
+            config.get('root'),
+            './src/server/common/templates/layouts'
+          ),
+          path.resolve(
+            config.get('root'),
+            './src/server/common/templates/partials'
+          ),
+          path.resolve(config.get('root'), './src/server/common/components')
+        ],
+        baseLayoutPath: 'form-page.njk'
+      },
+      baseUrl: config.get('appBaseUrl'),
+      viewContext: context,
+      services
+    }
+  })
 
   server.ext('onRequest', addUUIDToRequest)
   server.ext('onPreResponse', disableClientCache)

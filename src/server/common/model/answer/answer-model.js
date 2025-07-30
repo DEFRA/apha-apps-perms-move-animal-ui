@@ -110,6 +110,10 @@ export class AnswerModel {
   static fromState(_data, _context) {
     throw new NotImplementedError()
   }
+
+  static defraFormsOptions() {
+    return {}
+  }
 }
 
 /* eslint-disable jsdoc/valid-types */
@@ -119,6 +123,7 @@ export class AnswerModel {
  *   new(data?: Payload, context?: RawApplicationState): AnswerModel<Payload>;
  *   fromState(data: any, context?: RawApplicationState): AnswerModel<Payload>;
  *   errorMessages(errors: AnswerErrors): ViewErrorMessage[];
+ *   defraFormsOptions(): any
  * }} AnswerModelClass
  */
 /* eslint-enable jsdoc/valid-types */
