@@ -1,7 +1,7 @@
-import { TextAnswer } from "../../model/answer/text/text.js"
-import { Page } from "../../model/page/page-model.js"
-import { QuestionPage } from "../../model/page/question-page-model.js"
-import { NotImplementedError } from "../not-implemented-error.js"
+import { TextAnswer } from '../../model/answer/text/text.js'
+import { Page } from '../../model/page/page-model.js'
+import { QuestionPage } from '../../model/page/question-page-model.js'
+import { NotImplementedError } from '../not-implemented-error.js'
 
 /** @import { TextConfig } from '../../model/answer/text/text.js' */
 /** @import {ComponentType, TextFieldComponent, Link} from '@defra/forms-model' */
@@ -36,7 +36,7 @@ export class Answer extends TextAnswer {
           'any.required': validation.empty?.message ?? '',
           'string.empty': validation.empty?.message ?? '',
           'string.max': validation.maxLength?.message ?? '',
-          'string.pattern.base': validation.pattern?.message  ?? ''
+          'string.pattern.base': validation.pattern?.message ?? ''
         }
       },
       schema: {
@@ -48,8 +48,7 @@ export class Answer extends TextAnswer {
 }
 
 export class TextInputPage extends QuestionPage {
-  urlPath =
-    '/enter-bird-type'
+  urlPath = '/enter-bird-type'
 
   questionKey = questionKey
   sectionKey = 'about'
@@ -59,8 +58,10 @@ export class TextInputPage extends QuestionPage {
 
   /** @returns {Link[]} */
   defraFormsNextPage() {
-    return [{
-      path: '/full-name'
-    }]
+    return [
+      {
+        path: '/full-name'
+      }
+    ]
   }
 }

@@ -31,7 +31,6 @@ const component = (page) => ({
   ...page.Answer.defraFormsOptions()
 })
 
-
 const author = {
   createdAt: now,
   createdBy: user,
