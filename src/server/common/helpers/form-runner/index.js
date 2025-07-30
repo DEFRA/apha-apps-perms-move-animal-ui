@@ -1,5 +1,6 @@
 import Boom from '@hapi/boom'
 import { typeOfBirdOtherPage } from '~/src/server/exotics/about/type-of-bird-other/index.js'
+import { TextInputPage } from './text-input-page.js'
 
 /** @import { ComponentDef, ComponentType, PageQuestion } from '@defra/forms-model' */
 /** @import { QuestionPage } from '../../model/page/question-page-model.js' */
@@ -10,20 +11,14 @@ const user = { id: 'example-user', displayName: 'Example user' }
 
 /**
  * @param {QuestionPage} page
- * @param {string} nextPath
- * @param {string} urlPath
  * @returns {PageQuestion}
  **/
-const page = (page, urlPath, nextPath) => ({
-  path: urlPath,
+const page = (page) => ({
+  path: page.urlPath,
   title: page.question,
   components: [component(page)],
   section: page.sectionKey,
-  next: [
-    {
-      path: nextPath
-    }
-  ]
+  next: page.defraFormsNextPage()
 })
 
 /**
@@ -76,7 +71,7 @@ const definition = {
         }
       ]
     },
-    page(typeOfBirdOtherPage, '/type-of-bird-other', '/full-name'),
+    page(new TextInputPage()),
     {
       path: '/full-name',
       title: 'Enter your full name',

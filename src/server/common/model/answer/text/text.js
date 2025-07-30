@@ -4,7 +4,6 @@ import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { escapeHtml } from '../../../helpers/escape-text.js'
 
-/** @import {ComponentType, TextFieldComponent} from '@defra/forms-model' */
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 
 /**
@@ -177,27 +176,5 @@ export class TextAnswer extends AnswerModel {
     return new this(
       state !== undefined ? { [this.config.payloadKey]: state } : {}
     )
-  }
-
-  /** @returns {Partial<TextFieldComponent>} */
-  static defraFormsOptions() {
-    const { validation } = this.config
-
-    return {
-      type: /** @type {ComponentType.TextField} */ ('TextField'),
-      options: {
-        autocomplete: this.config.autocomplete,
-        customValidationMessages: {
-          'any.required': validation.empty?.message ?? '',
-          'string.empty': validation.empty?.message ?? '',
-          'string.max': validation.maxLength?.message ?? '',
-          'string.pattern.base': validation.pattern?.message  ?? ''
-        }
-      },
-      schema: {
-        max: this.config.validation.maxLength?.value,
-        regex: this.config.validation.pattern?.regex.toString()
-      }
-    }
   }
 }
