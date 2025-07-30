@@ -181,14 +181,21 @@ export class TextAnswer extends AnswerModel {
 
   /** @returns {Partial<TextFieldComponent>} */
   static defraFormsOptions() {
+    const { validation } = this.config
+
     return {
       type: /** @type {ComponentType.TextField} */ ('TextField'),
       options: {
         autocomplete: this.config.autocomplete,
-        customValidationMessage: this.config.validation.empty?.message
+        customValidationMessages: {
+          'any.required': validation.empty?.message ?? '',
+          'string.empty': validation.empty?.message ?? '',
+          'string.max': validation.maxLength?.message ?? '',
+          'string.pattern.base': validation.pattern?.message  ?? ''
+        }
       },
       schema: {
-        length: this.config.validation.maxLength?.value,
+        max: this.config.validation.maxLength?.value,
         regex: this.config.validation.pattern?.regex.toString()
       }
     }
