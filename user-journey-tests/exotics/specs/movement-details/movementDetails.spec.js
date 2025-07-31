@@ -51,7 +51,7 @@ describe('Movement details - more than one date', async () => {
 
   it('Should complete the visit details flow', async () => {
     await taskListPage.verifyStatus({
-      position: 3,
+      position: 4,
       taskTitle: 'Movement details',
       expectedStatus: 'Incomplete'
     })
@@ -80,7 +80,7 @@ describe('Movement details - more than one date', async () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 3,
+      position: 4,
       taskTitle: 'Movement details',
       expectedStatus: 'Completed'
     })

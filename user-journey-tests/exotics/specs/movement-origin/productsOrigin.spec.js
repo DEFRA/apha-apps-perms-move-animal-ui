@@ -51,7 +51,7 @@ describe('Movement origin - products', async () => {
 
   it('Should complete the movement origin flow', async () => {
     await taskListPage.verifyStatus({
-      position: 2,
+      position: 3,
       taskTitle: 'Movement origin',
       expectedStatus: 'Incomplete'
     })
@@ -87,7 +87,7 @@ describe('Movement origin - products', async () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 2,
+      position: 3,
       taskTitle: 'Movement origin',
       expectedStatus: 'Completed'
     })
