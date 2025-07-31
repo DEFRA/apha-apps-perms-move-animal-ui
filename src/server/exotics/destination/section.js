@@ -8,6 +8,7 @@ import { checkAnswers } from './check-answers/index.js'
 import { cphNeeded } from './cph-needed/index.js'
 import { cphNumberKnown } from './cph-number-known/index.js'
 import { cphNumber } from './cph-number/index.js'
+import { destinationExit } from './destination-exit-page/index.js'
 import { responsiblePersonName } from './responsible-person-name/index.js'
 import { typeOfLocation, typeOfLocationPage } from './type-of-location/index.js'
 
@@ -22,7 +23,8 @@ const plugin = {
         cphNumberKnown,
         cphNumber,
         responsiblePersonName,
-        cphNeeded
+        cphNeeded,
+        destinationExit
       ])
     }
   }
