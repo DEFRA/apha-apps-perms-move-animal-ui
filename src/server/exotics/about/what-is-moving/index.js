@@ -3,6 +3,7 @@ import { ExoticsQuestionPageController } from '../../question-page-controller.js
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { enterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
 import { typeOfAnimalPage } from '../type-of-animal/index.js'
+import { exitPageAboutMovementPage } from '../exit-page-about-movement/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -41,9 +42,14 @@ export class WhatIsMovingPage extends QuestionPage {
   nextPage(answer) {
     if (answer.value === 'live-animals') {
       return typeOfAnimalPage
+    } else if (
+      answer.value === 'carcasses' ||
+      answer.value === 'animal-by-products-and-waste'
+    ) {
+      return enterWhatIsMovingPage
     }
 
-    return enterWhatIsMovingPage
+    return exitPageAboutMovementPage
   }
 }
 
