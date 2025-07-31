@@ -11,7 +11,13 @@ class WhereAreAnimalsProductsGoingPage extends RadioButtonBasePage {
     super({
       pageId: 'typeOfLocation',
       noInputError: 'Select where the animals or products are going',
-      valueArray: ['farm', 'corporate-holding', 'domestic-residence', 'other']
+      valueArray: [
+        'slaughter',
+        'farm',
+        'corporate-holding',
+        'domestic-residence',
+        'other'
+      ]
     })
   }
 }
