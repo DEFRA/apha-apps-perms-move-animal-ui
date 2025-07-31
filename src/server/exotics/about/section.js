@@ -15,6 +15,7 @@ import { whatIsMoving } from './what-is-moving/index.js'
 import { typeOfBird } from './type-of-bird/index.js'
 import { typeOfBirdUncommon } from './type-of-bird-uncommon/index.js'
 import { typeOfBirdOther } from './type-of-bird-other/index.js'
+import { aboutMovementExit } from './about-movement-exit-page/index.js'
 
 const plugin = {
   plugin: {
@@ -34,7 +35,8 @@ const plugin = {
         checkAnswers,
         typeOfBird,
         typeOfBirdUncommon,
-        typeOfBirdOther
+        typeOfBirdOther,
+        aboutMovementExit
       ])
     }
   }

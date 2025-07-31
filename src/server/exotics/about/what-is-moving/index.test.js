@@ -3,7 +3,7 @@ import { Answer, whatIsMovingPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { EnterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
 import { TypeOfAnimalPage } from '../type-of-animal/index.js'
-import { ExitPageAboutMovementPage } from '../exit-page-about-movement/index.js'
+import { AboutMovementExitPage } from '../about-movement-exit-page/index.js'
 
 const page = whatIsMovingPage
 const payload = {
@@ -49,9 +49,9 @@ describe('WhatIsMovingPage', () => {
       ['live-animals', TypeOfAnimalPage],
       ['carcasses', EnterWhatIsMovingPage],
       ['animal-by-products-and-waste', EnterWhatIsMovingPage],
-      ['equipment', ExitPageAboutMovementPage],
-      ['bedding-and-feed', ExitPageAboutMovementPage],
-      ['other', ExitPageAboutMovementPage]
+      ['equipment', AboutMovementExitPage],
+      ['bedding-and-feed', AboutMovementExitPage],
+      ['other', AboutMovementExitPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)

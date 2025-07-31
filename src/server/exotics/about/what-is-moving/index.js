@@ -3,7 +3,7 @@ import { ExoticsQuestionPageController } from '../../question-page-controller.js
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { enterWhatIsMovingPage } from '../enter-what-is-moving/index.js'
 import { typeOfAnimalPage } from '../type-of-animal/index.js'
-import { exitPageAboutMovementPage } from '../exit-page-about-movement/index.js'
+import { aboutMovementExitPage } from '../about-movement-exit-page/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -47,9 +47,9 @@ export class WhatIsMovingPage extends QuestionPage {
       answer.value === 'animal-by-products-and-waste'
     ) {
       return enterWhatIsMovingPage
+    } else {
+      return aboutMovementExitPage
     }
-
-    return exitPageAboutMovementPage
   }
 }
 
