@@ -57,7 +57,7 @@ describe('Movement destination - live animals', async () => {
 
   it('Should complete the movement destination section for live animals', async () => {
     await taskListPage.verifyStatus({
-      position: 4,
+      position: 2,
       taskTitle: 'Movement destination',
       expectedStatus: 'Incomplete'
     })
@@ -103,7 +103,7 @@ describe('Movement destination - live animals', async () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 4,
+      position: 2,
       taskTitle: 'Movement destination',
       expectedStatus: 'Completed'
     })
