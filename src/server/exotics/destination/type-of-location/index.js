@@ -2,11 +2,13 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { addressPage } from '../address/index.js'
+import { destinationExitPage } from '../destination-exit-page/index.js'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
+/** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
 
 const questionKey = 'typeOfLocation'
 
@@ -38,8 +40,20 @@ export class TypeOfLocationPage extends QuestionPage {
 
   Answer = Answer
 
-  /** @param {Answer} _answer */
-  nextPage(_answer) {
+  /**
+   * @param {Answer} answer
+   * @param {RawApplicationState} context
+   */
+  nextPage(answer, context) {
+    if (
+      ['farm', 'corporate-holding', 'domestic-residence', 'other'].includes(
+        answer.value
+      ) &&
+      context.about?.whatIsMoving === 'live-animals'
+    ) {
+      return destinationExitPage
+    }
+
     return addressPage
   }
 }

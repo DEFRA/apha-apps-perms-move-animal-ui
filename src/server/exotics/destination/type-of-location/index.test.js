@@ -2,6 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, typeOfLocationPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { AddressPage } from '../address/index.js'
+import { DestinationExitPage } from '../destination-exit-page/index.js'
 
 const sectionKey = 'destination'
 const questionKey = 'typeOfLocation'
@@ -58,7 +59,43 @@ describe('TypeOfLocationPage', () => {
       ['other', AddressPage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
-      const nextPage = page.nextPage(answer)
+      const nextPage = page.nextPage(answer, {
+        about: {
+          whatIsMoving: 'not-live-animals'
+        }
+      })
+      expect(nextPage).toBeInstanceOf(expectedPage)
+    })
+
+    it.each([
+      ['farm', AddressPage],
+      ['slaughter', AddressPage],
+      ['corporate-holding', AddressPage],
+      ['domestic-residence', AddressPage],
+      ['other', AddressPage]
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
+      const nextPage = page.nextPage(answer, {
+        about: {
+          whatIsMoving: 'not-live-animals'
+        }
+      })
+      expect(nextPage).toBeInstanceOf(expectedPage)
+    })
+
+    it.each([
+      ['farm', DestinationExitPage],
+      ['slaughter', AddressPage],
+      ['corporate-holding', DestinationExitPage],
+      ['domestic-residence', DestinationExitPage],
+      ['other', DestinationExitPage]
+    ])('for %s should return %s', (value, expectedPage) => {
+      const answer = new Answer({ [questionKey]: value })
+      const nextPage = page.nextPage(answer, {
+        about: {
+          whatIsMoving: 'live-animals'
+        }
+      })
       expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
