@@ -16,9 +16,7 @@ class WhatIsMovingAnswersPage extends AnswersBasePage {
     currentPurpose: '[data-testid="currentPurposeOfAnimals-change-link"]',
     animalIds: '[data-testid="animalsId-change-link"]',
     whatAreYouMoving: '[data-testid="whatAreYouMovingDetails-change-link"]',
-    howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]',
-    describeWhatYouAreMoving:
-      '[data-testid="whatAreYouMovingDescription-change-link"]'
+    howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]'
   }
 }
 

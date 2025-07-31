@@ -76,7 +76,7 @@ describe('Movement origin - animal non doms', async () => {
 
   it('Should complete the movement origin section', async () => {
     await taskListPage.verifyStatus({
-      position: 2,
+      position: 3,
       taskTitle: 'Movement origin',
       expectedStatus: 'Incomplete'
     })
@@ -126,7 +126,7 @@ describe('Movement origin - animal non doms', async () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 2,
+      position: 3,
       taskTitle: 'Movement origin',
       expectedStatus: 'Completed'
     })
