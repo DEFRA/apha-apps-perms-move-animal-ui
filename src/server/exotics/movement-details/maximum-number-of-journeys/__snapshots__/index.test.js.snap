@@ -12,7 +12,7 @@ exports[`MaximumNumberOfJourneysPage content should render expected response and
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <label class="govuk-label govuk-label--l" for="maximumNumberOfJourneys">
-      What is the maximum number of journeys you need to move the animals? 
+      What are the maximum number of journeys needed to move the animals or products?
     </label>
   </h1>
   <input class="govuk-input govuk-input--width-2" id="maximumNumberOfJourneys" name="maximumNumberOfJourneys" type="text">

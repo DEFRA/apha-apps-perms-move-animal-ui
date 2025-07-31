@@ -9,7 +9,7 @@ const questionKey = 'maximumNumberOfJourneys'
 const pageUrl = '/exotics/movement-details/maximum-number-of-journeys'
 const page = maximumNumberOfJourneysPage
 const question =
-  'What is the maximum number of journeys you need to move the animals? '
+  'What are the maximum number of journeys needed to move the animals or products?'
 
 const payloadOne = {
   [questionKey]: '1'
@@ -32,7 +32,7 @@ describe('Answer', () => {
 
   it('should define the right empty input message', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'Enter the maximum number of journeys you need to move the animals'
+      'Enter the maximum number of journeys needed to move the animals or products'
     )
   })
 
