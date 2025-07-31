@@ -1,4 +1,3 @@
-import describeWhatYouAreMovingPage from '../page-objects/about-the-movement/describeWhatYouAreMovingPage.js'
 import enterWhatIsMovingPage from '../page-objects/about-the-movement/enterWhatIsMovingPage.js'
 import howMuchAreYouMovingPage from '../page-objects/about-the-movement/howMuchAreYouMovingPage.js'
 import whatIsMovingPage from '../page-objects/about-the-movement/whatIsMovingPage.js'
@@ -35,14 +34,7 @@ export const completeAboutMovementSection = async (
       'snakes',
       howMuchAreYouMovingPage
     )
-    await howMuchAreYouMovingPage.inputTextAndContinue(
-      '45',
-      describeWhatYouAreMovingPage
-    )
-    await describeWhatYouAreMovingPage.inputTextAndContinue(
-      'description-test',
-      checkAnswersPage
-    )
+    await howMuchAreYouMovingPage.inputTextAndContinue('45', checkAnswersPage)
     return
   }
 
