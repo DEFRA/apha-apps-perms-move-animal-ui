@@ -17,12 +17,11 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
           You can use this service to apply for a licence to:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>move animals or items onto a farm or premises</li>
-          <li>move animals or items off a farm or premises</li>
           <li>
-            enable visits to your premises, for example for vet inspections or
-            vaccinations
+            move live animals to slaughter on or off your farm or premises
           </li>
+          <li>move carcasses</li>
+          <li>move milk products</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
@@ -77,12 +76,11 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
           You can use this service to apply for a licence to:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>move animals or items onto a farm or premises</li>
-          <li>move animals or items off a farm or premises</li>
           <li>
-            enable visits to your premises, for example for vet inspections or
-            vaccinations
+            move live animals to slaughter on or off your farm or premises
           </li>
+          <li>move carcasses</li>
+          <li>move milk products</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
