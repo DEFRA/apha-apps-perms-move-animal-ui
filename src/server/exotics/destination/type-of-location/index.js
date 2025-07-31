@@ -17,6 +17,7 @@ export class Answer extends RadioButtonAnswer {
   static config = {
     payloadKey: questionKey,
     options: {
+      slaughter: { label: 'Slaughter' },
       farm: { label: 'Farm' },
       'corporate-holding': {
         label: 'Corporate holding',
@@ -46,9 +47,7 @@ export class TypeOfLocationPage extends QuestionPage {
    */
   nextPage(answer, context) {
     if (
-      ['farm', 'corporate-holding', 'domestic-residence', 'other'].includes(
-        answer.value
-      ) &&
+      answer.value !== 'slaughter' &&
       context.about?.whatIsMoving === 'live-animals'
     ) {
       return destinationExitPage

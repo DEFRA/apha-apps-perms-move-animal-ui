@@ -17,8 +17,14 @@ exports[`TypeOfLocationPage content should render expected response and content 
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="typeOfLocation" name="typeOfLocation" type="radio" value="farm">
+        <input class="govuk-radios__input" id="typeOfLocation" name="typeOfLocation" type="radio" value="slaughter">
         <label class="govuk-label govuk-radios__label" for="typeOfLocation">
+          Slaughter
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="farm" name="typeOfLocation" type="radio" value="farm">
+        <label class="govuk-label govuk-radios__label" for="farm">
           Farm
         </label>
       </div>
