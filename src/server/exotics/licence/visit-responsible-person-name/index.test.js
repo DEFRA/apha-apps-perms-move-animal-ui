@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { visitResponsiblePersonNamePage } from './index.js'
-import { EmailOrPostPage } from '../email-or-post/index.js'
 import { LicenceFullNameAnswer } from '../../common/model/answer/licence-full-name/licence-full-name.js'
+import { EmailPage } from '../email/index.js'
 
 const sectionKey = 'licence'
 const questionKey = 'visitResponsiblePersonName'
@@ -32,9 +32,9 @@ describe('VisitResponsiblePersonNamePage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return EmailOrPostPage for any value', () => {
+    it('should return emailPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(EmailOrPostPage)
+      expect(nextPage).toBeInstanceOf(EmailPage)
     })
   })
 

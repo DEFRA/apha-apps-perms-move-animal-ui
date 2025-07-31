@@ -6,7 +6,6 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
-import receiveMethodPage from '../../page-objects/receiving-the-licence/receiveMethodPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
 
@@ -16,10 +15,6 @@ const journeyData = {
   name: {
     expected: 'FirstName LastName',
     hrefSuffix: 'visit/responsible-person-name'
-  },
-  receiveMethod: {
-    expected: 'Email',
-    hrefSuffix: 'email-or-post'
   },
   email: {
     expected: 'test@test.co.uk',
@@ -55,9 +50,8 @@ describe('Receiving the licence - visit', async () => {
     await whoIsResponsiblePage.inputTextAndContinue(
       'FirstName',
       'LastName',
-      receiveMethodPage
+      emailPage
     )
-    await receiveMethodPage.selectEmailAndContinue(emailPage)
     await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
     for (const key of Object.keys(journeyData)) {
