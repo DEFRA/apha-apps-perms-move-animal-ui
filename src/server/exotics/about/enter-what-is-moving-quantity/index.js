@@ -1,7 +1,7 @@
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '../../question-page-controller.js'
-import { enterWhatIsMovingDescriptionPage } from '../enter-what-is-moving-description/index.js'
+import { checkAnswersPage } from '../check-answers/index.js'
 
 const questionKey = 'howMuchAreYouMoving'
 
@@ -34,7 +34,7 @@ export class EnterWhatIsMovingQuantityPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return enterWhatIsMovingDescriptionPage
+    return checkAnswersPage
   }
 }
 

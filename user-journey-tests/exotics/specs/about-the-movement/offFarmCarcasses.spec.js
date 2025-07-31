@@ -23,10 +23,6 @@ const journeyData = {
   howMuchAreYouMoving: {
     expected: '45',
     hrefSuffix: 'what-is-moving/enter-what-is-moving/quantity'
-  },
-  describeWhatYouAreMoving: {
-    expected: 'description-test',
-    hrefSuffix: 'what-is-moving/enter-what-is-moving/description'
   }
 }
 
