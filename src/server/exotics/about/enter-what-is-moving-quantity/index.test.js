@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, enterWhatIsMovingQuantityPage } from './index.js'
-import { EnterWhatIsMovingDescriptionPage } from '../enter-what-is-moving-description/index.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'howMuchAreYouMoving'
@@ -54,9 +54,9 @@ describe('EnterWhatIsMovingQuantityPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return EnterWhatIsMovingQuantity for any value', () => {
+    it('should return CheckAnswersPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(EnterWhatIsMovingDescriptionPage)
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
   })
 
