@@ -42,14 +42,14 @@ export class WhatIsMovingPage extends QuestionPage {
   nextPage(answer) {
     if (answer.value === 'live-animals') {
       return typeOfAnimalPage
-    } else if (
+    }
+    if (
       answer.value === 'carcasses' ||
       answer.value === 'animal-by-products-and-waste'
     ) {
       return enterWhatIsMovingPage
-    } else {
-      return aboutMovementExitPage
     }
+    return aboutMovementExitPage
   }
 }
 
