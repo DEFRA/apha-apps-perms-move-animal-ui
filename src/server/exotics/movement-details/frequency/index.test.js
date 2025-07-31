@@ -1,42 +1,35 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, reasonPage } from './index.js'
-import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { FrequencyPage } from '../frequency/index.js'
+import { Answer, frequencyPage } from './index.js'
+import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
+import { MaximumNumberOfJourneysPage } from '../maximum-number-of-journeys/index.js'
 
 const sectionKey = 'movementDetails'
-const questionKey = 'reason'
-const pageUrl = '/exotics/movement-details/reason'
-const page = reasonPage
-const question = 'What is the reason for the movement?'
+const questionKey = 'frequency'
+const pageUrl = '/exotics/movement-details/frequency'
+const page = frequencyPage
+const question = 'How frequent is the movement?'
 
 const payload = {
   [questionKey]: 'some text'
 }
 
 describe('Answer', () => {
-  it('should be a Text area input', () => {
-    expect(new Answer(payload)).toBeInstanceOf(TextAreaAnswer)
+  it('should be a Radio button input', () => {
+    expect(new Answer(payload)).toBeInstanceOf(RadioButtonAnswer)
   })
 
   it('should have the right payload key', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should have validation for empty input', () => {
-    expect(Answer.config.validation.empty?.message).toBe(
-      'Enter the reason for the movement'
-    )
-  })
-
-  it('should have validation for maximum length', () => {
-    expect(Answer.config.validation.maxLength.value).toBe(5000)
-    expect(Answer.config.validation.maxLength.message).toBe(
-      'Your answer must be no longer than 5000 characters'
+  it('should define the right empty input message', () => {
+    expect(Answer.config.validation.empty).toBe(
+      'Select the frequency of the movement'
     )
   })
 })
 
-describe('ReasonPage', () => {
+describe('FrequencyPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -58,9 +51,12 @@ describe('ReasonPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return frequencyPage for any value', () => {
+    it.each([
+      ['regular', MaximumNumberOfJourneysPage],
+      ['one-off', MaximumNumberOfJourneysPage]
+    ])('for %s should return %s', (value, expectedPage) => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(FrequencyPage)
+      expect(nextPage).toBeInstanceOf(expectedPage)
     })
   })
 
