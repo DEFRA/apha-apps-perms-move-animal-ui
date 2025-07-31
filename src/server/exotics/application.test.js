@@ -18,11 +18,11 @@ describe('ExoticsApplicationModel', () => {
   it('should have the correct implementedSections in the expected order', () => {
     expect(ExoticsApplicationModel.implementedSections).toEqual([
       AboutSection,
-      LocationOfVisitSection,
-      VisitDetailsSection,
+      DestinationSection,
       OriginSection,
       MovementDetailsSection,
-      DestinationSection,
+      LocationOfVisitSection,
+      VisitDetailsSection,
       LicenceSection
     ])
   })
