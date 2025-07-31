@@ -4,7 +4,6 @@ import { ExoticsSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { animalsId } from './animals-id/index.js'
 import { currentPurposeOfAnimals } from './current-purpose-of-animals/index.js'
-import { enterWhatIsMovingDescription } from './enter-what-is-moving-description/index.js'
 import { enterWhatIsMovingQuantity } from './enter-what-is-moving-quantity/index.js'
 import { enterWhatIsMoving } from './enter-what-is-moving/index.js'
 import { movementType, movementTypePage } from './movement-type/index.js'
@@ -25,7 +24,6 @@ const plugin = {
         whatIsMoving,
         enterWhatIsMoving,
         enterWhatIsMovingQuantity,
-        enterWhatIsMovingDescription,
         typeOfAnimal,
         typeOfAnimalOther,
         numberOfAnimals,
@@ -51,6 +49,5 @@ export class AboutSection extends ExoticsSectionModel {
     isVisible: () => true
   }
 
-  // TODO: update once the new page is implemented
   static firstPageFactory = () => movementTypePage
 }
