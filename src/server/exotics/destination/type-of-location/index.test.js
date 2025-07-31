@@ -73,15 +73,18 @@ describe('TypeOfLocationPage', () => {
       ['corporate-holding', AddressPage],
       ['domestic-residence', AddressPage],
       ['other', AddressPage]
-    ])('for %s should return %s', (value, expectedPage) => {
-      const answer = new Answer({ [questionKey]: value })
-      const nextPage = page.nextPage(answer, {
-        about: {
-          whatIsMoving: 'not-live-animals'
-        }
-      })
-      expect(nextPage).toBeInstanceOf(expectedPage)
-    })
+    ])(
+      'for %s should return %s for not live animals',
+      (value, expectedPage) => {
+        const answer = new Answer({ [questionKey]: value })
+        const nextPage = page.nextPage(answer, {
+          about: {
+            whatIsMoving: 'not-live-animals'
+          }
+        })
+        expect(nextPage).toBeInstanceOf(expectedPage)
+      }
+    )
 
     it.each([
       ['farm', DestinationExitPage],
@@ -89,7 +92,7 @@ describe('TypeOfLocationPage', () => {
       ['corporate-holding', DestinationExitPage],
       ['domestic-residence', DestinationExitPage],
       ['other', DestinationExitPage]
-    ])('for %s should return %s', (value, expectedPage) => {
+    ])('for %s should return %s for live animals', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer, {
         about: {
