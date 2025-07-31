@@ -10,7 +10,7 @@ const page = frequencyPage
 const question = 'How frequent is the movement?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 'regular'
 }
 
 describe('Answer', () => {
