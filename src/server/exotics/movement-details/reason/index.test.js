@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, reasonPage } from './index.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { MaximumNumberOfJourneysPage } from '../maximum-number-of-journeys/index.js'
+import { FrequencyPage } from '../frequency/index.js'
 
 const sectionKey = 'movementDetails'
 const questionKey = 'reason'
@@ -58,9 +58,9 @@ describe('ReasonPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return maximumNumberOfJourneysPage for any value', () => {
+    it('should return frequencyPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MaximumNumberOfJourneysPage)
+      expect(nextPage).toBeInstanceOf(FrequencyPage)
     })
   })
 

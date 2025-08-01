@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExoticsQuestionPageController } from '~/src/server/exotics/question-page-controller.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { maximumNumberOfJourneysPage } from '../maximum-number-of-journeys/index.js'
+import { frequencyPage } from '../frequency/index.js'
 
 /** @import { TextAreaConfig } from '~/src/server/common/model/answer/text-area/text-area.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -37,7 +37,7 @@ export class ReasonPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return maximumNumberOfJourneysPage
+    return frequencyPage
   }
 }
 
