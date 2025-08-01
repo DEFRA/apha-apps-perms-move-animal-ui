@@ -10,6 +10,7 @@ class MovementDetailsAnswersPage extends AnswersBasePage {
 
   changeLinks = {
     reason: '[data-testid="reason-change-link"]',
+    frequency: '[data-testid="frequency-change-link"]',
     maximumNumberOfJourneys:
       '[data-testid="maximumNumberOfJourneys-change-link"]',
     isDurationMoreThanOneDay:

@@ -10,6 +10,7 @@ import maxJourneysPage from '../../page-objects/movement-details/maxJourneysPage
 import moreThanOneDayPage from '../../page-objects/movement-details/moreThanOneDayPage.js'
 import movementDatesPage from '../../page-objects/movement-details/movementDatesPage.js'
 import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
+import movementFrequencyPage from '../../page-objects/movement-details/movementFrequencyPage.js'
 
 const basePath = '/exotics/movement-details'
 const redirectUri = `${basePath}/check-answers`
@@ -17,6 +18,10 @@ const journeyData = {
   reason: {
     expected: 'reason for movement',
     hrefSuffix: 'reason'
+  },
+  frequency: {
+    expected: 'Regular movement',
+    hrefSuffix: 'frequency'
   },
   maximumNumberOfJourneys: {
     expected: '2',
@@ -59,6 +64,10 @@ describe('Movement details - more than one date', async () => {
     await taskListPage.selectMovementDetails(reasonForMovementPage)
     await reasonForMovementPage.inputTextAndContinue(
       'reason for movement',
+      movementFrequencyPage
+    )
+    await movementFrequencyPage.selectRadioAndContinue(
+      'regular',
       maxJourneysPage
     )
     await maxJourneysPage.inputTextAndContinue(2, moreThanOneDayPage)
