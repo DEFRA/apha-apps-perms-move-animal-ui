@@ -17,7 +17,7 @@ const basePath = '/exotics/movement-destination'
 const redirectUri = `${basePath}/check-answers`
 const journeyData = {
   typeOfLocation: {
-    expected: 'Corporate holding',
+    expected: 'Slaughter',
     hrefSuffix: 'location-type'
   },
   address: {
@@ -66,7 +66,7 @@ describe('Movement destination - live animals', async () => {
       whereAreAnimalsProductsGoingPage
     )
     await whereAreAnimalsProductsGoingPage.selectRadioAndContinue(
-      'corporate-holding',
+      'slaughter',
       destinationAddressPage
     )
     await destinationAddressPage.fillFormFieldsAndSubmit(
