@@ -20,7 +20,7 @@ export class Answer extends NumberAnswer {
     validation: {
       empty: {
         message:
-          'Enter the maximum number of journeys needed to move the animals or products'
+          'Enter the maximum number of journeys you need to move the animals'
       },
       min: { value: min, message: `Enter a number ${min} or above` },
       max: { value: max, message: `Enter a number ${max} or below` }
@@ -34,7 +34,7 @@ export class MaximumNumberOfJourneysPage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'movementDetails'
   question =
-    'What are the maximum number of journeys needed to move the animals or products?'
+    'What is the maximum number of journeys you need to move the animals? '
 
   Answer = Answer
 
