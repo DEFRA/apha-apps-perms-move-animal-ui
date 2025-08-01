@@ -3,7 +3,6 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../test-helpers/session-helper.js'
-import { sendEmailToCaseWorker } from '../../connectors/notify/notify.js'
 import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
@@ -15,11 +14,6 @@ import { config } from '~/src/config/config.js'
 /**
  * @import { IncomingMessage } from 'http'
  */
-
-jest.mock('~/src/server/common/connectors/notify/notify.js', () => ({
-  sendEmailToApplicant: jest.fn(),
-  sendEmailToCaseWorker: jest.fn()
-}))
 
 const {
   origin,
@@ -192,7 +186,6 @@ describe('#CheckAnswers', () => {
       expect(wreckSpy.mock.calls[0][0]).toBe(
         `${config.get('caseManagementApi').baseUrl}/submit`
       )
-      expect(sendEmailToCaseWorker).not.toHaveBeenCalled()
     })
 
     it('should give the user a 500 error if the case management API doesnt work for what ever reason', async () => {
@@ -265,7 +258,6 @@ describe('#CheckAnswers', () => {
       expect(wreckSpy.mock.calls[0][0]).toBe(
         `${config.get('caseManagementApi').baseUrl}/submit`
       )
-      expect(sendEmailToCaseWorker).not.toHaveBeenCalled()
     })
   })
 })
