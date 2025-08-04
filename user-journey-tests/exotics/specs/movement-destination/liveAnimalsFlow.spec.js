@@ -12,6 +12,7 @@ import cphNumberYesNoPage from '../../page-objects/movement-destination/cphNumbe
 import cphInputPage from '../../page-objects/movement-destination/cphInputPage.js'
 import responsibleForDestinationPage from '../../page-objects/movement-destination/responsibleForDestinationPage.js'
 import destinationCheckAnswersPage from '../../page-objects/movement-destination/destinationCheckAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/movement-destination'
 const redirectUri = `${basePath}/check-answers`
@@ -91,13 +92,12 @@ describe('Movement destination - live animals', async () => {
       destinationCheckAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await destinationCheckAnswersPage.getValue(key)
-      const changeLink = await destinationCheckAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(
+      journeyData,
+      basePath,
+      redirectUri,
+      destinationCheckAnswersPage
+    )
 
     await destinationCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

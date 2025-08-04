@@ -13,6 +13,7 @@ import locationDetailsPage from '../../page-objects/location-of-visit/locationDe
 import designatedPremisesPage from '../../page-objects/location-of-visit/designatedPremisesPage.js'
 import whatAnimalsOnPremisesPage from '../../page-objects/location-of-visit/whatAnimalsOnPremisesPage.js'
 import checkAnswersPage from '../../page-objects/location-of-visit/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/location-of-visit'
 const redirectUri = `${basePath}/check-answers`
@@ -101,13 +102,7 @@ describe('Location of visit - non doms', async () => {
       checkAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await checkAnswersPage.getValue(key)
-      const changeLink = await checkAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

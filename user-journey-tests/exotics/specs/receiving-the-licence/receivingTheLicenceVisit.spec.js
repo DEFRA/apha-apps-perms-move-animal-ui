@@ -8,6 +8,7 @@ import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/receiving-the-licence'
 const redirectUri = `${basePath}/check-answers`
@@ -54,13 +55,7 @@ describe('Receiving the licence - visit', async () => {
     )
     await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await checkAnswersPage.getValue(key)
-      const changeLink = await checkAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

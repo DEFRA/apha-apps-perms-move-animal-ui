@@ -10,6 +10,7 @@ import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswe
 import productLocationPage from '../../page-objects/movement-orgin/product/productLocationPage.js'
 import productCPHNumberPage from '../../page-objects/movement-orgin/product/productCPHNumberPage.js'
 import productYesNoCPHPage from '../../page-objects/movement-orgin/product/productYesNoCPHPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/movement-origin'
 const redirectUri = `${basePath}/check-answers`
@@ -75,13 +76,12 @@ describe('Movement origin - products', async () => {
       originCheckAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await originCheckAnswersPage.getValue(key)
-      const changeLink = await originCheckAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(
+      journeyData,
+      basePath,
+      redirectUri,
+      originCheckAnswersPage
+    )
 
     await originCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)
