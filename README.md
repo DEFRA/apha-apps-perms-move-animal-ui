@@ -104,15 +104,6 @@ To run the application in `development` mode run:
 npm run dev
 ```
 
-In order to receive emails three **environment variables** need to be set, either manually or using a _.envrc_ file and a tool like _direnv_
-
-```bash
-NOTIFY_API_KEY=value_to_be_provided_by_tech_team
-NOTIFY_CASE_DELIVERY_TEMPLATE_ID=value_to_be_provided_by_tech_team
-NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS=your_email_address@defra.gov.uk
-NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID=value_to_be_provided_by_tech_team
-```
-
 In order to use customer identity/oidc the following environment variables need to be set
 
 ```bash
