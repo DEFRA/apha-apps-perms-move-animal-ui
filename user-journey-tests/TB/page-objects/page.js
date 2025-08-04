@@ -63,6 +63,10 @@ class Page {
     return $('.govuk-error-summary')
   }
 
+  get skipToMainContent() {
+    return $('a.govuk-skip-link')
+  }
+
   getPageTitle() {
     return browser.getTitle()
   }
@@ -212,6 +216,11 @@ class Page {
   async selectRadioAndContinue(element, hidden = true) {
     await page.selectElement(element, hidden)
     await this.selectContinue()
+  }
+
+  async selectSkipToMainContentLink() {
+    const skipLink = await this.skipToMainContent
+    await browser.execute((el) => el.click(), skipLink)
   }
 
   async open(path) {
