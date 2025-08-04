@@ -27,10 +27,6 @@ const journeyData = {
   }
 }
 
-const getExpected = (key) => journeyData[key].expected ?? journeyData[key]
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
-
 describe('About the movement - Off > carcasses', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {

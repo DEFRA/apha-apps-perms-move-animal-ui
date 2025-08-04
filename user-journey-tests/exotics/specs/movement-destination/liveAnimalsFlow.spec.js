@@ -39,10 +39,6 @@ const journeyData = {
   }
 }
 
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
-
 describe('Movement destination - live animals', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {

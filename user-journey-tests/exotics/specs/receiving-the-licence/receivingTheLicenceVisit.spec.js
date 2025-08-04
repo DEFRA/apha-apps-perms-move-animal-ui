@@ -12,6 +12,7 @@ import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyChe
 
 const basePath = '/exotics/receiving-the-licence'
 const redirectUri = `${basePath}/check-answers`
+
 const journeyData = {
   name: {
     expected: 'FirstName LastName',
@@ -22,10 +23,6 @@ const journeyData = {
     hrefSuffix: 'enter-email-address'
   }
 }
-
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
 describe('Receiving the licence - visit', async () => {
   // eslint-disable-next-line no-undef
