@@ -25,10 +25,6 @@ jobs:
 
       - name: Start docker compose
         env:
-          NOTIFY_API_KEY: ${{ secrets.NOTIFY_API_KEY }}
-          NOTIFY_CASE_DELIVERY_TEMPLATE_ID: ${{ secrets.NOTIFY_CASE_DELIVERY_TEMPLATE_ID }}
-          NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${{ secrets.NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS }}
-          NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
           GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
