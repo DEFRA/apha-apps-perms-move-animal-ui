@@ -9,6 +9,7 @@ import whereVisitWillTakePlacePage from '../../page-objects/location-of-visit/wh
 import visitAddressPage from '../../page-objects/location-of-visit/visitAddressPage.js'
 import whatAnimalsOnPremisesPage from '../../page-objects/location-of-visit/whatAnimalsOnPremisesPage.js'
 import checkAnswersPage from '../../page-objects/location-of-visit/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/location-of-visit'
 const redirectUri = `${basePath}/check-answers`
@@ -26,10 +27,6 @@ const journeyData = {
     hrefSuffix: 'animals-onsite'
   }
 }
-
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
 describe('Location of visit - doms', async () => {
   // eslint-disable-next-line no-undef
@@ -63,12 +60,6 @@ describe('Location of visit - doms', async () => {
       checkAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await checkAnswersPage.getValue(key)
-      const changeLink = await checkAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
   })
 })

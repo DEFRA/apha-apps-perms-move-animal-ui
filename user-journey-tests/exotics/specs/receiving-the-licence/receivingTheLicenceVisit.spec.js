@@ -8,9 +8,11 @@ import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/receiving-the-licence'
 const redirectUri = `${basePath}/check-answers`
+
 const journeyData = {
   name: {
     expected: 'FirstName LastName',
@@ -21,10 +23,6 @@ const journeyData = {
     hrefSuffix: 'enter-email-address'
   }
 }
-
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
 describe('Receiving the licence - visit', async () => {
   // eslint-disable-next-line no-undef
@@ -54,13 +52,7 @@ describe('Receiving the licence - visit', async () => {
     )
     await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await checkAnswersPage.getValue(key)
-      const changeLink = await checkAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

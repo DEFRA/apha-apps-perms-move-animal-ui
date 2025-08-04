@@ -15,6 +15,7 @@ import fieldParcelNumberPage from '../../page-objects/movement-orgin/animal/fiel
 import designatedPremisesPage from '../../page-objects/movement-orgin/animal/designatedPremisesPage.js'
 import animalsOnsitePage from '../../page-objects/movement-orgin/animal/animalsOnsitePage.js'
 import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/movement-origin'
 const redirectUri = `${basePath}/check-answers`
@@ -56,10 +57,6 @@ const journeyData = {
     hrefSuffix: 'animals-onsite'
   }
 }
-
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
 describe('Movement origin - animal non doms', async () => {
   // eslint-disable-next-line no-undef
@@ -114,13 +111,12 @@ describe('Movement origin - animal non doms', async () => {
       originCheckAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await originCheckAnswersPage.getValue(key)
-      const changeLink = await originCheckAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(
+      journeyData,
+      basePath,
+      redirectUri,
+      originCheckAnswersPage
+    )
 
     await originCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

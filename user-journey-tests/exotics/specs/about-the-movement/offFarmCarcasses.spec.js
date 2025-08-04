@@ -3,6 +3,7 @@ import signInPage from '../../../TB/page-objects/signInPage.js'
 import checkAnswersPage from '../../page-objects/about-the-movement/checkAnswersPage.js'
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/about-the-movement'
 const redirectUri = `${basePath}/check-answers`
@@ -26,10 +27,6 @@ const journeyData = {
   }
 }
 
-const getExpected = (key) => journeyData[key].expected ?? journeyData[key]
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
-
 describe('About the movement - Off > carcasses', async () => {
   // eslint-disable-next-line no-undef
   before(async () => {
@@ -44,12 +41,6 @@ describe('About the movement - Off > carcasses', async () => {
       'Check your answers before you continue your application'
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await checkAnswersPage.getValue(key)
-      const changeLink = await checkAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
   })
 })

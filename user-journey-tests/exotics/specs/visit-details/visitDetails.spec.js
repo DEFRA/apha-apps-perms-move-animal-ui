@@ -9,6 +9,7 @@ import reasonForVisitPage from '../../page-objects/visit-details/reasonForVisitP
 import visitOneDayPage from '../../page-objects/visit-details/visitOneDayPage.js'
 import visitDatesPage from '../../page-objects/visit-details/visitDatesPage.js'
 import visitDetailsCheckAnswersPage from '../../page-objects/visit-details/checkAnswersPage.js'
+import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/visit-details'
 const redirectUri = `${basePath}/check-answers`
@@ -26,10 +27,6 @@ const journeyData = {
     hrefSuffix: 'multiple-dates'
   }
 }
-
-const getExpected = (key) => journeyData[key].expected
-const getExpectedHref = (key) =>
-  `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
 
 describe('Visit details - more than one date', async () => {
   // eslint-disable-next-line no-undef
@@ -62,13 +59,12 @@ describe('Visit details - more than one date', async () => {
       visitDetailsCheckAnswersPage
     )
 
-    for (const key of Object.keys(journeyData)) {
-      const valueEl = await visitDetailsCheckAnswersPage.getValue(key)
-      const changeLink = await visitDetailsCheckAnswersPage.getChangeLink(key)
-
-      await expect(valueEl).toHaveTextContaining(getExpected(key))
-      await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
-    }
+    verifyCheckAnswersPage(
+      journeyData,
+      basePath,
+      redirectUri,
+      visitDetailsCheckAnswersPage
+    )
 
     await visitDetailsCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)
