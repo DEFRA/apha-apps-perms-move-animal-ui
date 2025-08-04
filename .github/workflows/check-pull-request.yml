@@ -94,10 +94,6 @@ jobs:
 
       - name: Start docker compose
         env:
-          NOTIFY_API_KEY: ${{ secrets.NOTIFY_API_KEY }}
-          NOTIFY_CASE_DELIVERY_TEMPLATE_ID: ${{ secrets.NOTIFY_CASE_DELIVERY_TEMPLATE_ID }}
-          NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS: ${{ secrets.NOTIFY_CASE_DELIVERY_EMAIL_ADDRESS }}
-          NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID: ${{ secrets.NOTIFY_APPLICANT_CONFIRMATION_TEMPLATE_ID }}
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
         run: docker compose up --wait-timeout 300 -d --quiet-pull
