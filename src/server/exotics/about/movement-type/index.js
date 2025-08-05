@@ -16,7 +16,10 @@ export class Answer extends RadioButtonAnswer {
     options: {
       'onto-premises': { label: 'Onto a farm or premises' },
       'off-premises': { label: 'Off a farm or premises' },
-      visit: { label: 'A short-term visit or activity on a farm or premises' }
+      visit: {
+        label: 'A short-term visit or activity on a farm or premises',
+        hint: 'Including slaughter onsite'
+      }
     },
     validation: {
       empty: 'Select the movement type'
