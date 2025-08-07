@@ -4,7 +4,7 @@ import checkAnswersPage from '../../page-objects/about-the-movement/checkAnswers
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/about-the-movement'
@@ -53,13 +53,18 @@ describe('About the movement - Onto > Live animals > cattle', async () => {
 
     await taskListPage.selectAboutMovement(movementTypePage)
 
-    await completeAboutMovementSection('onto-premises', true)
+    await completeAboutMovementSection({ onOffVisit: 'onto-premises' })
 
     await checkAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
 
-    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
+    await verifyCheckAnswersPage({
+      journeyData,
+      basePath,
+      redirectUri,
+      checkAnswersPage
+    })
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

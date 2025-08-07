@@ -4,7 +4,7 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import reasonForMovementPage from '../../page-objects/movement-details/reasonForMovementPage.js'
 import maxJourneysPage from '../../page-objects/movement-details/maxJourneysPage.js'
 import moreThanOneDayPage from '../../page-objects/movement-details/moreThanOneDayPage.js'
@@ -43,7 +43,7 @@ describe('Movement details - more than one date', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('onto-premises')
+    await completeAboutMovementSection({ onOffVisit: 'onto-premises' })
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -74,7 +74,12 @@ describe('Movement details - more than one date', async () => {
       checkAnswersPage
     )
 
-    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
+    verifyCheckAnswersPage({
+      journeyData,
+      basePath,
+      redirectUri,
+      checkAnswersPage
+    })
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

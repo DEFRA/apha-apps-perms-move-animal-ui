@@ -4,7 +4,7 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import animalsResponsiblePage from '../../page-objects/receiving-the-licence/animalsResponsiblePage.js'
 
 describe('Receiving the licence - visit', async () => {
@@ -12,7 +12,7 @@ describe('Receiving the licence - visit', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('onto-premises')
+    await completeAboutMovementSection({ onOffVisit: 'onto-premises' })
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )

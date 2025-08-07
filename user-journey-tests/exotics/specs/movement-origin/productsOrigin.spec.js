@@ -4,7 +4,7 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import originAddressPage from '../../page-objects/movement-orgin/originAddressPage.js'
 import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswersPage.js'
 import productLocationPage from '../../page-objects/movement-orgin/product/productLocationPage.js'
@@ -38,7 +38,10 @@ describe('Movement origin - products', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('onto-premises', false)
+    await completeAboutMovementSection({
+      onOffVisit: 'onto-premises',
+      liveAnimals: false
+    })
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -72,12 +75,12 @@ describe('Movement origin - products', async () => {
       originCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      originCheckAnswersPage
-    )
+      checkAnswersPage: originCheckAnswersPage
+    })
 
     await originCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

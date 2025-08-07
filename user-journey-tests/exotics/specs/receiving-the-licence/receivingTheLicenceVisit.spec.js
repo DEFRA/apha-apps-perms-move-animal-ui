@@ -4,7 +4,7 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
@@ -29,7 +29,7 @@ describe('Receiving the licence - visit', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('visit')
+    await completeAboutMovementSection()
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -52,7 +52,12 @@ describe('Receiving the licence - visit', async () => {
     )
     await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
-    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
+    await verifyCheckAnswersPage({
+      journeyData,
+      basePath,
+      redirectUri,
+      checkAnswersPage
+    })
 
     await checkAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)
