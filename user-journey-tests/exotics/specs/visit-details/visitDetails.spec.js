@@ -4,7 +4,7 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import reasonForVisitPage from '../../page-objects/visit-details/reasonForVisitPage.js'
 import visitOneDayPage from '../../page-objects/visit-details/visitOneDayPage.js'
 import visitDatesPage from '../../page-objects/visit-details/visitDatesPage.js'
@@ -33,7 +33,7 @@ describe('Visit details - more than one date', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('visit')
+    await completeAboutMovementSection()
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )

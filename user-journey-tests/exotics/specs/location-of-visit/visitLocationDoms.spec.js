@@ -4,12 +4,11 @@ import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAn
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import whereVisitWillTakePlacePage from '../../page-objects/location-of-visit/whereVisitWillTakePlacePage.js'
-import visitAddressPage from '../../page-objects/location-of-visit/visitAddressPage.js'
-import whatAnimalsOnPremisesPage from '../../page-objects/location-of-visit/whatAnimalsOnPremisesPage.js'
 import checkAnswersPage from '../../page-objects/location-of-visit/checkAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeWhereVisitTakesPlaceSection } from '../../helpers/journey-helpers/locationOfVisit.js'
 
 const basePath = '/exotics/location-of-visit'
 const redirectUri = `${basePath}/check-answers`
@@ -33,7 +32,7 @@ describe('Location of visit - doms', async () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementSection('visit')
+    await completeAboutMovementSection()
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -43,23 +42,15 @@ describe('Location of visit - doms', async () => {
 
   it('Should complete the location of visit section for doms', async () => {
     await taskListPage.selectLocationOfVisit(whereVisitWillTakePlacePage)
-    await whereVisitWillTakePlacePage.selectRadioAndContinue(
-      'domestic-residence',
-      visitAddressPage
-    )
-    await visitAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: 'line one',
-        townOrCity: 'ts and cs',
-        postcode: 'b908dg'
-      },
-      whatAnimalsOnPremisesPage
-    )
-    await whatAnimalsOnPremisesPage.inputTextAndContinue(
-      'Lions',
-      checkAnswersPage
-    )
+    await completeWhereVisitTakesPlaceSection({
+      locationType: 'domestic-residence'
+    })
 
-    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
+    await verifyCheckAnswersPage({
+      journeyData,
+      basePath,
+      redirectUri,
+      checkAnswersPage
+    })
   })
 })

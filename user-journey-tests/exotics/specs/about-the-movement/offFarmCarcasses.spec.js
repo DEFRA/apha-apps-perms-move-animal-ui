@@ -2,7 +2,7 @@ import { loginAndSaveSession } from '../../../TB/helpers/authSessionManager.js'
 import signInPage from '../../../TB/page-objects/signInPage.js'
 import checkAnswersPage from '../../page-objects/about-the-movement/checkAnswersPage.js'
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
-import { completeAboutMovementSection } from '../../helpers/aboutTheMovement.js'
+import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/exotics/about-the-movement'
@@ -35,12 +35,20 @@ describe('About the movement - Off > carcasses', async () => {
   })
 
   it('Runs the carcasses journey and checks answers and change links', async () => {
-    await completeAboutMovementSection('off-premises', false) // ⬅️ Shared helper function
+    await completeAboutMovementSection({
+      onOffVisit: 'off-premises',
+      liveAnimals: false
+    }) // ⬅️ Shared helper function
 
     await checkAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
 
-    verifyCheckAnswersPage(journeyData, basePath, redirectUri, checkAnswersPage)
+    await verifyCheckAnswersPage({
+      journeyData,
+      basePath,
+      redirectUri,
+      checkAnswersPage
+    })
   })
 })
