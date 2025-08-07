@@ -38,7 +38,7 @@ describe('About the movement - Off > carcasses', async () => {
     await completeAboutMovementSection({
       onOffVisit: 'off-premises',
       liveAnimals: false
-    }) // ⬅️ Shared helper function
+    })
 
     await checkAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
