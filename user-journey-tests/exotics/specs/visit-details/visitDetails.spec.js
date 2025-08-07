@@ -59,12 +59,12 @@ describe('Visit details - more than one date', async () => {
       visitDetailsCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      visitDetailsCheckAnswersPage
-    )
+      checkAnswersPage: visitDetailsCheckAnswersPage
+    })
 
     await visitDetailsCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

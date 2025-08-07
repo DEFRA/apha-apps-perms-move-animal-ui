@@ -111,12 +111,12 @@ describe('Movement origin - animal non doms', async () => {
       originCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      originCheckAnswersPage
-    )
+      checkAnswersPage: originCheckAnswersPage
+    })
 
     await originCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

@@ -88,12 +88,12 @@ describe('Movement destination - live animals', async () => {
       destinationCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      destinationCheckAnswersPage
-    )
+      checkAnswersPage: destinationCheckAnswersPage
+    })
 
     await destinationCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

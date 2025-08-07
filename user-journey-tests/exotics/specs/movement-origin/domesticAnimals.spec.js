@@ -66,11 +66,11 @@ describe('Movement origin - domestic animals', async () => {
       originCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      originCheckAnswersPage
-    )
+      checkAnswersPage: originCheckAnswersPage
+    })
   })
 })

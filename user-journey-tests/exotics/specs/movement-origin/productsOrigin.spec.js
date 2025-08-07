@@ -75,12 +75,12 @@ describe('Movement origin - products', async () => {
       originCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      originCheckAnswersPage
-    )
+      checkAnswersPage: originCheckAnswersPage
+    })
 
     await originCheckAnswersPage.selectContinue()
     await waitForPagePath(taskListPage.pagePath)

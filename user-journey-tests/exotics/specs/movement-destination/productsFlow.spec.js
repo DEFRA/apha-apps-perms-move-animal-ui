@@ -61,11 +61,11 @@ describe('Movement destination - products', async () => {
       destinationCheckAnswersPage
     )
 
-    verifyCheckAnswersPage(
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
-      destinationCheckAnswersPage
-    )
+      checkAnswersPage: destinationCheckAnswersPage
+    })
   })
 })

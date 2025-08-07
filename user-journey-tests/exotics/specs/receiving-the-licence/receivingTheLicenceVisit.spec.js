@@ -52,7 +52,7 @@ describe('Receiving the licence - visit', async () => {
     )
     await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
 
-    verifyCheckAnswersPage({
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
