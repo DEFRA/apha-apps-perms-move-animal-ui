@@ -6,12 +6,9 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import reasonForMovementPage from '../../page-objects/movement-details/reasonForMovementPage.js'
-import maxJourneysPage from '../../page-objects/movement-details/maxJourneysPage.js'
-import moreThanOneDayPage from '../../page-objects/movement-details/moreThanOneDayPage.js'
-import movementDatesPage from '../../page-objects/movement-details/movementDatesPage.js'
 import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
-import movementFrequencyPage from '../../page-objects/movement-details/movementFrequencyPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeMovementDetailsSection } from '../../helpers/journey-helpers/movementDetails.js'
 
 const basePath = '/exotics/movement-details'
 const redirectUri = `${basePath}/check-answers`
@@ -59,22 +56,9 @@ describe('Movement details - more than one date', async () => {
     })
 
     await taskListPage.selectMovementDetails(reasonForMovementPage)
-    await reasonForMovementPage.inputTextAndContinue(
-      'reason for movement',
-      movementFrequencyPage
-    )
-    await movementFrequencyPage.selectRadioAndContinue(
-      'regular',
-      maxJourneysPage
-    )
-    await maxJourneysPage.inputTextAndContinue(2, moreThanOneDayPage)
-    await moreThanOneDayPage.selectYesAndContinue(movementDatesPage)
-    await movementDatesPage.inputTextAndContinue(
-      'movement dates',
-      checkAnswersPage
-    )
+    await completeMovementDetailsSection()
 
-    verifyCheckAnswersPage({
+    await verifyCheckAnswersPage({
       journeyData,
       basePath,
       redirectUri,
