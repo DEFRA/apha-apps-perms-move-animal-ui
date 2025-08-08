@@ -6,10 +6,9 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import whereAreAnimalsProductsGoingPage from '../../page-objects/movement-destination/whereAreAnimalsProductsGoingPage.js'
-import destinationAddressPage from '../../page-objects/movement-destination/destinationAddressPage.js'
-import responsibleForDestinationPage from '../../page-objects/movement-destination/responsibleForDestinationPage.js'
 import destinationCheckAnswersPage from '../../page-objects/movement-destination/destinationCheckAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeDestinationSection } from '../../helpers/journey-helpers/movementDestination.js'
 
 const basePath = '/exotics/movement-destination'
 const redirectUri = `${basePath}/check-answers`
@@ -43,23 +42,7 @@ describe('Movement destination - products', async () => {
 
   it('Should complete the movement destination section for products', async () => {
     await whereAreAnimalsProductsGoingPage.navigateToPageAndVerifyTitle()
-    await whereAreAnimalsProductsGoingPage.selectRadioAndContinue(
-      'corporate-holding',
-      destinationAddressPage
-    )
-    await destinationAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: 'line one',
-        townOrCity: 'ts and cs',
-        postcode: 'b908dg'
-      },
-      responsibleForDestinationPage
-    )
-    await responsibleForDestinationPage.inputTextAndContinue(
-      'FirstName',
-      'LastName',
-      destinationCheckAnswersPage
-    )
+    await completeDestinationSection({ liveAnimals: false })
 
     await verifyCheckAnswersPage({
       journeyData,

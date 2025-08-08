@@ -6,13 +6,9 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import whereAreAnimalsProductsGoingPage from '../../page-objects/movement-destination/whereAreAnimalsProductsGoingPage.js'
-import destinationAddressPage from '../../page-objects/movement-destination/destinationAddressPage.js'
-import needCPHNumberPage from '../../page-objects/movement-destination/needCPHNumberPage.js'
-import cphNumberYesNoPage from '../../page-objects/movement-destination/cphNumberYesNoPage.js'
-import cphInputPage from '../../page-objects/movement-destination/cphInputPage.js'
-import responsibleForDestinationPage from '../../page-objects/movement-destination/responsibleForDestinationPage.js'
 import destinationCheckAnswersPage from '../../page-objects/movement-destination/destinationCheckAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeDestinationSection } from '../../helpers/journey-helpers/movementDestination.js'
 
 const basePath = '/exotics/movement-destination'
 const redirectUri = `${basePath}/check-answers`
@@ -62,31 +58,7 @@ describe('Movement destination - live animals', async () => {
     await taskListPage.selectMovementDestination(
       whereAreAnimalsProductsGoingPage
     )
-    await whereAreAnimalsProductsGoingPage.selectRadioAndContinue(
-      'slaughter',
-      destinationAddressPage
-    )
-    await destinationAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: 'line one',
-        townOrCity: 'ts and cs',
-        postcode: 'b908dg'
-      },
-      cphNumberYesNoPage
-    )
-    await cphNumberYesNoPage.selectNoAndContinue(needCPHNumberPage)
-    await needCPHNumberPage.selectContinue()
-
-    await waitForPagePath(cphInputPage.pagePath)
-    await cphInputPage.inputParishHoldingNumberAndContinue(
-      '00/000/0000',
-      responsibleForDestinationPage
-    )
-    await responsibleForDestinationPage.inputTextAndContinue(
-      'FirstName',
-      'LastName',
-      destinationCheckAnswersPage
-    )
+    await completeDestinationSection()
 
     await verifyCheckAnswersPage({
       journeyData,
