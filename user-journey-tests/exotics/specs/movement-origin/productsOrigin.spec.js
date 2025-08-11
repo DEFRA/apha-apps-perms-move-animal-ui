@@ -5,11 +5,8 @@ import movementTypePage from '../../page-objects/about-the-movement/movementType
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
-import originAddressPage from '../../page-objects/movement-orgin/originAddressPage.js'
 import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswersPage.js'
 import productLocationPage from '../../page-objects/movement-orgin/product/productLocationPage.js'
-import productCPHNumberPage from '../../page-objects/movement-orgin/product/productCPHNumberPage.js'
-import productYesNoCPHPage from '../../page-objects/movement-orgin/product/productYesNoCPHPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 import { completeMovementOriginSection } from '../../helpers/journey-helpers/movementOrigin.js'
 
