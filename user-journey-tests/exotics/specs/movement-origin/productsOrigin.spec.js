@@ -11,6 +11,7 @@ import productLocationPage from '../../page-objects/movement-orgin/product/produ
 import productCPHNumberPage from '../../page-objects/movement-orgin/product/productCPHNumberPage.js'
 import productYesNoCPHPage from '../../page-objects/movement-orgin/product/productYesNoCPHPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeMovementOriginSection } from '../../helpers/journey-helpers/movementOrigin.js'
 
 const basePath = '/exotics/movement-origin'
 const redirectUri = `${basePath}/check-answers`
@@ -57,23 +58,9 @@ describe('Movement origin - products', async () => {
     })
 
     await taskListPage.selectMovementOrigin(productLocationPage)
-    await productLocationPage.selectRadioAndContinue(
-      'farm',
-      productYesNoCPHPage
-    )
-    await productYesNoCPHPage.selectYesAndContinue(productCPHNumberPage)
-    await productCPHNumberPage.inputParishHoldingNumberAndContinue(
-      '00/000/0000',
-      originAddressPage
-    )
-    await originAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: 'line one',
-        townOrCity: 'ts and cs',
-        postcode: 'b908dg'
-      },
-      originCheckAnswersPage
-    )
+    await completeMovementOriginSection({
+      route: 'products'
+    })
 
     await verifyCheckAnswersPage({
       journeyData,

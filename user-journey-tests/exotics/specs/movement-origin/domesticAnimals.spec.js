@@ -11,6 +11,7 @@ import animalCPHNumberPage from '../../page-objects/movement-orgin/animal/animal
 import originAddressPage from '../../page-objects/movement-orgin/originAddressPage.js'
 import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeMovementOriginSection } from '../../helpers/journey-helpers/movementOrigin.js'
 
 const basePath = '/exotics/movement-origin'
 const redirectUri = `${basePath}/check-answers`
@@ -48,23 +49,9 @@ describe('Movement origin - domestic animals', async () => {
 
   it('Should complete the movement origin flow', async () => {
     await animalLocationPage.navigateToPageAndVerifyTitle()
-    await animalLocationPage.selectRadioAndContinue(
-      'domestic-residence',
-      animalYesNoCPHPage
-    )
-    await animalYesNoCPHPage.selectYesAndContinue(animalCPHNumberPage)
-    await animalCPHNumberPage.inputParishHoldingNumberAndContinue(
-      '00/000/0000',
-      originAddressPage
-    )
-    await originAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: 'line one',
-        townOrCity: 'ts and cs',
-        postcode: 'b908dg'
-      },
-      originCheckAnswersPage
-    )
+    await completeMovementOriginSection({
+      route: 'animals-domestic'
+    })
 
     await verifyCheckAnswersPage({
       journeyData,
