@@ -10,8 +10,12 @@ export const completeMovementDetailsSection = async ({
   frequency = 'regular',
   maxJourneys = 2,
   moreThanOneDay = true,
-  movementDates = 'movement dates'
+  movementDates = 'movement dates',
+  startFromFirstPage = false
 } = {}) => {
+  if (startFromFirstPage) {
+    await reasonForMovementPage.navigateToPageAndVerifyTitle()
+  }
   await reasonForMovementPage.inputTextAndContinue(
     reason,
     movementFrequencyPage

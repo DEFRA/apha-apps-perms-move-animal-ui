@@ -16,7 +16,8 @@ export const completeAboutMovementSection = async ({
   animalType = 'cattle',
   animalQuantity = '9',
   animalPurpose = 'purpose',
-  animalId = 'animal id'
+  animalId = 'animal id',
+  startFromFirstPage = false
 } = {}) => {
   const movementTypes = {
     'onto-premises': whatIsMovingPage,
@@ -25,6 +26,10 @@ export const completeAboutMovementSection = async ({
   }
 
   const nextPage = movementTypes[onOffVisit] || checkAnswersPage
+
+  if (startFromFirstPage) {
+    await movementTypePage.navigateToPageAndVerifyTitle()
+  }
 
   await movementTypePage.selectRadioAndContinue(onOffVisit, nextPage)
 

@@ -6,8 +6,12 @@ import visitDetailsCheckAnswersPage from '../../page-objects/visit-details/check
 export const completeVisitDetailsSection = async ({
   reasonForVisit = 'reason for visit',
   oneDayVisit = true,
-  visitDates = 'visit dates'
+  visitDates = 'visit dates',
+  startFromFirstPage = false
 } = {}) => {
+  if (startFromFirstPage) {
+    await reasonForVisitPage.navigateToPageAndVerifyTitle()
+  }
   await reasonForVisitPage.inputTextAndContinue(reasonForVisit, visitOneDayPage)
   await visitOneDayPage.selectRadioAndContinue(
     oneDayVisit ? 'yes' : 'no',

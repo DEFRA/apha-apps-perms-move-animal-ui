@@ -8,7 +8,8 @@ export const completeReceivingLicenceSection = async ({
   route = 'animal', // 'animal' | 'product' | 'visit'
   firstName = 'FirstName',
   lastName = 'LastName',
-  email = 'test@test.co.uk'
+  email = 'eoin.corr@esynergy.co.uk',
+  startFromFirstPage = false
 } = {}) => {
   let firstPage
 
@@ -24,6 +25,10 @@ export const completeReceivingLicenceSection = async ({
       break
     default:
       throw new Error(`Unknown receiving licence route: ${route}`)
+  }
+
+  if (startFromFirstPage) {
+    await firstPage.navigateToPageAndVerifyTitle()
   }
 
   await firstPage.inputTextAndContinue(firstName, lastName, emailPage)

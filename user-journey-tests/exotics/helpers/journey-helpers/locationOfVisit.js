@@ -18,8 +18,13 @@ export const completeWhereVisitTakesPlaceSection = async ({
   registeredField = false,
   locationDetails = 'LAT AND LONG',
   designatedPremises = 'unknown',
-  animalsOnPremises = 'Lions'
+  animalsOnPremises = 'Lions',
+  startFromFirstPage = false
 } = {}) => {
+  if (startFromFirstPage) {
+    await whereVisitWillTakePlacePage.navigateToPageAndVerifyTitle()
+  }
+
   if (locationType === 'farm') {
     await whereVisitWillTakePlacePage.selectRadioAndContinue(
       locationType,

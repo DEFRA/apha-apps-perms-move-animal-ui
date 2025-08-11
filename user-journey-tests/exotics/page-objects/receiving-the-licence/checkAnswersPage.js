@@ -1,5 +1,10 @@
 import { AnswersBasePage } from '../../../base-pages/answersBasePage.js'
 
+export const receivingTheLicenceChangeLinks = {
+  name: '[data-testid="visitResponsiblePersonName-change-link"]',
+  email: '[data-testid="email-change-link"]'
+}
+
 const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
@@ -8,10 +13,7 @@ class CheckAnswersPage extends AnswersBasePage {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
-  changeLinks = {
-    name: '[data-testid="visitResponsiblePersonName-change-link"]',
-    email: '[data-testid="email-change-link"]'
-  }
+  changeLinks = receivingTheLicenceChangeLinks
 }
 
 export default new CheckAnswersPage()

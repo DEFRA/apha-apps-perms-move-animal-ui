@@ -17,8 +17,12 @@ export const completeDestinationSection = async ({
   },
   cph = '00/000/0000',
   firstName = 'FirstName',
-  lastName = 'LastName'
+  lastName = 'LastName',
+  startFromFirstPage = false
 } = {}) => {
+  if (startFromFirstPage) {
+    await whereAreAnimalsProductsGoingPage.navigateToPageAndVerifyTitle()
+  }
   await whereAreAnimalsProductsGoingPage.selectRadioAndContinue(
     destination,
     destinationAddressPage
