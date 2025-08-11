@@ -19,7 +19,7 @@ const journeyData = {
     hrefSuffix: 'visit/responsible-person-name'
   },
   email: {
-    expected: 'test@test.co.uk',
+    expected: 'eoin.corr@esynergy.co.uk',
     hrefSuffix: 'enter-email-address'
   }
 }
