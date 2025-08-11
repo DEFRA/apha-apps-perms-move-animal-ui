@@ -6,9 +6,9 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
-import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeReceivingLicenceSection } from '../../helpers/journey-helpers/receivingTheLicence.js'
 
 const basePath = '/exotics/receiving-the-licence'
 const redirectUri = `${basePath}/check-answers`
@@ -45,12 +45,7 @@ describe('Receiving the licence - visit', async () => {
     })
 
     await taskListPage.selectReceivingLicence(whoIsResponsiblePage)
-    await whoIsResponsiblePage.inputTextAndContinue(
-      'FirstName',
-      'LastName',
-      emailPage
-    )
-    await emailPage.inputTextAndContinue('test@test.co.uk', checkAnswersPage)
+    await completeReceivingLicenceSection({ route: 'visit' })
 
     await verifyCheckAnswersPage({
       journeyData,

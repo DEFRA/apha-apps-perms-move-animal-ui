@@ -6,10 +6,9 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 import { completeAboutMovementSection } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import reasonForVisitPage from '../../page-objects/visit-details/reasonForVisitPage.js'
-import visitOneDayPage from '../../page-objects/visit-details/visitOneDayPage.js'
-import visitDatesPage from '../../page-objects/visit-details/visitDatesPage.js'
 import visitDetailsCheckAnswersPage from '../../page-objects/visit-details/checkAnswersPage.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
+import { completeVisitDetailsSection } from '../../helpers/journey-helpers/visitDetails.js'
 
 const basePath = '/exotics/visit-details'
 const redirectUri = `${basePath}/check-answers`
@@ -49,15 +48,7 @@ describe('Visit details - more than one date', async () => {
     })
 
     await taskListPage.selectVisitDetails(reasonForVisitPage)
-    await reasonForVisitPage.inputTextAndContinue(
-      'reason for visit',
-      visitOneDayPage
-    )
-    await visitOneDayPage.selectYesAndContinue(visitDatesPage)
-    await visitDatesPage.inputTextAndContinue(
-      'visit dates',
-      visitDetailsCheckAnswersPage
-    )
+    await completeVisitDetailsSection()
 
     await verifyCheckAnswersPage({
       journeyData,
