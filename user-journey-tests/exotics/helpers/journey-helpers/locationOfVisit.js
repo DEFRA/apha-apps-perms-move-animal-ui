@@ -6,6 +6,7 @@ import locationDetailsPage from '../../page-objects/location-of-visit/locationDe
 import designatedPremisesPage from '../../page-objects/location-of-visit/designatedPremisesPage.js'
 import whatAnimalsOnPremisesPage from '../../page-objects/location-of-visit/whatAnimalsOnPremisesPage.js'
 import checkAnswersPage from '../../page-objects/location-of-visit/checkAnswersPage.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 export const completeWhereVisitTakesPlaceSection = async ({
   locationType = 'farm', // or 'domestic-residence'
@@ -18,8 +19,11 @@ export const completeWhereVisitTakesPlaceSection = async ({
   registeredField = false,
   locationDetails = 'LAT AND LONG',
   designatedPremises = 'unknown',
-  animalsOnPremises = 'Lions'
+  animalsOnPremises = 'Lions',
+  startFromFirstPage = false
 } = {}) => {
+  await navigateIfFirstPage(startFromFirstPage, whereVisitWillTakePlacePage)
+
   if (locationType === 'farm') {
     await whereVisitWillTakePlacePage.selectRadioAndContinue(
       locationType,

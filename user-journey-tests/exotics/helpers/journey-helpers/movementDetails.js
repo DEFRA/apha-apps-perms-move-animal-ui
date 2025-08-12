@@ -4,14 +4,18 @@ import maxJourneysPage from '../../page-objects/movement-details/maxJourneysPage
 import moreThanOneDayPage from '../../page-objects/movement-details/moreThanOneDayPage.js'
 import movementDatesPage from '../../page-objects/movement-details/movementDatesPage.js'
 import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 export const completeMovementDetailsSection = async ({
   reason = 'reason for movement',
   frequency = 'regular',
   maxJourneys = 2,
   moreThanOneDay = true,
-  movementDates = 'movement dates'
+  movementDates = 'movement dates',
+  startFromFirstPage = false
 } = {}) => {
+  await navigateIfFirstPage(startFromFirstPage, reasonForMovementPage)
+
   await reasonForMovementPage.inputTextAndContinue(
     reason,
     movementFrequencyPage

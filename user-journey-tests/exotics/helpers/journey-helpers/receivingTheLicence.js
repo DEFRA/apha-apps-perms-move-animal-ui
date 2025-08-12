@@ -3,12 +3,14 @@ import productResponsiblePage from '../../page-objects/receiving-the-licence/pro
 import whoIsResponsiblePage from '../../page-objects/receiving-the-licence/whoIsResponsiblePage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 export const completeReceivingLicenceSection = async ({
   route = 'animal', // 'animal' | 'product' | 'visit'
   firstName = 'FirstName',
   lastName = 'LastName',
-  email = 'test@test.co.uk'
+  email = 'eoin.corr@esynergy.co.uk',
+  startFromFirstPage = false
 } = {}) => {
   let firstPage
 
@@ -25,6 +27,7 @@ export const completeReceivingLicenceSection = async ({
     default:
       throw new Error(`Unknown receiving licence route: ${route}`)
   }
+  await navigateIfFirstPage(startFromFirstPage, firstPage)
 
   await firstPage.inputTextAndContinue(firstName, lastName, emailPage)
   await emailPage.inputTextAndContinue(email, checkAnswersPage)

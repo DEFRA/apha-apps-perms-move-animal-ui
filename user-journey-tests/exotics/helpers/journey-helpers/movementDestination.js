@@ -6,6 +6,7 @@ import cphInputPage from '../../page-objects/movement-destination/cphInputPage.j
 import responsibleForDestinationPage from '../../page-objects/movement-destination/responsibleForDestinationPage.js'
 import destinationCheckAnswersPage from '../../page-objects/movement-destination/destinationCheckAnswersPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 export const completeDestinationSection = async ({
   liveAnimals = true,
@@ -17,8 +18,14 @@ export const completeDestinationSection = async ({
   },
   cph = '00/000/0000',
   firstName = 'FirstName',
-  lastName = 'LastName'
+  lastName = 'LastName',
+  startFromFirstPage = false
 } = {}) => {
+  await navigateIfFirstPage(
+    startFromFirstPage,
+    whereAreAnimalsProductsGoingPage
+  )
+
   await whereAreAnimalsProductsGoingPage.selectRadioAndContinue(
     destination,
     destinationAddressPage
