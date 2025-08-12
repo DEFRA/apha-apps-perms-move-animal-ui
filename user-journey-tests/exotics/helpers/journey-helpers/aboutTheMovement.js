@@ -7,6 +7,7 @@ import animalPurposePage from '../../page-objects/about-the-movement/animalPurpo
 import animalIdPage from '../../page-objects/about-the-movement/animalIdPage.js'
 import animalsQuantityPage from '../../page-objects/about-the-movement/animalsQuantityPage.js'
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 export const completeAboutMovementSection = async ({
   onOffVisit = 'visit',
@@ -27,9 +28,7 @@ export const completeAboutMovementSection = async ({
 
   const nextPage = movementTypes[onOffVisit] || checkAnswersPage
 
-  if (startFromFirstPage) {
-    await movementTypePage.navigateToPageAndVerifyTitle()
-  }
+  await navigateIfFirstPage(startFromFirstPage, movementTypePage)
 
   await movementTypePage.selectRadioAndContinue(onOffVisit, nextPage)
 

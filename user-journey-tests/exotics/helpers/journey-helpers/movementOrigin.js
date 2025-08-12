@@ -16,6 +16,7 @@ import productCPHNumberPage from '../../page-objects/movement-orgin/product/prod
 // Shared
 import originAddressPage from '../../page-objects/movement-orgin/originAddressPage.js'
 import originCheckAnswersPage from '../../page-objects/movement-orgin/checkAnswersPage.js'
+import { navigateIfFirstPage } from '../function-helpers/navigateIfFirstPage.js'
 
 const defaultAddress = {
   lineOne: 'line one',
@@ -29,6 +30,8 @@ export const completeMovementOriginAnimalsDomestic = async ({
   cph = defaultCph,
   address = defaultAddress
 } = {}) => {
+  await navigateIfFirstPage(startFromFirstPage, animalLocationPage)
+
   if (startFromFirstPage) {
     await animalLocationPage.navigateToPageAndVerifyTitle()
   }
@@ -56,9 +59,7 @@ export const completeMovementOriginAnimalsOther = async ({
   fieldParcelNumber = 'field parcel number',
   animalsOnsite = 'Lions'
 } = {}) => {
-  if (startFromFirstPage) {
-    await animalLocationPage.navigateToPageAndVerifyTitle()
-  }
+  await navigateIfFirstPage(startFromFirstPage, animalLocationPage)
 
   await animalLocationPage.selectRadioAndContinue(
     'other',
@@ -91,9 +92,7 @@ export const completeMovementOriginProducts = async ({
   cph = defaultCph,
   address = defaultAddress
 } = {}) => {
-  if (startFromFirstPage) {
-    await productLocationPage.navigateToPageAndVerifyTitle()
-  }
+  await navigateIfFirstPage(startFromFirstPage, productLocationPage)
 
   await productLocationPage.selectRadioAndContinue('farm', productYesNoCPHPage)
   await productYesNoCPHPage.selectYesAndContinue(productCPHNumberPage)
