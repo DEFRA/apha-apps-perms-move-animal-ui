@@ -7,6 +7,7 @@ import {
   Radios,
   SkipLink
 } from 'govuk-frontend'
+import accessibleAutocomplete from 'accessible-autocomplete'
 
 createAll(Button)
 createAll(Checkboxes)
@@ -21,6 +22,19 @@ document.getElementById('back-link')?.addEventListener('click', function (e) {
 })
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Initialize accessible autocomplete if element exists
+  const selectEl = document.querySelectorAll('div:has(>.autocomplete) select')
+
+  selectEl.forEach((el) => {
+    accessibleAutocomplete.enhanceSelectElement({
+      autoselect: true,
+      confirmOnBlur: true,
+      defaultValue: '',
+      minLength: 2,
+      selectElement: el
+    })
+  })
+
   const forms = document.querySelectorAll('form')
   forms.forEach((form) => {
     form.addEventListener('submit', function () {
