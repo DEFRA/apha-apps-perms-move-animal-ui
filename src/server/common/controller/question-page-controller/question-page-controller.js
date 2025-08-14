@@ -56,7 +56,7 @@ export class QuestionPageController extends GenericPageController {
     }
   }
 
-  handleGet(req, h, args = {}) {
+  async handleGet(req, h, args = {}) {
     const applicationState = new this.StateManager(req).toState()
     const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
@@ -67,20 +67,27 @@ export class QuestionPageController extends GenericPageController {
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
+      const answer = new this.page.Answer(pageError.payload, applicationState)
+      const viewModelOptions = {
+        validate: true,
+        question: this.page.question
+      }
+
       return h.view(this.page.view, {
         nextPage: req.query.redirect_uri,
         heading: this.page.heading,
-        answer: new this.page.Answer(pageError.payload, applicationState),
+        answer,
         pageTitle: `Error: ${this.page.title}`,
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
-        viewModelOptions: {
-          validate: true,
-          question: this.page.question
-        },
+        answerViewModel: await answer.viewModel(viewModelOptions),
         ...args,
         ...this.page.viewProps(req)
       })
+    }
+    const viewModelOptions = {
+      validate: false,
+      question: this.page.question
     }
 
     return h.view(this.page.view, {
@@ -89,10 +96,7 @@ export class QuestionPageController extends GenericPageController {
       heading: this.page.heading,
       value: answer.value,
       answer,
-      viewModelOptions: {
-        validate: false,
-        question: this.page.question
-      },
+      answerViewModel: await answer.viewModel(viewModelOptions),
       ...args,
       ...this.page.viewProps(req)
     })

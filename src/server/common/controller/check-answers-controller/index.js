@@ -67,7 +67,7 @@ export class SubmitPageController extends QuestionPageController {
   namespace = ''
   fileTooLargePath = ''
 
-  handleGet(req, h) {
+  async handleGet(req, h) {
     const { isValid } = this.page.ApplicationModel.fromState(
       new this.StateManager(req).toState()
     ).validate()

@@ -111,7 +111,7 @@ export class TextAreaAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const { payloadKey, spellcheck, autocomplete, rows, hint } = this.config
     const isPageHeading = this.config.isPageHeading ?? true
 

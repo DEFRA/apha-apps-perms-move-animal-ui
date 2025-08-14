@@ -101,7 +101,7 @@ export class CheckboxAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ question, validate }) {
+  async viewModel({ question, validate }) {
     const values = this.value
     const { payloadKey, options, hint } = this.config
 

@@ -116,7 +116,7 @@ export class FullNameAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const viewModel = { value: this.value, question }
 
     if (this.config.explanation) {

@@ -60,7 +60,7 @@ export class PageController extends GenericPageController {
     }
   }
 
-  handleGet(req, h, opts = {}) {
+  async handleGet(req, h, opts = {}) {
     const response = h.view(this.page.view, {
       nextPage: req.query.redirect_uri,
       pageTitle: this.page.title,

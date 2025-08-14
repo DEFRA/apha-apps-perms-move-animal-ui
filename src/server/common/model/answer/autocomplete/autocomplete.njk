@@ -3,9 +3,7 @@
 {% call govukFieldset() %}
   <div class="autocomplete-wrapper">
     {{
-      govukSelect(
-        answer.viewModel(viewModelOptions)
-      )
+      govukSelect(answerViewModel)
     }}
   </div>
 {% endcall %}

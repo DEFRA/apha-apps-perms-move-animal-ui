@@ -15,7 +15,7 @@ export class Answer extends AutocompleteAnswer {
     payloadKey: questionKey,
     validation: {},
     isPageHeading: false,
-    items: [
+    items: async () => [
       {
         text: 'Agrichlor',
         value: 'Agrichlor'

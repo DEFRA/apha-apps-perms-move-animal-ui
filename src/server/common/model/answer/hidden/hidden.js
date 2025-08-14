@@ -56,7 +56,7 @@ export class HiddenAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ question }) {
+  async viewModel({ question }) {
     const { payloadKey, value } = this.config
 
     const viewModel = {
