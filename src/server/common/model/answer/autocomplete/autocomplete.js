@@ -23,7 +23,6 @@ const textSchema = ({ payloadKey, validation }) => {
   })
 }
 
-
 /**
  * export @typedef {{ value: string, text: string }[]} ItemsConfig
  * export @typedef {{
@@ -108,7 +107,14 @@ export class AutocompleteAnswer extends AnswerModel {
       id: payloadKey,
       name: payloadKey,
       value: this.value,
-      items: await this.config.items()
+      items: [
+        // Default empty item for autocomplete
+        {
+          text: '',
+          value: ''
+        },
+        ...(await this.config.items())
+      ]
     }
 
     if (characterWidth) {

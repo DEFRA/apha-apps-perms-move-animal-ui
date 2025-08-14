@@ -329,7 +329,7 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   })
 
   it('should return data to render with errors (if validate is true)', async () => {
-    expect(textAnswer.viewModel({ validate: true, question })).toEqual({
+    expect(await textAnswer.viewModel({ validate: true, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',

@@ -73,43 +73,10 @@ exports[`DisinfectantPage content should render expected response and content 1`
     What disinfectant are you using?
   </label>
   <select class="govuk-select autocomplete" id="disinfectant" name="disinfectant">
-    <option value="Agrichlor">Agrichlor</option>
-    <option value="Anigene NaDCC">Anigene NaDCC</option>
-    <option value="Anigene Professional Chlorine Tablets">Anigene Professional Chlorine Tablets</option>
-    <option value="Aquatabs 8.68g">Aquatabs 8.68g</option>
-    <option value="Bi-OO-Cyst">Bi-OO-Cyst</option>
-    <option value="Bimodex">Bimodex</option>
-    <option value="BioChlor 200">BioChlor 200</option>
-    <option value="BioChlor 500">BioChlor 500</option>
-    <option value="Biocid 30">Biocid 30</option>
-    <option value="BioPhen Xtra">BioPhen Xtra</option>
-    <option value="BIOSPOT">BIOSPOT</option>
-    <option value="Coxicur">Coxicur</option>
-    <option value="Credence 1000">Credence 1000</option>
-    <option value="Dis-In-Fect">Dis-In-Fect</option>
-    <option value="FAM 30">FAM 30</option>
-    <option value="High Power Sanitising Tablets 3.25g">High Power Sanitising Tablets 3.25g</option>
-    <option value="Interkokask">Interkokask</option>
-    <option value="Interkokask Concentrate">Interkokask Concentrate</option>
-    <option value="Iodo-Pharm">Iodo-Pharm</option>
-    <option value="Mida CHRIOX F2">Mida CHRIOX F2</option>
-    <option value="Mira 30">Mira 30</option>
-    <option value="MS MEGADES OXY D">MS MEGADES OXY D</option>
-    <option value="NEOGEN Farm Fluid MAX">NEOGEN Farm Fluid MAX</option>
-    <option value="Novagen F.P.">Novagen F.P.</option>
-    <option value="OmniChlor Plus">OmniChlor Plus</option>
-    <option value="Prophyl S">Prophyl S</option>
-    <option value="Rapicid">Rapicid</option>
-    <option value="Septrivet 17">Septrivet 17</option>
-    <option value="Septrivet 87 8.68g">Septrivet 87 8.68g</option>
-    <option value="Stable Safe Strength 4.72g Tablets">Stable Safe Strength 4.72g Tablets</option>
-    <option value="Tibicur">Tibicur</option>
-    <option value="Total Farm Disinfectant">Total Farm Disinfectant</option>
-    <option value="V18">V18</option>
+    <option value=""></option>
     <option value="Virkon® LSP">Virkon® LSP</option>
-    <option value="Virochlor 500">Virochlor 500</option>
-    <option value="Virophor 2.8%">Virophor 2.8%</option>
-    <option value="Virudine Plus">Virudine Plus</option>
+    <option value="Agrichlor">Agrichlor</option>
+    <option value="Biocid 30">Biocid 30</option>
   </select>
 </div>
 

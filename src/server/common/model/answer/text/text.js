@@ -156,7 +156,7 @@ export class TextAnswer extends AnswerModel {
       viewModel.errorMessage = this.validate().errors[payloadKey]
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   /**

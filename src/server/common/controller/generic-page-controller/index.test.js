@@ -37,8 +37,11 @@ describe('#GenericPageController', () => {
 
   it('should throw not implemented error', async () => {
     const defaultController = new GenericPageController(new Page())
-    await expect(() => defaultController.handleGet()).rejects.toBeInstanceOf(NotImplementedError)
-    await expect(() => defaultController.handlePost()).rejects.toBeInstanceOf(NotImplementedError)
+    await expect(
+      async () => await defaultController.handleGet()
+    ).rejects.toBeInstanceOf(NotImplementedError)
+
+    expect(defaultController.handlePost()).toThrow(NotImplementedError)
   })
 
   it('should output error on getHandler', () => {

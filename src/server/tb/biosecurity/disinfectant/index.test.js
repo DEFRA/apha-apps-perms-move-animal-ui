@@ -2,6 +2,8 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, disinfectantPage } from './index.js'
 import { DisinfectantDilutionPage } from '../disinfectant-dilution/index.js'
 import { AutocompleteAnswer } from '~/src/server/common/model/answer/autocomplete/autocomplete.js'
+import Wreck from '@hapi/wreck'
+import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 
 const sectionKey = 'biosecurity'
 const questionKey = 'disinfectant'
@@ -14,6 +16,14 @@ const payload = {
 }
 
 describe('Answer', () => {
+  let wreckMock
+
+  beforeEach(() => {
+    wreckMock = jest.spyOn(Wreck, 'get')
+  })
+
+  afterAll(jest.resetAllMocks)
+
   it('should be a Text input', () => {
     expect(new Answer(payload)).toBeInstanceOf(AutocompleteAnswer)
   })
@@ -31,14 +41,17 @@ describe('Answer', () => {
     expect(Answer.config.isPageHeading).toBe(false)
   })
 
-  it('should have items array with disinfectant options', () => {
-    expect(Answer.config.items).toBeDefined()
-    expect(Array.isArray(Answer.config.items)).toBe(true)
-    expect(Answer.config.items.length).toBeGreaterThan(0)
+  it('should have items array with disinfectant options', async () => {
+    const items = await Answer.config.items()
+    expect(items).toBeDefined()
+    expect(Array.isArray(items)).toBe(true)
+    expect(items.length).toBeGreaterThan(0)
   })
 
-  it('should have correctly formatted items with text and value properties', () => {
-    Answer.config.items.forEach((item) => {
+  it('should have correctly formatted items with text and value properties', async () => {
+    const items = await Answer.config.items()
+
+    items.forEach((item) => {
       expect(item).toHaveProperty('text')
       expect(item).toHaveProperty('value')
       expect(typeof item.text).toBe('string')
@@ -47,8 +60,32 @@ describe('Answer', () => {
     })
   })
 
-  it('should include expected disinfectant options', () => {
-    const itemValues = Answer.config.items.map((item) => item.value)
+  it('should include expected disinfectant options', async () => {
+    wreckMock.mockResolvedValue(
+      /** @type {any} */ ({
+        payload: JSON.stringify({
+          filteredDisinfectants: [
+            {
+              Disinfectant_name: 'Virkon® LSP',
+              Approved_dilution_rate: '9 * '
+            },
+            {
+              Disinfectant_name: 'Agrichlor',
+              Approved_dilution_rate: '10 * '
+            },
+            {
+              Disinfectant_name: 'Biocid 30',
+              Approved_dilution_rate: '8 * '
+            }
+          ]
+        }),
+        res: { statusCode: statusCodes.ok }
+      })
+    )
+
+    const items = await Answer.config.items()
+
+    const itemValues = items.map((item) => item.value)
     expect(itemValues).toContain('Virkon® LSP')
     expect(itemValues).toContain('Agrichlor')
     expect(itemValues).toContain('Biocid 30')
@@ -56,6 +93,35 @@ describe('Answer', () => {
 })
 
 describe('DisinfectantPage', () => {
+  let wreckMock
+
+  beforeEach(() => {
+    wreckMock = jest.spyOn(Wreck, 'get')
+    wreckMock.mockResolvedValue(
+      /** @type {any} */ ({
+        payload: JSON.stringify({
+          filteredDisinfectants: [
+            {
+              Disinfectant_name: 'Virkon® LSP',
+              Approved_dilution_rate: '9 * '
+            },
+            {
+              Disinfectant_name: 'Agrichlor',
+              Approved_dilution_rate: '10 * '
+            },
+            {
+              Disinfectant_name: 'Biocid 30',
+              Approved_dilution_rate: '8 * '
+            }
+          ]
+        }),
+        res: { statusCode: statusCodes.ok }
+      })
+    )
+  })
+
+  afterAll(jest.resetAllMocks)
+
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })

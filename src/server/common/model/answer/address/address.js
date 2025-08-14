@@ -125,7 +125,7 @@ export class AddressAnswer extends AnswerModel {
       viewModel.errors = this.validate().errors
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   _extractFields({

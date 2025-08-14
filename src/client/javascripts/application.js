@@ -27,9 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   selectEl.forEach((el) => {
     accessibleAutocomplete.enhanceSelectElement({
-      autoselect: true,
-      confirmOnBlur: true,
-      defaultValue: '',
       minLength: 2,
       selectElement: el
     })
