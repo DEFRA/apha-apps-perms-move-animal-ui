@@ -17,7 +17,7 @@ class TestPage extends Page {
 
 class TestGenericController extends GenericPageController {
   async handleGet() {
-    return 'get'
+    return /** @type {any} */ ('get')
   }
 
   handlePost() {
@@ -37,11 +37,11 @@ describe('#GenericPageController', () => {
 
   it('should throw not implemented error', async () => {
     const defaultController = new GenericPageController(new Page())
-    await expect(
-      async () => await defaultController.handleGet()
-    ).rejects.toBeInstanceOf(NotImplementedError)
+    await expect(() => defaultController.handleGet()).rejects.toThrow(
+      NotImplementedError
+    )
 
-    expect(defaultController.handlePost()).toThrow(NotImplementedError)
+    expect(() => defaultController.handlePost()).toThrow(NotImplementedError)
   })
 
   it('should output error on getHandler', () => {

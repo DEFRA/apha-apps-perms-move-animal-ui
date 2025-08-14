@@ -249,13 +249,15 @@ describe('RadioButton', () => {
     }
 
     it('should return everything (except errors) to render in the template', async () => {
-      expect(await invalidAnswer.viewModel({ validate: false, question })).toEqual(
-        defaultViewModel
-      )
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual(defaultViewModel)
     })
 
     it('should return everything (including errors) to render in the template', async () => {
-      expect(await invalidAnswer.viewModel({ validate: true, question })).toEqual({
+      expect(
+        await invalidAnswer.viewModel({ validate: true, question })
+      ).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
       })
@@ -272,9 +274,9 @@ describe('RadioButton', () => {
         applicationState
       )
 
-      expect(await invalidAnswer.viewModel({ validate: false, question })).toEqual(
-        defaultViewModel
-      )
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual(defaultViewModel)
     })
 
     it('should return extra options if the predicate is met', async () => {
@@ -285,7 +287,9 @@ describe('RadioButton', () => {
         applicationState
       )
 
-      expect(await invalidAnswer.viewModel({ validate: false, question })).toEqual({
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual({
         ...defaultViewModel,
         items: defaultViewModel.items.concat([
           {
@@ -305,14 +309,18 @@ describe('RadioButton', () => {
         const answer = new InlineTestRadioButtonAnswer({
           test_radio: 'value_1'
         })
-        expect(await answer.viewModel({ validate: false, question })).toMatchObject({
+        expect(
+          await answer.viewModel({ validate: false, question })
+        ).toMatchObject({
           classes: 'govuk-radios--inline'
         })
       })
 
       it('should return empty class when layout is not specified', async () => {
         const answer = new TestRadioButtonAnswer({ test_radio: 'value_1' })
-        expect(await answer.viewModel({ validate: false, question })).toMatchObject({
+        expect(
+          await answer.viewModel({ validate: false, question })
+        ).toMatchObject({
           classes: ''
         })
       })

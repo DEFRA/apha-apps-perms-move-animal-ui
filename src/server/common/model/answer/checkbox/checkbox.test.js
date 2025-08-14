@@ -257,11 +257,13 @@ describe('CheckboxAnswer.viewModel', () => {
 
     const expectedItems = [itemOne, itemTwo]
 
-    expect(await invalidAnswer.viewModel({ validate: true, question })).toEqual({
-      ...defaultViewModel,
-      errorMessage: { text: checkboxEmptyError },
-      items: expectedItems
-    })
+    expect(await invalidAnswer.viewModel({ validate: true, question })).toEqual(
+      {
+        ...defaultViewModel,
+        errorMessage: { text: checkboxEmptyError },
+        items: expectedItems
+      }
+    )
   })
 
   it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {

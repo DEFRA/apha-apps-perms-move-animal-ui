@@ -34,6 +34,10 @@ const mockView = {
 
 mockHeaderFn.mockReturnValue(mockView)
 
+const testViewModel = {
+  test: 'test content'
+}
+
 const TestAnswerSpy = jest.fn()
 
 class TestAnswer extends AnswerModel {
@@ -79,6 +83,10 @@ class TestAnswer extends AnswerModel {
         [questionKey]: { text: 'There is no problem' }
       }
     }
+  }
+
+  async viewModel() {
+    return testViewModel
   }
 }
 
@@ -611,7 +619,7 @@ describe('QuestionPageController', () => {
           nextPage: 'redirect_uri',
           pageTitle: question,
           value: undefined,
-          answerViewModel: { validate: false, question }
+          answerViewModel: testViewModel
         })
       )
 
@@ -646,7 +654,7 @@ describe('QuestionPageController', () => {
           pageTitle: `Error: ${question}`,
           errorMessages: errorState.errorMessages,
           errors: errorState.errors,
-          answerViewModel: { validate: true, question }
+          answerViewModel: testViewModel
         })
       )
 

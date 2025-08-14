@@ -474,36 +474,38 @@ describe('DateAnswer.viewModel', () => {
   const answer = new TestDateAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', async () => {
-    expect(await answer.viewModel({ validate: false, question })).toStrictEqual({
-      fieldset: {
-        legend: {
-          text: question,
-          classes: 'govuk-fieldset__legend--l',
-          isPageHeading: true
-        }
-      },
-      hint: {
-        text: hint
-      },
-      id: 'date',
-      items: [
-        {
-          classes: 'govuk-input--width-2',
-          name: 'day',
-          value: invalidPayload.day
+    expect(await answer.viewModel({ validate: false, question })).toStrictEqual(
+      {
+        fieldset: {
+          legend: {
+            text: question,
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true
+          }
         },
-        {
-          classes: 'govuk-input--width-2',
-          name: 'month',
-          value: invalidPayload.month
+        hint: {
+          text: hint
         },
-        {
-          classes: 'govuk-input--width-4',
-          name: 'year',
-          value: invalidPayload.year
-        }
-      ]
-    })
+        id: 'date',
+        items: [
+          {
+            classes: 'govuk-input--width-2',
+            name: 'day',
+            value: invalidPayload.day
+          },
+          {
+            classes: 'govuk-input--width-2',
+            name: 'month',
+            value: invalidPayload.month
+          },
+          {
+            classes: 'govuk-input--width-4',
+            name: 'year',
+            value: invalidPayload.year
+          }
+        ]
+      }
+    )
   })
 
   it('should return errors that affect the whole date', async () => {

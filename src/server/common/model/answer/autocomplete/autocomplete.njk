@@ -1,9 +1,5 @@
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% call govukFieldset() %}
-  <div class="autocomplete-wrapper">
-    {{
-      govukSelect(answerViewModel)
-    }}
-  </div>
+  <div class="autocomplete-wrapper">{{ govukSelect(answerViewModel) }}</div>
 {% endcall %}
