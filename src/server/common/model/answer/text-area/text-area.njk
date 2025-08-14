@@ -2,5 +2,5 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 {% call govukFieldset() %}
-  {{ govukTextarea(answer.viewModel(viewModelOptions)) }}
+  {{ govukTextarea(answerViewModel) }}
 {% endcall %}

@@ -288,8 +288,8 @@ describe('TestAnswer.html', () => {
 describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAreaAnswer = new TestOptionalTextAreaAnswer(invalidPayload)
 
-  it('should return data to render without errors (if validate is false)', () => {
-    expect(textAreaAnswer.viewModel({ validate: false, question })).toEqual({
+  it('should return data to render without errors (if validate is false)', async () => {
+    expect(await textAreaAnswer.viewModel({ validate: false, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -301,8 +301,8 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     })
   })
 
-  it('should return data to render with errors (if validate is true)', () => {
-    expect(textAreaAnswer.viewModel({ validate: true, question })).toEqual({
+  it('should return data to render with errors (if validate is true)', async () => {
+    expect(await textAreaAnswer.viewModel({ validate: true, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -347,14 +347,14 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     value: textAreaAnswer.value
   }
 
-  it('should return data to render without errors (if validate is false)', () => {
-    expect(textAreaAnswer.viewModel({ validate: false, question })).toEqual(
+  it('should return data to render without errors (if validate is false)', async () => {
+    expect(await textAreaAnswer.viewModel({ validate: false, question })).toEqual(
       expectedViewModel
     )
   })
 
-  it('should return data to render with errors (if validate is true)', () => {
-    expect(textAreaAnswer.viewModel({ validate: true, question })).toEqual({
+  it('should return data to render with errors (if validate is true)', async () => {
+    expect(await textAreaAnswer.viewModel({ validate: true, question })).toEqual({
       ...expectedViewModel,
       errorMessage: { text: maxLengthError }
     })

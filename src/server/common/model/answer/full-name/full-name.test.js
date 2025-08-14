@@ -160,16 +160,16 @@ describe('FullName.viewModel', () => {
   const name = new TestFullNameAnswer(invalidFullName)
   const question = 'What is the name of the CPH owner?'
 
-  it('should return the value without errors (if validate is false)', () => {
-    expect(name.viewModel({ validate: false, question })).toEqual({
+  it('should return the value without errors (if validate is false)', async () => {
+    expect(await name.viewModel({ validate: false, question })).toEqual({
       value: name.value,
       question,
       explanation
     })
   })
 
-  it('should return the value with errors (if valiate is true)', () => {
-    expect(name.viewModel({ validate: true, question })).toEqual({
+  it('should return the value with errors (if valiate is true)', async () => {
+    expect(await name.viewModel({ validate: true, question })).toEqual({
       value: name.value,
       errors: name.validate().errors,
       question,

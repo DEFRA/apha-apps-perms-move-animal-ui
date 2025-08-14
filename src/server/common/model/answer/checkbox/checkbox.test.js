@@ -237,34 +237,34 @@ describe('CheckboxAnswer.viewModel', () => {
     checked: false
   }
 
-  it('should return everything (except errors) to render in the template', () => {
+  it('should return everything (except errors) to render in the template', async () => {
     const validAnswer = new TestCheckboxAnswer({
       test_checkbox: ['limitAccessToBadgerHabitat']
     })
 
     const expectedItems = [itemOne, { ...itemTwo, checked: true }]
 
-    expect(validAnswer.viewModel({ validate: false, question })).toEqual({
+    expect(await validAnswer.viewModel({ validate: false, question })).toEqual({
       ...defaultViewModel,
       items: expectedItems
     })
   })
 
-  it('should return everything (including errors) to render in the template', () => {
+  it('should return everything (including errors) to render in the template', async () => {
     const invalidAnswer = new TestCheckboxAnswer({
       test_checkbox: []
     })
 
     const expectedItems = [itemOne, itemTwo]
 
-    expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
+    expect(await invalidAnswer.viewModel({ validate: true, question })).toEqual({
       ...defaultViewModel,
       errorMessage: { text: checkboxEmptyError },
       items: expectedItems
     })
   })
 
-  it('should return data to render with the alternative (not page heading) question styles set correctly', () => {
+  it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {
     /** @type {CheckboxConfig} */
     const checkboxConfigNotPageHeading = {
       ...config,
@@ -281,7 +281,7 @@ describe('CheckboxAnswer.viewModel', () => {
     const expectedItems = [itemOne, { ...itemTwo, checked: true }]
 
     expect(
-      nonPageHeadingAnswer.viewModel({ validate: false, question })
+      await nonPageHeadingAnswer.viewModel({ validate: false, question })
     ).toEqual({
       ...defaultViewModel,
 

@@ -49,8 +49,8 @@ describe('AnswerModel', () => {
     expect(() => AnswerModel.fromState({})).toThrow(notImplementedError)
   })
 
-  it('should throw NotImplementedError when viewModel is called', () => {
-    expect(() =>
+  it('should throw NotImplementedError when viewModel is called', async () => {
+    await expect(() =>
       answer.viewModel({ validate: true, question: 'What is the answer?' })
     ).toThrow(notImplementedError)
   })

@@ -132,7 +132,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const { options, payloadKey, layout, hint } = this.config
     const items = Object.entries(options).map(([key, value]) => ({
       id: key,

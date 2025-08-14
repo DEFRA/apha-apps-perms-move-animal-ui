@@ -40,7 +40,7 @@ export class ConfirmationPage extends Page {
 }
 
 export class ConfirmationController extends PageController {
-  handleGet(req, h) {
+  async handleGet(req, h) {
     const page = /** @type {ConfirmationPage} */ (this.page)
 
     const { reference, 'state-key': stateKey } =
@@ -52,7 +52,7 @@ export class ConfirmationController extends PageController {
       return h.redirect(page.incompletePageUrl)
     }
 
-    const resp = super.handleGet(req, h)
+    const resp = await super.handleGet(req, h)
 
     if (config.get('clearSessionOnSend') === true) {
       req.yar.clear(stateKey)

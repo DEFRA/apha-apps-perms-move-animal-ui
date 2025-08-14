@@ -115,7 +115,7 @@ export class TextAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
       this.config
 

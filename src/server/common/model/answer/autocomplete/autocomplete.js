@@ -23,7 +23,9 @@ const textSchema = ({ payloadKey, validation }) => {
   })
 }
 
+
 /**
+ * export @typedef {{ value: string, text: string }[]} ItemsConfig
  * export @typedef {{
  *  payloadKey: string,
  *  characterWidth?: 2 | 4 | 10 | 20,
@@ -32,10 +34,7 @@ const textSchema = ({ payloadKey, validation }) => {
  *  validation: {
  *    empty?: { message: string },
  *  }
- *  items: {
- *   value: string,
- *   text: string
- *  }[]
+ *  items: () => Promise<ItemsConfig>
  * }} AutocompleteConfig
  */
 
@@ -94,7 +93,7 @@ export class AutocompleteAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const { payloadKey, characterWidth, hint } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
@@ -109,7 +108,7 @@ export class AutocompleteAnswer extends AnswerModel {
       id: payloadKey,
       name: payloadKey,
       value: this.value,
-      items: this.config.items
+      items: await this.config.items()
     }
 
     if (characterWidth) {
