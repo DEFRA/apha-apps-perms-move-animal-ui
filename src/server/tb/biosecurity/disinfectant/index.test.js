@@ -15,6 +15,20 @@ const payload = {
   [questionKey]: 'Virkon'
 }
 
+jest.mock('ioredis', () => ({
+  ...jest.requireActual('ioredis'),
+  Cluster: jest.fn().mockImplementation(() => ({
+    on: jest.fn(),
+    get: jest.fn(),
+    setex: jest.fn()
+  })),
+  Redis: jest.fn().mockImplementation(() => ({
+    on: jest.fn(),
+    get: jest.fn(),
+    setex: jest.fn()
+  }))
+}))
+
 describe('Answer', () => {
   let wreckMock
 
