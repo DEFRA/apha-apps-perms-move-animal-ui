@@ -90,9 +90,10 @@ export class AnswerModel {
 
   /**
    * @param {AnswerViewModelOptions} _options
+   * @returns {Promise<any>}
    */
-  viewModel(_options) {
-    throw new NotImplementedError()
+  async viewModel(_options) {
+    return Promise.resolve({})
   }
 
   /**

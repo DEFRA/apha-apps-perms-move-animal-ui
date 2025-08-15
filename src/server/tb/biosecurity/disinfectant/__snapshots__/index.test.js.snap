@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisinfectantPage disinfectantPage.content should render expected response and content 1`] = `
+exports[`DisinfectantPage content should render expected response and content 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -9,12 +9,56 @@ exports[`DisinfectantPage disinfectantPage.content should render expected respon
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p>
-        You must
-        <a target="_blank" href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI">
-          use a disinfectant approved for Tuberculosis Orders</a>
-        (opens in a new tab).
-      </p>
+      <p>You must use a Defra-approved disinfectant for TB.</p>
+      <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      View approved disinfectants
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <ul class="govuk-body govuk-list--bullet">
+                  <li>Agrichlor</li>
+                  <li>Anigene NaDCC</li>
+                  <li>Anigene Professional Chlorine Tablets</li>
+                  <li>Aquatabs 8.68g</li>
+                  <li>Bi-OO-Cyst</li>
+                  <li>Bimodex</li>
+                  <li>BioChlor 200</li>
+                  <li>BioChlor 500</li>
+                  <li>Biocid 30</li>
+                  <li>BioPhen Xtra</li>
+                  <li>BIOSPOT</li>
+                  <li>Coxicur</li>
+                  <li>Credence 1000</li>
+                  <li>Dis-In-Fect</li>
+                  <li>FAM 30</li>
+                  <li>High Power Sanitising Tablets 3.25g</li>
+                  <li>Interkokask</li>
+                  <li>Interkokask Concentrate</li>
+                  <li>Iodo-Pharm</li>
+                  <li>Mida CHRIOX F2</li>
+                  <li>Mira 30</li>
+                  <li>MS MEGADES OXY D</li>
+                  <li>NEOGEN Farm Fluid MAX</li>
+                  <li>Novagen F.P.</li>
+                  <li>OmniChlor Plus</li>
+                  <li>Prophyl S</li>
+                  <li>Rapicid</li>
+                  <li>Septrivet 17</li>
+                  <li>Septrivet 87 8.68g</li>
+                  <li>Stable Safe Strength 4.72g Tablets</li>
+                  <li>Tibicur</li>
+                  <li>Total Farm Disinfectant</li>
+                  <li>V18</li>
+                  <li>Virkon® LSP</li>
+                  <li>Virochlor 500</li>
+                  <li>Virophor 2.8%</li>
+                  <li>Virudine Plus</li>
+                </ul>
+  </div>
+</details>
+
     </div>
   </div>
     <form method="POST" novalidate="">
@@ -22,15 +66,19 @@ exports[`DisinfectantPage disinfectantPage.content should render expected respon
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
-
 <fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
+  <div class="autocomplete-wrapper"><div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="disinfectant">
     What disinfectant are you using?
   </label>
-  <input class="govuk-input govuk-input--width-10" id="disinfectant" name="disinfectant" type="text" autocomplete="disinfectant">
+  <select class="govuk-select autocomplete" id="disinfectant" name="disinfectant">
+    <option value=""></option>
+    <option value="Virkon® LSP">Virkon® LSP</option>
+    <option value="Agrichlor">Agrichlor</option>
+    <option value="Biocid 30">Biocid 30</option>
+  </select>
 </div>
-
+</div>
 
 </fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

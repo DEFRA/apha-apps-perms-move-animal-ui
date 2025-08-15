@@ -163,7 +163,7 @@ export class DateAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const {
       isValid,
       errors = {},
@@ -229,7 +229,7 @@ export class DateAnswer extends AnswerModel {
       viewModel.errorMessage = errorMessage
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   /**

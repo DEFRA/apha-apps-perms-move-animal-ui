@@ -34,6 +34,10 @@ const mockView = {
 
 mockHeaderFn.mockReturnValue(mockView)
 
+const testViewModel = {
+  test: 'test content'
+}
+
 const TestAnswerSpy = jest.fn()
 
 class TestAnswer extends AnswerModel {
@@ -79,6 +83,10 @@ class TestAnswer extends AnswerModel {
         [questionKey]: { text: 'There is no problem' }
       }
     }
+  }
+
+  async viewModel() {
+    return Promise.resolve(testViewModel)
   }
 }
 
@@ -600,8 +608,8 @@ describe('QuestionPageController', () => {
       }
     }
 
-    it('GET should render view with expected arguments', () => {
-      const result = controller.getHandler(request, h)
+    it('GET should render view with expected arguments', async () => {
+      const result = await controller.getHandler(request, h)
 
       expect(h.view).toHaveBeenCalledTimes(1)
       expect(h.view).toHaveBeenCalledWith(
@@ -611,7 +619,7 @@ describe('QuestionPageController', () => {
           nextPage: 'redirect_uri',
           pageTitle: question,
           value: undefined,
-          viewModelOptions: { validate: false, question }
+          answerViewModel: testViewModel
         })
       )
 
@@ -621,7 +629,7 @@ describe('QuestionPageController', () => {
       expect(result).toBe(mockView)
     })
 
-    it('GET should render when erroring with expected arguments', () => {
+    it('GET should render when erroring with expected arguments', async () => {
       const errorState = {
         errorMessages: [
           { href: `#${questionKey}`, text: 'There is a problem' }
@@ -631,10 +639,11 @@ describe('QuestionPageController', () => {
         },
         payload: { [questionKey]: 'ERROR' }
       }
+
       request.yar.get.mockImplementation((name) =>
         name === `errors:${sectionKey}:${questionKey}` ? errorState : undefined
       )
-      const result = controller.getHandler(request, h)
+      const result = await controller.getHandler(request, h)
 
       expect(h.view).toHaveBeenCalledTimes(1)
       expect(h.view).toHaveBeenCalledWith(
@@ -645,7 +654,7 @@ describe('QuestionPageController', () => {
           pageTitle: `Error: ${question}`,
           errorMessages: errorState.errorMessages,
           errors: errorState.errors,
-          viewModelOptions: { validate: true, question }
+          answerViewModel: testViewModel
         })
       )
 

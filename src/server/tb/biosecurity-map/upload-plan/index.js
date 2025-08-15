@@ -71,10 +71,11 @@ export class UploadPlanController extends TbQuestionPageController {
       })
     }
 
-    return super
-      .handleGet(req, h, {
+    return (
+      await super.handleGet(req, h, {
         upload: answer.value
       })
+    )
       .header('Cache-Control', 'no-store, must-revalidate, max-age=0')
       .header('Pragma', 'no-cache')
   }

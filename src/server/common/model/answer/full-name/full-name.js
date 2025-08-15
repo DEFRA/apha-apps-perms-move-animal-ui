@@ -116,7 +116,7 @@ export class FullNameAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const viewModel = { value: this.value, question }
 
     if (this.config.explanation) {
@@ -127,7 +127,7 @@ export class FullNameAnswer extends AnswerModel {
       viewModel.errors = this.validate().errors
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   _extractFields({ firstName, lastName }) {

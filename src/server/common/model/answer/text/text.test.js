@@ -240,8 +240,8 @@ describe('TestAnswer.html', () => {
 describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAnswer = new TestTextAnswer(invalidPayload)
 
-  it('should return data to render without errors (if validate is false)', () => {
-    expect(textAnswer.viewModel({ validate: false, question })).toEqual({
+  it('should return data to render without errors (if validate is false)', async () => {
+    expect(await textAnswer.viewModel({ validate: false, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -253,8 +253,8 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     })
   })
 
-  it('should return data to render with errors (if validate is true)', () => {
-    expect(textAnswer.viewModel({ validate: true, question })).toEqual({
+  it('should return data to render with errors (if validate is true)', async () => {
+    expect(await textAnswer.viewModel({ validate: true, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -267,7 +267,7 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     })
   })
 
-  it('should return data to render with the alternative (not page heading) question styles set correctly', () => {
+  it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {
     /** @type {TextConfig} */
     const textConfigNotPageHeading = {
       ...textConfig,
@@ -280,7 +280,7 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     const nonPageHeadingAnswer = new NonPageHeadingTextAnswer(invalidPayload)
 
     expect(
-      nonPageHeadingAnswer.viewModel({ validate: false, question })
+      await nonPageHeadingAnswer.viewModel({ validate: false, question })
     ).toEqual({
       label: {
         text: question,
@@ -310,8 +310,8 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   }
   const textAnswer = new ExtraOptionsTextAnswer(invalidPayload)
 
-  it('should return data to render without errors (if validate is false)', () => {
-    expect(textAnswer.viewModel({ validate: false, question })).toEqual({
+  it('should return data to render without errors (if validate is false)', async () => {
+    expect(await textAnswer.viewModel({ validate: false, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -328,8 +328,8 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     })
   })
 
-  it('should return data to render with errors (if validate is true)', () => {
-    expect(textAnswer.viewModel({ validate: true, question })).toEqual({
+  it('should return data to render with errors (if validate is true)', async () => {
+    expect(await textAnswer.viewModel({ validate: true, question })).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',

@@ -473,43 +473,45 @@ describe('DateAnswer.html', () => {
 describe('DateAnswer.viewModel', () => {
   const answer = new TestDateAnswer(invalidPayload)
 
-  it('should return data to render without errors (if validate is false)', () => {
-    expect(answer.viewModel({ validate: false, question })).toStrictEqual({
-      fieldset: {
-        legend: {
-          text: question,
-          classes: 'govuk-fieldset__legend--l',
-          isPageHeading: true
-        }
-      },
-      hint: {
-        text: hint
-      },
-      id: 'date',
-      items: [
-        {
-          classes: 'govuk-input--width-2',
-          name: 'day',
-          value: invalidPayload.day
+  it('should return data to render without errors (if validate is false)', async () => {
+    expect(await answer.viewModel({ validate: false, question })).toStrictEqual(
+      {
+        fieldset: {
+          legend: {
+            text: question,
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true
+          }
         },
-        {
-          classes: 'govuk-input--width-2',
-          name: 'month',
-          value: invalidPayload.month
+        hint: {
+          text: hint
         },
-        {
-          classes: 'govuk-input--width-4',
-          name: 'year',
-          value: invalidPayload.year
-        }
-      ]
-    })
+        id: 'date',
+        items: [
+          {
+            classes: 'govuk-input--width-2',
+            name: 'day',
+            value: invalidPayload.day
+          },
+          {
+            classes: 'govuk-input--width-2',
+            name: 'month',
+            value: invalidPayload.month
+          },
+          {
+            classes: 'govuk-input--width-4',
+            name: 'year',
+            value: invalidPayload.year
+          }
+        ]
+      }
+    )
   })
 
-  it('should return errors that affect the whole date', () => {
+  it('should return errors that affect the whole date', async () => {
     const missingDatePayload = { day: '', month: '', year: '' }
     const answer = new TestDateAnswer(missingDatePayload)
-    expect(answer.viewModel({ validate: true, question })).toStrictEqual({
+    expect(await answer.viewModel({ validate: true, question })).toStrictEqual({
       fieldset: {
         legend: {
           text: question,
@@ -544,10 +546,10 @@ describe('DateAnswer.viewModel', () => {
     })
   })
 
-  it('should return errors that affect only affect one field', () => {
+  it('should return errors that affect only affect one field', async () => {
     const missingDatePayload = { day: '12', month: '', year: '2024' }
     const answer = new TestDateAnswer(missingDatePayload)
-    expect(answer.viewModel({ validate: true, question })).toStrictEqual({
+    expect(await answer.viewModel({ validate: true, question })).toStrictEqual({
       fieldset: {
         legend: {
           text: question,

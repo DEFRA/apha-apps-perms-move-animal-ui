@@ -90,8 +90,8 @@ describe('TestAnswer.html', () => {
 describe('TestAnswer.viewModel', () => {
   const hiddenAnswer = new TestHiddenAnswer(validPayload)
 
-  it('should return expected data to render', () => {
-    expect(hiddenAnswer.viewModel({ question })).toEqual({
+  it('should return expected data to render', async () => {
+    expect(await hiddenAnswer.viewModel({ question })).toEqual({
       id: hiddenAnswerConfig.payloadKey,
       name: hiddenAnswerConfig.payloadKey,
       question,

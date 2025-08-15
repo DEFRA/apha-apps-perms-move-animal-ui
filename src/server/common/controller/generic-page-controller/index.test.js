@@ -16,8 +16,8 @@ class TestPage extends Page {
 }
 
 class TestGenericController extends GenericPageController {
-  handleGet() {
-    return 'get'
+  async handleGet() {
+    return Promise.resolve(/** @type {any} */ ('get'))
   }
 
   handlePost() {
@@ -35,9 +35,12 @@ describe('#GenericPageController', () => {
     jest.resetAllMocks()
   })
 
-  it('should throw not implemented error', () => {
+  it('should throw not implemented error', async () => {
     const defaultController = new GenericPageController(new Page())
-    expect(() => defaultController.handleGet()).toThrow(NotImplementedError)
+    await expect(() => defaultController.handleGet()).rejects.toThrow(
+      NotImplementedError
+    )
+
     expect(() => defaultController.handlePost()).toThrow(NotImplementedError)
   })
 

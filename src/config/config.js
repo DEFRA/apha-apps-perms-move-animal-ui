@@ -1,6 +1,7 @@
 import convict from 'convict'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { apiConfig } from './api/index.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -227,6 +228,12 @@ export const config = convict({
       format: Boolean,
       default: isProduction,
       env: 'REDIS_TLS'
+    },
+    db: {
+      doc: 'Redis database number',
+      format: Number,
+      default: 0,
+      env: 'REDIS_DB'
     }
   }),
   nunjucks: {
@@ -358,7 +365,8 @@ export const config = convict({
     format: Boolean,
     default: true,
     env: 'CLEAR_SESSION_ON_SEND'
-  }
+  },
+  api: apiConfig
 })
 
 config.validate({ allowed: 'strict' })
