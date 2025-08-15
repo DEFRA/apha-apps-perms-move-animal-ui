@@ -67,8 +67,11 @@ export class QuestionPageController extends GenericPageController {
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
-      const answer = new this.page.Answer(pageError.payload, applicationState)
-      const viewModelOptions = {
+      const errorAnswer = new this.page.Answer(
+        pageError.payload,
+        applicationState
+      )
+      const errorViewModelOptions = {
         validate: true,
         question: this.page.question
       }
@@ -76,11 +79,11 @@ export class QuestionPageController extends GenericPageController {
       return h.view(this.page.view, {
         nextPage: req.query.redirect_uri,
         heading: this.page.heading,
-        answer,
+        answer: errorAnswer,
         pageTitle: `Error: ${this.page.title}`,
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
-        answerViewModel: await answer.viewModel(viewModelOptions),
+        answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
         ...args,
         ...this.page.viewProps(req)
       })
