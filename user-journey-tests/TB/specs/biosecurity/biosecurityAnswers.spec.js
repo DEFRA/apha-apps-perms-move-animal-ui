@@ -72,7 +72,7 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'whatDisinfectant',
-      expectedValue: 'Batman disinfectant',
+      expectedValue: 'autotesting2',
       expectedHref: `/biosecurity/disinfectant${redirect}`
     },
     {

@@ -4,7 +4,7 @@ import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'disinfectant'
 const pageHeadingAndTitle = 'What disinfectant are you using?'
-const noInputError = 'Enter what disinfectant you are using'
+const noInputError = 'Enter the first 2 letters of the disinfectant you are using'
 
 class DisinfectantPage extends SingleTextInputPage {
   constructor() {
