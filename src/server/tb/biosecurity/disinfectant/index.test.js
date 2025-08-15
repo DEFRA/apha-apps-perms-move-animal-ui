@@ -2,8 +2,23 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, disinfectantPage } from './index.js'
 import { DisinfectantDilutionPage } from '../disinfectant-dilution/index.js'
 import { AutocompleteAnswer } from '~/src/server/common/model/answer/autocomplete/autocomplete.js'
-import Wreck from '@hapi/wreck'
-import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+
+jest.mock('~/src/server/common/apis/index.js', () => ({
+  fetchDisinfectants: jest.fn().mockResolvedValue([
+    {
+      Disinfectant_name: 'Virkon® LSP',
+      Approved_dilution_rate: '9 * '
+    },
+    {
+      Disinfectant_name: 'Agrichlor',
+      Approved_dilution_rate: '10 * '
+    },
+    {
+      Disinfectant_name: 'Biocid 30',
+      Approved_dilution_rate: '8 * '
+    }
+  ])
+}))
 
 const sectionKey = 'biosecurity'
 const questionKey = 'disinfectant'
@@ -15,28 +30,10 @@ const payload = {
   [questionKey]: 'Virkon'
 }
 
-jest.mock('ioredis', () => ({
-  ...jest.requireActual('ioredis'),
-  Cluster: jest.fn().mockImplementation(() => ({
-    on: jest.fn(),
-    get: jest.fn(),
-    setex: jest.fn()
-  })),
-  Redis: jest.fn().mockImplementation(() => ({
-    on: jest.fn(),
-    get: jest.fn(),
-    setex: jest.fn()
-  }))
-}))
-
 describe('Answer', () => {
-  let wreckMock
-
-  beforeEach(() => {
-    wreckMock = jest.spyOn(Wreck, 'get')
+  afterEach(() => {
+    jest.clearAllMocks()
   })
-
-  afterAll(jest.resetAllMocks)
 
   it('should be a Text input', () => {
     expect(new Answer(payload)).toBeInstanceOf(AutocompleteAnswer)
@@ -75,28 +72,6 @@ describe('Answer', () => {
   })
 
   it('should include expected disinfectant options', async () => {
-    wreckMock.mockResolvedValue(
-      /** @type {any} */ ({
-        payload: JSON.stringify({
-          filteredDisinfectants: [
-            {
-              Disinfectant_name: 'Virkon® LSP',
-              Approved_dilution_rate: '9 * '
-            },
-            {
-              Disinfectant_name: 'Agrichlor',
-              Approved_dilution_rate: '10 * '
-            },
-            {
-              Disinfectant_name: 'Biocid 30',
-              Approved_dilution_rate: '8 * '
-            }
-          ]
-        }),
-        res: { statusCode: statusCodes.ok }
-      })
-    )
-
     const items = await Answer.config.items()
 
     const itemValues = items.map((item) => item.value)
@@ -107,34 +82,9 @@ describe('Answer', () => {
 })
 
 describe('DisinfectantPage', () => {
-  let wreckMock
-
-  beforeEach(() => {
-    wreckMock = jest.spyOn(Wreck, 'get')
-    wreckMock.mockResolvedValue(
-      /** @type {any} */ ({
-        payload: JSON.stringify({
-          filteredDisinfectants: [
-            {
-              Disinfectant_name: 'Virkon® LSP',
-              Approved_dilution_rate: '9 * '
-            },
-            {
-              Disinfectant_name: 'Agrichlor',
-              Approved_dilution_rate: '10 * '
-            },
-            {
-              Disinfectant_name: 'Biocid 30',
-              Approved_dilution_rate: '8 * '
-            }
-          ]
-        }),
-        res: { statusCode: statusCodes.ok }
-      })
-    )
+  afterEach(() => {
+    jest.clearAllMocks()
   })
-
-  afterAll(jest.resetAllMocks)
 
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)

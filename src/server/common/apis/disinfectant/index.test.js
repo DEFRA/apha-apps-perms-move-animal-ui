@@ -16,21 +16,6 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
   })
 }))
 
-// Mock ioredis to provide the methods we need
-jest.mock('ioredis', () => ({
-  ...jest.requireActual('ioredis'),
-  Cluster: jest.fn().mockImplementation(() => ({
-    on: jest.fn(),
-    get: jest.fn(),
-    setex: jest.fn()
-  })),
-  Redis: jest.fn().mockImplementation(() => ({
-    on: jest.fn(),
-    get: jest.fn(),
-    setex: jest.fn()
-  }))
-}))
-
 const cacheSetex = jest.spyOn(cache, 'setex')
 const cacheGet = jest.spyOn(cache, 'get')
 
