@@ -229,7 +229,7 @@ export class DateAnswer extends AnswerModel {
       viewModel.errorMessage = errorMessage
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   /**

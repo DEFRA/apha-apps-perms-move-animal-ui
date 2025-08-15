@@ -17,7 +17,7 @@ class TestPage extends Page {
 
 class TestGenericController extends GenericPageController {
   async handleGet() {
-    return /** @type {any} */ ('get')
+    return Promise.resolve(/** @type {any} */ ('get'))
   }
 
   handlePost() {

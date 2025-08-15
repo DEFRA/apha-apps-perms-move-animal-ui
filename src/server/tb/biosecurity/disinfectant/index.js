@@ -17,7 +17,7 @@ export class Answer extends AutocompleteAnswer {
     validation: {},
     isPageHeading: false,
     items: async () => {
-      const disinfectants = await fetchDisinfectants()
+      const disinfectants = await fetchDisinfectants('tbo')
 
       if (disinfectants.length === 0) {
         return []

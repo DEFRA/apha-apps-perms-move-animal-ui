@@ -166,6 +166,6 @@ export class RadioButtonAnswer extends AnswerModel {
     if (validate) {
       model.errorMessage = this.validate().errors[payloadKey]
     }
-    return model
+    return Promise.resolve(model)
   }
 }

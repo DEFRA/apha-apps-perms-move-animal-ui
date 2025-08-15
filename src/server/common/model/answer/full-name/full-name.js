@@ -127,7 +127,7 @@ export class FullNameAnswer extends AnswerModel {
       viewModel.errors = this.validate().errors
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   _extractFields({ firstName, lastName }) {

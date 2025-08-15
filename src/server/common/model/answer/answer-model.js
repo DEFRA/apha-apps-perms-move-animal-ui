@@ -93,7 +93,7 @@ export class AnswerModel {
    * @returns {Promise<any>}
    */
   async viewModel(_options) {
-    return {}
+    return Promise.resolve({})
   }
 
   /**

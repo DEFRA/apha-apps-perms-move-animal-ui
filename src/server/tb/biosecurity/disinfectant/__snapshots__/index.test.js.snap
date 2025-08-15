@@ -67,8 +67,7 @@ exports[`DisinfectantPage content should render expected response and content 1`
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 <fieldset class="govuk-fieldset">
-  <div class="autocomplete-wrapper">
-    <div class="govuk-form-group">
+  <div class="autocomplete-wrapper"><div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="disinfectant">
     What disinfectant are you using?
   </label>
@@ -79,8 +78,7 @@ exports[`DisinfectantPage content should render expected response and content 1`
     <option value="Biocid 30">Biocid 30</option>
   </select>
 </div>
-
-  </div>
+</div>
 
 </fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

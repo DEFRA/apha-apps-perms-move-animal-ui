@@ -55,10 +55,10 @@ export default class GenericPageController {
 
   /**
    * @returns {Promise<ResponseObject>}
-   **/
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
   async handleGet(_req, _h) {
-    throw new NotImplementedError()
+    return Promise.reject(new NotImplementedError())
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

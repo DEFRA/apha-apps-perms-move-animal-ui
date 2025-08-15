@@ -64,7 +64,7 @@ export class SummaryPageController extends GenericPageController {
     }
   }
 
-  async handleGet(req, res) {
+  handleGet(req, res) {
     const applicationState = new this.StateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 

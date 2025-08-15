@@ -135,7 +135,7 @@ export class CheckboxAnswer extends AnswerModel {
       viewModel.errorMessage = this.validate().errors[this.config.payloadKey]
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   /**

@@ -86,7 +86,7 @@ class TestAnswer extends AnswerModel {
   }
 
   async viewModel() {
-    return testViewModel
+    return Promise.resolve(testViewModel)
   }
 }
 

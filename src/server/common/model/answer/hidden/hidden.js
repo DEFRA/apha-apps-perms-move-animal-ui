@@ -66,7 +66,7 @@ export class HiddenAnswer extends AnswerModel {
       value
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   /**
