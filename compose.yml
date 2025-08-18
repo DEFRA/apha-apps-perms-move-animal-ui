@@ -23,8 +23,7 @@ services:
       - 'compose/aws.env'
     environment:
       PORT: 3000
-      NODE_ENV: 
-      SESSION_CACHE_ENGINE: redis
+      NODE_ENV: development
       REDIS_HOST: redis
       USE_SINGLE_INSTANCE_CACHE: true
       AWS_REGION: eu-west-2
@@ -46,7 +45,7 @@ services:
       GATEWAY_ID: ${GATEWAY_ID}
       GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
       AUTH_REQUIRED: ${AUTH_REQUIRED}
-      CASE_MANAGEMENT_URL: http://192.168.4.169:3001
+      CASE_MANAGEMENT_URL: http://backend:3001
       DISINFECTANT_API_BASE_URL: http://wiremock:8080
       DISINFECTANT_API_PATH: /getApprovedDisinfectants
     networks:
