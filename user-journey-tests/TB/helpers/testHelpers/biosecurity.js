@@ -43,10 +43,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Manure details',
         disinfectantPage
       )
-      await disinfectantPage.inputTextAndContinue(
-        'autotesting2',
-        disinfectantPage
-      )
+      await disinfectantPage.inputTextAndContinue('Agrichlor', disinfectantPage)
       await disinfectantPage.selectContinue()
       await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(
@@ -81,10 +78,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Manage manure',
         disinfectantPage
       )
-      await disinfectantPage.inputTextAndContinue(
-        'autotesting2',
-        disinfectantPage
-      )
+      await disinfectantPage.inputTextAndContinue('Agrichlor', disinfectantPage)
       await disinfectantPage.selectContinue()
       await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(

@@ -2,7 +2,7 @@ export const disinfectantConfig = {
   baseUrl: {
     doc: 'Base url for the disinfectant api',
     format: String,
-    default: 'disinfectant-backend.dev.cdp-int.defra.cloud',
+    default: 'https://disinfectant-backend.dev.cdp-int.defra.cloud',
     env: 'DISINFECTANT_API_BASE_URL'
   },
   path: {

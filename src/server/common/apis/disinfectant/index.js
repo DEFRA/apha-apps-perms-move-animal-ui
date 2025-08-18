@@ -34,7 +34,7 @@ export const fetchDisinfectants = async (type) => {
   let items
   try {
     const response = await Wreck.get(
-      `https://${config.get('api.disinfectant.baseUrl')}${config.get('api.disinfectant.path')}?type=${type}`
+      `${config.get('api.disinfectant.baseUrl')}${config.get('api.disinfectant.path')}?type=${type}`
     )
 
     items = response.payload.toString()

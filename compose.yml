@@ -13,14 +13,18 @@ services:
       - '3000:3000'
     links:
       - 'redis:redis'
+      - 'wiremock:wiremock'
     depends_on:
       redis:
+        condition: service_started
+      wiremock:
         condition: service_started
     env_file:
       - 'compose/aws.env'
     environment:
       PORT: 3000
-      NODE_ENV: development
+      NODE_ENV: 
+      SESSION_CACHE_ENGINE: redis
       REDIS_HOST: redis
       USE_SINGLE_INSTANCE_CACHE: true
       AWS_REGION: eu-west-2
@@ -42,7 +46,9 @@ services:
       GATEWAY_ID: ${GATEWAY_ID}
       GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
       AUTH_REQUIRED: ${AUTH_REQUIRED}
-      CASE_MANAGEMENT_URL: http://backend:3001
+      CASE_MANAGEMENT_URL: http://192.168.4.169:3001
+      DISINFECTANT_API_BASE_URL: http://wiremock:8080
+      DISINFECTANT_API_PATH: /getApprovedDisinfectants
     networks:
       - cdp-tenant
 
@@ -139,6 +145,20 @@ services:
       interval: 5s
       start_period: 5s
       retries: 3
+    networks:
+      - cdp-tenant
+
+  wiremock:
+    image: wiremock/wiremock:3.3.1
+    ports:
+      - '3100:8080'
+    environment:
+      - VIRTUAL_HOST=~^wiremock\..*\.sslip\.io
+      - VIRTUAL_PORT=8080
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings
+      - ./wiremock/__files:/home/wiremock/__files
+    command: ['--global-response-templating', '--verbose']
     networks:
       - cdp-tenant
 
