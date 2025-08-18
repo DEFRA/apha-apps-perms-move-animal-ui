@@ -14,7 +14,11 @@ export class Answer extends AutocompleteAnswer {
   /** @type { AutocompleteConfig } */
   static config = {
     payloadKey: questionKey,
-    validation: {},
+    validation: {
+      empty: {
+        message: 'Enter the first 2 letters of the disinfectant you are using'
+      }
+    },
     isPageHeading: false,
     items: async () => {
       const disinfectants = await fetchDisinfectants('tbo')
