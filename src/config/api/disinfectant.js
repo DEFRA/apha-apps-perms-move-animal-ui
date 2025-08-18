@@ -21,7 +21,7 @@ export const disinfectantConfig = {
     TTL: {
       doc: 'Time to live for api cache (seconds)',
       format: Number,
-      default: 3600,
+      default: 604800,
       env: 'DISINFECTANT_API_CACHE_TTL'
     }
   }

@@ -40,20 +40,24 @@ export const fetchDisinfectants = async (type) => {
     items = response.payload.toString()
     return JSON.parse(items).filteredDisinfectants ?? []
   } catch (e) {
-    items = await cache.get(`api:disinfectants:${type}`)
     logger.error(
       `Failed to fetch disinfectants of type ${type} from api attempting to fetch result from cache:`,
       e
     )
 
-    if (items) {
-      return JSON.parse(items).filteredDisinfectants ?? []
+    items = await cache.get(`api:disinfectants:${type}`)
+
+    if (!items) {
+      logger.error(
+        `Failed to fetch disinfectants of type ${type} from cache:`,
+        e
+      )
+      throw new Error(
+        `Failed to fetch disinfectants of type ${type} from API and cache empty`
+      )
     }
 
-    logger.error(`Failed to fetch disinfectants of type ${type} from cache:`, e)
-    throw new Error(
-      `Failed to fetch disinfectants of type ${type} from API and cache empty`
-    )
+    return JSON.parse(items).filteredDisinfectants ?? []
   } finally {
     try {
       await cache.setex(

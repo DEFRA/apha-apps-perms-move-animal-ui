@@ -96,6 +96,26 @@ describe('fetchDisinfectants API module', () => {
     )
   })
 
+  it('should throw error when API fails and cache fetch throws an error', async () => {
+    const apiError = new Error('API is down')
+    const cacheError = new Error('Redis connection failed')
+
+    mockedWreck.mockRejectedValue(apiError)
+    cacheGet.mockRejectedValue(cacheError)
+
+    await expect(fetchDisinfectants(disinfectantType)).rejects.toThrow(
+      cacheError
+    )
+
+    expect(mockLoggerError).toHaveBeenCalledWith(
+      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
+      apiError
+    )
+    expect(cacheGet).toHaveBeenCalledWith(
+      `api:disinfectants:${disinfectantType}`
+    )
+  })
+
   it('should handle cache write failures gracefully', async () => {
     const cacheWriteError = new Error('Cache write failed')
 
