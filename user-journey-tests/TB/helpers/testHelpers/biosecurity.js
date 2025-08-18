@@ -44,9 +44,11 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
+        'autotesting2',
+        disinfectantPage
       )
+      await disinfectantPage.selectContinue()
+      await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(
         '1995',
         anySharedBuildingsPage
@@ -80,9 +82,11 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
+        'autotesting2',
+        disinfectantPage
       )
+      await disinfectantPage.selectContinue()
+      await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(
         '1995',
         anySharedBuildingsPage
