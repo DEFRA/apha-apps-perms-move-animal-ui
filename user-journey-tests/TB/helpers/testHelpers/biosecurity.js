@@ -43,10 +43,9 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Manure details',
         disinfectantPage
       )
-      await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
-      )
+      await disinfectantPage.inputTextAndContinue('Agrichlor', disinfectantPage)
+      await disinfectantPage.selectContinue()
+      await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(
         '1995',
         anySharedBuildingsPage
@@ -79,10 +78,9 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Manage manure',
         disinfectantPage
       )
-      await disinfectantPage.inputTextAndContinue(
-        'Batman disinfectant',
-        disinfectantDilutionPage
-      )
+      await disinfectantPage.inputTextAndContinue('Agrichlor', disinfectantPage)
+      await disinfectantPage.selectContinue()
+      await waitForPagePath(disinfectantDilutionPage.pagePath)
       await disinfectantDilutionPage.inputTextAndContinue(
         '1995',
         anySharedBuildingsPage

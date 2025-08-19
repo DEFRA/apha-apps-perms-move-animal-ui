@@ -3,6 +3,7 @@ $govuk-new-organisation-colours: true;
 $govuk-global-styles: true;
 
 @import "pkg:govuk-frontend";
+@import "accessible-autocomplete";
 
 @import "variables/all";
 @import "helpers/all";

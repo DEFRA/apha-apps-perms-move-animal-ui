@@ -248,20 +248,22 @@ describe('RadioButton', () => {
       }
     }
 
-    it('should return everything (except errors) to render in the template', () => {
-      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
-        defaultViewModel
-      )
+    it('should return everything (except errors) to render in the template', async () => {
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual(defaultViewModel)
     })
 
-    it('should return everything (including errors) to render in the template', () => {
-      expect(invalidAnswer.viewModel({ validate: true, question })).toEqual({
+    it('should return everything (including errors) to render in the template', async () => {
+      expect(
+        await invalidAnswer.viewModel({ validate: true, question })
+      ).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
       })
     })
 
-    it('should not return extra options if the predicate is not met', () => {
+    it('should not return extra options if the predicate is not met', async () => {
       const applicationState = {
         origin: { onOffFarm: 'off' }
       }
@@ -272,12 +274,12 @@ describe('RadioButton', () => {
         applicationState
       )
 
-      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual(
-        defaultViewModel
-      )
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual(defaultViewModel)
     })
 
-    it('should return extra options if the predicate is met', () => {
+    it('should return extra options if the predicate is met', async () => {
       const invalidAnswer = new TestRadioButtonAnswer(
         {
           test_radio: 'invalid_answer'
@@ -285,7 +287,9 @@ describe('RadioButton', () => {
         applicationState
       )
 
-      expect(invalidAnswer.viewModel({ validate: false, question })).toEqual({
+      expect(
+        await invalidAnswer.viewModel({ validate: false, question })
+      ).toEqual({
         ...defaultViewModel,
         items: defaultViewModel.items.concat([
           {
@@ -301,18 +305,22 @@ describe('RadioButton', () => {
     })
 
     describe('radio button layout', () => {
-      it('should return inline class when layout is inline', () => {
+      it('should return inline class when layout is inline', async () => {
         const answer = new InlineTestRadioButtonAnswer({
           test_radio: 'value_1'
         })
-        expect(answer.viewModel({ validate: false, question })).toMatchObject({
+        expect(
+          await answer.viewModel({ validate: false, question })
+        ).toMatchObject({
           classes: 'govuk-radios--inline'
         })
       })
 
-      it('should return empty class when layout is not specified', () => {
+      it('should return empty class when layout is not specified', async () => {
         const answer = new TestRadioButtonAnswer({ test_radio: 'value_1' })
-        expect(answer.viewModel({ validate: false, question })).toMatchObject({
+        expect(
+          await answer.viewModel({ validate: false, question })
+        ).toMatchObject({
           classes: ''
         })
       })

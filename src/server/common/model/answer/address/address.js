@@ -118,14 +118,14 @@ export class AddressAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  viewModel({ validate, question }) {
+  async viewModel({ validate, question }) {
     const viewModel = { value: this.value, question }
 
     if (validate) {
       viewModel.errors = this.validate().errors
     }
 
-    return viewModel
+    return Promise.resolve(viewModel)
   }
 
   _extractFields({

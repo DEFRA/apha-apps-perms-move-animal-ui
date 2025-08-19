@@ -1,0 +1,152 @@
+{
+  "filteredDisinfectants": [
+    {
+      "Disinfectant_name": "Virkon® LSP",
+      "Approved_dilution_rate": "200 *"
+    },
+    {
+      "Disinfectant_name": "Agrichlor",
+      "Approved_dilution_rate": "100"
+    },
+    {
+      "Disinfectant_name": "Anigene NaDCC",
+      "Approved_dilution_rate": "50"
+    },
+    {
+      "Disinfectant_name": "Anigene Professional Chlorine Tablets",
+      "Approved_dilution_rate": "75 *"
+    },
+    {
+      "Disinfectant_name": "Aquatabs 8.68g",
+      "Approved_dilution_rate": "500"
+    },
+    {
+      "Disinfectant_name": "Bi-OO-Cyst",
+      "Approved_dilution_rate": "250"
+    },
+    {
+      "Disinfectant_name": "Bimodex",
+      "Approved_dilution_rate": "150 *"
+    },
+    {
+      "Disinfectant_name": "BioChlor 200",
+      "Approved_dilution_rate": "200"
+    },
+    {
+      "Disinfectant_name": "BioChlor 500",
+      "Approved_dilution_rate": "500"
+    },
+    {
+      "Disinfectant_name": "Biocid 30",
+      "Approved_dilution_rate": "30"
+    },
+    {
+      "Disinfectant_name": "BioPhen Xtra",
+      "Approved_dilution_rate": "100"
+    },
+    {
+      "Disinfectant_name": "BIOSPOT",
+      "Approved_dilution_rate": "125 *"
+    },
+    {
+      "Disinfectant_name": "Coxicur",
+      "Approved_dilution_rate": "80"
+    },
+    {
+      "Disinfectant_name": "Credence 1000",
+      "Approved_dilution_rate": "1000"
+    },
+    {
+      "Disinfectant_name": "Dis-In-Fect",
+      "Approved_dilution_rate": "200"
+    },
+    {
+      "Disinfectant_name": "FAM 30",
+      "Approved_dilution_rate": "30"
+    },
+    {
+      "Disinfectant_name": "High Power Sanitising Tablets 3.25g",
+      "Approved_dilution_rate": "300"
+    },
+    {
+      "Disinfectant_name": "Interkokask",
+      "Approved_dilution_rate": "150 *"
+    },
+    {
+      "Disinfectant_name": "Interkokask Concentrate",
+      "Approved_dilution_rate": "300"
+    },
+    {
+      "Disinfectant_name": "Iodo-Pharm",
+      "Approved_dilution_rate": "250"
+    },
+    {
+      "Disinfectant_name": "Mida CHRIOX F2",
+      "Approved_dilution_rate": "100"
+    },
+    {
+      "Disinfectant_name": "Mira 30",
+      "Approved_dilution_rate": "30"
+    },
+    {
+      "Disinfectant_name": "MS MEGADES OXY D",
+      "Approved_dilution_rate": "200"
+    },
+    {
+      "Disinfectant_name": "NEOGEN Farm Fluid MAX",
+      "Approved_dilution_rate": "150"
+    },
+    {
+      "Disinfectant_name": "Novagen F.P.",
+      "Approved_dilution_rate": "100 *"
+    },
+    {
+      "Disinfectant_name": "OmniChlor Plus",
+      "Approved_dilution_rate": "400"
+    },
+    {
+      "Disinfectant_name": "Prophyl S",
+      "Approved_dilution_rate": "180"
+    },
+    {
+      "Disinfectant_name": "Rapicid",
+      "Approved_dilution_rate": "250"
+    },
+    {
+      "Disinfectant_name": "Septrivet 17",
+      "Approved_dilution_rate": "170"
+    },
+    {
+      "Disinfectant_name": "Septrivet 87 8.68g",
+      "Approved_dilution_rate": "87 *"
+    },
+    {
+      "Disinfectant_name": "Stable Safe Strength 4.72g Tablets",
+      "Approved_dilution_rate": "4.72 *"
+    },
+    {
+      "Disinfectant_name": "Tibicur",
+      "Approved_dilution_rate": "200"
+    },
+    {
+      "Disinfectant_name": "Total Farm Disinfectant",
+      "Approved_dilution_rate": "100"
+    },
+    {
+      "Disinfectant_name": "V18",
+      "Approved_dilution_rate": "180 *"
+    },
+    {
+      "Disinfectant_name": "Virochlor 500",
+      "Approved_dilution_rate": "500"
+    },
+    {
+      "Disinfectant_name": "Virophor 2.8%",
+      "Approved_dilution_rate": "280"
+    },
+    {
+      "Disinfectant_name": "Virudine Plus",
+      "Approved_dilution_rate": "200"
+    }
+  ]
+}

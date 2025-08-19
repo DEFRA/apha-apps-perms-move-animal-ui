@@ -7,29 +7,15 @@ import { escapeHtml } from '../../../helpers/escape-text.js'
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 
 /**
- * @param {TextConfig} config
+ * @param {AutocompleteConfig} config
  * @returns {Joi.Schema}
  */
-const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
-  let stringValidation = Joi.string().trim().required()
+const textSchema = ({ payloadKey, validation }) => {
+  const stringValidation = Joi.string().trim().required()
 
   const messages = {
     'any.required': validation.empty?.message ?? '',
-    'string.empty': validation.empty?.message ?? '',
-    'string.max': validation.maxLength?.message ?? ''
-  }
-
-  if (validation.maxLength) {
-    stringValidation = stringValidation.max(validation.maxLength.value)
-  }
-
-  if (validation.pattern) {
-    stringValidation = stringValidation.pattern(validation.pattern.regex)
-    messages['string.pattern.base'] = validation.pattern.message
-  }
-
-  if (stripWhitespace) {
-    stringValidation = stringValidation.replace(whitespaceRegex, '')
+    'string.empty': validation.empty?.message ?? ''
   }
 
   return Joi.object({
@@ -37,24 +23,18 @@ const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
   })
 }
 
-const whitespaceRegex = /\s+/g
-
 /**
+ * export @typedef {{ value: string, text: string }[]} ItemsConfig
  * export @typedef {{
  *  payloadKey: string,
- *  stripWhitespace?: boolean,
- *  type?: 'email',               // the default is text, so no need to specify
- *  spellcheck?: false,
  *  characterWidth?: 2 | 4 | 10 | 20,
  *  isPageHeading? : boolean,
- *  autocomplete?: string,
  *  hint?: string,
  *  validation: {
- *    maxLength?: { value: number, message: string },
  *    empty?: { message: string },
- *    pattern?: { regex: RegExp, message: string }
  *  }
- * }} TextConfig
+ *  items: () => Promise<ItemsConfig>
+ * }} AutocompleteConfig
  */
 
 /**
@@ -65,15 +45,15 @@ const whitespaceRegex = /\s+/g
  * @template Payload
  * @augments {AnswerModel<Payload>}
  */
-export class TextAnswer extends AnswerModel {
+export class AutocompleteAnswer extends AnswerModel {
   // eslint-disable-next-line jsdoc/require-returns-check
-  /** @returns {TextConfig} */
+  /** @returns {AutocompleteConfig} */
   get config() {
     return /** @type {any} */ (this.constructor).config
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
-  /** @returns {TextConfig} */
+  /** @returns {AutocompleteConfig} */
   static get config() {
     throw new NotImplementedError()
   }
@@ -90,18 +70,15 @@ export class TextAnswer extends AnswerModel {
   }
 
   get template() {
-    return 'model/answer/text/text.njk'
+    return 'model/answer/autocomplete/autocomplete.njk'
   }
 
   /**
    * @returns {TextData}
    */
   toState() {
-    let v = this.value?.trim() ?? ''
+    const v = this.value?.trim() ?? ''
 
-    if (this.config.stripWhitespace) {
-      v = v.replace(whitespaceRegex, '')
-    }
     return v
   }
 
@@ -116,8 +93,7 @@ export class TextAnswer extends AnswerModel {
    * @param {AnswerViewModelOptions} options
    */
   async viewModel({ validate, question }) {
-    const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
-      this.config
+    const { payloadKey, characterWidth, hint } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
 
@@ -127,36 +103,33 @@ export class TextAnswer extends AnswerModel {
         classes: isPageHeading ? 'govuk-label--l' : 'govuk-label--m',
         isPageHeading
       },
+      classes: 'autocomplete',
       id: payloadKey,
       name: payloadKey,
-      value: this.value
+      value: this.value,
+      items: [
+        // Default empty item for autocomplete
+        {
+          text: '',
+          value: ''
+        },
+        ...(await this.config.items())
+      ]
     }
 
     if (characterWidth) {
       viewModel.classes = `govuk-input--width-${characterWidth}`
     }
 
-    if (autocomplete) {
-      viewModel.autocomplete = autocomplete
-    }
-
-    if (type) {
-      viewModel.type = type
-    }
-
     if (hint) {
       viewModel.hint = { text: hint }
-    }
-
-    if (spellcheck === false) {
-      viewModel.spellcheck = false
     }
 
     if (validate) {
       viewModel.errorMessage = this.validate().errors[payloadKey]
     }
 
-    return Promise.resolve(viewModel)
+    return viewModel
   }
 
   /**
@@ -170,7 +143,7 @@ export class TextAnswer extends AnswerModel {
 
   /**
    * @param {TextData | undefined} state
-   * @returns {TextAnswer}
+   * @returns {AutocompleteAnswer}
    */
   static fromState(state) {
     return new this(

@@ -3,6 +3,7 @@ import { createLogger } from '../../helpers/logging/logger.js'
 
 /**
  * @import {Page} from '../../model/page/page-model.js'
+ * @import {ResponseObject} from '@hapi/hapi'
  */
 
 /**
@@ -52,9 +53,12 @@ export default class GenericPageController {
     )
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleGet(_req, _h) {
-    throw new NotImplementedError()
+  /**
+   * @returns {Promise<ResponseObject>}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
+  async handleGet(_req, _h) {
+    return Promise.reject(new NotImplementedError())
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

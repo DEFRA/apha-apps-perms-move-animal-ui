@@ -49,10 +49,13 @@ describe('AnswerModel', () => {
     expect(() => AnswerModel.fromState({})).toThrow(notImplementedError)
   })
 
-  it('should throw NotImplementedError when viewModel is called', () => {
-    expect(() =>
-      answer.viewModel({ validate: true, question: 'What is the answer?' })
-    ).toThrow(notImplementedError)
+  it('should return a default empty view model if no override is given', async () => {
+    expect(
+      await answer.viewModel({
+        validate: true,
+        question: 'What is the answer?'
+      })
+    ).toEqual({})
   })
 
   it('should throw NotImplementedError when template is accessed', () => {

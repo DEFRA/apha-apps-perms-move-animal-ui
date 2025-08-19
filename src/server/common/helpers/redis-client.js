@@ -10,6 +10,7 @@ import { createLogger } from '~/src/server/common/helpers/logging/logger.js'
  * @property {string} keyPrefix
  * @property {boolean} useSingleInstanceCache
  * @property {boolean} useTLS
+ * @property {number} db
  */
 
 /**
@@ -23,7 +24,7 @@ import { createLogger } from '~/src/server/common/helpers/logging/logger.js'
 export function buildRedisClient(redisConfig) {
   const logger = createLogger()
   const port = 6379
-  const db = 0
+  const db = redisConfig.db ?? 0
   const keyPrefix = redisConfig.keyPrefix
   const host = redisConfig.host
   let redisClient
