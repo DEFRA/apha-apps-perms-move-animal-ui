@@ -17,12 +17,12 @@ export class IdentificationWarningPage extends Page {
   }
 
   viewProps(req) {
-    return {
+    return Promise.resolve({
       continueUrl: calculateNextPage(
         req?.query?.redirect_uri,
         this.nextPage().urlPath
       )
-    }
+    })
   }
 }
 

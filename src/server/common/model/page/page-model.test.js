@@ -47,8 +47,8 @@ describe('Page', () => {
     expect(() => page.nextPage()).toThrow()
   })
 
-  it('should return an empty object for viewProps', () => {
-    expect(page.viewProps()).toEqual({})
+  it('should return an empty object for viewProps', async () => {
+    expect(await page.viewProps()).toEqual({})
   })
 
   it('should have isInterstitial set to false by default', () => {

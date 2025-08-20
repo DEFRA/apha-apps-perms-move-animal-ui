@@ -27,7 +27,7 @@ export default class GenericPageController {
   }
 
   getHandler(req, h) {
-    return this.handleGet(req, h)
+    return Promise.resolve(this.handleGet(req, h))
   }
 
   postHandler(req, h) {

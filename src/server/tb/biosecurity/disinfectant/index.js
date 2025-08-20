@@ -45,6 +45,14 @@ export class DisinfectantPage extends QuestionPage {
     return customHeading
   }
 
+  async viewProps() {
+    const disinfectants = await fetchDisinfectants('tbo')
+
+    return {
+      list: `<ul class="govuk-body govuk-list--bullet"><li>${disinfectants.map((item) => item.Disinfectant_name).join('</li><li>')}</li></ul>`
+    }
+  }
+
   nextPage() {
     return disinfectantDilutionPage
   }

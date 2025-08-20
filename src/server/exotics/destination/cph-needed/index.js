@@ -27,10 +27,10 @@ export class CphNeededPage extends ActionableExitPage {
   }
 
   viewProps() {
-    return {
+    return Promise.resolve({
       continueButtonText: 'Continue',
       continueButtonClasses: 'govuk-button--secondary'
-    }
+    })
   }
 }
 export const cphNeededPage = new CphNeededPage()
