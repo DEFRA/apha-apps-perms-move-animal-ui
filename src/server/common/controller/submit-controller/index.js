@@ -31,7 +31,7 @@ export class ConfirmationPage extends Page {
     return `/${this.namespace}/task-list-incomplete`
   }
 
-  viewProps(req) {
+  async viewProps(req) {
     const { reference } = req.yar.get(`${this.namespace}-confirmation-details`)
     return Promise.resolve({
       referenceHTML: `Your reference number<br /><b>${reference}</b>`

@@ -5,6 +5,7 @@ import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
  * @param {CheckboxConfig} config
@@ -165,11 +166,13 @@ export class CheckboxAnswer extends AnswerModel {
 
   /**
    * @param {string[] | undefined} state
+   * @param {RawApplicationState} [context]
    * @returns {CheckboxAnswer}
    */
-  static fromState(state) {
+  static fromState(state, context) {
     return new this(
-      state !== undefined ? { [this.config.payloadKey]: state } : undefined
+      state !== undefined ? { [this.config.payloadKey]: state } : undefined,
+      context
     )
   }
 }

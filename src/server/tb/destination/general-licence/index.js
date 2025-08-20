@@ -22,7 +22,7 @@ export class DestinationGeneralLicencePage extends Page {
     return additionalInfoPage
   }
 
-  viewProps(req) {
+  async viewProps(req) {
     return Promise.resolve({
       continueUrl: calculateNextPage(
         req?.query?.redirect_uri,
