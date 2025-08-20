@@ -23,9 +23,9 @@ export class Answer extends AutocompleteAnswer {
     items: async () => {
       const disinfectants = await fetchDisinfectants('tbo')
 
-      return disinfectants.map((item) => ({
-        text: item.Disinfectant_name,
-        value: item.Disinfectant_name
+      return disinfectants.map((disinfectant) => ({
+        text: disinfectant.name,
+        value: disinfectant.name
       }))
     }
   }
