@@ -85,7 +85,7 @@ export class QuestionPageController extends GenericPageController {
         errorMessages: pageError.errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
         ...args,
-        ...this.page.viewProps(req)
+        ...(await this.page.viewProps(req))
       })
     }
     const viewModelOptions = {
@@ -101,7 +101,7 @@ export class QuestionPageController extends GenericPageController {
       answer,
       answerViewModel: await answer.viewModel(viewModelOptions),
       ...args,
-      ...this.page.viewProps(req)
+      ...(await this.page.viewProps(req))
     })
   }
 

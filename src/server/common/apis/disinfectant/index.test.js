@@ -1,5 +1,9 @@
 import Wreck from '@hapi/wreck'
-import { fetchDisinfectants, cache } from './index.js'
+import {
+  fetchDisinfectants,
+  cache,
+  dedupeFitleredDisinfectants
+} from './index.js'
 import { statusCodes } from '../../constants/status-codes.js'
 
 // Mock all dependencies
@@ -186,5 +190,255 @@ describe('fetchDisinfectants API module', () => {
       `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
       expect.any(SyntaxError)
     )
+  })
+})
+
+describe('dedupeFitleredDisinfectants', () => {
+  it('should return empty array when input is not an array', () => {
+    expect(dedupeFitleredDisinfectants(/** @type {any} */ (null))).toEqual([])
+    expect(dedupeFitleredDisinfectants(/** @type {any} */ (undefined))).toEqual(
+      []
+    )
+    expect(
+      dedupeFitleredDisinfectants(/** @type {any} */ ('not an array'))
+    ).toEqual([])
+    expect(dedupeFitleredDisinfectants(/** @type {any} */ (123))).toEqual([])
+    expect(dedupeFitleredDisinfectants(/** @type {any} */ ({}))).toEqual([])
+  })
+
+  it('should return empty array when input is empty array', () => {
+    expect(dedupeFitleredDisinfectants([])).toEqual([])
+  })
+
+  it('should filter out disinfectants without Disinfectant_name', () => {
+    const input = /** @type {any} */ ([
+      {
+        Disinfectant_name: 'Valid Name',
+        Approved_dilution_rate: '1:100'
+      },
+      { Approved_dilution_rate: '1:200' }, // Missing Disinfectant_name
+      {
+        Disinfectant_name: null,
+        Approved_dilution_rate: '1:300'
+      },
+      {
+        Disinfectant_name: undefined,
+        Approved_dilution_rate: '1:400'
+      },
+      {
+        Disinfectant_name: '',
+        Approved_dilution_rate: '1:500'
+      }
+    ])
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toEqual([
+      {
+        Disinfectant_name: 'Valid Name',
+        Approved_dilution_rate: '1:100'
+      }
+    ])
+  })
+
+  it('should deduplicate based on disinfectant name (case insensitive)', () => {
+    const input = [
+      {
+        Disinfectant_name: 'Test Disinfectant',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'TEST DISINFECTANT',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: 'test disinfectant',
+        Approved_dilution_rate: '1:300'
+      },
+      {
+        Disinfectant_name: 'Another Disinfectant',
+        Approved_dilution_rate: '1:400'
+      }
+    ]
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toHaveLength(2)
+    expect(result).toEqual([
+      {
+        Disinfectant_name: 'Test Disinfectant',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Another Disinfectant',
+        Approved_dilution_rate: '1:400'
+      }
+    ])
+  })
+
+  it('should deduplicate based on trimmed disinfectant names', () => {
+    const input = [
+      {
+        Disinfectant_name: 'Test Disinfectant',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: '  Test Disinfectant  ',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: '\tTest Disinfectant\n',
+        Approved_dilution_rate: '1:300'
+      },
+      {
+        Disinfectant_name: 'Different Name',
+        Approved_dilution_rate: '1:400'
+      }
+    ]
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toHaveLength(2)
+    expect(result).toEqual([
+      {
+        Disinfectant_name: 'Test Disinfectant',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Different Name',
+        Approved_dilution_rate: '1:400'
+      }
+    ])
+  })
+
+  it('should keep the first occurrence of duplicates', () => {
+    const input = [
+      {
+        Disinfectant_name: 'Duplicate Name',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Unique Name',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: 'duplicate name',
+        Approved_dilution_rate: '1:300'
+      },
+      {
+        Disinfectant_name: 'Another Unique',
+        Approved_dilution_rate: '1:400'
+      },
+      {
+        Disinfectant_name: 'DUPLICATE NAME',
+        Approved_dilution_rate: '1:500'
+      }
+    ]
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toHaveLength(3)
+    expect(result).toEqual([
+      {
+        Disinfectant_name: 'Duplicate Name',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Unique Name',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: 'Another Unique',
+        Approved_dilution_rate: '1:400'
+      }
+    ])
+  })
+
+  it('should handle complex whitespace and case combinations', () => {
+    const input = [
+      {
+        Disinfectant_name: '  Complex Name  ',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'COMPLEX NAME',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: '\t complex name \n',
+        Approved_dilution_rate: '1:300'
+      },
+      {
+        Disinfectant_name: 'Different Name',
+        Approved_dilution_rate: '1:400'
+      }
+    ]
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toHaveLength(2)
+    expect(result[0].Disinfectant_name).toBe('  Complex Name  ') // Original formatting preserved
+    expect(result[1].Disinfectant_name).toBe('Different Name')
+  })
+
+  it('should handle array with all valid unique items', () => {
+    const input = [
+      {
+        Disinfectant_name: 'Name 1',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Name 2',
+        Approved_dilution_rate: '1:200'
+      },
+      {
+        Disinfectant_name: 'Name 3',
+        Approved_dilution_rate: '1:300'
+      }
+    ]
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toEqual(input)
+  })
+
+  it('should handle mixed valid and invalid entries with duplicates', () => {
+    const input = /** @type {any} */ ([
+      {
+        Disinfectant_name: 'Valid Name',
+        Approved_dilution_rate: '1:100'
+      },
+      { Approved_dilution_rate: '1:200' }, // Invalid - no name
+      {
+        Disinfectant_name: 'valid name',
+        Approved_dilution_rate: '1:300'
+      }, // Duplicate
+      {
+        Disinfectant_name: null,
+        Approved_dilution_rate: '1:400'
+      }, // Invalid - null name
+      {
+        Disinfectant_name: 'Another Valid',
+        Approved_dilution_rate: '1:500'
+      },
+      {
+        Disinfectant_name: 'ANOTHER VALID',
+        Approved_dilution_rate: '1:600'
+      } // Duplicate
+    ])
+
+    const result = dedupeFitleredDisinfectants(input)
+
+    expect(result).toHaveLength(2)
+    expect(result).toEqual([
+      {
+        Disinfectant_name: 'Valid Name',
+        Approved_dilution_rate: '1:100'
+      },
+      {
+        Disinfectant_name: 'Another Valid',
+        Approved_dilution_rate: '1:500'
+      }
+    ])
   })
 })

@@ -57,7 +57,7 @@ export class SubmitSummaryPage extends QuestionPage {
       })
     )
 
-    return { summary }
+    return Promise.resolve({ summary })
   }
 }
 

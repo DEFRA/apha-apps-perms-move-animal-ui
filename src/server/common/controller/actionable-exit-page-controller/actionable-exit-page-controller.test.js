@@ -41,10 +41,10 @@ class TestPage extends ActionableExitPage {
   }
 
   viewProps() {
-    return {
+    return Promise.resolve({
       continueButtonText: 'Continue',
       continueButtonClasses: 'govuk-button--secondary'
-    }
+    })
   }
 
   get indirectAction() {

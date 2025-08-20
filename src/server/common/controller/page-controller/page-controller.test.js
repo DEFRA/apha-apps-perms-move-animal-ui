@@ -33,9 +33,9 @@ class TestPage extends Page {
   }
 
   viewProps() {
-    return {
+    return Promise.resolve({
       continueUrl: this.nextPage().urlPath
-    }
+    })
   }
 }
 

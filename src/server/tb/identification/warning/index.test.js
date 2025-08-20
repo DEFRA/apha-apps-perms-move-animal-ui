@@ -32,7 +32,7 @@ describe('IdentificationWarningPage', () => {
     expect(page.nextPage()).toBe(earTagsCalvesPage)
   })
 
-  it('should be able ot calculate the next page URL as a string for the template', () => {
-    expect(page.viewProps().continueUrl).toBe(earTagsCalvesPage.urlPath)
+  it('should be able ot calculate the next page URL as a string for the template', async () => {
+    expect((await page.viewProps()).continueUrl).toBe(earTagsCalvesPage.urlPath)
   })
 })

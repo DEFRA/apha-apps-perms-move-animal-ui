@@ -33,9 +33,9 @@ export class ConfirmationPage extends Page {
 
   viewProps(req) {
     const { reference } = req.yar.get(`${this.namespace}-confirmation-details`)
-    return {
+    return Promise.resolve({
       referenceHTML: `Your reference number<br /><b>${reference}</b>`
-    }
+    })
   }
 }
 

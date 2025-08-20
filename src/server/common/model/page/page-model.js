@@ -44,11 +44,11 @@ export class Page {
 
   /**
    * @param {import('@hapi/hapi').Request} _req
-   * @returns {Record<string, unknown>}
+   * @returns {Promise<Record<string, unknown>>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  viewProps(_req) {
-    return {}
+  async viewProps(_req) {
+    return Promise.resolve({})
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
