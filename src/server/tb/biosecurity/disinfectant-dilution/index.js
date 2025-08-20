@@ -6,7 +6,6 @@ import { TbStateManager } from '../../state-manager.js'
 import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
 
 const customHeading = 'Disinfectant dilution rate'
-const disinfectants = await fetchDisinfectants('tbo')
 
 export class DisinfectantDilutionPage extends QuestionPage {
   view = `tb/biosecurity/disinfectant-dilution/index`
@@ -26,15 +25,16 @@ export class DisinfectantDilutionPage extends QuestionPage {
     return buildingsAnySharedPage
   }
 
-  viewProps(req) {
+  async viewProps(req) {
     const applicationState = new TbStateManager(req).toState()
     const selectedDisinfectant = applicationState?.biosecurity?.disinfectant
+    const disinfectants = await fetchDisinfectants('tbo')
     const disinfectantDetails = disinfectants.find(
       (disinfectant) => disinfectant.name === selectedDisinfectant
     )
 
     if (selectedDisinfectant && disinfectantDetails) {
-      return {
+      return Promise.resolve({
         isUndiluted: disinfectantDetails.isUndiluted,
         disinfectant: disinfectantDetails.name,
         dilutionRate: disinfectantDetails.isUndiluted
@@ -42,9 +42,9 @@ export class DisinfectantDilutionPage extends QuestionPage {
           : `1:${disinfectantDetails.dilutionRate}`,
         dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
         disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
-      }
+      })
     }
-    return {}
+    return Promise.resolve({})
   }
 }
 
