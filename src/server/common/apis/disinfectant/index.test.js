@@ -2,7 +2,7 @@ import Wreck from '@hapi/wreck'
 import {
   fetchDisinfectants,
   cache,
-  dedupeFitleredDisinfectants
+  dedupeFilteredDisinfectants
 } from './index.js'
 import { statusCodes } from '../../constants/status-codes.js'
 
@@ -193,21 +193,21 @@ describe('fetchDisinfectants API module', () => {
   })
 })
 
-describe('dedupeFitleredDisinfectants', () => {
+describe('dedupeFilteredDisinfectants', () => {
   it('should return empty array when input is not an array', () => {
-    expect(dedupeFitleredDisinfectants(/** @type {any} */ (null))).toEqual([])
-    expect(dedupeFitleredDisinfectants(/** @type {any} */ (undefined))).toEqual(
+    expect(dedupeFilteredDisinfectants(/** @type {any} */ (null))).toEqual([])
+    expect(dedupeFilteredDisinfectants(/** @type {any} */ (undefined))).toEqual(
       []
     )
     expect(
-      dedupeFitleredDisinfectants(/** @type {any} */ ('not an array'))
+      dedupeFilteredDisinfectants(/** @type {any} */ ('not an array'))
     ).toEqual([])
-    expect(dedupeFitleredDisinfectants(/** @type {any} */ (123))).toEqual([])
-    expect(dedupeFitleredDisinfectants(/** @type {any} */ ({}))).toEqual([])
+    expect(dedupeFilteredDisinfectants(/** @type {any} */ (123))).toEqual([])
+    expect(dedupeFilteredDisinfectants(/** @type {any} */ ({}))).toEqual([])
   })
 
   it('should return empty array when input is empty array', () => {
-    expect(dedupeFitleredDisinfectants([])).toEqual([])
+    expect(dedupeFilteredDisinfectants([])).toEqual([])
   })
 
   it('should filter out disinfectants without Disinfectant_name', () => {
@@ -231,7 +231,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ])
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toEqual([
       {
@@ -261,7 +261,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ]
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toHaveLength(2)
     expect(result).toEqual([
@@ -296,7 +296,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ]
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toHaveLength(2)
     expect(result).toEqual([
@@ -335,7 +335,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ]
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toHaveLength(3)
     expect(result).toEqual([
@@ -374,7 +374,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ]
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toHaveLength(2)
     expect(result[0].Disinfectant_name).toBe('  Complex Name  ') // Original formatting preserved
@@ -397,7 +397,7 @@ describe('dedupeFitleredDisinfectants', () => {
       }
     ]
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toEqual(input)
   })
@@ -427,7 +427,7 @@ describe('dedupeFitleredDisinfectants', () => {
       } // Duplicate
     ])
 
-    const result = dedupeFitleredDisinfectants(input)
+    const result = dedupeFilteredDisinfectants(input)
 
     expect(result).toHaveLength(2)
     expect(result).toEqual([

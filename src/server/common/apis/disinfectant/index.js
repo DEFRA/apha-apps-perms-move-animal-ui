@@ -33,7 +33,7 @@ export const cache = buildRedisClient({
  *   Approved_dilution_rate: string
  * }>} - Deduplicated array of disinfectants
  */
-export const dedupeFitleredDisinfectants = (disinfectants) => {
+export const dedupeFilteredDisinfectants = (disinfectants) => {
   if (!Array.isArray(disinfectants)) {
     return []
   }
@@ -63,13 +63,13 @@ export const dedupeFitleredDisinfectants = (disinfectants) => {
  * }>>} - A promise that resolves to an array of approved disinfectants
  */
 export const fetchDisinfectants = async (type) => {
-  let items
+  let filteredDisinfectants
   try {
     const response = await Wreck.get(
       `${config.get('api.disinfectant.baseUrl')}${config.get('api.disinfectant.path')}?type=${type}`
     )
 
-    items = response.payload.toString()
+    const items = response.payload.toString()
 
     try {
       await cache.setex(
@@ -81,15 +81,14 @@ export const fetchDisinfectants = async (type) => {
       logger.error(`Failed to cache disinfectants of type ${type}:`, e)
     }
 
-    const filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
-    return dedupeFitleredDisinfectants(filteredDisinfectants)
+    filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
   } catch (e) {
     logger.error(
       `Failed to fetch disinfectants of type ${type} from api attempting to fetch result from cache:`,
       e
     )
 
-    items = await cache.get(`api:disinfectants:${type}`)
+    const items = await cache.get(`api:disinfectants:${type}`)
 
     if (!items) {
       logger.error(
@@ -101,7 +100,7 @@ export const fetchDisinfectants = async (type) => {
       )
     }
 
-    const filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
-    return dedupeFitleredDisinfectants(filteredDisinfectants)
+    filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
   }
+  return dedupeFilteredDisinfectants(filteredDisinfectants)
 }
