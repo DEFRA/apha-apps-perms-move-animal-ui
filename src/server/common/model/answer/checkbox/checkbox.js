@@ -113,7 +113,9 @@ export class CheckboxAnswer extends AnswerModel {
       fieldset: {
         legend: {
           text: question,
-          classes: isPageHeading ? 'govuk-fieldset__legend--l' : '',
+          classes: isPageHeading
+            ? 'govuk-fieldset__legend--l'
+            : 'govuk-fieldset__legend--m',
           isPageHeading
         }
       },
