@@ -3,6 +3,7 @@ import { TbQuestionPageController } from '~/src/server/tb/question-page-controll
 import { disinfectantDilutionPage } from '../disinfectant-dilution/index.js'
 import { AutocompleteAnswer } from '~/src/server/common/model/answer/autocomplete/autocomplete.js'
 import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
+import { TbStateManager } from '../../state-manager.js'
 
 /** @import { AutocompleteConfig } from '~/src/server/common/model/answer/autocomplete/autocomplete.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -60,7 +61,22 @@ export class DisinfectantPage extends QuestionPage {
 
 export const disinfectantPage = new DisinfectantPage()
 
+export class DisinfectantPageController extends TbQuestionPageController {
+  handlePost(req, h) {
+    const state = new TbStateManager(req)
+    const applicationState = state.toState()
+    // clear the dilution page answer if the user has changed the disinfectant
+    if (
+      applicationState.biosecurity.disinfectant !== req.payload.disinfectant
+    ) {
+      state.set(disinfectantDilutionPage, undefined)
+    }
+
+    return super.handlePost(req, h)
+  }
+}
+
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const disinfectant = new TbQuestionPageController(
+export const disinfectant = new DisinfectantPageController(
   disinfectantPage
 ).plugin()
