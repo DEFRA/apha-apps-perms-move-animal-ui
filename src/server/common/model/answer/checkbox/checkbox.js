@@ -3,6 +3,7 @@ import Joi from 'joi'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
+import { ensureArray } from '../../../helpers/ensure-array.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -12,7 +13,9 @@ import { validateAnswerAgainstSchema } from '../validation.js'
  * @returns {Joi.Schema}
  */
 const createCheckboxSchema = (config) => {
-  const optionSchema = Joi.string().valid(...Object.keys(config.options))
+  const optionSchema = config.validation.dynamicOptions
+    ? Joi.string()
+    : Joi.string().valid(...Object.keys(config.options))
 
   let optionsSchema = Joi.array().required().items(optionSchema)
 
@@ -27,16 +30,6 @@ const createCheckboxSchema = (config) => {
 }
 
 /**
- * @template T
- * @param {T[] | T | undefined} value
- * @returns T[]
- */
-const ensureArray = (value) => {
-  value = value ?? []
-  return Array.isArray(value) ? value : [value]
-}
-
-/**
  * @typedef {{ label: string }} CheckboxOption
  * @typedef {{
  *   payloadKey: string,
@@ -44,7 +37,8 @@ const ensureArray = (value) => {
  *   hint?: string,
  *   isPageHeading? : boolean,
  *   validation: {
- *     empty?: { message: string }
+ *     empty?: { message: string },
+ *     dynamicOptions?: boolean
  *   }
  * }} CheckboxConfig
  */
