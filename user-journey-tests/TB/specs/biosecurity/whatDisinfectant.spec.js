@@ -5,7 +5,6 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
-import { waitForPagePath } from '../../helpers/page.js'
 
 describe('Disinfectant page spec', () => {
   // eslint-disable-next-line no-undef
@@ -26,8 +25,9 @@ describe('Disinfectant page spec', () => {
   })
 
   it('Should input correct input and continue without error', async () => {
-    await disinfectantPage.inputTextAndContinue('Agrichlor', disinfectantPage)
-    await disinfectantPage.selectContinue()
-    await waitForPagePath(disinfectantDilutionPage.pagePath)
+    await disinfectantPage.inputTextAndContinue(
+      'browserStack_testing',
+      disinfectantDilutionPage
+    )
   })
 })
