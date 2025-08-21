@@ -26,7 +26,7 @@ describe('Disinfectant page spec', () => {
 
   it('Should input correct input and continue without error', async () => {
     await disinfectantPage.inputTextAndContinue(
-      'browserStack_testing',
+      'Agrichlor',
       disinfectantDilutionPage
     )
   })
