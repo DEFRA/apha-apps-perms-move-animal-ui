@@ -16,7 +16,7 @@ export class IdentificationWarningPage extends Page {
     return earTagsCalvesPage
   }
 
-  viewProps(req) {
+  async viewProps(req) {
     return Promise.resolve({
       continueUrl: calculateNextPage(
         req?.query?.redirect_uri,
