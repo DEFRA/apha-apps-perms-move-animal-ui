@@ -164,7 +164,7 @@ describe('Task list page test', () => {
     await taskListPage.selectReceiveTheLicence(licenceAnswersPage)
   })
 
-  it('Should link should link to Biosecurity details check-answers page once that section has been complete', async () => {
+  it('Should link to Animal Identification check-answers page once that section has been complete', async () => {
     await completeIdentificationTaskLongWay()
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
@@ -204,7 +204,7 @@ describe('Task list page test', () => {
     await taskListPage.selectAnimalIdentificationLink(identificationAnswersPage)
   })
 
-  it('Should link should link to Biosecurity details check-answers page once that section has been complete', async () => {
+  it('Should link to Biosecurity details check-answers page once that section has been complete', async () => {
     await completeBiosecurityTask('yes')
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([

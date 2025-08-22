@@ -130,6 +130,8 @@ export const typeIntoElement = async (element, text) => {
   try {
     await waitForElement(element)
     await element.setValue(text)
+    // required for autocomplete inputs
+    await browser.execute((el) => el.blur(), await element)
   } catch (error) {
     throw new Error(
       `Failed type command on element - ${await element.selector}: ${error}`

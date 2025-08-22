@@ -1,12 +1,12 @@
-import { loginAndSaveSession } from '../../helpers/authSessionManager'
+import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import {
   validateElementVisibleAndText,
   validateHrefOfElement
-} from '../../helpers/page'
-import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination'
-import { destinationVariants } from '../../helpers/testHelpers/movementOrigin'
-import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage'
-import taskListPage from '../../page-objects/taskListPage'
+} from '../../helpers/page.js'
+import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
+import { destinationVariants } from '../../helpers/testHelpers/movementOrigin.js'
+import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
+import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('Check your answers test - destination', () => {
