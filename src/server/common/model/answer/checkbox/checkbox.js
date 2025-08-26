@@ -104,11 +104,13 @@ export class CheckboxAnswer extends AnswerModel {
     const isPageHeading = this.config.isPageHeading ?? true
     const isQuestionHeading = this.config.isQuestionHeading ?? false
 
-    let legendClasses = ''
+    let legendClasses
     if (isPageHeading) {
       legendClasses = 'govuk-fieldset__legend--l'
     } else if (isQuestionHeading) {
       legendClasses = 'govuk-fieldset__legend--m'
+    } else {
+      legendClasses = ''
     }
 
     const viewModel = {
