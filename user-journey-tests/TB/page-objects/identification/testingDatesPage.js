@@ -2,8 +2,7 @@
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
 const pageId = 'testingDates'
-const pageHeadingAndTitle =
-  'What are the dates of the last TB tests for the animals that are 42 days old or older?'
+const pageHeadingAndTitle = 'Testing dates'
 const noInputError =
   'Enter the dates when animals over 42 days old were last tested for TB'
 
