@@ -50,7 +50,7 @@ export class DisinfectantPage extends QuestionPage {
     const disinfectants = await fetchDisinfectants('tbo')
 
     return {
-      list: `<ul class="govuk-body govuk-list--bullet"><li>${disinfectants.map((item) => item.Disinfectant_name).join('</li><li>')}</li></ul>`
+      list: `<ul class="govuk-body govuk-list--bullet"><li>${disinfectants.map((item) => item.name).join('</li><li>')}</li></ul>`
     }
   }
 

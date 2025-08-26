@@ -18,6 +18,7 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   static config = {
     payloadKey: 'dilutionRate',
     isPageHeading: false,
+    isQuestionHeading: true,
     options: {
       dilutionRateConfirmed: {
         label:

@@ -40,6 +40,21 @@ describe('fetchDisinfectants API module', () => {
     ]
   }
 
+  const transformedMockDisinfectantData = [
+    {
+      name: 'Test Disinfectant 1',
+      dilutionRate: '1:100',
+      isLiquid: true,
+      isUndiluted: false
+    },
+    {
+      name: 'Test Disinfectant 2',
+      dilutionRate: '1:200',
+      isLiquid: true,
+      isUndiluted: false
+    }
+  ]
+
   beforeEach(() => {
     jest.clearAllMocks()
   })
@@ -60,7 +75,7 @@ describe('fetchDisinfectants API module', () => {
       JSON.stringify(mockDisinfectantData)
     )
 
-    expect(result).toEqual(mockDisinfectantData.filteredDisinfectants)
+    expect(result).toEqual(transformedMockDisinfectantData)
   })
 
   it('should fallback to cache when API fails', async () => {
@@ -77,7 +92,7 @@ describe('fetchDisinfectants API module', () => {
     expect(cacheGet).toHaveBeenCalledWith(
       `api:disinfectants:${disinfectantType}`
     )
-    expect(result).toEqual(mockDisinfectantData.filteredDisinfectants)
+    expect(result).toEqual(transformedMockDisinfectantData)
   })
 
   it('should throw error when both API and cache fail', async () => {
@@ -137,7 +152,7 @@ describe('fetchDisinfectants API module', () => {
       `Failed to cache disinfectants of type ${disinfectantType}:`,
       cacheWriteError
     )
-    expect(result).toEqual(mockDisinfectantData.filteredDisinfectants)
+    expect(result).toEqual(transformedMockDisinfectantData)
   })
 
   it('should return empty array when filteredDisinfectants is missing from API response', async () => {

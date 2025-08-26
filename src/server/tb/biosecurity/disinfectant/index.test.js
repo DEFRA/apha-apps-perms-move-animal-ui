@@ -6,16 +6,22 @@ import { AutocompleteAnswer } from '~/src/server/common/model/answer/autocomplet
 jest.mock('~/src/server/common/apis/index.js', () => ({
   fetchDisinfectants: jest.fn().mockResolvedValue([
     {
-      Disinfectant_name: 'Virkon® LSP',
-      Approved_dilution_rate: '9 * '
+      name: 'Virkon® LSP',
+      dilutionRate: '9',
+      isLiquid: false,
+      isUndiluted: false
     },
     {
-      Disinfectant_name: 'Agrichlor',
-      Approved_dilution_rate: '10 * '
+      name: 'Agrichlor',
+      dilutionRate: '10',
+      isLiquid: false,
+      isUndiluted: false
     },
     {
-      Disinfectant_name: 'Biocid 30',
-      Approved_dilution_rate: '8 * '
+      name: 'Biocid 30',
+      dilutionRate: '8',
+      isLiquid: false,
+      isUndiluted: false
     }
   ])
 }))

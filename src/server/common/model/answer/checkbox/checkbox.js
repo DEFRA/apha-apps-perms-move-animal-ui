@@ -36,6 +36,7 @@ const createCheckboxSchema = (config) => {
  *   options: Record<string, CheckboxOption>,
  *   hint?: string,
  *   isPageHeading? : boolean,
+ *   isQuestionHeading? : boolean,
  *   validation: {
  *     empty?: { message: string },
  *     dynamicOptions?: boolean
@@ -101,6 +102,7 @@ export class CheckboxAnswer extends AnswerModel {
     const { payloadKey, options, hint } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
+    const isQuestionHeading = this.config.isQuestionHeading ?? false
 
     const viewModel = {
       name: payloadKey,
@@ -110,7 +112,9 @@ export class CheckboxAnswer extends AnswerModel {
           text: question,
           classes: isPageHeading
             ? 'govuk-fieldset__legend--l'
-            : 'govuk-fieldset__legend--m',
+            : isQuestionHeading
+              ? 'govuk-fieldset__legend--m'
+              : '',
           isPageHeading
         }
       },

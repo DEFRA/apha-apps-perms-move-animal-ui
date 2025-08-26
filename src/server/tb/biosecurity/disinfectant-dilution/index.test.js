@@ -4,7 +4,7 @@ import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import { disinfectantDilutionPage, DisinfectantDilutionPage } from './index.js'
 
 const sectionKey = 'biosecurity'
-const question = 'What dilution rate are you using for your disinfectant?'
+const question = 'Confirmation of the dilution rate'
 const questionKey = 'dilutionRate'
 const view = 'tb/biosecurity/disinfectant-dilution/index'
 const pageUrl = '/biosecurity/disinfectant-dilution'
@@ -47,7 +47,20 @@ describe('DisinfectantDilutionPage', () => {
 
   describePageSnapshot({
     describes: 'disinfectantDilutionPage.content',
-    it: 'should render expected response and content',
+    it: 'should render expected response and content when disinfectant previously selected',
+    pageUrl,
+    state: {
+      application: {
+        biosecurity: {
+          disinfectant: 'FAM 30'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content',
+    it: 'should render expected response (500) when disinfectant NOT previously selected',
     pageUrl
   })
 })
