@@ -20,6 +20,26 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         "
 `;
 
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant selected cant be found 1`] = `
+"
+  <div class="govuk-grid-row app-heading" data-testid="app-heading">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
+      500
+    </h1>
+
+  </div>
+</div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Something went wrong</p>
+    </div>
+  </div>
+        "
+`;
+
 exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when disinfectant previously selected 1`] = `
 "
   <div class="govuk-grid-row">
@@ -34,11 +54,11 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        The approved dilution rate for FAM 30 is 1:30.
+        The approved dilution rate for Agrichlor is 1:10.
       </p>
         <p>
-          This means for every 1 litre of FAM 30,
-          you are using 1:30 litres of water.
+          This means for every 1 gram of Agrichlor,
+          you are using 1:10 millilitres of water.
         </p>
     </div>
   </div>
@@ -55,9 +75,9 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
     </legend>
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="30" data-testid="dilutionRateConfirmed-checkbox">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="10" data-testid="dilutionRateConfirmed-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
-          I confirm a dilution rate of 1:30 is used on the farm or premises
+          I confirm a dilution rate of 1:10 is used on the farm or premises
         </label>
       </div>
     </div>

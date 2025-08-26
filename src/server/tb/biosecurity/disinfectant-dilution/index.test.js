@@ -9,6 +9,29 @@ const questionKey = 'dilutionRate'
 const view = 'tb/biosecurity/disinfectant-dilution/index'
 const pageUrl = '/biosecurity/disinfectant-dilution'
 
+jest.mock('~/src/server/common/apis/index.js', () => ({
+  fetchDisinfectants: jest.fn().mockResolvedValue([
+    {
+      name: 'Virkon® LSP',
+      dilutionRate: '9',
+      isLiquid: false,
+      isUndiluted: false
+    },
+    {
+      name: 'Agrichlor',
+      dilutionRate: '10',
+      isLiquid: false,
+      isUndiluted: false
+    },
+    {
+      name: 'Biocid 30',
+      dilutionRate: '8',
+      isLiquid: false,
+      isUndiluted: false
+    }
+  ])
+}))
+
 describe('DisinfectantDilutionPage', () => {
   const page = new DisinfectantDilutionPage()
 
@@ -52,7 +75,7 @@ describe('DisinfectantDilutionPage', () => {
     state: {
       application: {
         biosecurity: {
-          disinfectant: 'FAM 30'
+          disinfectant: 'Agrichlor'
         }
       }
     }
@@ -62,5 +85,18 @@ describe('DisinfectantDilutionPage', () => {
     describes: 'disinfectantDilutionPage.content',
     it: 'should render expected response (500) when disinfectant NOT previously selected',
     pageUrl
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content',
+    it: 'should render expected response (500) when disinfectant selected cant be found',
+    pageUrl,
+    state: {
+      application: {
+        biosecurity: {
+          disinfectant: 'FAM 30'
+        }
+      }
+    }
   })
 })
