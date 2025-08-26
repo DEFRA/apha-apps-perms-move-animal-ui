@@ -1,4 +1,3 @@
-import { request } from 'https'
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
