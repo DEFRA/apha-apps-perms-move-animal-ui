@@ -40,7 +40,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         "
 `;
 
-exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when disinfectant previously selected 1`] = `
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when liquid disinfectant previously selected 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -57,8 +57,8 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         The approved dilution rate for Agrichlor is 1:10.
       </p>
         <p>
-          This means for every 1 gram of Agrichlor,
-          you are using 1:10 millilitres of water.
+          This means for every 1 litre of Agrichlor,
+          you are using 1:10 litres of water.
         </p>
     </div>
   </div>
@@ -78,6 +78,108 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="10" data-testid="dilutionRateConfirmed-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
           I confirm a dilution rate of 1:10 is used on the farm or premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when non liquid disinfectant previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        By law you must use a Defra-approved disinfectant when there is an
+        outbreak of TB. This includes using the correct dilution rate.
+      </p>
+      <p>
+        The approved dilution rate for Interkokask is 1:150.
+      </p>
+        <p>
+          This means for every 1 gram of Interkokask,
+          you are using 1:150 millilitres of water.
+        </p>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Confirmation of the dilution rate
+    </legend>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="150" data-testid="dilutionRateConfirmed-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+          I confirm a dilution rate of 1:150 is used on the farm or premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when undiluted disinfectant previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        By law you must use a Defra-approved disinfectant when there is an
+        outbreak of TB. This includes using the correct dilution rate.
+      </p>
+      <p>
+        The approved dilution rate for Undiluted Mock is undiluted.
+      </p>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Confirmation of the dilution rate
+    </legend>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="0" data-testid="dilutionRateConfirmed-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+          I confirm the disinfectant is used undiluted on the farm or premises
         </label>
       </div>
     </div>

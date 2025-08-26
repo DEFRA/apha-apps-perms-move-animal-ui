@@ -1,3 +1,4 @@
+import { request } from 'https'
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
@@ -12,22 +13,22 @@ const pageUrl = '/biosecurity/disinfectant-dilution'
 jest.mock('~/src/server/common/apis/index.js', () => ({
   fetchDisinfectants: jest.fn().mockResolvedValue([
     {
-      name: 'Virkon® LSP',
-      dilutionRate: '9',
-      isLiquid: false,
-      isUndiluted: false
-    },
-    {
       name: 'Agrichlor',
       dilutionRate: '10',
+      isLiquid: true,
+      isUndiluted: false
+    },
+    {
+      name: 'Interkokask',
+      dilutionRate: '150',
       isLiquid: false,
       isUndiluted: false
     },
     {
-      name: 'Biocid 30',
-      dilutionRate: '8',
+      name: 'Undiluted Mock',
+      dilutionRate: '0',
       isLiquid: false,
-      isUndiluted: false
+      isUndiluted: true
     }
   ])
 }))
@@ -68,14 +69,64 @@ describe('DisinfectantDilutionPage', () => {
     expect(disinfectantDilutionPage).toBeInstanceOf(DisinfectantDilutionPage)
   })
 
+  describe('viewProps', () => {
+    const request = {
+      yar: {
+        get: jest.fn()
+      }
+    }
+    const stateSpy = jest.spyOn(request.yar, 'get')
+
+    it('should return empty viewProps when no disinfectant previously selected', async () => {
+      expect(await page.viewProps(request)).toEqual({})
+    })
+
+    it('should return empty viewProps when disinfectant cannot be found', async () => {
+      stateSpy.mockReturnValueOnce({
+        application: {
+          biosecurity: {
+            disinfectant: 'Unknown Disinfectant'
+          }
+        }
+      })
+      expect(await page.viewProps(request)).toEqual({})
+    })
+  })
+
   describePageSnapshot({
     describes: 'disinfectantDilutionPage.content',
-    it: 'should render expected response and content when disinfectant previously selected',
+    it: 'should render expected response and content when liquid disinfectant previously selected',
     pageUrl,
     state: {
       application: {
         biosecurity: {
           disinfectant: 'Agrichlor'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content',
+    it: 'should render expected response and content when non liquid disinfectant previously selected',
+    pageUrl,
+    state: {
+      application: {
+        biosecurity: {
+          disinfectant: 'Interkokask'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content',
+    it: 'should render expected response and content when undiluted disinfectant previously selected',
+    pageUrl,
+    state: {
+      application: {
+        biosecurity: {
+          disinfectant: 'Undiluted Mock'
         }
       }
     }
