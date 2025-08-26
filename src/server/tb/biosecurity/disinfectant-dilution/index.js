@@ -33,18 +33,18 @@ export class DisinfectantDilutionPage extends QuestionPage {
       (disinfectant) => disinfectant.name === selectedDisinfectant
     )
 
-    if (selectedDisinfectant && disinfectantDetails) {
-      return Promise.resolve({
-        isUndiluted: disinfectantDetails.isUndiluted,
-        disinfectant: disinfectantDetails.name,
-        dilutionRate: disinfectantDetails.isUndiluted
-          ? 'undiluted'
-          : `1:${disinfectantDetails.dilutionRate}`,
-        dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
-        disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
-      })
+    if (!selectedDisinfectant || !disinfectantDetails) {
+      return Promise.resolve({})
     }
-    return Promise.resolve({})
+    return Promise.resolve({
+      isUndiluted: disinfectantDetails.isUndiluted,
+      disinfectant: disinfectantDetails.name,
+      dilutionRate: disinfectantDetails.isUndiluted
+        ? 'undiluted'
+        : `1:${disinfectantDetails.dilutionRate}`,
+      dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
+      disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
+    })
   }
 }
 

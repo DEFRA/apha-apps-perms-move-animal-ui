@@ -60,7 +60,9 @@ export class DilutionRateAnswer extends CheckboxAnswer {
       attributes: {
         'data-testid': `${value}-checkbox`
       },
-      checked: (values ?? []).includes(value)
+      checked: (values ?? []).includes(
+        disinfectantDetails?.dilutionRate ?? value
+      )
     }))
 
     return Promise.resolve(viewModel)
