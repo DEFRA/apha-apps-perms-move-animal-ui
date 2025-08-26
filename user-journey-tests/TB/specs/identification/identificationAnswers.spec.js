@@ -68,6 +68,7 @@ describe('Check your answers test - biosecurity', () => {
   it('Should verify redirect URI is maintained when page errors from change', async () => {
     await identificationAnswersPage.navigateToPageAndVerifyTitle()
     await selectElement(identificationAnswersPage.getChangeLink('tbTestDates'))
+    await testingDatesPage.verifyPageHeadingAndTitle()
 
     const urlBeforeError = await browser.getUrl()
 
