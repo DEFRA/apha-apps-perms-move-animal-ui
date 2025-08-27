@@ -39,24 +39,6 @@ describe('PageController', () => {
     await server.stop({ timeout: 0 })
   })
 
-  describe('Should process the result and provide expected response', () => {
-    it('should throw an error if biosecurity section not set in state', async () => {
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: pageUrl
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(statusCode).toBe(statusCodes.serverError)
-    })
-  })
-
   it('should clear disinfectant dilution answer if disinfectant changed', async () => {
     await session.setSectionState('biosecurity', validBiosecuritySectionState)
 

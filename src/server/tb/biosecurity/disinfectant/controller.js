@@ -8,7 +8,7 @@ export class DisinfectantPageController extends TbQuestionPageController {
     const applicationState = state.toState()
     // clear the dilution page answer if the user has changed the disinfectant
     if (
-      applicationState.biosecurity.disinfectant !== req.payload.disinfectant
+      applicationState?.biosecurity?.disinfectant !== req.payload.disinfectant
     ) {
       state.set(disinfectantDilutionPage, undefined)
     }
