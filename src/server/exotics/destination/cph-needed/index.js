@@ -26,7 +26,7 @@ export class CphNeededPage extends ActionableExitPage {
     return cphNumberPage
   }
 
-  viewProps() {
+  async viewProps() {
     return Promise.resolve({
       continueButtonText: 'Continue',
       continueButtonClasses: 'govuk-button--secondary'

@@ -1,33 +1,166 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content 1`] = `
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant NOT previously selected 1`] = `
+"
+  <div class="govuk-grid-row app-heading" data-testid="app-heading">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
+      500
+    </h1>
+
+  </div>
+</div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Something went wrong</p>
+    </div>
+  </div>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant selected cant be found 1`] = `
+"
+  <div class="govuk-grid-row app-heading" data-testid="app-heading">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
+      500
+    </h1>
+
+  </div>
+</div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Something went wrong</p>
+    </div>
+  </div>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when liquid disinfectant previously selected 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Calculate your disinfectant dilution rate</h1>
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
     </div>
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p>
-        Dilution rate is the amount of water you add to the disinfectant
-        compared to the amount of disinfectant.
+        By law you must use a Defra-approved disinfectant when there is an
+        outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        For example, if you use 1 litre of disinfectant with 15 litres of water,
-        the rate is 15.
+        The approved dilution rate for Agrichlor is 1:10.
+      </p>
+        <p>
+          This means for every 1 litre of Agrichlor,
+          you are using 1:10 litres of water.
+        </p>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Confirmation of the dilution rate
+    </legend>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="10" data-testid="dilutionRateConfirmed-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+          I confirm a dilution rate of 1:10 is used on the farm or premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when non liquid disinfectant previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        By law you must use a Defra-approved disinfectant when there is an
+        outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        You can find the dilution rate on the
-        <a href="http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI" target="_blank">
-          disinfectants approved for use in England, Scotland and Wales GOV.UK
-          page</a>
-        (opens in a new tab). Your disinfectant must be approved for
-        Tuberculosis Orders.
+        The approved dilution rate for Interkokask is 1:150.
+      </p>
+        <p>
+          This means for every 1 gram of Interkokask,
+          you are using 1:150 millilitres of water.
+        </p>
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Confirmation of the dilution rate
+    </legend>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="150" data-testid="dilutionRateConfirmed-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+          I confirm a dilution rate of 1:150 is used on the farm or premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when undiluted disinfectant previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        By law you must use a Defra-approved disinfectant when there is an
+        outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        For non-liquid disinfectants, the number of millilitres to one gram of
-        disinfectant is shown on the table with an Asterisk.
+        The approved dilution rate for Undiluted Mock is undiluted.
       </p>
     </div>
   </div>
@@ -37,19 +170,22 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="dilutionRate">
-    What dilution rate are you using for your disinfectant?
-  </label>
-  <div id="dilutionRate-hint" class="govuk-hint">
-    For example, 15
-  </div>
-  <input class="govuk-input govuk-input--width-2" id="dilutionRate" name="dilutionRate" type="text" aria-describedby="dilutionRate-hint" autocomplete="dilutionRate">
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Confirmation of the dilution rate
+    </legend>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="0" data-testid="dilutionRateConfirmed-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+          I confirm the disinfectant is used undiluted on the farm or premises
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>

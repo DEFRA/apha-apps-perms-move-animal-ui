@@ -42,7 +42,7 @@ export class SubmitSummaryPage extends QuestionPage {
     return new ConfirmationPage()
   }
 
-  viewProps(req) {
+  async viewProps(req) {
     const tasks = this.ApplicationModel.fromState(
       new this.StateManager(req).toState()
     ).tasks

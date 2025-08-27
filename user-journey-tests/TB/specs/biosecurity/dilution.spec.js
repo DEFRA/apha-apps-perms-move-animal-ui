@@ -5,6 +5,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
+import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 describe('Disinfectant dilution page spec', () => {
   // eslint-disable-next-line no-undef
@@ -14,30 +15,27 @@ describe('Disinfectant dilution page spec', () => {
 
   beforeEach('Restore session and navigate to page', async () => {
     await restoreSession()
-    await disinfectantDilutionPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify the disinfectant link', async () => {
-    await disinfectantDilutionPage.verifyDilutionGovLink()
-  })
+  beforeEach(
+    'Set the disinfectant and then go to dilution rate page',
+    async () => {
+      await disinfectantPage.navigateToPageAndVerifyTitle()
+      await disinfectantPage.inputTextAndContinue(
+        'Agrichlor',
+        disinfectantDilutionPage
+      )
+      await disinfectantDilutionPage.navigateToPageAndVerifyTitle()
+    }
+  )
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await disinfectantDilutionPage.singleInputErrorTest(
-      '',
-      disinfectantDilutionPage.noInputError
-    )
-  })
-
-  it('Should verify that page errors when something other than a number is entered', async () => {
-    await disinfectantDilutionPage.singleInputErrorTest(
-      'test',
-      disinfectantDilutionPage.invalidFormatError
-    )
+    await disinfectantDilutionPage.checkboxErrorTest()
   })
 
   it('Should input correct input and continue without error', async () => {
-    await disinfectantDilutionPage.inputTextAndContinue(
-      '1995',
+    await disinfectantDilutionPage.selectCheckboxesAndContinue(
+      [disinfectantDilutionPage.dilutionRateConfirmed],
       anySharedBuildingsPage
     )
   })
