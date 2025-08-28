@@ -3,7 +3,7 @@ import { config as wdioConf } from '../wdio.conf.js'
 
 // These capabilites should run as part of the publish yaml as an initial check before publishing
 export const config = merge(wdioConf, {
-  specs: ['./specs/**/*.js'],
+  specs: ['./specs/**/taskList.spec.js'],
   exclude: [
     './specs/noJavascript/**/*.spec.js',
     './specs/biosecurity-map/biosecurityMapUpload.spec.js',

@@ -136,7 +136,6 @@ export const typeIntoElement = async (
     await element.setValue(text)
     // required for autocomplete inputs
     await browser.execute((el) => el.blur(), await element)
-
     if (isAutocomplete) {
       await $('[id*="__listbox"] > li:first-child').click()
     }
