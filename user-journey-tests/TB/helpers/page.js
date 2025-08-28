@@ -134,11 +134,10 @@ export const typeIntoElement = async (
   try {
     await waitForElement(element)
     await element.setValue(text)
-    // required for autocomplete inputs
-    await browser.execute((el) => el.blur(), await element)
     if (isAutocomplete) {
       await $('[id*="__listbox"] > li:first-child').click()
     }
+    await browser.execute((el) => el.blur(), await element)
   } catch (error) {
     throw new Error(
       `Failed type command on element - ${await element.selector}: ${error}`
