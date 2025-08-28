@@ -44,7 +44,7 @@ jobs:
 
       - name: Collect all Docker container logs
         # This action collects logs from all currently running containers.
-        uses: step-security/gh-docker-logs@v1
+        uses: step-security/gh-docker-logs@v2
         with:
           output-mode: file
           output-file-path: logs
