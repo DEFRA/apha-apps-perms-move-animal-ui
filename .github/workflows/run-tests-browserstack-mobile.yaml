@@ -44,16 +44,20 @@ jobs:
 
       - name: Collect all Docker container logs
         # This action collects logs from all currently running containers.
-        uses: step-security/gh-docker-logs@v1
+        uses: step-security/gh-docker-logs@v2
         with:
-          output-mode: file
-          output-file-path: logs
+          dest: './docker-logs'
           
-      - name: Upload Docker container logs as an artifact
+      - name: Archive logs
+        if: failure()
+        run: tar -czf docker-logs.tar.gz ./docker-logs
+
+      - name: Upload logs as artifact
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: docker-container-logs
-          path: logs/
+          name: docker-logs
+          path: docker-logs.tar.gz
           retention-days: 7
 
       - name: cleanup
