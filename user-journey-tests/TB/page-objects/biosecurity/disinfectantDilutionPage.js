@@ -1,30 +1,21 @@
-import * as page from '../../helpers/page.js'
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'dilutionRate'
-const pageHeadingAndTitle =
-  'What dilution rate are you using for your disinfectant?'
-const noInputError = 'Enter the dilution rate'
-const invalidFormatError = 'Enter a number'
+const pageHeadingAndTitle = 'Confirmation of the dilution rate'
+const noInputError = 'You need to tick the confirmation box'
 
-class DisinfectantDilutionPage extends SingleTextInputPage {
-  constructor() {
-    super({ pageId, noInputError, invalidFormatError })
-  }
-
+const checkboxIds = ['dilutionRateConfirmed']
+class DisinfectantDilutionPage extends CheckboxBasePage {
   pagePath = 'biosecurity/disinfectant-dilution'
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
 
-  get dilutionGovLink() {
-    return $('a*=disinfectants approved for use in England')
-  }
-
-  async verifyDilutionGovLink() {
-    await page.validateHrefOfElement(
-      this.dilutionGovLink,
-      'http://disinfectants.defra.gov.uk/DisinfectantsExternal/Default.aspx?Module=ApprovalsList_SI'
-    )
+  constructor() {
+    super({
+      checkboxIds,
+      pageId,
+      noInputError
+    })
   }
 }
 

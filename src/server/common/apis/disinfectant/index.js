@@ -4,6 +4,11 @@ import { buildRedisClient } from '../../helpers/redis-client.js'
 import { createLogger } from '../../helpers/logging/logger.js'
 
 /**
+ * @typedef {{ Disinfectant_name: string, Approved_dilution_rate: string }} DisinfectantRawData
+ * @typedef {{ name: string, dilutionRate: string, isLiquid: boolean, isUndiluted: boolean }} DisinfectantItem
+ */
+
+/**
  * @import { Redis } from 'ioredis'
  */
 
@@ -57,10 +62,7 @@ export const dedupeFilteredDisinfectants = (disinfectants) => {
 /**
  * Fetch approved disinfectants from the API
  * @param {string} type - The type of disinfectant to fetch
- * @returns {Promise<Array<{
- *   Disinfectant_name: string,
- *   Approved_dilution_rate: string
- * }>>} - A promise that resolves to an array of approved disinfectants
+ * @returns {Promise<DisinfectantItem[]>} - A promise that resolves to an array of approved disinfectants
  */
 export const fetchDisinfectants = async (type) => {
   let filteredDisinfectants
@@ -102,5 +104,22 @@ export const fetchDisinfectants = async (type) => {
 
     filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
   }
-  return dedupeFilteredDisinfectants(filteredDisinfectants)
+  return transformDisinfectantList(
+    dedupeFilteredDisinfectants(filteredDisinfectants)
+  )
+}
+
+/**
+ * @param {DisinfectantRawData[]} disinfectants
+ * @returns {DisinfectantItem[]}
+ */
+const transformDisinfectantList = (disinfectants) => {
+  return disinfectants.map((item) => {
+    return {
+      name: item.Disinfectant_name,
+      dilutionRate: item.Approved_dilution_rate.split(' ')[0],
+      isLiquid: !item.Approved_dilution_rate.includes('*'),
+      isUndiluted: item.Approved_dilution_rate === 'Undiluted'
+    }
+  })
 }

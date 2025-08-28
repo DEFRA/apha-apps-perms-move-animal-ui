@@ -47,8 +47,8 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Agrichlor',
         disinfectantDilutionPage
       )
-      await disinfectantDilutionPage.inputTextAndContinue(
-        '1995',
+      await disinfectantDilutionPage.selectCheckboxesAndContinue(
+        [disinfectantDilutionPage.dilutionRateConfirmed],
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
@@ -83,8 +83,8 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         'Agrichlor',
         disinfectantDilutionPage
       )
-      await disinfectantDilutionPage.inputTextAndContinue(
-        '1995',
+      await disinfectantDilutionPage.selectCheckboxesAndContinue(
+        [disinfectantDilutionPage.dilutionRateConfirmed],
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(

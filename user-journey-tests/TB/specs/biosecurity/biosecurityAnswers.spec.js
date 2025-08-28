@@ -77,7 +77,8 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'dilution',
-      expectedValue: '1995',
+      expectedValue:
+        'I confirm a dilution rate of 1:100 is used on the farm or premises',
       expectedHref: `/biosecurity/disinfectant-dilution${redirect}`
     },
     {

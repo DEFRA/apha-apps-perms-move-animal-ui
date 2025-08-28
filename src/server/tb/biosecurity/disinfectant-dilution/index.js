@@ -2,8 +2,10 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { TbStateManager } from '../../state-manager.js'
+import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
 
-const customHeading = 'Calculate your disinfectant dilution rate'
+const customHeading = 'Disinfectant dilution rate'
 
 export class DisinfectantDilutionPage extends QuestionPage {
   view = `tb/biosecurity/disinfectant-dilution/index`
@@ -14,13 +16,35 @@ export class DisinfectantDilutionPage extends QuestionPage {
 
   urlPath = '/biosecurity/disinfectant-dilution'
   sectionKey = 'biosecurity'
-  question = 'What dilution rate are you using for your disinfectant?'
+  question = 'Confirmation of the dilution rate'
   questionKey = 'dilutionRate'
 
   Answer = DilutionRateAnswer
 
   nextPage() {
     return buildingsAnySharedPage
+  }
+
+  async viewProps(req) {
+    const applicationState = new TbStateManager(req).toState()
+    const selectedDisinfectant = applicationState?.biosecurity?.disinfectant
+    const disinfectants = await fetchDisinfectants('tbo')
+    const disinfectantDetails = disinfectants.find(
+      (disinfectant) => disinfectant.name === selectedDisinfectant
+    )
+
+    if (!selectedDisinfectant || !disinfectantDetails) {
+      return Promise.resolve({})
+    }
+    return Promise.resolve({
+      isUndiluted: disinfectantDetails.isUndiluted,
+      disinfectant: disinfectantDetails.name,
+      dilutionRate: disinfectantDetails.isUndiluted
+        ? 'undiluted'
+        : `1:${disinfectantDetails.dilutionRate}`,
+      dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
+      disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
+    })
   }
 }
 

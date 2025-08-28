@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
-import { TbQuestionPageController } from '~/src/server/tb/question-page-controller.js'
 import { disinfectantDilutionPage } from '../disinfectant-dilution/index.js'
 import { AutocompleteAnswer } from '~/src/server/common/model/answer/autocomplete/autocomplete.js'
 import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
+import { DisinfectantPageController } from './controller.js'
 
 /** @import { AutocompleteConfig } from '~/src/server/common/model/answer/autocomplete/autocomplete.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -23,9 +23,9 @@ export class Answer extends AutocompleteAnswer {
     items: async () => {
       const disinfectants = await fetchDisinfectants('tbo')
 
-      return disinfectants.map((item) => ({
-        text: item.Disinfectant_name,
-        value: item.Disinfectant_name
+      return disinfectants.map(({ name }) => ({
+        text: name,
+        value: name
       }))
     }
   }
@@ -49,7 +49,7 @@ export class DisinfectantPage extends QuestionPage {
     const disinfectants = await fetchDisinfectants('tbo')
 
     return {
-      list: `<ul class="govuk-body govuk-list--bullet"><li>${disinfectants.map((item) => item.Disinfectant_name).join('</li><li>')}</li></ul>`
+      list: `<ul class="govuk-body govuk-list--bullet"><li>${disinfectants.map((item) => item.name).join('</li><li>')}</li></ul>`
     }
   }
 
@@ -61,6 +61,6 @@ export class DisinfectantPage extends QuestionPage {
 export const disinfectantPage = new DisinfectantPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const disinfectant = new TbQuestionPageController(
+export const disinfectant = new DisinfectantPageController(
   disinfectantPage
 ).plugin()
