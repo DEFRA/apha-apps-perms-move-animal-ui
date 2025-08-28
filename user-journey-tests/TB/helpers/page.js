@@ -126,12 +126,20 @@ export const validateHrefOfElement = async (element, href) => {
   expect(hrefValue).toContain(href)
 }
 
-export const typeIntoElement = async (element, text) => {
+export const typeIntoElement = async (
+  element,
+  text,
+  isAutocomplete = false
+) => {
   try {
     await waitForElement(element)
     await element.setValue(text)
     // required for autocomplete inputs
     await browser.execute((el) => el.blur(), await element)
+
+    if (isAutocomplete) {
+      await $('[id*="__listbox"] > li:first-child').click()
+    }
   } catch (error) {
     throw new Error(
       `Failed type command on element - ${await element.selector}: ${error}`

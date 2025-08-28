@@ -23,7 +23,8 @@ describe('Disinfectant dilution page spec', () => {
       await disinfectantPage.navigateToPageAndVerifyTitle()
       await disinfectantPage.inputTextAndContinue(
         'Agrichlor',
-        disinfectantDilutionPage
+        disinfectantDilutionPage,
+        true
       )
       await disinfectantDilutionPage.navigateToPageAndVerifyTitle()
     }
