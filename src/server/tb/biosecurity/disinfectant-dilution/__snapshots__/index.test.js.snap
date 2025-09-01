@@ -55,7 +55,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       </p>
       <p>
         The approved dilution rate for Agrichlor is
-        1:10.
+          1:10.
       </p>
         <p>
           This means for every 1 litre of Agrichlor,
@@ -111,7 +111,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       </p>
       <p>
         The approved dilution rate for Interkokask is
-        1:150.
+          1:150.
       </p>
         <p>
           This means for every 1 gram of Interkokask,
@@ -167,7 +167,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       </p>
       <p>
         The approved dilution rate for Undiluted Mock is
-        1:undiluted.
+          undiluted
       </p>
     </div>
   </div>

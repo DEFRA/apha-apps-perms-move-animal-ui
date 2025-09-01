@@ -16,7 +16,11 @@
       </p>
       <p>
         The approved dilution rate for {{ disinfectant }} is
-        1:{{ dilutionRate }}.
+        {% if isUndiluted %}
+          undiluted
+        {% else %}
+          1:{{ dilutionRate }}.
+        {% endif %}
       </p>
       {% if not isUndiluted %}
         <p>
