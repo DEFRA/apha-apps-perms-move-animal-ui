@@ -14,11 +14,15 @@
         By law you must use a Defra-approved disinfectant when there is an
         outbreak of TB. This includes using the correct dilution rate.
       </p>
-      <p>
-        The approved dilution rate for {{ disinfectant }} is
-        1:{{ dilutionRate }}.
-      </p>
       {% if not isUndiluted %}
+        <p>
+          The approved dilution rate for {{ disinfectant }} is
+          {% if isUndiluted %}
+            undiluted
+          {% else %}
+            1:{{ dilutionRate }}.
+          {% endif %}
+        </p>
         <p>
           This means for every 1 {{ disinfectantUnit }} of {{ disinfectant }},
           you are using {{ dilutionRate }}
