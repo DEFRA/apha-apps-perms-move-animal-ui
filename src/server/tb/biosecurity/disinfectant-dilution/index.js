@@ -41,7 +41,7 @@ export class DisinfectantDilutionPage extends QuestionPage {
       disinfectant: disinfectantDetails.name,
       dilutionRate: disinfectantDetails.isUndiluted
         ? 'undiluted'
-        : `1:${disinfectantDetails.dilutionRate}`,
+        : `${disinfectantDetails.dilutionRate}`,
       dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
       disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
     })
