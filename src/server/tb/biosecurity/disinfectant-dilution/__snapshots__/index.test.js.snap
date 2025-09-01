@@ -53,10 +53,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         By law you must use a Defra-approved disinfectant when there is an
         outbreak of TB. This includes using the correct dilution rate.
       </p>
-        <p>
-          The approved dilution rate for Agrichlor is
-            1:10.
-        </p>
+      <p>
+        The approved dilution rate for Agrichlor is
+          1:10.
+      </p>
         <p>
           This means for every 1 litre of Agrichlor,
           you are using 10
@@ -109,10 +109,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         By law you must use a Defra-approved disinfectant when there is an
         outbreak of TB. This includes using the correct dilution rate.
       </p>
-        <p>
-          The approved dilution rate for Interkokask is
-            1:150.
-        </p>
+      <p>
+        The approved dilution rate for Interkokask is
+          1:150.
+      </p>
         <p>
           This means for every 1 gram of Interkokask,
           you are using 150
@@ -164,6 +164,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       <p>
         By law you must use a Defra-approved disinfectant when there is an
         outbreak of TB. This includes using the correct dilution rate.
+      </p>
+      <p>
+        The approved dilution rate for Undiluted Mock is
+          undiluted
       </p>
     </div>
   </div>
