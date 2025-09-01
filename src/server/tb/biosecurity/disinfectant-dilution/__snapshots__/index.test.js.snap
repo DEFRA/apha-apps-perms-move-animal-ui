@@ -54,11 +54,14 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        The approved dilution rate for Agrichlor is 1:10.
+        The approved dilution rate for Agrichlor is
+        1:10.
       </p>
         <p>
           This means for every 1 litre of Agrichlor,
-          you are using 1:10 litres of water.
+          you are using 10
+          litres
+          of water.
         </p>
     </div>
   </div>
@@ -107,11 +110,14 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        The approved dilution rate for Interkokask is 1:150.
+        The approved dilution rate for Interkokask is
+        1:150.
       </p>
         <p>
           This means for every 1 gram of Interkokask,
-          you are using 1:150 millilitres of water.
+          you are using 150
+          millilitres
+          of water.
         </p>
     </div>
   </div>
@@ -160,7 +166,8 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         outbreak of TB. This includes using the correct dilution rate.
       </p>
       <p>
-        The approved dilution rate for Undiluted Mock is undiluted.
+        The approved dilution rate for Undiluted Mock is
+        1:undiluted.
       </p>
     </div>
   </div>
