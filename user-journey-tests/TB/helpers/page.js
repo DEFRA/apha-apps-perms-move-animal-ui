@@ -135,7 +135,7 @@ export const typeIntoElement = async (
     await waitForElement(element)
     await element.setValue(text)
     if (isAutocomplete) {
-      await $('[id*="__listbox"] > li:first-child').click()
+      await selectElement($('[id*="__listbox"] > li:first-child'), true)
     }
     await browser.execute((el) => el.blur(), await element)
   } catch (error) {
