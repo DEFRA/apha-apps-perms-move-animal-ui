@@ -1,5 +1,5 @@
 .autocomplete__wrapper {
-  width: 300px;
+  @extend .govuk-input--width-20;
 
   & > .autocomplete__menu > li {
     @include govuk-font(false);
