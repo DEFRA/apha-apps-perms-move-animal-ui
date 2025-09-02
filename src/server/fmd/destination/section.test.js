@@ -1,10 +1,6 @@
-import {
-  aboutSectionNonVisitComplete,
-  aboutSectionVisitComplete
-} from '../../common/test-helpers/exotic/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
+import { MockDestinationPage } from './mock-page/index.js'
 import { DestinationSection } from './section.js'
-import { TypeOfLocationPage } from './type-of-location/index.js'
 
 describe('DestinationSection', () => {
   it('should have the correct configuration', () => {
@@ -18,36 +14,15 @@ describe('DestinationSection', () => {
 
   it('should have the correct first page', () => {
     expect(DestinationSection.firstPageFactory()).toBeInstanceOf(
-      TypeOfLocationPage
+      MockDestinationPage
     )
   })
 
-  it('should returned as enabled when the movement type is not visit', () => {
-    const state = {
-      about: aboutSectionNonVisitComplete
-    }
-    expect(DestinationSection.config.isEnabled(state)).toBe(true)
+  it('should not be visible', () => {
+    expect(DestinationSection.config.isVisible({})).toBe(false)
   })
 
-  it('should not be enabled when the movement type is visit', () => {
-    const state = {
-      about: aboutSectionVisitComplete
-    }
-    expect(DestinationSection.config.isEnabled(state)).toBe(false)
-  })
-
-  it('should be visible when the about section is valid and movement type is not visit', () => {
-    const state = {
-      about: aboutSectionNonVisitComplete
-    }
-    expect(DestinationSection.config.isVisible(state)).toBe(true)
-  })
-
-  it('should not be visible when the about section is invalid or movement type is visit', () => {
-    const state = {
-      about: aboutSectionVisitComplete
-    }
-
-    expect(DestinationSection.config.isVisible(state)).toBe(false)
+  it('should not be enabled', () => {
+    expect(DestinationSection.config.isEnabled({})).toBe(false)
   })
 })
