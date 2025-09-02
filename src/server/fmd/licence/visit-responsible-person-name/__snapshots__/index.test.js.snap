@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisitResponsiblePersonNamePage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Who is responsible for the premises where the visit is happening?
+    </h1>
+  </legend>
+    <div id="explanation">
+      <p class="govuk-body">This is the person we will issue the licence to.</p>
+    </div>
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="firstName">
+    First name
+  </label>
+  <input class="govuk-input govuk-input--width-20" id="firstName" name="firstName" type="text" aria-describedby="explanation">
+</div>
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="lastName">
+    Last name
+  </label>
+  <input class="govuk-input govuk-input--width-20" id="lastName" name="lastName" type="text" aria-describedby="explanation">
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

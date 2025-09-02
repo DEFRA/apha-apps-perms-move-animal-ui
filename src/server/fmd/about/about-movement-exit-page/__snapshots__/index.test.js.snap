@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#AboutMovementExitPage AboutMovementExitPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You cannot apply for a licence for this movement</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>For foot and mouth disease, you can only apply to move:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>live animals</li>
+          <li>carcasses</li>
+          <li>animal by-products and waste materials</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+        "
+`;

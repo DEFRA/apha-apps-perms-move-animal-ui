@@ -293,6 +293,12 @@ export const config = convict({
       default: !isProduction,
       env: 'EXOTICS_JOURNEY_ENABLED'
     },
+    fmdJourney: {
+      doc: 'Feature flag to enable the fmd journey',
+      format: Boolean,
+      default: !isProduction,
+      env: 'FMD_JOURNEY_ENABLED'
+    },
     prototypeMode: {
       doc: 'Feature flag to turn the service into prototype mode for user research purposes',
       format: Boolean,

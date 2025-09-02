@@ -20,6 +20,12 @@ import { tbSubmitSummary } from './tb/check-answers/index.js'
 import { taskListIncomplete as exoticsTaskListIncomplete } from './exotics/task-list-incomplete/index.js'
 import { exoticsSubmit } from './exotics/submit/index.js'
 import { home as exoticsHome } from './exotics/home/index.js'
+import { home as fmdHome } from './fmd/home/index.js'
+import { fmdTaskList } from './fmd/task-list/index.js'
+import { fmdSubmitSummary } from './fmd/check-answers/index.js'
+import { taskListIncomplete as fmdTaskListIncomplete } from './fmd/task-list-incomplete/index.js'
+import { fmdSubmit } from './fmd/submit/index.js'
+import { FmdApplicationModel } from './fmd/application.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -78,6 +84,21 @@ export const router = {
         ])
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
+            (section) => section.config.plugin
+          )
+        )
+      }
+
+      if (config.get('featureFlags').fmdJourney) {
+        await server.register([
+          fmdHome,
+          fmdTaskList,
+          fmdSubmitSummary,
+          fmdTaskListIncomplete,
+          fmdSubmit
+        ])
+        await server.register(
+          FmdApplicationModel.implementedSections.map(
             (section) => section.config.plugin
           )
         )

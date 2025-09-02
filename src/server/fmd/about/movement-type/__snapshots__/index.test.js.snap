@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovementTypePage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which type of movement does your application relate to?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="movementType" name="movementType" type="radio" value="onto-premises">
+        <label class="govuk-label govuk-radios__label" for="movementType">
+          Onto a farm or premises
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="off-premises" name="movementType" type="radio" value="off-premises">
+        <label class="govuk-label govuk-radios__label" for="off-premises">
+          Off a farm or premises
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="visit" name="movementType" type="radio" value="visit" aria-describedby="visit-item-hint">
+        <label class="govuk-label govuk-radios__label" for="visit">
+          A short-term visit or activity on a farm or premises
+        </label>
+        <div id="visit-item-hint" class="govuk-hint govuk-radios__hint">
+          Including slaughter onsite
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

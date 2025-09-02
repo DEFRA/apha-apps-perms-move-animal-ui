@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentPurposeOfAnimalsPage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="currentPurposeOfAnimals">
+      What is the current use or purpose of the animals?
+    </label>
+  </h1>
+  <div id="currentPurposeOfAnimals-hint" class="govuk-hint">
+    For example, kept as pets or are on the premises for restocking reasons
+  </div>
+  <input class="govuk-input govuk-input--width-20" id="currentPurposeOfAnimals" name="currentPurposeOfAnimals" type="text" aria-describedby="currentPurposeOfAnimals-hint">
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

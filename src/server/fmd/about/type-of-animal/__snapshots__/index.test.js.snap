@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypeOfAnimalPage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which type of animal are you moving?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="typeOfAnimal" name="typeOfAnimal" type="radio" value="cattle">
+        <label class="govuk-label govuk-radios__label" for="typeOfAnimal">
+          Cattle
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="sheep-and-goats" name="typeOfAnimal" type="radio" value="sheep-and-goats">
+        <label class="govuk-label govuk-radios__label" for="sheep-and-goats">
+          Sheep and goats
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pigs" name="typeOfAnimal" type="radio" value="pigs">
+        <label class="govuk-label govuk-radios__label" for="pigs">
+          Pigs
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="birds" name="typeOfAnimal" type="radio" value="birds">
+        <label class="govuk-label govuk-radios__label" for="birds">
+          Birds
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="horses" name="typeOfAnimal" type="radio" value="horses">
+        <label class="govuk-label govuk-radios__label" for="horses">
+          Horses
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="camelids" name="typeOfAnimal" type="radio" value="camelids">
+        <label class="govuk-label govuk-radios__label" for="camelids">
+          Camelids (such as llamas and alpacas)
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="other" name="typeOfAnimal" type="radio" value="other">
+        <label class="govuk-label govuk-radios__label" for="other">
+          Another type of animal
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
