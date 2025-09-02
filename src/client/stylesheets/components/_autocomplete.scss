@@ -1,0 +1,7 @@
+.autocomplete__wrapper {
+  max-width: 20.5em;
+
+  & > .autocomplete__menu > li {
+    @include govuk-font(false);
+  }
+}
