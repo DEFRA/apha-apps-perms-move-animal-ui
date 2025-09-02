@@ -1,4 +1,5 @@
 .autocomplete__wrapper {
+  // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
   @extend .govuk-input--width-20;
 
   & > .autocomplete__menu > li {
