@@ -30,7 +30,11 @@ const createCheckboxSchema = (config) => {
 }
 
 /**
- * @typedef {{ label: string }} CheckboxOption
+ * @typedef {{
+ *   label: string,
+ *   exclusive?: boolean
+ * }} CheckboxOption
+ *
  * @typedef {{
  *   payloadKey: string,
  *   options: Record<string, CheckboxOption>,
@@ -123,14 +127,28 @@ export class CheckboxAnswer extends AnswerModel {
           isPageHeading
         }
       },
-      items: Object.entries(options).map(([value, option]) => ({
-        text: option.label,
-        value,
-        attributes: {
-          'data-testid': `${value}-checkbox`
-        },
-        checked: (values ?? []).includes(value)
-      }))
+      items: Object.entries(options).map(([value, option]) => {
+        if (value === 'divider') {
+          return {
+            divider: option.label
+          }
+        }
+
+        const checkboxOption = {
+          text: option.label,
+          value,
+          attributes: {
+            'data-testid': `${value}-checkbox`
+          },
+          checked: (values ?? []).includes(value)
+        }
+
+        if (option.exclusive) {
+          checkboxOption.behaviour = 'exclusive'
+        }
+
+        return checkboxOption
+      })
     }
 
     if (hint) {
