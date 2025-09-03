@@ -299,3 +299,62 @@ describe('CheckboxAnswer.viewModel', () => {
     })
   })
 })
+
+describe('CheckboxAnswer - dividers and exclusive options', () => {
+  const configWithDividerAndExclusive = {
+    payloadKey: 'test_checkbox',
+    options: {
+      option1: { label: 'Option 1' },
+      divider: { label: 'Divider label' },
+      option2: { label: 'Option 2', exclusive: true }
+    },
+    validation: {}
+  }
+
+  class DividerExclusiveCheckboxAnswer extends CheckboxAnswer {
+    static config = configWithDividerAndExclusive
+  }
+
+  it('should include a divider item in the viewModel', async () => {
+    const answer = new DividerExclusiveCheckboxAnswer({ test_checkbox: [] })
+    const viewModel = await answer.viewModel({
+      question: 'Test',
+      validate: false
+    })
+    expect(viewModel.items).toEqual([
+      {
+        text: 'Option 1',
+        value: 'option1',
+        attributes: { 'data-testid': 'option1-checkbox' },
+        checked: false
+      },
+      {
+        divider: 'Divider label'
+      },
+      {
+        text: 'Option 2',
+        value: 'option2',
+        attributes: { 'data-testid': 'option2-checkbox' },
+        checked: false,
+        behaviour: 'exclusive'
+      }
+    ])
+  })
+
+  it('should mark exclusive options with behaviour: "exclusive"', async () => {
+    const answer = new DividerExclusiveCheckboxAnswer({
+      test_checkbox: ['option2']
+    })
+    const viewModel = await answer.viewModel({
+      question: 'Test',
+      validate: false
+    })
+    const exclusiveItem = viewModel.items.find(
+      (item) => 'value' in item && item.value === 'option2'
+    )
+    expect(exclusiveItem).toMatchObject({
+      behaviour: 'exclusive',
+      checked: true
+    })
+  })
+})
