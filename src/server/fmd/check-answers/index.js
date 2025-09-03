@@ -10,8 +10,10 @@ import { fmdConfirmationPage } from '../submit/confirmation/index.js'
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  */
 
+const fmdNamespace = 'fmd'
+
 export class FmdSubmitSummaryPage extends SubmitSummaryPage {
-  namespace = 'fmd'
+  namespace = fmdNamespace
   StateManager = FmdStateManager
   ApplicationModel = FmdApplicationModel
 
@@ -30,7 +32,7 @@ export class FmdSubmitPageController extends SubmitPageController {
   StateManager = FmdStateManager
   ApplicationModel = FmdApplicationModel
 
-  namespace = 'fmd'
+  namespace = fmdNamespace
 
   constructor() {
     super(fmdSubmitSummaryPage)
