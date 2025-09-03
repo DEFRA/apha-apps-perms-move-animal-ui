@@ -26,6 +26,32 @@ const createCheckboxSchema = (config) => {
     })
   }
 
+  optionsSchema = optionsSchema
+    .custom((value, helpers) => {
+      const selectedOptions = value || []
+      const exclusiveOptions = selectedOptions.filter(
+        (option) => config.options[option]?.exclusive === true
+      )
+
+      if (exclusiveOptions.length > 1) {
+        return helpers.error('checkbox.multipleExclusive')
+      }
+
+      if (exclusiveOptions.length > 0 && selectedOptions.length > 1) {
+        return helpers.error('checkbox.exclusive')
+      }
+
+      return value
+    })
+    .messages({
+      'checkbox.exclusive':
+        config.validation.exclusive?.message ??
+        'You cannot select "{{#label}}" with other options',
+      'checkbox.multipleExclusive':
+        config.validation.multipleExclusive?.message ??
+        'You cannot select multiple exclusive options'
+    })
+
   return Joi.object({ [config.payloadKey]: optionsSchema })
 }
 
@@ -34,7 +60,6 @@ const createCheckboxSchema = (config) => {
  *   label: string,
  *   exclusive?: boolean
  * }} CheckboxOption
- *
  * @typedef {{
  *   payloadKey: string,
  *   options: Record<string, CheckboxOption>,
@@ -42,8 +67,10 @@ const createCheckboxSchema = (config) => {
  *   isPageHeading? : boolean,
  *   isQuestionHeading? : boolean,
  *   validation: {
+ *     dynamicOptions?: boolean,
  *     empty?: { message: string },
- *     dynamicOptions?: boolean
+ *     exclusive?: {message: string}
+ *     multipleExclusive?: {message: string}
  *   }
  * }} CheckboxConfig
  */
