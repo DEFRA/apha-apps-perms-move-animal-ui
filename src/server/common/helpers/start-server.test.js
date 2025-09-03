@@ -85,7 +85,7 @@ describe('#startServer', () => {
       )
       expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
         4,
-        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false,"authRequired":true,"emailConfirmation":true,"exoticsJourney":true,"prototypeMode":false}`
+        `Feature flags configuration: {"pdfUpload":true,"authEnabled":false,"authRequired":true,"emailConfirmation":true,"exoticsJourney":true,"fmdJourney":true,"prototypeMode":false}`
       )
     })
   })

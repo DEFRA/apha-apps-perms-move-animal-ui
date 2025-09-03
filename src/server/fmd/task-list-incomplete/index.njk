@@ -1,0 +1,19 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <h1 class="govuk-heading-l">{{ heading }}</h1>
+        {{
+          govukButton({
+            text: 'Go to your application',
+            classes: "govuk-button--primary",
+            href: '/fmd/task-list'
+          })
+        }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
