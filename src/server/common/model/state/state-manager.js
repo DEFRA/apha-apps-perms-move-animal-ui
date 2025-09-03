@@ -17,6 +17,7 @@ export class StateManager {
     return StateManager.key
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {string} */
   static get key() {
     throw new NotImplementedError()

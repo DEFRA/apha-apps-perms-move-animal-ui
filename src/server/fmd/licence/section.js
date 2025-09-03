@@ -1,5 +1,5 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
-/** @import {RawApplicationState} from '../../common/model/state/state-manager.js') */
+/** @import {RawApplicationState} from '../../common/model/state/state-manager.js' */
 
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
