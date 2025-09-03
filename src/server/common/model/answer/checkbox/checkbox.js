@@ -37,10 +37,8 @@ const createCheckboxSchema = (config) => {
         return helpers.error('checkbox.multipleExclusive')
       }
 
-      if (exclusiveOptions.length > 0) {
-        if (selectedOptions.length > 1) {
-          return helpers.error('checkbox.exclusive')
-        }
+      if (exclusiveOptions.length > 0 && selectedOptions.length > 1) {
+        return helpers.error('checkbox.exclusive')
       }
 
       return value
