@@ -308,7 +308,11 @@ describe('CheckboxAnswer - dividers and exclusive options', () => {
       divider: { label: 'Divider label' },
       option2: { label: 'Option 2', exclusive: true }
     },
-    validation: {}
+    validation: {
+      exclusive: {
+        message: 'You cannot select {{#label}} with other options'
+      }
+    }
   }
 
   class DividerExclusiveCheckboxAnswer extends CheckboxAnswer {
@@ -355,6 +359,74 @@ describe('CheckboxAnswer - dividers and exclusive options', () => {
     expect(exclusiveItem).toMatchObject({
       behaviour: 'exclusive',
       checked: true
+    })
+  })
+
+  describe('Exclusive option validation', () => {
+    it('should validate when only an exclusive option is selected', () => {
+      const answer = new DividerExclusiveCheckboxAnswer({
+        test_checkbox: ['option2']
+      })
+      const { isValid, errors } = answer.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
+    })
+
+    it('should validate when only non-exclusive options are selected', () => {
+      const answer = new DividerExclusiveCheckboxAnswer({
+        test_checkbox: ['option1']
+      })
+      const { isValid, errors } = answer.validate()
+
+      expect(isValid).toBe(true)
+      expect(errors).toEqual({})
+    })
+
+    it('should fail validation when exclusive option is selected with other options', () => {
+      const answer = new DividerExclusiveCheckboxAnswer({
+        test_checkbox: ['option1', 'option2']
+      })
+      const { isValid, errors } = answer.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors).toMatchObject({
+        test_checkbox: {
+          text: 'You cannot select "test_checkbox" with other options'
+        }
+      })
+    })
+
+    it('should fail validation when multiple exclusive options are selected', () => {
+      const configWithMultipleExclusives = {
+        payloadKey: 'test_checkbox',
+        options: {
+          option1: { label: 'Option 1' },
+          option2: { label: 'Option 2', exclusive: true },
+          option3: { label: 'Option 3', exclusive: true }
+        },
+        validation: {
+          multipleExclusive: {
+            message: 'You cannot select multiple exclusive options'
+          }
+        }
+      }
+
+      class MultipleExclusiveCheckboxAnswer extends CheckboxAnswer {
+        static config = configWithMultipleExclusives
+      }
+
+      const answer = new MultipleExclusiveCheckboxAnswer({
+        test_checkbox: ['option2', 'option3']
+      })
+      const { isValid, errors } = answer.validate()
+
+      expect(isValid).toBe(false)
+      expect(errors).toMatchObject({
+        test_checkbox: {
+          text: 'You cannot select multiple exclusive options'
+        }
+      })
     })
   })
 })
