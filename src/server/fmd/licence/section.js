@@ -1,14 +1,20 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {RawApplicationState} from '../../common/model/state/state-manager.js') */
 
+import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
-import { mockLicence, mockLicencePage } from './mock-page/index.js'
+import { originResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
+import {
+  registeredKeeperName,
+  registeredKeeperNamePage
+} from './registered-keeper-name/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-licence',
     async register(server) {
-      await server.register([mockLicence, checkAnswers])
+      await server.register([registeredKeeperName, checkAnswers])
     }
   }
 }
@@ -20,9 +26,15 @@ export class LicenceSection extends FmdSectionModel {
     title: 'Receiving the licence',
     plugin,
     summaryLink: '/fmd/receiving-the-licence/check-answers',
-    isEnabled: () => false,
-    isVisible: () => false
+    isEnabled: (context) => AboutSection.fromState(context).validate().isValid,
+    isVisible: () => true
   }
 
-  static firstPageFactory = () => mockLicencePage
+  /** @param {RawApplicationState} context */
+  static firstPageFactory = (context) => {
+    if (context.about?.whatIsMoving === 'milk') {
+      return originResponsiblePersonNamePage
+    }
+    return registeredKeeperNamePage
+  }
 }
