@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypeOfAnimalsPage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which type of animal are you moving?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="typeOfAnimals" name="typeOfAnimals" type="radio" value="cattle">
+        <label class="govuk-label govuk-radios__label" for="typeOfAnimals">
+          Cattle
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="sheep" name="typeOfAnimals" type="radio" value="sheep">
+        <label class="govuk-label govuk-radios__label" for="sheep">
+          Sheep
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="goats" name="typeOfAnimals" type="radio" value="goats">
+        <label class="govuk-label govuk-radios__label" for="goats">
+          Goats
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="pigs" name="typeOfAnimals" type="radio" value="pigs">
+        <label class="govuk-label govuk-radios__label" for="pigs">
+          Pigs
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="camelids" name="typeOfAnimals" type="radio" value="camelids">
+        <label class="govuk-label govuk-radios__label" for="camelids">
+          Camelids (such as llamas and alpacas)
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

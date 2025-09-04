@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { MoveToSlaughterPage } from '../move-to-slaughter/index.js'
 import { TypeOfAnimalsPage } from '../type-of-animals/index.js'
 import { ResponsibleMilkPage } from '../responsible-milk/index.js'
-import { MovementOnExitPagePage } from '../movement-on-exit-page/index.js'
+import { MovementOnExitPage } from '../movement-on-exit-page/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'whatIsMoving'
@@ -56,8 +56,8 @@ describe('WhatIsMovingPage', () => {
   describe('nextPage', () => {
     it.each([
       ['live-animals', MoveToSlaughterPage],
-      ['carcasses', MovementOnExitPagePage],
-      ['milk', MovementOnExitPagePage]
+      ['carcasses', MovementOnExitPage],
+      ['milk', MovementOnExitPage]
     ])(
       'for %s should return %s for movements on to the farm',
       (value, expectedPage) => {

@@ -10,6 +10,9 @@ import {
 } from './movement-activity-type/index.js'
 import { slaughteredNumber } from './slaughtered-number/index.js'
 import { whatIsMoving } from './what-is-moving/index.js'
+import { moveToSlaughter } from './move-to-slaughter/index.js'
+import { typeOfAnimals } from './type-of-animals/index.js'
+import { numberOfAnimals } from './number-of-animals/index.js'
 
 const plugin = {
   plugin: {
@@ -21,6 +24,9 @@ const plugin = {
         slaughteredNumber,
         animalIds,
         whatIsMoving,
+        moveToSlaughter,
+        typeOfAnimals,
+        numberOfAnimals,
         checkAnswers
       ])
     }
