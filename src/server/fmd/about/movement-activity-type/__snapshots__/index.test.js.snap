@@ -17,7 +17,7 @@ exports[`MovementActivityTypePage content should render expected response and co
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="movementActivityType" name="movementActivityType" type="radio" value="off-to-farm">
+        <input class="govuk-radios__input" id="movementActivityType" name="movementActivityType" type="radio" value="on-to-farm">
         <label class="govuk-label govuk-radios__label" for="movementActivityType">
           Movement on to a farm or premises
         </label>
