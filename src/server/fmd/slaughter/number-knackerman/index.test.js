@@ -1,13 +1,14 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, businessNameKnackermanPage } from './index.js'
+import { Answer, numberKnackermanPage } from './index.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { NumberKnackermanPage } from '../number-knackerman/index.js'
+import { SlaughterStubPage } from '../slaughter-stub/index.js'
 
 const sectionKey = 'slaughter'
-const questionKey = 'businessNameKnackerman'
-const pageUrl = '/fmd/slaughter-information/knackerman-contact-number'
-const page = businessNameKnackermanPage
-const question = 'What is the business name of the Knackerman?'
+const questionKey = 'numberKnackerman'
+const pageUrl = '/fmd/slaughter-information/date-of-slaughter'
+const page = numberKnackermanPage
+const question =
+  'What is the contact phone number for the business providing the Knackerman?'
 
 const payload = {
   [questionKey]: 'some text'
@@ -42,7 +43,7 @@ describe('Answer', () => {
   })
 })
 
-describe('BusinessNameKnackermanPage', () => {
+describe('NumberKnackermanPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -64,9 +65,9 @@ describe('BusinessNameKnackermanPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return NumberKnackermanPage for any value', () => {
+    it('should return SlaughterStubPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(NumberKnackermanPage)
+      expect(nextPage).toBeInstanceOf(SlaughterStubPage)
     })
   })
 
