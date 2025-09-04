@@ -4,6 +4,7 @@ import { DestinationSection } from './destination/section.js'
 import { LicenceSection } from './licence/section.js'
 import { MovementDetailsSection } from './movement-details/section.js'
 import { OriginSection } from './origin/section.js'
+import { SlaughterInformationSection } from './slaughter/section.js'
 
 /**
  * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
@@ -16,7 +17,8 @@ export class FmdApplicationModel extends ApplicationModel {
     DestinationSection,
     OriginSection,
     MovementDetailsSection,
-    LicenceSection
+    LicenceSection,
+    SlaughterInformationSection
   ]
 
   get version() {
