@@ -5,7 +5,7 @@ import { SlaughterStubPage } from '../slaughter-stub/index.js'
 
 const sectionKey = 'slaughter'
 const questionKey = 'numberKnackerman'
-const pageUrl = '/fmd/slaughter-information/date-of-slaughter'
+const pageUrl = '/fmd/slaughter-information/knackerman-contact-number'
 const page = numberKnackermanPage
 const question =
   'What is the contact phone number for the business providing the Knackerman?'
@@ -24,7 +24,7 @@ describe('Answer', () => {
   })
 
   it('should have the correct character width', () => {
-    expect(Answer.config.characterWidth).toBe(20)
+    expect(Answer.config.characterWidth).toBe(10)
   })
 
   it('should have spellcheck disabled', () => {

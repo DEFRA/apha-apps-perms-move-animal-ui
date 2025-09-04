@@ -5,7 +5,7 @@ import { NumberKnackermanPage } from '../number-knackerman/index.js'
 
 const sectionKey = 'slaughter'
 const questionKey = 'businessNameKnackerman'
-const pageUrl = '/fmd/slaughter-information/knackerman-contact-number'
+const pageUrl = '/fmd/slaughter-information/knackerman-business-name'
 const page = businessNameKnackermanPage
 const question = 'What is the business name of the Knackerman?'
 
@@ -23,7 +23,7 @@ describe('Answer', () => {
   })
 
   it('should have the correct character width', () => {
-    expect(Answer.config.characterWidth).toBe(20)
+    expect(Answer.config.characterWidth).toBe(10)
   })
 
   it('should have spellcheck disabled', () => {
@@ -33,7 +33,7 @@ describe('Answer', () => {
   it('should have the correct validation rules', () => {
     expect(Answer.config.validation).toBeDefined()
     expect(Answer.config.validation?.empty?.message).toBe(
-      'Enter the contact phone number for the business providing the Knackerman'
+      "Enter the Knackerman's business name"
     )
     expect(Answer.config.validation?.maxLength?.value).toBe(100)
     expect(Answer.config.validation?.maxLength?.message).toBe(

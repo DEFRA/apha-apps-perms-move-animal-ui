@@ -12,7 +12,7 @@ export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
-    characterWidth: 20,
+    characterWidth: 10,
     spellcheck: false,
     validation: {
       empty: {
@@ -28,7 +28,7 @@ export class Answer extends TextAnswer {
 }
 
 export class NumberKnackermanPage extends QuestionPage {
-  urlPath = '/fmd/slaughter-information/date-of-slaughter'
+  urlPath = '/fmd/slaughter-information/knackerman-contact-number'
 
   questionKey = questionKey
   sectionKey = 'slaughter'

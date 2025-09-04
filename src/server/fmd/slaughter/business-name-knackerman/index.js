@@ -12,12 +12,11 @@ export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
-    characterWidth: 20,
+    characterWidth: 10,
     spellcheck: false,
     validation: {
       empty: {
-        message:
-          'Enter the contact phone number for the business providing the Knackerman'
+        message: "Enter the Knackerman's business name"
       },
       maxLength: {
         value: 100,
@@ -28,7 +27,7 @@ export class Answer extends TextAnswer {
 }
 
 export class BusinessNameKnackermanPage extends QuestionPage {
-  urlPath = '/fmd/slaughter-information/knackerman-contact-number'
+  urlPath = '/fmd/slaughter-information/knackerman-business-name'
 
   questionKey = questionKey
   sectionKey = 'slaughter'

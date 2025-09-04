@@ -25,7 +25,7 @@ describe('Answer', () => {
 
   it('should have validation for no selection', () => {
     expect(Answer.config.validation.empty).toBe(
-      'Select whether the slaughter will be done by a Slaughterman or Knackerman'
+      'Select who the slaughter will be done by'
     )
   })
 })

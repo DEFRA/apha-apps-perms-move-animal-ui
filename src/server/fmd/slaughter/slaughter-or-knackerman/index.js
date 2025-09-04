@@ -22,8 +22,7 @@ export class Answer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty:
-        'Select whether the slaughter will be done by a Slaughterman or Knackerman'
+      empty: 'Select who the slaughter will be done by'
     }
   }
 }
