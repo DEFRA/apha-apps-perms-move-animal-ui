@@ -1,5 +1,5 @@
 import { checkAnswersPage } from './check-answers/index.js'
-import { MockAboutPage } from './mock-page/index.js'
+import { MovementActivityTypePage } from './movement-activity-type/index.js'
 import { AboutSection } from './section.js'
 
 describe('AboutSection', () => {
@@ -13,7 +13,9 @@ describe('AboutSection', () => {
   })
 
   it('should have the correct first page', () => {
-    expect(AboutSection.firstPageFactory()).toBeInstanceOf(MockAboutPage)
+    expect(AboutSection.firstPageFactory()).toBeInstanceOf(
+      MovementActivityTypePage
+    )
   })
 
   it('should be visible', () => {
