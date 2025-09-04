@@ -14,12 +14,12 @@ export class Answer extends FullNameAnswer {
     validation: {
       firstName: {
         empty: {
-          message: 'Enter first name'
+          message: 'Enter the first name of who will be the Slaughterman'
         }
       },
       lastName: {
         empty: {
-          message: 'Enter last name'
+          message: 'Enter the last name of who will be the Slaughterman'
         }
       }
     }

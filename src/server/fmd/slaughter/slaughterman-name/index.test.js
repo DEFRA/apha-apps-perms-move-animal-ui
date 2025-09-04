@@ -15,11 +15,11 @@ describe('Answer', () => {
 
   it('should have validation for firstName empty message', () => {
     expect(Answer.config.validation.firstName.empty?.message).toBe(
-      'Enter first name'
+      'Enter the first name of who will be the Slaughterman'
     )
 
     expect(Answer.config.validation.lastName.empty?.message).toBe(
-      'Enter last name'
+      'Enter the last name of who will be the Slaughterman'
     )
   })
 })
