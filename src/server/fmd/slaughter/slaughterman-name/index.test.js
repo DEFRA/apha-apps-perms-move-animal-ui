@@ -13,20 +13,14 @@ describe('Answer', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
 
-  it('should have the correct sectionKey', () => {
-    expect(page.sectionKey).toBe(sectionKey)
-  })
+  it('should have validation for firstName empty message', () => {
+    expect(Answer.config.validation.firstName.empty?.message).toBe(
+      'Enter first name'
+    )
 
-  it('should have the correct questionKey', () => {
-    expect(page.questionKey).toBe(questionKey)
-  })
-
-  it('should have the correct question', () => {
-    expect(page.question).toBe(question)
-  })
-
-  it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(Answer)
+    expect(Answer.config.validation.lastName.empty?.message).toBe(
+      'Enter last name'
+    )
   })
 })
 

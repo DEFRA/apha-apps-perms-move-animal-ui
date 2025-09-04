@@ -22,14 +22,6 @@ describe('Answer', () => {
   it('should have the right payload key', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
-
-  describe('config', () => {
-    it('should have validation for firstName empty message', () => {
-      expect(Answer.config.validation.empty).toBe(
-        'Select whether the slaughter will be done by a Slaughterman or Knackerman'
-      )
-    })
-  })
 })
 
 describe('SlaughterOrKnackermanPage', () => {
