@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { moveToSlaughterPage } from '../move-to-slaughter/index.js'
-import { movementOnExitPage } from '../movement-on-exit-page/index.js'
+import { movementOnExitPage } from '../movement-on-exit/index.js'
 import { typeOfAnimalsPage } from '../type-of-animals/index.js'
 import { responsibleMilkPage } from '../responsible-milk/index.js'
 
