@@ -24,7 +24,7 @@ describe('Answer', () => {
   })
 
   it('should have the correct character width', () => {
-    expect(Answer.config.characterWidth).toBe(10)
+    expect(Answer.config.characterWidth).toBe(20)
   })
 
   it('should have validation for empty input', () => {
@@ -38,6 +38,10 @@ describe('Answer', () => {
     expect(Answer.config.validation?.maxLength?.message).toBe(
       'Your answer must be no longer than 100 characters'
     )
+  })
+
+  it('should not use spellcheck', () => {
+    expect(Answer.config.spellcheck).toBe(false)
   })
 })
 

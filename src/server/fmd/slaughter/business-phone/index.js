@@ -12,7 +12,8 @@ export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
-    characterWidth: 10,
+    characterWidth: 20,
+    spellcheck: false,
     validation: {
       empty: {
         message:
