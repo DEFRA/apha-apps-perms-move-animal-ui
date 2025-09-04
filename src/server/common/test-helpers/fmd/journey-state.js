@@ -1,3 +1,6 @@
 export const aboutSectionComplete = {
-  mockQuestion: 'one'
+  movementActivityType: 'slaughter-onsite',
+  animalSlaughtered: 'cattle',
+  slaughteredNumber: 123,
+  animalIds: 'ear tags'
 }

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnimalIdsPage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="animalIds">
+      What are the identification (ID) numbers for the animals being moved?
+    </label>
+  </h1>
+  <div id="animalIds-hint" class="govuk-hint">
+    For example, ear tags, slap marks, or flock numbers. If the animals don't have ID numbers, enter N/A.
+  </div>
+  <textarea class="govuk-textarea" id="animalIds" name="animalIds" rows="8" aria-describedby="animalIds-hint"></textarea>
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
