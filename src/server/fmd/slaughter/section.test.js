@@ -26,7 +26,10 @@ describe('SlaughterInformationSection', () => {
   it('should only be enabled when "slaughter on site"', () => {
     expect(
       SlaughterInformationSection.config.isEnabled({
-        about: aboutSectionComplete
+        about: {
+          ...aboutSectionComplete,
+          movementActivityType: 'slaughter-onsite'
+        }
       })
     ).toBe(true)
 
