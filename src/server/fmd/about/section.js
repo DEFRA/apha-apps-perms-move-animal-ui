@@ -1,14 +1,26 @@
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { FmdSectionModel } from '../section-model.js'
+import { animalSlaughtered } from './animal-slaughtered/index.js'
 import { checkAnswers } from './check-answers/index.js'
-import { mockAboutPage, mockAbout } from './mock-page/index.js'
+import { animalIds } from './animal-ids/index.js'
+import {
+  movementActivityType,
+  movementActivityTypePage
+} from './movement-activity-type/index.js'
+import { slaughteredNumber } from './slaughtered-number/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-about',
     async register(server) {
-      await server.register([mockAbout, checkAnswers])
+      await server.register([
+        movementActivityType,
+        animalSlaughtered,
+        slaughteredNumber,
+        animalIds,
+        checkAnswers
+      ])
     }
   }
 }
@@ -24,5 +36,5 @@ export class AboutSection extends FmdSectionModel {
     isVisible: () => true
   }
 
-  static firstPageFactory = () => mockAboutPage
+  static firstPageFactory = () => movementActivityTypePage
 }
