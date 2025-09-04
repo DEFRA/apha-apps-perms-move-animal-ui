@@ -14,7 +14,7 @@ export class Answer extends RadioButtonAnswer {
   static config = {
     payloadKey: questionKey,
     options: {
-      'off-to-farm': { label: 'Movement on to a farm or premises' },
+      'on-to-farm': { label: 'Movement on to a farm or premises' },
       'off-of-farm': { label: 'Movement off a farm or premises' },
       'slaughter-onsite': {
         label: 'Slaughter of animals onsite',

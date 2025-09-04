@@ -65,7 +65,7 @@ describe('MovementActivityTypePage', () => {
       expect(nextPage).toBeInstanceOf(WhatIsMovingPage)
     })
 
-    it.each([['off-to-farm'], ['off-of-farm']])(
+    it.each([['on-to-farm'], ['off-of-farm']])(
       'should return WhatIsMovingPage for %s',
       (value) => {
         const answer = new Answer({ [questionKey]: value })
