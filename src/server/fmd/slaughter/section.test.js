@@ -1,3 +1,4 @@
+import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { SlaughterInformationSection } from './section.js'
 import { SlaughterOrKnackermanPage } from './slaughter-or-knackerman/index.js'
@@ -25,18 +26,15 @@ describe('SlaughterInformationSection', () => {
   it('should only be enabled when "slaughter on site"', () => {
     expect(
       SlaughterInformationSection.config.isEnabled({
-        about: {
-          movementActivityType: 'slaughter-onsite',
-          mockQuestion: 'one'
-        }
+        about: aboutSectionComplete
       })
     ).toBe(true)
 
     expect(
       SlaughterInformationSection.config.isEnabled({
         about: {
-          movementActivityType: 'slaughter-not-onsite',
-          mockQuestion: 'one'
+          ...aboutSectionComplete,
+          movementActivityType: 'slaughter-not-onsite'
         }
       })
     ).toBe(false)
