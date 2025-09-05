@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, numberKnackermanPage } from './index.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { SlaughterStubPage } from '../slaughter-stub/index.js'
+import { SlaughterDatePage } from '../slaughter-date/index.js'
 
 const sectionKey = 'slaughter'
 const questionKey = 'numberKnackerman'
@@ -65,9 +65,9 @@ describe('NumberKnackermanPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return SlaughterStubPage for any value', () => {
+    it('should return SlaughterDatePage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(SlaughterStubPage)
+      expect(nextPage).toBeInstanceOf(SlaughterDatePage)
     })
   })
 
