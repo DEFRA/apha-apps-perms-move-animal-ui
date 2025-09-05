@@ -3,8 +3,6 @@ import { FmdQuestionPageController } from '~/src/server/fmd/question-page-contro
 import { FullNameAnswer } from '~/src/server/common/model/answer/full-name/full-name.js'
 import { emailAddressPage } from '../email-address/index.js'
 
-// TEMPLATE-TODO: import next page
-
 /** @import { FullNameConfig } from '~/src/server/common/model/answer/full-name/full-name.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
