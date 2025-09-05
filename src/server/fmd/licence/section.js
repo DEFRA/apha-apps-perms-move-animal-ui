@@ -5,7 +5,10 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
-import { originResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
+import {
+  originResponsiblePersonName,
+  originResponsiblePersonNamePage
+} from './origin-responsible-person-name/index.js'
 import {
   registeredKeeperName,
   registeredKeeperNamePage
@@ -15,7 +18,12 @@ const plugin = {
   plugin: {
     name: 'fmd-licence',
     async register(server) {
-      await server.register([registeredKeeperName, emailAddress, checkAnswers])
+      await server.register([
+        registeredKeeperName,
+        originResponsiblePersonName,
+        emailAddress,
+        checkAnswers
+      ])
     }
   }
 }

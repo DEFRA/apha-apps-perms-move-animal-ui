@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#AboutExitPage AboutExitPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You do not need to apply for a licence to move milk</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p class="govuk-body">
+          The company collecting the milk may be responsible for the movement.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;

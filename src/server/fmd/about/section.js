@@ -14,6 +14,9 @@ import { moveToSlaughter } from './move-to-slaughter/index.js'
 import { typeOfAnimals } from './type-of-animals/index.js'
 import { numberOfAnimals } from './number-of-animals/index.js'
 import { movementOnExit } from './movement-on-exit/index.js'
+import { responsibleForMilkMovement } from './responsible-for-milk-movement/index.js'
+import { milkAnimal } from './milk-animal/index.js'
+import { licenceNotNeeded } from './licence-not-needed/index.js'
 
 const plugin = {
   plugin: {
@@ -29,6 +32,9 @@ const plugin = {
         typeOfAnimals,
         numberOfAnimals,
         movementOnExit,
+        responsibleForMilkMovement,
+        milkAnimal,
+        licenceNotNeeded,
         checkAnswers
       ])
     }

@@ -3,8 +3,8 @@ import { Answer, whatIsMovingPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { MoveToSlaughterPage } from '../move-to-slaughter/index.js'
 import { TypeOfAnimalsPage } from '../type-of-animals/index.js'
-import { ResponsibleMilkPage } from '../responsible-milk/index.js'
 import { MovementOnExitPage } from '../movement-on-exit/index.js'
+import { ResponsibleForMilkMovementPage } from '../responsible-for-milk-movement/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'whatIsMoving'
@@ -72,7 +72,7 @@ describe('WhatIsMovingPage', () => {
     it.each([
       ['live-animals', MoveToSlaughterPage],
       ['carcasses', TypeOfAnimalsPage],
-      ['milk', ResponsibleMilkPage]
+      ['milk', ResponsibleForMilkMovementPage]
     ])(
       'for %s should return %s for movements off the farm',
       (value, expectedPage) => {
