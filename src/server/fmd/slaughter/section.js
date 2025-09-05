@@ -6,6 +6,7 @@ import { businessNameKnackerman } from './business-name-knackerman/index.js'
 import { businessPhone } from './business-phone/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import { numberKnackerman } from './number-knackerman/index.js'
+import { slaughterDate } from './slaughter-date/index.js'
 import {
   slaughterOrKnackerman,
   slaughterOrKnackermanPage
@@ -22,7 +23,8 @@ const plugin = {
         slaughtermanName,
         numberKnackerman,
         businessNameKnackerman,
-        businessPhone
+        businessPhone,
+        slaughterDate
       ])
     }
   }

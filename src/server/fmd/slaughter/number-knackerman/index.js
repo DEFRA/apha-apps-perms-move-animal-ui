@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { slaughterStubPage } from '../slaughter-stub/index.js'
+import { slaughterDatePage } from '../slaughter-date/index.js'
 
 /** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -38,7 +38,7 @@ export class NumberKnackermanPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return slaughterStubPage
+    return slaughterDatePage
   }
 }
 
