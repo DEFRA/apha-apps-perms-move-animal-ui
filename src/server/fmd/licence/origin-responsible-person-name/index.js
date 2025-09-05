@@ -1,7 +1,7 @@
-import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 
 // STUB PAGE
-export class OriginResponsiblePersonNamePage extends QuestionPage {
+export class OriginResponsiblePersonNamePage extends ExitPage {
   urlPath = '/fmd/receiving-the-licence/name-of-person-responsible-at-origin'
 }
 
