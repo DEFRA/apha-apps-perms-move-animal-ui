@@ -3,6 +3,7 @@
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { disposalDate } from './disposal-date/index.js'
 import {
   disposalWholeAnimal,
   disposalWholeAnimalPage
@@ -12,7 +13,7 @@ const plugin = {
   plugin: {
     name: 'fmd-disposal',
     async register(server) {
-      await server.register([disposalWholeAnimal, checkAnswers])
+      await server.register([disposalWholeAnimal, disposalDate, checkAnswers])
     }
   }
 }

@@ -23,6 +23,7 @@ import {
 
 /**
  * export @typedef {{
+ *  isPageHeading?: boolean,
  *  hint: string,
  *  validation: {
  *    missingDate: { message: string },
@@ -185,12 +186,16 @@ export class DateAnswer extends AnswerModel {
             errors['date-year']?.text
         }
 
+    const isPageHeading = this.config.isPageHeading ?? true
+
     const viewModel = {
       fieldset: {
         legend: {
           text: question,
-          classes: 'govuk-fieldset__legend--l',
-          isPageHeading: true
+          classes: isPageHeading
+            ? 'govuk-fieldset__legend--l'
+            : 'govuk-fieldset__legend--m',
+          isPageHeading
         }
       },
       id: 'date',
