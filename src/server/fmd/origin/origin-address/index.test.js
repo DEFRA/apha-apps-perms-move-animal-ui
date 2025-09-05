@@ -2,6 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { originAddressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { MockOriginPage } from '../mock-page/index.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'originAddress'
@@ -31,10 +32,27 @@ describe('OriginAddressPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return MockOriginPage for any value', () => {
-      // commented deliberately please disregard for now
-      // const answer = new Answer(payload)
-      const nextPage = page.nextPage()
+    it('should return check answers page if moving milk', () => {
+      const nextPage = page.nextPage(
+        {},
+        {
+          about: {
+            whatIsMoving: 'milk'
+          }
+        }
+      )
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
+    })
+
+    it('should return MockOriginPage by default', () => {
+      const nextPage = page.nextPage(
+        {},
+        {
+          about: {
+            whatIsMoving: 'not milk'
+          }
+        }
+      )
       expect(nextPage).toBeInstanceOf(MockOriginPage)
     })
   })

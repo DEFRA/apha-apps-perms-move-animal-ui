@@ -2,6 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { mockOriginPage } from '../mock-page/index.js'
+import { checkAnswersPage } from '../check-answers/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -16,7 +17,11 @@ export class OriginAddressPage extends QuestionPage {
 
   Answer = AddressAnswer
 
-  nextPage() {
+  nextPage(_answer, context) {
+    if (context.about.whatIsMoving === 'milk') {
+      return checkAnswersPage
+    }
+
     return mockOriginPage
   }
 }
