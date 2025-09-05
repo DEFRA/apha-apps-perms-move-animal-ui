@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PremisesTypePage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        What type of premises is the origin?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="premisesType" name="premisesType" type="radio" value="farm">
+        <label class="govuk-label govuk-radios__label" for="premisesType">
+          farm
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="smallholding" name="premisesType" type="radio" value="smallholding" aria-describedby="smallholding-item-hint">
+        <label class="govuk-label govuk-radios__label" for="smallholding">
+          Smallholding or domestic residence
+        </label>
+        <div id="smallholding-item-hint" class="govuk-hint govuk-radios__hint">
+          A smallholding is typically under 50 acres
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="another" name="premisesType" type="radio" value="another">
+        <label class="govuk-label govuk-radios__label" for="another">
+          Another premises type
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

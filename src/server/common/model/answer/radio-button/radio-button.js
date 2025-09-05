@@ -50,7 +50,8 @@ const handleConfig = (context, config) => {
  *  validation: {
  *    empty: string
  *  }
- * layout?: RadioButtonLayout
+ * layout?: RadioButtonLayout,
+ * isQuestionHeading?: false
  * }} RadioButtonConfig
  */
 
@@ -133,7 +134,13 @@ export class RadioButtonAnswer extends AnswerModel {
    * @param {AnswerViewModelOptions} options
    */
   async viewModel({ validate, question }) {
-    const { options, payloadKey, layout, hint } = this.config
+    const {
+      options,
+      payloadKey,
+      layout,
+      hint,
+      isQuestionHeading = true
+    } = this.config
     const items = Object.entries(options).map(([key, value]) => ({
       id: key,
       value: key,
@@ -148,8 +155,10 @@ export class RadioButtonAnswer extends AnswerModel {
       fieldset: {
         legend: {
           text: question,
-          isPageHeading: true,
-          classes: 'govuk-fieldset__legend--l'
+          isPageHeading: isQuestionHeading,
+          classes: isQuestionHeading
+            ? 'govuk-fieldset__legend--l'
+            : 'govuk-fieldset__legend govuk-fieldset__legend--m'
         }
       },
       name: payloadKey,
