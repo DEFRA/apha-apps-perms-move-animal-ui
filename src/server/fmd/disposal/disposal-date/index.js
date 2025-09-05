@@ -62,10 +62,10 @@ export class DisposalDatePage extends QuestionPage {
   Answer = Answer
 
   /**
-   * @param {Answer} answer
+   * @param {Answer} _answer
    * @param {RawApplicationState} context
    */
-  nextPage(answer, context) {
+  nextPage(_answer, context) {
     if (context.disposal.disposalWholeAnimal === 'yes') {
       return carcassesDestinationPage
     }
