@@ -583,6 +583,52 @@ describe('DateAnswer.viewModel', () => {
       ]
     })
   })
+
+  it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {
+    /** @type {DateConfig} */
+    const dateConfigNotPageHeading = {
+      ...dateConfig,
+      isPageHeading: false
+    }
+
+    class NonPageHeadingDateAnswer extends DateAnswer {
+      static config = dateConfigNotPageHeading
+    }
+    const nonPageHeadingAnswer = new NonPageHeadingDateAnswer(validPayload)
+
+    expect(
+      await nonPageHeadingAnswer.viewModel({ validate: false, question })
+    ).toStrictEqual({
+      fieldset: {
+        legend: {
+          text: question,
+          classes: 'govuk-fieldset__legend--m',
+          isPageHeading: false
+        }
+      },
+      hint: {
+        text: hint
+      },
+      id: 'date',
+      items: [
+        {
+          classes: 'govuk-input--width-2',
+          name: 'day',
+          value: validPayload.day
+        },
+        {
+          classes: 'govuk-input--width-2',
+          name: 'month',
+          value: validPayload.month
+        },
+        {
+          classes: 'govuk-input--width-4',
+          name: 'year',
+          value: validPayload.year
+        }
+      ]
+    })
+  })
 })
 
 describe('DateAnswer.template', () => {
