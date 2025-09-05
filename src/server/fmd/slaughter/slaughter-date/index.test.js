@@ -51,31 +51,31 @@ describe('Answer', () => {
 
     it('should have correct invalidDay message', () => {
       expect(Answer.config.validation.invalidDay.message).toBe(
-        'Slaughter date must be a real date'
+        'Expected slaughter day must be a real date'
       )
     })
 
     it('should have correct invalidMonth message', () => {
       expect(Answer.config.validation.invalidMonth.message).toBe(
-        'Slaughter date must be a real date'
+        'Expected slaughter month must be a number between 1 and 12'
       )
     })
 
     it('should have correct invalidYear message', () => {
       expect(Answer.config.validation.invalidYear.message).toBe(
-        'Slaughter date must be a real date'
+        'Expected slaughter year must be a real date'
       )
     })
 
     it('should have correct nonFourDigitYear message', () => {
       expect(Answer.config.validation.nonFourDigitYear.message).toBe(
-        'Year must include 4 numbers'
+        'Expected slaughter year must include 4 numbers'
       )
     })
 
     it('should have correct invalidDate message', () => {
       expect(Answer.config.validation.invalidDate.message).toBe(
-        'Slaughter date must be a real date'
+        'Expected slaughter date must be a real date'
       )
     })
 

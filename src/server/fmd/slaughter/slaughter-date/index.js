@@ -7,7 +7,6 @@ import { checkAnswersPage } from '../check-answers/index.js'
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
 const questionKey = 'slaughterDate'
-const invalidEntryError = 'Slaughter date must be a real date'
 
 export class Answer extends DateAnswer {
   /** @type { DateConfig } */
@@ -26,15 +25,17 @@ export class Answer extends DateAnswer {
       missingYear: {
         message: 'Expected slaughter date must include a year'
       },
-      invalidDay: { message: invalidEntryError },
+      invalidDay: { message: 'Expected slaughter day must be a real date' },
       invalidMonth: {
-        message: invalidEntryError
+        message: 'Expected slaughter month must be a number between 1 and 12'
       },
-      invalidYear: { message: invalidEntryError },
+      invalidYear: { message: 'Expected slaughter year must be a real date' },
       nonFourDigitYear: {
-        message: 'Year must include 4 numbers'
+        message: 'Expected slaughter year must include 4 numbers'
       },
-      invalidDate: { message: 'Slaughter date must be a real date' },
+      invalidDate: {
+        message: 'Expected slaughter date must be a real date'
+      },
       pastDate: {
         message: 'Expected slaughter date must be in the future'
       }
