@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { MoveToSlaughterPage } from '../move-to-slaughter/index.js'
 import { TypeOfAnimalsPage } from '../type-of-animals/index.js'
 import { ResponsibleMilkPage } from '../responsible-milk/index.js'
-import { MovementOnExitPage } from '../movement-on-exit-page/index.js'
+import { MovementOnExitPage } from '../movement-on-exit/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'whatIsMoving'
