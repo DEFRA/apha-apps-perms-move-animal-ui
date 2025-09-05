@@ -2,7 +2,10 @@
 
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
+import { businessNameKnackerman } from './business-name-knackerman/index.js'
+import { businessPhone } from './business-phone/index.js'
 import { checkAnswers } from './check-answers/index.js'
+import { numberKnackerman } from './number-knackerman/index.js'
 import {
   slaughterOrKnackerman,
   slaughterOrKnackermanPage
@@ -16,7 +19,10 @@ const plugin = {
       await server.register([
         checkAnswers,
         slaughterOrKnackerman,
-        slaughtermanName
+        slaughtermanName,
+        numberKnackerman,
+        businessNameKnackerman,
+        businessPhone
       ])
     }
   }

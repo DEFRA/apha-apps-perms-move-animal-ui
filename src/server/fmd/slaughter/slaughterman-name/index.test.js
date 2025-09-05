@@ -1,6 +1,6 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, slaughtermanNamePage } from './index.js'
-import { SlaughterStubPage } from '../slaughter-stub/index.js'
+import { BusinessPhonePage } from '../business-phone/index.js'
 
 const sectionKey = 'slaughter'
 const questionKey = 'slaughtermanName'
@@ -48,7 +48,7 @@ describe('SlaughtermanNamePage', () => {
   describe('nextPage', () => {
     it('should return SlaughterStubPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(SlaughterStubPage)
+      expect(nextPage).toBeInstanceOf(BusinessPhonePage)
     })
   })
 

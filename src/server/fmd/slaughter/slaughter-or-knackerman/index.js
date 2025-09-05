@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { slaughterStubPage } from '../slaughter-stub/index.js'
 import { slaughtermanNamePage } from '../slaughterman-name/index.js'
+import { businessNameKnackermanPage } from '../business-name-knackerman/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -22,8 +22,7 @@ export class Answer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty:
-        'Select whether the slaughter will be done by a Slaughterman or Knackerman'
+      empty: 'Select who the slaughter will be done by'
     }
   }
 }
@@ -39,7 +38,7 @@ export class SlaughterOrKnackermanPage extends QuestionPage {
 
   nextPage(answer) {
     if (answer.value === 'knackerman') {
-      return slaughterStubPage
+      return businessNameKnackermanPage
     }
 
     return slaughtermanNamePage

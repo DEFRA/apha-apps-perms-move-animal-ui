@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { FullNameAnswer } from '~/src/server/common/model/answer/full-name/full-name.js'
-import { slaughterStubPage } from '../slaughter-stub/index.js'
+import { businessPhonePage } from '../business-phone/index.js'
 
 /** @import { FullNameConfig } from '~/src/server/common/model/answer/full-name/full-name.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -36,7 +36,7 @@ export class SlaughtermanNamePage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return slaughterStubPage
+    return businessPhonePage
   }
 }
 

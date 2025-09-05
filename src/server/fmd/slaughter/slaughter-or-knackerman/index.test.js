@@ -1,8 +1,8 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, slaughterOrKnackermanPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { SlaughterStubPage } from '../slaughter-stub/index.js'
 import { SlaughtermanNamePage } from '../slaughterman-name/index.js'
+import { BusinessNameKnackermanPage } from '../business-name-knackerman/index.js'
 
 const sectionKey = 'slaughter'
 const questionKey = 'slaughterOrKnackerman'
@@ -25,7 +25,7 @@ describe('Answer', () => {
 
   it('should have validation for no selection', () => {
     expect(Answer.config.validation.empty).toBe(
-      'Select whether the slaughter will be done by a Slaughterman or Knackerman'
+      'Select who the slaughter will be done by'
     )
   })
 })
@@ -53,7 +53,7 @@ describe('SlaughterOrKnackermanPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['knackerman', SlaughterStubPage],
+      ['knackerman', BusinessNameKnackermanPage],
       ['slaughterman', SlaughtermanNamePage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
