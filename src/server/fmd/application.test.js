@@ -6,6 +6,7 @@ import { LicenceSection } from './licence/section.js'
 import { MovementDetailsSection } from './movement-details/section.js'
 import { OriginSection } from './origin/section.js'
 import { SlaughterInformationSection } from './slaughter/section.js'
+import { DisposalSection } from './disposal/section.js'
 
 describe('FmdApplicationModel', () => {
   const model = new FmdApplicationModel({})
@@ -21,7 +22,8 @@ describe('FmdApplicationModel', () => {
       OriginSection,
       MovementDetailsSection,
       LicenceSection,
-      SlaughterInformationSection
+      SlaughterInformationSection,
+      DisposalSection
     ])
   })
 
