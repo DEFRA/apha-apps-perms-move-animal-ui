@@ -6,12 +6,19 @@ import { mockOrigin } from './mock-page/index.js'
 import { AboutSection } from '../about/section.js'
 import { tla, tlaPage } from './tla/index.js'
 import { premisesType, premisesTypePage } from './premises-type/index.js'
+import { cphNumber } from './cph-number/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-origin',
     async register(server) {
-      await server.register([checkAnswers, mockOrigin, tla, premisesType])
+      await server.register([
+        checkAnswers,
+        mockOrigin,
+        tla,
+        premisesType,
+        cphNumber
+      ])
     }
   }
 }

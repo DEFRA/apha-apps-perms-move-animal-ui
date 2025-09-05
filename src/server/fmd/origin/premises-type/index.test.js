@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, premisesTypePage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { mockOriginPage } from '../mock-page/index.js'
+import { CphNumberPage } from '../cph-number/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'premisesType'
@@ -147,14 +147,9 @@ describe('PremisesTypePage', () => {
   })
 
   describe('nextPage', () => {
-    it('should always return mockOriginPage', () => {
+    it('should return CphNumberPage regardless of answer value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBe(mockOriginPage)
-    })
-
-    it('should return mockOriginPage regardless of answer value', () => {
-      const nextPage = page.nextPage()
-      expect(nextPage).toBe(mockOriginPage)
+      expect(nextPage).toBeInstanceOf(CphNumberPage)
     })
   })
 
