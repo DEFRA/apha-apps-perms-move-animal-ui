@@ -1,16 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { cphNumberPage } from './index.js'
-import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
-import { OriginAddressPage } from '../origin-address/index.js'
+import { originAddressPage } from './index.js'
+import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
+import { MockOriginPage } from '../mock-page/index.js'
 
 const sectionKey = 'origin'
-const questionKey = 'cphNumber'
-const pageUrl = '/fmd/movement-origin/cph-number'
-const page = cphNumberPage
-const question =
-  'What is the county parish holding (CPH) number of the origin premises?'
+const questionKey = 'originAddress'
+const pageUrl = '/fmd/movement-origin/address'
+const page = originAddressPage
+const question = 'What is the origin premises address?'
 
-describe('CphNumberPage', () => {
+describe('OriginAddressPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -28,13 +27,15 @@ describe('CphNumberPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(CphNumberAnswer)
+    expect(page.Answer).toBe(AddressAnswer)
   })
 
   describe('nextPage', () => {
-    it('should return OriginAddressPage for any value', () => {
+    it('should return MockOriginPage for any value', () => {
+      // commented deliberately please disregard for now
+      // const answer = new Answer(payload)
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(OriginAddressPage)
+      expect(nextPage).toBeInstanceOf(MockOriginPage)
     })
   })
 

@@ -7,6 +7,7 @@ import { AboutSection } from '../about/section.js'
 import { tla, tlaPage } from './tla/index.js'
 import { premisesType, premisesTypePage } from './premises-type/index.js'
 import { cphNumber } from './cph-number/index.js'
+import { originAddress } from './origin-address/index.js'
 
 const plugin = {
   plugin: {
@@ -17,7 +18,8 @@ const plugin = {
         mockOrigin,
         tla,
         premisesType,
-        cphNumber
+        cphNumber,
+        originAddress
       ])
     }
   }

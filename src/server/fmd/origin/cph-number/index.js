@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
-import { mockOriginPage } from '../mock-page/index.js'
+import { originAddressPage } from '../origin-address/index.js'
 
 /** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -19,7 +19,7 @@ export class CphNumberPage extends QuestionPage {
   Answer = CphNumberAnswer
 
   nextPage() {
-    return mockOriginPage
+    return originAddressPage
   }
 }
 
