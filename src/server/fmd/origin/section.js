@@ -2,13 +2,16 @@
 
 import { checkAnswers } from './check-answers/index.js'
 import { FmdSectionModel } from '../section-model.js'
-import { mockOrigin, mockOriginPage } from './mock-page/index.js'
+import { mockOrigin } from './mock-page/index.js'
+import { AboutSection } from '../about/section.js'
+import { tla, tlaPage } from './tla/index.js'
+import { premisesType, premisesTypePage } from './premises-type/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-origin',
     async register(server) {
-      await server.register([checkAnswers, mockOrigin])
+      await server.register([checkAnswers, mockOrigin, tla, premisesType])
     }
   }
 }
@@ -20,9 +23,14 @@ export class OriginSection extends FmdSectionModel {
     title: 'Movement origin',
     plugin,
     summaryLink: '/fmd/movement-origin/check-answers',
-    isEnabled: () => false,
-    isVisible: () => false
+    isEnabled: (context) => AboutSection.fromState(context).validate().isValid,
+    isVisible: () => true
   }
 
-  static firstPageFactory = () => mockOriginPage
+  static firstPageFactory = (context) => {
+    if (context.about?.whatIsMoving === 'milk') {
+      return premisesTypePage
+    }
+    return tlaPage
+  }
 }

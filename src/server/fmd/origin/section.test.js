@@ -1,6 +1,7 @@
 import { checkAnswersPage } from './check-answers/index.js'
-import { MockOriginPage } from './mock-page/index.js'
+import { PremisesTypePage } from './premises-type/index.js'
 import { OriginSection } from './section.js'
+import { TlaPage } from './tla/index.js'
 
 describe('OriginSection', () => {
   it('should have the correct configuration', () => {
@@ -12,12 +13,21 @@ describe('OriginSection', () => {
     expect(OriginSection.config.summaryLink).toBe(checkAnswersPage.urlPath)
   })
 
-  it('should have the correct first page', () => {
-    expect(OriginSection.firstPageFactory()).toBeInstanceOf(MockOriginPage)
+  it.each([
+    ['milk', PremisesTypePage],
+    ['not-milk', TlaPage]
+  ])('should have the correct start page', (value, expectedPage) => {
+    expect(
+      OriginSection.firstPageFactory({
+        about: {
+          whatIsMoving: value
+        }
+      })
+    ).toBeInstanceOf(expectedPage)
   })
 
   it('should not be visible', () => {
-    expect(OriginSection.config.isVisible({})).toBe(false)
+    expect(OriginSection.config.isVisible({})).toBe(true)
   })
 
   it('should not be enabled', () => {
