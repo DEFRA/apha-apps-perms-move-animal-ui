@@ -1,0 +1,15 @@
+{% extends 'layouts/page.njk' %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>They can only move to one of the following places:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Rendering plant</li>
+          <li>Incinerator</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

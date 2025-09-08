@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#DisposalExitPage DisposalExitPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">You must dispose of carcasses at certain locations</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>They can only move to one of the following places:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Knacker's yard</li>
+          <li>Rendering plant</li>
+          <li>Incinerator</li>
+          <li>Hunt kennel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+        "
+`;
