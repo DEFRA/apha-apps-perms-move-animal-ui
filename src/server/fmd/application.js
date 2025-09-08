@@ -3,7 +3,7 @@ import { AboutSection } from './about/section.js'
 import { DestinationSection } from './destination/section.js'
 import { DisposalSection } from './disposal/section.js'
 import { LicenceSection } from './licence/section.js'
-import { MovementDetailsSection } from './movement-details/section.js'
+import { MovementDetailsSection } from './movement/section.js'
 import { OriginSection } from './origin/section.js'
 import { SlaughterInformationSection } from './slaughter/section.js'
 

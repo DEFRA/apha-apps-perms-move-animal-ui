@@ -4,7 +4,11 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
-import { maximumDaysAnimals } from './maximum-days-animals/index.js'
+import { maxJourneys } from './max-journeys/index.js'
+import {
+  maximumDaysAnimals,
+  maximumDaysAnimalsPage
+} from './maximum-days-animals/index.js'
 import {
   mockMovementDetails,
   mockMovementDetailsPage
@@ -18,7 +22,8 @@ const plugin = {
         mockMovementDetails,
         checkAnswers,
         disposalDate,
-        maximumDaysAnimals
+        maximumDaysAnimals,
+        maxJourneys
       ])
     }
   }
@@ -44,7 +49,7 @@ export class MovementDetailsSection extends FmdSectionModel {
     }
 
     if (context.about?.whatIsMoving === 'live-animals') {
-      return mockMovementDetailsPage
+      return maximumDaysAnimalsPage
     }
 
     return disposalDatePage

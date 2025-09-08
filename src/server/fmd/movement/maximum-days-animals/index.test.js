@@ -1,9 +1,9 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, maximumDaysAnimalsPage } from './index.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { MockMovementDetailsPage } from '../mock-page/index.js'
+import { MaxJourneysPage } from '../max-journeys/index.js'
 
-const sectionKey = 'movementDetails'
+const sectionKey = 'movement'
 const questionKey = 'maximumDaysAnimals'
 const pageUrl = '/fmd/movement-details/number-of-days'
 const page = maximumDaysAnimalsPage
@@ -56,9 +56,9 @@ describe('MaximumDaysAnimalsPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return MockMovementDetailsPage for any value', () => {
+    it('should return MaxJourneysPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MockMovementDetailsPage)
+      expect(nextPage).toBeInstanceOf(MaxJourneysPage)
     })
   })
 

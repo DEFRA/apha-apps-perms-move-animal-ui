@@ -6,7 +6,7 @@ import { mockMovementDetailsPage } from '../mock-page/index.js'
 /** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'maximumDaysAnimals'
+const questionKey = 'maxJourneys'
 
 export class Answer extends NumberAnswer {
   /** @type { NumberConfig } */
@@ -15,18 +15,20 @@ export class Answer extends NumberAnswer {
     characterWidth: 10,
     validation: {
       empty: {
-        message: 'Enter the maximum number of days needed to move the animals'
+        message:
+          'Enter the maximum of journeys or consignments needed to move the animals'
       }
     }
   }
 }
 
-export class MaximumDaysAnimalsPage extends QuestionPage {
-  urlPath = '/fmd/movement-details/number-of-days'
+export class MaxJourneysPage extends QuestionPage {
+  urlPath = '/fmd/movement-details/number-of-journeys'
 
   questionKey = questionKey
-  sectionKey = 'movementDetails'
-  question = 'What are the maximum number of days needed to move the animals?'
+  sectionKey = 'movement'
+  question =
+    'What are the maximum number of journeys or consignments needed to move the animals?'
 
   Answer = Answer
 
@@ -35,9 +37,9 @@ export class MaximumDaysAnimalsPage extends QuestionPage {
   }
 }
 
-export const maximumDaysAnimalsPage = new MaximumDaysAnimalsPage()
+export const maxJourneysPage = new MaxJourneysPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const maximumDaysAnimals = new FmdQuestionPageController(
-  maximumDaysAnimalsPage
+export const maxJourneys = new FmdQuestionPageController(
+  maxJourneysPage
 ).plugin()

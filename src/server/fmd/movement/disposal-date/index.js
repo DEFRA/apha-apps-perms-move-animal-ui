@@ -50,7 +50,7 @@ export class DisposalDatePage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'movement'
   question = 'What date do you expect the disposal to take place?'
-  view = 'fmd/movement-details/disposal-date/index.njk'
+  view = 'fmd/movement/disposal-date/index.njk'
 
   Answer = Answer
 

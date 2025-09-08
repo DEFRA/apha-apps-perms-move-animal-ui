@@ -1,6 +1,7 @@
 import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { DisposalDatePage } from './disposal-date/index.js'
+import { MaximumDaysAnimalsPage } from './maximum-days-animals/index.js'
 import { MockMovementDetailsPage } from './mock-page/index.js'
 import { MovementDetailsSection } from './section.js'
 
@@ -18,7 +19,7 @@ describe('MovementDetailsSection', () => {
 
   it.each([
     ['milk', MockMovementDetailsPage],
-    ['live-animals', MockMovementDetailsPage],
+    ['live-animals', MaximumDaysAnimalsPage],
     ['carcasses', DisposalDatePage]
   ])(
     'should have the correct first page for %s and should return %s',
