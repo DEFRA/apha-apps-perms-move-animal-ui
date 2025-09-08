@@ -7,8 +7,8 @@ exports[`#AboutExitPage AboutExitPage.content should render expected response an
       <h1 class="govuk-heading-l">You can only move live animals onsite</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p class="govuk-body">
-          For foot and mouth disease, you can only apply to move live animals to
-          slaughter.
+          To move carcasses or milk, you can apply for a movement off a farm or
+          premises.
         </p>
       </div>
     </div>
