@@ -31,11 +31,11 @@ describe('OriginSection', () => {
     expect(OriginSection.config.isVisible({})).toBe(true)
   })
 
-  it('should not be enabled', () => {
+  it('should not be enabled when about section is incompelte', () => {
     expect(OriginSection.config.isEnabled({})).toBe(false)
   })
 
-  it('should be enabled', () => {
+  it('should be enabled when about section is compelte', () => {
     expect(
       OriginSection.config.isEnabled({
         about: aboutSectionComplete
