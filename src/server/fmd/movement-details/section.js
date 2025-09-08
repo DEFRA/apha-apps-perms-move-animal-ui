@@ -4,6 +4,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
+import { maximumDaysAnimals } from './maximum-days-animals/index.js'
 import {
   mockMovementDetails,
   mockMovementDetailsPage
@@ -13,7 +14,12 @@ const plugin = {
   plugin: {
     name: 'fmd-movementDetails',
     async register(server) {
-      await server.register([mockMovementDetails, checkAnswers, disposalDate])
+      await server.register([
+        mockMovementDetails,
+        checkAnswers,
+        disposalDate,
+        maximumDaysAnimals
+      ])
     }
   }
 }
