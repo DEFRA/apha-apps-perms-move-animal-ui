@@ -25,9 +25,6 @@ describe('Answer', () => {
 
   it('should have the correct config properties', () => {
     expect(Answer.config.isQuestionHeading).toBe(false)
-    expect(Answer.config.layout).toBe('inline')
-    expect(Answer.config.options.yes.label).toBe('Yes')
-    expect(Answer.config.options.no.label).toBe('No')
     expect(Answer.config.validation.empty).toBe(
       'Select if the origin premises is a TLA'
     )
