@@ -1,9 +1,9 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { originAddressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
-import { MockOriginPage } from '../mock-page/index.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
 import { GridRefPage } from '../grid-ref/index.js'
+import { WhatAnimalsPage } from '../what-animals/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'originAddress'
@@ -45,7 +45,7 @@ describe('OriginAddressPage', () => {
       expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
 
-    it('should return MockOriginPage by default', () => {
+    it('should return WhatAnimalsPage by default', () => {
       const nextPage = page.nextPage(
         {},
         {
@@ -55,7 +55,7 @@ describe('OriginAddressPage', () => {
           }
         }
       )
-      expect(nextPage).toBeInstanceOf(MockOriginPage)
+      expect(nextPage).toBeInstanceOf(WhatAnimalsPage)
     })
 
     it('should return the correct next page when slaughter on site', () => {

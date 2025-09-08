@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { mockOriginPage } from '../mock-page/index.js'
 import { premisesTypePage } from '../premises-type/index.js'
+import { tcphNumberPage } from '../tcph-number/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -42,7 +42,7 @@ export class TlaPage extends QuestionPage {
     if (answer.value === 'no') {
       return premisesTypePage
     }
-    return mockOriginPage
+    return tcphNumberPage
   }
 }
 

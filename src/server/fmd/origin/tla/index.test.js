@@ -1,8 +1,8 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, tlaPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { MockOriginPage } from '../mock-page/index.js'
 import { PremisesTypePage } from '../premises-type/index.js'
+import { TcphNumberPage } from '../tcph-number/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'tla'
@@ -54,7 +54,7 @@ describe('TLaPage', () => {
 
   describe('nextPage', () => {
     it.each([
-      ['yes', MockOriginPage],
+      ['yes', TcphNumberPage],
       ['no', PremisesTypePage]
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })

@@ -1,9 +1,9 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
-import { mockOriginPage } from '../mock-page/index.js'
 import { checkAnswersPage } from '../check-answers/index.js'
 import { gridRefPage } from '../grid-ref/index.js'
+import { whatAnimalsPage } from '../what-animals/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -30,7 +30,7 @@ export class OriginAddressPage extends QuestionPage {
       return gridRefPage
     }
 
-    return mockOriginPage
+    return whatAnimalsPage
   }
 }
 

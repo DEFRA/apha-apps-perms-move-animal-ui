@@ -2,7 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { Answer, whatAnimalsPage } from './index.js'
 import { CheckboxAnswer } from '~/src/server/common/model/answer/checkbox/checkbox.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
-import { MockOriginPage } from '../mock-page/index.js'
+import { ClovenHoovedPage } from '../cloven-hooved/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'whatAnimals'
@@ -62,12 +62,12 @@ describe('WhatAnimalsPage', () => {
       expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
 
-    it('should return MockOriginPage page for any value except other', () => {
+    it('should return ClovenHoovedPage page for any value except other', () => {
       const answer = new Answer({
         [questionKey]: ['other']
       })
       const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(MockOriginPage)
+      expect(nextPage).toBeInstanceOf(ClovenHoovedPage)
     })
   })
 

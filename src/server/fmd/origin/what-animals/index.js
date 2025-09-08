@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { CheckboxAnswer } from '~/src/server/common/model/answer/checkbox/checkbox.js'
 import { checkAnswersPage } from '../check-answers/index.js'
-import { mockOriginPage } from '../mock-page/index.js'
+import { clovenHoovedPage } from '../cloven-hooved/index.js'
 
 /** @import { CheckboxConfig } from '~/src/server/common/model/answer/checkbox/checkbox.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -60,7 +60,7 @@ export class WhatAnimalsPage extends QuestionPage {
 
   nextPage(answer) {
     if (answer.value.includes('other')) {
-      return mockOriginPage
+      return clovenHoovedPage
     }
 
     return checkAnswersPage

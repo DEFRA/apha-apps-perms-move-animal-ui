@@ -1,8 +1,8 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { tcphNumberPage } from './index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
-import { MockOriginPage } from '../mock-page/index.js'
 import { GridRefPage } from '../grid-ref/index.js'
+import { WhatAnimalsPage } from '../what-animals/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'tcphNumber'
@@ -75,7 +75,7 @@ describe('TcphNumberPage', () => {
       expect(nextPage).toBeInstanceOf(GridRefPage)
     })
 
-    it('should return the correct next page when when neither  slaughter on site or carcasses', () => {
+    it('should return the WhatAnimalsPage page when when neither slaughter on site or carcasses', () => {
       const nextPage = page.nextPage(
         {},
         {
@@ -85,7 +85,7 @@ describe('TcphNumberPage', () => {
           }
         }
       )
-      expect(nextPage).toBeInstanceOf(MockOriginPage)
+      expect(nextPage).toBeInstanceOf(WhatAnimalsPage)
     })
   })
 
