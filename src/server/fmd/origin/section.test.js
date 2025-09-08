@@ -1,3 +1,4 @@
+import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { PremisesTypePage } from './premises-type/index.js'
 import { OriginSection } from './section.js'
@@ -32,5 +33,13 @@ describe('OriginSection', () => {
 
   it('should not be enabled', () => {
     expect(OriginSection.config.isEnabled({})).toBe(false)
+  })
+
+  it('should be enabled', () => {
+    expect(
+      OriginSection.config.isEnabled({
+        about: aboutSectionComplete
+      })
+    ).toBe(true)
   })
 })
