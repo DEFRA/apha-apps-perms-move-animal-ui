@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, gridRefPage } from './index.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { MockOriginPage } from '../mock-page/index.js'
+import { WhatAnimalsPage } from '../what-animals/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'gridRef'
@@ -71,7 +71,7 @@ describe('GridRefPage', () => {
   describe('nextPage', () => {
     it('should return MockOriginPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MockOriginPage)
+      expect(nextPage).toBeInstanceOf(WhatAnimalsPage)
     })
   })
 

@@ -10,6 +10,7 @@ import { cphNumber } from './cph-number/index.js'
 import { originAddress } from './origin-address/index.js'
 import { gridRef } from './grid-ref/index.js'
 import { tcphNumber } from './tcph-number/index.js'
+import { whatAnimals } from './what-animals/index.js'
 
 const plugin = {
   plugin: {
@@ -23,7 +24,8 @@ const plugin = {
         cphNumber,
         originAddress,
         gridRef,
-        tcphNumber
+        tcphNumber,
+        whatAnimals
       ])
     }
   }

@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { TextAreaAnswer } from '~/src/server/common/model/answer/text-area/text-area.js'
-import { mockOriginPage } from '../mock-page/index.js'
+import { whatAnimalsPage } from '../what-animals/index.js'
 
 /** @import { TextAreaConfig } from '~/src/server/common/model/answer/text-area/text-area.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -36,7 +36,7 @@ export class GridRefPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return mockOriginPage
+    return whatAnimalsPage
   }
 }
 
