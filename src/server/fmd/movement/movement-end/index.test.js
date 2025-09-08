@@ -1,13 +1,13 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, movementStartPage } from './index.js'
+import { Answer, movementEndPage } from './index.js'
 import { DateAnswer } from '~/src/server/common/model/answer/date/date.js'
-import { MovementEndPage } from '../movement-end/index.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'movement'
-const questionKey = 'movementStart'
-const pageUrl = '/fmd/movement-details/start-date'
-const page = movementStartPage
-const question = 'What date does your movement start?'
+const questionKey = 'movementEnd'
+const pageUrl = '/fmd/movement-details/end-date'
+const page = movementEndPage
+const question = 'What date does your movement end?'
 
 const payload = {
   day: '01',
@@ -21,10 +21,6 @@ describe('Answer', () => {
   })
 
   describe('config validation options', () => {
-    it('should not be page heading', () => {
-      expect(Answer.config.isPageHeading).toBe(false)
-    })
-
     it('should have hint text', () => {
       expect(Answer.config.hint).toBe('For example, 7 3 2025')
     })
@@ -37,60 +33,64 @@ describe('Answer', () => {
 
     it('should have missing day validation message', () => {
       expect(Answer.config.validation.missingDay).toEqual({
-        message: 'Movement start date must include a day'
+        message: 'Movement end date must include a day'
       })
     })
 
     it('should have missing month validation message', () => {
       expect(Answer.config.validation.missingMonth).toEqual({
-        message: 'Movement start date must include a month'
+        message: 'Movement end date must include a month'
       })
     })
 
     it('should have missing year validation message', () => {
       expect(Answer.config.validation.missingYear).toEqual({
-        message: 'Movement start date must include a year'
+        message: 'Movement end date must include a year'
       })
     })
 
     it('should have invalid day validation message', () => {
       expect(Answer.config.validation.invalidDay).toEqual({
-        message: 'Movement start day must be a real date'
+        message: 'Movement end day must be a real date'
       })
     })
 
     it('should have invalid month validation message', () => {
       expect(Answer.config.validation.invalidMonth).toEqual({
-        message: 'Movement start month must be a number between 1 and 12'
+        message: 'Movement end month must be a number between 1 and 12'
       })
     })
 
     it('should have invalid year validation message', () => {
       expect(Answer.config.validation.invalidYear).toEqual({
-        message: 'Movement start year must be a real date'
+        message: 'Movement end year must be a real date'
       })
     })
 
     it('should have non four digit year validation message', () => {
       expect(Answer.config.validation.nonFourDigitYear).toEqual({
-        message: 'Movement start year must include 4 numbers'
+        message: 'Movement end year must include 4 numbers'
       })
     })
 
     it('should have invalid date validation message', () => {
       expect(Answer.config.validation.invalidDate).toEqual({
-        message: 'Movement start date must be a real date'
+        message: 'Movement end date must be a real date'
       })
     })
 
     it('should have past date validation message', () => {
       expect(Answer.config.validation.pastDate).toEqual({
-        message: 'Movement start date must be in the future'
+        message: 'Movement end date must be in the future'
       })
     })
 
     it('should not have future date validation', () => {
       expect(Answer.config.validation.futureDate).toBeUndefined()
+    })
+
+    it('should not explicitly set isPageHeading (defaults to true)', () => {
+      expect(Answer.config.isPageHeading).toBeUndefined()
     })
   })
 
@@ -125,7 +125,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-day'].text).toBe(
-        'Movement start date must include a day'
+        'Movement end date must include a day'
       )
     })
 
@@ -134,7 +134,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-month'].text).toBe(
-        'Movement start date must include a month'
+        'Movement end date must include a month'
       )
     })
 
@@ -143,7 +143,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-year'].text).toBe(
-        'Movement start date must include a year'
+        'Movement end date must include a year'
       )
     })
 
@@ -152,7 +152,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-day'].text).toBe(
-        'Movement start day must be a real date'
+        'Movement end day must be a real date'
       )
     })
 
@@ -161,7 +161,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-day'].text).toBe(
-        'Movement start day must be a real date'
+        'Movement end day must be a real date'
       )
     })
 
@@ -170,7 +170,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-month'].text).toBe(
-        'Movement start month must be a number between 1 and 12'
+        'Movement end month must be a number between 1 and 12'
       )
     })
 
@@ -179,7 +179,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-month'].text).toBe(
-        'Movement start month must be a number between 1 and 12'
+        'Movement end month must be a number between 1 and 12'
       )
     })
 
@@ -188,7 +188,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-year'].text).toBe(
-        'Movement start year must be a real date'
+        'Movement end year must be a real date'
       )
     })
 
@@ -197,7 +197,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-year'].text).toBe(
-        'Movement start year must include 4 numbers'
+        'Movement end year must include 4 numbers'
       )
     })
 
@@ -206,7 +206,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-day'].text).toBe(
-        'Movement start date must be a real date'
+        'Movement end date must be a real date'
       )
     })
 
@@ -215,7 +215,7 @@ describe('Answer', () => {
       const result = answer.validate()
       expect(result.isValid).toBe(false)
       expect(result.errors['date-day'].text).toBe(
-        'Movement start date must be in the future'
+        'Movement end date must be in the future'
       )
     })
 
@@ -228,7 +228,7 @@ describe('Answer', () => {
   })
 })
 
-describe('MovementStartPage', () => {
+describe('MovementEndPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -250,9 +250,9 @@ describe('MovementStartPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return MovementEndPage for any value', () => {
+    it('should return CheckAnswersPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MovementEndPage)
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
   })
 

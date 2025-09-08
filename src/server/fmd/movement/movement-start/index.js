@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { DateAnswer } from '~/src/server/common/model/answer/date/date.js'
-import { mockMovementDetailsPage } from '../mock-page/index.js'
+import { movementEndPage } from '../movement-end/index.js'
 
 /** @import { DateConfig } from '~/src/server/common/model/answer/date/date.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -55,7 +55,7 @@ export class MovementStartPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return mockMovementDetailsPage
+    return movementEndPage
   }
 }
 

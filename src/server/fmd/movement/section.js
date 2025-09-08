@@ -13,6 +13,7 @@ import {
   mockMovementDetails,
   mockMovementDetailsPage
 } from './mock-page/index.js'
+import { movementEnd } from './movement-end/index.js'
 import { movementStart } from './movement-start/index.js'
 
 const plugin = {
@@ -25,7 +26,8 @@ const plugin = {
         disposalDate,
         maximumDaysAnimals,
         maxJourneys,
-        movementStart
+        movementStart,
+        movementEnd
       ])
     }
   }
