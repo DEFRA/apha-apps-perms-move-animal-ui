@@ -1,22 +1,22 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { destinationContactNumberPage } from '../destination-contact-number/index.js'
+import { checkAnswersPage } from '../check-answers/index.js'
 
 /** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'destinationBusinessName'
+const questionKey = 'destinationContactNumber'
 
 export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
     spellcheck: false,
-    characterWidth: 20,
+    characterWidth: 10,
     validation: {
       empty: {
-        message: "Enter the destination's business name"
+        message: "Enter the destination's contact number"
       },
       maxLength: {
         value: 100,
@@ -26,23 +26,23 @@ export class Answer extends TextAnswer {
   }
 }
 
-export class DestinationBusinessNamePage extends QuestionPage {
-  urlPath = '/fmd/disposal-of-animals/destination-business-name'
+export class DestinationContactNumberPage extends QuestionPage {
+  urlPath = '/fmd/disposal-of-animals/destination-contact-number'
 
   questionKey = questionKey
   sectionKey = 'disposal'
-  question = 'What is the destination’s business name?'
+  question = 'What is the contact phone number for the destination business?'
 
   Answer = Answer
 
   nextPage() {
-    return destinationContactNumberPage
+    return checkAnswersPage
   }
 }
 
-export const destinationBusinessNamePage = new DestinationBusinessNamePage()
+export const destinationContactNumberPage = new DestinationContactNumberPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const destinationBusinessName = new FmdQuestionPageController(
-  destinationBusinessNamePage
+export const destinationContactNumber = new FmdQuestionPageController(
+  destinationContactNumberPage
 ).plugin()

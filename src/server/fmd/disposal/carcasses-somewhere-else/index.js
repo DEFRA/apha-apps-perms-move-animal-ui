@@ -18,7 +18,7 @@ export const carcassesSomewhereElseExitPage =
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const CarcassesSomewhereElse = new PageController(
+export const carcassesSomewhereElse = new PageController(
   carcassesSomewhereElseExitPage,
   {
     methods: ['GET']

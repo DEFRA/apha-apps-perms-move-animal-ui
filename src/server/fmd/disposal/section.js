@@ -5,8 +5,10 @@ import { FmdSectionModel } from '../section-model.js'
 import { abpSomewhereElse } from './abp-somewhere-else/index.js'
 import { animalByProductsDestination } from './animal-by-products-destination/index.js'
 import { carcassesDestination } from './carcasses-destination/index.js'
-import { CarcassesSomewhereElse } from './carcasses-somewhere-else/index.js'
+import { carcassesSomewhereElse } from './carcasses-somewhere-else/index.js'
 import { checkAnswers } from './check-answers/index.js'
+import { destinationBusinessName } from './destination-business-name/index.js'
+import { destinationContactNumber } from './destination-contact-number/index.js'
 import { disposalDate } from './disposal-date/index.js'
 import {
   disposalWholeAnimal,
@@ -23,7 +25,9 @@ const plugin = {
         animalByProductsDestination,
         abpSomewhereElse,
         carcassesDestination,
-        CarcassesSomewhereElse,
+        carcassesSomewhereElse,
+        destinationBusinessName,
+        destinationContactNumber,
         checkAnswers
       ])
     }
