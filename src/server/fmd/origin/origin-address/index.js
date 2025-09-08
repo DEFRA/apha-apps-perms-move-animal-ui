@@ -22,6 +22,13 @@ export class OriginAddressPage extends QuestionPage {
       return checkAnswersPage
     }
 
+    if (
+      context.about.movementActivityType === 'slaughter-onsite' ||
+      context.about.whatIsMoving === 'carcasses'
+    ) {
+      return mockOriginPage
+    }
+
     return mockOriginPage
   }
 }

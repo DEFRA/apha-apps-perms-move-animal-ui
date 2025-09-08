@@ -26,7 +26,7 @@ describe('OriginSection', () => {
     ).toBeInstanceOf(expectedPage)
   })
 
-  it('should not be visible', () => {
+  it('should be visible', () => {
     expect(OriginSection.config.isVisible({})).toBe(true)
   })
 
