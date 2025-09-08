@@ -3,6 +3,7 @@ import { originAddressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { MockOriginPage } from '../mock-page/index.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
+import { GridRefPage } from '../grid-ref/index.js'
 
 const sectionKey = 'origin'
 const questionKey = 'originAddress'
@@ -49,11 +50,37 @@ describe('OriginAddressPage', () => {
         {},
         {
           about: {
-            whatIsMoving: 'not milk'
+            whatIsMoving: 'not milk or carcass',
+            movementActivityType: 'not carcass or fslaughter-onsite'
           }
         }
       )
       expect(nextPage).toBeInstanceOf(MockOriginPage)
+    })
+
+    it('should return the correct next page when slaughter on site', () => {
+      const nextPage = page.nextPage(
+        {},
+        {
+          about: {
+            whatIsMoving: 'not milk',
+            movementActivityType: 'slaughter-onsite'
+          }
+        }
+      )
+      expect(nextPage).toBeInstanceOf(GridRefPage)
+    })
+
+    it('should return the correct next page when carcasses', () => {
+      const nextPage = page.nextPage(
+        {},
+        {
+          about: {
+            whatIsMoving: 'carcasses'
+          }
+        }
+      )
+      expect(nextPage).toBeInstanceOf(GridRefPage)
     })
   })
 

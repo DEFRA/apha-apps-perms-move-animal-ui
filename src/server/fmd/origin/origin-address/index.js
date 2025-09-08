@@ -3,6 +3,7 @@ import { FmdQuestionPageController } from '~/src/server/fmd/question-page-contro
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { mockOriginPage } from '../mock-page/index.js'
 import { checkAnswersPage } from '../check-answers/index.js'
+import { gridRefPage } from '../grid-ref/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -26,7 +27,7 @@ export class OriginAddressPage extends QuestionPage {
       context.about.movementActivityType === 'slaughter-onsite' ||
       context.about.whatIsMoving === 'carcasses'
     ) {
-      return mockOriginPage
+      return gridRefPage
     }
 
     return mockOriginPage

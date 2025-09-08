@@ -8,6 +8,8 @@ import { tla, tlaPage } from './tla/index.js'
 import { premisesType, premisesTypePage } from './premises-type/index.js'
 import { cphNumber } from './cph-number/index.js'
 import { originAddress } from './origin-address/index.js'
+import { gridRef } from './grid-ref/index.js'
+import { tcphNumber } from './tcph-number/index.js'
 
 const plugin = {
   plugin: {
@@ -19,7 +21,9 @@ const plugin = {
         tla,
         premisesType,
         cphNumber,
-        originAddress
+        originAddress,
+        gridRef,
+        tcphNumber
       ])
     }
   }
