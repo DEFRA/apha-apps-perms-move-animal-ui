@@ -7,6 +7,8 @@ import { animalByProductsDestination } from './animal-by-products-destination/in
 import { carcassesDestination } from './carcasses-destination/index.js'
 import { CarcassesSomewhereElse } from './carcasses-somewhere-else/index.js'
 import { checkAnswers } from './check-answers/index.js'
+import { destinationBusinessName } from './destination-business-name/index.js'
+import { destinationContactNumber } from './destination-contact-number/index.js'
 import { disposalDate } from './disposal-date/index.js'
 import {
   disposalWholeAnimal,
@@ -24,6 +26,8 @@ const plugin = {
         abpSomewhereElse,
         carcassesDestination,
         CarcassesSomewhereElse,
+        destinationBusinessName,
+        destinationContactNumber,
         checkAnswers
       ])
     }
