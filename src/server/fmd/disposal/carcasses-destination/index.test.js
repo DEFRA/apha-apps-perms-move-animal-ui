@@ -4,8 +4,6 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { CarcassesSomewhereElseExitPage } from '../carcasses-somewhere-else/index.js'
 import { DestinationBusinessNamePage } from '../destination-business-name/index.js'
 
-// TEMPLATE-TODO: import next page
-
 const sectionKey = 'disposal'
 const questionKey = 'carcassesDestination'
 const pageUrl = '/fmd/disposal-of-animals/carcasses-premises-type'
