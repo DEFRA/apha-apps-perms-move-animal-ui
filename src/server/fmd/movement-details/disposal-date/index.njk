@@ -1,0 +1,15 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends 'layouts/questions.njk' %}
+{% block heading %}
+  <h1 class="govuk-heading-l">{{ heading }}</h1>
+{% endblock %}
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body">
+        Licences can take up to 5 working days to be issued. For welfare cases,
+        we will aim to process your application sooner.
+      </p>
+    </div>
+  </div>
+{% endblock %}

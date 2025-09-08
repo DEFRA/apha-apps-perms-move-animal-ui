@@ -3,6 +3,7 @@
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { disposalDate, disposalDatePage } from './disposal-date/index.js'
 import {
   mockMovementDetails,
   mockMovementDetailsPage
@@ -12,7 +13,7 @@ const plugin = {
   plugin: {
     name: 'fmd-movementDetails',
     async register(server) {
-      await server.register([mockMovementDetails, checkAnswers])
+      await server.register([mockMovementDetails, checkAnswers, disposalDate])
     }
   }
 }
@@ -40,6 +41,6 @@ export class MovementDetailsSection extends FmdSectionModel {
       return mockMovementDetailsPage
     }
 
-    return mockMovementDetailsPage
+    return disposalDatePage
   }
 }
