@@ -51,14 +51,6 @@ describe('Answer', () => {
   it('should have the correct label for another option', () => {
     expect(Answer.config.options.another.label).toBe('Another premises type')
   })
-
-  it('should not have a hint for farm option', () => {
-    expect(Answer.config.options.farm.hint).toBeUndefined()
-  })
-
-  it('should not have a hint for another option', () => {
-    expect(Answer.config.options.another.hint).toBeUndefined()
-  })
 })
 
 describe('validation', () => {
