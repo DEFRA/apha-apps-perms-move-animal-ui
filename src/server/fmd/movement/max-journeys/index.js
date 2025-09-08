@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { mockMovementDetailsPage } from '../mock-page/index.js'
+import { movementStartPage } from '../movement-start/index.js'
 
 /** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -33,7 +33,7 @@ export class MaxJourneysPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return mockMovementDetailsPage
+    return movementStartPage
   }
 }
 

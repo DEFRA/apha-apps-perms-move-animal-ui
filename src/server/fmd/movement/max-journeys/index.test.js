@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, maxJourneysPage } from './index.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { MockMovementDetailsPage } from '../mock-page/index.js'
+import { MovementStartPage } from '../movement-start/index.js'
 
 const sectionKey = 'movement'
 const questionKey = 'maxJourneys'
@@ -113,9 +113,9 @@ describe('MaxJourneysPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return MockMovementDetailsPage for any value', () => {
+    it('should return MovementStartPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MockMovementDetailsPage)
+      expect(nextPage).toBeInstanceOf(MovementStartPage)
     })
   })
 
