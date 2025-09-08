@@ -8,7 +8,7 @@ exports[`FmdTaskListController FmdTaskListController should have the expected co
         <h1 class="govuk-heading-l">Your foot and mouth disease movement licence application</h1>
           <p>
             You have
-            <span data="test-id-task-to-complete-count">2 out of 2</span>
+            <span data="test-id-task-to-complete-count">3 out of 3</span>
             sections left to complete.
           </p>
         
@@ -28,10 +28,20 @@ exports[`FmdTaskListController FmdTaskListController should have the expected co
   <li class="govuk-task-list__item">
     <div class="govuk-task-list__name-and-hint">
       <div>
-        Receiving the licence
+        Movement origin
       </div>
     </div>
     <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="task-list-2-status">
+      Cannot start yet
+    </div>
+  </li>
+  <li class="govuk-task-list__item">
+    <div class="govuk-task-list__name-and-hint">
+      <div>
+        Receiving the licence
+      </div>
+    </div>
+    <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="task-list-3-status">
       Cannot start yet
     </div>
   </li>
