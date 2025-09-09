@@ -8,6 +8,9 @@ import { maximumJourneysPage } from '../maximum-journeys/index.js'
 
 const questionKey = 'milkMovementDate'
 
+const milkMovementErrorMessage =
+  'The milk movement start date must be a real date'
+
 export class Answer extends DateAnswer {
   /** @type { DateConfig } */
   static config = {
@@ -26,19 +29,19 @@ export class Answer extends DateAnswer {
         message: 'The milk movement start date must include a year'
       },
       invalidDay: {
-        message: 'The milk movement start date must be a real date'
+        message: milkMovementErrorMessage
       },
       invalidMonth: {
-        message: 'The milk movement start date must be a real date'
+        message: milkMovementErrorMessage
       },
       invalidYear: {
-        message: 'The milk movement start date must be a real date'
+        message: milkMovementErrorMessage
       },
       nonFourDigitYear: {
         message: 'The year of milk movement must include 4 numbers'
       },
       invalidDate: {
-        message: 'The milk movement start date must be a real date'
+        message: milkMovementErrorMessage
       },
       pastDate: {
         message: 'The milk movement start date must be in the future'

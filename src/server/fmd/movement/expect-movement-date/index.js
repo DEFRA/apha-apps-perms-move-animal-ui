@@ -8,6 +8,8 @@ import { checkAnswersPage } from '../check-answers/index.js'
 
 const questionKey = 'expectMovementDate'
 
+const realDateError = 'The milk movement start date must be a real date'
+
 export class Answer extends DateAnswer {
   /** @type { DateConfig } */
   static config = {
@@ -26,19 +28,19 @@ export class Answer extends DateAnswer {
         message: 'The milk movement start date must include a year'
       },
       invalidDay: {
-        message: 'The milk movement start date must be a real date'
+        message: realDateError
       },
       invalidMonth: {
-        message: 'The milk movement start date must be a real date'
+        message: realDateError
       },
       invalidYear: {
-        message: 'The milk movement start date must be a real date'
+        message: realDateError
       },
       nonFourDigitYear: {
         message: 'The year of milk movement must include 4 numbers'
       },
       invalidDate: {
-        message: 'The milk movement start date must be a real date'
+        message: realDateError
       },
       pastDate: {
         message: 'The milk movement start date must be in the future'
