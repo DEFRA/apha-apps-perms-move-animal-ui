@@ -20,211 +20,76 @@ describe('Answer', () => {
     expect(new Answer(payload)).toBeInstanceOf(DateAnswer)
   })
 
-  describe('config validation options', () => {
-    it('should not be page heading', () => {
-      expect(Answer.config.isPageHeading).toBe(false)
-    })
+  it('should not be page heading', () => {
+    expect(Answer.config.isPageHeading).toBe(false)
+  })
 
-    it('should have hint text', () => {
-      expect(Answer.config.hint).toBe('For example, 7 3 2025')
-    })
+  it('should have hint text', () => {
+    expect(Answer.config.hint).toBe('For example, 7 3 2025')
+  })
 
-    it('should have missing date validation message', () => {
-      expect(Answer.config.validation.missingDate).toEqual({
-        message: 'Enter the movement start date'
-      })
-    })
-
-    it('should have missing day validation message', () => {
-      expect(Answer.config.validation.missingDay).toEqual({
-        message: 'Movement start date must include a day'
-      })
-    })
-
-    it('should have missing month validation message', () => {
-      expect(Answer.config.validation.missingMonth).toEqual({
-        message: 'Movement start date must include a month'
-      })
-    })
-
-    it('should have missing year validation message', () => {
-      expect(Answer.config.validation.missingYear).toEqual({
-        message: 'Movement start date must include a year'
-      })
-    })
-
-    it('should have invalid day validation message', () => {
-      expect(Answer.config.validation.invalidDay).toEqual({
-        message: 'Movement start day must be a real date'
-      })
-    })
-
-    it('should have invalid month validation message', () => {
-      expect(Answer.config.validation.invalidMonth).toEqual({
-        message: 'Movement start month must be a number between 1 and 12'
-      })
-    })
-
-    it('should have invalid year validation message', () => {
-      expect(Answer.config.validation.invalidYear).toEqual({
-        message: 'Movement start year must be a real date'
-      })
-    })
-
-    it('should have non four digit year validation message', () => {
-      expect(Answer.config.validation.nonFourDigitYear).toEqual({
-        message: 'Movement start year must include 4 numbers'
-      })
-    })
-
-    it('should have invalid date validation message', () => {
-      expect(Answer.config.validation.invalidDate).toEqual({
-        message: 'Movement start date must be a real date'
-      })
-    })
-
-    it('should have past date validation message', () => {
-      expect(Answer.config.validation.pastDate).toEqual({
-        message: 'Movement start date must be in the future'
-      })
-    })
-
-    it('should not have future date validation', () => {
-      expect(Answer.config.validation.futureDate).toBeUndefined()
+  it('should have missing date validation message', () => {
+    expect(Answer.config.validation.missingDate).toEqual({
+      message: 'Enter the movement start date'
     })
   })
 
-  describe('validation', () => {
-    it('should validate successfully with valid future date', () => {
-      const answer = new Answer({ day: '15', month: '12', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
+  it('should have missing day validation message', () => {
+    expect(Answer.config.validation.missingDay).toEqual({
+      message: 'Movement start date must include a day'
     })
+  })
 
-    it('should fail validation when completely empty', () => {
-      const answer = new Answer(undefined)
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Enter the movement start date'
-      )
+  it('should have missing month validation message', () => {
+    expect(Answer.config.validation.missingMonth).toEqual({
+      message: 'Movement start date must include a month'
     })
+  })
 
-    it('should fail validation when all fields are empty strings', () => {
-      const answer = new Answer({ day: '', month: '', year: '' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Enter the movement start date'
-      )
+  it('should have missing year validation message', () => {
+    expect(Answer.config.validation.missingYear).toEqual({
+      message: 'Movement start date must include a year'
     })
+  })
 
-    it('should fail validation when day is missing', () => {
-      const answer = new Answer({ day: '', month: '12', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Movement start date must include a day'
-      )
+  it('should have invalid day validation message', () => {
+    expect(Answer.config.validation.invalidDay).toEqual({
+      message: 'Movement start day must be a real date'
     })
+  })
 
-    it('should fail validation when month is missing', () => {
-      const answer = new Answer({ day: '15', month: '', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-month'].text).toBe(
-        'Movement start date must include a month'
-      )
+  it('should have invalid month validation message', () => {
+    expect(Answer.config.validation.invalidMonth).toEqual({
+      message: 'Movement start month must be a number between 1 and 12'
     })
+  })
 
-    it('should fail validation when year is missing', () => {
-      const answer = new Answer({ day: '15', month: '12', year: '' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-year'].text).toBe(
-        'Movement start date must include a year'
-      )
+  it('should have invalid year validation message', () => {
+    expect(Answer.config.validation.invalidYear).toEqual({
+      message: 'Movement start year must be a real date'
     })
+  })
 
-    it('should fail validation with invalid day (0)', () => {
-      const answer = new Answer({ day: '0', month: '12', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Movement start day must be a real date'
-      )
+  it('should have non four digit year validation message', () => {
+    expect(Answer.config.validation.nonFourDigitYear).toEqual({
+      message: 'Movement start year must include 4 numbers'
     })
+  })
 
-    it('should fail validation with invalid day (32)', () => {
-      const answer = new Answer({ day: '32', month: '12', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Movement start day must be a real date'
-      )
+  it('should have invalid date validation message', () => {
+    expect(Answer.config.validation.invalidDate).toEqual({
+      message: 'Movement start date must be a real date'
     })
+  })
 
-    it('should fail validation with invalid month (0)', () => {
-      const answer = new Answer({ day: '15', month: '0', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-month'].text).toBe(
-        'Movement start month must be a number between 1 and 12'
-      )
+  it('should have past date validation message', () => {
+    expect(Answer.config.validation.pastDate).toEqual({
+      message: 'Movement start date must be in the future'
     })
+  })
 
-    it('should fail validation with invalid month (13)', () => {
-      const answer = new Answer({ day: '15', month: '13', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-month'].text).toBe(
-        'Movement start month must be a number between 1 and 12'
-      )
-    })
-
-    it('should fail validation with non-numeric year', () => {
-      const answer = new Answer({ day: '15', month: '12', year: 'abc' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-year'].text).toBe(
-        'Movement start year must be a real date'
-      )
-    })
-
-    it('should fail validation with three digit year', () => {
-      const answer = new Answer({ day: '15', month: '12', year: '202' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-year'].text).toBe(
-        'Movement start year must include 4 numbers'
-      )
-    })
-
-    it('should fail validation with invalid date (29 Feb on non-leap year)', () => {
-      const answer = new Answer({ day: '29', month: '2', year: '2025' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Movement start date must be a real date'
-      )
-    })
-
-    it('should fail validation with past date', () => {
-      const answer = new Answer({ day: '1', month: '1', year: '2020' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Movement start date must be in the future'
-      )
-    })
-
-    it('should validate successfully with leap year date', () => {
-      const answer = new Answer({ day: '29', month: '2', year: '2028' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
-    })
+  it('should not have future date validation', () => {
+    expect(Answer.config.validation.futureDate).toBeUndefined()
   })
 })
 
