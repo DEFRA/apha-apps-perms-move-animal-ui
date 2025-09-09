@@ -16,6 +16,16 @@ export class Answer extends NumberAnswer {
     validation: {
       empty: {
         message: 'Enter the maximum number of days needed to move the animals'
+      },
+      min: {
+        value: 1,
+        message:
+          'The maximum number of days needed to move the animals must be 1 or higher'
+      },
+      max: {
+        value: 999,
+        message:
+          'The maximum number of days needed to move the animals must be 999 or lower'
       }
     }
   }

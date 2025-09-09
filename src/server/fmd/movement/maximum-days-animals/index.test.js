@@ -32,6 +32,26 @@ describe('Answer', () => {
       'Enter the maximum number of days needed to move the animals'
     )
   })
+
+  it('should have correct min validation message', () => {
+    expect(Answer.config.validation.min?.message).toBe(
+      'The maximum number of days needed to move the animals must be 1 or higher'
+    )
+  })
+
+  it('should have correct min validation value', () => {
+    expect(Answer.config.validation.min?.value).toBe(1)
+  })
+
+  it('should have correct max validation message', () => {
+    expect(Answer.config.validation.max?.message).toBe(
+      'The maximum number of days needed to move the animals must be 999 or lower'
+    )
+  })
+
+  it('should have correct max validation value', () => {
+    expect(Answer.config.validation.max?.value).toBe(999)
+  })
 })
 
 describe('MaximumDaysAnimalsPage', () => {

@@ -30,6 +30,26 @@ describe('Answer', () => {
       )
     })
 
+    it('should have correct min validation message', () => {
+      expect(Answer.config.validation.min?.message).toBe(
+        'The number of journeys needed to move the milk within a 2 week period must be 1 or higher.'
+      )
+    })
+
+    it('should have correct min validation value', () => {
+      expect(Answer.config.validation.min?.value).toBe(1)
+    })
+
+    it('should have correct max validation message', () => {
+      expect(Answer.config.validation.max?.message).toBe(
+        'The number of journeys needed to move the milk within a 2 week period must be 999 or lower.'
+      )
+    })
+
+    it('should have correct max validation value', () => {
+      expect(Answer.config.validation.max?.value).toBe(999)
+    })
+
     it('should have characterWidth set to 10', () => {
       expect(Answer.config.characterWidth).toBe(10)
     })
