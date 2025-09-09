@@ -1,0 +1,20 @@
+{% extends 'layouts/questions.njk' %}
+{% block beforequestion %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Temporary land association (TLA)</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>A temporary land association (TLA) is for land or buildings that:</p>
+        <ul class="govuk-body govuk-list--bullet">
+          <li>are within 10 miles of the main area you keep livestock</li>
+          <li>you do not own</li>
+          <li>are in England or Wales</li>
+          <li>are in the same bovine TB risk area as your CPH number</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block questions %}
+  {{ super() }}
+{% endblock %}

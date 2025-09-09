@@ -1,4 +1,4 @@
-import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
+import { aboutSectionCompleteSlaughter } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { DisposalDatePage } from './disposal-date/index.js'
 import { MaximumDaysAnimalsPage } from './maximum-days-animals/index.js'
@@ -34,14 +34,14 @@ describe('MovementDetailsSection', () => {
     }
   )
 
-  it('should not be visible or enabled', () => {
+  it('should not be visible or enabled when about section is NOT complete', () => {
     expect(MovementDetailsSection.config.isVisible({})).toBe(false)
   })
 
-  it('should be visible and  enabled', () => {
+  it('should be visible and enabled when about section is complete', () => {
     expect(
       MovementDetailsSection.config.isEnabled({
-        about: aboutSectionComplete
+        about: aboutSectionCompleteSlaughter
       })
     ).toBe(true)
   })
