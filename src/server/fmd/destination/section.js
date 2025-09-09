@@ -9,6 +9,7 @@ import {
   carcassesDestinationType,
   carcassesDestinationTypePage
 } from './carcasses-destination-type/index.js'
+import { carcassesSomewhereElse } from './carcasses-somewhere-else/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import {
   companySellingMilkTo,
@@ -24,6 +25,7 @@ const plugin = {
         abattoirName,
         abattoirAddress,
         carcassesDestinationType,
+        carcassesSomewhereElse,
         willMoveToTla,
         companySellingMilkTo,
         checkAnswers
