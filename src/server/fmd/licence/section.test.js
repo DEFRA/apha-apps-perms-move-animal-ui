@@ -1,4 +1,4 @@
-import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
+import { aboutSectionCompleteOtherMovement } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { OriginResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
 import { RegisteredKeeperNamePage } from './registered-keeper-name/index.js'
@@ -18,7 +18,7 @@ describe('LicenceSection', () => {
     expect(
       LicenceSection.firstPageFactory({
         about: {
-          ...aboutSectionComplete,
+          ...aboutSectionCompleteOtherMovement,
           whatIsMoving: 'milk'
         }
       })
@@ -29,7 +29,7 @@ describe('LicenceSection', () => {
     expect(
       LicenceSection.firstPageFactory({
         about: {
-          ...aboutSectionComplete,
+          ...aboutSectionCompleteOtherMovement,
           whatIsMoving: 'something-else'
         }
       })
@@ -47,7 +47,7 @@ describe('LicenceSection', () => {
   it('should be enabled if about the movement is complete', () => {
     expect(
       LicenceSection.config.isEnabled({
-        about: aboutSectionComplete
+        about: aboutSectionCompleteOtherMovement
       })
     ).toBe(true)
   })
