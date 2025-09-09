@@ -5,6 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { abattoirAddress } from './abattoir-address/index.js'
 import { abattoirName, abattoirNamePage } from './abattoir-name/index.js'
+import { applicantMovingCarcasses } from './applicant-moving-carcasses/index.js'
 import {
   carcassesDestinationType,
   carcassesDestinationTypePage
@@ -15,6 +16,7 @@ import {
   companySellingMilkTo,
   companySellingMilkToPage
 } from './company-selling-milk-to/index.js'
+import { thirdPartyMoving } from './third-party-moving/index.js'
 import { willMoveToTla, willMoveToTlaPage } from './will-move-to-tla/index.js'
 
 const plugin = {
@@ -26,6 +28,8 @@ const plugin = {
         abattoirAddress,
         carcassesDestinationType,
         carcassesSomewhereElse,
+        applicantMovingCarcasses,
+        thirdPartyMoving,
         willMoveToTla,
         companySellingMilkTo,
         checkAnswers
