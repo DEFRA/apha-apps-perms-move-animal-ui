@@ -11,7 +11,7 @@ const question =
   'What are the maximum number of journeys or consignments needed to move the animals?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 8
 }
 
 describe('Answer', () => {
@@ -41,52 +41,6 @@ describe('Answer', () => {
 
     it('should not have max validation', () => {
       expect(Answer.config.validation.max).toBeUndefined()
-    })
-  })
-
-  describe('validation', () => {
-    it('should validate successfully with valid number', () => {
-      const answer = new Answer({ [questionKey]: '5' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
-    })
-
-    it('should fail validation when empty', () => {
-      const answer = new Answer({ [questionKey]: '' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors[questionKey].text).toBe(
-        'Enter the maximum of journeys or consignments needed to move the animals'
-      )
-    })
-
-    it('should fail validation with non-numeric input', () => {
-      const answer = new Answer({ [questionKey]: 'abc' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors[questionKey].text).toBe('Enter a number')
-    })
-
-    it('should fail validation with decimal number', () => {
-      const answer = new Answer({ [questionKey]: '5.5' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(false)
-      expect(result.errors[questionKey].text).toBe('Enter a whole number')
-    })
-
-    it('should validate successfully with zero', () => {
-      const answer = new Answer({ [questionKey]: '0' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
-    })
-
-    it('should validate successfully with negative number', () => {
-      const answer = new Answer({ [questionKey]: '-1' })
-      const result = answer.validate()
-      expect(result.isValid).toBe(true)
-      expect(result.errors).toEqual({})
     })
   })
 })

@@ -11,7 +11,7 @@ const question =
   'What are the maximum number of days needed to move the animals?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 9
 }
 
 describe('Answer', () => {
