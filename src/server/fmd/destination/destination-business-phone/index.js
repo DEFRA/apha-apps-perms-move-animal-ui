@@ -1,22 +1,22 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { destinationBusinessPhonePage } from '../destination-business-phone/index.js'
+import { destinationAddressKnownPage } from '../destination-address-known/index.js'
 
 /** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'destinationBusinessName'
+const questionKey = 'destinationBusinessPhone'
 
 export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
-    characterWidth: 20,
+    characterWidth: 10,
     spellcheck: false,
     validation: {
       empty: {
-        message: 'Enter the name of the destination business'
+        message: 'Enter the contact number for the destination business'
       },
       maxLength: {
         value: 100,
@@ -26,23 +26,23 @@ export class Answer extends TextAnswer {
   }
 }
 
-export class DestinationBusinessNamePage extends QuestionPage {
-  urlPath = '/fmd/movement-destination/business-name'
+export class DestinationBusinessPhonePage extends QuestionPage {
+  urlPath = '/fmd/movement-destination/contact-number'
 
   questionKey = questionKey
   sectionKey = 'destination'
-  question = 'What is the name of the destination business?'
+  question = 'What is the contact phone number for the destination business?'
 
   Answer = Answer
 
   nextPage() {
-    return destinationBusinessPhonePage
+    return destinationAddressKnownPage
   }
 }
 
-export const destinationBusinessNamePage = new DestinationBusinessNamePage()
+export const destinationBusinessPhonePage = new DestinationBusinessPhonePage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const destinationBusinessName = new FmdQuestionPageController(
-  destinationBusinessNamePage
+export const destinationBusinessPhone = new FmdQuestionPageController(
+  destinationBusinessPhonePage
 ).plugin()

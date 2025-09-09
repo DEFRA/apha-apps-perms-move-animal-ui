@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DestinationBusinessNamePage content should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="destinationBusinessName">
+      What is the name of the destination business?
+    </label>
+  </h1>
+  <input class="govuk-input govuk-input--width-20" id="destinationBusinessName" name="destinationBusinessName" type="text" spellcheck="false">
+</div>
+
+
+</fieldset>
+            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

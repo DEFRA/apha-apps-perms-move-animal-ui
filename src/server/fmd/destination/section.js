@@ -16,6 +16,8 @@ import {
   companySellingMilkTo,
   companySellingMilkToPage
 } from './company-selling-milk-to/index.js'
+import { destinationBusinessPhone } from './destination-business-phone/index.js'
+import { destinationBusinessName } from './destination-business-name/index.js'
 import { thirdPartyMoving } from './third-party-moving/index.js'
 import { willMoveToTla, willMoveToTlaPage } from './will-move-to-tla/index.js'
 
@@ -30,6 +32,8 @@ const plugin = {
         carcassesSomewhereElse,
         applicantMovingCarcasses,
         thirdPartyMoving,
+        destinationBusinessName,
+        destinationBusinessPhone,
         willMoveToTla,
         companySellingMilkTo,
         checkAnswers
