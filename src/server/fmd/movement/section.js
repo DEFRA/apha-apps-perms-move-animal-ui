@@ -4,6 +4,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
+import { expectMovementDate } from './expect-movement-date/index.js'
 import { maxJourneys } from './max-journeys/index.js'
 import {
   maximumDaysAnimals,
@@ -27,7 +28,8 @@ const plugin = {
         maximumDaysAnimals,
         maxJourneys,
         movementStart,
-        movementEnd
+        movementEnd,
+        expectMovementDate
       ])
     }
   }
