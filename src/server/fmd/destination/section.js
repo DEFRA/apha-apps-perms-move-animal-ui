@@ -5,13 +5,16 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { abattoirAddress } from './abattoir-address/index.js'
 import { abattoirName, abattoirNamePage } from './abattoir-name/index.js'
-import { carcassesDestinationTypePage } from './carcasses-destination-type/index.js'
+import {
+  carcassesDestinationType,
+  carcassesDestinationTypePage
+} from './carcasses-destination-type/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import {
   companySellingMilkTo,
   companySellingMilkToPage
 } from './company-selling-milk-to/index.js'
-import { willMoveToTlaPage } from './will-move-to-tla/index.js'
+import { willMoveToTla, willMoveToTlaPage } from './will-move-to-tla/index.js'
 
 const plugin = {
   plugin: {
@@ -20,6 +23,8 @@ const plugin = {
       await server.register([
         abattoirName,
         abattoirAddress,
+        carcassesDestinationType,
+        willMoveToTla,
         companySellingMilkTo,
         checkAnswers
       ])
@@ -34,7 +39,6 @@ const isVisibleAndEnabled = (context) => {
   )
 }
 
-// @ts-expect-error until section complete
 export class DestinationSection extends FmdSectionModel {
   /** @type {SectionConfig} */
   static config = {
