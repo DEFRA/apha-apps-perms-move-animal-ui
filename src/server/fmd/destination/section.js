@@ -7,14 +7,22 @@ import { abattoirAddress } from './abattoir-address/index.js'
 import { abattoirName, abattoirNamePage } from './abattoir-name/index.js'
 import { carcassesDestinationTypePage } from './carcasses-destination-type/index.js'
 import { checkAnswers } from './check-answers/index.js'
-import { companySellingMilkToPage } from './company-selling-milk-to/index.js'
+import {
+  companySellingMilkTo,
+  companySellingMilkToPage
+} from './company-selling-milk-to/index.js'
 import { willMoveToTlaPage } from './will-move-to-tla/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-destination',
     async register(server) {
-      await server.register([abattoirName, abattoirAddress, checkAnswers])
+      await server.register([
+        abattoirName,
+        abattoirAddress,
+        companySellingMilkTo,
+        checkAnswers
+      ])
     }
   }
 }
