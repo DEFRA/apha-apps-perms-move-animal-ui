@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { DateAnswer } from '~/src/server/common/model/answer/date/date.js'
-import { maximumJourneysPage } from '../maximum-journeys/index.js'
+import { maximumJourneysMilkPage } from '../maximum-journeys-milk/index.js'
 
 /** @import { DateConfig } from '~/src/server/common/model/answer/date/date.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -61,7 +61,7 @@ export class MilkMovementDatePage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return maximumJourneysPage
+    return maximumJourneysMilkPage
   }
 }
 

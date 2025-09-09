@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, milkMovementDatePage } from './index.js'
 import { DateAnswer } from '~/src/server/common/model/answer/date/date.js'
-import { MaximumJourneysPage } from '../maximum-journeys/index.js'
+import { MaximumJourneysMilkPage } from '../maximum-journeys-milk/index.js'
 
 const sectionKey = 'movement'
 const questionKey = 'milkMovementDate'
@@ -107,7 +107,7 @@ describe('MilkMovementDatePage', () => {
   describe('nextPage', () => {
     it('should return MaximumJourneysPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(MaximumJourneysPage)
+      expect(nextPage).toBeInstanceOf(MaximumJourneysMilkPage)
     })
   })
 

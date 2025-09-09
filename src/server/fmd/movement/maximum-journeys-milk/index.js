@@ -22,7 +22,7 @@ export class Answer extends NumberAnswer {
   }
 }
 
-export class MaximumJourneysPage extends QuestionPage {
+export class MaximumJourneysMilkPage extends QuestionPage {
   urlPath = '/fmd/movement-details/maximum-journeys'
 
   questionKey = questionKey
@@ -37,9 +37,9 @@ export class MaximumJourneysPage extends QuestionPage {
   }
 }
 
-export const maximumJourneysPage = new MaximumJourneysPage()
+export const maximumJourneysMilkPage = new MaximumJourneysMilkPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const maximumJourneys = new FmdQuestionPageController(
-  maximumJourneysPage
+export const maximumJourneysMilk = new FmdQuestionPageController(
+  maximumJourneysMilkPage
 ).plugin()

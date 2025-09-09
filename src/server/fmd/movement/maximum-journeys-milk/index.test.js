@@ -1,12 +1,12 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, maximumJourneysPage } from './index.js'
+import { Answer, maximumJourneysMilkPage } from './index.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'movement'
 const questionKey = 'maximumJourneysMilk'
 const pageUrl = '/fmd/movement-details/maximum-journeys'
-const page = maximumJourneysPage
+const page = maximumJourneysMilkPage
 const question =
   'What are the maximum number of journeys needed to move the milk over the 2 week period?'
 
