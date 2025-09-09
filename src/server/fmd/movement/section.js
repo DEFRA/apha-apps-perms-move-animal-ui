@@ -12,19 +12,15 @@ import {
 } from './maximum-days-animals/index.js'
 import { maximumJourneys } from './maximum-journeys/index.js'
 import { milkMovementDate } from './milk-movement-date/index.js'
-import {
-  mockMovementDetails,
-  mockMovementDetailsPage
-} from './mock-page/index.js'
 import { movementEnd } from './movement-end/index.js'
 import { movementStart } from './movement-start/index.js'
+import { twoWeekRepeat, twoWeekRepeatPage } from './two-week-repeat/index.js'
 
 const plugin = {
   plugin: {
     name: 'fmd-movementDetails',
     async register(server) {
       await server.register([
-        mockMovementDetails,
         checkAnswers,
         disposalDate,
         maximumDaysAnimals,
@@ -33,7 +29,8 @@ const plugin = {
         movementEnd,
         expectMovementDate,
         maximumJourneys,
-        milkMovementDate
+        milkMovementDate,
+        twoWeekRepeat
       ])
     }
   }
@@ -55,7 +52,7 @@ export class MovementDetailsSection extends FmdSectionModel {
 
   static firstPageFactory = (context) => {
     if (context.about?.whatIsMoving === 'milk') {
-      return mockMovementDetailsPage
+      return twoWeekRepeatPage
     }
 
     if (context.about?.whatIsMoving === 'live-animals') {

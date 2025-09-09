@@ -2,8 +2,8 @@ import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-stat
 import { checkAnswersPage } from './check-answers/index.js'
 import { DisposalDatePage } from './disposal-date/index.js'
 import { MaximumDaysAnimalsPage } from './maximum-days-animals/index.js'
-import { MockMovementDetailsPage } from './mock-page/index.js'
 import { MovementDetailsSection } from './section.js'
+import { TwoWeekRepeatPage } from './two-week-repeat/index.js'
 
 describe('MovementDetailsSection', () => {
   it('should have the correct configuration', () => {
@@ -18,7 +18,7 @@ describe('MovementDetailsSection', () => {
   })
 
   it.each([
-    ['milk', MockMovementDetailsPage],
+    ['milk', TwoWeekRepeatPage],
     ['live-animals', MaximumDaysAnimalsPage],
     ['carcasses', DisposalDatePage]
   ])(
