@@ -14,7 +14,7 @@ export class Answer extends DateAnswer {
     hint: 'For example, 7 3 2025',
     validation: {
       missingDate: {
-        message: 'Enter the movement start date'
+        message: 'Enter the movement end date'
       },
       missingDay: {
         message: 'Movement end date must include a day'

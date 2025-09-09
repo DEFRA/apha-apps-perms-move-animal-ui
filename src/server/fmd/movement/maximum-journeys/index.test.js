@@ -4,14 +4,14 @@ import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'movement'
-const questionKey = 'maximumJourneys'
+const questionKey = 'maximumJourneysMilk'
 const pageUrl = '/fmd/movement-details/maximum-journeys'
 const page = maximumJourneysPage
 const question =
   'What are the maximum number of journeys needed to move the milk over the 2 week period?'
 
 const payload = {
-  [questionKey]: 'some text'
+  [questionKey]: 9
 }
 
 describe('Answer', () => {

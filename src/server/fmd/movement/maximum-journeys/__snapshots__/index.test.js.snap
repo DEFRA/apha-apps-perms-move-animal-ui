@@ -11,11 +11,11 @@ exports[`MaximumJourneysPage content should render expected response and content
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="maximumJourneys">
+    <label class="govuk-label govuk-label--l" for="maximumJourneysMilk">
       What are the maximum number of journeys needed to move the milk over the 2 week period?
     </label>
   </h1>
-  <input class="govuk-input govuk-input--width-10" id="maximumJourneys" name="maximumJourneys" type="text">
+  <input class="govuk-input govuk-input--width-10" id="maximumJourneysMilk" name="maximumJourneysMilk" type="text">
 </div>
 
 

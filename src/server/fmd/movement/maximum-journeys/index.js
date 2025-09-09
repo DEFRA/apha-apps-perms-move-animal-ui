@@ -6,7 +6,7 @@ import { checkAnswersPage } from '../check-answers/index.js'
 /** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'maximumJourneys'
+const questionKey = 'maximumJourneysMilk'
 
 export class Answer extends NumberAnswer {
   /** @type { NumberConfig } */

@@ -27,7 +27,7 @@ describe('Answer', () => {
 
     it('should have missing date validation message', () => {
       expect(Answer.config.validation.missingDate).toEqual({
-        message: 'Enter the movement start date'
+        message: 'Enter the movement end date'
       })
     })
 
@@ -106,18 +106,14 @@ describe('Answer', () => {
       const answer = new Answer(undefined)
       const result = answer.validate()
       expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Enter the movement start date'
-      )
+      expect(result.errors['date-day'].text).toBe('Enter the movement end date')
     })
 
     it('should fail validation when all fields are empty strings', () => {
       const answer = new Answer({ day: '', month: '', year: '' })
       const result = answer.validate()
       expect(result.isValid).toBe(false)
-      expect(result.errors['date-day'].text).toBe(
-        'Enter the movement start date'
-      )
+      expect(result.errors['date-day'].text).toBe('Enter the movement end date')
     })
 
     it('should fail validation when day is missing', () => {
