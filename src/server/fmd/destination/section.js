@@ -3,7 +3,8 @@
 
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
-import { abattoirNamePage } from './abattoir-name/index.js'
+import { abattoirAddress } from './abattoir-address/index.js'
+import { abattoirName, abattoirNamePage } from './abattoir-name/index.js'
 import { carcassesDestinationTypePage } from './carcasses-destination-type/index.js'
 import { checkAnswers } from './check-answers/index.js'
 import { companySellingMilkToPage } from './company-selling-milk-to/index.js'
@@ -13,7 +14,7 @@ const plugin = {
   plugin: {
     name: 'fmd-destination',
     async register(server) {
-      await server.register([checkAnswers])
+      await server.register([abattoirName, abattoirAddress, checkAnswers])
     }
   }
 }
@@ -25,6 +26,7 @@ const isVisibleAndEnabled = (context) => {
   )
 }
 
+// @ts-expect-error until section complete
 export class DestinationSection extends FmdSectionModel {
   /** @type {SectionConfig} */
   static config = {

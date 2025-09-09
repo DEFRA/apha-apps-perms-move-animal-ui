@@ -1,4 +1,4 @@
-import { aboutSectionComplete } from '../../common/test-helpers/fmd/journey-state.js'
+import { aboutSectionCompleteSlaughter } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { PremisesTypePage } from './premises-type/index.js'
 import { OriginSection } from './section.js'
@@ -38,7 +38,7 @@ describe('OriginSection', () => {
   it('should be enabled when about section is complete', () => {
     expect(
       OriginSection.config.isEnabled({
-        about: aboutSectionComplete
+        about: aboutSectionCompleteSlaughter
       })
     ).toBe(true)
   })
