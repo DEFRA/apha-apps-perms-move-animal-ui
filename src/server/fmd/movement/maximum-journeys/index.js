@@ -23,7 +23,7 @@ export class Answer extends NumberAnswer {
 }
 
 export class MaximumJourneysPage extends QuestionPage {
-  urlPath = '/fmd/movement-details/milk-movement-start-date'
+  urlPath = '/fmd/movement-details/maximum-journeys'
 
   questionKey = questionKey
   sectionKey = 'movement'

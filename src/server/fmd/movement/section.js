@@ -11,6 +11,7 @@ import {
   maximumDaysAnimalsPage
 } from './maximum-days-animals/index.js'
 import { maximumJourneys } from './maximum-journeys/index.js'
+import { milkMovementDate } from './milk-movement-date/index.js'
 import {
   mockMovementDetails,
   mockMovementDetailsPage
@@ -31,7 +32,8 @@ const plugin = {
         movementStart,
         movementEnd,
         expectMovementDate,
-        maximumJourneys
+        maximumJourneys,
+        milkMovementDate
       ])
     }
   }
