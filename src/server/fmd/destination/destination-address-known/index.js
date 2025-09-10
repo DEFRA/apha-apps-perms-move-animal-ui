@@ -17,7 +17,7 @@ export class Answer extends RadioButtonAnswer {
       yes: { label: 'Yes' },
       no: { label: 'No' }
     },
-
+    layout: 'inline',
     validation: {
       empty: 'Select if you know the address for the destination business'
     }
