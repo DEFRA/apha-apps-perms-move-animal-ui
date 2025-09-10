@@ -20,6 +20,8 @@ import { destinationBusinessPhone } from './destination-business-phone/index.js'
 import { destinationBusinessName } from './destination-business-name/index.js'
 import { thirdPartyMoving } from './third-party-moving/index.js'
 import { willMoveToTla, willMoveToTlaPage } from './will-move-to-tla/index.js'
+import { destinationAddressKnown } from './destination-address-known/index.js'
+import { destinationBusinessAddress } from './destination-business-address/index.js'
 
 const plugin = {
   plugin: {
@@ -34,6 +36,8 @@ const plugin = {
         thirdPartyMoving,
         destinationBusinessName,
         destinationBusinessPhone,
+        destinationAddressKnown,
+        destinationBusinessAddress,
         willMoveToTla,
         companySellingMilkTo,
         checkAnswers

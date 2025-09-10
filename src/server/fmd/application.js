@@ -15,12 +15,12 @@ export class FmdApplicationModel extends ApplicationModel {
   /** @type {typeof SectionModel[]} */
   static implementedSections = [
     AboutSection,
-    DestinationSection,
     OriginSection,
-    MovementDetailsSection,
-    LicenceSection,
     SlaughterInformationSection,
-    DisposalSection
+    DestinationSection,
+    DisposalSection,
+    MovementDetailsSection,
+    LicenceSection
   ]
 
   get version() {
