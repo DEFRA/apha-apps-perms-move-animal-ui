@@ -54,6 +54,12 @@ export class DisposalDatePage extends QuestionPage {
 
   Answer = Answer
 
+  viewProps() {
+    return Promise.resolve({
+      heading: 'Disposal date'
+    })
+  }
+
   nextPage() {
     return checkAnswersPage
   }

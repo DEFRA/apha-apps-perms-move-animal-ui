@@ -2,7 +2,7 @@
 
 exports[`MilkMovementDatePage content should render expected response and content 1`] = `
 "
-  <h1 class="govuk-heading-l">What date does your movement start?</h1>
+  <h1 class="govuk-heading-l">Movement dates</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p class="govuk-body">
@@ -18,10 +18,8 @@ exports[`MilkMovementDatePage content should render expected response and conten
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        What date does your movement start?
-      </h1>
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      What date does your movement start?
     </legend>
     <div id="date-hint" class="govuk-hint">
       For example, 7 3 2025

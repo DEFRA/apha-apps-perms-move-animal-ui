@@ -15,6 +15,7 @@ export class Answer extends DateAnswer {
   /** @type { DateConfig } */
   static config = {
     hint: 'For example, 7 3 2025',
+    isPageHeading: false,
     validation: {
       missingDate: {
         message: 'Enter the start date of the milk movement'
@@ -59,6 +60,12 @@ export class MilkMovementDatePage extends QuestionPage {
   view = 'fmd/movement/milk-movement-date/index.njk'
 
   Answer = Answer
+
+  viewProps() {
+    return Promise.resolve({
+      heading: 'Movement dates'
+    })
+  }
 
   nextPage() {
     return maximumJourneysMilkPage

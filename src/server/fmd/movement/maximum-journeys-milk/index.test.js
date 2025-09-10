@@ -32,7 +32,7 @@ describe('Answer', () => {
 
     it('should have correct min validation message', () => {
       expect(Answer.config.validation.min?.message).toBe(
-        'The number of journeys needed to move the milk within a 2 week period must be 1 or higher.'
+        'The number of journeys needed to move the milk within a 2 week period must be 1 or more'
       )
     })
 
@@ -42,7 +42,7 @@ describe('Answer', () => {
 
     it('should have correct max validation message', () => {
       expect(Answer.config.validation.max?.message).toBe(
-        'The number of journeys needed to move the milk within a 2 week period must be 999 or lower.'
+        'The number of journeys needed to move the milk within a 2 week period must be 999 days or lower'
       )
     })
 

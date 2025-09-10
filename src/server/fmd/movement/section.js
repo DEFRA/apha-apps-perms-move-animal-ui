@@ -37,7 +37,8 @@ const plugin = {
 }
 
 export const isVisibleAndEnabled = (context) =>
-  AboutSection.fromState(context).validate().isValid
+  AboutSection.fromState(context).validate().isValid &&
+  context.about.movementActivityType !== 'slaughter-onsite'
 
 export class MovementDetailsSection extends FmdSectionModel {
   /** @type {SectionConfig} */
