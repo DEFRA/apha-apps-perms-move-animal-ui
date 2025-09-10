@@ -23,24 +23,30 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  describe('config validation options', () => {
-    it('should have character width of 10', () => {
-      expect(Answer.config.characterWidth).toBe(10)
-    })
+  it('should have character width of 10', () => {
+    expect(Answer.config.characterWidth).toBe(10)
+  })
 
-    it('should have empty validation message', () => {
-      expect(Answer.config.validation.empty).toEqual({
-        message:
-          'Enter the maximum of journeys or consignments needed to move the animals'
-      })
+  it('should have empty validation message', () => {
+    expect(Answer.config.validation.empty).toEqual({
+      message:
+        'Enter the maximum of journeys or consignments needed to move the animals'
     })
+  })
 
-    it('should not have min validation', () => {
-      expect(Answer.config.validation.min).toBeUndefined()
+  it('should have min validation', () => {
+    expect(Answer.config.validation.min).toEqual({
+      value: 1,
+      message:
+        'The number of journeys or consignments needed to move the animals must be 1 or more'
     })
+  })
 
-    it('should not have max validation', () => {
-      expect(Answer.config.validation.max).toBeUndefined()
+  it('should have max validation', () => {
+    expect(Answer.config.validation.max).toEqual({
+      value: 999,
+      message:
+        'The number of journeys or consignments needed to move the animals must be 999 or lower'
     })
   })
 })

@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Run template check
         run: ./template-check.sh
@@ -46,7 +48,7 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm test
+          npm test -- --changedSince="origin/${{ github.base_ref }}"
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'

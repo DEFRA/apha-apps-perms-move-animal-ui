@@ -26,13 +26,13 @@ export class Answer extends DateAnswer {
       missingYear: {
         message: 'Movement start date must include a year'
       },
-      invalidDay: { message: 'Movement start day must be a real date' },
+      invalidDay: { message: 'Movement start date must be a real date' },
       invalidMonth: {
-        message: 'Movement start month must be a number between 1 and 12'
+        message: 'Movement start date must be a real date'
       },
       invalidYear: { message: 'Movement start year must be a real date' },
       nonFourDigitYear: {
-        message: 'Movement start year must include 4 numbers'
+        message: 'Year must include 4 numbers'
       },
       invalidDate: {
         message: 'Movement start date must be a real date'

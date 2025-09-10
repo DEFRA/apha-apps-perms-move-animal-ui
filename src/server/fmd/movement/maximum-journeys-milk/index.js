@@ -26,14 +26,14 @@ export class Answer extends NumberAnswer {
       max: {
         value: 999,
         message:
-          'The number of journeys needed to move the milk within a 2 week period must be 999 days or lower'
+          'The number of journeys needed to move the milk within a 2 week period must be 999 or lower'
       }
     }
   }
 }
 
 export class MaximumJourneysMilkPage extends QuestionPage {
-  urlPath = '/fmd/movement-details/maximum-journeys'
+  urlPath = '/fmd/movement-details/milk-maximum-journeys'
 
   questionKey = questionKey
   sectionKey = 'movement'
