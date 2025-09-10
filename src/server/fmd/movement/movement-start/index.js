@@ -54,6 +54,12 @@ export class MovementStartPage extends QuestionPage {
 
   Answer = Answer
 
+  viewProps() {
+    return Promise.resolve({
+      heading: 'Movement dates'
+    })
+  }
+
   nextPage() {
     return movementEndPage
   }
