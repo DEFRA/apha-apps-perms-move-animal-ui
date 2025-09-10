@@ -18,10 +18,6 @@ export class Answer extends NumberAnswer {
         message:
           'Enter the maximum number of journeys needed to move the milk in the 2 week period'
       },
-      wholeNumberRequired: {
-        message:
-          'The number of journeys needed to move the milk within a 2 week period must be a whole number'
-      },
       min: {
         value: 1,
         message:

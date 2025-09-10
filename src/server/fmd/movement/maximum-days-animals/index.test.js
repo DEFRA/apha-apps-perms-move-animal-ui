@@ -33,12 +33,6 @@ describe('Answer', () => {
     )
   })
 
-  it('should have correct whole number required message', () => {
-    expect(Answer.config.validation.wholeNumberRequired?.message).toBe(
-      'The maximum number of days needed to move the animals must be a whole number'
-    )
-  })
-
   it('should have correct min validation message', () => {
     expect(Answer.config.validation.min?.message).toBe(
       'The maximum number of days needed to move the animals must be 1 or higher'
