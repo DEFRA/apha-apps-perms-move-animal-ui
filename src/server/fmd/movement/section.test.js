@@ -1,4 +1,7 @@
-import { aboutSectionCompleteSlaughter } from '../../common/test-helpers/fmd/journey-state.js'
+import {
+  aboutSectionCompleteOtherMovement,
+  aboutSectionCompleteSlaughter
+} from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { DisposalDatePage } from './disposal-date/index.js'
 import { MaximumDaysAnimalsPage } from './maximum-days-animals/index.js'
@@ -41,8 +44,16 @@ describe('MovementDetailsSection', () => {
   it('should be visible and enabled when about section is complete', () => {
     expect(
       MovementDetailsSection.config.isEnabled({
-        about: aboutSectionCompleteSlaughter
+        about: aboutSectionCompleteOtherMovement
       })
     ).toBe(true)
+  })
+
+  it('should not be visible or enabled when about is valid but slaughter-onsite', () => {
+    expect(
+      MovementDetailsSection.config.isEnabled({
+        about: aboutSectionCompleteSlaughter
+      })
+    ).toBe(false)
   })
 })
