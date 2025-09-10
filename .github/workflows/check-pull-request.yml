@@ -46,7 +46,7 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm test:changed
+          npm run test:changed
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
