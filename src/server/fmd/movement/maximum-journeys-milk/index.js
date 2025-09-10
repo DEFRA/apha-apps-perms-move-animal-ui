@@ -21,12 +21,12 @@ export class Answer extends NumberAnswer {
       min: {
         value: 1,
         message:
-          'The number of journeys needed to move the milk within a 2 week period must be 1 or higher.'
+          'The number of journeys needed to move the milk within a 2 week period must be 1 or more'
       },
       max: {
         value: 999,
         message:
-          'The number of journeys needed to move the milk within a 2 week period must be 999 or lower.'
+          'The number of journeys needed to move the milk within a 2 week period must be 999 days or lower'
       }
     }
   }

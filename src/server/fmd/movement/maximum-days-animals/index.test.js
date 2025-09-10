@@ -45,7 +45,7 @@ describe('Answer', () => {
 
   it('should have correct max validation message', () => {
     expect(Answer.config.validation.max?.message).toBe(
-      'The maximum number of days needed to move the animals must be 999 or lower'
+      'The number of journeys needed to move the animals within a 2 week period must be 999 days or lower'
     )
   })
 
