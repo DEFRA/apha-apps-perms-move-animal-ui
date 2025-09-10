@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
-import { destinationBusinessAddressPage } from '../destination-business-address/index.js'
+import { removingBusinessAddressPage } from '../removing-business-address/index.js'
 import { destinationHasACphNumberPage } from '../destination-has-a-cph-number/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
@@ -36,7 +36,7 @@ export class DestinationAddressKnownPage extends QuestionPage {
   /** @param {Answer} answer */
   nextPage(answer) {
     if (answer.value === 'yes') {
-      return destinationBusinessAddressPage
+      return removingBusinessAddressPage
     }
     return destinationHasACphNumberPage
   }

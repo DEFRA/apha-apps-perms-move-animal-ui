@@ -1,15 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { destinationBusinessAddressPage } from './index.js'
+import { removingBusinessAddressPage } from './index.js'
 import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { DestinationHasACphNumberPage } from '../destination-has-a-cph-number/index.js'
 
 const sectionKey = 'destination'
-const questionKey = 'destinationBusinessAddress'
-const pageUrl = '/fmd/movement-destination/destination-business-address'
-const page = destinationBusinessAddressPage
+const questionKey = 'removingBusinessAddress'
+const pageUrl = '/fmd/movement-destination/removing-business-address'
+const page = removingBusinessAddressPage
 const question = 'What is the address of the business removing the carcasses?'
 
-describe('DestinationBusinessAddressPage', () => {
+describe('RemovingBusinessAddressPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })

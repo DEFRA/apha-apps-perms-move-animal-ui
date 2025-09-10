@@ -5,10 +5,10 @@ import { destinationHasACphNumberPage } from '../destination-has-a-cph-number/in
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'destinationBusinessAddress'
+const questionKey = 'removingBusinessAddress'
 
-export class DestinationBusinessAddressPage extends QuestionPage {
-  urlPath = '/fmd/movement-destination/destination-business-address'
+export class RemovingBusinessAddressPage extends QuestionPage {
+  urlPath = '/fmd/movement-destination/removing-business-address'
 
   questionKey = questionKey
   sectionKey = 'destination'
@@ -21,10 +21,9 @@ export class DestinationBusinessAddressPage extends QuestionPage {
   }
 }
 
-export const destinationBusinessAddressPage =
-  new DestinationBusinessAddressPage()
+export const removingBusinessAddressPage = new RemovingBusinessAddressPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const destinationBusinessAddress = new FmdQuestionPageController(
-  destinationBusinessAddressPage
+export const removingBusinessAddress = new FmdQuestionPageController(
+  removingBusinessAddressPage
 ).plugin()
