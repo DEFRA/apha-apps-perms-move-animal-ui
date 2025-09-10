@@ -1,30 +1,30 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
-import { checkAnswersPage } from '../check-answers/index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
+import { destinationAddressPage } from '../destination-address/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'cphPremises'
+const questionKey = 'cphDesignated'
 
-export class CphPremisesPage extends QuestionPage {
-  urlPath = '/fmd/movement-destination/carcasses-cph-number'
+export class CphDesignatedPage extends QuestionPage {
+  urlPath = '/fmd/movement-destination/cph-number'
 
   questionKey = questionKey
   sectionKey = 'destination'
   question =
-    'What is the county parish holding (CPH) number for the destination premises?'
+    'What is the county parish holding (CPH) number of the destination premises?'
 
   Answer = CphNumberAnswer
 
   nextPage() {
-    return checkAnswersPage
+    return destinationAddressPage
   }
 }
 
-export const cphPremisesPage = new CphPremisesPage()
+export const cphDesignatedPage = new CphDesignatedPage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const cphPremises = new FmdQuestionPageController(
-  cphPremisesPage
+export const cphDesignated = new FmdQuestionPageController(
+  cphDesignatedPage
 ).plugin()

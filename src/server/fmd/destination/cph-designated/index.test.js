@@ -1,16 +1,16 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { cphPremisesPage } from './index.js'
+import { cphDesignatedPage } from './index.js'
+import { DestinationAddressPage } from '../destination-address/index.js'
 import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
-import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'destination'
-const questionKey = 'cphPremises'
-const pageUrl = '/fmd/movement-destination/carcasses-cph-number'
-const page = cphPremisesPage
+const questionKey = 'cphDesignated'
+const pageUrl = '/fmd/movement-destination/cph-number'
+const page = cphDesignatedPage
 const question =
-  'What is the county parish holding (CPH) number for the destination premises?'
+  'What is the county parish holding (CPH) number of the destination premises?'
 
-describe('CphPremisesPage', () => {
+describe('CphDesignatedPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -32,9 +32,9 @@ describe('CphPremisesPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return checkAnswersPage for any value', () => {
+    it('should return destinationAddressPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
+      expect(nextPage).toBeInstanceOf(DestinationAddressPage)
     })
   })
 

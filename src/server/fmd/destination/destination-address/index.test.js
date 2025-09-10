@@ -1,16 +1,15 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { cphPremisesPage } from './index.js'
-import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
+import { destinationAddressPage } from './index.js'
+import { AddressAnswer } from '~/src/server/common/model/answer/address/address.js'
 import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'destination'
-const questionKey = 'cphPremises'
-const pageUrl = '/fmd/movement-destination/carcasses-cph-number'
-const page = cphPremisesPage
-const question =
-  'What is the county parish holding (CPH) number for the destination premises?'
+const questionKey = 'destinationAddress'
+const pageUrl = '/fmd/movement-destination/address'
+const page = destinationAddressPage
+const question = 'What is the destination premises address?'
 
-describe('CphPremisesPage', () => {
+describe('DestinationAddressPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -28,7 +27,7 @@ describe('CphPremisesPage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(CphNumberAnswer)
+    expect(page.Answer).toBe(AddressAnswer)
   })
 
   describe('nextPage', () => {
