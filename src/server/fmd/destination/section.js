@@ -22,6 +22,8 @@ import { thirdPartyMoving } from './third-party-moving/index.js'
 import { willMoveToTla, willMoveToTlaPage } from './will-move-to-tla/index.js'
 import { destinationAddressKnown } from './destination-address-known/index.js'
 import { removingBusinessAddress } from './removing-business-address/index.js'
+import { cphPremises } from './cph-premises/index.js'
+import { destinationHasACphNumber } from './destination-has-a-cph-number/index.js'
 
 const plugin = {
   plugin: {
@@ -38,6 +40,8 @@ const plugin = {
         destinationBusinessPhone,
         destinationAddressKnown,
         removingBusinessAddress,
+        destinationHasACphNumber,
+        cphPremises,
         willMoveToTla,
         companySellingMilkTo,
         checkAnswers
