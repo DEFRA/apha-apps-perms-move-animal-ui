@@ -18,12 +18,12 @@ describe('FmdApplicationModel', () => {
   it('should have the correct implementedSections in the expected order', () => {
     expect(FmdApplicationModel.implementedSections).toEqual([
       AboutSection,
-      DestinationSection,
       OriginSection,
-      MovementDetailsSection,
-      LicenceSection,
       SlaughterInformationSection,
-      DisposalSection
+      DestinationSection,
+      DisposalSection,
+      MovementDetailsSection,
+      LicenceSection
     ])
   })
 
