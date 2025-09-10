@@ -5,7 +5,7 @@ import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'movement'
 const questionKey = 'maximumJourneysMilk'
-const pageUrl = '/fmd/movement-details/maximum-journeys'
+const pageUrl = '/fmd/movement-details/milk-maximum-journeys'
 const page = maximumJourneysMilkPage
 const question =
   'What are the maximum number of journeys needed to move the milk over the 2 week period?'
@@ -36,13 +36,19 @@ describe('Answer', () => {
       )
     })
 
+    it('should have correct whole number required message', () => {
+      expect(Answer.config.validation.wholeNumberRequired?.message).toBe(
+        'The number of journeys needed to move the milk within a 2 week period must be a whole number'
+      )
+    })
+
     it('should have correct min validation value', () => {
       expect(Answer.config.validation.min?.value).toBe(1)
     })
 
     it('should have correct max validation message', () => {
       expect(Answer.config.validation.max?.message).toBe(
-        'The number of journeys needed to move the milk within a 2 week period must be 999 days or lower'
+        'The number of journeys needed to move the milk within a 2 week period must be 999 or lower'
       )
     })
 

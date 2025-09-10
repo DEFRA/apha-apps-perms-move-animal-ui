@@ -17,6 +17,10 @@ export class Answer extends NumberAnswer {
       empty: {
         message: 'Enter the maximum number of days needed to move the animals'
       },
+      wholeNumberRequired: {
+        message:
+          'The maximum number of days needed to move the animals must be a whole number'
+      },
       min: {
         value: 1,
         message:

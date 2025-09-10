@@ -13,8 +13,9 @@ export const numberSchema = ({ payloadKey, validation }) => {
 
   const messages = {
     'any.required': validation.empty?.message ?? '',
-    'number.base': 'Enter a number',
-    'number.integer': 'Enter a whole number',
+    'number.base': validation.notANumber?.message ?? 'Enter a number',
+    'number.integer':
+      validation.wholeNumberRequired?.message ?? 'Enter a whole number',
     'number.max': validation.max?.message ?? '',
     'number.min': validation.min?.message ?? ''
   }
@@ -46,6 +47,8 @@ export const numberSchema = ({ payloadKey, validation }) => {
  *    max?: { value: number, message: string },
  *    min?: { value: number, message: string },
  *    empty?: { message: string },
+ *    wholeNumberRequired?: { message: string },
+ *    notANumber?: { message: string }
  *  }
  * }} NumberConfig
  */
