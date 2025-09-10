@@ -17,6 +17,16 @@ export class Answer extends NumberAnswer {
       empty: {
         message:
           'Enter the maximum of journeys or consignments needed to move the animals'
+      },
+      min: {
+        value: 1,
+        message:
+          'The number of journeys or consignments needed to move the animals must be 1 or more'
+      },
+      max: {
+        value: 999,
+        message:
+          'The number of journeys or consignments needed to move the animals must be 999 or lower'
       }
     }
   }

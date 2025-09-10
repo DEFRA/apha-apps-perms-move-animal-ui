@@ -54,13 +54,13 @@ describe('Answer', () => {
 
   it('should have invalid day validation message', () => {
     expect(Answer.config.validation.invalidDay).toEqual({
-      message: 'Movement start day must be a real date'
+      message: 'Movement start date must be a real date'
     })
   })
 
   it('should have invalid month validation message', () => {
     expect(Answer.config.validation.invalidMonth).toEqual({
-      message: 'Movement start month must be a number between 1 and 12'
+      message: 'Movement start date must be a real date'
     })
   })
 
@@ -72,7 +72,7 @@ describe('Answer', () => {
 
   it('should have non four digit year validation message', () => {
     expect(Answer.config.validation.nonFourDigitYear).toEqual({
-      message: 'Movement start year must include 4 numbers'
+      message: 'Year must include 4 numbers'
     })
   })
 
