@@ -19,7 +19,7 @@ exports[`PremisesTypePage content should render expected response and content 1`
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="premisesType" name="premisesType" type="radio" value="farm">
         <label class="govuk-label govuk-radios__label" for="premisesType">
-          farm
+          Farm
         </label>
       </div>
       <div class="govuk-radios__item">

@@ -14,7 +14,7 @@ export class Answer extends RadioButtonAnswer {
     payloadKey: questionKey,
     options: {
       farm: {
-        label: 'farm'
+        label: 'Farm'
       },
       smallholding: {
         label: 'Smallholding or domestic residence',
