@@ -13,7 +13,6 @@ export class Answer extends TextAnswer {
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
-    stripWhitespace: true,
     characterWidth: 10,
     validation: {
       empty: { message: 'Enter the TLA or tCPH number' }
