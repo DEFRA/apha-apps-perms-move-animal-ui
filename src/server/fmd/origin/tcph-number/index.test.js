@@ -1,6 +1,5 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { tcphNumberPage } from './index.js'
-import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
+import { Answer, tcphNumberPage } from './index.js'
 import { GridRefPage } from '../grid-ref/index.js'
 import { WhatAnimalsPage } from '../what-animals/index.js'
 
@@ -29,7 +28,13 @@ describe('Answer', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(CphNumberAnswer)
+    expect(page.Answer).toBe(Answer)
+  })
+
+  it('should have the correct empy validation config', () => {
+    expect(Answer.config.validation.empty?.message).toBe(
+      'Enter the TLA or tCPH number'
+    )
   })
 })
 

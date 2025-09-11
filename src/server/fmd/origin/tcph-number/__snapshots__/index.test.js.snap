@@ -11,14 +11,11 @@ exports[`TcphNumberPage content should render expected response and content 1`] 
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="cphNumber">
+    <label class="govuk-label govuk-label--l" for="tcphNumber">
       What is the TLA or temporary county parish holding (tCPH) number?
     </label>
   </h1>
-  <div id="cphNumber-hint" class="govuk-hint">
-    For example, 12/345/6789
-  </div>
-  <input class="govuk-input govuk-input--width-10" id="cphNumber" name="cphNumber" type="text" aria-describedby="cphNumber-hint" autocomplete="cph-number">
+  <input class="govuk-input govuk-input--width-10" id="tcphNumber" name="tcphNumber" type="text">
 </div>
 
 
