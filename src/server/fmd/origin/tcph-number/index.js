@@ -1,6 +1,6 @@
-import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
+import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
 import { gridRefPage } from '../grid-ref/index.js'
 import { whatAnimalsPage } from '../what-animals/index.js'
 
@@ -9,6 +9,18 @@ import { whatAnimalsPage } from '../what-animals/index.js'
 
 const questionKey = 'tcphNumber'
 
+export class Answer extends TextAnswer {
+  /** @type { TextConfig } */
+  static config = {
+    payloadKey: questionKey,
+    stripWhitespace: true,
+    characterWidth: 10,
+    validation: {
+      empty: { message: 'Enter the TLA or tCPH number' }
+    }
+  }
+}
+
 export class TcphNumberPage extends QuestionPage {
   urlPath = '/fmd/movement-origin/TLA-or-tCPH-number'
 
@@ -16,7 +28,7 @@ export class TcphNumberPage extends QuestionPage {
   sectionKey = 'origin'
   question = 'What is the TLA or temporary county parish holding (tCPH) number?'
 
-  Answer = CphNumberAnswer
+  Answer = Answer
 
   nextPage(_answer, context) {
     if (
