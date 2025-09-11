@@ -14,6 +14,7 @@ export class Answer extends TextAreaAnswer {
     payloadKey: questionKey,
     rows: 4,
     spellcheck: false,
+    hint: 'You can find the grid reference by right-clicking on a location in an online map service (like Grid Reference Finder)',
     validation: {
       empty: {
         message: 'Enter the grid reference for the origin premises'
