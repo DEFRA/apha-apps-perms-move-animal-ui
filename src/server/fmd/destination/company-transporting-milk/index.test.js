@@ -1,13 +1,13 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, companySellingMilkToPage } from './index.js'
+import { Answer, companyTransportingMilkPage } from './index.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { DifferentCompanyTransportingMilkPage } from '../different-company-transporting-milk/index.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'destination'
-const questionKey = 'companySellingMilkTo'
-const pageUrl = '/fmd/movement-destination/milk-selling-company-name'
-const page = companySellingMilkToPage
-const question = 'What company are you selling your milk to?'
+const questionKey = 'companyTransportingMilk'
+const pageUrl = '/fmd/movement-destination/milk-transporting-company-name'
+const page = companyTransportingMilkPage
+const question = 'What is the name of the company transporting the milk?'
 
 const payload = {
   [questionKey]: 'some text'
@@ -22,9 +22,9 @@ describe('Answer', () => {
     expect(Answer.config.payloadKey).toBe(questionKey)
   })
 
-  it('should have the right validation config', () => {
+  it('should have the right validation', () => {
     expect(Answer.config.validation.empty?.message).toBe(
-      'Enter the name of the company you are selling the milk to'
+      'Enter the name of the company transporting the milk'
     )
     expect(Answer.config.validation.maxLength?.value).toBe(100)
     expect(Answer.config.validation.maxLength?.message).toBe(
@@ -33,7 +33,7 @@ describe('Answer', () => {
   })
 })
 
-describe('CompanySellingMilkToPage', () => {
+describe('CompanyTransportingMilkPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -55,9 +55,9 @@ describe('CompanySellingMilkToPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return differentCompanyTransportingMilkPage for any value', () => {
+    it('should return checkAnswersPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(DifferentCompanyTransportingMilkPage)
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
   })
 
