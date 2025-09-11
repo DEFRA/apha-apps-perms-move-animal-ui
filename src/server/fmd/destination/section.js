@@ -26,6 +26,10 @@ import { cphPremises } from './cph-premises/index.js'
 import { destinationHasACphNumber } from './destination-has-a-cph-number/index.js'
 import { companyTransportingMilk } from './company-transporting-milk/index.js'
 import { differentCompanyTransportingMilk } from './different-company-transporting-milk/index.js'
+import { destinationAddress } from './destination-address/index.js'
+import { cphDesignated } from './cph-designated/index.js'
+import { premisesType } from './premises-type/index.js'
+import { tlaOrCphNumber } from './tla-or-cph-number/index.js'
 
 const plugin = {
   plugin: {
@@ -45,6 +49,10 @@ const plugin = {
         destinationHasACphNumber,
         cphPremises,
         willMoveToTla,
+        tlaOrCphNumber,
+        premisesType,
+        cphDesignated,
+        destinationAddress,
         companySellingMilkTo,
         differentCompanyTransportingMilk,
         companyTransportingMilk,
