@@ -24,6 +24,8 @@ import { destinationAddressKnown } from './destination-address-known/index.js'
 import { removingBusinessAddress } from './removing-business-address/index.js'
 import { cphPremises } from './cph-premises/index.js'
 import { destinationHasACphNumber } from './destination-has-a-cph-number/index.js'
+import { companyTransportingMilk } from './company-transporting-milk/index.js'
+import { differentCompanyTransportingMilk } from './different-company-transporting-milk/index.js'
 
 const plugin = {
   plugin: {
@@ -44,6 +46,8 @@ const plugin = {
         cphPremises,
         willMoveToTla,
         companySellingMilkTo,
+        differentCompanyTransportingMilk,
+        companyTransportingMilk,
         checkAnswers
       ])
     }
