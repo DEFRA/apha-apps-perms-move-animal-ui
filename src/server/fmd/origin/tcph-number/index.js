@@ -1,13 +1,12 @@
-import { CphNumberAnswer } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { gridRefPage } from '../grid-ref/index.js'
 import { whatAnimalsPage } from '../what-animals/index.js'
+import { TlaOrTcphNumberAnswer } from '../../common/model/answer/tla-tcph-number/tla-or-tcph-number.js'
 
-/** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'tcphNumber'
+const questionKey = 'tlaOrTcphNumber'
 
 export class TcphNumberPage extends QuestionPage {
   urlPath = '/fmd/movement-origin/TLA-or-tCPH-number'
@@ -16,7 +15,7 @@ export class TcphNumberPage extends QuestionPage {
   sectionKey = 'origin'
   question = 'What is the TLA or temporary county parish holding (tCPH) number?'
 
-  Answer = CphNumberAnswer
+  Answer = TlaOrTcphNumberAnswer
 
   nextPage(_answer, context) {
     if (

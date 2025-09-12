@@ -2,7 +2,7 @@ import { TextAnswer } from '../text/text.js'
 
 /** @import { TextConfig } from '../text/text.js' */
 
-const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
+export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 
 const invalidCphNumberError =
   'Enter the CPH number in the correct format, for example, 12/345/6789'
