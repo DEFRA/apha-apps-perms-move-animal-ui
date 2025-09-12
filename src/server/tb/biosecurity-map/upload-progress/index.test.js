@@ -4,6 +4,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { uploadConfig } from '../upload-config.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
+import { uploadProgressPage } from './index.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -22,6 +23,28 @@ jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
   checkStatus: jest.fn()
 }))
 const mockCheckStatus = /** @type {jest.Mock} */ (checkStatus)
+
+// Mock logger
+const mockLoggerError = jest.fn()
+jest.mock('hapi-pino', () => ({
+  register: (server) => {
+    // Decorate server with logger
+    server.decorate('server', 'logger', {
+      info: jest.fn(),
+      error: jest.fn(),
+      debug: jest.fn(),
+      warn: jest.fn()
+    })
+    // Decorate request with logger
+    server.decorate('request', 'logger', {
+      error: mockLoggerError,
+      info: jest.fn(),
+      warn: jest.fn(),
+      debug: jest.fn()
+    })
+  },
+  name: 'hapi-pino'
+}))
 
 describe('#UploadPlan', () => {
   let server
@@ -49,6 +72,11 @@ describe('#UploadPlan', () => {
         }
       }
     })
+  })
+
+  beforeEach(() => {
+    // Reset logger mock before each test
+    mockLoggerError.mockClear()
   })
 
   describe('valid upload', () => {
@@ -125,6 +153,45 @@ describe('#UploadPlan', () => {
           Cookie: session.sessionID
         }
       })
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(uploadPlanUrl)
+    })
+  })
+
+  describe('invalid file type', () => {
+    beforeEach(() => {
+      mockCheckStatus.mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'ready',
+          metadata: {},
+          numberOfRejectedFiles: 1,
+          form: {
+            crumb: testCrumb,
+            nextPage: '',
+            file: {
+              errorMessage: 'test'
+            }
+          }
+        })
+      })
+    })
+
+    it('should output the new error to logger', async () => {
+      const { statusCode, headers } = await server.inject({
+        method: 'GET',
+        url: uploadProgressUrl,
+        headers: {
+          Cookie: session.sessionID
+        }
+      })
+
+      expect(mockLoggerError).toHaveBeenCalledWith(
+        `User encountered a validation error on /biosecurity-map/upload-map, on the ${uploadProgressPage.questionKey} field: test`
+      )
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(uploadPlanUrl)

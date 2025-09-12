@@ -2,7 +2,7 @@ import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-m
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { uploadConfig } from '../upload-config.js'
-import { UploadPlanPage } from '../upload-plan/index.js'
+import { uploadPlanPage } from '../upload-plan/index.js'
 import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
@@ -49,9 +49,26 @@ export class UploadProgressController extends TbQuestionPageController {
     const state = new TbStateManager(req)
     state.set(this.page, newAnswer)
 
-    const { isValid } = newAnswer.validate()
+    const { isValid, errors } = newAnswer.validate()
     if (!isValid) {
-      return h.redirect(new UploadPlanPage().urlPath)
+      let validationErrors = errors
+      if (status?.form.file && status?.numberOfRejectedFiles > 0) {
+        validationErrors = {
+          'status.form.file': {
+            text: status?.form.file.errorMessage
+          }
+        }
+      }
+
+      req.logger.error(
+        `User encountered a validation error on /biosecurity-map/upload-map, on the ${this.page.questionKey} field: ${Object.values(
+          validationErrors
+        )
+          .map((e) => e.text)
+          .join(', ')}`
+      )
+
+      return h.redirect(uploadPlanPage.urlPath)
     }
 
     if (status.uploadStatus === 'ready') {
