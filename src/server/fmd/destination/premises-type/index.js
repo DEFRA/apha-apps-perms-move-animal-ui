@@ -14,8 +14,14 @@ export class Answer extends RadioButtonAnswer {
     payloadKey: questionKey,
     options: {
       farm: { label: 'Farm' },
-      commercial: { label: 'Commercial holding or premises' },
-      smallholding: { label: 'Smallholding or domestic residence' },
+      commercial: {
+        label: 'Commercial holding or premises',
+        hint: 'Such as a food business or animal feed company'
+      },
+      smallholding: {
+        label: 'Smallholding or domestic residence',
+        hint: 'A smallholding is typically under 50 acres'
+      },
       other: { label: 'Another location' }
     },
     validation: {
