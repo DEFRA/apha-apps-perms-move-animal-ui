@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { tlaOrCphNumberPage } from './index.js'
 import { PremisesTypePage } from '../premises-type/index.js'
-import { TlaOrTcphNumberAnswer } from '../../common/model/answer/field-parcel-number/tla-tcph-number.js'
+import { TlaOrTcphNumberAnswer } from '../../common/model/answer/tla-tcph-number/tla-tcph-number.js'
 
 const sectionKey = 'destination'
 const questionKey = 'tlaOrTcphNumber'

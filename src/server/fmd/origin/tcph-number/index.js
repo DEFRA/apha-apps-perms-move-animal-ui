@@ -2,7 +2,7 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { gridRefPage } from '../grid-ref/index.js'
 import { whatAnimalsPage } from '../what-animals/index.js'
-import { TlaOrTcphNumberAnswer } from '../../common/model/answer/field-parcel-number/tla-tcph-number.js'
+import { TlaOrTcphNumberAnswer } from '../../common/model/answer/tla-tcph-number/tla-tcph-number.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 

@@ -2,7 +2,7 @@ import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-
 import { tcphNumberPage } from './index.js'
 import { GridRefPage } from '../grid-ref/index.js'
 import { WhatAnimalsPage } from '../what-animals/index.js'
-import { TlaOrTcphNumberAnswer } from '../../common/model/answer/field-parcel-number/tla-tcph-number.js'
+import { TlaOrTcphNumberAnswer } from '../../common/model/answer/tla-tcph-number/tla-tcph-number.js'
 
 const sectionKey = 'origin'
 const questionKey = 'tlaOrTcphNumber'
