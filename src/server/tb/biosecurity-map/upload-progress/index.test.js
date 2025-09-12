@@ -23,6 +23,28 @@ jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
 }))
 const mockCheckStatus = /** @type {jest.Mock} */ (checkStatus)
 
+// Mock logger
+const mockLoggerError = jest.fn()
+jest.mock('hapi-pino', () => ({
+  register: (server) => {
+    // Decorate server with logger
+    server.decorate('server', 'logger', {
+      info: jest.fn(),
+      error: jest.fn(),
+      debug: jest.fn(),
+      warn: jest.fn()
+    })
+    // Decorate request with logger
+    server.decorate('request', 'logger', {
+      error: mockLoggerError,
+      info: jest.fn(),
+      warn: jest.fn(),
+      debug: jest.fn()
+    })
+  },
+  name: 'hapi-pino'
+}))
+
 describe('#UploadPlan', () => {
   let server
   let session
@@ -49,6 +71,11 @@ describe('#UploadPlan', () => {
         }
       }
     })
+  })
+
+  beforeEach(() => {
+    // Reset logger mock before each test
+    mockLoggerError.mockClear()
   })
 
   describe('valid upload', () => {
@@ -125,6 +152,50 @@ describe('#UploadPlan', () => {
           Cookie: session.sessionID
         }
       })
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(uploadPlanUrl)
+    })
+  })
+
+  describe('invalid file type', () => {
+    beforeEach(() => {
+      mockCheckStatus.mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'ready',
+          metadata: {},
+          numberOfRejectedFiles: 1,
+          form: {
+            crumb: testCrumb,
+            nextPage: '',
+            file: {
+              errorMessage: 'test'
+            }
+          }
+        })
+      })
+    })
+
+    it('should output the new error to logger', async () => {
+      const { statusCode, headers } = await server.inject({
+        method: 'GET',
+        url: uploadProgressUrl,
+        headers: {
+          Cookie: session.sessionID
+        }
+      })
+
+      expect(mockLoggerError).toHaveBeenCalledWith(
+        expect.stringContaining(
+          'User encountered a validation error on /biosecurity-map/upload-map'
+        )
+      )
+      expect(mockLoggerError).toHaveBeenCalledWith(
+        expect.stringContaining('test')
+      )
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(uploadPlanUrl)
