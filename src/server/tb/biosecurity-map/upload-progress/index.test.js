@@ -4,6 +4,7 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { uploadConfig } from '../upload-config.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
+import { uploadProgressPage } from './index.js'
 
 /**
  * @import { IncomingMessage } from 'node:http'
@@ -189,12 +190,7 @@ describe('#UploadPlan', () => {
       })
 
       expect(mockLoggerError).toHaveBeenCalledWith(
-        expect.stringContaining(
-          'User encountered a validation error on /biosecurity-map/upload-map'
-        )
-      )
-      expect(mockLoggerError).toHaveBeenCalledWith(
-        expect.stringContaining('test')
+        `User encountered a validation error on /biosecurity-map/upload-map, on the ${uploadProgressPage.questionKey} field: test`
       )
 
       expect(statusCode).toBe(statusCodes.redirect)
