@@ -60,10 +60,8 @@ export class ExpectMovementDatePage extends QuestionPage {
 
   Answer = Answer
 
-  viewProps() {
-    return Promise.resolve({
-      heading: 'Movement date'
-    })
+  get heading() {
+    return 'Movement date'
   }
 
   nextPage() {

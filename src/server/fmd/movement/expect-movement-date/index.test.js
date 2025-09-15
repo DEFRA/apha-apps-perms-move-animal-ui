@@ -98,7 +98,7 @@ describe('ExpectMovementDatePage', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
 
-  it('should have the correct view', () => {
+  it('should have the correct §', () => {
     expect(page.view).toBe('fmd/movement/expect-movement-date/index.njk')
   })
 
