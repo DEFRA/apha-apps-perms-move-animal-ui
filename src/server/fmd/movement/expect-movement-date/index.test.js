@@ -85,6 +85,10 @@ describe('Answer', () => {
           'The milk movement start date must be in the future'
         )
       })
+
+      it('should state its not a page heading question', () => {
+        expect(Answer.config.isPageHeading).toBe(false)
+      })
     })
   })
 })
@@ -92,6 +96,10 @@ describe('Answer', () => {
 describe('ExpectMovementDatePage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
+  })
+
+  it('should have the correct view', () => {
+    expect(page.view).toBe('fmd/movement/expect-movement-date/index.njk')
   })
 
   it('should have the correct sectionKey', () => {
