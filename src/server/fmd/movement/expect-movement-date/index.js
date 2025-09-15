@@ -14,6 +14,7 @@ export class Answer extends DateAnswer {
   /** @type { DateConfig } */
   static config = {
     hint: 'For example, 7 3 2025',
+    isPageHeading: false,
     validation: {
       missingDate: {
         message: 'Enter the start date'
@@ -55,8 +56,15 @@ export class ExpectMovementDatePage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'movement'
   question = 'When is the date when you expect the milk to move?'
+  view = 'fmd/movement/expect-movement-date/index.njk'
 
   Answer = Answer
+
+  viewProps() {
+    return Promise.resolve({
+      heading: 'Movement date'
+    })
+  }
 
   nextPage() {
     return checkAnswersPage
