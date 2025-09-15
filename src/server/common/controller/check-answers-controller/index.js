@@ -11,8 +11,6 @@ import { QuestionPageController } from '../question-page-controller/question-pag
  * @import {ConfirmationPayload} from '../../model/answer/confirmation/confirmation.js'
  */
 
-const checkAnswersUrlPath = '/tb/submit/check-answers'
-
 export class ConfirmationPage extends Page {
   urlPath = `/submit/confirmation`
 }
@@ -50,10 +48,7 @@ export class SubmitSummaryPage extends QuestionPage {
     const summary = Object.fromEntries(
       Object.values(tasks).map((task) => {
         const { key, title } = task.config
-        return [
-          key,
-          { title, answers: sectionToSummary(task, checkAnswersUrlPath) }
-        ]
+        return [key, { title, answers: sectionToSummary(task, this.urlPath) }]
       })
     )
 
