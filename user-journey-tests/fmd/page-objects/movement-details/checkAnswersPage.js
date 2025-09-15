@@ -18,7 +18,7 @@ class CheckAnswersPage extends AnswersBasePage {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
-  changeLinks = movementOriginChangeLinks
+  changeLinks = movementDetailsChangeLinks
 }
 
 export default new CheckAnswersPage()
