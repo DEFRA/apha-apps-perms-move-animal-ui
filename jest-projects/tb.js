@@ -8,7 +8,7 @@ export default {
   resetModules: true,
   clearMocks: true,
   silent: false,
-  testMatch: ['**/src/**/tb/**/*.test.js'],
+  testMatch: ['**/src/server/tb/**/*.test.js'],
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
   collectCoverageFrom: ['src/**/*.js'],

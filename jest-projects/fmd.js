@@ -8,7 +8,7 @@ export default {
   resetModules: true,
   clearMocks: true,
   silent: false,
-  testMatch: ['**/src/**/fmd/**/*.test.js'],
+  testMatch: ['**/src/server/fmd/**/*.test.js'],
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
   collectCoverageFrom: ['src/**/*.js'],
