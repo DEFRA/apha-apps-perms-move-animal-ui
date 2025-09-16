@@ -41,7 +41,10 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm test
+          npm run test -- --projects jest-projects/core.js
+          npm run test -- --projects jest-projects/fmd.js
+          npm run test -- --projects jest-projects/exotics.js
+          npm run test -- --projects jest-projects/tb.js
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@master
