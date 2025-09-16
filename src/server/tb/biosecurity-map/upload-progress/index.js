@@ -60,7 +60,7 @@ export class UploadProgressController extends TbQuestionPageController {
         }
       }
 
-      req.logger.error(
+      req.logger.info(
         `User encountered a validation error on /biosecurity-map/upload-map, on the ${this.page.questionKey} field: ${Object.values(
           validationErrors
         )
