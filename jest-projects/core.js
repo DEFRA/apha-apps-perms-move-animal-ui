@@ -7,7 +7,11 @@ export default {
   resetModules: true,
   clearMocks: true,
   testMatch: ['**/src/**/*.test.js', '**/user-journey-tests/config/*.test.js'],
-  testPathIgnorePatterns: ['.*fmd.*', '.*exotics.*', '.*tb.*'],
+  testPathIgnorePatterns: [
+    'src/server/tb/*',
+    'src/server/fmd/*',
+    'src/server/exotics/*'
+  ],
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
   collectCoverageFrom: ['src/**/*.js'],
   modulePathIgnorePatterns: ['<rootDir>/.server'],
