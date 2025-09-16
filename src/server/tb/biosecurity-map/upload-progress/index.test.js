@@ -25,7 +25,7 @@ jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
 const mockCheckStatus = /** @type {jest.Mock} */ (checkStatus)
 
 // Mock logger
-const mockLoggerError = jest.fn()
+const mockLoggerInfo = jest.fn()
 jest.mock('hapi-pino', () => ({
   register: (server) => {
     // Decorate server with logger
@@ -37,9 +37,9 @@ jest.mock('hapi-pino', () => ({
     })
     // Decorate request with logger
     server.decorate('request', 'logger', {
-      error: mockLoggerError,
-      info: jest.fn(),
+      error: jest.fn(),
       warn: jest.fn(),
+      info: mockLoggerInfo,
       debug: jest.fn()
     })
   },
@@ -76,7 +76,7 @@ describe('#UploadPlan', () => {
 
   beforeEach(() => {
     // Reset logger mock before each test
-    mockLoggerError.mockClear()
+    mockLoggerInfo.mockClear()
   })
 
   describe('valid upload', () => {
@@ -189,7 +189,7 @@ describe('#UploadPlan', () => {
         }
       })
 
-      expect(mockLoggerError).toHaveBeenCalledWith(
+      expect(mockLoggerInfo).toHaveBeenCalledWith(
         `User encountered a validation error on /biosecurity-map/upload-map, on the ${uploadProgressPage.questionKey} field: test`
       )
 
