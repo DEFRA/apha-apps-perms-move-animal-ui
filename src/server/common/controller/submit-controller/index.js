@@ -14,7 +14,7 @@ export class ConfirmationPage extends Page {
   sectionKey = 'confirmation'
   urlKey = 'submit-confirmation'
   urlPath = '/submit/confirmation'
-  view = 'common/controller/submit-controller/index'
+  view = 'common/templates/layouts/confirmation'
 
   // sends metric that the page was served
   reportMetrics = {

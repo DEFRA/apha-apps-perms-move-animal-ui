@@ -15,6 +15,7 @@ export class FmdConfirmationPage extends ConfirmationPage {
   urlPath = '/fmd/submit/confirmation'
   pageTitle = title
   pageHeading = title
+  view = 'fmd/submit/confirmation/index'
 }
 
 export const fmdConfirmationPage = new FmdConfirmationPage()

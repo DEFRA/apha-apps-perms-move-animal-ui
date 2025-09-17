@@ -6,7 +6,7 @@ import { withCsrfProtection } from '../../common/test-helpers/csrf.js'
 const sectionKey = 'confirmation'
 const heading = 'Your animal disease movement licence application'
 const urlKey = 'submit-confirmation'
-const view = 'common/controller/submit-controller/index'
+const view = 'common/templates/layouts/confirmation'
 const pageUrl = '/fmd/submit/confirmation'
 
 describe('ConfirmationPage', () => {
