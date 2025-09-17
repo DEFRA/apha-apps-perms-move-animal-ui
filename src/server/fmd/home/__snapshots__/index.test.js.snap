@@ -14,26 +14,23 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
         </p>
         <h3 class="govuk-heading-m">What you can apply for</h3>
         <p class="govuk-body">
-          You can use this service to apply for a licence to:
+          You can use this service to apply for a licence for the following
+          activities:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            move live animals to slaughter on or off your farm or premises
-          </li>
-          <li>move carcasses</li>
-          <li>move milk products</li>
+          <li>movement of live animals on or off your premises</li>
+          <li>on-farm slaughter</li>
+          <li>movement of carcasses</li>
+          <li>movement of milk</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
           APHA need these details to process your application:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            details about the origin, including who is responsible for the farm
-            or premises
-          </li>
-          <li>ID numbers if you are moving animals</li>
-          <li>reason and dates for the movement</li>
+          <li>details about the origin premises</li>
+          <li>animal ID numbers</li>
+          <li>dates of the activity</li>
         </ul>
         <a href="/fmd/task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
@@ -73,26 +70,23 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
         </p>
         <h3 class="govuk-heading-m">What you can apply for</h3>
         <p class="govuk-body">
-          You can use this service to apply for a licence to:
+          You can use this service to apply for a licence for the following
+          activities:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            move live animals to slaughter on or off your farm or premises
-          </li>
-          <li>move carcasses</li>
-          <li>move milk products</li>
+          <li>movement of live animals on or off your premises</li>
+          <li>on-farm slaughter</li>
+          <li>movement of carcasses</li>
+          <li>movement of milk</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
           APHA need these details to process your application:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            details about the origin, including who is responsible for the farm
-            or premises
-          </li>
-          <li>ID numbers if you are moving animals</li>
-          <li>reason and dates for the movement</li>
+          <li>details about the origin premises</li>
+          <li>animal ID numbers</li>
+          <li>dates of the activity</li>
         </ul>
           <h3 class="govuk-heading-m">Signing into the service</h3>
           <p class="govuk-body">
