@@ -1,21 +1,26 @@
 import { AnswersBasePage } from '../../../base-pages/answersBasePage.js'
 
 export const aboutTheMovementChangeLinks = {
-  movementType: '[data-testid="movementType-change-link"]',
+  movementType: '[data-testid="movementActivityType-change-link"]',
   whatIsMoving: '[data-testid="whatIsMoving-change-link"]',
-  typeOfAnimal: '[data-testid="typeOfAnimal-change-link"]',
+  typeOfAnimal: '[data-testid="typeOfAnimals-change-link"]',
+  animalSlaughtered: '[data-testid="animalSlaughtered-change-link"]',
+  toSlaughter: '[data-testid="moveToSlaughter-change-link"]',
   numberOfAnimals: '[data-testid="numberOfAnimals-change-link"]',
+  slaughteredNumber: '[data-testid="slaughteredNumber-change-link"]',
   currentPurpose: '[data-testid="currentPurposeOfAnimals-change-link"]',
-  animalIds: '[data-testid="animalsId-change-link"]',
+  animalIds: '[data-testid="animalIds-change-link"]',
   whatAreYouMoving: '[data-testid="whatAreYouMovingDetails-change-link"]',
-  howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]'
+  howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]',
+  milkResponsible: '[data-testid="responsibleForMilkMovement-change-link"]',
+  milkAnimal: '[data-testid="milkAnimal-change-link"]'
 }
 
 const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
 class WhatIsMovingAnswersPage extends AnswersBasePage {
-  pagePath = 'exotics/about-the-movement/check-answers'
+  pagePath = 'fmd/about-the-movement/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 

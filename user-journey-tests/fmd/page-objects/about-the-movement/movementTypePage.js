@@ -4,7 +4,7 @@ const pageHeadingAndTitle =
   'Which type of movement or activity does your application relate to?'
 
 class MovementTypePage extends RadioButtonBasePage {
-  pagePath = 'exotics/about-the-movement/movement-type'
+  pagePath = 'fmd/about-the-movement-or-activity/type'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
