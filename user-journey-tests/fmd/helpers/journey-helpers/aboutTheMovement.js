@@ -81,7 +81,7 @@ export const completeAboutMovementFromDiagram = async ({
     const responsibilityAnswer = milkResponsible ? 'yes' : 'no'
     await milkResponsibilityPage.selectRadioAndContinue(
       responsibilityAnswer,
-      milkResponsible ? animalTypeMilkPage : infoNoLicenceNeededPage
+      animalTypeMilkPage
     )
     if (!milkResponsible) {
       return

@@ -14,9 +14,6 @@ import {
 import { verifyCheckAnswersPageShort } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 import { completeAboutMovementFromDiagram } from '../../helpers/journey-helpers/aboutTheMovement.js'
 
-const basePath = '/fmd/disposal-of-the-animal'
-const redirectUri = `${basePath}/check-answers`
-
 const journeyData = {
   wholeAnimal: {
     expected: 'No, only parts of the animal (such as animal by-products)',
@@ -38,6 +35,7 @@ const journeyData = {
 }
 
 describe('Disposal of the animal — Whole animal route', () => {
+  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()
