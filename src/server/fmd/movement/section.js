@@ -18,6 +18,7 @@ import { milkMovementDate } from './milk-movement-date/index.js'
 import { movementEnd } from './movement-end/index.js'
 import { movementStart } from './movement-start/index.js'
 import { twoWeekRepeat, twoWeekRepeatPage } from './two-week-repeat/index.js'
+import { vehicleNumber } from './vehicle-number/index.js'
 
 const plugin = {
   plugin: {
@@ -36,7 +37,8 @@ const plugin = {
         twoWeekRepeat,
         collectionPremises,
         driverPhone,
-        driverName
+        driverName,
+        vehicleNumber
       ])
     }
   }
