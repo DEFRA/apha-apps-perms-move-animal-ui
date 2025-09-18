@@ -3,7 +3,9 @@
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { collectionPremises } from './collection-premises/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
+import { driverPhone } from './driver-phone/index.js'
 import { expectMovementDate } from './expect-movement-date/index.js'
 import { maxJourneys } from './max-journeys/index.js'
 import {
@@ -30,7 +32,9 @@ const plugin = {
         expectMovementDate,
         maximumJourneysMilk,
         milkMovementDate,
-        twoWeekRepeat
+        twoWeekRepeat,
+        collectionPremises,
+        driverPhone
       ])
     }
   }

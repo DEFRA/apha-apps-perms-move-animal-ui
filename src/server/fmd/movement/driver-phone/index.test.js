@@ -34,7 +34,6 @@ describe('Answer', () => {
       'Your answer must be no longer than 100 characters'
     )
   })
-
 })
 
 describe('DriverPhonePage', () => {

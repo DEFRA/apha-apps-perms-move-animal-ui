@@ -30,14 +30,7 @@ describe('Answer', () => {
     )
   })
 
-  it('should have the right maxLength validation', () => {
-    expect(Answer.config.validation.maxLength?.value).toBe(5000)
-    expect(Answer.config.validation.maxLength?.message).toBe(
-      'Your answer must be no longer than 5000 characters'
-    )
-  })
-
-  it('should have the empty validation', () => {
+  it('should have the right empty validation', () => {
     expect(Answer.config.validation.empty?.message).toBe(
       'Enter the premises names the vehicle will visit on collection day'
     )

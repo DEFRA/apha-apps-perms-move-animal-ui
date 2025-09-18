@@ -9,8 +9,6 @@ import { collectionPremisesPage } from '../collection-premises/index.js'
 const questionKey = 'driverPhone'
 
 export class Answer extends TextAnswer {
-  // TEMPLATE-TODO: update config as needed
-
   /** @type { TextConfig } */
   static config = {
     payloadKey: questionKey,
