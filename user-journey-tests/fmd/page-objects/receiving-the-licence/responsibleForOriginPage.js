@@ -2,11 +2,11 @@ import { DoubleTextInputPage } from '../../../base-pages/doubleTextInputPage.js'
 
 const firstId = 'firstName'
 const lastId = 'lastName'
-const pageHeadingAndTitle = 'Who is the registered keeper of the animals?'
+const pageHeadingAndTitle = 'Who is responsible for the origin premises?'
 const input1Error = 'Enter a first name'
 const input2Error = 'Enter a last name'
 
-class RegisteredKeeperPage extends DoubleTextInputPage {
+class ResponsibleForOriginPage extends DoubleTextInputPage {
   constructor() {
     super({
       firstId,
@@ -16,9 +16,9 @@ class RegisteredKeeperPage extends DoubleTextInputPage {
     })
   }
 
-  pagePath = 'fmd/receiving-the-licence/name-of-registered-keeper'
+  pagePath = 'fmd/receiving-the-licence/name-of-person-responsible-at-origin'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 }
 
-export default new RegisteredKeeperPage()
+export default new ResponsibleForOriginPage()

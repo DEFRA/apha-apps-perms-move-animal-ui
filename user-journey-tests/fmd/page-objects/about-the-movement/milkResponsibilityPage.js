@@ -1,20 +1,19 @@
-import { YesNoRadioPage } from '../../../base-pages/yesNoRadioBase.js'
+import { RadioButtonBasePage } from '../../../base-pages/radioButtonBasePage.js'
 
-const pageHeadingAndTitle =
-  'Are you responsible for organising the movement of the milk?'
+const pageHeadingAndTitle = 'Who is moving the milk?'
 
-class MilkResponsibilityPage extends YesNoRadioPage {
-  pagePath = 'fmd/about-the-movement-or-activity/responsibility-for-movement'
+class AnimalTypeSlaughterPage extends RadioButtonBasePage {
+  pagePath = 'fmd/about-the-movement-or-activity/producer'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
   constructor() {
     super({
-      pageId: 'responsibleForMilkMovement',
-      noInputError:
-        'Select if you are responsible for organising the movement of the milk'
+      pageId: 'milkWhoIsMoving',
+      noInputError: 'Select who is moving the milk',
+      valueArray: ['producer', 'dairy']
     })
   }
 }
 
-export default new MilkResponsibilityPage()
+export default new AnimalTypeSlaughterPage()
