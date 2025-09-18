@@ -4,6 +4,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { collectionPremises } from './collection-premises/index.js'
+import { dairyName } from './dairy-name/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
 import { driverName } from './driver-name/index.js'
 import { driverPhone } from './driver-phone/index.js'
@@ -38,7 +39,8 @@ const plugin = {
         collectionPremises,
         driverPhone,
         driverName,
-        vehicleNumber
+        vehicleNumber,
+        dairyName
       ])
     }
   }
