@@ -30,7 +30,7 @@ describe('Answer', () => {
     )
   })
 
-  it('should have the right empty validation', () => {
+  it('should have the right t empty validation', () => {
     expect(Answer.config.validation.empty?.message).toBe(
       'Enter the premises names the vehicle will visit on collection day'
     )
