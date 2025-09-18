@@ -1,45 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant NOT previously selected 1`] = `
-"
-  <div class="govuk-grid-row app-heading" data-testid="app-heading">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
-      500
-    </h1>
-
-  </div>
-</div>
-
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>Something went wrong</p>
-    </div>
-  </div>
-        "
-`;
-
-exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant selected cant be found 1`] = `
-"
-  <div class="govuk-grid-row app-heading" data-testid="app-heading">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="app-heading-title">
-      500
-    </h1>
-
-  </div>
-</div>
-
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>Something went wrong</p>
-    </div>
-  </div>
-        "
-`;
-
 exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when liquid disinfectant previously selected 1`] = `
 "
   <div class="govuk-grid-row">
@@ -47,25 +7,25 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
     </div>
   </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        By law you must use a Defra-approved disinfectant when there is an
-        outbreak of TB. This includes using the correct dilution rate.
-      </p>
-      <p>
-        The approved dilution rate for Agrichlor is
-          1:10.
-      </p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         <p>
-          This means for every 1 litre of Agrichlor,
-          you are using 10
-          litres
-          of water.
+          By law you must use a Defra-approved disinfectant when there is an
+          outbreak of TB. This includes using the correct dilution rate.
         </p>
+        <p>
+          The approved dilution rate for Agrichlor is
+            1:10.
+        </p>
+          <p>
+            This means for every 1 litre of Agrichlor,
+            you are using 10
+            litres
+            of water.
+          </p>
+      </div>
     </div>
-  </div>
-    <form method="POST" novalidate="">
+        <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
@@ -93,6 +53,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         </div>
       </div>
     </form>
+
         "
 `;
 
@@ -103,25 +64,25 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
     </div>
   </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        By law you must use a Defra-approved disinfectant when there is an
-        outbreak of TB. This includes using the correct dilution rate.
-      </p>
-      <p>
-        The approved dilution rate for Interkokask is
-          1:150.
-      </p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         <p>
-          This means for every 1 gram of Interkokask,
-          you are using 150
-          millilitres
-          of water.
+          By law you must use a Defra-approved disinfectant when there is an
+          outbreak of TB. This includes using the correct dilution rate.
         </p>
+        <p>
+          The approved dilution rate for Interkokask is
+            1:150.
+        </p>
+          <p>
+            This means for every 1 gram of Interkokask,
+            you are using 150
+            millilitres
+            of water.
+          </p>
+      </div>
     </div>
-  </div>
-    <form method="POST" novalidate="">
+        <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
@@ -149,6 +110,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         </div>
       </div>
     </form>
+
         "
 `;
 
@@ -159,19 +121,19 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
       <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
     </div>
   </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        By law you must use a Defra-approved disinfectant when there is an
-        outbreak of TB. This includes using the correct dilution rate.
-      </p>
-      <p>
-        The approved dilution rate for Undiluted Mock is
-          undiluted
-      </p>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          By law you must use a Defra-approved disinfectant when there is an
+          outbreak of TB. This includes using the correct dilution rate.
+        </p>
+        <p>
+          The approved dilution rate for Undiluted Mock is
+            undiluted
+        </p>
+      </div>
     </div>
-  </div>
-    <form method="POST" novalidate="">
+        <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
@@ -199,5 +161,46 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
         </div>
       </div>
     </form>
+
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response when disinfectant NOT previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          You must select a disinfectant before confirming the dilution rate.
+        </p>
+      </div>
+    </div>
+    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Select disinfectant
+</a>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response when disinfectant selected cant be found 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          You must select a disinfectant before confirming the dilution rate.
+        </p>
+      </div>
+    </div>
+    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Select disinfectant
+</a>
         "
 `;

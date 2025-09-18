@@ -34,7 +34,9 @@ export class DisinfectantDilutionPage extends QuestionPage {
     )
 
     if (!selectedDisinfectant || !disinfectantDetails) {
-      return Promise.resolve({})
+      return Promise.resolve({
+        disinfectantUrl: '/biosecurity/disinfectant'
+      })
     }
     return Promise.resolve({
       isUndiluted: disinfectantDetails.isUndiluted,
