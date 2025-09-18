@@ -2,8 +2,8 @@ import { SingleTextInputPage } from '../../../base-pages/singleTextInputPage.js'
 
 const pageHeadingAndTitle = 'How many animals are you planning to move?'
 
-class NumberOfAnimalsPage extends SingleTextInputPage {
-  pagePath = 'exotics/about-the-movement/what-is-moving/select-animals/quantity'
+class AnimalsQuantityPage extends SingleTextInputPage {
+  pagePath = 'fmd/about-the-movement-or-activity/number-of-animals'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
@@ -16,4 +16,4 @@ class NumberOfAnimalsPage extends SingleTextInputPage {
   }
 }
 
-export default new NumberOfAnimalsPage()
+export default new AnimalsQuantityPage()

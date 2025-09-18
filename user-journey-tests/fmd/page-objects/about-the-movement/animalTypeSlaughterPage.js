@@ -2,7 +2,7 @@ import { RadioButtonBasePage } from '../../../base-pages/radioButtonBasePage.js'
 
 const pageHeadingAndTitle = 'Which type of animal will be slaughtered?'
 
-class TypeOfAnimalPage extends RadioButtonBasePage {
+class AnimalTypeSlaughterPage extends RadioButtonBasePage {
   pagePath = 'fmd/about-the-movement-or-activity/animal-being-slaughtered'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
@@ -16,4 +16,4 @@ class TypeOfAnimalPage extends RadioButtonBasePage {
   }
 }
 
-export default new TypeOfAnimalPage()
+export default new AnimalTypeSlaughterPage()

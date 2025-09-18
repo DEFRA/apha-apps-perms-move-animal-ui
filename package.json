@@ -40,7 +40,8 @@
     "user-journey-test:bs": "wdio run ./user-journey-tests/TB/wdio.browserstack.conf.js",
     "user-journey-test:bs-extended-desktop": "wdio run ./user-journey-tests/TB/wdio.browserstack.extended-desktop.conf.js",
     "user-journey-test:bs-extended-mobile": "wdio run ./user-journey-tests/TB/wdio.browserstack.extended-mobile.conf.js",
-    "exotics-journey-test": "wdio run ./user-journey-tests/exotics/wdioExotics.conf.js"
+    "exotics-journey-test": "wdio run ./user-journey-tests/exotics/wdioExotics.conf.js",
+    "fmd-journey-test": "wdio run ./user-journey-tests/fmd/wdioFMD.conf.js"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",

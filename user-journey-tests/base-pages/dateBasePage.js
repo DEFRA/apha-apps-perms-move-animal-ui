@@ -3,11 +3,8 @@ import { Page } from '../TB/page-objects/page.js'
 import * as page from '../TB/helpers/page.js'
 
 class DateBasePage extends Page {
-  constructor({ pagePath, pageHeadingAndTitle, pageId = 'date', errors = {} }) {
+  constructor({ pageId = 'date', errors = {} }) {
     super()
-    this.pagePath = pagePath
-    this.pageTitle = pageHeadingAndTitle
-    this.pageHeading = pageHeadingAndTitle
     this.pageId = pageId
 
     const defaultErrors = {
