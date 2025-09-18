@@ -4,7 +4,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { collectionPremises } from './collection-premises/index.js'
-import { dairyName } from './dairy-name/index.js'
+import { dairyName, dairyNamePage } from './dairy-name/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
 import { driverName } from './driver-name/index.js'
 import { driverPhone } from './driver-phone/index.js'
@@ -63,6 +63,9 @@ export class MovementDetailsSection extends FmdSectionModel {
 
   static firstPageFactory = (context) => {
     if (context.about?.whatIsMoving === 'milk') {
+      if (context.about?.milkWhoIsMoving === 'dairy') {
+        return dairyNamePage
+      }
       return twoWeekRepeatPage
     }
 
