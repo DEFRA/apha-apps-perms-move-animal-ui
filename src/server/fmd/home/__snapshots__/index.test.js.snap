@@ -32,6 +32,11 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
           <li>animal ID numbers</li>
           <li>dates of the activity</li>
         </ul>
+        <h3 class="govuk-heading-m">Get help</h3>
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301. Lines
+          are open from Monday to Friday between 8.30am and 5pm.
+        </p>
         <a href="/fmd/task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
@@ -44,11 +49,6 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
           <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
-        </p>
-        <h3 class="govuk-heading-m">Get help</h3>
-        <p class="govuk-body">
-          If you need help using the service you can call 03000 200 301. Lines
-          are open from Monday to Friday between 8.30am and 5pm.
         </p>
       </div>
     </div>
@@ -97,6 +97,11 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
             After you sign in you need to enter your contact information, and
             details about your business if you have one.
           </p>
+        <h3 class="govuk-heading-m">Get help</h3>
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301. Lines
+          are open from Monday to Friday between 8.30am and 5pm.
+        </p>
         <a href="/fmd/task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
@@ -109,11 +114,6 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
           <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
-        </p>
-        <h3 class="govuk-heading-m">Get help</h3>
-        <p class="govuk-body">
-          If you need help using the service you can call 03000 200 301. Lines
-          are open from Monday to Friday between 8.30am and 5pm.
         </p>
       </div>
     </div>
