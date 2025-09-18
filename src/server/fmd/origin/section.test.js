@@ -1,4 +1,7 @@
-import { aboutSectionCompleteSlaughter } from '../../common/test-helpers/fmd/journey-state.js'
+import {
+  aboutSectionCompleteMilkProducer,
+  aboutSectionCompleteSlaughter
+} from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { PremisesTypePage } from './premises-type/index.js'
 import { OriginSection } from './section.js'
@@ -27,19 +30,48 @@ describe('OriginSection', () => {
     ).toBeInstanceOf(expectedPage)
   })
 
-  it('should be visible', () => {
-    expect(OriginSection.config.isVisible({})).toBe(true)
+  it('should not be visible when about section is incomplete', () => {
+    expect(OriginSection.config.isVisible({})).toBe(false)
   })
 
   it('should not be enabled when about section is incomplete', () => {
     expect(OriginSection.config.isEnabled({})).toBe(false)
   })
 
-  it('should be enabled when about section is complete', () => {
+  it('should be visible and enabled when about section is complete and not moving milk', () => {
+    expect(
+      OriginSection.config.isVisible({
+        about: aboutSectionCompleteSlaughter
+      })
+    ).toBe(true)
     expect(
       OriginSection.config.isEnabled({
         about: aboutSectionCompleteSlaughter
       })
     ).toBe(true)
+  })
+
+  it('should be visible and enabled when about section is complete and it is a producer moving milk', () => {
+    expect(
+      OriginSection.config.isVisible({
+        about: aboutSectionCompleteMilkProducer
+      })
+    ).toBe(true)
+    expect(
+      OriginSection.config.isEnabled({
+        about: aboutSectionCompleteMilkProducer
+      })
+    ).toBe(true)
+  })
+
+  it('should NOT be visible nor enabled when about section is complete and it is a producer moving milk', () => {
+    const context = {
+      about: {
+        ...aboutSectionCompleteMilkProducer,
+        milkWhoIsMoving: 'dairy'
+      }
+    }
+    expect(OriginSection.config.isVisible(context)).toBe(false)
+    expect(OriginSection.config.isEnabled(context)).toBe(false)
   })
 })
