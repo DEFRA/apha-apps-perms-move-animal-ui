@@ -144,7 +144,7 @@ describe('DisinfectantDilutionPage', () => {
 
   describePageSnapshot({
     describes: 'disinfectantDilutionPage.content',
-    it: 'should render expected response (500) when disinfectant selected cant be found',
+    it: 'should render expected response when disinfectant selected cant be found',
     pageUrl,
     state: {
       application: {

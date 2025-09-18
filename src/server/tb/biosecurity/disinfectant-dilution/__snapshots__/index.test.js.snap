@@ -1,25 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response (500) when disinfectant selected cant be found 1`] = `
-"
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
-    </div>
-  </div>
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <p>
-          You must select a disinfectant before confirming the dilution rate.
-        </p>
-      </div>
-    </div>
-    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
-  Select disinfectant
-</a>
-        "
-`;
-
 exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response and content when liquid disinfectant previously selected 1`] = `
 "
   <div class="govuk-grid-row">
@@ -186,6 +166,26 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
 `;
 
 exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response when disinfectant NOT previously selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Disinfectant dilution rate</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          You must select a disinfectant before confirming the dilution rate.
+        </p>
+      </div>
+    </div>
+    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Select disinfectant
+</a>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render expected response when disinfectant selected cant be found 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
