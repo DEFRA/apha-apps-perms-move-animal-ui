@@ -144,14 +144,7 @@ export const enumerateRoutes = () => [
     opts: { movementContext: 'on-to-farm', moving: 'carcasses' }
   },
   {
-    name: 'On premises → Milk (responsible)',
-    opts: {
-      movementContext: 'on-to-farm',
-      moving: 'milk'
-    }
-  },
-  {
-    name: 'On premises → Milk (not responsible)',
+    name: 'On premises → Milk',
     opts: {
       movementContext: 'on-to-farm',
       moving: 'milk'
@@ -178,14 +171,7 @@ export const enumerateRoutes = () => [
     opts: { movementContext: 'off-of-farm', moving: 'carcasses' }
   },
   {
-    name: 'Off premises → Milk (responsible)',
-    opts: {
-      movementContext: 'off-of-farm',
-      moving: 'milk'
-    }
-  },
-  {
-    name: 'Off premises → Milk (not responsible)',
+    name: 'Off premises → Milk',
     opts: {
       movementContext: 'off-of-farm',
       moving: 'milk'
