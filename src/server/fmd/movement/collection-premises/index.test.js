@@ -66,7 +66,7 @@ describe('CollectionPremisesPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return TEMPLATE-TODO for any value', () => {
+    it('should return TwoWeekRepeatPage for any value', () => {
       const nextPage = page.nextPage()
       expect(nextPage).toBeInstanceOf(TwoWeekRepeatPage)
     })
