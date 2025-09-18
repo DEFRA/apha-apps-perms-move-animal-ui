@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { NumberAnswer } from '~/src/server/common/model/answer/number/number.js'
-import { animalIdsPage } from '../animal-ids/index.js'
+import { animalIdsSlaughterPage } from '../animal-ids-slaughter/index.js'
 
 /** @import { NumberConfig } from '~/src/server/common/model/answer/number/number.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -35,7 +35,7 @@ export class SlaughteredNumberPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return animalIdsPage
+    return animalIdsSlaughterPage
   }
 }
 

@@ -2,7 +2,7 @@ export const aboutSectionCompleteSlaughter = {
   movementActivityType: 'slaughter-onsite',
   animalSlaughtered: 'cattle',
   slaughteredNumber: 123,
-  animalIds: 'ear tags'
+  animalIdsSlaughter: 'ear tags'
 }
 
 export const aboutSectionCompleteMilkProducer = {
