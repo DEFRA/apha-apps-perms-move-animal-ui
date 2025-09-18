@@ -17,7 +17,7 @@ const journeyData = {
   },
   whatIsMoving: { expected: 'Milk', hrefSuffix: 'what-is-moving' },
   milkResponsible: {
-    expected: 'Yes',
+    expected: 'Producer',
     hrefSuffix: 'responsibility-for-movement'
   },
   milkAnimal: { expected: 'Cow', hrefSuffix: 'animal-the-milk-is-from' }
@@ -41,7 +41,6 @@ describe('About the movement - Off premises → Milk', () => {
     await completeAboutMovement({
       movementContext: 'off-of-farm',
       moving: 'milk',
-      milkResponsible: true,
       startFromFirstPage: true
     })
 

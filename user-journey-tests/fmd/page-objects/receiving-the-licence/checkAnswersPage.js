@@ -2,14 +2,16 @@ import { AnswersBasePage } from '../../../base-pages/answersBasePage.js'
 
 export const receivingTheLicenceChangeLinks = {
   name: '[data-testid="registeredKeeperName-change-link"]',
-  email: '[data-testid="emailAddress-change-link"]'
+  email: '[data-testid="emailAddress-change-link"]',
+  responsibleForOrigin:
+    '[data-testid="originResponsiblePersonName-change-link"]'
 }
 
 const pageHeadingAndTitle =
   'Check your answers before you continue your application'
 
 class CheckAnswersPage extends AnswersBasePage {
-  pagePath = 'exotics/receiving-the-licence/check-answers'
+  pagePath = 'fmd/receiving-the-licence/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 

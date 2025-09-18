@@ -24,7 +24,6 @@ export const completeAboutMovement = async ({
   movementContext = 'off-of-farm',
   moving = 'live-animals',
   toSlaughter = false,
-  milkResponsible = true,
   startFromFirstPage = false
 } = {}) => {
   await navigateIfFirstPage(startFromFirstPage, movementTypePage)
@@ -78,14 +77,10 @@ export const completeAboutMovement = async ({
       'milk',
       milkResponsibilityPage
     )
-    const responsibilityAnswer = milkResponsible ? 'yes' : 'no'
     await milkResponsibilityPage.selectRadioAndContinue(
-      responsibilityAnswer,
+      'producer',
       animalTypeMilkPage
     )
-    if (!milkResponsible) {
-      return
-    }
     await animalTypeMilkPage.selectRadioAndContinue(
       DEFAULTS.milkAnimal,
       checkAnswersPage
@@ -149,19 +144,10 @@ export const enumerateRoutes = () => [
     opts: { movementContext: 'on-to-farm', moving: 'carcasses' }
   },
   {
-    name: 'On premises → Milk (responsible)',
+    name: 'On premises → Milk',
     opts: {
       movementContext: 'on-to-farm',
-      moving: 'milk',
-      milkResponsible: true
-    }
-  },
-  {
-    name: 'On premises → Milk (not responsible)',
-    opts: {
-      movementContext: 'on-to-farm',
-      moving: 'milk',
-      milkResponsible: false
+      moving: 'milk'
     }
   },
   {
@@ -185,19 +171,10 @@ export const enumerateRoutes = () => [
     opts: { movementContext: 'off-of-farm', moving: 'carcasses' }
   },
   {
-    name: 'Off premises → Milk (responsible)',
+    name: 'Off premises → Milk',
     opts: {
       movementContext: 'off-of-farm',
-      moving: 'milk',
-      milkResponsible: true
-    }
-  },
-  {
-    name: 'Off premises → Milk (not responsible)',
-    opts: {
-      movementContext: 'off-of-farm',
-      moving: 'milk',
-      milkResponsible: false
+      moving: 'milk'
     }
   },
   {
