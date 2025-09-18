@@ -1,4 +1,5 @@
 import {
+  aboutSectionCompleteMilkProducer,
   aboutSectionCompleteOtherMovement,
   aboutSectionCompleteSlaughter
 } from '../../common/test-helpers/fmd/journey-state.js'
@@ -60,18 +61,17 @@ describe('DestinationSection', () => {
     ).toBeInstanceOf(CompanySellingMilkToPage)
   })
 
-  it('should only be visible and enabled when not "slaughter on site"', () => {
+  it('should not be visible when about section is incomplete', () => {
+    expect(DestinationSection.config.isVisible({})).toBe(false)
+  })
+
+  it('should not be enabled when about section is incomplete', () => {
+    expect(DestinationSection.config.isEnabled({})).toBe(false)
+  })
+
+  it('should NOT be visible nor enabled when movement is "slaughter on site"', () => {
     const contextSlaughterOnSite = {
-      about: {
-        ...aboutSectionCompleteSlaughter,
-        movementActivityType: 'slaughter-onsite'
-      }
-    }
-    const contextOtherMovement = {
-      about: {
-        ...aboutSectionCompleteOtherMovement,
-        movementActivityType: 'on-to-farm'
-      }
+      about: aboutSectionCompleteSlaughter
     }
 
     expect(DestinationSection.config.isEnabled(contextSlaughterOnSite)).toBe(
@@ -80,8 +80,34 @@ describe('DestinationSection', () => {
     expect(DestinationSection.config.isVisible(contextSlaughterOnSite)).toBe(
       false
     )
+  })
+
+  it('should NOT be visible nor enabled when it is a dairy moving milk', () => {
+    const contextMilkDairy = {
+      about: {
+        ...aboutSectionCompleteMilkProducer,
+        milkWhoIsMoving: 'dairy'
+      }
+    }
+    expect(DestinationSection.config.isVisible(contextMilkDairy)).toBe(false)
+    expect(DestinationSection.config.isEnabled(contextMilkDairy)).toBe(false)
+  })
+
+  it('should be visible and enabled when movement is not "slaughter on site"', () => {
+    const contextOtherMovement = {
+      about: aboutSectionCompleteOtherMovement
+    }
 
     expect(DestinationSection.config.isEnabled(contextOtherMovement)).toBe(true)
     expect(DestinationSection.config.isVisible(contextOtherMovement)).toBe(true)
+  })
+
+  it('should be visible and enabled when it is a producer moving milk', () => {
+    const contextMilkProducer = {
+      about: aboutSectionCompleteMilkProducer
+    }
+
+    expect(DestinationSection.config.isEnabled(contextMilkProducer)).toBe(true)
+    expect(DestinationSection.config.isVisible(contextMilkProducer)).toBe(true)
   })
 })
