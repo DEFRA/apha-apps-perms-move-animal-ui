@@ -16,7 +16,7 @@ exports[`GridRefPage content should render expected response and content 1`] = `
     </label>
   </h1>
   <div id="gridRef-hint" class="govuk-hint">
-    You can find the grid reference by right-clicking on a location in an online map service (like Grid Reference Finder).
+    You can find the grid reference by using an online map service, such as OS Maps.
   </div>
   <textarea class="govuk-textarea" id="gridRef" name="gridRef" rows="4" spellcheck="false" aria-describedby="gridRef-hint"></textarea>
 </div>
