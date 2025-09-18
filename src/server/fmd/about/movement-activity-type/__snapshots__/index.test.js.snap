@@ -23,10 +23,13 @@ exports[`MovementActivityTypePage content should render expected response and co
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="off-of-farm" name="movementActivityType" type="radio" value="off-of-farm">
+        <input class="govuk-radios__input" id="off-of-farm" name="movementActivityType" type="radio" value="off-of-farm" aria-describedby="off-of-farm-item-hint">
         <label class="govuk-label govuk-radios__label" for="off-of-farm">
           Movement off a farm or premises
         </label>
+        <div id="off-of-farm-item-hint" class="govuk-hint govuk-radios__hint">
+          Including moving or collecting milk
+        </div>
       </div>
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="slaughter-onsite" name="movementActivityType" type="radio" value="slaughter-onsite" aria-describedby="slaughter-onsite-item-hint">
