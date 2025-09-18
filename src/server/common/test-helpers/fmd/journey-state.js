@@ -5,6 +5,13 @@ export const aboutSectionCompleteSlaughter = {
   animalIds: 'ear tags'
 }
 
+export const aboutSectionCompleteMilkProducer = {
+  movementActivityType: 'off-of-farm',
+  whatIsMoving: 'milk',
+  milkWhoIsMoving: 'producer',
+  milkAnimal: 'cow'
+}
+
 export const aboutSectionCompleteOtherMovement = {
   movementActivityType: 'on-to-farm',
   whatIsMoving: 'live-animals',

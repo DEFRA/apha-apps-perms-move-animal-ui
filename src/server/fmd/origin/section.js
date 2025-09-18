@@ -31,6 +31,13 @@ const plugin = {
   }
 }
 
+const isVisibleAndEnabled = (context) => {
+  return (
+    AboutSection.fromState(context).validate().isValid &&
+    context.about.milkWhoIsMoving !== 'dairy'
+  )
+}
+
 export class OriginSection extends FmdSectionModel {
   /** @type {SectionConfig} */
   static config = {
@@ -38,8 +45,8 @@ export class OriginSection extends FmdSectionModel {
     title: 'Movement origin',
     plugin,
     summaryLink: '/fmd/movement-origin/check-answers',
-    isEnabled: (context) => AboutSection.fromState(context).validate().isValid,
-    isVisible: () => true
+    isEnabled: isVisibleAndEnabled,
+    isVisible: isVisibleAndEnabled
   }
 
   static firstPageFactory = (context) => {
