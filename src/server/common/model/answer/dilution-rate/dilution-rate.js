@@ -46,11 +46,7 @@ export class DilutionRateAnswer extends CheckboxAnswer {
       (disinfectant) => disinfectant.name === selectedDisinfectant
     )
     if (!disinfectantDetails) {
-      return Promise.reject(
-        new Error(
-          'Selected disinfectant is no longer available on the disinfectants API'
-        )
-      )
+      return Promise.resolve(viewModel)
     }
 
     viewModel.items = Object.entries(options).map(([value]) => ({

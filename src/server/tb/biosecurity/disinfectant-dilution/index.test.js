@@ -1,6 +1,7 @@
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { disinfectantPage } from '../disinfectant/index.js'
 import { disinfectantDilutionPage, DisinfectantDilutionPage } from './index.js'
 
 const sectionKey = 'biosecurity'
@@ -76,11 +77,13 @@ describe('DisinfectantDilutionPage', () => {
     }
     const stateSpy = jest.spyOn(request.yar, 'get')
 
-    it('should return empty viewProps when no disinfectant previously selected', async () => {
-      expect(await page.viewProps(request)).toEqual({})
+    it('should return viewProps with disinfectant url when no disinfectant previously selected', async () => {
+      expect(await page.viewProps(request)).toEqual({
+        disinfectantUrl: disinfectantPage.urlPath
+      })
     })
 
-    it('should return empty viewProps when disinfectant cannot be found', async () => {
+    it('should return viewProps with disinfectant url when disinfectant cannot be found', async () => {
       stateSpy.mockReturnValueOnce({
         application: {
           biosecurity: {
@@ -88,7 +91,9 @@ describe('DisinfectantDilutionPage', () => {
           }
         }
       })
-      expect(await page.viewProps(request)).toEqual({})
+      expect(await page.viewProps(request)).toEqual({
+        disinfectantUrl: disinfectantPage.urlPath
+      })
     })
   })
 
@@ -133,7 +138,7 @@ describe('DisinfectantDilutionPage', () => {
 
   describePageSnapshot({
     describes: 'disinfectantDilutionPage.content',
-    it: 'should render expected response (500) when disinfectant NOT previously selected',
+    it: 'should render expected response when disinfectant NOT previously selected',
     pageUrl
   })
 

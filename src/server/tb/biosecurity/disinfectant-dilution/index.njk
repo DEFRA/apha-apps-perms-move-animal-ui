@@ -1,5 +1,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% extends 'layouts/questions.njk' %}
+
 {% block heading %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -7,29 +9,55 @@
     </div>
   </div>
 {% endblock %}
+
 {% block beforequestion %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        By law you must use a Defra-approved disinfectant when there is an
-        outbreak of TB. This includes using the correct dilution rate.
-      </p>
-      <p>
-        The approved dilution rate for {{ disinfectant }} is
-        {% if isUndiluted %}
-          undiluted
-        {% else %}
-          1:{{ dilutionRate }}.
-        {% endif %}
-      </p>
-      {% if not isUndiluted %}
+  {% if disinfectant %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         <p>
-          This means for every 1 {{ disinfectantUnit }} of {{ disinfectant }},
-          you are using {{ dilutionRate }}
-          {{ dilutantUnit }}
-          of water.
+          By law you must use a Defra-approved disinfectant when there is an
+          outbreak of TB. This includes using the correct dilution rate.
         </p>
-      {% endif %}
+        <p>
+          The approved dilution rate for {{ disinfectant }} is
+          {% if isUndiluted %}
+            undiluted
+          {% else %}
+            1:{{ dilutionRate }}.
+          {% endif %}
+        </p>
+        {% if not isUndiluted %}
+          <p>
+            This means for every 1 {{ disinfectantUnit }} of {{ disinfectant }},
+            you are using {{ dilutionRate }}
+            {{ dilutantUnit }}
+            of water.
+          </p>
+        {% endif %}
+      </div>
     </div>
-  </div>
+  {% else %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          You must select a disinfectant before confirming the dilution rate.
+        </p>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block form %}
+  {% if disinfectant %}
+    {{ super() }}
+  {% else %}
+    {{
+      govukButton({
+        id: "continue-button",
+        text: "Select disinfectant",
+        classes: continueButtonClasses,
+        href: disinfectantUrl
+      })
+    }}
+  {% endif %}
 {% endblock %}
