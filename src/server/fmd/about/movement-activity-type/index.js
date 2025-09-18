@@ -15,7 +15,10 @@ export class Answer extends RadioButtonAnswer {
     payloadKey: questionKey,
     options: {
       'on-to-farm': { label: 'Movement on to a farm or premises' },
-      'off-of-farm': { label: 'Movement off a farm or premises' },
+      'off-of-farm': {
+        label: 'Movement off a farm or premises',
+        hint: 'Including moving or collecting milk'
+      },
       'slaughter-onsite': {
         label: 'Slaughter of animals onsite',
         hint: 'Including bringing a Slaughterman or Knackerman onsite'
