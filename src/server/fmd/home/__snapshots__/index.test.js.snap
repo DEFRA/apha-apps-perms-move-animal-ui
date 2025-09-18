@@ -14,27 +14,29 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
         </p>
         <h3 class="govuk-heading-m">What you can apply for</h3>
         <p class="govuk-body">
-          You can use this service to apply for a licence to:
+          You can use this service to apply for a licence for the following
+          activities:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            move live animals to slaughter on or off your farm or premises
-          </li>
-          <li>move carcasses</li>
-          <li>move milk products</li>
+          <li>movement of live animals on or off your premises</li>
+          <li>on-farm slaughter</li>
+          <li>movement of carcasses</li>
+          <li>movement of milk</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
           APHA need these details to process your application:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            details about the origin, including who is responsible for the farm
-            or premises
-          </li>
-          <li>ID numbers if you are moving animals</li>
-          <li>reason and dates for the movement</li>
+          <li>details about the origin premises</li>
+          <li>animal ID numbers</li>
+          <li>dates of the activity</li>
         </ul>
+        <h3 class="govuk-heading-m">Get help</h3>
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301. Lines
+          are open from Monday to Friday between 8.30am and 5pm.
+        </p>
         <a href="/fmd/task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
@@ -47,11 +49,6 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
           <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
-        </p>
-        <h3 class="govuk-heading-m">Get help</h3>
-        <p class="govuk-body">
-          If you need help using the service you can call 03000 200 301. Lines
-          are open from Monday to Friday between 8.30am and 5pm.
         </p>
       </div>
     </div>
@@ -73,26 +70,23 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
         </p>
         <h3 class="govuk-heading-m">What you can apply for</h3>
         <p class="govuk-body">
-          You can use this service to apply for a licence to:
+          You can use this service to apply for a licence for the following
+          activities:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            move live animals to slaughter on or off your farm or premises
-          </li>
-          <li>move carcasses</li>
-          <li>move milk products</li>
+          <li>movement of live animals on or off your premises</li>
+          <li>on-farm slaughter</li>
+          <li>movement of carcasses</li>
+          <li>movement of milk</li>
         </ul>
         <h3 class="govuk-heading-m">Before you start</h3>
         <p class="govuk-body">
           APHA need these details to process your application:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>
-            details about the origin, including who is responsible for the farm
-            or premises
-          </li>
-          <li>ID numbers if you are moving animals</li>
-          <li>reason and dates for the movement</li>
+          <li>details about the origin premises</li>
+          <li>animal ID numbers</li>
+          <li>dates of the activity</li>
         </ul>
           <h3 class="govuk-heading-m">Signing into the service</h3>
           <p class="govuk-body">
@@ -103,6 +97,11 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
             After you sign in you need to enter your contact information, and
             details about your business if you have one.
           </p>
+        <h3 class="govuk-heading-m">Get help</h3>
+        <p class="govuk-body">
+          If you need help using the service you can call 03000 200 301. Lines
+          are open from Monday to Friday between 8.30am and 5pm.
+        </p>
         <a href="/fmd/task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
@@ -115,11 +114,6 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
           <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
-        </p>
-        <h3 class="govuk-heading-m">Get help</h3>
-        <p class="govuk-body">
-          If you need help using the service you can call 03000 200 301. Lines
-          are open from Monday to Friday between 8.30am and 5pm.
         </p>
       </div>
     </div>
