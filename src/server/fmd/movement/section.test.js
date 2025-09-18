@@ -3,6 +3,7 @@ import {
   aboutSectionCompleteSlaughter
 } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
+import { DairyNamePage } from './dairy-name/index.js'
 import { DisposalDatePage } from './disposal-date/index.js'
 import { MaximumDaysAnimalsPage } from './maximum-days-animals/index.js'
 import { MovementDetailsSection } from './section.js'
@@ -21,16 +22,18 @@ describe('MovementDetailsSection', () => {
   })
 
   it.each([
-    ['milk', TwoWeekRepeatPage],
-    ['live-animals', MaximumDaysAnimalsPage],
-    ['carcasses', DisposalDatePage]
+    ['milk', 'producer', TwoWeekRepeatPage],
+    ['milk', 'dairy', DairyNamePage],
+    ['live-animals', null, MaximumDaysAnimalsPage],
+    ['carcasses', null, DisposalDatePage]
   ])(
     'should have the correct first page for %s and should return %s',
-    (value, expectedPageType) => {
+    (whatIsMoving, milkWhoIsMoving, expectedPageType) => {
       expect(
         MovementDetailsSection.firstPageFactory({
           about: {
-            whatIsMoving: value
+            whatIsMoving,
+            milkWhoIsMoving
           }
         })
       ).toBeInstanceOf(expectedPageType)

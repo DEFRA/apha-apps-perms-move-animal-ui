@@ -3,7 +3,11 @@
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
+import { collectionPremises } from './collection-premises/index.js'
+import { dairyName, dairyNamePage } from './dairy-name/index.js'
 import { disposalDate, disposalDatePage } from './disposal-date/index.js'
+import { driverName } from './driver-name/index.js'
+import { driverPhone } from './driver-phone/index.js'
 import { expectMovementDate } from './expect-movement-date/index.js'
 import { maxJourneys } from './max-journeys/index.js'
 import {
@@ -15,6 +19,7 @@ import { milkMovementDate } from './milk-movement-date/index.js'
 import { movementEnd } from './movement-end/index.js'
 import { movementStart } from './movement-start/index.js'
 import { twoWeekRepeat, twoWeekRepeatPage } from './two-week-repeat/index.js'
+import { vehicleNumber } from './vehicle-number/index.js'
 
 const plugin = {
   plugin: {
@@ -30,7 +35,12 @@ const plugin = {
         expectMovementDate,
         maximumJourneysMilk,
         milkMovementDate,
-        twoWeekRepeat
+        twoWeekRepeat,
+        collectionPremises,
+        driverPhone,
+        driverName,
+        vehicleNumber,
+        dairyName
       ])
     }
   }
@@ -53,6 +63,9 @@ export class MovementDetailsSection extends FmdSectionModel {
 
   static firstPageFactory = (context) => {
     if (context.about?.whatIsMoving === 'milk') {
+      if (context.about?.milkWhoIsMoving === 'dairy') {
+        return dairyNamePage
+      }
       return twoWeekRepeatPage
     }
 
