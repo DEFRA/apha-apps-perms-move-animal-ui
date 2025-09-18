@@ -1,18 +1,16 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, responsibleForMilkMovementPage } from './index.js'
+import { Answer, milkWhoIsMovingPage } from './index.js'
 import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button/radio-button.js'
 import { MilkAnimalPage } from '../milk-animal/index.js'
-import { LicenceNotNeededExitPage } from '../licence-not-needed/index.js'
 
 const sectionKey = 'about'
-const questionKey = 'responsibleForMilkMovement'
-const pageUrl =
-  '/fmd/about-the-movement-or-activity/responsibility-for-movement'
-const page = responsibleForMilkMovementPage
-const question = 'Are you responsible for organising the movement of the milk?'
+const questionKey = 'milkWhoIsMoving'
+const pageUrl = '/fmd/about-the-movement-or-activity/producer'
+const page = milkWhoIsMovingPage
+const question = 'Who is moving the milk?'
 
 const payload = {
-  [questionKey]: 'yes'
+  [questionKey]: 'producer'
 }
 
 describe('Answer', () => {
@@ -26,13 +24,12 @@ describe('Answer', () => {
 
   it('should have the right validation', () => {
     expect(Answer.config.validation).toEqual({
-      empty:
-        'Select if you are responsible for organising the movement of the milk'
+      empty: 'Select who is moving the milk'
     })
   })
 })
 
-describe('ResponsibleForMilkMovementPage', () => {
+describe('MilkWhoIsMovingPage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
@@ -54,13 +51,9 @@ describe('ResponsibleForMilkMovementPage', () => {
   })
 
   describe('nextPage', () => {
-    it.each([
-      ['yes', MilkAnimalPage],
-      ['no', LicenceNotNeededExitPage]
-    ])('for %s should return %s', (value, expectedPage) => {
-      const answer = new Answer({ [questionKey]: value })
-      const nextPage = page.nextPage(answer)
-      expect(nextPage).toBeInstanceOf(expectedPage)
+    it('should return MilkAnimalPage for any value', () => {
+      const nextPage = page.nextPage()
+      expect(nextPage).toBeInstanceOf(MilkAnimalPage)
     })
   })
 

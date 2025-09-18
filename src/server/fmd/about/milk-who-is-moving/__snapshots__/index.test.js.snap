@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResponsibleForMilkMovementPage content should render expected response and content 1`] = `
+exports[`MilkWhoIsMovingPage content should render expected response and content 1`] = `
 "
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
@@ -12,20 +12,20 @@ exports[`ResponsibleForMilkMovementPage content should render expected response 
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
       <h1 class="govuk-fieldset__heading">
-        Are you responsible for organising the movement of the milk?
+        Who is moving the milk?
       </h1>
     </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="responsibleForMilkMovement" name="responsibleForMilkMovement" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="responsibleForMilkMovement">
-          Yes
+        <input class="govuk-radios__input" id="milkWhoIsMoving" name="milkWhoIsMoving" type="radio" value="producer">
+        <label class="govuk-label govuk-radios__label" for="milkWhoIsMoving">
+          I'm a producer moving my own milk
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="responsibleForMilkMovement" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
+        <input class="govuk-radios__input" id="dairy" name="milkWhoIsMoving" type="radio" value="dairy">
+        <label class="govuk-label govuk-radios__label" for="dairy">
+          I'm a dairy collecting from multiple producers
         </label>
       </div>
     </div>

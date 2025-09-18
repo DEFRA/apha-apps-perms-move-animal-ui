@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { moveToSlaughterPage } from '../move-to-slaughter/index.js'
 import { movementOnExitPage } from '../movement-on-exit/index.js'
 import { typeOfAnimalsPage } from '../type-of-animals/index.js'
-import { responsibleForMilkMovementPage } from '../responsible-for-milk-movement/index.js'
+import { milkWhoIsMovingPage } from '../milk-who-is-moving/index.js'
 
 /** @import { RadioButtonConfig } from '~/src/server/common/model/answer/radio-button/radio-button.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -49,7 +49,7 @@ export class WhatIsMovingPage extends QuestionPage {
         return typeOfAnimalsPage
       }
       if (answer.value === 'milk') {
-        return responsibleForMilkMovementPage
+        return milkWhoIsMovingPage
       }
     }
     return movementOnExitPage
