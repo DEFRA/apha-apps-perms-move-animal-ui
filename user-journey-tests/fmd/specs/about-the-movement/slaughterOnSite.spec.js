@@ -4,7 +4,7 @@ import checkAnswersPage from '../../page-objects/about-the-movement/checkAnswers
 import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
-import { completeAboutMovementFromDiagram } from '../../helpers/journey-helpers/aboutTheMovement.js'
+import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
 
 const basePath = '/fmd/about-the-movement-or-activity'
@@ -44,7 +44,7 @@ describe('About the movement - Slaughter on site → Live animals → cattle', (
     })
     await taskListPage.selectAboutMovement(movementTypePage)
 
-    await completeAboutMovementFromDiagram({
+    await completeAboutMovement({
       movementContext: 'slaughter-onsite',
       startFromFirstPage: true
     })

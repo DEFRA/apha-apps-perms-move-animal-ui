@@ -12,7 +12,7 @@ import {
   DISPOSAL_ROUTES
 } from '../../helpers/journey-helpers/disposalOfTheAnimal.js'
 import { verifyCheckAnswersPageShort } from '../../helpers/function-helpers/verifyCheckAnswers.js'
-import { completeAboutMovementFromDiagram } from '../../helpers/journey-helpers/aboutTheMovement.js'
+import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
 
 const journeyData = {
   wholeAnimal: { expected: 'Yes', hrefSuffix: 'whole-animal' },
@@ -36,7 +36,7 @@ describe('Disposal of the animal — Whole animal route', () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()
-    await completeAboutMovementFromDiagram({
+    await completeAboutMovement({
       movementContext: 'slaughter-onsite',
       startFromFirstPage: true
     })

@@ -8,7 +8,7 @@ import checkAnswersPage from '../../page-objects/slaughter-information/checkAnsw
 import slaughtermanOrKnackermanPage from '../../page-objects/slaughter-information/slaughtermanOrKnackermanPage.js'
 
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
-import { completeAboutMovementFromDiagram } from '../../helpers/journey-helpers/aboutTheMovement.js'
+import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
 import {
   completeSlaughterInformationSection,
   PROVIDER
@@ -39,7 +39,7 @@ describe('Slaughter information — Knackerman route', () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()
 
-    await completeAboutMovementFromDiagram({
+    await completeAboutMovement({
       movementContext: 'slaughter-onsite',
       startFromFirstPage: true
     })

@@ -20,7 +20,7 @@ const DEFAULTS = {
   milkAnimal: 'cow'
 }
 
-export const completeAboutMovementFromDiagram = async ({
+export const completeAboutMovement = async ({
   movementContext = 'off-of-farm',
   moving = 'live-animals',
   toSlaughter = false,
