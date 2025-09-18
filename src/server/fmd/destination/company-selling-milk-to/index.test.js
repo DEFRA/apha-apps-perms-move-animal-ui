@@ -1,7 +1,7 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 import { Answer, companySellingMilkToPage } from './index.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { DifferentCompanyTransportingMilkPage } from '../different-company-transporting-milk/index.js'
+import { CheckAnswersPage } from '../check-answers/index.js'
 
 const sectionKey = 'destination'
 const questionKey = 'companySellingMilkTo'
@@ -55,9 +55,9 @@ describe('CompanySellingMilkToPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return differentCompanyTransportingMilkPage for any value', () => {
+    it('should return checkAnswersPage for any value', () => {
       const nextPage = page.nextPage()
-      expect(nextPage).toBeInstanceOf(DifferentCompanyTransportingMilkPage)
+      expect(nextPage).toBeInstanceOf(CheckAnswersPage)
     })
   })
 
