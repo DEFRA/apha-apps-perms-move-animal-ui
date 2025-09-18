@@ -4,7 +4,7 @@ import { RadioButtonAnswer } from '~/src/server/common/model/answer/radio-button
 import { MoveToSlaughterPage } from '../move-to-slaughter/index.js'
 import { TypeOfAnimalsPage } from '../type-of-animals/index.js'
 import { MovementOnExitPage } from '../movement-on-exit/index.js'
-import { ResponsibleForMilkMovementPage } from '../responsible-for-milk-movement/index.js'
+import { MilkWhoIsMovingPage } from '../milk-who-is-moving/index.js'
 
 const sectionKey = 'about'
 const questionKey = 'whatIsMoving'
@@ -72,7 +72,7 @@ describe('WhatIsMovingPage', () => {
     it.each([
       ['live-animals', MoveToSlaughterPage],
       ['carcasses', TypeOfAnimalsPage],
-      ['milk', ResponsibleForMilkMovementPage]
+      ['milk', MilkWhoIsMovingPage]
     ])(
       'for %s should return %s for movements off the farm',
       (value, expectedPage) => {
