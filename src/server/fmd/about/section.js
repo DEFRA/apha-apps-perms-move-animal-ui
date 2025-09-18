@@ -16,6 +16,7 @@ import { numberOfAnimals } from './number-of-animals/index.js'
 import { movementOnExit } from './movement-on-exit/index.js'
 import { milkWhoIsMoving } from './milk-who-is-moving/index.js'
 import { milkAnimal } from './milk-animal/index.js'
+import { animalIdsSlaughter } from './animal-ids-slaughter/index.js'
 
 const plugin = {
   plugin: {
@@ -26,6 +27,7 @@ const plugin = {
         animalSlaughtered,
         slaughteredNumber,
         animalIds,
+        animalIdsSlaughter,
         whatIsMoving,
         moveToSlaughter,
         typeOfAnimals,
