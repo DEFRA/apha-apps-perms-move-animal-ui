@@ -34,6 +34,7 @@ const journeyData = {
 }
 
 describe('Slaughter information — Knackerman route', () => {
+  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()
