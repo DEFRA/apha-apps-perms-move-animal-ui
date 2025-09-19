@@ -14,12 +14,12 @@ export class Answer extends FullNameAnswer {
     validation: {
       firstName: {
         empty: {
-          message: 'Enter the first name of the vehicle driver'
+          message: 'Enter the first name of the licensee'
         }
       },
       lastName: {
         empty: {
-          message: 'Enter the last name of the vehicle driver'
+          message: 'Enter the last name of the licensee'
         }
       }
     }

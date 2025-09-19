@@ -17,13 +17,13 @@ describe('Answer', () => {
   describe('config', () => {
     it('should have the correct validation messages for firstName empty', () => {
       expect(Answer.config.validation.firstName.empty?.message).toBe(
-        'Enter the first name of the vehicle driver'
+        'Enter the first name of the licensee'
       )
     })
 
     it('should have the correct validation messages for lastName empty', () => {
       expect(Answer.config.validation.lastName.empty?.message).toBe(
-        'Enter the last name of the vehicle driver'
+        'Enter the last name of the licensee'
       )
     })
   })
