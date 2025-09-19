@@ -5,6 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
+import { licenceName, licenceNamePage } from './licence-name/index.js'
 import {
   originResponsiblePersonName,
   originResponsiblePersonNamePage
@@ -20,6 +21,7 @@ const plugin = {
     async register(server) {
       await server.register([
         registeredKeeperName,
+        licenceName,
         originResponsiblePersonName,
         emailAddress,
         checkAnswers
@@ -41,8 +43,18 @@ export class LicenceSection extends FmdSectionModel {
 
   /** @param {RawApplicationState} context */
   static firstPageFactory = (context) => {
-    if (context.about?.whatIsMoving === 'milk') {
+    if (
+      context.about?.whatIsMoving === 'milk' &&
+      context.about?.milkWhoIsMoving === 'producer'
+    ) {
       return originResponsiblePersonNamePage
+    }
+
+    if (
+      context.about?.whatIsMoving === 'milk' &&
+      context.about?.milkWhoIsMoving === 'dairy'
+    ) {
+      return licenceNamePage
     }
     return registeredKeeperNamePage
   }
