@@ -1,7 +1,7 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { FmdQuestionPageController } from '~/src/server/fmd/question-page-controller.js'
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
-import { differentCompanyTransportingMilkPage } from '../different-company-transporting-milk/index.js'
+import { checkAnswersPage } from '../check-answers/index.js'
 
 /** @import { TextConfig } from '~/src/server/common/model/answer/text/text.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -36,7 +36,7 @@ export class CompanySellingMilkToPage extends QuestionPage {
   Answer = Answer
 
   nextPage() {
-    return differentCompanyTransportingMilkPage
+    return checkAnswersPage
   }
 }
 

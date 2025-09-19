@@ -39,39 +39,29 @@ describe('OriginSection', () => {
   })
 
   it('should be visible and enabled when about section is complete and not moving milk', () => {
-    expect(
-      OriginSection.config.isVisible({
-        about: aboutSectionCompleteSlaughter
-      })
-    ).toBe(true)
-    expect(
-      OriginSection.config.isEnabled({
-        about: aboutSectionCompleteSlaughter
-      })
-    ).toBe(true)
+    const contextSlaughter = {
+      about: aboutSectionCompleteSlaughter
+    }
+    expect(OriginSection.config.isVisible(contextSlaughter)).toBe(true)
+    expect(OriginSection.config.isEnabled(contextSlaughter)).toBe(true)
   })
 
   it('should be visible and enabled when about section is complete and it is a producer moving milk', () => {
-    expect(
-      OriginSection.config.isVisible({
-        about: aboutSectionCompleteMilkProducer
-      })
-    ).toBe(true)
-    expect(
-      OriginSection.config.isEnabled({
-        about: aboutSectionCompleteMilkProducer
-      })
-    ).toBe(true)
+    const contextMilkProducer = {
+      about: aboutSectionCompleteMilkProducer
+    }
+    expect(OriginSection.config.isVisible(contextMilkProducer)).toBe(true)
+    expect(OriginSection.config.isEnabled(contextMilkProducer)).toBe(true)
   })
 
-  it('should NOT be visible nor enabled when about section is complete and it is a producer moving milk', () => {
-    const context = {
+  it('should NOT be visible nor enabled when about section is complete and it is a dairy moving milk', () => {
+    const contextMilkDairy = {
       about: {
         ...aboutSectionCompleteMilkProducer,
         milkWhoIsMoving: 'dairy'
       }
     }
-    expect(OriginSection.config.isVisible(context)).toBe(false)
-    expect(OriginSection.config.isEnabled(context)).toBe(false)
+    expect(OriginSection.config.isVisible(contextMilkDairy)).toBe(false)
+    expect(OriginSection.config.isEnabled(contextMilkDairy)).toBe(false)
   })
 })
