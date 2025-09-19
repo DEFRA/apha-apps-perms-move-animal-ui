@@ -5,7 +5,7 @@ import { EmailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
 const questionKey = 'licenceName'
-const pageUrl = '/fmd/receiving-the-licence/licencee-name'
+const pageUrl = '/fmd/receiving-the-licence/licensee-name'
 const page = licenceNamePage
 const question = 'Who should we issue the licence to?'
 

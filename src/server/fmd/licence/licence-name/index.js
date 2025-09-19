@@ -27,7 +27,7 @@ export class Answer extends FullNameAnswer {
 }
 
 export class LicenceNamePage extends QuestionPage {
-  urlPath = '/fmd/receiving-the-licence/licencee-name'
+  urlPath = '/fmd/receiving-the-licence/licensee-name'
 
   questionKey = questionKey
   sectionKey = 'licence'
