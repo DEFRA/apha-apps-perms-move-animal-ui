@@ -5,13 +5,13 @@ const pageHeadingAndTitle = 'What animals are kept on the premises?'
 const noInputError = 'Select what animals are kept on the premises'
 
 const checkboxIds = [
-  'whatAnimals', // cattle
-  'whatAnimals-2', // sheep
-  'whatAnimals-3', // goats
-  'whatAnimals-4', // pigs
-  'whatAnimals-5', // camelids
-  'whatAnimals-6', // other-hooved
-  'whatAnimals-8' // none
+  'cattle',
+  'sheep',
+  'goats',
+  'pigs',
+  'camelids',
+  'other',
+  'noneabove'
 ]
 
 class WhatAnimalsKeptPage extends CheckboxBasePage {

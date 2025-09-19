@@ -1,4 +1,4 @@
-import { AddressBasePage } from '../../base-pages/addressBasePage.js'
+import { AddressBasePage } from '../../../base-pages/addressBasePage.js'
 
 const pageHeadingAndTitle = 'What is the origin premises address?'
 
