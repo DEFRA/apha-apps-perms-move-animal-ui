@@ -6,7 +6,7 @@ import { emailAddressPage } from '../email-address/index.js'
 /** @import { FullNameConfig } from '~/src/server/common/model/answer/full-name/full-name.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
-const questionKey = 'licenceName'
+const questionKey = 'licenseeName'
 
 export class Answer extends FullNameAnswer {
   /** @type { FullNameConfig } */

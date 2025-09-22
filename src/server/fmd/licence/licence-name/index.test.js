@@ -4,7 +4,7 @@ import { FullNameAnswer } from '~/src/server/common/model/answer/full-name/full-
 import { EmailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
-const questionKey = 'licenceName'
+const questionKey = 'licenseeName'
 const pageUrl = '/fmd/receiving-the-licence/licensee-name'
 const page = licenceNamePage
 const question = 'Who should we issue the licence to?'
