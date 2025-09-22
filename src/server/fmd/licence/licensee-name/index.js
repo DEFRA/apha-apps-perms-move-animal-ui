@@ -26,7 +26,7 @@ export class Answer extends FullNameAnswer {
   }
 }
 
-export class LicenceNamePage extends QuestionPage {
+export class LicenseeNamePage extends QuestionPage {
   urlPath = '/fmd/receiving-the-licence/licensee-name'
 
   questionKey = questionKey
@@ -40,9 +40,9 @@ export class LicenceNamePage extends QuestionPage {
   }
 }
 
-export const licenceNamePage = new LicenceNamePage()
+export const licenseeNamePage = new LicenseeNamePage()
 
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const licenceName = new FmdQuestionPageController(
-  licenceNamePage
+export const licenseeName = new FmdQuestionPageController(
+  licenseeNamePage
 ).plugin()

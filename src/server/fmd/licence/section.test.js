@@ -3,7 +3,7 @@ import {
   aboutSectionCompleteOtherMovement
 } from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
-import { LicenceNamePage } from './licence-name/index.js'
+import { LicenseeNamePage } from './licensee-name/index.js'
 import { OriginResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
 import { RegisteredKeeperNamePage } from './registered-keeper-name/index.js'
 import { LicenceSection } from './section.js'
@@ -34,7 +34,7 @@ describe('LicenceSection', () => {
           milkWhoIsMoving: 'dairy'
         }
       })
-    ).toBeInstanceOf(LicenceNamePage)
+    ).toBeInstanceOf(LicenseeNamePage)
   })
 
   it('should have the correct first page for anything other than milk', () => {

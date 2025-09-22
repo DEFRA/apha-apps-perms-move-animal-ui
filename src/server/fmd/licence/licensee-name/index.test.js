@@ -1,12 +1,12 @@
 import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { Answer, licenceNamePage } from './index.js'
+import { Answer, licenseeNamePage } from './index.js'
 import { FullNameAnswer } from '~/src/server/common/model/answer/full-name/full-name.js'
 import { EmailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
 const questionKey = 'licenseeName'
 const pageUrl = '/fmd/receiving-the-licence/licensee-name'
-const page = licenceNamePage
+const page = licenseeNamePage
 const question = 'Who should we issue the licence to?'
 
 describe('Answer', () => {

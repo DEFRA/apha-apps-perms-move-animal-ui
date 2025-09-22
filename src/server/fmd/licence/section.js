@@ -5,7 +5,7 @@ import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
 import { checkAnswers } from './check-answers/index.js'
 import { emailAddress } from './email-address/index.js'
-import { licenceName, licenceNamePage } from './licence-name/index.js'
+import { licenseeName, licenseeNamePage } from './licensee-name/index.js'
 import {
   originResponsiblePersonName,
   originResponsiblePersonNamePage
@@ -21,7 +21,7 @@ const plugin = {
     async register(server) {
       await server.register([
         registeredKeeperName,
-        licenceName,
+        licenseeName,
         originResponsiblePersonName,
         emailAddress,
         checkAnswers
@@ -54,7 +54,7 @@ export class LicenceSection extends FmdSectionModel {
       context.about?.whatIsMoving === 'milk' &&
       context.about?.milkWhoIsMoving === 'dairy'
     ) {
-      return licenceNamePage
+      return licenseeNamePage
     }
     return registeredKeeperNamePage
   }
