@@ -1,4 +1,7 @@
-import { aboutSectionCompleteOtherMovement } from '../../common/test-helpers/fmd/journey-state.js'
+import {
+  aboutSectionCompleteMilkProducer,
+  aboutSectionCompleteOtherMovement
+} from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
 import { LicenceNamePage } from './licence-name/index.js'
 import { OriginResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
@@ -18,11 +21,7 @@ describe('LicenceSection', () => {
   it('should have the correct first page for milk being moved by prodcuer', () => {
     expect(
       LicenceSection.firstPageFactory({
-        about: {
-          ...aboutSectionCompleteOtherMovement,
-          whatIsMoving: 'milk',
-          milkWhoIsMoving: 'producer'
-        }
+        about: aboutSectionCompleteMilkProducer
       })
     ).toBeInstanceOf(OriginResponsiblePersonNamePage)
   })
@@ -31,8 +30,7 @@ describe('LicenceSection', () => {
     expect(
       LicenceSection.firstPageFactory({
         about: {
-          ...aboutSectionCompleteOtherMovement,
-          whatIsMoving: 'milk',
+          ...aboutSectionCompleteMilkProducer,
           milkWhoIsMoving: 'dairy'
         }
       })
