@@ -29,7 +29,7 @@ describe('Answer', () => {
   })
 })
 
-describe('LicenceNamePage', () => {
+describe('LicenseeNamePage', () => {
   it('should have the correct urlPath', () => {
     expect(page.urlPath).toBe(pageUrl)
   })
