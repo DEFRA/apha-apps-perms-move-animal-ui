@@ -1,5 +1,9 @@
-import { aboutSectionCompleteOtherMovement } from '../../common/test-helpers/fmd/journey-state.js'
+import {
+  aboutSectionCompleteMilkProducer,
+  aboutSectionCompleteOtherMovement
+} from '../../common/test-helpers/fmd/journey-state.js'
 import { checkAnswersPage } from './check-answers/index.js'
+import { LicenseeNamePage } from './licensee-name/index.js'
 import { OriginResponsiblePersonNamePage } from './origin-responsible-person-name/index.js'
 import { RegisteredKeeperNamePage } from './registered-keeper-name/index.js'
 import { LicenceSection } from './section.js'
@@ -14,15 +18,23 @@ describe('LicenceSection', () => {
     expect(LicenceSection.config.summaryLink).toBe(checkAnswersPage.urlPath)
   })
 
-  it('should have the correct first page for milk', () => {
+  it('should have the correct first page for milk being moved by prodcuer', () => {
+    expect(
+      LicenceSection.firstPageFactory({
+        about: aboutSectionCompleteMilkProducer
+      })
+    ).toBeInstanceOf(OriginResponsiblePersonNamePage)
+  })
+
+  it('should have the correct first page for milk being moved dairy', () => {
     expect(
       LicenceSection.firstPageFactory({
         about: {
-          ...aboutSectionCompleteOtherMovement,
-          whatIsMoving: 'milk'
+          ...aboutSectionCompleteMilkProducer,
+          milkWhoIsMoving: 'dairy'
         }
       })
-    ).toBeInstanceOf(OriginResponsiblePersonNamePage)
+    ).toBeInstanceOf(LicenseeNamePage)
   })
 
   it('should have the correct first page for anything other than milk', () => {
