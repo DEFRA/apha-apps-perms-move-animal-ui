@@ -10,59 +10,59 @@ exports[`BadgersPage badgersPage.content should render expected response and con
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="badgers-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which measures are you taking to reduce the risk of infection from wildlife?
-      </h1>
-    </legend>
-    <div id="badgers-hint" class="govuk-hint">
-      Only select the measures you are taking. You do not need to select them all to receive your licence.
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Which measures are you taking to reduce the risk of infection from wildlife?
+    </h1>
+  </legend>
+  <div id="badgers-hint" class="govuk-hint">
+    Only select the measures you are taking. You do not need to select them all to receive your licence.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers" name="badgers" type="checkbox" value="badgerProofFencing" data-testid="badgerProofFencing-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers">
+        Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences
+      </label>
     </div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers" name="badgers" type="checkbox" value="badgerProofFencing" data-testid="badgerProofFencing-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers">
-          Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-2" name="badgers" type="checkbox" value="aluminiumFeedBins" data-testid="aluminiumFeedBins-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-2">
-          Aluminium feed bins
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-3" name="badgers" type="checkbox" value="limitAccessToBadgerHabitat" data-testid="limitAccessToBadgerHabitat-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-3">
-          Limiting access to badger latrines and setts
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-4" name="badgers" type="checkbox" value="troughsAbove90cm" data-testid="troughsAbove90cm-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-4">
-          Feed and water troughs raised above 90cm
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-5" name="badgers" type="checkbox" value="securedFeedStores" data-testid="securedFeedStores-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-5">
-          Feed stores are secured
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-6" name="badgers" type="checkbox" value="licksOutOfReach" data-testid="licksOutOfReach-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-6">
-          Mineral licks kept out of reach of wildlife
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="badgers-7" name="badgers" type="checkbox" value="other" data-testid="other-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="badgers-7">
-          Other measures to reduce the risk of infection
-        </label>
-      </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-2" name="badgers" type="checkbox" value="aluminiumFeedBins" data-testid="aluminiumFeedBins-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-2">
+        Aluminium feed bins
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-3" name="badgers" type="checkbox" value="limitAccessToBadgerHabitat" data-testid="limitAccessToBadgerHabitat-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-3">
+        Limiting access to badger latrines and setts
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-4" name="badgers" type="checkbox" value="troughsAbove90cm" data-testid="troughsAbove90cm-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-4">
+        Feed and water troughs raised above 90cm
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-5" name="badgers" type="checkbox" value="securedFeedStores" data-testid="securedFeedStores-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-5">
+        Feed stores are secured
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-6" name="badgers" type="checkbox" value="licksOutOfReach" data-testid="licksOutOfReach-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-6">
+        Mineral licks kept out of reach of wildlife
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="badgers-7" name="badgers" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="badgers-7">
+        Other measures to reduce the risk of infection
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
   <p>

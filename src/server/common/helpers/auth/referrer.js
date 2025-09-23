@@ -15,6 +15,7 @@ export const storeReferrer = (request, value) => {
  * @returns string
  */
 export const retrieveReferrer = (request) => {
+  // @ts-expect-error TS2345
   const value = request.yar.flash(key)
 
   if (typeof value === 'string') {

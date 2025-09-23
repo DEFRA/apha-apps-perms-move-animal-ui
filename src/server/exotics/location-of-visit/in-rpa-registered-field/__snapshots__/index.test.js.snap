@@ -10,26 +10,26 @@ exports[`InRpaRegisteredFieldPage content should render expected response and co
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Will the visit be at an RPA registered field?
-      </h1>
-    </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="inRpaRegisteredField" name="inRpaRegisteredField" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="inRpaRegisteredField">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="inRpaRegisteredField" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Will the visit be at an RPA registered field?
+    </h1>
+  </legend>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="inRpaRegisteredField" name="inRpaRegisteredField" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="inRpaRegisteredField">
+        Yes
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="inRpaRegisteredField" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

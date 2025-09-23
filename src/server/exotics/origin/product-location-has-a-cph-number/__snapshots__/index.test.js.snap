@@ -10,26 +10,26 @@ exports[`ProductLocationHasACphNumberPage content should render expected respons
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Does the origin premises have a county parish holding (CPH) number?
-      </h1>
-    </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="productLocationHasACphNumber" name="productLocationHasACphNumber" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="productLocationHasACphNumber">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="productLocationHasACphNumber" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Does the origin premises have a county parish holding (CPH) number?
+    </h1>
+  </legend>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="productLocationHasACphNumber" name="productLocationHasACphNumber" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="productLocationHasACphNumber">
+        Yes
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="productLocationHasACphNumber" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

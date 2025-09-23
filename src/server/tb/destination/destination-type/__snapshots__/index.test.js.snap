@@ -10,53 +10,53 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Where are the animals going to?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="slaughter">
-        <label class="govuk-label govuk-radios__label" for="destinationType">
-          Slaughter
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="dedicated-sale" name="destinationType" type="radio" value="dedicated-sale">
-        <label class="govuk-label govuk-radios__label" for="dedicated-sale">
-          Dedicated sale for TB (orange market)
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
-        <label class="govuk-label govuk-radios__label" for="afu">
-          Approved finishing unit (AFU)
-        </label>
-        <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-          Including enhanced with grazing (AFUE)
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="tb-restricted-farm" name="destinationType" type="radio" value="tb-restricted-farm">
-        <label class="govuk-label govuk-radios__label" for="tb-restricted-farm">
-          TB restricted farm
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="iso-unit" name="destinationType" type="radio" value="iso-unit">
-        <label class="govuk-label govuk-radios__label" for="iso-unit">
-          TB isolation unit
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Another destination with TB restrictions
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Where are the animals going to?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="slaughter">
+      <label class="govuk-label govuk-radios__label" for="destinationType">
+        Slaughter
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="dedicated-sale" name="destinationType" type="radio" value="dedicated-sale">
+      <label class="govuk-label govuk-radios__label" for="dedicated-sale">
+        Dedicated sale for TB (orange market)
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
+      <label class="govuk-label govuk-radios__label" for="afu">
+        Approved finishing unit (AFU)
+      </label>
+      <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+        Including enhanced with grazing (AFUE)
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="tb-restricted-farm" name="destinationType" type="radio" value="tb-restricted-farm">
+      <label class="govuk-label govuk-radios__label" for="tb-restricted-farm">
+        TB restricted farm
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="iso-unit" name="destinationType" type="radio" value="iso-unit">
+      <label class="govuk-label govuk-radios__label" for="iso-unit">
+        TB isolation unit
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Another destination with TB restrictions
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
@@ -78,35 +78,35 @@ exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content sh
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Where are the animals going to?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="tb-restricted-farm">
-        <label class="govuk-label govuk-radios__label" for="destinationType">
-          TB restricted farm
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
-        <label class="govuk-label govuk-radios__label" for="afu">
-          Approved finishing unit (AFU)
-        </label>
-        <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-          Including enhanced with grazing (AFUE)
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Another destination with TB restrictions
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Where are the animals going to?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="destinationType" name="destinationType" type="radio" value="tb-restricted-farm">
+      <label class="govuk-label govuk-radios__label" for="destinationType">
+        TB restricted farm
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
+      <label class="govuk-label govuk-radios__label" for="afu">
+        Approved finishing unit (AFU)
+      </label>
+      <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+        Including enhanced with grazing (AFUE)
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="destinationType" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Another destination with TB restrictions
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

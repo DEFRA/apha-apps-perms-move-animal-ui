@@ -382,24 +382,24 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend">
-      Before you submit your application, you must select one of the declaration check boxes.
-    </legend>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="confirmation">
-          I confirm all the information given about my farm or premises is correct to the best of my knowledge
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="confirmation-2" name="confirmation" type="checkbox" value="other" data-testid="other-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="confirmation-2">
-          I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend">
+    Before you submit your application, you must select one of the declaration check boxes.
+  </legend>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-testid="confirm-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="confirmation">
+        I confirm all the information given about my farm or premises is correct to the best of my knowledge
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="confirmation-2" name="confirmation" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="confirmation-2">
+        I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

@@ -10,26 +10,26 @@ exports[`Animals42DaysOldOrOlderPage animals42DaysOldOrOlderPage.content should 
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Are you also moving any animals 42 days old or older?
-      </h1>
-    </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="animals42DaysOldOrOlder" name="animals42DaysOldOrOlder" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="animals42DaysOldOrOlder">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="animals42DaysOldOrOlder" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Are you also moving any animals 42 days old or older?
+    </h1>
+  </legend>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="animals42DaysOldOrOlder" name="animals42DaysOldOrOlder" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="animals42DaysOldOrOlder">
+        Yes
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="animals42DaysOldOrOlder" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

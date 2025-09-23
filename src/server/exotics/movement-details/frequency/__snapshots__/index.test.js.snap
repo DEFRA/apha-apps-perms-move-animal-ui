@@ -10,26 +10,26 @@ exports[`FrequencyPage content should render expected response and content 1`] =
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        How frequent is the movement?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="frequency" name="frequency" type="radio" value="regular">
-        <label class="govuk-label govuk-radios__label" for="frequency">
-          Regular movement
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="one-off" name="frequency" type="radio" value="one-off">
-        <label class="govuk-label govuk-radios__label" for="one-off">
-          One-off movement
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      How frequent is the movement?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="frequency" name="frequency" type="radio" value="regular">
+      <label class="govuk-label govuk-radios__label" for="frequency">
+        Regular movement
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="one-off" name="frequency" type="radio" value="one-off">
+      <label class="govuk-label govuk-radios__label" for="one-off">
+        One-off movement
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
