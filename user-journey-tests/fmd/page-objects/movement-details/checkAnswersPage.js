@@ -7,7 +7,14 @@ export const movementDetailsChangeLinks = {
   movementEnd: '[data-testid="movementEnd-change-link"]',
   disposalDate: '[data-testid="disposalDate-change-link"]',
   twoWeekRepeat: '[data-testid="twoWeekRepeat-change-link"]',
-  expectMovementDate: '[data-testid="expectMovementDate-change-link"]'
+  expectMovementDate: '[data-testid="expectMovementDate-change-link"]',
+  dairyName: '[data-testid="dairyName-change-link"]',
+  vehicleNumber: '[data-testid="vehicleNumber-change-link"]',
+  driverName: '[data-testid="driverName-change-link"]',
+  driverPhone: '[data-testid="driverPhone-change-link"]',
+  collectionPremises: '[data-testid="collectionPremises-change-link"]',
+  milkMovementDate: '[data-testid="milkMovementDate-change-link"]',
+  maximumJourneysMilk: '[data-testid="maximumJourneysMilk-change-link"]'
 }
 
 const pageHeadingAndTitle =

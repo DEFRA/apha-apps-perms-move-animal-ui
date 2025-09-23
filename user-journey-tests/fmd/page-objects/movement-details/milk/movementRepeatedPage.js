@@ -1,4 +1,4 @@
-import { YesNoRadioPage } from '../../../base-pages/yesNoRadioBase.js'
+import { YesNoRadioPage } from '../../../../base-pages/yesNoRadioBase.js'
 
 const pageHeadingAndTitle =
   'Will the movement be repeated within a 2 week period?'

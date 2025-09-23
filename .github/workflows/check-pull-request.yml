@@ -65,6 +65,7 @@ jobs:
         test-suite:
           - user-journey-test
           - exotics-journey-test
+          - fmd-journey-test
     env:
       UPLOADER_URL: 'http://localhost:7337'
       FILE_S3_BUCKET: 'apha'

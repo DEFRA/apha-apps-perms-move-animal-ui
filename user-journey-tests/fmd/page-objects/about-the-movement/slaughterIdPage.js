@@ -1,12 +1,12 @@
 import { SingleTextInputPage } from '../../../base-pages/singleTextInputPage.js'
 
 const pageHeadingAndTitle =
-  'What are the identification (ID) numbers for the animals being moved?'
+  'What are the identification (ID) numbers for the animals being slaughtered?'
 
 class SlaughterIdPage extends SingleTextInputPage {
   constructor() {
     super({
-      pageId: 'animalIds',
+      pageId: 'animalIdsSlaughter',
       noInputError: "Enter the animal ID numbers or N/A if there aren't any"
     })
   }

@@ -16,9 +16,9 @@ const journeyData = {
     hrefSuffix: 'type'
   },
   whatIsMoving: { expected: 'Milk', hrefSuffix: 'what-is-moving' },
-  milkResponsible: {
-    expected: 'Producer',
-    hrefSuffix: 'responsibility-for-movement'
+  milkMover: {
+    expected: "I'm a producer moving my own milk",
+    hrefSuffix: 'producer'
   },
   milkAnimal: { expected: 'Cow', hrefSuffix: 'animal-the-milk-is-from' }
 }
