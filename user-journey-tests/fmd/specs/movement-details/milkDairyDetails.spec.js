@@ -18,8 +18,6 @@ import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyChe
 const basePath = '/fmd/movement-details'
 const redirectUri = `${basePath}/check-answers`
 
-// Using the single-movement path (repeated = No). If you need the repeated route,
-// set `repeated: true` in the helper call and update journeyData accordingly.
 const journeyData = {
   dairyName: { expected: 'Acme Dairies Ltd', hrefSuffix: 'dairy-name' },
   vehicleNumber: { expected: 'AB12 CDE', hrefSuffix: 'vehicle-number' },
