@@ -10,60 +10,60 @@ exports[`WhatAnimalsPage content should render expected response and content 1`]
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="whatAnimals-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        What animals are kept on the premises?
-      </h1>
-    </legend>
-    <div id="whatAnimals-hint" class="govuk-hint">
-      Select all that apply
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What animals are kept on the premises?
+    </h1>
+  </legend>
+  <div id="whatAnimals-hint" class="govuk-hint">
+    Select all that apply
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals" name="whatAnimals" type="checkbox" value="cattle" data-testid="cattle-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals">
+        Cattle
+      </label>
     </div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals" name="whatAnimals" type="checkbox" value="cattle" data-testid="cattle-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals">
-          Cattle
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-2" name="whatAnimals" type="checkbox" value="sheep" data-testid="sheep-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-2">
-          Sheep
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-3" name="whatAnimals" type="checkbox" value="goats" data-testid="goats-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-3">
-          Goats
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-4" name="whatAnimals" type="checkbox" value="pigs" data-testid="pigs-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-4">
-          Pigs
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-5" name="whatAnimals" type="checkbox" value="camelids" data-testid="camelids-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-5">
-          Camelids
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-6" name="whatAnimals" type="checkbox" value="other" data-testid="other-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-6">
-          Other cloven-hooved animals
-        </label>
-      </div>
-      <div class="govuk-checkboxes__divider">or</div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="whatAnimals-8" name="whatAnimals" type="checkbox" value="noneabove" data-behaviour="exclusive" data-testid="noneabove-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-8">
-          None of these animals
-        </label>
-      </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-2" name="whatAnimals" type="checkbox" value="sheep" data-testid="sheep-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-2">
+        Sheep
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-3" name="whatAnimals" type="checkbox" value="goats" data-testid="goats-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-3">
+        Goats
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-4" name="whatAnimals" type="checkbox" value="pigs" data-testid="pigs-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-4">
+        Pigs
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-5" name="whatAnimals" type="checkbox" value="camelids" data-testid="camelids-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-5">
+        Camelids
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-6" name="whatAnimals" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-6">
+        Other cloven-hooved animals
+      </label>
+    </div>
+    <div class="govuk-checkboxes__divider">or</div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="whatAnimals-8" name="whatAnimals" type="checkbox" value="noneabove" data-behaviour="exclusive" data-testid="noneabove-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="whatAnimals-8">
+        None of these animals
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

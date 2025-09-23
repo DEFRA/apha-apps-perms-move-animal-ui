@@ -10,38 +10,38 @@ exports[`MilkAnimalPage content should render expected response and content 1`] 
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        What animal is the milk or product from?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="milkAnimal" name="milkAnimal" type="radio" value="cow">
-        <label class="govuk-label govuk-radios__label" for="milkAnimal">
-          Cow
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="sheep" name="milkAnimal" type="radio" value="sheep">
-        <label class="govuk-label govuk-radios__label" for="sheep">
-          Sheep
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="goat" name="milkAnimal" type="radio" value="goat">
-        <label class="govuk-label govuk-radios__label" for="goat">
-          Goat
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="another" name="milkAnimal" type="radio" value="another">
-        <label class="govuk-label govuk-radios__label" for="another">
-          Another animal
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What animal is the milk or product from?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="milkAnimal" name="milkAnimal" type="radio" value="cow">
+      <label class="govuk-label govuk-radios__label" for="milkAnimal">
+        Cow
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="sheep" name="milkAnimal" type="radio" value="sheep">
+      <label class="govuk-label govuk-radios__label" for="sheep">
+        Sheep
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="goat" name="milkAnimal" type="radio" value="goat">
+      <label class="govuk-label govuk-radios__label" for="goat">
+        Goat
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="another" name="milkAnimal" type="radio" value="another">
+      <label class="govuk-label govuk-radios__label" for="another">
+        Another animal
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

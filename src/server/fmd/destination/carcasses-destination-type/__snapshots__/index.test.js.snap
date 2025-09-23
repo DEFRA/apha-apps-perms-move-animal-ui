@@ -10,44 +10,44 @@ exports[`CarcassesDestinationTypePage content should render expected response an
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Where are the carcasses going?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="carcassesDestinationType" name="carcassesDestinationType" type="radio" value="knackers-yard">
-        <label class="govuk-label govuk-radios__label" for="carcassesDestinationType">
-          Knacker's yard
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="rendering-plant" name="carcassesDestinationType" type="radio" value="rendering-plant">
-        <label class="govuk-label govuk-radios__label" for="rendering-plant">
-          Rendering Plant
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="incinerator" name="carcassesDestinationType" type="radio" value="incinerator">
-        <label class="govuk-label govuk-radios__label" for="incinerator">
-          Incinerator
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="hunt-kennel" name="carcassesDestinationType" type="radio" value="hunt-kennel">
-        <label class="govuk-label govuk-radios__label" for="hunt-kennel">
-          Hunt kennel
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="somewhere-else" name="carcassesDestinationType" type="radio" value="somewhere-else">
-        <label class="govuk-label govuk-radios__label" for="somewhere-else">
-          Somewhere else
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Where are the carcasses going?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="carcassesDestinationType" name="carcassesDestinationType" type="radio" value="knackers-yard">
+      <label class="govuk-label govuk-radios__label" for="carcassesDestinationType">
+        Knacker's yard
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="rendering-plant" name="carcassesDestinationType" type="radio" value="rendering-plant">
+      <label class="govuk-label govuk-radios__label" for="rendering-plant">
+        Rendering Plant
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="incinerator" name="carcassesDestinationType" type="radio" value="incinerator">
+      <label class="govuk-label govuk-radios__label" for="incinerator">
+        Incinerator
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="hunt-kennel" name="carcassesDestinationType" type="radio" value="hunt-kennel">
+      <label class="govuk-label govuk-radios__label" for="hunt-kennel">
+        Hunt kennel
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="somewhere-else" name="carcassesDestinationType" type="radio" value="somewhere-else">
+      <label class="govuk-label govuk-radios__label" for="somewhere-else">
+        Somewhere else
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

@@ -10,44 +10,44 @@ exports[`PremisesTypePage content should render expected response and content 1`
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Where are the animals going to?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="premisesType" name="premisesType" type="radio" value="farm">
-        <label class="govuk-label govuk-radios__label" for="premisesType">
-          Farm
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="commercial" name="premisesType" type="radio" value="commercial" aria-describedby="commercial-item-hint">
-        <label class="govuk-label govuk-radios__label" for="commercial">
-          Commercial holding or premises
-        </label>
-        <div id="commercial-item-hint" class="govuk-hint govuk-radios__hint">
-          Such as a food business or animal feed company
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="smallholding" name="premisesType" type="radio" value="smallholding" aria-describedby="smallholding-item-hint">
-        <label class="govuk-label govuk-radios__label" for="smallholding">
-          Smallholding or domestic residence
-        </label>
-        <div id="smallholding-item-hint" class="govuk-hint govuk-radios__hint">
-          A smallholding is typically under 50 acres
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="premisesType" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Another location
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Where are the animals going to?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="premisesType" name="premisesType" type="radio" value="farm">
+      <label class="govuk-label govuk-radios__label" for="premisesType">
+        Farm
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="commercial" name="premisesType" type="radio" value="commercial" aria-describedby="commercial-item-hint">
+      <label class="govuk-label govuk-radios__label" for="commercial">
+        Commercial holding or premises
+      </label>
+      <div id="commercial-item-hint" class="govuk-hint govuk-radios__hint">
+        Such as a food business or animal feed company
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="smallholding" name="premisesType" type="radio" value="smallholding" aria-describedby="smallholding-item-hint">
+      <label class="govuk-label govuk-radios__label" for="smallholding">
+        Smallholding or domestic residence
+      </label>
+      <div id="smallholding-item-hint" class="govuk-hint govuk-radios__hint">
+        A smallholding is typically under 50 acres
+      </div>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="premisesType" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Another location
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

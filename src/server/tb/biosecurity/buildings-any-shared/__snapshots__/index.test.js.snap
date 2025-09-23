@@ -10,29 +10,29 @@ exports[`BuildingsAnySharedPage buildingsAnySharedPage.content should render exp
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="animalsHoused-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Will the incoming animals be housed?
-      </h1>
-    </legend>
-    <div id="animalsHoused-hint" class="govuk-hint">
-      This includes shared spaces such as pens
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Will the incoming animals be housed?
+    </h1>
+  </legend>
+  <div id="animalsHoused-hint" class="govuk-hint">
+    This includes shared spaces such as pens
+  </div>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="animalsHoused" name="animalsHoused" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="animalsHoused">
+        Yes
+      </label>
     </div>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="animalsHoused" name="animalsHoused" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="animalsHoused">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="animalsHoused" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="animalsHoused" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
     </div>
-  </fieldset>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

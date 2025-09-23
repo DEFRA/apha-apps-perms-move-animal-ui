@@ -10,35 +10,35 @@ exports[`IsDesignatedPremisesPage content should render expected response and co
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="isDesignatedPremises-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Is the premises designated?
-      </h1>
-    </legend>
-    <div id="isDesignatedPremises-hint" class="govuk-hint">
-      A designated premises has government approval to undertake certain animal-related activities, such as moving eggs
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Is the premises designated?
+    </h1>
+  </legend>
+  <div id="isDesignatedPremises-hint" class="govuk-hint">
+    A designated premises has government approval to undertake certain animal-related activities, such as moving eggs
+  </div>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="isDesignatedPremises" name="isDesignatedPremises" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="isDesignatedPremises">
+        Yes
+      </label>
     </div>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="isDesignatedPremises" name="isDesignatedPremises" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="isDesignatedPremises">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="isDesignatedPremises" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="unknown" name="isDesignatedPremises" type="radio" value="unknown">
-        <label class="govuk-label govuk-radios__label" for="unknown">
-          I don't know
-        </label>
-      </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="isDesignatedPremises" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="unknown" name="isDesignatedPremises" type="radio" value="unknown">
+      <label class="govuk-label govuk-radios__label" for="unknown">
+        I don't know
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
