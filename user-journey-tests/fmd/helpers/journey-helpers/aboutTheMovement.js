@@ -10,6 +10,7 @@ import slaughterYesNoPage from '../../page-objects/about-the-movement/slaughterY
 import animalTypeSlaughterPage from '../../page-objects/about-the-movement/animalTypeSlaughterPage.js'
 import howManySlaighterPage from '../../page-objects/about-the-movement/howManySlaighterPage.js'
 import animalTypeMilkPage from '../../page-objects/about-the-movement/animalTypeMilkPage.js'
+import slaughterIdPage from '../../page-objects/about-the-movement/slaughterIdPage.js'
 
 const DEFAULTS = {
   carcassType: 'mixed carcasses',
@@ -24,6 +25,7 @@ export const completeAboutMovement = async ({
   movementContext = 'off-of-farm',
   moving = 'live-animals',
   toSlaughter = false,
+  producerDairy = 'producer',
   startFromFirstPage = false
 } = {}) => {
   await navigateIfFirstPage(startFromFirstPage, movementTypePage)
@@ -39,9 +41,9 @@ export const completeAboutMovement = async ({
     )
     await howManySlaighterPage.inputTextAndContinue(
       DEFAULTS.animalQty,
-      animalIdPage
+      slaughterIdPage
     )
-    await animalIdPage.inputTextAndContinue(
+    await slaughterIdPage.inputTextAndContinue(
       DEFAULTS.animalIds,
       checkAnswersPage
     )
@@ -77,10 +79,17 @@ export const completeAboutMovement = async ({
       'milk',
       milkResponsibilityPage
     )
-    await milkResponsibilityPage.selectRadioAndContinue(
-      'producer',
-      animalTypeMilkPage
-    )
+    if (producerDairy === 'producer') {
+      await milkResponsibilityPage.selectRadioAndContinue(
+        'producer',
+        animalTypeMilkPage
+      )
+    } else {
+      await milkResponsibilityPage.selectRadioAndContinue(
+        'dairy',
+        animalTypeMilkPage
+      )
+    }
     await animalTypeMilkPage.selectRadioAndContinue(
       DEFAULTS.milkAnimal,
       checkAnswersPage

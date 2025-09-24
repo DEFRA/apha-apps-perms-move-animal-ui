@@ -4,39 +4,37 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 
 import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAnswersPage.js'
-import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
+
+import maxDaysNeededPage from '../../page-objects/movement-details/live-animals/maxDaysNeededPage.js'
+import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
+
 import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
-
-import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
-import {
-  completeReceivingLicenceSection,
-  LICENCE_RECIPIENT
-} from '../../helpers/journey-helpers/receivingTheLicence.js'
+import { completeLiveAnimalsMovementSection } from '../../helpers/journey-helpers/movementDetails.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
-import responsibleForOriginPage from '../../page-objects/receiving-the-licence/responsibleForOriginPage.js'
 
-const basePath = '/fmd/receiving-the-licence'
+const basePath = '/fmd/movement-details'
 const redirectUri = `${basePath}/check-answers`
 
 const journeyData = {
-  responsibleForOrigin: {
-    expected: 'Jane Doe',
-    hrefSuffix: 'name-of-person-responsible-at-origin'
-  },
-  email: { expected: 'applicant@example.com', hrefSuffix: 'email-address' }
+  maximumDaysAnimals: { expected: '5', hrefSuffix: 'number-of-days' },
+  maxJourneys: { expected: '8', hrefSuffix: 'number-of-journeys' },
+  movementStart: { expected: '7 March 2050', hrefSuffix: 'start-date' },
+  movementEnd: { expected: '21 March 2050', hrefSuffix: 'end-date' }
 }
 
-describe('Receiving the licence – NOT milk (Registered keeper)', () => {
+describe('Movement details — live animals', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
-    await movementTypePage.navigateToPageAndVerifyTitle()
+    await taskListPage.navigateToPageAndVerifyTitle()
 
     await completeAboutMovement({
       movementContext: 'off-of-farm',
-      moving: 'milk',
+      moving: 'live-animals',
+      toSlaughter: false,
       startFromFirstPage: true
     })
+
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -44,21 +42,21 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('completes the Registered keeper route and verifies CYA', async () => {
+  it('Should complete movement details live-animals journey and verify CYA', async () => {
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 4,
+      taskTitle: 'Movement details',
       expectedStatus: 'Incomplete'
     })
 
-    await taskListPage.selectReceivingLicence(responsibleForOriginPage)
+    await taskListPage.selectMovementDetails(maxDaysNeededPage)
 
-    await completeReceivingLicenceSection({
-      recipient: LICENCE_RECIPIENT.MILK_PRODUCER,
-      firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'applicant@example.com',
-      startFromFirstPage: true
+    await completeLiveAnimalsMovementSection({
+      startFromFirstPage: true,
+      maxDays: '5',
+      maxJourneys: '8',
+      startDate: { day: '07', month: '03', year: '2050' },
+      endDate: { day: '21', month: '03', year: '2050' }
     })
 
     await checkAnswersPage.verifyPageHeadingAndTitle(
@@ -76,8 +74,8 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 4,
+      taskTitle: 'Movement details',
       expectedStatus: 'Completed'
     })
   })

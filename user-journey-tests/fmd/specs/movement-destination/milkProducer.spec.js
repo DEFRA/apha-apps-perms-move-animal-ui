@@ -1,42 +1,42 @@
+// user-journey-tests/fmd/specs/movement-destination/milkProducer.spec.js
+
 import { loginAndSaveSession } from '../../../TB/helpers/authSessionManager.js'
 import signInPage from '../../../TB/page-objects/signInPage.js'
 import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 
 import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAnswersPage.js'
-import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
+
+import milkPurchaserPage from '../../page-objects/movement-destination/milk/milkPurchaserPage.js'
+import checkAnswersPage from '../../page-objects/movement-destination/checkAnswersPage.js'
+
 import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
-
-import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
-import {
-  completeReceivingLicenceSection,
-  LICENCE_RECIPIENT
-} from '../../helpers/journey-helpers/receivingTheLicence.js'
+import { completeMovementDestinationMilk } from '../../helpers/journey-helpers/movementDestination.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
-import responsibleForOriginPage from '../../page-objects/receiving-the-licence/responsibleForOriginPage.js'
 
-const basePath = '/fmd/receiving-the-licence'
+const basePath = '/fmd/movement-destination'
 const redirectUri = `${basePath}/check-answers`
 
 const journeyData = {
-  responsibleForOrigin: {
-    expected: 'Jane Doe',
-    hrefSuffix: 'name-of-person-responsible-at-origin'
-  },
-  email: { expected: 'applicant@example.com', hrefSuffix: 'email-address' }
+  companySellingMilkTo: {
+    expected: 'Acme Dairies Ltd',
+    hrefSuffix: 'milk-selling-company-name'
+  }
 }
 
-describe('Receiving the licence – NOT milk (Registered keeper)', () => {
+describe('Movement destination — Milk producer route', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
-    await movementTypePage.navigateToPageAndVerifyTitle()
+    await taskListPage.navigateToPageAndVerifyTitle()
 
     await completeAboutMovement({
       movementContext: 'off-of-farm',
       moving: 'milk',
+      producerDairy: 'producer',
       startFromFirstPage: true
     })
+
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -44,21 +44,18 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('completes the Registered keeper route and verifies CYA', async () => {
+  it('Should complete movement destination (milk producer) and verify CYA', async () => {
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 3,
+      taskTitle: 'Movement destination',
       expectedStatus: 'Incomplete'
     })
 
-    await taskListPage.selectReceivingLicence(responsibleForOriginPage)
+    await taskListPage.selectMovementDestination(milkPurchaserPage)
 
-    await completeReceivingLicenceSection({
-      recipient: LICENCE_RECIPIENT.MILK_PRODUCER,
-      firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'applicant@example.com',
-      startFromFirstPage: true
+    await completeMovementDestinationMilk({
+      startFromFirstPage: true,
+      purchaser: 'Acme Dairies Ltd'
     })
 
     await checkAnswersPage.verifyPageHeadingAndTitle(
@@ -76,8 +73,8 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 3,
+      taskTitle: 'Movement destination',
       expectedStatus: 'Completed'
     })
   })

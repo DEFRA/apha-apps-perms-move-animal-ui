@@ -10,9 +10,10 @@ export const aboutTheMovementChangeLinks = {
   slaughteredNumber: '[data-testid="slaughteredNumber-change-link"]',
   currentPurpose: '[data-testid="currentPurposeOfAnimals-change-link"]',
   animalIds: '[data-testid="animalIds-change-link"]',
+  slaughterId: '[data-testid="animalIdsSlaughter-change-link"]',
   whatAreYouMoving: '[data-testid="whatAreYouMovingDetails-change-link"]',
   howMuchAreYouMoving: '[data-testid="howMuchAreYouMoving-change-link"]',
-  milkResponsible: '[data-testid="responsibleForMilkMovement-change-link"]',
+  milkMover: '[data-testid="milkWhoIsMoving-change-link"]',
   milkAnimal: '[data-testid="milkAnimal-change-link"]'
 }
 

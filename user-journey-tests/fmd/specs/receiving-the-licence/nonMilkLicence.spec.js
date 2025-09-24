@@ -29,7 +29,6 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()
 
-    // Pre-req: complete About the movement with a NON-milk route
     await completeAboutMovement({
       movementContext: 'off-of-farm',
       moving: 'live-animals',
