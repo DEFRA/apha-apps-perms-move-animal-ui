@@ -62,7 +62,8 @@ const isVisibleAndEnabled = (context) => {
   return (
     AboutSection.fromState(context).validate().isValid &&
     context.about.movementActivityType !== 'slaughter-onsite' &&
-    context.about.milkWhoIsMoving !== 'dairy'
+    (context.about.whatIsMoving !== 'milk' ||
+      context.about.milkWhoIsMoving !== 'dairy')
   )
 }
 
