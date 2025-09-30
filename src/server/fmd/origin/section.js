@@ -34,7 +34,8 @@ const plugin = {
 const isVisibleAndEnabled = (context) => {
   return (
     AboutSection.fromState(context).validate().isValid &&
-    context.about.milkWhoIsMoving !== 'dairy'
+    (context.about.whatIsMoving !== 'milk' ||
+      context.about.milkWhoIsMoving !== 'dairy')
   )
 }
 
