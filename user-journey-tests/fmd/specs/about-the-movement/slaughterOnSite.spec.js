@@ -23,9 +23,9 @@ const journeyData = {
     expected: '8',
     hrefSuffix: 'number-of-animals-slaughtered'
   },
-  animalIds: {
+  slaughterId: {
     expected: 'UK123456 00001, UK123456 00002',
-    hrefSuffix: 'ID-number'
+    hrefSuffix: 'ID-number-slaughter'
   }
 }
 

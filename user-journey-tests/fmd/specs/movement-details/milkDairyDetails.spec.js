@@ -4,39 +4,49 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../../TB/helpers/page.js'
 
 import aboutCheckAnswersPage from '../../page-objects/about-the-movement/checkAnswersPage.js'
-import movementTypePage from '../../page-objects/about-the-movement/movementTypePage.js'
+
+import dairyNamePage from '../../page-objects/movement-details/milk/dairyNamePage.js'
+import checkAnswersPage from '../../page-objects/movement-details/checkAnswersPage.js'
+
 import { completeAboutMovement } from '../../helpers/journey-helpers/aboutTheMovement.js'
-
-import checkAnswersPage from '../../page-objects/receiving-the-licence/checkAnswersPage.js'
 import {
-  completeReceivingLicenceSection,
-  LICENCE_RECIPIENT
-} from '../../helpers/journey-helpers/receivingTheLicence.js'
+  completeMilkMovementSection,
+  MILK_ROLE
+} from '../../helpers/journey-helpers/movementDetails.js'
 import { verifyCheckAnswersPage } from '../../helpers/function-helpers/verifyCheckAnswers.js'
-import responsibleForOriginPage from '../../page-objects/receiving-the-licence/responsibleForOriginPage.js'
 
-const basePath = '/fmd/receiving-the-licence'
+const basePath = '/fmd/movement-details'
 const redirectUri = `${basePath}/check-answers`
 
 const journeyData = {
-  responsibleForOrigin: {
-    expected: 'Jane Doe',
-    hrefSuffix: 'name-of-person-responsible-at-origin'
+  dairyName: { expected: 'Acme Dairies Ltd', hrefSuffix: 'dairy-name' },
+  vehicleNumber: { expected: 'AB12 CDE', hrefSuffix: 'vehicle-number' },
+  driverName: { expected: 'Alex Driver', hrefSuffix: 'driver-name' },
+  driverPhone: { expected: '07123456789', hrefSuffix: 'driver-phone-number' },
+  collectionPremises: {
+    expected: 'Farm A, Farm B, Farm C',
+    hrefSuffix: 'premises-names'
   },
-  email: { expected: 'applicant@example.com', hrefSuffix: 'email-address' }
+  twoWeekRepeat: { expected: 'No', hrefSuffix: 'repeat-movement' },
+  expectMovementDate: {
+    expected: '7 March 2050',
+    hrefSuffix: 'milk-movement-dates'
+  }
 }
 
-describe('Receiving the licence – NOT milk (Registered keeper)', () => {
+describe('Movement details — milk (dairy route)', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
-    await movementTypePage.navigateToPageAndVerifyTitle()
+    await taskListPage.navigateToPageAndVerifyTitle()
 
     await completeAboutMovement({
       movementContext: 'off-of-farm',
       moving: 'milk',
+      producerDairy: 'dairy',
       startFromFirstPage: true
     })
+
     await aboutCheckAnswersPage.verifyPageHeadingAndTitle(
       'Check your answers before you continue your application'
     )
@@ -44,20 +54,18 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
   })
 
-  it('completes the Registered keeper route and verifies CYA', async () => {
+  it('Should complete movement details milk (dairy) journey and verify CYA', async () => {
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 2,
+      taskTitle: 'Movement details',
       expectedStatus: 'Incomplete'
     })
 
-    await taskListPage.selectReceivingLicence(responsibleForOriginPage)
+    await taskListPage.selectMovementDetails(dairyNamePage)
 
-    await completeReceivingLicenceSection({
-      recipient: LICENCE_RECIPIENT.MILK_PRODUCER,
-      firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'applicant@example.com',
+    await completeMilkMovementSection({
+      role: MILK_ROLE.DAIRY,
+      repeated: false,
       startFromFirstPage: true
     })
 
@@ -76,8 +84,8 @@ describe('Receiving the licence – NOT milk (Registered keeper)', () => {
     await waitForPagePath(taskListPage.pagePath)
 
     await taskListPage.verifyStatus({
-      position: 5,
-      taskTitle: 'Receiving the licence',
+      position: 2,
+      taskTitle: 'Movement details',
       expectedStatus: 'Completed'
     })
   })
