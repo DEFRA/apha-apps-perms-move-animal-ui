@@ -97,7 +97,7 @@ services:
       NODE_ENV: development
       LOCALSTACK_ENDPOINT: http://localstack:4566
       MONGO_URI: mongodb://mongodb:27017/
-      STUB_MODE_ENABLED: true
+      STUB_MODE_ENABLED: false
     networks:
       - cdp-tenant
 
