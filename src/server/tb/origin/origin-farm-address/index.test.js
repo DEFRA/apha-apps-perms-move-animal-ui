@@ -2,6 +2,7 @@ import { originFarmAddressPage, OriginFarmAddressPage } from './index.js'
 import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
+import { originSummaryPage } from '../summary/index.js'
 
 const sectionKey = 'origin'
 const question =
@@ -45,7 +46,21 @@ describe('OriginAddressPage', () => {
 
   it('nextPage should return summaryPage', () => {
     const answer = new AddressAnswer(addressInput)
-    const nextPage = page.nextPage(answer)
+    const nextPage = page.nextPage(answer, {
+      origin: {
+        onOffFarm: 'off'
+      }
+    })
+    expect(nextPage).toBe(originSummaryPage)
+  })
+
+  it('nextPage should return fiftyPercentWarningPage', () => {
+    const answer = new AddressAnswer(addressInput)
+    const nextPage = page.nextPage(answer, {
+      origin: {
+        onOffFarm: 'on'
+      }
+    })
     expect(nextPage).toBe(fiftyPercentWarningPage)
   })
 

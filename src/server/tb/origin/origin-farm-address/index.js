@@ -2,6 +2,7 @@ import { AddressAnswer } from '../../../common/model/answer/address/address.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
+import { originSummaryPage } from '../summary/index.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 
@@ -18,7 +19,11 @@ export class OriginFarmAddressPage extends QuestionPage {
 
   /** @param {AddressAnswer} _answer */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  nextPage(_answer) {
+  nextPage(_answer, context) {
+    if (context.origin?.onOffFarm === 'off') {
+      return originSummaryPage
+    }
+
     return fiftyPercentWarningPage
   }
 }
