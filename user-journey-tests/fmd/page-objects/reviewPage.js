@@ -2,30 +2,30 @@ import { selectElement } from '../../TB/helpers/page.js'
 import { AnswersBasePage } from '../../base-pages/answersBasePage.js'
 
 import { aboutTheMovementChangeLinks } from './about-the-movement/checkAnswersPage.js'
-import { locationOfVisitChangeLinks } from './location-of-visit/checkAnswersPage.js'
-import { movementDestinationChangeLinks } from './movement-destination/destinationCheckAnswersPage.js'
+import { animalDisposalChangeLinks } from './disposal-of-the-animal/checkAnswersPage.js'
+import { movementDestinationChangeLinks } from './movement-destination/checkAnswersPage.js'
 import { movementDetailsChangeLinks } from './movement-details/checkAnswersPage.js'
-import { visitDetailsChangeLinks } from './visit-details/checkAnswersPage.js'
-import { movementOriginChangeLinks } from './movement-orgin/checkAnswersPage.js'
+import { movementOriginChangeLinks } from './movement-origin/checkAnswersPage.js'
 import { receivingTheLicenceChangeLinks } from './receiving-the-licence/checkAnswersPage.js'
+import { slaughterInfoChangeLinks } from './slaughter-information/checkAnswersPage.js'
 
 const pageHeadingAndTitle = 'Check your answers before sending your application'
 const pageId = 'confirmation'
 
 class ReviewPage extends AnswersBasePage {
-  pagePath = 'exotics/submit/check-answers'
+  pagePath = 'fmd/submit/check-answers'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
   errorMessage = 'You need to tick a declaration box'
 
   changeLinks = {
     ...aboutTheMovementChangeLinks,
-    ...locationOfVisitChangeLinks,
     ...movementDestinationChangeLinks,
     ...movementDetailsChangeLinks,
-    ...visitDetailsChangeLinks,
     ...movementOriginChangeLinks,
-    ...receivingTheLicenceChangeLinks
+    ...receivingTheLicenceChangeLinks,
+    ...animalDisposalChangeLinks,
+    ...slaughterInfoChangeLinks
   }
 
   fieldError() {
