@@ -20,6 +20,7 @@ import {
 import { submitAndVerifyApplication } from '../../helpers/function-helpers/submission.js'
 
 describe('End-to-end — Movement off, live animals (non-slaughter)', () => {
+  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()
