@@ -1,3 +1,4 @@
+import { extractJourneyIndex } from '~/src/config/nunjucks/context/context.js'
 import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
 
 const mockReadFileSync = jest.fn()
@@ -34,6 +35,32 @@ describe('#context', () => {
       }`)
 
       contextResult = contextImport.context(mockRequest)
+    })
+
+    it('should provide the expected start page', () => {
+      expect(
+        extractJourneyIndex({
+          path: '/fmd/url'
+        })
+      ).toBe('/fmd/')
+
+      expect(
+        extractJourneyIndex({
+          path: '/exotics/url'
+        })
+      ).toBe('/exotics/')
+
+      expect(
+        extractJourneyIndex({
+          path: '/privacy-policy'
+        })
+      ).toBe('/')
+
+      expect(
+        extractJourneyIndex({
+          path: '/anything else'
+        })
+      ).toBe('/')
     })
 
     it('Should provide expected context', () => {

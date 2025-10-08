@@ -16,6 +16,21 @@ const manifestPath = path.join(
 /** @type {Record<string, string> | undefined} */
 let webpackManifest
 
+export const extractJourneyIndex = (req) => {
+  const knownJourneys = {
+    fmd: '/fmd/',
+    exotics: '/exotics/'
+  }
+
+  for (const key of Object.keys(knownJourneys)) {
+    if (req.path.startsWith(knownJourneys[key])) {
+      return knownJourneys[key]
+    }
+  }
+
+  return '/'
+}
+
 /**
  * @param {Request | null} request
  */
@@ -29,10 +44,12 @@ export function context(request) {
     }
   }
 
+  const serviceUrl = extractJourneyIndex(request)
+
   return {
+    serviceUrl,
     assetPath: `${assetPath}/assets`,
     serviceName: config.get('serviceName'),
-    serviceUrl: '/',
     breadcrumbs: [],
     manageAccountUrl: config.get('auth').manageAccountUrl,
     navigation: buildNavigation(request),
