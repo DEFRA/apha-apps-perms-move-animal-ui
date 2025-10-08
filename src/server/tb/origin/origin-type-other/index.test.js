@@ -2,6 +2,7 @@ import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page
 import { originTypeOtherPage, OriginTypeOtherPage } from './index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { OriginTypeOtherAnswer } from '../../../common/model/answer/origin-type-other/origin-type-other.js'
+import { cphNumberPage } from '../cph-number/index.js'
 
 const sectionKey = 'origin'
 const question =
@@ -37,9 +38,22 @@ describe('OriginTypeOtherPage', () => {
     expect(page.Answer).toBe(OriginTypeOtherAnswer)
   })
 
-  it('nextPage should return destination summary page', () => {
-    const nextPage = page.nextPage()
+  it('nextPage should return destination originFarmCphPage', () => {
+    const nextPage = page.nextPage(null, {
+      origin: {
+        onOffFarm: 'on'
+      }
+    })
     expect(nextPage).toBe(originFarmCphPage)
+  })
+
+  it('nextPage should return destination cphNumberPage when moving off the farm', () => {
+    const nextPage = page.nextPage(null, {
+      origin: {
+        onOffFarm: 'off'
+      }
+    })
+    expect(nextPage).toBe(cphNumberPage)
   })
 
   it('should export page', () => {
