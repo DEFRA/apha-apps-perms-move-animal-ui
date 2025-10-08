@@ -18,13 +18,6 @@ import {
 } from '../../helpers/journey-helpers/receivingTheLicence.js'
 import { completeMovementDestinationCarcasses } from '../../helpers/journey-helpers/movementDestination.js'
 
-const basePath = '/fmd/movement-details'
-const redirectUri = `${basePath}/check-answers`
-
-const journeyData = {
-  disposalDate: { expected: '7 March 2050', hrefSuffix: 'disposal-date' }
-}
-
 describe('Movement details — carcasses', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
