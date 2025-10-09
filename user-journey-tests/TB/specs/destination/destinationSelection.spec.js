@@ -14,7 +14,6 @@ import {
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Destination selection test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

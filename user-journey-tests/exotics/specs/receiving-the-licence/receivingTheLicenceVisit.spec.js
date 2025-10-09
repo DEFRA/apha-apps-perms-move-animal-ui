@@ -25,7 +25,6 @@ const journeyData = {
 }
 
 describe('Receiving the licence - visit', async () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

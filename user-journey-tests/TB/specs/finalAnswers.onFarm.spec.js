@@ -6,7 +6,6 @@ import signInPage from '../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 
 describe('Check your final answers test', () => {
-  // eslint-disable-next-line no-undef
   before('Navigate to check answers page', async () => {
     await loginAndSaveSession(signInPage)
 

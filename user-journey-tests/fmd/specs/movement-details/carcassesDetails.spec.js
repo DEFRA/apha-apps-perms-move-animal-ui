@@ -20,7 +20,6 @@ const journeyData = {
 }
 
 describe('Movement details — carcasses', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

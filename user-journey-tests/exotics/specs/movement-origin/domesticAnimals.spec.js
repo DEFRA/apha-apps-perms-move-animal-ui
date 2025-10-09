@@ -32,7 +32,6 @@ const journeyData = {
 }
 
 describe('Movement origin - domestic animals', async () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

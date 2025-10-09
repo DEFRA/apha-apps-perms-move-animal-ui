@@ -9,7 +9,6 @@ import {
 const longString = 'a'.repeat(51)
 
 describe('County parish owner name test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

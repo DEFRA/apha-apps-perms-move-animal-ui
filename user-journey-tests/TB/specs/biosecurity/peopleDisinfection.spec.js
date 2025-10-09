@@ -8,7 +8,6 @@ import otherStaffMeasuresPage from '../../page-objects/biosecurity/otherStaffMea
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 
 describe('Equipment contamination page spec', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -9,7 +9,6 @@ import oldestCalfDobPage from '../../page-objects/identification/oldestCalfDobPa
 import testingDatesPage from '../../page-objects/identification/testingDatesPage.js'
 
 describe('Calves under 42 days spec', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

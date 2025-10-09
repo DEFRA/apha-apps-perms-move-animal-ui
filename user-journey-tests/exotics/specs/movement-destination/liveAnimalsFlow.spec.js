@@ -36,7 +36,6 @@ const journeyData = {
 }
 
 describe('Movement destination - live animals', async () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

@@ -24,7 +24,6 @@ const journeyData = {
 }
 
 describe('About the movement - Off premises → Milk', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

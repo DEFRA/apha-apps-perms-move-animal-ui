@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Manure or slurry selection test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

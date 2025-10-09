@@ -17,7 +17,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Check your answers test - destination', () => {
-  // eslint-disable-next-line no-undef
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
   })

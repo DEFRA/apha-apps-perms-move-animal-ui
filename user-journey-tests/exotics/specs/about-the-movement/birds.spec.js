@@ -7,7 +7,6 @@ import TypeOfUncommonBirdPage from '../../page-objects/about-the-movement/uncomm
 import animalsQuantityPage from '../../page-objects/about-the-movement/animalsQuantityPage.js'
 
 describe('About the movement - Birds flow', async () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
     await animalTypePage.navigateToPageAndVerifyTitle()

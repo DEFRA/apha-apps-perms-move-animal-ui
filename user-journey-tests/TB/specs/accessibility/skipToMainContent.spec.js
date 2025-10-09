@@ -28,7 +28,6 @@ const activateSkipLinkAndVerifyHash = async () => {
 }
 
 describe('To/From Farm Page – Skip link and redirect behaviour', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

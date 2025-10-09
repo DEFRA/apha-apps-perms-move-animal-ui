@@ -7,7 +7,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Minimise contamination page test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

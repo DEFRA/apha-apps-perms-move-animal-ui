@@ -26,7 +26,6 @@ const verifySuccessfulUpload = async (filePath) => {
 }
 
 describe('Biosecurity map upload tests', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -6,7 +6,6 @@ import taskListPage from '../page-objects/taskListPage.js'
 
 if (process.env.DEFRA_ID_ENABLED !== 'false') {
   describe('Sign out flow test', () => {
-    // eslint-disable-next-line no-undef
     before(async () => {
       await loginAndSaveSession(signInPage)
     })

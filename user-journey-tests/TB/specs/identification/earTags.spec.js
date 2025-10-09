@@ -7,7 +7,6 @@ import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsO
 import calvesPage from '../../page-objects/identification/calvesPage.js'
 
 describe('Disinfectant page spec', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

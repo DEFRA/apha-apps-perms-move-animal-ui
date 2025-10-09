@@ -19,7 +19,6 @@ const formatDateObject = (date) => ({
 })
 
 describe('Date Input Page Validation (single error shown)', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

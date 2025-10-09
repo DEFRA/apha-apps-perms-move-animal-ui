@@ -7,7 +7,6 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('Identification - task list appearance', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

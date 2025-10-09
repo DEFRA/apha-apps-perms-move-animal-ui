@@ -9,7 +9,6 @@ import originTypePage from '../../page-objects/origin/originTypePage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 
 describe('To from farm page test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

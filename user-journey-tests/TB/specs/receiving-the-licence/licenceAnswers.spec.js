@@ -19,7 +19,6 @@ const emailDefault = 'default@email.com'
 const editedEmail = 'edited@email.com'
 
 describe('Check your licence answers test', () => {
-  // eslint-disable-next-line no-undef
   before('Sign in and complete licence task', async () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()

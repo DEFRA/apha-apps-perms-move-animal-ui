@@ -1,4 +1,4 @@
-import { DateBasePage } from '../../../../base-pages/dateBasePage'
+import { DateBasePage } from '../../../../base-pages/dateBasePage.js'
 
 const pageHeadingAndTitle = 'What date does your movement start?'
 

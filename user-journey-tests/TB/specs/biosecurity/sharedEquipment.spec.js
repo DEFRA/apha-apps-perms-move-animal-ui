@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Shared Equipment Page Test', () => {
-  // eslint-disable-next-line no-undef
   before(async () => {
     await loginAndSaveSession(signInPage)
   })
