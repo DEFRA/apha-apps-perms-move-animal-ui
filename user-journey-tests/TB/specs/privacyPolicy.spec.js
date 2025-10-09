@@ -8,7 +8,6 @@ import privacyPage from '../page-objects/privacyPage.js'
 import signInPage from '../page-objects/signInPage.js'
 
 describe('Privacy policy page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

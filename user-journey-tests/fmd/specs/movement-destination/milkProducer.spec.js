@@ -25,7 +25,6 @@ const journeyData = {
 }
 
 describe('Movement destination — Milk producer route', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

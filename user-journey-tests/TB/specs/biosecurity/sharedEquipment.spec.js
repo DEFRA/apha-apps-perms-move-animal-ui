@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Shared Equipment Page Test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

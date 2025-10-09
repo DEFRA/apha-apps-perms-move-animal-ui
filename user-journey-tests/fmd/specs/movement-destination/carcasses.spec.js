@@ -51,7 +51,6 @@ const journeyData = {
 }
 
 describe('Movement destination — Carcasses (longest route)', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

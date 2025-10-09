@@ -32,7 +32,6 @@ const journeyData = {
 }
 
 describe('Movement origin — Not milk, no TLA, slaughter/carcass', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

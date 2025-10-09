@@ -17,7 +17,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Check your answers test - destination', () => {
-  
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
   })

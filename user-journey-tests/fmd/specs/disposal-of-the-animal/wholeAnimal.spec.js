@@ -32,7 +32,6 @@ const journeyData = {
 }
 
 describe('Disposal of the animal — Whole animal route', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

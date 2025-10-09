@@ -14,7 +14,6 @@ import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsO
 const redirect = `?redirect_uri=/${identificationAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
-  
   before('Sign in and complete answers', async () => {
     await loginAndSaveSession(signInPage)
     await calvesPage.navigateToPageAndVerifyTitle()

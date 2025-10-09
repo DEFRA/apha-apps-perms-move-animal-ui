@@ -23,7 +23,6 @@ const journeyData = {
 }
 
 describe('Movement details — live animals', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

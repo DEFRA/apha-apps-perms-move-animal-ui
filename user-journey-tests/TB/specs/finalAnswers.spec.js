@@ -40,7 +40,6 @@ const county = 'West new york edited'
 const postcode = 'SW1C 2CC'
 
 describe('Check your final answers test', () => {
-  
   before('Navigate to check answers page', async () => {
     await loginAndSaveSession(signInPage)
     await completeApplication(originDefaultObject, licenceDefaultObject)

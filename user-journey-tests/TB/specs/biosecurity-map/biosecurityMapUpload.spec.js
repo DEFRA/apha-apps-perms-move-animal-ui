@@ -26,7 +26,6 @@ const verifySuccessfulUpload = async (filePath) => {
 }
 
 describe('Biosecurity map upload tests', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

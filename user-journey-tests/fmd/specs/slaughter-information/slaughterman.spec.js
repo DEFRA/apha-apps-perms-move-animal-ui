@@ -31,7 +31,6 @@ const journeyData = {
 }
 
 describe('Slaughter information — Slaughterman route', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

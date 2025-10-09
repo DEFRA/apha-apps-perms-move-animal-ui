@@ -28,7 +28,6 @@ const activateSkipLinkAndVerifyHash = async () => {
 }
 
 describe('To/From Farm Page – Skip link and redirect behaviour', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

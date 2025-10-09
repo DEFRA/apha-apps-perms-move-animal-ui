@@ -7,7 +7,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('How many animals page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

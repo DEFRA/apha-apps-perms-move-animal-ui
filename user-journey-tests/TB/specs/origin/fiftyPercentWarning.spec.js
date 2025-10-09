@@ -8,7 +8,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Fifty percent warning page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -15,7 +15,6 @@ const expectedLinks = [
   'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
 ]
 describe('Landing page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

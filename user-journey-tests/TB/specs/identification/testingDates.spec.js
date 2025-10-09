@@ -7,7 +7,6 @@ import testingDatesPage from '../../page-objects/identification/testingDatesPage
 import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 
 describe('Disinfectant page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

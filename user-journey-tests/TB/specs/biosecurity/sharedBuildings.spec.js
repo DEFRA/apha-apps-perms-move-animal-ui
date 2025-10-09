@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Shared buildings page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

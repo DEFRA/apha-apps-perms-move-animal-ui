@@ -7,7 +7,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Minimise contamination page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -28,7 +28,6 @@ const journeyData = {
 }
 
 describe('Movement destination - products', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

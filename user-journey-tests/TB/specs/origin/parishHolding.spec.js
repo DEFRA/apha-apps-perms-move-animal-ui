@@ -8,7 +8,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Parish holding page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

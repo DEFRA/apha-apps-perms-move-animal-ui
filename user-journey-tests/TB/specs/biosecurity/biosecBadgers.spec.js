@@ -8,7 +8,6 @@ import otherWildlifeMeasuresPage from '../../page-objects/biosecurity/otherWildl
 import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 
 describe('Biosecurity badgers page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

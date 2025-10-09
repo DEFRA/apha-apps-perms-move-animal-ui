@@ -7,7 +7,6 @@ import otherDestinationTypePage from '../../page-objects/destination/otherDestin
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 
 describe('Destination type other page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

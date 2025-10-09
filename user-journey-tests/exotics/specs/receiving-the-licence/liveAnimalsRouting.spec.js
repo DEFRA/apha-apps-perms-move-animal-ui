@@ -8,7 +8,6 @@ import { completeAboutMovementSection } from '../../helpers/journey-helpers/abou
 import animalsResponsiblePage from '../../page-objects/receiving-the-licence/animalsResponsiblePage.js'
 
 describe('Receiving the licence - visit', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

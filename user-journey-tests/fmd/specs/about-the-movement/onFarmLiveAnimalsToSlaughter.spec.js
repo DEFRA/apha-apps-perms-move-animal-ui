@@ -32,7 +32,6 @@ const journeyData = {
 }
 
 describe('About the movement - Onto → Live animals → to slaughter', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

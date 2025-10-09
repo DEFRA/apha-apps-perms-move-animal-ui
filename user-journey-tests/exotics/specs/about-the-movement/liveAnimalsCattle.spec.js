@@ -38,7 +38,6 @@ const journeyData = {
 }
 
 describe('About the movement - Onto > Live animals > cattle', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

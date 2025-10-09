@@ -28,7 +28,6 @@ const journeyData = {
 }
 
 describe('Visit details - more than one date', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

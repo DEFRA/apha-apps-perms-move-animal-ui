@@ -5,7 +5,6 @@ import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import animalTypePage from '../../page-objects/destination/animalTypePage.js'
 
 describe('Reason for movement page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

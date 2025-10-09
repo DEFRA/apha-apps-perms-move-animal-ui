@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Kept separately selection test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

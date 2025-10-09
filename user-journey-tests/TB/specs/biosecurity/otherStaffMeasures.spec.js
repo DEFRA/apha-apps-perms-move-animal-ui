@@ -7,7 +7,6 @@ import otherStaffMeasuresPage from '../../page-objects/biosecurity/otherStaffMea
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 
 describe('Last grazed page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

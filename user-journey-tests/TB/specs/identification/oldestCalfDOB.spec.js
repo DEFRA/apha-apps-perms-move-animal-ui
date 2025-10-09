@@ -19,7 +19,6 @@ const formatDateObject = (date) => ({
 })
 
 describe('Date Input Page Validation (single error shown)', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

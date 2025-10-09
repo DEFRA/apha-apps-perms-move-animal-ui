@@ -25,7 +25,6 @@ const journeyData = {
 }
 
 describe('Receiving the licence - visit', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

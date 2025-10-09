@@ -9,7 +9,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Country of import test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

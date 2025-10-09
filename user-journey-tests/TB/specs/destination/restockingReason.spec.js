@@ -8,7 +8,6 @@ import additionalInfoPage from '../../page-objects/destination/additionalInfoPag
 import otherRestockingReasonPage from '../../page-objects/destination/otherRestockingReasonPage.js'
 
 describe('Restocking reason page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

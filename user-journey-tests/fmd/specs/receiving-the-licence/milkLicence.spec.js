@@ -27,7 +27,6 @@ const journeyData = {
 }
 
 describe('Receiving the licence – NOT milk (Registered keeper)', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

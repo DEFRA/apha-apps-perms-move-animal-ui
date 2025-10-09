@@ -8,7 +8,6 @@ import { completeReceivingLicenceSection } from '../../helpers/journey-helpers/r
 import { submitAndVerifyApplication } from '../../helpers/function-helpers/submission.js'
 
 describe('Live animals submission spec', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -7,7 +7,6 @@ import earTagsCalvesPage from '../../page-objects/identification/earTagsCalvesPa
 import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42DaysPage.js'
 
 describe('Ear tags calves - page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

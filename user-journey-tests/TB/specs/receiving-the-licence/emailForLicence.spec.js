@@ -21,7 +21,6 @@ const validSubmissionCheck = async (input, whitespace = false) => {
 }
 
 describe('Email address for licence page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

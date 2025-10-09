@@ -13,7 +13,6 @@ import otherDestinationTypePage from '../../page-objects/destination/otherDestin
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Destination selection options test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

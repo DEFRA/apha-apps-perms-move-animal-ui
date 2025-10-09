@@ -19,7 +19,6 @@ const licenceDefaultObject = {
 }
 
 describe('declarations', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

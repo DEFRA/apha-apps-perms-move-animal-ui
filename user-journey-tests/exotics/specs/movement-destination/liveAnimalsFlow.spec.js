@@ -36,7 +36,6 @@ const journeyData = {
 }
 
 describe('Movement destination - live animals', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

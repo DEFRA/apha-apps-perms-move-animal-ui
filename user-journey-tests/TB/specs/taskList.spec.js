@@ -18,7 +18,6 @@ import identificationAnswersPage from '../page-objects/identification/identifica
 import { completeIdentificationTaskLongWay } from '../helpers/testHelpers/animalIdentification.js'
 
 describe('Task list page test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

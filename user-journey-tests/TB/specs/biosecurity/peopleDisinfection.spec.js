@@ -8,7 +8,6 @@ import otherStaffMeasuresPage from '../../page-objects/biosecurity/otherStaffMea
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 
 describe('Equipment contamination page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

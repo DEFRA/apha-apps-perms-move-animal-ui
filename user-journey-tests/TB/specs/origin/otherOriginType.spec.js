@@ -7,7 +7,6 @@ import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
 import originTypeOtherPage from '../../page-objects/origin/originTypeOtherPage.js'
 
 describe('Origin type other page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -10,7 +10,6 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('Check your answers test - destination', () => {
-  
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
     await destinationVariants(true, false)

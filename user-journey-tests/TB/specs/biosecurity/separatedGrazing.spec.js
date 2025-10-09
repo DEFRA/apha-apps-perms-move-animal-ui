@@ -7,7 +7,6 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Separated grazing page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

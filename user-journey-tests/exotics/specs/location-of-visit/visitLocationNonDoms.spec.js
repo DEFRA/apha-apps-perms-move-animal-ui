@@ -44,7 +44,6 @@ const journeyData = {
 }
 
 describe('Location of visit - non doms', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

@@ -47,7 +47,6 @@ const verifyChangeLinkAndQuestion = async (
 }
 
 describe('Check your answers test', () => {
-  
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()

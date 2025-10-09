@@ -10,7 +10,6 @@ const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
 
 describe('Security test html input', () => {
-  
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()

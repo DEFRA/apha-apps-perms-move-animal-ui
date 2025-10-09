@@ -52,7 +52,6 @@ const journeyData = {
 }
 
 describe('Movement origin - animal non doms', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

@@ -7,7 +7,6 @@ import TypeOfUncommonBirdPage from '../../page-objects/about-the-movement/uncomm
 import animalsQuantityPage from '../../page-objects/about-the-movement/animalsQuantityPage.js'
 
 describe('About the movement - Birds flow', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await animalTypePage.navigateToPageAndVerifyTitle()

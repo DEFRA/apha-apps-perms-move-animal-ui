@@ -16,7 +16,6 @@ import {
 import originTypeOtherPage from '../../page-objects/origin/originTypeOtherPage.js'
 
 describe('origin type page test (off farm)', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

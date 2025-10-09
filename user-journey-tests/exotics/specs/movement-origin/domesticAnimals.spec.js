@@ -32,7 +32,6 @@ const journeyData = {
 }
 
 describe('Movement origin - domestic animals', async () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

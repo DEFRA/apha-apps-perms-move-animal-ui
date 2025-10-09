@@ -17,7 +17,6 @@ import { completeIdentificationTaskLongWay } from '../../helpers/testHelpers/ani
 const redirect = `?redirect_uri=/${identificationAnswersPage.pagePath}`
 
 describe('Identification journey spec (with warning page)', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await completeIdentificationTaskLongWay()

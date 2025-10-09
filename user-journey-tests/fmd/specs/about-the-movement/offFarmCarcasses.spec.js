@@ -34,7 +34,6 @@ const journeyData = {
 }
 
 describe('About the movement - Off premises → Carcasses', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

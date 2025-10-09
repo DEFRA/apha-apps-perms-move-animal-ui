@@ -7,7 +7,6 @@ import {
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 describe('Manur details page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

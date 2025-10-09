@@ -9,7 +9,6 @@ import cattleOver42DaysPage from '../../page-objects/identification/cattleOver42
 import calvesPage from '../../page-objects/identification/calvesPage.js'
 
 describe('Cattle over 42 days old page spec', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

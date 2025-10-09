@@ -14,7 +14,6 @@ import {
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Destination selection test', () => {
-  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })
