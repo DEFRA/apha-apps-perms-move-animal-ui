@@ -1,4 +1,4 @@
-import { DateBasePage } from '../../../../base-pages/dateBasePage'
+import { DateBasePage } from '../../../../base-pages/dateBasePage.js'
 
 const pageHeadingAndTitle = 'When is the date when you expect the milk to move?'
 
