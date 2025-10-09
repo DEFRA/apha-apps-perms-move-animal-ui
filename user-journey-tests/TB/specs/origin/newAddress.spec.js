@@ -23,7 +23,7 @@ const countyWhitespace = ' West new york '
 const postcodeValidWhitespace = ' SW1A 2AA '
 
 describe('New address page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

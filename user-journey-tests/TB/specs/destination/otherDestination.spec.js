@@ -7,7 +7,7 @@ import otherDestinationTypePage from '../../page-objects/destination/otherDestin
 import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 
 describe('Destination type other page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

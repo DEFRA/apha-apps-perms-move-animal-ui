@@ -7,7 +7,7 @@ import otherRestockingReasonPage from '../../page-objects/destination/otherResto
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
 
 describe('Other restocking reason page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

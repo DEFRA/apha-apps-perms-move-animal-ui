@@ -4,7 +4,7 @@ import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
 describe('Future owner spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -7,7 +7,7 @@ import {
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 describe('Manur details page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

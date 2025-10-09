@@ -21,7 +21,7 @@ const validSubmissionCheck = async (input, whitespace = false) => {
 }
 
 describe('Email address for licence page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -7,7 +7,7 @@ import animalTypePage from '../../page-objects/destination/animalTypePage.js'
 import restockingReasonPage from '../../page-objects/destination/restockingReasonPage.js'
 
 describe('Animal type page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

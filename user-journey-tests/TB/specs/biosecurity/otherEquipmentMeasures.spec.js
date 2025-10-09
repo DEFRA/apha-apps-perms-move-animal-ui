@@ -7,7 +7,7 @@ import otherEquipmentMeasuresPage from '../../page-objects/biosecurity/otherEqui
 import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 
 describe('Other equipment measures page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

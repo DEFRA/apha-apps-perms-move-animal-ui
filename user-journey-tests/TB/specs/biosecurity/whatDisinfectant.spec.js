@@ -7,7 +7,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Disinfectant page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

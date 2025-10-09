@@ -10,7 +10,7 @@ const defaultTownOrCity = 'default Gotham'
 const defaultPostcode = 'NB2A 1GG'
 
 describe('Security test html input', () => {
-  // eslint-disable-next-line no-undef
+  
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()

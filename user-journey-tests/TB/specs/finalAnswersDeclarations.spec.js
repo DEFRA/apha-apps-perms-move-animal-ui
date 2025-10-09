@@ -19,7 +19,7 @@ const licenceDefaultObject = {
 }
 
 describe('declarations', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

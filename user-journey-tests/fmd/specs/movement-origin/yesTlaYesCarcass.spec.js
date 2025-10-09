@@ -26,7 +26,7 @@ const journeyData = {
 }
 
 describe('Movement origin — Not milk, TLA, slaughter/carcass', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

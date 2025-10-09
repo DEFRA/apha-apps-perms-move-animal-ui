@@ -27,7 +27,7 @@ const journeyData = {
 }
 
 describe('Receiving the licence – NOT milk (Registered keeper)', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

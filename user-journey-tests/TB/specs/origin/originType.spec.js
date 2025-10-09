@@ -16,7 +16,7 @@ import {
 import originTypeOtherPage from '../../page-objects/origin/originTypeOtherPage.js'
 
 describe('origin type page test (off farm)', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -52,7 +52,7 @@ const journeyData = {
 }
 
 describe('Movement origin - animal non doms', async () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

@@ -36,7 +36,7 @@ const journeyData = {
 }
 
 describe('Movement details - more than one date', async () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

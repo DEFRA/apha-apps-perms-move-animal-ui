@@ -9,7 +9,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Country of import test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

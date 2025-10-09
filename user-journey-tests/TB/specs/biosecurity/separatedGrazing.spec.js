@@ -7,7 +7,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Separated grazing page spec', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

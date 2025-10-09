@@ -9,7 +9,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 
 describe('Shared buildings page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

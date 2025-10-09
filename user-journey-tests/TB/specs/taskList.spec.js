@@ -18,7 +18,7 @@ import identificationAnswersPage from '../page-objects/identification/identifica
 import { completeIdentificationTaskLongWay } from '../helpers/testHelpers/animalIdentification.js'
 
 describe('Task list page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

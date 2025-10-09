@@ -8,7 +8,7 @@ import { waitForPagePath } from '../../helpers/page.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
 
 describe('Biosecurity intro page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

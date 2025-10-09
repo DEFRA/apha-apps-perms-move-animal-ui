@@ -15,7 +15,7 @@ const expectedLinks = [
   'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
 ]
 describe('Landing page test', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
   })

@@ -30,7 +30,7 @@ const journeyData = {
 }
 
 describe('About the movement - Slaughter on site → Live animals → cattle', () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await taskListPage.navigateToPageAndVerifyTitle()

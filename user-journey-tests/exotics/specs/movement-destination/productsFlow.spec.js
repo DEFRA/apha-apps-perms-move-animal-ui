@@ -28,7 +28,7 @@ const journeyData = {
 }
 
 describe('Movement destination - products', async () => {
-  // eslint-disable-next-line no-undef
+  
   before(async () => {
     await loginAndSaveSession(signInPage)
     await movementTypePage.navigateToPageAndVerifyTitle()

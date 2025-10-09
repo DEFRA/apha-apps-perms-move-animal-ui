@@ -11,7 +11,7 @@ import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 const redirect = `?redirect_uri=/${biosecurityAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
-  // eslint-disable-next-line no-undef
+  
   before('Sign in and complete answers', async () => {
     await loginAndSaveSession(signInPage)
     await completeBiosecurityTask('yes', true)
