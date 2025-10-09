@@ -74,6 +74,10 @@ export class DestinationTypePage extends QuestionPage {
       return destinationFarmCphPage
     }
 
+    if (answer.value === 'market-afu') {
+      return additionalInfoPage
+    }
+
     return offFarmNextPageMapping[answer.value]
   }
 

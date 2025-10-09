@@ -2,10 +2,14 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'zoo' | 'lab' | 'iso-unit' | 'other'} DestinationTypeData
+ * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'zoo' | 'lab' | 'iso-unit' | 'other' | 'market-afu'} DestinationTypeData
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 
+const marketOrAfuOption = {
+  label: 'TB sales at orange markets and approved finishing units (AFU)',
+  hint: 'Including enhanced with grazing (AFUE)'
+}
 const tbRestrictedOption = { label: 'TB restricted farm' }
 const afuOption = {
   label: 'Approved finishing unit (AFU)',
@@ -43,8 +47,7 @@ const getDestinationOptions = (app) => {
   if (isOriginTbRestricted) {
     return {
       slaughter: slaughterOption,
-      'dedicated-sale': dedicatedSaleOption,
-      afu: afuOption,
+      'market-afu': marketOrAfuOption,
       'tb-restricted-farm': tbRestrictedOption,
       'iso-unit': { label: 'TB isolation unit' },
       other: otherOption

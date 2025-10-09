@@ -69,6 +69,20 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmAddressPage)
     })
 
+    it('should return additionalInfoPage when going from tb-restricted to market-afu', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'market-afu'
+      })
+      const nextPage = page.nextPage(answer, {
+        origin: {
+          onOffFarm: 'off',
+          originType: 'tb-restricted-farm'
+        }
+      })
+
+      expect(nextPage).toBe(additionalInfoPage)
+    })
+
     it('should return destinationFarmCphPage when going from iso-unit to afu', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
       const nextPage = page.nextPage(answer, {
