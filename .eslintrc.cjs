@@ -155,7 +155,7 @@ module.exports = {
       env: {
         es2022: true,
         node: true,
-        mocha: true // ✅ enable Mocha globals (describe/it/before/after)
+        mocha: true
       },
       extends: ['standard', 'prettier', 'plugin:wdio/recommended'],
       files: ['user-journey-tests/**/*.{cjs,js}'],
