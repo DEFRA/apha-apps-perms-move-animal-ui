@@ -76,7 +76,7 @@ class DestinationSelectionPage extends Page {
     await super.selectRadioAndContinue(this.afuSaleRadio)
     await waitForPagePath(nextPage.pagePath)
   }
-  
+
   async selectOtherDestinationAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.otherDestinationRadio)
     await waitForPagePath(nextPage.pagePath)

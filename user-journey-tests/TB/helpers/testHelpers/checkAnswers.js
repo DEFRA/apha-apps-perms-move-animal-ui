@@ -68,10 +68,7 @@ export const validateOriginType = async (
   await expect(originTypePage['tb-restricted-farmRadio']).toBeSelected()
   await originTypePage.selectTbRestrictedFarm(nextPage)
 
-  await validateElementVisibleAndText(
-    valueElement,
-    'TB restricted farm'
-  )
+  await validateElementVisibleAndText(valueElement, 'TB restricted farm')
 }
 
 export const validateAndAdjustParishNumber = async (
