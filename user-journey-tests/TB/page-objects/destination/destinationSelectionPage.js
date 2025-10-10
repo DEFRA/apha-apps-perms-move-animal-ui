@@ -35,6 +35,10 @@ class DestinationSelectionPage extends Page {
     return $('input[value="other"]')
   }
 
+  get afuSaleRadio() {
+    return $('input[value="market-afu"]')
+  }
+
   radioFieldError() {
     return super.getErrorElement(pageId)
   }
@@ -68,6 +72,11 @@ class DestinationSelectionPage extends Page {
     await waitForPagePath(nextPage.pagePath)
   }
 
+  async selectAfuSaleAndContinue(nextPage) {
+    await super.selectRadioAndContinue(this.afuSaleRadio)
+    await waitForPagePath(nextPage.pagePath)
+  }
+  
   async selectOtherDestinationAndContinue(nextPage) {
     await super.selectRadioAndContinue(this.otherDestinationRadio)
     await waitForPagePath(nextPage.pagePath)

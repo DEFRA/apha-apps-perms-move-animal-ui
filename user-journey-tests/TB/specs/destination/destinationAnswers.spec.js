@@ -50,18 +50,18 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Dedicated sale for TB (orange market)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
 
     await selectElement(
       await destinationAnswersPage.getChangeLink('destinationType')
     )
-    await expect(destinationSelectionPage.dedicatedSaleRadio).toBeSelected()
+    await expect(destinationSelectionPage.afuSaleRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Dedicated sale for TB (orange market)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
   })
 
@@ -69,18 +69,18 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Approved finishing unit (AFU)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
 
     await selectElement(
       await destinationAnswersPage.getChangeLink('destinationType')
     )
-    await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
+    await expect(destinationSelectionPage.afuSaleRadio).toBeSelected()
 
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Approved finishing unit (AFU)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
   })
 
@@ -88,7 +88,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Approved finishing unit (AFU)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
 
     await destinationAnswersPage.selectContinue()
@@ -99,7 +99,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'Dedicated sale for TB (orange market)'
+      'TB sales at orange markets and approved finishing units (AFU)'
     )
 
     await selectElement(

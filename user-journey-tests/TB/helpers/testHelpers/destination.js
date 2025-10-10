@@ -33,14 +33,14 @@ const completeDestinationTask = async (radioType) => {
       break
 
     case 'dedicated':
-      await destinationSelectionPage.selectDedicatedSaleAndContinue(
+      await destinationSelectionPage.selectAfuSaleAndContinue(
         additionalInfoPage
       )
       await passAdditionalInfo()
       break
 
     case 'approved':
-      await destinationSelectionPage.selectApprovedFinishingAndContinue(
+      await destinationSelectionPage.selectAfuSaleAndContinue(
         additionalInfoPage
       )
       await passAdditionalInfo()

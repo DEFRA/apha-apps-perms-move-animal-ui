@@ -66,11 +66,11 @@ export const validateOriginType = async (
   await selectElement(changeLink)
 
   await expect(originTypePage['tb-restricted-farmRadio']).toBeSelected()
-  await originTypePage.selectApprovedFinishingAndContinue(nextPage)
+  await originTypePage.selectTbRestrictedFarm(nextPage)
 
   await validateElementVisibleAndText(
     valueElement,
-    'Approved finishing unit (AFU)'
+    'TB restricted farm'
   )
 }
 
