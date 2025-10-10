@@ -25,7 +25,7 @@ export class TbApplicationModel extends ApplicationModel {
 
   get version() {
     return {
-      major: 1,
+      major: 2,
       minor: 1
     }
   }
