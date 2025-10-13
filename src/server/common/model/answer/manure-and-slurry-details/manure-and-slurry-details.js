@@ -14,7 +14,8 @@ export class ManureAndSlurryDetailsAnswer extends TextAreaAnswer {
   static config = {
     payloadKey: 'manureAndSlurryDetails',
     hint: 'For example, preventing animal access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming animals',
-    rows: 8,
+    rows: 4,
+    spellcheck: false,
     validation: {
       maxLength: {
         value: 5000,
