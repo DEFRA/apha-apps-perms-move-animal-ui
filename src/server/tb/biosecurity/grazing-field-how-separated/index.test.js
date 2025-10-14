@@ -1,6 +1,6 @@
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { grazingOtherPage } from '../grazing-other/index.js'
-import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 import {
   Answer,
   grazingFieldHowSeparatedPage,
@@ -42,7 +42,7 @@ describe('GrazingFieldHowSeparatedPage', () => {
         grazingFieldHowSeparated: ['three']
       })
     )
-    expect(nextPage).toBe(manureAndSlurryDetailsPage)
+    expect(nextPage).toBe(lastGrazedPage)
   })
 
   it('nextPage should return grazingOtherPage', () => {

@@ -1,8 +1,8 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '~/src/server/tb/question-page-controller.js'
 import { CheckboxAnswer } from '~/src/server/common/model/answer/checkbox/checkbox.js'
-import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 import { grazingOtherPage } from '../grazing-other/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 
 /** @import { CheckboxConfig } from '~/src/server/common/model/answer/checkbox/checkbox.js' */
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
@@ -44,7 +44,7 @@ export class GrazingFieldHowSeparatedPage extends QuestionPage {
       return grazingOtherPage
     }
 
-    return manureAndSlurryDetailsPage
+    return lastGrazedPage
   }
 }
 
