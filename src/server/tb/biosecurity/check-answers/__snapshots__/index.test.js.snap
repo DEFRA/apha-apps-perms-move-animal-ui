@@ -38,35 +38,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you separate the incoming animals from the resident herd?
+      Which measures are being taken to reduce the spread of TB when the animals are grazing?
     </dt>
     <dd class="govuk-summary-list__value">
-      some details
+      A minimum of 3 metres will separate the animals
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> How will you separate the incoming animals from the resident herd?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How long ago was the field last grazed by the resident herd?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      yesterday
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/biosecurity/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by the resident herd?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Has any manure or slurry been put on the grazing field in the past 60 days?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Yes
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/manure-and-slurry?redirect_uri=/biosecurity/check-answers" data-testid="manureAndSlurry-change-link">Change<span class="govuk-visually-hidden"> Has any manure or slurry been put on the grazing field in the past 60 days?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/biosecurity/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB when the animals are grazing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
