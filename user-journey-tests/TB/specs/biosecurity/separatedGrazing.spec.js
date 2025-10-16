@@ -17,10 +17,7 @@ describe('Separated grazing page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await howFieldSeparatedPage.singleInputErrorTest(
-      '',
-      howFieldSeparatedPage.noInputError
-    )
+    await howFieldSeparatedPage.checkboxErrorTest()
   })
 
   it('Should select checkbox input and continue without error', async () => {
