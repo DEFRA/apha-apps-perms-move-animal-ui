@@ -1,5 +1,5 @@
 /* eslint-disable lines-between-class-members */
-import { CheckboxBasePage } from '../base-pages/checkboxBasePage'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
@@ -8,9 +8,9 @@ const noInputError =
   'Enter information about how you will separate the incoming animals from the resident herd'
 
 const checkboxIds = [
-  'grazingFieldHowSeparated', // Roads
-  'grazingFieldHowSeparated-2', // 3 metres
-  'grazingFieldHowSeparated-3' // Other
+  'roads', // Roads
+  'three', // 3 metres
+  'other' // Other
 ]
 
 class HowFieldSeparatedPage extends CheckboxBasePage {
