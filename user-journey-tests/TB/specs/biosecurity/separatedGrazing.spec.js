@@ -23,9 +23,9 @@ describe('Separated grazing page spec', () => {
     )
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await howFieldSeparatedPage.inputTextAndContinue(
-      'By testing it',
+  it('Should select checkbox input and continue without error', async () => {
+    await howFieldSeparatedPage.selectCheckboxesAndContinue(
+      'grazingFieldHowSeparated',
       lastGrazedPage
     )
   })
