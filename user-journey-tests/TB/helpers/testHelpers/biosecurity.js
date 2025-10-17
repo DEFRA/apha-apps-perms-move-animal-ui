@@ -34,7 +34,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       await keptSeparatelyPage.selectYesAndContinue(grazingPage)
       await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
       await howFieldSeparatedPage.selectCheckboxesAndContinue(
-        [howFieldSeparatedPage.roads],
+        [howFieldSeparatedPage['separated-by-roads']],
         lastGrazedPage
       )
       await lastGrazedPage.inputTextAndContinue('2 years', manureAndSlurryPage)

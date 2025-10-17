@@ -18,7 +18,7 @@ describe('Separated grazing page spec', () => {
 
   it('Should select checkbox input and continue without error', async () => {
     await howFieldSeparatedPage.selectCheckboxesAndContinue(
-      [howFieldSeparatedPage.roads],
+      [howFieldSeparatedPage['separated-by-roads']],
       lastGrazedPage
     )
   })
