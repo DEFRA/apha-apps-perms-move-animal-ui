@@ -30,7 +30,7 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'separateGrazing',
-      expectedValue: 'Separate grazing',
+      expectedValue: 'Roads create a boundary between the animals',
       expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
     },
     {
