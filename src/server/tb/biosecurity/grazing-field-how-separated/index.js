@@ -1,20 +1,24 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { GrazingFieldHowSeparatedAnswer } from '../../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { lastGrazedPage } from '../last-grazed/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
 export class GrazingFieldHowSeparatedPage extends QuestionPage {
   urlPath = '/biosecurity/grazing-field-how-separated'
   sectionKey = 'biosecurity'
   question =
-    'How will you separate the incoming animals from the resident herd?'
+    'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 
   questionKey = 'grazingFieldHowSeparated'
   Answer = GrazingFieldHowSeparatedAnswer
   view = 'tb/biosecurity/grazing-field-how-separated/index.njk'
 
-  nextPage() {
-    return lastGrazedPage
+  /** @param {GrazingFieldHowSeparatedAnswer} answer */
+  nextPage(answer) {
+    if (answer.value?.includes('other')) {
+      //
+    }
+    return manureAndSlurryDetailsPage
   }
 }
 

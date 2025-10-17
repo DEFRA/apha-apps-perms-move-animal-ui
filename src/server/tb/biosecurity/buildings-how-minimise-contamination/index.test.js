@@ -1,6 +1,6 @@
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import {
   buildingsHowMinimiseContaminationPage,
   BuildingsHowMinimiseContaminationPage
@@ -49,9 +49,9 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
     expect(page.Answer).toBe(BuildingsHowMinimiseContaminationAnswer)
   })
 
-  it('nextPage should return any shared equipment page', () => {
+  it('nextPage should return people disinfection page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(equipmentAnySharedPage)
+    expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
   it('should export page', () => {

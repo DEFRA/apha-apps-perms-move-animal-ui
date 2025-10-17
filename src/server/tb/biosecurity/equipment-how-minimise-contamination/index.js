@@ -2,7 +2,7 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { EquipmentHowMinimiseContaminationAnswer } from '../../../common/model/answer/equipment-how-minimise-contamination/equipment-how-minimise-contamination.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { otherEquipmentMeasuresPage } from '../other-equipment-measures/index.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
 export class EquipmentHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/equipment-how-minimise-contamination'
@@ -18,7 +18,7 @@ export class EquipmentHowMinimiseContaminationPage extends QuestionPage {
     if (answer.value?.includes('other')) {
       return otherEquipmentMeasuresPage
     } else {
-      return peopleDisinfectionPage
+      return buildingsAnySharedPage
     }
   }
 }

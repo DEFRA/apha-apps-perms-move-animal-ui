@@ -1,8 +1,8 @@
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { equipmentAnySharedPage, EquipmentAnySharedPage } from './index.js'
 import { EquipmentAnySharedAnswer } from '../../../common/model/answer/equipment-any-shared/equipment-any-shared.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise-contamination/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
 const sectionKey = 'biosecurity'
 const question =
@@ -44,10 +44,10 @@ describe('EquipmentAnySharedPage', () => {
     expect(nextPage).toBe(equipmentHowMinimiseContaminationPage)
   })
 
-  it('nextPage should return people disinfection page when answer is "no"', () => {
+  it('nextPage should return buildings any shared page when answer is "no"', () => {
     const answer = new EquipmentAnySharedAnswer({ equipmentShared: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(peopleDisinfectionPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
   it('should export page', () => {

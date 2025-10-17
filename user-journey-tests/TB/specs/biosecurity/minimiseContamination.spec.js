@@ -1,5 +1,5 @@
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
-import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -26,7 +26,7 @@ describe('Minimise contamination page test', () => {
   it('Should input correct input and continue without error', async () => {
     await minimiseContaminationPage.inputTextAndContinue(
       'By testing it',
-      sharedEquipmentPage
+      peopleDisinfectionPage
     )
   })
 })

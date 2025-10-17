@@ -2,7 +2,7 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 import { EquipmentAnySharedAnswer } from '../../../common/model/answer/equipment-any-shared/equipment-any-shared.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { equipmentHowMinimiseContaminationPage } from '../equipment-how-minimise-contamination/index.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 
 export class EquipmentAnySharedPage extends QuestionPage {
   urlPath = '/biosecurity/equipment-any-shared'
@@ -19,7 +19,7 @@ export class EquipmentAnySharedPage extends QuestionPage {
     if (answer.value === 'yes') {
       return equipmentHowMinimiseContaminationPage
     }
-    return peopleDisinfectionPage
+    return buildingsAnySharedPage
   }
 }
 

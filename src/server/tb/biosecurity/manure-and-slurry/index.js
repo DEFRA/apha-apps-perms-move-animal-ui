@@ -1,6 +1,7 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { ManureAndSlurryAnswer } from '../../../common/model/answer/manure-and-slurry/manure-and-slurry.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
+import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
 import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
 export class ManureAndSlurryPage extends QuestionPage {
@@ -12,7 +13,11 @@ export class ManureAndSlurryPage extends QuestionPage {
   questionKey = 'manureAndSlurry'
   Answer = ManureAndSlurryAnswer
 
-  nextPage() {
+  /** @param {ManureAndSlurryAnswer} answer */
+  nextPage(answer) {
+    if (answer.value === 'yes') {
+      return grazingFieldHowSeparatedPage
+    }
     return manureAndSlurryDetailsPage
   }
 }

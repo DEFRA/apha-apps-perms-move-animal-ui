@@ -19,7 +19,7 @@ import equipmentContaminationPage from '../../page-objects/biosecurity/equipment
 import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 import { waitForPagePath } from '../page.js'
 
-// Helper function to complete the origin task
+// Helper function to complete the biosecurity task
 const completeBiosecurityTask = async (radioType, direct = false) => {
   if (!direct) {
     await navigateToTaskList()
@@ -27,18 +27,20 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
   } else {
     await biosecIntroPage.navigateToPageAndVerifyTitle()
   }
+
   await biosecIntroPage.selectContinue()
   await waitForPagePath(keptSeparatelyPage.pagePath)
+
   switch (radioType) {
     case 'yes':
       await keptSeparatelyPage.selectYesAndContinue(grazingPage)
-      await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
-      await howFieldSeparatedPage.inputTextAndContinue(
-        'Separate grazing',
-        lastGrazedPage
-      )
+      await grazingPage.selectYesAndContinue(lastGrazedPage)
       await lastGrazedPage.inputTextAndContinue('2 years', manureAndSlurryPage)
-      await manureAndSlurryPage.selectYesAndContinue(manureDetailsPage)
+      await manureAndSlurryPage.selectYesAndContinue(howFieldSeparatedPage)
+      await howFieldSeparatedPage.selectCheckboxesAndContinue(
+        [howFieldSeparatedPage.roadsCreateBoundary],
+        manureDetailsPage
+      )
       await manureDetailsPage.inputTextAndContinue(
         'Manure details',
         disinfectantPage
@@ -50,6 +52,11 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       )
       await disinfectantDilutionPage.selectCheckboxesAndContinue(
         [disinfectantDilutionPage.dilutionRateConfirmed],
+        sharedEquipmentPage
+      )
+      await sharedEquipmentPage.selectYesAndContinue(equipmentContaminationPage)
+      await equipmentContaminationPage.selectCheckboxesAndContinue(
+        [equipmentContaminationPage.designatedDisinfectionPoints],
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
@@ -57,11 +64,6 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       )
       await minimiseContaminationPage.inputTextAndContinue(
         'Minimise',
-        sharedEquipmentPage
-      )
-      await sharedEquipmentPage.selectYesAndContinue(equipmentContaminationPage)
-      await equipmentContaminationPage.selectCheckboxesAndContinue(
-        [equipmentContaminationPage.designatedDisinfectionPoints],
         peopleDisinfectionPage
       )
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
@@ -87,16 +89,16 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       )
       await disinfectantDilutionPage.selectCheckboxesAndContinue(
         [disinfectantDilutionPage.dilutionRateConfirmed],
-        anySharedBuildingsPage
+        sharedEquipmentPage
       )
+      await sharedEquipmentPage.selectNoAndContinue(anySharedBuildingsPage)
       await anySharedBuildingsPage.selectYesAndContinue(
         minimiseContaminationPage
       )
       await minimiseContaminationPage.inputTextAndContinue(
         'Minimise contamination',
-        sharedEquipmentPage
+        peopleDisinfectionPage
       )
-      await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
         [peopleDisinfectionPage.ppe],
         biosecBadgersPage

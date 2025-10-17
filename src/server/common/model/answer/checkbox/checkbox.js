@@ -58,6 +58,7 @@ const createCheckboxSchema = (config) => {
 /**
  * @typedef {{
  *   label: string,
+ *   hint?: string,
  *   exclusive?: boolean
  * }} CheckboxOption
  * @typedef {{
@@ -172,6 +173,10 @@ export class CheckboxAnswer extends AnswerModel {
 
         if (option.exclusive) {
           checkboxOption.behaviour = 'exclusive'
+        }
+
+        if (option.hint) {
+          checkboxOption.hint = { text: option.hint }
         }
 
         return checkboxOption

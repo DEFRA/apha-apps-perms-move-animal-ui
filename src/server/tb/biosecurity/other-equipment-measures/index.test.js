@@ -1,6 +1,6 @@
 import { OtherEquipmentMeasuresAnswer } from '../../../common/model/answer/other-equipment-measures/other-equipment-measures.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import {
   otherEquipmentMeasuresPage,
   OtherEquipmentMeasuresPage
@@ -40,9 +40,9 @@ describe('OtherEquipmentMeasures', () => {
     expect(page.Answer).toBe(OtherEquipmentMeasuresAnswer)
   })
 
-  it('nextPage should return grazing field how separate page', () => {
+  it('nextPage should return buildings any shared page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(peopleDisinfectionPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
   it('should export page', () => {

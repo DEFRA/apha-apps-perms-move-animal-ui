@@ -1,18 +1,16 @@
-import { TextAreaAnswer } from '../text-area/text-area.js'
+import { CheckboxAnswer } from '../checkbox/checkbox.js'
 import { GrazingFieldHowSeparatedAnswer } from './grazing-field-how-separated.js'
 /** @import {GrazingFieldHowSeparatedPayload} from './grazing-field-how-separated.js' */
 
-const maxLength = 5000
-
 /** @type {GrazingFieldHowSeparatedPayload} */
 const payload = {
-  grazingFieldHowSeparated: 'yesterday'
+  grazingFieldHowSeparated: ['roadsCreateBoundary']
 }
 
 describe('GrazingFieldHowSeparated', () => {
-  it('should be a text area', () => {
+  it('should be a checkbox answer', () => {
     expect(new GrazingFieldHowSeparatedAnswer(payload)).toBeInstanceOf(
-      TextAreaAnswer
+      CheckboxAnswer
     )
   })
 
@@ -22,24 +20,23 @@ describe('GrazingFieldHowSeparated', () => {
     )
   })
 
-  it('should be the expected height', () => {
-    expect(GrazingFieldHowSeparatedAnswer.config.rows).toBe(8)
+  it('should define the expected options', () => {
+    const { options } = GrazingFieldHowSeparatedAnswer.config
+    expect(Object.keys(options)).toEqual([
+      'roadsCreateBoundary',
+      'minimumThreeMetres',
+      'other'
+    ])
+    expect(options.minimumThreeMetres.hint).toBe(
+      'Such as by hedges, doubling fencing or walls'
+    )
   })
 
   it('should define the right empty input message', () => {
     expect(
       GrazingFieldHowSeparatedAnswer.config.validation.empty?.message
     ).toBe(
-      'Enter information about how you will separate the incoming animals from the resident herd'
+      'Select which measures are being taken to reduce the spread of TB when the animals are grazing'
     )
-  })
-
-  it('should define the right max length and corresponding error message', () => {
-    expect(
-      GrazingFieldHowSeparatedAnswer.config.validation.maxLength.value
-    ).toBe(maxLength)
-    expect(
-      GrazingFieldHowSeparatedAnswer.config.validation.maxLength.message
-    ).toBe('Your answer must be no longer than 5000 characters')
   })
 })

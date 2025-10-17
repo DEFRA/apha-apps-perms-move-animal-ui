@@ -1,6 +1,6 @@
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 import equipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import { verifySelectionPersistence } from '../../helpers/page.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
@@ -32,9 +32,9 @@ describe('Shared Equipment Page Test', () => {
   })
 
   it('Should retain "No" selection after navigation and refresh', async () => {
-    await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
+    await sharedEquipmentPage.selectNoAndContinue(anySharedBuildingsPage)
     await verifySelectionPersistence(
-      peopleDisinfectionPage,
+      anySharedBuildingsPage,
       sharedEquipmentPage,
       sharedEquipmentPage.noRadio
     )

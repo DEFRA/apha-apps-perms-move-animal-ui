@@ -4,7 +4,7 @@ import {
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import otherEquipmentMeasuresPage from '../../page-objects/biosecurity/otherEquipmentMeasuresPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 
 describe('Other equipment measures page spec', () => {
   before(async () => {
@@ -26,7 +26,7 @@ describe('Other equipment measures page spec', () => {
   it('Should input correct input and continue without error', async () => {
     await otherEquipmentMeasuresPage.inputTextAndContinue(
       '1995',
-      peopleDisinfectionPage
+      anySharedBuildingsPage
     )
   })
 })

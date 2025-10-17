@@ -1,6 +1,6 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import { OtherEquipmentMeasuresAnswer } from '../../../common/model/answer/other-equipment-measures/other-equipment-measures.js'
 
 export class OtherEquipmentMeasuresPage extends QuestionPage {
@@ -14,7 +14,7 @@ export class OtherEquipmentMeasuresPage extends QuestionPage {
   Answer = OtherEquipmentMeasuresAnswer
 
   nextPage() {
-    return peopleDisinfectionPage
+    return buildingsAnySharedPage
   }
 }
 

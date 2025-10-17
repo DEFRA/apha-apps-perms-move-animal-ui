@@ -2,7 +2,7 @@ import { BuildingsAnySharedAnswer } from '../../../common/model/answer/buildings
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { buildingsAnySharedPage, BuildingsAnySharedPage } from './index.js'
 import { buildingsHowMinimiseContaminationPage } from '../buildings-how-minimise-contamination/index.js'
-import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will the incoming animals be housed?'
@@ -46,7 +46,7 @@ describe('BuildingsAnySharedPage', () => {
   it('nextPage should return people disinfection page when answer is "no"', () => {
     const answer = new BuildingsAnySharedAnswer({ animalsHoused: 'no' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(equipmentAnySharedPage)
+    expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
   it('should export page', () => {

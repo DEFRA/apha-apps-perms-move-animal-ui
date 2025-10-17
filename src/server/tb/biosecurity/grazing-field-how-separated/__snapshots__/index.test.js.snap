@@ -2,39 +2,49 @@
 
 exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content should render expected response and content 1`] = `
 "
-  <h1 class="govuk-heading-l">Separating the incoming animals</h1>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        We need to know what measures are in place to reduce the risk of
-        spreading TB to the incoming animals from the resident herd.
-      </p>
-      <p>You should include:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          minimum distances between incoming animals and the resident herd
-        </li>
-        <li>the types of fencing you use</li>
-        <li>how grazing fields are kept separate</li>
-      </ul>
-    </div>
-  </div>
+  <h1 class="govuk-heading-l">Which measures are being taken to reduce the spread of TB when the animals are grazing?</h1>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="grazingFieldHowSeparated">
-    How will you separate the incoming animals from the resident herd?
-  </label>
-  <textarea class="govuk-textarea" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" rows="8"></textarea>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="grazingFieldHowSeparated-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which measures are being taken to reduce the spread of TB when the animals are grazing?
+      </h1>
+    </legend>
+    <div id="grazingFieldHowSeparated-hint" class="govuk-hint">
+      Only select the measures you are taking. You do not need to select them all to receive your licence.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" type="checkbox" value="roadsCreateBoundary" data-testid="roadsCreateBoundary-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated">
+          Roads create a boundary between the animals
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-2" name="grazingFieldHowSeparated" type="checkbox" value="minimumThreeMetres" aria-describedby="grazingFieldHowSeparated-2-item-hint" data-testid="minimumThreeMetres-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated-2">
+          A minimum of 3 metres will separate the animals
+        </label>
+        <div id="grazingFieldHowSeparated-2-item-hint" class="govuk-hint govuk-checkboxes__hint">
+          Such as by hedges, doubling fencing or walls
+        </div>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-3" name="grazingFieldHowSeparated" type="checkbox" value="other" data-testid="other-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated-3">
+          Other separation measures
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>

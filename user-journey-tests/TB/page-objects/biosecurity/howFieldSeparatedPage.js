@@ -1,15 +1,19 @@
-/* eslint-disable lines-between-class-members */
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
-  'How will you separate the incoming animals from the resident herd?'
+  'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 const noInputError =
-  'Enter information about how you will separate the incoming animals from the resident herd'
+  'Select which measures are being taken to reduce the spread of TB when the animals are grazing'
+const checkboxIds = [
+  'roadsCreateBoundary',
+  'minimumThreeMetres',
+  'other'
+]
 
-class HowFieldSeparatedPage extends SingleTextInputPage {
+class HowFieldSeparatedPage extends CheckboxBasePage {
   constructor() {
-    super({ pageId, noInputError })
+    super({ checkboxIds, pageId, noInputError })
   }
 
   pagePath = 'biosecurity/grazing-field-how-separated'

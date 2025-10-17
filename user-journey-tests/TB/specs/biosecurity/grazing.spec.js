@@ -1,5 +1,5 @@
 import grazingPage from '../../page-objects/biosecurity/grazingPage.js'
-import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
+import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import { verifySelectionPersistence } from '../../helpers/page.js'
 import signInPage from '../../page-objects/signInPage.js'
@@ -23,9 +23,9 @@ describe('Grazing selection test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await grazingPage.selectYesAndContinue(howFieldSeparatedPage)
+    await grazingPage.selectYesAndContinue(lastGrazedPage)
     await verifySelectionPersistence(
-      howFieldSeparatedPage,
+      lastGrazedPage,
       grazingPage,
       grazingPage.yesRadio
     )
@@ -34,7 +34,7 @@ describe('Grazing selection test', () => {
   it('Should choose No and check its maintained', async () => {
     await grazingPage.selectNoAndContinue(manureDetailsPage)
     await verifySelectionPersistence(
-      howFieldSeparatedPage,
+      manureDetailsPage,
       grazingPage,
       grazingPage.noRadio
     )

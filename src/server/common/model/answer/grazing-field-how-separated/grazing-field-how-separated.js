@@ -1,28 +1,35 @@
-import { TextAreaAnswer } from '../text-area/text-area.js'
+import { CheckboxAnswer } from '../checkbox/checkbox.js'
 
-/** @import {TextAreaConfig} from '../text-area/text-area.js' */
+/** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
 
 /**
- * @typedef {{ grazingFieldHowSeparated: string }} GrazingFieldHowSeparatedPayload
+ * @typedef {{ grazingFieldHowSeparated: CheckboxData }} GrazingFieldHowSeparatedPayload
  */
 
 /**
- * @augments {TextAreaAnswer<GrazingFieldHowSeparatedPayload>}
+ * @augments {CheckboxAnswer<GrazingFieldHowSeparatedPayload>}
  */
-export class GrazingFieldHowSeparatedAnswer extends TextAreaAnswer {
-  /** @type {TextAreaConfig} */
+export class GrazingFieldHowSeparatedAnswer extends CheckboxAnswer {
+  /** @type {CheckboxConfig} */
   static config = {
     payloadKey: 'grazingFieldHowSeparated',
-    rows: 8,
-    isPageHeading: false,
-    validation: {
-      maxLength: {
-        value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+    hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    options: {
+      roadsCreateBoundary: {
+        label: 'Roads create a boundary between the animals'
       },
+      minimumThreeMetres: {
+        label: 'A minimum of 3 metres will separate the animals',
+        hint: 'Such as by hedges, doubling fencing or walls'
+      },
+      Other: {
+        label: 'Other separation measures'
+      }
+    },
+    validation: {
       empty: {
         message:
-          'Enter information about how you will separate the incoming animals from the resident herd'
+          'Select which measures are being taken to reduce the spread of TB when the animals are grazing'
       }
     }
   }

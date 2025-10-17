@@ -29,11 +29,6 @@ describe('Check your answers test - biosecurity', () => {
       expectedHref: `/biosecurity/grazing${redirect}`
     },
     {
-      field: 'separateGrazing',
-      expectedValue: 'Separate grazing',
-      expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
-    },
-    {
       field: 'lastGrazed',
       expectedValue: '2 years',
       expectedHref: `/biosecurity/last-grazed${redirect}`
@@ -44,9 +39,30 @@ describe('Check your answers test - biosecurity', () => {
       expectedHref: `/biosecurity/manure-and-slurry${redirect}`
     },
     {
+      field: 'separateGrazing',
+      expectedValue: 'Roads create a boundary between the animals',
+      expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
+    },
+    {
       field: 'manureDetails',
       expectedValue: 'Manure details',
       expectedHref: `/biosecurity/manure-and-slurry-details${redirect}`
+    },
+    {
+      field: 'whatDisinfectant',
+      expectedValue: 'Agrichlor',
+      expectedHref: `/biosecurity/disinfectant${redirect}`
+    },
+    {
+      field: 'dilution',
+      expectedValue:
+        'I confirm a dilution rate of 1:100 is used on the farm or premises',
+      expectedHref: `/biosecurity/disinfectant-dilution${redirect}`
+    },
+    {
+      field: 'sharedEquipment',
+      expectedValue: 'Designated disinfection points',
+      expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
     },
     {
       field: 'animalsHoused',
@@ -59,26 +75,10 @@ describe('Check your answers test - biosecurity', () => {
       expectedHref: `/biosecurity/buildings-how-minimise-contamination${redirect}`
     },
     {
-      field: 'sharedEquipment',
-      expectedValue: 'Designated disinfection points',
-      expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
-    },
-    {
       field: 'peopleDisinfection',
       expectedValue:
         'Dedicated clothing and personal protective equipment (PPE)',
       expectedHref: `/biosecurity/people-disinfection${redirect}`
-    },
-    {
-      field: 'whatDisinfectant',
-      expectedValue: 'Agrichlor',
-      expectedHref: `/biosecurity/disinfectant${redirect}`
-    },
-    {
-      field: 'dilution',
-      expectedValue:
-        'I confirm a dilution rate of 1:100 is used on the farm or premises',
-      expectedHref: `/biosecurity/disinfectant-dilution${redirect}`
     },
     {
       field: 'wildlifeContamination',

@@ -1,5 +1,5 @@
 import EquipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
-import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
+import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -24,7 +24,7 @@ describe('Equipment contamination page spec', () => {
   it('Should input correct input and continue without error', async () => {
     await EquipmentContaminationPage.selectCheckboxesAndContinue(
       [EquipmentContaminationPage.disinfectingMilkingAndHandling],
-      peopleDisinfectionPage
+      anySharedBuildingsPage
     )
   })
 

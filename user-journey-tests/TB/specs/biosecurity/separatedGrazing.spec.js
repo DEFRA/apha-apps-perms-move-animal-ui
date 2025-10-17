@@ -1,5 +1,5 @@
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
-import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
+import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -16,17 +16,14 @@ describe('Separated grazing page spec', () => {
     await howFieldSeparatedPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is entered', async () => {
-    await howFieldSeparatedPage.singleInputErrorTest(
-      '',
-      howFieldSeparatedPage.noInputError
-    )
+  it('Should verify that page errors when nothing is selected', async () => {
+    await howFieldSeparatedPage.checkboxErrorTest()
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await howFieldSeparatedPage.inputTextAndContinue(
-      'By testing it',
-      lastGrazedPage
+  it('Should select an option and continue without error', async () => {
+    await howFieldSeparatedPage.selectCheckboxesAndContinue(
+      [howFieldSeparatedPage.roadsCreateBoundary],
+      manureDetailsPage
     )
   })
 })

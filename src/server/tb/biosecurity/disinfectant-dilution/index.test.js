@@ -1,6 +1,6 @@
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 import { disinfectantPage } from '../disinfectant/index.js'
 import { disinfectantDilutionPage, DisinfectantDilutionPage } from './index.js'
 
@@ -60,9 +60,9 @@ describe('DisinfectantDilutionPage', () => {
     expect(page.Answer).toBe(DilutionRateAnswer)
   })
 
-  it('nextPage should return buildings any shared page', () => {
+  it('nextPage should return equipment any shared page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(buildingsAnySharedPage)
+    expect(nextPage).toBe(equipmentAnySharedPage)
   })
 
   it('should export page', () => {

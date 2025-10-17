@@ -1,6 +1,6 @@
 import { GrazingFieldHowSeparatedAnswer } from '../../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { lastGrazedPage } from '../last-grazed/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 import {
   grazingFieldHowSeparatedPage,
   GrazingFieldHowSeparatedPage
@@ -8,7 +8,7 @@ import {
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you separate the incoming animals from the resident herd?'
+  'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 const questionKey = 'grazingFieldHowSeparated'
 const pageUrl = '/biosecurity/grazing-field-how-separated'
 
@@ -41,9 +41,12 @@ describe('GrazingFieldHowSeparatedPage', () => {
     expect(page.Answer).toBe(GrazingFieldHowSeparatedAnswer)
   })
 
-  it('nextPage should return any shared buildings page', () => {
-    const nextPage = page.nextPage()
-    expect(nextPage).toBe(lastGrazedPage)
+  it('nextPage should return manure and slurry details page', () => {
+    const answer = new GrazingFieldHowSeparatedAnswer({
+      grazingFieldHowSeparated: ['roadsCreateBoundary']
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(manureAndSlurryDetailsPage)
   })
 
   it('should export page', () => {
