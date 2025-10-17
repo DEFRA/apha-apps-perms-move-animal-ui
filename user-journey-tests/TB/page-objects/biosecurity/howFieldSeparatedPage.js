@@ -8,8 +8,8 @@ const noInputError =
   'Enter information about how you will separate the incoming animals from the resident herd'
 
 const checkboxIds = [
-  'roads', // Roads
-  'three', // 3 metres
+  'separated-by-roads', // Roads
+  'separated-by-three-meters', // 3 metres
   'other' // Other
 ]
 
