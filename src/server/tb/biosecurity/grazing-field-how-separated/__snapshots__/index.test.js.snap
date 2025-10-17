@@ -20,16 +20,19 @@ exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content shoul
     </div>
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" type="checkbox" value="roads" data-testid="roads-checkbox">
+        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" type="checkbox" value="separated-by-roads" data-testid="separated-by-roads-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated">
           Roads create a boundary between the animals
         </label>
       </div>
       <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-2" name="grazingFieldHowSeparated" type="checkbox" value="three" data-testid="three-checkbox">
+        <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-2" name="grazingFieldHowSeparated" type="checkbox" value="separated-by-three-meters" aria-describedby="grazingFieldHowSeparated-2-item-hint" data-testid="separated-by-three-meters-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated-2">
           A minimum of 3 metres will separate the animals
         </label>
+        <div id="grazingFieldHowSeparated-2-item-hint" class="govuk-hint govuk-checkboxes__hint">
+          Such as by hedges, doubling fencing or walls
+        </div>
       </div>
       <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-3" name="grazingFieldHowSeparated" type="checkbox" value="other" data-testid="other-checkbox">

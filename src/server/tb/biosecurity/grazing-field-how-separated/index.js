@@ -14,11 +14,12 @@ export class Answer extends CheckboxAnswer {
   static config = {
     payloadKey: questionKey,
     options: {
-      roads: {
+      'separated-by-roads': {
         label: 'Roads create a boundary between the animals'
       },
-      three: {
-        label: 'A minimum of 3 metres will separate the animals'
+      'separated-by-three-meters': {
+        label: 'A minimum of 3 metres will separate the animals',
+        hint: 'Such as by hedges, doubling fencing or walls'
       },
       other: {
         label: 'Other separation measures'

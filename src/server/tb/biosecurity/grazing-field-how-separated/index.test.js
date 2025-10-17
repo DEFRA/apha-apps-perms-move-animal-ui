@@ -39,7 +39,7 @@ describe('GrazingFieldHowSeparatedPage', () => {
   it('nextPage should return manureAndSlurryDetailsPage', () => {
     const nextPage = page.nextPage(
       new Answer({
-        grazingFieldHowSeparated: ['three']
+        grazingFieldHowSeparated: ['separated-by-three-meters']
       })
     )
     expect(nextPage).toBe(lastGrazedPage)
