@@ -1,14 +1,15 @@
-import { GrazingFieldHowSeparatedAnswer } from '../../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { grazingOtherPage } from '../grazing-other/index.js'
 import { lastGrazedPage } from '../last-grazed/index.js'
 import {
+  Answer,
   grazingFieldHowSeparatedPage,
   GrazingFieldHowSeparatedPage
 } from './index.js'
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you separate the incoming animals from the resident herd?'
+  'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 const questionKey = 'grazingFieldHowSeparated'
 const pageUrl = '/biosecurity/grazing-field-how-separated'
 
@@ -31,19 +32,26 @@ describe('GrazingFieldHowSeparatedPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
-  it('should have the correct view', () => {
-    expect(page.view).toBe(
-      'tb/biosecurity/grazing-field-how-separated/index.njk'
-    )
-  })
-
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(GrazingFieldHowSeparatedAnswer)
+    expect(page.Answer).toBe(Answer)
   })
 
-  it('nextPage should return any shared buildings page', () => {
-    const nextPage = page.nextPage()
+  it('nextPage should return manureAndSlurryDetailsPage', () => {
+    const nextPage = page.nextPage(
+      new Answer({
+        grazingFieldHowSeparated: ['separated-by-three-meters']
+      })
+    )
     expect(nextPage).toBe(lastGrazedPage)
+  })
+
+  it('nextPage should return grazingOtherPage', () => {
+    const nextPage = page.nextPage(
+      new Answer({
+        grazingFieldHowSeparated: ['other']
+      })
+    )
+    expect(nextPage).toBe(grazingOtherPage)
   })
 
   it('should export page', () => {
