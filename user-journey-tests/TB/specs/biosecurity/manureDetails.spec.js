@@ -6,7 +6,7 @@ import {
 } from '../../helpers/authSessionManager.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
-describe('Manur details page spec', () => {
+describe('Manure details page spec', () => {
   before(async () => {
     await loginAndSaveSession(signInPage)
   })
@@ -16,14 +16,14 @@ describe('Manur details page spec', () => {
     await manureDetailsPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is entered', async () => {
-    await manureDetailsPage.singleInputErrorTest(
-      '',
-      manureDetailsPage.noInputError
-    )
+  it('Should verify that the page errors when nothing is selected', async () => {
+    await manureDetailsPage.checkboxErrorTest()
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await manureDetailsPage.inputTextAndContinue('2 years', disinfectantPage)
+  it('Should select an option and continue without error', async () => {
+    await manureDetailsPage.selectCheckboxesAndContinue(
+      [manureDetailsPage.stored],
+      disinfectantPage
+    )
   })
 })
