@@ -42,8 +42,8 @@ describe('#biosecuritySummaryPage', () => {
     )
 
     const document = parseDocument(payload)
-    expect(document.title).toBe(biosecuritySummaryPage.pageTitle)
     expect(statusCode).toBe(statusCodes.ok)
+    expect(document.title).toBe(biosecuritySummaryPage.pageTitle)
 
     expect(payload).toEqual(expect.stringContaining('Yes'))
   })

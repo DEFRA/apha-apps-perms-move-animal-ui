@@ -29,6 +29,11 @@ describe('Check your answers test - biosecurity', () => {
       expectedHref: `/biosecurity/grazing${redirect}`
     },
     {
+      field: 'separateGrazing',
+      expectedValue: 'Roads create a boundary between the animals',
+      expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
+    },
+    {
       field: 'lastGrazed',
       expectedValue: '2 years',
       expectedHref: `/biosecurity/last-grazed${redirect}`

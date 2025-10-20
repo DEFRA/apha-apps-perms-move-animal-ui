@@ -247,7 +247,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Which measures are being taken to reduce the spread of TB when the animals are grazing?
     </dt>
     <dd class="govuk-summary-list__value">
-      Roads create a boundary between the animals
+      A minimum of 3 metres will separate the animals
     </dd>
     <dd class="govuk-summary-list__actions">
       <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/tb/submit/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB when the animals are grazing?</span></a>

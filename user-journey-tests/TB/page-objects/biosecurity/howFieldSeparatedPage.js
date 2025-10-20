@@ -6,9 +6,9 @@ const pageHeadingAndTitle =
 const noInputError =
   'Select which measures are being taken to reduce the spread of TB when the animals are grazing'
 const checkboxIds = [
-  'roadsCreateBoundary',
-  'minimumThreeMetres',
-  'other'
+  'separated-by-roads', // Roads
+  'separated-by-three-meters', // 3 metres
+  'other' // Other
 ]
 
 class HowFieldSeparatedPage extends CheckboxBasePage {

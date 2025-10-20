@@ -124,7 +124,7 @@ describe('Check your final answers test', () => {
 
     await selectElement(finalAnswersPage.getChangeLink('destinationType'))
 
-    await expect(destinationSelectionPage.approvedFinishingRadio).toBeSelected()
+    await expect(destinationSelectionPage.afuSaleRadio).toBeSelected()
 
     await destinationSelectionPage.selectSlaughterRadioAndContinue(
       generalLicencePage

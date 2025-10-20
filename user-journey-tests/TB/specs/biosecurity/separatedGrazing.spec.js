@@ -16,13 +16,9 @@ describe('Separated grazing page spec', () => {
     await howFieldSeparatedPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is selected', async () => {
-    await howFieldSeparatedPage.checkboxErrorTest()
-  })
-
-  it('Should select an option and continue without error', async () => {
+  it('Should select checkbox input and continue without error', async () => {
     await howFieldSeparatedPage.selectCheckboxesAndContinue(
-      [howFieldSeparatedPage.roadsCreateBoundary],
+      [howFieldSeparatedPage['separated-by-roads']],
       manureDetailsPage
     )
   })

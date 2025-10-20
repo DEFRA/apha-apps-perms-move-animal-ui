@@ -29,7 +29,7 @@ describe('ManureAndSlurryDetails', () => {
   })
 
   it('should be the expected height', () => {
-    expect(ManureAndSlurryDetailsAnswer.config.rows).toBe(8)
+    expect(ManureAndSlurryDetailsAnswer.config.rows).toBe(4)
   })
 
   it('should define the right empty input message', () => {

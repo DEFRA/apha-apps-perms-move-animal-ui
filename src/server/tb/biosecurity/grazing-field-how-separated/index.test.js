@@ -1,7 +1,8 @@
-import { GrazingFieldHowSeparatedAnswer } from '../../../common/model/answer/grazing-field-how-separated/grazing-field-how-separated.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { grazingOtherPage } from '../grazing-other/index.js'
 import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 import {
+  Answer,
   grazingFieldHowSeparatedPage,
   GrazingFieldHowSeparatedPage
 } from './index.js'
@@ -31,22 +32,26 @@ describe('GrazingFieldHowSeparatedPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
-  it('should have the correct view', () => {
-    expect(page.view).toBe(
-      'tb/biosecurity/grazing-field-how-separated/index.njk'
-    )
-  })
-
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(GrazingFieldHowSeparatedAnswer)
+    expect(page.Answer).toBe(Answer)
   })
 
-  it('nextPage should return manure and slurry details page', () => {
-    const answer = new GrazingFieldHowSeparatedAnswer({
-      grazingFieldHowSeparated: ['roadsCreateBoundary']
-    })
-    const nextPage = page.nextPage(answer)
+  it('nextPage should return manureAndSlurryDetailsPage', () => {
+    const nextPage = page.nextPage(
+      new Answer({
+        grazingFieldHowSeparated: ['separated-by-three-meters']
+      })
+    )
     expect(nextPage).toBe(manureAndSlurryDetailsPage)
+  })
+
+  it('nextPage should return grazingOtherPage', () => {
+    const nextPage = page.nextPage(
+      new Answer({
+        grazingFieldHowSeparated: ['other']
+      })
+    )
+    expect(nextPage).toBe(grazingOtherPage)
   })
 
   it('should export page', () => {

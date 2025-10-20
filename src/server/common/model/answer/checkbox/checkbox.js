@@ -176,7 +176,9 @@ export class CheckboxAnswer extends AnswerModel {
         }
 
         if (option.hint) {
-          checkboxOption.hint = { text: option.hint }
+          checkboxOption.hint = {
+            text: option.hint
+          }
         }
 
         return checkboxOption
