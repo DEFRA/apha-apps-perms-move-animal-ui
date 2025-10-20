@@ -71,13 +71,13 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you manage manure and slurry?
+      How will you manage slurry and manure?
     </dt>
     <dd class="govuk-summary-list__value">
-      some manure details
+      Manure and slurry is securely stored so domestic and wild animals can't access it
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/manure-and-slurry-details?redirect_uri=/biosecurity/check-answers" data-testid="manureAndSlurryDetails-change-link">Change<span class="govuk-visually-hidden"> How will you manage manure and slurry?</span></a>
+      <a class="govuk-link" href="/biosecurity/manure-and-slurry-details?redirect_uri=/biosecurity/check-answers" data-testid="manureAndSlurryDetails-change-link">Change<span class="govuk-visually-hidden"> How will you manage slurry and manure?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
