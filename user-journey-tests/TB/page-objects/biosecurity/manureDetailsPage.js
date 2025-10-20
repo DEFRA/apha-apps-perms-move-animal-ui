@@ -2,7 +2,7 @@ import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'manureAndSlurryDetails'
 const pageHeadingAndTitle = 'How will you manage slurry and manure?'
-const noInputError = 'Enter how you will manage slurry and manure'
+const noInputError = 'Enter how you will manage manure and slurry'
 const checkboxIds = [
   'not-purchased',
   'stored',
