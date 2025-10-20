@@ -45,7 +45,7 @@ describe('#biosecuritySummaryPage', () => {
     expect(statusCode).toBe(statusCodes.ok)
     expect(document.title).toBe(biosecuritySummaryPage.pageTitle)
 
-    expect(payload).toEqual(expect.stringContaining('Yes'))
+    expect(payload).toEqual(expect.stringContaining('stored'))
   })
 
   it('should redirect user to kept separately page if they`ve not selected a value', async () => {
