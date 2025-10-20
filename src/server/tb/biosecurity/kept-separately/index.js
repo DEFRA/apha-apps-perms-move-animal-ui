@@ -2,6 +2,7 @@ import { KeptSeparatelyAnswer } from '~/src/server/common/model/answer/kept-sepa
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '~/src/server/tb/question-page-controller.js'
 import { grazingPage } from '../grazing/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
 /** @import { AnswerModel } from "~/src/server/common/model/answer/answer-model.js" */
 
@@ -12,8 +13,13 @@ export class KeptSeparatelyPage extends QuestionPage {
   questionKey = 'keptSeparately'
   Answer = KeptSeparatelyAnswer
 
-  nextPage() {
-    return grazingPage
+  /** @param {KeptSeparatelyAnswer} answer */
+  nextPage(answer) {
+    if (answer.value === 'yes') {
+      return grazingPage
+    }
+
+    return manureAndSlurryDetailsPage
   }
 }
 

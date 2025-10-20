@@ -1,6 +1,7 @@
 import { KeptSeparatelyAnswer } from '../../../common/model/answer/kept-separately/kept-separately.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { grazingPage } from '../grazing/index.js'
+import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 import { keptSeparatelyPage, KeptSeparatelyPage } from './index.js'
 
 const sectionKey = 'biosecurity'
@@ -37,9 +38,16 @@ describe('KeptSeparatelyPage', () => {
     expect(page.Answer).toBe(KeptSeparatelyAnswer)
   })
 
-  it('nextPage should return grazing page when answered', () => {
-    const nextPage = page.nextPage()
+  it('nextPage should return grazing when answer is "yes"', () => {
+    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'yes' })
+    const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(grazingPage)
+  })
+
+  it('nextPage should return disinfection page when answer is "no"', () => {
+    const answer = new KeptSeparatelyAnswer({ keptSeparately: 'no' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(manureAndSlurryDetailsPage)
   })
 
   it('should export page', () => {
