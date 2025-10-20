@@ -136,7 +136,7 @@ Use [Plop](https://plopjs.com/) to scaffold new journeys, sections and pages so 
 npx plop
 ```
 
-You will be prompted for details drawn from the helpers in `prompts/*.js`. These prompts enforce things like alphabetic keys, sanitised URL paths and the available journeys (`tb`, `exotics`, `fmd`). Choose one of the generators defined in `plopfile.js` to create the matching files:
+You will be prompted for details drawn from the helpers in `prompts/*.js`. These prompts enforce things like alphabetic keys, sanitised URL paths and the available journeys (`tb`, `exotics`, `fmd`). Choose one of the generators to create the matching files:
 
 - `Question page` creates controller, test and view files under `src/server/<journey>/<section>/<question>/`. It asks for question text, hint, journey, section (only directories with a `section.js` are listed), question type and URL path, then runs `npx eslint` on the new files. Add the page to the parent section's `index.js` and complete any `//TEMPLATE-TODO` markers.
 - `Section` scaffolds a new section folder with `section.js`, tests and a stub `check-answers` handler, then lints the files. Update the enclosing journey's `index.js` and resolve the `//TEMPLATE-TODO` markers called out in the generated files.
