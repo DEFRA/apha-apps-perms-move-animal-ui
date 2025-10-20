@@ -16,7 +16,7 @@ export class Answer extends CheckboxAnswer {
     hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
     options: {
       'not-purchased': {
-        label: ' Manure is not purchased from other farms'
+        label: 'Manure is not purchased from other farms'
       },
       stored: {
         label:

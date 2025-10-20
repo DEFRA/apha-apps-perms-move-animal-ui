@@ -5,14 +5,14 @@ describe('SlurryManureOtherAnswer', () => {
   it('should extend TextAreaAnswer', () => {
     expect(
       new SlurryManureOtherAnswer({
-        SlurryManureOther: 'some details'
+        slurryManureOther: 'some details'
       })
     ).toBeInstanceOf(TextAreaAnswer)
   })
 
   it('should expose the expected config', () => {
     const config = SlurryManureOtherAnswer.config
-    expect(config.payloadKey).toBe('SlurryManureOther')
+    expect(config.payloadKey).toBe('slurryManureOther')
     expect(config.rows).toBe(4)
     expect(config.spellcheck).toBe(false)
     expect(config.validation.maxLength).toEqual({

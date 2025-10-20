@@ -22,7 +22,7 @@ describe('Answer', () => {
 
   it('should have the correct options', () => {
     expect(Answer.config.options['not-purchased'].label).toBe(
-      ' Manure is not purchased from other farms'
+      'Manure is not purchased from other farms'
     )
     expect(Answer.config.options.stored.label).toBe(
       "Manure and slurry is securely stored so domestic and wild animals can't access it"

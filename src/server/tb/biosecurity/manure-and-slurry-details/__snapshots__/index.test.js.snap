@@ -22,7 +22,7 @@ exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content should render
       <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="manureAndSlurryDetails" name="manureAndSlurryDetails" type="checkbox" value="not-purchased" data-testid="not-purchased-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails">
-           Manure is not purchased from other farms
+          Manure is not purchased from other farms
         </label>
       </div>
       <div class="govuk-checkboxes__item">

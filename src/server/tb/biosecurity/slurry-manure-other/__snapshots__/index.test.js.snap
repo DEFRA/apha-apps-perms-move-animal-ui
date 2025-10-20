@@ -11,11 +11,11 @@ exports[`SlurryManureOtherPage slurryManureOtherPage.content should render expec
 <fieldset class="govuk-fieldset">
   <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="SlurryManureOther">
+    <label class="govuk-label govuk-label--l" for="slurryManureOther">
       What other measures are being taken to manage slurry and manure?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="SlurryManureOther" name="SlurryManureOther" rows="4" spellcheck="false"></textarea>
+  <textarea class="govuk-textarea" id="slurryManureOther" name="slurryManureOther" rows="4" spellcheck="false"></textarea>
 </div>
 
 
