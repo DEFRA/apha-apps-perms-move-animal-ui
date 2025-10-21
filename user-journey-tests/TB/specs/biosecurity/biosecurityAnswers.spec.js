@@ -45,7 +45,7 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'manureDetails',
-      expectedValue: 'Manure details',
+      expectedValue: 'Manure is not purchased from other farms',
       expectedHref: `/biosecurity/manure-and-slurry-details${redirect}`
     },
     {

@@ -39,8 +39,8 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       )
       await lastGrazedPage.inputTextAndContinue('2 years', manureAndSlurryPage)
       await manureAndSlurryPage.selectYesAndContinue(manureDetailsPage)
-      await manureDetailsPage.inputTextAndContinue(
-        'Manure details',
+      await manureDetailsPage.selectCheckboxesAndContinue(
+        [manureDetailsPage['not-purchased']],
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(
@@ -76,8 +76,8 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
 
     case 'no':
       await keptSeparatelyPage.selectNoAndContinue(manureDetailsPage)
-      await manureDetailsPage.inputTextAndContinue(
-        'Manage manure',
+      await manureDetailsPage.selectCheckboxesAndContinue(
+        [manureDetailsPage['not-purchased']],
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(

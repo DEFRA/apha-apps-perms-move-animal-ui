@@ -17,13 +17,13 @@ describe('Manur details page spec', () => {
   })
 
   it('Should verify that page errors when nothing is entered', async () => {
-    await manureDetailsPage.singleInputErrorTest(
-      '',
-      manureDetailsPage.noInputError
-    )
+    await manureDetailsPage.checkboxErrorTest()
   })
 
   it('Should input correct input and continue without error', async () => {
-    await manureDetailsPage.inputTextAndContinue('2 years', disinfectantPage)
+    await manureDetailsPage.selectCheckboxesAndContinue(
+      [manureDetailsPage['not-purchased']],
+      disinfectantPage
+    )
   })
 })
