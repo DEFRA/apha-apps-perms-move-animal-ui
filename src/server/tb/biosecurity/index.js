@@ -19,6 +19,7 @@ import { obligations } from './obligations/index.js'
 import { otherEquipmentMeasures } from './other-equipment-measures/index.js'
 import { otherStaffMeasures } from './other-staff-measures/index.js'
 import { grazingOther } from './grazing-other/index.js'
+import { housingOther } from './housing-other/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -48,7 +49,8 @@ export const biosecurity = {
         badgers,
         otherWildlifeMeasures,
         biosecuritySummary,
-        grazingOther
+        grazingOther,
+        housingOther
       ])
     }
   }

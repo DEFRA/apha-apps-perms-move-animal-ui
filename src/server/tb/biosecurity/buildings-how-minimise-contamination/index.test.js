@@ -50,7 +50,16 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
   })
 
   it('nextPage should return people disinfection page', () => {
-    const nextPage = page.nextPage()
+    const nextPage = page.nextPage({
+      buildingsHowMinimiseContamination: 'no'
+    })
+    expect(nextPage).toBe(peopleDisinfectionPage)
+  })
+
+  it('nextPage should return housingOtherPage', () => {
+    const nextPage = page.nextPage({
+      buildingsHowMinimiseContamination: 'yes'
+    })
     expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
