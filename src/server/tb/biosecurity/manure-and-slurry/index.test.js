@@ -1,6 +1,6 @@
 import { ManureAndSlurryAnswer } from '../../../common/model/answer/manure-and-slurry/manure-and-slurry.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
+import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
 import { manureAndSlurryPage, ManureAndSlurryPage } from './index.js'
 
 const sectionKey = 'biosecurity'
@@ -37,9 +37,9 @@ describe('ManureAndSlurryPage', () => {
     expect(page.Answer).toBe(ManureAndSlurryAnswer)
   })
 
-  it('nextPage should return grazing field how separate page', () => {
+  it('nextPage should return grazing field how separated page', () => {
     const nextPage = page.nextPage()
-    expect(nextPage).toBe(manureAndSlurryDetailsPage)
+    expect(nextPage).toBe(grazingFieldHowSeparatedPage)
   })
 
   it('should export page', () => {

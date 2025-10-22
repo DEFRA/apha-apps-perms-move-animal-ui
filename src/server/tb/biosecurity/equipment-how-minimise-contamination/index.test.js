@@ -1,7 +1,7 @@
 import { EquipmentHowMinimiseContaminationAnswer } from '../../../common/model/answer/equipment-how-minimise-contamination/equipment-how-minimise-contamination.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { otherEquipmentMeasuresPage } from '../other-equipment-measures/index.js'
-import { peopleDisinfectionPage } from '../people-disinfection/index.js'
+import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
 import {
   equipmentHowMinimiseContaminationPage,
   EquipmentHowMinimiseContaminationPage
@@ -40,12 +40,12 @@ describe('EquipmentHowMinimiseContaminationPage', () => {
     expect(page.Answer).toBe(EquipmentHowMinimiseContaminationAnswer)
   })
 
-  it('nextPage should return people disinfection page when the answer does not include "other"', () => {
+  it('nextPage should return buildings any shared page when the answer does not include "other"', () => {
     const answer = new EquipmentHowMinimiseContaminationAnswer({
       equipmentHowMinimiseContamination: ['designatedDisinfectionPoints']
     })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(peopleDisinfectionPage)
+    expect(nextPage).toBe(buildingsAnySharedPage)
   })
 
   it('nextPage should return other equipment measures page when the answer includes "other"', () => {

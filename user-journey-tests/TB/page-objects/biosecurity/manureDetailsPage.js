@@ -1,12 +1,19 @@
-import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
+import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'manureAndSlurryDetails'
-const pageHeadingAndTitle = 'How will you manage manure and slurry?'
+const pageHeadingAndTitle = 'How will you manage slurry and manure?'
 const noInputError = 'Enter how you will manage manure and slurry'
+const checkboxIds = [
+  'not-purchased',
+  'stored',
+  'three-weeks',
+  'six-months',
+  'other'
+]
 
-class ManureDetailsPage extends SingleTextInputPage {
+class ManureDetailsPage extends CheckboxBasePage {
   constructor() {
-    super({ pageId, noInputError })
+    super({ checkboxIds, pageId, noInputError })
   }
 
   pagePath = 'biosecurity/manure-and-slurry-details'

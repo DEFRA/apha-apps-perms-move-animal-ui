@@ -1,5 +1,5 @@
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
-import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
+import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -19,7 +19,7 @@ describe('Separated grazing page spec', () => {
   it('Should select checkbox input and continue without error', async () => {
     await howFieldSeparatedPage.selectCheckboxesAndContinue(
       [howFieldSeparatedPage['separated-by-roads']],
-      lastGrazedPage
+      manureDetailsPage
     )
   })
 })

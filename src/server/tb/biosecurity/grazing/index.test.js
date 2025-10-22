@@ -2,7 +2,7 @@ import { GrazingAnswer } from '../../../common/model/answer/grazing/grazing.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { grazingPage, GrazingPage } from './index.js'
 import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
-import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 
 const sectionKey = 'biosecurity'
 const question = 'Will the incoming animals be grazed?'
@@ -37,10 +37,10 @@ describe('GrazingPage', () => {
     expect(page.Answer).toBe(GrazingAnswer)
   })
 
-  it('nextPage should return grazing fields how separated page when answer is "yes"', () => {
+  it('nextPage should return last grazed page when answer is "yes"', () => {
     const answer = new GrazingAnswer({ grazing: 'yes' })
     const nextPage = page.nextPage(answer)
-    expect(nextPage).toBe(grazingFieldHowSeparatedPage)
+    expect(nextPage).toBe(lastGrazedPage)
   })
 
   it('nextPage should return manure and slurry details page when answer is "no"', () => {

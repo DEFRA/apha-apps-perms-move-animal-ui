@@ -1,7 +1,7 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
 const customHeading = 'Housing the incoming animals'
 
@@ -21,7 +21,7 @@ export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   view = 'tb/biosecurity/buildings-how-minimise-contamination/index'
 
   nextPage() {
-    return equipmentAnySharedPage
+    return peopleDisinfectionPage
   }
 }
 

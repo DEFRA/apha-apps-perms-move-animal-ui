@@ -1,12 +1,10 @@
-/* eslint-disable lines-between-class-members */
 import { CheckboxBasePage } from '../base-pages/checkboxBasePage.js'
 
 const pageId = 'grazingFieldHowSeparated'
 const pageHeadingAndTitle =
   'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 const noInputError =
-  'Enter information about how you will separate the incoming animals from the resident herd'
-
+  'Select which measures are being taken to reduce the spread of TB when the animals are grazing'
 const checkboxIds = [
   'separated-by-roads', // Roads
   'separated-by-three-meters', // 3 metres

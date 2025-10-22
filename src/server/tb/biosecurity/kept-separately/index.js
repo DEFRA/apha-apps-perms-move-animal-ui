@@ -14,11 +14,11 @@ export class KeptSeparatelyPage extends QuestionPage {
   Answer = KeptSeparatelyAnswer
 
   /** @param {KeptSeparatelyAnswer} answer */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'yes') {
       return grazingPage
     }
+
     return manureAndSlurryDetailsPage
   }
 }

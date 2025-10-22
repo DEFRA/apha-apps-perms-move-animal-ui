@@ -4,7 +4,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
-import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
+import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 
 describe('Disinfectant dilution page spec', () => {
@@ -36,7 +36,7 @@ describe('Disinfectant dilution page spec', () => {
   it('Should input correct input and continue without error', async () => {
     await disinfectantDilutionPage.selectCheckboxesAndContinue(
       [disinfectantDilutionPage.dilutionRateConfirmed],
-      anySharedBuildingsPage
+      sharedEquipmentPage
     )
   })
 })

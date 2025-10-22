@@ -1,7 +1,7 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { DilutionRateAnswer } from '../../../common/model/answer/dilution-rate/dilution-rate.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { buildingsAnySharedPage } from '../buildings-any-shared/index.js'
+import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 import { TbStateManager } from '../../state-manager.js'
 import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
 
@@ -22,7 +22,7 @@ export class DisinfectantDilutionPage extends QuestionPage {
   Answer = DilutionRateAnswer
 
   nextPage() {
-    return buildingsAnySharedPage
+    return equipmentAnySharedPage
   }
 
   async viewProps(req) {

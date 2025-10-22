@@ -1,7 +1,7 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { GrazingAnswer } from '../../../common/model/answer/grazing/grazing.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { grazingFieldHowSeparatedPage } from '../grazing-field-how-separated/index.js'
+import { lastGrazedPage } from '../last-grazed/index.js'
 import { manureAndSlurryDetailsPage } from '../manure-and-slurry-details/index.js'
 
 export class GrazingPage extends QuestionPage {
@@ -15,7 +15,7 @@ export class GrazingPage extends QuestionPage {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer) {
     if (answer.value === 'yes') {
-      return grazingFieldHowSeparatedPage
+      return lastGrazedPage
     }
     return manureAndSlurryDetailsPage
   }

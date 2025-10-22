@@ -58,8 +58,8 @@ const createCheckboxSchema = (config) => {
 /**
  * @typedef {{
  *   label: string,
+ *   hint?: string,
  *   exclusive?: boolean
- *   hint?: string;
  * }} CheckboxOption
  * @typedef {{
  *   payloadKey: string,
