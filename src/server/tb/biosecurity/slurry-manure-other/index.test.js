@@ -6,7 +6,7 @@ import { SlurryManureOtherAnswer } from '../../../common/model/answer/slurry-man
 const sectionKey = 'biosecurity'
 const question =
   'What other measures are being taken to manage slurry and manure?'
-const questionKey = 'SlurryManureOther'
+const questionKey = 'slurryManureOther'
 const pageUrl = '/biosecurity/manure-and-slurry-details-other'
 
 describe('SlurryManureOtherPage', () => {

@@ -22,10 +22,10 @@ describe('Kept separately selection test', () => {
     await keptSeparatelyPage.radioErrorTest()
   })
 
-  it('Should select Yes, continue and check its maintained', async () => {
+  it('Should select Yes, continue and check it is maintained', async () => {
     await keptSeparatelyPage.selectYesAndContinue(grazingPage)
     await verifySelectionPersistence(
-      manureDetailsPage,
+      grazingPage,
       keptSeparatelyPage,
       keptSeparatelyPage.yesRadio
     )

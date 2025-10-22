@@ -29,11 +29,6 @@ describe('Check your answers test - biosecurity', () => {
       expectedHref: `/biosecurity/grazing${redirect}`
     },
     {
-      field: 'separateGrazing',
-      expectedValue: 'Roads create a boundary between the animals',
-      expectedHref: `/biosecurity/grazing-field-how-separated${redirect}`
-    },
-    {
       field: 'lastGrazed',
       expectedValue: '2 years',
       expectedHref: `/biosecurity/last-grazed${redirect}`
@@ -50,7 +45,8 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'manureDetails',
-      expectedValue: 'Manure details',
+      expectedValue:
+        "Manure and slurry is securely stored so domestic and wild animals can't access it",
       expectedHref: `/biosecurity/manure-and-slurry-details${redirect}`
     },
     {
@@ -66,6 +62,11 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'sharedEquipment',
+      expectedValue: 'Yes',
+      expectedHref: `/biosecurity/equipment-any-shared${redirect}`
+    },
+    {
+      field: 'equipmentMeasures',
       expectedValue: 'Designated disinfection points',
       expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
     },

@@ -2,7 +2,6 @@ import { browser } from '@wdio/globals'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 import { waitForPagePath } from '../../helpers/page.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
-import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -36,9 +35,9 @@ describe('Manure or slurry selection test', () => {
   })
 
   it('Should choose No and check its maintained', async () => {
-    await manureAndSlurryPage.selectNoAndContinue(manureDetailsPage)
+    await manureAndSlurryPage.selectNoAndContinue(howFieldSeparatedPage)
 
-    await manureDetailsPage.selectBackLink()
+    await howFieldSeparatedPage.selectBackLink()
     await waitForPagePath(manureAndSlurryPage.pagePath)
 
     await browser.refresh()

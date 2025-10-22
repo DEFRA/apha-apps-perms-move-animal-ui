@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import { SingleTextInputPage } from '../base-pages/singleTextInputPage.js'
 
-const pageId = 'SlurryManureOther'
+const pageId = 'slurryManureOther'
 const pageHeadingAndTitle =
   'What other measures are being taken to manage slurry and manure?'
 const noInputError =

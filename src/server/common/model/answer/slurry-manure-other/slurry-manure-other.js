@@ -3,7 +3,7 @@ import { TextAreaAnswer } from '../text-area/text-area.js'
 /** @import {TextAreaConfig} from '../text-area/text-area.js' */
 
 /**
- * @typedef {{ SlurryManureOther: string }} SlurryManureOtherPayload
+ * @typedef {{ slurryManureOther: string }} SlurryManureOtherPayload
  */
 
 /**
@@ -12,7 +12,7 @@ import { TextAreaAnswer } from '../text-area/text-area.js'
 export class SlurryManureOtherAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
-    payloadKey: 'SlurryManureOther',
+    payloadKey: 'slurryManureOther',
     rows: 4,
     spellcheck: false,
     validation: {
