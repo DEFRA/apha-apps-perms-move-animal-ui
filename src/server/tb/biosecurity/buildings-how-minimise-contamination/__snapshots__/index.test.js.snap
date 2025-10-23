@@ -2,45 +2,57 @@
 
 exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContaminationPage.content should render expected response and content 1`] = `
 "
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Housing the incoming animals</h1>
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <p>
-        You should have measures in place to prevent the spread of TB when the
-        incoming animals are housed or have access to shared buildings.
-      </p>
-      <p>You should include:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          how the incoming animals will be separated from the resident herd
-        </li>
-        <li>
-          cleaning and disinfection measures for housing and shared buildings,
-          including handling and milking facilities
-        </li>
-      </ul>
-    </div>
-  </div>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 
-<fieldset class="govuk-fieldset">
-  <div class="govuk-form-group">
-  <label class="govuk-label govuk-label--m" for="buildingsHowMinimiseContamination">
-    How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
-  </label>
-  <textarea class="govuk-textarea" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" rows="8"></textarea>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="buildingsHowMinimiseContamination-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Which measures are being taken to reduce the spread of TB during housing?
+      </h1>
+    </legend>
+    <div id="buildingsHowMinimiseContamination-hint" class="govuk-hint">
+      Only select the measures you are taking. You do not need to select them all to receive your licence.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" type="checkbox" value="cleaning" data-testid="cleaning-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination">
+          Cleaning and disinfecting of shared buildings before the animals arrive
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-2" name="buildingsHowMinimiseContamination" type="checkbox" value="isolation" data-testid="isolation-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-2">
+          Isolation of incoming animals in a separate building, shed or pen on arrival
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-3" name="buildingsHowMinimiseContamination" type="checkbox" value="incoming" data-testid="incoming-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-3">
+          Incoming animals will be permanently housed
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-4" name="buildingsHowMinimiseContamination" type="checkbox" value="disinfection" data-testid="disinfection-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-4">
+          Disinfection points located at the housing entrances and exits
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-5" name="buildingsHowMinimiseContamination" type="checkbox" value="other" data-testid="other-checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-5">
+          Other measures
+        </label>
+      </div>
+    </div>
+  </fieldset>
 </div>
 
-
-</fieldset>
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
