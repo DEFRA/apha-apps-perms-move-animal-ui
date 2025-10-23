@@ -54,7 +54,7 @@ export const validBiosecuritySectionState = {
   manureAndSlurryDetails: ['stored'],
   grazingFieldHowSeparated: ['separated-by-three-meters'],
   animalsHoused: 'yes',
-  buildingsHowMinimiseContamination: 'somehow',
+  buildingsHowMinimiseContamination: ['isolation'],
   equipmentShared: 'yes',
   equipmentHowMinimiseContamination: ['designatedDisinfectionPoints'],
   peopleDisinfection: ['ppe'],
