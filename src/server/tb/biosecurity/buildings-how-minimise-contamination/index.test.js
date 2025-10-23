@@ -1,5 +1,6 @@
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { HousingOtherPage } from '../housing-other/index.js'
 import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import {
   buildingsHowMinimiseContaminationPage,
@@ -50,8 +51,15 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
   })
 
   it('nextPage should return people disinfection page', () => {
-    const nextPage = page.nextPage()
+    const answer = new page.Answer({ [questionKey]: 'no' })
+    const nextPage = page.nextPage(answer)
     expect(nextPage).toBe(peopleDisinfectionPage)
+  })
+
+  it('nextPage should return housingOtherPage', () => {
+    const answer = new page.Answer({ [questionKey]: 'yes' })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBeInstanceOf(HousingOtherPage)
   })
 
   it('should export page', () => {
