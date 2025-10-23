@@ -1,12 +1,12 @@
 import { verifySelectionPersistence } from '../../helpers/page.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
-import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import buildingsMinimiseContiaminationPage from '../../page-objects/biosecurity/buildingsMinimiseContiaminationPage.js'
 
 describe('Shared buildings page test', () => {
   before(async () => {
@@ -23,9 +23,11 @@ describe('Shared buildings page test', () => {
   })
 
   it('Should select Yes, continue and check its maintained', async () => {
-    await anySharedBuildingsPage.selectYesAndContinue(minimiseContaminationPage)
+    await anySharedBuildingsPage.selectYesAndContinue(
+      buildingsMinimiseContiaminationPage
+    )
     await verifySelectionPersistence(
-      minimiseContaminationPage,
+      buildingsMinimiseContiaminationPage,
       anySharedBuildingsPage,
       anySharedBuildingsPage.yesRadio
     )

@@ -8,7 +8,6 @@ import lastGrazedPage from '../../page-objects/biosecurity/lastGrazedPage.js'
 import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryPage.js'
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
-import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
@@ -18,6 +17,7 @@ import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentP
 import equipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
 import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 import { waitForPagePath } from '../page.js'
+import buildingsMinimiseContiaminationPage from '../../page-objects/biosecurity/buildingsMinimiseContiaminationPage.js'
 
 // Helper function to complete the biosecurity task
 const completeBiosecurityTask = async (radioType, direct = false) => {
@@ -60,10 +60,10 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         anySharedBuildingsPage
       )
       await anySharedBuildingsPage.selectYesAndContinue(
-        minimiseContaminationPage
+        buildingsMinimiseContiaminationPage
       )
-      await minimiseContaminationPage.inputTextAndContinue(
-        'Minimise',
+      await buildingsMinimiseContiaminationPage.selectCheckboxesAndContinue(
+        [buildingsMinimiseContiaminationPage.cleaning],
         peopleDisinfectionPage
       )
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
@@ -93,10 +93,10 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       )
       await sharedEquipmentPage.selectNoAndContinue(anySharedBuildingsPage)
       await anySharedBuildingsPage.selectYesAndContinue(
-        minimiseContaminationPage
+        buildingsMinimiseContiaminationPage
       )
-      await minimiseContaminationPage.inputTextAndContinue(
-        'Minimise contamination',
+      await buildingsMinimiseContiaminationPage.selectCheckboxesAndContinue(
+        [buildingsMinimiseContiaminationPage.cleaning],
         peopleDisinfectionPage
       )
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
