@@ -9,6 +9,7 @@ import { QuestionPageController } from '../question-page-controller/question-pag
 /**
  * @import {NextPage} from '../../helpers/next-page.js'
  * @import {ConfirmationPayload} from '../../model/answer/confirmation/confirmation.js'
+ * @import { AnswerModel, RawPayload } from '~/src/server/common/model/answer/answer-model.js'
  */
 
 export class ConfirmationPage extends Page {
@@ -67,6 +68,8 @@ export class SubmitPageController extends QuestionPageController {
       new this.StateManager(req).toState()
     ).validate()
 
+    req.logger.info('confirmation page requested')
+
     if (!isValid) {
       return h.redirect(`/${this.namespace}/task-list-incomplete`)
     }
@@ -115,6 +118,11 @@ export class SubmitPageController extends QuestionPageController {
     const { isValid: isValidPage } = confirmation.validate()
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
+
+    const Answer = this.page.Answer
+    const answer = new Answer(payload, applicationState)
+
+    req.logger.info(`User confirmed submission as '${String(answer.value)}'`)
 
     const application = this.page.ApplicationModel.fromState(applicationState)
 
