@@ -10,10 +10,15 @@ const config = {
   isPageHeading: false,
   options: {
     confirm: {
+      exclusive: true,
       label:
         'I confirm all the information given about my farm or premises is correct to the best of my knowledge'
     },
+    divider: {
+      label: 'or'
+    },
     other: {
+      exclusive: true,
       label:
         'I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge'
     }
