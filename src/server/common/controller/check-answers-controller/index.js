@@ -67,6 +67,8 @@ export class SubmitPageController extends QuestionPageController {
       new this.StateManager(req).toState()
     ).validate()
 
+    req.logger.info('confirmation page requested')
+
     if (!isValid) {
       return h.redirect(`/${this.namespace}/task-list-incomplete`)
     }
@@ -117,6 +119,11 @@ export class SubmitPageController extends QuestionPageController {
     const applicationState = state.toState()
 
     const application = this.page.ApplicationModel.fromState(applicationState)
+
+    const Answer = this.page.Answer
+    const answer = new Answer(payload, applicationState)
+
+    req.logger.info(`User confirmed submission as '${String(answer.value)}'`)
 
     const { isValid: isValidApplication } = application.validate()
 
