@@ -2,6 +2,7 @@ import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwne
 import signInPage from '../../page-objects/signInPage.js'
 import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+import { waitForPagePath } from '../../helpers/page.js'
 
 describe('Future owner spec', () => {
   before(async () => {
@@ -30,6 +31,7 @@ describe('Future owner spec', () => {
 
     await futureOwnerPage.inputTextAndContinue(firstName, lastName, emailPage)
     await emailPage.selectBackLink()
+    await waitForPagePath(futureOwnerPage.pagePath)
 
     const firstNameInputValue = await futureOwnerPage
       .firstTextInput()
