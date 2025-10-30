@@ -12,7 +12,7 @@ const config = {
     confirm: {
       exclusive: true,
       label:
-        'I confirm all the information given about my farm or premises is correct to the best of my knowledge'
+        'My farm or premises details are correct to the best of my knowledge'
     },
     divider: {
       label: 'or'
@@ -20,7 +20,7 @@ const config = {
     other: {
       exclusive: true,
       label:
-        'I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge'
+        'I am submitting for someone else and confirm the details given are correct to the best of my knowledge'
     }
   },
   validation: {
