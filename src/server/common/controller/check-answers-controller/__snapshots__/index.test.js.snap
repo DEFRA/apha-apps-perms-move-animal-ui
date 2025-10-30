@@ -373,7 +373,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       </div>
     </div>
   </div>
-  <h2 class="govuk-heading-m">Your declaration</h2>
+  <h2 class="govuk-heading-m">You must tick one declaration box</h2>
     <form method="POST" novalidate="">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
@@ -389,14 +389,14 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="confirmation" name="confirmation" type="checkbox" value="confirm" data-behaviour="exclusive" data-testid="confirm-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="confirmation">
-          I confirm all the information given about my farm or premises is correct to the best of my knowledge
+          My farm or premises details are correct to the best of my knowledge
         </label>
       </div>
       <div class="govuk-checkboxes__divider">or</div>
       <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="confirmation-3" name="confirmation" type="checkbox" value="other" data-behaviour="exclusive" data-testid="other-checkbox">
         <label class="govuk-label govuk-checkboxes__label" for="confirmation-3">
-          I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge
+          I am submitting for someone else and confirm the details given are correct to the best of my knowledge
         </label>
       </div>
     </div>
