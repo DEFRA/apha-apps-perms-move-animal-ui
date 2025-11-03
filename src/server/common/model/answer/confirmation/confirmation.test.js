@@ -21,10 +21,10 @@ describe('ConfirmationAnswer', () => {
   it('should have the expected options to select from', () => {
     expect(Object.keys(ConfirmationAnswer.config.options)).toHaveLength(3)
     expect(ConfirmationAnswer.config.options.confirm.label).toBe(
-      'I confirm all the information given about my farm or premises is correct to the best of my knowledge'
+      'My farm or premises details are correct to the best of my knowledge'
     )
     expect(ConfirmationAnswer.config.options.other.label).toBe(
-      'I am submitting this form on behalf of someone else and confirm all the information given is correct to the best of my knowledge'
+      'I am submitting for someone else and confirm the details given are correct to the best of my knowledge'
     )
   })
 
