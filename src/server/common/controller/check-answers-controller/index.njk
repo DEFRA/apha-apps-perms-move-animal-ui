@@ -1,7 +1,6 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% extends 'layouts/questions.njk' %}
 {% from "macros/create-summary.njk" import createSummary %}
-
 {% block heading %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -9,7 +8,6 @@
     </div>
   </div>
 {% endblock %}
-
 {% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -21,5 +19,5 @@
       </div>
     </div>
   </div>
-  <h2 class="govuk-heading-m">Your declaration</h2>
+  <h2 class="govuk-heading-m">You must tick one declaration box</h2>
 {% endblock %}
