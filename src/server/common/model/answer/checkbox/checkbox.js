@@ -17,13 +17,16 @@ const createCheckboxSchema = (config) => {
     ? Joi.string()
     : Joi.string().valid(...Object.keys(config.options))
 
-  let optionsSchema = Joi.array().required().items(optionSchema)
+  let optionsSchema = Joi.array().items(optionSchema)
 
   if (config.validation.empty) {
     const emptyOptionText = config.validation.empty.message
-    optionsSchema = optionsSchema.min(1).messages({
-      'array.min': emptyOptionText
+    optionsSchema = optionsSchema.required().min(1).messages({
+      'array.min': emptyOptionText,
+      'any.required': emptyOptionText
     })
+  } else {
+    optionsSchema = optionsSchema.optional()
   }
 
   optionsSchema = optionsSchema
@@ -52,7 +55,7 @@ const createCheckboxSchema = (config) => {
         'You cannot select multiple exclusive options'
     })
 
-  return Joi.object({ [config.payloadKey]: optionsSchema })
+  return Joi.object({ [config.payloadKey]: optionsSchema }).required()
 }
 
 /**
@@ -204,10 +207,32 @@ export class CheckboxAnswer extends AnswerModel {
   }
 
   validate() {
-    const data = this._data?.[this.config.payloadKey]
-    return validateAnswerAgainstSchema(createCheckboxSchema(this.config), {
-      [this.config.payloadKey]: ensureArray(data)
-    })
+    /**
+     * Here we could be coming from the task list / summary or from the question page:
+     *
+     * When coming from the task list / summary, this._data will be undefined if that question was never answered (continue clicked and validation passed)
+     * and it will be { [key]: value[] | [] } if the question was answered previously
+     *
+     * When coming from the question page, this._data will always be defined as { [key]: value | undefined }
+     * It will have a value (string or array of strings) if the user selected something
+     * but if no selection has been made value will be undefined, which we want to pass validation if the question allows it
+     *
+     */
+    const key = this.config.payloadKey
+    const dataToValidate =
+      this._data && Object.prototype.hasOwnProperty.call(this._data, key)
+        ? {
+            [key]:
+              this._data[key] !== undefined
+                ? ensureArray(this._data[key])
+                : undefined
+          } // question already answered
+        : undefined /// question never answered
+
+    return validateAnswerAgainstSchema(
+      createCheckboxSchema(this.config),
+      dataToValidate
+    )
   }
 
   /**

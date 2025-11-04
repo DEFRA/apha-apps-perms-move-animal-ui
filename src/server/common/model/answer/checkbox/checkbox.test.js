@@ -98,7 +98,15 @@ describe('#Checkbox.validate', () => {
   })
 
   describe('TestCheckboxAnswerAllOptional', () => {
-    it('should not error if no options are selected', () => {
+    it('should not error if no options are selected (before converting to array in toState)', () => {
+      const { isValid } = new TestCheckboxAnswerAllOptional({
+        test_checkbox: undefined
+      }).validate()
+
+      expect(isValid).toBe(true)
+    })
+
+    it('should not error if no options are selected (after converting to array in toState)', () => {
       const { isValid } = new TestCheckboxAnswerAllOptional({
         test_checkbox: []
       }).validate()
@@ -106,12 +114,12 @@ describe('#Checkbox.validate', () => {
       expect(isValid).toBe(true)
     })
 
-    it('should not error if the question has not yet been answered', () => {
+    it('should error if the question has not yet been answered', () => {
       const { isValid } = new TestCheckboxAnswerAllOptional(
         undefined
       ).validate()
 
-      expect(isValid).toBe(true)
+      expect(isValid).toBe(false)
     })
   })
 })
