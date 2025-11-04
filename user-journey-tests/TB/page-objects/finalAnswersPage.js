@@ -42,6 +42,8 @@ class FinalAnswersPage extends AnswersBasePage {
     animalsHoused: '[data-testid="animalsHoused-change-link"]',
     minimiseContamination:
       '[data-testid="buildingsHowMinimiseContamination-change-link"]',
+    minimiseContaminationOther:
+      '[data-testid="buildingsHowMinimiseContaminationOther-change-link"]',
     peopleDisinfection: '[data-testid="peopleDisinfection-change-link"]',
     whatDisinfectant: '[data-testid="disinfectant-change-link"]',
     dilution: '[data-testid="dilutionRate-change-link"]',

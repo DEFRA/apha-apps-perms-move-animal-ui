@@ -25,7 +25,7 @@ describe('Shared buildings page test', () => {
   it('Should select Yes, continue and check its maintained', async () => {
     await anySharedBuildingsPage.selectYesAndContinue(minimiseContaminationPage)
     await verifySelectionPersistence(
-      sharedEquipmentPage,
+      minimiseContaminationPage,
       anySharedBuildingsPage,
       anySharedBuildingsPage.yesRadio
     )

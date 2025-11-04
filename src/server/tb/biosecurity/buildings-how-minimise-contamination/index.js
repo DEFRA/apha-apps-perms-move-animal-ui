@@ -1,27 +1,24 @@
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
-import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
-
-const customHeading = 'Housing the incoming animals'
+import { buildingsHowMinimiseContaminationOtherPage } from './other/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
   sectionKey = 'biosecurity'
   question =
-    'How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?'
+    'Which measures are being taken to reduce the spread of TB during housing?'
 
   questionKey = 'buildingsHowMinimiseContamination'
   Answer = BuildingsHowMinimiseContaminationAnswer
 
-  get heading() {
-    return customHeading
-  }
-
-  view = 'tb/biosecurity/buildings-how-minimise-contamination/index'
-
-  nextPage() {
-    return equipmentAnySharedPage
+  /** @param {BuildingsHowMinimiseContaminationAnswer} answer */
+  nextPage(answer) {
+    if (answer.value?.includes('other')) {
+      return buildingsHowMinimiseContaminationOtherPage
+    }
+    return peopleDisinfectionPage
   }
 }
 

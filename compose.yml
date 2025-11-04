@@ -7,49 +7,49 @@ services:
     networks:
       - cdp-tenant
 
-  your-frontend:
-    build: ./
-    ports:
-      - '3000:3000'
-    links:
-      - 'redis:redis'
-      - 'wiremock:wiremock'
-    depends_on:
-      redis:
-        condition: service_started
-      wiremock:
-        condition: service_started
-    env_file:
-      - 'compose/aws.env'
-    environment:
-      PORT: 3000
-      NODE_ENV: development
-      REDIS_HOST: redis
-      USE_SINGLE_INSTANCE_CACHE: true
-      AWS_REGION: eu-west-2
-      AWS_ACCESS_KEY_ID: test
-      AWS_SECRET_ACCESS_KEY: test
-      UPLOADER_URL: http://cdp-uploader:7337
-      FILE_S3_BUCKET: apha
-      FILE_S3_PATH: biosecurity-map
-      S3_ENDPOINT: http://localstack:4566
-      CONSUMER_BUCKETS: apha
-      MOCK_VIRUS_SCAN_ENABLED: false
-      VIRTUAL_HOST: ~^frontend\..*\.sslip\.io
-      VIRTUAL_POR: 80
-      DEFRA_ID_ENABLED: ${DEFRA_ID_ENABLED}
-      DEFRA_ID_OIDC_CONFIGURATION_URL: https://your-account.cpdev.cui.defra.gov.uk/idphub/b2c/b2c_1a_cui_cpdev_signupsignin/.well-known/openid-configuration
-      DEFRA_ID_CLIENT_ID: 20695fe4-c376-481a-9600-5d68bd8ba4a4
-      DEFRA_ID_SERVICE_ID: 63f2725d-9ad9-ef11-a730-7c1e524d74bc
-      DEFRA_ID_CLIENT_SECRET: ${DEFRA_ID_CLIENT_SECRET}
-      GATEWAY_ID: ${GATEWAY_ID}
-      GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
-      AUTH_REQUIRED: ${AUTH_REQUIRED}
-      CASE_MANAGEMENT_URL: http://backend:3001
-      DISINFECTANT_API_BASE_URL: http://wiremock:8080
-      DISINFECTANT_API_PATH: /getApprovedDisinfectants
-    networks:
-      - cdp-tenant
+  # your-frontend:
+  #   build: ./
+  #   ports:
+  #     - '3000:3000'
+  #   links:
+  #     - 'redis:redis'
+  #     - 'wiremock:wiremock'
+  #   depends_on:
+  #     redis:
+  #       condition: service_started
+  #     wiremock:
+  #       condition: service_started
+  #   env_file:
+  #     - 'compose/aws.env'
+  #   environment:
+  #     PORT: 3000
+  #     NODE_ENV: development
+  #     REDIS_HOST: redis
+  #     USE_SINGLE_INSTANCE_CACHE: true
+  #     AWS_REGION: eu-west-2
+  #     AWS_ACCESS_KEY_ID: test
+  #     AWS_SECRET_ACCESS_KEY: test
+  #     UPLOADER_URL: http://cdp-uploader:7337
+  #     FILE_S3_BUCKET: apha
+  #     FILE_S3_PATH: biosecurity-map
+  #     S3_ENDPOINT: http://localstack:4566
+  #     CONSUMER_BUCKETS: apha
+  #     MOCK_VIRUS_SCAN_ENABLED: false
+  #     VIRTUAL_HOST: ~^frontend\..*\.sslip\.io
+  #     VIRTUAL_POR: 80
+  #     DEFRA_ID_ENABLED: ${DEFRA_ID_ENABLED}
+  #     DEFRA_ID_OIDC_CONFIGURATION_URL: https://your-account.cpdev.cui.defra.gov.uk/idphub/b2c/b2c_1a_cui_cpdev_signupsignin/.well-known/openid-configuration
+  #     DEFRA_ID_CLIENT_ID: 20695fe4-c376-481a-9600-5d68bd8ba4a4
+  #     DEFRA_ID_SERVICE_ID: 63f2725d-9ad9-ef11-a730-7c1e524d74bc
+  #     DEFRA_ID_CLIENT_SECRET: ${DEFRA_ID_CLIENT_SECRET}
+  #     GATEWAY_ID: ${GATEWAY_ID}
+  #     GATEWAY_PASSWORD: ${GATEWAY_PASSWORD}
+  #     AUTH_REQUIRED: ${AUTH_REQUIRED}
+  #     CASE_MANAGEMENT_URL: http://backend:3001
+  #     DISINFECTANT_API_BASE_URL: http://wiremock:8080
+  #     DISINFECTANT_API_PATH: /getApprovedDisinfectants
+  #   networks:
+  #     - cdp-tenant
 
   cdp-uploader:
     image: defradigital/cdp-uploader:${CDP_UPLOADER_VERSION:-latest}

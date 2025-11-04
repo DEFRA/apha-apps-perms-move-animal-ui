@@ -1,0 +1,729 @@
+{
+  "name": "Apps & Permissions - TB / Biosecurity Details",
+  "engine": "V2",
+  "schema": 2,
+  "startPage": "/summary",
+  "pages": [
+    {
+      "title": "Biosecurity on your farm or premises",
+      "path": "/biosecurity-on-your-farm-or-premises",
+      "components": [
+        {
+          "id": "d20b4fda-346b-439d-a4e8-7b57b2e6e79b",
+          "type": "Html",
+          "content": "<p class=\"govuk-body\">You must answer the questions in this section as accurately as you can.</p><p class=\"govuk-body\">It is important you take the time to consider your biosecurity measures and the steps you are taking to prevent the spread of TB.</p><p class=\"govuk-body\">A vet will review your answers and decide on the outcome of your application.</p><details class=\"govuk-details\" data-module=\"govuk-details\"><summary class=\"govuk-details__summary\"><span class=\"govuk-details__summary-text\">Guidance on biosecurity</span></summary><div class=\"govuk-details__text\"><p class=\"govuk-body\">Read the GOV.UK guidance on <a target=\"_blank\" href=\"https://www.gov.uk/guidance/protect-cattle-against-tb-infection-in-high-and-low-incidence-areas\">how to protect cattle against TB infection</a> (opens in new tab).</p></div></details>",
+          "options": {},
+          "schema": {}
+        }
+      ],
+      "next": [],
+      "id": "8ab23dcc-93a2-4630-82e3-ed5a4f3d13cb"
+    },
+    {
+      "title": "",
+      "path": "/will-you-separate-the-incoming-animals-from-the-resident-herd",
+      "components": [
+        {
+          "type": "YesNoField",
+          "title": "Will you separate the incoming animals from the resident herd?",
+          "name": "cAIJHM",
+          "shortDescription": "Will you separate the incoming animals from the resident herd?",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "8292f857-a841-4373-8df5-f64f32e4ac46"
+        }
+      ],
+      "next": [],
+      "id": "6cda0485-48f2-4b8e-aefe-aa41f41f1e0a"
+    },
+    {
+      "title": "",
+      "path": "/will-the-incoming-animals-be-grazed",
+      "components": [
+        {
+          "type": "YesNoField",
+          "title": "Will the incoming animals be grazed?",
+          "name": "KGyevp",
+          "shortDescription": "Will the incoming animals be grazed?",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "fd442745-c347-4a80-8dbd-1f5db2e0d400"
+        }
+      ],
+      "next": [],
+      "id": "a49c187b-4ae7-4948-b0e0-0b550e4d7f6d",
+      "condition": "2c725be1-e29d-4e07-b897-32e6e24b2d40"
+    },
+    {
+      "title": "Separating the incoming animals",
+      "path": "/separating-the-incoming-animals",
+      "components": [
+        {
+          "type": "Markdown",
+          "content": "We need to know what measures are in place to reduce the risk of spreading TB to the incoming animals from the resident herd.\r\n\r\nYou should include:\r\n\r\n* minimum distances between incoming animals and the resident herd\r\n* the types of fencing you use\r\n* how grazing fields are kept separate",
+          "options": {},
+          "schema": {},
+          "id": "4bba525a-8fbf-4e38-aee9-84be53898b76"
+        },
+        {
+          "type": "MultilineTextField",
+          "title": "How will you separate the incoming animals from the resident herd?",
+          "name": "dimbTv",
+          "shortDescription": "How you will separate the incoming animals from the resident herd",
+          "hint": "",
+          "options": {
+            "required": true,
+            "rows": 8
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "0bcb1e71-fced-491b-995b-fcf8f2e6c567"
+        }
+      ],
+      "next": [],
+      "id": "00590a5a-8a4c-4e53-a671-eb1fa9852b68",
+      "condition": "f9e3209a-610b-4e9f-8a78-85bb5822bcf2"
+    },
+    {
+      "title": "",
+      "path": "/how-long-ago-was-the-field-last-grazed-by-the-resident-herd",
+      "components": [
+        {
+          "type": "TextField",
+          "title": "How long ago was the field last grazed by the resident herd?",
+          "name": "joGcTH",
+          "shortDescription": "How long ago the field was last grazed by the resident herd",
+          "hint": "",
+          "options": {
+            "required": true,
+            "classes": "govuk-input--width-10"
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "3db74659-304b-4c04-8d45-21b56b65b757"
+        }
+      ],
+      "next": [],
+      "id": "12f0ec98-c7dc-44ee-9291-e832a3fdb143",
+      "condition": "f9e3209a-610b-4e9f-8a78-85bb5822bcf2"
+    },
+    {
+      "title": "",
+      "path": "/has-any-manure-or-slurry-been-put-on-the-grazing-field-in-the-past-60-days",
+      "components": [
+        {
+          "type": "YesNoField",
+          "title": "Has any manure or slurry been put on the grazing field in the past 60 days?",
+          "name": "arthYg",
+          "shortDescription": "Has any manure or slurry been put on the grazing field in the past 60 days?",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "acdcb3ee-846c-4325-a4ed-c23cb4408f8b"
+        }
+      ],
+      "next": [],
+      "id": "2e29d0a5-e9b5-44f6-95df-98d59f1ebf97",
+      "condition": "f9e3209a-610b-4e9f-8a78-85bb5822bcf2"
+    },
+    {
+      "title": "",
+      "path": "/how-will-you-manage-manure-and-slurry",
+      "components": [
+        {
+          "type": "MultilineTextField",
+          "title": "How will you manage manure and slurry?",
+          "name": "liWzMo",
+          "shortDescription": "How you will manage manure and slurry?",
+          "hint": "For example, preventing animal access to stores and how manure or slurry is spread onto grazing fields to reduce TB risk to incoming animals",
+          "options": {
+            "required": true,
+            "rows": 8
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "2e197e80-4924-45e5-a746-90b351b37514"
+        }
+      ],
+      "next": [],
+      "id": "47f107e0-c000-417c-93b9-71d940765f34"
+    },
+    {
+      "title": "Disinfectant",
+      "path": "/disinfectant",
+      "controller": "DisinfectantPageController",
+      "events": {
+        "onLoad": {
+          "type": "http",
+          "options": {
+            "method": "GET",
+            "url": "/disinfectants"
+          }
+        }
+      },
+      "components": [
+        {
+          "id": "1ccb8d13-791e-4374-bae6-678e4deb4de8",
+          "type": "Html",
+          "content": "<p>You must use a Defra-approved disinfectant for TB.</p><details class=\"govuk-details\" data-module=\"govuk-details\"><summary class=\"govuk-details__summary\"><span class=\"govuk-details__summary-text\">View approved disinfectants</span></summary><ul class=\"govuk-body govuk-list--bullet\">{% for item in context.data.disinfectants %}<li>{{ item.name }}</li>{% endfor %}</ul></details>",
+          "options": {},
+          "schema": {}
+        },
+        {
+          "type": "AutocompleteField",
+          "title": "What disinfectant are you using?",
+          "name": "FywYlV",
+          "shortDescription": "Disinfectant you are using",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "list": "e9309987-1d85-4d3e-a0f9-14031ab52b99",
+          "id": "13ab5ca7-fd88-4f06-b2a6-ac89f0191eef"
+        }
+      ],
+      "next": [],
+      "id": "d375d29f-f2b6-4139-8e79-cba6775e3629"
+    },
+    {
+      "title": "Disinfectant dilution rate",
+      "path": "/disinfectant-dilution-rate",
+      "events": {
+        "onLoad": {
+          "type": "http",
+          "options": {
+            "method": "POST",
+            "url": "/selectedDisinfectantDetails"
+          }
+        }
+      },
+      "components": [
+        {
+          "type": "Html",
+          "content": "<p>By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.</p><p>The approved dilution rate for {{ FywYlV }} is {% if context.data.selectedDisinfectantDetails.isUndiluted %} undiluted {% else %} 1:{{ context.data.selectedDisinfectantDetails.dilutionRate }}.{% endif %}</p>{% if not context.data.selectedDisinfectantDetails.isUndiluted %}<p>This means for every 1 {{ context.data.selectedDisinfectantDetails.isLiquid | ternary: 'litre', 'gram' }} of {{ FywYlV }}, you are using {{ context.data.selectedDisinfectantDetails.dilutionRate }} {{ context.data.selectedDisinfectantDetails.isLiquid | ternary: 'litres', 'millilitres' }} of water.</p>{% endif %}",
+          "options": {},
+          "schema": {},
+          "id": "042306e6-2d1e-4e27-88ba-55f414fea632"
+        },
+        {
+          "type": "CheckboxesField",
+          "title": "Confirmation of the dilution rate {% if context.data.selectedDisinfectantDetails.isUndiluted %} undiluted {% else %} 1:{{ context.data.selectedDisinfectantDetails.dilutionRate }}.{% endif %}",
+          "name": "kZXhGS",
+          "shortDescription": "Confirmation of the dilution rate {% if context.data.selectedDisinfectantDetails.isUndiluted %} undiluted {% else %} 1:{{ context.data.selectedDisinfectantDetails.dilutionRate }}{% endif %}",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "list": "6c4d9d2b-ee21-48f9-a0f8-e7a7d37da2fb",
+          "id": "76023450-8be4-45b5-a8ed-f9040c8a96fa"
+        }
+      ],
+      "next": [],
+      "id": "74ce4192-1b29-4412-9c0d-55f9ce7d72d7"
+    },
+    {
+      "title": "",
+      "path": "/will-the-incoming-animals-be-housed",
+      "components": [
+        {
+          "type": "YesNoField",
+          "title": "Will the incoming animals be housed?",
+          "name": "qGfzze",
+          "shortDescription": "Will the incoming animals be housed?",
+          "hint": "This includes shared spaces such as pens",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "3662d48e-ef54-40b7-a9b9-f1a85f01695a"
+        }
+      ],
+      "next": [],
+      "id": "1d4c6226-9ccd-4bc7-b383-2d1117bea917"
+    },
+    {
+      "title": "Housing the incoming animals",
+      "path": "/housing-the-incoming-animals",
+      "components": [
+        {
+          "type": "Markdown",
+          "content": "You should have measures in place to prevent the spread of TB when the incoming animals are housed or have access to shared buildings.\r\n\r\nYou should include:\r\n\r\n* how the incoming animals will be separated from the resident herd\r\n* cleaning and disinfection measures for housing and shared buildings, including handling and milking facilities",
+          "options": {},
+          "schema": {},
+          "id": "0e49e6fc-ee3a-4e15-86a5-7fafa8664231"
+        },
+        {
+          "type": "MultilineTextField",
+          "title": "How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?",
+          "name": "lnXQNP",
+          "shortDescription": "How you will reduce the risk of spreading TB from the resident herd to the incoming animals during housing",
+          "hint": "",
+          "options": {
+            "required": true,
+            "rows": 8
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "63323ec1-63cd-4ad0-80c9-389042281fd8"
+        }
+      ],
+      "next": [],
+      "id": "8cf8f0aa-4b80-4d65-964a-5a8cb8ee39b3",
+      "condition": "068254c9-1291-46df-b090-c5f8acf23945"
+    },
+    {
+      "title": "",
+      "path": "/will-the-incoming-animals-share-any-equipment-and-machinery-with-the-resident-herd",
+      "components": [
+        {
+          "type": "YesNoField",
+          "title": "Will the incoming animals share any equipment and machinery with the resident herd?",
+          "name": "KHAOGO",
+          "shortDescription": "Will the incoming animals share any equipment and machinery with the resident herd?",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "92854fc0-7a16-4b4b-93db-c2d1db35842c"
+        }
+      ],
+      "next": [],
+      "id": "eaaeda07-cb52-4268-bf3c-d253c00753e6"
+    },
+    {
+      "title": "",
+      "path": "/which-measures-are-in-place-to-clean-and-disinfect-equipment-to-reduce-the-risk-of-spreading-tb",
+      "components": [
+        {
+          "type": "CheckboxesField",
+          "title": "Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?",
+          "name": "gRZrOL",
+          "shortDescription": "Measures in place to clean and disinfect equipment to reduce the risk of spreading TB",
+          "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "list": "ae0d9f44-7946-4c22-9665-1bad7692874d",
+          "id": "e3cfac34-f1b3-481c-8d09-6db9bcf5a31a"
+        }
+      ],
+      "next": [],
+      "id": "4553fa7f-059c-41c9-b8c2-6ce0edd14e90",
+      "condition": "9725c723-22f1-4770-95eb-a5fb632bba89"
+    },
+    {
+      "title": "",
+      "path": "/what-other-measures-are-in-place-to-clean-and-disinfect-equipment-to-reduce-the-risk-of-spreading-tb",
+      "components": [
+        {
+          "type": "MultilineTextField",
+          "title": "What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?",
+          "name": "uhoaJh",
+          "shortDescription": "What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB",
+          "hint": "",
+          "options": {
+            "required": true,
+            "rows": 6
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "05dd4138-86b4-4026-bd0d-d6a0121520ff"
+        }
+      ],
+      "next": [],
+      "id": "b4973b35-d442-4ae0-8940-99bea669c336",
+      "condition": "dbe72b43-729c-4db0-921e-dde64a64ebf2"
+    },
+    {
+      "title": "",
+      "path": "/which-measures-are-staff-taking-to-reduce-the-risk-of-spreading-tb",
+      "components": [
+        {
+          "type": "CheckboxesField",
+          "title": "Which measures are staff taking to reduce the risk of spreading TB?",
+          "name": "HLMPDp",
+          "shortDescription": "Measures are staff taking to reduce the risk of spreading TB",
+          "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "list": "cbdb99ee-098b-4b45-ab18-230502aa80ef",
+          "id": "e8dad9d4-5989-4081-9597-52ac8d1acce3"
+        }
+      ],
+      "next": [],
+      "id": "fde8b3bc-d736-4b90-971b-5257d7c5bd3a"
+    },
+    {
+      "title": "",
+      "path": "/what-other-measures-are-staff-taking-to-reduce-the-risk-of-spreading-tb",
+      "components": [
+        {
+          "type": "MultilineTextField",
+          "title": "What other measures are staff taking to reduce the risk of spreading TB?",
+          "name": "gqdhDL",
+          "shortDescription": "Measures are staff taking to reduce the risk of spreading TB",
+          "hint": "",
+          "options": {
+            "required": true,
+            "rows": 6
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "17240aa7-73f9-4ece-9299-9d35be51c15b"
+        }
+      ],
+      "next": [],
+      "id": "f5724810-746a-41b2-8baa-46e5d3577a58",
+      "condition": "309b0cfe-c29c-46a6-a43d-01fc58db224f"
+    },
+    {
+      "title": "",
+      "path": "/which-measures-are-you-taking-to-reduce-the-risk-of-infection-from-wildlife",
+      "components": [
+        {
+          "type": "CheckboxesField",
+          "title": "Which measures are you taking to reduce the risk of infection from wildlife?",
+          "name": "iGclOC",
+          "shortDescription": "Measures are you taking to reduce the risk of infection from wildlife",
+          "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+          "list": "dbadb592-e997-4545-aae1-e201bb701eb2",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "4dc3b9a7-4d4e-4f7b-ab1f-2c52a6510276"
+        },
+        {
+          "type": "Markdown",
+          "content": "If there are measures you are not taking but want to find out more, [read the guidance on the TB Hub](https://tbhub.co.uk/preventing-tb-breakdowns/protect-your-herd-from-bovine-tb/protect-your-herd-from-tb-a-review-of-the-science/).",
+          "options": {},
+          "schema": {},
+          "name": "qzlqWe",
+          "id": "9f7ad77c-b461-452f-b370-0c869809b308"
+        }
+      ],
+      "next": [],
+      "id": "fbe54633-9366-450d-a543-74cbf951c4d9"
+    },
+    {
+      "title": "",
+      "path": "/what-other-measures-are-you-taking-to-reduce-the-risk-of-spreading-tb",
+      "components": [
+        {
+          "type": "MultilineTextField",
+          "title": "What other measures are you taking to reduce the risk of spreading TB?",
+          "name": "zYUrHE",
+          "shortDescription": "Measures are you taking to reduce the risk of spreading TB",
+          "hint": "",
+          "options": {
+            "required": true,
+            "rows": 10
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "c3ec128f-4773-4dbe-948b-aa8d1e615a64"
+        }
+      ],
+      "next": [],
+      "id": "84744bf7-da5d-452c-ac16-1d089b9ff8e9",
+      "condition": "7428f791-fb5f-461e-9212-c3e857329a03"
+    },
+    {
+      "id": "449a45f6-4541-4a46-91bd-8b8931b07b50",
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "BiosecuritySummaryPageController",
+      "next": [],
+      "events": {
+        "onLoad": {
+          "type": "http",
+          "options": {
+            "method": "POST",
+            "url": "/selectedDisinfectantDetails"
+          }
+        }
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "items": [
+        {
+          "id": "02484488-f1db-4136-8fba-39bdd5e36831",
+          "componentId": "8292f857-a841-4373-8df5-f64f32e4ac46",
+          "operator": "is",
+          "value": true,
+          "type": "BooleanValue"
+        }
+      ],
+      "displayName": "Separate cattle - Yes",
+      "id": "2c725be1-e29d-4e07-b897-32e6e24b2d40"
+    },
+    {
+      "items": [
+        {
+          "id": "1253c430-10b3-4618-8a14-3c13747b3799",
+          "componentId": "fd442745-c347-4a80-8dbd-1f5db2e0d400",
+          "operator": "is",
+          "value": true,
+          "type": "BooleanValue"
+        }
+      ],
+      "displayName": "Grazing - Yes",
+      "id": "aee249a7-fa81-43cf-b00d-54e4a1242737"
+    },
+    {
+      "displayName": "Separated cattle AND Grazed",
+      "coordinator": "and",
+      "items": [
+        {
+          "id": "748954fd-80d6-4f69-9fc3-5b027143ff46",
+          "conditionId": "aee249a7-fa81-43cf-b00d-54e4a1242737"
+        },
+        {
+          "id": "031bdec1-15bb-41ec-830e-c14d90f30e02",
+          "conditionId": "2c725be1-e29d-4e07-b897-32e6e24b2d40"
+        }
+      ],
+      "id": "f9e3209a-610b-4e9f-8a78-85bb5822bcf2"
+    },
+    {
+      "items": [
+        {
+          "id": "ab0f94e0-29e8-4112-b84a-3d7a65952528",
+          "componentId": "3662d48e-ef54-40b7-a9b9-f1a85f01695a",
+          "operator": "is",
+          "value": true,
+          "type": "BooleanValue"
+        }
+      ],
+      "displayName": "Animals housed -  yes",
+      "id": "068254c9-1291-46df-b090-c5f8acf23945"
+    },
+    {
+      "items": [
+        {
+          "id": "49e25bd4-a77b-48b1-bb0f-69fa43b53586",
+          "componentId": "e3cfac34-f1b3-481c-8d09-6db9bcf5a31a",
+          "operator": "contains",
+          "value": {
+            "itemId": "2d9c99fb-da12-4e09-bccf-5e258bfaf7d6",
+            "listId": "ae0d9f44-7946-4c22-9665-1bad7692874d"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Shared equipment measures - includes Other",
+      "id": "dbe72b43-729c-4db0-921e-dde64a64ebf2"
+    },
+    {
+      "items": [
+        {
+          "id": "f6c9b60f-3b46-4fd9-9734-5a491871f71b",
+          "componentId": "e8dad9d4-5989-4081-9597-52ac8d1acce3",
+          "operator": "contains",
+          "value": {
+            "itemId": "e26667e9-f43c-4945-a3a3-8db63c46ca36",
+            "listId": "cbdb99ee-098b-4b45-ab18-230502aa80ef"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Staff measures - Includes other",
+      "id": "309b0cfe-c29c-46a6-a43d-01fc58db224f"
+    },
+    {
+      "items": [
+        {
+          "id": "f08e59b9-a248-4f1f-b107-728ee9147645",
+          "componentId": "4dc3b9a7-4d4e-4f7b-ab1f-2c52a6510276",
+          "operator": "contains",
+          "value": {
+            "itemId": "e299b23f-522b-42d7-884f-cfcb53145806",
+            "listId": "dbadb592-e997-4545-aae1-e201bb701eb2"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Wildlife measures - Includes other",
+      "id": "7428f791-fb5f-461e-9212-c3e857329a03"
+    },
+    {
+      "items": [
+        {
+          "id": "389c6e56-7c03-42f4-8721-61304cba6436",
+          "componentId": "92854fc0-7a16-4b4b-93db-c2d1db35842c",
+          "operator": "is",
+          "value": true,
+          "type": "BooleanValue"
+        }
+      ],
+      "displayName": "Equipment shared - Yes",
+      "id": "9725c723-22f1-4770-95eb-a5fb632bba89"
+    }
+  ],
+  "sections": [],
+  "lists": [
+    {
+      "name": "OCFZvw",
+      "title": "List for question FywYlV",
+      "type": "string",
+      "items": [
+        {
+          "text": "Disinfectant 1",
+          "value": "Disinfectant 1",
+          "id": "3bf6346a-d090-411e-b6c7-e8cc21b0d126"
+        },
+        {
+          "text": "Disinfectant 2",
+          "value": "Disinfectant 2",
+          "id": "d5783376-b27a-4dfa-ae16-7f05296f765e"
+        }
+      ],
+      "id": "e9309987-1d85-4d3e-a0f9-14031ab52b99"
+    },
+    {
+      "name": "iwDEry",
+      "title": "List for question kZXhGS",
+      "type": "string",
+      "items": [
+        {
+          "id": "35136ad6-4caa-41e8-b9c9-592b5052203f",
+          "text": "I confirm the specified dilution rate is used on the farm or premises",
+          "value": "I confirm the specified dilution rate is used on the farm or premises"
+        }
+      ],
+      "id": "6c4d9d2b-ee21-48f9-a0f8-e7a7d37da2fb"
+    },
+    {
+      "name": "YurEgB",
+      "title": "List for question gRZrOL",
+      "type": "string",
+      "items": [
+        {
+          "id": "f037ed85-2730-4fdb-bd9e-0ea70875dc5d",
+          "text": "Designated disinfection points",
+          "value": "designatedDisinfectionPoints"
+        },
+        {
+          "id": "308afbbb-72c6-4dfc-ad18-47a20aee4d8e",
+          "text": "Cleaning and disinfecting shared machinery",
+          "value": "disinfectingMachinery"
+        },
+        {
+          "id": "21ae1fdc-3adc-4cfe-93ce-f69f8cc3237e",
+          "text": "Cleaning and disinfecting shared milking and handling facilities",
+          "value": "disinfectingMilkingAndHandling"
+        },
+        {
+          "id": "14e5375e-9271-4d84-8a05-a9493339bd1e",
+          "text": "Equipment is not shared between the incoming animals and the resident herd",
+          "value": "equipmentNotShared"
+        },
+        {
+          "id": "2d9c99fb-da12-4e09-bccf-5e258bfaf7d6",
+          "text": "Other cleaning and disinfection measures",
+          "value": "other"
+        }
+      ],
+      "id": "ae0d9f44-7946-4c22-9665-1bad7692874d"
+    },
+    {
+      "name": "nMwMtP",
+      "title": "List for question HLMPDp",
+      "type": "string",
+      "items": [
+        {
+          "id": "cc5e8eea-f0e7-4bb5-a742-3f395b80ad8d",
+          "text": "Dedicated clothing and personal protective equipment (PPE)",
+          "value": "ppe"
+        },
+        {
+          "id": "297a8ab9-91d5-4164-a59e-0e7b67d30094",
+          "text": "Cleaning and disinfecting wellington boots, including foot dips",
+          "value": "disinfectingBoots"
+        },
+        {
+          "id": "648aed19-77f7-46f3-908d-714679aac0b0",
+          "text": "Cleaning and disinfection measures when contractor arrive and leave",
+          "value": "disinfectingOnArrivalAndDeparture"
+        },
+        {
+          "id": "0403bd52-2ff7-4fbf-8424-8b0d035fec4a",
+          "text": "Dedicated staff looking after the incoming animals",
+          "value": "dedicatedStaff"
+        },
+        {
+          "id": "e26667e9-f43c-4945-a3a3-8db63c46ca36",
+          "text": "Other cleaning and disinfection measures",
+          "value": "other"
+        }
+      ],
+      "id": "cbdb99ee-098b-4b45-ab18-230502aa80ef"
+    },
+    {
+      "name": "GqEJYe",
+      "title": "List for question iGclOC",
+      "type": "string",
+      "items": [
+        {
+          "id": "10a3d6c8-fa48-4a48-9384-4e1f93ba9214",
+          "text": "Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences",
+          "value": "badgerProofFencing"
+        },
+        {
+          "id": "f4fab39d-8149-4b06-a7d3-a6d633c001b6",
+          "text": "Aluminium feed bins",
+          "value": "aluminiumFeedBins"
+        },
+        {
+          "id": "4172d250-eedb-49fe-b7c4-5200b6d6a3c6",
+          "text": "Limiting access to badger latrines and setts",
+          "value": "limitAccessToBadgerHabitat"
+        },
+        {
+          "id": "c264d3ae-ce36-486a-864c-03f4b2d0d0c7",
+          "text": "Feed and water troughs raised above 90cm",
+          "value": "troughsAbove90cm"
+        },
+        {
+          "id": "7c9f8b62-3923-4a14-bf79-9e00830770d5",
+          "text": "Feed stores are secured",
+          "value": "securedFeedStores"
+        },
+        {
+          "id": "d1a18af5-25dc-4c70-9e7e-2f66ebcaccef",
+          "text": "Mineral licks kept out of reach of wildlife",
+          "value": "licksOutOfReach"
+        },
+        {
+          "id": "e299b23f-522b-42d7-884f-cfcb53145806",
+          "text": "Other measures to reduce the risk of infection",
+          "value": "other"
+        }
+      ],
+      "id": "dbadb592-e997-4545-aae1-e201bb701eb2"
+    }
+  ]
+}

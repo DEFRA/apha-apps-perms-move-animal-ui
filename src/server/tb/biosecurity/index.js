@@ -6,6 +6,7 @@ import { manureAndSlurry } from './manure-and-slurry/index.js'
 import { grazingFieldHowSeparated } from './grazing-field-how-separated/index.js'
 import { buildingsAnyShared } from './buildings-any-shared/index.js'
 import { buildingsHowMinimiseContamination } from './buildings-how-minimise-contamination/index.js'
+import { buildingsHowMinimiseContaminationOther } from './buildings-how-minimise-contamination/other/index.js'
 import { peopleDisinfection } from './people-disinfection/index.js'
 import { disinfectant } from './disinfectant/index.js'
 import { disinfectantDilution } from './disinfectant-dilution/index.js'
@@ -37,6 +38,7 @@ export const biosecurity = {
         buildingsAnyShared,
         equipmentAnyShared,
         buildingsHowMinimiseContamination,
+        buildingsHowMinimiseContaminationOther,
         equipmentHowMinimiseContamination,
         otherEquipmentMeasures,
         peopleDisinfection,

@@ -115,35 +115,24 @@ exports[`#biosecuritySummaryPage.content should render the expected content 1`] 
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?
+      Which measures are being taken to reduce the spread of TB during housing?
     </dt>
     <dd class="govuk-summary-list__value">
-      somehow
+      Cleaning and disinfecting of shared buildings before the animals arrive<br><br>Isolation of incoming animals in a separate building, shed or pen on arrival<br><br>Other measures
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB during housing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Will the incoming animals share any equipment and machinery with the resident herd?
+      What other measures are being taken to reduce the spread of TB during housing?
     </dt>
     <dd class="govuk-summary-list__value">
-      Yes
+      Some other measure
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/biosecurity/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals share any equipment and machinery with the resident herd?</span></a>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Designated disinfection points
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-how-minimise-contamination?redirect_uri=/biosecurity/check-answers" data-testid="equipmentHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination-other?redirect_uri=/biosecurity/check-answers" data-testid="buildingsHowMinimiseContaminationOther-change-link">Change<span class="govuk-visually-hidden"> What other measures are being taken to reduce the spread of TB during housing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

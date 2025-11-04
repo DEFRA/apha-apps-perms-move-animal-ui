@@ -19,6 +19,8 @@ class BiosecurityAnswersPage extends AnswersBasePage {
     animalsHoused: '[data-testid="animalsHoused-change-link"]',
     minimiseContamination:
       '[data-testid="buildingsHowMinimiseContamination-change-link"]',
+    minimiseContaminationOther:
+      '[data-testid="buildingsHowMinimiseContaminationOther-change-link"]',
     sharedEquipment:
       '[data-testid="equipmentHowMinimiseContamination-change-link"]',
     peopleDisinfection: '[data-testid="peopleDisinfection-change-link"]',

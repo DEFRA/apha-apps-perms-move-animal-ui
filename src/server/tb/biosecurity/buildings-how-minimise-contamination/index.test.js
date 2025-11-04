@@ -1,6 +1,7 @@
 import { BuildingsHowMinimiseContaminationAnswer } from '../../../common/model/answer/buildings-how-minimise-contamination/buildings-how-minimise-contamination.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
+import { buildingsHowMinimiseContaminationOtherPage } from './other/index.js'
+import { peopleDisinfectionPage } from '../people-disinfection/index.js'
 import {
   buildingsHowMinimiseContaminationPage,
   BuildingsHowMinimiseContaminationPage
@@ -8,11 +9,9 @@ import {
 
 const sectionKey = 'biosecurity'
 const question =
-  'How will you reduce the risk of spreading TB from the resident herd to the incoming animals during housing?'
+  'Which measures are being taken to reduce the spread of TB during housing?'
 const questionKey = 'buildingsHowMinimiseContamination'
-const view = 'tb/biosecurity/buildings-how-minimise-contamination/index'
 const pageUrl = '/biosecurity/buildings-how-minimise-contamination'
-const customHeading = 'Housing the incoming animals'
 
 describe('BuildingsHowMinimiseContaminationPage', () => {
   const page = new BuildingsHowMinimiseContaminationPage()
@@ -33,25 +32,28 @@ describe('BuildingsHowMinimiseContaminationPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
-  it('should have the correct heading', () => {
-    expect(page.heading).toBe(customHeading)
-  })
-
   it('should have the correct title', () => {
     expect(page.title).toBe(question)
-  })
-
-  it('should have the correct view', () => {
-    expect(page.view).toBe(view)
   })
 
   it('should have the correct Answer model', () => {
     expect(page.Answer).toBe(BuildingsHowMinimiseContaminationAnswer)
   })
 
-  it('nextPage should return any shared equipment page', () => {
-    const nextPage = page.nextPage()
-    expect(nextPage).toBe(equipmentAnySharedPage)
+  it('nextPage should return other measures page when answer includes "other"', () => {
+    const answer = new BuildingsHowMinimiseContaminationAnswer({
+      buildingsHowMinimiseContamination: ['other']
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(buildingsHowMinimiseContaminationOtherPage)
+  })
+
+  it('nextPage should return people disinfection page when answer does not include "other"', () => {
+    const answer = new BuildingsHowMinimiseContaminationAnswer({
+      buildingsHowMinimiseContamination: ['cleaning']
+    })
+    const nextPage = page.nextPage(answer)
+    expect(nextPage).toBe(peopleDisinfectionPage)
   })
 
   it('should export page', () => {

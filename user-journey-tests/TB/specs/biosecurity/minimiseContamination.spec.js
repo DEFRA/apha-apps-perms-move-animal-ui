@@ -1,5 +1,6 @@
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
-import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
+import minimiseContaminationOtherPage from '../../page-objects/biosecurity/minimiseContaminationOtherPage.js'
+import peopleDisinfectionPage from '../../page-objects/biosecurity/peopleDisinfectionPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -16,17 +17,21 @@ describe('Minimise contamination page test', () => {
     await minimiseContaminationPage.navigateToPageAndVerifyTitle()
   })
 
-  it('Should verify that page errors when nothing is entered', async () => {
-    await minimiseContaminationPage.singleInputErrorTest(
-      '',
-      minimiseContaminationPage.noInputError
+  it('Should verify that page errors when nothing is selected', async () => {
+    await minimiseContaminationPage.checkboxErrorTest()
+  })
+
+  it('Should select options and continue to other page when other selected', async () => {
+    await minimiseContaminationPage.selectCheckboxesAndContinue(
+      [minimiseContaminationPage.cleaning, minimiseContaminationPage.other],
+      minimiseContaminationOtherPage
     )
   })
 
-  it('Should input correct input and continue without error', async () => {
-    await minimiseContaminationPage.inputTextAndContinue(
-      'By testing it',
-      sharedEquipmentPage
+  it('Should continue to people disinfection when other not selected', async () => {
+    await minimiseContaminationPage.selectCheckboxesAndContinue(
+      [minimiseContaminationPage.cleaning, minimiseContaminationPage.isolation],
+      peopleDisinfectionPage
     )
   })
 })

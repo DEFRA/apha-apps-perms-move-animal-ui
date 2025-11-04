@@ -55,12 +55,18 @@ describe('Check your answers test - biosecurity', () => {
     },
     {
       field: 'minimiseContamination',
-      expectedValue: 'Minimise',
+      expectedValue:
+        'Cleaning and disinfecting of shared buildings before the animals arrive',
       expectedHref: `/biosecurity/buildings-how-minimise-contamination${redirect}`
     },
     {
+      field: 'minimiseContaminationOther',
+      expectedValue: 'Additional measures',
+      expectedHref: `/biosecurity/buildings-how-minimise-contamination-other${redirect}`
+    },
+    {
       field: 'sharedEquipment',
-      expectedValue: 'Designated disinfection points',
+      expectedValue: 'None',
       expectedHref: `/biosecurity/equipment-how-minimise-contamination${redirect}`
     },
     {

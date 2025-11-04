@@ -9,13 +9,13 @@ import manureAndSlurryPage from '../../page-objects/biosecurity/manureAndSlurryP
 import howFieldSeparatedPage from '../../page-objects/biosecurity/howFieldSeparatedPage.js'
 import anySharedBuildingsPage from '../../page-objects/biosecurity/anySharedBuildingsPage.js'
 import minimiseContaminationPage from '../../page-objects/biosecurity/minimiseContaminationPage.js'
+import minimiseContaminationOtherPage from '../../page-objects/biosecurity/minimiseContaminationOtherPage.js'
 import disinfectantPage from '../../page-objects/biosecurity/disinfectantPage.js'
 import disinfectantDilutionPage from '../../page-objects/biosecurity/disinfectantDilutionPage.js'
 import biosecBadgersPage from '../../page-objects/biosecurity/biosecBadgersPage.js'
 import biosecurityAnswersPage from '../../page-objects/biosecurity/biosecurityAnswersPage.js'
 import manureDetailsPage from '../../page-objects/biosecurity/manureDetailsPage.js'
 import sharedEquipmentPage from '../../page-objects/biosecurity/sharedEquipmentPage.js'
-import equipmentContaminationPage from '../../page-objects/biosecurity/equipmentContaminationPage.js'
 import biosecIntroPage from '../../page-objects/biosecurity/biosecIntroPage.js'
 import { waitForPagePath } from '../page.js'
 
@@ -55,13 +55,12 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
       await anySharedBuildingsPage.selectYesAndContinue(
         minimiseContaminationPage
       )
-      await minimiseContaminationPage.inputTextAndContinue(
-        'Minimise',
-        sharedEquipmentPage
+      await minimiseContaminationPage.selectCheckboxesAndContinue(
+        [minimiseContaminationPage.cleaning, minimiseContaminationPage.other],
+        minimiseContaminationOtherPage
       )
-      await sharedEquipmentPage.selectYesAndContinue(equipmentContaminationPage)
-      await equipmentContaminationPage.selectCheckboxesAndContinue(
-        [equipmentContaminationPage.designatedDisinfectionPoints],
+      await minimiseContaminationOtherPage.inputTextAndContinue(
+        'Additional measures',
         peopleDisinfectionPage
       )
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
@@ -89,13 +88,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         [disinfectantDilutionPage.dilutionRateConfirmed],
         anySharedBuildingsPage
       )
-      await anySharedBuildingsPage.selectYesAndContinue(
-        minimiseContaminationPage
-      )
-      await minimiseContaminationPage.inputTextAndContinue(
-        'Minimise contamination',
-        sharedEquipmentPage
-      )
+      await anySharedBuildingsPage.selectNoAndContinue(sharedEquipmentPage)
       await sharedEquipmentPage.selectNoAndContinue(peopleDisinfectionPage)
       await peopleDisinfectionPage.selectCheckboxesAndContinue(
         [peopleDisinfectionPage.ppe],
