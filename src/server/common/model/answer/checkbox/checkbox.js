@@ -222,10 +222,7 @@ export class CheckboxAnswer extends AnswerModel {
     const dataToValidate =
       this._data && Object.prototype.hasOwnProperty.call(this._data, key)
         ? {
-            [key]:
-              this._data[key] !== undefined
-                ? ensureArray(this._data[key])
-                : undefined
+            [key]: ensureArray(this._data[key])
           } // question already answered
         : undefined /// question never answered
 
