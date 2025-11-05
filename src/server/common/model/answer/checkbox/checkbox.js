@@ -217,7 +217,7 @@ export class CheckboxAnswer extends AnswerModel {
      */
     const key = this.config.payloadKey
     const dataToValidate =
-      key in (this._data || {})
+      key in (this._data ?? {})
         ? {
             [key]: ensureArray(this._data?.[key])
           } // question already answered
