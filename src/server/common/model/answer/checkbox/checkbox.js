@@ -17,16 +17,13 @@ const createCheckboxSchema = (config) => {
     ? Joi.string()
     : Joi.string().valid(...Object.keys(config.options))
 
-  let optionsSchema = Joi.array().items(optionSchema)
+  let optionsSchema = Joi.array().required().items(optionSchema)
 
   if (config.validation.empty) {
     const emptyOptionText = config.validation.empty.message
-    optionsSchema = optionsSchema.required().min(1).messages({
-      'array.min': emptyOptionText,
-      'any.required': emptyOptionText
+    optionsSchema = optionsSchema.min(1).messages({
+      'array.min': emptyOptionText
     })
-  } else {
-    optionsSchema = optionsSchema.optional()
   }
 
   optionsSchema = optionsSchema
@@ -220,9 +217,9 @@ export class CheckboxAnswer extends AnswerModel {
      */
     const key = this.config.payloadKey
     const dataToValidate =
-      this._data && Object.prototype.hasOwnProperty.call(this._data, key)
+      key in (this._data || {})
         ? {
-            [key]: ensureArray(this._data[key])
+            [key]: ensureArray(this._data?.[key])
           } // question already answered
         : undefined /// question never answered
 
