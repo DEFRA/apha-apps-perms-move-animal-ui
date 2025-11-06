@@ -48,7 +48,7 @@ export function context(request) {
 
   return {
     serviceUrl,
-    assetPath: `${assetPath}/assets`,
+    assetPath: `${assetPath}/assets/rebrand`,
     serviceName: config.get('serviceName'),
     breadcrumbs: [],
     manageAccountUrl: config.get('auth').manageAccountUrl,
