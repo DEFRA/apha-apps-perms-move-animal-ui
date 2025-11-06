@@ -38,7 +38,7 @@ class DoubleTextInputPage extends Page {
     await page.typeIntoElement(this.firstTextInput(), first)
     await page.typeIntoElement(this.lastTextInput(), last)
     await super.selectContinue()
-    if (nextPage) page.waitForPagePath(nextPage.pagePath)
+    if (nextPage) await page.waitForPagePath(nextPage.pagePath)
   }
 
   async verifyFirstInputErrors(single = true) {
