@@ -1,3 +1,4 @@
+{% set govukRebrand = true %}
 {% extends "govuk/template.njk" %}
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
@@ -16,6 +17,7 @@
 {% block header %}
   {{
     govukHeader({
+      rebrand: true,
       homepageUrl: "https://www.gov.uk/",
       classes: "app-header",
       containerClasses: "govuk-width-container",
