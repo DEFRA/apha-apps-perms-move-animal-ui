@@ -17,7 +17,7 @@ const tldPattern = fs
   .join('|')
 
 const emailAddressRegex = new RegExp(
-  `^[^@\\s]+@[^@\\s]+\\.(${tldPattern})$`,
+  `^[^@()<>\\[\\]:;,"\\\\]+@[^@]+\\.(${tldPattern})$`,
   'i'
 )
 

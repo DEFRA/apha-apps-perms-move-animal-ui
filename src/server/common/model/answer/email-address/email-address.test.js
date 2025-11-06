@@ -30,7 +30,16 @@ const invalidEmailAddresses = [
   'plainaddress',
   '@no-local-part.com',
   'no-at.domain.com',
-  'email@domain.superlongtld'
+  'email@domain.superlongtld',
+  'name(with)parenthesis@domain.com',
+  'john<doe>@domain.com',
+  'brackets[john]@domain.com',
+  'colon:name@domain.com',
+  'semicolon;name@domain.com',
+  'two@@domain.com',
+  'back\\slash@domain.com',
+  'comma,name@domain.com',
+  'quote"name@domain.com'
 ]
 
 describe('EmailAddressAnswer', () => {
