@@ -10,47 +10,47 @@ exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content should render
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="manureAndSlurryDetails-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        How will you manage slurry and manure?
-      </h1>
-    </legend>
-    <div id="manureAndSlurryDetails-hint" class="govuk-hint">
-      Only select the measures you are taking. You do not need to select them all to receive your licence.
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      How will you manage slurry and manure?
+    </h1>
+  </legend>
+  <div id="manureAndSlurryDetails-hint" class="govuk-hint">
+    Only select the measures you are taking. You do not need to select them all to receive your licence.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails" name="manureAndSlurryDetails" type="checkbox" value="not-purchased" data-testid="not-purchased-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails">
+        Manure is not purchased from other farms
+      </label>
     </div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="manureAndSlurryDetails" name="manureAndSlurryDetails" type="checkbox" value="not-purchased" data-testid="not-purchased-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails">
-          Manure is not purchased from other farms
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-2" name="manureAndSlurryDetails" type="checkbox" value="stored" data-testid="stored-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-2">
-          Manure and slurry is securely stored so domestic and wild animals can't access it
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-3" name="manureAndSlurryDetails" type="checkbox" value="three-weeks" data-testid="three-weeks-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-3">
-          Manure is stored for at least 3 weeks before spreading on pasture
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-4" name="manureAndSlurryDetails" type="checkbox" value="six-months" data-testid="six-months-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-4">
-          Slurry is stored for at least 6 months before spreading on pasture
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-5" name="manureAndSlurryDetails" type="checkbox" value="other" data-testid="other-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-5">
-          Other measures
-        </label>
-      </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-2" name="manureAndSlurryDetails" type="checkbox" value="stored" data-testid="stored-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-2">
+        Manure and slurry is securely stored so domestic and wild animals can't access it
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-3" name="manureAndSlurryDetails" type="checkbox" value="three-weeks" data-testid="three-weeks-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-3">
+        Manure is stored for at least 3 weeks before spreading on pasture
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-4" name="manureAndSlurryDetails" type="checkbox" value="six-months" data-testid="six-months-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-4">
+        Slurry is stored for at least 6 months before spreading on pasture
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-5" name="manureAndSlurryDetails" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-5">
+        Other measures
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

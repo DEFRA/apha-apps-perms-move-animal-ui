@@ -10,26 +10,26 @@ exports[`OnOffFarmPage onOffFarmPage.content should render expected response and
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Are you moving the animals on or off your farm or premises?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="onOffFarm" name="onOffFarm" type="radio" value="on">
-        <label class="govuk-label govuk-radios__label" for="onOffFarm">
-          On to the farm or premises
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="off" name="onOffFarm" type="radio" value="off">
-        <label class="govuk-label govuk-radios__label" for="off">
-          Off the farm or premises
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Are you moving the animals on or off your farm or premises?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="onOffFarm" name="onOffFarm" type="radio" value="on">
+      <label class="govuk-label govuk-radios__label" for="onOffFarm">
+        On to the farm or premises
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="off" name="onOffFarm" type="radio" value="off">
+      <label class="govuk-label govuk-radios__label" for="off">
+        Off the farm or premises
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

@@ -10,44 +10,44 @@ exports[`TypeOfAnimalsPage content should render expected response and content 1
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which type of animal are you moving?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="typeOfAnimals" name="typeOfAnimals" type="radio" value="cattle">
-        <label class="govuk-label govuk-radios__label" for="typeOfAnimals">
-          Cattle
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="sheep" name="typeOfAnimals" type="radio" value="sheep">
-        <label class="govuk-label govuk-radios__label" for="sheep">
-          Sheep
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="goats" name="typeOfAnimals" type="radio" value="goats">
-        <label class="govuk-label govuk-radios__label" for="goats">
-          Goats
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="pigs" name="typeOfAnimals" type="radio" value="pigs">
-        <label class="govuk-label govuk-radios__label" for="pigs">
-          Pigs
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="camelids" name="typeOfAnimals" type="radio" value="camelids">
-        <label class="govuk-label govuk-radios__label" for="camelids">
-          Camelids (such as llamas and alpacas)
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Which type of animal are you moving?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="typeOfAnimals" name="typeOfAnimals" type="radio" value="cattle">
+      <label class="govuk-label govuk-radios__label" for="typeOfAnimals">
+        Cattle
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="sheep" name="typeOfAnimals" type="radio" value="sheep">
+      <label class="govuk-label govuk-radios__label" for="sheep">
+        Sheep
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="goats" name="typeOfAnimals" type="radio" value="goats">
+      <label class="govuk-label govuk-radios__label" for="goats">
+        Goats
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="pigs" name="typeOfAnimals" type="radio" value="pigs">
+      <label class="govuk-label govuk-radios__label" for="pigs">
+        Pigs
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="camelids" name="typeOfAnimals" type="radio" value="camelids">
+      <label class="govuk-label govuk-radios__label" for="camelids">
+        Camelids (such as llamas and alpacas)
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

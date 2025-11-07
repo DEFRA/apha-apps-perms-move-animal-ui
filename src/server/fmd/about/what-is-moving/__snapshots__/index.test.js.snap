@@ -10,32 +10,32 @@ exports[`WhatIsMovingPage content should render expected response and content 1`
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        What are you moving?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whatIsMoving" name="whatIsMoving" type="radio" value="live-animals">
-        <label class="govuk-label govuk-radios__label" for="whatIsMoving">
-          Live animals
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="carcasses" name="whatIsMoving" type="radio" value="carcasses">
-        <label class="govuk-label govuk-radios__label" for="carcasses">
-          Carcasses (dead animals)
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="milk" name="whatIsMoving" type="radio" value="milk">
-        <label class="govuk-label govuk-radios__label" for="milk">
-          Milk
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What are you moving?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="whatIsMoving" name="whatIsMoving" type="radio" value="live-animals">
+      <label class="govuk-label govuk-radios__label" for="whatIsMoving">
+        Live animals
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="carcasses" name="whatIsMoving" type="radio" value="carcasses">
+      <label class="govuk-label govuk-radios__label" for="carcasses">
+        Carcasses (dead animals)
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="milk" name="whatIsMoving" type="radio" value="milk">
+      <label class="govuk-label govuk-radios__label" for="milk">
+        Milk
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
