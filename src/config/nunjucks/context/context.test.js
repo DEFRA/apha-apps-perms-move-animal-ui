@@ -65,7 +65,7 @@ describe('#context', () => {
 
     it('Should provide expected context', () => {
       expect(contextResult).toEqual({
-        assetPath: '/public/assets',
+        assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
         features: {
           authEnabled: false,
@@ -172,7 +172,7 @@ describe('#context cache', () => {
 
     it('Should provide expected context', () => {
       expect(contextResult).toEqual({
-        assetPath: '/public/assets',
+        assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
         features: {
           authEnabled: false,
