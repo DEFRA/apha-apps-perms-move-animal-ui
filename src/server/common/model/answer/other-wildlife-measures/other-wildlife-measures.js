@@ -13,7 +13,7 @@ export class OtherWildlifeMeasuresAnswer extends TextAreaAnswer {
   /** @type {TextAreaConfig} */
   static config = {
     payloadKey: 'otherWildlifeMeasures',
-    rows: 10,
+    rows: 4,
     validation: {
       maxLength: {
         value: 5000,
