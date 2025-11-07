@@ -10,53 +10,53 @@ exports[`RestockAnimalPage restockAnimal.content should render expected response
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="restockAnimals-hint">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which types of animals are you restocking?
-      </h1>
-    </legend>
-    <div id="restockAnimals-hint" class="govuk-hint">
-      Select all that apply.
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Which types of animals are you restocking?
+    </h1>
+  </legend>
+  <div id="restockAnimals-hint" class="govuk-hint">
+    Select all that apply.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals" name="restockAnimals" type="checkbox" value="calves" data-testid="calves-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals">
+        Calves
+      </label>
     </div>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals" name="restockAnimals" type="checkbox" value="calves" data-testid="calves-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals">
-          Calves
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals-2" name="restockAnimals" type="checkbox" value="heifers" data-testid="heifers-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-2">
-          Heifers
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals-3" name="restockAnimals" type="checkbox" value="cows" data-testid="cows-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-3">
-          Cows
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals-4" name="restockAnimals" type="checkbox" value="pregnantCows" data-testid="pregnantCows-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-4">
-          Pregnant cows
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals-5" name="restockAnimals" type="checkbox" value="dairyCows" data-testid="dairyCows-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-5">
-          Dairy cows
-        </label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="restockAnimals-6" name="restockAnimals" type="checkbox" value="sucklingCalves" data-testid="sucklingCalves-checkbox">
-        <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-6">
-          Suckling calves
-        </label>
-      </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals-2" name="restockAnimals" type="checkbox" value="heifers" data-testid="heifers-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-2">
+        Heifers
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals-3" name="restockAnimals" type="checkbox" value="cows" data-testid="cows-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-3">
+        Cows
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals-4" name="restockAnimals" type="checkbox" value="pregnantCows" data-testid="pregnantCows-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-4">
+        Pregnant cows
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals-5" name="restockAnimals" type="checkbox" value="dairyCows" data-testid="dairyCows-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-5">
+        Dairy cows
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="restockAnimals-6" name="restockAnimals" type="checkbox" value="sucklingCalves" data-testid="sucklingCalves-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="restockAnimals-6">
+        Suckling calves
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
