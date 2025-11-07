@@ -23,7 +23,7 @@ describe('OtherWildlifeMeasures', () => {
   })
 
   it('should have the right number of rows', () => {
-    expect(OtherWildlifeMeasuresAnswer.config.rows).toBe(10)
+    expect(OtherWildlifeMeasuresAnswer.config.rows).toBe(4)
   })
 
   it('should define the right max length and corresponding error message', () => {

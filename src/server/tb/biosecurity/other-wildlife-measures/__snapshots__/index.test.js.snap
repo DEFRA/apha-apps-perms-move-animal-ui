@@ -15,7 +15,7 @@ exports[`OtherWildlifeMeasuresPage OtherWIldlifeMEasuresPage.content should rend
       What other measures are you taking to reduce the risk of spreading TB?
     </label>
   </h1>
-  <textarea class="govuk-textarea" id="otherWildlifeMeasures" name="otherWildlifeMeasures" rows="10"></textarea>
+  <textarea class="govuk-textarea" id="otherWildlifeMeasures" name="otherWildlifeMeasures" rows="4"></textarea>
 </div>
 
 
