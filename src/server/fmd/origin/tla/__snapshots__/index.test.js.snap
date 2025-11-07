@@ -24,24 +24,24 @@ exports[`TLaPage content should render expected response and content 1`] = `
   
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
-      Is the origin premises a TLA?
-    </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="tla" name="tla" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="tla">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="tla" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+    Is the origin premises a TLA?
+  </legend>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="tla" name="tla" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="tla">
+        Yes
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="tla" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
 

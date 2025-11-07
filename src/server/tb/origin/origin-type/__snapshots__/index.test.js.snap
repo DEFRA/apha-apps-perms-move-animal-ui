@@ -10,47 +10,47 @@ exports[`OriginTypePage OriginTypePage.content should render expected response a
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Which type of premises are the animals moving off?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="originType" name="originType" type="radio" value="tb-restricted-farm">
-        <label class="govuk-label govuk-radios__label" for="originType">
-          TB restricted farm
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="afu" name="originType" type="radio" value="afu" aria-describedby="afu-item-hint">
-        <label class="govuk-label govuk-radios__label" for="afu">
-          Approved finishing unit (AFU)
-        </label>
-        <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-          Including enhanced with grazing (AFUE)
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="unrestricted-farm" name="originType" type="radio" value="unrestricted-farm">
-        <label class="govuk-label govuk-radios__label" for="unrestricted-farm">
-          Unrestricted farm or premises
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="iso-unit" name="originType" type="radio" value="iso-unit">
-        <label class="govuk-label govuk-radios__label" for="iso-unit">
-          TB isolation unit
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Another TB restricted origin
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Which type of premises are the animals moving off?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="originType" name="originType" type="radio" value="tb-restricted-farm">
+      <label class="govuk-label govuk-radios__label" for="originType">
+        TB restricted farm
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="afu" name="originType" type="radio" value="afu" aria-describedby="afu-item-hint">
+      <label class="govuk-label govuk-radios__label" for="afu">
+        Approved finishing unit (AFU)
+      </label>
+      <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+        Including enhanced with grazing (AFUE)
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="unrestricted-farm" name="originType" type="radio" value="unrestricted-farm">
+      <label class="govuk-label govuk-radios__label" for="unrestricted-farm">
+        Unrestricted farm or premises
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="iso-unit" name="originType" type="radio" value="iso-unit">
+      <label class="govuk-label govuk-radios__label" for="iso-unit">
+        TB isolation unit
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="originType" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Another TB restricted origin
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

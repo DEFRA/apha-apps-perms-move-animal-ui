@@ -10,41 +10,41 @@ exports[`TypeOfAnimalLocationPage content should render expected response and co
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Where are the animals kept?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="typeOfAnimalLocation" name="typeOfAnimalLocation" type="radio" value="farm">
-        <label class="govuk-label govuk-radios__label" for="typeOfAnimalLocation">
-          Farm
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="corporate-holding" name="typeOfAnimalLocation" type="radio" value="corporate-holding" aria-describedby="corporate-holding-item-hint">
-        <label class="govuk-label govuk-radios__label" for="corporate-holding">
-          Corporate holding
-        </label>
-        <div id="corporate-holding-item-hint" class="govuk-hint govuk-radios__hint">
-          Such as a food business or animal feed company
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="domestic-residence" name="typeOfAnimalLocation" type="radio" value="domestic-residence">
-        <label class="govuk-label govuk-radios__label" for="domestic-residence">
-          Domestic residence
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="typeOfAnimalLocation" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Other
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Where are the animals kept?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="typeOfAnimalLocation" name="typeOfAnimalLocation" type="radio" value="farm">
+      <label class="govuk-label govuk-radios__label" for="typeOfAnimalLocation">
+        Farm
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="corporate-holding" name="typeOfAnimalLocation" type="radio" value="corporate-holding" aria-describedby="corporate-holding-item-hint">
+      <label class="govuk-label govuk-radios__label" for="corporate-holding">
+        Corporate holding
+      </label>
+      <div id="corporate-holding-item-hint" class="govuk-hint govuk-radios__hint">
+        Such as a food business or animal feed company
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="domestic-residence" name="typeOfAnimalLocation" type="radio" value="domestic-residence">
+      <label class="govuk-label govuk-radios__label" for="domestic-residence">
+        Domestic residence
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="typeOfAnimalLocation" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Other
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
