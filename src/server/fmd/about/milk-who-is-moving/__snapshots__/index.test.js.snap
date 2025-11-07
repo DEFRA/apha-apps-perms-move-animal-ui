@@ -10,26 +10,26 @@ exports[`MilkWhoIsMovingPage content should render expected response and content
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Who is moving the milk?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="milkWhoIsMoving" name="milkWhoIsMoving" type="radio" value="producer">
-        <label class="govuk-label govuk-radios__label" for="milkWhoIsMoving">
-          I'm a producer moving my own milk
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="dairy" name="milkWhoIsMoving" type="radio" value="dairy">
-        <label class="govuk-label govuk-radios__label" for="dairy">
-          I'm a dairy collecting from multiple producers
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Who is moving the milk?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="milkWhoIsMoving" name="milkWhoIsMoving" type="radio" value="producer">
+      <label class="govuk-label govuk-radios__label" for="milkWhoIsMoving">
+        I'm a producer moving my own milk
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="dairy" name="milkWhoIsMoving" type="radio" value="dairy">
+      <label class="govuk-label govuk-radios__label" for="dairy">
+        I'm a dairy collecting from multiple producers
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

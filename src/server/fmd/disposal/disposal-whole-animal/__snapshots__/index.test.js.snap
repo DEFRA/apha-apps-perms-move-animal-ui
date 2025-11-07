@@ -10,26 +10,26 @@ exports[`DisposalWholeAnimalPage content should render expected response and con
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Will you dispose of the whole animal?
-      </h1>
-    </legend>
-    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="disposalWholeAnimal" name="disposalWholeAnimal" type="radio" value="yes">
-        <label class="govuk-label govuk-radios__label" for="disposalWholeAnimal">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="no" name="disposalWholeAnimal" type="radio" value="no">
-        <label class="govuk-label govuk-radios__label" for="no">
-          No, only parts of the animal (such as animal by-products)
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Will you dispose of the whole animal?
+    </h1>
+  </legend>
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="disposalWholeAnimal" name="disposalWholeAnimal" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="disposalWholeAnimal">
+        Yes
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="no" name="disposalWholeAnimal" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="no">
+        No, only parts of the animal (such as animal by-products)
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

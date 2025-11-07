@@ -10,41 +10,41 @@ exports[`ReasonForMovementPage ReasonForMovementPage.content should render expec
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        What is the reason for the movement?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="reasonForMovement" name="reasonForMovement" type="radio" value="routineRestocking">
-        <label class="govuk-label govuk-radios__label" for="reasonForMovement">
-          Routine restocking
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="breedingMale" name="reasonForMovement" type="radio" value="breedingMale">
-        <label class="govuk-label govuk-radios__label" for="breedingMale">
-          Breeding male
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="welfare" name="reasonForMovement" type="radio" value="welfare" aria-describedby="welfare-item-hint">
-        <label class="govuk-label govuk-radios__label" for="welfare">
-          Welfare
-        </label>
-        <div id="welfare-item-hint" class="govuk-hint govuk-radios__hint">
-          Including moving pregnant females
-        </div>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="other" name="reasonForMovement" type="radio" value="other">
-        <label class="govuk-label govuk-radios__label" for="other">
-          Something else
-        </label>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      What is the reason for the movement?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="reasonForMovement" name="reasonForMovement" type="radio" value="routineRestocking">
+      <label class="govuk-label govuk-radios__label" for="reasonForMovement">
+        Routine restocking
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="breedingMale" name="reasonForMovement" type="radio" value="breedingMale">
+      <label class="govuk-label govuk-radios__label" for="breedingMale">
+        Breeding male
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="welfare" name="reasonForMovement" type="radio" value="welfare" aria-describedby="welfare-item-hint">
+      <label class="govuk-label govuk-radios__label" for="welfare">
+        Welfare
+      </label>
+      <div id="welfare-item-hint" class="govuk-hint govuk-radios__hint">
+        Including moving pregnant females
       </div>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="other" name="reasonForMovement" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="other">
+        Something else
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">

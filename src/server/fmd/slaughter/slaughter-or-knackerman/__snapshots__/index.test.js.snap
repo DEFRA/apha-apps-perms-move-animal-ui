@@ -10,26 +10,26 @@ exports[`SlaughterOrKnackermanPage content should render expected response and c
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-      <h1 class="govuk-fieldset__heading">
-        Will the slaughter be done by a Slaughterman or Knackerman?
-      </h1>
-    </legend>
-    <div class="govuk-radios" data-module="govuk-radios">
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="slaughterOrKnackerman" name="slaughterOrKnackerman" type="radio" value="knackerman">
-        <label class="govuk-label govuk-radios__label" for="slaughterOrKnackerman">
-          Knackerman
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="slaughterman" name="slaughterOrKnackerman" type="radio" value="slaughterman">
-        <label class="govuk-label govuk-radios__label" for="slaughterman">
-          Slaughterman
-        </label>
-      </div>
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Will the slaughter be done by a Slaughterman or Knackerman?
+    </h1>
+  </legend>
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="slaughterOrKnackerman" name="slaughterOrKnackerman" type="radio" value="knackerman">
+      <label class="govuk-label govuk-radios__label" for="slaughterOrKnackerman">
+        Knackerman
+      </label>
     </div>
-  </fieldset>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="slaughterman" name="slaughterOrKnackerman" type="radio" value="slaughterman">
+      <label class="govuk-label govuk-radios__label" for="slaughterman">
+        Slaughterman
+      </label>
+    </div>
+  </div>
+</fieldset>
 </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
