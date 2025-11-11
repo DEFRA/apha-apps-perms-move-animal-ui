@@ -19,6 +19,7 @@ Frontend to the 'Get permission to move animals under disease controls' service.
   - [Local Development](#local-development)
     - [Setup](#setup)
     - [Development](#development)
+    - [Plop scaffolding](#plop-scaffolding)
     - [Production](#production)
     - [Npm scripts](#npm-scripts)
     - [Update dependencies](#update-dependencies)
@@ -126,6 +127,24 @@ FILE_S3_PATH=biosecurity-map
 CONSUMER_BUCKETS=apha
 MOCK_VIRUS_SCAN_ENABLED=false
 ```
+
+### Plop scaffolding
+
+Use [Plop](https://plopjs.com/) to scaffold new journeys, sections and pages so that naming, validation and file locations stay consistent with the existing structure. Run it from the project root:
+
+```bash
+npx plop
+```
+
+You will be prompted for details drawn from the helpers in `prompts/*.js`. These prompts enforce things like alphabetic keys, sanitised URL paths and the available journeys (`tb`, `exotics`, `fmd`). Choose one of the generators to create the matching files:
+
+- `Question page` creates controller, test and view files under `src/server/<journey>/<section>/<question>/`. It asks for question text, hint, journey, section (only directories with a `section.js` are listed), question type and URL path, then runs `npx eslint` on the new files. Add the page to the parent section's `index.js` and complete any `//TEMPLATE-TODO` markers.
+- `Section` scaffolds a new section folder with `section.js`, tests and a stub `check-answers` handler, then lints the files. Update the enclosing journey's `index.js` and resolve the `//TEMPLATE-TODO` markers called out in the generated files.
+- `Exit page` builds an exit page (controller, test and Nunjucks view) for the selected journey and section, using the prompts to capture the page key, heading and URL path.
+- `Content page` creates a simple static content page trio (`index.js`, test and view) for the chosen journey, ensuring the page name remains alphabetic and properly cased.
+- `Stub page` generates a minimal controller that can be referenced from `nextPage` logic. Provide the journey, section, question key and destination path when prompted.
+
+After any generator finishes you may tailor the output in `src/server/...` as required, but keep the naming conventions imposed by the prompts. If you need a new journey option or different validation behaviour, edit the relevant files in `prompts/` (for example `prompts/journey-prompt.js`) and adjust `plopfile.js` accordingly.
 
 ### Production
 
