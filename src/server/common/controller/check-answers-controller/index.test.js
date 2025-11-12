@@ -11,9 +11,8 @@ import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
 
-/**
- * @import { IncomingMessage } from 'http'
- */
+/** @import { IncomingMessage } from 'http' */
+/** @import { Server } from '@hapi/hapi' */
 
 const {
   origin,
@@ -87,249 +86,189 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
-  describe('when sendToCaseManagement feature flag is enabled', () => {
-    it('should return a 500 error if submit fails for any other reason', async () => {
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 400
-        }),
-        payload: JSON.stringify({
-          message: 'An error occured'
-        })
+  it('should return a 500 error if submit fails for any other reason', async () => {
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 400
+      }),
+      payload: JSON.stringify({
+        message: 'An error occured'
       })
-
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri + '?case-management-api=true',
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(statusCode).toBe(statusCodes.serverError)
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
     })
 
-    it('should redirect to the sizze error page if the file is too large', async () => {
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation(() => {
-        const error = Boom.badRequest('Dummy error')
-        error.output.statusCode = statusCodes.fileTooLarge
-        throw error
-      })
-
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri + '?case-management-api=true',
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(sizeErrorPage.urlPath)
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    expect(statusCode).toBe(statusCodes.serverError)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('should redirect to the sizze error page if the file is too large', async () => {
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation(() => {
+      const error = Boom.badRequest('Dummy error')
+      error.output.statusCode = statusCodes.fileTooLarge
+      throw error
     })
 
-    it('should send the application to case management when feature flag is disabled but query string present', async () => {
-      const dummyReferenceNumber = '12-1234-1234'
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: false
-      })
-
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          message: dummyReferenceNumber
-        })
-      })
-
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri + '?case-management-api=true',
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(confirmationUri)
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(sizeErrorPage.urlPath)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
+  })
 
-      const { reference, 'state-key': stateKey } = await session.getState(
-        'tb-confirmation-details'
-      )
-      expect(reference).toBe(dummyReferenceNumber)
-      expect(stateKey).toBe('application')
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
-      expect(wreckSpy.mock.calls[0][0]).toBe(
-        `${config.get('caseManagementApi').baseUrl}/submit`
-      )
+  it('should give the user a 500 error if the case management API doesnt work for what ever reason', async () => {
+    jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 502
+      }),
+      payload: ''
     })
 
-    it('should give the user a 500 error if the case management API doesnt work for what ever reason', async () => {
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: true
-      })
-
-      jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 502
-        }),
-        payload: ''
-      })
-
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.serverError)
+    expect(statusCode).toBe(statusCodes.serverError)
+  })
+
+  it('should send the application to case management and redirect to confirmation page', async () => {
+    const dummyReferenceNumber = '12-1234-1234'
+
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
+      })
     })
 
-    it('should send the application to case management and redirect to confirmation page', async () => {
-      const dummyReferenceNumber = '12-1234-1234'
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: true
-      })
-
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          message: dummyReferenceNumber
-        })
-      })
-
-      const { headers, statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(headers.location).toBe(confirmationUri)
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe(confirmationUri)
 
-      const { reference } = await session.getState('tb-confirmation-details')
+    const { reference } = await session.getState('tb-confirmation-details')
 
-      expect(reference).toBe(dummyReferenceNumber)
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
-      expect(wreckSpy.mock.calls[0][0]).toBe(
-        `${config.get('caseManagementApi').baseUrl}/submit`
-      )
+    expect(reference).toBe(dummyReferenceNumber)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
+    expect(wreckSpy.mock.calls[0][0]).toBe(
+      `${config.get('caseManagementApi').baseUrl}/submit`
+    )
+  })
+
+  it('should log "User submitted application on behalf of themselves" when confirm option is selected', async () => {
+    const dummyReferenceNumber = '12-1234-1234'
+    spyOnConfig('featureFlags', {
+      sendToCaseManagement: true
     })
 
-    it('should log "User submitted application on behalf of themselves" when confirm option is selected', async () => {
-      const dummyReferenceNumber = '12-1234-1234'
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: true
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
       })
-
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          message: dummyReferenceNumber
-        })
-      })
-
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'confirm'
-            }
-          },
-          {
-            Cookie: session.sessionID
-          }
-        )
-      )
-
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
     })
 
-    it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
-      const dummyReferenceNumber = '12-1234-1234'
-      spyOnConfig('featureFlags', {
-        sendToCaseManagement: true
-      })
-
-      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          message: dummyReferenceNumber
-        })
-      })
-
-      const { statusCode } = await server.inject(
-        withCsrfProtection(
-          {
-            method: 'POST',
-            url: checkAnswersUri,
-            payload: {
-              confirmation: 'other'
-            }
-          },
-          {
-            Cookie: session.sessionID
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'confirm'
           }
-        )
+        },
+        {
+          Cookie: session.sessionID
+        }
       )
+    )
 
-      expect(statusCode).toBe(statusCodes.redirect)
-      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
+    const dummyReferenceNumber = '12-1234-1234'
+
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
+      })
     })
+
+    const { statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'POST',
+          url: checkAnswersUri,
+          payload: {
+            confirmation: 'other'
+          }
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 })
-
-/**
- * @import { Server } from '@hapi/hapi'
- */
