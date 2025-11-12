@@ -259,6 +259,74 @@ describe('#CheckAnswers', () => {
         `${config.get('caseManagementApi').baseUrl}/submit`
       )
     })
+
+    it('should log "User submitted application on behalf of themselves" when confirm option is selected', async () => {
+      const dummyReferenceNumber = '12-1234-1234'
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: true
+      })
+
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 200
+        }),
+        payload: JSON.stringify({
+          message: dummyReferenceNumber
+        })
+      })
+
+      const { statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri,
+            payload: {
+              confirmation: 'confirm'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    })
+
+    it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
+      const dummyReferenceNumber = '12-1234-1234'
+      spyOnConfig('featureFlags', {
+        sendToCaseManagement: true
+      })
+
+      const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: 200
+        }),
+        payload: JSON.stringify({
+          message: dummyReferenceNumber
+        })
+      })
+
+      const { statusCode } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: checkAnswersUri,
+            payload: {
+              confirmation: 'other'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(wreckSpy).toHaveBeenCalledTimes(1)
+    })
   })
 })
 

@@ -76,7 +76,7 @@ export class SubmitPageController extends QuestionPageController {
     return super.handleGet(req, h)
   }
 
-  async _handleToCaseManagementApi(req, h) {
+  async _handleToCaseManagementApi(req, h, submissionType) {
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
@@ -93,6 +93,10 @@ export class SubmitPageController extends QuestionPageController {
           `Unhandled status code from case management API: ${statusCode}`
         )
       }
+
+      const isSelfSubmission = submissionType === 'confirm'
+      const logMessage = `User submitted application on behalf of ${isSelfSubmission ? 'themselves' : 'someone else'}`
+      req.logger.info(logMessage)
 
       req.yar.set(`${this.namespace}-confirmation-details`, {
         reference: message,
@@ -128,7 +132,8 @@ export class SubmitPageController extends QuestionPageController {
     const { isValid: isValidApplication } = application.validate()
 
     if (isValidPage && isValidApplication) {
-      return await this._handleToCaseManagementApi(req, h)
+      const submissionType = String(answer.value)
+      return await this._handleToCaseManagementApi(req, h, submissionType)
     }
 
     if (!isValidApplication) {
