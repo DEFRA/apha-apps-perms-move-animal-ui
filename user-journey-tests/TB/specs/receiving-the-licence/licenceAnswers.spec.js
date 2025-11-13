@@ -24,7 +24,7 @@ describe('Check your licence answers test', () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersOnFarm()
-    await completeDestinationTask()
+    await completeDestinationTask('slaughter')
     await completeLicenceTaskAnswersCustom(
       emailDefault,
       firstNameDefault,
