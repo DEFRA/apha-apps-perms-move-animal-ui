@@ -70,7 +70,7 @@ describe('Task list page test', () => {
       {
         position: 3,
         taskTitle: 'Receiving the licence',
-        expectedStatus: 'Incomplete'
+        expectedStatus: 'Cannot start yet'
       }
     ])
 

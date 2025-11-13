@@ -10,6 +10,7 @@ import {
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
+import completeDestinationTask from '../../helpers/testHelpers/destination.js'
 
 const firstNameDefault = 'defaultFirst'
 const lastNameDefault = 'defaultLast'
@@ -23,6 +24,7 @@ describe('Check your licence answers test', () => {
     await loginAndSaveSession(signInPage)
     await landingPage.navigateToPageAndVerifyTitle()
     await completeOriginTaskAnswersOnFarm()
+    await completeDestinationTask()
     await completeLicenceTaskAnswersCustom(
       emailDefault,
       firstNameDefault,
