@@ -3,6 +3,7 @@ import { SectionModel } from '~/src/server/common/model/section/section-model/se
 import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
 import { fullNameFuturePage } from '~/src/server/tb/licence/full-name-future/index.js'
 import { OriginSection } from '../origin/section.js'
+import { DestinationSection } from '../destination/section.js'
 
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
@@ -13,7 +14,9 @@ export class LicenceSection extends SectionModel {
     title: 'Receiving the licence',
     plugin: licence,
     summaryLink: '/receiving-the-licence/check-answers',
-    isEnabled: (app) => OriginSection.fromState(app).validate().isValid,
+    isEnabled: (app) =>
+      OriginSection.fromState(app).validate().isValid &&
+      DestinationSection.fromState(app).validate().isValid,
     isVisible: () => true
   }
 
