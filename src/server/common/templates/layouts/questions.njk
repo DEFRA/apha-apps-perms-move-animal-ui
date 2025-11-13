@@ -34,7 +34,8 @@
               govukButton({
                 id: "continue-button",
                 text: continueButtonText | default('Continue'),
-                classes: continueButtonClasses | default('')
+                classes: continueButtonClasses | default(''),
+                preventDoubleClick: true
               })
             }}
           {% endblock %}
