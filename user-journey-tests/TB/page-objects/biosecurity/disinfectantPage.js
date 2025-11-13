@@ -20,6 +20,10 @@ class DisinfectantPage extends SingleTextInputPage {
     return $('a*=disinfectant approved for Tuberculosis')
   }
 
+  textInput() {
+    return $(`#${pageId}.autocomplete__input`)
+  }
+
   async verifyDisinfectantGovLink() {
     await page.validateHrefOfElement(
       this.disinfectantGovLink,
