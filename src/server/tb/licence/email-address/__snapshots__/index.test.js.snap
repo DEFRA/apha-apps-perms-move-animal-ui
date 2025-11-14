@@ -20,7 +20,7 @@ exports[`#hint text turned off Should respond with expected output 1`] = `
 
 
 </fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>
@@ -52,7 +52,7 @@ exports[`#hint text turned on Should respond with expected output 1`] = `
 
 
 </fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

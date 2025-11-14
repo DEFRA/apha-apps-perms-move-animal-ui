@@ -20,7 +20,7 @@ exports[`HousingOtherPage content should render expected response and content 1`
 
 
 </fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

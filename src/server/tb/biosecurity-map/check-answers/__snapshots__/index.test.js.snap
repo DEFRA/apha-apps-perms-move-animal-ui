@@ -27,7 +27,7 @@ exports[`#biosecurityPlanSummaryPage.content should render the expected content 
   </div>
 </dl>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

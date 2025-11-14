@@ -22,7 +22,7 @@ exports[`#SizeErrorPage SizeErrorPage.content should render expected response an
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

@@ -55,7 +55,7 @@ exports[`DestinationFarmAddressPage DestinationFarmAddressPage.nextPage off the 
 
 
 </fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>
@@ -119,7 +119,7 @@ exports[`DestinationFarmAddressPage DestinationFarmAddressPage.nextPage on the f
 
 
 </fieldset>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

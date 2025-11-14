@@ -71,7 +71,7 @@ exports[`BadgersPage badgersPage.content should render expected response and con
       read the guidance on the TB Hub</a>
     (opens in a new tab).
   </p>
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

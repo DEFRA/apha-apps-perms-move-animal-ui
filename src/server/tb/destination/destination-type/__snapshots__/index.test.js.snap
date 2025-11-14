@@ -59,7 +59,7 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
 </fieldset>
 </div>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>
@@ -109,7 +109,7 @@ exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content sh
 </fieldset>
 </div>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>
