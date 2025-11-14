@@ -47,7 +47,7 @@ exports[`OldestCalfDobPage oldestCalfDobPage.content should render expected resp
   </fieldset>
 </div>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

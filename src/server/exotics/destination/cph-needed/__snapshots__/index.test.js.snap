@@ -15,7 +15,7 @@ exports[`CphNeededPage content should render expected response and content 1`] =
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
-            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button govuk-button--secondary" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>

@@ -39,7 +39,7 @@ exports[`ObligationsPage ObligationsPage.content should render expected response
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
 <input type="hidden" name="biosecurityObligationsAcknowledged" value="yes">
-            <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
 </button>
         </div>
