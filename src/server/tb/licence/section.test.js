@@ -4,7 +4,10 @@ import {
 } from '~/src/server/tb/licence/full-name-future/index.js'
 import { LicenceSection } from './section.js'
 import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
-import { validOriginSectionState } from '../../common/test-helpers/journey-state.js'
+import {
+  validDestinationSectionState,
+  validOriginSectionState
+} from '../../common/test-helpers/journey-state.js'
 
 const testEmail = 'test@domain.com'
 const testFullName = {
@@ -66,18 +69,40 @@ describe('Licence', () => {
   })
 
   describe('isEnabled', () => {
-    it('should return true if OriginSection is valid', () => {
+    it('should return true if OriginSection and DestinationSection are valid', () => {
       const app = {
-        origin: validOriginSectionState
+        origin: validOriginSectionState,
+        destination: validDestinationSectionState
       }
 
       const result = LicenceSection.config.isEnabled(app)
       expect(result).toBe(true)
     })
 
-    it('should return false if OriginSection is invalid', () => {
+    it('should return false if OriginSection is invalid even if DestinationSection is valid', () => {
       const app = {
-        origin: {}
+        origin: {},
+        destination: validDestinationSectionState
+      }
+
+      const result = LicenceSection.config.isEnabled(app)
+      expect(result).toBe(false)
+    })
+
+    it('should return false if DestinationSection is invalid even if OriginSection is valid', () => {
+      const app = {
+        origin: validOriginSectionState,
+        destination: {}
+      }
+
+      const result = LicenceSection.config.isEnabled(app)
+      expect(result).toBe(false)
+    })
+
+    it('should return false if both OriginSection and DestinationSection are invalid', () => {
+      const app = {
+        origin: {},
+        destination: {}
       }
 
       const result = LicenceSection.config.isEnabled(app)
