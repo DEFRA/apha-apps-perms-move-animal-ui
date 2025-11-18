@@ -18,7 +18,7 @@ class FutureOwnerPage extends DoubleTextInputPage {
     })
   }
 
-  pagePath = 'receiving-the-licence/licence-name-will-be'
+  pagePath = 'receiving-the-licence/licence-name-future'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 }
