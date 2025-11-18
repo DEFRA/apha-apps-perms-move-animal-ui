@@ -7,7 +7,7 @@ const sectionKey = 'licence'
 const question = 'Who will be the registered owner of the animals?'
 const questionKey = 'fullName'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/receiving-the-licence/licence-name-will-be'
+const pageUrl = '/receiving-the-licence/licence-name-future'
 
 describe('FullNameFuturePage', () => {
   let page

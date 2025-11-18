@@ -12,7 +12,7 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
         <div class="govuk-grid-column-two-thirds">
           <input type="hidden" name="crumb" value="csrf-value">
           <input type="hidden" name="nextPage" value="">
-  
+
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
@@ -22,7 +22,7 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
       Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name-will-be?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
