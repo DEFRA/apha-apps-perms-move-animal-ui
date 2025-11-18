@@ -129,18 +129,6 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(additionalInfoPage)
     })
 
-    it('should return exitPage when answer is "zoo"', () => {
-      const answer = new DestinationTypeAnswer({ destinationType: 'zoo' })
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(contactTbRestrictedFarmPage)
-    })
-
-    it('should return exitPage when answer is "lab"', () => {
-      const answer = new DestinationTypeAnswer({ destinationType: 'lab' })
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(contactTbRestrictedFarmPage)
-    })
-
     it('should return exitPage when answer is "other"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
@@ -198,20 +186,19 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationTypeOtherPage)
     })
 
-    it.each(['tb-restricted-farm', 'zoo', 'lab'])(
-      'should return destination-farm-cph even for restricted -> restricted',
-      (destinationType) => {
-        const context = {
-          origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
-        }
-        const answer = new DestinationTypeAnswer({
-          /* eslint-disable-next-line object-shorthand */
-          destinationType: /** @type {DestinationTypeData} */ (destinationType)
-        })
-        const nextPage = page.nextPage(answer, context)
-        expect(nextPage).toBe(destinationFarmCphPage)
+    it('should return destination-farm-cph for restricted -> restricted', () => {
+      const context = {
+        origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
       }
-    )
+      const answer = new DestinationTypeAnswer(
+        {
+          destinationType: 'tb-restricted-farm'
+        },
+        context
+      )
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
 
     describePageSnapshot({
       describes: 'DestinationTypePage.content',

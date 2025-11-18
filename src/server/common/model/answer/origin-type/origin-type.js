@@ -3,7 +3,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'afu' | 'other' | 'market' | 'unrestricted-farm' | 'zoo' | 'lab' | 'after-import-location' } OriginTypeData
+ * export @typedef {'tb-restricted-farm' | 'afu' | 'other' | 'market' | 'unrestricted-farm' | 'after-import-location' } OriginTypeData
  * @typedef {{ originType: OriginTypeData }} OriginTypePayload
  */
 
@@ -56,6 +56,6 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
 
   /** @returns {boolean} */
   static isTbRestricted(type) {
-    return ['tb-restricted-farm', 'zoo', 'other', 'lab'].includes(type ?? '')
+    return ['tb-restricted-farm', 'other'].includes(type ?? '')
   }
 }

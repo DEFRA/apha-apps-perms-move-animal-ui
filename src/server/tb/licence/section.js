@@ -4,6 +4,7 @@ import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
 import { fullNameFuturePage } from '~/src/server/tb/licence/full-name-future/index.js'
 import { OriginSection } from '../origin/section.js'
 import { DestinationSection } from '../destination/section.js'
+import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 
 /** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
@@ -21,7 +22,12 @@ export class LicenceSection extends SectionModel {
   }
 
   static firstPageFactory = (applicationState) => {
-    if (applicationState?.origin?.onOffFarm === 'off') {
+    if (
+      applicationState?.origin?.onOffFarm === 'off' ||
+      applicationState?.origin?.originType === 'afu' ||
+      OriginTypeAnswer.isTbRestricted(applicationState?.origin?.originType) ||
+      applicationState?.origin?.originType === 'iso-unit'
+    ) {
       return fullNamePage
     }
     return fullNameFuturePage

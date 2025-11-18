@@ -71,10 +71,6 @@ describe('OriginType.isTbRestricted', () => {
     expect(OriginTypeAnswer.isTbRestricted('tb-restricted-farm')).toBe(true)
   })
 
-  it('should return true for "zoo"', () => {
-    expect(OriginTypeAnswer.isTbRestricted('zoo')).toBe(true)
-  })
-
   it('should return false for "afu"', () => {
     expect(OriginTypeAnswer.isTbRestricted('afu')).toBe(false)
   })

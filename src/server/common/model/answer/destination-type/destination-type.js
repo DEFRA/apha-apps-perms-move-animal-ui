@@ -2,7 +2,7 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'zoo' | 'lab' | 'iso-unit' | 'other' | 'market-afu'} DestinationTypeData
+ * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'iso-unit' | 'other' | 'market-afu'} DestinationTypeData
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 

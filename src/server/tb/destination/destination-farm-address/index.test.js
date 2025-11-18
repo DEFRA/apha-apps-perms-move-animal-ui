@@ -97,9 +97,9 @@ describe('DestinationFarmAddressPage', () => {
         expect(nextPage).toBe(howManyAnimalsPage)
       })
 
-      it('should return how many animals page if origin is Zoo with TB restrictions', () => {
+      it('should return how many animals page if origin is Other TB restricted', () => {
         const marketContext = {
-          origin: { onOffFarm: 'on', originType: 'zoo' }
+          origin: { onOffFarm: 'on', originType: 'other' }
         }
         const nextPage = page.nextPage(null, marketContext)
         expect(nextPage).toBe(howManyAnimalsPage)

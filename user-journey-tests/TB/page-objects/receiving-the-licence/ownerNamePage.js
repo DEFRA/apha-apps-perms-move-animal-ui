@@ -8,7 +8,7 @@ const input1Error =
   'Enter the first name of the registered owner of the animals'
 const input2Error = 'Enter the last name of the registered owner of the animals'
 
-class EmailPage extends DoubleTextInputPage {
+class OwnerNamePage extends DoubleTextInputPage {
   constructor() {
     super({
       firstId,
@@ -37,4 +37,4 @@ class EmailPage extends DoubleTextInputPage {
   }
 }
 
-export default new EmailPage()
+export default new OwnerNamePage()
