@@ -4,7 +4,8 @@ import { FullNameFutureAnswer } from '../../../common/model/answer/full-name-fut
 import { emailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
-const question = 'Who will be the registered owner of the animals?'
+const question =
+  'What is the name of the person who will be the registered keeper of the animals?'
 const questionKey = 'fullName'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-name-future'
