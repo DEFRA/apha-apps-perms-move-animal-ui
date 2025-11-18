@@ -22,7 +22,7 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
       Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name-will-be?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> Who will be the registered owner of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">

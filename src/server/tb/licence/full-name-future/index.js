@@ -5,7 +5,7 @@ import { FullNameFutureAnswer } from '../../../common/model/answer/full-name-fut
 import { emailAddressPage } from '../email-address/index.js'
 
 export class FullNameFuturePage extends QuestionPage {
-  urlPath = '/receiving-the-licence/licence-name-future'
+  urlPath = '/receiving-the-licence/licence-name-will-be'
   sectionKey = 'licence'
 
   question = 'Who will be the registered owner of the animals?'

@@ -55,10 +55,25 @@ describe('Licence', () => {
         expect(result).toBe(fullNamePage)
       })
 
-      it('should return FullNameFuturePage if origin.onOffFarm is "on"', () => {
+      it.each([['afu'], ['tb-restricted-farm'], ['other'], ['iso-unit']])(
+        'should return FullNamePage for %s, if the movement is on',
+        (originType) => {
+          const applicationState = {
+            origin: {
+              onOffFarm: 'on',
+              originType
+            }
+          }
+          const result = LicenceSection.firstPageFactory(applicationState)
+          expect(result).toBe(fullNamePage)
+        }
+      )
+
+      it('should return FullNameFuturePage if origin.onOffFarm is "on" and origin.originType is not "afu", "tb-restricted", "other" or "iso-unit"', () => {
         const applicationState = {
           origin: {
-            onOffFarm: 'on'
+            onOffFarm: 'on',
+            originType: 'something-else'
           }
         }
 
