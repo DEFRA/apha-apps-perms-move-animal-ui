@@ -11,7 +11,7 @@ exports[`RegisteredKeeperNamePage content should render expected response and co
 <fieldset class="govuk-fieldset">
   <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
     <h1 class="govuk-fieldset__heading">
-      Who is the registered keeper of the animals?
+      What is the name of the person registered as the keeper of the animals?
     </h1>
   </legend>
     <div id="explanation">

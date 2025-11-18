@@ -16,12 +16,13 @@ export class Answer extends FullNameAnswer {
       firstName: {
         empty: {
           message:
-            'Enter the first name of the registered keeper of the animals'
+            'Enter the first name of the person registered as the keeper of the animals'
         }
       },
       lastName: {
         empty: {
-          message: 'Enter the last name of the registered keeper of the animals'
+          message:
+            'Enter the last name of the person registered as the keeper of the animals'
         }
       }
     }
@@ -33,7 +34,8 @@ export class RegisteredKeeperNamePage extends QuestionPage {
 
   questionKey = questionKey
   sectionKey = 'licence'
-  question = 'Who is the registered keeper of the animals?'
+  question =
+    'What is the name of the person registered as the keeper of the animals?'
 
   Answer = Answer
 

@@ -8,7 +8,7 @@ import { checkAnswersPage } from '../check-answers/index.js'
 const questionKey = 'emailAddress'
 
 export class EmailAddressPage extends QuestionPage {
-  urlPath = '/fmd/receiving-the-licence/email-address'
+  urlPath = '/fmd/receiving-the-licence/licence-enter-email-address'
 
   questionKey = questionKey
   sectionKey = 'licence'

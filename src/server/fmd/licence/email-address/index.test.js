@@ -5,7 +5,7 @@ import { EmailAddressAnswer } from '~/src/server/common/model/answer/email-addre
 
 const sectionKey = 'licence'
 const questionKey = 'emailAddress'
-const pageUrl = '/fmd/receiving-the-licence/email-address'
+const pageUrl = '/fmd/receiving-the-licence/licence-enter-email-address'
 const page = emailAddressPage
 const question = 'What email address would you like the licence sent to?'
 

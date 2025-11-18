@@ -7,7 +7,8 @@ const sectionKey = 'licence'
 const questionKey = 'registeredKeeperName'
 const pageUrl = '/fmd/receiving-the-licence/name-of-registered-keeper'
 const page = registeredKeeperNamePage
-const question = 'Who is the registered keeper of the animals?'
+const question =
+  'What is the name of the person registered as the keeper of the animals?'
 
 const payload = {
   firstName: 'first name',
@@ -21,11 +22,11 @@ describe('Answer', () => {
 
   it('should have the right validation', () => {
     expect(Answer.config.validation.firstName.empty?.message).toBe(
-      'Enter the first name of the registered keeper of the animals'
+      'Enter the first name of the person registered as the keeper of the animals'
     )
 
     expect(Answer.config.validation.lastName.empty?.message).toBe(
-      'Enter the last name of the registered keeper of the animals'
+      'Enter the last name of the person registered as the keeper of the animals'
     )
   })
 })

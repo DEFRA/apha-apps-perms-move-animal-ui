@@ -16,7 +16,7 @@ class EmailPage extends SingleTextInputPage {
 
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
-  pagePath = 'fmd/receiving-the-licence/email-address'
+  pagePath = 'fmd/receiving-the-licence/licence-enter-email-address'
 }
 
 export default new EmailPage()
