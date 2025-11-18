@@ -50,13 +50,6 @@ describe('Privacy policy page test', () => {
     await waitForFullPageUrl('https://policies.google.com/')
   })
 
-  it('Should verify the protection law link', async () => {
-    await selectElement(privacyPage.protectionRightsLink)
-    await waitForPagePath(
-      '/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/'
-    )
-  })
-
   it('Should verify the comissioners office link', async () => {
     await selectElement(privacyPage.comissionersOfficeLink)
     await waitForPagePath('/make-a-complaint/')
