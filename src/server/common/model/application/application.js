@@ -53,9 +53,9 @@ export class ApplicationModel {
   /**
    * @param {RawApplicationState} state
    */
-  static visibleSections(state) {
+  static visibleSections(req, state) {
     return this.implementedSections.filter((section) => {
-      return section.config.isVisible(state)
+      return section.config.isVisible(state, req)
     })
   }
 
@@ -77,25 +77,10 @@ export class ApplicationModel {
   static async fromRequest(req, state) {
     return new this(
       Object.fromEntries(
-        await Promise.all(this.visibleSections(state).map(async (section) => [
+        await Promise.all(this.visibleSections(req, state).map(async (section) => [
           section.config.key,
           await section.fromRequest(req, state)
         ]))
     ))
-  }
-
-  /**
-   * @param {RawApplicationState} state
-   * @returns {ApplicationModel}
-   */
-  static fromState(state) {
-    return new this(
-      Object.fromEntries(
-        this.visibleSections(state).map((section) => [
-          section.config.key,
-          section.fromState(state)
-        ])
-      )
-    )
   }
 }

@@ -12,11 +12,11 @@ import { testingDatesPage } from './testing-dates/index.js'
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /** @param {RawApplicationState} app */
-const isVisible = (app) => {
+const isVisible = async (app, req) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
   const isOffFarmIsoUnit =
     app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
-  const originValid = OriginSection.fromState(app).validate().isValid
+  const originValid = (await OriginSection.fromRequest(req, app)).validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
   const bothTbRestricted =
     OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&

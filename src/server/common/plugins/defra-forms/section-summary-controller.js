@@ -1,11 +1,12 @@
-import { QuestionPageController } from '@defra/forms-engine-plugin/controllers/QuestionPageController.js'
 import { proceed } from '@defra/forms-engine-plugin/engine/helpers.js'
 import { FormAction } from '@defra/forms-engine-plugin/types'
 import { mapFormContextToAnswers } from './form-context.js'
+import { SummaryPageController } from '@defra/forms-engine-plugin/controllers/index.js'
 
 /** @import { SummaryListRow } from '@defra/forms-engine-plugin/types' */
 
-export class SectionSummaryPageController extends QuestionPageController {
+export class SectionSummaryPageController extends SummaryPageController {
+  isSummaryPage = true
   viewName = 'defra-forms/check-answers'
   continueDestination = '/'
   continueButtonText = 'Continue'
@@ -85,6 +86,6 @@ export class SectionSummaryPageController extends QuestionPageController {
 }
 
 export class TbOriginSectionSummaryPageController extends SectionSummaryPageController {
-  continueDestination = '/tb/task-list'
+  continueDestination = '/task-list'
 }
 
