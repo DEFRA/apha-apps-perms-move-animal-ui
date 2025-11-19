@@ -20,7 +20,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @typedef {{
  *  key: string,
  *  title: string,
- *  plugin: ServerRegisterPluginObject<void>,
+ *  plugin?: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
  *  isEnabled: (app: RawApplicationState) => boolean,
  *  isVisible: (app: RawApplicationState) => boolean

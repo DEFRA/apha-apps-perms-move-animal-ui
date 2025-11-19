@@ -67,7 +67,7 @@ export const router = {
         server.register(
           TbApplicationModel.implementedSections.map(
             (section) => section.config.plugin
-          )
+          ).filter(Boolean)
         ),
 
         // Static assets
@@ -85,7 +85,7 @@ export const router = {
         await server.register(
           ExoticsApplicationModel.implementedSections.map(
             (section) => section.config.plugin
-          )
+          ).filter(Boolean)
         )
       }
 
@@ -100,7 +100,7 @@ export const router = {
         await server.register(
           FmdApplicationModel.implementedSections.map(
             (section) => section.config.plugin
-          )
+          ).filter(Boolean)
         )
       }
     }
