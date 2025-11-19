@@ -10,10 +10,10 @@ describe('FullNameFutureAnswer', () => {
     expect(
       FullNameFutureAnswer.config.validation.firstName.empty?.message
     ).toBe(
-      'Enter the first name of who will be the registered owner of the animals'
+      'Enter the first name of the person who will be the registered keeper of the animals'
     )
     expect(FullNameFutureAnswer.config.validation.lastName.empty?.message).toBe(
-      'Enter the last name of who will be the registered owner of the animals'
+      'Enter the last name of the person who will be the registered keeper of the animals'
     )
   })
 })
