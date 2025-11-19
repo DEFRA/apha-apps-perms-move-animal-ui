@@ -8,7 +8,7 @@ import { OriginSection } from './origin/section.js'
 import { SlaughterInformationSection } from './slaughter/section.js'
 
 /**
- * @import { SectionModelV1 } from '../common/model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '../common/model/section/section-model/section-model-v1.js'
  */
 
 export class FmdApplicationModel extends ApplicationModel {

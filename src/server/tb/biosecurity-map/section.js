@@ -1,9 +1,9 @@
-import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model.js'
+import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
 import { uploadPlanPage } from '~/src/server/tb/biosecurity-map/upload-plan/index.js'
 import { biosecurityPlan } from '~/src/server/tb/biosecurity-map/index.js'
 import { biosecuritySectionIsVisible } from '../../common/model/section/visibility.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
 
 export class BiosecurityPlanSection extends SectionModelV1 {
   /** @type {SectionConfig} */

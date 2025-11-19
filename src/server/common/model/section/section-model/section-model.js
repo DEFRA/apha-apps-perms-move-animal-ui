@@ -1,14 +1,10 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
-import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
-import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
-import { HiddenAnswer } from '../../answer/hidden/hidden.js'
-import { AbstractSectionModel } from './abstract-section-model.js'
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
 
 /**
- * @import { SectionValidation } from './abstract-section-model.js'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
  * @import {AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
  * @import {RawApplicationState, StateManager} from '~/src/server/common/model/state/state-manager.js'
@@ -31,125 +27,33 @@ import { AbstractSectionModel } from './abstract-section-model.js'
  * }} SectionConfig
  */
 
-export class SectionModelV1 extends AbstractSectionModel {
-  /** @type {(RawApplicationState) => QuestionPage} */
-  static firstPageFactory
+/**
+ * export @typedef {{ isValid: boolean, firstInvalidPage?: string }} SectionValidation
+ */
 
-  _getFirstPage(applicationState) {
-    return /** @type {typeof SectionModelV1} */ (
-      this.constructor
-    ).firstPageFactory(applicationState)
+export class SectionModel {
+  /** @type {any} */
+  _data
+
+  /** @type {SectionConfig} */
+  static config
+
+  /**
+   * @returns {SectionConfig}
+   */
+  get config() {
+    return /** @type {any} */ (this.constructor).config
   }
 
-  /** @param {SectionPayload} data */
+
+  /** @param {any} data */
   constructor(data) {
-    super(data)
-  }
-
-  /** @returns {QuestionPageAnswer[]} */
-  get _questionPageAnswers() {
-    return this._data.filter((p) => p.kind === 'Question')
+    this._data = data
   }
 
   /** @returns {SectionValidation} */
   validate() {
-    const finalPage = this._data.at(-1)?.page
-
-    if (finalPage instanceof QuestionPage) {
-      return { isValid: false, firstInvalidPage: finalPage.urlPath }
-    }
-
-    if (finalPage instanceof ExitPage) {
-      return {
-        isValid: false,
-        firstInvalidPage: this._questionPageAnswers.at(-1)?.page.urlPath
-      }
-    }
-
-    return { isValid: true }
-  }
-
-  /**
-   * @param {Request} req
-   * @param {RawApplicationState} state
-   * @returns {Promise<SectionModelV1>}
-   */
-  static async fromRequest(req, state) {
-    return this.fromState(state)
-  }
-
-  /**
-   * @param {RawApplicationState} data
-   * @returns {SectionModelV1}
-   */
-  static fromState(data) {
-    /** @type {SectionPayload} */
-    const pages = []
-    const sectionData = data[this.config.key]
-
-    /** @type {Page} */
-    let page = this.firstPageFactory(data)
-
-    while (!(page instanceof ExitPage) && !(page instanceof SummaryPage)) {
-      if (page instanceof QuestionPage) {
-        const answer = page.Answer.fromState(
-          sectionData?.[page.questionKey],
-          data
-        )
-        pages.push({
-          kind: 'Question',
-          page,
-          answer
-        })
-        if (!answer.validate().isValid) {
-          break
-        }
-        page = page.nextPage(answer, data)
-      } else {
-        pages.push({ kind: 'NonQuestion', page })
-        page = page.nextPage()
-      }
-    }
-
-    if (!(page instanceof QuestionPage)) {
-      pages.push({ kind: 'NonQuestion', page })
-    }
-
-    return new this(pages)
-  }
-
-  get sectionData() {
-    const questionAnswers =
-    this._questionPageAnswers
-    .filter(({ answer, page }) => {
-      return !(answer instanceof HiddenAnswer || page.isInterstitial)
-    })
-    .map((questionPageAnswer) => ({
-      question: questionPageAnswer.page.question,
-      questionKey: questionPageAnswer.page.questionKey,
-      answer: questionPageAnswer.answer.data
-    }))
-
-    return {
-      sectionKey: this.config.key,
-      title: this.config.title,
-      questionAnswers: questionAnswers
-    }
-  }
-
-  /** @param {string} redirectUri */
-  summaryViewModel(redirectUri) {
-    return this._questionPageAnswers
-      .filter(({ page }) => !page.isInterstitial)
-      .map(({ page, answer }) => ({
-        key: page.question,
-        value: answer.html,
-        url: `${page.urlPath}?returnUrl=${redirectUri}`,
-        visuallyHiddenKey: page.question,
-        attributes: {
-          'data-testid': `${page.questionKey}-change-link`
-        }
-      }))
+    throw new NotImplementedError()
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
@@ -159,15 +63,35 @@ export class SectionModelV1 extends AbstractSectionModel {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   taskDetailsViewModel(applicationState) {
-    const sectionValidity = this.validate()
-    return {
-      title: this.config.title,
-      initialLink:
-        sectionValidity.firstInvalidPage ??
-        this._getFirstPage(applicationState).urlPath,
-      summaryLink: this.config.summaryLink,
-      isValid: sectionValidity.isValid,
-      isEnabled: this.config.isEnabled(applicationState)
-    }
+    throw new NotImplementedError()
+  }
+
+
+  /**
+   * @param {Request} req
+   * @param {RawApplicationState} state
+   * @returns {Promise<SectionModel>}
+   */
+  static async fromRequest(req, state) {
+    throw new NotImplementedError()
+  }
+
+  get sectionData() {
+    throw new NotImplementedError()
+  }
+
+  /** @param {string} redirectUri */
+  summaryViewModel(redirectUri) {
+    throw new NotImplementedError()
+  }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
+   * @param {RawApplicationState} applicationState
+   * @returns {object}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  taskDetailsViewModel(applicationState) {
+    throw new NotImplementedError()
   }
 }

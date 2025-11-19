@@ -1,12 +1,12 @@
 import { licence } from '~/src/server/tb/licence/index.js'
-import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model.js'
+import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
 import { fullNamePage } from '~/src/server/tb/licence/full-name/index.js'
 import { fullNameFuturePage } from '~/src/server/tb/licence/full-name-future/index.js'
 import { OriginSection } from '../origin/section.js'
 import { DestinationSection } from '../destination/section.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
 
 export class LicenceSection extends SectionModelV1 {
   /** @type {SectionConfig} */

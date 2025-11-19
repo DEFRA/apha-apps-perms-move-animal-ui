@@ -7,7 +7,7 @@ import { IdentificationSection } from './identification/section.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 
 /**
- * @import { SectionModelV1 } from '../common/model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '../common/model/section/section-model/section-model-v1.js'
  */
 
 export class TbApplicationModel extends ApplicationModel {

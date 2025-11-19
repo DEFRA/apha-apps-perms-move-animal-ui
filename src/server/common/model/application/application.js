@@ -4,7 +4,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /* eslint-disable jsdoc/require-returns-check */
 
 /**
- * @import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { ApplicationValidationResult } from '~/src/server/common/model/application/validation.js'
  * @typedef { { [key: string]: SectionModelV1; } } ApplicationPayload

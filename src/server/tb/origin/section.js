@@ -1,8 +1,8 @@
-import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model.js'
+import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
 import { onOffFarmPage } from './on-off-farm/index.js'
 import { origin } from '~/src/server/tb/origin/index.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
 
 export class OriginSection extends SectionModelV1 {
   /** @type {SectionConfig} */
