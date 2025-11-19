@@ -32,7 +32,7 @@
         {
           "type": "RadiosField",
           "title": "Which type of premises are the animals moving off?",
-          "name": "typeOfOrigin",
+          "name": "originType",
           "shortDescription": "Type of premises the animals are moving off",
           "hint": "",
           "list": "2ac86809-1509-4968-a3f4-3a27ff296bfb",

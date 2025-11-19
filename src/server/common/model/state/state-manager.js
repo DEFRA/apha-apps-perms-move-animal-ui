@@ -5,6 +5,7 @@ import { QuestionPage } from '../page/question-page-model.js'
 /** @import { ExitPage } from '../page/exit-page-model.js' */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { SectionModel } from '../section/section-model/section-model.js'
 
 /**
  * @typedef {Record<string, any>} RawSectionState
@@ -31,6 +32,21 @@ export class StateManager {
   /** @returns {RawApplicationState} */
   toState() {
     return this._request.yar.get(this.key) ?? {}
+  }
+
+  /** @param {SectionModel} section */
+  setSection(section) {
+    const currentApplicationState = this.toState()
+    const sectionData = section.sectionData
+    const sectionState = Object.fromEntries(sectionData.questionAnswers.map(questionData => [
+      questionData.questionKey,
+      questionData.answer.value
+    ]))
+
+    this._request.yar.set(this.key, {
+      ...currentApplicationState,
+      [sectionData.sectionKey]: sectionState
+    })
   }
 
   /**

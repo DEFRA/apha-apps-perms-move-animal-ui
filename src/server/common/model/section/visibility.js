@@ -9,7 +9,7 @@ export const biosecuritySectionIsVisible = async (app, req) => {
   const isDestinationNotAfu = app.destination?.destinationType !== 'afu'
   const originData = origin.sectionData.questionAnswers
 
-  const isMovementOn = originData.includes(q => (q.questionKey === 'onOffFarm') && (q.answer.value === 'Yes'))
+  const isMovementOn = originData.some(q => (q.questionKey === 'onOffFarm') && (q.answer.value === 'on'))
   return (
     isMovementOn &&
     origin.validate().isValid &&

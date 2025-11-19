@@ -14,7 +14,10 @@ import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
 import { disableClientCache } from './common/helpers/client-cache.js/client-cache.js'
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
-import { defraFormsPlugin } from './common/plugins/defra-forms/index.js'
+import { defraFormsPluginOptions } from './common/plugins/defra-forms/index.js'
+import defraForms from '@defra/forms-engine-plugin'
+import { CacheService } from '@defra/forms-engine-plugin/cache-service.js'
+import { CustomCacheService } from './common/plugins/defra-forms/custom-cache-service.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -62,7 +65,20 @@ export async function createServer() {
     router // Register all the controllers/routes defined in src/server/router.js
   ])
 
-  await server.register(defraFormsPlugin)
+
+
+  const cacheService = new CustomCacheService({
+    server,
+    cacheName: config.get('session').cache.name
+  })
+
+  await server.register({
+    plugin: defraForms,
+    options: {
+      cache: cacheService,
+      ...defraFormsPluginOptions
+    }
+  })
 
   server.ext('onRequest', addUUIDToRequest)
   server.ext('onPreResponse', disableClientCache)

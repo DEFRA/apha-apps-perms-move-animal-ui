@@ -7,7 +7,7 @@ import {
 import { getAnswer } from '@defra/forms-engine-plugin/engine/components/helpers/components.js'
 import { services } from './index.js'
 import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/index.js'
-import { pluginOptions } from './index.js'
+import { defraFormsPluginOptions } from './index.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
@@ -61,7 +61,7 @@ export async function getFormContext({ server, yar }, journey, state = 'live') {
    * fetch the FormModel for the requested journey/state combination. We pass in
    * the local services bundle and any custom controllers required by the journey.
    */
-  const formModel = await getFormModel(journey, state, pluginOptions)
+  const formModel = await getFormModel(journey, state, defraFormsPluginOptions)
 
   /**
    * the cache service exposes helper methods that the forms engine normally uses

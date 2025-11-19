@@ -3,7 +3,6 @@ import tbOriginJourneyDefinition from './apps-permissions-tb-origin.json' with {
 import { config } from '~/src/config/config.js'
 import path from 'path'
 import { context } from '~/src/config/nunjucks/context/context.js'
-import defraForms from '@defra/forms-engine-plugin'
 import { TbOriginSectionSummaryPageController } from './section-summary-controller.js'
 
 // Form metadata
@@ -65,8 +64,7 @@ const outputService = {
 
 export const services = { formsService, formSubmissionService, outputService }
 
-export const pluginOptions = {
-  cache: config.get('session').cache.name,
+export const defraFormsPluginOptions = {
   nunjucks: {
     paths: [
       path.resolve(
@@ -92,9 +90,4 @@ export const pluginOptions = {
     TbOriginSectionSummaryPageController
   },
   filters: {}
-}
-
-export const defraFormsPlugin = {
-  plugin: defraForms,
-  options: pluginOptions
 }
