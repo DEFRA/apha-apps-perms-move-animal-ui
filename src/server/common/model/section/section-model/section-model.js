@@ -2,11 +2,13 @@ import { QuestionPage } from '~/src/server/common/model/page/question-page-model
 import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 import { HiddenAnswer } from '../../answer/hidden/hidden.js'
+import { AbstractSectionModel } from './abstract-section-model.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { Request } from '@hapi/hapi' */
 
 /**
+ * @import { SectionValidation } from './abstract-section-model.js'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
  * @import {AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
  * @import {RawApplicationState, StateManager} from '~/src/server/common/model/state/state-manager.js'
@@ -29,27 +31,8 @@ import { HiddenAnswer } from '../../answer/hidden/hidden.js'
  * }} SectionConfig
  */
 
-/**
- * export @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
- */
-
-export class SectionModel {
-  /** @type {SectionPayload} */
-  _data
-
-  /** @type {SectionConfig} */
-  static config
-
-  /**
-   * @returns {SectionConfig}
-   */
-  get config() {
-    return /** @type {any} */ (this.constructor).config
-  }
-
-  /**
-   * @type {(RawApplicationState) => QuestionPage}
-   */
+export class SectionModel extends AbstractSectionModel {
+  /** @type {(RawApplicationState) => QuestionPage} */
   static firstPageFactory
 
   _getFirstPage(applicationState) {
@@ -58,16 +41,12 @@ export class SectionModel {
     ).firstPageFactory(applicationState)
   }
 
-  /**
-   * @param {SectionPayload} data
-   */
+  /** @param {SectionPayload} data */
   constructor(data) {
-    this._data = data
+    super(data)
   }
 
-  /**
-   * @returns {QuestionPageAnswer[]}
-   */
+  /** @returns {QuestionPageAnswer[]} */
   get _questionPageAnswers() {
     return this._data.filter((p) => p.kind === 'Question')
   }
