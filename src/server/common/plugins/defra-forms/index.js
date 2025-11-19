@@ -4,6 +4,7 @@ import { config } from '~/src/config/config.js'
 import path from 'path'
 import { context } from '~/src/config/nunjucks/context/context.js'
 import defraForms from '@defra/forms-engine-plugin'
+import { TbOriginSectionSummaryPageController } from './section-summary-controller.js'
 
 // Form metadata
 const now = new Date()
@@ -70,6 +71,10 @@ export const pluginOptions = {
     paths: [
       path.resolve(
         config.get('root'),
+        './src/server/common/templates'
+      ),
+      path.resolve(
+        config.get('root'),
         './src/server/common/templates/layouts'
       ),
       path.resolve(
@@ -83,7 +88,9 @@ export const pluginOptions = {
   baseUrl: config.get('appBaseUrl'),
   viewContext: context,
   services,
-  controllers: {},
+  controllers: {
+    TbOriginSectionSummaryPageController
+  },
   filters: {}
 }
 
