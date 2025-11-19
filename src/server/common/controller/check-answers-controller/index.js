@@ -49,7 +49,7 @@ export class SubmitSummaryPage extends QuestionPage {
     const summary = Object.fromEntries(
       Object.values(tasks).map((task) => {
         const { key, title } = task.config
-        return [key, { title, answers: task.summaryViewModel(this.urlPath) }]
+        return [key, { title, answers: task.summaryViewModel(req, this.urlPath) }]
       })
     )
 

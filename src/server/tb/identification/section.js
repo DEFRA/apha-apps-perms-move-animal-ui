@@ -13,10 +13,12 @@ import { testingDatesPage } from './testing-dates/index.js'
 
 /** @param {RawApplicationState} app */
 const isVisible = async (app, req) => {
+  const origin = await OriginSection.fromRequest(req, app)
+
   const isOnFarm = app.origin?.onOffFarm === 'on'
   const isOffFarmIsoUnit =
     app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
-  const originValid = (await OriginSection.fromRequest(req, app)).validate().isValid
+  const originValid = origin.validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
   const bothTbRestricted =
     OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&

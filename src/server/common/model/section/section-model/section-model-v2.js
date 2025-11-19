@@ -1,5 +1,5 @@
 import { NotImplementedError } from "../../../helpers/not-implemented-error.js"
-import { getFirstJourneyPage, getFormContext } from "../../../plugins/defra-forms/form-context.js"
+import { getFirstJourneyPage, getFormContext, mapFormContextToAnswers } from "../../../plugins/defra-forms/form-context.js"
 import { SectionModel } from "./section-model.js"
 
 /** @import { FormContext } from "@defra/forms-engine-plugin/engine/types.js" */
@@ -42,12 +42,28 @@ export class SectionModelV2 extends SectionModel {
   }
 
   get sectionData() {
+    const questionAnswers = mapFormContextToAnswers(this._data)
+
+    return {
+      sectionKey: this.config.key,
+      title: this.config.title,
+      questionAnswers: questionAnswers
+    }
     // throw new NotImplementedError()
   }
 
   /** @param {string} redirectUri */
   summaryViewModel(req, redirectUri) {
-    throw new NotImplementedError()
+    const questionAnswers = mapFormContextToAnswers(this._data)
+
+    return questionAnswers.map(qa => ({
+      key: qa.question,
+      value: qa.answer.displayText,
+      url: `${qa.slug}?returnUrl=${redirectUri}`,
+      attributes: {
+        'data-testid': `${qa.questionKey}-change-link`
+      }
+    }))
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
