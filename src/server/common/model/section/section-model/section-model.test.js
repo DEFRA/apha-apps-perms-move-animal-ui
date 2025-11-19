@@ -63,7 +63,7 @@ const applicationStateWithWarning = {
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
     const origin = OriginSection.fromState(applicationState)
-    const pageAnswers = origin.questionPageAnswers
+t    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(4)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -81,7 +81,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should short-circuit on an exit page', () => {
     const origin = OriginSection.fromState({ origin: exitState })
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(2)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -92,7 +92,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should short-circuit on a page with an invalid answer', () => {
     const origin = OriginSection.fromState({ origin: invalidState })
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(3)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -107,7 +107,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should NOT short-circuit on a warning page if there are more answers after it', () => {
     const origin = IdentificationSection.fromState(applicationStateWithWarning)
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(6)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(CalvesUnder42DaysOldPage)
@@ -169,7 +169,7 @@ describe('SectionModel.validate', () => {
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
     const origin = OriginSection.fromState({ origin: validOriginSectionState })
-    expect(origin.getFirstPage()).toBeInstanceOf(OnOffFarmPage)
+    expect(origin._getFirstPage()).toBeInstanceOf(OnOffFarmPage)
   })
 })
 

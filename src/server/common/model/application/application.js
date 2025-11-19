@@ -1,5 +1,4 @@
 import { validateApplication } from '~/src/server/common/model/application/validation.js'
-import { HiddenAnswer } from '~/src/server/common/model/answer/hidden/hidden.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /* eslint-disable jsdoc/require-returns-check */
@@ -63,26 +62,11 @@ export class ApplicationModel {
   get caseManagementData() {
     const sections = this.tasks
 
-    /** @param {SectionModel} section */
-    const questionAnswersForSection = (section) =>
-      section.questionPageAnswers
-        .filter(({ answer, page }) => {
-          return !(answer instanceof HiddenAnswer || page.isInterstitial)
-        })
-        .map((questionPageAnswer) => ({
-          question: questionPageAnswer.page.question,
-          questionKey: questionPageAnswer.page.questionKey,
-          answer: questionPageAnswer.answer.data
-        }))
 
     return {
       journeyVersion: this.version,
       journeyId: this.journeyId,
-      sections: Object.values(sections).map((section) => ({
-        sectionKey: section.config.key,
-        title: section.config.title,
-        questionAnswers: questionAnswersForSection(section)
-      }))
+      sections: Object.values(sections).map((section) => section.sectionData)
     }
   }
 
