@@ -10,12 +10,14 @@ export class OwnerFullNameAnswer extends FullNameAnswer {
     validation: {
       firstName: {
         empty: {
-          message: 'Enter the first name of the registered owner of the animals'
+          message:
+            'Enter the first name of the person registered as the keeper of the animals'
         }
       },
       lastName: {
         empty: {
-          message: 'Enter the last name of the registered owner of the animals'
+          message:
+            'Enter the last name of the person registered as the keeper of the animals'
         }
       }
     }

@@ -4,7 +4,8 @@ import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-nam
 import { emailAddressPage } from '../email-address/index.js'
 
 const sectionKey = 'licence'
-const question = 'What is the name of the registered owner of the animals?'
+const question =
+  'What is the name of the person registered as the keeper of the animals?'
 const questionKey = 'fullName'
 const view = 'common/model/page/question-page.njk'
 const pageUrl = '/receiving-the-licence/licence-name'
