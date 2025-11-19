@@ -178,6 +178,7 @@ export function mapFormContextToAnswers(
         if (!hasRenderableValue(value)) {
           return undefined
         }
+        const answerType = mapAnswerType(field)
 
         return {
           slug: resolveFieldSlug(page),
@@ -185,8 +186,8 @@ export function mapFormContextToAnswers(
           question: safeEvaluateTemplate(field.title, context),
           questionKey: field.name,
           answer: {
-            type: mapAnswerType(field),
-            value,
+            type: answerType,
+            value: mapAnswerValue(answerType, value),
             displayText: getAnswer(field, state) ?? ''
           }
         }
@@ -232,6 +233,21 @@ function mapAnswerType(field) {
   }
 
   return map[field.type] ?? 'text'
+}
+
+function mapAnswerValue(type, value) {
+  if (type === 'address') {
+    const { addressLine1, addressLine2, town, county, postcode } = value
+    return {
+      addressLine1,
+      addressLine2,
+      addressTown: town,
+      addressCounty: county,
+      addressPostcode: postcode
+    }
+  }
+
+  return value
 }
 
 /**

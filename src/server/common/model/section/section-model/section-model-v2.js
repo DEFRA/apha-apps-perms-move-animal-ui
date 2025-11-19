@@ -42,7 +42,9 @@ export class SectionModelV2 extends SectionModel {
   }
 
   get sectionData() {
-    const questionAnswers = mapFormContextToAnswers(this._data)
+    const questionAnswers = mapFormContextToAnswers(this._data).map(({ question, questionKey, answer}) => ({
+      question, questionKey, answer
+    }))
 
     return {
       sectionKey: this.config.key,
