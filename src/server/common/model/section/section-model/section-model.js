@@ -68,7 +68,7 @@ export class SectionModel {
 
 
   /**
-   * @param {Request} req
+   * @param {import("@hapi/hapi").Request} req
    * @param {RawApplicationState} state
    * @returns {Promise<SectionModel>}
    */
