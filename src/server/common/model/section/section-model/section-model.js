@@ -91,6 +91,15 @@ export class SectionModel {
   }
 
   /**
+   * @param {Request} req
+   * @param {RawApplicationState} state
+   * @returns {Promise<SectionModel>}
+   */
+  static async fromRequest(req, state) {
+    return this.fromState(state)
+  }
+
+  /**
    * @param {RawApplicationState} data
    * @returns {SectionModel}
    */

@@ -23,9 +23,9 @@ export class TaskListController {
   /** @type {string} */
   submitUrlPath
 
-  taskListGetHandler(req, h) {
+  async taskListGetHandler(req, h) {
     const applicationState = new this.StateManager(req).toState()
-    const application = this.ApplicationModel.fromState(applicationState)
+    const application = await this.ApplicationModel.fromRequest(req, applicationState)
     const visibleSections = Object.values(application.tasks)
 
     const gdsTasks = visibleSections.map((section) => {

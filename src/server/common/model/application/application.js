@@ -72,6 +72,20 @@ export class ApplicationModel {
 
   /**
    * @param {RawApplicationState} state
+   * @returns {Promise<ApplicationModel>}
+   */
+  static async fromRequest(req, state) {
+    return new this(
+      Object.fromEntries(
+        await Promise.all(this.visibleSections(state).map(async (section) => [
+          section.config.key,
+          await section.fromRequest(req, state)
+        ]))
+    ))
+  }
+
+  /**
+   * @param {RawApplicationState} state
    * @returns {ApplicationModel}
    */
   static fromState(state) {
