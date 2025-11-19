@@ -77,7 +77,7 @@ export class SummaryPageController extends GenericPageController {
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.pageHeading,
-      summary: section.summaryViewModel(this.urlPath)
+      summary: section.summaryViewModel(req, this.urlPath)
     })
   }
 

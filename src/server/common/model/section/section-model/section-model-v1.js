@@ -127,7 +127,7 @@ export class SectionModelV1 extends SectionModel {
   }
 
   /** @param {string} redirectUri */
-  summaryViewModel(redirectUri) {
+  summaryViewModel(req, redirectUri) {
     return this._questionPageAnswers
       .filter(({ page }) => !page.isInterstitial)
       .map(({ page, answer }) => ({
@@ -147,7 +147,7 @@ export class SectionModelV1 extends SectionModel {
    * @returns {object}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(applicationState) {
+  taskDetailsViewModel(req, applicationState) {
     const sectionValidity = this.validate()
     return {
       title: this.config.title,

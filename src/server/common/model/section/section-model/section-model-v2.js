@@ -27,7 +27,7 @@ class SectionModelV2 extends SectionModel {
    * @returns {object}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(applicationState) {
+  taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 
@@ -47,7 +47,7 @@ class SectionModelV2 extends SectionModel {
   }
 
   /** @param {string} redirectUri */
-  summaryViewModel(redirectUri) {
+  summaryViewModel(req, redirectUri) {
     throw new NotImplementedError()
   }
 
@@ -57,7 +57,7 @@ class SectionModelV2 extends SectionModel {
    * @returns {object}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(applicationState) {
+  taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 }
