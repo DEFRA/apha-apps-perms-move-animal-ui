@@ -1,4 +1,4 @@
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { checkAnswers } from './check-answers/index.js'
 import { ExoticsSectionModel } from '../section-model.js'

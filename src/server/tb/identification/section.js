@@ -8,7 +8,7 @@ import { calvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-
 import { earTagsPage } from './ear-tags/index.js'
 import { testingDatesPage } from './testing-dates/index.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /** @param {RawApplicationState} app */

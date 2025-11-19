@@ -1,4 +1,4 @@
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 import { AboutSection } from '../about/section.js'

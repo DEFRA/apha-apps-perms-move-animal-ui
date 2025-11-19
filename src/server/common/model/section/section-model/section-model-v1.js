@@ -20,17 +20,6 @@ import { SectionModel } from './section-model.js'
  * @typedef { (NonQuestionPageAnswer | QuestionPageAnswer)[] } SectionPayload
  */
 
-/**
- * @typedef {{
- *  key: string,
- *  title: string,
- *  plugin: ServerRegisterPluginObject<void>,
- *  summaryLink: string,
- *  isEnabled: (app: RawApplicationState) => boolean,
- *  isVisible: (app: RawApplicationState) => boolean
- * }} SectionConfig
- */
-
 export class SectionModelV1 extends SectionModel {
   /** @type {(RawApplicationState) => QuestionPage} */
   static firstPageFactory

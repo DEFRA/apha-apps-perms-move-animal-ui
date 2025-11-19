@@ -6,7 +6,7 @@ import { OriginSection } from '../origin/section.js'
 import { DestinationSection } from '../destination/section.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 export class LicenceSection extends SectionModelV1 {
   /** @type {SectionConfig} */

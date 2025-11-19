@@ -1,4 +1,4 @@
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model-v1.js' */
+/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 import { AboutSection } from '../about/section.js'
 import { FmdSectionModel } from '../section-model.js'
