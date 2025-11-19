@@ -16,7 +16,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTaskOnFarmForUnrestrictedOrigin()
   })
 
-  const redirect = `?redirect_uri=/${destinationAnswersPage.pagePath}`
+  const redirect = `?returnUrl=/${destinationAnswersPage.pagePath}`
 
   const testCases = [
     {

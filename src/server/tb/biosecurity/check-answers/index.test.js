@@ -71,7 +71,7 @@ describe('#biosecuritySummaryPage', () => {
     expect(statusCode).toBe(statusCodes.redirect)
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(
-      `${keptSeparatelyPage.urlPath}?redirect_uri=${biosecuritySummaryPage.urlPath}`
+      `${keptSeparatelyPage.urlPath}?returnUrl=${biosecuritySummaryPage.urlPath}`
     )
   })
 })

@@ -22,7 +22,7 @@ exports[`#originSummaryController.content should render the expected content 1`]
       Off the farm or premises
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/to-or-from-own-premises?redirect_uri=/origin/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
+      <a class="govuk-link" href="/origin/to-or-from-own-premises?returnUrl=/origin/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -33,7 +33,7 @@ exports[`#originSummaryController.content should render the expected content 1`]
       Approved finishing unit (AFU)
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/origin/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
+      <a class="govuk-link" href="/origin/type-of-origin?returnUrl=/origin/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -44,7 +44,7 @@ exports[`#originSummaryController.content should render the expected content 1`]
       12/123/1234
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/cph-number?redirect_uri=/origin/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/cph-number?returnUrl=/origin/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -55,7 +55,7 @@ exports[`#originSummaryController.content should render the expected content 1`]
       Starfleet Headquarters<br>24-593 Federation Drive<br>San Francisco<br>San Francisco<br>RG24 8RR
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/address?redirect_uri=/origin/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of your farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/address?returnUrl=/origin/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of your farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
 </dl>

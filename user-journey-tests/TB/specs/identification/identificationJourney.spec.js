@@ -14,7 +14,7 @@ import identificationAnswersPage from '../../page-objects/identification/identif
 import taskListPage from '../../page-objects/taskListPage.js'
 import { completeIdentificationTaskLongWay } from '../../helpers/testHelpers/animalIdentification.js'
 
-const redirect = `?redirect_uri=/${identificationAnswersPage.pagePath}`
+const redirect = `?returnUrl=/${identificationAnswersPage.pagePath}`
 
 describe('Identification journey spec (with warning page)', () => {
   before(async () => {

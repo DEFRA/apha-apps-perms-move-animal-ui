@@ -22,7 +22,7 @@ describe('Check your answers test - biosecurity map', () => {
     )
     await validateHrefOfElement(
       await biosecurityMapAnswersPage.getChangeLink('biosecMap'),
-      '/biosecurity-map/upload-plan?redirect_uri=/biosecurity-map/check-answers'
+      '/biosecurity-map/upload-plan?returnUrl=/biosecurity-map/check-answers'
     )
   })
 
