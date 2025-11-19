@@ -56,13 +56,13 @@ export class SectionModel extends AbstractSectionModel {
     const finalPage = this._data.at(-1)?.page
 
     if (finalPage instanceof QuestionPage) {
-      return { isValid: false, firstInvalidPage: finalPage }
+      return { isValid: false, firstInvalidPage: finalPage.urlPath }
     }
 
     if (finalPage instanceof ExitPage) {
       return {
         isValid: false,
-        firstInvalidPage: this._questionPageAnswers.at(-1)?.page
+        firstInvalidPage: this._questionPageAnswers.at(-1)?.page.urlPath
       }
     }
 

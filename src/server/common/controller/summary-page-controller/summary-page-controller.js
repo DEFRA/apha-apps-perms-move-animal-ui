@@ -70,7 +70,7 @@ export class SummaryPageController extends GenericPageController {
     const { isValid, firstInvalidPage } = section.validate()
     if (!isValid) {
       return res.redirect(
-        `${firstInvalidPage?.urlPath}?returnUrl=${this.urlPath}`
+        `${firstInvalidPage}?returnUrl=${this.urlPath}`
       )
     }
 

@@ -28,7 +28,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  */
 
 /**
- * export @typedef {{ isValid: boolean, firstInvalidPage?: QuestionPage }} SectionValidation
+ * export @typedef {{ isValid: boolean, firstInvalidPage?: string }} SectionValidation
  */
 
 export class AbstractSectionModel {
