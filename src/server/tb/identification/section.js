@@ -14,14 +14,16 @@ import { testingDatesPage } from './testing-dates/index.js'
 /** @param {RawApplicationState} app */
 const isVisible = async (app, req) => {
   const origin = await OriginSection.fromRequest(req, app)
+  const originData = origin.sectionData.questionAnswers
 
-  const isOnFarm = app.origin?.onOffFarm === 'on'
-  const isOffFarmIsoUnit =
-    app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
+  const isOnFarm = originData.includes(q => (q.questionKey === 'onOffFarm') && (q.answer.value === 'Yes'))
+  const isOffFarmIsoUnit = originData.includes(q => (q.questionKey === 'originType') && (q.answer.value === 'iso-unit'))
+  const originType = originData.find(q => q.questionKey === 'originType')?.at(0)
+
   const originValid = origin.validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
   const bothTbRestricted =
-    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
+    OriginTypeAnswer.isTbRestricted(originType) &&
     DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)
 
   return (

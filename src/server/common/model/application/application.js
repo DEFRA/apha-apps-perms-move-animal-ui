@@ -53,10 +53,15 @@ export class ApplicationModel {
   /**
    * @param {RawApplicationState} state
    */
-  static visibleSections(req, state) {
-    return this.implementedSections.filter((section) => {
-      return section.config.isVisible(state, req)
-    })
+  static async visibleSections(req, state) {
+    const sectionVisibility = await Promise.all(this.implementedSections.map(async (section) => ({
+      isVisible: await section.config.isVisible(state, req),
+      section
+    })))
+
+    return sectionVisibility
+      .filter(({ isVisible }) => isVisible)
+      .map(({ section }) => section )
   }
 
   get caseManagementData() {
@@ -77,7 +82,7 @@ export class ApplicationModel {
   static async fromRequest(req, state) {
     return new this(
       Object.fromEntries(
-        await Promise.all(this.visibleSections(req, state).map(async (section) => [
+        await Promise.all((await this.visibleSections(req, state)).map(async (section) => [
           section.config.key,
           await section.fromRequest(req, state)
         ]))
