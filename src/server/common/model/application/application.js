@@ -4,10 +4,10 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /* eslint-disable jsdoc/require-returns-check */
 
 /**
- * @import { SectionModel } from '~/src/server/common/model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { ApplicationValidationResult } from '~/src/server/common/model/application/validation.js'
- * @typedef { { [key: string]: SectionModel; } } ApplicationPayload
+ * @typedef { { [key: string]: SectionModelV1; } } ApplicationPayload
  */
 
 export class ApplicationModel {
@@ -16,7 +16,7 @@ export class ApplicationModel {
 
   // This is a list of all the sections that are implemented in the application.
   // The order in this array drives the order in which the sections are displayed.
-  /** @type {typeof SectionModel[]} */
+  /** @type {typeof SectionModelV1[]} */
   static implementedSections
 
   /** @returns {{ major: number, minor: number }} */

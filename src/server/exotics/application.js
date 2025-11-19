@@ -8,11 +8,11 @@ import { OriginSection } from './origin/section.js'
 import { VisitDetailsSection } from './visit-details/section.js'
 
 /**
- * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '../common/model/section/section-model/section-model.js'
  */
 
 export class ExoticsApplicationModel extends ApplicationModel {
-  /** @type {typeof SectionModel[]} */
+  /** @type {typeof SectionModelV1[]} */
   static implementedSections = [
     AboutSection,
     DestinationSection,

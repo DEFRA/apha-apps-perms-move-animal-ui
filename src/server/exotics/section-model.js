@@ -1,6 +1,6 @@
-import { SectionModel } from '../common/model/section/section-model/section-model.js'
+import { SectionModelV1 } from '../common/model/section/section-model/section-model.js'
 import { ExoticsStateManager } from './state-manager.js'
 
-export class ExoticsSectionModel extends SectionModel {
+export class ExoticsSectionModel extends SectionModelV1 {
   StateManager = ExoticsStateManager
 }

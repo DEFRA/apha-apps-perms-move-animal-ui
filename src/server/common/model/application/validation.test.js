@@ -1,14 +1,14 @@
-import { SectionModel } from '../section/section-model/section-model.js'
+import { SectionModelV1 } from '../section/section-model/section-model.js'
 import { validateApplication } from './validation.js'
 
-class ValidSection extends SectionModel {
+class ValidSection extends SectionModelV1 {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate() {
     return { isValid: true, result: {} }
   }
 }
 
-class InvalidSection extends SectionModel {
+class InvalidSection extends SectionModelV1 {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate() {
     return {

@@ -1,6 +1,6 @@
 /**
- * @import {SectionValidation} from '../section/section-model/section-model.js'
- * @import {SectionModel} from '../section/section-model/section-model.js'
+ * @import {SectionValidation} from '../section/section-model/abstract-section-model.js'
+ * @import {SectionModelV1} from '../section/section-model/section-model.js'
  */
 
 import mapValues from 'lodash/mapValues.js'
@@ -15,7 +15,7 @@ import mapValues from 'lodash/mapValues.js'
 
 /**
  * Validates all the answers within the application and outputs an overall isValid result.
- * @param {{[key:string]: SectionModel}} data - The data to be validated.
+ * @param {{[key:string]: SectionModelV1}} data - The data to be validated.
  * @returns {ApplicationValidationResult} An object containing the validation result
  */
 export const validateApplication = (data) => {

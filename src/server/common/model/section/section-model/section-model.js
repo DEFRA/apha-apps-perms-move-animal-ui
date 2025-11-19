@@ -31,12 +31,12 @@ import { AbstractSectionModel } from './abstract-section-model.js'
  * }} SectionConfig
  */
 
-export class SectionModel extends AbstractSectionModel {
+export class SectionModelV1 extends AbstractSectionModel {
   /** @type {(RawApplicationState) => QuestionPage} */
   static firstPageFactory
 
   _getFirstPage(applicationState) {
-    return /** @type {typeof SectionModel} */ (
+    return /** @type {typeof SectionModelV1} */ (
       this.constructor
     ).firstPageFactory(applicationState)
   }
@@ -72,7 +72,7 @@ export class SectionModel extends AbstractSectionModel {
   /**
    * @param {Request} req
    * @param {RawApplicationState} state
-   * @returns {Promise<SectionModel>}
+   * @returns {Promise<SectionModelV1>}
    */
   static async fromRequest(req, state) {
     return this.fromState(state)
@@ -80,7 +80,7 @@ export class SectionModel extends AbstractSectionModel {
 
   /**
    * @param {RawApplicationState} data
-   * @returns {SectionModel}
+   * @returns {SectionModelV1}
    */
   static fromState(data) {
     /** @type {SectionPayload} */
@@ -163,7 +163,7 @@ export class SectionModel extends AbstractSectionModel {
     return {
       title: this.config.title,
       initialLink:
-        sectionValidity.firstInvalidPage?.urlPath ??
+        sectionValidity.firstInvalidPage ??
         this._getFirstPage(applicationState).urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
