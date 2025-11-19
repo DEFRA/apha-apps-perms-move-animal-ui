@@ -28,9 +28,9 @@ export class TaskListController {
     const application = await this.ApplicationModel.fromRequest(req, applicationState)
     const visibleSections = Object.values(application.tasks)
 
-    const gdsTasks = visibleSections.map((section) => {
-      return buildGdsTaskItem(section.taskDetailsViewModel(req, applicationState))
-    })
+    const gdsTasks = await Promise.all(visibleSections.map(async (section) => {
+      return buildGdsTaskItem(await section.taskDetailsViewModel(req, applicationState))
+    }))
 
     const incompleteTasks =
       visibleSections.length -

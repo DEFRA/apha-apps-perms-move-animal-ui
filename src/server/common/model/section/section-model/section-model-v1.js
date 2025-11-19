@@ -144,10 +144,10 @@ export class SectionModelV1 extends SectionModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(req, applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     const sectionValidity = this.validate()
     return {
       title: this.config.title,
@@ -156,7 +156,7 @@ export class SectionModelV1 extends SectionModel {
         this._getFirstPage(applicationState).urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
-      isEnabled: this.config.isEnabled(applicationState)
+      isEnabled: await this.config.isEnabled(applicationState, req)
     }
   }
 }

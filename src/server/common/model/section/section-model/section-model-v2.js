@@ -24,10 +24,10 @@ class SectionModelV2 extends SectionModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(req, applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 
@@ -54,10 +54,10 @@ class SectionModelV2 extends SectionModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(req, applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 }

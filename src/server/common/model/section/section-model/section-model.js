@@ -22,8 +22,8 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  *  title: string,
  *  plugin?: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
- *  isEnabled: (app: RawApplicationState, req?: Request) => boolean,
- *  isVisible: (app: RawApplicationState, req?: Request) => boolean
+ *  isEnabled: (app: RawApplicationState, req?: Request) => Promise<boolean> | boolean,
+ *  isVisible: (app: RawApplicationState, req?: Request) => Promise<boolean> | boolean
  * }} SectionConfig
  */
 
@@ -59,10 +59,10 @@ export class SectionModel {
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(req, applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 
@@ -92,10 +92,10 @@ export class SectionModel {
   /**
    * @param {Request} req
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(req, applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     throw new NotImplementedError()
   }
 }
