@@ -3,10 +3,11 @@ import { DoubleTextInputPage } from '../base-pages/doubleTextInputPage.js'
 const firstId = 'firstName'
 const lastId = 'lastName'
 const pageHeadingAndTitle =
-  'What is the name of the registered owner of the animals?'
+  'What is the name of the person registered as the keeper of the animals?'
 const input1Error =
-  'Enter the first name of the registered owner of the animals'
-const input2Error = 'Enter the last name of the registered owner of the animals'
+  'Enter the first name of the person registered as the keeper of the animals'
+const input2Error =
+  'Enter the last name of the person registered as the keeper of the animals'
 
 class OwnerNamePage extends DoubleTextInputPage {
   constructor() {
