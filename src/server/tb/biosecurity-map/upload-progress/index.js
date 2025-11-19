@@ -41,15 +41,17 @@ export class UploadProgressController extends TbQuestionPageController {
 
     const status = JSON.parse(response.payload.toString())
 
-    const newAnswer = new this.page.Answer({
-      ...answer.value,
-      status
-    })
+    const newAnswer = /** @type {BiosecurityMapAnswer} */ (
+      new this.page.Answer({
+        ...answer.value,
+        status
+      })
+    )
 
     const state = new TbStateManager(req)
     state.set(this.page, newAnswer)
 
-    const { isValid, errors } = newAnswer.validate()
+    const { isValid, errors } = newAnswer.validateProcessing()
     if (!isValid) {
       let validationErrors = errors
       if (status?.form.file && status?.numberOfRejectedFiles > 0) {

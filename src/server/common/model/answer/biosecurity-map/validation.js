@@ -1,17 +1,35 @@
 import Joi from 'joi'
 
-const status = Joi.object({
-  uploadStatus: Joi.string().required(),
-  metadata: Joi.object().required(),
-  form: Joi.object({
-    crumb: Joi.string().required(),
-    file: Joi.object().required()
+const baseFormSchema = Joi.object({
+  crumb: Joi.string().required(),
+  file: Joi.object().required()
+})
+  .required()
+  .messages({
+    'any.required': 'You need to upload your biosecurity map'
   })
-    .required()
-    .messages({
-      'any.required': 'You need to upload your biosecurity map'
-    }),
+
+const uploadedFormSchema = baseFormSchema.keys({
+  file: Joi.object({
+    s3Key: Joi.string().required()
+  }).required()
+})
+
+const baseStatus = {
+  metadata: Joi.object().required(),
+  form: baseFormSchema,
   numberOfRejectedFiles: Joi.number().equal(0)
+}
+
+const processingStatus = Joi.object({
+  ...baseStatus,
+  uploadStatus: Joi.string().required()
+})
+
+const uploadedStatus = Joi.object({
+  ...baseStatus,
+  uploadStatus: Joi.string().valid('ready').required(),
+  form: uploadedFormSchema
 })
 
 export const finalSchema = Joi.object({
@@ -20,7 +38,7 @@ export const finalSchema = Joi.object({
     uploadUrl: Joi.string().required(),
     statusUrl: Joi.string().required()
   }).required(),
-  status: status.required()
+  status: uploadedStatus.required()
 }).required()
 
 export const processingSchema = Joi.object({
@@ -29,5 +47,5 @@ export const processingSchema = Joi.object({
     uploadUrl: Joi.string().required(),
     statusUrl: Joi.string().required()
   }).required(),
-  status: status.optional()
+  status: processingStatus.optional()
 }).required()
