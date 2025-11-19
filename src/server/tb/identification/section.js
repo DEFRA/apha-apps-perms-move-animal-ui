@@ -18,7 +18,7 @@ const isVisible = async (app, req) => {
 
   const isOnFarm = originData.some(q => (q.questionKey === 'onOffFarm') && (q.answer.value === 'on'))
   const isOffFarmIsoUnit = originData.some(q => (q.questionKey === 'originType') && (q.answer.value === 'iso-unit'))
-  const originType = originData.find(q => q.questionKey === 'originType').answer.value
+  const originType = originData.find(q => q.questionKey === 'originType')?.answer.value
 
   const originValid = origin.validate().isValid
   const destinationValid = DestinationSection.fromState(app).validate().isValid
