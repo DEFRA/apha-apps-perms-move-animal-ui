@@ -8,6 +8,7 @@ import {
   SkipLink
 } from 'govuk-frontend'
 import accessibleAutocomplete from 'accessible-autocomplete'
+import { initAll } from '@defra/forms-engine-plugin/shared.js'
 
 createAll(Button)
 createAll(Checkboxes)
@@ -45,3 +46,5 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 })
+
+initAll()
