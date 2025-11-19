@@ -1,11 +1,11 @@
 import { proceed } from '@defra/forms-engine-plugin/engine/helpers.js'
 import { FormAction } from '@defra/forms-engine-plugin/types'
 import { mapFormContextToAnswers } from './form-context.js'
-import { SummaryPageController } from '@defra/forms-engine-plugin/controllers/index.js'
+import { QuestionPageController } from '@defra/forms-engine-plugin/controllers/index.js'
 
 /** @import { SummaryListRow } from '@defra/forms-engine-plugin/types' */
 
-export class SectionSummaryPageController extends SummaryPageController {
+export class SectionSummaryPageController extends QuestionPageController {
   isSummaryPage = true
   viewName = 'defra-forms/check-answers'
   continueDestination = '/'

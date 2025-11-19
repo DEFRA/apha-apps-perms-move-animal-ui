@@ -177,7 +177,7 @@
     },
     {
       "id": "449a45f6-4541-4a46-91bd-8b8931b07b50",
-      "title": "Summary",
+      "title": "Check your answers before you continue your application",
       "path": "/summary",
       "controller": "TbOriginSectionSummaryPageController",
       "next": []
