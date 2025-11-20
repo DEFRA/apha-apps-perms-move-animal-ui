@@ -22,7 +22,7 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
       Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?redirect_uri=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the person who will be the registered keeper of the animals?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name-future?returnUrl=/receiving-the-licence/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the person who will be the registered keeper of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -33,7 +33,7 @@ exports[`#licenceSummaryPage.content should render the expected content 1`] = `
       kathryn@starfleet.com
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/receiving-the-licence/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?returnUrl=/receiving-the-licence/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
     </dd>
   </div>
 </dl>

@@ -22,7 +22,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       No
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/any-calves?redirect_uri=/identification/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
+      <a class="govuk-link" href="/identification/any-calves?returnUrl=/identification/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -33,7 +33,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       01/01/2025
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/identification/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the animals that are 42 days old or older?</span></a>
+      <a class="govuk-link" href="/identification/enter-testing-dates?returnUrl=/identification/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the animals that are 42 days old or older?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -44,7 +44,7 @@ exports[`#identificationSummaryPage.content should render the expected content 1
       123456
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-ear-tags-over-42-days?redirect_uri=/identification/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
+      <a class="govuk-link" href="/identification/enter-ear-tags-over-42-days?returnUrl=/identification/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
     </dd>
   </div>
 </dl>

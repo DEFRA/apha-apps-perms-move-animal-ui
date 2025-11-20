@@ -55,7 +55,7 @@ describe('#destinationSummaryPage', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(
-        `${destinationTypePage.urlPath}?redirect_uri=${destinationSummaryPage.urlPath}`
+        `${destinationTypePage.urlPath}?returnUrl=${destinationSummaryPage.urlPath}`
       )
     })
   })

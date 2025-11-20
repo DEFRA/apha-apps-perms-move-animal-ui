@@ -107,7 +107,7 @@ describe('#biosecurityPlanSummaryPage', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(
-      `${uploadPlanPage.urlPath}?redirect_uri=${biosecurityPlanSummaryPage.urlPath}`
+      `${uploadPlanPage.urlPath}?returnUrl=${biosecurityPlanSummaryPage.urlPath}`
     )
   })
 })

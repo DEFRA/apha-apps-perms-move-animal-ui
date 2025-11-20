@@ -22,7 +22,7 @@ exports[`#biosecurityPlanSummaryPage.content should render the expected content 
       Map uploaded
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity-map/upload-plan?redirect_uri=/biosecurity-map/check-answers" data-testid="upload-plan-change-link">Change<span class="govuk-visually-hidden"> Upload a biosecurity map</span></a>
+      <a class="govuk-link" href="/biosecurity-map/upload-plan?returnUrl=/biosecurity-map/check-answers" data-testid="upload-plan-change-link">Change<span class="govuk-visually-hidden"> Upload a biosecurity map</span></a>
     </dd>
   </div>
 </dl>

@@ -19,7 +19,7 @@ export class IdentificationWarningPage extends Page {
   async viewProps(req) {
     return Promise.resolve({
       continueUrl: calculateNextPage(
-        req?.query?.redirect_uri,
+        req?.query?.returnUrl,
         this.nextPage().urlPath
       )
     })

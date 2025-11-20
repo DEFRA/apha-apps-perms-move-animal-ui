@@ -302,10 +302,10 @@ describe('QuestionPageController', () => {
       expect(state[questionKey]).toBe('exit')
     })
 
-    it('should set the next page to redirect_uri if one exists', async () => {
+    it('should set the next page to returnUrl if one exists', async () => {
       const { payload, statusCode } = await server.inject({
         method: 'GET',
-        url: `${questionUrl}?redirect_uri=${redirectUri}`
+        url: `${questionUrl}?returnUrl=${redirectUri}`
       })
 
       const document = parseDocument(payload)
@@ -320,7 +320,7 @@ describe('QuestionPageController', () => {
       expect(statusCode).toBe(statusCodes.ok)
     })
 
-    it('should redirect to whatever the redirect_uri specified, rather than next page', async () => {
+    it('should redirect to whatever the returnUrl specified, rather than next page', async () => {
       const { headers, statusCode } = await server.inject(
         withCsrfProtection(
           {
@@ -346,9 +346,9 @@ describe('QuestionPageController', () => {
         validationSpy.mockReturnValue({ isValid: false, errors: {} })
       })
 
-      it('should display an error to the user if answer is invalid, preserving redirect_uri', async () => {
+      it('should display an error to the user if answer is invalid, preserving returnUrl', async () => {
         const errorValue = 'ERROR'
-        const questionUrlWithRedirectUri = `${questionUrl}?redirect_uri=/next/page`
+        const questionUrlWithRedirectUri = `${questionUrl}?returnUrl=/next/page`
         const { headers, statusCode } = await server.inject(
           withCsrfProtection(
             {
@@ -604,7 +604,7 @@ describe('QuestionPageController', () => {
         clear: jest.fn()
       },
       query: {
-        redirect_uri: 'redirect_uri'
+        returnUrl: 'returnUrl'
       }
     }
 
@@ -616,7 +616,7 @@ describe('QuestionPageController', () => {
         questionView,
         expect.objectContaining({
           heading: question,
-          nextPage: 'redirect_uri',
+          nextPage: 'returnUrl',
           pageTitle: question,
           value: undefined,
           answerViewModel: testViewModel
@@ -650,7 +650,7 @@ describe('QuestionPageController', () => {
         questionView,
         expect.objectContaining({
           heading: question,
-          nextPage: 'redirect_uri',
+          nextPage: 'returnUrl',
           pageTitle: `Error: ${question}`,
           errorMessages: errorState.errorMessages,
           errors: errorState.errors,

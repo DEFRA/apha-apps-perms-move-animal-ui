@@ -7,7 +7,7 @@ export const verifyCheckAnswersPage = async ({
 }) => {
   const getExpected = (key) => journeyData[key].expected
   const getExpectedHref = (key) =>
-    `${basePath}/${journeyData[key].hrefSuffix}?redirect_uri=${redirectUri}`
+    `${basePath}/${journeyData[key].hrefSuffix}?returnUrl=${redirectUri}`
 
   await checkAnswersPage.verifyPageHeadingAndTitle(expectedHeading)
 

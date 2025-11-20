@@ -22,7 +22,7 @@ exports[`#destinationSummaryPage.content should render the expected content 1`] 
       Slaughter
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/destination/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
+      <a class="govuk-link" href="/destination/type-of-destination?returnUrl=/destination/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -33,7 +33,7 @@ exports[`#destinationSummaryPage.content should render the expected content 1`] 
       
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/any-additional-info?redirect_uri=/destination/check-answers" data-testid="additionalInfo-change-link">Change<span class="govuk-visually-hidden"> Enter any additional information (optional)</span></a>
+      <a class="govuk-link" href="/destination/any-additional-info?returnUrl=/destination/check-answers" data-testid="additionalInfo-change-link">Change<span class="govuk-visually-hidden"> Enter any additional information (optional)</span></a>
     </dd>
   </div>
 </dl>
