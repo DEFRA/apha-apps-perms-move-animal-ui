@@ -5,7 +5,7 @@ import { BiosecurityMapAnswer } from './biosecurity-map.js'
  */
 
 /** @type {BiosecurityMapData} */
-const mockData = {
+const mockDataProcessing = {
   metadata: {
     uploadId: '12345',
     uploadUrl: 'http://example.com/upload',
@@ -23,11 +23,31 @@ const mockData = {
 }
 
 /** @type {BiosecurityMapData} */
-const mockSkippedData = {
-  ...mockData,
+const mockDataUploaded = {
+  metadata: {
+    uploadId: '12345',
+    uploadUrl: 'http://example.com/upload',
+    statusUrl: 'http://example.com/status'
+  },
+  status: {
+    uploadStatus: 'ready',
+    metadata: {},
+    form: {
+      crumb: 'crumb',
+      file: {
+        s3Key: 'biosecurity-map/some-key'
+      }
+    },
+    numberOfRejectedFiles: 0
+  }
+}
+
+/** @type {BiosecurityMapData} */
+const mockDataSkipped = {
+  ...mockDataUploaded,
   // @ts-expect-error uploadStatus is not assignable to 'skipped' for some reason
   status: {
-    ...mockData.status,
+    ...mockDataUploaded.status,
     uploadStatus: 'skipped'
   }
 }
@@ -37,62 +57,41 @@ const skippedMessage =
 
 describe('BiosecurityAnswer', () => {
   it('should create an instance from state', () => {
-    const answer = BiosecurityMapAnswer.fromState(mockData)
+    const answer = BiosecurityMapAnswer.fromState(mockDataUploaded)
     expect(answer).toBeInstanceOf(BiosecurityMapAnswer)
-    expect(answer._data).toEqual(mockData)
+    expect(answer._data).toEqual(mockDataUploaded)
   })
 
   it('should return the correct value', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
+    const answer = new BiosecurityMapAnswer(mockDataUploaded)
     const value = answer.value
-    expect(value).toEqual({
-      metadata: {
-        uploadId: '12345',
-        uploadUrl: 'http://example.com/upload',
-        statusUrl: 'http://example.com/status'
-      },
-      status: {
-        form: {
-          crumb: 'crumb',
-          file: {}
-        },
-        metadata: {},
-        numberOfRejectedFiles: 0,
-        uploadStatus: 'initiated'
-      }
-    })
+    expect(value).toEqual(mockDataUploaded)
   })
 
   it('should return the correct HTML', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
+    const answer = new BiosecurityMapAnswer(mockDataUploaded)
     const html = answer.html
     expect(html).toBe('Map uploaded')
   })
 
   it('should return the correct HTML when skipped', () => {
-    const answer = new BiosecurityMapAnswer(mockSkippedData)
+    const answer = new BiosecurityMapAnswer(mockDataSkipped)
     const html = answer.html
     expect(html).toBe(skippedMessage)
   })
 
   it('should convert to state correctly', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
+    const answer = new BiosecurityMapAnswer(mockDataUploaded)
     const state = answer.toState()
-    expect(state).toEqual(mockData)
-  })
-
-  it('should validate correctly', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
-    const { isValid } = answer.validate()
-    expect(isValid).toBe(true)
+    expect(state).toEqual(mockDataUploaded)
   })
 
   it('should extract fields correctly', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
-    const fields = answer._extractFields(mockData)
+    const answer = new BiosecurityMapAnswer(mockDataUploaded)
+    const fields = answer._extractFields(mockDataUploaded)
     expect(fields).toEqual({
-      metadata: mockData.metadata,
-      status: mockData.status
+      metadata: mockDataUploaded.metadata,
+      status: mockDataUploaded.status
     })
   })
 
@@ -102,12 +101,55 @@ describe('BiosecurityAnswer', () => {
   })
 
   it('should identify status other than skipped correctly', () => {
-    const answer = new BiosecurityMapAnswer(mockData)
+    const answer = new BiosecurityMapAnswer(mockDataUploaded)
     expect(answer.isSkipped()).toBe(false)
   })
 
   it('should identify skipped status correctly', () => {
-    const answer = new BiosecurityMapAnswer(mockSkippedData)
+    const answer = new BiosecurityMapAnswer(mockDataSkipped)
     expect(answer.isSkipped()).toBe(true)
+  })
+
+  describe('validation', () => {
+    describe('processing validation', () => {
+      it('should pass validation for valid data', () => {
+        const answer = new BiosecurityMapAnswer(mockDataProcessing)
+        const { isValid } = answer.validateProcessing()
+        expect(isValid).toBe(true)
+      })
+
+      it('should still pass validation when file s3Key is missing after upload', () => {
+        const validData = /** @type {BiosecurityMapData} */ ({
+          ...mockDataProcessing,
+          status: {
+            ...mockDataProcessing.status,
+            uploadStatus: 'ready',
+            form: {
+              crumb: 'crumb',
+              file: {
+                // s3Key is missing
+              }
+            }
+          }
+        })
+        const answer = new BiosecurityMapAnswer(validData)
+        const { isValid } = answer.validateProcessing()
+        expect(isValid).toBe(true)
+      })
+    })
+
+    describe('standard validation', () => {
+      it('should pass validation for valid data', () => {
+        const answer = new BiosecurityMapAnswer(mockDataUploaded)
+        const { isValid } = answer.validate()
+        expect(isValid).toBe(true)
+      })
+
+      it('should fail validation when file s3Key is missing after upload', () => {
+        const answer = new BiosecurityMapAnswer(mockDataProcessing)
+        const { isValid } = answer.validate()
+        expect(isValid).toBe(false)
+      })
+    })
   })
 })

@@ -50,7 +50,7 @@ describe('#UploadPlan', () => {
   let server
   let session
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = await createServer()
     await server.initialize()
   })
@@ -77,6 +77,10 @@ describe('#UploadPlan', () => {
   beforeEach(() => {
     // Reset logger mock before each test
     mockLoggerInfo.mockClear()
+  })
+
+  afterAll(async () => {
+    await server.stop({ timeout: 0 })
   })
 
   describe('valid upload', () => {
@@ -156,6 +160,50 @@ describe('#UploadPlan', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(uploadPlanUrl)
+    })
+  })
+
+  describe('file not fully uploaded (missing s3Key)', () => {
+    beforeEach(() => {
+      mockCheckStatus.mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'ready',
+          metadata: {},
+          form: {
+            crumb: testCrumb,
+            nextPage: '',
+            file: {
+              fileId: 'file-id',
+              filename: 'file-name.jpeg',
+              contentType: 'image/jpeg',
+              fileStatus: 'complete',
+              contentLength: 374478,
+              checksumSha256: 'some-checksum',
+              detectedContentType: 'image/jpeg',
+              s3Bucket: 'apha'
+            }
+          },
+          numberOfRejectedFiles: 0
+        })
+      })
+    })
+
+    it('should redirect to the upload page', async () => {
+      const { statusCode, headers } = await server.inject({
+        method: 'GET',
+        url: checkAnswersUrl,
+        headers: {
+          Cookie: session.sessionID
+        }
+      })
+
+      expect(statusCode).toBe(statusCodes.redirect)
+      expect(headers.location).toBe(
+        `${uploadPlanUrl}?redirect_uri=${checkAnswersUrl}`
+      )
     })
   })
 
