@@ -21,6 +21,9 @@ export class SectionModelV2 extends SectionModel {
 
   /** @returns {SectionValidation} */
   validate() {
+    // this works differently than in the spikes, because I was getting relevant pages even when
+    // there were errors on pages
+    // TODO - needs a review when we come to actually implement
     const { errors } = this._data
     if (errors?.length){
       const firstPage = getFirstJourneyPage(this._data)
@@ -51,7 +54,6 @@ export class SectionModelV2 extends SectionModel {
       title: this.config.title,
       questionAnswers: questionAnswers
     }
-    // throw new NotImplementedError()
   }
 
   /** @param {string} redirectUri */

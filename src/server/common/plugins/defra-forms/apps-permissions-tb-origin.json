@@ -118,9 +118,9 @@
       "components": [
         {
           "type": "TextField",
-          "title": "What is the county parish holding (CPH) number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
+          "title": "What is the county parish holding (CPH) number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
           "name": "originCph",
-          "shortDescription": "CPH number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "shortDescription": "CPH number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
           "hint": "For example, 12/345/6789",
           "options": {
             "required": true,
