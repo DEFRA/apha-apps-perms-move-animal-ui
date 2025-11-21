@@ -18,9 +18,9 @@ describe('#next-page-redirect', () => {
   })
 
   it('should avoid percent encoding (which is our current approach)', () => {
-    const query = { redirect_uri: '/destination/address' }
+    const query = { returnUrl: '/destination/address' }
     const result = nextPageRedirect(nextPage, query)
-    expect(result).toBe(`${nextPage.urlPath}?redirect_uri=/destination/address`)
+    expect(result).toBe(`${nextPage.urlPath}?returnUrl=/destination/address`)
   })
 
   it('should return the correct URL when query params are empty', () => {

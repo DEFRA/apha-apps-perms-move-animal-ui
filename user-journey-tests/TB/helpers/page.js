@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals'
 
 export const waitForExpectedRedirectUri = async (pagePath) => {
-  const expectedQueryString = `redirect_uri=/${pagePath}`
+  const expectedQueryString = `returnUrl=/${pagePath}`
   await browser.waitUntil(
     async () => {
       const currentUrl = await browser.getUrl()
@@ -10,7 +10,7 @@ export const waitForExpectedRedirectUri = async (pagePath) => {
       return expectedQueryString === currentQueryString
     },
     {
-      timeoutMessage: `Failed to verify page redirect_uri.  Expected: "${pagePath}", but found ${await browser.getUrl()}`
+      timeoutMessage: `Failed to verify page returnUrl.  Expected: "${pagePath}", but found ${await browser.getUrl()}`
     }
   )
 }

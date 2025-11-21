@@ -14,7 +14,7 @@ import originCountryPage from '../../page-objects/origin/originCountryPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
-const redirect = `?redirect_uri=/${checkAnswersPage.pagePath}`
+const redirect = `?returnUrl=/${checkAnswersPage.pagePath}`
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'

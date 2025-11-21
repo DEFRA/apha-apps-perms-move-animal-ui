@@ -77,7 +77,7 @@ export class QuestionPageController extends GenericPageController {
       }
 
       return h.view(this.page.view, {
-        nextPage: req.query.redirect_uri,
+        nextPage: req.query.returnUrl,
         heading: this.page.heading,
         answer: errorAnswer,
         pageTitle: `Error: ${this.page.title}`,
@@ -94,7 +94,7 @@ export class QuestionPageController extends GenericPageController {
     }
 
     return h.view(this.page.view, {
-      nextPage: req.query.redirect_uri,
+      nextPage: req.query.returnUrl,
       pageTitle: this.page.title,
       heading: this.page.heading,
       value: answer.value,

@@ -8,7 +8,7 @@ import taskListPage from '../../page-objects/taskListPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 
-const redirect = `?redirect_uri=/${biosecurityAnswersPage.pagePath}`
+const redirect = `?returnUrl=/${biosecurityAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
   before('Sign in and complete answers', async () => {

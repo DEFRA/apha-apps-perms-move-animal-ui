@@ -11,7 +11,7 @@ import calvesPage from '../../page-objects/identification/calvesPage.js'
 import testingDatesPage from '../../page-objects/identification/testingDatesPage.js'
 import earTagsOver42DaysOldPage from '../../page-objects/identification/earTagsOver42DaysOldPage.js'
 
-const redirect = `?redirect_uri=/${identificationAnswersPage.pagePath}`
+const redirect = `?returnUrl=/${identificationAnswersPage.pagePath}`
 
 describe('Check your answers test - biosecurity', () => {
   before('Sign in and complete answers', async () => {

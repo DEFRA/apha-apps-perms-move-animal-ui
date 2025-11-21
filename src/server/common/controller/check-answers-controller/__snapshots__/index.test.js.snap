@@ -21,7 +21,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       On to the farm or premises
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/to-or-from-own-premises?redirect_uri=/tb/submit/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
+      <a class="govuk-link" href="/origin/to-or-from-own-premises?returnUrl=/tb/submit/check-answers" data-testid="onOffFarm-change-link">Change<span class="govuk-visually-hidden"> Are you moving the animals on or off your farm or premises?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -32,7 +32,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       TB restricted farm
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/type-of-origin?redirect_uri=/tb/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
+      <a class="govuk-link" href="/origin/type-of-origin?returnUrl=/tb/submit/check-answers" data-testid="originType-change-link">Change<span class="govuk-visually-hidden"> Which type of premises are the animals moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -43,7 +43,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       12/345/6789
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/origin-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/origin-farm-cph?returnUrl=/tb/submit/check-answers" data-testid="cphNumber-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -54,7 +54,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Starfleet Headquarters<br>San Francisco<br>RG24 8RR
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/origin/origin-farm-address?redirect_uri=/tb/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are moving off?</span></a>
+      <a class="govuk-link" href="/origin/origin-farm-address?returnUrl=/tb/submit/check-answers" data-testid="address-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are moving off?</span></a>
     </dd>
   </div>
 </dl>
@@ -70,7 +70,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       TB restricted farm
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/type-of-destination?redirect_uri=/tb/submit/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
+      <a class="govuk-link" href="/destination/type-of-destination?returnUrl=/tb/submit/check-answers" data-testid="destinationType-change-link">Change<span class="govuk-visually-hidden"> Where are the animals going to?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -81,7 +81,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       12/345/6789
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/destination-farm-cph?redirect_uri=/tb/submit/check-answers" data-testid="destinationFarmCph-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are going to?</span></a>
+      <a class="govuk-link" href="/destination/destination-farm-cph?returnUrl=/tb/submit/check-answers" data-testid="destinationFarmCph-change-link">Change<span class="govuk-visually-hidden"> What is the county parish holding (CPH) number of the farm or premises where the animals are going to?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -92,7 +92,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Starfleet Headquarters<br>San Francisco<br>RG24 8RR
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/destination-farm-address?redirect_uri=/tb/submit/check-answers" data-testid="destinationFarmAddress-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are going to?</span></a>
+      <a class="govuk-link" href="/destination/destination-farm-address?returnUrl=/tb/submit/check-answers" data-testid="destinationFarmAddress-change-link">Change<span class="govuk-visually-hidden"> What is the address of the farm or premises where the animals are going to?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -103,7 +103,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       1
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/how-many-animals?redirect_uri=/tb/submit/check-answers" data-testid="howManyAnimals-change-link">Change<span class="govuk-visually-hidden"> How many animals are you planning to move?</span></a>
+      <a class="govuk-link" href="/destination/how-many-animals?returnUrl=/tb/submit/check-answers" data-testid="howManyAnimals-change-link">Change<span class="govuk-visually-hidden"> How many animals are you planning to move?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -114,7 +114,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Welfare
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/reason-for-movement?redirect_uri=/tb/submit/check-answers" data-testid="reasonForMovement-change-link">Change<span class="govuk-visually-hidden"> What is the reason for the movement?</span></a>
+      <a class="govuk-link" href="/destination/reason-for-movement?returnUrl=/tb/submit/check-answers" data-testid="reasonForMovement-change-link">Change<span class="govuk-visually-hidden"> What is the reason for the movement?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -125,7 +125,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/destination/any-additional-info?redirect_uri=/tb/submit/check-answers" data-testid="additionalInfo-change-link">Change<span class="govuk-visually-hidden"> Enter any additional information (optional)</span></a>
+      <a class="govuk-link" href="/destination/any-additional-info?returnUrl=/tb/submit/check-answers" data-testid="additionalInfo-change-link">Change<span class="govuk-visually-hidden"> Enter any additional information (optional)</span></a>
     </dd>
   </div>
 </dl>
@@ -141,7 +141,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Kathryn Janeway
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-name?redirect_uri=/tb/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the person registered as the keeper of the animals?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-name?returnUrl=/tb/submit/check-answers" data-testid="fullName-change-link">Change<span class="govuk-visually-hidden"> What is the name of the person registered as the keeper of the animals?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -152,7 +152,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       kathryn@starfleet.com
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?redirect_uri=/tb/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?returnUrl=/tb/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
     </dd>
   </div>
 </dl>
@@ -168,7 +168,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       No
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/any-calves?redirect_uri=/tb/submit/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
+      <a class="govuk-link" href="/identification/any-calves?returnUrl=/tb/submit/check-answers" data-testid="calvesUnder42DaysOld-change-link">Change<span class="govuk-visually-hidden"> Will you move any calves under 42 days old?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -179,7 +179,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       01/01/2025
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-testing-dates?redirect_uri=/tb/submit/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the animals that are 42 days old or older?</span></a>
+      <a class="govuk-link" href="/identification/enter-testing-dates?returnUrl=/tb/submit/check-answers" data-testid="testingDates-change-link">Change<span class="govuk-visually-hidden"> What are the dates of the last TB tests for the animals that are 42 days old or older?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -190,7 +190,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       123456
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/identification/enter-ear-tags-over-42-days?redirect_uri=/tb/submit/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
+      <a class="govuk-link" href="/identification/enter-ear-tags-over-42-days?returnUrl=/tb/submit/check-answers" data-testid="earTags-change-link">Change<span class="govuk-visually-hidden"> Enter the ear tag numbers for these animals</span></a>
     </dd>
   </div>
 </dl>
@@ -206,7 +206,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/kept-separately?redirect_uri=/tb/submit/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming animals from the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/kept-separately?returnUrl=/tb/submit/check-answers" data-testid="keptSeparately-change-link">Change<span class="govuk-visually-hidden"> Will you separate the incoming animals from the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -217,7 +217,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing?redirect_uri=/tb/submit/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be grazed?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing?returnUrl=/tb/submit/check-answers" data-testid="grazing-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be grazed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -228,7 +228,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       yesterday
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/last-grazed?redirect_uri=/tb/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/last-grazed?returnUrl=/tb/submit/check-answers" data-testid="lastGrazed-change-link">Change<span class="govuk-visually-hidden"> How long ago was the field last grazed by the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -239,7 +239,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/manure-and-slurry?redirect_uri=/tb/submit/check-answers" data-testid="manureAndSlurry-change-link">Change<span class="govuk-visually-hidden"> Has any manure or slurry been put on the grazing field in the past 60 days?</span></a>
+      <a class="govuk-link" href="/biosecurity/manure-and-slurry?returnUrl=/tb/submit/check-answers" data-testid="manureAndSlurry-change-link">Change<span class="govuk-visually-hidden"> Has any manure or slurry been put on the grazing field in the past 60 days?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -250,7 +250,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       A minimum of 3 metres will separate the animals
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?redirect_uri=/tb/submit/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB when the animals are grazing?</span></a>
+      <a class="govuk-link" href="/biosecurity/grazing-field-how-separated?returnUrl=/tb/submit/check-answers" data-testid="grazingFieldHowSeparated-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB when the animals are grazing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -261,7 +261,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Manure and slurry is securely stored so domestic and wild animals can't access it
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/manure-and-slurry-details?redirect_uri=/tb/submit/check-answers" data-testid="manureAndSlurryDetails-change-link">Change<span class="govuk-visually-hidden"> How will you manage slurry and manure?</span></a>
+      <a class="govuk-link" href="/biosecurity/manure-and-slurry-details?returnUrl=/tb/submit/check-answers" data-testid="manureAndSlurryDetails-change-link">Change<span class="govuk-visually-hidden"> How will you manage slurry and manure?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -272,7 +272,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       some disinfectant
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/disinfectant?redirect_uri=/tb/submit/check-answers" data-testid="disinfectant-change-link">Change<span class="govuk-visually-hidden"> What disinfectant are you using?</span></a>
+      <a class="govuk-link" href="/biosecurity/disinfectant?returnUrl=/tb/submit/check-answers" data-testid="disinfectant-change-link">Change<span class="govuk-visually-hidden"> What disinfectant are you using?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -283,7 +283,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       I confirm a dilution rate of 1:15 is used on the farm or premises
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/disinfectant-dilution?redirect_uri=/tb/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> Confirmation of the dilution rate</span></a>
+      <a class="govuk-link" href="/biosecurity/disinfectant-dilution?returnUrl=/tb/submit/check-answers" data-testid="dilutionRate-change-link">Change<span class="govuk-visually-hidden"> Confirmation of the dilution rate</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -294,7 +294,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals share any equipment and machinery with the resident herd?</span></a>
+      <a class="govuk-link" href="/biosecurity/equipment-any-shared?returnUrl=/tb/submit/check-answers" data-testid="equipmentShared-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals share any equipment and machinery with the resident herd?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -305,7 +305,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Designated disinfection points
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/equipment-how-minimise-contamination?redirect_uri=/tb/submit/check-answers" data-testid="equipmentHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?</span></a>
+      <a class="govuk-link" href="/biosecurity/equipment-how-minimise-contamination?returnUrl=/tb/submit/check-answers" data-testid="equipmentHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -316,7 +316,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Yes
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-any-shared?redirect_uri=/tb/submit/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be housed?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-any-shared?returnUrl=/tb/submit/check-answers" data-testid="animalsHoused-change-link">Change<span class="govuk-visually-hidden"> Will the incoming animals be housed?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -327,7 +327,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Isolation of incoming animals in a separate building, shed or pen on arrival
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?redirect_uri=/tb/submit/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB during housing?</span></a>
+      <a class="govuk-link" href="/biosecurity/buildings-how-minimise-contamination?returnUrl=/tb/submit/check-answers" data-testid="buildingsHowMinimiseContamination-change-link">Change<span class="govuk-visually-hidden"> Which measures are being taken to reduce the spread of TB during housing?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -338,7 +338,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Dedicated clothing and personal protective equipment (PPE)
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/people-disinfection?redirect_uri=/tb/submit/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> Which measures are staff taking to reduce the risk of spreading TB?</span></a>
+      <a class="govuk-link" href="/biosecurity/people-disinfection?returnUrl=/tb/submit/check-answers" data-testid="peopleDisinfection-change-link">Change<span class="govuk-visually-hidden"> Which measures are staff taking to reduce the risk of spreading TB?</span></a>
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -349,7 +349,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity/badgers?redirect_uri=/tb/submit/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> Which measures are you taking to reduce the risk of infection from wildlife?</span></a>
+      <a class="govuk-link" href="/biosecurity/badgers?returnUrl=/tb/submit/check-answers" data-testid="badgers-change-link">Change<span class="govuk-visually-hidden"> Which measures are you taking to reduce the risk of infection from wildlife?</span></a>
     </dd>
   </div>
 </dl>
@@ -365,7 +365,7 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
       Map uploaded
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/biosecurity-map/upload-plan?redirect_uri=/tb/submit/check-answers" data-testid="upload-plan-change-link">Change<span class="govuk-visually-hidden"> Upload a biosecurity map</span></a>
+      <a class="govuk-link" href="/biosecurity-map/upload-plan?returnUrl=/tb/submit/check-answers" data-testid="upload-plan-change-link">Change<span class="govuk-visually-hidden"> Upload a biosecurity map</span></a>
     </dd>
   </div>
 </dl>

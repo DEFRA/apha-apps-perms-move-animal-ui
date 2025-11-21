@@ -202,7 +202,7 @@ describe('#UploadPlan', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(
-        `${uploadPlanUrl}?redirect_uri=${checkAnswersUrl}`
+        `${uploadPlanUrl}?returnUrl=${checkAnswersUrl}`
       )
     })
   })

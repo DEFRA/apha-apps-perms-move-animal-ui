@@ -92,7 +92,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/to-or-from-own-premises?redirect_uri=/origin/check-answers'
+        '/origin/to-or-from-own-premises?returnUrl=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -116,7 +116,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/address?redirect_uri=/origin/check-answers'
+        '/origin/address?returnUrl=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })
@@ -140,7 +140,7 @@ describe('#originSummaryController', () => {
       )
 
       expect(headers.location).toBe(
-        '/origin/cph-number?redirect_uri=/origin/check-answers'
+        '/origin/cph-number?returnUrl=/origin/check-answers'
       )
       expect(statusCode).toBe(statusCodes.redirect)
     })

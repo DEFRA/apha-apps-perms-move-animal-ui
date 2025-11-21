@@ -7,7 +7,7 @@ export const sectionToSummary = (section, redirectUri) => {
     .map(({ page, answer }) => ({
       key: page.question,
       value: answer.html,
-      url: `${page.urlPath}?redirect_uri=${redirectUri}`,
+      url: `${page.urlPath}?returnUrl=${redirectUri}`,
       visuallyHiddenKey: page.question,
       attributes: {
         'data-testid': `${page.questionKey}-change-link`
