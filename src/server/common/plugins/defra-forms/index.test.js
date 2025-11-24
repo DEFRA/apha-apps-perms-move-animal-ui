@@ -37,7 +37,7 @@ describe('defra-forms plugin', () => {
 
       it('should throw error when id does not match', () => {
         expect(() =>
-          services.formsService.getFormMetadata('unknown-id')
+          services.formsService.getFormDefinition('unknown-id')
         ).toThrow("Form 'unknown-id' not found")
       })
     })
