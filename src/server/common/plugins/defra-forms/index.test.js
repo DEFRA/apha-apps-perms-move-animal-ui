@@ -30,16 +30,13 @@ describe('defra-forms plugin', () => {
     })
 
     describe('getFormDefinition', () => {
-      it('should return tb-origin journey definition when id matches', async () => {
-        const result = await services.formsService.getFormDefinition(
-          originDetails.id
-        )
-
+      it('should return tb-origin journey definition when id matches', () => {
+        const result = services.formsService.getFormDefinition(originDetails.id)
         expect(result.name).toBe(originDetails.name)
       })
 
-      it('should throw error when id does not match', async () => {
-        await expect(
+      it('should throw error when id does not match', () => {
+        expect(
           services.formsService.getFormDefinition('unknown-id')
         ).rejects.toThrow("Form 'unknown-id' not found")
       })

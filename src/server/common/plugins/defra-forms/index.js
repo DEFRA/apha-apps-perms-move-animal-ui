@@ -43,10 +43,10 @@ const formsService = {
   },
 
   /** @param {string} id */
-  getFormDefinition: async function (id) {
+  getFormDefinition: function (id) {
     switch (id) {
       case tbOriginJourney.id:
-        return Promise.resolve(tbOriginJourneyDefinition)
+        return tbOriginJourneyDefinition
       default:
         throw Boom.notFound(`Form '${id}' not found`)
     }
