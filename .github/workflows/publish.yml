@@ -12,7 +12,7 @@ permissions:
 
 env:
   AWS_REGION: eu-west-2
-  AWS_ACCOUNT_ID: '094954420758'
+  AWS_ACCOUNT_ID: "094954420758"
 
 concurrency:
   group: publish-main
@@ -25,7 +25,7 @@ jobs:
       GATEWAY_ID: ${{ secrets.GATEWAY_ID }}
       GATEWAY_PASSWORD: ${{ secrets.GATEWAY_PASSWORD }}
       DEFRA_ID_ENABLED: false
-      
+
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
@@ -34,7 +34,7 @@ jobs:
       - name: Create Test Coverage Reports
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: |
           npm ci
           npm audit --omit=dev
