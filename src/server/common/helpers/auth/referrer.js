@@ -15,6 +15,7 @@ export const storeReferrer = (request, value) => {
  * @returns string
  */
 export const retrieveReferrer = (request) => {
+  // @ts-ignore - yar.flash type definition issue
   const value = request.yar.flash(key)
 
   if (typeof value === 'string') {
