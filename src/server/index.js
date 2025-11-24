@@ -14,6 +14,7 @@ import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
 import { disableClientCache } from './common/helpers/client-cache.js/client-cache.js'
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
+import { defraFormsPlugin } from './common/plugins/defra-forms/index.js'
 
 export async function createServer() {
   const server = hapi.server({
@@ -60,6 +61,10 @@ export async function createServer() {
     csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js
   ])
+
+  if (config.get('featureFlags').defraFormsEnabled) {
+    await server.register(defraFormsPlugin)
+  }
 
   server.ext('onRequest', addUUIDToRequest)
   server.ext('onPreResponse', disableClientCache)

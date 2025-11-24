@@ -1,26 +1,12 @@
+import baseConfig from './base.js'
+
 /**
  * @type {Config}
  */
 export default {
+  ...baseConfig,
   displayName: 'fmd',
-  rootDir: '..',
-  verbose: true,
-  resetModules: true,
-  clearMocks: true,
-  silent: false,
-  testMatch: ['**/src/server/fmd/**/*.test.js'],
-  reporters: ['default', ['github-actions', { silent: false }], 'summary'],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
-  collectCoverageFrom: ['src/**/*.js'],
-  modulePathIgnorePatterns: ['<rootDir>/.server'],
-  coveragePathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-    '<rootDir>/.server',
-    '<rootDir>/.public',
-    '<rootDir>/src/server/common/test-helpers',
-    '<rootDir>/src/client/javascripts'
-  ],
-  coverageDirectory: '<rootDir>/coverage'
+  testMatch: ['**/src/server/fmd/**/*.test.js']
 }
 
 /**
