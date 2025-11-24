@@ -1,8 +1,8 @@
 import Boom from '@hapi/boom'
-import { readFileSync } from 'fs'
-import { fileURLToPath } from 'url'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { config } from '~/src/config/config.js'
-import path from 'path'
+import path from 'node:path'
 import { context } from '~/src/config/nunjucks/context/context.js'
 import defraForms from '@defra/forms-engine-plugin'
 
