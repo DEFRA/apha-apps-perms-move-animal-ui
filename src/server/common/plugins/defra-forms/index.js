@@ -1,9 +1,18 @@
 import Boom from '@hapi/boom'
-import tbOriginJourneyDefinition from './apps-permissions-tb-origin.json' with { type: 'json' }
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
 import { config } from '~/src/config/config.js'
 import path from 'path'
 import { context } from '~/src/config/nunjucks/context/context.js'
 import defraForms from '@defra/forms-engine-plugin'
+
+// Read the journey definitions this way as otherwise we get
+// SyntaxError: Unexpected identifier 'type'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const tbOriginJourneyDefinition = JSON.parse(
+  readFileSync(path.join(__dirname, 'apps-permissions-tb-origin.json'), 'utf-8')
+)
 
 const now = new Date()
 const user = {
@@ -71,12 +80,9 @@ export const pluginOptions = {
   cache: config.get('session').cache.name,
   nunjucks: {
     paths: [
-      path.resolve(config.get('root'), './src/server/common/templates/layouts'),
-      path.resolve(
-        config.get('root'),
-        './src/server/common/templates/partials'
-      ),
-      path.resolve(config.get('root'), './src/server/common/components')
+      path.resolve(__dirname, '../../templates/layouts'),
+      path.resolve(__dirname, '../../templates/partials'),
+      path.resolve(__dirname, '../../components')
     ],
     baseLayoutPath: 'page.njk'
   },
