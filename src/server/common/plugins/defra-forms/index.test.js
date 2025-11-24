@@ -17,10 +17,8 @@ const originDetails = {
 describe('defra-forms plugin', () => {
   describe('formsService', () => {
     describe('getFormMetadata', () => {
-      it('should return tb-origin journey metadata when slug matches', async () => {
-        const result = await services.formsService.getFormMetadata(
-          originDetails.slug
-        )
+      it('should return tb-origin journey metadata when slug matches', () => {
+        const result = services.formsService.getFormMetadata(originDetails.slug)
         expect(result.id).toEqual(originDetails.id)
       })
 
