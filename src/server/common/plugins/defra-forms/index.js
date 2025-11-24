@@ -36,7 +36,7 @@ const formsService = {
   getFormMetadata: function (slug) {
     switch (slug) {
       case tbOriginJourney.slug:
-        return Promise.resolve(tbOriginJourney)
+        return tbOriginJourney
       default:
         throw Boom.notFound(`Form '${slug}' not found`)
     }
