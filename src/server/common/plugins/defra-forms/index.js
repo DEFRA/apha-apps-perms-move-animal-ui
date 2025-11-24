@@ -54,11 +54,14 @@ const formsService = {
 }
 
 const formSubmissionService = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async persistFiles() {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async submit() {}
 }
 
 const outputService = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async submit() {}
 }
 
