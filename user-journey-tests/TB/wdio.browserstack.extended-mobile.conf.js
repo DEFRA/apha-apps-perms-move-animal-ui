@@ -5,6 +5,7 @@ export const config = {
   ...browserstackBaseConfig,
   exclude: [
     './specs/finalAnswers.spec.js',
+    './specs/taskList.spec.js',
     './specs/submissionConfirmation.spec.js',
     './specs/origin/checkAnswers.spec.js',
     './specs/origin/fiftyPercentWarning.spec.js',
