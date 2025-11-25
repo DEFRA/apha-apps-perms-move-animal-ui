@@ -1,0 +1,387 @@
+{
+  "name": "Apps & Permissions - TB / Origin",
+  "engine": "V2",
+  "schema": 2,
+  "startPage": "/summary",
+  "pages": [
+    {
+      "title": "",
+      "path": "/are-you-moving-the-animals-on-or-off-your-farm-or-premises",
+      "components": [
+        {
+          "type": "RadiosField",
+          "title": "Are you moving the animals on or off your farm or premises?",
+          "name": "WXMCWR",
+          "shortDescription": "Where the animals are moving",
+          "hint": "",
+          "list": "34cbb207-0e7b-46ba-9a40-476215efd7f9",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "cbab3d5a-be05-4804-96ec-04e336f1bca3"
+        }
+      ],
+      "next": [],
+      "id": "4a28b676-1b07-415a-9de5-7a66b5de64f5"
+    },
+    {
+      "title": "",
+      "path": "/which-type-of-premises-are-the-animals-moving-off",
+      "components": [
+        {
+          "type": "RadiosField",
+          "title": "Which type of premises are the animals moving off?",
+          "name": "piUGWd",
+          "shortDescription": "Type of premises the animals are moving off",
+          "hint": "",
+          "list": "2ac86809-1509-4968-a3f4-3a27ff296bfb",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8"
+        }
+      ],
+      "next": [],
+      "id": "99a09da0-1b06-4eec-bbea-642431ec7c46"
+    },
+    {
+      "title": "You need to contact the TB restricted farm the animals are moving onto",
+      "controller": "TerminalPageController",
+      "path": "/you-need-to-contact-the-tb-restricted-farm-the-animals-are-moving-onto",
+      "components": [
+        {
+          "type": "Markdown",
+          "content": "When animals are moving onto a TB restricted farm, it is the responsibility of the TB restricted farm to apply for a licence.\r\n\r\nWe need details about their biosecurity practices to process the licence.",
+          "options": {},
+          "schema": {},
+          "name": "fNEhxt",
+          "id": "b4d5a93f-e05b-4f0d-ab6b-a098b0cf434f"
+        }
+      ],
+      "next": [],
+      "id": "16f622a5-d4e0-482f-8a39-0586b72d916e",
+      "condition": "aa30d162-471f-4027-ad56-8356cec4581e"
+    },
+    {
+      "title": "",
+      "path": "/what-type-of-premises-with-tb-restrictions-are-the-animals-moving-off",
+      "components": [
+        {
+          "type": "TextField",
+          "title": "What type of premises with TB restrictions are the animals moving off?",
+          "name": "eOplbg",
+          "shortDescription": "Type of premises with TB restrictions are the animals moving off",
+          "hint": "",
+          "options": {
+            "required": true,
+            "classes": "govuk-input--width-20"
+          },
+          "schema": {
+            "max": 5000
+          },
+          "id": "94304992-0416-47d3-b0fc-1c14ac96bb67"
+        }
+      ],
+      "next": [],
+      "id": "35cb8e62-74cf-45e1-95e1-f3d0e3f836cf",
+      "condition": "e64fbf17-37e1-457b-bf11-fa5ef9f91e51"
+    },
+    {
+      "title": "",
+      "path": "/which-country-are-the-animals-coming-from",
+      "components": [
+        {
+          "type": "TextField",
+          "title": "Which country are the animals coming from?",
+          "name": "phTQSz",
+          "shortDescription": "Country the animals are coming from",
+          "hint": "",
+          "options": {
+            "required": true,
+            "classes": "govuk-input--width-20"
+          },
+          "schema": {
+            "max": 255
+          },
+          "id": "2b950512-be0b-4c65-9048-bf97cf2abfb1"
+        }
+      ],
+      "next": [],
+      "id": "46bc53b4-1d70-4f12-9aa3-7762ec8bf55d",
+      "condition": "c525f927-1cd2-45ad-a477-ac47a3c44043"
+    },
+    {
+      "title": "",
+      "path": "/what-is-the-county-parish-holding-cph-number-of-where-the-animals-are-moving-off",
+      "components": [
+        {
+          "type": "TextField",
+          "title": "What is the county parish holding (CPH) number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
+          "name": "ASpXiy",
+          "shortDescription": "CPH number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "hint": "For example, 12/345/6789",
+          "options": {
+            "required": true,
+            "classes": "govuk-input--width-10"
+          },
+          "schema": {
+            "max": 11,
+            "regex": "^(\\d{2})\\/(\\d{3})\\/(\\d{4})"
+          },
+          "id": "ad9fe74e-aac7-4df5-bb9a-2e4fac60a039"
+        }
+      ],
+      "next": [],
+      "id": "b0950858-4ded-40aa-93e0-e20a2a0d35f2",
+      "condition": "25b7e4da-195d-43f5-853b-02f7eae3d54d"
+    },
+    {
+      "title": "",
+      "path": "/what-is-the-address-where-the-animals-are-moving-off",
+      "components": [
+        {
+          "type": "UkAddressField",
+          "title": "What is the address of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
+          "name": "aXNasy",
+          "shortDescription": "Address of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "hint": "",
+          "options": {
+            "required": true
+          },
+          "schema": {},
+          "id": "e4d83312-3575-474d-a6f3-2c540cc44bb2"
+        }
+      ],
+      "next": [],
+      "id": "8c0c0887-adb7-4397-bce5-cef85d07dff7",
+      "condition": "25b7e4da-195d-43f5-853b-02f7eae3d54d"
+    },
+    {
+      "title": "Reduction in TB compensation",
+      "path": "/reduction-in-tb-compensation",
+      "components": [
+        {
+          "type": "Markdown",
+          "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n* the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation) (opens in new tab).",
+          "options": {},
+          "schema": {},
+          "name": "qzlqWe",
+          "id": "9f7ad77c-b461-452f-b370-0c869809b308"
+        }
+      ],
+      "next": [],
+      "id": "2b8d3d87-df19-4690-9ba9-2a6b4e01683b",
+      "condition": "a6cc6d31-93d0-4e50-b63c-8851cfe70d84"
+    },
+    {
+      "id": "449a45f6-4541-4a46-91bd-8b8931b07b50",
+      "title": "Summary",
+      "path": "/summary",
+      "controller": "SummaryPageController",
+      "next": []
+    }
+  ],
+  "conditions": [
+    {
+      "items": [
+        {
+          "id": "044cae2e-ae2e-4b8a-8518-e7585b7df9dc",
+          "componentId": "cbab3d5a-be05-4804-96ec-04e336f1bca3",
+          "operator": "is",
+          "value": {
+            "itemId": "922b5adb-c38f-4ba8-b989-eeb9480a572e",
+            "listId": "34cbb207-0e7b-46ba-9a40-476215efd7f9"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Movement on premises",
+      "id": "a6cc6d31-93d0-4e50-b63c-8851cfe70d84"
+    },
+    {
+      "items": [
+        {
+          "id": "095c361e-fca8-4fb1-983e-e76bd91aaeed",
+          "componentId": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8",
+          "operator": "is",
+          "value": {
+            "itemId": "9dde9d47-a06f-430e-96f6-f60aad6c0ba3",
+            "listId": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "after import location",
+      "id": "c525f927-1cd2-45ad-a477-ac47a3c44043"
+    },
+    {
+      "items": [
+        {
+          "id": "04468acc-2a3b-4046-8a3a-3b4ebc0ac55e",
+          "componentId": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8",
+          "operator": "is not",
+          "value": {
+            "itemId": "9dde9d47-a06f-430e-96f6-f60aad6c0ba3",
+            "listId": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Not location after animals have been imported",
+      "id": "7cfa15ed-0fdb-427d-95af-8d3cd9614da5"
+    },
+    {
+      "id": "3aa1f132-66bb-4384-958c-1b5430987c86",
+      "displayName": "Not location after animals have been imported AND Not unrestricted farms or markets",
+      "coordinator": "and",
+      "items": [
+        {
+          "id": "c0d8e6e7-c5b4-46df-a435-b3acb14e0fff",
+          "conditionId": "7cfa15ed-0fdb-427d-95af-8d3cd9614da5"
+        },
+        {
+          "id": "9ae87bbc-3ea0-4b8a-ac2c-298265ab7907",
+          "conditionId": "25b7e4da-195d-43f5-853b-02f7eae3d54d"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "id": "7282e8e2-542a-407a-b7d4-33f6c4ec13d5",
+          "componentId": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8",
+          "operator": "is",
+          "value": {
+            "itemId": "65505a10-badf-4276-b648-93cf007c76fe",
+            "listId": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "another TB restricted origin",
+      "id": "e64fbf17-37e1-457b-bf11-fa5ef9f91e51"
+    },
+    {
+      "items": [
+        {
+          "id": "606db115-9a1a-4f59-b5ea-55ab9e7921f0",
+          "componentId": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8",
+          "operator": "is",
+          "value": {
+            "itemId": "7bf01205-9847-44a6-8e5a-2ba8c976701e",
+            "listId": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "unrestricted farm or premises",
+      "id": "aa30d162-471f-4027-ad56-8356cec4581e"
+    },
+    {
+      "items": [
+        {
+          "id": "5eba11e0-4c87-403f-8838-08967e7304d8",
+          "componentId": "5268e4a3-e1d2-43df-9f61-aca951fbf9c8",
+          "operator": "is not",
+          "value": {
+            "itemId": "904abec0-7e75-4dc4-b644-12d5e91774fa",
+            "listId": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Not unrestricted farms or markets",
+      "id": "25b7e4da-195d-43f5-853b-02f7eae3d54d"
+    },
+    {
+      "items": [
+        {
+          "id": "02180721-37e9-4b31-9283-ad0c424787e8",
+          "componentId": "cbab3d5a-be05-4804-96ec-04e336f1bca3",
+          "operator": "is",
+          "value": {
+            "itemId": "f8c7be4d-fb75-4088-804b-39072b6a99cb",
+            "listId": "34cbb207-0e7b-46ba-9a40-476215efd7f9"
+          },
+          "type": "ListItemRef"
+        }
+      ],
+      "displayName": "Movement off premises",
+      "id": "55d1f82a-0ba2-4b59-b4b0-ecacc812dcaa"
+    }
+  ],
+  "sections": [],
+  "lists": [
+    {
+      "name": "IDSVET",
+      "title": "List for question WXMCWR",
+      "type": "string",
+      "items": [
+        {
+          "id": "922b5adb-c38f-4ba8-b989-eeb9480a572e",
+          "text": "On to the farm or premises",
+          "value": "on"
+        },
+        {
+          "id": "f8c7be4d-fb75-4088-804b-39072b6a99cb",
+          "text": "Off the farm or premises",
+          "value": "off"
+        }
+      ],
+      "id": "34cbb207-0e7b-46ba-9a40-476215efd7f9"
+    },
+    {
+      "name": "dKWzfm",
+      "title": "List for question piUGWd",
+      "type": "string",
+      "items": [
+        {
+          "id": "904abec0-7e75-4dc4-b644-12d5e91774fa",
+          "text": "Unrestricted farms and markets",
+          "value": "unrestricted-farms-or-markets",
+          "condition": "a6cc6d31-93d0-4e50-b63c-8851cfe70d84"
+        },
+        {
+          "id": "aab41200-0ee3-44c9-845e-4997f9587543",
+          "text": "TB restricted farm",
+          "value": "tb-restricted-farm"
+        },
+        {
+          "id": "5098771b-4798-40de-b246-654fb6216c40",
+          "text": "Approved finishing unit (AFU)",
+          "value": "afu",
+          "hint": {
+            "text": "Including enhanced with grazing (AFUE)",
+            "id": "16097660-694e-4ac6-be3e-f5abebd0f299"
+          }
+        },
+        {
+          "id": "7bf01205-9847-44a6-8e5a-2ba8c976701e",
+          "text": "Unrestricted farm or premises",
+          "value": "unrestricted-farm",
+          "condition": "55d1f82a-0ba2-4b59-b4b0-ecacc812dcaa"
+        },
+        {
+          "id": "43f8fbe6-9c2d-4d31-9b5b-f4ef744dac5c",
+          "text": "TB isolation unit",
+          "value": "iso-unit",
+          "condition": "55d1f82a-0ba2-4b59-b4b0-ecacc812dcaa"
+        },
+        {
+          "id": "9dde9d47-a06f-430e-96f6-f60aad6c0ba3",
+          "text": "Location after animals have been imported",
+          "value": "after-import-location",
+          "condition": "a6cc6d31-93d0-4e50-b63c-8851cfe70d84"
+        },
+        {
+          "id": "65505a10-badf-4276-b648-93cf007c76fe",
+          "text": "Another TB restricted origin",
+          "value": "other"
+        }
+      ],
+      "id": "2ac86809-1509-4968-a3f4-3a27ff296bfb"
+    }
+  ]
+}

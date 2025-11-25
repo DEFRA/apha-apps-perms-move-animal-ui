@@ -1,28 +1,17 @@
+import baseConfig from './base.js'
+
 /**
  * @type {Config}
  */
 export default {
+  ...baseConfig,
   displayName: 'core',
-  rootDir: '..',
-  resetModules: true,
-  clearMocks: true,
   testMatch: ['**/src/**/*.test.js', '**/user-journey-tests/config/*.test.js'],
   testPathIgnorePatterns: [
     'src/server/tb/*',
     'src/server/fmd/*',
     'src/server/exotics/*'
-  ],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup.js'],
-  collectCoverageFrom: ['src/**/*.js'],
-  modulePathIgnorePatterns: ['<rootDir>/.server'],
-  coveragePathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-    '<rootDir>/.server',
-    '<rootDir>/.public',
-    '<rootDir>/src/server/common/test-helpers',
-    '<rootDir>/src/client/javascripts'
-  ],
-  coverageDirectory: '<rootDir>/coverage'
+  ]
 }
 
 /**

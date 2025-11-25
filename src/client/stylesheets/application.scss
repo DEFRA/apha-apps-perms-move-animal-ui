@@ -1,13 +1,15 @@
-$govuk-assets-path: "/public/assets/";
+@use 'pkg:@defra/forms-engine-plugin';
+
+$govuk-assets-path: '/public/assets/';
 $govuk-new-organisation-colours: true;
 $govuk-global-styles: true;
 
-@import "pkg:govuk-frontend";
-@import "accessible-autocomplete";
+@import 'pkg:govuk-frontend';
+@import 'accessible-autocomplete';
 
-@import "variables/all";
-@import "helpers/all";
-@import "core/all";
-@import "components/all";
-@import "partials/all";
+@import 'variables/all';
+@import 'helpers/all';
+@import 'core/all';
+@import 'components/all';
+@import 'partials/all';
 @import './apha';

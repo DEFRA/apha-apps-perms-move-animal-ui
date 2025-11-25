@@ -1,0 +1,5 @@
+# Ignore expr-eval-fork vulnerability in @defra/forms-engine-plugin
+# This is a transitive dependency we cannot control directly
+# Tracking: https://github.com/advisories/GHSA-jc85-fpwf-qm7x
+# Advisory ID: 1109880
+1109880

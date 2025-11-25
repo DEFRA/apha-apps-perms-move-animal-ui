@@ -304,6 +304,12 @@ export const config = convict({
       format: Boolean,
       default: false,
       env: 'PROTOTYPE_MODE_ENABLED'
+    },
+    defraFormsEnabled: {
+      doc: 'Feature flag to enable DEFRA forms integration',
+      format: Boolean,
+      default: !isProduction,
+      env: 'DEFRA_FORMS_ENABLED'
     }
   },
   caseManagementApi: {
