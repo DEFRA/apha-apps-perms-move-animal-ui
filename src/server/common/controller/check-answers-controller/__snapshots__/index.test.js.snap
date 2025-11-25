@@ -146,6 +146,17 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is your name?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Jean-Luc Picard
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/your-name?returnUrl=/tb/submit/check-answers" data-testid="yourName-change-link">Change<span class="govuk-visually-hidden"> What is your name?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
       What email address would you like the licence sent to?
     </dt>
     <dd class="govuk-summary-list__value">
