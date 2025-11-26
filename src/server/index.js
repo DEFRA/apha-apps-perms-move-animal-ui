@@ -15,11 +15,13 @@ import { disableClientCache } from './common/helpers/client-cache.js/client-cach
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
 import { defraFormsPlugin } from './common/plugins/defra-forms/index.js'
+import { getAuthOptions } from './common/helpers/auth/toggles-helper.js'
 
 export async function createServer() {
   const server = hapi.server({
     port: config.get('port'),
     routes: {
+      ...getAuthOptions(), // Added by default to all route options to cover Defra Forms routes
       validate: {
         options: {
           abortEarly: false
