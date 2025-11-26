@@ -94,7 +94,11 @@ describe('SectionSummaryPageController', () => {
     beforeEach(() => {
       controller = {
         ...controller,
-        buildViewModel: SectionSummaryPageController.prototype.buildViewModel,
+        buildViewModel: (context) =>
+          SectionSummaryPageController.prototype.buildViewModel.call(
+            controller,
+            context
+          ),
         pageDef: jest.fn().mockReturnValue({ title: 'Page Title' }),
         buildSummaryListRows: jest
           .fn()
@@ -155,8 +159,11 @@ describe('SectionSummaryPageController', () => {
 
   describe('buildSummaryListRows', () => {
     beforeEach(() => {
-      controller.buildSummaryListRows =
-        SectionSummaryPageController.prototype.buildSummaryListRows
+      controller.buildSummaryListRows = (context) =>
+        SectionSummaryPageController.prototype.buildSummaryListRows.call(
+          controller,
+          context
+        )
 
       controller.getSummaryPath = jest.fn().mockReturnValue('/summary')
     })
