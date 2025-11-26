@@ -11,7 +11,7 @@
         {
           "type": "RadiosField",
           "title": "Are you moving the animals on or off your farm or premises?",
-          "name": "WXMCWR",
+          "name": "onOffFarm",
           "shortDescription": "Where the animals are moving",
           "hint": "",
           "list": "34cbb207-0e7b-46ba-9a40-476215efd7f9",
@@ -32,7 +32,7 @@
         {
           "type": "RadiosField",
           "title": "Which type of premises are the animals moving off?",
-          "name": "piUGWd",
+          "name": "originType",
           "shortDescription": "Type of premises the animals are moving off",
           "hint": "",
           "list": "2ac86809-1509-4968-a3f4-3a27ff296bfb",
@@ -56,7 +56,7 @@
           "content": "When animals are moving onto a TB restricted farm, it is the responsibility of the TB restricted farm to apply for a licence.\r\n\r\nWe need details about their biosecurity practices to process the licence.",
           "options": {},
           "schema": {},
-          "name": "fNEhxt",
+          "name": "OriginContactTbRestrictedFarmPage",
           "id": "b4d5a93f-e05b-4f0d-ab6b-a098b0cf434f"
         }
       ],
@@ -71,7 +71,7 @@
         {
           "type": "TextField",
           "title": "What type of premises with TB restrictions are the animals moving off?",
-          "name": "eOplbg",
+          "name": "originTypeOther",
           "shortDescription": "Type of premises with TB restrictions are the animals moving off",
           "hint": "",
           "options": {
@@ -118,9 +118,9 @@
       "components": [
         {
           "type": "TextField",
-          "title": "What is the county parish holding (CPH) number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
-          "name": "ASpXiy",
-          "shortDescription": "CPH number of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "title": "What is the county parish holding (CPH) number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
+          "name": "cphNumber",
+          "shortDescription": "CPH number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
           "hint": "For example, 12/345/6789",
           "options": {
             "required": true,
@@ -143,9 +143,9 @@
       "components": [
         {
           "type": "UkAddressField",
-          "title": "What is the address of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
-          "name": "aXNasy",
-          "shortDescription": "Address of {% if piUGWd == 'after-import-location' %}the UK point of entry{% elsif WXMCWR == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "title": "What is the address of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
+          "name": "address",
+          "shortDescription": "Address of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
           "hint": "",
           "options": {
             "required": true
@@ -167,7 +167,7 @@
           "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n* the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation) (opens in new tab).",
           "options": {},
           "schema": {},
-          "name": "qzlqWe",
+          "name": "fiftyPercentWarning",
           "id": "9f7ad77c-b461-452f-b370-0c869809b308"
         }
       ],
@@ -179,7 +179,7 @@
       "id": "449a45f6-4541-4a46-91bd-8b8931b07b50",
       "title": "Summary",
       "path": "/summary",
-      "controller": "SummaryPageController",
+      "controller": "SectionSummaryPageController",
       "next": []
     }
   ],
@@ -316,7 +316,7 @@
   "lists": [
     {
       "name": "IDSVET",
-      "title": "List for question WXMCWR",
+      "title": "List for question onOffFarm",
       "type": "string",
       "items": [
         {
@@ -334,7 +334,7 @@
     },
     {
       "name": "dKWzfm",
-      "title": "List for question piUGWd",
+      "title": "List for question originType",
       "type": "string",
       "items": [
         {

@@ -13,7 +13,7 @@ export default {
     '^.+\\.js$': 'babel-jest'
   },
   moduleNameMapper: {
-    '^@defra/forms-engine-plugin$':
+    '^@defra/forms-engine-plugin(/.*)?$':
       '<rootDir>/.jest/mocks/forms-engine-plugin.js'
   },
   coveragePathIgnorePatterns: [
