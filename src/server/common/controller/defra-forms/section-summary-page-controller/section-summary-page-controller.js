@@ -11,7 +11,7 @@ export class SectionSummaryPageController extends QuestionPageController {
   defaultHeading = 'Check your answers before you continue your application'
 
   makeGetRouteHandler() {
-    return (request, context, h) => {
+    return (_request, context, h) => {
       return h.view(this.viewName, this.buildViewModel(context))
     }
   }
