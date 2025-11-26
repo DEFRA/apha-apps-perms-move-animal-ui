@@ -49,10 +49,9 @@ export async function getFormModel(slug, state, options) {
  * build a FormContext for a given journey by replaying the cached state that the
  * forms engine stores in yar. This mirrors how the plugin prepares context when
  * handling a GET request for the review/summary page.
- *
  * @param {Request} request - The incoming hapi request (provides yar + server reference)
  * @param {string} journey - Slug of the journey to load (for example `tb-origin`)
- * @param {'live' | 'preview' | 'draft'} [state='live'] - Which journey state to load
+ * @param {'live' | 'preview' | 'draft'} state - Which journey state to load
  * @returns {Promise<FormContext>} The hydrated form context for the journey
  */
 export async function getFormContext({ server, yar }, journey, state = 'live') {
@@ -118,7 +117,6 @@ export async function getFormContext({ server, yar }, journey, state = 'live') {
  * Determine the first page the user must (re)visit based on the supplied form
  * context. This mirrors the forms engine behaviour where `context.paths`
  * contains all relevant page paths up to the first invalid screen.
- *
  * @param {FormContext | undefined} context
  * @returns {PageControllerClass | undefined}
  */
@@ -157,7 +155,6 @@ export function getFirstJourneyPage(context) {
 /**
  * Transform a FormContext into a structure that mirrors how our application
  * records answers (question metadata + formatted answer details).
- *
  * @param {FormContext | undefined} context
  * @param {{ returnPath?: string }} [options]
  */
