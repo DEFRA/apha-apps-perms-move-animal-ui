@@ -5,6 +5,7 @@ import { config } from '~/src/config/config.js'
 import path from 'node:path'
 import { context } from '~/src/config/nunjucks/context/context.js'
 import defraForms from '@defra/forms-engine-plugin'
+import { SectionSummaryPageController } from '../../controller/defra-forms/section-summary-page-controller/section-summary-page-controller.js'
 
 // Read the journey definitions this way as otherwise we get
 // SyntaxError: Unexpected identifier 'type'
@@ -84,6 +85,7 @@ export const pluginOptions = {
     paths: [
       path.resolve(getDirname(), '../../templates/layouts'),
       path.resolve(getDirname(), '../../templates/partials'),
+      path.resolve(getDirname(), '../../templates'),
       path.resolve(getDirname(), '../../components')
     ],
     baseLayoutPath: 'page.njk'
@@ -91,7 +93,7 @@ export const pluginOptions = {
   baseUrl: config.get('appBaseUrl'),
   viewContext: context,
   services,
-  controllers: {},
+  controllers: { SectionSummaryPageController },
   filters: {}
 }
 

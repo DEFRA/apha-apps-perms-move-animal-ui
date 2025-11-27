@@ -4,10 +4,6 @@ jest.mock('~/src/config/nunjucks/context/context.js', () => ({
   context: {}
 }))
 
-jest.mock('@defra/forms-engine-plugin', () => ({
-  default: {}
-}))
-
 const originDetails = {
   name: 'Apps & Permissions - TB / Origin',
   id: '48158770-647d-4fde-a3c5-1fc1e28f780e',
