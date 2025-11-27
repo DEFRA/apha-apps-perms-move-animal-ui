@@ -1,19 +1,19 @@
-import { YourNamePage, yourNamePage } from './index.js'
+import { OriginEmailAddressPage, originEmailAddressPage } from './index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { originEmailAddressPage } from '../origin-email-address/index.js'
-import { YourNameAnswer } from '~/src/server/common/model/answer/your-name/your-name.js'
+import { destinationEmailAddressPage } from '../destination-email-address/index.js'
+import { OriginEmailAddressAnswer } from '~/src/server/common/model/answer/origin-email-address/origin-email-address.js'
 
 const sectionKey = 'licence'
-const question = 'What is your name?'
-const questionKey = 'yourName'
+const question = 'What is the email address for the origin premises?'
+const questionKey = 'originEmail'
 const view = 'common/model/page/question-page.njk'
-const pageUrl = '/receiving-the-licence/your-name'
+const pageUrl = '/receiving-the-licence/origin-email-address'
 
-describe('YourNamePage', () => {
+describe('OriginEmailAddressPage', () => {
   let page
 
   beforeEach(() => {
-    page = new YourNamePage()
+    page = new OriginEmailAddressPage()
   })
 
   it('should have the correct urlPath', () => {
@@ -37,21 +37,21 @@ describe('YourNamePage', () => {
   })
 
   it('should have the correct Answer model', () => {
-    expect(page.Answer).toBe(YourNameAnswer)
+    expect(page.Answer).toBe(OriginEmailAddressAnswer)
   })
 
   it('nextPage should return correct next page', () => {
     const nextPage = page.nextPage()
 
-    expect(nextPage).toBe(originEmailAddressPage)
+    expect(nextPage).toBe(destinationEmailAddressPage)
   })
 
   it('should export page', () => {
-    expect(yourNamePage).toBeInstanceOf(YourNamePage)
+    expect(originEmailAddressPage).toBeInstanceOf(OriginEmailAddressPage)
   })
 
   describePageSnapshot({
-    describes: 'YourNamePage.content',
+    describes: 'OriginEmailAddressPage.content',
     it: 'should render expected response and content',
     pageUrl
   })

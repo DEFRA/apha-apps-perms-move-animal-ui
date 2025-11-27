@@ -1,7 +1,7 @@
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 
-import { emailAddressPage } from '../email-address/index.js'
+import { originEmailAddressPage } from '../origin-email-address/index.js'
 import { YourNameAnswer } from '../../../common/model/answer/your-name/your-name.js'
 
 export class YourNamePage extends QuestionPage {
@@ -15,7 +15,7 @@ export class YourNamePage extends QuestionPage {
   Answer = YourNameAnswer
 
   nextPage() {
-    return emailAddressPage
+    return originEmailAddressPage
   }
 }
 export const yourNamePage = new YourNamePage()
