@@ -26,6 +26,10 @@ export async function getFormModel(slug, state, options) {
 
   const metadata = await formsService.getFormMetadata(slug)
 
+  if (!metadata) {
+    throw Boom.notFound(`No metadata found for slug ${slug}`)
+  }
+
   const versionNumber = metadata.versions?.[0]?.versionNumber
 
   // Get the form definition using the `id` from the metadata
