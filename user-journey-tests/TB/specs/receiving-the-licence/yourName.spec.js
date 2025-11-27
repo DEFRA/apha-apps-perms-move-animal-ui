@@ -1,5 +1,5 @@
 import yourNamePage from '../../page-objects/receiving-the-licence/yourNamePage.js'
-import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
+import originEmailAddressPage from '../../page-objects/receiving-the-licence/originEmailAddressPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -37,8 +37,12 @@ describe('Your name spec', () => {
   it('Should verify successful inputs', async () => {
     const firstName = 'Bruce'
     const lastName = 'Wayne'
-    await yourNamePage.inputTextAndContinue(firstName, lastName, emailPage)
-    await emailPage.selectBackLink()
+    await yourNamePage.inputTextAndContinue(
+      firstName,
+      lastName,
+      originEmailAddressPage
+    )
+    await originEmailAddressPage.selectBackLink()
 
     const firstNameInputValue = await yourNamePage.firstTextInput().getValue()
     expect(firstNameInputValue).toBe(firstName)

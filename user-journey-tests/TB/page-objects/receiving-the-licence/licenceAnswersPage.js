@@ -10,7 +10,10 @@ class LicenceCheckAnswersPage extends AnswersBasePage {
 
   changeLinks = {
     name: '[data-testid="fullName-change-link"]',
-    email: '[data-testid="emailAddress-change-link"]'
+    email: '[data-testid="emailAddress-change-link"]',
+    yourName: '[data-testid="yourName-change-link"]',
+    originEmail: '[data-testid="originEmail-change-link"]',
+    destinationEmail: '[data-testid="destinationEmail-change-link"]'
   }
 }
 

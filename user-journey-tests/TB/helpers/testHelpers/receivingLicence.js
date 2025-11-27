@@ -54,10 +54,19 @@ const completeLicenceTask = async ({
   }
 
   await licenceAnswersPage.verifyPageHeadingAndTitle()
-  await validateElementVisibleAndText(
-    licenceAnswersPage.getValue('email'),
-    email
-  )
+
+  // For TB-restricted flow (on=true), check destinationEmail; otherwise check email
+  if (on) {
+    await validateElementVisibleAndText(
+      licenceAnswersPage.getValue('destinationEmail'),
+      destinationEmail
+    )
+  } else {
+    await validateElementVisibleAndText(
+      licenceAnswersPage.getValue('email'),
+      email
+    )
+  }
 }
 
 // Predefined task completion function
