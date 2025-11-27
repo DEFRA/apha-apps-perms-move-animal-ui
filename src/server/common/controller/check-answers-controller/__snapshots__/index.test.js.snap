@@ -157,13 +157,24 @@ exports[`#CheckAnswers Should provide expected response 1`] = `
   </div>
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
-      What email address would you like the licence sent to?
+      What is the email address for the origin premises?
     </dt>
     <dd class="govuk-summary-list__value">
-      kathryn@starfleet.com
+      origin@starfleet.com
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="/receiving-the-licence/licence-enter-email-address?returnUrl=/tb/submit/check-answers" data-testid="emailAddress-change-link">Change<span class="govuk-visually-hidden"> What email address would you like the licence sent to?</span></a>
+      <a class="govuk-link" href="/receiving-the-licence/origin-email-address?returnUrl=/tb/submit/check-answers" data-testid="originEmail-change-link">Change<span class="govuk-visually-hidden"> What is the email address for the origin premises?</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key govuk-!-width-one-half govuk-!-font-weight-regular">
+      What is your email address?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      destination@starfleet.com
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="/receiving-the-licence/destination-email-address?returnUrl=/tb/submit/check-answers" data-testid="destinationEmail-change-link">Change<span class="govuk-visually-hidden"> What is your email address?</span></a>
     </dd>
   </div>
 </dl>
