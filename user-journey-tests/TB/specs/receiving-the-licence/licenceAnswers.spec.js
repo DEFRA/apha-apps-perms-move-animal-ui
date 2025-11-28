@@ -11,12 +11,13 @@ import signInPage from '../../page-objects/signInPage.js'
 import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
 import { completeOriginTaskAnswersOnFarm } from '../../helpers/testHelpers/movementOrigin.js'
 import { completeDestinationTaskOnFarmForUnrestrictedOrigin } from '../../helpers/testHelpers/destination.js'
+import destinationEmailAddressPage from '../../page-objects/receiving-the-licence/destinationEmailAddressPage.js'
 
 const firstNameDefault = 'defaultFirst'
 const lastNameDefault = 'defaultLast'
 const newFirstName = 'newFirst'
 const newLastName = 'newLast'
-const emailDefault = 'default@email.com'
+const emailDefault = 'eoin.corr@esynergy.co.uk'
 const editedEmail = 'edited@email.com'
 
 describe('Check your licence answers test', () => {
@@ -56,10 +57,11 @@ describe('Check your licence answers test', () => {
   it('Should verify the existing email and confirm resubmission', async () => {
     await licenceAnswersPage.navigateToPageAndVerifyTitle()
     await validateAndAdjustEmail(
-      licenceAnswersPage.getChangeLink('email'),
-      licenceAnswersPage.getValue('email'),
+      licenceAnswersPage.getChangeLink('destinationEmail'),
+      licenceAnswersPage.getValue('destinationEmail'),
       emailDefault,
-      editedEmail
+      editedEmail,
+      destinationEmailAddressPage
     )
   })
 

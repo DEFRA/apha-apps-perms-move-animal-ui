@@ -3,6 +3,8 @@ import { TbQuestionPageController } from '../../question-page-controller.js'
 
 import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-name/owner-full-name.js'
 import { emailAddressPage } from '../email-address/index.js'
+import { OriginTypeAnswer } from '~/src/server/common/model/answer/origin-type/origin-type.js'
+import { yourNamePage } from '../your-name/index.js'
 
 export class FullNamePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name'
@@ -15,7 +17,17 @@ export class FullNamePage extends QuestionPage {
 
   Answer = OwnerFullNameAnswer
 
-  nextPage() {
+  /**
+   * @param {OwnerFullNameAnswer} _answer
+   * @param {import('~/src/server/common/model/state/state-manager.js').RawApplicationState} context
+   */
+  nextPage(_answer, context) {
+    if (
+      OriginTypeAnswer.isTbRestricted(context?.origin?.originType) &&
+      OriginTypeAnswer.isTbRestricted(context?.destination?.destinationType)
+    ) {
+      return yourNamePage
+    }
     return emailAddressPage
   }
 }
