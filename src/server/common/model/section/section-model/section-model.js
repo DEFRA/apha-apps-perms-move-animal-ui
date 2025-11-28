@@ -143,7 +143,7 @@ export class SectionModel {
     return {
       sectionKey: this.config.key,
       title: this.config.title,
-      questionAnswers: questionAnswers
+      questionAnswers
     }
   }
 

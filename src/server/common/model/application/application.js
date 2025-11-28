@@ -1,5 +1,4 @@
 import { validateApplication } from '~/src/server/common/model/application/validation.js'
-import { HiddenAnswer } from '~/src/server/common/model/answer/hidden/hidden.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /* eslint-disable jsdoc/require-returns-check */
