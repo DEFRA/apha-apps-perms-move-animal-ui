@@ -36,12 +36,12 @@ describe('Application.fromState', () => {
     expect(application.tasks.origin).toBeInstanceOf(OriginSection)
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
 
-    expect(application.tasks.origin.questionPageAnswers).toEqual(
-      OriginSection.fromState(validApplicationState).questionPageAnswers
+    expect(application.tasks.origin._questionPageAnswers).toEqual(
+      OriginSection.fromState(validApplicationState)._questionPageAnswers
     )
 
-    expect(application.tasks.destination.questionPageAnswers).toEqual(
-      DestinationSection.fromState(validApplicationState).questionPageAnswers
+    expect(application.tasks.destination._questionPageAnswers).toEqual(
+      DestinationSection.fromState(validApplicationState)._questionPageAnswers
     )
   })
 })

@@ -3,7 +3,6 @@
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 
 import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
-import { sectionToSummary } from '~/src/server/common/templates/macros/create-summary.js'
 import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
 
 export class SummaryPageController extends GenericPageController {
@@ -78,7 +77,7 @@ export class SummaryPageController extends GenericPageController {
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.pageHeading,
-      summary: sectionToSummary(section, this.urlPath)
+      summary: section.summaryViewModel(this.urlPath)
     })
   }
 

@@ -29,7 +29,7 @@ export class TaskListController {
     const visibleSections = Object.values(application.tasks)
 
     const gdsTasks = visibleSections.map((section) => {
-      return buildGdsTaskItem(section.buildGdsTaskDetails(applicationState))
+      return buildGdsTaskItem(section.taskDetailsViewModel(applicationState))
     })
 
     const incompleteTasks =

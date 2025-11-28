@@ -2,12 +2,16 @@ import { CphNumberPage } from '~/src/server/tb/origin/cph-number/index.js'
 import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
 import { OnOffFarmAnswer } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
 import { OriginSection } from '../../../../tb/origin/section.js'
+import { BiosecuritySection } from '../../../../tb/biosecurity/section.js'
 import { CphNumberAnswer } from '../../answer/cph-number/cph-number.js'
 import { OriginAddressPage } from '~/src/server/tb/origin/address/index.js'
 import { AddressAnswer } from '../../answer/address/address.js'
 import { OriginTypePage } from '~/src/server/tb/origin/origin-type/index.js'
 import { OriginTypeAnswer } from '../../answer/origin-type/origin-type.js'
-import { validOriginSectionState } from '../../../test-helpers/journey-state.js'
+import {
+  validBiosecuritySectionState,
+  validOriginSectionState
+} from '../../../test-helpers/journey-state.js'
 import { subDays } from 'date-fns'
 import { Animals42DaysOldOrOlderPage } from '~/src/server/tb/identification/animals-42-days-old-or-older/index.js'
 import { CalvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-under-42-days-old/index.js'
@@ -63,7 +67,7 @@ const applicationStateWithWarning = {
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
     const origin = OriginSection.fromState(applicationState)
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(4)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -81,7 +85,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should short-circuit on an exit page', () => {
     const origin = OriginSection.fromState({ origin: exitState })
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(2)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -92,7 +96,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should short-circuit on a page with an invalid answer', () => {
     const origin = OriginSection.fromState({ origin: invalidState })
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(3)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(OnOffFarmPage)
@@ -107,7 +111,7 @@ describe('SectionModel.questionPageAnswers', () => {
 
   it('should NOT short-circuit on a warning page if there are more answers after it', () => {
     const origin = IdentificationSection.fromState(applicationStateWithWarning)
-    const pageAnswers = origin.questionPageAnswers
+    const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(6)
     expect(pageAnswers.at(0)?.page).toBeInstanceOf(CalvesUnder42DaysOldPage)
@@ -169,7 +173,7 @@ describe('SectionModel.validate', () => {
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
     const origin = OriginSection.fromState({ origin: validOriginSectionState })
-    expect(origin.getFirstPage()).toBeInstanceOf(OnOffFarmPage)
+    expect(origin._getFirstPage()).toBeInstanceOf(OnOffFarmPage)
   })
 })
 
@@ -178,5 +182,134 @@ describe('SectionModel.fromState', () => {
     expect(
       OriginSection.fromState({ origin: validOriginSectionState })
     ).toBeInstanceOf(OriginSection)
+  })
+})
+
+describe('SectionModel.sectionData', () => {
+  it('should return complete section data with valid state', () => {
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const result = origin.sectionData
+
+    expect(result).toMatchSnapshot()
+  })
+
+  it('should include section key and title and question answers array', () => {
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const result = origin.sectionData
+
+    expect(result.sectionKey).toBe(OriginSection.config.key)
+    expect(result.title).toBe(OriginSection.config.title)
+    expect(result.questionAnswers).toBeInstanceOf(Array)
+    expect(result.questionAnswers.length).toBeGreaterThan(0)
+  })
+
+  it('should map question answers with question, questionKey, and answer data', () => {
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const result = origin.sectionData
+
+    result.questionAnswers.forEach((qa) => {
+      expect(qa).toHaveProperty('question')
+      expect(qa).toHaveProperty('questionKey')
+      expect(qa).toHaveProperty('answer')
+    })
+  })
+
+  it('should filter out hidden answers', () => {
+    const biosecurity = BiosecuritySection.fromState({
+      biosecurity: validBiosecuritySectionState
+    })
+    const result = biosecurity.sectionData
+
+    result.questionAnswers.forEach((qa) => {
+      expect(qa.answer).toBeDefined()
+    })
+  })
+
+  it('should return empty question answers for empty state', () => {
+    const origin = OriginSection.fromState({})
+    const result = origin.sectionData
+
+    expect(result.sectionKey).toBe(OriginSection.config.key)
+    expect(result.title).toBe(OriginSection.config.title)
+    expect(result.questionAnswers).toBeInstanceOf(Array)
+  })
+})
+
+describe('SectionModel.summaryViewModel', () => {
+  const redirectUri = '/check-your-answers'
+
+  it('should include array with correct properties and values for each item', () => {
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const result = origin.summaryViewModel(redirectUri)
+
+    expect(result).toBeInstanceOf(Array)
+    expect(result.length).toBeGreaterThan(0)
+
+    result.forEach((item) => {
+      expect(item).toHaveProperty('key')
+      expect(item).toHaveProperty('value')
+      expect(item).toHaveProperty('url')
+      expect(item).toHaveProperty('visuallyHiddenKey')
+      expect(item).toHaveProperty('attributes')
+
+      expect(item.key).toBeDefined()
+      expect(item.value).toBeDefined()
+      expect(item.url).toContain('?returnUrl=')
+      expect(item.url).toContain(redirectUri)
+      expect(item.visuallyHiddenKey).toBe(item.key)
+      expect(item.attributes['data-testid']).toMatch(/-change-link$/)
+    })
+  })
+
+  it('should filter out interstitial pages', () => {
+    const biosecurity = BiosecuritySection.fromState({
+      biosecurity: validBiosecuritySectionState
+    })
+    const result = biosecurity.summaryViewModel(redirectUri)
+
+    result.forEach((item) => {
+      expect(item.key).toBeDefined()
+      expect(item.key).not.toBe('')
+    })
+  })
+
+  it('should return empty array for section with no answers', () => {
+    const origin = OriginSection.fromState({})
+    const result = origin.summaryViewModel(redirectUri)
+
+    expect(result).toBeInstanceOf(Array)
+  })
+})
+
+describe('SectionModel.taskDetailsViewModel', () => {
+  it('should return view model with valid section data', () => {
+    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const result = origin.taskDetailsViewModel({
+      origin: validOriginSectionState
+    })
+
+    expect(result).toMatchObject({
+      title: OriginSection.config.title,
+      initialLink: new OnOffFarmPage().urlPath,
+      summaryLink: OriginSection.config.summaryLink,
+      isValid: true,
+      isEnabled: true
+    })
+  })
+
+  it('should return initialLink as first invalid page when section is invalid', () => {
+    const origin = OriginSection.fromState({ origin: invalidState })
+    const result = origin.taskDetailsViewModel({ origin: invalidState })
+
+    expect(result.isValid).toBe(false)
+    expect(result.initialLink).toBe(new CphNumberPage().urlPath)
+  })
+
+  it('should return initialLink as first invalid page when section exits early', () => {
+    const origin = OriginSection.fromState({ origin: exitState })
+    const result = origin.taskDetailsViewModel({ origin: exitState })
+
+    expect(result.isValid).toBe(false)
+    expect(result.initialLink).toBe(new OriginTypePage().urlPath)
   })
 })
