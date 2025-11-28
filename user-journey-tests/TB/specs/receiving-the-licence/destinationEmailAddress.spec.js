@@ -5,6 +5,7 @@ import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
+import futureOwnerPage from '../../page-objects/receiving-the-licence/futureOwnerPage.js'
 
 const longString = 'a'.repeat(256)
 const invalidEmail = 'invalid-email'
@@ -44,7 +45,7 @@ describe('Destination email address spec', () => {
   it('Should verify successful input', async () => {
     await destinationEmailAddressPage.inputTextAndContinue(
       validEmail,
-      licenceAnswersPage
+      futureOwnerPage
     )
     await licenceAnswersPage.selectBackLink()
 
