@@ -65,12 +65,11 @@ export class SectionModel {
     throw new NotImplementedError()
   }
 
-  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {RawApplicationState} applicationState
    * @returns {object}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, jsdoc/require-returns-check
   taskDetailsViewModel(applicationState) {
     throw new NotImplementedError()
   }
@@ -79,25 +78,23 @@ export class SectionModel {
    * @param {RawApplicationState} state
    * @returns {SectionModel}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, jsdoc/require-returns-check
   static fromState(state) {
     throw new NotImplementedError()
   }
 
-  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {import("@hapi/hapi").Request} req
    * @param {RawApplicationState} state
    * @returns {Promise<SectionModel>}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await, jsdoc/require-returns-check
   static async fromRequest(req, state) {
     throw new NotImplementedError()
   }
 
-  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {SectionData} */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, jsdoc/require-returns-check
   get sectionData() {
     throw new NotImplementedError()
   }
@@ -105,7 +102,7 @@ export class SectionModel {
   /**
    * @param {Request} req
    * @param {string} redirectUri
-   **/
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   summaryViewModel(req, redirectUri) {
     throw new NotImplementedError()
