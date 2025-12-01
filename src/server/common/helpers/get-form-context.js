@@ -79,7 +79,6 @@ export async function getFormContext(
    * the cache service exposes helper methods that the forms engine normally uses
    * inside its hapi routes. We reuse it here to read the persisted session state.
    */
-  // @ts-expect-error hapi type mismatch between plugin and host app
   const cacheService = getCacheService(server)
 
   /** @type {FormRequestPayload} */
