@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionModel.sectionData should return complete section data with valid state 1`] = `
+{
+  "questionAnswers": [
+    {
+      "answer": {
+        "displayText": "Off the farm or premises",
+        "type": "text",
+        "value": "off",
+      },
+      "question": "Are you moving the animals on or off your farm or premises?",
+      "questionKey": "onOffFarm",
+    },
+    {
+      "answer": {
+        "displayText": "Approved finishing unit (AFU)",
+        "type": "text",
+        "value": "afu",
+      },
+      "question": "Which type of premises are the animals moving off?",
+      "questionKey": "originType",
+    },
+    {
+      "answer": {
+        "displayText": "12/345/6789",
+        "type": "text",
+        "value": "12/345/6789",
+      },
+      "question": "What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?",
+      "questionKey": "cphNumber",
+    },
+    {
+      "answer": {
+        "displayText": "Starfleet Headquarters
+San Francisco
+RG24 8RR",
+        "type": "address",
+        "value": {
+          "addressLine1": "Starfleet Headquarters",
+          "addressPostcode": "RG24 8RR",
+          "addressTown": "San Francisco",
+        },
+      },
+      "question": "What is the address of your farm or premises where the animals are moving off?",
+      "questionKey": "address",
+    },
+  ],
+  "sectionKey": "origin",
+  "title": "Movement origin",
+}
+`;

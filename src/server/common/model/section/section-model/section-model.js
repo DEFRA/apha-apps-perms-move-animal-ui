@@ -1,14 +1,14 @@
 import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
+import { HiddenAnswer } from '../../answer/hidden/hidden.js'
 
 /** @import { ServerRegisterPluginObject } from '@hapi/hapi' */
-/** @import { Request } from '@hapi/hapi' */
 
 /**
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
  * @import {AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
- * @import {RawApplicationState, StateManager} from '~/src/server/common/model/state/state-manager.js'
+ * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
  */
 
 /**
@@ -51,7 +51,7 @@ export class SectionModel {
    */
   static firstPageFactory
 
-  getFirstPage(applicationState) {
+  _getFirstPage(applicationState) {
     return /** @type {typeof SectionModel} */ (
       this.constructor
     ).firstPageFactory(applicationState)
@@ -67,7 +67,7 @@ export class SectionModel {
   /**
    * @returns {QuestionPageAnswer[]}
    */
-  get questionPageAnswers() {
+  get _questionPageAnswers() {
     return this._data.filter((p) => p.kind === 'Question')
   }
 
@@ -82,7 +82,7 @@ export class SectionModel {
     if (finalPage instanceof ExitPage) {
       return {
         isValid: false,
-        firstInvalidPage: this.questionPageAnswers.at(-1)?.page
+        firstInvalidPage: this._questionPageAnswers.at(-1)?.page
       }
     }
 
@@ -129,19 +129,50 @@ export class SectionModel {
     return new this(pages)
   }
 
-  // eslint-disable-next-line jsdoc/require-returns-check
+  get sectionData() {
+    const questionAnswers = this._questionPageAnswers
+      .filter(({ answer, page }) => {
+        return !(answer instanceof HiddenAnswer || page.isInterstitial)
+      })
+      .map((questionPageAnswer) => ({
+        question: questionPageAnswer.page.question,
+        questionKey: questionPageAnswer.page.questionKey,
+        answer: questionPageAnswer.answer.data
+      }))
+
+    return {
+      sectionKey: this.config.key,
+      title: this.config.title,
+      questionAnswers
+    }
+  }
+
+  /** @param {string} redirectUri */
+  summaryViewModel(redirectUri) {
+    return this._questionPageAnswers
+      .filter(({ page }) => !page.isInterstitial)
+      .map(({ page, answer }) => ({
+        key: page.question,
+        value: answer.html,
+        url: `${page.urlPath}?returnUrl=${redirectUri}`,
+        visuallyHiddenKey: page.question,
+        attributes: {
+          'data-testid': `${page.questionKey}-change-link`
+        }
+      }))
+  }
+
   /**
    * @param {RawApplicationState} applicationState
    * @returns {object}
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  buildGdsTaskDetails(applicationState) {
+  taskDetailsViewModel(applicationState) {
     const sectionValidity = this.validate()
     return {
       title: this.config.title,
       initialLink:
         sectionValidity.firstInvalidPage?.urlPath ??
-        this.getFirstPage(applicationState).urlPath,
+        this._getFirstPage(applicationState).urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
       isEnabled: this.config.isEnabled(applicationState)

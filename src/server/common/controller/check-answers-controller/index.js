@@ -1,4 +1,3 @@
-import { sectionToSummary } from '../../templates/macros/create-summary.js'
 import { QuestionPage } from '../../model/page/question-page-model.js'
 import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
 import { Page } from '../../model/page/page-model.js'
@@ -41,14 +40,14 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   async viewProps(req) {
-    const tasks = this.ApplicationModel.fromState(
+    const sections = this.ApplicationModel.fromState(
       new this.StateManager(req).toState()
     ).tasks
 
     const summary = Object.fromEntries(
-      Object.values(tasks).map((task) => {
-        const { key, title } = task.config
-        return [key, { title, answers: sectionToSummary(task, this.urlPath) }]
+      Object.values(sections).map((section) => {
+        const { key, title } = section.config
+        return [key, { title, answers: section.summaryViewModel(this.urlPath) }]
       })
     )
 
