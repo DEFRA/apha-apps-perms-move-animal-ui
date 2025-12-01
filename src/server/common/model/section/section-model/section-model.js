@@ -73,32 +73,32 @@ export class SectionModel {
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
-   * @param {RawApplicationState} applicationState
+   * @param {RawApplicationState} _applicationState
    * @returns {object}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(applicationState) {
+  taskDetailsViewModel(_applicationState) {
     throw new NotImplementedError()
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
-   * @param {RawApplicationState} state
+   * @param {RawApplicationState} _state
    * @returns {SectionModel}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static fromState(state) {
+  static fromState(_state) {
     throw new NotImplementedError()
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
-   * @param {import("@hapi/hapi").Request} req
-   * @param {RawApplicationState} state
+   * @param {import("@hapi/hapi").Request} _req
+   * @param {RawApplicationState} _state
    * @returns {Promise<SectionModel>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
-  static async fromRequest(req, state) {
+  static async fromRequest(_req, _state) {
     throw new NotImplementedError()
   }
 
@@ -110,11 +110,11 @@ export class SectionModel {
   }
 
   /**
-   * @param {Request} req
-   * @param {string} redirectUri
+   * @param {Request} _req
+   * @param {string} _redirectUri
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  summaryViewModel(req, redirectUri) {
+  summaryViewModel(_req, _redirectUri) {
     throw new NotImplementedError()
   }
 }
