@@ -54,6 +54,12 @@ export class SectionModel {
     return /** @type {any} */ (this.constructor).config
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /** @returns {QuestionPageAnswer[]} */
+  get _questionPageAnswers() {
+    throw new NotImplementedError()
+  }
+
   /** @param {SectionPayload} data */
   constructor(data) {
     this._data = data

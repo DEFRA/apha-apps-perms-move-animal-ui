@@ -64,7 +64,7 @@ const applicationStateWithWarning = {
   identification: identificationStateWithWarning
 }
 
-const mockRequest = {}
+const mockRequest = /** @type { any } */ ({})
 
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
