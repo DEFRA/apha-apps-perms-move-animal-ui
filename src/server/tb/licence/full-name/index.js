@@ -5,6 +5,9 @@ import { OwnerFullNameAnswer } from '../../../common/model/answer/owner-full-nam
 import { emailAddressPage } from '../email-address/index.js'
 import { OriginTypeAnswer } from '~/src/server/common/model/answer/origin-type/origin-type.js'
 import { yourNamePage } from '../your-name/index.js'
+import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
+
+/** @typedef {import('~/src/server/common/model/state/state-manager.js').RawApplicationState} RawApplicationState */
 
 export class FullNamePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name'
@@ -19,12 +22,14 @@ export class FullNamePage extends QuestionPage {
 
   /**
    * @param {OwnerFullNameAnswer} _answer
-   * @param {import('~/src/server/common/model/state/state-manager.js').RawApplicationState} context
+   * @param {RawApplicationState} context
    */
   nextPage(_answer, context) {
     if (
       OriginTypeAnswer.isTbRestricted(context?.origin?.originType) &&
-      OriginTypeAnswer.isTbRestricted(context?.destination?.destinationType)
+      DestinationTypeAnswer.isTbRestricted(
+        context?.destination?.destinationType
+      )
     ) {
       return yourNamePage
     }
