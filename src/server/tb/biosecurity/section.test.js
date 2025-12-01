@@ -28,7 +28,7 @@ describe('Biosecurity.validate', () => {
     }).validate()
 
     expect(result.isValid).toBe(false)
-    expect(result.firstInvalidPage).toBeInstanceOf(ObligationsPage)
+    expect(result.firstInvalidPageUrl).toBe(new ObligationsPage().urlPath)
   })
 })
 

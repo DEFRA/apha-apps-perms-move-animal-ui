@@ -67,17 +67,15 @@ export class SummaryPageController extends GenericPageController {
     const applicationState = new this.StateManager(req).toState()
     const section = this.page.sectionFactory(applicationState)
 
-    const { isValid, firstInvalidPage } = section.validate()
+    const { isValid, firstInvalidPageUrl } = section.validate()
     if (!isValid) {
-      return res.redirect(
-        `${firstInvalidPage?.urlPath}?returnUrl=${this.urlPath}`
-      )
+      return res.redirect(`${firstInvalidPageUrl}?returnUrl=${this.urlPath}`)
     }
 
     return res.view(this.indexView, {
       pageTitle: this.page.pageTitle,
       heading: this.page.pageHeading,
-      summary: section.summaryViewModel(this.urlPath)
+      summary: section.summaryViewModel(req, this.urlPath)
     })
   }
 

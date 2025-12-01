@@ -54,7 +54,9 @@ describe('Identification.validate', () => {
     }).validate()
 
     expect(result.isValid).toBe(false)
-    expect(result.firstInvalidPage).toBeInstanceOf(CalvesUnder42DaysOldPage)
+    expect(result.firstInvalidPageUrl).toBe(
+      new CalvesUnder42DaysOldPage().urlPath
+    )
   })
 })
 

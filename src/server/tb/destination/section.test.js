@@ -27,7 +27,7 @@ describe('Destination', () => {
       }).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPage).toBeInstanceOf(DestinationTypePage)
+      expect(result.firstInvalidPageUrl).toBe(new DestinationTypePage().urlPath)
     })
   })
 
