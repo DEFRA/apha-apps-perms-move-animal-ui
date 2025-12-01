@@ -6,9 +6,6 @@ import {
 } from '@defra/forms-engine-plugin/engine/helpers.js'
 import { getAnswer } from '@defra/forms-engine-plugin/engine/components/helpers/components.js'
 import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/index.js'
-import { pluginOptions } from '~/src/server/common/plugins/defra-forms/index.js'
-
-const { services, controllers } = pluginOptions
 
 /**
  * @import { Request } from '@hapi/hapi'
@@ -58,19 +55,31 @@ export async function getFormModel(slug, state, options) {
  * @param {Request} request - The incoming hapi request (provides yar + server reference)
  * @param {string} journey - Slug of the journey to load (for example `tb-origin`)
  * @param {'live' | 'preview' | 'draft'} state - Which journey state to load
+ * @param {Pick<PluginOptions, 'services' | 'controllers'>} [overrides]
  * @returns {Promise<FormContext>} The hydrated form context for the journey
  */
-export async function getFormContext({ server, yar }, journey, state = 'live') {
+export async function getFormContext(
+  { server, yar },
+  journey,
+  state = 'live',
+  overrides
+) {
+  const pluginOptions = overrides ?? (await resolvePluginOptions())
+  const { services, controllers } = pluginOptions
   /**
    * fetch the FormModel for the requested journey/state combination. We pass in
    * the local services bundle and any custom controllers required by the journey.
    */
-  const formModel = await getFormModel(journey, state, { services, controllers })
+  const formModel = await getFormModel(journey, state, {
+    services,
+    controllers
+  })
 
   /**
    * the cache service exposes helper methods that the forms engine normally uses
    * inside its hapi routes. We reuse it here to read the persisted session state.
    */
+  // @ts-expect-error hapi type mismatch between plugin and host app
   const cacheService = getCacheService(server)
 
   /** @type {FormRequestPayload} */
@@ -314,4 +323,16 @@ function resolveChangeHref(page, summaryPath) {
   } catch {
     return slug
   }
+}
+
+async function resolvePluginOptions() {
+  const module = await import(
+    '~/src/server/common/plugins/defra-forms/index.js'
+  )
+
+  if (!module?.pluginOptions?.services || !module?.pluginOptions?.controllers) {
+    throw new Error('DEFRA Forms plugin options are not available')
+  }
+
+  return module.pluginOptions
 }

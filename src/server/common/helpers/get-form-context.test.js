@@ -1,22 +1,26 @@
+import {
+  getFormContext,
+  getFirstJourneyPage,
+  getFormModel,
+  mapFormContextToAnswers
+} from '~/src/server/common/helpers/get-form-context.js'
+
 const mockCacheService = { getState: jest.fn() }
 var mockFormsService
 var mockPluginOptions
 
-jest.mock(
-  '@defra/forms-engine-plugin/engine/helpers.js',
-  () => jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
+jest.mock('@defra/forms-engine-plugin/engine/helpers.js', () =>
+  jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
 )
 jest.mock(
   '@defra/forms-engine-plugin/engine/components/helpers/components.js',
   () => jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
 )
-jest.mock(
-  '@defra/forms-engine-plugin/engine/models/index.js',
-  () => jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
+jest.mock('@defra/forms-engine-plugin/engine/models/index.js', () =>
+  jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
 )
-jest.mock(
-  '@defra/forms-engine-plugin/controllers/index.js',
-  () => jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
+jest.mock('@defra/forms-engine-plugin/controllers/index.js', () =>
+  jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
 )
 
 jest.mock('~/src/server/common/plugins/defra-forms/index.js', () => {
@@ -47,15 +51,8 @@ const {
   evaluateTemplate: mockEvaluateTemplate,
   getAnswer: mockGetAnswer,
   FormModel: mockFormModel,
-  TerminalPageController: mockTerminalPageController
+  TerminalPageController: MockTerminalPageController
 } = jest.requireMock('@defra/forms-engine-plugin/engine/helpers.js')
-
-import {
-  getFormContext,
-  getFirstJourneyPage,
-  getFormModel,
-  mapFormContextToAnswers
-} from '~/src/server/common/helpers/get-form-context.js'
 
 describe('getFormContext helper', () => {
   const request = { yar: { set: jest.fn() }, server: { app: {} } }
@@ -82,7 +79,12 @@ describe('getFormContext helper', () => {
   })
 
   test('builds a form context using cached state and configured services', async () => {
-    const context = await getFormContext(request, journey)
+    const context = await getFormContext(
+      /** @type {any} */ (request),
+      journey,
+      'live',
+      mockPluginOptions
+    )
 
     expect(mockFormsService.getFormMetadata).toHaveBeenCalledWith(journey)
     expect(mockFormsService.getFormDefinition).toHaveBeenCalledWith(
@@ -119,7 +121,12 @@ describe('getFormContext helper', () => {
   })
 
   test('passes through the requested journey state when resolving the form model', async () => {
-    await getFormContext(request, journey, 'draft')
+    await getFormContext(
+      /** @type {any} */ (request),
+      journey,
+      'draft',
+      mockPluginOptions
+    )
 
     expect(mockFormsService.getFormDefinition).toHaveBeenCalledWith(
       metadata.id,
@@ -144,12 +151,14 @@ describe('mapFormContextToAnswers helper', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    mockEvaluateTemplate.mockImplementation((template) => `rendered:${template}`)
+    mockEvaluateTemplate.mockImplementation(
+      (template) => `rendered:${template}`
+    )
     mockGetAnswer.mockReturnValue('display text')
   })
 
   test('returns an empty array when no context is provided', () => {
-    expect(mapFormContextToAnswers()).toEqual([])
+    expect(mapFormContextToAnswers(undefined)).toEqual([])
   })
 
   test('omits unanswered components', () => {
@@ -484,7 +493,7 @@ describe('getFirstJourneyPage helper', () => {
   const buildPage = (path, keys = []) => ({ path, keys })
 
   test('returns undefined when no context or relevant target path is available', () => {
-    expect(getFirstJourneyPage()).toBeUndefined()
+    expect(getFirstJourneyPage(undefined)).toBeUndefined()
     expect(
       getFirstJourneyPage({
         paths: [],
@@ -566,7 +575,7 @@ describe('getFirstJourneyPage helper', () => {
 
   test('steps back from terminal pages to the previous relevant page', () => {
     const startPage = buildPage('/start')
-    const exitPage = new mockTerminalPageController()
+    const exitPage = new MockTerminalPageController()
     exitPage.path = '/stop'
 
     const context = {
@@ -582,7 +591,7 @@ describe('getFirstJourneyPage helper', () => {
   })
 
   test('returns the terminal page when it is the only relevant page available', () => {
-    const exitPage = new mockTerminalPageController()
+    const exitPage = new MockTerminalPageController()
     exitPage.path = '/stop'
 
     const context = {
