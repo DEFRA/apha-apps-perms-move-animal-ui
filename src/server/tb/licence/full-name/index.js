@@ -7,7 +7,7 @@ import { OriginTypeAnswer } from '~/src/server/common/model/answer/origin-type/o
 import { yourNamePage } from '../your-name/index.js'
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 
-/** @typedef {import('~/src/server/common/model/state/state-manager.js').RawApplicationState} RawApplicationState */
+/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 export class FullNamePage extends QuestionPage {
   urlPath = '/receiving-the-licence/licence-name'
@@ -22,7 +22,7 @@ export class FullNamePage extends QuestionPage {
 
   /**
    * @param {OwnerFullNameAnswer} _answer
-   * @param {RawApplicationState} context
+   * @param {RawApplicationState} [context]
    */
   nextPage(_answer, context) {
     if (
