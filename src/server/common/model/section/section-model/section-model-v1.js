@@ -22,11 +22,6 @@ export class SectionModelV1 extends SectionModel {
     ).firstPageFactory(applicationState)
   }
 
-  /** @param {SectionPayload} data */
-  constructor(data) {
-    super(data)
-  }
-
   /** @returns {QuestionPageAnswer[]} */
   get _questionPageAnswers() {
     return this._data.filter((p) => p.kind === 'Question')
@@ -110,7 +105,10 @@ export class SectionModelV1 extends SectionModel {
     }
   }
 
-  /** @param {string} redirectUri */
+  /**
+   * @param {Request} _req
+   * @param {string} redirectUri
+   */
   summaryViewModel(_req, redirectUri) {
     return this._questionPageAnswers
       .filter(({ page }) => !page.isInterstitial)

@@ -1,12 +1,12 @@
-import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  * @import { Request } from '@hapi/hapi'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
- * @import {AnswerData, AnswerModel} from '~/src/server/common/model/answer/answer-model.js'
- * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
+ * @import { AnswerData, AnswerModel}  from '~/src/server/common/model/answer/answer-model.js'
+ * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
+ * @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
  */
 
 /**
@@ -59,6 +59,7 @@ export class SectionModel {
     this._data = data
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {SectionValidation} */
   validate() {
     throw new NotImplementedError()
@@ -75,6 +76,16 @@ export class SectionModel {
   }
 
   /**
+   * @param {RawApplicationState} state
+   * @returns {SectionModel}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static fromState(state) {
+    throw new NotImplementedError()
+  }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
    * @param {import("@hapi/hapi").Request} req
    * @param {RawApplicationState} state
    * @returns {Promise<SectionModel>}
@@ -84,6 +95,7 @@ export class SectionModel {
     throw new NotImplementedError()
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {SectionData} */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   get sectionData() {
