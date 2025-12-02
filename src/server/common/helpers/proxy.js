@@ -19,7 +19,7 @@ const logger = createLogger()
  * @returns {Proxy|null}
  */
 function provideProxy() {
-  const proxyUrl = config.get('httpsProxy') ?? config.get('httpProxy')
+  const proxyUrl = config.get('httpProxy')
 
   if (!proxyUrl) {
     return null
