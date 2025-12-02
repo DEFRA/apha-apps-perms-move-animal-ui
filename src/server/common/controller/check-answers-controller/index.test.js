@@ -10,6 +10,7 @@ import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
+import { InvalidObjectState } from '@aws-sdk/client-s3'
 
 /** @import { IncomingMessage } from 'http' */
 /** @import { Server } from '@hapi/hapi' */
@@ -86,6 +87,25 @@ describe('#CheckAnswers', () => {
     expect(statusCode).toBe(statusCodes.ok)
   })
 
+  it('Should redirect if not all tasks are complete (valid)', async () => {
+    await session.setSectionState('origin', {})
+
+    const { headers, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: checkAnswersUri
+        },
+        {
+          Cookie: session.sessionID
+        }
+      )
+    )
+
+    expect(statusCode).toBe(statusCodes.redirect)
+    expect(headers.location).toBe('/tb/task-list-incomplete')
+  })
+
   it('should return a 500 error if submit fails for any other reason', async () => {
     const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
       res: /** @type {IncomingMessage} */ ({
@@ -115,7 +135,7 @@ describe('#CheckAnswers', () => {
     expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 
-  it('should redirect to the sizze error page if the file is too large', async () => {
+  it('should redirect to the size error page if the file is too large', async () => {
     const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation(() => {
       const error = Boom.badRequest('Dummy error')
       error.output.statusCode = statusCodes.fileTooLarge
