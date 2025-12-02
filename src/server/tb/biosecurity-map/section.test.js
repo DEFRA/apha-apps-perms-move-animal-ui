@@ -78,7 +78,7 @@ describe('Biosecurity.validate', () => {
     }).validate()
 
     expect(result.isValid).toBe(false)
-    expect(result.firstInvalidPage).toBeInstanceOf(UploadPlanPage)
+    expect(result.firstInvalidPageUrl).toBe(new UploadPlanPage().urlPath)
   })
 })
 

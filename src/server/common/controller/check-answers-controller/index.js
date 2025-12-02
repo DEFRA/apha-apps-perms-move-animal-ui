@@ -47,7 +47,10 @@ export class SubmitSummaryPage extends QuestionPage {
     const summary = Object.fromEntries(
       Object.values(sections).map((section) => {
         const { key, title } = section.config
-        return [key, { title, answers: section.summaryViewModel(this.urlPath) }]
+        return [
+          key,
+          { title, answers: section.summaryViewModel(req, this.urlPath) }
+        ]
       })
     )
 

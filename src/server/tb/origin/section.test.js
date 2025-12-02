@@ -21,7 +21,7 @@ describe('Origin', () => {
       const result = OriginSection.fromState({ origin: originData }).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPage).toBeInstanceOf(OnOffFarmPage)
+      expect(result.firstInvalidPageUrl).toBe(new OnOffFarmPage().urlPath)
     })
   })
 })

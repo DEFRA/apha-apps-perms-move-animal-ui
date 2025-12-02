@@ -40,7 +40,7 @@ describe('Licence', () => {
       }).validate()
 
       expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPage).toBeInstanceOf(FullNameFuturePage)
+      expect(result.firstInvalidPageUrl).toBe(new FullNameFuturePage().urlPath)
     })
 
     describe('firstPageFactory', () => {

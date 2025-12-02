@@ -65,9 +65,9 @@ export const router = {
 
         // Add routes for the visible sections in the application
         server.register(
-          TbApplicationModel.implementedSections.map(
-            (section) => section.config.plugin
-          )
+          TbApplicationModel.implementedSections
+            .map((section) => section.config.plugin)
+            .filter((plugin) => plugin !== undefined)
         ),
 
         // Static assets
@@ -83,9 +83,9 @@ export const router = {
           exoticsSubmit
         ])
         await server.register(
-          ExoticsApplicationModel.implementedSections.map(
-            (section) => section.config.plugin
-          )
+          ExoticsApplicationModel.implementedSections
+            .map((section) => section.config.plugin)
+            .filter((plugin) => plugin !== undefined)
         )
       }
 
@@ -98,9 +98,9 @@ export const router = {
           fmdSubmit
         ])
         await server.register(
-          FmdApplicationModel.implementedSections.map(
-            (section) => section.config.plugin
-          )
+          FmdApplicationModel.implementedSections
+            .map((section) => section.config.plugin)
+            .filter((plugin) => plugin !== undefined)
         )
       }
     }

@@ -7,6 +7,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
  * @typedef {{ href: string, text: string }} ViewErrorMessage
+ * @typedef {{ type: string, value: any, displayText: string }} AnswerData
  */
 
 /**
@@ -26,6 +27,7 @@ export class AnswerModel {
     return type
   }
 
+  /** @returns {AnswerData} */
   get data() {
     return {
       type: this.type,
