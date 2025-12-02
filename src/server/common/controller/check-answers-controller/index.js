@@ -40,7 +40,7 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   async viewProps(req) {
-    const sections = this.ApplicationModel.fromState(
+    const sections = this.ApplicationModel.fromRequest(
       new this.StateManager(req).toState()
     ).tasks
 
@@ -65,7 +65,7 @@ export class SubmitPageController extends QuestionPageController {
   fileTooLargePath = ''
 
   async handleGet(req, h) {
-    const { isValid } = this.page.ApplicationModel.fromState(
+    const { isValid } = await this.page.ApplicationModel.fromRequest(
       new this.StateManager(req).toState()
     ).validate()
 
@@ -82,7 +82,7 @@ export class SubmitPageController extends QuestionPageController {
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
-    const application = this.page.ApplicationModel.fromState(applicationState)
+    const application = this.page.ApplicationModel.fromRequest(applicationState)
 
     try {
       const {
@@ -124,7 +124,7 @@ export class SubmitPageController extends QuestionPageController {
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
-    const application = this.page.ApplicationModel.fromState(applicationState)
+    const application = this.page.ApplicationModel.fromRequest(applicationState)
 
     const Answer = this.page.Answer
     const answer = new Answer(payload, applicationState)

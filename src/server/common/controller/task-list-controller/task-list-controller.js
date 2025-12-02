@@ -25,7 +25,7 @@ export class TaskListController {
 
   taskListGetHandler(req, h) {
     const applicationState = new this.StateManager(req).toState()
-    const application = this.ApplicationModel.fromState(applicationState)
+    const application = this.ApplicationModel.fromRequest(applicationState)
     const visibleSections = Object.values(application.tasks)
 
     const gdsTasks = visibleSections.map((section) => {

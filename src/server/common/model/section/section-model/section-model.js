@@ -3,15 +3,12 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
  * @import { Request } from '@hapi/hapi'
- * @import { Page } from '~/src/server/common/model/page/page-model.js'
- * @import { AnswerData, AnswerModel}  from '~/src/server/common/model/answer/answer-model.js'
+ * @import { AnswerData }  from '~/src/server/common/model/answer/answer-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
- * @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js'
+ * @import { QuestionPageAnswer, NonQuestionPageAnswer } from './section-model-v1.js'
  */
 
 /**
- * @typedef {{ kind: 'NonQuestion', page: Page }} NonQuestionPageAnswer
- * @typedef {{ kind: 'Question', page: QuestionPage, answer: AnswerModel }} QuestionPageAnswer
  * @typedef { (NonQuestionPageAnswer | QuestionPageAnswer)[] } SectionPayload
  * @typedef {{
  *  question: string,
@@ -93,12 +90,11 @@ export class SectionModel {
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
-   * @param {import("@hapi/hapi").Request} _req
    * @param {RawApplicationState} _state
-   * @returns {Promise<SectionModel>}
+   * @returns {SectionModel}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
-  static async fromRequest(_req, _state) {
+  static fromRequest(_state) {
     throw new NotImplementedError()
   }
 

@@ -49,10 +49,8 @@ describe('SectionModel', () => {
   })
 
   describe('fromRequest', () => {
-    test('should throw NotImplementedError', async () => {
-      await expect(SectionModel.fromRequest(mockRequest, {})).rejects.toThrow(
-        NotImplementedError
-      )
+    test('should throw NotImplementedError', () => {
+      expect(() => SectionModel.fromRequest({})).toThrow(NotImplementedError)
     })
   })
 

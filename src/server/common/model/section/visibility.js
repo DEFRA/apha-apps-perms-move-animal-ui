@@ -9,8 +9,8 @@ export const biosecuritySectionIsVisible = (app) => {
   const isMovementOn = app.origin?.onOffFarm === 'on'
   return (
     isMovementOn &&
-    OriginSection.fromState(app).validate().isValid &&
-    DestinationSection.fromState(app).validate().isValid &&
+    OriginSection.fromRequest(app).validate().isValid &&
+    DestinationSection.fromRequest(app).validate().isValid &&
     isDestinationNotAfu
   )
 }
