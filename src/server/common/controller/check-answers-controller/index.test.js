@@ -10,7 +10,6 @@ import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
-import { InvalidObjectState } from '@aws-sdk/client-s3'
 
 /** @import { IncomingMessage } from 'http' */
 /** @import { Server } from '@hapi/hapi' */
