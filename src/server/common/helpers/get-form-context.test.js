@@ -4,10 +4,11 @@ import {
   getFormModel,
   mapFormContextToAnswers
 } from '~/src/server/common/helpers/get-form-context.js'
+import * as formContextHelpers from '~/src/server/common/helpers/get-form-context.js'
 
 const mockCacheService = { getState: jest.fn() }
-var mockFormsService
-var mockPluginOptions
+let mockFormsService
+let mockPluginOptions
 
 jest.mock('@defra/forms-engine-plugin/engine/helpers.js', () =>
   jest.requireActual('../../../../.jest/mocks/forms-engine-plugin.js')
@@ -24,16 +25,20 @@ jest.mock('@defra/forms-engine-plugin/controllers/index.js', () =>
 )
 
 jest.mock('~/src/server/common/plugins/defra-forms/index.js', () => {
-  mockFormsService = {
-    getFormMetadata: jest.fn(),
-    getFormDefinition: jest.fn()
+  if (!mockFormsService) {
+    mockFormsService = {
+      getFormMetadata: jest.fn(),
+      getFormDefinition: jest.fn()
+    }
   }
-  mockPluginOptions = {
-    services: {
-      formsService: mockFormsService
-    },
-    controllers: {
-      SectionSummaryPageController: Symbol('SectionSummaryPageController')
+  if (!mockPluginOptions) {
+    mockPluginOptions = {
+      services: {
+        formsService: mockFormsService
+      },
+      controllers: {
+        SectionSummaryPageController: Symbol('SectionSummaryPageController')
+      }
     }
   }
 
@@ -68,12 +73,19 @@ describe('getFormContext helper', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
+    mockFormsService = {
+      getFormMetadata: jest.fn().mockResolvedValue(metadata),
+      getFormDefinition: jest.fn().mockResolvedValue(definition)
+    }
+    mockPluginOptions.services = { formsService: mockFormsService }
+    mockPluginOptions.controllers = {
+      SectionSummaryPageController:
+        mockPluginOptions.controllers.SectionSummaryPageController
+    }
     mockEvaluateTemplate.mockImplementation((template) => template)
     mockGetAnswer.mockReturnValue('formatted answer')
     formModel = { getFormContext: jest.fn().mockResolvedValue(returnedContext) }
     mockFormModel.mockImplementation(() => formModel)
-    mockFormsService.getFormMetadata.mockResolvedValue(metadata)
-    mockFormsService.getFormDefinition.mockResolvedValue(definition)
     mockGetCacheService.mockReturnValue(mockCacheService)
     mockCacheService.getState.mockResolvedValue(cachedState)
   })
@@ -132,6 +144,61 @@ describe('getFormContext helper', () => {
       metadata.id,
       'draft'
     )
+  })
+
+  test('loads plugin options when overrides are not supplied', async () => {
+    const pluginOptions = mockPluginOptions
+    expect(pluginOptions.services.formsService).toBe(mockFormsService)
+    mockFormsService.getFormMetadata.mockImplementation(() => metadata)
+    mockFormsService.getFormDefinition.mockImplementation(() => definition)
+    const moduleOptions = await import(
+      '~/src/server/common/plugins/defra-forms/index.js'
+    )
+    expect(moduleOptions.pluginOptions).toBe(pluginOptions)
+    expect(moduleOptions.pluginOptions.services.formsService).toBe(
+      pluginOptions.services.formsService
+    )
+
+    const context = await getFormContext(/** @type {any} */ (request), journey)
+
+    expect(mockFormsService.getFormMetadata).toHaveBeenCalledWith(journey)
+    expect(mockFormsService.getFormDefinition).toHaveBeenCalledWith(
+      metadata.id,
+      'live'
+    )
+    expect(mockFormModel).toHaveBeenCalledWith(
+      definition,
+      { basePath: journey, versionNumber: metadata.versions[0].versionNumber },
+      pluginOptions.services,
+      pluginOptions.controllers
+    )
+    expect(formModel.getFormContext).toHaveBeenCalledTimes(1)
+    expect(context).toBe(returnedContext)
+  })
+
+  test('throws when DEFRA forms plugin options are unavailable', async () => {
+    const pluginOptions = mockPluginOptions
+    const originalServices = pluginOptions.services
+    const originalControllers = pluginOptions.controllers
+    Reflect.deleteProperty(pluginOptions, 'services')
+    Reflect.deleteProperty(pluginOptions, 'controllers')
+
+    const getFormModelSpy = jest
+      .spyOn(formContextHelpers, 'getFormModel')
+      .mockImplementation(() => {
+        throw new Error('getFormModel should not be called')
+      })
+
+    try {
+      await expect(
+        getFormContext(/** @type {any} */ (request), journey)
+      ).rejects.toThrow('DEFRA Forms plugin options are not available')
+      expect(getFormModelSpy).not.toHaveBeenCalled()
+    } finally {
+      Reflect.set(pluginOptions, 'services', originalServices)
+      Reflect.set(pluginOptions, 'controllers', originalControllers)
+      getFormModelSpy.mockRestore()
+    }
   })
 })
 
@@ -359,6 +426,122 @@ describe('mapFormContextToAnswers helper', () => {
           type: 'file',
           value: files,
           displayText: 'movement-plan.pdf'
+        }
+      }
+    ])
+  })
+
+  test('returns undefined slugs when the page path cannot be resolved and keeps numeric answers', () => {
+    const field = {
+      name: 'animalCount',
+      title: 'How many animals?',
+      type: 'NumberField',
+      getFormValueFromState: jest.fn().mockReturnValue(0)
+    }
+
+    const context = {
+      relevantPages: [
+        {
+          path: undefined,
+          getHref: jest.fn().mockReturnValue(undefined),
+          collection: { fields: [field] }
+        }
+      ],
+      state: {}
+    }
+
+    expect(mapFormContextToAnswers(context)).toEqual([
+      {
+        slug: undefined,
+        changeHref: undefined,
+        question: 'rendered:How many animals?',
+        questionKey: 'animalCount',
+        answer: {
+          type: 'number',
+          value: 0,
+          displayText: 'display text'
+        }
+      }
+    ])
+  })
+
+  test('falls back to the slug when the change return target is empty', () => {
+    const getHref = jest.fn((target) => {
+      if (target === '/summary') {
+        return ''
+      }
+      return `/journey${target}`
+    })
+
+    const field = {
+      name: 'noReturnTarget',
+      title: 'Question title',
+      type: 'TextField',
+      getFormValueFromState: jest.fn().mockReturnValue('value')
+    }
+
+    const context = {
+      relevantPages: [
+        {
+          path: '/no-return-target',
+          getHref,
+          collection: { fields: [field] }
+        }
+      ],
+      state: {}
+    }
+
+    expect(mapFormContextToAnswers(context)).toEqual([
+      {
+        slug: '/journey/no-return-target',
+        changeHref: '/journey/no-return-target',
+        question: 'rendered:Question title',
+        questionKey: 'noReturnTarget',
+        answer: {
+          type: 'text',
+          value: 'value',
+          displayText: 'display text'
+        }
+      }
+    ])
+  })
+
+  test('returns the resolved slug when computing change href fails', () => {
+    const getHref = jest.fn((target) => {
+      if (target === '/summary') {
+        throw new Error('boom')
+      }
+      return `/journey${target}`
+    })
+
+    const field = {
+      name: 'throwsOnReturn',
+      title: 'Question title',
+      type: 'TextField',
+      getFormValueFromState: jest.fn().mockReturnValue('value')
+    }
+
+    const context = {
+      relevantPages: [
+        {
+          path: '/throws',
+          getHref,
+          collection: { fields: [field] }
+        }
+      ],
+      state: {}
+    }
+
+    expect(mapFormContextToAnswers(context)).toEqual([
+      {
+        slug: '/journey/throws',
+        changeHref: '/journey/throws',
+        question: 'rendered:Question title',
+        questionKey: 'throwsOnReturn',
+        answer: {
+          type: 'text',
+          value: 'value',
+          displayText: 'display text'
         }
       }
     ])
