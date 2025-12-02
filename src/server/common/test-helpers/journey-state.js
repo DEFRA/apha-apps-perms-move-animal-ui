@@ -101,6 +101,12 @@ export const validLicenceSectionState = {
     firstName: 'Kathryn',
     lastName: 'Janeway'
   },
+  yourName: {
+    firstName: 'Jean-Luc',
+    lastName: 'Picard'
+  },
+  originEmail: 'origin@starfleet.com',
+  destinationEmail: 'destination@starfleet.com',
   emailAddress: 'kathryn@starfleet.com'
 }
 

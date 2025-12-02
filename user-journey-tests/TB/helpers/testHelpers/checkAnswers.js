@@ -2,7 +2,6 @@ import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
 import newAddressPage from '../../page-objects/origin/newAddressPage.js'
 import parishHoldingNumberPage from '../../page-objects/origin/parishHoldingNumberPage.js'
 import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 import {
   clearElement,
   selectElement,
@@ -12,6 +11,7 @@ import finalAnswersPage from '../../page-objects/finalAnswersPage.js'
 import originTypePage from '../../page-objects/origin/originTypePage.js'
 import ownerNamePage from '../../page-objects/receiving-the-licence/ownerNamePage.js'
 import keptSeparatelyPage from '../../page-objects/biosecurity/keptSeparatelyPage.js'
+import emailPage from '../../page-objects/receiving-the-licence/emailPage.js'
 
 export const validateOnOffFarm = async (changeLink, valueElement, nextPage) => {
   await selectElement(changeLink)
@@ -134,14 +134,15 @@ export const validateAndAdjustEmail = async (
   changeLink,
   valueElement,
   defaultEmail,
-  inputEmail
+  inputEmail,
+  page = emailPage
 ) => {
   await selectElement(changeLink)
 
-  const inputValue = await emailPage.textInput().getValue()
+  const inputValue = await page.textInput().getValue()
   expect(inputValue).toBe(defaultEmail)
-  await clearElement(emailPage.textInput())
-  await emailPage.inputTextAndContinue(inputEmail)
+  await clearElement(page.textInput())
+  await page.inputTextAndContinue(inputEmail)
 
   await validateElementVisibleAndText(valueElement, inputEmail)
 }
