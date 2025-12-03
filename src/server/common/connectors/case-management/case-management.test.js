@@ -7,7 +7,7 @@ import { config } from '~/src/config/config.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 
 describe('CaseManagement.submitApplication', () => {
-  const application = TbApplicationModel.fromState(validApplicationState)
+  const application = TbApplicationModel.fromRequest(validApplicationState)
   const { baseUrl, timeout } = config.get('caseManagementApi')
   let wreckMock
 

@@ -16,8 +16,9 @@ const isVisible = (app) => {
   const isOnFarm = app.origin?.onOffFarm === 'on'
   const isOffFarmIsoUnit =
     app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
-  const originValid = OriginSection.fromState(app).validate().isValid
-  const destinationValid = DestinationSection.fromState(app).validate().isValid
+  const originValid = OriginSection.fromRequest(app).validate().isValid
+  const destinationValid =
+    DestinationSection.fromRequest(app).validate().isValid
   const bothTbRestricted =
     OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
     DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)

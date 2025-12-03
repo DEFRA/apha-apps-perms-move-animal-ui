@@ -16,8 +16,8 @@ export class LicenceSection extends SectionModelV1 {
     plugin: licence,
     summaryLink: '/receiving-the-licence/check-answers',
     isEnabled: (app) =>
-      OriginSection.fromState(app).validate().isValid &&
-      DestinationSection.fromState(app).validate().isValid,
+      OriginSection.fromRequest(app).validate().isValid &&
+      DestinationSection.fromRequest(app).validate().isValid,
     isVisible: () => true
   }
 

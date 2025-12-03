@@ -8,10 +8,15 @@ import { SectionModel } from './section-model.js'
  * @import { Request } from '@hapi/hapi'
  * @import { SectionValidation } from './section-model.js'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
- * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
- * @import { SectionData, QuestionPageAnswer, SectionPayload } from './section-model.js'
+ * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
+ * @import { AnswerModel }  from '~/src/server/common/model/answer/answer-model.js'
+ * @import { SectionData, SectionPayload } from './section-model.js'
  */
 
+/**
+ * @typedef {{ kind: 'NonQuestion', page: Page }} NonQuestionPageAnswer
+ * @typedef {{ kind: 'Question', page: QuestionPage, answer: AnswerModel }} QuestionPageAnswer
+ */
 export class SectionModelV1 extends SectionModel {
   /** @type {(RawApplicationState) => QuestionPage} */
   static firstPageFactory
@@ -43,6 +48,14 @@ export class SectionModelV1 extends SectionModel {
     }
 
     return { isValid: true }
+  }
+
+  /**
+   * @param {RawApplicationState} state
+   * @returns {SectionModelV1}
+   */
+  static fromRequest(state) {
+    return this.fromState(state)
   }
 
   /**

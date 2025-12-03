@@ -21,7 +21,7 @@ class TestApplication extends ApplicationModel {
 
 describe('Application.applicationData', () => {
   it('should render application data in the datastructure expected', () => {
-    const application = TestApplication.fromState(validApplicationState)
+    const application = TestApplication.fromRequest(validApplicationState)
 
     expect(application.caseManagementData).toMatchSnapshot()
   })
@@ -29,7 +29,7 @@ describe('Application.applicationData', () => {
 
 describe('Application.fromState', () => {
   it('should create an Application instance from a valid state', () => {
-    const application = TestApplication.fromState(validApplicationState)
+    const application = TestApplication.fromRequest(validApplicationState)
 
     expect(application).toBeInstanceOf(ApplicationModel)
 

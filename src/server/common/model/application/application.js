@@ -72,12 +72,12 @@ export class ApplicationModel {
    * @param {RawApplicationState} state
    * @returns {ApplicationModel}
    */
-  static fromState(state) {
+  static fromRequest(state) {
     return new this(
       Object.fromEntries(
         this.visibleSections(state).map((section) => [
           section.config.key,
-          section.fromState(state)
+          section.fromRequest(state)
         ])
       )
     )
