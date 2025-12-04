@@ -12,7 +12,6 @@ import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
 import { ConfirmationPage, SubmitSummaryPage } from './index.js'
 import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
-import { describePageSnapshot } from '../../test-helpers/snapshot-page.js'
 
 /** @import { IncomingMessage } from 'http' */
 /** @import { Server } from '@hapi/hapi' */
