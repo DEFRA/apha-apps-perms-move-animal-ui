@@ -8,20 +8,43 @@ import { calvesUnder42DaysOldPage } from '~/src/server/tb/identification/calves-
 import { earTagsPage } from './ear-tags/index.js'
 import { testingDatesPage } from './testing-dates/index.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
-/** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
+/**
+ * @import {Request} from '@hapi/hapi'
+ * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
+ * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
+ */
 
-/** @param {RawApplicationState} app */
-const isVisible = (app) => {
-  const isOnFarm = app.origin?.onOffFarm === 'on'
-  const isOffFarmIsoUnit =
-    app.origin?.onOffFarm === 'off' && app.origin?.originType === 'iso-unit'
-  const originValid = OriginSection.fromRequest(app).validate().isValid
-  const destinationValid =
-    DestinationSection.fromRequest(app).validate().isValid
+/**
+ * @param {RawApplicationState} app
+ * @param {Request} [req]
+ */
+const isVisible = async (app, req) => {
+  if (!req) {
+    return false
+  }
+  const origin = await OriginSection.fromRequest(req, app)
+  const destination = await DestinationSection.fromRequest(req, app)
+  const originData = origin.sectionData.questionAnswers
+  const destinationData = destination.sectionData.questionAnswers
+
+  const isOnFarm = originData.some(
+    (q) => q.questionKey === 'onOffFarm' && q.answer.value === 'on'
+  )
+  const isOffFarmIsoUnit = originData.some(
+    (q) => q.questionKey === 'originType' && q.answer.value === 'iso-unit'
+  )
+  const originType = originData.find((q) => q.questionKey === 'originType')
+    ?.answer.value
+  const originValid = origin.validate().isValid
+
+  const destinationType = destinationData.find(
+    (q) => q.questionKey === 'destinationType'
+  )?.answer.value
+
+  const destinationValid = destination.validate().isValid
   const bothTbRestricted =
-    OriginTypeAnswer.isTbRestricted(app.origin?.originType) &&
-    DestinationTypeAnswer.isTbRestricted(app.destination?.destinationType)
+    OriginTypeAnswer.isTbRestricted(originType) &&
+    DestinationTypeAnswer.isTbRestricted(destinationType)
 
   return (
     originValid &&

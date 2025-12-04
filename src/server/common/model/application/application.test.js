@@ -19,17 +19,25 @@ class TestApplication extends ApplicationModel {
   }
 }
 
+const mockRequest = /** @type { any } */ ({})
+
 describe('Application.applicationData', () => {
-  it('should render application data in the datastructure expected', () => {
-    const application = TestApplication.fromRequest(validApplicationState)
+  it('should render application data in the datastructure expected', async () => {
+    const application = await TestApplication.fromRequest(
+      mockRequest,
+      validApplicationState
+    )
 
     expect(application.caseManagementData).toMatchSnapshot()
   })
 })
 
 describe('Application.fromState', () => {
-  it('should create an Application instance from a valid state', () => {
-    const application = TestApplication.fromRequest(validApplicationState)
+  it('should create an Application instance from a valid state', async () => {
+    const application = await TestApplication.fromRequest(
+      mockRequest,
+      validApplicationState
+    )
 
     expect(application).toBeInstanceOf(ApplicationModel)
 

@@ -6,7 +6,8 @@ import {
   validDestinationSectionState
 } from '../../common/test-helpers/journey-state.js'
 /** @import {DestinationTypeData} from '../../common/model/answer/destination-type/destination-type.js' */
-/** @import {OnOffFarmData} from '../../common/model/answer/on-off-farm/on-off-farm.js' */
+
+const mockRequest = /** @type {any} */ ({})
 
 const validBiosecurityPlanData = {
   'upload-plan': {
@@ -88,46 +89,61 @@ describe('Biosecurity.config.isVisible', () => {
   const { origin, destination } = validApplicationState
   const appState = { origin, destination }
 
-  it('should be visible if movement is on farm & destination premises is not AFU', () => {
-    const isVisible = BiosecurityPlanSection.config.isVisible(appState)
+  it('should be visible if movement is on farm & destination premises is not AFU', async () => {
+    const isVisible = await BiosecurityPlanSection.config.isVisible(
+      appState,
+      mockRequest
+    )
     expect(isVisible).toBe(true)
   })
 
-  it('should not be visible if origin is incomplete', () => {
-    const isVisible = BiosecurityPlanSection.config.isVisible({
-      origin: { onOffFarm: origin.onOffFarm },
-      destination
-    })
+  it('should not be visible if origin is incomplete', async () => {
+    const isVisible = await BiosecurityPlanSection.config.isVisible(
+      {
+        origin: { onOffFarm: origin.onOffFarm },
+        destination
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if destination is incomplete', () => {
-    const isVisible = BiosecurityPlanSection.config.isVisible({
-      origin,
-      destination: { destinationType: destination.destinationType }
-    })
+  it('should not be visible if destination is incomplete', async () => {
+    const isVisible = await BiosecurityPlanSection.config.isVisible(
+      {
+        origin,
+        destination: { destinationType: destination.destinationType }
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if destination is AFU', () => {
-    const isVisible = BiosecurityPlanSection.config.isVisible({
-      origin,
-      destination: {
-        /** @type {DestinationTypeData} */
-        destinationType: 'afu'
-      }
-    })
+  it('should not be visible if destination is AFU', async () => {
+    const isVisible = await BiosecurityPlanSection.config.isVisible(
+      {
+        origin,
+        destination: {
+          /** @type {DestinationTypeData} */
+          destinationType: 'afu'
+        }
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if movement is off the farm', () => {
-    const isVisible = BiosecurityPlanSection.config.isVisible({
-      origin: validOriginSectionState,
-      destination: validDestinationSectionState
-    })
+  it('should not be visible if movement is off the farm', async () => {
+    const isVisible = await BiosecurityPlanSection.config.isVisible(
+      {
+        origin: validOriginSectionState,
+        destination: validDestinationSectionState
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })

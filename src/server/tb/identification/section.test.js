@@ -38,6 +38,8 @@ const invalidIdentificationData = {
   calvesUnder42DaysOld: undefined
 }
 
+const mockRequest = /** @type {any} */ ({})
+
 describe('Identification.validate', () => {
   it('should return valid if all nested objects are valid', () => {
     const identificationData = validIdentificationData
@@ -61,11 +63,15 @@ describe('Identification.validate', () => {
 })
 
 describe('Identification.config', () => {
-  it('should be as expected', () => {
+  it('should be as expected', async () => {
     expect(IdentificationSection.config.key).toBe('identification')
     expect(IdentificationSection.config.title).toBe('Animal identification')
-    expect(IdentificationSection.config.isVisible({})).toBe(false)
-    expect(IdentificationSection.config.isEnabled({})).toBe(true)
+    expect(await IdentificationSection.config.isVisible({}, mockRequest)).toBe(
+      false
+    )
+    expect(await IdentificationSection.config.isEnabled({}, mockRequest)).toBe(
+      true
+    )
     expect(IdentificationSection.config.summaryLink).toBe(
       '/identification/check-answers'
     )
@@ -77,72 +83,93 @@ describe('Identification.config.isVisible', () => {
 
   const { origin, destination } = applicationStateWithAnimalIdentifiersSection
 
-  it('should not be visible if origin type is not restricted', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin: { ...origin, originType: 'afu' },
-      destination
-    })
+  it('should not be visible if origin type is not restricted', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: { ...origin, originType: 'afu' },
+        destination
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if destination type is not restricted', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin,
-      destination: { ...destination, destinationType: 'afu' }
-    })
+  it('should not be visible if destination type is not restricted', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin,
+        destination: { ...destination, destinationType: 'afu' }
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if movement is off', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin: { ...origin, onOffFarm: 'off' },
-      destination
-    })
+  it('should not be visible if movement is off', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: { ...origin, onOffFarm: 'off' },
+        destination
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not visible if the origin section is incomplete', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin: { onOffFarm: origin.onOffFarm, originType: origin.originType },
-      destination
-    })
+  it('should not visible if the origin section is incomplete', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: { onOffFarm: origin.onOffFarm, originType: origin.originType },
+        destination
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if the destination section is incomplete', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin,
-      destination: { destinationType: destination.destinationType }
-    })
+  it('should not be visible if the destination section is incomplete', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin,
+        destination: { destinationType: destination.destinationType }
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(false)
   })
 
-  it('should be visible if all conditions met', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin,
-      destination
-    })
+  it('should be visible if all conditions met', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin,
+        destination
+      },
+      mockRequest
+    )
 
     expect(isVisible).toBe(true)
   })
 
-  it('should be visible if moving off of an iso-unit', () => {
-    const isVisible = IdentificationSection.config.isVisible({
-      origin: {
-        ...origin,
-        onOffFarm: 'off',
-        originType: 'iso-unit'
+  it('should be visible if moving off of an iso-unit', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: {
+          ...origin,
+          onOffFarm: 'off',
+          originType: 'iso-unit'
+        },
+        destination: {
+          ...destination,
+          destinationType: 'slaughter' // valid destinationType for iso-unit
+        }
       },
-      destination: {
-        ...destination,
-        destinationType: 'slaughter' // valid destinationType for iso-unit
-      }
-    })
+      mockRequest
+    )
 
     expect(isVisible).toBe(true)
   })

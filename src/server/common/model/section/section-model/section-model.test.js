@@ -6,7 +6,7 @@ const mockRequest = /** @type {any} */ ({})
 
 describe('SectionModel', () => {
   describe('constructor', () => {
-    test('should initialize with provided data', () => {
+    it('should initialize with provided data', () => {
       const data = []
       const section = new SectionModel(data)
       expect(section._data).toEqual(data)
@@ -14,7 +14,7 @@ describe('SectionModel', () => {
   })
 
   describe('config getter', () => {
-    test('should return static config from constructor', () => {
+    it('should return static config from constructor', () => {
       const mockConfig = {
         key: 'test-section',
         title: 'Test Section',
@@ -33,36 +33,38 @@ describe('SectionModel', () => {
   })
 
   describe('validate', () => {
-    test('should throw NotImplementedError', () => {
+    it('should throw NotImplementedError', () => {
       const section = new SectionModel([])
       expect(() => section.validate()).toThrow(NotImplementedError)
     })
   })
 
   describe('taskDetailsViewModel', () => {
-    test('should throw NotImplementedError', () => {
+    it('should throw NotImplementedError', async () => {
       const section = new SectionModel([])
-      expect(() => section.taskDetailsViewModel({})).toThrow(
+      await expect(
+        section.taskDetailsViewModel(mockRequest, {})
+      ).rejects.toThrow(NotImplementedError)
+    })
+  })
+
+  describe('fromRequest', () => {
+    it('should throw NotImplementedError', async () => {
+      await expect(SectionModel.fromRequest(mockRequest, {})).rejects.toThrow(
         NotImplementedError
       )
     })
   })
 
-  describe('fromRequest', () => {
-    test('should throw NotImplementedError', () => {
-      expect(() => SectionModel.fromRequest({})).toThrow(NotImplementedError)
-    })
-  })
-
   describe('sectionData getter', () => {
-    test('should throw NotImplementedError', () => {
+    it('should throw NotImplementedError', () => {
       const section = new SectionModel([])
       expect(() => section.sectionData).toThrow(NotImplementedError)
     })
   })
 
   describe('summaryViewModel', () => {
-    test('should throw NotImplementedError', () => {
+    it('should throw NotImplementedError', () => {
       const section = new SectionModel([])
       expect(() => section.summaryViewModel(mockRequest, '/redirect')).toThrow(
         NotImplementedError

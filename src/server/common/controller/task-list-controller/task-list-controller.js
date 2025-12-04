@@ -23,14 +23,21 @@ export class TaskListController {
   /** @type {string} */
   submitUrlPath
 
-  taskListGetHandler(req, h) {
+  async taskListGetHandler(req, h) {
     const applicationState = new this.StateManager(req).toState()
-    const application = this.ApplicationModel.fromRequest(applicationState)
+    const application = await this.ApplicationModel.fromRequest(
+      req,
+      applicationState
+    )
     const visibleSections = Object.values(application.tasks)
 
-    const gdsTasks = visibleSections.map((section) => {
-      return buildGdsTaskItem(section.taskDetailsViewModel(applicationState))
-    })
+    const gdsTasks = await Promise.all(
+      visibleSections.map(async (section) => {
+        return buildGdsTaskItem(
+          await section.taskDetailsViewModel(req, applicationState)
+        )
+      })
+    )
 
     const incompleteTasks =
       visibleSections.length -

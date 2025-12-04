@@ -12,8 +12,10 @@ export class DestinationSection extends SectionModelV1 {
     title: 'Movement destination',
     plugin: destination,
     summaryLink: '/destination/check-answers',
-    isEnabled: (app) => {
-      return OriginSection.fromRequest(app).validate().isValid
+    isEnabled: async (app, req) => {
+      return (
+        !!req && (await OriginSection.fromRequest(req, app)).validate().isValid
+      )
     },
     isVisible: () => true
   }
