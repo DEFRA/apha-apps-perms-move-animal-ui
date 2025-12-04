@@ -284,9 +284,9 @@ describe('SectionModel.summaryViewModel', () => {
 })
 
 describe('SectionModel.taskDetailsViewModel', () => {
-  it('should return view model with valid section data', () => {
+  it('should return view model with valid section data', async () => {
     const origin = OriginSection.fromState({ origin: validOriginSectionState })
-    const result = origin.taskDetailsViewModel({
+    const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: validOriginSectionState
     })
 
@@ -299,9 +299,9 @@ describe('SectionModel.taskDetailsViewModel', () => {
     })
   })
 
-  it('should return initialLink as first invalid page when section is invalid', () => {
+  it('should return initialLink as first invalid page when section is invalid', async () => {
     const origin = OriginSection.fromState({ origin: invalidState })
-    const result = origin.taskDetailsViewModel({
+    const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: invalidState
     })
 
@@ -309,9 +309,9 @@ describe('SectionModel.taskDetailsViewModel', () => {
     expect(result.initialLink).toBe(new CphNumberPage().urlPath)
   })
 
-  it('should return initialLink as first invalid page when section exits early', () => {
+  it('should return initialLink as first invalid page when section exits early', async () => {
     const origin = OriginSection.fromState({ origin: exitState })
-    const result = origin.taskDetailsViewModel({
+    const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: exitState
     })
 

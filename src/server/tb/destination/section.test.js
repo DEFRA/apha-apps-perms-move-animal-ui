@@ -7,6 +7,8 @@ import {
 
 const destinationData = validDestinationSectionState
 
+const mockRequest = /** @type {any} */ ({})
+
 describe('Destination', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
@@ -32,19 +34,23 @@ describe('Destination', () => {
   })
 
   describe('isEnabled', () => {
-    it('should return false if the origin section is not complete', () => {
+    it('should return false if the origin section is not complete', async () => {
       const applicationState = {
         origin: {}
       }
 
-      expect(DestinationSection.config.isEnabled(applicationState)).toBe(false)
+      expect(
+        await DestinationSection.config.isEnabled(applicationState, mockRequest)
+      ).toBe(false)
     })
 
-    it('should return true if the origin section is complete', () => {
+    it('should return true if the origin section is complete', async () => {
       const applicationState = {
         origin: validOriginSectionState
       }
-      expect(DestinationSection.config.isEnabled(applicationState)).toBe(true)
+      expect(
+        await DestinationSection.config.isEnabled(applicationState, mockRequest)
+      ).toBe(true)
     })
   })
 })

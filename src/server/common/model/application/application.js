@@ -4,6 +4,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 /* eslint-disable jsdoc/require-returns-check */
 
 /**
+ * @import { Request } from '@hapi/hapi'
  * @import { SectionModel } from '~/src/server/common/model/section/section-model/section-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { ApplicationValidationResult } from '~/src/server/common/model/application/validation.js'
@@ -51,12 +52,20 @@ export class ApplicationModel {
   }
 
   /**
+   * @param {Request} req
    * @param {RawApplicationState} state
    */
-  static visibleSections(state) {
-    return this.implementedSections.filter((section) => {
-      return section.config.isVisible(state)
-    })
+  static async visibleSections(req, state) {
+    const sectionVisibility = await Promise.all(
+      this.implementedSections.map(async (section) => ({
+        isVisible: await section.config.isVisible(state, req),
+        section
+      }))
+    )
+
+    return sectionVisibility
+      .filter(({ isVisible }) => isVisible)
+      .map(({ section }) => section)
   }
 
   get caseManagementData() {
@@ -69,16 +78,19 @@ export class ApplicationModel {
   }
 
   /**
+   * @param {Request} req
    * @param {RawApplicationState} state
-   * @returns {ApplicationModel}
+   * @returns {Promise<ApplicationModel>}
    */
-  static fromRequest(state) {
+  static async fromRequest(req, state) {
     return new this(
       Object.fromEntries(
-        this.visibleSections(state).map((section) => [
-          section.config.key,
-          section.fromRequest(state)
-        ])
+        await Promise.all(
+          (await this.visibleSections(req, state)).map(async (section) => [
+            section.config.key,
+            await section.fromRequest(req, state)
+          ])
+        )
       )
     )
   }

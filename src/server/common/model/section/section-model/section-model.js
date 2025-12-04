@@ -70,31 +70,23 @@ export class SectionModel {
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
+   * @param {Request} _req
    * @param {RawApplicationState} _applicationState
-   * @returns {object}
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  taskDetailsViewModel(_applicationState) {
-    throw new NotImplementedError()
-  }
-
-  // eslint-disable-next-line jsdoc/require-returns-check
-  /**
-   * @param {RawApplicationState} _state
-   * @returns {SectionModel}
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static fromState(_state) {
-    throw new NotImplementedError()
-  }
-
-  // eslint-disable-next-line jsdoc/require-returns-check
-  /**
-   * @param {RawApplicationState} _state
-   * @returns {SectionModel}
+   * @returns {Promise<object>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
-  static fromRequest(_state) {
+  async taskDetailsViewModel(_req, _applicationState) {
+    throw new NotImplementedError()
+  }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
+   * @param {Request} _req
+   * @param {RawApplicationState} _state
+   * @returns {Promise<SectionModel>}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
+  static async fromRequest(_req, _state) {
     throw new NotImplementedError()
   }
 

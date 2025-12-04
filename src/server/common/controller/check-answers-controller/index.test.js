@@ -10,6 +10,8 @@ import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
+import { ConfirmationPage, SubmitSummaryPage } from './index.js'
+import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
 
 /** @import { IncomingMessage } from 'http' */
 /** @import { Server } from '@hapi/hapi' */
@@ -26,7 +28,7 @@ const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/tb/submit/confirmation'
 const checkAnswersUri = '/tb/submit/check-answers'
 
-describe('#CheckAnswers', () => {
+describe('#SubmitPageController', () => {
   /** @type {Server} */
   let server
   let session
@@ -289,5 +291,52 @@ describe('#CheckAnswers', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
     expect(wreckSpy).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('#SubmitSummaryPage', () => {
+  const page = new SubmitSummaryPage()
+  const sectionKey = 'submit'
+  const questionKey = 'check-answers'
+  const question =
+    'Before you submit your application, you must select one of the declaration check boxes.'
+  const view = 'common/controller/check-answers-controller/index'
+
+  it('should have the correct sectionKey', () => {
+    expect(page.sectionKey).toBe(sectionKey)
+  })
+
+  it('should have the correct question', () => {
+    expect(page.question).toBe(question)
+  })
+
+  it('should have the correct questionKey', () => {
+    expect(page.questionKey).toBe(questionKey)
+  })
+
+  it('should have the correct view', () => {
+    expect(page.view).toBe(view)
+  })
+
+  it('should have the correct Answer model', () => {
+    expect(page.Answer).toBe(ConfirmationAnswer)
+  })
+
+  it('nextPage should return ConfirmationPage"', () => {
+    const nextPage = page.nextPage()
+    expect(nextPage).toBeInstanceOf(ConfirmationPage)
+  })
+
+  it('should export page', () => {
+    expect(page).toBeInstanceOf(SubmitSummaryPage)
+  })
+})
+
+describe('#ConfirmationPage', () => {
+  const page = new ConfirmationPage()
+  const pageUrl = '/submit/confirmation'
+
+  it('should have the correct urlPath', () => {
+    expect(page.urlPath).toBe(pageUrl)
   })
 })

@@ -15,9 +15,10 @@ export class LicenceSection extends SectionModelV1 {
     title: 'Receiving the licence',
     plugin: licence,
     summaryLink: '/receiving-the-licence/check-answers',
-    isEnabled: (app) =>
-      OriginSection.fromRequest(app).validate().isValid &&
-      DestinationSection.fromRequest(app).validate().isValid,
+    isEnabled: async (app, req) =>
+      !!req &&
+      (await OriginSection.fromRequest(req, app)).validate().isValid &&
+      (await DestinationSection.fromRequest(req, app)).validate().isValid,
     isVisible: () => true
   }
 

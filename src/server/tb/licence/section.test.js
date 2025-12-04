@@ -20,6 +20,8 @@ const licenceData = {
   fullName: testFullName
 }
 
+const mockRequest = /** @type {any} */ ({})
+
 describe('Licence', () => {
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
@@ -84,43 +86,43 @@ describe('Licence', () => {
   })
 
   describe('isEnabled', () => {
-    it('should return true if OriginSection and DestinationSection are valid', () => {
+    it('should return true if OriginSection and DestinationSection are valid', async () => {
       const app = {
         origin: validOriginSectionState,
         destination: validDestinationSectionState
       }
 
-      const result = LicenceSection.config.isEnabled(app)
+      const result = await LicenceSection.config.isEnabled(app, mockRequest)
       expect(result).toBe(true)
     })
 
-    it('should return false if OriginSection is invalid even if DestinationSection is valid', () => {
+    it('should return false if OriginSection is invalid even if DestinationSection is valid', async () => {
       const app = {
         origin: {},
         destination: validDestinationSectionState
       }
 
-      const result = LicenceSection.config.isEnabled(app)
+      const result = await LicenceSection.config.isEnabled(app, mockRequest)
       expect(result).toBe(false)
     })
 
-    it('should return false if DestinationSection is invalid even if OriginSection is valid', () => {
+    it('should return false if DestinationSection is invalid even if OriginSection is valid', async () => {
       const app = {
         origin: validOriginSectionState,
         destination: {}
       }
 
-      const result = LicenceSection.config.isEnabled(app)
+      const result = await LicenceSection.config.isEnabled(app, mockRequest)
       expect(result).toBe(false)
     })
 
-    it('should return false if both OriginSection and DestinationSection are invalid', () => {
+    it('should return false if both OriginSection and DestinationSection are invalid', async () => {
       const app = {
         origin: {},
         destination: {}
       }
 
-      const result = LicenceSection.config.isEnabled(app)
+      const result = await LicenceSection.config.isEnabled(app, mockRequest)
       expect(result).toBe(false)
     })
   })

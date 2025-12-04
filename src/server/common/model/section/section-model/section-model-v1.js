@@ -51,10 +51,12 @@ export class SectionModelV1 extends SectionModel {
   }
 
   /**
+   * @param {Request} _req
    * @param {RawApplicationState} state
-   * @returns {SectionModelV1}
+   * @returns {Promise<SectionModelV1>}
    */
-  static fromRequest(state) {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  static async fromRequest(_req, state) {
     return this.fromState(state)
   }
 
@@ -137,10 +139,11 @@ export class SectionModelV1 extends SectionModel {
   }
 
   /**
+   * @param {Request} req
    * @param {RawApplicationState} applicationState
-   * @returns {object}
+   * @returns {Promise<object>}
    */
-  taskDetailsViewModel(applicationState) {
+  async taskDetailsViewModel(req, applicationState) {
     const sectionValidity = this.validate()
     return {
       title: this.config.title,
@@ -149,7 +152,7 @@ export class SectionModelV1 extends SectionModel {
         this._getFirstPage(applicationState).urlPath,
       summaryLink: this.config.summaryLink,
       isValid: sectionValidity.isValid,
-      isEnabled: this.config.isEnabled(applicationState)
+      isEnabled: await this.config.isEnabled(applicationState, req)
     }
   }
 }

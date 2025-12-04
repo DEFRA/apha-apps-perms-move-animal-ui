@@ -40,8 +40,11 @@ export class SubmitSummaryPage extends QuestionPage {
   }
 
   async viewProps(req) {
-    const sections = this.ApplicationModel.fromRequest(
-      new this.StateManager(req).toState()
+    const sections = (
+      await this.ApplicationModel.fromRequest(
+        req,
+        new this.StateManager(req).toState()
+      )
     ).tasks
 
     const summary = Object.fromEntries(
@@ -65,8 +68,11 @@ export class SubmitPageController extends QuestionPageController {
   fileTooLargePath = ''
 
   async handleGet(req, h) {
-    const { isValid } = this.page.ApplicationModel.fromRequest(
-      new this.StateManager(req).toState()
+    const { isValid } = (
+      await this.page.ApplicationModel.fromRequest(
+        req,
+        new this.StateManager(req).toState()
+      )
     ).validate()
 
     req.logger.info('confirmation page requested')
@@ -82,7 +88,10 @@ export class SubmitPageController extends QuestionPageController {
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
-    const application = this.page.ApplicationModel.fromRequest(applicationState)
+    const application = await this.page.ApplicationModel.fromRequest(
+      req,
+      applicationState
+    )
 
     try {
       const {
@@ -124,7 +133,10 @@ export class SubmitPageController extends QuestionPageController {
     const state = new this.page.StateManager(req)
     const applicationState = state.toState()
 
-    const application = this.page.ApplicationModel.fromRequest(applicationState)
+    const application = await this.page.ApplicationModel.fromRequest(
+      req,
+      applicationState
+    )
 
     const Answer = this.page.Answer
     const answer = new Answer(payload, applicationState)

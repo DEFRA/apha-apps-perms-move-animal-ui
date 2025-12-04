@@ -6,8 +6,17 @@ import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 
+const mockRequest = /** @type { any } */ ({})
+let application
+
 describe('CaseManagement.submitApplication', () => {
-  const application = TbApplicationModel.fromRequest(validApplicationState)
+  beforeAll(async () => {
+    application = await TbApplicationModel.fromRequest(
+      mockRequest,
+      validApplicationState
+    )
+  })
+
   const { baseUrl, timeout } = config.get('caseManagementApi')
   let wreckMock
 
