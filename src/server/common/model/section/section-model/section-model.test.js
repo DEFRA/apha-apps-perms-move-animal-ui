@@ -1,4 +1,4 @@
-import { describe, test, expect } from '@jest/globals'
+import { describe, expect } from '@jest/globals'
 import { SectionModel } from './section-model.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
