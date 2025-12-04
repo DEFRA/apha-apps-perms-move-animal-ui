@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#CheckAnswers Should provide expected response 1`] = `
+exports[`#SubmitPageController Should provide expected response 1`] = `
 "
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
