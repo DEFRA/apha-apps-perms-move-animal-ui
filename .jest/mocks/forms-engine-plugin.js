@@ -26,6 +26,12 @@ export const FormAction = {
 }
 
 export const proceed = jest.fn()
+export const getCacheService = jest.fn()
+export const evaluateTemplate = jest.fn()
+export const getAnswer = jest.fn()
+export const FormModel = jest.fn()
+
+export class TerminalPageController {}
 
 // Default export for the main plugin
 export default {
