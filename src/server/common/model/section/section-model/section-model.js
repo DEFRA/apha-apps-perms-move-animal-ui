@@ -6,6 +6,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @import { AnswerData }  from '~/src/server/common/model/answer/answer-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { QuestionPageAnswer, NonQuestionPageAnswer } from './section-model-v1.js'
+ * @import { FormContext } from "@defra/forms-engine-plugin/engine/types.js"
  */
 
 /**
@@ -38,7 +39,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  */
 
 export class SectionModel {
-  /** @type {SectionPayload} */
+  /** @type {SectionPayload | FormContext} */
   _data
 
   /** @type {SectionConfig} */
@@ -57,7 +58,7 @@ export class SectionModel {
     throw new NotImplementedError()
   }
 
-  /** @param {SectionPayload} data */
+  /** @param {SectionPayload | FormContext} data */
   constructor(data) {
     this._data = data
   }
