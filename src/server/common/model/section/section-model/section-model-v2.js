@@ -54,6 +54,7 @@ export class SectionModelV2 extends SectionModel {
    * @param {RawApplicationState} _state
    * @returns {Promise<SectionModelV2>}
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static async fromRequest(req, _state) {
     const formContext = await getFormContext(req, this.journeySlug)
     return new this(formContext)
@@ -71,7 +72,7 @@ export class SectionModelV2 extends SectionModel {
     return {
       sectionKey: this.config.key,
       title: this.config.title,
-      questionAnswers: questionAnswers
+      questionAnswers
     }
   }
 
