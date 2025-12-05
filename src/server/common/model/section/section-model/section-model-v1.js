@@ -29,12 +29,14 @@ export class SectionModelV1 extends SectionModel {
 
   /** @returns {QuestionPageAnswer[]} */
   get _questionPageAnswers() {
-    return this._data.filter((p) => p.kind === 'Question')
+    return /** @type {SectionPayload} */ (this._data).filter(
+      (p) => p.kind === 'Question'
+    )
   }
 
   /** @returns {SectionValidation} */
   validate() {
-    const finalPage = this._data.at(-1)?.page
+    const finalPage = /** @type {SectionPayload} */ (this._data).at(-1)?.page
 
     if (finalPage instanceof QuestionPage) {
       return { isValid: false, firstInvalidPageUrl: finalPage.urlPath }
