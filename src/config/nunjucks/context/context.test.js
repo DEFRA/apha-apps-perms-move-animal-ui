@@ -95,7 +95,7 @@ describe('#context', () => {
           }
         ],
         serviceName: 'Get permission to move animals under disease controls',
-        serviceUrl: '/'
+        initialServiceUrl: '/'
       })
     })
 
@@ -203,7 +203,7 @@ describe('#context cache', () => {
           }
         ],
         serviceName: 'Get permission to move animals under disease controls',
-        serviceUrl: '/'
+        initialServiceUrl: '/'
       })
     })
   })

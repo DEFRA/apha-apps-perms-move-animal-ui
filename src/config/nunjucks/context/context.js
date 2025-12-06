@@ -44,10 +44,12 @@ export function context(request) {
     }
   }
 
-  const serviceUrl = extractJourneyIndex(request)
+  // we have to use a different property name here
+  // to avoid clashing with the serviceUrl property added by defra-forms-engine
+  const initialServiceUrl = extractJourneyIndex(request)
 
   return {
-    serviceUrl,
+    initialServiceUrl,
     assetPath: `${assetPath}/assets/rebrand`,
     serviceName: config.get('serviceName'),
     breadcrumbs: [],
