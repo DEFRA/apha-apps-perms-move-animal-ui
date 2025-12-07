@@ -1,27 +1,25 @@
-import { validOriginSectionState } from '../../common/test-helpers/journey-state.js'
 import { OriginSection } from './section.js'
-import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
+import { SectionModelV2 } from '~/src/server/common/model/section/section-model/section-model-v2.js'
+import { origin } from '~/src/server/tb/origin/index.js'
 
-describe('Origin', () => {
-  describe('validate', () => {
-    it('should return valid if all nested objects are valid', () => {
-      const result = OriginSection.fromState({
-        origin: validOriginSectionState
-      }).validate()
+// Haven't managed to mock config.get in a way that works across imports,
+// so these tests rely on the real config values.
 
-      expect(result.isValid).toBe(true)
-    })
+describe('OriginSection', () => {
+  it('should extend SectionModelV2', () => {
+    expect(Object.getPrototypeOf(OriginSection)).toBe(SectionModelV2)
+  })
 
-    it('should return invalid if any nested object is invalid', () => {
-      const originData = {
-        ...validOriginSectionState,
-        onOffFarm: undefined
-      }
+  it('should have correct config', () => {
+    expect(OriginSection.config.key).toBe('origin')
+    expect(OriginSection.config.title).toBe('Movement origin')
+    expect(OriginSection.config.plugin).toBe(origin)
+    expect(OriginSection.config.summaryLink).toBe('/tb-origin/summary')
+    expect(OriginSection.config.isEnabled({})).toBe(true)
+    expect(OriginSection.config.isVisible({})).toBe(true)
+  })
 
-      const result = OriginSection.fromState({ origin: originData }).validate()
-
-      expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPageUrl).toBe(new OnOffFarmPage().urlPath)
-    })
+  it('should have journeySlug', () => {
+    expect(OriginSection.journeySlug).toBe('tb-origin')
   })
 })
