@@ -4,8 +4,8 @@ import { onOffFarmPage } from './on-off-farm/index.js'
 import { origin } from '~/src/server/tb/origin/index.js'
 import { config } from '~/src/config/config.js'
 
-/**
- * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
+/** 
+ * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' 
  * @import {Request} from '@hapi/hapi'
  * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
  */
