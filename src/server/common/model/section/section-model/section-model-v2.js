@@ -101,12 +101,12 @@ export class SectionModelV2 extends SectionModel {
    */
   async taskDetailsViewModel(req, applicationState) {
     const firstPage = getFirstJourneyPage(this._data)
-    const sectionValidity = this.validate()
+    const { isValid } = this.validate()
     return {
       title: this.config.title,
       initialLink: firstPage.getHref(firstPage.path),
       summaryLink: this.config.summaryLink,
-      isValid: sectionValidity.isValid,
+      isValid,
       isEnabled: await this.config.isEnabled(applicationState, req)
     }
   }
