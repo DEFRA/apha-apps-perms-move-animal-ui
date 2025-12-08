@@ -4,19 +4,26 @@ import {
   getFirstJourneyPage,
   getFormContext,
   mapFormContextToAnswers
-} from '../../../plugins/defra-forms/form-context.js'
+} from '~/src/server/common/plugins/defra-forms/form-context.js'
 
-jest.mock('../../../plugins/defra-forms/form-context.js')
+jest.mock('~/src/server/common/plugins/defra-forms/form-context.js')
 
-const testPath = '/test-path'
+const testPathOne = '/test-path-one'
+const testPathTwo = '/test-path-two'
 const journeyPrefix = '/journey'
-const fullTestPath = `${journeyPrefix}${testPath}`
+const fullTestPathOne = `${journeyPrefix}${testPathOne}`
+const fullTestPathTwo = `${journeyPrefix}${testPathTwo}`
 const mockRequest = /** @type {any} */ ({})
 const mockState = /** @type {any} */ ({})
 const journeySlug = 'test-journey'
 
 const mockFirstPage = {
-  path: testPath,
+  path: testPathOne,
+  getHref: jest.fn((path) => `${journeyPrefix}${path}`)
+}
+
+const mockSecondPage = {
+  path: testPathTwo,
   getHref: jest.fn((path) => `${journeyPrefix}${path}`)
 }
 
@@ -73,20 +80,24 @@ describe('SectionModelV2', () => {
 
       expect(result).toEqual({
         isValid: false,
-        firstInvalidPageUrl: fullTestPath
+        firstInvalidPageUrl: fullTestPathOne
       })
-      expect(mockFirstPage.getHref).toHaveBeenCalledWith(testPath)
+      expect(mockFirstPage.getHref).toHaveBeenCalledWith(testPathOne)
     })
 
     it('should return invalid when final page is terminal and return url of first page', () => {
       const terminalPage = new TerminalPageController({})
-      mockFormContext.relevantPages = [mockFirstPage, terminalPage]
+      mockFormContext.relevantPages = [
+        mockFirstPage,
+        mockSecondPage,
+        terminalPage
+      ]
       const section = new SectionModelV2(mockFormContext)
       const result = section.validate()
 
       expect(result).toEqual({
         isValid: false,
-        firstInvalidPageUrl: fullTestPath
+        firstInvalidPageUrl: fullTestPathTwo
       })
     })
   })

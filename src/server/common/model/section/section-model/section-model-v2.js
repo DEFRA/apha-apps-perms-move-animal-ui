@@ -40,9 +40,10 @@ export class SectionModelV2 extends SectionModel {
     const finalPage = this._data.relevantPages.at(-1)
 
     if (finalPage instanceof TerminalPageController) {
+      const previousPage = this._data.relevantPages.at(-2)
       return {
         isValid: false,
-        firstInvalidPageUrl: firstPage.getHref(firstPage.path)
+        firstInvalidPageUrl: previousPage.getHref(previousPage.path)
       }
     }
 
