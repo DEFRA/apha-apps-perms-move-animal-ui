@@ -110,3 +110,86 @@ describe('StateManager.key', () => {
     )
   })
 })
+
+describe('StateManager.setSection', () => {
+  let mockSectionV2
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+    mockSectionV2 = /** @type {any} */ ({
+      sectionData: {
+        sectionKey: 'sectionKey',
+        title: 'Section title',
+        questionAnswers: [
+          {
+            questionKey: 'question1',
+            question: 'Question one?',
+            answer: {
+              value: 'one',
+              displayText: 'Text one'
+            }
+          },
+          {
+            questionKey: 'question2',
+            question: 'Question two?',
+            answer: {
+              value: 'two',
+              displayText: 'Text two'
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  it('should set section data from SectionModelV2 overwriting existing section', () => {
+    mockSectionV2.sectionData.sectionKey = 'origin'
+    const request = testRequest(validState)
+    const state = new TestStateManager(request)
+
+    state.setSection(mockSectionV2)
+
+    expect(request.yar.set).toHaveBeenCalledWith('test-key', {
+      ...validState,
+      origin: {
+        question1: 'one',
+        question2: 'two'
+      }
+    })
+  })
+
+  it('should create new section if it does not exist', () => {
+    const request = testRequest(validState)
+    const state = new TestStateManager(request)
+
+    state.setSection(mockSectionV2)
+
+    expect(request.yar.set).toHaveBeenCalledWith('test-key', {
+      ...validState,
+      sectionKey: {
+        question1: 'one',
+        question2: 'two'
+      }
+    })
+  })
+
+  it('should handle empty question answers', () => {
+    const request = testRequest(validState)
+    const state = new TestStateManager(request)
+
+    const mockSection = /** @type {any} */ ({
+      sectionData: {
+        sectionKey: 'newSection',
+        title: 'New Section',
+        questionAnswers: []
+      }
+    })
+
+    state.setSection(mockSection)
+
+    expect(request.yar.set).toHaveBeenCalledWith('test-key', {
+      ...validState,
+      newSection: {}
+    })
+  })
+})
