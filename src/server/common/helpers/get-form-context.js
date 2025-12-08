@@ -329,12 +329,9 @@ async function resolvePluginOptions() {
     '~/src/server/common/plugins/defra-forms/index.js'
   )
 
-  if (
-    !module?.defraFormsPluginOptions?.services ||
-    !module?.defraFormsPluginOptions?.controllers
-  ) {
+  if (!module?.pluginOptions?.services || !module?.pluginOptions?.controllers) {
     throw new Error('DEFRA Forms plugin options are not available')
   }
 
-  return module.defraFormsPluginOptions
+  return module.pluginOptions
 }
