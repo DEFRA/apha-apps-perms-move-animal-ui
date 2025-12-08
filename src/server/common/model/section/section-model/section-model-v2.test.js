@@ -181,7 +181,7 @@ describe('SectionModelV2', () => {
 
       expect(result).toEqual({
         title: 'Test Section',
-        initialLink: '/journey/test-path',
+        initialLink: fullTestPathOne,
         summaryLink: '/summary',
         isValid: true,
         isEnabled: true
