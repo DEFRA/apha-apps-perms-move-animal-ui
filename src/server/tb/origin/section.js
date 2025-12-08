@@ -23,7 +23,6 @@ export class OriginSection extends EnabledSectionModel {
    * @returns {Promise<OriginSection>}
    */
   static async fromRequest(req, state) {
-    // @ts-ignore - TypeScript can't infer that both parent classes have fromRequest
     return super.fromRequest(req, state)
   }
   /** @type {SectionConfig} */
