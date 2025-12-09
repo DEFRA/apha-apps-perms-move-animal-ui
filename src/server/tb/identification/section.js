@@ -10,7 +10,7 @@ import { testingDatesPage } from './testing-dates/index.js'
 
 /**
  * @import {Request} from '@hapi/hapi'
- * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
+ * @import {SectionModel,SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
  * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
  */
 
@@ -24,7 +24,8 @@ const isVisible = async (app, req) => {
   }
   const origin = await OriginSection.fromRequest(req, app)
   const destination = await DestinationSection.fromRequest(req, app)
-  const originData = origin.sectionData.questionAnswers
+  const originData = /** @type {SectionModel} */ (origin).sectionData
+    .questionAnswers
   const destinationData = destination.sectionData.questionAnswers
 
   const isOnFarm = originData.some(
@@ -35,7 +36,7 @@ const isVisible = async (app, req) => {
   )
   const originType = originData.find((q) => q.questionKey === 'originType')
     ?.answer.value
-  const originValid = origin.validate().isValid
+  const originValid = /** @type {SectionModel} */ (origin).validate().isValid
 
   const destinationType = destinationData.find(
     (q) => q.questionKey === 'destinationType'
