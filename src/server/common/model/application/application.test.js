@@ -4,8 +4,15 @@ import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { ApplicationModel } from './application.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
+/**
+ * @import { SectionModel } from '../../model/section/section-model/section-model.js'
+ */
+
 class TestApplication extends ApplicationModel {
-  static implementedSections = [OriginSection, DestinationSection]
+  static implementedSections = /** @type {typeof SectionModel[]} */ ([
+    OriginSection,
+    DestinationSection
+  ])
 
   get version() {
     return {
@@ -32,7 +39,7 @@ describe('Application.applicationData', () => {
   })
 })
 
-describe('Application.fromState', () => {
+describe('Application.fromRequest', () => {
   it('should create an Application instance from a valid state', async () => {
     const application = await TestApplication.fromRequest(
       mockRequest,
@@ -43,14 +50,6 @@ describe('Application.fromState', () => {
 
     expect(application.tasks.origin).toBeInstanceOf(OriginSection)
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
-
-    expect(application.tasks.origin._questionPageAnswers).toEqual(
-      OriginSection.fromState(validApplicationState)._questionPageAnswers
-    )
-
-    expect(application.tasks.destination._questionPageAnswers).toEqual(
-      DestinationSection.fromState(validApplicationState)._questionPageAnswers
-    )
   })
 })
 

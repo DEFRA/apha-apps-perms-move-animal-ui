@@ -14,12 +14,18 @@ import {
 import { parseDocument } from '../../test-helpers/dom.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 
-/** @import { Server } from '@hapi/hapi' */
+/**
+ * @import { Server } from '@hapi/hapi'
+ * @import { SectionModel } from '../../model/section/section-model/section-model.js'
+ */
 
 const stateKey = 'test-state'
 
 class TestApplicationModel extends ApplicationModel {
-  static implementedSections = [OriginSection, DestinationSection]
+  static implementedSections = /** @type {typeof SectionModel[]} */ ([
+    OriginSection,
+    DestinationSection
+  ])
 }
 
 class TestStateManager extends StateManager {
