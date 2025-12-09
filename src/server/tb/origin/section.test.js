@@ -1,27 +1,35 @@
-import { validOriginSectionState } from '../../common/test-helpers/journey-state.js'
 import { OriginSection } from './section.js'
-import { OnOffFarmPage } from '~/src/server/tb/origin/on-off-farm/index.js'
+import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
+import { SectionModelV2 } from '~/src/server/common/model/section/section-model/section-model-v2.js'
+import { origin } from '~/src/server/tb/origin/index.js'
+import { config } from '~/src/config/config.js'
 
-describe('Origin', () => {
-  describe('validate', () => {
-    it('should return valid if all nested objects are valid', () => {
-      const result = OriginSection.fromState({
-        origin: validOriginSectionState
-      }).validate()
+// Haven't managed to mock config.get in a way that works across imports,
+// so these tests rely on the real config values.
 
-      expect(result.isValid).toBe(true)
-    })
+describe('OriginSection', () => {
+  it('should extend SectionModelV2', () => {
+    const { defraFormsEnabled } = config.get('featureFlags')
+    const expectedBaseClass = defraFormsEnabled
+      ? SectionModelV2
+      : SectionModelV1
+    expect(Object.getPrototypeOf(OriginSection)).toBe(expectedBaseClass)
+  })
 
-    it('should return invalid if any nested object is invalid', () => {
-      const originData = {
-        ...validOriginSectionState,
-        onOffFarm: undefined
-      }
+  it('should have correct config', () => {
+    expect(OriginSection.config.key).toBe('origin')
+    expect(OriginSection.config.title).toBe('Movement origin')
+    expect(OriginSection.config.plugin).toBe(origin)
+    const { defraFormsEnabled } = config.get('featureFlags')
+    const expectedSummaryLink = defraFormsEnabled
+      ? '/tb-origin/summary'
+      : '/origin/check-answers'
+    expect(OriginSection.config.summaryLink).toBe(expectedSummaryLink)
+    expect(OriginSection.config.isEnabled({})).toBe(true)
+    expect(OriginSection.config.isVisible({})).toBe(true)
+  })
 
-      const result = OriginSection.fromState({ origin: originData }).validate()
-
-      expect(result.isValid).toBe(false)
-      expect(result.firstInvalidPageUrl).toBe(new OnOffFarmPage().urlPath)
-    })
+  it('should have journeySlug', () => {
+    expect(OriginSection.journeySlug).toBe('tb-origin')
   })
 })

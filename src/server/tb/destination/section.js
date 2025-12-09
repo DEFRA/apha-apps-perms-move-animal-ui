@@ -3,7 +3,9 @@ import { OriginSection } from '../origin/section.js'
 import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
 import { destinationTypePage } from '~/src/server/tb/destination/destination-type/index.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/**
+ * @import {SectionModel, SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
+ */
 
 export class DestinationSection extends SectionModelV1 {
   /** @type {SectionConfig} */
@@ -14,7 +16,10 @@ export class DestinationSection extends SectionModelV1 {
     summaryLink: '/destination/check-answers',
     isEnabled: async (app, req) => {
       return (
-        !!req && (await OriginSection.fromRequest(req, app)).validate().isValid
+        !!req &&
+        /** @type {SectionModel} */ (
+          await OriginSection.fromRequest(req, app)
+        ).validate().isValid
       )
     },
     isVisible: () => true

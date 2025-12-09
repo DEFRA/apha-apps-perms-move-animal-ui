@@ -6,7 +6,7 @@ import { OriginSection } from '../origin/section.js'
 import { DestinationSection } from '../destination/section.js'
 import { OriginTypeAnswer } from '../../common/model/answer/origin-type/origin-type.js'
 
-/** @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
+/** @import {SectionModel, SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' */
 
 export class LicenceSection extends SectionModelV1 {
   /** @type {SectionConfig} */
@@ -17,7 +17,9 @@ export class LicenceSection extends SectionModelV1 {
     summaryLink: '/receiving-the-licence/check-answers',
     isEnabled: async (app, req) =>
       !!req &&
-      (await OriginSection.fromRequest(req, app)).validate().isValid &&
+      /** @type {SectionModel} */ (
+        await OriginSection.fromRequest(req, app)
+      ).validate().isValid &&
       (await DestinationSection.fromRequest(req, app)).validate().isValid,
     isVisible: () => true
   }

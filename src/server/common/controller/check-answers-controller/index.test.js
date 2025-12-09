@@ -3,15 +3,25 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import SessionTestHelper from '../../test-helpers/session-helper.js'
-import { validApplicationState } from '../../test-helpers/journey-state.js'
+import {
+  validApplicationState,
+  validOriginSectionState
+} from '../../test-helpers/journey-state.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 import { sizeErrorPage } from '../../../tb/biosecurity-map/size-error/index.js'
+import {
+  getFormContext,
+  getFirstJourneyPage,
+  mapFormContextToAnswers
+} from '~/src/server/common/plugins/defra-forms/form-context.js'
 
 import Wreck from '@hapi/wreck'
 import Boom from '@hapi/boom'
 import { config } from '~/src/config/config.js'
 import { ConfirmationPage, SubmitSummaryPage } from './index.js'
 import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
+
+jest.mock('~/src/server/common/plugins/defra-forms/form-context.js')
 
 /** @import { IncomingMessage } from 'http' */
 /** @import { Server } from '@hapi/hapi' */
@@ -27,6 +37,51 @@ const {
 const pageTitle = 'Check your answers before sending your application'
 const confirmationUri = '/tb/submit/confirmation'
 const checkAnswersUri = '/tb/submit/check-answers'
+const originAnswers = [
+  {
+    question: 'Are you moving the animals on or off your farm or premises?',
+    questionKey: 'onOffFarm',
+    slug: '/origin/to-or-from-own-premises',
+    answer: {
+      type: 'text',
+      value: 'on',
+      displayText: 'On to the farm or premises'
+    }
+  },
+  {
+    question: 'Which type of premises are the animals moving off?',
+    questionKey: 'originType',
+    slug: '/origin/type-of-origin',
+    answer: {
+      type: 'text',
+      value: 'tb-restricted-farm',
+      displayText: 'TB restricted farm'
+    }
+  },
+  {
+    question:
+      'What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?',
+    questionKey: 'cphNumber',
+    slug: '/origin/origin-farm-cph',
+    answer: {
+      type: 'text',
+      value: '12/345/6789',
+      displayText: '12/345/6789'
+    }
+  },
+  {
+    question:
+      'What is the address of the farm or premises where the animals are moving off?',
+    questionKey: 'address',
+    slug: '/origin/origin-farm-address',
+    answer: {
+      type: 'address',
+      value: validOriginSectionState.address,
+      displayText: 'Starfleet Headquarters<br>San Francisco<br>RG24 8RR'
+    }
+  }
+]
+const mockOriginPage = { getHref: jest.fn((path) => path), path: '/origin' }
 
 describe('#SubmitPageController', () => {
   /** @type {Server} */
@@ -39,6 +94,12 @@ describe('#SubmitPageController', () => {
   })
 
   beforeEach(async () => {
+    jest.mocked(getFormContext).mockResolvedValue({
+      errors: [],
+      relevantPages: [mockOriginPage]
+    })
+    jest.mocked(getFirstJourneyPage).mockReturnValue(mockOriginPage)
+    jest.mocked(mapFormContextToAnswers).mockReturnValue(originAnswers)
     session = await SessionTestHelper.create(server)
     await session.setSectionState('origin', origin)
     await session.setSectionState('licence', licence)

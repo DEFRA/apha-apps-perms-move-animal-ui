@@ -27,7 +27,10 @@ import { EarTagsAnswer } from '../../answer/ear-tags/ear-tags.js'
 import { TestingDatesAnswer } from '../../answer/testing-dates/testing-dates.js'
 import { IdentificationSection } from '../../../../tb/identification/section.js'
 
-/** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
+/**
+ * @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
+ * @import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
+ */
 
 const invalidState = {
   ...validOriginSectionState,
@@ -68,7 +71,9 @@ const mockRequest = /** @type { any } */ ({})
 
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
-    const origin = OriginSection.fromState(applicationState)
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState(applicationState)
+    )
     const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(4)
@@ -86,7 +91,9 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 
   it('should short-circuit on an exit page', () => {
-    const origin = OriginSection.fromState({ origin: exitState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: exitState })
+    )
     const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(2)
@@ -97,7 +104,9 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 
   it('should short-circuit on a page with an invalid answer', () => {
-    const origin = OriginSection.fromState({ origin: invalidState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: invalidState })
+    )
     const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(3)
@@ -140,14 +149,18 @@ describe('SectionModel.questionPageAnswers', () => {
 
 describe('SectionModel.validate', () => {
   it('should return valid if all questions in journey are validly answered', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
 
     expect(origin.validate()).toEqual({ isValid: true })
   })
 
   // Reason: We have not finalised how exit pages will behave
   it('should return invalid if the section hits an exit condition before its complete', () => {
-    const origin = OriginSection.fromState({ origin: exitState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: exitState })
+    )
     const { isValid, firstInvalidPageUrl } = origin.validate()
 
     expect(isValid).toBe(false)
@@ -155,7 +168,9 @@ describe('SectionModel.validate', () => {
   })
 
   it('should return invalid if the section hits a page with an invalid answer', () => {
-    const origin = OriginSection.fromState({ origin: invalidState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: invalidState })
+    )
     const { isValid, firstInvalidPageUrl } = origin.validate()
 
     expect(isValid).toBe(false)
@@ -163,7 +178,7 @@ describe('SectionModel.validate', () => {
   })
 
   it('should return the first page as invalid if no state can be found', () => {
-    const origin = OriginSection.fromState({})
+    const origin = /** @type {SectionModelV1} */ (OriginSection.fromState({}))
 
     const { isValid, firstInvalidPageUrl } = origin.validate()
 
@@ -174,7 +189,9 @@ describe('SectionModel.validate', () => {
 
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     expect(origin._getFirstPage()).toBeInstanceOf(OnOffFarmPage)
   })
 })
@@ -189,14 +206,18 @@ describe('SectionModel.fromState', () => {
 
 describe('SectionModel.sectionData', () => {
   it('should return complete section data with valid state', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     const result = origin.sectionData
 
     expect(result).toMatchSnapshot()
   })
 
   it('should include section key and title and question answers array', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     const result = origin.sectionData
 
     expect(result.sectionKey).toBe(OriginSection.config.key)
@@ -206,7 +227,9 @@ describe('SectionModel.sectionData', () => {
   })
 
   it('should map question answers with question, questionKey, and answer data', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     const result = origin.sectionData
 
     result.questionAnswers.forEach((qa) => {
@@ -228,7 +251,7 @@ describe('SectionModel.sectionData', () => {
   })
 
   it('should return empty question answers for empty state', () => {
-    const origin = OriginSection.fromState({})
+    const origin = /** @type {SectionModelV1} */ (OriginSection.fromState({}))
     const result = origin.sectionData
 
     expect(result.sectionKey).toBe(OriginSection.config.key)
@@ -241,7 +264,9 @@ describe('SectionModel.summaryViewModel', () => {
   const redirectUri = '/check-your-answers'
 
   it('should include array with correct properties and values for each item', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     const result = origin.summaryViewModel(mockRequest, redirectUri)
 
     expect(result).toBeInstanceOf(Array)
@@ -276,7 +301,7 @@ describe('SectionModel.summaryViewModel', () => {
   })
 
   it('should return empty array for section with no answers', () => {
-    const origin = OriginSection.fromState({})
+    const origin = /** @type {SectionModelV1} */ (OriginSection.fromState({}))
     const result = origin.summaryViewModel(mockRequest, redirectUri)
 
     expect(result).toBeInstanceOf(Array)
@@ -285,7 +310,9 @@ describe('SectionModel.summaryViewModel', () => {
 
 describe('SectionModel.taskDetailsViewModel', () => {
   it('should return view model with valid section data', async () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: validOriginSectionState
     })
@@ -300,7 +327,9 @@ describe('SectionModel.taskDetailsViewModel', () => {
   })
 
   it('should return initialLink as first invalid page when section is invalid', async () => {
-    const origin = OriginSection.fromState({ origin: invalidState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: invalidState })
+    )
     const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: invalidState
     })
@@ -310,7 +339,9 @@ describe('SectionModel.taskDetailsViewModel', () => {
   })
 
   it('should return initialLink as first invalid page when section exits early', async () => {
-    const origin = OriginSection.fromState({ origin: exitState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: exitState })
+    )
     const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: exitState
     })

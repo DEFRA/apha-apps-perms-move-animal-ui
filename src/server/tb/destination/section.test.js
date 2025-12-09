@@ -4,12 +4,22 @@ import {
   validDestinationSectionState,
   validOriginSectionState
 } from '../../common/test-helpers/journey-state.js'
+import {
+  getFormContext,
+  getFirstJourneyPage
+} from '~/src/server/common/plugins/defra-forms/form-context.js'
+
+jest.mock('~/src/server/common/plugins/defra-forms/form-context.js')
 
 const destinationData = validDestinationSectionState
 
-const mockRequest = /** @type {any} */ ({})
+const mockRequest = /** @type {any} */ ({ server: {}, yar: {} })
 
 describe('Destination', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   describe('validate', () => {
     it('should return valid if all nested objects are valid', () => {
       const result = DestinationSection.fromState({
@@ -35,6 +45,16 @@ describe('Destination', () => {
 
   describe('isEnabled', () => {
     it('should return false if the origin section is not complete', async () => {
+      const invalidPage = {
+        getHref: jest.fn(() => '/origin/summary'),
+        path: ''
+      }
+      jest.mocked(getFormContext).mockResolvedValue({
+        errors: ['missing answers'],
+        relevantPages: [invalidPage]
+      })
+      jest.mocked(getFirstJourneyPage).mockReturnValue(invalidPage)
+
       const applicationState = {
         origin: {}
       }
@@ -45,6 +65,13 @@ describe('Destination', () => {
     })
 
     it('should return true if the origin section is complete', async () => {
+      const validPage = { getHref: jest.fn(() => '/origin/summary'), path: '' }
+      jest.mocked(getFormContext).mockResolvedValue({
+        errors: [],
+        relevantPages: [validPage]
+      })
+      jest.mocked(getFirstJourneyPage).mockReturnValue(validPage)
+
       const applicationState = {
         origin: validOriginSectionState
       }
