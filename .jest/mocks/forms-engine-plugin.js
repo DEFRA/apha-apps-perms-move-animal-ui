@@ -26,28 +26,32 @@ export const FormAction = {
 }
 
 export const proceed = jest.fn()
-export const getCacheService = jest.fn()
+
+const defaultCacheService = {
+  getState: jest.fn().mockResolvedValue({})
+}
+
+export const getCacheService = jest.fn().mockReturnValue(defaultCacheService)
 export const evaluateTemplate = jest.fn()
 export const getAnswer = jest.fn()
 
-export class FormModel {
-  constructor(definition, options, services, controllers) {
-    this.definition = definition
-    this.options = options
-    this.services = services
-    this.controllers = controllers
-  }
-
-  getFormContext(_request, state, errors) {
-    return {
-      pages: [],
-      relevantPages: [],
-      answers: {},
-      errors: errors || [],
-      state
+export const FormModel = jest
+  .fn()
+  .mockImplementation((definition, options, services, controllers) => ({
+    definition,
+    options,
+    services,
+    controllers,
+    getFormContext(_request, state, errors) {
+      return {
+        pages: [],
+        relevantPages: [],
+        answers: {},
+        errors: errors || [],
+        state
+      }
     }
-  }
-}
+  }))
 
 export class TerminalPageController {}
 

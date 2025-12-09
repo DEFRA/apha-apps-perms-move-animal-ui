@@ -88,6 +88,7 @@ export class SectionModelV2 extends SectionModel {
       key: qa.question,
       value: qa.answer.displayText,
       url: `${qa.slug}?returnUrl=${redirectUri}`,
+      visuallyHiddenKey: qa.question,
       attributes: {
         'data-testid': `${qa.questionKey}-change-link`
       }
