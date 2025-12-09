@@ -154,8 +154,8 @@ describe('getFormContext helper', () => {
     const moduleOptions = await import(
       '~/src/server/common/plugins/defra-forms/index.js'
     )
-    expect(moduleOptions.pluginOptions).toBe(pluginOptions)
-    expect(moduleOptions.pluginOptions.services.formsService).toBe(
+    expect(moduleOptions.defraFormsPluginOptions).toBe(pluginOptions)
+    expect(moduleOptions.defraFormsPluginOptions.services.formsService).toBe(
       pluginOptions.services.formsService
     )
 
