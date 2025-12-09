@@ -6,6 +6,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
  * @import { SectionModel } from '../../model/section/section-model/section-model.js'
+ * @import { SectionModelV1 } from '../../model/section/section-model/section-model-v1.js'
  */
 
 class TestApplication extends ApplicationModel {
@@ -50,6 +51,16 @@ describe('Application.fromRequest', () => {
 
     expect(application.tasks.origin).toBeInstanceOf(OriginSection)
     expect(application.tasks.destination).toBeInstanceOf(DestinationSection)
+
+    expect(application.tasks.origin._questionPageAnswers).toEqual(
+      /** @type {SectionModelV1} */ (
+        OriginSection.fromState(validApplicationState)
+      )._questionPageAnswers
+    )
+
+    expect(application.tasks.destination._questionPageAnswers).toEqual(
+      DestinationSection.fromState(validApplicationState)._questionPageAnswers
+    )
   })
 })
 
