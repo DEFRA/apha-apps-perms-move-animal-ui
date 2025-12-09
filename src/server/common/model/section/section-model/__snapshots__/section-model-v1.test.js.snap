@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SectionModelV1 SectionModel.sectionData should return complete section data with valid state 1`] = `
+exports[`SectionModel.sectionData should return complete section data with valid state 1`] = `
 {
   "questionAnswers": [
     {
