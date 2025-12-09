@@ -22,8 +22,7 @@ export class OriginSection extends EnabledSectionModel {
    * @param {RawApplicationState} state
    * @returns {Promise<OriginSection>}
    */
-  static async fromRequest(req, state) {
-    // @ts-ignore - TypeScript can't infer that both parent classes have fromRequest
+  static fromRequest(req, state) {
     return super.fromRequest(req, state)
   }
 
@@ -32,8 +31,6 @@ export class OriginSection extends EnabledSectionModel {
    * @returns {OriginSection}
    */
   static fromState(state) {
-    // Only V1 has fromState, V2 doesn't need it
-    // @ts-ignore - TypeScript can't infer conditional class extension
     return super.fromState?.(state)
   }
 
