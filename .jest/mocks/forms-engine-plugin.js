@@ -28,6 +28,20 @@ export const FormAction = {
 
 export const proceed = jest.fn()
 
+export class CacheService {
+  constructor(options) {
+    this.options = options
+  }
+
+  async getState() {
+    return {}
+  }
+
+  async setState() {
+    return undefined
+  }
+}
+
 const defaultCacheService = {
   getState: jest.fn().mockResolvedValue({})
 }
