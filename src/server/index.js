@@ -14,10 +14,12 @@ import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
 import { disableClientCache } from './common/helpers/client-cache.js/client-cache.js'
 import { addSecurityHeaders } from './common/helpers/security-headers/index.js'
 import { addUUIDToRequest } from './common/helpers/request-identification/index.js'
-import { defraFormsPlugin } from './common/plugins/defra-forms/index.js'
+import {
+  defraFormsPlugin,
+  defraFormsPluginOptions
+} from './common/plugins/defra-forms/index.js'
 import { getAuthOptions } from './common/helpers/auth/toggles-helper.js'
 import { CustomCacheService } from './common/plugins/defra-forms/custom-cache-service.js'
-import { defraFormsPluginOptions } from './common/plugins/defra-forms/index.js'
 
 export async function createServer() {
   const server = hapi.server({

@@ -6,8 +6,7 @@ import { OriginSection } from '~/src/server/tb/origin/section.js'
 
 jest.mock('@defra/forms-engine-plugin/cache-service.js', () => ({
   CacheService: class CacheService {
-    constructor() {}
-    async setState() {
+    setState() {
       return 'parent-result'
     }
   }
