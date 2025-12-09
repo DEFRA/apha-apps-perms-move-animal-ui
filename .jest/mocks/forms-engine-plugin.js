@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /**
  * Mock for @defra/forms-engine-plugin
  */
