@@ -34,7 +34,7 @@ describe('CustomCacheService', () => {
     }
 
     jest.mocked(TbStateManager).mockImplementation(() => mockStateService)
-    jest.mocked(OriginSection).fromRequest.mockResolvedValue(mockSection)
+    jest.mocked(OriginSection.fromRequest).mockResolvedValue(mockSection)
     jest
       .spyOn(CacheService.prototype, 'setState')
       .mockResolvedValue('parent-result')
