@@ -7,21 +7,20 @@ import { IdentificationSection } from './identification/section.js'
 import { ApplicationModel } from '../common/model/application/application.js'
 
 /**
- * @import { SectionModelV1 } from '../common/model/section/section-model/section-model-v1.js'
+ * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
  */
 
 export class TbApplicationModel extends ApplicationModel {
   // This is a list of all the sections that are implemented in the application.
   // The order in this array drives the order in which the sections are displayed.
-  /** @type {typeof SectionModelV1[]} */
-  static implementedSections = [
+  static implementedSections = /** @type {typeof SectionModel[]} */ ([
     OriginSection,
     DestinationSection,
     LicenceSection,
     IdentificationSection,
     BiosecuritySection,
     BiosecurityPlanSection
-  ]
+  ])
 
   get version() {
     return {

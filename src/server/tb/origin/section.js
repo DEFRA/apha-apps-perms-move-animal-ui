@@ -4,8 +4,8 @@ import { onOffFarmPage } from './on-off-farm/index.js'
 import { origin } from '~/src/server/tb/origin/index.js'
 import { config } from '~/src/config/config.js'
 
-/** 
- * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js' 
+/**
+ * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
  * @import {Request} from '@hapi/hapi'
  * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
  */
@@ -26,6 +26,17 @@ export class OriginSection extends EnabledSectionModel {
     // @ts-ignore - TypeScript can't infer that both parent classes have fromRequest
     return super.fromRequest(req, state)
   }
+
+  /**
+   * @param {RawApplicationState} state
+   * @returns {OriginSection}
+   */
+  static fromState(state) {
+    // Only V1 has fromState, V2 doesn't need it
+    // @ts-ignore - TypeScript can't infer conditional class extension
+    return super.fromState?.(state)
+  }
+
   /** @type {SectionConfig} */
   static config = {
     key: 'origin',
