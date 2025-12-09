@@ -44,10 +44,10 @@ jest.mock('~/src/server/common/plugins/defra-forms/index.js', () => {
 
   return {
     __esModule: true,
-    pluginOptions: mockPluginOptions
+    defraFormsPluginOptions: mockPluginOptions
   }
 })
-const { pluginOptions: loadedPluginOptions } = jest.requireMock(
+const { defraFormsPluginOptions: loadedPluginOptions } = jest.requireMock(
   '~/src/server/common/plugins/defra-forms/index.js'
 )
 mockPluginOptions = loadedPluginOptions
