@@ -2,7 +2,7 @@ services:
   redis:
     image: redis:7.2.3-alpine3.18
     ports:
-      - '6379:6379'
+      - "6379:6379"
     restart: always
     networks:
       - cdp-tenant
@@ -10,17 +10,17 @@ services:
   your-frontend:
     build: ./
     ports:
-      - '3000:3000'
+      - "3000:3000"
     links:
-      - 'redis:redis'
-      - 'wiremock:wiremock'
+      - "redis:redis"
+      - "wiremock:wiremock"
     depends_on:
       redis:
         condition: service_started
       wiremock:
         condition: service_started
     env_file:
-      - 'compose/aws.env'
+      - "compose/aws.env"
     environment:
       PORT: 3000
       NODE_ENV: development
@@ -48,21 +48,22 @@ services:
       CASE_MANAGEMENT_URL: http://backend:3001
       DISINFECTANT_API_BASE_URL: http://wiremock:8080
       DISINFECTANT_API_PATH: /getApprovedDisinfectants
+      DEFRA_FORMS_ENABLED: true
     networks:
       - cdp-tenant
 
   cdp-uploader:
     image: defradigital/cdp-uploader:${CDP_UPLOADER_VERSION:-latest}
     ports:
-      - '7337:7337'
+      - "7337:7337"
     links:
-      - 'localstack:localstack'
-      - 'redis:redis'
+      - "localstack:localstack"
+      - "redis:redis"
     depends_on:
       localstack:
         condition: service_healthy
     env_file:
-      - 'compose/aws.env'
+      - "compose/aws.env"
     environment:
       VIRTUAL_HOST: ~^uploader\..*\.sslip\.io
       VIRTUAL_PATH: /
@@ -81,17 +82,17 @@ services:
   backend:
     image: defradigital/apha-apps-perms-case-mgmt-api:latest
     ports:
-      - '3001:3001'
+      - "3001:3001"
     links:
-      - 'localstack:localstack'
-      - 'mongodb:mongodb'
+      - "localstack:localstack"
+      - "mongodb:mongodb"
     depends_on:
       localstack:
         condition: service_healthy
       mongodb:
         condition: service_started
     env_file:
-      - 'compose/aws.env'
+      - "compose/aws.env"
     environment:
       PORT: 3001
       NODE_ENV: development
@@ -104,7 +105,7 @@ services:
   proxy:
     image: nginxproxy/nginx-proxy:1.4
     ports:
-      - '7300:80'
+      - "7300:80"
     environment:
       - ENABLE_IPV6=true
       - DEFAULT_ROOT="418"
@@ -119,7 +120,7 @@ services:
     networks:
       - cdp-tenant
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
       - mongodb-data:/data
     restart: always
@@ -127,20 +128,20 @@ services:
   localstack:
     image: localstack/localstack:3.0.2
     ports:
-      - '4566:4566' # LocalStack Gateway
-      - '4510-4559:4510-4559' # external services port range
+      - "4566:4566" # LocalStack Gateway
+      - "4510-4559:4510-4559" # external services port range
     env_file:
-      - 'compose/aws.env'
+      - "compose/aws.env"
     environment:
       DEBUG: ${DEBUG:-1}
       LS_LOG: WARN # Localstack DEBUG Level
       SERVICES: s3,sqs,sns,firehose
       LOCALSTACK_HOST: 127.0.0.1
     volumes:
-      - '${TMPDIR:-/tmp}/localstack:/var/lib/localstack'
+      - "${TMPDIR:-/tmp}/localstack:/var/lib/localstack"
       - ./compose/start-localstack.sh:/etc/localstack/init/ready.d/start-localstack.sh
     healthcheck:
-      test: ['CMD', 'curl', 'localhost:4566']
+      test: ["CMD", "curl", "localhost:4566"]
       interval: 5s
       start_period: 5s
       retries: 3
@@ -150,14 +151,14 @@ services:
   wiremock:
     image: wiremock/wiremock:3.3.1
     ports:
-      - '3100:8080'
+      - "3100:8080"
     environment:
       - VIRTUAL_HOST=~^wiremock\..*\.sslip\.io
       - VIRTUAL_PORT=8080
     volumes:
       - ./wiremock/mappings:/home/wiremock/mappings
       - ./wiremock/__files:/home/wiremock/__files
-    command: ['--global-response-templating', '--verbose']
+    command: ["--global-response-templating", "--verbose"]
     networks:
       - cdp-tenant
 
