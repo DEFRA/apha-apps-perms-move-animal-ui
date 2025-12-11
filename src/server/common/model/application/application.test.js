@@ -5,15 +5,11 @@ import { ApplicationModel } from './application.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
 /**
- * @import { SectionModel } from '../../model/section/section-model/section-model.js'
  * @import { SectionModelV1 } from '../../model/section/section-model/section-model-v1.js'
  */
 
 class TestApplication extends ApplicationModel {
-  static implementedSections = /** @type {typeof SectionModel[]} */ ([
-    OriginSection,
-    DestinationSection
-  ])
+  static implementedSections = [OriginSection, DestinationSection]
 
   get version() {
     return {

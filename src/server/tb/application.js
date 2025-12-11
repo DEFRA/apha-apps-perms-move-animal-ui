@@ -13,14 +13,14 @@ import { ApplicationModel } from '../common/model/application/application.js'
 export class TbApplicationModel extends ApplicationModel {
   // This is a list of all the sections that are implemented in the application.
   // The order in this array drives the order in which the sections are displayed.
-  static implementedSections = /** @type {typeof SectionModel[]} */ ([
+  static implementedSections = [
     OriginSection,
     DestinationSection,
     LicenceSection,
     IdentificationSection,
     BiosecuritySection,
     BiosecurityPlanSection
-  ])
+  ]
 
   get version() {
     return {

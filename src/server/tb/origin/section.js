@@ -5,50 +5,40 @@ import { origin } from '~/src/server/tb/origin/index.js'
 import { config } from '~/src/config/config.js'
 
 /**
- * @import {SectionConfig} from '~/src/server/common/model/section/section-model/section-model.js'
- * @import {Request} from '@hapi/hapi'
- * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
+ * @import {SectionConfig, SectionModel} from '~/src/server/common/model/section/section-model/section-model.js'
  */
 
-// Toggle between V1 and V2 (Defra Forms) implementations
-const defraFormsEnabled = config.get('featureFlags')?.defraFormsEnabled
-
-/** @type {typeof SectionModelV1 | typeof SectionModelV2} */
-const EnabledSectionModel = defraFormsEnabled ? SectionModelV2 : SectionModelV1
-
-export class OriginSection extends EnabledSectionModel {
-  /**
-   * @param {Request} req
-   * @param {RawApplicationState} state
-   * @returns {Promise<OriginSection>}
-   */
-  static fromRequest(req, state) {
-    return super.fromRequest(req, state)
-  }
-
-  /**
-   * @param {RawApplicationState} state
-   * @returns {OriginSection}
-   */
-  static fromState(state) {
-    return super.fromState?.(state)
-  }
-
+export class OriginSectionV1 extends SectionModelV1 {
   /** @type {SectionConfig} */
   static config = {
     key: 'origin',
     title: 'Movement origin',
     plugin: origin,
-    summaryLink: defraFormsEnabled
-      ? '/tb-origin/summary'
-      : '/origin/check-answers',
+    summaryLink: '/origin/check-answers',
     isEnabled: () => true,
     isVisible: () => true
   }
 
-  // V1 specific
   static firstPageFactory = () => onOffFarmPage
+}
 
-  // V2 specific
+export class OriginSectionV2 extends SectionModelV2 {
+  /** @type {SectionConfig} */
+  static config = {
+    key: 'origin',
+    title: 'Movement origin',
+    plugin: origin,
+    summaryLink: '/tb-origin/summary',
+    isEnabled: () => true,
+    isVisible: () => true
+  }
+
   static journeySlug = 'tb-origin'
 }
+
+const defraFormsEnabled = config.get('featureFlags')?.defraFormsEnabled
+
+/** @type {typeof SectionModel} OriginSection */
+export const OriginSection = defraFormsEnabled
+  ? OriginSectionV2
+  : OriginSectionV1

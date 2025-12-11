@@ -16,10 +16,7 @@ export class DestinationSection extends SectionModelV1 {
     summaryLink: '/destination/check-answers',
     isEnabled: async (app, req) => {
       return (
-        !!req &&
-        /** @type {SectionModel} */ (
-          await OriginSection.fromRequest(req, app)
-        ).validate().isValid
+        !!req && (await OriginSection.fromRequest(req, app)).validate().isValid
       )
     },
     isVisible: () => true

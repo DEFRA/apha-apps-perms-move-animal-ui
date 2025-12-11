@@ -92,6 +92,16 @@ export class SectionModel {
   }
 
   // eslint-disable-next-line jsdoc/require-returns-check
+  /**
+   * @param {RawApplicationState} _data
+   * @returns {SectionModel}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static fromState(_data) {
+    throw new NotImplementedError()
+  }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
   /** @returns {SectionData} */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   get sectionData() {

@@ -4,6 +4,8 @@ import { CacheService } from '@defra/forms-engine-plugin/cache-service.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { OriginSection } from '~/src/server/tb/origin/section.js'
 
+/** @import {SectionModelV1} from '../../model/section/section-model/section-model-v1.js' */
+
 jest.mock('@defra/forms-engine-plugin/cache-service.js', () => ({
   CacheService: class CacheService {
     setState() {
@@ -26,7 +28,7 @@ describe('CustomCacheService', () => {
 
     mockRequest = { id: 'test-request' }
     mockState = { data: 'test-state' }
-    mockSection = { id: 'test-section' }
+    mockSection = {}
 
     mockStateService = {
       toState: jest.fn().mockReturnValue({ converted: 'state' }),
@@ -34,7 +36,11 @@ describe('CustomCacheService', () => {
     }
 
     jest.mocked(TbStateManager).mockImplementation(() => mockStateService)
-    jest.mocked(OriginSection).fromRequest.mockResolvedValue(mockSection)
+    jest
+      .mocked(OriginSection)
+      .fromRequest.mockResolvedValue(
+        /** @type {SectionModelV1} */ (mockSection)
+      )
     jest
       .spyOn(CacheService.prototype, 'setState')
       .mockResolvedValue('parent-result')

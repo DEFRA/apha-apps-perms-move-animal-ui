@@ -4,7 +4,6 @@ import { DestinationSection } from '../../../tb/destination/section.js'
 /**
  * @import {Request} from '@hapi/hapi'
  * @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js'
- * @import { SectionModel } from '~/src/server/common/model/section/section-model/section-model.js'
  */
 
 /**
@@ -17,8 +16,7 @@ export const biosecuritySectionIsVisible = async (app, req) => {
   }
   const origin = await OriginSection.fromRequest(req, app)
   const destination = await DestinationSection.fromRequest(req, app)
-  const originData = /** @type {SectionModel} */ (origin).sectionData
-    .questionAnswers
+  const originData = origin.sectionData.questionAnswers
   const destinationData = destination.sectionData.questionAnswers
 
   const isMovementOn = originData.some(
@@ -30,7 +28,7 @@ export const biosecuritySectionIsVisible = async (app, req) => {
 
   return (
     isMovementOn &&
-    /** @type {SectionModel} */ (origin).validate().isValid &&
+    origin.validate().isValid &&
     destination.validate().isValid &&
     isDestinationNotAfu
   )

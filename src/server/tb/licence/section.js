@@ -17,9 +17,7 @@ export class LicenceSection extends SectionModelV1 {
     summaryLink: '/receiving-the-licence/check-answers',
     isEnabled: async (app, req) =>
       !!req &&
-      /** @type {SectionModel} */ (
-        await OriginSection.fromRequest(req, app)
-      ).validate().isValid &&
+      (await OriginSection.fromRequest(req, app)).validate().isValid &&
       (await DestinationSection.fromRequest(req, app)).validate().isValid,
     isVisible: () => true
   }
