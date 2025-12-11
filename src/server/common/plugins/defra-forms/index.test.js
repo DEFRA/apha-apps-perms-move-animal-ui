@@ -1,4 +1,4 @@
-import { services, defraFormsPlugin, pluginOptions } from './index.js'
+import { services, defraFormsPlugin, defraFormsPluginOptions } from './index.js'
 
 jest.mock('~/src/config/nunjucks/context/context.js', () => ({
   context: {}
@@ -58,7 +58,7 @@ describe('defra-forms plugin', () => {
   describe('defraFormsPlugin', () => {
     it('should export plugin configuration', () => {
       expect(defraFormsPlugin.plugin).toBeDefined()
-      expect(defraFormsPlugin.options).toBe(pluginOptions)
+      expect(defraFormsPlugin.options).toBe(defraFormsPluginOptions)
     })
   })
 })

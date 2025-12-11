@@ -27,7 +27,10 @@ import { EarTagsAnswer } from '../../answer/ear-tags/ear-tags.js'
 import { TestingDatesAnswer } from '../../answer/testing-dates/testing-dates.js'
 import { IdentificationSection } from '../../../../tb/identification/section.js'
 
-/** @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
+/**
+ * @import {OnOffFarmData} from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js'
+ * @import { SectionModelV1 } from '~/src/server/common/model/section/section-model/section-model-v1.js'
+ */
 
 const invalidState = {
   ...validOriginSectionState,
@@ -174,7 +177,9 @@ describe('SectionModel.validate', () => {
 
 describe('SectionModel.firstPage', () => {
   it('should return the page from the page factory', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
     expect(origin._getFirstPage()).toBeInstanceOf(OnOffFarmPage)
   })
 })
@@ -240,8 +245,10 @@ describe('SectionModel.sectionData', () => {
 describe('SectionModel.summaryViewModel', () => {
   const redirectUri = '/check-your-answers'
 
-  it('should include array with correct properties and values for each item', () => {
-    const origin = OriginSection.fromState({ origin: validOriginSectionState })
+  it('should include array with correct properties and values for each item', async () => {
+    const origin = await OriginSection.fromRequest(mockRequest, {
+      origin: validOriginSectionState
+    })
     const result = origin.summaryViewModel(mockRequest, redirectUri)
 
     expect(result).toBeInstanceOf(Array)

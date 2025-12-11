@@ -12,7 +12,6 @@ import { SlaughterInformationSection } from './slaughter/section.js'
  */
 
 export class FmdApplicationModel extends ApplicationModel {
-  /** @type {typeof SectionModelV1[]} */
   static implementedSections = [
     AboutSection,
     OriginSection,

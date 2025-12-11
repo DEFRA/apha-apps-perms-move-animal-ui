@@ -1,8 +1,11 @@
 import { QuestionPage } from '../page/question-page-model.js'
 
-/** @import {Request} from "@hapi/hapi/lib/types/request.js" */
-/** @import { AnswerModel } from "../answer/answer-model.js" */
-/** @import { ExitPage } from '../page/exit-page-model.js' */
+/**
+ * @import {Request} from '@hapi/hapi/lib/types/request.js'
+ * @import { AnswerModel } from '../answer/answer-model.js'
+ * @import { ExitPage } from '../page/exit-page-model.js'
+ * @import {SectionModelV2} from '../section/section-model/section-model-v2.js'
+ */
 
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 
@@ -48,5 +51,22 @@ export class StateManager {
         }
       })
     }
+  }
+
+  /** @param {SectionModelV2} section */
+  setSection(section) {
+    const currentApplicationState = this.toState()
+    const sectionData = section.sectionData
+    const sectionState = Object.fromEntries(
+      sectionData.questionAnswers.map((questionData) => [
+        questionData.questionKey,
+        questionData.answer.value
+      ])
+    )
+
+    this._request.yar.set(this.key, {
+      ...currentApplicationState,
+      [sectionData.sectionKey]: sectionState
+    })
   }
 }

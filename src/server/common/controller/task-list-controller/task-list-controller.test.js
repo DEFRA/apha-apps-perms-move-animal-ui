@@ -14,7 +14,9 @@ import {
 import { parseDocument } from '../../test-helpers/dom.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 
-/** @import { Server } from '@hapi/hapi' */
+/**
+ * @import { Server } from '@hapi/hapi'
+ */
 
 const stateKey = 'test-state'
 

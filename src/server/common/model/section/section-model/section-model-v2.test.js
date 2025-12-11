@@ -161,12 +161,14 @@ describe('SectionModelV2', () => {
           key: 'Question 1',
           value: 'Answer 1',
           url: '/q1?returnUrl=/return-url',
+          visuallyHiddenKey: 'Question 1',
           attributes: { 'data-testid': 'q1-change-link' }
         },
         {
           key: 'Question 2',
           value: 'Answer 2',
           url: '/q2?returnUrl=/return-url',
+          visuallyHiddenKey: 'Question 2',
           attributes: { 'data-testid': 'q2-change-link' }
         }
       ])

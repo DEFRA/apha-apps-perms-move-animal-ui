@@ -9,7 +9,7 @@ import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/i
 /**
  * @import { Request } from '@hapi/hapi'
  * @import { FormContext } from "@defra/forms-engine-plugin/engine/types.js"
- * @import { SectionValidation } from './section-model.js'
+ * @import { SectionValidation, summaryViewModelData } from './section-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  */
 
@@ -80,6 +80,7 @@ export class SectionModelV2 extends SectionModel {
   /**
    * @param {Request} _req
    * @param {string} redirectUri
+   * @returns {summaryViewModelData[]}
    */
   summaryViewModel(_req, redirectUri) {
     const questionAnswers = mapFormContextToAnswers(this._data)
@@ -88,6 +89,7 @@ export class SectionModelV2 extends SectionModel {
       key: qa.question,
       value: qa.answer.displayText,
       url: `${qa.slug}?returnUrl=${redirectUri}`,
+      visuallyHiddenKey: qa.question,
       attributes: {
         'data-testid': `${qa.questionKey}-change-link`
       }
