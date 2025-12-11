@@ -72,7 +72,6 @@ const mockRequest = /** @type { any } */ ({})
 describe('SectionModel.questionPageAnswers', () => {
   it('should return all of the pages with answers pre-populated', () => {
     const origin = OriginSection.fromState(applicationState)
-
     const pageAnswers = origin._questionPageAnswers
 
     expect(pageAnswers).toHaveLength(4)
@@ -309,7 +308,6 @@ describe('SectionModel.taskDetailsViewModel', () => {
 
   it('should return initialLink as first invalid page when section is invalid', async () => {
     const origin = OriginSection.fromState({ origin: invalidState })
-
     const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: invalidState
     })
@@ -320,7 +318,6 @@ describe('SectionModel.taskDetailsViewModel', () => {
 
   it('should return initialLink as first invalid page when section exits early', async () => {
     const origin = OriginSection.fromState({ origin: exitState })
-
     const result = await origin.taskDetailsViewModel(mockRequest, {
       origin: exitState
     })
