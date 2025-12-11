@@ -245,10 +245,10 @@ describe('SectionModel.sectionData', () => {
 describe('SectionModel.summaryViewModel', () => {
   const redirectUri = '/check-your-answers'
 
-  it('should include array with correct properties and values for each item', () => {
-    const origin = /** @type {SectionModelV1} */ (
-      OriginSection.fromState({ origin: validOriginSectionState })
-    )
+  it('should include array with correct properties and values for each item', async () => {
+    const origin = await OriginSection.fromRequest(mockRequest, {
+      origin: validOriginSectionState
+    })
     const result = origin.summaryViewModel(mockRequest, redirectUri)
 
     expect(result).toBeInstanceOf(Array)

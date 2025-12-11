@@ -35,6 +35,16 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  */
 
 /**
+ * @typedef {{
+ * key: string,
+ * value: string,
+ * url: string,
+ * visuallyHiddenKey: string,
+ * attributes: Record<string, string>
+ * }} summaryViewModelData
+ */
+
+/**
  * export @typedef {{ isValid: boolean, firstInvalidPageUrl?: string }} SectionValidation
  */
 
@@ -108,9 +118,11 @@ export class SectionModel {
     throw new NotImplementedError()
   }
 
+  // eslint-disable-next-line jsdoc/require-returns-check
   /**
    * @param {Request} _req
    * @param {string} _redirectUri
+   * @returns {summaryViewModelData[]}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   summaryViewModel(_req, _redirectUri) {
