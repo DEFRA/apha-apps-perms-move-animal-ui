@@ -96,7 +96,7 @@
           "type": "TextField",
           "title": "Which country are the animals coming from?",
           "name": "country",
-          "shortDescription": "Country the animals are coming from",
+          "shortDescription": "Which country the animals are coming from",
           "hint": "",
           "options": {
             "required": true,
