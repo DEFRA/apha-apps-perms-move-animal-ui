@@ -7,8 +7,8 @@ exports[`ContactTbRestrictedFarmPage ContactTbRestrictedFarmPage.content should 
       <h1 class="govuk-heading-l">You need to contact the TB restricted farm the animals are moving onto</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          When animals are moving onto a TB restricted farm, it is the
-          responsibility of the TB restricted farm to apply for a licence.
+          When the animals are moving on to a TB restricted farm, it is the
+          responsibility of that farm to apply for a licence.
         </p>
         <p>
           We need details about their biosecurity practices to process the
