@@ -101,6 +101,8 @@ describe('Answer', () => {
       jest.setSystemTime(new TZDate('2025-12-01T00:00:00+01:00'))
     })
 
+    afterAll(jest.useRealTimers)
+
     it('should validate successfully with valid future date', () => {
       const answer = new Answer({ day: '15', month: '12', year: '2025' })
       const result = answer.validate()
