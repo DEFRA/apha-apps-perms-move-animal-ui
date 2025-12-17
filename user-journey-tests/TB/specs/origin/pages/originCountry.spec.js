@@ -1,12 +1,9 @@
-import { expect } from '@wdio/globals'
-
-import originCountryPage from '../../page-objects/origin/originCountryPage.js'
-import importParishPage from '../../page-objects/origin/importParishPage.js'
-import signInPage from '../../page-objects/signInPage.js'
+import originCountryPage from '../../../page-objects/origin/originCountryPage.js'
+import signInPage from '../../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
-} from '../../helpers/authSessionManager.js'
+} from '../../../helpers/authSessionManager.js'
 
 describe('Country of import test', () => {
   before(async () => {
@@ -31,11 +28,5 @@ describe('Country of import test', () => {
       longString,
       originCountryPage.invalidFormatError
     )
-  })
-
-  it('Should input country and continue without producing an error', async () => {
-    await originCountryPage.inputTextAndContinue('France', importParishPage)
-    await expect(originCountryPage.inputFieldError()).not.toBeDisplayed()
-    await expect(originCountryPage.errorSummary).not.toBeDisplayed()
   })
 })

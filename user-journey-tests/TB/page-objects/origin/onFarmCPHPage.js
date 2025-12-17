@@ -1,10 +1,12 @@
 import { CPHBasePage } from '../base-pages/cphBasePage.js'
 
 const pageHeadingAndTitle =
-  'What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?'
+  'What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?'
 
 class OnFarmCPHPage extends CPHBasePage {
-  pagePath = 'origin/origin-farm-cph'
+  pagePath =
+    'tb-origin/what-is-the-county-parish-holding-cph-number-of-where-the-animals-are-moving-off'
+
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
 }

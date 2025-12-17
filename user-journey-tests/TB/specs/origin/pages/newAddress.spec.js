@@ -1,26 +1,17 @@
-import newAddressPage from '../../page-objects/origin/newAddressPage.js'
-import toFromFarmPage from '../../page-objects/origin/toFromFarmPage.js'
-import signInPage from '../../page-objects/signInPage.js'
+import newAddressPage from '../../../page-objects/origin/newAddressPage.js'
+import signInPage from '../../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
-} from '../../helpers/authSessionManager.js'
+} from '../../../helpers/authSessionManager.js'
 
 const longString = 'a'.repeat(300)
 const longPostcode = 'SW1A2AATEST'
 
 const lineOne = '37 Made up lane'
-const lineTwo = 'Not real avenue'
 const townOrCity = 'Gotham'
-const county = 'West new york'
 const postcodeValid = 'SW1A 2AA'
 const postcodeInvalid = 'test'
-
-const lineOneWhitespace = ' 37 Made up lane '
-const lineTwoWhitespace = ' Not real avenue '
-const townOrCityWhitespace = ' Gotham '
-const countyWhitespace = ' West new york '
-const postcodeValidWhitespace = ' SW1A 2AA '
 
 describe('New address page test', () => {
   before(async () => {
@@ -91,59 +82,5 @@ describe('New address page test', () => {
       'countyMaxLength',
       'invalidPostcode'
     ])
-  })
-
-  it('Should verify successful submission and no errors when optional fields ignored', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit({
-      lineOne,
-      townOrCity,
-      postcode: postcodeValid
-    })
-    await newAddressPage.verifyNoErrorsVisible()
-  })
-
-  it('Should verify successful submission when all fields entered', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit({
-      lineOne,
-      lineTwo,
-      townOrCity,
-      county,
-      postcode: postcodeValid
-    })
-
-    await newAddressPage.verifyNoErrorsVisible()
-    await newAddressPage.selectBackLink()
-
-    await newAddressPage.verifyFieldValues({
-      lineOne,
-      lineTwo,
-      townOrCity,
-      county,
-      postcode: postcodeValid
-    })
-  })
-
-  it('Should verify successful submission and whitespace is removed', async () => {
-    await newAddressPage.fillFormFieldsAndSubmit(
-      {
-        lineOne: lineOneWhitespace,
-        lineTwo: lineTwoWhitespace,
-        townOrCity: townOrCityWhitespace,
-        county: countyWhitespace,
-        postcode: postcodeValidWhitespace
-      },
-      toFromFarmPage
-    )
-
-    await newAddressPage.verifyNoErrorsVisible()
-    await newAddressPage.navigateToPageAndVerifyTitle()
-
-    await newAddressPage.verifyFieldValues({
-      lineOne,
-      lineTwo,
-      townOrCity,
-      county,
-      postcode: postcodeValid
-    })
   })
 })

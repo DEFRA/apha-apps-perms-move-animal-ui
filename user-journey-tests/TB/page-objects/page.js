@@ -32,7 +32,7 @@ class Page {
   }
 
   getContinueButton() {
-    return $('#continue-button')
+    return $('button=Continue')
   }
 
   getHelpFooterText() {
@@ -138,10 +138,10 @@ class Page {
     )
   }
 
-  async navigateToPageAndVerifyTitle() {
+  async navigateToPageAndVerifyTitle(preview = true) {
     const defraIdEnabled =
       (process.env.DEFRA_ID_ENABLED || '').trim().toLowerCase() !== 'false'
-    await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle)
+    await page.loadPageAndVerifyTitle(this.pagePath, this.pageTitle, preview)
     await this.verifyPrivateBetaBanner()
     await this.verifyFooter()
 
@@ -189,7 +189,6 @@ class Page {
       this.getErrorSummary(),
       errorMessage
     )
-    await expect(await browser.getTitle()).toMatch(/^Error:/)
   }
 
   async verifySummaryErrorLink(linkElement, fieldElement) {

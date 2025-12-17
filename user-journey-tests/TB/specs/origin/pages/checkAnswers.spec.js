@@ -1,16 +1,16 @@
-import checkAnswersPage from '../../page-objects/origin/checkAnswersPage.js'
-import newAddressPage from '../../page-objects/origin/newAddressPage.js'
-import { completeOriginTaskAnswersCustom } from '../../helpers/testHelpers/movementOrigin.js'
-import landingPage from '../../page-objects/landingPage.js'
-import taskListPage from '../../page-objects/taskListPage.js'
+import checkAnswersPage from '../../../page-objects/origin/checkAnswersPage.js'
+import newAddressPage from '../../../page-objects/origin/newAddressPage.js'
+import { completeOriginTaskAnswersCustom } from '../../../helpers/testHelpers/movementOrigin.js'
+import landingPage from '../../../page-objects/landingPage.js'
+import taskListPage from '../../../page-objects/taskListPage.js'
 import {
   validateAndAdjustAddress,
   validateAndAdjustParishNumber,
   validateOnOffFarm,
   validateOriginType
-} from '../../helpers/testHelpers/checkAnswers.js'
-import signInPage from '../../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
+} from '../../../helpers/testHelpers/checkAnswers.js'
+import signInPage from '../../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../../helpers/authSessionManager.js'
 
 const defaultCphNumber = '23/678/1234'
 const defaultLineOne = 'default line one'
@@ -27,7 +27,7 @@ const postcode = 'SW1C 2CC'
 describe('Check your answers test', () => {
   before('Sign in and complete origin task', async () => {
     await loginAndSaveSession(signInPage)
-    await landingPage.navigateToPageAndVerifyTitle()
+    await landingPage.navigateToPageAndVerifyTitle(false)
     await completeOriginTaskAnswersCustom(
       defaultCphNumber,
       defaultLineOne,
@@ -37,7 +37,7 @@ describe('Check your answers test', () => {
   })
 
   beforeEach('Navigate to check answers page', async () => {
-    await checkAnswersPage.navigateToPageAndVerifyTitle()
+    await checkAnswersPage.navigateToPageAndVerifyTitle(false)
   })
 
   it('Should verify the back link is history -1', async () => {

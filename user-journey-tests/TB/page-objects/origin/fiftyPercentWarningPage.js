@@ -4,12 +4,12 @@ import * as page from '../../helpers/page.js'
 const pageHeadingAndTitle = 'Reduction in TB compensation'
 
 class FiftyPercentWarningPage extends Page {
-  pagePath = '/origin/fifty-percent-warning'
+  pagePath = 'tb-origin/reduction-in-tb-compensation'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
   get getYourCattleTestedLink() {
-    return $('a=GOV.UK Bovine TB guidance page')
+    return $('a=GOV.UK Bovine TB guidance page (opens in new tab)')
   }
 
   async verifyGetYourCattleTestedLink() {

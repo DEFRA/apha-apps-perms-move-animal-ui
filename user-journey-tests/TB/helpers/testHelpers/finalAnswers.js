@@ -19,7 +19,7 @@ import {
 import { completeLicenceTaskAnswersCustom } from './receivingLicence.js'
 
 export const completeApplication = async (originObject, licenceObject) => {
-  await landingPage.navigateToPageAndVerifyTitle()
+  await landingPage.navigateToPageAndVerifyTitle(false)
   await completeOriginTaskAnswersCustom(
     originObject.defaultCphNumber,
     originObject.defaultLineOne,
