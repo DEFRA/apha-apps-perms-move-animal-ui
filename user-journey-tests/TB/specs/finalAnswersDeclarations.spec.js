@@ -3,7 +3,10 @@ import { completeApplication } from '../helpers/testHelpers/finalAnswers.js'
 import finalAnswersPage from '../page-objects/finalAnswersPage.js'
 import submissionConfirmationPage from '../page-objects/submissionConfirmationPage.js'
 import signInPage from '../page-objects/signInPage.js'
-import { loginAndSaveSession } from '../helpers/authSessionManager.js'
+import {
+  loginAndSaveSession,
+  restoreSession
+} from '../helpers/authSessionManager.js'
 
 const originDefaultObject = {
   defaultCphNumber: '23/678/1234',
@@ -20,10 +23,12 @@ const licenceDefaultObject = {
 
 describe('declarations', () => {
   before(async () => {
+    await restoreSession()
     await loginAndSaveSession(signInPage)
   })
 
   beforeEach(async () => {
+    await restoreSession()
     await completeApplication(originDefaultObject, licenceDefaultObject)
   })
 

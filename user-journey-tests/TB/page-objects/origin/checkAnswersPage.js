@@ -1,18 +1,23 @@
-import { AnswersBasePage } from '../base-pages/answersBasePage.js'
+import { NewAnswersBasePage } from '../base-pages/newAnswersBasePage.js'
 
-const pageHeadingAndTitle =
-  'Check your answers before you continue your application'
+const pageHeadingAndTitle = 'Summary'
 
-class OriginCheckAnswersPage extends AnswersBasePage {
-  pagePath = 'origin/check-answers'
+class OriginCheckAnswersPage extends NewAnswersBasePage {
+  pagePath = 'tb-origin/summary'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
-  changeLinks = {
-    onOffFarm: '[data-testid="onOffFarm-change-link"]',
-    originType: '[data-testid="originType-change-link"]',
-    parishNumber: '[data-testid="cphNumber-change-link"]',
-    address: '[data-testid="address-change-link"]'
+  constructor() {
+    super({
+      onOffFarm:
+        '[href^="/tb-origin/are-you-moving-the-animals-on-or-off-your-farm-or-premises"]',
+      originType:
+        '[href^="/tb-origin/which-type-of-premises-are-the-animals-moving-off"]',
+      parishNumber:
+        '[href^="/tb-origin/what-is-the-county-parish-holding-cph-number-of-where-the-animals-are-moving-off"]',
+      address:
+        '[href^="/tb-origin/what-is-the-address-where-the-animals-are-moving-off"]'
+    })
   }
 }
 

@@ -12,7 +12,6 @@ import { VisitDetailsSection } from './visit-details/section.js'
  */
 
 export class ExoticsApplicationModel extends ApplicationModel {
-  /** @type {typeof SectionModelV1[]} */
   static implementedSections = [
     AboutSection,
     DestinationSection,

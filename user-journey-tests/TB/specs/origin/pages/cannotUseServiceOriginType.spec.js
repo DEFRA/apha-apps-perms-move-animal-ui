@@ -1,6 +1,6 @@
-import { loginAndSaveSession } from '../../helpers/authSessionManager.js'
-import originTypeExitPage from '../../page-objects/origin/originTypeExitPage.js'
-import signInPage from '../../page-objects/signInPage.js'
+import { loginAndSaveSession } from '../../../helpers/authSessionManager.js'
+import originTypeExitPage from '../../../page-objects/origin/originTypeExitPage.js'
+import signInPage from '../../../page-objects/signInPage.js'
 
 describe('Origin Type - Cannot use service', () => {
   beforeEach('Log in and navigate to page', async () => {

@@ -28,7 +28,11 @@
   }}
 {% endblock %}
 {% block pageTitle %}
-  {{ pageTitle }}
+  {% if evaluate %}
+    {{ pageTitle | evaluate }}
+  {% else %}
+    {{ pageTitle }}
+  {% endif %}
 {% endblock %}
 {% block beforeContent %}
   {% if features.prototypeMode %}

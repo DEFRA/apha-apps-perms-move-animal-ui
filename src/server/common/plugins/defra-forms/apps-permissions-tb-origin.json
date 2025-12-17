@@ -95,8 +95,8 @@
         {
           "type": "TextField",
           "title": "Which country are the animals coming from?",
-          "name": "phTQSz",
-          "shortDescription": "Country the animals are coming from",
+          "name": "country",
+          "shortDescription": "Which country the animals are coming from",
           "hint": "",
           "options": {
             "required": true,
@@ -120,7 +120,7 @@
           "type": "TextField",
           "title": "What is the county parish holding (CPH) number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}?",
           "name": "cphNumber",
-          "shortDescription": "CPH number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
+          "shortDescription": "The CPH number of {% if originType == 'after-import-location' %}the UK point of entry{% elsif onOffFarm == 'off' %}the farm or premises where the animals are moving off{% else %}your farm or premises where the animals are moving off{% endif %}",
           "hint": "For example, 12/345/6789",
           "options": {
             "required": true,
@@ -164,7 +164,7 @@
       "components": [
         {
           "type": "Markdown",
-          "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n* the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation) (opens in new tab).",
+          "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n* the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation).",
           "options": {},
           "schema": {},
           "name": "fiftyPercentWarning",

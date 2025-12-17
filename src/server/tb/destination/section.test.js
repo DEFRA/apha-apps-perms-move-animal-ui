@@ -7,7 +7,7 @@ import {
 
 const destinationData = validDestinationSectionState
 
-const mockRequest = /** @type {any} */ ({})
+const mockRequest = /** @type {any} */ ({ server: {}, yar: {} })
 
 describe('Destination', () => {
   describe('validate', () => {

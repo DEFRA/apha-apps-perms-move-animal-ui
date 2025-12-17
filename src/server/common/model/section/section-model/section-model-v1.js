@@ -10,7 +10,7 @@ import { SectionModel } from './section-model.js'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { AnswerModel }  from '~/src/server/common/model/answer/answer-model.js'
- * @import { SectionData, SectionPayload } from './section-model.js'
+ * @import { SectionData, SectionPayload, summaryViewModelData } from './section-model.js'
  */
 
 /**
@@ -125,6 +125,7 @@ export class SectionModelV1 extends SectionModel {
   /**
    * @param {Request} _req
    * @param {string} redirectUri
+   * @returns {summaryViewModelData[]}
    */
   summaryViewModel(_req, redirectUri) {
     return this._questionPageAnswers

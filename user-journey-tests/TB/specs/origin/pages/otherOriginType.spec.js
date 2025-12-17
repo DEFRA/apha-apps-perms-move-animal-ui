@@ -1,10 +1,9 @@
-import signInPage from '../../page-objects/signInPage.js'
+import signInPage from '../../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
-} from '../../helpers/authSessionManager.js'
-import onFarmCPHPage from '../../page-objects/origin/onFarmCPHPage.js'
-import originTypeOtherPage from '../../page-objects/origin/originTypeOtherPage.js'
+} from '../../../helpers/authSessionManager.js'
+import originTypeOtherPage from '../../../page-objects/origin/originTypeOtherPage.js'
 
 describe('Origin type other page spec', () => {
   before(async () => {
@@ -20,13 +19,6 @@ describe('Origin type other page spec', () => {
     await originTypeOtherPage.singleInputErrorTest(
       '',
       originTypeOtherPage.noInputError
-    )
-  })
-
-  it('Should input correct input and continue without error', async () => {
-    await originTypeOtherPage.inputTextAndContinue(
-      'Other origin type',
-      onFarmCPHPage
     )
   })
 })

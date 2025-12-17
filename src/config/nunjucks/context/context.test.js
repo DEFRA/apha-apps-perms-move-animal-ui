@@ -70,7 +70,7 @@ describe('#context', () => {
         features: {
           authEnabled: false,
           authRequired: true,
-          defraFormsEnabled: true,
+          defraFormsEnabled: false,
           emailConfirmation: true,
           fmdJourney: true,
           exoticsJourney: true,
@@ -178,7 +178,7 @@ describe('#context cache', () => {
         features: {
           authEnabled: false,
           authRequired: true,
-          defraFormsEnabled: true,
+          defraFormsEnabled: false,
           emailConfirmation: true,
           exoticsJourney: true,
           fmdJourney: true,

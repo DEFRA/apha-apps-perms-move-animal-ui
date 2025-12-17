@@ -16,20 +16,21 @@ export const waitForExpectedRedirectUri = async (pagePath) => {
 }
 
 export const waitForPagePath = async (path) => {
-  const normalizePath = (path) => path.replace(/^\/+|\/+$/g, '') // Remove leading and trailing slashes
+  const normalizePath = (value) => value.replace(/^\/+|\/+$/g, '')
+
+  const expectedPath = normalizePath(path)
 
   await browser.waitUntil(
     async () => {
       const currentUrl = await browser.getUrl()
-      const currentPath = new URL(currentUrl).pathname
-      const normalizedCurrentPath = normalizePath(currentPath)
+      const { pathname } = new URL(currentUrl)
 
-      const expectedPath = `/${normalizePath(path)}`
+      const currentPath = normalizePath(pathname)
 
-      return normalizedCurrentPath === normalizePath(expectedPath)
+      return currentPath === expectedPath
     },
     {
-      timeoutMsg: `Failed to verify page path. Expected: "/${path}", but found: "${await browser.getUrl()}"`
+      timeoutMsg: `Failed to verify page path. Expected path: "/${expectedPath}", but found: "${await browser.getUrl()}"`
     }
   )
 }
@@ -90,8 +91,14 @@ export const verifyPageTitle = async (pageTitle) => {
   })
 }
 
-export const loadPageAndVerifyTitle = async (path, pageTitle) => {
-  await browser.url(path)
+export const loadPageAndVerifyTitle = async (
+  path,
+  pageTitle,
+  preview = true
+) => {
+  const url = preview ? `${path}?force=true` : path
+
+  await browser.url(url)
   await verifyPageTitle(pageTitle)
   await expect($('[href="/privacy-policy"]')).toBeDisplayed()
 }

@@ -79,7 +79,7 @@ const outputService = {
 
 export const services = { formsService, formSubmissionService, outputService }
 
-export const pluginOptions = {
+export const defraFormsPluginOptions = {
   cache: config.get('session').cache.name,
   nunjucks: {
     paths: [
@@ -99,5 +99,5 @@ export const pluginOptions = {
 
 export const defraFormsPlugin = {
   plugin: defraForms,
-  options: pluginOptions
+  options: defraFormsPluginOptions
 }

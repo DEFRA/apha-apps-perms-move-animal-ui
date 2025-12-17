@@ -1,6 +1,5 @@
 import SummaryPage from '../../../common/model/page/summary-page/SummaryPageModel.js'
 import { TbSummaryPageController } from '../../summary-page-controller.js'
-
 import { OriginSection } from '~/src/server/tb/origin/section.js'
 
 export class OriginSummaryPage extends SummaryPage {
@@ -8,7 +7,8 @@ export class OriginSummaryPage extends SummaryPage {
   pageHeading = 'Check your answers before you continue your application'
   sectionKey = 'origin'
   urlPath = `/${this.sectionKey}/check-answers`
-  sectionFactory = (data) => OriginSection.fromState(data)
+  sectionFactory = async (data, req) =>
+    await OriginSection.fromRequest(req, data)
 }
 
 export const originSummaryPage = new OriginSummaryPage()

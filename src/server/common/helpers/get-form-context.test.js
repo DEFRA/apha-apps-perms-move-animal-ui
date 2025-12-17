@@ -44,10 +44,10 @@ jest.mock('~/src/server/common/plugins/defra-forms/index.js', () => {
 
   return {
     __esModule: true,
-    pluginOptions: mockPluginOptions
+    defraFormsPluginOptions: mockPluginOptions
   }
 })
-const { pluginOptions: loadedPluginOptions } = jest.requireMock(
+const { defraFormsPluginOptions: loadedPluginOptions } = jest.requireMock(
   '~/src/server/common/plugins/defra-forms/index.js'
 )
 mockPluginOptions = loadedPluginOptions
@@ -154,8 +154,8 @@ describe('getFormContext helper', () => {
     const moduleOptions = await import(
       '~/src/server/common/plugins/defra-forms/index.js'
     )
-    expect(moduleOptions.pluginOptions).toBe(pluginOptions)
-    expect(moduleOptions.pluginOptions.services.formsService).toBe(
+    expect(moduleOptions.defraFormsPluginOptions).toBe(pluginOptions)
+    expect(moduleOptions.defraFormsPluginOptions.services.formsService).toBe(
       pluginOptions.services.formsService
     )
 

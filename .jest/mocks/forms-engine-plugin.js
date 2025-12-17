@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /**
  * Mock for @defra/forms-engine-plugin
  */
@@ -26,10 +27,46 @@ export const FormAction = {
 }
 
 export const proceed = jest.fn()
-export const getCacheService = jest.fn()
+
+export class CacheService {
+  constructor(options) {
+    this.options = options
+  }
+
+  async getState() {
+    return {}
+  }
+
+  async setState() {
+    return undefined
+  }
+}
+
+const defaultCacheService = {
+  getState: jest.fn().mockResolvedValue({})
+}
+
+export const getCacheService = jest.fn().mockReturnValue(defaultCacheService)
 export const evaluateTemplate = jest.fn()
 export const getAnswer = jest.fn()
-export const FormModel = jest.fn()
+
+export const FormModel = jest
+  .fn()
+  .mockImplementation((definition, options, services, controllers) => ({
+    definition,
+    options,
+    services,
+    controllers,
+    getFormContext(_request, state, errors) {
+      return {
+        pages: [],
+        relevantPages: [],
+        answers: {},
+        errors: errors || [],
+        state
+      }
+    }
+  }))
 
 export class TerminalPageController {}
 
