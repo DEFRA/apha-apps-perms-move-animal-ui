@@ -201,7 +201,6 @@ export const switchToNewTab = async ({
         }
       }
 
-      // if Safari navigated in the same tab, we’ll still catch it above
       return false
     },
     {
