@@ -1,6 +1,7 @@
 import { NewAnswersBasePage } from '../base-pages/newAnswersBasePage.js'
 
-const pageHeadingAndTitle = 'Summary'
+const pageHeadingAndTitle =
+  'Check your answers before you continue your application'
 
 class OriginCheckAnswersPage extends NewAnswersBasePage {
   pagePath = 'tb-origin/summary'
