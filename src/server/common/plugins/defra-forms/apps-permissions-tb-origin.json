@@ -124,7 +124,10 @@
           "hint": "For example, 12/345/6789",
           "options": {
             "required": true,
-            "classes": "govuk-input--width-10"
+            "classes": "govuk-input--width-10",
+            "customValidationMessages": {
+              "string.pattern.base": "Enter the CPH number in the correct format without spaces, for example 12/345/6789"
+            }
           },
           "schema": {
             "max": 11,
@@ -164,7 +167,7 @@
       "components": [
         {
           "type": "Markdown",
-          "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n* the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation).",
+          "content": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.\r\n\r\nThis does not apply if:\r\n\r\n* the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began\r\n* use an asterisk or a dash followed by a space to add an item\r\n\r\n For more information, read the slaughter and compensation section on the [GOV.UK Bovine TB guidance page](https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england#slaughter-and-compensation).",
           "options": {},
           "schema": {},
           "name": "fiftyPercentWarning",
@@ -177,7 +180,7 @@
     },
     {
       "id": "449a45f6-4541-4a46-91bd-8b8931b07b50",
-      "title": "Summary",
+      "title": "Check your answers before you continue your application",
       "path": "/summary",
       "controller": "SectionSummaryPageController",
       "next": []
