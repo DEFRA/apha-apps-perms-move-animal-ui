@@ -13,7 +13,7 @@ class ParishHoldingNumberPage extends CPHBasePage {
     'Enter the CPH number of your farm or premises where the animals are moving off'
 
   invalidFormatError =
-    'Enter a valid the CPH number of your farm or premises where the animals are moving off'
+    'Enter the CPH number in the correct format without spaces, for example 12/345/6789'
 
   invalidFormatErrorLong =
     'The CPH number of your farm or premises where the animals are moving off must be 11 characters or less'
