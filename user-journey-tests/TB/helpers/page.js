@@ -113,7 +113,9 @@ export const selectLinkAndVerifyTitleInNewTab = async (
   pageTitle
 ) => {
   await selectElement(linkElement)
-  await switchToNewTab()
+  await switchToNewTab({
+    urlContains: 'bovine-tb-getting-your-cattle-tested-in-england'
+  })
   await verifyPageTitle(pageTitle)
 }
 
@@ -175,17 +177,38 @@ export const checkForSecurityPopUpAndResolve = async () => {
   }
 }
 
-export const switchToNewTab = async () => {
+export const switchToNewTab = async ({
+  titleContains,
+  urlContains,
+  timeout = 20000
+}) => {
+  const startHandles = await browser.getWindowHandles()
+
   await browser.waitUntil(
-    async () => (await browser.getWindowHandles()).length > 1,
+    async () => {
+      const handles = await browser.getWindowHandles()
+
+      for (const h of handles) {
+        await browser.switchToWindow(h)
+        const title = await browser.getTitle()
+        const url = await browser.getUrl()
+
+        if (
+          (titleContains && title.includes(titleContains)) ||
+          (urlContains && url.includes(urlContains))
+        ) {
+          return true
+        }
+      }
+
+      return false
+    },
     {
-      timeout: 10000, // Wait up to 10 seconds
-      timeoutMsg: 'New tab did not open within the expected time'
+      timeout,
+      interval: 500,
+      timeoutMsg: `Could not find window matching titleContains="${titleContains}" or urlContains="${urlContains}". Handles: ${startHandles}`
     }
   )
-
-  const handles = await browser.getWindowHandles()
-  await browser.switchToWindow(handles[1])
 }
 
 export const verifyRadioButtonNumber = async (expectedCount) => {
