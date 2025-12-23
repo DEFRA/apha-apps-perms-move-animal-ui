@@ -1,38 +1,16 @@
-import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
-import { {{camelCase pageName}}Page } from './index.js'
-
-/** @import { Server } from '@hapi/hapi' */
-
-describe('{{pascalCase pageName}}Page', () => {
-  const page = {{camelCase pageName}}Page
-
-  it('should have the right key', () => {
-    expect(page.key).toBe('{{camelCase pageName}}')
-  })
-
-  it('should have the right section key', () => {
-    expect(page.sectionKey).toBe('{{camelCase sectionKey}}')
-  })
-
-  it('should have the right view', () => {
-    expect(page.view).toBe('{{kebabCase journey}}/{{kebabCase pageName}}/index.njk')
-  })
-
-  it('should have the right url', () => {
-    expect(page.urlPath).toBe('{{path}}')
-  })
-
-  it('should have the right page title', () => {
-    expect(page.pageTitle).toBe('{{sentenceCase heading}}')
-  })
-
-  it('should have the right heading', () => {
-    expect(page.heading).toBe('{{sentenceCase heading}}')
-  })
-
-  describePageSnapshot({
-    describes: '{{pascalCase pageName}}Page',
-    it: 'should have the expected content',
-    pageUrl: page.urlPath
-  })
-})
+import { describePageSnapshot } from
+'~/src/server/common/test-helpers/snapshot-page.js' import {
+{{camelCase pageName}}Page } from './index.js' /** @import { Server } from
+'@hapi/hapi' */ describe('{{pascalCase pageName}}Page', () => { const page =
+{{camelCase pageName}}Page it('should have the right key', () => {
+expect(page.key).toBe('{{camelCase pageName}}') }) it('should have the right
+section key', () => { expect(page.sectionKey).toBe('{{camelCase sectionKey}}')
+}) it('should have the right view', () => { expect(page.view).toBe('{{kebabCase
+  journey
+}}/{{kebabCase pageName}}/index.njk') }) it('should have the right url', () => {
+expect(page.urlPath).toBe('{{path}}') }) it('should have the right page title',
+() => { expect(page.pageTitle).toBe('{{sentenceCase heading}}') }) it('should
+have the right heading', () => { expect(page.heading).toBe('{{sentenceCase
+  heading
+}}') }) describePageSnapshot({ describes: '{{pascalCase pageName}}Page', it:
+'should have the expected content', pageUrl: page.urlPath }) })
