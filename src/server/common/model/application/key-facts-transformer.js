@@ -1,75 +1,83 @@
 /** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
 
+// Constants
+const MOVEMENT_ON = 'on'
+
 /**
- * @param {RawApplicationState} state
+ * @param {Record<string, any>} keyFacts
+ * @param {Record<string, any>} origin
+ * @param {Record<string, any>} destination
  */
-export function transformToKeyFacts(state) {
-  const origin = state.origin ?? {}
-  const destination = state.destination ?? {}
-  const licence = state.licence ?? {}
-  const biosecurityMap = state['biosecurity-map'] ?? {}
-
-  const originType = origin.originType ?? ''
-  const destinationType = destination.destinationType ?? ''
-
-  const requester = determineRequester(origin)
-
-  const keyFacts = {}
-
-  keyFacts.licenceType = determineLicenceType(originType, destinationType)
-  keyFacts.requester = requester
-  keyFacts.movementDirection = origin.onOffFarm
-  keyFacts.additionalInformation = destination.additionalInfo ?? ''
-
-  if (destination.howManyAnimals) {
-    keyFacts.numberOfCattle = parseInt(destination.howManyAnimals, 10)
-  }
-
+function addOptionalCphNumbers(keyFacts, origin, destination) {
   if (origin.cphNumber) {
     keyFacts.originCph = origin.cphNumber
   }
-
   if (destination.destinationFarmCph) {
     keyFacts.destinationCph = destination.destinationFarmCph
   }
+}
 
+/**
+ * @param {Record<string, any>} keyFacts
+ * @param {Record<string, any>} origin
+ * @param {Record<string, any>} destination
+ */
+function addOptionalAddresses(keyFacts, origin, destination) {
   if (origin.address) {
     keyFacts.originAddress = origin.address
   }
-
   if (destination.destinationFarmAddress) {
     keyFacts.destinationAddress = destination.destinationFarmAddress
   }
+}
 
+/**
+ * @param {Record<string, any>} keyFacts
+ * @param {Record<string, any>} origin
+ * @param {Record<string, any>} licence
+ */
+function addOptionalKeeperNames(keyFacts, origin, licence) {
   if (licence.fullName) {
     keyFacts.originKeeperName = licence.fullName
   }
-
   if (licence.yourName && isDestinationKeeperName(origin)) {
     keyFacts.destinationKeeperName = licence.yourName
   }
+}
 
-  const isOnFarm = origin.onOffFarm === 'on'
+/**
+ * @param {Record<string, any>} keyFacts
+ * @param {Record<string, any>} origin
+ */
+function addRequesterCph(keyFacts, origin) {
+  const isOnFarm = origin.onOffFarm === MOVEMENT_ON
+
   if (isOnFarm && keyFacts.destinationCph) {
     keyFacts.requesterCph = keyFacts.destinationCph
-  } else if (!isOnFarm && keyFacts.originCph) {
-    keyFacts.requesterCph = keyFacts.originCph
   }
 
+  if (!isOnFarm && keyFacts.originCph) {
+    keyFacts.requesterCph = keyFacts.originCph
+  }
+}
+
+/**
+ * @param {Record<string, any>} keyFacts
+ * @param {Record<string, any>} biosecurityMap
+ */
+function addBiosecurityMaps(keyFacts, biosecurityMap) {
   const biosecurityMaps = extractBiosecurityMaps(biosecurityMap)
   if (biosecurityMaps.length > 0) {
     keyFacts.biosecurityMaps = biosecurityMaps
   }
-
-  return keyFacts
 }
 
 /**
- * @param {string} originType - The origin type
- * @param {string} destinationType - The destination type
+ * @param {string} originType
+ * @param {string} destinationType
  */
 function determineLicenceType(originType, destinationType) {
-  const isTbRestricted = (type) =>
+  const isTbRestricted = (/** @type {string} */ type) =>
     ['tb-restricted-farm', 'zoo', 'lab', 'other'].includes(type)
 
   const isOriginRestricted = isTbRestricted(originType)
@@ -135,13 +143,15 @@ function isDestinationKeeperName(origin) {
   const onOffFarm = origin.onOffFarm
   const originType = origin.originType
 
-  return (
-    (onOffFarm === 'on' &&
-      (originType === 'tb-restricted-farm' ||
-        originType === 'afu' ||
-        originType === 'iso-unit')) ||
-    (onOffFarm === 'off' && (originType === 'afu' || originType === 'iso-unit'))
-  )
+  const specialOriginTypes = ['afu', 'iso-unit']
+  const isSpecialOrigin = specialOriginTypes.includes(originType)
+  const isTbRestrictedFarm = originType === 'tb-restricted-farm'
+
+  const isOnFarmFromSpecialOrRestricted =
+    onOffFarm === 'on' && (isTbRestrictedFarm || isSpecialOrigin)
+  const isOffFarmFromSpecial = onOffFarm === 'off' && isSpecialOrigin
+
+  return isOnFarmFromSpecialOrRestricted || isOffFarmFromSpecial
 }
 
 /**
@@ -159,4 +169,49 @@ function extractBiosecurityMaps(biosecurityMapSection) {
   }
 
   return maps
+}
+
+/**
+ * @param {RawApplicationState} state
+ */
+export function transformToKeyFacts(state) {
+  const origin = state.origin ?? {}
+  const destination = state.destination ?? {}
+  const licence = state.licence ?? {}
+  const biosecurityMap = state['biosecurity-map'] ?? {}
+
+  const originType = origin.originType ?? ''
+  const destinationType = destination.destinationType ?? ''
+
+  const keyFacts = buildBasicKeyFacts(
+    origin,
+    destination,
+    originType,
+    destinationType
+  )
+  addOptionalCphNumbers(keyFacts, origin, destination)
+  addOptionalAddresses(keyFacts, origin, destination)
+  addOptionalKeeperNames(keyFacts, origin, licence)
+  addRequesterCph(keyFacts, origin)
+  addBiosecurityMaps(keyFacts, biosecurityMap)
+
+  return keyFacts
+}
+
+/**
+ * @param {Record<string, any>} origin
+ * @param {Record<string, any>} destination
+ * @param {string} originType
+ * @param {string} destinationType
+ */
+function buildBasicKeyFacts(origin, destination, originType, destinationType) {
+  return {
+    licenceType: determineLicenceType(originType, destinationType),
+    requester: determineRequester(origin),
+    movementDirection: origin.onOffFarm,
+    additionalInformation: destination.additionalInfo ?? '',
+    ...(destination.howManyAnimals && {
+      numberOfCattle: parseInt(destination.howManyAnimals, 10)
+    })
+  }
 }
