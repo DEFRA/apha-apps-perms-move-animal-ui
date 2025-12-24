@@ -24,6 +24,13 @@ describe('CaseManagement.submitApplication', () => {
     wreckMock = jest.spyOn(Wreck, 'post')
   })
 
+  beforeEach(() => {
+    wreckMock.mockClear()
+    spyOnConfig('featureFlags', {
+      prototypeMode: false
+    })
+  })
+
   afterAll(jest.resetAllMocks)
 
   it('should send an application to the case management backend', async () => {
@@ -68,5 +75,59 @@ describe('CaseManagement.submitApplication', () => {
       payload: expectedResponse,
       statusCode: 200
     })
+  })
+
+  it('should include keyFacts in payload when state is provided for TB applications', async () => {
+    const expectedResponse = {
+      message: 'TB-1234-ABCD'
+    }
+
+    wreckMock.mockResolvedValue(
+      /** @type {any} */ ({
+        payload: JSON.stringify(expectedResponse),
+        res: { statusCode: statusCodes.ok }
+      })
+    )
+
+    await submitApplication(application, validApplicationState)
+
+    expect(Wreck.post).toHaveBeenCalled()
+    const lastCall = wreckMock.mock.calls[wreckMock.mock.calls.length - 1]
+    const [url, options] = lastCall
+    const payloadSent = options.payload
+
+    expect(url).toBe(`${baseUrl}/submit`)
+    expect(payloadSent).toHaveProperty('keyFacts')
+    expect(payloadSent.keyFacts).toMatchObject({
+      licenceType: 'TB16',
+      requester: 'destination',
+      movementDirection: 'on',
+      originCph: '12/345/6789',
+      destinationCph: '12/345/6789',
+      requesterCph: '12/345/6789'
+    })
+  })
+
+  it('should not include keyFacts in payload when state is not provided', async () => {
+    const expectedResponse = {
+      message: 'TB-1234-ABCD'
+    }
+
+    wreckMock.mockResolvedValue(
+      /** @type {any} */ ({
+        payload: JSON.stringify(expectedResponse),
+        res: { statusCode: statusCodes.ok }
+      })
+    )
+
+    await submitApplication(application)
+
+    expect(Wreck.post).toHaveBeenCalled()
+    const lastCall = wreckMock.mock.calls[wreckMock.mock.calls.length - 1]
+    const [url, options] = lastCall
+    const payloadSent = options.payload
+
+    expect(url).toBe(`${baseUrl}/submit`)
+    expect(payloadSent).not.toHaveProperty('keyFacts')
   })
 })
