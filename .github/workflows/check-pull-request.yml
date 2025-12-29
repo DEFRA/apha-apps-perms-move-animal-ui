@@ -16,10 +16,10 @@ jobs:
     name: SonarCloud Scan
     runs-on: ubuntu-22.04
     env:
-      UPLOADER_URL: "http://localhost:7337"
-      FILE_S3_BUCKET: "apha"
-      FILE_S3_PATH: "biosecurity-map"
-      CONSUMER_BUCKETS: "apha"
+      UPLOADER_URL: 'http://localhost:7337'
+      FILE_S3_BUCKET: 'apha'
+      FILE_S3_PATH: 'biosecurity-map'
+      CONSUMER_BUCKETS: 'apha'
       MOCK_VIRUS_SCAN_ENABLED: false
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test
@@ -67,10 +67,10 @@ jobs:
           - exotics-journey-test
           - fmd-journey-test
     env:
-      UPLOADER_URL: "http://localhost:7337"
-      FILE_S3_BUCKET: "apha"
-      FILE_S3_PATH: "biosecurity-map"
-      CONSUMER_BUCKETS: "apha"
+      UPLOADER_URL: 'http://localhost:7337'
+      FILE_S3_BUCKET: 'apha'
+      FILE_S3_PATH: 'biosecurity-map'
+      CONSUMER_BUCKETS: 'apha'
       MOCK_VIRUS_SCAN_ENABLED: false
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test
