@@ -6,20 +6,24 @@ const ORIGIN_TYPE_TB_RESTRICTED_FARM = 'tb-restricted-farm'
 const ORIGIN_TYPE_AFU = 'afu'
 const DESTINATION_TYPE_SLAUGHTER = 'slaughter'
 
-const TB_RESTRICTED_TYPES = [
+const TB_RESTRICTED_TYPES = new Set([
   ORIGIN_TYPE_TB_RESTRICTED_FARM,
   'zoo',
   'lab',
   'other'
-]
+])
 
-const UNRESTRICTED_ORIGIN_TYPES = [
+const UNRESTRICTED_ORIGIN_TYPES = new Set([
   'market',
   'unrestricted-farm',
   'after-import-location'
-]
+])
 
-const SALE_DESTINATION_TYPES = ['dedicated-sale', ORIGIN_TYPE_AFU, 'market-afu']
+const SALE_DESTINATION_TYPES = new Set([
+  'dedicated-sale',
+  ORIGIN_TYPE_AFU,
+  'market-afu'
+])
 
 /**
  * @param {Record<string, any>} keyFacts
@@ -95,7 +99,7 @@ function addBiosecurityMaps(keyFacts, biosecurityMap) {
  * @returns {boolean}
  */
 function isTbRestricted(type) {
-  return TB_RESTRICTED_TYPES.includes(type)
+  return TB_RESTRICTED_TYPES.has(type)
 }
 
 /**
@@ -103,7 +107,7 @@ function isTbRestricted(type) {
  * @returns {boolean}
  */
 function isOriginUnrestricted(originType) {
-  return UNRESTRICTED_ORIGIN_TYPES.includes(originType)
+  return UNRESTRICTED_ORIGIN_TYPES.has(originType)
 }
 
 /**
@@ -111,7 +115,7 @@ function isOriginUnrestricted(originType) {
  * @returns {boolean}
  */
 function isDestinationSale(destinationType) {
-  return SALE_DESTINATION_TYPES.includes(destinationType)
+  return SALE_DESTINATION_TYPES.has(destinationType)
 }
 
 /**
@@ -255,7 +259,7 @@ function buildBasicKeyFacts(origin, destination, originType, destinationType) {
     movementDirection: origin.onOffFarm,
     additionalInformation: destination.additionalInfo ?? '',
     ...(destination.howManyAnimals && {
-      numberOfCattle: parseInt(destination.howManyAnimals, 10)
+      numberOfCattle: Number.parseInt(destination.howManyAnimals, 10)
     })
   }
 }
