@@ -2,6 +2,24 @@
 
 // Constants
 const MOVEMENT_ON = 'on'
+const ORIGIN_TYPE_TB_RESTRICTED_FARM = 'tb-restricted-farm'
+const ORIGIN_TYPE_AFU = 'afu'
+const DESTINATION_TYPE_SLAUGHTER = 'slaughter'
+
+const TB_RESTRICTED_TYPES = [
+  ORIGIN_TYPE_TB_RESTRICTED_FARM,
+  'zoo',
+  'lab',
+  'other'
+]
+
+const UNRESTRICTED_ORIGIN_TYPES = [
+  'market',
+  'unrestricted-farm',
+  'after-import-location'
+]
+
+const SALE_DESTINATION_TYPES = ['dedicated-sale', ORIGIN_TYPE_AFU, 'market-afu']
 
 /**
  * @param {Record<string, any>} keyFacts
@@ -73,22 +91,51 @@ function addBiosecurityMaps(keyFacts, biosecurityMap) {
 }
 
 /**
+ * @param {string} type
+ * @returns {boolean}
+ */
+function isTbRestricted(type) {
+  return TB_RESTRICTED_TYPES.includes(type)
+}
+
+/**
+ * @param {string} originType
+ * @returns {boolean}
+ */
+function isOriginUnrestricted(originType) {
+  return UNRESTRICTED_ORIGIN_TYPES.includes(originType)
+}
+
+/**
+ * @param {string} destinationType
+ * @returns {boolean}
+ */
+function isDestinationSale(destinationType) {
+  return SALE_DESTINATION_TYPES.includes(destinationType)
+}
+
+/**
+ * @param {string} originType
+ * @param {string} destinationType
+ * @returns {boolean}
+ */
+function isAfuToSpecialDestination(originType, destinationType) {
+  return (
+    originType === ORIGIN_TYPE_AFU &&
+    (destinationType === DESTINATION_TYPE_SLAUGHTER ||
+      isDestinationSale(destinationType))
+  )
+}
+
+/**
  * @param {string} originType
  * @param {string} destinationType
  */
 function determineLicenceType(originType, destinationType) {
-  const isTbRestricted = (/** @type {string} */ type) =>
-    ['tb-restricted-farm', 'zoo', 'lab', 'other'].includes(type)
-
   const isOriginRestricted = isTbRestricted(originType)
-  const isOriginUnrestricted = [
-    'market',
-    'unrestricted-farm',
-    'after-import-location'
-  ].includes(originType)
   const isDestinationRestricted = isTbRestricted(destinationType)
 
-  if (isOriginUnrestricted && isDestinationRestricted) {
+  if (isOriginUnrestricted(originType) && isDestinationRestricted) {
     return 'TB15'
   }
 
@@ -96,17 +143,14 @@ function determineLicenceType(originType, destinationType) {
     return 'TB16'
   }
 
-  const saleDestinationTypes = ['dedicated-sale', 'afu', 'market-afu']
-  const isDestinationSale = saleDestinationTypes.includes(destinationType)
-  const isAfuToSpecialDestination =
-    originType === 'afu' &&
-    ['slaughter', ...saleDestinationTypes].includes(destinationType)
-
-  if ((isOriginRestricted && isDestinationSale) || isAfuToSpecialDestination) {
+  if (
+    (isOriginRestricted && isDestinationSale(destinationType)) ||
+    isAfuToSpecialDestination(originType, destinationType)
+  ) {
     return 'TB16e'
   }
 
-  if (isOriginRestricted && destinationType === 'slaughter') {
+  if (isOriginRestricted && destinationType === DESTINATION_TYPE_SLAUGHTER) {
     return 'TB24c'
   }
 
@@ -125,9 +169,9 @@ function determineRequester(origin) {
   }
 
   if (
-    onOffFarm === 'on' &&
-    (originType === 'tb-restricted-farm' ||
-      originType === 'afu' ||
+    onOffFarm === MOVEMENT_ON &&
+    (originType === ORIGIN_TYPE_TB_RESTRICTED_FARM ||
+      originType === ORIGIN_TYPE_AFU ||
       originType === 'iso-unit')
   ) {
     return 'destination'
@@ -143,12 +187,12 @@ function isDestinationKeeperName(origin) {
   const onOffFarm = origin.onOffFarm
   const originType = origin.originType
 
-  const specialOriginTypes = ['afu', 'iso-unit']
+  const specialOriginTypes = [ORIGIN_TYPE_AFU, 'iso-unit']
   const isSpecialOrigin = specialOriginTypes.includes(originType)
-  const isTbRestrictedFarm = originType === 'tb-restricted-farm'
+  const isTbRestrictedFarm = originType === ORIGIN_TYPE_TB_RESTRICTED_FARM
 
   const isOnFarmFromSpecialOrRestricted =
-    onOffFarm === 'on' && (isTbRestrictedFarm || isSpecialOrigin)
+    onOffFarm === MOVEMENT_ON && (isTbRestrictedFarm || isSpecialOrigin)
   const isOffFarmFromSpecial = onOffFarm === 'off' && isSpecialOrigin
 
   return isOnFarmFromSpecialOrRestricted || isOffFarmFromSpecial
