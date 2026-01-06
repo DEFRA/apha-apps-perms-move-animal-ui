@@ -59,11 +59,23 @@ function addOptionalAddresses(keyFacts, origin, destination) {
  * @param {Record<string, any>} licence
  */
 function addOptionalKeeperNames(keyFacts, origin, licence) {
-  if (licence.fullName) {
+  const { onOffFarm, originType } = origin
+  const isOnFarm = onOffFarm === MOVEMENT_ON
+  const isOffFarm = onOffFarm === 'off'
+  const isOriginRestricted = isTbRestricted(originType)
+
+  // Origin keeper name: set for OFF farm OR (ON farm AND origin restricted)
+  if (licence.fullName && (isOffFarm || (isOnFarm && isOriginRestricted))) {
     keyFacts.originKeeperName = licence.fullName
   }
-  if (licence.yourName && isDestinationKeeperName(origin)) {
-    keyFacts.destinationKeeperName = licence.yourName
+
+  // Destination keeper name: only for ON farm movements
+  if (isOnFarm) {
+    if (isOriginRestricted && licence.yourName) {
+      keyFacts.destinationKeeperName = licence.yourName
+    } else if (licence.fullName) {
+      keyFacts.destinationKeeperName = licence.fullName
+    }
   }
 }
 
@@ -162,45 +174,12 @@ function determineLicenceType(originType, destinationType) {
 }
 
 /**
- * Determines the requester based on movement direction and origin type.
- * Requester is 'destination' only for ON farm movements from specific origin types.
+ * Determines the requester based on movement direction.
  * @param {Record<string, any>} origin
  */
 function determineRequester(origin) {
-  const { onOffFarm, originType } = origin
-
-  // For ON farm movements, check if origin type requires destination as requester
-  if (onOffFarm === MOVEMENT_ON) {
-    const destinationRequesterTypes = [
-      ORIGIN_TYPE_TB_RESTRICTED_FARM,
-      ORIGIN_TYPE_AFU,
-      'iso-unit'
-    ]
-    return destinationRequesterTypes.includes(originType)
-      ? 'destination'
-      : 'origin'
-  }
-
-  // For OFF farm movements, requester is always origin
-  return 'origin'
-}
-
-/**
- * @param {Record<string, any>} origin
- */
-function isDestinationKeeperName(origin) {
-  const onOffFarm = origin.onOffFarm
-  const originType = origin.originType
-
-  const specialOriginTypes = [ORIGIN_TYPE_AFU, 'iso-unit']
-  const isSpecialOrigin = specialOriginTypes.includes(originType)
-  const isTbRestrictedFarm = originType === ORIGIN_TYPE_TB_RESTRICTED_FARM
-
-  const isOnFarmFromSpecialOrRestricted =
-    onOffFarm === MOVEMENT_ON && (isTbRestrictedFarm || isSpecialOrigin)
-  const isOffFarmFromSpecial = onOffFarm === 'off' && isSpecialOrigin
-
-  return isOnFarmFromSpecialOrRestricted || isOffFarmFromSpecial
+  const { onOffFarm } = origin
+  return onOffFarm === MOVEMENT_ON ? 'destination' : 'origin'
 }
 
 /**

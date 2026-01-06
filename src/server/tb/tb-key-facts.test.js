@@ -51,30 +51,18 @@ describe('tbKeyFacts', () => {
   })
 
   describe('requester determination', () => {
-    const testCases = [
-      {
-        onOffFarm: 'off',
-        originType: 'tb-restricted-farm',
-        expected: 'origin'
-      },
-      {
-        onOffFarm: 'on',
-        originType: 'tb-restricted-farm',
-        expected: 'destination'
-      },
-      { onOffFarm: 'on', originType: 'afu', expected: 'destination' },
-      { onOffFarm: 'on', originType: 'iso-unit', expected: 'destination' },
-      { onOffFarm: 'on', originType: 'unrestricted-farm', expected: 'origin' },
-      { onOffFarm: 'on', originType: 'market', expected: 'origin' }
-    ]
-
-    testCases.forEach(({ onOffFarm, originType, expected }) => {
-      it(`should return ${expected} when moving ${onOffFarm} from ${originType}`, () => {
-        const state = createState({
-          origin: { onOffFarm, originType }
-        })
-        expect(tbKeyFacts(state).requester).toBe(expected)
+    it('should return origin when moving off farm', () => {
+      const state = createState({
+        origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' }
       })
+      expect(tbKeyFacts(state).requester).toBe('origin')
+    })
+
+    it('should return destination when moving on farm', () => {
+      const state = createState({
+        origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
+      })
+      expect(tbKeyFacts(state).requester).toBe('destination')
     })
   })
 
@@ -123,17 +111,15 @@ describe('tbKeyFacts', () => {
       expect(result.destinationKeeperName).toEqual(names.yourName)
     })
 
-    it('should set destinationKeeperName for AFU/iso-unit movements', () => {
-      const afuState = createState({
-        origin: { onOffFarm: 'off', originType: 'afu' },
+    it('should set destinationKeeperName for ON farm unrestricted movements', () => {
+      const state = createState({
+        origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
         licence: names
       })
-      const isoState = createState({
-        origin: { onOffFarm: 'on', originType: 'iso-unit' },
-        licence: names
-      })
-      expect(tbKeyFacts(afuState).destinationKeeperName).toEqual(names.yourName)
-      expect(tbKeyFacts(isoState).destinationKeeperName).toEqual(names.yourName)
+      // For ON farm from unrestricted origin, destination name should be fullName
+      expect(tbKeyFacts(state).destinationKeeperName).toEqual(names.fullName)
+      // Should not set origin name for ON farm from unrestricted origin
+      expect(tbKeyFacts(state).originKeeperName).toBeUndefined()
     })
 
     it('should not set destinationKeeperName for non-eligible movements', () => {
