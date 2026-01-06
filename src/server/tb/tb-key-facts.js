@@ -162,25 +162,26 @@ function determineLicenceType(originType, destinationType) {
 }
 
 /**
+ * Determines the requester based on movement direction and origin type.
+ * Requester is 'destination' only for ON farm movements from specific origin types.
  * @param {Record<string, any>} origin
  */
 function determineRequester(origin) {
-  const onOffFarm = origin.onOffFarm
-  const originType = origin.originType
+  const { onOffFarm, originType } = origin
 
-  if (onOffFarm === 'off') {
-    return 'origin'
+  // For ON farm movements, check if origin type requires destination as requester
+  if (onOffFarm === MOVEMENT_ON) {
+    const destinationRequesterTypes = [
+      ORIGIN_TYPE_TB_RESTRICTED_FARM,
+      ORIGIN_TYPE_AFU,
+      'iso-unit'
+    ]
+    return destinationRequesterTypes.includes(originType)
+      ? 'destination'
+      : 'origin'
   }
 
-  if (
-    onOffFarm === MOVEMENT_ON &&
-    (originType === ORIGIN_TYPE_TB_RESTRICTED_FARM ||
-      originType === ORIGIN_TYPE_AFU ||
-      originType === 'iso-unit')
-  ) {
-    return 'destination'
-  }
-
+  // For OFF farm movements, requester is always origin
   return 'origin'
 }
 
@@ -220,9 +221,28 @@ function extractBiosecurityMaps(biosecurityMapSection) {
 }
 
 /**
+ * @param {Record<string, any>} origin
+ * @param {Record<string, any>} destination
+ * @param {string} originType
+ * @param {string} destinationType
+ */
+function buildBasicKeyFacts(origin, destination, originType, destinationType) {
+  return {
+    licenceType: determineLicenceType(originType, destinationType),
+    requester: determineRequester(origin),
+    movementDirection: origin.onOffFarm,
+    additionalInformation: destination.additionalInfo ?? '',
+    ...(destination.howManyAnimals && {
+      numberOfCattle: Number.parseInt(destination.howManyAnimals, 10)
+    })
+  }
+}
+
+/**
+ * Generates TB key facts from the raw application state.
  * @param {RawApplicationState} state
  */
-export function transformToKeyFacts(state) {
+export function tbKeyFacts(state) {
   const origin = state.origin ?? {}
   const destination = state.destination ?? {}
   const licence = state.licence ?? {}
@@ -244,22 +264,4 @@ export function transformToKeyFacts(state) {
   addBiosecurityMaps(keyFacts, biosecurityMap)
 
   return keyFacts
-}
-
-/**
- * @param {Record<string, any>} origin
- * @param {Record<string, any>} destination
- * @param {string} originType
- * @param {string} destinationType
- */
-function buildBasicKeyFacts(origin, destination, originType, destinationType) {
-  return {
-    licenceType: determineLicenceType(originType, destinationType),
-    requester: determineRequester(origin),
-    movementDirection: origin.onOffFarm,
-    additionalInformation: destination.additionalInfo ?? '',
-    ...(destination.howManyAnimals && {
-      numberOfCattle: Number.parseInt(destination.howManyAnimals, 10)
-    })
-  }
 }

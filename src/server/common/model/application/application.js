@@ -78,6 +78,15 @@ export class ApplicationModel {
   }
 
   /**
+   * @param {RawApplicationState} [_state]
+   * @returns {Record<string, any>}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getCaseManagementData(_state) {
+    return this.caseManagementData
+  }
+
+  /**
    * @param {Request} req
    * @param {RawApplicationState} state
    * @returns {Promise<ApplicationModel>}

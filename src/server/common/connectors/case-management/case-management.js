@@ -1,6 +1,5 @@
 import { config } from '~/src/config/config.js'
 import Wreck from '@hapi/wreck'
-import { TbApplicationModel } from '~/src/server/tb/application.js'
 
 /**
  * @import { ApplicationModel } from '~/src/server/common/model/application/application.js'
@@ -24,12 +23,7 @@ export const submitApplication = async (application, state) => {
 
   const { baseUrl, timeout } = config.get('caseManagementApi')
 
-  const payload = application.caseManagementData
-
-  // Add keyFacts for TB applications when state is available
-  if (state && application instanceof TbApplicationModel) {
-    payload.keyFacts = TbApplicationModel.getKeyFacts(state)
-  }
+  const payload = application.getCaseManagementData(state)
 
   const response = await Wreck.post(`${baseUrl}/submit`, {
     payload,

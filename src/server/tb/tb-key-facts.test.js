@@ -1,4 +1,4 @@
-import { transformToKeyFacts } from './key-facts-transformer.js'
+import { tbKeyFacts } from './tb-key-facts.js'
 
 /** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
 
@@ -10,7 +10,7 @@ const createState = (overrides = {}) => ({
   ...overrides
 })
 
-describe('transformToKeyFacts', () => {
+describe('tbKeyFacts', () => {
   describe('licence type determination', () => {
     const testCases = [
       { origin: 'market', destination: 'tb-restricted-farm', expected: 'TB15' },
@@ -45,7 +45,7 @@ describe('transformToKeyFacts', () => {
           origin: { originType: origin },
           destination: { destinationType: destination }
         })
-        expect(transformToKeyFacts(state).licenceType).toBe(expected)
+        expect(tbKeyFacts(state).licenceType).toBe(expected)
       })
     })
   })
@@ -73,7 +73,7 @@ describe('transformToKeyFacts', () => {
         const state = createState({
           origin: { onOffFarm, originType }
         })
-        expect(transformToKeyFacts(state).requester).toBe(expected)
+        expect(tbKeyFacts(state).requester).toBe(expected)
       })
     })
   })
@@ -84,7 +84,7 @@ describe('transformToKeyFacts', () => {
         origin: { onOffFarm: 'on', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
-      expect(transformToKeyFacts(state).requesterCph).toBe('22/222/2222')
+      expect(tbKeyFacts(state).requesterCph).toBe('22/222/2222')
     })
 
     it('should use origin CPH when moving off farm', () => {
@@ -92,7 +92,7 @@ describe('transformToKeyFacts', () => {
         origin: { onOffFarm: 'off', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
-      expect(transformToKeyFacts(state).requesterCph).toBe('11/111/1111')
+      expect(tbKeyFacts(state).requesterCph).toBe('11/111/1111')
     })
 
     it('should not set requesterCph when CPH is missing', () => {
@@ -102,8 +102,8 @@ describe('transformToKeyFacts', () => {
       const stateOffFarm = createState({
         origin: { onOffFarm: 'off' }
       })
-      expect(transformToKeyFacts(stateOnFarm).requesterCph).toBeUndefined()
-      expect(transformToKeyFacts(stateOffFarm).requesterCph).toBeUndefined()
+      expect(tbKeyFacts(stateOnFarm).requesterCph).toBeUndefined()
+      expect(tbKeyFacts(stateOffFarm).requesterCph).toBeUndefined()
     })
   })
 
@@ -118,7 +118,7 @@ describe('transformToKeyFacts', () => {
         origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
         licence: names
       })
-      const result = transformToKeyFacts(state)
+      const result = tbKeyFacts(state)
       expect(result.originKeeperName).toEqual(names.fullName)
       expect(result.destinationKeeperName).toEqual(names.yourName)
     })
@@ -132,12 +132,8 @@ describe('transformToKeyFacts', () => {
         origin: { onOffFarm: 'on', originType: 'iso-unit' },
         licence: names
       })
-      expect(transformToKeyFacts(afuState).destinationKeeperName).toEqual(
-        names.yourName
-      )
-      expect(transformToKeyFacts(isoState).destinationKeeperName).toEqual(
-        names.yourName
-      )
+      expect(tbKeyFacts(afuState).destinationKeeperName).toEqual(names.yourName)
+      expect(tbKeyFacts(isoState).destinationKeeperName).toEqual(names.yourName)
     })
 
     it('should not set destinationKeeperName for non-eligible movements', () => {
@@ -145,7 +141,7 @@ describe('transformToKeyFacts', () => {
         origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' },
         licence: names
       })
-      expect(transformToKeyFacts(state).destinationKeeperName).toBeUndefined()
+      expect(tbKeyFacts(state).destinationKeeperName).toBeUndefined()
     })
   })
 
@@ -161,9 +157,7 @@ describe('transformToKeyFacts', () => {
           }
         }
       })
-      expect(transformToKeyFacts(state).biosecurityMaps).toEqual([
-        'test-key-123'
-      ])
+      expect(tbKeyFacts(state).biosecurityMaps).toEqual(['test-key-123'])
     })
 
     it('should not include map when skipped or missing', () => {
@@ -179,8 +173,8 @@ describe('transformToKeyFacts', () => {
       })
       const emptyState = createState()
 
-      expect(transformToKeyFacts(skippedState).biosecurityMaps).toBeUndefined()
-      expect(transformToKeyFacts(emptyState).biosecurityMaps).toBeUndefined()
+      expect(tbKeyFacts(skippedState).biosecurityMaps).toBeUndefined()
+      expect(tbKeyFacts(emptyState).biosecurityMaps).toBeUndefined()
     })
   })
 
@@ -222,7 +216,7 @@ describe('transformToKeyFacts', () => {
         }
       })
 
-      const result = transformToKeyFacts(state)
+      const result = tbKeyFacts(state)
 
       expect(result).toMatchObject({
         licenceType: 'TB16',
@@ -243,7 +237,7 @@ describe('transformToKeyFacts', () => {
 
     it('should handle minimal state with defaults', () => {
       const state = createState()
-      const result = transformToKeyFacts(state)
+      const result = tbKeyFacts(state)
 
       expect(result).toEqual({
         licenceType: '',

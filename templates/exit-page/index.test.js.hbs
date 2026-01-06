@@ -1,12 +1,20 @@
-import { describePageSnapshot } from
-'../../../common/test-helpers/snapshot-page.js' import {
-{{pascalCase questionKey}}ExitPage } from './index.js' const pageUrl = '{{path}}'
-describe('#{{pascalCase sectionKey}}ExitPage', () => { it('should have the
-correct properties', () => { const page = new
-{{pascalCase questionKey}}ExitPage() expect(page.pageTitle).toBe( '{{sentenceCase
-  question
-}}' ) expect(page.urlPath).toBe(pageUrl) expect(page.view).toBe('{{kebabCase
-  journey
-}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index') })
-describePageSnapshot({ describes: '{{pascalCase sectionKey}}ExitPage.content',
-it: 'should render expected response and content', pageUrl }) })
+import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { {{pascalCase questionKey}}ExitPage } from './index.js'
+
+const pageUrl = '{{path}}'
+
+describe('#{{pascalCase sectionKey}}ExitPage', () => {
+  it('should have the correct properties', () => {
+    const page = new {{pascalCase questionKey}}ExitPage()
+
+    expect(page.pageTitle).toBe('{{sentenceCase question}}')
+    expect(page.urlPath).toBe(pageUrl)
+    expect(page.view).toBe('{{kebabCase journey}}/{{kebabCase sectionKey}}/{{kebabCase questionKey}}/index')
+  })
+
+  describePageSnapshot({
+    describes: '{{pascalCase sectionKey}}ExitPage.content',
+    it: 'should render expected response and content',
+    pageUrl
+  })
+})

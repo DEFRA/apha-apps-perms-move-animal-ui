@@ -5,7 +5,7 @@ import { BiosecuritySection } from './biosecurity/section.js'
 import { BiosecurityPlanSection } from './biosecurity-map/section.js'
 import { IdentificationSection } from './identification/section.js'
 import { ApplicationModel } from '../common/model/application/application.js'
-import { transformToKeyFacts } from '../common/model/application/key-facts-transformer.js'
+import { tbKeyFacts } from './tb-key-facts.js'
 
 /**
  * @import { SectionModel } from '../common/model/section/section-model/section-model.js'
@@ -38,8 +38,23 @@ export class TbApplicationModel extends ApplicationModel {
   /**
    * Generates key facts from the raw application state.
    * @param {RawApplicationState} state
+   * @returns {Record<string, any>}
    */
   static getKeyFacts(state) {
-    return transformToKeyFacts(state)
+    return tbKeyFacts(state)
+  }
+
+  /**
+   * @param {RawApplicationState} [state]
+   * @returns {Record<string, any>}
+   */
+  getCaseManagementData(state) {
+    const data = super.getCaseManagementData(state)
+
+    if (state) {
+      data.keyFacts = TbApplicationModel.getKeyFacts(state)
+    }
+
+    return data
   }
 }
