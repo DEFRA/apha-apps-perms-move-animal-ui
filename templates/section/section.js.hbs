@@ -7,15 +7,12 @@ const plugin = {
   plugin: {
     name: '{{camelCase journey}}-{{camelCase sectionKey}}',
     async register(server) {
-      await server.register([
-        checkAnswers
-      ])
+      await server.register([checkAnswers])
     }
   }
 }
 
 // TEMPLATE-TODO: Add this section to the router
-
 export class {{pascalCase sectionKey}}Section extends ExoticsSectionModel {
   /** @type {SectionConfig} */
   static config = {

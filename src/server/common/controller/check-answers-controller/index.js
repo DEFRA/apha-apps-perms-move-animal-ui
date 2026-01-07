@@ -97,7 +97,7 @@ export class SubmitPageController extends QuestionPageController {
       const {
         payload: { message },
         statusCode
-      } = await submitApplication(application)
+      } = await submitApplication(application, applicationState)
 
       if (statusCode !== statusCodes.ok) {
         throw new Error(

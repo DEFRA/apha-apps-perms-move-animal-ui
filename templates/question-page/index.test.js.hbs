@@ -9,10 +9,7 @@ const questionKey = '{{questionKey}}'
 const pageUrl = '{{path}}'
 const page = {{camelCase questionKey}}Page
 const question = '{{question}}'
-
-const payload = {
-  [questionKey]: 'some text'
-}
+const payload = { [questionKey]: 'some text' }
 
 describe('Answer', () => {
   it('should be a {{sentenceCase questionType}} input', () => {
@@ -48,21 +45,23 @@ describe('{{pascalCase questionKey}}Page', () => {
   })
 
   describe('nextPage', () => {
-    {{#if (eq questionType 'radio-button')}}
+{{#if (eq questionType 'radio-button')}}
     it.each([
-      ['option', nextPage]  // TEMPLATE-TODO: replace with actual next page for each option
+      ['option', nextPage] // TEMPLATE-TODO: replace with actual next page for each option
     ])('for %s should return %s', (value, expectedPage) => {
       const answer = new Answer({ [questionKey]: value })
       const nextPage = page.nextPage(answer)
+
       expect(nextPage).toBeInstanceOf(expectedPage)
     })
-    {{else}}
+{{else}}
     it('should return TEMPLATE-TODO for any value', () => {
       const answer = new Answer(payload)
       const nextPage = page.nextPage(answer)
+
       expect(nextPage).toBeInstanceOf(TEMPLATE-TODO)
     })
-    {{/if}}
+{{/if}}
   })
 
   describePageSnapshot({
