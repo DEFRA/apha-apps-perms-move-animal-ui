@@ -12,6 +12,7 @@ Frontend to the 'Get permission to move animals under disease controls' service.
 
 - [apha-apps-perms-move-animal-ui](#apha-apps-perms-move-animal-ui)
   - [Architecture Diagram](#architecture-diagram)
+  - [Journey versioning](#journey-versioning)
   - [Requirements](#requirements)
     - [Node.js](#nodejs)
   - [Server-side Caching](#server-side-caching)
@@ -35,6 +36,28 @@ Frontend to the 'Get permission to move animals under disease controls' service.
 ## Architecture Diagram
 
 ![Milestone 1 - architecture_2025-01-28_14-47-11](https://github.com/user-attachments/assets/ea1c0cb5-fd91-4fd8-82c6-78b5b95aee6b)
+
+## Journey versioning
+
+This repository includes several application journeys (represented by instances of `ApplicationModel`), each of which with a `journeyId` and `journeyVersion` field.
+
+The `journeyVersion` captures changes that may alter downstream processing, and has the following policy:
+
+- increment the **major** version field when:
+
+  - changing the section a question belongs to
+  - changing the questionKey
+  - changing the flow so that a question that was always asked for is now only sometimes asked for
+  - changing questionKey’s answer type (e.g. from text box to checkboxes)
+  - altering/removing existing value for a radio or checkbox type
+
+- increment the **minor** version field when:
+  - adding a new question(s)
+  - adding a new radio button option or a new checkbox option
+  - changing the routing so that a page that is sometimes asked for is now asked for under different circumstances
+  - changing the routing so that a page that is sometimes asked for is now always asked for
+  - changing the conditions under which radio options / checkbox options are shown
+  - removing checkbox or radio button options
 
 ## Requirements
 
