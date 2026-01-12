@@ -208,13 +208,16 @@ function extractBiosecurityMaps(biosecurityMapSection) {
  * @param {string} destinationType
  */
 function buildBasicKeyFacts(origin, destination, originType, destinationType) {
+  const animalCount =
+    destination.howManyAnimals ?? destination.howManyAnimalsMaximum
+
   return {
     licenceType: determineLicenceType(originType, destinationType),
     requester: determineRequester(origin),
     movementDirection: origin.onOffFarm,
     additionalInformation: destination.additionalInfo ?? '',
-    ...(destination.howManyAnimals && {
-      numberOfCattle: Number.parseInt(destination.howManyAnimals, 10)
+    ...(animalCount && {
+      numberOfCattle: Number.parseInt(animalCount, 10)
     })
   }
 }

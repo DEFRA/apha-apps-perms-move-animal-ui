@@ -66,6 +66,48 @@ describe('tbKeyFacts', () => {
     })
   })
 
+  describe('numberOfCattle', () => {
+    it.each([
+      ['howManyAnimals', '5', 5],
+      ['howManyAnimalsMaximum', '7', 7]
+    ])(
+      'should convert %s to numberOfCattle as integer',
+      (field, value, expected) => {
+        const destination =
+          field === 'howManyAnimalsMaximum'
+            ? { howManyAnimalsMaximum: value }
+            : { howManyAnimals: value }
+
+        const state = createState({
+          origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' },
+          destination
+        })
+
+        expect(tbKeyFacts(state).numberOfCattle).toBe(expected)
+      }
+    )
+
+    it('should prefer howManyAnimals over howManyAnimalsMaximum', () => {
+      const state = createState({
+        destination: {
+          howManyAnimals: '10',
+          howManyAnimalsMaximum: '20'
+        }
+      })
+      expect(tbKeyFacts(state).numberOfCattle).toBe(10)
+    })
+
+    it.each([
+      ['both fields missing', {}],
+      ['empty string', { howManyAnimals: '' }],
+      ['null', { howManyAnimals: null }],
+      ['undefined', { howManyAnimals: undefined }]
+    ])('should not include numberOfCattle when %s', (_, destination) => {
+      const state = createState({ destination })
+      expect(tbKeyFacts(state).numberOfCattle).toBeUndefined()
+    })
+  })
+
   describe('requesterCph determination', () => {
     it('should use destination CPH when moving on farm', () => {
       const state = createState({
