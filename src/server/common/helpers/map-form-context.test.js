@@ -44,13 +44,8 @@ const { defraFormsPluginOptions: loadedPluginOptions } = jest.requireMock(
   '~/src/server/common/plugins/defra-forms/index.js'
 )
 mockPluginOptions = loadedPluginOptions
-const {
-  getCacheService: mockGetCacheService,
-  evaluateTemplate: mockEvaluateTemplate,
-  getAnswer: mockGetAnswer,
-  FormModel: mockFormModel,
-  TerminalPageController: MockTerminalPageController
-} = jest.requireMock('@defra/forms-engine-plugin/engine/helpers.js')
+const { evaluateTemplate: mockEvaluateTemplate, getAnswer: mockGetAnswer } =
+  jest.requireMock('@defra/forms-engine-plugin/engine/helpers.js')
 
 describe('mapFormContextToAnswers helper', () => {
   const buildPage = (fields, path = '/page-path', withHref = true) => {
