@@ -26,6 +26,12 @@ export const FormAction = {
   External: 'external'
 }
 
+export const FormStatus = {
+  Live: 'live',
+  Draft: 'draft',
+  Preview: 'preview'
+}
+
 export const proceed = jest.fn()
 
 export class CacheService {
@@ -49,6 +55,8 @@ const defaultCacheService = {
 export const getCacheService = jest.fn().mockReturnValue(defaultCacheService)
 export const evaluateTemplate = jest.fn()
 export const getAnswer = jest.fn()
+export const getFormContext = jest.fn()
+export const getFirstJourneyPage = jest.fn()
 
 export const FormModel = jest
   .fn()

@@ -1,6 +1,6 @@
 import { proceed } from '@defra/forms-engine-plugin/engine/helpers.js'
 import { FormAction } from '@defra/forms-engine-plugin/types'
-import { mapFormContextToAnswers } from '~/src/server/common/plugins/defra-forms/form-context.js'
+import { mapFormContextToAnswers } from '~/src/server/common/helpers/map-form-context.js'
 import { QuestionPageController } from '@defra/forms-engine-plugin/controllers/index.js'
 
 export class SectionSummaryPageController extends QuestionPageController {
