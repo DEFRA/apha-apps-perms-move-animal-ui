@@ -71,10 +71,7 @@ function addOptionalKeeperNames(keyFacts, origin, licence) {
 
   // Destination keeper name: only for ON farm movements
   if (isOnFarm) {
-    const nameToUse =
-      isOriginRestricted && licence.yourName
-        ? licence.yourName
-        : licence.fullName
+    const nameToUse = isOriginRestricted ? licence.yourName : licence.fullName
     if (nameToUse) {
       keyFacts.destinationKeeperName = nameToUse
     }
