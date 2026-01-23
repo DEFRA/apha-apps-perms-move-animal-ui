@@ -171,6 +171,40 @@ describe('tbKeyFacts', () => {
       })
       expect(tbKeyFacts(state).destinationKeeperName).toBeUndefined()
     })
+
+    describe('destinationKeeperName logic based on origin restriction', () => {
+      it('should use yourName when origin is restricted and yourName is present', () => {
+        const state = createState({
+          origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
+          licence: names
+        })
+        expect(tbKeyFacts(state).destinationKeeperName).toEqual(names.yourName)
+      })
+
+      it('should use fullName when origin is unrestricted and fullName is present', () => {
+        const state = createState({
+          origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
+          licence: names
+        })
+        expect(tbKeyFacts(state).destinationKeeperName).toEqual(names.fullName)
+      })
+
+      it('should not set destinationKeeperName when origin is restricted but yourName is null', () => {
+        const state = createState({
+          origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
+          licence: { fullName: names.fullName, yourName: null }
+        })
+        expect(tbKeyFacts(state).destinationKeeperName).toBeUndefined()
+      })
+
+      it('should not set destinationKeeperName when origin is unrestricted and fullName is null', () => {
+        const state = createState({
+          origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
+          licence: { fullName: null, yourName: names.yourName }
+        })
+        expect(tbKeyFacts(state).destinationKeeperName).toBeUndefined()
+      })
+    })
   })
 
   describe('biosecurity maps extraction', () => {
