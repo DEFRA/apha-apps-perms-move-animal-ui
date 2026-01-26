@@ -1,9 +1,9 @@
 import { SectionSummaryPageController } from './section-summary-page-controller.js'
-import { mapFormContextToAnswers } from '~/src/server/common/plugins/defra-forms/form-context.js'
 import { FormAction } from '@defra/forms-engine-plugin/types'
 import { proceed } from '@defra/forms-engine-plugin/engine/helpers.js'
+import { mapFormContextToAnswers } from '~/src/server/common/helpers/map-form-context.js'
 
-jest.mock('~/src/server/common/plugins/defra-forms/form-context.js')
+jest.mock('~/src/server/common/helpers/map-form-context.js')
 
 const mapFormContextToAnswersMock = /** @type {jest.Mock} */ (
   mapFormContextToAnswers
