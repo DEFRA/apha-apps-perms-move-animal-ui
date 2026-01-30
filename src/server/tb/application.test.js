@@ -110,7 +110,7 @@ describe('TbApplicationModel', () => {
       expect(keyFacts.biosecurityMaps).toBeUndefined()
     })
 
-    it('should parse numberOfCattle as integer', () => {
+    it('should parse numberOfCattle as integer from string state', () => {
       /** @type {RawApplicationState} */
       const stateWithAnimals = {
         ...validApplicationState,

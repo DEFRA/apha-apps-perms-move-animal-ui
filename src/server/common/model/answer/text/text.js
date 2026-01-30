@@ -94,7 +94,7 @@ export class TextAnswer extends AnswerModel {
   }
 
   /**
-   * @returns {TextData}
+   * @returns {string | number | undefined}
    */
   toState() {
     let v = this.value?.trim() ?? ''
@@ -169,7 +169,7 @@ export class TextAnswer extends AnswerModel {
   }
 
   /**
-   * @param {TextData | undefined} state
+   * @param {string | number | undefined} state
    * @returns {TextAnswer}
    */
   static fromState(state) {
