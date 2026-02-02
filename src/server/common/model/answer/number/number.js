@@ -61,6 +61,33 @@ export const numberSchema = ({ payloadKey, validation }) => {
  * @augments {TextAnswer<Payload>}
  */
 export class NumberAnswer extends TextAnswer {
+  get type() {
+    return 'number'
+  }
+
+  get html() {
+    const value = this._data?.[this.config.payloadKey]
+    return value !== undefined && value !== null && value !== ''
+      ? String(value)
+      : ''
+  }
+
+  toState() {
+    const rawValue = this._data?.[this.config.payloadKey]
+
+    if (rawValue === undefined || rawValue === null) {
+      return undefined
+    }
+
+    const stringValue = String(rawValue).trim()
+    if (stringValue === '') {
+      return undefined
+    }
+
+    const n = Number(stringValue)
+    return Number.isNaN(n) ? undefined : n
+  }
+
   validate() {
     return validateAnswerAgainstSchema(
       numberSchema(this.config),
