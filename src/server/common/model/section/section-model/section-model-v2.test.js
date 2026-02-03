@@ -1,12 +1,11 @@
 import { SectionModelV2 } from './section-model-v2.js'
 import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/index.js'
-import {
-  getFirstJourneyPage,
-  getFormContext,
-  mapFormContextToAnswers
-} from '~/src/server/common/plugins/defra-forms/form-context.js'
+import { getFirstJourneyPage, getFormContext } from '@defra/forms-engine-plugin'
+import { mapFormContextToAnswers } from '~/src/server/common/helpers/map-form-context.js'
+import { defraFormsPluginOptions } from '~/src/server/common/plugins/defra-forms/index.js'
+import { FormStatus } from '@defra/forms-engine-plugin/types'
 
-jest.mock('~/src/server/common/plugins/defra-forms/form-context.js')
+jest.mock('~/src/server/common/helpers/map-form-context.js')
 
 const testPathOne = '/test-path-one'
 const testPathTwo = '/test-path-two'
@@ -108,7 +107,12 @@ describe('SectionModelV2', () => {
 
       const result = await TestSection.fromRequest(mockRequest, mockState)
 
-      expect(getFormContext).toHaveBeenCalledWith(mockRequest, journeySlug)
+      expect(getFormContext).toHaveBeenCalledWith(
+        mockRequest,
+        journeySlug,
+        FormStatus.Live,
+        defraFormsPluginOptions
+      )
       expect(result).toBeInstanceOf(TestSection)
       expect(result._data).toBe(mockFormContext)
     })
