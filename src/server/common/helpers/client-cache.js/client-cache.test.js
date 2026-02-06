@@ -1,5 +1,6 @@
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
+import { disableClientCache } from './client-cache.js'
 
 describe('#clientCacheHelper', () => {
   /** @type {Server} */
@@ -40,6 +41,26 @@ describe('#clientCacheHelper', () => {
       'cache-control',
       'no-store, must-revalidate, max-age=0'
     )
+  })
+})
+
+describe('#disableClientCache', () => {
+  const h = { continue: Symbol('continue') }
+
+  it('returns h.continue when response does not expose a callable header method', () => {
+    const request = {
+      response: {
+        header: 'not-a-function'
+      }
+    }
+
+    let result
+
+    expect(() => {
+      result = disableClientCache(request, h)
+    }).not.toThrow()
+
+    expect(result).toBe(h.continue)
   })
 })
 
