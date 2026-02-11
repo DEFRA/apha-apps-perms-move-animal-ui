@@ -1,10 +1,9 @@
-import {
-  getFirstJourneyPage,
-  getFormContext,
-  mapFormContextToAnswers
-} from '../../../plugins/defra-forms/form-context.js'
+import { getFirstJourneyPage, getFormContext } from '@defra/forms-engine-plugin'
 import { SectionModel } from './section-model.js'
 import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/index.js'
+import { mapFormContextToAnswers } from '~/src/server/common/helpers/map-form-context.js'
+import { defraFormsPluginOptions } from '../../../plugins/defra-forms/index.js'
+import { FormStatus } from '@defra/forms-engine-plugin/types'
 
 /**
  * @import { Request } from '@hapi/hapi'
@@ -57,7 +56,12 @@ export class SectionModelV2 extends SectionModel {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static async fromRequest(req, _state) {
-    const formContext = await getFormContext(req, this.journeySlug)
+    const formContext = await getFormContext(
+      req,
+      this.journeySlug,
+      FormStatus.Live,
+      defraFormsPluginOptions
+    )
     return new this(formContext)
   }
 
