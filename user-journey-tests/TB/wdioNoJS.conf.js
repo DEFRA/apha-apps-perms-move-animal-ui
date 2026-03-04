@@ -1,17 +1,7 @@
-import merge from 'deepmerge'
-import { config as wdioConf } from '../wdio.conf.js'
+import { createLocalChromeConfig } from '../shared/wdio-local-chrome.js'
 
-export const config = merge(wdioConf, {
-  specs: ['./specs/noJavascript/**/*.js'],
+export const config = createLocalChromeConfig({
+  specs: ['./specs/noJavascript/**/*.spec.js'],
   maxInstances: 3,
-  capabilities: [
-    {
-      browserName: 'chrome',
-      browserVersion: 'stable',
-      'goog:chromeOptions': {
-        prefs: { 'profile.managed_default_content_settings.javascript': 2 },
-        args: ['headless', 'disable-gpu']
-      }
-    }
-  ]
+  disableJavascript: true
 })

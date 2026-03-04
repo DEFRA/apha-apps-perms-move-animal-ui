@@ -1,5 +1,5 @@
-import { Page } from '../TB/page-objects/page.js'
-import * as page from '../TB/helpers/page.js'
+import { Page } from '../shared/page.js'
+import * as page from '../shared/page-helpers.js'
 
 class DoubleTextInputPage extends Page {
   constructor({ firstId, lastId, input1Error, input2Error }) {
@@ -38,7 +38,7 @@ class DoubleTextInputPage extends Page {
     await page.typeIntoElement(this.firstTextInput(), first)
     await page.typeIntoElement(this.lastTextInput(), last)
     await super.selectContinue()
-    if (nextPage) page.waitForPagePath(nextPage.pagePath)
+    if (nextPage) await page.waitForPagePath(nextPage.pagePath)
   }
 
   async verifyFirstInputErrors(single = true) {

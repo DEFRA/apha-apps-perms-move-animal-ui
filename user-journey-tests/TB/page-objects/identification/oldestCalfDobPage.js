@@ -71,10 +71,17 @@ class OldestCalfDOBPage extends Page {
   ) {
     await this.enterDateAndContinue({ day, month, year })
 
+    const focusField =
+      focus === 'month'
+        ? this.getMonthInput()
+        : focus === 'year'
+          ? this.getYearInput()
+          : this.getDayInput()
+
     await super.verifyErrorsOnPage(this.inputFieldError(), errorMessage)
     await super.verifySummaryErrorLink(
       this.errorLink(`${pageId}-${focus}`),
-      this.getDayInput()
+      focusField
     )
   }
 }

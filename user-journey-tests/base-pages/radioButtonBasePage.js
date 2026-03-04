@@ -1,5 +1,5 @@
-import { Page } from '../TB/page-objects/page.js'
-import { waitForPagePath } from '../TB/helpers/page.js'
+import { waitForPagePath } from '../shared/page-helpers.js'
+import { Page } from '../shared/page.js'
 
 class RadioButtonBasePage extends Page {
   constructor({ pageId, noInputError, valueArray }) {

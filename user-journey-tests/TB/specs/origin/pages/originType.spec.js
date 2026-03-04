@@ -25,6 +25,10 @@ describe('origin type page test (off farm)', () => {
 })
 
 describe('origin type page test (on farm)', () => {
+  before(async () => {
+    await loginAndSaveSession(signInPage)
+  })
+
   beforeEach('Restore session, select on farm, and navigate', async () => {
     await restoreSession()
     await toFromFarmPage.navigateToPageAndVerifyTitle(false)

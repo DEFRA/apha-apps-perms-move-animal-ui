@@ -1,6 +1,6 @@
 /* eslint-disable lines-between-class-members */
-import { Page } from '../TB/page-objects/page.js'
-import * as page from '../TB/helpers/page.js'
+import { Page } from '../shared/page.js'
+import * as page from '../shared/page-helpers.js'
 
 class DateBasePage extends Page {
   constructor({ pageId = 'date', errors = {} }) {

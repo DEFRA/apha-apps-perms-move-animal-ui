@@ -1,5 +1,5 @@
-import { Page } from '../TB/page-objects/page.js'
-import { selectElement, waitForPagePath } from '../TB/helpers/page.js'
+import { Page } from '../shared/page.js'
+import { selectElement, waitForPagePath } from '../shared/page-helpers.js'
 
 class CheckboxBasePage extends Page {
   constructor({ checkboxIds, pageId, noInputError }) {

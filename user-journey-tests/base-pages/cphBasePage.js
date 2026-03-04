@@ -1,5 +1,5 @@
-import { Page } from '../TB/page-objects/page.js'
-import * as page from '../TB/helpers/page.js'
+import { Page } from '../shared/page.js'
+import * as page from '../shared/page-helpers.js'
 
 const cphId = 'cphNumber'
 

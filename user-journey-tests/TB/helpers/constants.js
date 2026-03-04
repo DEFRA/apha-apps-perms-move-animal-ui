@@ -1,1 +1,1 @@
-export const secureDeviceArray = ['iPhone 13']
+export * from '../../shared/constants.js'
