@@ -1,19 +1,30 @@
-import { Page } from '../TB/page-objects/page.js'
+import { Page } from '../shared/page.js'
+
+const rowFromChangeLink = (element) => element.parentElement().parentElement()
 
 const keyElementFromChangeLink = (element) =>
-  element.parentElement().parentElement().$('.govuk-summary-list__key')
+  rowFromChangeLink(element).$('.govuk-summary-list__key')
 
 const valueElementFromChangeLink = (element) =>
-  element.parentElement().parentElement().$('.govuk-summary-list__value')
+  rowFromChangeLink(element).$('.govuk-summary-list__value')
 
 class AnswersBasePage extends Page {
-  constructor(changeLinks) {
+  constructor(changeLinks = {}) {
     super()
-    this.changeLinks = changeLinks
+    if (Object.keys(changeLinks).length) this.changeLinks = changeLinks
   }
 
   getChangeLink(key) {
-    return $(this.changeLinks[key])
+    const selector = this.changeLinks?.[key]
+
+    if (!selector) {
+      throw new Error(
+        `No change link selector configured for key "${key}". ` +
+          `Available keys: ${Object.keys(this.changeLinks || {}).join(', ')}`
+      )
+    }
+
+    return $(selector)
   }
 
   getValue(key) {

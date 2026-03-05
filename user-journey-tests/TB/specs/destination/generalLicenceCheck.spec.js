@@ -5,7 +5,7 @@ import generalLicencePage from '../../page-objects/destination/generalLicencePag
 import signInPage from '../../page-objects/signInPage.js'
 
 describe('General licence page test', () => {
-  beforeEach('Log in and navigate to page', async () => {
+  before('Log in and navigate to page', async () => {
     await loginAndSaveSession(signInPage)
     await generalLicencePage.navigateToPageAndVerifyTitle()
   })

@@ -90,41 +90,49 @@ class NewAddressBasePage extends Page {
   getErrorMappings() {
     return {
       lineOne: {
+        target: this.addressLineOneInput(),
         element: this.lineOneError(),
         message: this.lineOneErrorText,
         link: this.lineOneErrorLink()
       },
       townOrCity: {
+        target: this.townOrCityInput(),
         element: this.townOrCityError(),
         message: this.townOrCityErrorText,
         link: this.townOrCityErrorLink()
       },
       noPostcode: {
+        target: this.postcodeInput(),
         element: this.postcodeError(),
         message: this.noPostcodeErrorText,
         link: this.postcodeErrorLink()
       },
       invalidPostcode: {
+        target: this.postcodeInput(),
         element: this.postcodeError(),
         message: this.invalidPostcodeErrorText,
         link: this.postcodeErrorLink()
       },
       lineOneMaxLength: {
+        target: this.addressLineOneInput(),
         element: this.lineOneError(),
         message: this.maxErrorLengthText('Address line 1'),
         link: this.lineOneErrorLink()
       },
       lineTwoMaxLength: {
+        target: this.addressLineTwoInput(),
         element: this.lineTwoError(),
         message: this.maxErrorLengthText('Address line 2'),
         link: this.lineTwoErrorLink()
       },
       townOrCityMaxLength: {
+        target: this.townOrCityInput(),
         element: this.townOrCityError(),
         message: this.maxErrorLengthText('Town or city'),
         link: this.townOrCityErrorLink()
       },
       countyMaxLength: {
+        target: this.countyInput(),
         element: this.countyError(),
         message: this.maxErrorLengthText('County'),
         link: this.countyErrorLink()
@@ -140,8 +148,8 @@ class NewAddressBasePage extends Page {
       if (error && error.element) {
         const message = error.message
         const link = error.link
-        await super.verifyErrorsOnPage(error.element, message) // Verify the error element
-        await super.verifySummaryErrorLink(link, error.element) // Verify the summary error link
+        await super.verifyErrorsOnPage(error.element, message)
+        await super.verifySummaryErrorLink(link, error.target)
       } else {
         throw new Error(`No error mapping found for field: ${field}`)
       }

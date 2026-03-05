@@ -1,5 +1,5 @@
-import { Page } from '../TB/page-objects/page.js'
-import * as page from '../TB/helpers/page.js'
+import { Page } from '../shared/page.js'
+import * as page from '../shared/page-helpers.js'
 
 class SingleTextInputPage extends Page {
   constructor({ pageId, noInputError, invalidFormatError }) {
@@ -21,8 +21,8 @@ class SingleTextInputPage extends Page {
     return super.getErrorLink(this.pageId)
   }
 
-  async inputTextAndContinue(text, nextPage) {
-    await page.typeIntoElement(this.textInput(), text)
+  async inputTextAndContinue(text, nextPage, isAutocomplete = false) {
+    await page.typeIntoElement(this.textInput(), text, isAutocomplete)
     await super.selectContinue()
     if (nextPage) {
       await page.waitForPagePath(nextPage.pagePath)

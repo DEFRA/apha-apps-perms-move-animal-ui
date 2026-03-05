@@ -37,7 +37,7 @@ describe('Landing page test', () => {
   })
 
   it('Should verify the feedback link', async () => {
-    validateHrefOfElement(
+    await validateHrefOfElement(
       landingPage.getFeedbackLink(),
       'https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk'
     )
