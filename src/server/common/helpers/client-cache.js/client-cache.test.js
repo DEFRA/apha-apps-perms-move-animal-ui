@@ -62,6 +62,48 @@ describe('#disableClientCache', () => {
 
     expect(result).toBe(h.continue)
   })
+
+  it('returns h.continue when response is null', () => {
+    const request = {
+      response: null
+    }
+
+    let result
+
+    expect(() => {
+      result = disableClientCache(request, h)
+    }).not.toThrow()
+
+    expect(result).toBe(h.continue)
+  })
+
+  it('returns h.continue when response is undefined', () => {
+    const request = {
+      response: undefined
+    }
+
+    let result
+
+    expect(() => {
+      result = disableClientCache(request, h)
+    }).not.toThrow()
+
+    expect(result).toBe(h.continue)
+  })
+
+  it('returns h.continue when response object has no header property', () => {
+    const request = {
+      response: {}
+    }
+
+    let result
+
+    expect(() => {
+      result = disableClientCache(request, h)
+    }).not.toThrow()
+
+    expect(result).toBe(h.continue)
+  })
 })
 
 /**

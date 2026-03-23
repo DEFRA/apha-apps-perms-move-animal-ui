@@ -1,5 +1,5 @@
 export const disableClientCache = (request, h) => {
-  if (typeof request.response?.header !== 'function') {
+  if (!request.response || typeof request.response.header !== 'function') {
     return h.continue
   }
 
