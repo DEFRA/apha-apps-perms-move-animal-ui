@@ -15,7 +15,7 @@ export const verifyCheckAnswersPage = async ({
     const valueEl = await checkAnswersPage.getValue(key)
     const changeLink = await checkAnswersPage.getChangeLink(key)
 
-    await expect(valueEl).toHaveText({ containing: getExpected(key) })
+    await expect(valueEl).toHaveText(getExpected(key), { containing: true })
     await expect(changeLink).toHaveAttribute('href', getExpectedHref(key))
   }
 }
@@ -31,6 +31,6 @@ export const verifyCheckAnswersPageShort = async ({
   for (const key of Object.keys(journeyData)) {
     const valueEl = await checkAnswersPage.getValue(key)
 
-    await expect(valueEl).toHaveText({ containing: getExpected(key) })
+    await expect(valueEl).toHaveText(getExpected(key), { containing: true })
   }
 }
