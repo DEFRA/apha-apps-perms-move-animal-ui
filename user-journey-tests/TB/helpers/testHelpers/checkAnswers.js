@@ -121,7 +121,12 @@ export const validateAndAdjustAddress = async (
   const elementText = await checkAnswersPage
     .getValue('address')
     .getHTML(false)
-    .then((text) => text.replace(/<br\s*\/?>/g, '\n').trim())
+    .then((text) =>
+      text
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/\n\s*\n/g, '\n')
+        .trim()
+    )
   const expectedText = `${lineOne}
 ${lineTwo}
 ${townOrCity}
