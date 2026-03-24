@@ -15,6 +15,7 @@ export const config = merge(wdioConf, {
   capabilities: [
     {
       browserName: 'Edge',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
@@ -24,6 +25,7 @@ export const config = merge(wdioConf, {
     },
     {
       browserName: 'Chrome',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
@@ -33,6 +35,7 @@ export const config = merge(wdioConf, {
     },
     {
       browserName: 'Chrome',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: 'latest',
         os: 'OS X',
@@ -50,9 +53,10 @@ export const config = merge(wdioConf, {
           projectName: 'apha-apps-perms-move-animal-ui',
           buildName: 'apha-test-run'
         },
-        acceptInsecureCerts: true,
-        forceLocal: true,
-        browserstackLocal: true
+        browserstackLocal: true,
+        opts: {
+          forceLocal: true
+        }
       }
     ]
   ]
