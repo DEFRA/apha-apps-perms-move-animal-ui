@@ -23,6 +23,7 @@ export const config = {
   capabilities: [
     {
       browserName: 'Safari',
+      acceptInsecureCerts: true,
       'bstack:options': {
         os: 'iOS',
         osVersion: '15.6',
@@ -33,6 +34,7 @@ export const config = {
     },
     {
       browserName: 'Chrome',
+      acceptInsecureCerts: true,
       'bstack:options': {
         os: 'iOS',
         osVersion: '15.6',

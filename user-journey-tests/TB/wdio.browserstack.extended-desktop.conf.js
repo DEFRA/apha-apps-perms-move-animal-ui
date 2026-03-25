@@ -21,6 +21,7 @@ export const config = {
   capabilities: [
     {
       browserName: 'Firefox',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: 'latest',
         os: 'Windows',
@@ -30,6 +31,7 @@ export const config = {
     },
     {
       browserName: 'Firefox',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: 'latest',
         os: 'OS X',
@@ -39,6 +41,7 @@ export const config = {
     },
     {
       browserName: 'Safari',
+      acceptInsecureCerts: true,
       'bstack:options': {
         browserVersion: '15.6',
         os: 'OS X',
