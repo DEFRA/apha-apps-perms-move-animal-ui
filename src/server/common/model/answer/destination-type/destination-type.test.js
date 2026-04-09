@@ -9,8 +9,8 @@ const payload = {
 
 const tbRestrictedFarmLabel = 'TB restricted farm'
 const slaughterLabel = 'Slaughter'
-const afuLabel = 'Approved finishing unit (AFU)'
-const afuHint = 'Including enhanced with grazing (AFUE)'
+const afuLabel = 'Approved finishing units and TB sales at orange markets'
+const afuHint = 'The licence covers either or both destinations'
 const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {

@@ -12,8 +12,8 @@ const marketOrAfuOption = {
 }
 const tbRestrictedOption = { label: 'TB restricted farm' }
 const afuOption = {
-  label: 'Approved finishing unit (AFU)',
-  hint: 'Including enhanced with grazing (AFUE)'
+  label: 'Approved finishing units and TB sales at orange markets',
+  hint: 'The licence covers either or both destinations'
 }
 const otherOption = { label: 'Another destination with TB restrictions' }
 const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
