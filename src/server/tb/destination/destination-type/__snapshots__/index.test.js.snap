@@ -31,10 +31,10 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
     <div class="govuk-radios__item">
       <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
       <label class="govuk-label govuk-radios__label" for="afu">
-        Approved finishing unit (AFU)
+        Approved finishing units and TB sales at orange markets
       </label>
       <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-        Including enhanced with grazing (AFUE)
+        The licence covers either or both destinations
       </div>
     </div>
     <div class="govuk-radios__item">
@@ -93,10 +93,10 @@ exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content sh
     <div class="govuk-radios__item">
       <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
       <label class="govuk-label govuk-radios__label" for="afu">
-        Approved finishing unit (AFU)
+        Approved finishing units and TB sales at orange markets
       </label>
       <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-        Including enhanced with grazing (AFUE)
+        The licence covers either or both destinations
       </div>
     </div>
     <div class="govuk-radios__item">
