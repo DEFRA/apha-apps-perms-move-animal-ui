@@ -106,11 +106,13 @@ export const selectLinkAndVerifyTitle = async (linkElement, pageTitle) => {
 
 export const selectLinkAndVerifyTitleInNewTab = async (
   linkElement,
-  pageTitle
+  pageTitle,
+  urlContains
 ) => {
   await selectElement(linkElement)
   await switchToNewTab({
-    urlContains: 'bovine-tb-getting-your-cattle-tested-in-england'
+    titleContains: pageTitle,
+    urlContains
   })
   await verifyPageTitle(pageTitle)
 }

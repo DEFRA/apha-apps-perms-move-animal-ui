@@ -15,7 +15,8 @@ class FiftyPercentWarningPage extends Page {
   async verifyGetYourCattleTestedLink() {
     await page.selectLinkAndVerifyTitleInNewTab(
       this.getYourCattleTestedLink,
-      'Bovine TB: get your cattle tested in England - GOV.UK'
+      'Bovine TB: get your cattle tested in England - GOV.UK',
+      'bovine-tb-getting-your-cattle-tested-in-england'
     )
   }
 }
