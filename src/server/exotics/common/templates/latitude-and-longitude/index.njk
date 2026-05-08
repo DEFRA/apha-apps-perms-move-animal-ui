@@ -1,6 +1,5 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% extends 'layouts/questions.njk' %}
-
 {% block heading %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -8,13 +7,98 @@
     </div>
   </div>
 {% endblock %}
-
+{% block beforeButton %}
+  <div id="map" style="height: 400px; width: 100%; margin-bottom: 30px;"></div>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <script nonce="{{ uuid }}">
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search)
+      const isDebug = urlParams.has('debug')
+      // Hide input field if not in debug mode
+      if (! isDebug) {
+        const inputElement = document.querySelector('input.govuk-input')
+        if (inputElement) {
+          inputElement.type = 'hidden'
+        }
+      }
+      const map = L
+        .map('map', {attributionControl: false})
+        .setView([
+          54.5, -2.0
+        ], 6)
+        // Add OpenStreetMap tiles
+        L
+        .tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: false,
+          maxZoom: 18
+        })
+        .addTo(map)
+      let currentMarker = null
+      // Function to move map in any direction by 50% of a tile height/width
+      window.moveMap = (direction) => {
+        const currentCenter = map.getCenter()
+        const zoom = map.getZoom()
+        const degreesPerTile = 360 / Math.pow(2, zoom)
+        const tileSize = 256 // Standard tile size in pixels
+        const degreesPerPixel = degreesPerTile / tileSize
+        // Move by 50% of tile size (128 pixels worth)
+        const latDistance = degreesPerPixel * (tileSize * 0.5)
+        // For longitude, adjust for latitude convergence using cosine
+        const lngDistance = latDistance / Math.cos(currentCenter.lat * Math.PI / 180)
+        let newLat = currentCenter.lat
+        let newLng = currentCenter.lng
+        switch (direction.toLowerCase()) {
+          case 'up': newLat = currentCenter.lat + latDistance
+            break
+          case 'down': newLat = currentCenter.lat - latDistance
+            break
+          case 'left': newLng = currentCenter.lng - lngDistance
+            break
+          case 'right': newLng = currentCenter.lng + lngDistance
+            break
+          default:
+            console.warn('Invalid direction. Use: up, down, left, or right')
+            return
+        }
+        map.setView([
+          newLat, newLng
+        ], map.getZoom())
+      } map.on('click', (e) => {
+        const lat = e
+          .latlng
+          .lat
+          .toFixed(6)
+        const lng = e
+          .latlng
+          .lng
+          .toFixed(6)
+        if (currentMarker) {
+          map.removeLayer(currentMarker)
+        }
+        currentMarker = L
+          .marker([lat, lng])
+          .addTo(map)
+          document
+          .querySelector('input.govuk-input')
+          .value = `${lat},${lng}`
+      })
+    })
+  </script>
+{% endblock %}
 {% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <p>
-        You can find latitude and longitude measurements on Google maps. Search
-        for the location then right click on the area for these details.
+        You can find latitude and longitude measurements on Google maps. Search for the location then right click on the area
+        for these details.
       </p>
     </div>
   </div>
