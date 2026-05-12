@@ -15,11 +15,6 @@ describe('tbKeyFacts', () => {
     const testCases = [
       { origin: 'market', destination: 'tb-restricted-farm', expected: 'TB15' },
       { origin: 'unrestricted-farm', destination: 'zoo', expected: 'TB15' },
-      {
-        origin: 'after-import-location',
-        destination: 'lab',
-        expected: 'TB15'
-      },
       { origin: 'tb-restricted-farm', destination: 'zoo', expected: 'TB16' },
       { origin: 'lab', destination: 'other', expected: 'TB16' },
       {

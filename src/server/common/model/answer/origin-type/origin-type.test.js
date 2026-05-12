@@ -58,11 +58,8 @@ describe('OriginType.config', () => {
     expect(config.options.afu.hint).toBe(
       'Including enhanced with grazing (AFUE)'
     )
-    expect(config.options['after-import-location'].label).toBe(
-      'Location after animals have been imported'
-    )
     expect(config.options.other.label).toBe('Another TB restricted origin')
-    expect(Object.keys(config.options)).toHaveLength(5)
+    expect(Object.keys(config.options)).toHaveLength(4)
   })
 })
 
