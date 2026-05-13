@@ -13,11 +13,7 @@ const TB_RESTRICTED_TYPES = new Set([
   'other'
 ])
 
-const UNRESTRICTED_ORIGIN_TYPES = new Set([
-  'market',
-  'unrestricted-farm',
-  'after-import-location'
-])
+const UNRESTRICTED_ORIGIN_TYPES = new Set(['market', 'unrestricted-farm'])
 
 const SALE_DESTINATION_TYPES = new Set([
   'dedicated-sale',

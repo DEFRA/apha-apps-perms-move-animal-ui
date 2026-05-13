@@ -2,7 +2,6 @@ import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { cphNumberPage } from '~/src/server/tb/origin/cph-number/index.js'
 import { OriginTypeAnswer } from '../../../common/model/answer/origin-type/origin-type.js'
-import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
@@ -55,10 +54,6 @@ export class OriginTypePage extends QuestionPage {
   _onFarmNextPage(answer) {
     if (answer.value === 'market' || answer.value === 'unrestricted-farm') {
       return fiftyPercentWarningPage
-    }
-
-    if (answer.value === 'after-import-location') {
-      return countryPage
     }
 
     if (answer.value === 'other') {

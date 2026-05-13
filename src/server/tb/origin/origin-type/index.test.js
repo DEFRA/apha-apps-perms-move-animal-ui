@@ -2,7 +2,6 @@ import { originTypePage, OriginTypePage } from './index.js'
 import { OriginTypeAnswer } from '../../../common/model/answer/origin-type/origin-type.js'
 import { cphNumberPage } from '../cph-number/index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { countryPage } from '../country/index.js'
 import { originFarmCphPage } from '../origin-farm-cph/index.js'
 import { fiftyPercentWarningPage } from '../fifty-percent-warning/index.js'
 import { originContactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
@@ -130,15 +129,6 @@ describe('#OriginPage.nextPage', () => {
       const answer = new OriginTypeAnswer({ originType: 'other' }, context)
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(originTypeOtherPage)
-    })
-
-    it('nextPage should return origin country when moving on from an import', () => {
-      const answer = new OriginTypeAnswer(
-        { originType: 'after-import-location' },
-        context
-      )
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(countryPage)
     })
   })
 })
