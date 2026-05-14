@@ -93,10 +93,10 @@ exports[`DestinationTypePage.nextPage on the farm DestinationTypePage.content sh
     <div class="govuk-radios__item">
       <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
       <label class="govuk-label govuk-radios__label" for="afu">
-        Approved finishing units and TB sales at orange markets
+        Approved finishing unit (AFU)
       </label>
       <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
-        The licence covers either or both destinations
+        Including enhanced with grazing (AFUE)
       </div>
     </div>
     <div class="govuk-radios__item">
