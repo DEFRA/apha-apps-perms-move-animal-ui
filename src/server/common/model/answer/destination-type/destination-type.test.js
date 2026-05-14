@@ -9,8 +9,14 @@ const payload = {
 
 const tbRestrictedFarmLabel = 'TB restricted farm'
 const slaughterLabel = 'Slaughter'
-const afuLabel = 'Approved finishing units and TB sales at orange markets'
-const afuHint = 'The licence covers either or both destinations'
+const afuLabel = 'Approved finishing unit (AFU)'
+const afuHint = 'Including enhanced with grazing (AFUE)'
+const afuOrMarketLabel =
+  'Approved finishing units and TB sales at orange markets'
+const afuOrMarketHint = 'The licence covers either or both destinations'
+const marketOrAfuLabel =
+  'TB sales at orange markets and approved finishing units (AFU)'
+const marketOrAfuHint = 'Including enhanced with grazing (AFUE)'
 const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {
@@ -32,14 +38,19 @@ describe('DestinationType', () => {
 describe('DestinationType.config.options', () => {
   afterEach(jest.resetAllMocks)
 
-  it('should have the expected options to select from for off the farm movements', () => {
+  it('should have the expected options to select from for off the farm movements when moving from TB restricted', () => {
     const context = {
-      origin: { onOffFarm: 'off', originType: 'iso-unit' }
+      origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' }
     }
     const config = new DestinationTypeAnswer(undefined, context).config
-    expect(Object.keys(config.options)).toHaveLength(2)
-    expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options.afu.label).toBe(afuLabel)
+    expect(Object.keys(config.options)).toHaveLength(5)
+    expect(config.options['market-afu'].label).toBe(marketOrAfuLabel)
+    expect(config.options['market-afu'].hint).toBe(marketOrAfuHint)
+    expect(config.options['tb-restricted-farm'].label).toBe(
+      tbRestrictedFarmLabel
+    )
+    expect(config.options['iso-unit'].label).toBe('TB isolation unit')
+    expect(config.options.other.label).toBe(otherLabel)
   })
 
   it('should have the expected options to select from for off the farm movements when moving from AFU', () => {
@@ -49,7 +60,8 @@ describe('DestinationType.config.options', () => {
     const config = new DestinationTypeAnswer(undefined, context).config
     expect(Object.keys(config.options)).toHaveLength(3)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options.afu.label).toBe(afuLabel)
+    expect(config.options.afu.label).toBe(afuOrMarketLabel)
+    expect(config.options.afu.hint).toBe(afuOrMarketHint)
     expect(config.options.other.label).toBe(otherLabel)
   })
 
@@ -61,6 +73,7 @@ describe('DestinationType.config.options', () => {
     expect(Object.keys(config.options)).toHaveLength(2)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
     expect(config.options.afu.label).toBe(afuLabel)
+    expect(config.options.afu.hint).toBe(afuHint)
   })
 
   it('should have the expected options to select from for on the farm movements', () => {
@@ -84,8 +97,8 @@ describe('DestinationType.config.options', () => {
     }
     const config = new DestinationTypeAnswer(undefined, context).config
     expect(Object.keys(config.options)).toHaveLength(2)
-    expect(config.options.afu.label).toBe(afuLabel)
-    expect(config.options.afu.hint).toBe(afuHint)
+    expect(config.options.afu.label).toBe(afuOrMarketLabel)
+    expect(config.options.afu.hint).toBe(afuOrMarketHint)
     expect(config.options.other.label).toBe(otherLabel)
   })
 })
