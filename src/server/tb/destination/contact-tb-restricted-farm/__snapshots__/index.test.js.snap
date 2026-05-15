@@ -14,6 +14,12 @@ exports[`ContactTbRestrictedFarmPage ContactTbRestrictedFarmPage.content should 
           We need details about their biosecurity practices to process the
           licence.
         </p>
+        <p>
+          Alternatively, you can
+          <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england" target="_blank">
+            apply for a licence by completing the TB204 form (opens in a new
+            tab)</a>.
+        </p>
       </div>
     </div>
   </div>
