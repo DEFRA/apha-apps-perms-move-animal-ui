@@ -17,6 +17,7 @@ import { destinationTypeOther } from './destination-type-other/index.js'
 import { afuOnlyOffExit } from './afu-only-off-exit-page/index.js'
 import { afuOnlyOnExit } from './afu-only-on-exit-page/index.js'
 import { movementDate } from './movement-date/index.js'
+import { ownBothOriginAndDestination } from './own-both-origin-and-destination/index.js'
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -44,7 +45,8 @@ export const destination = {
         restockAdditionalInfo,
         afuOnlyOffExit,
         afuOnlyOnExit,
-        movementDate
+        movementDate,
+        ownBothOriginAndDestination
       ])
     }
   }

@@ -3,8 +3,8 @@ import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
 import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
 import { destinationSummaryPage } from './index.js'
-import { destinationTypePage } from '../destination-type/index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
+import { ownBothOriginAndDestinationPage } from '../own-both-origin-and-destination/index.js'
 
 const pageUrl = '/destination/check-answers'
 
@@ -55,7 +55,7 @@ describe('#destinationSummaryPage', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(
-        `${destinationTypePage.urlPath}?returnUrl=${destinationSummaryPage.urlPath}`
+        `${ownBothOriginAndDestinationPage.urlPath}?returnUrl=${destinationSummaryPage.urlPath}`
       )
     })
   })

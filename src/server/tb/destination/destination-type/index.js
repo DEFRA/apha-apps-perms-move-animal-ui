@@ -3,26 +3,26 @@ import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
-import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { afuOnlyOnExitPage } from '../afu-only-on-exit-page/index.js'
 import { destinationFarmAddressPage } from '../destination-farm-address/index.js'
+import { ownBothOriginAndDestinationPage } from '../own-both-origin-and-destination/index.js'
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../../common/model/state/state-manager.js' */
 
 const offFarmNextPageMapping = {
-  'tb-restricted-farm': contactTbRestrictedFarmPage,
+  'tb-restricted-farm': ownBothOriginAndDestinationPage,
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': additionalInfoPage,
   'iso-unit': isolationUnitExitPage,
   afu: additionalInfoPage,
-  zoo: contactTbRestrictedFarmPage,
-  lab: contactTbRestrictedFarmPage,
-  other: contactTbRestrictedFarmPage
+  zoo: ownBothOriginAndDestinationPage,
+  lab: ownBothOriginAndDestinationPage,
+  other: ownBothOriginAndDestinationPage
 }
 
 export class DestinationTypePage extends QuestionPage {

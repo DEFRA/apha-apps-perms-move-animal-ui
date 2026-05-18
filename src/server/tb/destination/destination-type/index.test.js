@@ -3,17 +3,13 @@ import { DestinationTypeAnswer } from '../../../common/model/answer/destination-
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { contactTbRestrictedFarmPage } from '../contact-tb-restricted-farm/index.js'
 import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
 import { afuOnlyOnExitPage } from '../afu-only-on-exit-page/index.js'
 import { destinationFarmAddressPage } from '../destination-farm-address/index.js'
-
-/**
- * @import {DestinationTypeData} from '../../../common/model/answer/destination-type/destination-type.js'
- */
+import { ownBothOriginAndDestinationPage } from '../own-both-origin-and-destination/index.js'
 
 const sectionKey = 'destination'
 const question = 'Where are the animals going to?'
@@ -100,7 +96,7 @@ describe('DestinationTypePage.nextPage', () => {
         destinationType: 'tb-restricted-farm'
       })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+      expect(nextPage).toBe(ownBothOriginAndDestinationPage)
     })
 
     it('should return general licence page when answer is "slaughter"', () => {
@@ -132,7 +128,7 @@ describe('DestinationTypePage.nextPage', () => {
     it('should return exitPage when answer is "other"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(contactTbRestrictedFarmPage)
+      expect(nextPage).toBe(ownBothOriginAndDestinationPage)
     })
 
     describePageSnapshot({
