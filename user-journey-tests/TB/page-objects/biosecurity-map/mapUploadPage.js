@@ -46,7 +46,7 @@ class BiosecurityMapUploadPage extends Page {
 
   async uploadFileErrorTest(fileName, errorText = this.noInputError) {
     if (fileName) {
-      this.uploadFileAndContinue(fileName)
+      await this.uploadFileAndContinue(fileName)
     } else {
       await super.selectContinue()
     }

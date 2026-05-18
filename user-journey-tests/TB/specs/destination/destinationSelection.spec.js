@@ -6,12 +6,15 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
+import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
   restoreSession
 } from '../../helpers/authSessionManager.js'
 import additionalInfoPage from '../../page-objects/destination/additionalInfoPage.js'
+import ownBothOriginAndDestinationPage from '../../page-objects/destination/ownBothOriginAndDestinationPage.js'
+import otherDestinationTypePage from '../../page-objects/destination/otherDestinationTypePage.js'
 
 describe('Destination selection test', () => {
   before(async () => {
@@ -55,10 +58,41 @@ describe('Destination selection test', () => {
 
   it('Should choose other destination and continue', async () => {
     await destinationSelectionPage.selectOtherDestinationAndContinue(
+      ownBothOriginAndDestinationPage
+    )
+    await ownBothOriginAndDestinationPage.selectNoAndContinue(
       contactTbRestrictedFarmExitPage
     )
 
     await contactTbRestrictedFarmExitPage.selectBackLink()
+    await waitForPagePath(ownBothOriginAndDestinationPage.pagePath)
+
+    await ownBothOriginAndDestinationPage.selectBackLink()
     await waitForPagePath(destinationSelectionPage.pagePath)
+  })
+
+  it('Should show an error when no responsibility option is selected', async () => {
+    await destinationSelectionPage.selectOtherDestinationAndContinue(
+      ownBothOriginAndDestinationPage
+    )
+    await ownBothOriginAndDestinationPage.responsibilityErrorTest()
+  })
+
+  it('Should choose other destination and continue when responsible for both premises', async () => {
+    await destinationSelectionPage.selectOtherDestinationAndContinue(
+      ownBothOriginAndDestinationPage
+    )
+    await ownBothOriginAndDestinationPage.selectYesAndContinue(
+      otherDestinationTypePage
+    )
+  })
+
+  it('Should choose TB restricted farm and continue when responsible for both premises', async () => {
+    await destinationSelectionPage.selectTbRestrictedFarm(
+      ownBothOriginAndDestinationPage
+    )
+    await ownBothOriginAndDestinationPage.selectYesAndContinue(
+      destinationCPHPage
+    )
   })
 })
