@@ -43,7 +43,7 @@ export class OwnBothOriginAndDestinationPage extends QuestionPage {
    */
   nextPage(answer, context) {
     if (answer.value === 'yes') {
-      if (context.origin?.originType === 'other') {
+      if (context.destination?.destinationType === 'other') {
         return destinationTypeOtherPage
       }
       return destinationFarmCphPage

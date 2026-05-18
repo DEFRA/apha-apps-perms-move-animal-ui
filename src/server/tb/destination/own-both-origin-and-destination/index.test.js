@@ -51,9 +51,10 @@ describe('OwnBothOriginAndDestinationPage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return destination-type-other when answer is yes and origin is other', () => {
+    it('should return destination-type-other when answer is yes and destination is other', () => {
       const context = {
-        origin: { onOffFarm: 'off', originType: 'other' }
+        origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' },
+        destination: { destinationType: 'other' }
       }
       const answer = new Answer(
         {
@@ -67,7 +68,8 @@ describe('OwnBothOriginAndDestinationPage', () => {
 
     it('should return destination-farm-cph when answer is yes and origin is tb-restricted-farm', () => {
       const context = {
-        origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' }
+        origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' },
+        destination: { destinationType: 'tb-restricted-farm' }
       }
       const answer = new Answer(
         {
