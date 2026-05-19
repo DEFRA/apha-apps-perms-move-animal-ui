@@ -58,7 +58,7 @@ describe('Destination selection options test', () => {
     await destinationSelectionPage.selectTBIsolationUnitAndContunue(
       serviceUnavailablePage
     )
-    await waitForElement(serviceUnavailablePage.govUkFormLink)
+    await waitForElement(serviceUnavailablePage.govUkMailLink)
   })
 
   it('Should verify options when Off the farm and AFU IS selected', async () => {
