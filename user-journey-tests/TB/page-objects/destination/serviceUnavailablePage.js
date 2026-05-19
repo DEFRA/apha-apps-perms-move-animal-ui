@@ -8,10 +8,8 @@ class ServiceUnavailablePage extends Page {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
-  get govUkFormLink() {
-    return $(
-      'a[href*="gov.uk/government/publications/approved-tb-isolation-unit-application"]'
-    )
+  get govUkMailLink() {
+    return $('a[href*="mailto:CSCTBUnits@apha.gov.uk"]')
   }
 }
 
