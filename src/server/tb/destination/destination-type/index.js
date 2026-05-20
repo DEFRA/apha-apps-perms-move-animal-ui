@@ -3,7 +3,7 @@ import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
-import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
+import { checkExistingLicenceExitPage } from '../check-existing-licence-exit-page/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
@@ -18,7 +18,7 @@ const offFarmNextPageMapping = {
   'tb-restricted-farm': ownBothOriginAndDestinationPage,
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': additionalInfoPage,
-  'iso-unit': isolationUnitExitPage,
+  'iso-unit': checkExistingLicenceExitPage,
   afu: additionalInfoPage,
   zoo: ownBothOriginAndDestinationPage,
   lab: ownBothOriginAndDestinationPage,
@@ -59,8 +59,13 @@ export class DestinationTypePage extends QuestionPage {
   }
 
   _offFarmNextPage(answer, context) {
-    if (context.origin?.originType === 'afu' && answer.value === 'other') {
-      return afuOnlyOffExitPage
+    if (context.origin?.originType === 'afu') {
+      if (answer.value === 'slaughter') {
+        return checkExistingLicenceExitPage
+      }
+      if (answer.value === 'other') {
+        return afuOnlyOffExitPage
+      }
     }
 
     if (
