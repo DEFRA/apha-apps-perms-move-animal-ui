@@ -61,13 +61,14 @@ describe('Destination selection options test', () => {
     await waitForElement(serviceUnavailablePage.govUkMailLink)
   })
 
-  it('Should verify options when Off the farm and AFU IS selected', async () => {
+  it('Should show existing licence guidance when moving off an AFU to slaughter', async () => {
     await destinationVariants(false, true)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await verifyRadioButtonNumber(3)
     await destinationSelectionPage.selectSlaughterRadioAndContinue(
-      generalLicencePage
+      serviceUnavailablePage
     )
+    await waitForElement(serviceUnavailablePage.govUkMailLink)
   })
 
   it.skip('Should verify iso unit selection when Off the farm generates 2 options', async () => {

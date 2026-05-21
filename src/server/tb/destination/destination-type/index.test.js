@@ -3,7 +3,7 @@ import { DestinationTypeAnswer } from '../../../common/model/answer/destination-
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
-import { isolationUnitExitPage } from '../isolation-unit-exit-page/index.js'
+import { checkExistingLicenceExitPage } from '../check-existing-licence-exit-page/index.js'
 import { destinationTypeOtherPage } from '../destination-type-other/index.js'
 import { additionalInfoPage } from '../additional-info/index.js'
 import { afuOnlyOffExitPage } from '../afu-only-off-exit-page/index.js'
@@ -105,10 +105,10 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationGeneralLicencePage)
     })
 
-    it('should return the isolation unit exit page of that is selected', () => {
+    it('should return the check existing licence exit page when answer is "iso unit"', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'iso-unit' })
       const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(isolationUnitExitPage)
+      expect(nextPage).toBe(checkExistingLicenceExitPage)
     })
 
     it('should return exit page when answer is "dedicated-sale"', () => {
@@ -129,6 +129,30 @@ describe('DestinationTypePage.nextPage', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(ownBothOriginAndDestinationPage)
+    })
+
+    it('should return AFU off-farm exit page when moving off from AFU and other is selected', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'other' })
+      const nextPage = page.nextPage(answer, {
+        origin: {
+          onOffFarm: 'off',
+          originType: 'afu'
+        }
+      })
+
+      expect(nextPage).toBe(afuOnlyOffExitPage)
+    })
+
+    it('should return check existing licence exit page when moving off from AFU to slaughter', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'slaughter' })
+      const nextPage = page.nextPage(answer, {
+        origin: {
+          onOffFarm: 'off',
+          originType: 'afu'
+        }
+      })
+
+      expect(nextPage).toBe(checkExistingLicenceExitPage)
     })
 
     describePageSnapshot({
@@ -162,18 +186,6 @@ describe('DestinationTypePage.nextPage', () => {
       }
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(afuOnlyOnExitPage)
-    })
-
-    it('should go to the correct page if moving off and other is selected', () => {
-      const answer = new DestinationTypeAnswer({ destinationType: 'other' })
-      const context = {
-        origin: {
-          onOffFarm: 'off',
-          originType: 'afu'
-        }
-      }
-      const nextPage = page.nextPage(answer, context)
-      expect(nextPage).toBe(afuOnlyOffExitPage)
     })
 
     it('should go to the correct page if coming to and from afu', () => {
