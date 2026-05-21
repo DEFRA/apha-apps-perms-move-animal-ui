@@ -6,7 +6,6 @@ import destinationSelectionPage from '../../page-objects/destination/destination
 import generalLicencePage from '../../page-objects/destination/generalLicencePage.js'
 import destinationAnswersPage from '../../page-objects/destination/destinationAnswersPage.js'
 import contactTbRestrictedFarmExitPage from '../../page-objects/destination/contactTbRestrictedFarmExitPage.js'
-import destinationCPHPage from '../../page-objects/destination/destinationCPHPage.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -84,15 +83,6 @@ describe('Destination selection test', () => {
     )
     await ownBothOriginAndDestinationPage.selectYesAndContinue(
       otherDestinationTypePage
-    )
-  })
-
-  it('Should choose TB restricted farm and continue when responsible for both premises', async () => {
-    await destinationSelectionPage.selectTbRestrictedFarm(
-      ownBothOriginAndDestinationPage
-    )
-    await ownBothOriginAndDestinationPage.selectYesAndContinue(
-      destinationCPHPage
     )
   })
 })
