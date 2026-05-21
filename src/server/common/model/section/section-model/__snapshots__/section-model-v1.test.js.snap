@@ -14,9 +14,9 @@ exports[`SectionModel.sectionData should return complete section data with valid
     },
     {
       "answer": {
-        "displayText": "Approved finishing unit (AFU)",
+        "displayText": "TB restricted farm",
         "type": "text",
-        "value": "afu",
+        "value": "tb-restricted-farm",
       },
       "question": "Which type of premises are the animals moving off?",
       "questionKey": "originType",
