@@ -5,7 +5,7 @@
 /** @import { QuantityHalfHerdData } from '~/src/server/common/model/answer/quantity-half-herd/quantity-half-herd.js' */
 
 const validCphNumber = '12/345/6789'
-const validOriginType = 'afu'
+const validOriginType = 'tb-restricted-farm'
 /** @type {OnOffFarmData} */
 const validOnOffFarm = 'off'
 const validAddress = {
