@@ -6,7 +6,7 @@ exports[`HomePage content checks when auth is disabled should match content 1`] 
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="govuk-heading-l">Get permission to move animals under disease controls</h1>
+          <h1 class="govuk-heading-l">Move animals under disease controls</h1>
         </div>
         <p class="govuk-body">
           You can use this service to apply for a Bovine Tuberculosis (TB)
@@ -77,7 +77,11 @@ exports[`HomePage content checks when auth is disabled should match content 1`] 
           to process the licence.
         </p>
         <p class="govuk-body">
-          If you need more information before you apply for a licence, see the
+          If it is not possible for the destination premises to apply, you need
+          to complete the TB204 form instead of using the online service.
+        </p>
+        <p class="govuk-body">
+          For information before you apply for a licence, see the
           <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england" class="govuk-link">
             Bovine TB: get your cattle tested in England</a>
           guidance.
@@ -149,7 +153,7 @@ exports[`HomePage content checks when auth is enabled should match content 1`] =
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-body" data-testid="app-page-body">
         <div class="govuk-!-margin-top-0 govuk-!-margin-bottom-8">
-          <h1 class="govuk-heading-l">Get permission to move animals under disease controls</h1>
+          <h1 class="govuk-heading-l">Move animals under disease controls</h1>
         </div>
         <p class="govuk-body">
           You can use this service to apply for a Bovine Tuberculosis (TB)
@@ -220,7 +224,11 @@ exports[`HomePage content checks when auth is enabled should match content 1`] =
           to process the licence.
         </p>
         <p class="govuk-body">
-          If you need more information before you apply for a licence, see the
+          If it is not possible for the destination premises to apply, you need
+          to complete the TB204 form instead of using the online service.
+        </p>
+        <p class="govuk-body">
+          For information before you apply for a licence, see the
           <a href="https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england" class="govuk-link">
             Bovine TB: get your cattle tested in England</a>
           guidance.

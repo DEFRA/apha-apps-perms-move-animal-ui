@@ -11,7 +11,7 @@ export class HomePage extends Page {
   view = 'tb/home/index.njk'
   urlPath = '/'
   pageTitle = config.get('serviceName')
-  pageHeading = 'Get permission to move animals under disease controls'
+  pageHeading = 'Move animals under disease controls'
 }
 
 export const homePage = new HomePage()
