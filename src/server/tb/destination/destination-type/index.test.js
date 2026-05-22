@@ -188,6 +188,18 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(afuOnlyOnExitPage)
     })
 
+    it('should return destination-farm-cph when moving on from AFU to AFU', () => {
+      const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+      const context = {
+        origin: {
+          onOffFarm: 'on',
+          originType: 'afu'
+        }
+      }
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
     it('should go to the correct page if coming to and from afu', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
@@ -206,6 +218,20 @@ describe('DestinationTypePage.nextPage', () => {
       )
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
+    it('should return check existing licence exit page for unrestricted-farm to afu', () => {
+      const context = {
+        origin: { onOffFarm: 'on', originType: 'unrestricted-farm' }
+      }
+      const answer = new DestinationTypeAnswer(
+        {
+          destinationType: 'afu'
+        },
+        context
+      )
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(checkExistingLicenceExitPage)
     })
 
     describePageSnapshot({

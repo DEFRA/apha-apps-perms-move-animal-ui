@@ -30,6 +30,22 @@ describe('#CheckExistingLicenceExitPage', () => {
 
   describePageSnapshot({
     describes: 'CheckExistingLicenceExitPage.content',
+    it: 'should render expected response and content when destination is AFU',
+    pageUrl,
+    state: {
+      application: {
+        origin: {
+          originType: 'unrestricted-farm'
+        },
+        destination: {
+          destinationType: 'afu'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'CheckExistingLicenceExitPage.content',
     it: 'should render expected response and content when origin is not AFU',
     pageUrl,
     state: {
