@@ -16,9 +16,10 @@ export class CheckExistingLicenceExitPage extends ExitPage {
   async viewProps(req) {
     const applicationState = new TbStateManager(req).toState()
     const selectedOrigin = applicationState?.origin?.originType
+    const selectedDestination = applicationState?.destination?.destinationType
     return Promise.resolve({
       customText:
-        selectedOrigin === 'afu'
+        selectedOrigin === 'afu' || selectedDestination === 'afu'
           ? 'If the approved finishing unit (AFU) has already been set up'
           : 'If the TB isolation unit has already been set up and approved'
     })

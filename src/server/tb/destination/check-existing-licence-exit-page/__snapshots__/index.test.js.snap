@@ -21,6 +21,27 @@ exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content shou
         "
 `;
 
+exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content should render expected response and content when destination is AFU 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          If the approved finishing unit (AFU) has already been set up, check if you can move animals with the licence that
+          was issued with the approval.
+        </p>
+        <p>
+          Contact
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a> if
+          your movement does not meet the terms of the existing licence.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
 exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content should render expected response and content when origin is not AFU 1`] = `
 "
   <div class="govuk-grid-row">

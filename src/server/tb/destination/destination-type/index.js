@@ -47,12 +47,25 @@ export class DestinationTypePage extends QuestionPage {
   }
 
   _onFarmNextPage(answer, context) {
-    if (context.origin?.originType === 'afu' && answer.value === 'other') {
-      return afuOnlyOnExitPage
+    // Origin AFU
+    if (context.origin?.originType === 'afu') {
+      if (answer.value === 'other') {
+        return afuOnlyOnExitPage
+      }
+      if (answer.value === 'afu') {
+        return destinationFarmCphPage
+      }
     }
 
+    // Origin NOT AFU
     if (answer.value === 'other') {
       return destinationTypeOtherPage
+    }
+    if (
+      context.origin?.originType === 'unrestricted-farm' &&
+      answer.value === 'afu'
+    ) {
+      return checkExistingLicenceExitPage
     }
 
     return destinationFarmCphPage
