@@ -39,64 +39,61 @@ export class DestinationTypePage extends QuestionPage {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   nextPage(answer, context) {
-    if (context.origin?.onOffFarm === 'on') {
-      return this._onFarmNextPage(answer, context)
+    const origin = context?.origin
+    const originType = origin?.originType
+    const destType = answer.value
+    if (origin?.onOffFarm === 'on') {
+      return this._onFarmNextPage(originType, destType)
     } else {
-      return this._offFarmNextPage(answer, context)
+      return this._offFarmNextPage(originType, destType)
     }
   }
 
-  _onFarmNextPage(answer, context) {
+  _onFarmNextPage(originType, destType) {
     // Origin AFU
-    if (context.origin?.originType === 'afu') {
-      if (answer.value === 'other') {
+    if (originType === 'afu') {
+      if (destType === 'other') {
         return afuOnlyOnExitPage
       }
-      if (answer.value === 'afu') {
+      if (destType === 'afu') {
         return destinationFarmCphPage
       }
     }
 
     // Origin NOT AFU
-    if (answer.value === 'other') {
+    if (destType === 'other') {
       return destinationTypeOtherPage
     }
-    if (
-      context.origin?.originType === 'unrestricted-farm' &&
-      answer.value === 'afu'
-    ) {
+    if (originType === 'unrestricted-farm' && destType === 'afu') {
       return checkExistingLicenceExitPage
     }
 
     return destinationFarmCphPage
   }
 
-  _offFarmNextPage(answer, context) {
-    if (context.origin?.originType === 'afu') {
-      if (answer.value === 'slaughter') {
+  _offFarmNextPage(originType, destType) {
+    if (originType === 'afu') {
+      if (destType === 'slaughter') {
         return checkExistingLicenceExitPage
       }
-      if (answer.value === 'other') {
+      if (destType === 'other') {
         return afuOnlyOffExitPage
       }
     }
 
-    if (
-      context.origin?.originType === 'iso-unit' &&
-      answer.value === 'slaughter'
-    ) {
+    if (originType === 'iso-unit' && destType === 'slaughter') {
       return destinationFarmAddressPage
     }
 
-    if (context.origin?.originType === 'iso-unit' && answer.value === 'afu') {
+    if (originType === 'iso-unit' && destType === 'afu') {
       return destinationFarmCphPage
     }
 
-    if (answer.value === 'market-afu') {
+    if (destType === 'market-afu') {
       return additionalInfoPage
     }
 
-    return offFarmNextPageMapping[answer.value]
+    return offFarmNextPageMapping[destType]
   }
 
   /** @param {AnswerErrors} errors */
