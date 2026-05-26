@@ -47,7 +47,7 @@ export const config = convict({
   serviceName: {
     doc: 'Applications Service Name',
     format: String,
-    default: 'Get permission to move animals under disease controls'
+    default: 'Move animals under disease controls'
   },
   root: {
     doc: 'Project root',

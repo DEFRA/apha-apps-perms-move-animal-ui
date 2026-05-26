@@ -22,9 +22,7 @@ describe('#errors', () => {
     })
 
     expect(result).toEqual(
-      expect.stringContaining(
-        'Get permission to move animals under disease controls'
-      )
+      expect.stringContaining('Move animals under disease controls')
     )
     expect(statusCode).toBe(statusCodes.notFound)
   })

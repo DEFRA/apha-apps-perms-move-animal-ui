@@ -38,10 +38,7 @@ describe('HomePage', () => {
 
   describe('content checks', () => {
     beforeEach(() => {
-      spyOnConfig(
-        'serviceName',
-        'Get permission to move animals under disease controls'
-      )
+      spyOnConfig('serviceName', 'Move animals under disease controls')
     })
 
     describe('when auth is enabled', () => {
