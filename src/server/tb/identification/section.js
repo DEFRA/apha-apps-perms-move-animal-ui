@@ -28,14 +28,14 @@ const isVisible = async (app, req) => {
     .questionAnswers
   const destinationData = destination.sectionData.questionAnswers
 
-  const isOnFarm = originData.some(
-    (q) => q.questionKey === 'onOffFarm' && q.answer.value === 'on'
-  )
-  const isOffFarmIsoUnit = originData.some(
-    (q) => q.questionKey === 'originType' && q.answer.value === 'iso-unit'
-  )
+  const movementOnOff = originData.find((q) => q.questionKey === 'onOffFarm')
+    ?.answer.value
+  const isMovementOn = movementOnOff === 'on'
+  const isMovementOff = movementOnOff === 'off'
+
   const originType = originData.find((q) => q.questionKey === 'originType')
     ?.answer.value
+  const isOriginIsoUnit = originType === 'iso-unit'
   const originValid = /** @type {SectionModel} */ (origin).validate().isValid
 
   const destinationType = destinationData.find(
@@ -46,11 +46,18 @@ const isVisible = async (app, req) => {
   const bothTbRestricted =
     OriginTypeAnswer.isTbRestricted(originType) &&
     DestinationTypeAnswer.isTbRestricted(destinationType)
+  const ownBothOriginAndDestination = destinationData.some(
+    (q) =>
+      q.questionKey === 'ownBothOriginAndDestination' &&
+      q.answer.value === 'yes'
+  )
 
   return (
     originValid &&
     destinationValid &&
-    ((isOnFarm && bothTbRestricted) || isOffFarmIsoUnit)
+    ((isMovementOn && bothTbRestricted) ||
+      (isMovementOff &&
+        (isOriginIsoUnit || (bothTbRestricted && ownBothOriginAndDestination))))
   )
 }
 
