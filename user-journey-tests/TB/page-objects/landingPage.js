@@ -3,8 +3,7 @@ import { $ } from '@wdio/globals'
 import { Page } from './page.js'
 import * as page from '../helpers/page.js'
 
-const pageHeadingAndTitle =
-  'Get permission to move animals under disease controls'
+const pageHeadingAndTitle = 'Move animals under disease controls'
 
 class LandingPage extends Page {
   pagePath = '/'
