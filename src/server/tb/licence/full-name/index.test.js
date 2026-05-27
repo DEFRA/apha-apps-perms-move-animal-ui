@@ -43,10 +43,11 @@ describe('FullNamePage', () => {
   })
 
   describe('nextPage', () => {
-    it('should return yourNamePage when both origin and destination are TB restricted', () => {
+    it('should return yourNamePage when movement is on and both origin and destination are TB restricted', () => {
       const context = {
         origin: {
-          originType: 'tb-restricted-farm'
+          originType: 'tb-restricted-farm',
+          onOffFarm: 'on'
         },
         destination: {
           destinationType: 'tb-restricted-farm'
@@ -58,40 +59,27 @@ describe('FullNamePage', () => {
       expect(nextPage).toBe(yourNamePage)
     })
 
-    it('should return yourNamePage when both origin and destination are "other" type', () => {
+    it('should return emailAddressPage when movement is off and both origin and destination are TB restricted', () => {
       const context = {
         origin: {
-          originType: 'other'
+          originType: 'tb-restricted-farm',
+          onOffFarm: 'off'
         },
         destination: {
-          destinationType: 'other'
+          destinationType: 'tb-restricted-farm'
         }
       }
 
       const nextPage = page.nextPage(null, context)
 
-      expect(nextPage).toBe(yourNamePage)
+      expect(nextPage).toBe(emailAddressPage)
     })
 
-    it('should return yourNamePage when origin is TB restricted and destination is "other"', () => {
+    it('should return emailAddressPage when movement is on and only origin is TB restricted', () => {
       const context = {
         origin: {
-          originType: 'tb-restricted-farm'
-        },
-        destination: {
-          destinationType: 'other'
-        }
-      }
-
-      const nextPage = page.nextPage(null, context)
-
-      expect(nextPage).toBe(yourNamePage)
-    })
-
-    it('should return emailAddressPage when only origin is TB restricted', () => {
-      const context = {
-        origin: {
-          originType: 'tb-restricted-farm'
+          originType: 'tb-restricted-farm',
+          onOffFarm: 'on'
         },
         destination: {
           destinationType: 'unrestricted-farm'
@@ -103,13 +91,10 @@ describe('FullNamePage', () => {
       expect(nextPage).toBe(emailAddressPage)
     })
 
-    it('should return emailAddressPage when neither origin nor destination are TB restricted', () => {
+    it('should return emailAddressPage when movement is off', () => {
       const context = {
         origin: {
-          originType: 'unrestricted-farm'
-        },
-        destination: {
-          destinationType: 'afu'
+          onOffFarm: 'off'
         }
       }
 
@@ -118,8 +103,18 @@ describe('FullNamePage', () => {
       expect(nextPage).toBe(emailAddressPage)
     })
 
-    it('should return emailAddressPage when context is undefined', () => {
-      const nextPage = page.nextPage(null, undefined)
+    it('should return emailAddressPage when neither origin nor destination are TB restricted', () => {
+      const context = {
+        origin: {
+          originType: 'unrestricted-farm',
+          onOffFarm: 'on'
+        },
+        destination: {
+          destinationType: 'afu'
+        }
+      }
+
+      const nextPage = page.nextPage(null, context)
 
       expect(nextPage).toBe(emailAddressPage)
     })
