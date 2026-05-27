@@ -12,6 +12,8 @@ import additionalInfoPage from '../../page-objects/destination/additionalInfoPag
 import animalTypePage from '../../page-objects/destination/animalTypePage.js'
 import restockingReasonPage from '../../page-objects/destination/restockingReasonPage.js'
 import otherRestockingReasonPage from '../../page-objects/destination/otherRestockingReasonPage.js'
+import ownBothOriginAndDestinationPage from '../../page-objects/destination/ownBothOriginAndDestinationPage.js'
+import maximumAnimalsPage from '../../page-objects/destination/maximumAnimalsPage.js'
 
 const passAdditionalInfo = async () => {
   await additionalInfoPage.selectContinue()
@@ -86,5 +88,34 @@ export const completeDestinationTaskOnFarmForUnrestrictedOrigin = async () => {
   await additionalInfoPage.selectContinue()
   await waitForPagePath(destinationAnswersPage.pagePath)
 }
+
+export const completeDestinationTaskOffFarmBetweenRestrictedPremises =
+  async () => {
+    await navigateToTaskList()
+    await taskListPage.selectMovementDestination(destinationSelectionPage)
+
+    await destinationSelectionPage.selectTbRestrictedFarm(
+      ownBothOriginAndDestinationPage
+    )
+    await ownBothOriginAndDestinationPage.selectYesAndContinue(
+      destinationCPHPage
+    )
+    await destinationCPHPage.inputParishHoldingNumberAndContinue(
+      '12/123/1234',
+      destinationAddressPage
+    )
+    await destinationAddressPage.fillFormFieldsAndSubmit(
+      {
+        lineOne: '123',
+        townOrCity: 'The street',
+        postcode: 'N11AA'
+      },
+      maximumAnimalsPage
+    )
+    await maximumAnimalsPage.inputTextAndContinue('550', reasonForMovementPage)
+    await reasonForMovementPage.selectWelfareAndContinue(additionalInfoPage)
+    await additionalInfoPage.selectContinue()
+    await waitForPagePath(destinationAnswersPage.pagePath)
+  }
 
 export default completeDestinationTask

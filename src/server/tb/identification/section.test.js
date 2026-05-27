@@ -83,6 +83,52 @@ describe('Identification.config.isVisible', () => {
 
   const { origin, destination } = applicationStateWithAnimalIdentifiersSection
 
+  it('should be visible if movement is on between tb restricted premises', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin,
+        destination
+      },
+      mockRequest
+    )
+
+    expect(isVisible).toBe(true)
+  })
+
+  it('should be visible if moving off of an iso-unit', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: {
+          ...origin,
+          onOffFarm: 'off',
+          originType: 'iso-unit'
+        },
+        destination: {
+          ...destination,
+          destinationType: 'slaughter' // valid destinationType for iso-unit
+        }
+      },
+      mockRequest
+    )
+
+    expect(isVisible).toBe(true)
+  })
+
+  it('should be visible if movement is off between tb restricted AND user owns both premises', async () => {
+    const isVisible = await IdentificationSection.config.isVisible(
+      {
+        origin: { ...origin, onOffFarm: 'off' },
+        destination: {
+          ...destination,
+          ownBothOriginAndDestination: 'yes'
+        }
+      },
+      mockRequest
+    )
+
+    expect(isVisible).toBe(true)
+  })
+
   it('should not be visible if origin type is not restricted', async () => {
     const isVisible = await IdentificationSection.config.isVisible(
       {
@@ -95,7 +141,7 @@ describe('Identification.config.isVisible', () => {
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if destination type is not restricted', async () => {
+  it('should not be visible if movement is off and destination type is not restricted', async () => {
     const isVisible = await IdentificationSection.config.isVisible(
       {
         origin,
@@ -107,11 +153,14 @@ describe('Identification.config.isVisible', () => {
     expect(isVisible).toBe(false)
   })
 
-  it('should not be visible if movement is off', async () => {
+  it('should not be visible if movement is off between tb restricted BUT user does not own both premises', async () => {
     const isVisible = await IdentificationSection.config.isVisible(
       {
         origin: { ...origin, onOffFarm: 'off' },
-        destination
+        destination: {
+          ...destination,
+          ownBothOriginAndDestination: 'no'
+        }
       },
       mockRequest
     )
@@ -141,37 +190,6 @@ describe('Identification.config.isVisible', () => {
     )
 
     expect(isVisible).toBe(false)
-  })
-
-  it('should be visible if all conditions met', async () => {
-    const isVisible = await IdentificationSection.config.isVisible(
-      {
-        origin,
-        destination
-      },
-      mockRequest
-    )
-
-    expect(isVisible).toBe(true)
-  })
-
-  it('should be visible if moving off of an iso-unit', async () => {
-    const isVisible = await IdentificationSection.config.isVisible(
-      {
-        origin: {
-          ...origin,
-          onOffFarm: 'off',
-          originType: 'iso-unit'
-        },
-        destination: {
-          ...destination,
-          destinationType: 'slaughter' // valid destinationType for iso-unit
-        }
-      },
-      mockRequest
-    )
-
-    expect(isVisible).toBe(true)
   })
 })
 
