@@ -22,10 +22,11 @@ export class FullNamePage extends QuestionPage {
 
   /**
    * @param {OwnerFullNameAnswer} _answer
-   * @param {RawApplicationState} [context]
+   * @param {RawApplicationState} context
    */
   nextPage(_answer, context) {
     if (
+      context.origin?.onOffFarm === 'on' &&
       OriginTypeAnswer.isTbRestricted(context?.origin?.originType) &&
       DestinationTypeAnswer.isTbRestricted(
         context?.destination?.destinationType
