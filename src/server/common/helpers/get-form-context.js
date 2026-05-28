@@ -325,9 +325,8 @@ function resolveChangeHref(page, summaryPath) {
 }
 
 async function resolvePluginOptions() {
-  const module = await import(
-    '~/src/server/common/plugins/defra-forms/index.js'
-  )
+  const module =
+    await import('~/src/server/common/plugins/defra-forms/index.js')
 
   if (
     !module?.defraFormsPluginOptions?.services ||
