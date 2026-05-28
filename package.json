@@ -6,8 +6,8 @@
   "main": ".server/index.js",
   "type": "module",
   "engines": {
-    "node": ">=22.11.0 <25.0.0",
-    "npm": "^10.9.0"
+    "node": ">=24.0.0 <25.0.0",
+    "npm": ">=10.9.0 <11.6.4"
   },
   "scripts": {
     "build": "run-s build:frontend build:server",
