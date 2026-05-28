@@ -28,7 +28,7 @@ const createCheckboxSchema = (config) => {
 
   optionsSchema = optionsSchema
     .custom((value, helpers) => {
-      const selectedOptions = value || []
+      const selectedOptions = value ?? []
       const exclusiveOptions = selectedOptions.filter(
         (option) => config.options[option]?.exclusive === true
       )

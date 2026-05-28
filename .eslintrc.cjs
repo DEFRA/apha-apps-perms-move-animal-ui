@@ -67,6 +67,12 @@ module.exports = {
         'jsdoc/require-returns-type': 'off',
         'jsdoc/require-returns': 'off',
 
+        // JSDoc allow unescaped inline tags
+        'jsdoc/escape-inline-tags': 'off',
+
+        // JSDoc allow any
+        'jsdoc/reject-any-type': 'off',
+
         // Check for mandatory file extensions
         // https://nodejs.org/api/esm.html#mandatory-file-extensions
         'import/extensions': ['error', 'always', { ignorePackages: true }],

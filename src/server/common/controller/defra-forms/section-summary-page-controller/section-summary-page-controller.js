@@ -35,7 +35,7 @@ export class SectionSummaryPageController extends QuestionPageController {
   buildViewModel(context) {
     const base = /** @type {QuestionPageController} */ (this).viewModel
     const heading =
-      /** @type {QuestionPageController} */ (this).pageDef.title ||
+      /** @type {QuestionPageController} */ (this).pageDef.title ??
       this.defaultHeading
     const rows = this.buildSummaryListRows(context)
 
@@ -57,7 +57,7 @@ export class SectionSummaryPageController extends QuestionPageController {
     })
 
     return answers.map(({ question, questionKey, answer, changeHref }) => {
-      const questionText = question?.trim() || questionKey || 'Answer'
+      const questionText = question?.trim() ?? questionKey ?? 'Answer'
 
       return {
         key: {
@@ -65,7 +65,7 @@ export class SectionSummaryPageController extends QuestionPageController {
           classes: 'govuk-!-width-one-half govuk-!-font-weight-regular'
         },
         value: {
-          html: answer?.displayText || 'Not supplied'
+          html: answer?.displayText ?? 'Not supplied'
         },
         actions: changeHref
           ? {
@@ -74,7 +74,7 @@ export class SectionSummaryPageController extends QuestionPageController {
                   href: changeHref,
                   text: 'Change',
                   classes: 'govuk-link--no-visited-state',
-                  visuallyHiddenText: questionText || 'answer'
+                  visuallyHiddenText: questionText ?? 'answer'
                 }
               ]
             }

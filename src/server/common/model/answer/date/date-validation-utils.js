@@ -6,13 +6,13 @@ import { toBSTDate } from './date-utils.js'
  */
 
 /** @param {string} str */
-export const isDigits = (str) => str.match(/^\d*$/) !== null
+export const isDigits = (str) => /^\d*$/.exec(str) !== null
 
 /** @param {string | undefined} value */
 export const isMissing = (value) => !value
 
 /** @param {string} str */
-export const isFourDigits = (str) => str.match(/^\d{4}$/) !== null
+export const isFourDigits = (str) => /^\d{4}$/.exec(str) !== null
 
 /** @param {DateData} value */
 export const isValidDate = (value) => {
@@ -46,7 +46,7 @@ export const createError = (subfields, message) => ({
 export const isZeroPaddedDigitBetween = (str, min, max) => {
   const zeroPaddedRegex = /^((0?[1-9])|([1-9]\d))$/
   return (
-    str.match(zeroPaddedRegex) !== null &&
+    zeroPaddedRegex.exec(str) !== null &&
     Number(str) >= min &&
     Number(str) <= max
   )

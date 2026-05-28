@@ -25,20 +25,16 @@ jest.mock('@defra/forms-engine-plugin/controllers/index.js', () =>
 )
 
 jest.mock('~/src/server/common/plugins/defra-forms/index.js', () => {
-  if (!mockFormsService) {
-    mockFormsService = {
-      getFormMetadata: jest.fn(),
-      getFormDefinition: jest.fn()
-    }
+  mockFormsService ??= {
+    getFormMetadata: jest.fn(),
+    getFormDefinition: jest.fn()
   }
-  if (!mockPluginOptions) {
-    mockPluginOptions = {
-      services: {
-        formsService: mockFormsService
-      },
-      controllers: {
-        SectionSummaryPageController: Symbol('SectionSummaryPageController')
-      }
+  mockPluginOptions ??= {
+    services: {
+      formsService: mockFormsService
+    },
+    controllers: {
+      SectionSummaryPageController: Symbol('SectionSummaryPageController')
     }
   }
 

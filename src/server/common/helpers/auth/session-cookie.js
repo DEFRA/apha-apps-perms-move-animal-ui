@@ -74,7 +74,7 @@ const sessionCookie = {
             }
 
             return { isValid: false }
-          } catch (e) {
+          } catch {
             request.logger.warn('User session cache missing')
             return { isValid: false }
           }
