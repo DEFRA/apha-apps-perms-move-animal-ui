@@ -16,6 +16,9 @@ export default {
     '^@defra/forms-engine-plugin(/.*)?$':
       '<rootDir>/.jest/mocks/forms-engine-plugin.js'
   },
+  transformIgnorePatterns: [
+    `<rootDir>/node_modules/(?!(${['uuid', 'https-proxy-agent'].join('|')})/)`
+  ],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/.server',

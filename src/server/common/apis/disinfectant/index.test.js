@@ -86,8 +86,7 @@ describe('fetchDisinfectants API module', () => {
     const result = await fetchDisinfectants(disinfectantType)
 
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
-      apiError
+      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache: API is down`
     )
     expect(cacheGet).toHaveBeenCalledWith(
       `api:disinfectants:${disinfectantType}`
@@ -106,12 +105,10 @@ describe('fetchDisinfectants API module', () => {
     )
 
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
-      apiError
+      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache: API is down`
     )
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to fetch disinfectants of type ${disinfectantType} from cache:`,
-      apiError
+      `Failed to fetch disinfectants of type ${disinfectantType} from cache: API is down`
     )
   })
 
@@ -127,8 +124,7 @@ describe('fetchDisinfectants API module', () => {
     )
 
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
-      apiError
+      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache: API is down`
     )
     expect(cacheGet).toHaveBeenCalledWith(
       `api:disinfectants:${disinfectantType}`
@@ -149,8 +145,7 @@ describe('fetchDisinfectants API module', () => {
     const result = await fetchDisinfectants(disinfectantType)
 
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to cache disinfectants of type ${disinfectantType}:`,
-      cacheWriteError
+      `Failed to cache disinfectants of type ${disinfectantType}: Cache write failed`
     )
     expect(result).toEqual(transformedMockDisinfectantData)
   })
@@ -202,8 +197,7 @@ describe('fetchDisinfectants API module', () => {
     )
 
     expect(mockLoggerError).toHaveBeenCalledWith(
-      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache:`,
-      expect.any(SyntaxError)
+      `Failed to fetch disinfectants of type ${disinfectantType} from api attempting to fetch result from cache: Unexpected token 'i', "invalid json{" is not valid JSON`
     )
   })
 })

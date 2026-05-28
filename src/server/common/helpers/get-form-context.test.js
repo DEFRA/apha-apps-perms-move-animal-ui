@@ -147,8 +147,9 @@ describe('getFormContext helper', () => {
     expect(pluginOptions.services.formsService).toBe(mockFormsService)
     mockFormsService.getFormMetadata.mockImplementation(() => metadata)
     mockFormsService.getFormDefinition.mockImplementation(() => definition)
-    const moduleOptions =
-      await import('~/src/server/common/plugins/defra-forms/index.js')
+    const moduleOptions = await import(
+      '~/src/server/common/plugins/defra-forms/index.js'
+    )
     expect(moduleOptions.defraFormsPluginOptions).toBe(pluginOptions)
     expect(moduleOptions.defraFormsPluginOptions.services.formsService).toBe(
       pluginOptions.services.formsService

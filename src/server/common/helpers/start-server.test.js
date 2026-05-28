@@ -44,8 +44,9 @@ describe('#startServer', () => {
     process.env.AUTH_REQUIRED = 'true'
 
     createServerImport = await import('~/src/server/index.js')
-    startServerImport =
-      await import('~/src/server/common/helpers/start-server.js')
+    startServerImport = await import(
+      '~/src/server/common/helpers/start-server.js'
+    )
 
     createServerSpy = jest.spyOn(createServerImport, 'createServer')
     hapiServerSpy = jest.spyOn(hapi, 'server')

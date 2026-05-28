@@ -4,7 +4,7 @@
     "checkJs": true,
     "module": "NodeNext",
     "noEmit": true,
-    "noImplicitAny": false,
+    "strict": false,
     "paths": {
       "~/*": ["./*"]
     },

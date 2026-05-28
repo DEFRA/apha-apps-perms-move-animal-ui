@@ -50,6 +50,7 @@ The following mock endpoints are available when WireMock is running:
    ```
 
 2. WireMock will be available at:
+
    - Local: http://localhost:8080
    - Via proxy: http://wiremock.your-domain.sslip.io:7300
 

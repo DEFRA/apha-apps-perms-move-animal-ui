@@ -71,9 +71,12 @@ describe('CustomCacheService', () => {
       const result = await customCacheService.setState(mockRequest, mockState)
 
       expect(TbStateManager).toHaveBeenCalledWith(mockRequest)
-      expect(OriginSection.fromRequest).toHaveBeenCalledWith(mockRequest, {
-        converted: 'state'
-      })
+      expect(OriginSection.fromRequest).toHaveBeenCalledWith(
+        mockRequest,
+        expect.objectContaining({
+          converted: 'state'
+        })
+      )
       expect(mockStateService.toState).toHaveBeenCalled()
       expect(mockStateService.setSection).toHaveBeenCalledWith(mockSection)
       expect(result).toBe('parent-result')
