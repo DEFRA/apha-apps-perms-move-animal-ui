@@ -113,7 +113,8 @@ export default function (plop) {
           execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
           return `ESLint completed for ${folderPath}`
         } catch (error) {
-          return `ESLint warning: ${error.message}`
+          const e = /** @type {Error} */ (error)
+          return `ESLint warning: ${e.message}`
         }
       },
       '\x1b[41m\x1b[37m\x1b[1m IMPORTANT \x1b[0m',
@@ -170,7 +171,8 @@ export default function (plop) {
           execSync(`npx eslint ${folderPath}*.js --fix`, { stdio: 'inherit' })
           return `ESLint completed for ${folderPath}`
         } catch (error) {
-          return `ESLint warning: ${error.message}`
+          const e = /** @type {Error} */ (error)
+          return `ESLint warning: ${e.message}`
         }
       },
       '\x1b[41m\x1b[37m\x1b[1m IMPORTANT \x1b[0m',

@@ -80,14 +80,14 @@ export const fetchDisinfectants = async (type) => {
         items
       )
     } catch (e) {
-      logger.error(`Failed to cache disinfectants of type ${type}:`, e)
+      logger.error(`Failed to cache disinfectants of type ${type}:`, /** @type {Error} */ (e))
     }
 
     filteredDisinfectants = JSON.parse(items).filteredDisinfectants ?? []
   } catch (e) {
     logger.error(
       `Failed to fetch disinfectants of type ${type} from api attempting to fetch result from cache:`,
-      e
+      /** @type {Error} */ (e)
     )
 
     const items = await cache.get(`api:disinfectants:${type}`)
@@ -95,7 +95,7 @@ export const fetchDisinfectants = async (type) => {
     if (!items) {
       logger.error(
         `Failed to fetch disinfectants of type ${type} from cache:`,
-        e
+        /** @type {Error} */ (e)
       )
       throw new Error(
         `Failed to fetch disinfectants of type ${type} from API and cache empty`
