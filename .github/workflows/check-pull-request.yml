@@ -12,14 +12,26 @@ on:
       - ready_for_review
 
 jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+    steps:
+      - name: Dependency Review
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
+        with:
+          fail-on-severity: low
+
   sonarcloud:
     name: SonarCloud Scan
+    needs: dependency-review
     runs-on: ubuntu-22.04
     env:
-      UPLOADER_URL: 'http://localhost:7337'
-      FILE_S3_BUCKET: 'apha'
-      FILE_S3_PATH: 'biosecurity-map'
-      CONSUMER_BUCKETS: 'apha'
+      UPLOADER_URL: "http://localhost:7337"
+      FILE_S3_BUCKET: "apha"
+      FILE_S3_PATH: "biosecurity-map"
+      CONSUMER_BUCKETS: "apha"
       MOCK_VIRUS_SCAN_ENABLED: false
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test
@@ -59,6 +71,7 @@ jobs:
 
   pr-validator:
     name: Run Journey Tests
+    needs: dependency-review
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -67,10 +80,10 @@ jobs:
           - exotics-journey-test
           - fmd-journey-test
     env:
-      UPLOADER_URL: 'http://localhost:7337'
-      FILE_S3_BUCKET: 'apha'
-      FILE_S3_PATH: 'biosecurity-map'
-      CONSUMER_BUCKETS: 'apha'
+      UPLOADER_URL: "http://localhost:7337"
+      FILE_S3_BUCKET: "apha"
+      FILE_S3_PATH: "biosecurity-map"
+      CONSUMER_BUCKETS: "apha"
       MOCK_VIRUS_SCAN_ENABLED: false
       AWS_REGION: eu-west-2
       AWS_ACCESS_KEY_ID: test

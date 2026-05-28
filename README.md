@@ -40,7 +40,7 @@ Frontend to the 'Move animals under disease controls' service. It's purpose is t
 
 ### Node.js
 
-Please install [Node.js](http://nodejs.org/) `>= v22.11.0 < v25` and [npm](https://nodejs.org/) `^10.9.0`. You will find it
+Please install [Node.js](http://nodejs.org/) `>= v24.0.0 < v25` and [npm](https://nodejs.org/) `>=10.9.0 <11.6.4`. You will find it
 easier to use the Node Version Manager [nvm](https://github.com/creationix/nvm)
 
 To use the correct version of Node.js for this application, via nvm:
