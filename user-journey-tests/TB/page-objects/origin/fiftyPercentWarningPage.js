@@ -9,7 +9,9 @@ class FiftyPercentWarningPage extends Page {
   pageTitle = pageHeadingAndTitle
 
   get getYourCattleTestedLink() {
-    return $('a=GOV.UK Bovine TB guidance page (opens in new tab)')
+    // Partial match: the "(opens in new tab)" text sits outside the <a>, so an
+    // exact link-text selector would never match the anchor's own text.
+    return $('a*=GOV.UK Bovine TB guidance page')
   }
 
   async verifyGetYourCattleTestedLink() {
