@@ -60,7 +60,10 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm test -- --changedSince="origin/${{ github.base_ref }}"
+          npm run test -- --projects jest-projects/core.js
+          npm run test -- --projects jest-projects/fmd.js
+          npm run test -- --projects jest-projects/exotics.js
+          npm run test -- --projects jest-projects/tb.js
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
