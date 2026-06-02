@@ -92,7 +92,8 @@ export const loadPageAndVerifyTitle = async (
   pageTitle,
   preview = true
 ) => {
-  const url = preview ? `${path}?force=true` : path
+  const pagePath = path.startsWith('/') ? path : `/${path}`
+  const url = preview ? `${pagePath}?force=true` : pagePath
 
   await browser.url(url)
   await verifyPageTitle(pageTitle)
