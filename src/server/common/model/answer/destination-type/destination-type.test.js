@@ -14,9 +14,6 @@ const afuHint = 'Including enhanced with grazing (AFUE)'
 const afuOrMarketLabel =
   'Approved finishing units and TB sales at orange markets'
 const afuOrMarketHint = 'The licence covers either or both destinations'
-const marketOrAfuLabel =
-  'TB sales at orange markets and approved finishing units (AFU)'
-const marketOrAfuHint = 'Including enhanced with grazing (AFUE)'
 const otherLabel = 'Another destination with TB restrictions'
 
 describe('DestinationType', () => {
@@ -44,8 +41,8 @@ describe('DestinationType.config.options', () => {
     }
     const config = new DestinationTypeAnswer(undefined, context).config
     expect(Object.keys(config.options)).toHaveLength(5)
-    expect(config.options['market-afu'].label).toBe(marketOrAfuLabel)
-    expect(config.options['market-afu'].hint).toBe(marketOrAfuHint)
+    expect(config.options['afu-or-market'].label).toBe(afuOrMarketLabel)
+    expect(config.options['afu-or-market'].hint).toBe(afuOrMarketHint)
     expect(config.options['tb-restricted-farm'].label).toBe(
       tbRestrictedFarmLabel
     )
@@ -60,8 +57,8 @@ describe('DestinationType.config.options', () => {
     const config = new DestinationTypeAnswer(undefined, context).config
     expect(Object.keys(config.options)).toHaveLength(3)
     expect(config.options.slaughter.label).toBe(slaughterLabel)
-    expect(config.options.afu.label).toBe(afuOrMarketLabel)
-    expect(config.options.afu.hint).toBe(afuOrMarketHint)
+    expect(config.options['afu-or-market'].label).toBe(afuOrMarketLabel)
+    expect(config.options['afu-or-market'].hint).toBe(afuOrMarketHint)
     expect(config.options.other.label).toBe(otherLabel)
   })
 
@@ -97,8 +94,8 @@ describe('DestinationType.config.options', () => {
     }
     const config = new DestinationTypeAnswer(undefined, context).config
     expect(Object.keys(config.options)).toHaveLength(2)
-    expect(config.options.afu.label).toBe(afuOrMarketLabel)
-    expect(config.options.afu.hint).toBe(afuOrMarketHint)
+    expect(config.options['afu-or-market'].label).toBe(afuOrMarketLabel)
+    expect(config.options['afu-or-market'].hint).toBe(afuOrMarketHint)
     expect(config.options.other.label).toBe(otherLabel)
   })
 })

@@ -29,11 +29,11 @@ exports[`DestinationTypePage.nextPage off the farm DestinationTypePage.content s
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="afu" name="destinationType" type="radio" value="afu" aria-describedby="afu-item-hint">
-      <label class="govuk-label govuk-radios__label" for="afu">
+      <input class="govuk-radios__input" id="afu-or-market" name="destinationType" type="radio" value="afu-or-market" aria-describedby="afu-or-market-item-hint">
+      <label class="govuk-label govuk-radios__label" for="afu-or-market">
         Approved finishing units and TB sales at orange markets
       </label>
-      <div id="afu-item-hint" class="govuk-hint govuk-radios__hint">
+      <div id="afu-or-market-item-hint" class="govuk-hint govuk-radios__hint">
         The licence covers either or both destinations
       </div>
     </div>

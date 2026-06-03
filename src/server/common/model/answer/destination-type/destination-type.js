@@ -2,16 +2,12 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 /** @import {RadioButtonConfigFactory, RadioOption} from '../radio-button/radio-button.js' */
 
 /**
- * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'iso-unit' | 'other' | 'market-afu'} DestinationTypeData
+ * export @typedef {'tb-restricted-farm' | 'slaughter' | 'dedicated-sale' | 'afu' | 'iso-unit' | 'other' | 'afu-or-market'} DestinationTypeData
  * @typedef {{ destinationType: DestinationTypeData }} DestinationTypePayload
  */
 
 const afuOption = {
   label: 'Approved finishing unit (AFU)',
-  hint: 'Including enhanced with grazing (AFUE)'
-}
-const marketOrAfuOption = {
-  label: 'TB sales at orange markets and approved finishing units (AFU)',
   hint: 'Including enhanced with grazing (AFUE)'
 }
 const AfuOrMarketOption = {
@@ -38,7 +34,7 @@ const getDestinationOptions = (app) => {
   if (isOnToTheFarm(app)) {
     if (isOriginAfu(app)) {
       return {
-        afu: AfuOrMarketOption,
+        'afu-or-market': AfuOrMarketOption,
         other: otherOption
       }
     }
@@ -52,7 +48,7 @@ const getDestinationOptions = (app) => {
   if (isOriginTbRestricted) {
     return {
       slaughter: slaughterOption,
-      'market-afu': marketOrAfuOption,
+      'afu-or-market': AfuOrMarketOption,
       'tb-restricted-farm': tbRestrictedOption,
       'iso-unit': { label: 'TB isolation unit' },
       other: otherOption
@@ -69,7 +65,7 @@ const getDestinationOptions = (app) => {
   if (isOriginAfu(app)) {
     return {
       slaughter: slaughterOption,
-      afu: AfuOrMarketOption,
+      'afu-or-market': AfuOrMarketOption,
       other: otherOption
     }
   }
@@ -77,7 +73,7 @@ const getDestinationOptions = (app) => {
   return {
     slaughter: slaughterOption,
     'dedicated-sale': dedicatedSaleOption,
-    afu: AfuOrMarketOption,
+    'afu-or-market': AfuOrMarketOption,
     'tb-restricted-farm': tbRestrictedOption,
     'iso-unit': { label: 'TB isolation unit' },
     other: otherOption
