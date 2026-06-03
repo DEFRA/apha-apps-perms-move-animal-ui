@@ -202,6 +202,20 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmCphPage)
     })
 
+    it('should return destination-farm-cph when moving on from AFU to afu-or-market', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'afu-or-market'
+      })
+      const context = {
+        origin: {
+          onOffFarm: 'on',
+          originType: 'afu'
+        }
+      }
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
     it('should go to the correct page if coming to and from afu', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'other' })
       const nextPage = page.nextPage(answer, context)
