@@ -12,6 +12,7 @@ export default {
   transform: {
     '^.+\\.js$': 'babel-jest'
   },
+  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
   moduleNameMapper: {
     '^@defra/forms-engine-plugin(/.*)?$':
       '<rootDir>/.jest/mocks/forms-engine-plugin.js'

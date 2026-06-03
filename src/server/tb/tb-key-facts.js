@@ -18,7 +18,7 @@ const UNRESTRICTED_ORIGIN_TYPES = new Set(['market', 'unrestricted-farm'])
 const SALE_DESTINATION_TYPES = new Set([
   'dedicated-sale',
   ORIGIN_TYPE_AFU,
-  'market-afu'
+  'afu-or-market'
 ])
 
 /**

@@ -19,7 +19,7 @@ const offFarmNextPageMapping = {
   slaughter: destinationGeneralLicencePage,
   'dedicated-sale': additionalInfoPage,
   'iso-unit': checkExistingLicenceExitPage,
-  afu: additionalInfoPage,
+  'afu-or-market': additionalInfoPage,
   zoo: ownBothOriginAndDestinationPage,
   lab: ownBothOriginAndDestinationPage,
   other: ownBothOriginAndDestinationPage
@@ -55,7 +55,7 @@ export class DestinationTypePage extends QuestionPage {
       if (destType === 'other') {
         return afuOnlyOnExitPage
       }
-      if (destType === 'afu') {
+      if (destType === 'afu-or-market') {
         return destinationFarmCphPage
       }
     }
@@ -89,7 +89,7 @@ export class DestinationTypePage extends QuestionPage {
       return destinationFarmCphPage
     }
 
-    if (destType === 'market-afu') {
+    if (destType === 'afu-or-market') {
       return additionalInfoPage
     }
 

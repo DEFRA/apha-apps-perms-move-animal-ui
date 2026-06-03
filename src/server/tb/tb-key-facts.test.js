@@ -24,7 +24,7 @@ describe('tbKeyFacts', () => {
       },
       { origin: 'zoo', destination: 'afu', expected: 'TB16e' },
       { origin: 'afu', destination: 'slaughter', expected: 'TB16e' },
-      { origin: 'afu', destination: 'market-afu', expected: 'TB16e' },
+      { origin: 'afu', destination: 'afu-or-market', expected: 'TB16e' },
       {
         origin: 'tb-restricted-farm',
         destination: 'slaughter',

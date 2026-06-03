@@ -65,9 +65,9 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(destinationFarmAddressPage)
     })
 
-    it('should return additionalInfoPage when going from tb-restricted to market-afu', () => {
+    it('should return additionalInfoPage when going from tb-restricted to afu-or-market', () => {
       const answer = new DestinationTypeAnswer({
-        destinationType: 'market-afu'
+        destinationType: 'afu-or-market'
       })
       const nextPage = page.nextPage(answer, {
         origin: {
@@ -111,7 +111,7 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(checkExistingLicenceExitPage)
     })
 
-    it('should return exit page when answer is "dedicated-sale"', () => {
+    it('should return additionalInfoPage page when answer is "dedicated-sale"', () => {
       const answer = new DestinationTypeAnswer({
         destinationType: 'dedicated-sale'
       })
@@ -119,8 +119,10 @@ describe('DestinationTypePage.nextPage', () => {
       expect(nextPage).toBe(additionalInfoPage)
     })
 
-    it('should return exitPage when answer is "afu"', () => {
-      const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+    it('should return additionalInfoPage page when answer is "afu-or-market"', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'afu-or-market'
+      })
       const nextPage = page.nextPage(answer, context)
       expect(nextPage).toBe(additionalInfoPage)
     })
@@ -190,6 +192,20 @@ describe('DestinationTypePage.nextPage', () => {
 
     it('should return destination-farm-cph when moving on from AFU to AFU', () => {
       const answer = new DestinationTypeAnswer({ destinationType: 'afu' })
+      const context = {
+        origin: {
+          onOffFarm: 'on',
+          originType: 'afu'
+        }
+      }
+      const nextPage = page.nextPage(answer, context)
+      expect(nextPage).toBe(destinationFarmCphPage)
+    })
+
+    it('should return destination-farm-cph when moving on from AFU to afu-or-market', () => {
+      const answer = new DestinationTypeAnswer({
+        destinationType: 'afu-or-market'
+      })
       const context = {
         origin: {
           onOffFarm: 'on',
