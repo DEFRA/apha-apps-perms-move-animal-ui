@@ -40,9 +40,7 @@ describe('Destination selection options test', () => {
     await destinationVariants(true, true)
     await destinationSelectionPage.navigateToPageAndVerifyTitle()
     await verifyRadioButtonNumber(2)
-    await destinationSelectionPage.selectApprovedFinishingAndContinue(
-      destinationCPHPage
-    )
+    await destinationSelectionPage.selectAfuSaleAndContinue(destinationCPHPage)
   })
 
   it('Should verify options when Off the farm and AFU IS NOT selected', async () => {
