@@ -36,7 +36,7 @@ class DestinationSelectionPage extends Page {
   }
 
   get afuSaleRadio() {
-    return $('input[value="market-afu"]')
+    return $('input[value="afu-or-market"]')
   }
 
   radioFieldError() {

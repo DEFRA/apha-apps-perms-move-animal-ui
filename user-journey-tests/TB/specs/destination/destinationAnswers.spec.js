@@ -51,7 +51,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
 
     await selectElement(
@@ -62,7 +62,7 @@ describe('Check your answers test - destination', () => {
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
   })
 
@@ -70,7 +70,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
 
     await selectElement(
@@ -81,7 +81,7 @@ describe('Check your answers test - destination', () => {
     await destinationSelectionPage.selectContinue()
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
   })
 
@@ -89,7 +89,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('approved')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
 
     await destinationAnswersPage.selectContinue()
@@ -100,7 +100,7 @@ describe('Check your answers test - destination', () => {
     await completeDestinationTask('dedicated')
     await validateElementVisibleAndText(
       await destinationAnswersPage.getValue('destinationType'),
-      'TB sales at orange markets and approved finishing units (AFU)'
+      'Approved finishing units and TB sales at orange markets'
     )
 
     await selectElement(

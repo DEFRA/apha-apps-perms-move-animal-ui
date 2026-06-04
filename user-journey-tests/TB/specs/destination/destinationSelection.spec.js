@@ -50,9 +50,7 @@ describe('Destination selection test', () => {
   })
 
   it('Should choose approved finishing and continue', async () => {
-    await destinationSelectionPage.selectApprovedFinishingAndContinue(
-      additionalInfoPage
-    )
+    await destinationSelectionPage.selectAfuSaleAndContinue(additionalInfoPage)
   })
 
   it('Should choose other destination and continue', async () => {
