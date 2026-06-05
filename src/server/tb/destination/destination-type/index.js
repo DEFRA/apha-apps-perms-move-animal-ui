@@ -20,8 +20,6 @@ const offFarmNextPageMapping = {
   'dedicated-sale': additionalInfoPage,
   'iso-unit': checkExistingLicenceExitPage,
   'afu-or-market': additionalInfoPage,
-  zoo: ownBothOriginAndDestinationPage,
-  lab: ownBothOriginAndDestinationPage,
   other: ownBothOriginAndDestinationPage
 }
 

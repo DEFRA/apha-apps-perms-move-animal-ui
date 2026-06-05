@@ -13,15 +13,11 @@ import toFromFarmPage from '../../../page-objects/origin/toFromFarmPage.js'
 import taskListPage from '../../../page-objects/taskListPage.js'
 import { waitForPagePath } from '../../page.js'
 
-export const enableIdentification = async ({ originZoo, destinationZoo }) => {
+export const enableIdentification = async () => {
   // Origin
   await taskListPage.selectMovementOrigin(toFromFarmPage)
   await toFromFarmPage.selectOnFarmAndContinue(originTypePage)
-  if (!originZoo) {
-    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
-  } else {
-    await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
-  }
+  await originTypePage.selectTbRestrictedFarm(onFarmCPHPage)
   await onFarmCPHPage.inputParishHoldingNumberAndContinue(
     '12/123/1234',
     onFarmAddressPage
@@ -38,11 +34,7 @@ export const enableIdentification = async ({ originZoo, destinationZoo }) => {
 
   // Destination
   await taskListPage.selectMovementDestination(destinationSelectionPage)
-  if (!destinationZoo) {
-    await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
-  } else {
-    await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
-  }
+  await destinationSelectionPage.selectTbRestrictedFarm(destinationCPHPage)
 
   await destinationCPHPage.inputParishHoldingNumberAndContinue(
     '12/123/1234',

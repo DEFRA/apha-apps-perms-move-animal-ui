@@ -6,12 +6,7 @@ const ORIGIN_TYPE_TB_RESTRICTED_FARM = 'tb-restricted-farm'
 const ORIGIN_TYPE_AFU = 'afu'
 const DESTINATION_TYPE_SLAUGHTER = 'slaughter'
 
-const TB_RESTRICTED_TYPES = new Set([
-  ORIGIN_TYPE_TB_RESTRICTED_FARM,
-  'zoo',
-  'lab',
-  'other'
-])
+const TB_RESTRICTED_TYPES = new Set([ORIGIN_TYPE_TB_RESTRICTED_FARM, 'other'])
 
 const UNRESTRICTED_ORIGIN_TYPES = new Set(['market', 'unrestricted-farm'])
 

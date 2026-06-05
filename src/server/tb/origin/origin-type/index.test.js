@@ -57,9 +57,7 @@ describe('#OriginPage.nextPage', () => {
   describe('Off the farm', () => {
     const context = { origin: { onOffFarm: 'off' } }
 
-    const cphOriginTypes = ['tb-restricted-farm', 'afu', 'zoo', 'lab'].map(
-      (v) => [v]
-    )
+    const cphOriginTypes = ['tb-restricted-farm', 'afu'].map((v) => [v])
 
     it.each(cphOriginTypes)(
       `should return cphNumberPage for ${cphOriginTypes.join(', ')}`,
@@ -109,9 +107,7 @@ describe('#OriginPage.nextPage', () => {
       }
     )
 
-    const cphOriginTypes = ['tb-restricted-farm', 'afu', 'zoo', 'lab'].map(
-      (v) => [v]
-    )
+    const cphOriginTypes = ['tb-restricted-farm', 'afu'].map((v) => [v])
 
     it.each(cphOriginTypes)(
       `should return originFarmCphPage for ${cphOriginTypes.join(', ')}`,

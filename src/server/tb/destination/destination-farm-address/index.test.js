@@ -84,7 +84,7 @@ describe('DestinationFarmAddressPage', () => {
     describe('on the farm', () => {
       const context = { origin: { onOffFarm: 'on', originType: 'market' } }
 
-      it('should return how many animals maximum page if origin is not TB restricted farm or Zoo with TB restrictions', () => {
+      it('should return how many animals maximum page if origin is not TB restricted farm', () => {
         const nextPage = page.nextPage(null, context)
         expect(nextPage).toBe(howManyAnimalsMaximumPage)
       })

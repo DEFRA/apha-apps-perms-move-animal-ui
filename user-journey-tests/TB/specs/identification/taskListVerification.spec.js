@@ -17,22 +17,7 @@ describe('Identification - task list appearance', () => {
   })
 
   it('Should verify identification appears when tb restricted options selected', async () => {
-    await enableIdentification({
-      originZoo: false,
-      destinationZoo: false
-    })
-    await taskListPage.verifyStatus({
-      position: 4,
-      taskTitle: 'Animal identification',
-      expectedStatus: 'Incomplete'
-    })
-  })
-
-  it('Should verify identification appears when zoo options selected', async () => {
-    await enableIdentification({
-      originZoo: true,
-      destinationZoo: true
-    })
+    await enableIdentification()
     await taskListPage.verifyStatus({
       position: 4,
       taskTitle: 'Animal identification',
