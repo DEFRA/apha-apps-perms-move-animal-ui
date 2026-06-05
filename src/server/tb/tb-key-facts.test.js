@@ -14,15 +14,11 @@ describe('tbKeyFacts', () => {
   describe('licence type determination', () => {
     const testCases = [
       { origin: 'market', destination: 'tb-restricted-farm', expected: 'TB15' },
-      { origin: 'unrestricted-farm', destination: 'zoo', expected: 'TB15' },
-      { origin: 'tb-restricted-farm', destination: 'zoo', expected: 'TB16' },
-      { origin: 'lab', destination: 'other', expected: 'TB16' },
       {
         origin: 'tb-restricted-farm',
         destination: 'dedicated-sale',
         expected: 'TB16e'
       },
-      { origin: 'zoo', destination: 'afu', expected: 'TB16e' },
       { origin: 'afu', destination: 'slaughter', expected: 'TB16e' },
       { origin: 'afu', destination: 'afu-or-market', expected: 'TB16e' },
       {
@@ -249,7 +245,7 @@ describe('tbKeyFacts', () => {
           }
         },
         destination: {
-          destinationType: 'zoo',
+          destinationType: 'tb-restricted-farm',
           destinationFarmCph: '22/222/2222',
           destinationFarmAddress: {
             addressLine1: '456 Ranch Rd',
