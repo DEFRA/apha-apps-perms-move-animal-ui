@@ -46,7 +46,7 @@ exports[`HomePage HomePage content checks when auth is disabled should match con
         <h3 class="govuk-heading-m">Using and sharing your information</h3>
         <p class="govuk-body">
           How we use your personal data is set out in the
-          <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
+          <a href="https://www.gov.uk/government/publications/animal-and-plant-health-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
         </p>
@@ -111,7 +111,7 @@ exports[`HomePage HomePage content checks when auth is enabled should match cont
         <h3 class="govuk-heading-m">Using and sharing your information</h3>
         <p class="govuk-body">
           How we use your personal data is set out in the
-          <a href="https://www.gov.uk/government/publications/animal-and-plant-heath-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
+          <a href="https://www.gov.uk/government/publications/animal-and-plant-health-agency-privacy-notices/exotic-notifiable-and-reportable-diseases-privacy-notice#:~:text=APHA%20may%20share%20data%20with,is%20identified%20at%20the%20laboratory." class="govuk-link" target="_blank">exotic, notifiable and reportable diseases privacy notice (opens in
             a new tab)</a>
           .
         </p>
