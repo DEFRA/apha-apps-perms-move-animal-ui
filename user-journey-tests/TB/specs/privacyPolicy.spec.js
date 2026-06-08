@@ -20,21 +20,21 @@ describe('Privacy policy page test', () => {
   it('Should verify the individual privacy notices link', async () => {
     await selectElement(privacyPage.individualNoticesLink)
     await waitForPagePath(
-      '/government/publications/animal-and-plant-heath-agency-privacy-notices'
+      '/government/publications/animal-and-plant-health-agency-privacy-notices'
     )
   })
 
   it('Should verify the first individual apha privacy notices link', async () => {
     await selectElement(privacyPage.aphaNotices1)
     await waitForPagePath(
-      '/government/publications/animal-and-plant-heath-agency-privacy-notices'
+      '/government/publications/animal-and-plant-health-agency-privacy-notices'
     )
   })
 
   it('Should verify the second individual apha privacy notices link', async () => {
     await selectElement(privacyPage.aphaNotices2)
     await waitForPagePath(
-      '/government/publications/animal-and-plant-heath-agency-privacy-notices'
+      '/government/publications/animal-and-plant-health-agency-privacy-notices'
     )
   })
 
