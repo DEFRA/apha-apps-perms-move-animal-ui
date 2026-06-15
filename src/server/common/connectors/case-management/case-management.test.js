@@ -102,7 +102,6 @@ describe('CaseManagement.submitApplication', () => {
       licenceType: 'TB16',
       requester: 'destination',
       movementDirection: 'on',
-      originCph: '12/345/6789',
       destinationCph: '12/345/6789',
       requesterCph: '12/345/6789'
     })

@@ -1,7 +1,9 @@
-/** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
+/** @import { TbApplicationModel } from './application.js' */
+/** @import { SectionModelV1 } from '../common/model/section/section-model/section-model-v1.js' */
 
 // Constants
 const MOVEMENT_ON = 'on'
+const MOVEMENT_OFF = 'off'
 const ORIGIN_TYPE_TB_RESTRICTED_FARM = 'tb-restricted-farm'
 const ORIGIN_TYPE_AFU = 'afu'
 const DESTINATION_TYPE_SLAUGHTER = 'slaughter'
@@ -18,51 +20,47 @@ const SALE_DESTINATION_TYPES = new Set([
 
 /**
  * @param {Record<string, any>} keyFacts
- * @param {Record<string, any>} origin
- * @param {Record<string, any>} destination
+ * @param {SectionModelV1} section
+ * @param {string} keyFactFieldName
+ * @param {string} sourceFieldName
+ * @returns {void}
  */
-function addOptionalCphNumbers(keyFacts, origin, destination) {
-  if (origin.cphNumber) {
-    keyFacts.originCph = origin.cphNumber
-  }
-  if (destination.destinationFarmCph) {
-    keyFacts.destinationCph = destination.destinationFarmCph
+function addOptionalField(
+  keyFacts,
+  section,
+  keyFactFieldName,
+  sourceFieldName
+) {
+  const value = section.getSectionAnswer(sourceFieldName)?.data?.value
+  if (value) {
+    keyFacts[keyFactFieldName] = value
+  } else {
+    delete keyFacts[keyFactFieldName]
   }
 }
 
 /**
  * @param {Record<string, any>} keyFacts
- * @param {Record<string, any>} origin
- * @param {Record<string, any>} destination
- */
-function addOptionalAddresses(keyFacts, origin, destination) {
-  if (origin.address) {
-    keyFacts.originAddress = origin.address
-  }
-  if (destination.destinationFarmAddress) {
-    keyFacts.destinationAddress = destination.destinationFarmAddress
-  }
-}
-
-/**
- * @param {Record<string, any>} keyFacts
- * @param {Record<string, any>} origin
- * @param {Record<string, any>} licence
+ * @param {SectionModelV1} origin
+ * @param {SectionModelV1} licence
  */
 function addOptionalKeeperNames(keyFacts, origin, licence) {
-  const { onOffFarm, originType } = origin
+  const onOffFarm = origin.getSectionAnswer('onOffFarm')?.data?.value
+  const originType = origin.getSectionAnswer('originType')?.data?.value
   const isOnFarm = onOffFarm === MOVEMENT_ON
-  const isOffFarm = onOffFarm === 'off'
+  const isOffFarm = onOffFarm === MOVEMENT_OFF
   const isOriginRestricted = isTbRestricted(originType)
+  const fullName = licence.getSectionAnswer('fullName')?.data?.value
+  const yourName = licence.getSectionAnswer('yourName')?.data?.value
 
   // Origin keeper name: set for OFF farm OR (ON farm AND origin restricted)
-  if (licence.fullName && (isOffFarm || (isOnFarm && isOriginRestricted))) {
-    keyFacts.originKeeperName = licence.fullName
+  if (fullName && (isOffFarm || (isOnFarm && isOriginRestricted))) {
+    keyFacts.originKeeperName = fullName
   }
 
   // Destination keeper name: only for ON farm movements
   if (isOnFarm) {
-    const nameToUse = isOriginRestricted ? licence.yourName : licence.fullName
+    const nameToUse = isOriginRestricted ? yourName : fullName
     if (nameToUse) {
       keyFacts.destinationKeeperName = nameToUse
     }
@@ -71,10 +69,11 @@ function addOptionalKeeperNames(keyFacts, origin, licence) {
 
 /**
  * @param {Record<string, any>} keyFacts
- * @param {Record<string, any>} origin
+ * @param {SectionModelV1} origin
  */
 function addRequesterCph(keyFacts, origin) {
-  const isOnFarm = origin.onOffFarm === MOVEMENT_ON
+  const isOnFarm =
+    origin.getSectionAnswer('onOffFarm')?.data?.value === MOVEMENT_ON
 
   if (isOnFarm && keyFacts.destinationCph) {
     keyFacts.requesterCph = keyFacts.destinationCph
@@ -87,7 +86,7 @@ function addRequesterCph(keyFacts, origin) {
 
 /**
  * @param {Record<string, any>} keyFacts
- * @param {Record<string, any>} biosecurityMap
+ * @param {SectionModelV1} biosecurityMap
  */
 function addBiosecurityMaps(keyFacts, biosecurityMap) {
   const biosecurityMaps = extractBiosecurityMaps(biosecurityMap)
@@ -165,45 +164,50 @@ function determineLicenceType(originType, destinationType) {
 
 /**
  * Determines the requester based on movement direction.
- * @param {Record<string, any>} origin
+ * @param {SectionModelV1} origin
  */
 function determineRequester(origin) {
-  const { onOffFarm } = origin
+  const onOffFarm = origin.getSectionAnswer('onOffFarm')?.data?.value
   return onOffFarm === MOVEMENT_ON ? 'destination' : 'origin'
 }
 
 /**
- * @param {Record<string, any>} biosecurityMapSection
+ * @param {SectionModelV1} biosecurityMap
  */
-function extractBiosecurityMaps(biosecurityMapSection) {
+function extractBiosecurityMaps(biosecurityMap) {
   const maps = []
 
-  const uploadPlan = biosecurityMapSection?.['upload-plan']
-  const s3Key = uploadPlan?.status?.form?.file?.s3Key
-  const uploadStatus = uploadPlan?.status?.uploadStatus
+  const uploadPlan = biosecurityMap.getSectionAnswer('upload-plan')?.data?.value
+  const path = uploadPlan?.path
+  const skipped = uploadPlan?.skipped
 
-  if (s3Key && uploadStatus !== 'skipped') {
-    maps.push(s3Key)
+  if (path && !skipped) {
+    maps.push(path)
   }
 
   return maps
 }
 
 /**
- * @param {Record<string, any>} origin
- * @param {Record<string, any>} destination
- * @param {string} originType
- * @param {string} destinationType
+ * @param {SectionModelV1} origin
+ * @param {SectionModelV1} destination
  */
-function buildBasicKeyFacts(origin, destination, originType, destinationType) {
+function buildBasicKeyFacts(origin, destination) {
+  const originType = origin.getSectionAnswer('originType')?.data?.value
+  const destinationType =
+    destination.getSectionAnswer('destinationType')?.data?.value
+
   const animalCount =
-    destination.howManyAnimals ?? destination.howManyAnimalsMaximum
+    destination.getSectionAnswer('howManyAnimals')?.data?.value ??
+    destination.getSectionAnswer('howManyAnimalsMaximum')?.data?.value ??
+    null
 
   return {
     licenceType: determineLicenceType(originType, destinationType),
     requester: determineRequester(origin),
-    movementDirection: origin.onOffFarm,
-    additionalInformation: destination.additionalInfo ?? '',
+    movementDirection: origin.getSectionAnswer('onOffFarm')?.data?.value,
+    additionalInformation:
+      destination.getSectionAnswer('additionalInfo')?.data?.value ?? '',
     ...(animalCount && {
       numberOfCattle: Number.parseInt(animalCount, 10)
     })
@@ -212,28 +216,48 @@ function buildBasicKeyFacts(origin, destination, originType, destinationType) {
 
 /**
  * Generates TB key facts from the raw application state.
- * @param {RawApplicationState} state
+ * @param {TbApplicationModel} application
  */
-export function tbKeyFacts(state) {
-  const origin = state.origin ?? {}
-  const destination = state.destination ?? {}
-  const licence = state.licence ?? {}
-  const biosecurityMap = state['biosecurity-map'] ?? {}
-
-  const originType = origin.originType ?? ''
-  const destinationType = destination.destinationType ?? ''
-
-  const keyFacts = buildBasicKeyFacts(
-    origin,
-    destination,
-    originType,
-    destinationType
+export function tbKeyFacts(application) {
+  const origin = /** @type {SectionModelV1} */ (
+    application.getSection('origin')
   )
-  addOptionalCphNumbers(keyFacts, origin, destination)
-  addOptionalAddresses(keyFacts, origin, destination)
+  const destination = /** @type {SectionModelV1} */ (
+    application.getSection('destination')
+  )
+  const licence = /** @type {SectionModelV1} */ (
+    application.getSection('licence')
+  )
+  const biosecurityMap = /** @type {SectionModelV1} */ (
+    application.getSection('biosecurity-map')
+  )
+
+  if (!origin || !destination || !licence) {
+    throw new Error('Missing required section(s) for key facts generation')
+  }
+  const keyFacts = buildBasicKeyFacts(origin, destination)
+
+  addOptionalField(keyFacts, origin, 'originCph', 'originFarmCph')
+  addOptionalField(keyFacts, origin, 'originAddress', 'address')
+  addOptionalField(
+    keyFacts,
+    destination,
+    'destinationCph',
+    'destinationFarmCph'
+  )
+  addOptionalField(
+    keyFacts,
+    destination,
+    'destinationAddress',
+    'destinationFarmAddress'
+  )
+
   addOptionalKeeperNames(keyFacts, origin, licence)
   addRequesterCph(keyFacts, origin)
-  addBiosecurityMaps(keyFacts, biosecurityMap)
+
+  if (biosecurityMap) {
+    addBiosecurityMaps(keyFacts, biosecurityMap)
+  }
 
   return keyFacts
 }

@@ -21,6 +21,16 @@ export class SectionModelV1 extends SectionModel {
   /** @type {(RawApplicationState) => QuestionPage} */
   static firstPageFactory
 
+  /**
+   * @param {string} questionKey
+   * @returns {AnswerModel<any> | undefined}
+   */
+  getSectionAnswer(questionKey) {
+    return this._questionPageAnswers.find(
+      ({ page }) => page.questionKey === questionKey
+    )?.answer
+  }
+
   _getFirstPage(applicationState) {
     return /** @type {typeof SectionModelV1} */ (
       this.constructor
