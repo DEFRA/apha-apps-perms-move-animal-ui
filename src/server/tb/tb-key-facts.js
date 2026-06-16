@@ -237,7 +237,7 @@ export function tbKeyFacts(application) {
   }
   const keyFacts = buildBasicKeyFacts(origin, destination)
 
-  addOptionalField(keyFacts, origin, 'originCph', 'originFarmCph')
+  addOptionalField(keyFacts, origin, 'originCph', 'cphNumber')
   addOptionalField(keyFacts, origin, 'originAddress', 'address')
   addOptionalField(
     keyFacts,
