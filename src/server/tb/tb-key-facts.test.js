@@ -132,7 +132,7 @@ describe('tbKeyFacts', () => {
   describe('requesterCph determination', () => {
     it('should use destination CPH when moving on farm', () => {
       const state = createState({
-        origin: { onOffFarm: 'on', originFarmCph: '11/111/1111' },
+        origin: { onOffFarm: 'on', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
       expect(getKeyFacts(state).requesterCph).toBe('22/222/2222')
@@ -140,7 +140,7 @@ describe('tbKeyFacts', () => {
 
     it('should use origin CPH when moving off farm', () => {
       const state = createState({
-        origin: { onOffFarm: 'off', originFarmCph: '11/111/1111' },
+        origin: { onOffFarm: 'off', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
       expect(getKeyFacts(state).requesterCph).toBe('11/111/1111')
@@ -261,7 +261,7 @@ describe('tbKeyFacts', () => {
         origin: {
           onOffFarm: 'on',
           originType: 'tb-restricted-farm',
-          originFarmCph: '11/111/1111',
+          cphNumber: '11/111/1111',
           address: {
             addressLine1: '123 Farm Rd',
             addressTown: 'Town',

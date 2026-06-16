@@ -44,7 +44,7 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(validApplicationState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.originCph).toBeUndefined()
+      expect(keyFacts.originCph).toBe('12/345/6789')
       expect(keyFacts.destinationCph).toBe('12/345/6789')
     })
 
@@ -101,7 +101,7 @@ describe('TbApplicationModel', () => {
       const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.requester).toBe('origin')
-      expect(keyFacts.requesterCph).toBeUndefined()
+      expect(keyFacts.requesterCph).toBe('11/111/1111')
       expect(keyFacts.licenceType).toBe('TB24c')
     })
 
