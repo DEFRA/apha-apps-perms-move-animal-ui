@@ -36,12 +36,11 @@ export class TbApplicationModel extends ApplicationModel {
   }
 
   /**
-   * Generates key facts from the raw application state.
-   * @param {RawApplicationState} state
+   * Generates key facts from the application.
    * @returns {Record<string, any>}
    */
-  static getKeyFacts(state) {
-    return tbKeyFacts(state)
+  getKeyFacts() {
+    return tbKeyFacts(this)
   }
 
   /**
@@ -52,7 +51,7 @@ export class TbApplicationModel extends ApplicationModel {
     const data = super.getCaseManagementData(state)
 
     if (state) {
-      data.keyFacts = TbApplicationModel.getKeyFacts(state)
+      data.keyFacts = this.getKeyFacts()
     }
 
     return data

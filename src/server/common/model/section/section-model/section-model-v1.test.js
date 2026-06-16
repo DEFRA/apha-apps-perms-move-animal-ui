@@ -141,6 +141,24 @@ describe('SectionModel.questionPageAnswers', () => {
   })
 })
 
+describe('SectionModel.getSectionAnswer', () => {
+  it('should return the answer for a matching question key', () => {
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
+
+    expect(origin.getSectionAnswer('onOffFarm')).toBeInstanceOf(OnOffFarmAnswer)
+  })
+
+  it('should return undefined when question key does not exist', () => {
+    const origin = /** @type {SectionModelV1} */ (
+      OriginSection.fromState({ origin: validOriginSectionState })
+    )
+
+    expect(origin.getSectionAnswer('does-not-exist')).toBeUndefined()
+  })
+})
+
 describe('SectionModel.validate', () => {
   it('should return valid if all questions in journey are validly answered', () => {
     const origin = OriginSection.fromState({ origin: validOriginSectionState })

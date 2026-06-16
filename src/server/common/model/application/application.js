@@ -78,6 +78,14 @@ export class ApplicationModel {
   }
 
   /**
+   * @param {string} sectionKey
+   * @returns {SectionModel | undefined} The section matching the provided key, if it exists in the application data
+   */
+  getSection(sectionKey) {
+    return this.tasks[sectionKey]
+  }
+
+  /**
    * @param {RawApplicationState} [_state]
    * @returns {Record<string, any>}
    */

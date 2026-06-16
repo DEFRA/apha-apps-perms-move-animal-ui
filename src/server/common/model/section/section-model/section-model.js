@@ -81,6 +81,16 @@ export class SectionModel {
 
   // eslint-disable-next-line jsdoc/require-returns-check
   /**
+   * @param {string} _questionKey
+   * @returns {any}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getSectionAnswer(_questionKey) {
+    throw new NotImplementedError()
+  }
+
+  // eslint-disable-next-line jsdoc/require-returns-check
+  /**
    * @param {Request} _req
    * @param {RawApplicationState} _applicationState
    * @returns {Promise<object>}

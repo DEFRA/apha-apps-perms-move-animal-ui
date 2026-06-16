@@ -60,6 +60,26 @@ describe('Application.fromRequest', () => {
   })
 })
 
+describe('Application.getSection', () => {
+  it('should return a section by key when present', async () => {
+    const application = await TestApplication.fromRequest(
+      mockRequest,
+      validApplicationState
+    )
+
+    expect(application.getSection('origin')).toBe(application.tasks.origin)
+  })
+
+  it('should return undefined when the section key does not exist', async () => {
+    const application = await TestApplication.fromRequest(
+      mockRequest,
+      validApplicationState
+    )
+
+    expect(application.getSection('unknown-section')).toBeUndefined()
+  })
+})
+
 describe('Application.version', () => {
   it('should throw if not overridden', () => {
     expect(() => new ApplicationModel({}).version).toThrow(NotImplementedError)

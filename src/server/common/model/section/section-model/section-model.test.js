@@ -39,6 +39,15 @@ describe('SectionModel', () => {
     })
   })
 
+  describe('getSectionAnswer', () => {
+    it('should throw NotImplementedError', () => {
+      const section = new SectionModel([])
+      expect(() => section.getSectionAnswer('test-question')).toThrow(
+        NotImplementedError
+      )
+    })
+  })
+
   describe('taskDetailsViewModel', () => {
     it('should throw NotImplementedError', async () => {
       const section = new SectionModel([])

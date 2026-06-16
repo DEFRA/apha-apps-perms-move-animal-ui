@@ -3,10 +3,22 @@ import { validApplicationState } from '../common/test-helpers/journey-state.js'
 
 /** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
 
+const mockRequest = /** @type {any} */ ({})
+
+/**
+ * @param {RawApplicationState} state
+ * @returns {Promise<TbApplicationModel>}
+ */
+const createApplication = async (state) =>
+  /** @type {Promise<TbApplicationModel>} */ (
+    TbApplicationModel.fromRequest(mockRequest, state)
+  )
+
 describe('TbApplicationModel', () => {
   describe('getKeyFacts', () => {
-    it('should return key facts from valid application state', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should return key facts from valid application state', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts).toBeDefined()
       expect(keyFacts).toHaveProperty('licenceType')
@@ -14,27 +26,31 @@ describe('TbApplicationModel', () => {
       expect(keyFacts).toHaveProperty('movementDirection')
     })
 
-    it('should correctly determine licence type for TB-restricted to TB-restricted', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should correctly determine licence type for TB-restricted to TB-restricted', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.licenceType).toBe('TB16')
     })
 
-    it('should correctly set requester as destination for on-farm TB-restricted movement', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should correctly set requester as destination for on-farm TB-restricted movement', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.requester).toBe('destination')
     })
 
-    it('should include CPH numbers when present', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should include CPH numbers when present', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.originCph).toBe('12/345/6789')
+      expect(keyFacts.originCph).toBeUndefined()
       expect(keyFacts.destinationCph).toBe('12/345/6789')
     })
 
-    it('should include keeper names when present', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should include keeper names when present', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.originKeeperName).toEqual({
         firstName: 'Kathryn',
@@ -46,8 +62,9 @@ describe('TbApplicationModel', () => {
       })
     })
 
-    it('should include biosecurity maps when uploaded', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should include biosecurity maps when uploaded', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.biosecurityMaps).toBeDefined()
       expect(keyFacts.biosecurityMaps).toContain(
@@ -55,14 +72,15 @@ describe('TbApplicationModel', () => {
       )
     })
 
-    it('should set requesterCph based on movement direction', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should set requesterCph based on movement direction', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       // On farm movement should use destination CPH
       expect(keyFacts.requesterCph).toBe('12/345/6789')
     })
 
-    it('should handle off-farm movement correctly', () => {
+    it('should handle off-farm movement correctly', async () => {
       /** @type {RawApplicationState} */
       const offFarmState = {
         ...validApplicationState,
@@ -79,14 +97,15 @@ describe('TbApplicationModel', () => {
         }
       }
 
-      const keyFacts = TbApplicationModel.getKeyFacts(offFarmState)
+      const model = await createApplication(offFarmState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.requester).toBe('origin')
-      expect(keyFacts.requesterCph).toBe('11/111/1111')
+      expect(keyFacts.requesterCph).toBeUndefined()
       expect(keyFacts.licenceType).toBe('TB24c')
     })
 
-    it('should handle missing optional fields gracefully', () => {
+    it('should handle missing optional fields gracefully', async () => {
       /** @type {RawApplicationState} */
       const minimalState = {
         origin: {
@@ -100,17 +119,18 @@ describe('TbApplicationModel', () => {
         'biosecurity-map': {}
       }
 
-      const keyFacts = TbApplicationModel.getKeyFacts(minimalState)
+      const model = await createApplication(minimalState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.licenceType).toBe('TB16')
       expect(keyFacts.requester).toBe('destination')
       expect(keyFacts.originCph).toBeUndefined()
       expect(keyFacts.destinationCph).toBeUndefined()
-      expect(keyFacts.originKeeperName).toBeUndefined()
+      expect(keyFacts.originKeeperName).toEqual({ firstName: '', lastName: '' })
       expect(keyFacts.biosecurityMaps).toBeUndefined()
     })
 
-    it('should parse numberOfCattle as integer from string state', () => {
+    it('should parse numberOfCattle as integer from string state', async () => {
       /** @type {RawApplicationState} */
       const stateWithAnimals = {
         ...validApplicationState,
@@ -120,17 +140,34 @@ describe('TbApplicationModel', () => {
         }
       }
 
-      const keyFacts = TbApplicationModel.getKeyFacts(stateWithAnimals)
+      const model = await createApplication(stateWithAnimals)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.numberOfCattle).toBe(25)
       expect(typeof keyFacts.numberOfCattle).toBe('number')
     })
 
-    it('should include addresses when present', () => {
-      const keyFacts = TbApplicationModel.getKeyFacts(validApplicationState)
+    it('should include addresses when present', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.originAddress).toBeDefined()
       expect(keyFacts.destinationAddress).toBeDefined()
+    })
+  })
+
+  describe('getCaseManagementData', () => {
+    it('should not include keyFacts when state is not provided', async () => {
+      const model = await createApplication(validApplicationState)
+
+      expect(model.getCaseManagementData().keyFacts).toBeUndefined()
+    })
+
+    it('should include keyFacts when state is provided', async () => {
+      const model = await createApplication(validApplicationState)
+      const data = model.getCaseManagementData(validApplicationState)
+
+      expect(data.keyFacts).toEqual(model.getKeyFacts())
     })
   })
 
