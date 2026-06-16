@@ -3,14 +3,13 @@ import { config as browserstackBaseConfig } from './wdio.browserstack.conf.js'
 //  These capabilities should run as an extended test after publishing
 export const config = {
   ...browserstackBaseConfig,
-  maxInstances: 8,
   exclude: [
     './specs/noJavascript/**/*.spec.js',
     './specs/finalAnswers.spec.js',
     './specs/submissionConfirmation.spec.js',
-    './specs/origin/checkAnswers.spec.js',
+    './specs/origin/pages/checkAnswers.spec.js',
     './specs/receiving-the-licence/licenceAnswers.spec.js',
-    './specs/origin/fiftyPercentWarning.spec.js',
+    './specs/origin/pages/fiftyPercentWarning.spec.js',
     './specs/biosecurity-map/**/*.js',
     './specs/biosecurity/biosecurityAnswers.spec.js',
     './specs/biosecurity/biosecDynamicAnswers.spec.js',
