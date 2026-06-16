@@ -19,7 +19,8 @@ export const config = {
     './specs/biosecurity/**/*.js',
     './specs/accessibility/**/*.js'
   ],
-  maxInstances: 7,
+  maxInstances: 5,
+  maxInstancesPerCapability: 3,
   capabilities: [
     {
       browserName: 'Safari',
