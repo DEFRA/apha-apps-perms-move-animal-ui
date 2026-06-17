@@ -1,4 +1,5 @@
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
+import { escapeHtml } from '../../helpers/escape-text.js'
 /** @import {AnswerErrors, AnswerValidationResult} from './validation.js' */
 /** @import {RawApplicationState} from '../state/state-manager.js' */
 
@@ -32,7 +33,7 @@ export class AnswerModel {
     return {
       type: this.type,
       value: this.toState(),
-      displayText: this.html.replace(/<br \/>/g, '\n')
+      displayText: this.displayText
     }
   }
 
@@ -86,8 +87,15 @@ export class AnswerModel {
   /**
    * @returns {string}
    */
-  get html() {
+  get displayText() {
     throw new NotImplementedError()
+  }
+
+  /**
+   * @returns {string}
+   */
+  get html() {
+    return escapeHtml(this.displayText).replace(/\r?\n/g, '<br />') ?? ''
   }
 
   /**

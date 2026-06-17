@@ -189,21 +189,21 @@ describe('RadioButton', () => {
     })
   })
 
-  describe('#RadioButton.html', () => {
+  describe('#RadioButton.displayText', () => {
     it('should return the full text for `value_1`', () => {
-      expect(new TestRadioButtonAnswer({ test_radio: 'value_1' }).html).toBe(
-        'test_label_1'
-      )
+      expect(
+        new TestRadioButtonAnswer({ test_radio: 'value_1' }).displayText
+      ).toBe('test_label_1')
     })
 
     it('should return the full text for `value_2`', () => {
-      expect(new TestRadioButtonAnswer({ test_radio: 'value_2' }).html).toBe(
-        'test_label_2'
-      )
+      expect(
+        new TestRadioButtonAnswer({ test_radio: 'value_2' }).displayText
+      ).toBe('test_label_2')
     })
 
     it('should return an empty string for undefined', () => {
-      expect(new TestRadioButtonAnswer(undefined).html).toBe('')
+      expect(new TestRadioButtonAnswer(undefined).displayText).toBe('')
     })
   })
 

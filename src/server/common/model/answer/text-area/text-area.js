@@ -2,7 +2,6 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
-import { escapeHtml } from '../../../helpers/escape-text.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 
@@ -81,13 +80,8 @@ export class TextAreaAnswer extends AnswerModel {
     return this._data?.[this.config.payloadKey]
   }
 
-  get html() {
-    return (
-      escapeHtml(this._data?.[this.config.payloadKey])?.replace(
-        /\n/g,
-        '<br />'
-      ) ?? ''
-    )
+  get displayText() {
+    return this.value ?? ''
   }
 
   get template() {

@@ -83,16 +83,15 @@ export class RadioButtonAnswer extends AnswerModel {
    * @returns {Payload | undefined}
    */
   toState() {
-    return this._data?.[this.config.payloadKey] ?? ''
+    return this.value ?? ''
   }
 
   get value() {
     return this._data?.[this.config.payloadKey]
   }
 
-  get html() {
-    const value = this._data?.[this.config.payloadKey]
-
+  get displayText() {
+    const value = this.value
     return this.config.options[value]?.label ?? ''
   }
 

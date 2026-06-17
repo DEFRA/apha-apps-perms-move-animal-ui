@@ -65,7 +65,7 @@ export class NumberAnswer extends TextAnswer {
     return 'number'
   }
 
-  get html() {
+  get displayText() {
     const value = this._data?.[this.config.payloadKey]
     return value !== undefined && value !== null && value !== ''
       ? String(value)

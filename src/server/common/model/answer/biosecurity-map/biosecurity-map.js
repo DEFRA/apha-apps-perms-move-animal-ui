@@ -64,11 +64,11 @@ export class BiosecurityMapAnswer extends AnswerModel {
         path: this._data?.status?.form.file.s3Key,
         skipped: this.isSkipped()
       },
-      displayText: this.html
+      displayText: this.displayText
     }
   }
 
-  get html() {
+  get displayText() {
     if (this.isSkipped()) {
       return skippedMessage
     }

@@ -248,40 +248,15 @@ describe('TextAreaAnswer.fromState', () => {
   })
 })
 
-describe('TestAnswer.html', () => {
+describe('TestAnswer.displayText', () => {
   it('should return the value if present', () => {
     const textAreaAnswer = new TestOptionalTextAreaAnswer(validPayload)
-    expect(textAreaAnswer.html).toBe(validPayload.textAreaPayload)
+    expect(textAreaAnswer.displayText).toBe(validPayload.textAreaPayload)
   })
 
   it('should return an empty string if payload is not present', () => {
     const textAreaAnswer = new TestOptionalTextAreaAnswer({})
-    expect(textAreaAnswer.html).toBe('')
-  })
-
-  it('should return a string after replacing newlines with <br>', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: 'line one\nline two'
-    })
-    expect(textAreaAnswer.html).toBe('line one<br />line two')
-  })
-
-  it('should return the escaped value if present', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: '<script>alert("XSS")</script>'
-    })
-    expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
-    )
-  })
-
-  it('should return the escaped value and replace newlines with <br>', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: '<script>alert("XSS")</script>\nline two'
-    })
-    expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;<br />line two'
-    )
+    expect(textAreaAnswer.displayText).toBe('')
   })
 })
 

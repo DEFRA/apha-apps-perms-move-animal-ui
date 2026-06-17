@@ -80,10 +80,10 @@ describe('HiddenAnswer.fromState', () => {
   })
 })
 
-describe('TestAnswer.html', () => {
+describe('TestAnswer.displayText', () => {
   it('should throw not implemented error', () => {
     const hiddenAnswer = new TestHiddenAnswer(validPayload)
-    expect(() => hiddenAnswer.html).toThrow(NotImplementedError)
+    expect(() => hiddenAnswer.displayText).toThrow(NotImplementedError)
   })
 })
 

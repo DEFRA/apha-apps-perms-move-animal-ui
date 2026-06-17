@@ -113,7 +113,7 @@ export class CheckboxAnswer extends AnswerModel {
     return 'model/answer/checkbox/checkbox.njk'
   }
 
-  get html() {
+  get displayText() {
     const data = ensureArray(this._data?.[this.config.payloadKey])
 
     if (data.length === 0) {
@@ -123,7 +123,7 @@ export class CheckboxAnswer extends AnswerModel {
       .map((item) => {
         return this.config.options[item].label
       })
-      .join('<br /><br />')
+      .join('\n\n')
   }
 
   /**

@@ -68,16 +68,14 @@ describe('BiosecurityAnswer', () => {
     expect(value).toEqual(mockDataUploaded)
   })
 
-  it('should return the correct HTML', () => {
+  it('should return the correct displayText', () => {
     const answer = new BiosecurityMapAnswer(mockDataUploaded)
-    const html = answer.html
-    expect(html).toBe('Map uploaded')
+    expect(answer.displayText).toBe('Map uploaded')
   })
 
-  it('should return the correct HTML when skipped', () => {
+  it('should return the correct displayText when skipped', () => {
     const answer = new BiosecurityMapAnswer(mockDataSkipped)
-    const html = answer.html
-    expect(html).toBe(skippedMessage)
+    expect(answer.displayText).toBe(skippedMessage)
   })
 
   it('should convert to state correctly', () => {
