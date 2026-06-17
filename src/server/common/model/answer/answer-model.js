@@ -95,7 +95,7 @@ export class AnswerModel {
    * @returns {string}
    */
   get html() {
-    return escapeHtml(this.displayText).replace(/\r?\n/g, '<br />') ?? ''
+    return escapeHtml(this.displayText)?.replace(/\r?\n/g, '<br />') ?? ''
   }
 
   /**

@@ -9,7 +9,7 @@ class AnswerModelBasic extends AnswerModel {
 
 class AnswerModelWithDisplayText extends AnswerModelBasic {
   get displayText() {
-    return this._data ?? ''
+    return this._data
   }
 }
 
@@ -103,6 +103,11 @@ describe('AnswerModel.html', () => {
 
   it('should return an empty string when displayText is empty', () => {
     const answer = new AnswerModelWithDisplayText('')
+    expect(answer.html).toBe('')
+  })
+
+  it('should return an empty string when displayText returns undefined', () => {
+    const answer = new AnswerModelWithDisplayText()
     expect(answer.html).toBe('')
   })
 
