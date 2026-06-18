@@ -12,7 +12,7 @@ permissions:
 
 env:
   AWS_REGION: eu-west-2
-  AWS_ACCOUNT_ID: '094954420758'
+  AWS_ACCOUNT_ID: "094954420758"
 
 concurrency:
   group: publish-main
@@ -42,10 +42,7 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm run test -- --projects jest-projects/core.js
-          npm run test -- --projects jest-projects/fmd.js
-          npm run test -- --projects jest-projects/exotics.js
-          npm run test -- --projects jest-projects/tb.js
+          npm run test -- --projects jest-projects/core.js jest-projects/fmd.js jest-projects/exotics.js jest-projects/tb.js
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@7006c4492b2e0ee0f816d36501671557c97f5995 # master
