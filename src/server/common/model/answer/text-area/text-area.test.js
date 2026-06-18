@@ -1,3 +1,4 @@
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { TextAreaAnswer } from './text-area.js'
 /** @import {TextAreaConfig} from './text-area.js' */
 
@@ -346,5 +347,11 @@ describe('TextAreaAnswer.template', () => {
   it('should return the textArea model template', () => {
     const textArea = new TestOptionalTextAreaAnswer(validPayload)
     expect(textArea.template).toBe('model/answer/text-area/text-area.njk')
+  })
+})
+
+describe('TextAreaAnswer.config', () => {
+  it('should throw NotImplementedError for base class static config', () => {
+    expect(() => TextAreaAnswer.config).toThrow(NotImplementedError)
   })
 })

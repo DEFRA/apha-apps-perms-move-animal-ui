@@ -13,6 +13,16 @@ class AnswerModelWithDisplayText extends AnswerModelBasic {
   }
 }
 
+class AnswerModelComplete extends AnswerModelBasic {
+  toState() {
+    return this._data
+  }
+
+  get displayText() {
+    return this._data ?? ''
+  }
+}
+
 describe('AnswerModel', () => {
   const notImplementedError = 'Not Implemented'
   const answer = new AnswerModel()
@@ -33,6 +43,24 @@ describe('AnswerModel', () => {
 
     expect(answer._data).toBeUndefined()
     expect(answer._context).toBeUndefined()
+  })
+
+  it('should return text as the default type', () => {
+    const answer = new AnswerModelComplete('My answer')
+    expect(answer.type).toBe('text')
+  })
+
+  it('should return the expected data object', () => {
+    const answer = new AnswerModelComplete('My answer')
+    expect(answer.data).toEqual({
+      type: 'text',
+      value: 'My answer',
+      displayText: 'My answer'
+    })
+  })
+
+  it('should throw NotImplementedError when constructor receives data for base class', () => {
+    expect(() => new AnswerModel('My answer')).toThrow(notImplementedError)
   })
 
   it('should throw NotImplementedError when value getter is called', () => {
