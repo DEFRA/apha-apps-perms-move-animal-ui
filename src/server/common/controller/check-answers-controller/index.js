@@ -116,11 +116,12 @@ export class SubmitPageController extends QuestionPageController {
 
       return super.handlePost(req, h)
     } catch (err) {
-      if (err.output.statusCode === statusCodes.fileTooLarge) {
+      if (err?.output?.statusCode === statusCodes.fileTooLarge) {
         return h.redirect(this.fileTooLargePath)
       } else {
+        const message = err instanceof Error ? err.message : String(err)
         throw new Error(
-          `Failed to send application to case management API: ${err.message}`
+          `Failed to send application to case management API: ${message}`
         )
       }
     }

@@ -2,14 +2,13 @@ import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 
 const pageId = 'originType'
 const pageHeadingAndTitle = 'Which type of premises are the animals moving off?'
-const noInputError = 'Select type of premises the animals are moving off'
+const noInputError = 'Select where the animals are moving from'
 const valueArray = [
   'unrestricted-farm',
   'tb-restricted-farm',
   'afu',
   'iso-unit',
-  'other',
-  'unrestricted-farms-or-markets'
+  'other'
 ]
 
 class OriginTypePage extends RadioButtonBasePage {
@@ -21,7 +20,7 @@ class OriginTypePage extends RadioButtonBasePage {
     })
   }
 
-  pagePath = 'tb-origin/which-type-of-premises-are-the-animals-moving-off'
+  pagePath = 'origin/type-of-origin'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
@@ -43,10 +42,6 @@ class OriginTypePage extends RadioButtonBasePage {
 
   async selectAnotherTypeOfPremisesAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[4], nextPage)
-  }
-
-  async selectUnrestrictedFarmOrMarketAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[5], nextPage)
   }
 
   async originTypeErrorTest(valueIndex) {

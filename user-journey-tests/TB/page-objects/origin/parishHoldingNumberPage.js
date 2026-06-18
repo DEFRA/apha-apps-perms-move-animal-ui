@@ -4,19 +4,12 @@ const pageHeadingAndTitle =
   'What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?'
 
 class ParishHoldingNumberPage extends CPHBasePage {
-  pagePath =
-    'tb-origin/what-is-the-county-parish-holding-cph-number-of-where-the-animals-are-moving-off'
+  pagePath = 'origin/cph-number'
 
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
-  noInputError =
-    'Enter the CPH number of your farm or premises where the animals are moving off'
-
-  invalidFormatError =
-    'Enter the CPH number in the correct format without spaces, for example 12/345/6789'
-
   invalidFormatErrorLong =
-    'The CPH number of your farm or premises where the animals are moving off must be 11 characters or less'
+    'Enter the CPH number in the correct format, for example, 12/345/6789'
 }
 
 export default new ParishHoldingNumberPage()
