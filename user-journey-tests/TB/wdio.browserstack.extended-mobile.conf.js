@@ -9,6 +9,7 @@ export const config = {
     './specs/submissionConfirmation.spec.js',
     './specs/origin/pages/checkAnswers.spec.js',
     './specs/origin/pages/fiftyPercentWarning.spec.js',
+    './specs/origin/pages/originCountry.spec.js',
     './specs/origin/pages/originType.spec.js',
     './specs/receiving-the-licence/**/*.js',
     './specs/biosecurity-map/**/*.js',

@@ -230,7 +230,7 @@ describe('#SubmitPageController', () => {
   it('should log "User submitted application on behalf of themselves" when confirm option is selected', async () => {
     const dummyReferenceNumber = '12-1234-1234'
     spyOnConfig('featureFlags', {
-      sendToCaseManagement: true
+      prototypeMode: false
     })
 
     const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({

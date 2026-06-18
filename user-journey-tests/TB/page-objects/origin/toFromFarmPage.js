@@ -3,7 +3,8 @@ import { RadioButtonBasePage } from '../base-pages/radioButtonBasePage.js'
 const pageId = 'onOffFarm'
 const pageHeadingAndTitle =
   'Are you moving the animals on or off your farm or premises?'
-const noInputError = 'Select where the animals are moving'
+const noInputError =
+  'Select if you are moving animals on or off your farm or premises'
 const valueArray = ['on', 'off']
 
 class ToFromFarmPage extends RadioButtonBasePage {
@@ -15,8 +16,7 @@ class ToFromFarmPage extends RadioButtonBasePage {
     })
   }
 
-  pagePath =
-    'tb-origin/are-you-moving-the-animals-on-or-off-your-farm-or-premises'
+  pagePath = 'origin/to-or-from-own-premises'
 
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
