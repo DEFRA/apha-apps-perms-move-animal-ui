@@ -36,6 +36,6 @@ describe('origin type page test (on farm)', () => {
   })
 
   it('Should verify that on farm options are loaded (if on farm was previously selected)', async () => {
-    await verifyRadioButtonNumber(5)
+    await verifyRadioButtonNumber(4)
   })
 })

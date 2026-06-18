@@ -8,6 +8,8 @@ class ParishHoldingNumberPage extends CPHBasePage {
 
   pageTitle = pageHeadingAndTitle
   pageHeading = pageHeadingAndTitle
+  invalidFormatErrorLong =
+    'Enter the CPH number in the correct format, for example, 12/345/6789'
 }
 
 export default new ParishHoldingNumberPage()

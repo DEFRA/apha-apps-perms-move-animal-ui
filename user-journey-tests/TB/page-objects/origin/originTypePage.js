@@ -7,7 +7,6 @@ const valueArray = [
   'unrestricted-farm',
   'tb-restricted-farm',
   'afu',
-  'after-import-location',
   'iso-unit',
   'other'
 ]
@@ -37,16 +36,12 @@ class OriginTypePage extends RadioButtonBasePage {
     await super.selectRadioAndContinue(valueArray[2], nextPage)
   }
 
-  async selectAfterImportAndContinue(nextPage) {
+  async selectIsoUnitAndContinue(nextPage) {
     await super.selectRadioAndContinue(valueArray[3], nextPage)
   }
 
-  async selectIsoUnitAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[4], nextPage)
-  }
-
   async selectAnotherTypeOfPremisesAndContinue(nextPage) {
-    await super.selectRadioAndContinue(valueArray[5], nextPage)
+    await super.selectRadioAndContinue(valueArray[4], nextPage)
   }
 
   async originTypeErrorTest(valueIndex) {
