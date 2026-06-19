@@ -1,7 +1,6 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
-import { escapeHtml } from '../../../helpers/escape-text.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -93,11 +92,11 @@ export class AddressAnswer extends AnswerModel {
     return Object.keys(trimmedValues).length === 0 ? undefined : trimmedValues
   }
 
-  get html() {
+  get displayText() {
     return Object.values(this.value ?? [])
       .filter((line) => line.trim().length > 0)
-      .map((line) => escapeHtml(line.trim()))
-      .join('<br />')
+      .map((line) => line.trim())
+      .join('\n')
   }
 
   get template() {

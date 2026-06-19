@@ -73,7 +73,7 @@ export class DateAnswer extends AnswerModel {
     return this._data
   }
 
-  get html() {
+  get displayText() {
     const date = toBSTDate(this.value)
     return `${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`
   }

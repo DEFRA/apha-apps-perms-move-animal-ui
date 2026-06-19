@@ -1,3 +1,4 @@
+import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { TextAreaAnswer } from './text-area.js'
 /** @import {TextAreaConfig} from './text-area.js' */
 
@@ -248,40 +249,15 @@ describe('TextAreaAnswer.fromState', () => {
   })
 })
 
-describe('TestAnswer.html', () => {
+describe('TestAnswer.displayText', () => {
   it('should return the value if present', () => {
     const textAreaAnswer = new TestOptionalTextAreaAnswer(validPayload)
-    expect(textAreaAnswer.html).toBe(validPayload.textAreaPayload)
+    expect(textAreaAnswer.displayText).toBe(validPayload.textAreaPayload)
   })
 
   it('should return an empty string if payload is not present', () => {
     const textAreaAnswer = new TestOptionalTextAreaAnswer({})
-    expect(textAreaAnswer.html).toBe('')
-  })
-
-  it('should return a string after replacing newlines with <br>', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: 'line one\nline two'
-    })
-    expect(textAreaAnswer.html).toBe('line one<br />line two')
-  })
-
-  it('should return the escaped value if present', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: '<script>alert("XSS")</script>'
-    })
-    expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
-    )
-  })
-
-  it('should return the escaped value and replace newlines with <br>', () => {
-    const textAreaAnswer = new TestOptionalTextAreaAnswer({
-      textAreaPayload: '<script>alert("XSS")</script>\nline two'
-    })
-    expect(textAreaAnswer.html).toBe(
-      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;<br />line two'
-    )
+    expect(textAreaAnswer.displayText).toBe('')
   })
 })
 
@@ -371,5 +347,11 @@ describe('TextAreaAnswer.template', () => {
   it('should return the textArea model template', () => {
     const textArea = new TestOptionalTextAreaAnswer(validPayload)
     expect(textArea.template).toBe('model/answer/text-area/text-area.njk')
+  })
+})
+
+describe('TextAreaAnswer.config', () => {
+  it('should throw NotImplementedError for base class static config', () => {
+    expect(() => TextAreaAnswer.config).toThrow(NotImplementedError)
   })
 })

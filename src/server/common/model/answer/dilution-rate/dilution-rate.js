@@ -65,7 +65,7 @@ export class DilutionRateAnswer extends CheckboxAnswer {
     return Promise.resolve(viewModel)
   }
 
-  get html() {
+  get displayText() {
     const data = ensureArray(this._data?.[this.config.payloadKey])
 
     if (data.length === 0) {
@@ -77,6 +77,6 @@ export class DilutionRateAnswer extends CheckboxAnswer {
           ? `I confirm a dilution rate of 1:${value} is used on the farm or premises`
           : 'I confirm the disinfectant is used undiluted on the farm or premises'
       })
-      .join('<br /><br />')
+      .join('\n\n')
   }
 }

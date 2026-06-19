@@ -91,36 +91,20 @@ describe('AutocompleteAnswer.value', () => {
   })
 })
 
-describe('AutocompleteAnswer.html', () => {
-  it('should return escaped HTML value if present', () => {
+describe('AutocompleteAnswer.displayText', () => {
+  it('should return the value if present', () => {
     const autocompleteAnswer = new TestAutocompleteAnswer(validPayload)
-    expect(autocompleteAnswer.html).toBe('option1')
+    expect(autocompleteAnswer.displayText).toBe('option1')
   })
 
   it('should return empty string if no data', () => {
     const autocompleteAnswer = new TestAutocompleteAnswer()
-    expect(autocompleteAnswer.html).toBe('')
+    expect(autocompleteAnswer.displayText).toBe('')
   })
 
   it('should return empty string if payload key is missing', () => {
     const autocompleteAnswer = new TestAutocompleteAnswer({})
-    expect(autocompleteAnswer.html).toBe('')
-  })
-
-  it('should escape HTML characters', () => {
-    const payload = { autocompletePayload: '<script>alert("XSS")</script>' }
-    const autocompleteAnswer = new TestAutocompleteAnswer(payload)
-    expect(autocompleteAnswer.html).toBe(
-      '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
-    )
-  })
-
-  it('should escape special characters', () => {
-    const payload = { autocompletePayload: 'Test & \'quotes\' "and" more' }
-    const autocompleteAnswer = new TestAutocompleteAnswer(payload)
-    expect(autocompleteAnswer.html).toBe(
-      'Test &amp; &#39;quotes&#39; &quot;and&quot; more'
-    )
+    expect(autocompleteAnswer.displayText).toBe('')
   })
 })
 
