@@ -3,7 +3,6 @@ import { cphNumber } from './cph-number/index.js'
 import { address } from './address/index.js'
 import { originSummary } from './summary/index.js'
 import { originType } from './origin-type/index.js'
-import { premisesType } from './premises-type-exit-page/index.js'
 import { originFarmCph } from './origin-farm-cph/index.js'
 import { originFarmAddress } from './origin-farm-address/index.js'
 import { fiftyPercentWarning } from './fifty-percent-warning/index.js'
@@ -31,7 +30,6 @@ export const origin = {
         originFarmAddress,
         address,
         originSummary,
-        premisesType,
         fiftyPercentWarning,
         originContactTbRestrictedFarm
       ])
