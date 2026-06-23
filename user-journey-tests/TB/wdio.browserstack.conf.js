@@ -7,8 +7,7 @@ export const config = merge(wdioConf, {
   exclude: [
     './specs/noJavascript/**/*.spec.js',
     './specs/biosecurity-map/biosecurityMapUpload.spec.js',
-    './specs/identification/identifiersAnswers.spec.js',
-    './specs/origin/pages/originCountry.spec.js'
+    './specs/identification/identifiersAnswers.spec.js'
   ],
   user: process.env.BROWSERSTACK_USER,
   key: process.env.BROWSERSTACK_KEY,

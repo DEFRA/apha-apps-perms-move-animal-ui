@@ -5,7 +5,6 @@ export const config = createLocalChromeConfig({
   exclude: [
     './specs/noJavascript/**/*.spec.js',
     './specs/identification/identifiersAnswers.spec.js',
-    './specs/origin/pages/originCountry.spec.js',
     './specs/destination/destinationAnswersOnFarm.spec.js',
     './specs/destination/destinationAddress.spec.js'
   ],

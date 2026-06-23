@@ -8,7 +8,6 @@ export const config = {
     './specs/finalAnswers.spec.js',
     './specs/submissionConfirmation.spec.js',
     './specs/origin/pages/checkAnswers.spec.js',
-    './specs/origin/pages/originCountry.spec.js',
     './specs/receiving-the-licence/licenceAnswers.spec.js',
     './specs/origin/pages/fiftyPercentWarning.spec.js',
     './specs/biosecurity-map/**/*.js',

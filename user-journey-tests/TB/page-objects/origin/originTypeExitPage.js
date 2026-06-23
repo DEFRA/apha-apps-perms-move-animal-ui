@@ -2,21 +2,23 @@ import { Page } from '../page.js'
 import * as page from '../../helpers/page.js'
 
 const pageHeadingAndTitle =
-  'This service is not available for your movement type'
+  'You need to contact the TB restricted farm the animals are moving onto'
 
 class OriginTypeExitPage extends Page {
-  pagePath = 'origin/can-not-use-service-premises-type'
+  pagePath = 'origin/contact-the-tb-restricted-farm'
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
   get viewApplicationLink() {
-    return $('[data-testid="view-application-link"]')
+    return $(
+      'a[href*="tb-restricted-cattle-application-for-movement-licence-in-england"]'
+    )
   }
 
   async verifyViewApplicationLink() {
-    await page.selectLinkAndVerifyTitle(
+    await page.validateHrefOfElement(
       this.viewApplicationLink,
-      'TB restricted cattle: application for movement licence in England - GOV.UK'
+      'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
     )
   }
 }
