@@ -11,7 +11,7 @@ import signInPage from '../page-objects/signInPage.js'
 
 const expectedLinks = [
   'https://www.gov.uk/',
-  'https://www.gov.uk/guidance/bovine-tb-getting-your-cattle-tested-in-england',
+  'https://www.gov.uk/guidance/bovine-tb-get-your-cattle-tested-in-england',
   'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
 ]
 describe('Landing page test', () => {
