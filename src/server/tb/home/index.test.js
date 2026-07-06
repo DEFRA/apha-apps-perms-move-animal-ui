@@ -41,59 +41,23 @@ describe('HomePage', () => {
       spyOnConfig('serviceName', 'Move animals under disease controls')
     })
 
-    describe('when auth is enabled', () => {
-      beforeEach(() => {
-        spyOnConfig('featureFlags', {
-          authEnabled: true,
-          authRequired: true
-        })
-      })
-
-      it('should match content', async () => {
-        const { payload } = await server.inject(
-          withCsrfProtection(
-            {
-              method: 'GET',
-              url: pageUrl
-            },
-            {
-              Cookie: session.sessionID
-            }
-          )
+    it('should match content', async () => {
+      const { payload } = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'GET',
+            url: pageUrl
+          },
+          {
+            Cookie: session.sessionID
+          }
         )
+      )
 
-        const content =
-          parseDocument(payload).querySelector('#main-content')?.innerHTML
+      const content =
+        parseDocument(payload).querySelector('#main-content')?.innerHTML
 
-        expect(content).toMatchSnapshot()
-      })
-    })
-
-    describe('when auth is disabled', () => {
-      beforeEach(() => {
-        spyOnConfig('featureFlags', {
-          authEnabled: false
-        })
-      })
-
-      it('should match content', async () => {
-        const { payload } = await server.inject(
-          withCsrfProtection(
-            {
-              method: 'GET',
-              url: pageUrl
-            },
-            {
-              Cookie: session.sessionID
-            }
-          )
-        )
-
-        const content =
-          parseDocument(payload).querySelector('#main-content')?.innerHTML
-
-        expect(content).toMatchSnapshot()
-      })
+      expect(content).toMatchSnapshot()
     })
   })
 })
