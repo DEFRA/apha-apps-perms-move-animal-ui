@@ -11,14 +11,14 @@ class OriginTypeExitPage extends Page {
 
   get viewApplicationLink() {
     return $(
-      'a[href*="tb-restricted-cattle-application-for-movement-licence-in-england"]'
+      'a[href*="tb-movement-licence-moving-animals-between-restricted-premises-in-england"]'
     )
   }
 
   async verifyViewApplicationLink() {
     await page.validateHrefOfElement(
       this.viewApplicationLink,
-      'https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england'
+      'https://www.gov.uk/government/publications/tb-movement-licence-moving-animals-between-restricted-premises-in-england'
     )
   }
 }

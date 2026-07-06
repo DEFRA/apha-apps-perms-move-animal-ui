@@ -25,7 +25,7 @@ exports[`HomePage content checks should match content 1`] = `
         <ul class="govuk-list govuk-list--bullet">
           <li>
             from an unrestricted farm or market to a TB restricted farm or
-            premises.
+            premises
           </li>
           <li>
             from a TB restricted farm or premises to:
@@ -42,7 +42,7 @@ exports[`HomePage content checks should match content 1`] = `
               <li>a dedicated TB sale (orange market)</li>
             </ul>
           </li>
-          <li>from an AFU (including AFUE) to an AFU (including AFUE).</li>
+          <li>from an AFU (including AFUE) to an AFU (including AFUE)</li>
         </ul>
         <h3 class="govuk-heading-m">When you do not need this service</h3>
         <p class="govuk-body">
@@ -71,7 +71,7 @@ exports[`HomePage content checks should match content 1`] = `
         </p>
         <p class="govuk-body">
           If the destination farm or premises cannot apply, use
-          <a href="https://www.gov.uk/government/publications/tb-restricted-cattle-application-for-movement-licence-in-england">
+          <a href="https://www.gov.uk/government/publications/tb-movement-licence-moving-animals-between-restricted-premises-in-england">
             this application form</a>
           instead.
         </p>
