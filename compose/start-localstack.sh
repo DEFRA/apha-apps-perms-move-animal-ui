@@ -15,6 +15,7 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://my-bucket
 
 # queues
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name cdp-clamav-results
+aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name cdp-uploader-download-requests
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name cdp-uploader-scan-results-callback.fifo --attributes "{\"FifoQueue\":\"true\",\"ContentBasedDeduplication\": \"true\"}"
 aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name apha_apps_perms_submitted_applications
 
