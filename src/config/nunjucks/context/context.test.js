@@ -1,5 +1,8 @@
 import { extractJourneyIndex } from '~/src/config/nunjucks/context/context.js'
-import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
+import {
+  spyOnConfig,
+  spyOnConfigMany
+} from '~/src/server/common/test-helpers/config.js'
 
 const mockReadFileSync = jest.fn()
 const mockLoggerError = jest.fn()
@@ -13,7 +16,11 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
 }))
 
 describe('#context', () => {
-  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
+  const mockRequest = {
+    path: '/',
+    app: { uuid: 'unique-identifier' },
+    headers: {}
+  }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
@@ -39,27 +46,81 @@ describe('#context', () => {
 
     it('should provide the expected start page', () => {
       expect(
-        extractJourneyIndex({
-          path: '/fmd/url'
-        })
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/fmd/url',
+            headers: {}
+          })
+        )
       ).toBe('/fmd/')
 
       expect(
-        extractJourneyIndex({
-          path: '/exotics/url'
-        })
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/exotics/url',
+            headers: {}
+          })
+        )
       ).toBe('/exotics/')
 
       expect(
-        extractJourneyIndex({
-          path: '/privacy-policy'
-        })
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/privacy-policy',
+            headers: {}
+          })
+        )
       ).toBe('/')
 
       expect(
-        extractJourneyIndex({
-          path: '/anything else'
-        })
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/anything else',
+            headers: {}
+          })
+        )
+      ).toBe('/')
+    })
+
+    it('should return gov.uk URL when domain matches service.gov.uk', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.service.gov.uk'
+            }
+          })
+        )
+      ).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should return default URL when domain does not match', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.defra.gov.uk'
+            }
+          })
+        )
       ).toBe('/')
     })
 
@@ -138,7 +199,11 @@ describe('#context', () => {
 })
 
 describe('#context cache', () => {
-  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
+  const mockRequest = {
+    path: '/',
+    app: { uuid: 'unique-identifier' },
+    headers: {}
+  }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
