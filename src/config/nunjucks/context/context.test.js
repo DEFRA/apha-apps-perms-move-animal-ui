@@ -82,6 +82,48 @@ describe('#context', () => {
       ).toBe('/')
     })
 
+    it('should return gov.uk URL when domain matches', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.service.gov.uk'
+            }
+          })
+        )
+      ).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should return default URL when domain does not match', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.defra.gov.uk'
+            }
+          })
+        )
+      ).toBe('/')
+    })
+
     it('should return gov.uk URL when domain matches with port', () => {
       spyOnConfigMany({
         'homepage.serviceGovUkDomain':
