@@ -371,6 +371,22 @@ export const config = convict({
     default: true,
     env: 'CLEAR_SESSION_ON_SEND'
   },
+  homepage: {
+    serviceGovUkDomain: {
+      doc: 'The service.gov.uk domain to match for homepage redirect',
+      format: String,
+      nullable: true,
+      default: null,
+      env: 'HOMEPAGE_SERVICE_GOV_UK_DOMAIN'
+    },
+    serviceGovUkRedirectUrl: {
+      doc: 'The URL to redirect to when request comes from service.gov.uk domain',
+      format: String,
+      nullable: true,
+      default: null,
+      env: 'HOMEPAGE_SERVICE_GOV_UK_REDIRECT_URL'
+    }
+  },
   api: apiConfig
 })
 

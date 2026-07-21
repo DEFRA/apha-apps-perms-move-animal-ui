@@ -4,7 +4,10 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { config } from '~/src/config/config.js'
 import SessionTestHelper from '~/src/server/common/test-helpers/session-helper.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
+import {
+  spyOnConfig,
+  spyOnConfigMany
+} from '~/src/server/common/test-helpers/config.js'
 
 const pageUrl = '/'
 
@@ -58,6 +61,67 @@ describe('HomePage', () => {
         parseDocument(payload).querySelector('#main-content')?.innerHTML
 
       expect(content).toMatchSnapshot()
+    })
+  })
+
+  describe('domain-based redirect', () => {
+    beforeEach(() => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+    })
+
+    it('should redirect when domain matches', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.service.gov.uk'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.headers.location).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should show homepage when domain does not match', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.defra.gov.uk'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(parseDocument(response.payload).title).toBe(
+        config.get('serviceName')
+      )
+    })
+
+    it('should show homepage when config not set', async () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain': null,
+        'homepage.serviceGovUkRedirectUrl': null
+      })
+
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.service.gov.uk'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(parseDocument(response.payload).title).toBe(
+        config.get('serviceName')
+      )
     })
   })
 })

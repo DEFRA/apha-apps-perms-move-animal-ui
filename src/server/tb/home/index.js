@@ -16,7 +16,27 @@ export class HomePage extends Page {
 
 export const homePage = new HomePage()
 
+class HomePageController extends PageController {
+  async getHandler(req, h) {
+    const serviceGovUkDomain = config.get('homepage.serviceGovUkDomain')
+    const serviceGovUkRedirectUrl = config.get(
+      'homepage.serviceGovUkRedirectUrl'
+    )
+
+    if (serviceGovUkDomain && serviceGovUkRedirectUrl) {
+      const host = req.headers.host
+      const requestHost = Array.isArray(host) ? host[0] : host
+      const hostname = requestHost?.split(':')[0]
+      if (hostname === serviceGovUkDomain) {
+        return h.redirect(serviceGovUkRedirectUrl)
+      }
+    }
+
+    return this.handleGet(req, h)
+  }
+}
+
 /** @satisfies {ServerRegisterPluginObject<void>} */
-export const home = new PageController(homePage, {
+export const home = new HomePageController(homePage, {
   methods: ['GET']
 }).plugin()
