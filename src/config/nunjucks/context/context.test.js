@@ -206,7 +206,25 @@ describe('#context', () => {
       )
     })
 
-    it('Should provide expected context', () => {
+    it('should return default URL when host header is missing', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {}
+          })
+        )
+      ).toBe('/')
+    })
+
+    it('Should provide expected context with request', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
@@ -240,6 +258,14 @@ describe('#context', () => {
         serviceName: 'Move animals under disease controls',
         initialServiceUrl: '/'
       })
+    })
+
+    it('Should provide expected context when request is null', async () => {
+      const { context } = await import(
+        '~/src/config/nunjucks/context/context.js'
+      )
+      const result = context(null)
+      expect(result.initialServiceUrl).toBe('/')
     })
 
     describe('With valid asset path', () => {
