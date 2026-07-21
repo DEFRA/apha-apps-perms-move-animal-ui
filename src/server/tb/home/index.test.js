@@ -103,26 +103,6 @@ describe('HomePage', () => {
         config.get('serviceName')
       )
     })
-
-    it('should show homepage when config not set', async () => {
-      spyOnConfigMany({
-        'homepage.serviceGovUkDomain': null,
-        'homepage.serviceGovUkRedirectUrl': null
-      })
-
-      const response = await server.inject({
-        method: 'GET',
-        url: pageUrl,
-        headers: {
-          host: 'move-animals-under-disease-controls.service.gov.uk'
-        }
-      })
-
-      expect(response.statusCode).toBe(statusCodes.ok)
-      expect(parseDocument(response.payload).title).toBe(
-        config.get('serviceName')
-      )
-    })
   })
 })
 

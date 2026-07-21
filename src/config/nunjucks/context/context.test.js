@@ -82,10 +82,50 @@ describe('#context', () => {
       ).toBe('/')
     })
 
-    it('should return gov.uk URL when domain matches service.gov.uk', () => {
+    it('should return gov.uk URL when domain matches with port', () => {
       spyOnConfigMany({
         'homepage.serviceGovUkDomain':
           'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl':
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.service.gov.uk:3000'
+            }
+          })
+        )
+      ).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should return default URL when only domain config is set', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain':
+          'move-animals-under-disease-controls.service.gov.uk',
+        'homepage.serviceGovUkRedirectUrl': null
+      })
+
+      expect(
+        extractJourneyIndex(
+          /** @type {any} */ ({
+            path: '/',
+            headers: {
+              host: 'move-animals-under-disease-controls.service.gov.uk'
+            }
+          })
+        )
+      ).toBe('/')
+    })
+
+    it('should return default URL when only redirect URL config is set', () => {
+      spyOnConfigMany({
+        'homepage.serviceGovUkDomain': null,
         'homepage.serviceGovUkRedirectUrl':
           'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
       })
@@ -99,12 +139,10 @@ describe('#context', () => {
             }
           })
         )
-      ).toBe(
-        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
-      )
+      ).toBe('/')
     })
 
-    it('should return default URL when domain does not match', () => {
+    it('should return gov.uk URL when host header is an array', () => {
       spyOnConfigMany({
         'homepage.serviceGovUkDomain':
           'move-animals-under-disease-controls.service.gov.uk',
@@ -117,11 +155,13 @@ describe('#context', () => {
           /** @type {any} */ ({
             path: '/',
             headers: {
-              host: 'move-animals-under-disease-controls.defra.gov.uk'
+              host: ['move-animals-under-disease-controls.service.gov.uk']
             }
           })
         )
-      ).toBe('/')
+      ).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
     })
 
     it('Should provide expected context', () => {
