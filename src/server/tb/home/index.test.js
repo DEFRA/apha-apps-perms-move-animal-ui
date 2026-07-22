@@ -8,7 +8,6 @@ import {
   spyOnConfig,
   spyOnConfigMany
 } from '~/src/server/common/test-helpers/config.js'
-import { homePage } from '~/src/server/tb/home/index.js'
 
 const pageUrl = '/'
 

@@ -20,18 +20,6 @@ let webpackManifest
  * @param {Request} req
  */
 const getServiceUrl = (req) => {
-  const serviceGovUkDomain = config.get('homepage.serviceGovUkDomain')
-  const serviceGovUkRedirectUrl = config.get('homepage.serviceGovUkRedirectUrl')
-
-  if (serviceGovUkDomain && serviceGovUkRedirectUrl) {
-    const host = req.headers.host
-    const requestHost = Array.isArray(host) ? host[0] : host
-    const hostname = requestHost?.split(':')[0]
-    if (hostname === serviceGovUkDomain) {
-      return serviceGovUkRedirectUrl
-    }
-  }
-
   const knownJourneys = {
     fmd: '/fmd/',
     exotics: '/exotics/'
