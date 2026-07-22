@@ -8,6 +8,7 @@ import {
   spyOnConfig,
   spyOnConfigMany
 } from '~/src/server/common/test-helpers/config.js'
+import { homePage } from '~/src/server/tb/home/index.js'
 
 const pageUrl = '/'
 
@@ -96,6 +97,34 @@ describe('HomePage', () => {
         headers: {
           host: 'move-animals-under-disease-controls.defra.gov.uk'
         }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(parseDocument(response.payload).title).toBe(
+        config.get('serviceName')
+      )
+    })
+
+    it('should redirect when domain matches with port', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.service.gov.uk:3000'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.headers.location).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should show homepage when host header is missing', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {}
       })
 
       expect(response.statusCode).toBe(statusCodes.ok)
