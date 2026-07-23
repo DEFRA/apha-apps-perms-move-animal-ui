@@ -151,6 +151,20 @@ CONSUMER_BUCKETS=apha
 MOCK_VIRUS_SCAN_ENABLED=false
 ```
 
+To enable domain-based homepage redirects (for multi-domain deployments), set the following environment variables:
+
+```bash
+HOMEPAGE_SERVICE_GOV_UK_DOMAIN=move-animals-under-disease-controls.service.gov.uk
+HOMEPAGE_SERVICE_GOV_UK_REDIRECT_URL=https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls
+```
+
+When both variables are set:
+
+- **Homepage redirect**: Requests to the homepage (GET /) from the configured service.gov.uk domain will be redirected to the specified URL
+- **Header link**: The service name link in the header will also use the redirect URL for users on the service.gov.uk domain
+
+Requests from other domains (e.g., defra.gov.uk, localhost) will show the standard homepage with the normal header link behavior. If either variable is not set, the redirect functionality is disabled.
+
 ### Plop scaffolding
 
 Use [Plop](https://plopjs.com/) to scaffold new journeys, sections and pages so that naming, validation and file locations stay consistent with the existing structure. Run it from the project root:

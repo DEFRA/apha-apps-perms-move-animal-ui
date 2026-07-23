@@ -60,6 +60,75 @@ describe('HomePage', () => {
       expect(content).toMatchSnapshot()
     })
   })
+
+  describe('domain-based redirect', () => {
+    beforeEach(() => {
+      spyOnConfig('homepage', {
+        serviceGovUkDomain:
+          'move-animals-under-disease-controls.service.gov.uk',
+        serviceGovUkRedirectUrl:
+          'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      })
+    })
+
+    it('should redirect when domain matches', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.service.gov.uk'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.headers.location).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should show homepage when domain does not match', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.defra.gov.uk'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(parseDocument(response.payload).title).toBe(
+        config.get('serviceName')
+      )
+    })
+
+    it('should redirect when domain matches with port', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {
+          host: 'move-animals-under-disease-controls.service.gov.uk:3000'
+        }
+      })
+
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.headers.location).toBe(
+        'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
+      )
+    })
+
+    it('should show homepage when host header is missing', async () => {
+      const response = await server.inject({
+        method: 'GET',
+        url: pageUrl,
+        headers: {}
+      })
+
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(parseDocument(response.payload).title).toBe(
+        config.get('serviceName')
+      )
+    })
+  })
 })
 
 /**
