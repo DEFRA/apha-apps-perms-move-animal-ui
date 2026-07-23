@@ -13,11 +13,7 @@ jest.mock('~/src/server/common/helpers/logging/logger.js', () => ({
 }))
 
 describe('#context', () => {
-  const mockRequest = {
-    path: '/',
-    app: { uuid: 'unique-identifier' },
-    headers: {}
-  }
+  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult
@@ -43,43 +39,31 @@ describe('#context', () => {
 
     it('should provide the expected start page', () => {
       expect(
-        extractJourneyIndex(
-          /** @type {any} */ ({
-            path: '/fmd/url',
-            headers: {}
-          })
-        )
+        extractJourneyIndex({
+          path: '/fmd/url'
+        })
       ).toBe('/fmd/')
 
       expect(
-        extractJourneyIndex(
-          /** @type {any} */ ({
-            path: '/exotics/url',
-            headers: {}
-          })
-        )
+        extractJourneyIndex({
+          path: '/exotics/url'
+        })
       ).toBe('/exotics/')
 
       expect(
-        extractJourneyIndex(
-          /** @type {any} */ ({
-            path: '/privacy-policy',
-            headers: {}
-          })
-        )
+        extractJourneyIndex({
+          path: '/privacy-policy'
+        })
       ).toBe('/')
 
       expect(
-        extractJourneyIndex(
-          /** @type {any} */ ({
-            path: '/anything else',
-            headers: {}
-          })
-        )
+        extractJourneyIndex({
+          path: '/anything else'
+        })
       ).toBe('/')
     })
 
-    it('Should provide expected context with request', () => {
+    it('Should provide expected context', () => {
       expect(contextResult).toEqual({
         assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
@@ -113,14 +97,6 @@ describe('#context', () => {
         serviceName: 'Move animals under disease controls',
         initialServiceUrl: '/'
       })
-    })
-
-    it('Should provide expected context when request is null', async () => {
-      const { context } = await import(
-        '~/src/config/nunjucks/context/context.js'
-      )
-      const result = context(null)
-      expect(result.initialServiceUrl).toBe('/')
     })
 
     describe('With valid asset path', () => {
@@ -162,11 +138,7 @@ describe('#context', () => {
 })
 
 describe('#context cache', () => {
-  const mockRequest = {
-    path: '/',
-    app: { uuid: 'unique-identifier' },
-    headers: {}
-  }
+  const mockRequest = { path: '/', app: { uuid: 'unique-identifier' } }
   const manageAccountUrl =
     'https://your-account.cpdev.cui.defra.gov.uk/management'
   let contextResult

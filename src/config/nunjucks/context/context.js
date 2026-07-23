@@ -16,10 +16,7 @@ const manifestPath = path.join(
 /** @type {Record<string, string> | undefined} */
 let webpackManifest
 
-/**
- * @param {Request} req
- */
-const getServiceUrl = (req) => {
+export const extractJourneyIndex = (req) => {
   const knownJourneys = {
     fmd: '/fmd/',
     exotics: '/exotics/'
@@ -33,8 +30,6 @@ const getServiceUrl = (req) => {
 
   return '/'
 }
-
-export const extractJourneyIndex = getServiceUrl
 
 /**
  * @param {Request | null} request
@@ -51,7 +46,7 @@ export function context(request) {
 
   // we have to use a different property name here
   // to avoid clashing with the serviceUrl property added by defra-forms-engine
-  const initialServiceUrl = request ? extractJourneyIndex(request) : '/'
+  const initialServiceUrl = extractJourneyIndex(request)
 
   return {
     initialServiceUrl,
