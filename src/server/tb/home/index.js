@@ -18,10 +18,9 @@ export const homePage = new HomePage()
 
 class HomePageController extends PageController {
   async getHandler(req, h) {
-    const serviceGovUkDomain = config.get('homepage.serviceGovUkDomain')
-    const serviceGovUkRedirectUrl = config.get(
-      'homepage.serviceGovUkRedirectUrl'
-    )
+    const homepage = config.get('homepage')
+    const serviceGovUkDomain = homepage.serviceGovUkDomain
+    const serviceGovUkRedirectUrl = homepage.serviceGovUkRedirectUrl
 
     if (serviceGovUkDomain && serviceGovUkRedirectUrl) {
       const host = req.headers.host

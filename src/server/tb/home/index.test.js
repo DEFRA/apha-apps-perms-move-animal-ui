@@ -4,10 +4,7 @@ import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { config } from '~/src/config/config.js'
 import SessionTestHelper from '~/src/server/common/test-helpers/session-helper.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import {
-  spyOnConfig,
-  spyOnConfigMany
-} from '~/src/server/common/test-helpers/config.js'
+import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
 
 const pageUrl = '/'
 
@@ -66,10 +63,10 @@ describe('HomePage', () => {
 
   describe('domain-based redirect', () => {
     beforeEach(() => {
-      spyOnConfigMany({
-        'homepage.serviceGovUkDomain':
+      spyOnConfig('homepage', {
+        serviceGovUkDomain:
           'move-animals-under-disease-controls.service.gov.uk',
-        'homepage.serviceGovUkRedirectUrl':
+        serviceGovUkRedirectUrl:
           'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
       })
     })
