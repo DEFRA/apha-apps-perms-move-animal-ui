@@ -27,7 +27,7 @@ class HomePageController extends PageController {
       const requestHost = Array.isArray(host) ? host[0] : host
       const hostname = requestHost?.split(':')[0]
       if (hostname === serviceGovUkDomain) {
-        return h.redirect(serviceGovUkRedirectUrl)
+        return h.redirect(serviceGovUkRedirectUrl).permanent()
       }
     }
 

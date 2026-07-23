@@ -80,7 +80,7 @@ describe('HomePage', () => {
         }
       })
 
-      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.statusCode).toBe(statusCodes.movedPermanently)
       expect(response.headers.location).toBe(
         'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
       )
@@ -110,7 +110,7 @@ describe('HomePage', () => {
         }
       })
 
-      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(response.statusCode).toBe(statusCodes.movedPermanently)
       expect(response.headers.location).toBe(
         'https://www.gov.uk/guidance/bovine-tb-move-animals-under-disease-controls'
       )
