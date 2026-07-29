@@ -1,0 +1,14 @@
+{
+  "common": {
+    "serviceName": "Move animals under disease controls",
+    "back": "Back",
+    "feedbackBannerHtml": "This is a new service. Help us improve it and <a data-testid=\"feedback-link\" target=\"_blank\" class=\"govuk-link\" href=\"https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk\">give your feedback (opens in new tab)</a>.",
+    "helpFooterText": "If you need help with the service you can call 03000 200 301.",
+    "startNow": "Start now"
+  },
+  "tb": {
+    "home": {
+      "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions."
+    }
+  }
+}

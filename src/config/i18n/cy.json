@@ -1,0 +1,14 @@
+{
+  "common": {
+    "serviceName": "Symud anifeiliaid o dan reolaethau clefydau",
+    "back": "Yn ol",
+    "feedbackBannerHtml": "Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a <a data-testid=\"feedback-link\" target=\"_blank\" class=\"govuk-link\" href=\"https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk\">rhowch eich adborth (yn agor mewn tab newydd)</a>.",
+    "helpFooterText": "Os oes angen help arnoch gyda'r gwasanaeth, gallwch ffonio 03000 200 301.",
+    "startNow": "Dechrau nawr"
+  },
+  "tb": {
+    "home": {
+      "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud TB. Rhaid i chi gael trwydded cyn symud gwartheg i fferm neu fangre sydd dan gyfyngiadau TB neu oddi yno."
+    }
+  }
+}
