@@ -26,6 +26,7 @@
   },
   "tb": {
     "origin": {
+      "title": "Tarddiad y symudiad",
       "onOffFarm": {
         "question": "Ydych chi'n symud yr anifeiliaid i'ch fferm neu fangre neu oddi yno?"
       }
