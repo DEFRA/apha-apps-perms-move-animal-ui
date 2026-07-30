@@ -50,6 +50,7 @@ export function context(request) {
   const initialServiceUrl = extractJourneyIndex(request)
 
   return {
+    request,
     initialServiceUrl,
     assetPath: `${assetPath}/assets/rebrand`,
     serviceName: translate(
@@ -68,9 +69,6 @@ export function context(request) {
     getAssetPath(asset) {
       const webpackAssetPath = webpackManifest?.[asset]
       return `${assetPath}/${webpackAssetPath ?? asset}`
-    },
-    translate(key, fallback, params) {
-      return translate(request, key, fallback, params)
     }
   }
 }

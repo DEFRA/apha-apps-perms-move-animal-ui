@@ -93,6 +93,7 @@ export class QuestionPageController extends GenericPageController {
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
+        continueButtonText: translate(req, 'common.continue', 'Continue'),
         ...args,
         ...(await this.page.viewProps(req))
       })
@@ -109,6 +110,7 @@ export class QuestionPageController extends GenericPageController {
       value: answer.value,
       answer,
       answerViewModel: await answer.viewModel(viewModelOptions),
+      continueButtonText: translate(req, 'common.continue', 'Continue'),
       ...args,
       ...(await this.page.viewProps(req))
     })
