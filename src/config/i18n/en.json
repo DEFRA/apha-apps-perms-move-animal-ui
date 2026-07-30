@@ -7,6 +7,11 @@
     "startNow": "Start now"
   },
   "tb": {
+    "origin": {
+      "onOffFarm": {
+        "question": "Are you moving the animals on or off your farm or premises?"
+      }
+    },
     "home": {
       "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions."
     }

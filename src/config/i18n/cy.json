@@ -7,6 +7,11 @@
     "startNow": "Dechrau nawr"
   },
   "tb": {
+    "origin": {
+      "onOffFarm": {
+        "question": "Ydych chi'n symud yr anifeiliaid i'ch fferm neu fangre neu oddi yno?"
+      }
+    },
     "home": {
       "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud TB. Rhaid i chi gael trwydded cyn symud gwartheg i fferm neu fangre sydd dan gyfyngiadau TB neu oddi yno."
     }
