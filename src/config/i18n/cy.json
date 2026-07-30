@@ -28,7 +28,15 @@
     "origin": {
       "title": "Tarddiad y symudiad",
       "onOffFarm": {
-        "question": "Ydych chi'n symud yr anifeiliaid i'ch fferm neu fangre neu oddi yno?"
+        "question": "Ydych chi'n symud yr anifeiliaid i'ch fferm neu fangre neu oddi yno?",
+        "options": {
+          "on": {
+            "label": "I'r fferm neu'r safle"
+          },
+          "off": {
+            "label": "Oddi ar y fferm neu'r safle"
+          }
+        }
       }
     },
     "home": {
