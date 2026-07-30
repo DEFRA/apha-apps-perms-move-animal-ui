@@ -7,6 +7,14 @@
     "startNow": "Dechrau nawr",
     "continue": "Parhau",
     "change": "Newid",
+    "taskList": {
+      "progress": {
+        "youHave": "Mae gennych",
+        "outOf": "o",
+        "sectionsLeft": "rhanbarth i'w gwblhau.",
+        "allSectionsComplete": "Rydych chi wedi cwblhau pob adran."
+      }
+    },
     "checkAnswers": {
       "sectionHeading": "Gwiriwch eich atebion cyn i chi barhau â'ch cais"
     }
@@ -19,6 +27,10 @@
     },
     "home": {
       "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud TB. Rhaid i chi gael trwydded cyn symud gwartheg i fferm neu fangre sydd dan gyfyngiadau TB neu oddi yno."
+    },
+    "taskList": {
+      "title": "Eich cais am drwydded symud TB gwartheiddio",
+      "buttonText": "Adolygu a chyflwyno"
     }
   }
 }

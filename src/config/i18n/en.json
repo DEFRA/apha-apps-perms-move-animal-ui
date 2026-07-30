@@ -7,6 +7,14 @@
     "startNow": "Start now",
     "continue": "Continue",
     "change": "Change",
+    "taskList": {
+      "progress": {
+        "youHave": "You have",
+        "outOf": "out of",
+        "sectionsLeft": "sections left to complete.",
+        "allSectionsComplete": "You have completed all sections."
+      }
+    },
     "checkAnswers": {
       "sectionHeading": "Check your answers before you continue your application"
     }
@@ -19,6 +27,10 @@
     },
     "home": {
       "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions."
+    },
+    "taskList": {
+      "title": "Your Bovine Tuberculosis (TB) movement licence application",
+      "buttonText": "Review and submit"
     }
   }
 }
