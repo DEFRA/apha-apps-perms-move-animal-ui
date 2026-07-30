@@ -4,6 +4,7 @@
 
 import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
 import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
+import { translate } from '../../helpers/i18n/index.js'
 
 export class SummaryPageController extends GenericPageController {
   /** @type {typeof StateManager} */
@@ -73,8 +74,17 @@ export class SummaryPageController extends GenericPageController {
     }
 
     return res.view(this.indexView, {
-      pageTitle: this.page.pageTitle,
-      heading: this.page.pageHeading,
+      pageTitle: translate(
+        req,
+        'common.checkAnswers.sectionHeading',
+        this.page.pageTitle
+      ),
+      heading: translate(
+        req,
+        'common.checkAnswers.sectionHeading',
+        this.page.pageHeading
+      ),
+      continueButtonText: translate(req, 'common.continue', 'Continue'),
       summary: section.summaryViewModel(req, this.urlPath)
     })
   }
