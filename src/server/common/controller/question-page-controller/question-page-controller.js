@@ -59,10 +59,11 @@ export class QuestionPageController extends GenericPageController {
 
   async handleGet(req, h, args = {}) {
     const applicationState = new this.StateManager(req).toState()
+    const answerContext = { ...applicationState, request: req }
     const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
-      applicationState
+      answerContext
     )
 
     const question = translate(
@@ -76,13 +77,11 @@ export class QuestionPageController extends GenericPageController {
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
-      const errorAnswer = new this.page.Answer(
-        pageError.payload,
-        applicationState
-      )
+      const errorAnswer = new this.page.Answer(pageError.payload, answerContext)
       const errorViewModelOptions = {
         validate: true,
-        question
+        question,
+        request: req
       }
 
       return h.view(this.page.view, {
@@ -100,7 +99,8 @@ export class QuestionPageController extends GenericPageController {
     }
     const viewModelOptions = {
       validate: false,
-      question
+      question,
+      request: req
     }
 
     return h.view(this.page.view, {
