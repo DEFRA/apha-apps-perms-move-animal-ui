@@ -150,5 +150,5 @@ export class AnswerModel {
  */
 
 /**
- * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors }} AnswerViewModelOptions
+ * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors, request?: import('@hapi/hapi').Request }} AnswerViewModelOptions
  */

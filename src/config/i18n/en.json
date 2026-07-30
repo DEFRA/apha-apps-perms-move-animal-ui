@@ -39,6 +39,36 @@
         }
       }
     },
+    "biosecurity": {
+      "title": "Biosecurity details",
+      "dilutionRate": {
+        "heading": "Disinfectant dilution rate",
+        "question": "Confirmation of the dilution rate",
+        "answer": {
+          "undiluted": "I confirm the disinfectant is used undiluted on the farm or premises",
+          "prefix": "I confirm a dilution rate of 1:",
+          "suffix": " is used on the farm or premises"
+        },
+        "page": {
+          "intro": "By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.",
+          "approvedPrefix": "The approved dilution rate for",
+          "is": "is",
+          "undiluted": "undiluted",
+          "explanationPrefix": "This means for every 1",
+          "explanationMiddle": "of",
+          "explanationUsing": "you are using",
+          "explanationSuffix": "of water.",
+          "units": {
+            "litres": "litres",
+            "millilitres": "millilitres",
+            "litre": "litre",
+            "gram": "gram"
+          },
+          "selectFirst": "You must select a disinfectant before confirming the dilution rate.",
+          "selectDisinfectantButton": "Select disinfectant"
+        }
+      }
+    },
     "home": {
       "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions."
     },
