@@ -13,6 +13,11 @@
         "outOf": "out of",
         "sectionsLeft": "sections left to complete.",
         "allSectionsComplete": "You have completed all sections."
+      },
+      "status": {
+        "cannotStartYet": "Cannot start yet",
+        "completed": "Completed",
+        "incomplete": "Incomplete"
       }
     },
     "checkAnswers": {

@@ -13,6 +13,11 @@
         "outOf": "o",
         "sectionsLeft": "rhanbarth i'w gwblhau.",
         "allSectionsComplete": "Rydych chi wedi cwblhau pob adran."
+      },
+      "status": {
+        "cannotStartYet": "Methu dechrau eto",
+        "completed": "Wedi'i gwblhau",
+        "incomplete": "Anghyflawn"
       }
     },
     "checkAnswers": {
