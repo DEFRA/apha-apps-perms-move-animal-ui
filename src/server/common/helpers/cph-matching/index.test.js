@@ -1,0 +1,192 @@
+import { config } from '~/src/config/config.js'
+import { runCphMatchingFromApplication } from './index.js'
+
+const mockFindMatchingCphs = jest.fn()
+
+jest.mock('../../apis/integration-bridge/index.js', () => ({
+  findMatchingCphs: (...args) => mockFindMatchingCphs(...args)
+}))
+
+describe('CPH matching helper', () => {
+  const INTEGRATION_BRIDGE_CONFIG = {
+    baseUrl: 'http://integration-bridge',
+    tokenUrl: 'http://integration-bridge/oauth2/token',
+    clientId: 'client-id',
+    clientSecret: 'client-secret',
+    timeout: 5000
+  }
+
+  const TEST_APPLICATION_ID = 'TB-1234-5678'
+  const TEST_CPHS = {
+    origin: '12/345/6789',
+    destination: '98/765/4321'
+  }
+
+  const originalConfigGet = config.get.bind(config)
+
+  /**
+   * @param {{ info?: any, debug?: any, error?: any }} [overrides]
+   */
+  const createMockLogger = (overrides = {}) => ({
+    info: jest.fn(),
+    debug: jest.fn(),
+    ...overrides
+  })
+
+  /**
+   * @param {{ payload: any, applicationId?: string, logger?: any }} options
+   */
+  const createTestContext = ({ payload, applicationId, logger }) => ({
+    payload,
+    applicationId: applicationId ?? TEST_APPLICATION_ID,
+    logger: logger ?? createMockLogger()
+  })
+
+  beforeEach(() => {
+    jest.restoreAllMocks()
+    jest.spyOn(config, 'get').mockImplementation((name) => {
+      if (name === 'integrationBridge') {
+        return INTEGRATION_BRIDGE_CONFIG
+      }
+      return originalConfigGet(name)
+    })
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
+  describe('successful matching', () => {
+    it('should log matches for both origin and destination CPHs', async () => {
+      mockFindMatchingCphs.mockResolvedValueOnce(new Set([TEST_CPHS.origin]))
+
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            originCph: TEST_CPHS.origin,
+            destinationCph: TEST_CPHS.destination
+          }
+        }
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(mockFindMatchingCphs).toHaveBeenCalledWith(
+        [TEST_CPHS.origin, TEST_CPHS.destination],
+        expect.objectContaining({
+          baseUrl: INTEGRATION_BRIDGE_CONFIG.baseUrl,
+          tokenUrl: INTEGRATION_BRIDGE_CONFIG.tokenUrl
+        })
+      )
+
+      expect(context.logger.info).toHaveBeenCalledTimes(2)
+
+      expect(context.logger.info).toHaveBeenNthCalledWith(
+        1,
+        'CPH match result',
+        {
+          cphMatch: {
+            applicationCph: TEST_CPHS.origin,
+            result: true,
+            type: 'origin',
+            applicationId: TEST_APPLICATION_ID
+          }
+        }
+      )
+
+      expect(context.logger.info).toHaveBeenNthCalledWith(
+        2,
+        'CPH match result',
+        {
+          cphMatch: {
+            applicationCph: TEST_CPHS.destination,
+            result: false,
+            type: 'destination',
+            applicationId: TEST_APPLICATION_ID
+          }
+        }
+      )
+    })
+  })
+
+  describe('error handling', () => {
+    it('should log an error and continue when the CPH matching API fails', async () => {
+      mockFindMatchingCphs.mockRejectedValueOnce(new Error('boom'))
+
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            originCph: TEST_CPHS.origin
+          }
+        },
+        logger: createMockLogger({ error: jest.fn() })
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(context.logger.error).toHaveBeenCalledWith('CPH API unavailable', {
+        err: expect.any(Error),
+        applicationId: TEST_APPLICATION_ID
+      })
+    })
+
+    it('should handle error when logger.error is undefined', async () => {
+      mockFindMatchingCphs.mockRejectedValueOnce(new Error('boom'))
+
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            originCph: TEST_CPHS.origin
+          }
+        }
+      })
+
+      await expect(
+        runCphMatchingFromApplication(context)
+      ).resolves.toBeUndefined()
+    })
+
+    it('should handle non-Error rejection', async () => {
+      mockFindMatchingCphs.mockRejectedValueOnce('string error')
+
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            originCph: TEST_CPHS.origin
+          }
+        },
+        logger: createMockLogger({ error: jest.fn() })
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(context.logger.error).toHaveBeenCalledWith('CPH API unavailable', {
+        err: expect.any(TypeError),
+        applicationId: TEST_APPLICATION_ID
+      })
+    })
+  })
+
+  describe('skipping scenarios', () => {
+    it('should skip matching when there are no CPHs to match', async () => {
+      const context = createTestContext({
+        payload: {}
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(mockFindMatchingCphs).not.toHaveBeenCalled()
+    })
+
+    it('should skip matching when keyFacts is undefined', async () => {
+      const context = createTestContext({
+        payload: { otherData: 'value' }
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(mockFindMatchingCphs).not.toHaveBeenCalled()
+      expect(context.logger.info).not.toHaveBeenCalled()
+    })
+  })
+})

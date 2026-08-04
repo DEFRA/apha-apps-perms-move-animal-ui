@@ -2,7 +2,7 @@ import { QuestionPage } from '../../model/page/question-page-model.js'
 import { ConfirmationAnswer } from '../../model/answer/confirmation/confirmation.js'
 import { Page } from '../../model/page/page-model.js'
 import { submitApplication } from '../../connectors/case-management/case-management.js'
-import { runCphMatching } from '../../connectors/integration-bridge/integration-bridge.js'
+import { runCphMatchingFromApplication } from '../../helpers/cph-matching/index.js'
 import { statusCodes } from '../../constants/status-codes.js'
 import { QuestionPageController } from '../question-page-controller/question-page-controller.js'
 
@@ -108,7 +108,7 @@ export class SubmitPageController extends QuestionPageController {
         )
       }
 
-      await runCphMatching({
+      await runCphMatchingFromApplication({
         payload: submissionPayload,
         applicationId: message,
         logger: req.logger
