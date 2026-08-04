@@ -305,6 +305,39 @@ export const config = convict({
       env: 'DEFRA_FORMS_ENABLED'
     }
   },
+  integrationBridge: {
+    baseUrl: {
+      doc: 'Integration Bridge base URL',
+      format: String,
+      default: 'http://localhost:3002',
+      env: 'INTEGRATION_BRIDGE_URL'
+    },
+    tokenUrl: {
+      doc: 'Integration Bridge OAuth token URL',
+      format: String,
+      default: 'http://localhost:3002/oauth2/token',
+      env: 'INTEGRATION_BRIDGE_TOKEN_URL'
+    },
+    clientId: {
+      doc: 'Integration Bridge client ID',
+      format: String,
+      default: '',
+      env: 'INTEGRATION_BRIDGE_CLIENT_ID'
+    },
+    clientSecret: {
+      doc: 'Integration Bridge client secret',
+      format: String,
+      default: '',
+      sensitive: true,
+      env: 'INTEGRATION_BRIDGE_CLIENT_SECRET'
+    },
+    timeout: {
+      doc: 'Timeout for Integration Bridge requests in milliseconds',
+      format: Number,
+      default: 30_000,
+      env: 'INTEGRATION_BRIDGE_TIMEOUT'
+    }
+  },
   caseManagementApi: {
     baseUrl: {
       doc: 'Case Management API base URL',
