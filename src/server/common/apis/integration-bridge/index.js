@@ -1,13 +1,18 @@
 import Wreck from '@hapi/wreck'
+import { config } from '~/src/config/config.js'
 
 const MINIMUM_ERROR_STATUS_CODE = 400
 
 /**
  * @param {Array<string>} cphs
- * @param {{ baseUrl: string, tokenUrl: string, clientId: string, clientSecret: string, timeout: number }} configValues
  * @returns {Promise<Set<string>>}
  */
-export const findMatchingCphs = async (cphs, configValues) => {
+export const findMatchingCphs = async (cphs) => {
+  const configValues =
+    /** @type {{ baseUrl: string, tokenUrl: string, clientId: string, clientSecret: string, timeout: number }} */ (
+      config.get('integrationBridge')
+    )
+
   const response = /** @type {{ access_token?: string }} */ (
     await getAccessToken(configValues)
   )

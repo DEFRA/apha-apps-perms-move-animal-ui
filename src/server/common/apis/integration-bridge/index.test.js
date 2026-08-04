@@ -1,4 +1,5 @@
 import Wreck from '@hapi/wreck'
+import { config } from '~/src/config/config.js'
 
 import { findMatchingCphs } from './index.js'
 
@@ -13,6 +14,8 @@ describe('Integration bridge API', () => {
 
   const MOCK_TOKEN = 'abc123'
   const TEST_CPHS = ['12/345/6789', '98/765/4321']
+
+  const originalConfigGet = config.get.bind(config)
 
   /**
    * @param {number} statusCode
@@ -37,6 +40,12 @@ describe('Integration bridge API', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks()
+    jest.spyOn(config, 'get').mockImplementation((name) => {
+      if (name === 'integrationBridge') {
+        return CONFIG_VALUES
+      }
+      return originalConfigGet(name)
+    })
   })
 
   afterEach(() => {
@@ -50,7 +59,7 @@ describe('Integration bridge API', () => {
         .mockResolvedValueOnce(mockTokenResponse())
         .mockResolvedValueOnce(mockHoldingsResponse([{ id: TEST_CPHS[0] }]))
 
-      const result = await findMatchingCphs(TEST_CPHS, CONFIG_VALUES)
+      const result = await findMatchingCphs(TEST_CPHS)
 
       expect(Wreck.post).toHaveBeenNthCalledWith(1, CONFIG_VALUES.tokenUrl, {
         payload:
@@ -92,7 +101,7 @@ describe('Integration bridge API', () => {
         .mockResolvedValueOnce(mockTokenResponse())
         .mockResolvedValueOnce(mockHoldingsResponse(mixedData))
 
-      const result = await findMatchingCphs(TEST_CPHS, CONFIG_VALUES)
+      const result = await findMatchingCphs(TEST_CPHS)
 
       expect(result).toEqual(new Set(TEST_CPHS))
     })
@@ -104,9 +113,7 @@ describe('Integration bridge API', () => {
         .spyOn(Wreck, 'post')
         .mockResolvedValueOnce(createMockResponse(503, ''))
 
-      await expect(
-        findMatchingCphs([TEST_CPHS[0]], CONFIG_VALUES)
-      ).rejects.toThrow(TypeError)
+      await expect(findMatchingCphs([TEST_CPHS[0]])).rejects.toThrow(TypeError)
     })
 
     it('should reject when access token is missing from response', async () => {
@@ -114,9 +121,7 @@ describe('Integration bridge API', () => {
         .spyOn(Wreck, 'post')
         .mockResolvedValueOnce(createMockResponse(200, {}))
 
-      await expect(
-        findMatchingCphs([TEST_CPHS[0]], CONFIG_VALUES)
-      ).rejects.toThrow(
+      await expect(findMatchingCphs([TEST_CPHS[0]])).rejects.toThrow(
         'Integration bridge token response did not include an access token'
       )
     })
@@ -129,9 +134,7 @@ describe('Integration bridge API', () => {
         })
       )
 
-      await expect(
-        findMatchingCphs([TEST_CPHS[0]], CONFIG_VALUES)
-      ).rejects.toThrow(
+      await expect(findMatchingCphs([TEST_CPHS[0]])).rejects.toThrow(
         'Integration bridge token response did not include an access token'
       )
     })
@@ -144,9 +147,9 @@ describe('Integration bridge API', () => {
         .mockResolvedValueOnce(mockTokenResponse())
         .mockResolvedValueOnce(createMockResponse(200, { data: 'invalid' }))
 
-      await expect(
-        findMatchingCphs([TEST_CPHS[0]], CONFIG_VALUES)
-      ).rejects.toThrow('Integration bridge holdings response is invalid')
+      await expect(findMatchingCphs([TEST_CPHS[0]])).rejects.toThrow(
+        'Integration bridge holdings response is invalid'
+      )
     })
 
     it('should reject when holdings response data is missing', async () => {
@@ -155,9 +158,9 @@ describe('Integration bridge API', () => {
         .mockResolvedValueOnce(mockTokenResponse())
         .mockResolvedValueOnce(createMockResponse(200, {}))
 
-      await expect(
-        findMatchingCphs([TEST_CPHS[0]], CONFIG_VALUES)
-      ).rejects.toThrow('Integration bridge holdings response is invalid')
+      await expect(findMatchingCphs([TEST_CPHS[0]])).rejects.toThrow(
+        'Integration bridge holdings response is invalid'
+      )
     })
   })
 })

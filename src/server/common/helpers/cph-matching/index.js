@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { findMatchingCphs } from '../../apis/integration-bridge/index.js'
 
 /**
@@ -33,12 +32,7 @@ export const runCphMatching = async (applicationId, cphs, keyFacts, logger) => {
   }
 
   try {
-    const integrationBridgeConfig =
-      /** @type {{ baseUrl: string, tokenUrl: string, clientId: string, clientSecret: string, timeout: number }} */ (
-        config.get('integrationBridge')
-      )
-
-    const matchingCphs = await findMatchingCphs(cphs, integrationBridgeConfig)
+    const matchingCphs = await findMatchingCphs(cphs)
 
     for (const cph of cphs) {
       logger.info('CPH match result', {

@@ -1,4 +1,3 @@
-import { config } from '~/src/config/config.js'
 import { runCphMatchingFromApplication } from './index.js'
 
 const mockFindMatchingCphs = jest.fn()
@@ -8,21 +7,11 @@ jest.mock('../../apis/integration-bridge/index.js', () => ({
 }))
 
 describe('CPH matching helper', () => {
-  const INTEGRATION_BRIDGE_CONFIG = {
-    baseUrl: 'http://integration-bridge',
-    tokenUrl: 'http://integration-bridge/oauth2/token',
-    clientId: 'client-id',
-    clientSecret: 'client-secret',
-    timeout: 5000
-  }
-
   const TEST_APPLICATION_ID = 'TB-1234-5678'
   const TEST_CPHS = {
     origin: '12/345/6789',
     destination: '98/765/4321'
   }
-
-  const originalConfigGet = config.get.bind(config)
 
   /**
    * @param {{ info?: any, debug?: any, error?: any }} [overrides]
@@ -44,12 +33,6 @@ describe('CPH matching helper', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks()
-    jest.spyOn(config, 'get').mockImplementation((name) => {
-      if (name === 'integrationBridge') {
-        return INTEGRATION_BRIDGE_CONFIG
-      }
-      return originalConfigGet(name)
-    })
   })
 
   afterEach(() => {
@@ -71,13 +54,10 @@ describe('CPH matching helper', () => {
 
       await runCphMatchingFromApplication(context)
 
-      expect(mockFindMatchingCphs).toHaveBeenCalledWith(
-        [TEST_CPHS.origin, TEST_CPHS.destination],
-        expect.objectContaining({
-          baseUrl: INTEGRATION_BRIDGE_CONFIG.baseUrl,
-          tokenUrl: INTEGRATION_BRIDGE_CONFIG.tokenUrl
-        })
-      )
+      expect(mockFindMatchingCphs).toHaveBeenCalledWith([
+        TEST_CPHS.origin,
+        TEST_CPHS.destination
+      ])
 
       expect(context.logger.info).toHaveBeenCalledTimes(2)
 
