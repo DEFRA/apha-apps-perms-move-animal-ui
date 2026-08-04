@@ -10,9 +10,7 @@ const MINIMUM_ERROR_STATUS_CODE = 400
 export const findMatchingCphs = async (cphs) => {
   const configValues = config.get('integrationBridge')
 
-  const response = /** @type {{ access_token?: string }} */ (
-    await getAccessToken(configValues)
-  )
+  const response = await getAccessToken(configValues)
 
   const matchingCphs = await getMatchingCphsFromBridge(
     cphs,
