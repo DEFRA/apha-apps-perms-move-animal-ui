@@ -124,13 +124,71 @@ describe('Integration Bridge CPH matching', () => {
     const logger = { info: jest.fn(), debug: jest.fn() }
 
     await runCphMatching({
-      payload: {
-        keyFacts: {}
-      },
+      payload: {},
       applicationId: 'TB-1234-5678',
       logger
     })
 
     expect(wreckSpy).not.toHaveBeenCalled()
+  })
+
+  it('should log an error when the token response is missing an access token', async () => {
+    jest.spyOn(Wreck, 'post').mockResolvedValueOnce(
+      /** @type {any} */ ({
+        res: { statusCode: 200 },
+        payload: JSON.stringify({})
+      })
+    )
+
+    const logger = { info: jest.fn(), debug: jest.fn(), error: jest.fn() }
+
+    await runCphMatching({
+      payload: {
+        keyFacts: {
+          originCph: '12/345/6789'
+        }
+      },
+      applicationId: 'TB-1234-5678',
+      logger
+    })
+
+    expect(logger.error).toHaveBeenCalledWith('CPH API unavailable', {
+      err: expect.any(TypeError),
+      applicationId: 'TB-1234-5678'
+    })
+  })
+
+  it('should log an error when the holdings response is invalid', async () => {
+    jest
+      .spyOn(Wreck, 'post')
+      .mockResolvedValueOnce(
+        /** @type {any} */ ({
+          res: { statusCode: 200 },
+          payload: JSON.stringify({ access_token: 'abc123' })
+        })
+      )
+      .mockResolvedValueOnce(
+        /** @type {any} */ ({
+          res: { statusCode: 200 },
+          payload: JSON.stringify({ somethingElse: true })
+        })
+      )
+
+    const logger = { info: jest.fn(), debug: jest.fn(), error: jest.fn() }
+
+    await runCphMatching({
+      payload: {
+        keyFacts: {
+          originCph: '12/345/6789'
+        }
+      },
+      applicationId: 'TB-1234-5678',
+      logger
+    })
+
+    expect(logger.error).toHaveBeenCalledWith('CPH API unavailable', {
+      err: expect.any(TypeError),
+      applicationId: 'TB-1234-5678'
+    })
   })
 })

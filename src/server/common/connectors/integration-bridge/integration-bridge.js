@@ -2,6 +2,8 @@ import Wreck from '@hapi/wreck'
 
 import { config } from '~/src/config/config.js'
 
+const MINIMUM_ERROR_STATUS_CODE = 400
+
 /**
  * @typedef {{
  *   payload: Record<string, unknown>,
@@ -49,8 +51,8 @@ const post = async (url, payload, headers, { timeout }) => {
 
   const statusCode = response.res.statusCode ?? 0
 
-  if (statusCode >= 400) {
-    throw new Error(`Request failed (${statusCode}): ${url}`)
+  if (statusCode >= MINIMUM_ERROR_STATUS_CODE) {
+    throw new TypeError(`Request failed (${statusCode}): ${url}`)
   }
 
   return JSON.parse(response.payload)
@@ -86,7 +88,7 @@ const getAccessToken = async ({
   )
 
   if (!response.access_token) {
-    throw new Error(
+    throw new TypeError(
       'Integration bridge token response did not include an access token'
     )
   }
@@ -114,7 +116,7 @@ const getMatchingCphs = async (ids, accessToken, configValues) => {
   )
 
   if (!Array.isArray(response.data)) {
-    throw new Error('Integration bridge holdings response is invalid')
+    throw new TypeError('Integration bridge holdings response is invalid')
   }
 
   return new Set(
@@ -159,7 +161,7 @@ export const runCphMatching = async ({ payload, applicationId, logger }) => {
     }
   } catch (error) {
     logger.error?.('CPH API unavailable', {
-      err: error instanceof Error ? error : new Error(String(error)),
+      err: error instanceof Error ? error : new TypeError(String(error)),
       applicationId
     })
   }
