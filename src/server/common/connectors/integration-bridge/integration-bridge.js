@@ -40,11 +40,11 @@ const getCphsToMatch = (payload) => {
  * @param {{ timeout: number }} configValues
  * @returns {Promise<unknown>}
  */
-const post = async (url, payload, headers, configValues) => {
+const post = async (url, payload, headers, { timeout }) => {
   const response = await Wreck.post(url, {
     payload,
     headers,
-    timeout: configValues.timeout
+    timeout
   })
 
   const statusCode = response.res.statusCode ?? 0
@@ -60,18 +60,28 @@ const post = async (url, payload, headers, configValues) => {
  * @param {{ tokenUrl: string, clientId: string, clientSecret: string, timeout: number }} configValues
  * @returns {Promise<string>}
  */
-const getAccessToken = async (configValues) => {
+const getAccessToken = async ({
+  tokenUrl,
+  clientId,
+  clientSecret,
+  timeout
+}) => {
+  const credentials = `${clientId}:${clientSecret}`
+  const payload = new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: clientId,
+    client_secret: clientSecret
+  }).toString()
+
   const response = /** @type {{ access_token?: string }} */ (
     await post(
-      configValues.tokenUrl,
-      `grant_type=client_credentials&client_id=${configValues.clientId}&client_secret=${configValues.clientSecret}`,
+      tokenUrl,
+      payload,
       {
-        Authorization: `Basic ${Buffer.from(
-          `${configValues.clientId}:${configValues.clientSecret}`
-        ).toString('base64')}`,
+        Authorization: `Basic ${Buffer.from(credentials).toString('base64')}`,
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      configValues
+      { timeout }
     )
   )
 
