@@ -6,7 +6,6 @@ import { findMatchingCphs } from './index.js'
 describe('Integration bridge API', () => {
   const CONFIG_VALUES = {
     baseUrl: 'http://integration-bridge',
-    tokenUrl: 'http://integration-bridge/oauth2/token',
     clientId: 'client-id',
     clientSecret: 'client-secret',
     timeout: 5000
@@ -61,15 +60,19 @@ describe('Integration bridge API', () => {
 
       const result = await findMatchingCphs(TEST_CPHS)
 
-      expect(Wreck.post).toHaveBeenNthCalledWith(1, CONFIG_VALUES.tokenUrl, {
-        payload:
-          'grant_type=client_credentials&client_id=client-id&client_secret=client-secret',
-        headers: {
-          Authorization: 'Basic Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ=',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        timeout: CONFIG_VALUES.timeout
-      })
+      expect(Wreck.post).toHaveBeenNthCalledWith(
+        1,
+        `${CONFIG_VALUES.baseUrl}/oauth2/token`,
+        {
+          payload:
+            'grant_type=client_credentials&client_id=client-id&client_secret=client-secret',
+          headers: {
+            Authorization: 'Basic Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ=',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          timeout: CONFIG_VALUES.timeout
+        }
+      )
 
       expect(Wreck.post).toHaveBeenNthCalledWith(
         2,

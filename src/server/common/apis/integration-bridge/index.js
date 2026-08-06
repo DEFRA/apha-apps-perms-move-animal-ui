@@ -22,15 +22,11 @@ export const findMatchingCphs = async (cphs) => {
 }
 
 /**
- * @param {{ tokenUrl: string, clientId: string, clientSecret: string, timeout: number }} configValues
+ * @param {{ baseUrl: string, clientId: string, clientSecret: string, timeout: number }} configValues
  * @returns {Promise<{ access_token?: string }>}
  */
-const getAccessToken = async ({
-  tokenUrl,
-  clientId,
-  clientSecret,
-  timeout
-}) => {
+const getAccessToken = async ({ baseUrl, clientId, clientSecret, timeout }) => {
+  const tokenUrl = `${baseUrl}/oauth2/token`
   const credentials = `${clientId}:${clientSecret}`
   const payload = new URLSearchParams({
     grant_type: 'client_credentials',

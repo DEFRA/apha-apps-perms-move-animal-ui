@@ -312,12 +312,6 @@ export const config = convict({
       default: 'http://localhost:3002',
       env: 'INTEGRATION_BRIDGE_URL'
     },
-    tokenUrl: {
-      doc: 'Integration Bridge OAuth token URL',
-      format: String,
-      default: 'http://localhost:3002/oauth2/token',
-      env: 'INTEGRATION_BRIDGE_TOKEN_URL'
-    },
     clientId: {
       doc: 'Integration Bridge client ID',
       format: String,
