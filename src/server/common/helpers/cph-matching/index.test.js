@@ -65,12 +65,10 @@ describe('CPH matching helper', () => {
         1,
         'CPH match result',
         {
-          cphMatch: {
-            applicationCph: TEST_CPHS.origin,
-            result: true,
-            type: 'origin',
-            applicationId: TEST_APPLICATION_ID
-          }
+          applicationId: TEST_APPLICATION_ID,
+          applicationCph: TEST_CPHS.origin,
+          cphMatchResult: true,
+          cphType: 'origin'
         }
       )
 
@@ -78,12 +76,10 @@ describe('CPH matching helper', () => {
         2,
         'CPH match result',
         {
-          cphMatch: {
-            applicationCph: TEST_CPHS.destination,
-            result: false,
-            type: 'destination',
-            applicationId: TEST_APPLICATION_ID
-          }
+          applicationId: TEST_APPLICATION_ID,
+          applicationCph: TEST_CPHS.destination,
+          cphMatchResult: false,
+          cphType: 'destination'
         }
       )
     })

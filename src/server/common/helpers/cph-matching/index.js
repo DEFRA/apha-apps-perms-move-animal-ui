@@ -36,12 +36,10 @@ export const runCphMatching = async (applicationId, cphs, keyFacts, logger) => {
 
     for (const cph of cphs) {
       logger.info('CPH match result', {
-        cphMatch: {
-          applicationId,
-          applicationCph: cph,
-          result: matchingCphs.has(cph),
-          type: cph === keyFacts?.originCph ? 'origin' : 'destination'
-        }
+        applicationId,
+        applicationCph: cph,
+        cphMatchResult: matchingCphs.has(cph),
+        cphType: cph === keyFacts?.originCph ? 'origin' : 'destination'
       })
     }
   } catch (error) {
