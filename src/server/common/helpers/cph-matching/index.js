@@ -35,18 +35,24 @@ export const runCphMatching = async (applicationId, cphs, keyFacts, logger) => {
     const matchingCphs = await findMatchingCphs(cphs)
 
     for (const cph of cphs) {
-      logger.info('CPH match result', {
-        applicationId,
-        applicationCph: cph,
-        cphMatchResult: matchingCphs.has(cph),
-        cphType: cph === keyFacts?.originCph ? 'origin' : 'destination'
-      })
+      logger.info(
+        {
+          applicationId,
+          applicationCph: cph,
+          cphMatchResult: matchingCphs.has(cph),
+          cphType: cph === keyFacts?.originCph ? 'origin' : 'destination'
+        },
+        'CPH match result'
+      )
     }
   } catch (error) {
-    logger.error?.('CPH API unavailable', {
-      err: error instanceof Error ? error : new TypeError(String(error)),
-      applicationId
-    })
+    logger.error?.(
+      {
+        err: error instanceof Error ? error : new TypeError(String(error)),
+        applicationId
+      },
+      'CPH API unavailable'
+    )
   }
 }
 
