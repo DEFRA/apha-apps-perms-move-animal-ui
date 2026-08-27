@@ -93,7 +93,7 @@
     "@types/hapi__catbox-memory": "^4.1.8",
     "@types/hapi__crumb": "7.3.7",
     "@types/jest": "^29.5.12",
-    "@types/lodash": "^4.17.7",
+    "@types/lodash": "^4.17.24",
     "@types/node": "20.16.5",
     "@types/nunjucks": "^3.2.6",
     "@types/webpack-assets-manifest": "^5.1.4",
