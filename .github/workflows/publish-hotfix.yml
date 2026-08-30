@@ -29,6 +29,9 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      - name: Set npm version
+        run: npm install --global npm@11.6.3
+
       - name: Install dependencies
         run: npm ci
 
@@ -42,8 +45,8 @@ jobs:
         run: npm run lint
 
       - name: Run tests
-        timeout-minutes: 10
-        run: npm test
+        timeout-minutes: 15
+        run: npm test -- --runInBand --detectOpenHandles
 
       - name: Publish Hot Fix
         uses: DEFRA/cdp-build-action/build-hotfix@7fe324bec9987c5a4d0f4724b42e30c282892ceb # main
