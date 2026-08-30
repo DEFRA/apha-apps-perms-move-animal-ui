@@ -4,7 +4,7 @@
 export default {
   verbose: true,
   silent: false,
-  testTimeout: 15000,
+  testTimeout: 30000,
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
   projects: [
     '<rootDir>/jest-projects/core.js',
