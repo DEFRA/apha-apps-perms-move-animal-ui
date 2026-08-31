@@ -63,27 +63,11 @@ describe('CPH matching helper', () => {
 
       expect(context.logger.info).toHaveBeenNthCalledWith(
         1,
-        {
-          labels: {
-            applicationId: TEST_APPLICATION_ID,
-            applicationCph: TEST_CPHS.origin,
-            cphMatchResult: 'true',
-            cphType: 'origin'
-          }
-        },
         `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.origin} type=origin matched=true`
       )
 
       expect(context.logger.info).toHaveBeenNthCalledWith(
         2,
-        {
-          labels: {
-            applicationId: TEST_APPLICATION_ID,
-            applicationCph: TEST_CPHS.destination,
-            cphMatchResult: 'false',
-            cphType: 'destination'
-          }
-        },
         `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
       )
     })
@@ -105,10 +89,7 @@ describe('CPH matching helper', () => {
       await runCphMatchingFromApplication(context)
 
       expect(context.logger.error).toHaveBeenCalledWith(
-        {
-          err: expect.any(Error),
-          labels: { applicationId: TEST_APPLICATION_ID }
-        },
+        { err: expect.any(Error) },
         `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
       )
     })
@@ -144,10 +125,7 @@ describe('CPH matching helper', () => {
       await runCphMatchingFromApplication(context)
 
       expect(context.logger.error).toHaveBeenCalledWith(
-        {
-          err: expect.any(TypeError),
-          labels: { applicationId: TEST_APPLICATION_ID }
-        },
+        { err: expect.any(TypeError) },
         `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
       )
     })
