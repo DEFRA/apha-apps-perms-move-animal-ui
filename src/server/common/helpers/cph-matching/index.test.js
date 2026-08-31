@@ -64,23 +64,27 @@ describe('CPH matching helper', () => {
       expect(context.logger.info).toHaveBeenNthCalledWith(
         1,
         {
-          applicationId: TEST_APPLICATION_ID,
-          applicationCph: TEST_CPHS.origin,
-          cphMatchResult: true,
-          cphType: 'origin'
+          labels: {
+            applicationId: TEST_APPLICATION_ID,
+            applicationCph: TEST_CPHS.origin,
+            cphMatchResult: 'true',
+            cphType: 'origin'
+          }
         },
-        'CPH match result'
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.origin} type=origin matched=true`
       )
 
       expect(context.logger.info).toHaveBeenNthCalledWith(
         2,
         {
-          applicationId: TEST_APPLICATION_ID,
-          applicationCph: TEST_CPHS.destination,
-          cphMatchResult: false,
-          cphType: 'destination'
+          labels: {
+            applicationId: TEST_APPLICATION_ID,
+            applicationCph: TEST_CPHS.destination,
+            cphMatchResult: 'false',
+            cphType: 'destination'
+          }
         },
-        'CPH match result'
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
       )
     })
   })
@@ -103,9 +107,9 @@ describe('CPH matching helper', () => {
       expect(context.logger.error).toHaveBeenCalledWith(
         {
           err: expect.any(Error),
-          applicationId: TEST_APPLICATION_ID
+          labels: { applicationId: TEST_APPLICATION_ID }
         },
-        'CPH API unavailable'
+        `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
       )
     })
 
@@ -142,9 +146,9 @@ describe('CPH matching helper', () => {
       expect(context.logger.error).toHaveBeenCalledWith(
         {
           err: expect.any(TypeError),
-          applicationId: TEST_APPLICATION_ID
+          labels: { applicationId: TEST_APPLICATION_ID }
         },
-        'CPH API unavailable'
+        `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
       )
     })
   })
