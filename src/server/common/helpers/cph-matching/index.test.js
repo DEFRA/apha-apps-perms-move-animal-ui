@@ -63,24 +63,12 @@ describe('CPH matching helper', () => {
 
       expect(context.logger.info).toHaveBeenNthCalledWith(
         1,
-        'CPH match result',
-        {
-          applicationId: TEST_APPLICATION_ID,
-          applicationCph: TEST_CPHS.origin,
-          cphMatchResult: true,
-          cphType: 'origin'
-        }
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.origin} type=origin matched=true`
       )
 
       expect(context.logger.info).toHaveBeenNthCalledWith(
         2,
-        'CPH match result',
-        {
-          applicationId: TEST_APPLICATION_ID,
-          applicationCph: TEST_CPHS.destination,
-          cphMatchResult: false,
-          cphType: 'destination'
-        }
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
       )
     })
   })
@@ -100,10 +88,10 @@ describe('CPH matching helper', () => {
 
       await runCphMatchingFromApplication(context)
 
-      expect(context.logger.error).toHaveBeenCalledWith('CPH API unavailable', {
-        err: expect.any(Error),
-        applicationId: TEST_APPLICATION_ID
-      })
+      expect(context.logger.error).toHaveBeenCalledWith(
+        { err: expect.any(Error) },
+        `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
+      )
     })
 
     it('should handle error when logger.error is undefined', async () => {
@@ -136,10 +124,10 @@ describe('CPH matching helper', () => {
 
       await runCphMatchingFromApplication(context)
 
-      expect(context.logger.error).toHaveBeenCalledWith('CPH API unavailable', {
-        err: expect.any(TypeError),
-        applicationId: TEST_APPLICATION_ID
-      })
+      expect(context.logger.error).toHaveBeenCalledWith(
+        { err: expect.any(TypeError) },
+        `CPH API unavailable: applicationId=${TEST_APPLICATION_ID}`
+      )
     })
   })
 
