@@ -3,6 +3,7 @@ import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 import { HiddenAnswer } from '../../answer/hidden/hidden.js'
 import { SectionModel } from './section-model.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
@@ -140,15 +141,28 @@ export class SectionModelV1 extends SectionModel {
   summaryViewModel(_req, redirectUri) {
     return this._questionPageAnswers
       .filter(({ page }) => !page.isInterstitial)
-      .map(({ page, answer }) => ({
-        key: page.question,
-        value: answer.html,
-        url: `${page.urlPath}?returnUrl=${redirectUri}`,
-        visuallyHiddenKey: page.question,
-        attributes: {
-          'data-testid': `${page.questionKey}-change-link`
+      .map(({ page, answer }) => {
+        const inferredQuestionI18nKey =
+          page.sectionKey && page.questionKey
+            ? `tb.${page.sectionKey}.${page.questionKey}.question`
+            : undefined
+
+        const translatedQuestion = translate(
+          _req,
+          inferredQuestionI18nKey,
+          page.question
+        )
+
+        return {
+          key: translatedQuestion,
+          value: answer.html,
+          url: `${page.urlPath}?returnUrl=${redirectUri}`,
+          visuallyHiddenKey: translatedQuestion,
+          attributes: {
+            'data-testid': `${page.questionKey}-change-link`
+          }
         }
-      }))
+      })
   }
 
   /**
@@ -159,7 +173,7 @@ export class SectionModelV1 extends SectionModel {
   async taskDetailsViewModel(req, applicationState) {
     const sectionValidity = this.validate()
     return {
-      title: this.config.title,
+      title: translate(req, this.config.titleI18nKey, this.config.title),
       initialLink:
         sectionValidity.firstInvalidPageUrl ??
         this._getFirstPage(applicationState).urlPath,

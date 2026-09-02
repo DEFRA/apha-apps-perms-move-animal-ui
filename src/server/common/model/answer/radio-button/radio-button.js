@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { translate } from '../../../helpers/i18n/index.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -41,7 +42,7 @@ const handleConfig = (context, config) => {
 }
 
 /**
- * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {{ label: string, labelI18nKey?: string, hint?: string, hintI18nKey?: string }} RadioOption
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
@@ -132,7 +133,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, request }) {
     const {
       options,
       payloadKey,
@@ -140,14 +141,25 @@ export class RadioButtonAnswer extends AnswerModel {
       hint,
       isQuestionHeading = true
     } = this.config
-    const items = Object.entries(options).map(([key, value]) => ({
-      id: key,
-      value: key,
-      text: value.label,
-      hint: {
-        text: value.hint
+    const items = Object.entries(options).map(([key, value]) => {
+      const labelText = value.labelI18nKey
+        ? translate(request, value.labelI18nKey, value.label)
+        : value.label
+      const hintText = value.hint
+        ? value.hintI18nKey
+          ? translate(request, value.hintI18nKey, value.hint)
+          : value.hint
+        : undefined
+
+      return {
+        id: key,
+        value: key,
+        text: labelText,
+        hint: {
+          text: hintText
+        }
       }
-    }))
+    })
     items[0].id = payloadKey
 
     const model = {

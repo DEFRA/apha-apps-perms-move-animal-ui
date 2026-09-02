@@ -3,6 +3,7 @@ import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import GenericPageController from '~/src/server/common/controller/generic-page-controller/index.js'
 import { nextPageRedirect } from '~/src/server/common/helpers/next-page-redirect/index.js'
 import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
+import { translate } from '../../helpers/i18n/index.js'
 
 /** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '~/src/server/common/helpers/next-page.js' */
@@ -58,48 +59,58 @@ export class QuestionPageController extends GenericPageController {
 
   async handleGet(req, h, args = {}) {
     const applicationState = new this.StateManager(req).toState()
+    const answerContext = { ...applicationState, request: req }
     const sectionState = applicationState[this.page.sectionKey]
     const answer = this.page.Answer.fromState(
       sectionState?.[this.page.questionKey],
-      applicationState
+      answerContext
     )
+
+    const question = translate(
+      req,
+      this.page.questionI18nKey,
+      this.page.question
+    )
+    const heading = translate(req, this.page.headingI18nKey, this.page.heading)
+    const pageTitle = translate(req, this.page.titleI18nKey, this.page.title)
 
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
-      const errorAnswer = new this.page.Answer(
-        pageError.payload,
-        applicationState
-      )
+      const errorAnswer = new this.page.Answer(pageError.payload, answerContext)
       const errorViewModelOptions = {
         validate: true,
-        question: this.page.question
+        question,
+        request: req
       }
 
       return h.view(this.page.view, {
         nextPage: req.query.returnUrl,
-        heading: this.page.heading,
+        heading,
         answer: errorAnswer,
-        pageTitle: `Error: ${this.page.title}`,
+        pageTitle: `Error: ${pageTitle}`,
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
+        continueButtonText: translate(req, 'common.continue', 'Continue'),
         ...args,
         ...(await this.page.viewProps(req))
       })
     }
     const viewModelOptions = {
       validate: false,
-      question: this.page.question
+      question,
+      request: req
     }
 
     return h.view(this.page.view, {
       nextPage: req.query.returnUrl,
-      pageTitle: this.page.title,
-      heading: this.page.heading,
+      pageTitle,
+      heading,
       value: answer.value,
       answer,
       answerViewModel: await answer.viewModel(viewModelOptions),
+      continueButtonText: translate(req, 'common.continue', 'Continue'),
       ...args,
       ...(await this.page.viewProps(req))
     })

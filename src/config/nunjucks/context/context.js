@@ -5,6 +5,7 @@ import { config } from '~/src/config/config.js'
 import { createLogger } from '~/src/server/common/helpers/logging/logger.js'
 import { buildNavigation } from '~/src/config/nunjucks/context/build-navigation.js'
 import { isAuthenticated } from '~/src/server/common/helpers/auth/isAuthenticated.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 const logger = createLogger()
 const assetPath = config.get('assetPath')
@@ -49,9 +50,14 @@ export function context(request) {
   const initialServiceUrl = extractJourneyIndex(request)
 
   return {
+    request,
     initialServiceUrl,
     assetPath: `${assetPath}/assets/rebrand`,
-    serviceName: config.get('serviceName'),
+    serviceName: translate(
+      request,
+      'common.serviceName',
+      config.get('serviceName')
+    ),
     breadcrumbs: [],
     manageAccountUrl: config.get('auth').manageAccountUrl,
     navigation: buildNavigation(request),

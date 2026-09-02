@@ -3,6 +3,7 @@
 import { PageController } from '~/src/server/common/controller/page-controller/page-controller.js'
 import { Page } from '~/src/server/common/model/page/page-model.js'
 import { config } from '~/src/config/config.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 export class HomePage extends Page {
   skipAuth = true
@@ -31,7 +32,9 @@ class HomePageController extends PageController {
       }
     }
 
-    return this.handleGet(req, h)
+    return this.handleGet(req, h, {
+      heading: translate(req, 'common.serviceName', this.page.pageHeading)
+    })
   }
 }
 
