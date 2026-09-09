@@ -121,7 +121,7 @@ jobs:
         env:
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
-        run: docker compose up --wait-timeout 900 -d --quiet-pull
+        run: docker compose up --wait-timeout 300 -d --quiet-pull
 
       - name: Run ${{ matrix.test-suite }}
         run: npm run ${{ matrix.test-suite }}
