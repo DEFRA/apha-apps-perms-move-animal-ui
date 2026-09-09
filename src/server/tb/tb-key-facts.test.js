@@ -40,6 +40,12 @@ const createApplication = (state) => ({
 const getKeyFacts = (state) =>
   tbKeyFacts(/** @type {TbApplicationModel} */ (createApplication(state)))
 
+/**
+ * @param {RawApplicationState} state
+ * @param {string} field
+ */
+const getKeyFactValue = (state, field) => getKeyFacts(state)[field]?.value
+
 describe('tbKeyFacts', () => {
   describe('licence type determination', () => {
     const testCases = [
@@ -66,7 +72,7 @@ describe('tbKeyFacts', () => {
           origin: { originType: origin },
           destination: { destinationType: destination }
         })
-        expect(getKeyFacts(state).licenceType).toBe(expected)
+        expect(getKeyFactValue(state, 'licenceType')).toBe(expected)
       })
     })
   })
@@ -76,14 +82,14 @@ describe('tbKeyFacts', () => {
       const state = createState({
         origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' }
       })
-      expect(getKeyFacts(state).requester).toBe('origin')
+      expect(getKeyFactValue(state, 'requester')).toBe('origin')
     })
 
     it('should return destination when moving on farm', () => {
       const state = createState({
         origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' }
       })
-      expect(getKeyFacts(state).requester).toBe('destination')
+      expect(getKeyFactValue(state, 'requester')).toBe('destination')
     })
   })
 
@@ -104,7 +110,7 @@ describe('tbKeyFacts', () => {
           destination
         })
 
-        expect(getKeyFacts(state).numberOfCattle).toBe(expected)
+        expect(getKeyFactValue(state, 'numberOfCattle')).toBe(expected)
       }
     )
 
@@ -115,7 +121,7 @@ describe('tbKeyFacts', () => {
           howManyAnimalsMaximum: '20'
         }
       })
-      expect(getKeyFacts(state).numberOfCattle).toBe(10)
+      expect(getKeyFactValue(state, 'numberOfCattle')).toBe(10)
     })
 
     it.each([
@@ -135,7 +141,7 @@ describe('tbKeyFacts', () => {
         origin: { onOffFarm: 'on', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
-      expect(getKeyFacts(state).requesterCph).toBe('22/222/2222')
+      expect(getKeyFactValue(state, 'requesterCph')).toBe('22/222/2222')
     })
 
     it('should use origin CPH when moving off farm', () => {
@@ -143,7 +149,7 @@ describe('tbKeyFacts', () => {
         origin: { onOffFarm: 'off', cphNumber: '11/111/1111' },
         destination: { destinationFarmCph: '22/222/2222' }
       })
-      expect(getKeyFacts(state).requesterCph).toBe('11/111/1111')
+      expect(getKeyFactValue(state, 'requesterCph')).toBe('11/111/1111')
     })
 
     it('should not set requesterCph when CPH is missing', () => {
@@ -170,8 +176,8 @@ describe('tbKeyFacts', () => {
         licence: names
       })
       const result = getKeyFacts(state)
-      expect(result.originKeeperName).toEqual(names.fullName)
-      expect(result.destinationKeeperName).toEqual(names.yourName)
+      expect(result.originKeeperName.value).toEqual(names.fullName)
+      expect(result.destinationKeeperName.value).toEqual(names.yourName)
     })
 
     it('should set destinationKeeperName for ON farm unrestricted movements', () => {
@@ -179,7 +185,9 @@ describe('tbKeyFacts', () => {
         origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
         licence: names
       })
-      expect(getKeyFacts(state).destinationKeeperName).toEqual(names.fullName)
+      expect(getKeyFactValue(state, 'destinationKeeperName')).toEqual(
+        names.fullName
+      )
       expect(getKeyFacts(state).originKeeperName).toBeUndefined()
     })
 
@@ -197,7 +205,9 @@ describe('tbKeyFacts', () => {
           origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
           licence: names
         })
-        expect(getKeyFacts(state).destinationKeeperName).toEqual(names.yourName)
+        expect(getKeyFactValue(state, 'destinationKeeperName')).toEqual(
+          names.yourName
+        )
       })
 
       it('should use fullName when origin is unrestricted and fullName is present', () => {
@@ -205,7 +215,9 @@ describe('tbKeyFacts', () => {
           origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
           licence: names
         })
-        expect(getKeyFacts(state).destinationKeeperName).toEqual(names.fullName)
+        expect(getKeyFactValue(state, 'destinationKeeperName')).toEqual(
+          names.fullName
+        )
       })
 
       it('should not set destinationKeeperName when origin is restricted but yourName is null', () => {
@@ -236,7 +248,9 @@ describe('tbKeyFacts', () => {
           }
         }
       })
-      expect(getKeyFacts(state).biosecurityMaps).toEqual(['test-key-123'])
+      expect(getKeyFactValue(state, 'biosecurityMaps')).toEqual([
+        'test-key-123'
+      ])
     })
 
     it('should not include map when skipped or missing', () => {
@@ -293,16 +307,40 @@ describe('tbKeyFacts', () => {
 
       const result = getKeyFacts(state)
 
-      expect(result).toMatchObject({
-        licenceType: 'TB16',
-        requester: 'destination',
-        movementDirection: 'on',
-        additionalInformation: 'Test info',
-        numberOfCattle: 10,
-        originCph: '11/111/1111',
-        destinationCph: '22/222/2222',
-        requesterCph: '22/222/2222',
-        biosecurityMaps: ['map-key']
+      expect(result).toEqual({
+        licenceType: { type: 'text', value: 'TB16' },
+        requester: { type: 'text', value: 'destination' },
+        movementDirection: { type: 'text', value: 'on' },
+        additionalInformation: { type: 'text', value: 'Test info' },
+        numberOfCattle: { type: 'number', value: 10 },
+        originCph: { type: 'text', value: '11/111/1111' },
+        originAddress: {
+          type: 'address',
+          value: {
+            addressLine1: '123 Farm Rd',
+            addressTown: 'Town',
+            addressPostcode: 'AB1 2CD'
+          }
+        },
+        originKeeperName: {
+          type: 'name',
+          value: { firstName: 'John', lastName: 'Doe' }
+        },
+        destinationCph: { type: 'text', value: '22/222/2222' },
+        destinationAddress: {
+          type: 'address',
+          value: {
+            addressLine1: '456 Ranch Rd',
+            addressTown: 'City',
+            addressPostcode: 'CD3 4EF'
+          }
+        },
+        destinationKeeperName: {
+          type: 'name',
+          value: { firstName: 'Jane', lastName: 'Smith' }
+        },
+        requesterCph: { type: 'text', value: '22/222/2222' },
+        biosecurityMaps: { type: 'file', value: ['map-key'] }
       })
       expect(result.originKeeperName).toBeDefined()
       expect(result.destinationKeeperName).toBeDefined()
@@ -315,10 +353,10 @@ describe('tbKeyFacts', () => {
       const result = getKeyFacts(state)
 
       expect(result).toEqual({
-        licenceType: '',
-        requester: 'origin',
-        movementDirection: undefined,
-        additionalInformation: ''
+        licenceType: { type: 'text', value: '' },
+        requester: { type: 'text', value: 'origin' },
+        movementDirection: { type: 'text', value: undefined },
+        additionalInformation: { type: 'text', value: '' }
       })
     })
   })

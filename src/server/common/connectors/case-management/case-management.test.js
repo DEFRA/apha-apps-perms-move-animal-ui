@@ -99,11 +99,11 @@ describe('CaseManagement.submitApplication', () => {
     expect(url).toBe(`${baseUrl}/submit`)
     expect(payloadSent).toHaveProperty('keyFacts')
     expect(payloadSent.keyFacts).toMatchObject({
-      licenceType: 'TB16',
-      requester: 'destination',
-      movementDirection: 'on',
-      destinationCph: '12/345/6789',
-      requesterCph: '12/345/6789'
+      licenceType: { type: 'text', value: 'TB16' },
+      requester: { type: 'text', value: 'destination' },
+      movementDirection: { type: 'text', value: 'on' },
+      destinationCph: { type: 'text', value: '12/345/6789' },
+      requesterCph: { type: 'text', value: '12/345/6789' }
     })
   })
 

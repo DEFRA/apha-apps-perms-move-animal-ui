@@ -30,33 +30,33 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(validApplicationState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.licenceType).toBe('TB16')
+      expect(keyFacts.licenceType.value).toBe('TB16')
     })
 
     it('should correctly set requester as destination for on-farm TB-restricted movement', async () => {
       const model = await createApplication(validApplicationState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.requester).toBe('destination')
+      expect(keyFacts.requester.value).toBe('destination')
     })
 
     it('should include CPH numbers when present', async () => {
       const model = await createApplication(validApplicationState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.originCph).toBe('12/345/6789')
-      expect(keyFacts.destinationCph).toBe('12/345/6789')
+      expect(keyFacts.originCph.value).toBe('12/345/6789')
+      expect(keyFacts.destinationCph.value).toBe('12/345/6789')
     })
 
     it('should include keeper names when present', async () => {
       const model = await createApplication(validApplicationState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.originKeeperName).toEqual({
+      expect(keyFacts.originKeeperName.value).toEqual({
         firstName: 'Kathryn',
         lastName: 'Janeway'
       })
-      expect(keyFacts.destinationKeeperName).toEqual({
+      expect(keyFacts.destinationKeeperName.value).toEqual({
         firstName: 'Jean-Luc',
         lastName: 'Picard'
       })
@@ -67,7 +67,7 @@ describe('TbApplicationModel', () => {
       const keyFacts = model.getKeyFacts()
 
       expect(keyFacts.biosecurityMaps).toBeDefined()
-      expect(keyFacts.biosecurityMaps).toContain(
+      expect(keyFacts.biosecurityMaps.value).toContain(
         'biosecurity-map/41572cf8-2e37-495e-9ad2-0b0f23f1b277/3d3c2a09-2888-4199-9bd6-ac7eda3125f0'
       )
     })
@@ -77,7 +77,7 @@ describe('TbApplicationModel', () => {
       const keyFacts = model.getKeyFacts()
 
       // On farm movement should use destination CPH
-      expect(keyFacts.requesterCph).toBe('12/345/6789')
+      expect(keyFacts.requesterCph.value).toBe('12/345/6789')
     })
 
     it('should handle off-farm movement correctly', async () => {
@@ -100,9 +100,9 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(offFarmState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.requester).toBe('origin')
-      expect(keyFacts.requesterCph).toBe('11/111/1111')
-      expect(keyFacts.licenceType).toBe('TB24c')
+      expect(keyFacts.requester.value).toBe('origin')
+      expect(keyFacts.requesterCph.value).toBe('11/111/1111')
+      expect(keyFacts.licenceType.value).toBe('TB24c')
     })
 
     it('should handle missing optional fields gracefully', async () => {
@@ -122,11 +122,14 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(minimalState)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.licenceType).toBe('TB16')
-      expect(keyFacts.requester).toBe('destination')
+      expect(keyFacts.licenceType.value).toBe('TB16')
+      expect(keyFacts.requester.value).toBe('destination')
       expect(keyFacts.originCph).toBeUndefined()
       expect(keyFacts.destinationCph).toBeUndefined()
-      expect(keyFacts.originKeeperName).toEqual({ firstName: '', lastName: '' })
+      expect(keyFacts.originKeeperName.value).toEqual({
+        firstName: '',
+        lastName: ''
+      })
       expect(keyFacts.biosecurityMaps).toBeUndefined()
     })
 
@@ -143,8 +146,8 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(stateWithAnimals)
       const keyFacts = model.getKeyFacts()
 
-      expect(keyFacts.numberOfCattle).toBe(25)
-      expect(typeof keyFacts.numberOfCattle).toBe('number')
+      expect(keyFacts.numberOfCattle.value).toBe(25)
+      expect(typeof keyFacts.numberOfCattle.value).toBe('number')
     })
 
     it('should include addresses when present', async () => {
