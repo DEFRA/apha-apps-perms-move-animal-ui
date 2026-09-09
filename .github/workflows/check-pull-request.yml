@@ -60,14 +60,10 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          pids=()
-          npm run test -- --projects jest-projects/core.js --coverageDirectory=coverage/core & pids+=("$!")
-          npm run test -- --projects jest-projects/fmd.js --coverageDirectory=coverage/fmd & pids+=("$!")
-          npm run test -- --projects jest-projects/exotics.js --coverageDirectory=coverage/exotics & pids+=("$!")
-          npm run test -- --projects jest-projects/tb.js --coverageDirectory=coverage/tb & pids+=("$!")
-          for pid in "${pids[@]}"; do
-            wait "$pid" || exit 1
-          done
+          npm run test -- --projects jest-projects/core.js
+          npm run test -- --projects jest-projects/fmd.js
+          npm run test -- --projects jest-projects/exotics.js
+          npm run test -- --projects jest-projects/tb.js
 
       - name: SonarCloud Scan
         if: github.actor != 'dependabot[bot]'
