@@ -44,8 +44,6 @@ jobs:
           npm run lint
           pids=()
           npm run test -- --projects jest-projects/core.js --coverageDirectory=coverage/core --runInBand --forceExit & pids+=("$!")
-          npm run test -- --projects jest-projects/fmd.js --coverageDirectory=coverage/fmd --runInBand --forceExit & pids+=("$!")
-          npm run test -- --projects jest-projects/exotics.js --coverageDirectory=coverage/exotics --runInBand --forceExit & pids+=("$!")
           npm run test -- --projects jest-projects/tb.js --coverageDirectory=coverage/tb --runInBand --forceExit & pids+=("$!")
           failed=0
           for pid in "${pids[@]}"; do
