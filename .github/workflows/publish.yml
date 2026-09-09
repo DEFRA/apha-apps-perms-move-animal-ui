@@ -43,10 +43,10 @@ jobs:
           npm run format:check
           npm run lint
           pids=()
-          npm run test -- --projects jest-projects/core.js --coverageDirectory=coverage/core & pids+=("$!")
-          npm run test -- --projects jest-projects/fmd.js --coverageDirectory=coverage/fmd & pids+=("$!")
-          npm run test -- --projects jest-projects/exotics.js --coverageDirectory=coverage/exotics & pids+=("$!")
-          npm run test -- --projects jest-projects/tb.js --coverageDirectory=coverage/tb & pids+=("$!")
+          npm run test -- --projects jest-projects/core.js --coverageDirectory=coverage/core --maxWorkers=2 & pids+=("$!")
+          npm run test -- --projects jest-projects/fmd.js --coverageDirectory=coverage/fmd --maxWorkers=2 & pids+=("$!")
+          npm run test -- --projects jest-projects/exotics.js --coverageDirectory=coverage/exotics --maxWorkers=2 & pids+=("$!")
+          npm run test -- --projects jest-projects/tb.js --coverageDirectory=coverage/tb --maxWorkers=2 & pids+=("$!")
           failed=0
           for pid in "${pids[@]}"; do
             wait "$pid" || failed=1
