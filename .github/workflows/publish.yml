@@ -66,7 +66,7 @@ jobs:
           DEFRA_ID_CLIENT_SECRET: ${{ secrets.DEFRA_ID_CLIENT_SECRET }}
           DEFRA_ID_ENABLED: false
         run: |
-          docker compose up --wait-timeout 300 -d --quiet-pull
+          docker compose up --wait-timeout 900 -d --quiet-pull
 
       - name: Journey tests
         run: |
