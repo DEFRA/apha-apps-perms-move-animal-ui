@@ -46,8 +46,8 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin,
-            destinationCph: TEST_CPHS.destination
+            originCph: { type: 'text', value: TEST_CPHS.origin },
+            destinationCph: { type: 'text', value: TEST_CPHS.destination }
           }
         }
       })
@@ -80,7 +80,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         },
         logger: createMockLogger({ error: jest.fn() })
@@ -100,7 +100,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         }
       })
@@ -116,7 +116,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         },
         logger: createMockLogger({ error: jest.fn() })
