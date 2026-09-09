@@ -2,12 +2,12 @@ name: Browserstack extended tests (desktop)
 
 on:
   schedule:
-    - cron: '0 1 * * *' # Runs at 1am
+    - cron: "0 1 * * *" # Runs at 1am
   workflow_dispatch:
 
 env:
   AWS_REGION: eu-west-2
-  AWS_ACCOUNT_ID: '094954420758'
+  AWS_ACCOUNT_ID: "094954420758"
 
 concurrency:
   group: browserstack-extended-tests-desktop
@@ -40,7 +40,7 @@ jobs:
 
       - name: Browserstack tests
         run: |
-          npm ci --ignore-scripts
+          npm ci
           npm run user-journey-test:bs-extended-desktop
         env:
           BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
