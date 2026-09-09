@@ -42,7 +42,14 @@ jobs:
           npm run build
           npm run format:check
           npm run lint
-          npm run test -- --projects jest-projects/core.js jest-projects/fmd.js jest-projects/exotics.js jest-projects/tb.js
+          pids=()
+          npm run test -- --projects jest-projects/core.js --coverageDirectory=coverage/core & pids+=("$!")
+          npm run test -- --projects jest-projects/fmd.js --coverageDirectory=coverage/fmd & pids+=("$!")
+          npm run test -- --projects jest-projects/exotics.js --coverageDirectory=coverage/exotics & pids+=("$!")
+          npm run test -- --projects jest-projects/tb.js --coverageDirectory=coverage/tb & pids+=("$!")
+          for pid in "${pids[@]}"; do
+            wait "$pid" || exit 1
+          done
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@713881670b6b3676cda39549040e2d88c70d582e # master
