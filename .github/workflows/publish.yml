@@ -37,7 +37,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: |
-          npm ci
+          npm ci --ignore-scripts
           npm audit --omit=dev
           npm run build
           npm run format:check

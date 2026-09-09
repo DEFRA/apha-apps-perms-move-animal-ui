@@ -40,7 +40,7 @@ jobs:
 
       - name: Browserstack tests
         run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run user-journey-test:bs-extended-desktop
         env:
           BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
