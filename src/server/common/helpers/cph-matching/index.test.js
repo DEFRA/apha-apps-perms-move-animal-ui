@@ -1,4 +1,4 @@
-import { runCphMatchingFromApplication } from './index.js'
+import { runCphMatching, runCphMatchingFromApplication } from './index.js'
 
 const mockFindMatchingCphs = jest.fn()
 
@@ -132,6 +132,22 @@ describe('CPH matching helper', () => {
   })
 
   describe('skipping scenarios', () => {
+    it('should classify a CPH as a destination when origin key facts are unavailable', async () => {
+      mockFindMatchingCphs.mockResolvedValueOnce(new Set())
+      const logger = createMockLogger()
+
+      await runCphMatching(
+        TEST_APPLICATION_ID,
+        [TEST_CPHS.destination],
+        undefined,
+        logger
+      )
+
+      expect(logger.info).toHaveBeenCalledWith(
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
+      )
+    })
+
     it('should skip matching when there are no CPHs to match', async () => {
       const context = createTestContext({
         payload: {}
