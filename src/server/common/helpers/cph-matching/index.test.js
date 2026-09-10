@@ -1,4 +1,4 @@
-import { runCphMatchingFromApplication } from './index.js'
+import { runCphMatching, runCphMatchingFromApplication } from './index.js'
 
 const mockFindMatchingCphs = jest.fn()
 
@@ -46,8 +46,8 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin,
-            destinationCph: TEST_CPHS.destination
+            originCph: { type: 'text', value: TEST_CPHS.origin },
+            destinationCph: { type: 'text', value: TEST_CPHS.destination }
           }
         }
       })
@@ -71,6 +71,43 @@ describe('CPH matching helper', () => {
         `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
       )
     })
+
+    it('should match the available destination CPH when origin CPH is missing', async () => {
+      mockFindMatchingCphs.mockResolvedValueOnce(
+        new Set([TEST_CPHS.destination])
+      )
+
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            destinationCph: { type: 'text', value: TEST_CPHS.destination }
+          }
+        }
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(mockFindMatchingCphs).toHaveBeenCalledWith([TEST_CPHS.destination])
+      expect(context.logger.info).toHaveBeenCalledWith(
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=true`
+      )
+    })
+
+    it('should ignore key facts that do not contain text values', async () => {
+      const context = createTestContext({
+        payload: {
+          keyFacts: {
+            originCph: { type: 'number', value: 123 },
+            destinationCph: undefined
+          }
+        }
+      })
+
+      await runCphMatchingFromApplication(context)
+
+      expect(mockFindMatchingCphs).not.toHaveBeenCalled()
+      expect(context.logger.info).not.toHaveBeenCalled()
+    })
   })
 
   describe('error handling', () => {
@@ -80,7 +117,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         },
         logger: createMockLogger({ error: jest.fn() })
@@ -100,7 +137,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         }
       })
@@ -116,7 +153,7 @@ describe('CPH matching helper', () => {
       const context = createTestContext({
         payload: {
           keyFacts: {
-            originCph: TEST_CPHS.origin
+            originCph: { type: 'text', value: TEST_CPHS.origin }
           }
         },
         logger: createMockLogger({ error: jest.fn() })
@@ -132,6 +169,31 @@ describe('CPH matching helper', () => {
   })
 
   describe('skipping scenarios', () => {
+    it('should skip matching when runCphMatching receives an empty list', async () => {
+      const logger = createMockLogger()
+
+      await runCphMatching(TEST_APPLICATION_ID, [], undefined, logger)
+
+      expect(mockFindMatchingCphs).not.toHaveBeenCalled()
+      expect(logger.info).not.toHaveBeenCalled()
+    })
+
+    it('should classify a CPH as a destination when origin key facts are unavailable', async () => {
+      mockFindMatchingCphs.mockResolvedValueOnce(new Set())
+      const logger = createMockLogger()
+
+      await runCphMatching(
+        TEST_APPLICATION_ID,
+        [TEST_CPHS.destination],
+        undefined,
+        logger
+      )
+
+      expect(logger.info).toHaveBeenCalledWith(
+        `CPH match result: applicationId=${TEST_APPLICATION_ID} cph=${TEST_CPHS.destination} type=destination matched=false`
+      )
+    })
+
     it('should skip matching when there are no CPHs to match', async () => {
       const context = createTestContext({
         payload: {}

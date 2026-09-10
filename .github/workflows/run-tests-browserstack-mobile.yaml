@@ -2,12 +2,12 @@ name: Browserstack extended tests (mobile)
 
 on:
   schedule:
-    - cron: '0 2 * * *' # Runs at 2am
+    - cron: "0 2 * * *" # Runs at 2am
   workflow_dispatch:
 
 env:
   AWS_REGION: eu-west-2
-  AWS_ACCOUNT_ID: '094954420758'
+  AWS_ACCOUNT_ID: "094954420758"
 
 concurrency:
   group: browserstack-extended-tests-mobile

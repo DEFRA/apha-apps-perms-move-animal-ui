@@ -1,14 +1,20 @@
 import { findMatchingCphs } from '../../apis/integration-bridge/index.js'
 
+/** @typedef {{ type: 'text', value: string }} TextKeyFact */
+/** @typedef {{ originCph?: TextKeyFact, destinationCph?: TextKeyFact }} CphKeyFacts */
+
+/**
+ * @param {TextKeyFact | undefined} keyFact
+ * @returns {string | undefined}
+ */
+const getTextKeyFactValue = (keyFact) => keyFact?.value
+
 /**
  * @param {Record<string, unknown>} payload
  * @returns {Array<string>}
  */
 const getCphsToMatch = (payload) => {
-  const keyFacts =
-    /** @type {{ originCph?: string, destinationCph?: string } | undefined} */ (
-      payload?.keyFacts
-    )
+  const keyFacts = /** @type {CphKeyFacts | undefined} */ (payload?.keyFacts)
 
   if (!keyFacts) {
     return []
@@ -16,13 +22,16 @@ const getCphsToMatch = (payload) => {
 
   const { originCph, destinationCph } = keyFacts
 
-  return [originCph, destinationCph].filter((cph) => typeof cph === 'string')
+  return [
+    getTextKeyFactValue(originCph),
+    getTextKeyFactValue(destinationCph)
+  ].filter((cph) => typeof cph === 'string')
 }
 
 /**
  * @param {string} applicationId
  * @param {Array<string>} cphs
- * @param {{ originCph?: string, destinationCph?: string } | undefined} keyFacts
+ * @param {CphKeyFacts | undefined} keyFacts
  * @param {{ info: (...args: Array<unknown>) => void, error?: (...args: Array<unknown>) => void }} logger
  * @returns {Promise<void>}
  */
@@ -35,7 +44,10 @@ export const runCphMatching = async (applicationId, cphs, keyFacts, logger) => {
     const matchingCphs = await findMatchingCphs(cphs)
 
     for (const cph of cphs) {
-      const cphType = cph === keyFacts?.originCph ? 'origin' : 'destination'
+      const cphType =
+        cph === getTextKeyFactValue(keyFacts?.originCph)
+          ? 'origin'
+          : 'destination'
       const cphMatchResult = matchingCphs.has(cph)
 
       logger.info(
@@ -60,9 +72,6 @@ export const runCphMatchingFromApplication = async ({
   logger
 }) => {
   const cphs = getCphsToMatch(payload)
-  const keyFacts =
-    /** @type {{ originCph?: string, destinationCph?: string } | undefined} */ (
-      payload?.keyFacts
-    )
+  const keyFacts = /** @type {CphKeyFacts | undefined} */ (payload?.keyFacts)
   await runCphMatching(applicationId, cphs, keyFacts, logger)
 }

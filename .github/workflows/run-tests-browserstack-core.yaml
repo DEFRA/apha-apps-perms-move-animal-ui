@@ -2,12 +2,12 @@ name: Browserstack tests (core)
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs at midnight
+    - cron: "0 0 * * *" # Runs at midnight
   workflow_dispatch:
 
 env:
   AWS_REGION: eu-west-2
-  AWS_ACCOUNT_ID: '094954420758'
+  AWS_ACCOUNT_ID: "094954420758"
 
 concurrency:
   group: browserstack-core-tests

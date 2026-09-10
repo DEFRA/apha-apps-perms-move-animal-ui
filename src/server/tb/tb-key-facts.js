@@ -18,6 +18,32 @@ const SALE_DESTINATION_TYPES = new Set([
   'afu-or-market'
 ])
 
+/** @type {Record<string, string>} */
+const KEY_FACT_TYPES = {
+  licenceType: 'text',
+  requester: 'text',
+  movementDirection: 'text',
+  numberOfCattle: 'number',
+  originCph: 'text',
+  originAddress: 'address',
+  originKeeperName: 'name',
+  destinationCph: 'text',
+  destinationAddress: 'address',
+  destinationKeeperName: 'name',
+  requesterCph: 'text',
+  additionalInformation: 'text',
+  biosecurityMaps: 'file'
+}
+
+/**
+ * @param {Record<string, any>} keyFacts
+ * @param {string} field
+ * @param {any} value
+ */
+function setKeyFact(keyFacts, field, value) {
+  keyFacts[field] = { type: KEY_FACT_TYPES[field], value }
+}
+
 /**
  * @param {Record<string, any>} keyFacts
  * @param {SectionModelV1} section
@@ -33,7 +59,7 @@ function addOptionalField(
 ) {
   const value = section.getSectionAnswer(sourceFieldName)?.data?.value
   if (value) {
-    keyFacts[keyFactFieldName] = value
+    setKeyFact(keyFacts, keyFactFieldName, value)
   } else {
     delete keyFacts[keyFactFieldName]
   }
@@ -55,14 +81,14 @@ function addOptionalKeeperNames(keyFacts, origin, licence) {
 
   // Origin keeper name: set for OFF farm OR (ON farm AND origin restricted)
   if (fullName && (isOffFarm || (isOnFarm && isOriginRestricted))) {
-    keyFacts.originKeeperName = fullName
+    setKeyFact(keyFacts, 'originKeeperName', fullName)
   }
 
   // Destination keeper name: only for ON farm movements
   if (isOnFarm) {
     const nameToUse = isOriginRestricted ? yourName : fullName
     if (nameToUse) {
-      keyFacts.destinationKeeperName = nameToUse
+      setKeyFact(keyFacts, 'destinationKeeperName', nameToUse)
     }
   }
 }
@@ -76,11 +102,11 @@ function addRequesterCph(keyFacts, origin) {
     origin.getSectionAnswer('onOffFarm')?.data?.value === MOVEMENT_ON
 
   if (isOnFarm && keyFacts.destinationCph) {
-    keyFacts.requesterCph = keyFacts.destinationCph
+    setKeyFact(keyFacts, 'requesterCph', keyFacts.destinationCph.value)
   }
 
   if (!isOnFarm && keyFacts.originCph) {
-    keyFacts.requesterCph = keyFacts.originCph
+    setKeyFact(keyFacts, 'requesterCph', keyFacts.originCph.value)
   }
 }
 
@@ -91,7 +117,7 @@ function addRequesterCph(keyFacts, origin) {
 function addBiosecurityMaps(keyFacts, biosecurityMap) {
   const biosecurityMaps = extractBiosecurityMaps(biosecurityMap)
   if (biosecurityMaps.length > 0) {
-    keyFacts.biosecurityMaps = biosecurityMaps
+    setKeyFact(keyFacts, 'biosecurityMaps', biosecurityMaps)
   }
 }
 
@@ -202,16 +228,29 @@ function buildBasicKeyFacts(origin, destination) {
     destination.getSectionAnswer('howManyAnimalsMaximum')?.data?.value ??
     null
 
-  return {
-    licenceType: determineLicenceType(originType, destinationType),
-    requester: determineRequester(origin),
-    movementDirection: origin.getSectionAnswer('onOffFarm')?.data?.value,
-    additionalInformation:
-      destination.getSectionAnswer('additionalInfo')?.data?.value ?? '',
-    ...(animalCount && {
-      numberOfCattle: Number.parseInt(animalCount, 10)
-    })
+  const keyFacts = {}
+  setKeyFact(
+    keyFacts,
+    'licenceType',
+    determineLicenceType(originType, destinationType)
+  )
+  setKeyFact(keyFacts, 'requester', determineRequester(origin))
+  setKeyFact(
+    keyFacts,
+    'movementDirection',
+    origin.getSectionAnswer('onOffFarm')?.data?.value
+  )
+  setKeyFact(
+    keyFacts,
+    'additionalInformation',
+    destination.getSectionAnswer('additionalInfo')?.data?.value ?? ''
+  )
+
+  if (animalCount) {
+    setKeyFact(keyFacts, 'numberOfCattle', Number.parseInt(animalCount, 10))
   }
+
+  return keyFacts
 }
 
 /**

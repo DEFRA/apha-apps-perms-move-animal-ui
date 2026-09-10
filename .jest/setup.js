@@ -30,3 +30,4 @@ jest.mock('ioredis', () => {
 
 process.env.DEFRA_ID_ENABLED = 'false'
 process.env.DEFRA_FORMS_ENABLED = 'false'
+process.env.LOG_FORMAT = 'ecs'
