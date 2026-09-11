@@ -115,8 +115,8 @@ export class DestinationTypeController extends TbQuestionPageController {
    */
   onAnswerSaved(req, answer, applicationState) {
     const originType = applicationState?.origin?.originType
-    const destinationType = answer.value
-    const licenceType = determineLicenceType(originType, destinationType)
+    const destType = answer.value
+    const licenceType = determineLicenceType(originType, destType)
 
     req.logger.info(
       { event: 'licence_type_determined', stage: 'destination', licenceType },
