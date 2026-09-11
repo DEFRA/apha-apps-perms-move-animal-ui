@@ -1,6 +1,7 @@
 import { DestinationTypeAnswer } from '~/src/server/common/model/answer/destination-type/destination-type.js'
 import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { TbQuestionPageController } from '../../question-page-controller.js'
+import { determineLicenceType } from '../../tb-key-facts.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
 import { checkExistingLicenceExitPage } from '../check-existing-licence-exit-page/index.js'
@@ -13,6 +14,7 @@ import { ownBothOriginAndDestinationPage } from '../own-both-origin-and-destinat
 
 /** @import { AnswerErrors } from "~/src/server/common/model/answer/validation.js" */
 /** @import { RawApplicationState } from '../../../common/model/state/state-manager.js' */
+/** @import { Request } from '@hapi/hapi' */
 
 const offFarmNextPageMapping = {
   'tb-restricted-farm': ownBothOriginAndDestinationPage,
@@ -105,10 +107,28 @@ export class DestinationTypePage extends QuestionPage {
 
 export const destinationTypePage = new DestinationTypePage()
 
+export class DestinationTypeController extends TbQuestionPageController {
+  /**
+   * @param {Request} req
+   * @param {DestinationTypeAnswer} answer
+   * @param {RawApplicationState} applicationState
+   */
+  onAnswerSaved(req, answer, applicationState) {
+    const originType = applicationState?.origin?.originType
+    const destinationType = answer.value
+    const licenceType = determineLicenceType(originType, destinationType)
+
+    req.logger.info(
+      { event: 'licence_type_determined', stage: 'destination', licenceType },
+      `Licence type '${licenceType}' determined when destination type was entered`
+    )
+  }
+}
+
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const destinationType = new TbQuestionPageController(
+export const destinationType = new DestinationTypeController(
   new DestinationTypePage()
 ).plugin()
 

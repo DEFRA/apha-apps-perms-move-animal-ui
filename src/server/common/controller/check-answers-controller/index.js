@@ -97,6 +97,19 @@ export class SubmitPageController extends QuestionPageController {
     try {
       const submissionPayload =
         application.getCaseManagementData(applicationState)
+
+      const licenceType = submissionPayload.keyFacts?.licenceType?.value
+      if (licenceType) {
+        req.logger.info(
+          {
+            event: 'licence_type_determined',
+            stage: 'submission',
+            licenceType
+          },
+          `Licence type '${licenceType}' determined on submission`
+        )
+      }
+
       const {
         payload: { message },
         statusCode
