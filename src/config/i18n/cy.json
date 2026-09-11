@@ -1,0 +1,80 @@
+{
+  "common": {
+    "serviceName": "Symud anifeiliaid o dan reolaethau clefydau",
+    "back": "Yn ol",
+    "feedbackBannerHtml": "Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a <a data-testid=\"feedback-link\" target=\"_blank\" class=\"govuk-link\" href=\"https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk\">rhowch eich adborth (yn agor mewn tab newydd)</a>.",
+    "helpFooterText": "Os oes angen help arnoch gyda'r gwasanaeth, gallwch ffonio 03000 200 301.",
+    "startNow": "Dechrau nawr",
+    "continue": "Parhau",
+    "change": "Newid",
+    "taskList": {
+      "progress": {
+        "youHave": "Mae gennych",
+        "outOf": "o",
+        "sectionsLeft": "rhanbarth i'w gwblhau.",
+        "allSectionsComplete": "Rydych chi wedi cwblhau pob adran."
+      },
+      "status": {
+        "cannotStartYet": "Methu dechrau eto",
+        "completed": "Wedi'i gwblhau",
+        "incomplete": "Anghyflawn"
+      }
+    },
+    "checkAnswers": {
+      "sectionHeading": "Gwiriwch eich atebion cyn i chi barhau â'ch cais"
+    }
+  },
+  "tb": {
+    "origin": {
+      "title": "Tarddiad y symudiad",
+      "onOffFarm": {
+        "question": "Ydych chi'n symud yr anifeiliaid i'ch fferm neu fangre neu oddi yno?",
+        "options": {
+          "on": {
+            "label": "I'r fferm neu'r safle"
+          },
+          "off": {
+            "label": "Oddi ar y fferm neu'r safle"
+          }
+        }
+      }
+    },
+    "biosecurity": {
+      "title": "Manylion bioddiogelwch",
+      "dilutionRate": {
+        "heading": "Cyfradd gwanedu diheintydd",
+        "question": "Cadarnhad o'r gyfradd wanhau",
+        "answer": {
+          "undiluted": "Rwy'n cadarnhau bod y diheintydd yn cael ei ddefnyddio heb ei wanhau ar y fferm neu'r safle",
+          "prefix": "Rwy'n cadarnhau bod cyfradd gwanhau o 1:",
+          "suffix": " yn cael ei defnyddio ar y fferm neu'r safle"
+        },
+        "page": {
+          "intro": "Yn ôl y gyfraith, mae'n rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra pan fydd achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.",
+          "approvedPrefix": "Y gyfradd gwanhau gymeradwy ar gyfer",
+          "is": "yw",
+          "undiluted": "heb ei wanhau",
+          "explanationPrefix": "Mae hyn yn golygu am bob 1",
+          "explanationMiddle": "o",
+          "explanationUsing": "eich bod yn defnyddio",
+          "explanationSuffix": "o ddŵr.",
+          "units": {
+            "litres": "litr",
+            "millilitres": "mililitr",
+            "litre": "litr",
+            "gram": "gram"
+          },
+          "selectFirst": "Mae'n rhaid i chi ddewis diheintydd cyn cadarnhau'r gyfradd gwanhau.",
+          "selectDisinfectantButton": "Dewiswch ddiheintydd"
+        }
+      }
+    },
+    "home": {
+      "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud TB. Rhaid i chi gael trwydded cyn symud gwartheg i fferm neu fangre sydd dan gyfyngiadau TB neu oddi yno."
+    },
+    "taskList": {
+      "title": "Eich cais am drwydded symud TB gwartheiddio",
+      "buttonText": "Adolygu a chyflwyno"
+    }
+  }
+}

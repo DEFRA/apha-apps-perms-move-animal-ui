@@ -10,8 +10,10 @@ export class TbTaskListController extends TaskListController {
 
   pageTitleAndHeading =
     'Your Bovine Tuberculosis (TB) movement licence application'
+  pageTitleAndHeadingI18nKey = 'tb.taskList.title'
 
   buttonText = 'Review and submit'
+  buttonTextI18nKey = 'tb.taskList.buttonText'
   urlPath = '/task-list'
   submitUrlPath = '/tb/submit/check-answers'
 }

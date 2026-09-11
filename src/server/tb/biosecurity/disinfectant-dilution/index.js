@@ -4,11 +4,16 @@ import { QuestionPage } from '../../../common/model/page/question-page-model.js'
 import { equipmentAnySharedPage } from '../equipment-any-shared/index.js'
 import { TbStateManager } from '../../state-manager.js'
 import { fetchDisinfectants } from '~/src/server/common/apis/index.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 const customHeading = 'Disinfectant dilution rate'
 
 export class DisinfectantDilutionPage extends QuestionPage {
   view = `tb/biosecurity/disinfectant-dilution/index`
+
+  titleI18nKey = 'tb.biosecurity.dilutionRate.heading'
+  headingI18nKey = 'tb.biosecurity.dilutionRate.heading'
+  questionI18nKey = 'tb.biosecurity.dilutionRate.question'
 
   get heading() {
     return customHeading
@@ -42,10 +47,30 @@ export class DisinfectantDilutionPage extends QuestionPage {
       isUndiluted: disinfectantDetails.isUndiluted,
       disinfectant: disinfectantDetails.name,
       dilutionRate: disinfectantDetails.isUndiluted
-        ? 'undiluted'
+        ? translate(
+            req,
+            'tb.biosecurity.dilutionRate.page.undiluted',
+            'undiluted'
+          )
         : `${disinfectantDetails.dilutionRate}`,
-      dilutantUnit: disinfectantDetails.isLiquid ? 'litres' : 'millilitres',
-      disinfectantUnit: disinfectantDetails.isLiquid ? 'litre' : 'gram'
+      dilutantUnit: disinfectantDetails.isLiquid
+        ? translate(
+            req,
+            'tb.biosecurity.dilutionRate.page.units.litres',
+            'litres'
+          )
+        : translate(
+            req,
+            'tb.biosecurity.dilutionRate.page.units.millilitres',
+            'millilitres'
+          ),
+      disinfectantUnit: disinfectantDetails.isLiquid
+        ? translate(
+            req,
+            'tb.biosecurity.dilutionRate.page.units.litre',
+            'litre'
+          )
+        : translate(req, 'tb.biosecurity.dilutionRate.page.units.gram', 'gram')
     })
   }
 }

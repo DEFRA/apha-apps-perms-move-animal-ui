@@ -11,9 +11,12 @@
           <h1 class="govuk-heading-l">{{ heading }}</h1>
         </div>
         <p class="govuk-body">
-          Use this service to apply for a TB movement licence. You must have a
-          licence before moving cattle onto or off a farm or premises with TB
-          restrictions.
+          {{
+            translate(
+              'tb.home.intro',
+              'Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions.'
+            )
+          }}
         </p>
         <p class="govuk-body">
           Check if APHA has already sent you a TB movement licence before you
@@ -121,7 +124,7 @@
           <li>upload a biosecurity map</li>
         </ul>
         {{
-          govukButton({ text: "Start now", href:"task-list",
+          govukButton({ text: translate('common.startNow', 'Start now'), href:"task-list",
           isStartButton: true, attributes: "data-testid='start-now-btn'" })
         }}
         <p class="govuk-body">

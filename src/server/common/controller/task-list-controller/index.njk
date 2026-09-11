@@ -10,15 +10,17 @@
         {% if incompleteTasks > 0 %}
           {% set buttonClass = "govuk-button--secondary" %}
           <p>
-            You have
+            {{ translate('common.taskList.progress.youHave', 'You have') }}
             <span data="test-id-task-to-complete-count"
-              >{{ incompleteTasks }} out of {{ gdsTasks.length }}</span
+              >{{ incompleteTasks }}
+              {{ translate('common.taskList.progress.outOf', 'out of') }}
+              {{ gdsTasks.length }}</span
             >
-            sections left to complete.
+            {{ translate('common.taskList.progress.sectionsLeft', 'sections left to complete.') }}
           </p>
         {% else %}
           <p data="test-id-task-to-complete-count">
-            You have completed all sections.
+            {{ translate('common.taskList.progress.allSectionsComplete', 'You have completed all sections.') }}
           </p>
         {% endif %}
         {{

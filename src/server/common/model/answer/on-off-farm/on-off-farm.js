@@ -5,8 +5,14 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 const onOffFarmConfig = {
   payloadKey: 'onOffFarm',
   options: {
-    on: { label: 'On to the farm or premises' },
-    off: { label: 'Off the farm or premises' }
+    on: {
+      label: 'On to the farm or premises',
+      labelI18nKey: 'tb.origin.onOffFarm.options.on.label'
+    },
+    off: {
+      label: 'Off the farm or premises',
+      labelI18nKey: 'tb.origin.onOffFarm.options.off.label'
+    }
   },
   validation: {
     empty: 'Select if you are moving animals on or off your farm or premises'

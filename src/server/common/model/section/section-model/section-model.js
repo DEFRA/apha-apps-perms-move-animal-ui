@@ -27,6 +27,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @typedef {{
  *  key: string,
  *  title: string,
+ * titleI18nKey?: string,
  *  plugin?: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
  *  isEnabled: (app: RawApplicationState, req?: Request) => Promise<boolean> | boolean,

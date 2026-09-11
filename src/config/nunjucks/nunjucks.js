@@ -7,6 +7,7 @@ import { config } from '~/src/config/config.js'
 import { context } from './context/context.js'
 import * as filters from './filters/filters.js'
 import * as globals from './globals.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const nunjucksEnvironment = nunjucks.configure(
@@ -57,6 +58,11 @@ export const nunjucksConfig = {
 
 Object.entries(globals).forEach(([name, global]) => {
   nunjucksEnvironment.addGlobal(name, global)
+})
+
+nunjucksEnvironment.addGlobal('translate', function (key, fallback, params) {
+  const request = this?.ctx?.request ?? this?.request ?? null
+  return translate(request, key, fallback, params)
 })
 
 Object.entries(filters).forEach(([name, filter]) => {
