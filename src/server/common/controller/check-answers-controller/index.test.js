@@ -190,6 +190,13 @@ describe('#SubmitPageController', () => {
 
   it('should send the application to case management and redirect to confirmation page', async () => {
     const dummyReferenceNumber = '12-1234-1234'
+    let loggerSpy
+    server.ext('onPreHandler', (request, h) => {
+      if (request.path === checkAnswersUri) {
+        loggerSpy = jest.spyOn(request.logger, 'info')
+      }
+      return h.continue
+    })
 
     const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
       if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
@@ -248,6 +255,13 @@ describe('#SubmitPageController', () => {
     expect(wreckSpy).toHaveBeenCalledTimes(2)
     expect(wreckSpy.mock.calls[0][0]).toBe(
       `${config.get('caseManagementApi').baseUrl}/submit`
+    )
+    expect(loggerSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'licence_type_determined',
+        stage: 'submission'
+      }),
+      expect.stringContaining('determined on submission')
     )
   })
 

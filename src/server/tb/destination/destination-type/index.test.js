@@ -1,4 +1,8 @@
-import { destinationTypePage, DestinationTypePage } from './index.js'
+import {
+  destinationTypePage,
+  DestinationTypePage,
+  DestinationTypeController
+} from './index.js'
 import { DestinationTypeAnswer } from '../../../common/model/answer/destination-type/destination-type.js'
 import { destinationGeneralLicencePage } from '../general-licence/index.js'
 import { destinationFarmCphPage } from '../destination-farm-cph/index.js'
@@ -256,5 +260,51 @@ describe('DestinationTypePage.nextPage', () => {
       pageUrl,
       state: { application: context }
     })
+  })
+})
+
+describe('DestinationTypeController.onAnswerSaved', () => {
+  const controller = new DestinationTypeController(new DestinationTypePage())
+
+  it('should log the determined licence type when destination type is entered', () => {
+    const req = /** @type {any} */ ({ logger: { info: jest.fn() } })
+    const answer = new DestinationTypeAnswer({
+      destinationType: 'tb-restricted-farm'
+    })
+    const applicationState = {
+      origin: { originType: 'tb-restricted-farm' }
+    }
+
+    controller.onAnswerSaved(req, answer, applicationState)
+
+    expect(req.logger.info).toHaveBeenCalledWith(
+      {
+        event: 'licence_type_determined',
+        stage: 'destination',
+        licenceType: 'TB16'
+      },
+      "Licence type 'TB16' determined when destination type was entered"
+    )
+  })
+
+  it('should log an empty licence type when it cannot be determined', () => {
+    const req = /** @type {any} */ ({ logger: { info: jest.fn() } })
+    const answer = new DestinationTypeAnswer({
+      destinationType: 'afu'
+    })
+    const applicationState = {
+      origin: { originType: 'market' }
+    }
+
+    controller.onAnswerSaved(req, answer, applicationState)
+
+    expect(req.logger.info).toHaveBeenCalledWith(
+      {
+        event: 'licence_type_determined',
+        stage: 'destination',
+        licenceType: ''
+      },
+      "Licence type '' determined when destination type was entered"
+    )
   })
 })

@@ -255,6 +255,54 @@ describe('QuestionPageController', () => {
       expect(state.someOtherQuestion).toBe('some-other-answer')
     })
 
+    it('should call onAnswerSaved with the saved answer and application state once the answer is valid', async () => {
+      const onAnswerSavedSpy = jest.spyOn(controller, 'onAnswerSaved')
+      await session.setSectionState('origin', { onOffFarm: 'off' })
+
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              [questionKey]: questionValue
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(onAnswerSavedSpy).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.any(TestAnswer),
+        expect.objectContaining({ origin: { onOffFarm: 'off' } })
+      )
+    })
+
+    it('should not call onAnswerSaved when the answer is invalid', async () => {
+      validationSpy.mockReturnValueOnce({ isValid: false, errors: {} })
+      const onAnswerSavedSpy = jest.spyOn(controller, 'onAnswerSaved')
+
+      await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: {
+              [questionKey]: 'ERROR'
+            }
+          },
+          {
+            Cookie: session.sessionID
+          }
+        )
+      )
+
+      expect(onAnswerSavedSpy).not.toHaveBeenCalled()
+    })
+
     it('should allow routing to depend on application state', async () => {
       await session.setSectionState('origin', {
         onOffFarm: 'on'
