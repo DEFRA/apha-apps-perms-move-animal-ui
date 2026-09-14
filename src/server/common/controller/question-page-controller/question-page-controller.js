@@ -4,11 +4,11 @@ import GenericPageController from '~/src/server/common/controller/generic-page-c
 import { nextPageRedirect } from '~/src/server/common/helpers/next-page-redirect/index.js'
 import { getAuthOptions } from '~/src/server/common/helpers/auth/toggles-helper.js'
 
-/** @import { Server, ServerRegisterPluginObject } from '@hapi/hapi' */
+/** @import { Request, Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '~/src/server/common/helpers/next-page.js' */
-/** @import { RawPayload } from '~/src/server/common/model/answer/answer-model.js' */
+/** @import { AnswerModel, RawPayload } from '~/src/server/common/model/answer/answer-model.js' */
 /** @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js' */
-/** @import { StateManager } from '~/src/server/common/model/state/state-manager.js' */
+/** @import { RawApplicationState, StateManager } from '~/src/server/common/model/state/state-manager.js' */
 
 export class QuestionPageController extends GenericPageController {
   /** @type {typeof StateManager} */
@@ -105,6 +105,14 @@ export class QuestionPageController extends GenericPageController {
     })
   }
 
+  /**
+   * @param {Request} _req
+   * @param {AnswerModel} _answer
+   * @param {RawApplicationState} _applicationState
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  onAnswerSaved(_req, _answer, _applicationState) {}
+
   handlePost(req, h) {
     req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
@@ -131,6 +139,8 @@ export class QuestionPageController extends GenericPageController {
     }
 
     state.set(this.page, answer)
+
+    this.onAnswerSaved(req, answer, applicationState)
 
     const nextPage = this.page.nextPage(answer, applicationState)
 
