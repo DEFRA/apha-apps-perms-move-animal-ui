@@ -162,7 +162,7 @@ function isAfuToSpecialDestination(originType, destinationType) {
  * @param {string} originType
  * @param {string} destinationType
  */
-function determineLicenceType(originType, destinationType) {
+export function determineLicenceType(originType, destinationType) {
   const isOriginRestricted = isTbRestricted(originType)
   const isDestinationRestricted = isTbRestricted(destinationType)
 
