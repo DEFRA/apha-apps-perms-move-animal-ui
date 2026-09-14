@@ -35,6 +35,7 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
             location of biosecurity points, including badger proof fencing
           </li>
         </ul>
+        <p>The selected file must be a PNG, JPEG, JPG or PDF and less than 10 MB.</p>
         <div class="govuk-form-group">
   <label class="govuk-label" for="status.form.file">
     Upload a file
