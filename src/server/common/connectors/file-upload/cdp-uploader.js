@@ -10,7 +10,7 @@ export async function checkStatus(uploadId) {
 export async function initiateFileUpload(redirectUrl) {
   const { bucket, uploaderUrl, path } = config.get('fileUpload')
 
-  const mimeTypes = ['image/png', 'image/jpeg']
+  const mimeTypes = ['image/png', 'image/jpeg', 'text/html']
 
   if (config.get('featureFlags').pdfUpload) {
     mimeTypes.push('application/pdf')
