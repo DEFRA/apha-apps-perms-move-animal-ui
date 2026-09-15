@@ -60,7 +60,7 @@ describe('initiateFileUpload', () => {
         redirect: mockRedirectUrl,
         s3Bucket: mockBucket,
         s3Path: mockPath,
-        mimeTypes: ['image/png', 'image/jpeg'],
+        mimeTypes: ['image/png', 'image/jpeg', 'text/html'],
         maxFileSize
       })
     })
@@ -107,7 +107,12 @@ describe('initiateFileUpload', () => {
           redirect: mockRedirectUrl,
           s3Bucket: mockBucket,
           s3Path: mockPath,
-          mimeTypes: ['image/png', 'image/jpeg', 'application/pdf'],
+          mimeTypes: [
+            'image/png',
+            'image/jpeg',
+            'text/html',
+            'application/pdf'
+          ],
           maxFileSize
         })
       })
