@@ -107,7 +107,7 @@ describe('CaseManagement.submitApplication', () => {
     })
   })
 
-  it('should not include keyFacts in payload when state is not provided', async () => {
+  it('should send empty keyFacts in payload when state is not provided', async () => {
     const expectedResponse = {
       message: 'TB-1234-ABCD'
     }
@@ -127,6 +127,6 @@ describe('CaseManagement.submitApplication', () => {
     const payloadSent = options.payload
 
     expect(url).toBe(`${baseUrl}/submit`)
-    expect(payloadSent).not.toHaveProperty('keyFacts')
+    expect(payloadSent.keyFacts).toEqual({})
   })
 })
