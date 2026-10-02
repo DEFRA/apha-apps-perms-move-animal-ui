@@ -73,7 +73,8 @@ export class ApplicationModel {
     return {
       journeyVersion: this.version,
       journeyId: this.journeyId,
-      sections: Object.values(sections).map((section) => section.sectionData)
+      sections: Object.values(sections).map((section) => section.sectionData),
+      keyFacts: {}
     }
   }
 

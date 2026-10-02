@@ -160,10 +160,10 @@ describe('TbApplicationModel', () => {
   })
 
   describe('getCaseManagementData', () => {
-    it('should not include keyFacts when state is not provided', async () => {
+    it('should include empty keyFacts when state is not provided', async () => {
       const model = await createApplication(validApplicationState)
 
-      expect(model.getCaseManagementData().keyFacts).toBeUndefined()
+      expect(model.getCaseManagementData().keyFacts).toEqual({})
     })
 
     it('should include keyFacts when state is provided', async () => {

@@ -7,6 +7,7 @@ exports[`Application.applicationData should render application data in the datas
     "major": 1,
     "minor": 1,
   },
+  "keyFacts": {},
   "sections": [
     {
       "questionAnswers": [
