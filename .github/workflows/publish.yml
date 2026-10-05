@@ -71,6 +71,6 @@ jobs:
         run: docker compose down
 
       - name: Build and Publish
-        uses: DEFRA/cdp-build-action/build@edfaffa943acc06adad3cf971d391922ae1a75af # main
+        uses: DEFRA/cdp-build-action/build@5ff8be1833b05bfdbe396b3e46e0802822b94615 # main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
