@@ -13,6 +13,9 @@ export class QuestionPage extends Page {
   /** @type {string} */
   question
 
+  /** @type {string | undefined} */
+  questionI18nKey
+
   /** @type {string} */
   questionKey
 

@@ -15,23 +15,63 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <p>
-          By law you must use a Defra-approved disinfectant when there is an
-          outbreak of TB. This includes using the correct dilution rate.
+          {{
+            translate(
+              'tb.biosecurity.dilutionRate.page.intro',
+              'By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.'
+            )
+          }}
         </p>
         <p>
-          The approved dilution rate for {{ disinfectant }} is
+          {{
+            translate(
+              'tb.biosecurity.dilutionRate.page.approvedPrefix',
+              'The approved dilution rate for'
+            )
+          }}
+          {{ disinfectant }}
+          {{ translate('tb.biosecurity.dilutionRate.page.is', 'is') if tr else 'is' }}
           {% if isUndiluted %}
-            undiluted
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.undiluted',
+                'undiluted'
+              )
+            }}
           {% else %}
             1:{{ dilutionRate }}.
           {% endif %}
         </p>
         {% if not isUndiluted %}
           <p>
-            This means for every 1 {{ disinfectantUnit }} of {{ disinfectant }},
-            you are using {{ dilutionRate }}
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.explanationPrefix',
+                'This means for every 1'
+              )
+            }}
+            {{ disinfectantUnit }}
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.explanationMiddle',
+                'of'
+              )
+            }}
+            {{ disinfectant }},
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.explanationUsing',
+                'you are using'
+              )
+            }}
+            {{ dilutionRate }}
             {{ dilutantUnit }}
-            of water.
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.explanationSuffix',
+                'of water.'
+              )
+            }}
           </p>
         {% endif %}
       </div>
@@ -40,7 +80,12 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <p>
-          You must select a disinfectant before confirming the dilution rate.
+          {{
+            translate(
+              'tb.biosecurity.dilutionRate.page.selectFirst',
+              'You must select a disinfectant before confirming the dilution rate.'
+            )
+          }}
         </p>
       </div>
     </div>
@@ -54,7 +99,7 @@
     {{
       govukButton({
         id: "continue-button",
-        text: "Select disinfectant",
+        text: translate('tb.biosecurity.dilutionRate.page.selectDisinfectantButton', 'Select disinfectant') if tr else 'Select disinfectant',
         classes: continueButtonClasses,
         href: disinfectantUrl
       })

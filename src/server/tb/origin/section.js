@@ -13,6 +13,7 @@ export class OriginSectionV1 extends SectionModelV1 {
   static config = {
     key: 'origin',
     title: 'Movement origin',
+    titleI18nKey: 'tb.origin.title',
     plugin: origin,
     summaryLink: '/origin/check-answers',
     isEnabled: () => true,

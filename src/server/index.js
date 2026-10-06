@@ -1,5 +1,6 @@
 import path from 'path'
 import hapi from '@hapi/hapi'
+import hapiI18n from 'hapi-i18n'
 import { config } from '~/src/config/config.js'
 import { nunjucksConfig } from '~/src/config/nunjucks/nunjucks.js'
 import { router } from './router.js'
@@ -67,6 +68,20 @@ export async function createServer() {
     csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js
   ])
+
+  await server.register({
+    plugin: hapiI18n.plugin,
+    options: {
+      locales: ['en', 'cy'],
+      defaultLocale: 'en',
+      queryParameter: 'lang',
+      directory: path.resolve(config.get('root'), 'src/config/i18n'),
+      updateFiles: false,
+      autoReload: config.get('isDevelopment'),
+      syncFiles: false,
+      objectNotation: true
+    }
+  })
 
   if (config.get('featureFlags').defraFormsEnabled) {
     const cacheService = new CustomCacheService({

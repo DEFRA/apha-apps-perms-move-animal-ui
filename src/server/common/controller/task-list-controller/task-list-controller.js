@@ -1,4 +1,5 @@
 import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
+import { translate } from '../../helpers/i18n/index.js'
 
 /** @import { StateManager } from '../../model/state/state-manager.js' */
 /** @import { ApplicationModel } from '../../model/application/application.js' */
@@ -14,8 +15,14 @@ export class TaskListController {
   /** @type {string} */
   pageTitleAndHeading
 
+  /** @type {string | undefined} */
+  pageTitleAndHeadingI18nKey
+
   /** @type {string} */
   buttonText
+
+  /** @type {string | undefined} */
+  buttonTextI18nKey
 
   /** @type {string} */
   urlPath
@@ -34,7 +41,8 @@ export class TaskListController {
     const gdsTasks = await Promise.all(
       visibleSections.map(async (section) => {
         return buildGdsTaskItem(
-          await section.taskDetailsViewModel(req, applicationState)
+          await section.taskDetailsViewModel(req, applicationState),
+          req
         )
       })
     )
@@ -45,12 +53,19 @@ export class TaskListController {
         return section.validate().isValid
       }).length
 
+    const pageTitle = translate(
+      req,
+      this.pageTitleAndHeadingI18nKey,
+      this.pageTitleAndHeading
+    )
+    const buttonText = translate(req, this.buttonTextI18nKey, this.buttonText)
+
     return h.view('common/controller/task-list-controller/index.njk', {
-      pageTitle: this.pageTitleAndHeading,
-      heading: this.pageTitleAndHeading,
+      pageTitle,
+      heading: pageTitle,
       gdsTasks,
       incompleteTasks,
-      buttonText: this.buttonText
+      buttonText
     })
   }
 
@@ -99,29 +114,30 @@ export class TaskListController {
  * @param {boolean} params.isEnabled - Indicates whether the task is enabled and can be interacted with.
  * @returns {object} A GDS task item object ready to be used in a nunjucks template.
  */
-function buildGdsTaskItem({
-  title,
-  initialLink,
-  summaryLink,
-  isValid,
-  isEnabled
-}) {
+function buildGdsTaskItem(
+  { title, initialLink, summaryLink, isValid, isEnabled },
+  req
+) {
   let status, href
   if (!isEnabled) {
     status = {
-      text: 'Cannot start yet',
+      text: translate(
+        req,
+        'common.taskList.status.cannotStartYet',
+        'Cannot start yet'
+      ),
       classes: 'govuk-task-list__status--cannot-start-yet'
     }
   } else if (isValid) {
     status = {
-      text: 'Completed',
+      text: translate(req, 'common.taskList.status.completed', 'Completed'),
       classes: ''
     }
     href = summaryLink
   } else {
     status = {
       tag: {
-        text: 'Incomplete',
+        text: translate(req, 'common.taskList.status.incomplete', 'Incomplete'),
         classes: 'govuk-tag--blue'
       }
     }

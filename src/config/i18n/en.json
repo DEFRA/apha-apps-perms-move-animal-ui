@@ -1,0 +1,80 @@
+{
+  "common": {
+    "serviceName": "Move animals under disease controls",
+    "back": "Back",
+    "feedbackBannerHtml": "This is a new service. Help us improve it and <a data-testid=\"feedback-link\" target=\"_blank\" class=\"govuk-link\" href=\"https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk\">give your feedback (opens in new tab)</a>.",
+    "helpFooterText": "If you need help with the service you can call 03000 200 301.",
+    "startNow": "Start now",
+    "continue": "Continue",
+    "change": "Change",
+    "taskList": {
+      "progress": {
+        "youHave": "You have",
+        "outOf": "out of",
+        "sectionsLeft": "sections left to complete.",
+        "allSectionsComplete": "You have completed all sections."
+      },
+      "status": {
+        "cannotStartYet": "Cannot start yet",
+        "completed": "Completed",
+        "incomplete": "Incomplete"
+      }
+    },
+    "checkAnswers": {
+      "sectionHeading": "Check your answers before you continue your application"
+    }
+  },
+  "tb": {
+    "origin": {
+      "title": "Movement origin",
+      "onOffFarm": {
+        "question": "Are you moving the animals on or off your farm or premises?",
+        "options": {
+          "on": {
+            "label": "On to the farm or premises"
+          },
+          "off": {
+            "label": "Off the farm or premises"
+          }
+        }
+      }
+    },
+    "biosecurity": {
+      "title": "Biosecurity details",
+      "dilutionRate": {
+        "heading": "Disinfectant dilution rate",
+        "question": "Confirmation of the dilution rate",
+        "answer": {
+          "undiluted": "I confirm the disinfectant is used undiluted on the farm or premises",
+          "prefix": "I confirm a dilution rate of 1:",
+          "suffix": " is used on the farm or premises"
+        },
+        "page": {
+          "intro": "By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.",
+          "approvedPrefix": "The approved dilution rate for",
+          "is": "is",
+          "undiluted": "undiluted",
+          "explanationPrefix": "This means for every 1",
+          "explanationMiddle": "of",
+          "explanationUsing": "you are using",
+          "explanationSuffix": "of water.",
+          "units": {
+            "litres": "litres",
+            "millilitres": "millilitres",
+            "litre": "litre",
+            "gram": "gram"
+          },
+          "selectFirst": "You must select a disinfectant before confirming the dilution rate.",
+          "selectDisinfectantButton": "Select disinfectant"
+        }
+      }
+    },
+    "home": {
+      "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions."
+    },
+    "taskList": {
+      "title": "Your Bovine Tuberculosis (TB) movement licence application",
+      "buttonText": "Review and submit"
+    }
+  }
+}

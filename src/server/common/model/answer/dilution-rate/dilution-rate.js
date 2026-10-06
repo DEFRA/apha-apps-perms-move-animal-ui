@@ -1,5 +1,6 @@
 import { fetchDisinfectants } from '../../../apis/index.js'
 import { ensureArray } from '../../../helpers/ensure-array.js'
+import { translate } from '../../../helpers/i18n/index.js'
 import { CheckboxAnswer } from '../checkbox/checkbox.js'
 
 /** @import {CheckboxConfig, CheckboxData} from '../checkbox/checkbox.js' */
@@ -34,8 +35,12 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ question, validate }) {
-    const viewModel = await super.viewModel({ question, validate })
+  async viewModel({ question, validate, request }) {
+    const viewModel = await super.viewModel({
+      question,
+      validate,
+      request
+    })
 
     const values = this.value
     const { options } = this.config
@@ -51,8 +56,13 @@ export class DilutionRateAnswer extends CheckboxAnswer {
 
     viewModel.items = Object.entries(options).map(([value]) => ({
       text: disinfectantDetails?.isUndiluted
-        ? 'I confirm the disinfectant is used undiluted on the farm or premises'
-        : `I confirm a dilution rate of 1:${disinfectantDetails?.dilutionRate} is used on the farm or premises`,
+        ? (translate?.(
+            request,
+            'tb.biosecurity.dilutionRate.answer.undiluted',
+            'I confirm the disinfectant is used undiluted on the farm or premises'
+          ) ??
+          'I confirm the disinfectant is used undiluted on the farm or premises')
+        : `${translate?.(request, 'tb.biosecurity.dilutionRate.answer.prefix', 'I confirm a dilution rate of 1:') ?? 'I confirm a dilution rate of 1:'}${disinfectantDetails?.dilutionRate}${translate?.(request, 'tb.biosecurity.dilutionRate.answer.suffix', ' is used on the farm or premises') ?? ' is used on the farm or premises'}`,
       value: disinfectantDetails?.dilutionRate ?? value,
       attributes: {
         'data-testid': `${value}-checkbox`
