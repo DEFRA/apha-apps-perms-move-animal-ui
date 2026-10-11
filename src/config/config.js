@@ -338,9 +338,9 @@ export const config = convict({
       env: 'INTEGRATION_BRIDGE_CLIENT_SECRET'
     },
     timeout: {
-      doc: 'Timeout for Integration Bridge requests in milliseconds. CPH matching runs while the user waits on the CPH page and is retried once, so keep this short',
+      doc: 'Timeout for Integration Bridge requests in milliseconds',
       format: Number,
-      default: 5_000,
+      default: 30_000,
       env: 'INTEGRATION_BRIDGE_TIMEOUT'
     }
   },
