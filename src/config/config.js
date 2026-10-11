@@ -340,7 +340,7 @@ export const config = convict({
     timeout: {
       doc: 'Timeout for Integration Bridge requests in milliseconds',
       format: Number,
-      default: 30_000,
+      default: 5_000,
       env: 'INTEGRATION_BRIDGE_TIMEOUT'
     }
   },

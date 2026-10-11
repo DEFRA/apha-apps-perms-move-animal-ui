@@ -24,22 +24,15 @@ export const matchCph = async (cph, logger) => {
 
       return matched ? 'matched' : 'not-matched'
     } catch (error) {
-      lastError = error
+      lastError = error instanceof Error ? error : new TypeError(String(error))
       logger.warn(
+        { err: lastError },
         `CPH match attempt ${attempt} of ${maxAttempts} failed: cph=${cph}`
       )
     }
   }
 
-  logger.error(
-    {
-      err:
-        lastError instanceof Error
-          ? lastError
-          : new TypeError(String(lastError))
-    },
-    `CPH API unavailable: cph=${cph}`
-  )
+  logger.error({ err: lastError }, `CPH API unavailable: cph=${cph}`)
 
   return 'unavailable'
 }

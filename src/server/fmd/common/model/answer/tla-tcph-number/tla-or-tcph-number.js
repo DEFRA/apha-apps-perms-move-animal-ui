@@ -26,7 +26,7 @@ export class TlaOrTcphNumberAnswer extends CphNumberAnswer {
    * TLA and tCPH numbers are not matched against SAM
    * @returns {Promise<AnswerValidationResult>}
    */
-  async validateExternally() {
+  validateExternally() {
     return Promise.resolve({ isValid: true, errors: {} })
   }
 }

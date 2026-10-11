@@ -80,7 +80,7 @@ export class AnswerModel {
    * @param {Logger} _logger
    * @returns {Promise<AnswerValidationResult>}
    */
-  async validateExternally(_logger) {
+  validateExternally(_logger) {
     return Promise.resolve({ isValid: true, errors: {} })
   }
 

@@ -20,8 +20,8 @@ class TestGenericController extends GenericPageController {
     return Promise.resolve(/** @type {any} */ ('get'))
   }
 
-  handlePost() {
-    return 'post'
+  async handlePost() {
+    return Promise.resolve(/** @type {any} */ ('post'))
   }
 }
 
@@ -41,7 +41,9 @@ describe('#GenericPageController', () => {
       NotImplementedError
     )
 
-    expect(() => defaultController.handlePost()).toThrow(NotImplementedError)
+    await expect(() => defaultController.handlePost()).rejects.toThrow(
+      NotImplementedError
+    )
   })
 
   it('should output error on getHandler', () => {

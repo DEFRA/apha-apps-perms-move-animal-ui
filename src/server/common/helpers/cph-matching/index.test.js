@@ -59,6 +59,7 @@ describe('matchCph', () => {
 
       expect(mockFindMatchingCphs).toHaveBeenCalledTimes(2)
       expect(logger.warn).toHaveBeenCalledWith(
+        { err: new Error('boom') },
         `CPH match attempt 1 of 2 failed: cph=${cph}`
       )
       expect(logger.error).not.toHaveBeenCalled()
