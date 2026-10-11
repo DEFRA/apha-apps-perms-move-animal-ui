@@ -31,7 +31,7 @@ export default class GenericPageController {
   }
 
   postHandler(req, h) {
-    return this.handlePost(req, h)
+    return Promise.resolve(this.handlePost(req, h))
   }
 
   /**

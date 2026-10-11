@@ -514,6 +514,84 @@ describe('QuestionPageController', () => {
       })
     })
 
+    describe('when the answer fails external validation', () => {
+      const externalError = { [questionKey]: { text: 'Not found' } }
+
+      it('should redirect back to the question with the error, without saving the answer', async () => {
+        const validateExternallySpy = jest
+          .spyOn(TestAnswer.prototype, 'validateExternally')
+          .mockResolvedValueOnce({ isValid: false, errors: externalError })
+        const onAnswerSavedSpy = jest.spyOn(controller, 'onAnswerSaved')
+
+        const { headers, statusCode } = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                [questionKey]: questionValue
+              }
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        expect(validateExternallySpy).toHaveBeenCalledWith(expect.anything())
+        expect(statusCode).toBe(statusCodes.redirect)
+        expect(headers.location).toBe(questionUrl)
+        expect(onAnswerSavedSpy).not.toHaveBeenCalled()
+
+        const state = await session.getSectionState(sectionKey)
+        expect(state?.[questionKey]).toBeUndefined()
+
+        const viewModelSpy = jest.spyOn(TestAnswer.prototype, 'viewModel')
+        const erroredGET = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'GET',
+              url: questionUrl
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        expect(parseDocument(erroredGET.payload).title).toBe(
+          `Error: ${question}`
+        )
+        expect(viewModelSpy).toHaveBeenCalledWith(
+          expect.objectContaining({ validate: true, errors: externalError })
+        )
+      })
+
+      it('should not call external validation when the answer is invalid', async () => {
+        const validateExternallySpy = jest.spyOn(
+          TestAnswer.prototype,
+          'validateExternally'
+        )
+
+        await server.inject(
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: questionUrl,
+              payload: {
+                [questionKey]: 'ERROR'
+              }
+            },
+            {
+              Cookie: session.sessionID
+            }
+          )
+        )
+
+        expect(validateExternallySpy).not.toHaveBeenCalled()
+      })
+    })
+
     it('should pass context to the answer model', async () => {
       const originState = {
         originType: 'afu'
@@ -712,7 +790,7 @@ describe('QuestionPageController', () => {
       expect(result).toBe(mockView)
     })
 
-    it('POST should render view with expected arguments', () => {
+    it('POST should render view with expected arguments', async () => {
       const payload = {
         nextPage: 'test_next_page',
         [questionKey]: 'ERROR'
@@ -722,7 +800,7 @@ describe('QuestionPageController', () => {
         payload
       }
 
-      controller.postHandler(postRequest, h)
+      await controller.postHandler(postRequest, h)
 
       expect(h.redirect).toHaveBeenCalledTimes(1)
       expect(request.yar.clear).toHaveBeenCalledTimes(1)

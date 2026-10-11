@@ -1,6 +1,11 @@
 import { TextAnswer } from '~/src/server/common/model/answer/text/text.js'
 import { TlaOrTcphNumberAnswer } from './tla-or-tcph-number.js'
+import { matchCph } from '~/src/server/common/helpers/cph-matching/index.js'
 import { cphNumberRegex } from '~/src/server/common/model/answer/cph-number/cph-number.js'
+
+jest.mock('~/src/server/common/helpers/cph-matching/index.js', () => ({
+  matchCph: jest.fn()
+}))
 
 /** @import {CphNumberPayload} from '~/src/server/common/model/answer/cph-number/cph-number.js' */
 
@@ -44,5 +49,17 @@ describe('TlaOrTcphNumberAnswer', () => {
     expect(TlaOrTcphNumberAnswer.config.validation.pattern?.message).toBe(
       invalidTlaOrTcphNumberError
     )
+  })
+
+  it('should not match the TLA or tCPH number against SAM', async () => {
+    const answer = new TlaOrTcphNumberAnswer(
+      /** @type {any} */ ({ tlaOrTcphNumber: '11/222/3333' })
+    )
+
+    await expect(answer.validateExternally()).resolves.toEqual({
+      isValid: true,
+      errors: {}
+    })
+    expect(matchCph).not.toHaveBeenCalled()
   })
 })

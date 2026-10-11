@@ -210,25 +210,9 @@ describe('#SubmitPageController', () => {
         })
       }
 
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
-      })
+      return Promise.reject(
+        new Error(`Unexpected request to ${url}, CPH should not be matched`)
+      )
     })
 
     const { headers, statusCode } = await server.inject(
@@ -252,7 +236,7 @@ describe('#SubmitPageController', () => {
     const { reference } = await session.getState('tb-confirmation-details')
 
     expect(reference).toBe(dummyReferenceNumber)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
     expect(wreckSpy.mock.calls[0][0]).toBe(
       `${config.get('caseManagementApi').baseUrl}/submit`
     )
@@ -283,25 +267,9 @@ describe('#SubmitPageController', () => {
         })
       }
 
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
-      })
+      return Promise.reject(
+        new Error(`Unexpected request to ${url}, CPH should not be matched`)
+      )
     })
 
     const { statusCode } = await server.inject(
@@ -320,7 +288,7 @@ describe('#SubmitPageController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 
   it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
@@ -338,25 +306,9 @@ describe('#SubmitPageController', () => {
         })
       }
 
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
-      })
+      return Promise.reject(
+        new Error(`Unexpected request to ${url}, CPH should not be matched`)
+      )
     })
 
     const { statusCode } = await server.inject(
@@ -375,7 +327,7 @@ describe('#SubmitPageController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 })
 

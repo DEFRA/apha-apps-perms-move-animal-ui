@@ -114,7 +114,7 @@ export class TextAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, errors }) {
     const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
       this.config
 
@@ -152,7 +152,9 @@ export class TextAnswer extends AnswerModel {
     }
 
     if (validate) {
-      viewModel.errorMessage = this.validate().errors[payloadKey]
+      // falls back to errors from validateExternally, which can't be re-run here
+      viewModel.errorMessage =
+        this.validate().errors[payloadKey] ?? errors?.[payloadKey]
     }
 
     return Promise.resolve(viewModel)
