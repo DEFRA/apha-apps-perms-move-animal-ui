@@ -138,4 +138,47 @@ describe('CphNumberAnswer', () => {
       expect(errors).toEqual({})
     })
   })
+
+  describe('#CphNumberAnswer.viewModel', () => {
+    const question = 'What is the CPH number?'
+    const unmatchedError = { text: 'The CPH number cannot be found' }
+
+    it('should show the unmatched CPH error passed in when the CPH is well formed', async () => {
+      const answer = new CphNumberAnswer(validPayload)
+
+      const { errorMessage } = await answer.viewModel({
+        validate: true,
+        question,
+        errors: { cphNumber: unmatchedError }
+      })
+
+      expect(errorMessage).toEqual(unmatchedError)
+    })
+
+    it('should show the format error over the error passed in', async () => {
+      const answer = new CphNumberAnswer({ cphNumber: '12345' })
+
+      const { errorMessage } = await answer.viewModel({
+        validate: true,
+        question,
+        errors: { cphNumber: unmatchedError }
+      })
+
+      expect(errorMessage).toEqual({
+        text: 'Enter the CPH number in the correct format, for example, 12/345/6789'
+      })
+    })
+
+    it('should not show an error when not validating', async () => {
+      const answer = new CphNumberAnswer(validPayload)
+
+      const { errorMessage } = await answer.viewModel({
+        validate: false,
+        question,
+        errors: { cphNumber: unmatchedError }
+      })
+
+      expect(errorMessage).toBeUndefined()
+    })
+  })
 })

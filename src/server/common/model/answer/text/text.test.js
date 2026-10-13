@@ -267,16 +267,6 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     })
   })
 
-  it('should fall back to errors passed in when the answer is otherwise valid', async () => {
-    const validAnswer = new TestTextAnswer({ textPayload: 'valid' })
-    const errors = { textPayload: { text: 'External error' } }
-
-    expect(
-      (await validAnswer.viewModel({ validate: true, question, errors }))
-        .errorMessage
-    ).toEqual({ text: 'External error' })
-  })
-
   it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {
     /** @type {TextConfig} */
     const textConfigNotPageHeading = {

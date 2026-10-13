@@ -3,6 +3,7 @@ import { TextAnswer } from '../text/text.js'
 import { matchCph } from '../../../helpers/cph-matching/index.js'
 
 /** @import { TextConfig } from '../text/text.js' */
+/** @import { AnswerViewModelOptions } from '../answer-model.js' */
 /** @import { Logger } from 'pino' */
 
 export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
@@ -59,5 +60,18 @@ export class CphNumberAnswer extends TextAnswer {
     }
 
     return { isValid: true, errors: {} }
+  }
+
+  /**
+   * @param {AnswerViewModelOptions} options
+   */
+  async viewModel(options) {
+    const viewModel = await super.viewModel(options)
+
+    if (options.validate && !viewModel.errorMessage) {
+      viewModel.errorMessage = options.errors?.[this.config.payloadKey]
+    }
+
+    return viewModel
   }
 }
