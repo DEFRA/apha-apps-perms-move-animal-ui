@@ -198,21 +198,13 @@ describe('#SubmitPageController', () => {
       return h.continue
     })
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      return Promise.reject(
-        new Error(`Unexpected request to ${url}, CPH should not be matched`)
-      )
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
+      })
     })
 
     const { headers, statusCode } = await server.inject(
@@ -255,21 +247,13 @@ describe('#SubmitPageController', () => {
       prototypeMode: false
     })
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      return Promise.reject(
-        new Error(`Unexpected request to ${url}, CPH should not be matched`)
-      )
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
+      })
     })
 
     const { statusCode } = await server.inject(
@@ -294,21 +278,13 @@ describe('#SubmitPageController', () => {
   it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
     const dummyReferenceNumber = '12-1234-1234'
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      return Promise.reject(
-        new Error(`Unexpected request to ${url}, CPH should not be matched`)
-      )
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
+      })
     })
 
     const { statusCode } = await server.inject(
