@@ -303,6 +303,12 @@ export const config = convict({
       format: Boolean,
       default: !isProduction,
       env: 'DEFRA_FORMS_ENABLED'
+    },
+    cphValidation: {
+      doc: 'Feature flag to validate entered CPH numbers against SAM. Disable to use CPHs that may not exist in a lower environment, or if SAM is having issues',
+      format: Boolean,
+      default: true,
+      env: 'CPH_VALIDATION_ENABLED'
     }
   },
   integrationBridge: {
@@ -334,7 +340,7 @@ export const config = convict({
     timeout: {
       doc: 'Timeout for Integration Bridge requests in milliseconds',
       format: Number,
-      default: 30_000,
+      default: 5_000,
       env: 'INTEGRATION_BRIDGE_TIMEOUT'
     }
   },

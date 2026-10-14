@@ -73,7 +73,8 @@ export class QuestionPageController extends GenericPageController {
       )
       const errorViewModelOptions = {
         validate: true,
-        question: this.page.question
+        question: this.page.question,
+        errors: pageError.errors
       }
 
       return h.view(this.page.view, {
@@ -113,7 +114,21 @@ export class QuestionPageController extends GenericPageController {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   onAnswerSaved(_req, _answer, _applicationState) {}
 
-  handlePost(req, h) {
+  /**
+   * @param {Request} req
+   * @param {AnswerModel} answer
+   */
+  async validateAnswer(req, answer) {
+    const result = answer.validate()
+
+    if (!result.isValid) {
+      return result
+    }
+
+    return answer.validateExternally(req.logger)
+  }
+
+  async handlePost(req, h) {
     req.yar.clear(this.errorKey)
     const payload = /** @type {NextPage} */ (req.payload)
     const state = new this.StateManager(req)
@@ -123,7 +138,7 @@ export class QuestionPageController extends GenericPageController {
       /** @type {RawPayload} */ (payload),
       applicationState
     )
-    const { isValid, errors } = answer.validate()
+    const { isValid, errors } = await this.validateAnswer(req, answer)
 
     if (!isValid) {
       this.recordErrors(errors)

@@ -2,6 +2,7 @@ import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { escapeHtml } from '../../helpers/escape-text.js'
 /** @import {AnswerErrors, AnswerValidationResult} from './validation.js' */
 /** @import {RawApplicationState} from '../state/state-manager.js' */
+/** @import {Logger} from 'pino' */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsdoc/require-returns-check */
@@ -73,6 +74,16 @@ export class AnswerModel {
     throw new NotImplementedError()
   }
 
+  /**
+   * Validation that depends on an external service. Only called once
+   * validate() has passed.
+   * @param {Logger} _logger
+   * @returns {Promise<AnswerValidationResult>}
+   */
+  validateExternally(_logger) {
+    return Promise.resolve({ isValid: true, errors: {} })
+  }
+
   /*
    * @param {AnswerErrors} errors
    * @returns {ViewErrorMessage[]}
@@ -139,5 +150,5 @@ export class AnswerModel {
  */
 
 /**
- * @typedef {{ validate?: boolean, question: string }} AnswerViewModelOptions
+ * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors }} AnswerViewModelOptions
  */

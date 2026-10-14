@@ -198,36 +198,12 @@ describe('#SubmitPageController', () => {
       return h.continue
     })
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
       })
     })
 
@@ -252,7 +228,7 @@ describe('#SubmitPageController', () => {
     const { reference } = await session.getState('tb-confirmation-details')
 
     expect(reference).toBe(dummyReferenceNumber)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
     expect(wreckSpy.mock.calls[0][0]).toBe(
       `${config.get('caseManagementApi').baseUrl}/submit`
     )
@@ -271,36 +247,12 @@ describe('#SubmitPageController', () => {
       prototypeMode: false
     })
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
       })
     })
 
@@ -320,42 +272,18 @@ describe('#SubmitPageController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 
   it('should log "User submitted application on behalf of someone else" when other option is selected', async () => {
     const dummyReferenceNumber = '12-1234-1234'
 
-    const wreckSpy = jest.spyOn(Wreck, 'post').mockImplementation((url) => {
-      if (url === `${config.get('caseManagementApi').baseUrl}/submit`) {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            message: dummyReferenceNumber
-          })
-        })
-      }
-
-      if (url === 'http://integration-bridge/oauth2/token') {
-        return Promise.resolve({
-          res: /** @type {IncomingMessage} */ ({
-            statusCode: 200
-          }),
-          payload: JSON.stringify({
-            access_token: 'abc123'
-          })
-        })
-      }
-
-      return Promise.resolve({
-        res: /** @type {IncomingMessage} */ ({
-          statusCode: 200
-        }),
-        payload: JSON.stringify({
-          data: [{ id: '12/345/6789' }]
-        })
+    const wreckSpy = jest.spyOn(Wreck, 'post').mockResolvedValue({
+      res: /** @type {IncomingMessage} */ ({
+        statusCode: 200
+      }),
+      payload: JSON.stringify({
+        message: dummyReferenceNumber
       })
     })
 
@@ -375,7 +303,7 @@ describe('#SubmitPageController', () => {
     )
 
     expect(statusCode).toBe(statusCodes.redirect)
-    expect(wreckSpy).toHaveBeenCalledTimes(2)
+    expect(wreckSpy).toHaveBeenCalledTimes(1)
   })
 })
 

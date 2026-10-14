@@ -31,7 +31,7 @@ export default class GenericPageController {
   }
 
   postHandler(req, h) {
-    return this.handlePost(req, h)
+    return Promise.resolve(this.handlePost(req, h))
   }
 
   /**
@@ -58,11 +58,14 @@ export default class GenericPageController {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
   async handleGet(_req, _h) {
-    return Promise.reject(new NotImplementedError())
+    throw new NotImplementedError()
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handlePost(_req, _h) {
+  /**
+   * @returns {Promise<ResponseObject>}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
+  async handlePost(_req, _h) {
     throw new NotImplementedError()
   }
 }

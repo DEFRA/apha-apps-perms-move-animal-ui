@@ -4,6 +4,7 @@ import {
 } from '~/src/server/common/model/answer/cph-number/cph-number.js'
 
 /** @import {TextConfig} from '~/src/server/common/model/answer/text/text.js' */
+/** @import {AnswerValidationResult} from '~/src/server/common/model/answer/validation.js' */
 
 const invalidTlaOrTcphNumberError =
   'Enter the TLA or tCPH number in the correct format, for example, 12/345/6789'
@@ -19,5 +20,13 @@ export class TlaOrTcphNumberAnswer extends CphNumberAnswer {
       pattern: { regex: cphNumberRegex, message: invalidTlaOrTcphNumberError },
       empty: { message: emptyTlaOrTcphNumberError }
     }
+  }
+
+  /**
+   * TLA and tCPH numbers are not matched against SAM
+   * @returns {Promise<AnswerValidationResult>}
+   */
+  validateExternally() {
+    return Promise.resolve({ isValid: true, errors: {} })
   }
 }
