@@ -26,8 +26,14 @@ export class Page {
   /** @type {string} */
   pageHeading
 
+  /** @type {string | undefined} */
+  headingI18nKey
+
   /** @type {string} */
   pageTitle
+
+  /** @type {string | undefined} */
+  titleI18nKey
 
   /** @type {boolean} */
   overrideRedirects = false
