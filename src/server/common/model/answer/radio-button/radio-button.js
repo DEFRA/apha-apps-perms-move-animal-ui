@@ -92,8 +92,16 @@ export class RadioButtonAnswer extends AnswerModel {
   }
 
   get displayText() {
-    const value = this.value
-    return this.config.options[value]?.label ?? ''
+    return this.getDisplayText(null)
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
+    const option = this.config.options[this.value]
+    return translate(request, option?.labelI18nKey, option?.label) ?? ''
   }
 
   get template() {

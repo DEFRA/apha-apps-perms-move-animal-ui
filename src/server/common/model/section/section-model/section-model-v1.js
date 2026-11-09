@@ -155,7 +155,7 @@ export class SectionModelV1 extends SectionModel {
 
         return {
           key: translatedQuestion,
-          value: answer.html,
+          value: answer.getHtml(_req),
           url: `${page.urlPath}?returnUrl=${redirectUri}`,
           visuallyHiddenKey: translatedQuestion,
           attributes: {

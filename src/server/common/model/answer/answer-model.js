@@ -106,7 +106,26 @@ export class AnswerModel {
    * @returns {string}
    */
   get html() {
-    return escapeHtml(this.displayText)?.replace(/\r?\n/g, '<br />') ?? ''
+    return this.getHtml()
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
+    return this.displayText
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getHtml(request) {
+    return (
+      escapeHtml(this.getDisplayText(request))?.replace(/\r?\n/g, '<br />') ??
+      ''
+    )
   }
 
   /**
