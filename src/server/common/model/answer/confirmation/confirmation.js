@@ -15,7 +15,8 @@ const config = {
         'My farm or premises details are correct to the best of my knowledge'
     },
     divider: {
-      label: 'or'
+      label: 'or',
+      labelI18nKey: 'common.checkAnswers.declarationOptions.divider'
     },
     other: {
       exclusive: true,

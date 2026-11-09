@@ -13,6 +13,9 @@ export class BadgersPage extends QuestionPage {
     'Which measures are you taking to reduce the risk of infection from wildlife?'
 
   questionKey = 'badgers'
+  questionI18nKey = 'tb.biosecurity.badgers.question'
+  titleI18nKey = this.questionI18nKey
+  pageI18nKey = this.questionI18nKey
   Answer = BadgersAnswer
 
   /** @param {BadgersAnswer} answer */
