@@ -27,10 +27,13 @@
     },
     "checkAnswers": {
       "sectionHeading": "Gwiriwch eich atebion cyn i chi barhau â'ch cais",
-      "declarationOptions": {
-        "confirm": "Mae manylion fy fferm neu safle yn gywir hyd eithaf fy ngwybodaeth",
-        "divider": "neu",
-        "other": "Rwy'n cyflwyno ar ran rhywun arall ac yn cadarnhau bod y manylion a roddir yn gywir hyd eithaf fy ngwybodaeth"
+      "declaration": {
+        "question": "Cyn i chi gyflwyno eich cais, mae'n rhaid i chi ddewis un o'r blychau datganiad.",
+        "options": {
+          "confirm": "Mae manylion fy fferm neu safle yn gywir hyd eithaf fy ngwybodaeth",
+          "divider": "neu",
+          "other": "Rwy'n cyflwyno ar ran rhywun arall ac yn cadarnhau bod y manylion a roddir yn gywir hyd eithaf fy ngwybodaeth"
+        }
       },
       "sectionFooter": "Rhaid i chi dicio un blwch datganiad"
     },

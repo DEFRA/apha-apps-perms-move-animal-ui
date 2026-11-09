@@ -27,10 +27,13 @@
     },
     "checkAnswers": {
       "sectionHeading": "Check your answers before you continue your application",
-      "declarationOptions": {
-        "confirm": "My farm or premises details are correct to the best of my knowledge",
-        "divider": "or",
-        "other": "I am submitting for someone else and confirm the details given are correct to the best of my knowledge"
+      "declaration": {
+        "question": "Before you submit your application, you must select one of the declaration check boxes.",
+        "options": {
+          "confirm": "My farm or premises details are correct to the best of my knowledge",
+          "divider": "or",
+          "other": "I am submitting for someone else and confirm the details given are correct to the best of my knowledge"
+        }
       },
       "sectionFooter": "You must tick one declaration box"
     },

@@ -16,7 +16,7 @@ const config = {
     },
     divider: {
       label: 'or',
-      labelI18nKey: 'common.checkAnswers.declarationOptions.divider'
+      labelI18nKey: 'common.checkAnswers.declaration.options.divider'
     },
     other: {
       exclusive: true,
