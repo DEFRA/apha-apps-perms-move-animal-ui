@@ -33,6 +33,24 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   }
 
   /**
+   * @param {string} dilutionRate
+   * @param {boolean} isUndiluted
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  _formatDilutionRateText(dilutionRate, isUndiluted, request) {
+    return isUndiluted
+      ? translate(
+          request,
+          'tb.biosecurity.dilutionRate.answer.undiluted',
+          'I confirm the disinfectant is used undiluted on the farm or premises'
+        )
+      : translate(request, 'tb.biosecurity.dilutionRate.answer.prefix', 'I confirm a dilution rate of 1:') +
+        dilutionRate +
+        translate(request, 'tb.biosecurity.dilutionRate.answer.suffix', ' is used on the farm or premises')
+  }
+
+  /**
    * @param {AnswerViewModelOptions} options
    */
   async viewModel({ question, validate, request }) {
@@ -55,14 +73,11 @@ export class DilutionRateAnswer extends CheckboxAnswer {
     }
 
     viewModel.items = Object.entries(options).map(([value]) => ({
-      text: disinfectantDetails?.isUndiluted
-        ? (translate?.(
-            request,
-            'tb.biosecurity.dilutionRate.answer.undiluted',
-            'I confirm the disinfectant is used undiluted on the farm or premises'
-          ) ??
-          'I confirm the disinfectant is used undiluted on the farm or premises')
-        : `${translate?.(request, 'tb.biosecurity.dilutionRate.answer.prefix', 'I confirm a dilution rate of 1:') ?? 'I confirm a dilution rate of 1:'}${disinfectantDetails?.dilutionRate}${translate?.(request, 'tb.biosecurity.dilutionRate.answer.suffix', ' is used on the farm or premises') ?? ' is used on the farm or premises'}`,
+      text: this._formatDilutionRateText(
+        disinfectantDetails?.dilutionRate,
+        disinfectantDetails?.isUndiluted,
+        request
+      ),
       value: disinfectantDetails?.dilutionRate ?? value,
       attributes: {
         'data-testid': `${value}-checkbox`
@@ -76,17 +91,21 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   }
 
   get displayText() {
+    return this.getDisplayText(null)
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
     const data = ensureArray(this._data?.[this.config.payloadKey])
 
     if (data.length === 0) {
       return 'None'
     }
     return Object.values(data)
-      .map((value) => {
-        return value !== 'Undiluted'
-          ? `I confirm a dilution rate of 1:${value} is used on the farm or premises`
-          : 'I confirm the disinfectant is used undiluted on the farm or premises'
-      })
+      .map((value) => this._formatDilutionRateText(value, value === 'Undiluted', request))
       .join('\n\n')
   }
 }
