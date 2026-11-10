@@ -4,6 +4,7 @@ import { Page } from '../../model/page/page-model.js'
 import { submitApplication } from '../../connectors/case-management/case-management.js'
 import { statusCodes } from '../../constants/status-codes.js'
 import { QuestionPageController } from '../question-page-controller/question-page-controller.js'
+import { translate } from '../../helpers/i18n/index.js'
 
 /**
  * @import {NextPage} from '../../helpers/next-page.js'
@@ -19,6 +20,7 @@ const headingAndTitle = 'Check your answers before sending your application'
 export class SubmitSummaryPage extends QuestionPage {
   question =
     'Before you submit your application, you must select one of the declaration check boxes.'
+  questionI18nKey = 'common.checkAnswers.declaration.question'
 
   get title() {
     return headingAndTitle
@@ -30,6 +32,7 @@ export class SubmitSummaryPage extends QuestionPage {
 
   sectionKey = 'submit'
   questionKey = 'check-answers'
+  titleI18nKey = 'common.checkAnswers.sectionHeading'
 
   view = `common/controller/check-answers-controller/index`
 
@@ -49,10 +52,13 @@ export class SubmitSummaryPage extends QuestionPage {
 
     const summary = Object.fromEntries(
       Object.values(sections).map((section) => {
-        const { key, title } = section.config
+        const { key, title, titleI18nKey } = section.config
         return [
           key,
-          { title, answers: section.summaryViewModel(req, this.urlPath) }
+          {
+            title: translate(req, titleI18nKey, title),
+            answers: section.summaryViewModel(req, this.urlPath)
+          }
         ]
       })
     )

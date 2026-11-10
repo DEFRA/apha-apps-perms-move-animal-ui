@@ -12,7 +12,8 @@ const config = {
     confirm: {
       exclusive: true,
       label:
-        'My farm or premises details are correct to the best of my knowledge'
+        'My farm or premises details are correct to the best of my knowledge',
+      labelI18nKey: 'common.checkAnswers.declaration.options.confirm'
     },
     divider: {
       label: 'or',
@@ -21,7 +22,8 @@ const config = {
     other: {
       exclusive: true,
       label:
-        'I am submitting for someone else and confirm the details given are correct to the best of my knowledge'
+        'I am submitting for someone else and confirm the details given are correct to the best of my knowledge',
+      labelI18nKey: 'common.checkAnswers.declaration.options.other'
     }
   },
   validation: {
