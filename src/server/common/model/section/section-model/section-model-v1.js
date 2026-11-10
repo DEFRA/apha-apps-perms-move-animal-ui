@@ -158,6 +158,7 @@ export class SectionModelV1 extends SectionModel {
           value: answer.getHtml(_req),
           url: `${page.urlPath}?returnUrl=${redirectUri}`,
           visuallyHiddenKey: translatedQuestion,
+          changeText: translate(_req, 'common.change', 'Change'),
           attributes: {
             'data-testid': `${page.questionKey}-change-link`
           }
