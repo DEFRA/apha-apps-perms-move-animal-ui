@@ -130,7 +130,7 @@ export class QuestionPageController extends GenericPageController {
    * @param {AnswerModel} answer
    */
   async validateAnswer(req, answer) {
-    const result = answer.validate()
+    const result = answer.validate(req)
 
     if (!result.isValid) {
       return result

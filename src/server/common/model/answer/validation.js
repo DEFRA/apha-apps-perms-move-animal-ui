@@ -16,7 +16,7 @@
  * @param {object} value
  * @returns {AnswerValidationResult}
  */
-export const validateAnswerAgainstSchema = (schema, value) => {
+export const validateAnswerAgainstSchema = (schema, value, request = null) => {
   const { error } = schema.validate(value, {
     abortEarly: false,
     allowUnknown: true

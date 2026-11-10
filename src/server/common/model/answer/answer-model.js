@@ -70,7 +70,7 @@ export class AnswerModel {
   /**
    * @returns {AnswerValidationResult}
    */
-  validate() {
+  validate(_req) {
     throw new NotImplementedError()
   }
 

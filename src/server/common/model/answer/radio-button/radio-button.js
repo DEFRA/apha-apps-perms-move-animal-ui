@@ -11,10 +11,15 @@ import { translate } from '../../../helpers/i18n/index.js'
 
 /**
  * @param {RadioButtonConfig} config
+ * @param {import('@hapi/hapi').Request | null} request
  * @returns {Joi.Schema}
  */
-const createRadioSchema = (config) => {
-  const { empty: emptyOptionText } = config.validation
+const createRadioSchema = (config, request) => {
+  const { empty } = config.validation
+  const emptyOptionText =
+    typeof empty === 'string'
+      ? empty
+      : translate(request, empty.i18nKey, empty.message)
   return Joi.object({
     [config.payloadKey]: Joi.string()
       .required()
@@ -49,7 +54,7 @@ const handleConfig = (context, config) => {
  *  hint?: string,
  *  options: Record<string, RadioOption>,
  *  validation: {
- *    empty: string
+ *    empty: string | { message: string, i18nKey?: string }
  *  }
  * layout?: RadioButtonLayout,
  * isQuestionHeading?: false
@@ -122,9 +127,9 @@ export class RadioButtonAnswer extends AnswerModel {
     )
   }
 
-  validate() {
+  validate(request) {
     return validateAnswerAgainstSchema(
-      createRadioSchema(this.config),
+      createRadioSchema(this.config, request),
       this._data ?? {}
     )
   }
@@ -192,7 +197,7 @@ export class RadioButtonAnswer extends AnswerModel {
     }
 
     if (validate) {
-      model.errorMessage = this.validate().errors[payloadKey]
+      model.errorMessage = this.validate(request).errors[payloadKey]
     }
     return Promise.resolve(model)
   }
