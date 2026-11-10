@@ -45,7 +45,7 @@ class OriginTypePage extends RadioButtonBasePage {
   }
 
   async originTypeErrorTest(valueIndex) {
-    super.radioErrorTest(valueIndex)
+    await super.radioErrorTest(valueIndex)
   }
 }
 
