@@ -21,7 +21,7 @@ describe('origin type page test (off farm)', () => {
 
   it('Should verify that the page errors when no option is selected', async () => {
     await verifyRadioButtonNumber(5)
-    await originTypePage.originTypeErrorTest(2)
+    await originTypePage.originTypeErrorTest(1)
   })
 })
 
