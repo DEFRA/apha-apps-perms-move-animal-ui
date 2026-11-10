@@ -5,7 +5,7 @@ import { config } from '~/src/config/config.js'
 import { createLogger } from '~/src/server/common/helpers/logging/logger.js'
 import { buildNavigation } from '~/src/config/nunjucks/context/build-navigation.js'
 import { isAuthenticated } from '~/src/server/common/helpers/auth/isAuthenticated.js'
-import { translate } from '~/src/server/common/helpers/i18n/index.js'
+import { getLocale, translate } from '~/src/server/common/helpers/i18n/index.js'
 
 const logger = createLogger()
 const assetPath = config.get('assetPath')
@@ -51,6 +51,7 @@ export function context(request) {
 
   return {
     request,
+    locale: getLocale(request),
     initialServiceUrl,
     assetPath: `${assetPath}/assets/rebrand`,
     serviceName: translate(

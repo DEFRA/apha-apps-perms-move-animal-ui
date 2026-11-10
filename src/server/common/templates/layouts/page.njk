@@ -4,6 +4,7 @@
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "language-navigation/macro.njk" import govukLanguageNavigation %}
 {% set cspNonce = uuid %}
 
 {% block head %}
@@ -61,6 +62,16 @@
       })
     }}
   {% endif %}
+
+  {{
+    govukLanguageNavigation({
+      classes: 'govuk-!-margin-top-3',
+      items: [
+        { text: 'English', lang: 'en', current: locale == 'en', href: '?lang=en' },
+        { text: 'Cymraeg', lang: 'cy', current: locale == 'cy', href: '?lang=cy' }
+      ]
+    })
+  }}
 
   {% if isAuthenticated %}
     {% include "../partials/userDetails.njk" %}
