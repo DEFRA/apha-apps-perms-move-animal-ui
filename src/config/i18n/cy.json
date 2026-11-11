@@ -1038,8 +1038,23 @@
         "handlingFacility": "lleoliad y cyfleuster trin",
         "manureStorage": "lleoliad storio tail neu slyri",
         "biosecurityPoints": "lleoliad pwyntiau bioddiogelwch, gan gynnwys ffensio sy'n atal moch daear",
+        "fileRequirements": "Rhaid i'r ffeil a ddewiswyd fod yn PNG, JPEG, JPG neu PDF ac yn llai na 10 MB.",
         "uploading": "Llwytho'r map bioddiogelwch i fyny",
-        "uploadingSubTitle": "Gall hyn gymryd ychydig funudau."
+        "uploadingSubTitle": "Gall hyn gymryd ychydig funudau.",
+        "uploadFile": "Llwytho ffeil",
+        "chooseFile": "Dewis ffeil",
+        "dropFile": "neu ollwng ffeil",
+        "dropZoneEntered": "Mewnosodwyd y parth cwympo",
+        "dropZoneLeft": "Gadael y parth cwympo",
+        "noFile": "Dim ffeil wedi'i dewis",
+        "errorCodes": {
+          "FILE_VIRUS": "Mae'r ffeil yn cynnwys firws",
+          "FILE_EMPTY": "Mae'r ffeil a ddewiswyd yn wag",
+          "FILE_TOO_LARGE": "Rhaid i'r ffeil fod yn llai na 10 MB",
+          "FILE_INVALID_TYPE": "Rhaid i'r ffeil fod yn PNG, JPEG neu PDF",
+          "FILE_UPLOAD_FAILED": "Ni ellir llwytho'r ffeil i fyny - ceisiwch eto",
+          "FILE_DOWNLOAD_FAILED": "Ni ellir lawrlwytho'r ffeil"
+        }
       },
       "sizeError": {
         "emailInstruction": "Rhaid i chi e-bostio eich map bioddiogelwch i csc.tblicensing@apha.gov.uk",

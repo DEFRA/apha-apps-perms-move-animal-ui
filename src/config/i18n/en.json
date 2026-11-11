@@ -1038,8 +1038,23 @@
         "handlingFacility": "location of handling facility",
         "manureStorage": "location of manure or slurry storage",
         "biosecurityPoints": "location of biosecurity points, including badger proof fencing",
+        "fileRequirements": "The selected file must be a PNG, JPEG, JPG or PDF and less than 10 MB.",
         "uploading": "Uploading the biosecurity map",
-        "uploadingSubTitle": "This may take a few minutes."
+        "uploadingSubTitle": "This may take a few minutes.",
+        "uploadFile": "Upload a file",
+        "chooseFile": "Choose file",
+        "dropFile": "or drop file",
+        "dropZoneEntered": "Entered drop zone",
+        "dropZoneLeft": "Left drop zone",
+        "noFile": "No file chosen",
+        "errorCodes": {
+          "FILE_VIRUS": "The selected file contains a virus",
+          "FILE_EMPTY": "The selected file is empty",
+          "FILE_TOO_LARGE": "The selected file must be smaller than 10 MB",
+          "FILE_INVALID_TYPE": "The selected file must be a PNG, JPEG or PDF",
+          "FILE_UPLOAD_FAILED": "The selected file could not be uploaded - try again",
+          "FILE_DOWNLOAD_FAILED": "The selected file could not be downloaded"
+        }
       },
       "sizeError": {
         "emailInstruction": "You must email your biosecurity map to csc.tblicensing@apha.gov.uk",

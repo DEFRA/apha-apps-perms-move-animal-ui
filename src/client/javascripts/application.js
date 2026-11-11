@@ -5,7 +5,8 @@ import {
   ErrorSummary,
   Header,
   Radios,
-  SkipLink
+  SkipLink,
+  FileUpload
 } from 'govuk-frontend'
 import accessibleAutocomplete from 'accessible-autocomplete'
 import { initAll } from '@defra/forms-engine-plugin/shared.js'
@@ -16,6 +17,7 @@ createAll(ErrorSummary)
 createAll(Header)
 createAll(Radios)
 createAll(SkipLink)
+createAll(FileUpload)
 
 document.getElementById('back-link')?.addEventListener('click', function (e) {
   e.preventDefault()

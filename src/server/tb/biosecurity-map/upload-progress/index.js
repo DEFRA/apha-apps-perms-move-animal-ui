@@ -6,6 +6,7 @@ import { uploadPlanPage } from '../upload-plan/index.js'
 import { biosecurityPlanSummaryPage } from '../check-answers/index.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 export class UploadProgressPage extends QuestionPage {
   pageTitle = 'Uploading the biosecurity map'
@@ -57,7 +58,11 @@ export class UploadProgressController extends TbQuestionPageController {
       if (status?.form.file && status?.numberOfRejectedFiles > 0) {
         validationErrors = {
           'status.form.file': {
-            text: status?.form.file.errorMessage
+            text: translate(
+              req,
+              `tb.biosecurityMap.uploadPlan.errorCodes.${status?.form.file.errorCode}`,
+              status?.form.file.errorMessage
+            )
           }
         }
       }

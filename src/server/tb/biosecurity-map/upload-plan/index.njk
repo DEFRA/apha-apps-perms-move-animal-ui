@@ -20,39 +20,55 @@
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="{{ crumb }}" />
         <input type="hidden" name="nextPage" value="{{ nextPage }}" />
-        <p>You need to upload a map of the farm or premises.</p>
         <p>
-          We prefer a clear and detailed map, such as a Google map with
-          annotations or a pre-prepared map from an agent or surveyor.
+          {{ translate('tb.biosecurityMap.uploadPlan.intro', "You need to upload a map of the farm or premises.") }}
         </p>
-        <p>It needs to include:</p>
+        <p>
+          {{ translate('tb.biosecurityMap.uploadPlan.preference', "We prefer a clear and detailed map, such as a Google map with annotations or a pre-prepared map from an agent or surveyor.") }}
+        </p>
+        <p>
+          {{ translate('tb.biosecurityMap.uploadPlan.itNeedsToInclude', "It needs to include:") }}
+        </p>
         <ul class="govuk-body govuk-list--bullet">
-          <li>where the incoming cattle will be isolated</li>
-          <li>location of the resident cattle and neighbouring cattle</li>
           <li>
-            minimum distances between the incoming cattle and any resident and
-            neighbouring cattle
+            {{ translate('tb.biosecurityMap.uploadPlan.isolationLocation', "where the incoming cattle will be isolated") }}
           </li>
           <li>
-            movements of the cattle, including where they will graze, be milked,
-            and be loaded
+            {{ translate('tb.biosecurityMap.uploadPlan.residentAndNeighbouringCattle', "location of the resident cattle and neighbouring cattle") }}
           </li>
-          <li>location of handling facility</li>
-          <li>location of manure or slurry storage</li>
           <li>
-            location of biosecurity points, including badger proof fencing
+            {{ translate('tb.biosecurityMap.uploadPlan.minimumDistances', "minimum distances between the incoming cattle and any resident and neighbouring cattle") }}
+          </li>
+          <li>
+            {{ translate('tb.biosecurityMap.uploadPlan.cattleMovements', "movements of the cattle, including where they will graze, be milked, and be loaded") }}
+          </li>
+          <li>
+            {{ translate('tb.biosecurityMap.uploadPlan.handlingFacility', "location of handling facility") }}
+          </li>
+          <li>
+            {{ translate('tb.biosecurityMap.uploadPlan.manureStorage', "location of manure or slurry storage") }}
+          </li>
+          <li>
+            {{ translate('tb.biosecurityMap.uploadPlan.biosecurityPoints', "location of biosecurity points, including badger proof fencing") }}
           </li>
         </ul>
         <p>
-          The selected file must be a PNG, JPEG, JPG or PDF and less than 10 MB.
+          {{ translate('tb.biosecurityMap.uploadPlan.fileRequirements', "The selected file must be a PNG, JPEG, JPG or PDF and less than 10 MB.") }}
         </p>
         {{
           govukFileUpload
           ({
               id: "status.form.file",
+              multiple: false,
+              javascript: true,
+              chooseFilesButtonText: translate('tb.biosecurityMap.uploadPlan.chooseFile', "Choose a file"),
+              dropInstructionText: translate('tb.biosecurityMap.uploadPlan.dropFile', "or drop file"),
+              enteredDropZoneText: translate('tb.biosecurityMap.uploadPlan.dropZoneEntered', "Entered drop zone"),
+              leftDropZoneText: translate('tb.biosecurityMap.uploadPlan.dropZoneLeft', "Left drop zone"),
+              noFileChosenText: translate('tb.biosecurityMap.uploadPlan.noFile', "No file chosen"),
               name: "file",
               label:{
-                  text: "Upload a file"
+                  text: translate('tb.biosecurityMap.uploadPlan.uploadFile', "Upload a file")
               },
               errorMessage: errors['status.form.file'],
               attributes: {
