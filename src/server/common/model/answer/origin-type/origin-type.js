@@ -13,31 +13,59 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  */
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
 
-const tbRestrictedOption = { label: 'TB restricted farm' }
-const afuOption = {
-  label: 'Approved finishing unit (AFU)',
-  hint: 'Including enhanced with grazing (AFUE)'
-}
+const keyPrefix = 'tb.origin.originType.options'
 
-const otherOption = { label: 'Another TB restricted origin' }
+/**
+ * @param {'offFarm' | 'onFarm'} group
+ * @param {string} option
+ * @param {string} label
+ * @param {string} [hint]
+ */
+const option = (group, option, label, hint) => ({
+  label,
+  labelI18nKey: `${keyPrefix}.${group}.${option}.label`,
+  ...(hint && { hint, hintI18nKey: `${keyPrefix}.${group}.${option}.hint` })
+})
 
 const offFarmOptions = {
-  'tb-restricted-farm': tbRestrictedOption,
-  afu: afuOption,
-  'unrestricted-farm': {
-    label: 'Unrestricted farm or premises'
-  },
-  'iso-unit': { label: 'TB isolation unit' },
-  other: otherOption
+  'tb-restricted-farm': option(
+    'offFarm',
+    'tb-restricted-farm',
+    'TB restricted farm'
+  ),
+  afu: option(
+    'offFarm',
+    'afu',
+    'Approved finishing unit (AFU)',
+    'Including enhanced with grazing (AFUE)'
+  ),
+  'unrestricted-farm': option(
+    'offFarm',
+    'unrestricted-farm',
+    'Unrestricted farm or premises'
+  ),
+  'iso-unit': option('offFarm', 'iso-unit', 'TB isolation unit'),
+  other: option('offFarm', 'other', 'Another TB restricted origin')
 }
 
 const onFarmOptions = {
-  'unrestricted-farm': {
-    label: 'Unrestricted farms and markets'
-  },
-  'tb-restricted-farm': tbRestrictedOption,
-  afu: afuOption,
-  other: otherOption
+  'unrestricted-farm': option(
+    'onFarm',
+    'unrestricted-farm',
+    'Unrestricted farms and markets'
+  ),
+  'tb-restricted-farm': option(
+    'onFarm',
+    'tb-restricted-farm',
+    'TB restricted farm'
+  ),
+  afu: option(
+    'onFarm',
+    'afu',
+    'Approved finishing unit (AFU)',
+    'Including enhanced with grazing (AFUE)'
+  ),
+  other: option('onFarm', 'other', 'Another TB restricted origin')
 }
 
 /** @augments {RadioButtonAnswer<OriginTypePayload>} */

@@ -70,7 +70,7 @@ export class AnswerModel {
   /**
    * @returns {AnswerValidationResult}
    */
-  validate() {
+  validate(_req) {
     throw new NotImplementedError()
   }
 
@@ -106,7 +106,26 @@ export class AnswerModel {
    * @returns {string}
    */
   get html() {
-    return escapeHtml(this.displayText)?.replace(/\r?\n/g, '<br />') ?? ''
+    return this.getHtml()
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
+    return this.displayText
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getHtml(request) {
+    return (
+      escapeHtml(this.getDisplayText(request))?.replace(/\r?\n/g, '<br />') ??
+      ''
+    )
   }
 
   /**
@@ -150,5 +169,5 @@ export class AnswerModel {
  */
 
 /**
- * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors }} AnswerViewModelOptions
+ * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors, request?: import('@hapi/hapi').Request }} AnswerViewModelOptions
  */

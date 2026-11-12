@@ -4,6 +4,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { ensureArray } from '../../../helpers/ensure-array.js'
+import { translate } from '../../../helpers/i18n/index.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -58,13 +59,16 @@ const createCheckboxSchema = (config) => {
 /**
  * @typedef {{
  *   label: string,
+ *   labelI18nKey: string,
  *   hint?: string,
+ *   hintI18nKey?: string,
  *   exclusive?: boolean
  * }} CheckboxOption
  * @typedef {{
  *   payloadKey: string,
  *   options: Record<string, CheckboxOption>,
  *   hint?: string,
+ *   hintI18nKey?: string,
  *   isPageHeading? : boolean,
  *   isQuestionHeading? : boolean,
  *   validation: {
@@ -114,6 +118,14 @@ export class CheckboxAnswer extends AnswerModel {
   }
 
   get displayText() {
+    return this.getDisplayText(null)
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
     const data = ensureArray(this._data?.[this.config.payloadKey])
 
     if (data.length === 0) {
@@ -121,7 +133,13 @@ export class CheckboxAnswer extends AnswerModel {
     }
     return Object.values(data)
       .map((item) => {
-        return this.config.options[item].label
+        return (
+          translate(
+            request,
+            this.config.options[item]?.labelI18nKey,
+            this.config.options[item]?.label
+          ) ?? ''
+        )
       })
       .join('\n\n')
   }
@@ -129,9 +147,9 @@ export class CheckboxAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ question, validate }) {
+  async viewModel({ question, validate, request }) {
     const values = this.value
-    const { payloadKey, options, hint } = this.config
+    const { payloadKey, options, hint, hintI18nKey } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
     const isQuestionHeading = this.config.isQuestionHeading ?? false
@@ -158,12 +176,21 @@ export class CheckboxAnswer extends AnswerModel {
       items: Object.entries(options).map(([value, option]) => {
         if (value === 'divider') {
           return {
-            divider: option.label
+            divider: translate(request, option.labelI18nKey, option.label)
           }
         }
 
+        const labelText = option.labelI18nKey
+          ? translate(request, option.labelI18nKey, option.label)
+          : option.label
+        const hintText = option.hint
+          ? option.hintI18nKey
+            ? translate(request, option.hintI18nKey, option.hint)
+            : option.hint
+          : undefined
+
         const checkboxOption = {
-          text: option.label,
+          text: labelText,
           value,
           attributes: {
             'data-testid': `${value}-checkbox`
@@ -175,9 +202,9 @@ export class CheckboxAnswer extends AnswerModel {
           checkboxOption.behaviour = 'exclusive'
         }
 
-        if (option.hint) {
+        if (hintText) {
           checkboxOption.hint = {
-            text: option.hint
+            text: hintText
           }
         }
 
@@ -186,7 +213,7 @@ export class CheckboxAnswer extends AnswerModel {
     }
 
     if (hint) {
-      viewModel.hint = { text: hint }
+      viewModel.hint = { text: translate(request, hintI18nKey, hint) }
     }
 
     if (validate) {

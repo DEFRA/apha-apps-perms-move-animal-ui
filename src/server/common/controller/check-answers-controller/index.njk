@@ -4,7 +4,9 @@
 {% block heading %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">{{ heading }}</h1>
+      <h1 class="govuk-heading-l">
+        {{ translate('common.checkAnswers.sectionHeading', heading) }}
+      </h1>
     </div>
   </div>
 {% endblock %}
@@ -19,5 +21,7 @@
       </div>
     </div>
   </div>
-  <h2 class="govuk-heading-m">You must tick one declaration box</h2>
+  <h2 class="govuk-heading-m">
+    {{ translate('common.checkAnswers.sectionFooter', 'You must tick one declaration box') }}
+  </h2>
 {% endblock %}

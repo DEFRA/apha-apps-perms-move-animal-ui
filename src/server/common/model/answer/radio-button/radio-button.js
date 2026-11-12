@@ -2,6 +2,7 @@ import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
 import { validateAnswerAgainstSchema } from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
+import { translate } from '../../../helpers/i18n/index.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
@@ -10,10 +11,15 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /**
  * @param {RadioButtonConfig} config
+ * @param {import('@hapi/hapi').Request | null} request
  * @returns {Joi.Schema}
  */
-const createRadioSchema = (config) => {
-  const { empty: emptyOptionText } = config.validation
+const createRadioSchema = (config, request) => {
+  const { empty } = config.validation
+  const emptyOptionText =
+    typeof empty === 'string'
+      ? empty
+      : translate(request, empty.i18nKey, empty.message)
   return Joi.object({
     [config.payloadKey]: Joi.string()
       .required()
@@ -41,14 +47,14 @@ const handleConfig = (context, config) => {
 }
 
 /**
- * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {{ label: string, labelI18nKey?: string, hint?: string, hintI18nKey?: string }} RadioOption
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
  *  hint?: string,
  *  options: Record<string, RadioOption>,
  *  validation: {
- *    empty: string
+ *    empty: string | { message: string, i18nKey?: string }
  *  }
  * layout?: RadioButtonLayout,
  * isQuestionHeading?: false
@@ -91,8 +97,16 @@ export class RadioButtonAnswer extends AnswerModel {
   }
 
   get displayText() {
-    const value = this.value
-    return this.config.options[value]?.label ?? ''
+    return this.getDisplayText(null)
+  }
+
+  /**
+   * @param {import('@hapi/hapi').Request | null} [request]
+   * @returns {string}
+   */
+  getDisplayText(request) {
+    const option = this.config.options[this.value]
+    return translate(request, option?.labelI18nKey, option?.label) ?? ''
   }
 
   get template() {
@@ -113,9 +127,9 @@ export class RadioButtonAnswer extends AnswerModel {
     )
   }
 
-  validate() {
+  validate(request) {
     return validateAnswerAgainstSchema(
-      createRadioSchema(this.config),
+      createRadioSchema(this.config, request),
       this._data ?? {}
     )
   }
@@ -132,7 +146,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, request }) {
     const {
       options,
       payloadKey,
@@ -140,14 +154,25 @@ export class RadioButtonAnswer extends AnswerModel {
       hint,
       isQuestionHeading = true
     } = this.config
-    const items = Object.entries(options).map(([key, value]) => ({
-      id: key,
-      value: key,
-      text: value.label,
-      hint: {
-        text: value.hint
+    const items = Object.entries(options).map(([key, value]) => {
+      const labelText = value.labelI18nKey
+        ? translate(request, value.labelI18nKey, value.label)
+        : value.label
+      const hintText = value.hint
+        ? value.hintI18nKey
+          ? translate(request, value.hintI18nKey, value.hint)
+          : value.hint
+        : undefined
+
+      return {
+        id: key,
+        value: key,
+        text: labelText,
+        hint: {
+          text: hintText
+        }
       }
-    }))
+    })
     items[0].id = payloadKey
 
     const model = {
@@ -172,7 +197,7 @@ export class RadioButtonAnswer extends AnswerModel {
     }
 
     if (validate) {
-      model.errorMessage = this.validate().errors[payloadKey]
+      model.errorMessage = this.validate(request).errors[payloadKey]
     }
     return Promise.resolve(model)
   }

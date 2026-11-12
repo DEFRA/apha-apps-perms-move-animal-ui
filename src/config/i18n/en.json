@@ -1,0 +1,1951 @@
+{
+  "common": {
+    "serviceName": "Move animals under disease controls",
+    "back": "Back",
+    "feedbackBannerHtml-1": "This is a new service. Help us improve it and",
+    "feedbackBannerHtml-2": "give your feedback (opens in new tab)",
+    "helpFooterText": "If you need help with the service you can call 03000 200 301.",
+    "startNow": "Start now",
+    "continue": "Continue",
+    "change": "Change",
+    "taskList": {
+      "progress": {
+        "youHave": "You have",
+        "outOf": "out of",
+        "sectionsLeft": "sections left to complete.",
+        "allSectionsComplete": "You have completed all sections."
+      },
+      "status": {
+        "cannotStartYet": "Cannot start yet",
+        "completed": "Completed",
+        "incomplete": "Incomplete"
+      }
+    },
+    "taskListIncomplete": {
+      "heading": "You need to complete all of the sections before you review and submit",
+      "button": "Go to your application"
+    },
+    "checkAnswers": {
+      "sectionHeading": "Check your answers before you continue your application",
+      "declaration": {
+        "question": "Before you submit your application, you must select one of the declaration check boxes.",
+        "options": {
+          "confirm": "My farm or premises details are correct to the best of my knowledge",
+          "divider": "or",
+          "other": "I am submitting for someone else and confirm the details given are correct to the best of my knowledge"
+        }
+      },
+      "sectionFooter": "You must tick one declaration box"
+    },
+    "confirmation": {
+      "title": "Your animal disease movement licence application",
+      "email": "We have sent you a confirmation email. It will include your application reference number.",
+      "emailFollowUp": "If approved, your licence will also be sent by email. You can contact the Animal and Plant Health Agency (APHA) helpline on 03000 200 301 if you have any issues receiving it.",
+      "whatHappensNext": "What happens next",
+      "processingTime": "It can take up to 5 working days to process your application. It may take longer if veterinary checks are required, or we need further information.",
+      "contact": "We will contact you if we need any further information.",
+      "feedback": "What did you think of this service?",
+      "feedbackTime": "(takes 30 seconds)"
+    },
+    "banner": {
+      "prototype": "Prototype",
+      "beta": "Beta",
+      "prototypeBanner": "This is a service prototype."
+    },
+    "user": {
+      "manageAccount": "Manage account",
+      "signOut": "Sign out"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "accessibilityStatement": "Accessibility statement"
+    },
+    "errors": {
+      "summaryTitle": "There is a problem",
+      "pageNotFound": "Page not found",
+      "forbidden": "Forbidden",
+      "unauthorized": "Unauthorized",
+      "badRequest": "Bad Request",
+      "generic": "Something went wrong"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "intro": "Cookies are small files saved on your phone, tablet or computer when you visit a website.",
+      "essential": "We use the following essential cookies to keep your data secure while you use the Move animals under disease controls service.",
+      "permission": "We do not need to ask permission to use essential cookies.",
+      "table": {
+        "name": "Name",
+        "purpose": "Purpose",
+        "expires": "Expires"
+      },
+      "session": {
+        "name": "session",
+        "purpose": "Used to save your progress during the application process",
+        "expires": "20 hours since you last used the website"
+      },
+      "userSession": {
+        "purpose": "Used to store proof you have signed in using Defra CustomerIdentity and to store your profile data",
+        "expires": "20 hours since you last used the website"
+      },
+      "defraBellId": {
+        "purpose": "Used to store your details and to sign you in with Defra CustomerIdentity",
+        "expires": "Until you close your browser"
+      },
+      "crumb": {
+        "purpose": "Used to prevent attackers from changing your application",
+        "expires": "Until you close your browser"
+      }
+    },
+    "accessibility": {
+      "title": "Accessibility statement",
+      "intro": "Accessibility statement for Get permission to move animals under disease control.",
+      "howToUseHeading": "How you should be able to use this website",
+      "howToUseIntro": "We want as many people as possible to be able to use this website.",
+      "shouldBeAbleTo": "You should be able to:",
+      "changeColours": "Change colours, contrast levels and fonts using browser or device settings",
+      "zoom": "Zoom in up to 200% without the text spilling off the screen",
+      "keyboard": "Navigate most of the website using a keyboard or speech recognition software",
+      "screenReader": "Listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
+      "simpleText": "We also make the website text as simple as possible to understand",
+      "accessibilityHeading": "How accessible this website is",
+      "accessibilityBody": "While most of this website is fully accessible, we are engaging in a full accessibility audit that may uncover unknown accessibility issues. If you encounter any, please",
+      "feedbackLink": "give your feedback (opens in new tab)",
+      "feedbackSuffix": "to let us know how we can improve."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "The privacy notice covers all of Animal and Plant Health Agency’s work.",
+      "moreInformation": "More detailed information on how we manage personal data for each of our functions is included within",
+      "individualPrivacyNotices": "individual privacy notices",
+      "dataCollectedByHeading": "Your data is being collected by",
+      "dataController": "The data controller is the Department for Environment, Food and Rural Affairs (Defra) for personal data that you give to the Animal and Plant Health Agency (APHA).",
+      "aphaDataProtectionManager": "APHA is an Executive Agency of Defra. You can contact APHA’s Data Protection Manager by email at:",
+      "dataProtectionEmail": "data.protection@defra.gov.uk",
+      "jointControllers": "APHA also works with the Scottish Government and Welsh Government, who are joint controllers with APHA for any relevant personal data.",
+      "dataQuestions": "Any questions about how Defra and APHA are using your personal data and your associated rights should be sent to the above contact.",
+      "dataProtectionOfficer": "The Data Protection Officer responsible for monitoring that Defra and APHA is meeting the requirements of the legislation can be contacted by email at:",
+      "dataProtectionOfficerEmail": "DefraGroupDataProtectionOfficer@defra.gov.uk",
+      "dataCollectedHeading": "What personal data is collected",
+      "dataCollectedIntro": "The personal data collected is made clear in",
+      "dataCollectedLinkText": "individual APHA privacy notices",
+      "dataCollectedSuffix": "or documentation that collects personal data.",
+      "dataObtainedHeading": "How your data has been obtained",
+      "dataObtainedIntro": "We have obtained your data either directly from you or a third party. How your data has been obtained in any particular case is made clear in",
+      "dataObtainedLinkText": "individual APHA privacy notices",
+      "dataObtainedSuffix": "or documentation that collects personal data.",
+      "whyDataHeading": "Why APHA is using your data",
+      "whyDataIntro": "Personal data is collected and stored to support APHA’s functions which include:",
+      "functions": {
+        "function-1": "identifying and controlling endemic and exotic diseases and pests in animals, plants and bees, and surveillance of new and emerging pests and diseases",
+        "function-2": "scientific research",
+        "function-3": "facilitating international trade in animals, products of animal origin, and plants",
+        "function-4": "protecting endangered wildlife through licensing and registration",
+        "function-5": "safeguard animal health and welfare; and protect human health where relevant (zoonoses)",
+        "function-6": "managing a programme of bee inspections, diagnostics, research and development, and training and advice",
+        "function-7": "regulating the safe disposal of animal by-products to reduce the risk of potentially dangerous substances entering the food chain",
+        "function-8": "employee data necessary to support staff management",
+        "function-9": "the safeguarding of employees, sub-contractors and customers (this may include very limited use of body worn video when necessary)",
+        "function-10": "for APHA’s statutory functions in relation to plant biosecurity; the environmental release of genetically modified organisms; and in the management of alien and invasive species - specifically for notifiable pests and diseases, imports and export controls, training and for statutory food safety monitoring purposes"
+      },
+      "moreAboutApha": "More information about APHA can be found at",
+      "aphaWebsite": "www.gov.uk/apha",
+      "googleAnalyticsHeading": "Your data and Google Analytics",
+      "googleAnalyticsIntro": "Our website uses Google Analytics, a web analytics service provided by Google, to monitor site activity and gather insights into how users interact with our content.",
+      "googleAnalyticsData": "This data allows us to understand user behaviour better and implement improvements to enhance your experience on our site. As part of this process, Google Analytics collects certain information, including your IP address. This data helps us determine approximate locations, enabling us to identify potential areas for user research and better tailor our services to meet users’ needs.",
+      "googleAnalyticsPurpose": "Please note that the information collected is used solely for analytical and improvement purposes.",
+      "googleAnalyticsPrivacy": "We respect your privacy and are committed to handling your data responsibly. For more information on how Google collects and processes data, please refer to",
+      "googlePrivacyLink": "Google’s Privacy & Terms",
+      "legalBasisHeading": "The legal basis for processing your data",
+      "legalBasisIntro": "Legal bases for processing include:",
+      "legalBases": {
+        "legalBase-1": "the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller",
+        "legalBase-2": "for compliance to a legal obligation on the controller",
+        "legalBase-3": "the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering a contract",
+        "legalBase-4": "you have given us consent to process your data for one or more specified purposes"
+      },
+      "consentHeading": "Consent to process your data",
+      "consent": "Where the legal basis for processing your personal data is your consent, you can opt out at any time and details of how you can do that are made available to you by the team that is processing your personal data.",
+      "requirementHeading": "A legal or contractual requirement to provide personal data",
+      "requirement": "Sometimes you are legally or contractually required to share personal data by APHA. These situations are made clear in the relevant privacy notices.",
+      "consequencesHeading": "Consequences of not providing the necessary data",
+      "consequences": {
+        "consequence-1": "For statutory and public interest purposes it is necessary to provide data as stated in the relevant legislation.",
+        "consequence-2": "For contractual based processing, your entrance into a contract with us is voluntary and necessary information is supplied to fulfil that contractual relationship.",
+        "consequence-3": "For consent based processing you have a right to revoke this at any given time."
+      },
+      "automatedDecisionHeading": "Personal data used for automated decision making",
+      "automatedDecision": "The information you provide is not connected with individual decision making, in other words making a decision solely by automated means without any human involvement.",
+      "profilingHeading": "Personal data fused or automated 'profiling' and the consequences of this",
+      "profiling": "The information you provide is not connected with profiling, in other words automated processing of personal data to evaluate certain things about an individual.",
+      "sharingHeading": "Who APHA shares your data with",
+      "sharing": {
+        "sharing-1": "Personal data may be made available to local authorities and other public bodies in the UK and EU to meet legal requirements and regulatory and enforcement functions.",
+        "sharing-2": "We may share data with Defra and its agencies, Welsh Government, Scottish Government, Northern Ireland Executive, Food Standards Agency and other official organisations and enforcement authorities.",
+        "sharing-3": "We may share data with other organisations working for us to enable us to carry out our duties.",
+        "sharing-4": "We may have to release information (including personal data and commercial information) under the following legislation:"
+      },
+      "legislation": {
+        "legislation-1": "UK General Data Protection Regulation (UK GDPR)",
+        "legislation-2": "UK Data Protection Act 2018",
+        "legislation-3": "Freedom of Information Act 2000",
+        "legislation-4": "Environmental Information Regulations 2004"
+      },
+      "confidentiality": "We will not allow any unwarranted breach of confidentiality and we will not act in contravention of our obligations under UK data protection legislation.",
+      "outsideUkHeading": "Storing and using personal data outside the UK",
+      "outsideUk": {
+        "outsideUk-1": "A very small percentage of government records containing personal information are selected for permanent preservation at the National Archives. They are made available in accordance with the Freedom of Information Act 2000, as amended by the Data Protection Act 2018.",
+        "outsideUk-2": "The data you provide will largely not be transferred outside of the UK. On rare occasions, when it is lawful and complementary to our work carried out in the public interest, research data may be transferred securely outside of the UK."
+      },
+      "retentionHeading": "How long APHA holds personal data for",
+      "retention": "All information with APHA is held in accordance with our retention policy, if you would like more information please contact",
+      "enquiriesEmail": "enquiries@apha.gov.uk",
+      "longerRetention": "In specific circumstances information may be held for longer periods. Examples include:",
+      "longerRetentionExamples": {
+        "longerRetentionExample-1": "appeal",
+        "longerRetentionExample-2": "audit activity",
+        "longerRetentionExample-3": "complaint",
+        "longerRetentionExample-4": "irregularity",
+        "longerRetentionExample-5": "legal action",
+        "longerRetentionExample-6": "a formal request for information",
+        "longerRetentionExample-7": "if it sets a precedent",
+        "longerRetentionExample-8": "scientific or historical research purposes"
+      },
+      "rightsHeading": "Your rights",
+      "rightsIntro": "Find out about",
+      "rightsLink": "your rights under data protection law",
+      "complaintsHeading": "Complaints",
+      "complaints": "You have the right to lodge a complaint about the use of your personal data at any time with",
+      "icoLink": "Information Commissioner’s Office",
+      "complaintsSuffix": "(ICO - the data protection supervisory authority).",
+      "charterHeading": "APHA’s personal information charter",
+      "charterLink": "APHA’s personal information charter",
+      "charterText": "APHA processes personal data."
+    },
+    "answer": {
+      "cphNumber": {
+        "hint": "For example, 12/345/6789",
+        "validation": {
+          "maxLength": "Enter the CPH number in the correct format, for example, 12/345/6789",
+          "pattern": "Enter the CPH number in the correct format, for example, 12/345/6789",
+          "empty": "Enter the farm or premises CPH number"
+        }
+      },
+      "address": {
+        "validation": {
+          "addressLine1": "Enter address line 1, typically the building and street",
+          "townOrCity": "Enter town or city",
+          "postcode": "Enter postcode",
+          "postcodeFormat": "Enter a full UK postcode"
+        }
+      }
+    }
+  },
+  "tb": {
+    "origin": {
+      "title": "Movement origin",
+      "onOffFarm": {
+        "question": "Are you moving the animals on or off your farm or premises?",
+        "validation": {
+          "empty": "Select if you are moving animals on or off your farm or premises"
+        },
+        "options": {
+          "on": {
+            "label": "On to the farm or premises"
+          },
+          "off": {
+            "label": "Off the farm or premises"
+          }
+        }
+      },
+      "originType": {
+        "question": "Which type of premises are the animals moving off?",
+        "validation": {
+          "empty": "Select where the animals are moving from"
+        },
+        "options": {
+          "offFarm": {
+            "tb-restricted-farm": {
+              "label": "TB restricted farm"
+            },
+            "afu": {
+              "label": "Approved finishing unit (AFU)",
+              "hint": "Including enhanced with grazing (AFUE)"
+            },
+            "unrestricted-farm": {
+              "label": "Unrestricted farm or premises"
+            },
+            "iso-unit": {
+              "label": "TB isolation unit"
+            },
+            "other": {
+              "label": "Another TB restricted origin"
+            }
+          },
+          "onFarm": {
+            "unrestricted-farm": {
+              "label": "Unrestricted farms and markets"
+            },
+            "tb-restricted-farm": {
+              "label": "TB restricted farm"
+            },
+            "afu": {
+              "label": "Approved finishing unit (AFU)",
+              "hint": "Including enhanced with grazing (AFUE)"
+            },
+            "other": {
+              "label": "Another TB restricted origin"
+            }
+          }
+        }
+      },
+      "cphNumber": {
+        "question": "What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?"
+      },
+      "originFarmCph": {
+        "question": "What is the county parish holding (CPH) number of the farm or premises where the animals are moving off?"
+      },
+      "address": {
+        "question": "What is the address of your farm or premises where the animals are moving off?"
+      },
+      "originFarmAddress": {
+        "question": "What is the address of the farm or premises where the animals are moving off?"
+      },
+      "originTypeOther": {
+        "question": "What type of premises with TB restrictions are the animals moving off?",
+        "validation": {
+          "empty": "Enter the premises type",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "contactTbRestrictedFarm": {
+        "title": "Contact the TB restricted farm",
+        "responsibility": "When animals are moving onto a TB restricted farm, it is the responsibility of the TB restricted farm to apply for a licence.",
+        "needDetails": "We need details about their biosecurity practices to process the licence.",
+        "cannotApplyIntro": "If the destination farm cannot apply, complete and",
+        "cannotApplyLinkText": "send this application form to APHA (opens in new tab)"
+      },
+      "fiftyPercentWarning": {
+        "title": "You cannot move more than 50% of the herd",
+        "reductionWarning": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.",
+        "doesNotApply": "This does not apply if:",
+        "exceptions": {
+          "exception-1": "the destination herd is registered to a Bovine TB health scheme. Accreditation from the Cattle Health Certification Standards (CHECS) must be in place before the breakdown began",
+          "exception-2": "the animals are moving to any type of approved or licenced finishing unit, or to a TB isolation unit"
+        },
+        "moreInfoIntro": "For more information, read the slaughter and compensation section on the",
+        "moreInfoLinkText": "GOV.UK Bovine TB guidance page",
+        "moreInfoSuffix": "(opens in new tab)."
+      }
+    },
+    "destination": {
+      "destinationType": {
+        "question": "Where are the animals going to?",
+        "validation": {
+          "empty": "Select where the animals are going"
+        },
+        "options": {
+          "tb-restricted-farm": {
+            "label": "TB restricted farm"
+          },
+          "slaughter": {
+            "label": "Slaughter"
+          },
+          "dedicated-sale": {
+            "label": "Dedicated sale for TB (orange market)"
+          },
+          "afu": {
+            "label": "Approved finishing unit (AFU)",
+            "hint": "Including enhanced with grazing (AFUE)"
+          },
+          "afu-or-market": {
+            "label": "Approved finishing units and TB sales at orange markets",
+            "hint": "The licence covers either or both destinations"
+          },
+          "iso-unit": {
+            "label": "TB isolation unit"
+          },
+          "other": {
+            "label": "Another destination with TB restrictions"
+          }
+        }
+      },
+      "destinationFarmCph": {
+        "question": "What is the county parish holding (CPH) number of the farm or premises where the animals are going to?"
+      },
+      "destinationFarmAddress": {
+        "question": "What is the address of the farm or premises where the animals are going to?"
+      },
+      "destinationTypeOther": {
+        "question": "What type of premises with TB restrictions are the animals going to?",
+        "validation": {
+          "empty": "Enter the premises type",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "howManyAnimals": {
+        "question": "How many animals are you planning to move?",
+        "validation": {
+          "empty": "Enter how many animals you are planning to move",
+          "max": "Enter a number %{value} or below",
+          "min": "Enter a number %{value} or above"
+        }
+      },
+      "howManyAnimalsMaximum": {
+        "question": "What is the maximum number of animals you are planning to move?",
+        "validation": {
+          "empty": "Enter the maximum number of animals you are planning to move",
+          "max": "Enter a number %{value} or below",
+          "min": "Enter a number %{value} or above"
+        }
+      },
+      "movementDate": {
+        "question": "What date will the animals move off the farm or premises?",
+        "validation": {
+          "invalidDate": "Date the animals will move off the farm or premises must be a real date",
+          "missingDate": "Enter the date the animals will move off the farm or premises",
+          "missingDay": "Date the animals will move off the farm or premises must include a day",
+          "missingMonth": "Date the animals will move off the farm or premises must include a month",
+          "missingYear": "Date the animals will move off the farm or premises must include a year",
+          "invalidDay": "Day the animals will move off the farm or premises must be a real date",
+          "invalidMonth": "Month the animals will move off the farm or premises must be a number between 1 and 12",
+          "invalidYear": "Year the animals will move off the farm or premises must be a real date",
+          "nonFourDigitYear": "Year the animals will move off the farm or premises must be a real date",
+          "pastDate": "Date of movement must be today or after"
+        }
+      },
+      "additionalInfo": {
+        "question": "Enter any additional information (optional)",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "reasonForMovement": {
+        "question": "What is the reason for the movement?",
+        "validation": {
+          "empty": "Select the reason for movement"
+        },
+        "options": {
+          "routineRestocking": {
+            "label": "Routine restocking"
+          },
+          "breedingMale": {
+            "label": "Breeding male"
+          },
+          "welfare": {
+            "label": "Welfare",
+            "hint": "Including moving pregnant females"
+          },
+          "other": {
+            "label": "Something else"
+          }
+        }
+      },
+      "ownBothOriginAndDestination": {
+        "question": "Are you responsible for the TB restricted farm where the animals are going to?",
+        "validation": {
+          "empty": "Select if you are responsible for the TB restricted farm where the animals are going to"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "restockAnimals": {
+        "question": "Which types of animals are you restocking?",
+        "validation": {
+          "empty": "Select which types of animals you are restocking"
+        },
+        "hint": "Select all that apply.",
+        "options": {
+          "calves": {
+            "label": "Calves"
+          },
+          "heifers": {
+            "label": "Heifers"
+          },
+          "cows": {
+            "label": "Cows"
+          },
+          "pregnantCows": {
+            "label": "Pregnant cows"
+          },
+          "dairyCows": {
+            "label": "Dairy cows"
+          },
+          "sucklingCalves": {
+            "label": "Suckling calves"
+          }
+        }
+      },
+      "restockReason": {
+        "question": "Which reasons do you have for restocking?",
+        "validation": {
+          "empty": "Select the reasons you have for restocking"
+        },
+        "hint": "Select all that apply.",
+        "options": {
+          "fattening": {
+            "label": "Fattening"
+          },
+          "breeding": {
+            "label": "Breeding"
+          },
+          "sucklingRestocking": {
+            "label": "Suckling restocking"
+          },
+          "dairyRestocking": {
+            "label": "Dairy restocking"
+          },
+          "other": {
+            "label": "Something else"
+          }
+        }
+      },
+      "restockAdditionalInfo": {
+        "question": "What is the reason for restocking?",
+        "validation": {
+          "empty": "Enter the reason for restocking",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "quantityHalfHerd": {
+        "question": "Will the number of cattle be larger than half of the destination herd size?",
+        "validation": {
+          "empty": "Select if the number of cattle will be larger than half of the destination herd size"
+        },
+        "options": {
+          "no": {
+            "label": "No"
+          },
+          "yes": {
+            "label": "Yes"
+          },
+          "unknown": {
+            "label": "I don't know"
+          }
+        }
+      },
+      "contactTbRestrictedFarm": {
+        "title": "Contact the TB restricted farm",
+        "responsibility": "When the animals are moving on to a TB restricted farm, it is the responsibility of that farm to apply for a licence.",
+        "needDetails": "We need details about their biosecurity practices to process the licence.",
+        "cannotApplyIntro": "If the destination farm cannot apply, complete and",
+        "cannotApplyLinkText": "send this application form to APHA (opens in new tab)"
+      },
+      "afuOnlyOnExitPage": {
+        "title": "You cannot move animals onto an approved finishing unit",
+        "body": "This service does not allow movements onto your premises from approved finishing unit (AFU) unless your premises is an AFU."
+      },
+      "afuOnlyOffExitPage": {
+        "title": "You cannot move animals off an approved finishing unit",
+        "intro": "This service only allows movements off an approved finishing unit (AFU) to:",
+        "destinations": {
+          "destination-1": "slaughter",
+          "destination-2": "approved finishing units (AFU)"
+        }
+      },
+      "checkExistingLicenceExitPage": {
+        "title": "Check if APHA has already sent you a licence",
+        "checkLicenceSuffix": "check if you can move animals with the licence that was issued with the approval.",
+        "contactIntro": "Contact",
+        "contactEmail": "CSCTBUnits@apha.gov.uk",
+        "contactSuffix": "if your movement does not meet the terms of the existing licence."
+      },
+      "generalLicence": {
+        "title": "Check if you have a general licence",
+        "infoPack": "You should have a general licence in the information pack sent to you from the Animal and Plant Health Agency (APHA). The pack was posted to you when your herd was placed under TB restriction.",
+        "allowsSlaughterMovement": "This licence allows you to move animals from a TB restricted farm to slaughter.",
+        "continueIfNone": "If you do not have a general licence, you can continue to apply for a new one."
+      }
+    },
+    "identification": {
+      "animals42DaysOldOrOlder": {
+        "question": "Are you also moving any animals 42 days old or older?",
+        "validation": {
+          "empty": "Select if you are also moving any animals 42 days old or older"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "calvesUnder42DaysOld": {
+        "question": "Will you move any calves under 42 days old?",
+        "hint": "We need to know if the calves are under 42 days old on the date you are planning to move them",
+        "validation": {
+          "empty": "Select if you will move any calves under 42 days old"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "oldestCalfDob": {
+        "question": "What is the date of birth of the oldest calf under 42 days old?",
+        "validation": {
+          "missingDate": "Enter the oldest calf’s date of birth",
+          "missingDay": "Date of birth of the oldest calf must include a day",
+          "missingMonth": "Date of birth of the oldest calf must include a month",
+          "missingYear": "Date of birth of the oldest calf must include a year",
+          "invalidDay": "Day of birth must be a real date",
+          "invalidMonth": "Month of birth of the oldest calf must be a number between 1 and 12",
+          "invalidYear": "Year of birth must be a real date",
+          "nonFourDigitYear": "Year of birth must include 4 numbers",
+          "invalidDate": "Day of birth must be a real date",
+          "futureDate": "Date of birth of the oldest calf must be today or in the past"
+        }
+      },
+      "earTags": {
+        "question": "Enter the ear tag numbers",
+        "validation": {
+          "empty": "Enter the ear tag numbers of the animals you are planning to move",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        },
+        "hint": "You need to enter each ear tag number on a separate line",
+        "identifyIntro": "You need to identify the animals using the official ear tags bought from an approved supplier.",
+        "earTagFormat": "The ear tag must include the country code, herd number and six-digit official ear tag number. For example, UK12345678910."
+      },
+      "earTagsCalves": {
+        "question": "Enter the ear tag numbers of the calves under 42 days old you are planning to move",
+        "validation": {
+          "empty": "Enter the ear tag numbers of the calves under 42 days old you are planning to move",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        },
+        "hint": "You need to enter each ear tag number on a separate line",
+        "identifyIntro": "You need to identify the calves using the official ear tags bought from an approved supplier.",
+        "earTagFormat": "The ear tag must include the country code, herd number and six-digit official ear tag number. For example, UK12345678910."
+      },
+      "earTagsOver42DaysOld": {
+        "question": "Enter the ear tag numbers for these animals",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        },
+        "hint": "You need to enter each ear tag number on a separate line"
+      },
+      "testingDates": {
+        "question": "What are the dates of the last TB tests for the animals that are 42 days old or older?",
+        "validation": {
+          "empty": "Enter the dates when animals over 42 days old were last tested for TB",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        },
+        "negativeTestIntro": "The animals must have tested negative to a TB skin test within 30 days of the planned movement date.",
+        "enterInjectionDate": "You need to enter the date they were injected on their most recent TB skin test."
+      },
+      "warning": {
+        "title": "Official ear tag numbers for animals being moved",
+        "possibleAgeWarning": "There’s a possibility the calf will be 42 days old or older while we review your application.",
+        "testingRequirement": "Calves 42 days old or older must be tested for TB for a licence to be granted."
+      }
+    },
+    "biosecurity": {
+      "title": "Biosecurity details",
+      "buildingsAnyShared": {
+        "question": "Will the incoming animals be housed?",
+        "validation": {
+          "empty": "Select if the animals will be housed"
+        },
+        "hint": "This includes shared spaces such as pens",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "buildingsHowMinimiseContamination": {
+        "question": "Which measures are being taken to reduce the spread of TB during housing?",
+        "validation": {
+          "empty": "Enter how you will reduce the risk of spreading TB from the resident herd to the incoming animals during housing"
+        },
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "cleaning": {
+            "label": "Cleaning and disinfecting of shared buildings before the animals arrive"
+          },
+          "isolation": {
+            "label": "Isolation of incoming animals in a separate building, shed or pen on arrival"
+          },
+          "incoming": {
+            "label": "Incoming animals will be permanently housed"
+          },
+          "disinfection": {
+            "label": "Disinfection points located at the housing entrances and exits"
+          },
+          "other": {
+            "label": "Other measures"
+          }
+        },
+        "preventSpreadIntro": "You should have measures in place to prevent the spread of TB when the incoming animals are housed or have access to shared buildings.",
+        "shouldInclude": "You should include:",
+        "includeItems": {
+          "item-1": "how the incoming animals will be separated from the resident herd",
+          "item-2": "cleaning and disinfection measures for housing and shared buildings, including handling and milking facilities"
+        }
+      },
+      "equipmentAnyShared": {
+        "question": "Will the incoming animals share any equipment and machinery with the resident herd?",
+        "validation": {
+          "empty": "Select if the incoming animals will share any equipment and machinery with the resident herd"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "equipmentHowMinimiseContamination": {
+        "question": "Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?",
+        "validation": {
+          "empty": "Select which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB"
+        },
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "designatedDisinfectionPoints": {
+            "label": "Designated disinfection points"
+          },
+          "disinfectingMachinery": {
+            "label": "Cleaning and disinfecting shared machinery"
+          },
+          "disinfectingMilkingAndHandling": {
+            "label": "Cleaning and disinfecting shared milking and handling facilities"
+          },
+          "equipmentNotShared": {
+            "label": "Equipment is not shared between the incoming animals and the resident herd"
+          },
+          "other": {
+            "label": "Other cleaning and disinfection measures"
+          }
+        }
+      },
+      "grazingFieldHowSeparated": {
+        "question": "Which measures are being taken to reduce the spread of TB when the animals are grazing?",
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "separated-by-roads": {
+            "label": "Roads create a boundary between the animals"
+          },
+          "separated-by-three-meters": {
+            "label": "A minimum of 3 metres will separate the animals",
+            "hint": "Such as by hedges, doubling fencing or walls"
+          },
+          "other": {
+            "label": "Other separation measures"
+          }
+        }
+      },
+      "grazing": {
+        "question": "Will the incoming animals be grazed?",
+        "validation": {
+          "empty": "Select if the incoming animals will be grazed"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "grazingOther": {
+        "question": "What other measures are being taken to reduce the spread of TB when the animals are grazing?",
+        "validation": {
+          "empty": "Enter details on the other measures being taken to reduce the spread of TB when the animals are grazing",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "housingOther": {
+        "question": "What other measures are being taken to reduce the spread of TB during housing?",
+        "validation": {
+          "empty": "Enter details on the other measures being taken to reduce the spread of TB during housing",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "keptSeparately": {
+        "question": "Will you separate the incoming animals from the resident herd?",
+        "validation": {
+          "empty": "Select if the incoming animals will be kept separately"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "lastGrazed": {
+        "question": "How long ago was the field last grazed by the resident herd?",
+        "validation": {
+          "empty": "Enter when the field was last grazed by the resident herd",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "manureAndSlurry": {
+        "question": "Has any manure or slurry been put on the grazing field in the past 60 days?",
+        "validation": {
+          "empty": "Select if manure or slurry has been put on the grazing field in the past 60 days"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "manureAndSlurryDetails": {
+        "question": "How will you manage slurry and manure?",
+        "validation": {
+          "empty": "Enter how you will manage manure and slurry"
+        },
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "not-purchased": {
+            "label": "Manure is not purchased from other farms"
+          },
+          "stored": {
+            "label": "Manure and slurry is securely stored so domestic and wild animals can't access it"
+          },
+          "three-weeks": {
+            "label": "Manure is stored for at least 3 weeks before spreading on pasture"
+          },
+          "six-months": {
+            "label": "Slurry is stored for at least 6 months before spreading on pasture"
+          },
+          "other": {
+            "label": "Other measures"
+          }
+        }
+      },
+      "otherEquipmentMeasures": {
+        "question": "What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?",
+        "validation": {
+          "empty": "Enter what other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "otherStaffMeasures": {
+        "question": "What other measures are staff taking to reduce the risk of spreading TB?",
+        "validation": {
+          "empty": "Enter what other measures staff are taking to reduce the risk of spreading TB",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "otherWildlifeMeasures": {
+        "question": "What other measures are you taking to reduce the risk of spreading TB?",
+        "validation": {
+          "empty": "Enter information on what other measures are you taking to reduce the risk of spreading TB",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "peopleDisinfection": {
+        "question": "Which measures are staff taking to reduce the risk of spreading TB?",
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "ppe": {
+            "label": "Dedicated clothing and personal protective equipment (PPE)"
+          },
+          "disinfectingBoots": {
+            "label": "Cleaning and disinfecting wellington boots, including foot dips"
+          },
+          "disinfectingOnArrivalAndDeparture": {
+            "label": "Cleaning and disinfection measures when contractor arrive and leave"
+          },
+          "dedicatedStaff": {
+            "label": "Dedicated staff looking after the incoming animals"
+          },
+          "other": {
+            "label": "Other cleaning and disinfection measures"
+          }
+        }
+      },
+      "slurryManureOther": {
+        "question": "What other measures are being taken to manage slurry and manure?",
+        "validation": {
+          "empty": "Enter details on the other measures being taken to manage slurry and manure",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "disinfectant": {
+        "question": "What disinfectant are you using?",
+        "validation": {
+          "empty": "Enter the first 2 letters of the disinfectant you are using"
+        },
+        "intro": "You must use a Defra-approved disinfectant for TB."
+      },
+      "badgers": {
+        "question": "Which measures are you taking to reduce the risk of infection from wildlife?",
+        "hint": "Only select the measures you are taking. You do not need to select them all to receive your licence.",
+        "options": {
+          "badgerProofFencing": {
+            "label": "Badger-proof fencing, such as wired fences, solid aluminium sheeted gates and rail fences or retractable electric fences"
+          },
+          "aluminiumFeedBins": {
+            "label": "Aluminium feed bins"
+          },
+          "limitAccessToBadgerHabitat": {
+            "label": "Limiting access to badger latrines and setts"
+          },
+          "troughsAbove90cm": {
+            "label": "Feed and water troughs raised above 90cm"
+          },
+          "securedFeedStores": {
+            "label": "Feed stores are secured"
+          },
+          "licksOutOfReach": {
+            "label": "Mineral licks kept out of reach of wildlife"
+          },
+          "other": {
+            "label": "Other measures to reduce the risk of infection"
+          }
+        },
+        "guidanceIntro": "If there are measures you are not taking but want to find out more,",
+        "guidanceLinkText": "read the guidance on the TB Hub",
+        "guidanceSuffix": "(opens in a new tab)."
+      },
+      "obligations": {
+        "question": "Biosecurity on your farm or premises",
+        "intro": "You must answer the questions in this section as accurately as you can.",
+        "importance": "It is important you take the time to consider your biosecurity measures and the steps you are taking to prevent the spread of TB.",
+        "vetReview": "A vet will review your answers and decide on the outcome of your application.",
+        "guidance": "Guidance on biosecurity",
+        "guidanceLink": "how to protect cattle against TB infection"
+      },
+      "dilutionRate": {
+        "heading": "Disinfectant dilution rate",
+        "question": "Confirmation of the dilution rate",
+        "validation": {
+          "empty": "You need to tick the confirmation box"
+        },
+        "answer": {
+          "undiluted": "I confirm the disinfectant is used undiluted on the farm or premises",
+          "prefix": "I confirm a dilution rate of 1:",
+          "suffix": " is used on the farm or premises",
+          "confirmationOption": "I confirm this is the dilution rate used on the farm or premises"
+        },
+        "page": {
+          "intro": "By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.",
+          "approvedPrefix": "The approved dilution rate for",
+          "is": "is",
+          "undiluted": "undiluted",
+          "explanationPrefix": "This means for every 1",
+          "explanationMiddle": "of",
+          "explanationUsing": "you are using",
+          "explanationSuffix": "of water.",
+          "units": {
+            "litres": "litres",
+            "millilitres": "millilitres",
+            "litre": "litre",
+            "gram": "gram"
+          },
+          "selectFirst": "You must select a disinfectant before confirming the dilution rate.",
+          "selectDisinfectantButton": "Select disinfectant"
+        }
+      }
+    },
+    "home": {
+      "intro": "Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions.",
+      "checkExistingLicence": "Check if APHA has already sent you a TB movement licence before you apply.",
+      "whoCanUseThisService": "Who can use this service",
+      "youCanUseThisService": "You can use this service to apply for a licence if you are moving cattle:",
+      "movingCattleReasons": {
+        "reason-1": "from an unrestricted farm or market to a TB restricted farm or premises",
+        "reason-2": "from a TB restricted farm or premises to:",
+        "reason-2-options": {
+          "option-1": "a TB restricted farm or premises",
+          "option-2": "an approved finishing unit (AFU), including enhanced with grazing (AFUE)",
+          "option-3": "slaughter or a TB slaughter gathering (red market), unless covered by a general licence",
+          "option-4": "a dedicated TB sale (orange market)"
+        },
+        "reason-3": "from an AFU (including AFUE) to an AFU (including AFUE)"
+      },
+      "whenYouDoNotNeedThisService": "When you do not need this service",
+      "generalLicenceNotice": "You don’t need to apply if a general licence already allows the movement.",
+      "generalLicenceCheck": "Check the general licence APHA sent you when your herd was placed under TB restriction. A general licence will allow you to move cattle:",
+      "generalLicenceMovements": {
+        "movement-1": "direct to slaughter",
+        "movement-2": "via a TB slaughter gathering (red market) if issued after 30 September 2024"
+      },
+      "movingBetweenRestrictedPremises": "Moving cattle between TB restricted farms or premises",
+      "movingBetweenRestrictedPremisesIntro": "If cattle are moving from a TB restricted farm or premises to another TB restricted farm or premises, the destination farm or premises must apply for the licence. This is because we need details about their TB biosecurity procedures.",
+      "cannotApplyIntro": "If the destination farm or premises cannot apply, use",
+      "cannotApplyLinkText": "this application form",
+      "cannotApplySuffix": "instead.",
+      "beforeYouStart": "Before you start",
+      "guidanceIntro": "Read the guidance:",
+      "guidanceLinkText": "Bovine TB: get your cattle tested in England",
+      "cannotProcessIf": "APHA cannot process your application if:",
+      "cannotProcessReasons": {
+        "reason-1": "reactors are still on your farm or premises",
+        "reason-2": "cattle are waiting for TB skin or blood test results",
+        "reason-3": "TB testing is overdue"
+      },
+      "contactVet": "Contact your vet if you are unsure whether test results have been submitted. Delays may occur if APHA has not received them.",
+      "whatYouNeedToApply": "What you need to apply",
+      "youWillNeed": "You will need:",
+      "requirements": {
+        "requirement-1": "the county parish holding (CPH) number and address cattle are moving from",
+        "requirement-2": "the CPH number and details of where the cattle are moving to (for example, the type of market)",
+        "requirement-3": "an email address you want the licence to go to"
+      },
+      "movingOntoFarm": "If cattle are moving onto your farm, you must also:",
+      "movingOntoFarmRequirements": {
+        "requirement-1": "provide details of your TB biosecurity procedures",
+        "requirement-2": "upload a biosecurity map"
+      },
+      "getHelp": "Get help",
+      "applicationProcessingTime": "Applications can take up to 5 working days to process.",
+      "processingDelay": "It may take longer if veterinary checks are needed or if we need more information.",
+      "callUs": "Call 03000 200 301 and select the option for TB in animals.",
+      "openingHours": "Lines are open Monday to Friday, 8:30am to 5pm."
+    },
+    "taskList": {
+      "title": "Your Bovine Tuberculosis (TB) movement licence application",
+      "buttonText": "Review and submit"
+    },
+    "biosecurityMap": {
+      "title": "Biosecurity map",
+      "uploadPlan": {
+        "question": "Upload a biosecurity map",
+        "intro": "You need to upload a map of the farm or premises.",
+        "preference": "We prefer a clear and detailed map, such as a Google map with annotations or a pre-prepared map from an agent or surveyor.",
+        "itNeedsToInclude": "It needs to include:",
+        "isolationLocation": "where the incoming cattle will be isolated",
+        "residentAndNeighbouringCattle": "location of the resident cattle and neighbouring cattle",
+        "minimumDistances": "minimum distances between the incoming cattle and any resident and neighbouring cattle",
+        "cattleMovements": "movements of the cattle, including where they will graze, be milked, and be loaded",
+        "handlingFacility": "location of handling facility",
+        "manureStorage": "location of manure or slurry storage",
+        "biosecurityPoints": "location of biosecurity points, including badger proof fencing",
+        "fileRequirements": "The selected file must be a PNG, JPEG, JPG or PDF and less than 10 MB.",
+        "uploading": "Uploading the biosecurity map",
+        "uploadingSubTitle": "This may take a few minutes.",
+        "uploadFile": "Upload a file",
+        "chooseFile": "Choose file",
+        "dropFile": "or drop file",
+        "dropZoneEntered": "Entered drop zone",
+        "dropZoneLeft": "Left drop zone",
+        "noFile": "No file chosen",
+        "errorCodes": {
+          "FILE_VIRUS": "The selected file contains a virus",
+          "FILE_EMPTY": "The selected file is empty",
+          "FILE_TOO_LARGE": "The selected file must be smaller than 10 MB",
+          "FILE_INVALID_TYPE": "The selected file must be a PNG, JPEG or PDF",
+          "FILE_UPLOAD_FAILED": "The selected file could not be uploaded - try again",
+          "FILE_DOWNLOAD_FAILED": "The selected file could not be downloaded"
+        }
+      },
+      "sizeError": {
+        "emailInstruction": "You must email your biosecurity map to csc.tblicensing@apha.gov.uk",
+        "cphInstruction": "In your email include your county parish holding (CPH) number.",
+        "processingNotice": "Your application cannot be processed until we receive your biosecurity map."
+      }
+    },
+    "licence": {
+      "receivingLicence": "Receiving the licence",
+      "yourName": {
+        "question": "What is your name?",
+        "validation": {
+          "firstName": "Enter your first name",
+          "lastName": "Enter your last name"
+        }
+      },
+      "fullName": {
+        "question": "What is the name of the person registered as the keeper of the animals?",
+        "validation": {
+          "firstName": "Enter the first name of the person registered as the keeper of the animals",
+          "lastName": "Enter the last name of the person registered as the keeper of the animals"
+        }
+      },
+      "fullNameFuture": {
+        "question": "What is the name of the person who will be the registered keeper of the animals?",
+        "validation": {
+          "firstName": "Enter the first name of the person who will be the registered keeper of the animals",
+          "lastName": "Enter the last name of the person who will be the registered keeper of the animals"
+        }
+      },
+      "emailAddress": {
+        "question": "What email address would you like the licence sent to?",
+        "validation": {
+          "pattern": "Enter an email address in the correct format, like name@example.com",
+          "maxLength": "Enter an email address in the correct format, like name@example.com",
+          "empty": "Enter the email address you would like the licence sent to"
+        }
+      },
+      "destinationEmailAddress": {
+        "question": "What is your email address?",
+        "validation": {
+          "pattern": "Enter the email address in a valid format",
+          "maxLength": "Your answer must be no longer than 255 characters",
+          "empty": "Enter your email address"
+        }
+      },
+      "originEmail": {
+        "question": "What is the email address for the origin premises?",
+        "validation": {
+          "pattern": "Enter the email address in a valid format",
+          "maxLength": "Your answer must be no longer than 255 characters",
+          "empty": "Enter the email address for the origin premises"
+        }
+      },
+      "checkAnswers": "Check your answers before you continue your application"
+    },
+    "submit": {
+      "confirmationTitle": "Your animal disease movement licence application"
+    }
+  },
+  "fmd": {
+    "about": {
+      "title": "About the movement",
+      "movementActivityType": {
+        "question": "Which type of movement or activity does your application relate to?",
+        "options": {
+          "onFarm": {
+            "label": "Movement on to a farm or premises"
+          },
+          "offFarm": {
+            "label": "Movement off a farm or premises",
+            "hint": "Including moving or collecting milk"
+          },
+          "slaughter": {
+            "label": "Slaughter of animals onsite",
+            "hint": "Including bringing a Slaughterman or Knackerman onsite"
+          }
+        },
+        "validation": {
+          "empty": "Select the type of movement or activity your application relates to"
+        }
+      },
+      "whatIsMoving": {
+        "question": "What are you moving?",
+        "options": {
+          "liveAnimals": "Live animals",
+          "carcasses": "Carcasses (dead animals)",
+          "milk": "Milk"
+        },
+        "validation": {
+          "empty": "Select what you are moving"
+        }
+      },
+      "moveToSlaughter": {
+        "question": "Are the animals moving to slaughter?",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        },
+        "validation": {
+          "empty": "Select if the animals are moving to slaughter"
+        }
+      },
+      "animalSlaughtered": {
+        "question": "Which type of animal will be slaughtered?",
+        "options": {
+          "cattle": {
+            "label": "Cattle"
+          },
+          "sheep": {
+            "label": "Sheep"
+          },
+          "goats": {
+            "label": "Goats"
+          },
+          "pigs": {
+            "label": "Pigs"
+          },
+          "camelids": {
+            "label": "Camelids (such as llamas and alpacas)"
+          }
+        },
+        "validation": {
+          "empty": "Select the type of animal being slaughtered"
+        }
+      },
+      "typeOfAnimals": {
+        "question": "Which type of animal are you moving?",
+        "options": {
+          "cattle": {
+            "label": "Cattle"
+          },
+          "sheep": {
+            "label": "Sheep"
+          },
+          "goats": {
+            "label": "Goats"
+          },
+          "pigs": {
+            "label": "Pigs"
+          },
+          "camelids": {
+            "label": "Camelids (such as llamas and alpacas)"
+          }
+        },
+        "validation": {
+          "empty": "Select the type of animal you are moving"
+        }
+      },
+      "milkAnimal": {
+        "question": "What animal is the milk or product from?",
+        "options": {
+          "cow": {
+            "label": "Cow"
+          },
+          "sheep": {
+            "label": "Sheep"
+          },
+          "goat": {
+            "label": "Goat"
+          },
+          "anotherAnimal": {
+            "label": "Another animal"
+          }
+        },
+        "validation": {
+          "empty": "Select what animal the milk or product is from"
+        }
+      },
+      "milkWhoIsMoving": {
+        "question": "Who is moving the milk?",
+        "options": {
+          "producer": {
+            "label": "I'm a producer moving my own milk"
+          },
+          "dairy": {
+            "label": "I'm a dairy collecting from multiple producers"
+          }
+        },
+        "validation": {
+          "empty": "Select who is moving the milk"
+        }
+      },
+      "animalIds": {
+        "question": "What are the identification (ID) numbers for the animals being moved?",
+        "hint": "For example, ear tags, slap marks, or flock numbers. If the animals don't have ID numbers, enter N/A.",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 5000 characters",
+          "empty": "Enter the animal ID numbers or N/A if there aren't any"
+        }
+      },
+      "animalIdsSlaughter": {
+        "question": "What are the identification (ID) numbers for the animals being slaughtered?",
+        "hint": "For example, ear tags, slap marks, or flock numbers. If the animals don't have ID numbers, enter N/A.",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 5000 characters",
+          "empty": "Enter the animal ID numbers or N/A if there aren't any"
+        }
+      },
+      "numberOfAnimals": {
+        "question": "How many animals are you planning to move?",
+        "validation": {
+          "empty": "Enter how many animals you are planning to move",
+          "max": "Enter a number %{value} or below",
+          "min": "Enter a number %{value} or above"
+        }
+      },
+      "slaughteredNumber": {
+        "question": "How many animals will be slaughtered?",
+        "validation": {
+          "empty": "Enter how many animals will be slaughtered",
+          "max": "Enter a number %{value} or below",
+          "min": "Enter a number %{value} or above"
+        }
+      },
+      "movementOnExit": {
+        "title": "You can only move live animals onsite",
+        "body": "To move carcasses or milk, you can apply for a movement off a farm or premises."
+      }
+    },
+    "origin": {
+      "title": "Movement origin",
+      "premisesType": {
+        "question": "What type of premises are the animals moving from?",
+        "validation": {
+          "empty": "Select the origin premises type"
+        },
+        "options": {
+          "farm": {
+            "label": "Farm"
+          },
+          "smallholding": {
+            "label": "Smallholding or domestic residence",
+            "hint": "A smallholding is typically under 50 acres"
+          },
+          "anotherPremisesType": {
+            "label": "Another premises type"
+          }
+        },
+        "errors": {
+          "empty": "Select the origin premises type"
+        }
+      },
+      "whatAnimals": {
+        "question": "What animals are kept on the premises?",
+        "hint": "Select all that apply",
+        "validation": {
+          "empty": "Select what animals are kept on the premises"
+        },
+        "options": {
+          "cattle": {
+            "label": "Cattle"
+          },
+          "sheep": {
+            "label": "Sheep"
+          },
+          "goats": {
+            "label": "Goats"
+          },
+          "pigs": {
+            "label": "Pigs"
+          },
+          "camelids": {
+            "label": "Camelids"
+          },
+          "otherClovenHoovedAnimals": {
+            "label": "Other cloven-hooved animals"
+          },
+          "or": {
+            "label": "or"
+          },
+          "noneOfTheseAnimals": {
+            "label": "None of these animals"
+          }
+        }
+      },
+      "tla": {
+        "heading": "Temporary land association (TLA)",
+        "question": "Is the origin premises a TLA?",
+        "tlaIntro": "A temporary land association (TLA) is for land or buildings that:",
+        "criteria": {
+          "criterion-1": "are within 10 miles of the main area you keep livestock",
+          "criterion-2": "you do not own",
+          "criterion-3": "are in England or Wales",
+          "criterion-4": "are in the same bovine TB risk area as your CPH number"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        },
+        "validation": {
+          "empty": "Select if the origin premises is a TLA"
+        }
+      },
+      "gridRef": {
+        "question": "What is the grid reference of the location?",
+        "hint": "You can find the grid reference by using an online map service, such as OS Maps.",
+        "validation": {
+          "empty": "Enter the grid reference for the origin premises",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      },
+      "cphNumber": {
+        "question": "What is the county parish holding (CPH) number of the origin premises?"
+      },
+      "originAddress": {
+        "question": "What is the origin premises address?"
+      },
+      "tcphNumber": {
+        "question": "What is the TLA or temporary county parish holding (tCPH) number?",
+        "validation": {
+          "maxLength": "Enter the TLA or tCPH number in the correct format, for example, 12/345/6789",
+          "pattern": "Enter the TLA or tCPH number in the correct format, for example, 12/345/6789",
+          "empty": "Enter the TLA or tCPH number"
+        }
+      },
+      "clovenHooved": {
+        "question": "What other cloven-hooved animals are kept on the premises?",
+        "validation": {
+          "empty": "Enter what other cloven-hooved animals are kept on the premises",
+          "maxLength": "Your answer must be no longer than 5000 characters"
+        }
+      }
+    },
+    "destination": {
+      "title": "Movement destination",
+      "premisesType": {
+        "question": "What type of premises are the animals moving to?",
+        "options": {
+          "commercial": {
+            "label": "Commercial holding or premises",
+            "hint": "Such as a food business or animal feed company"
+          },
+          "smallholding": {
+            "label": "Smallholding or domestic residence",
+            "hint": "A smallholding is typically under 50 acres"
+          },
+          "farm": {
+            "label": "Farm"
+          },
+          "anotherLocation": {
+            "label": "Another location"
+          }
+        },
+        "validation": {
+          "empty": "Select the destination premises type"
+        }
+      },
+      "carcassesDestinationType": {
+        "question": "Where are the carcasses going?",
+        "options": {
+          "knackersYard": {
+            "label": "Knacker's yard"
+          },
+          "renderingPlant": {
+            "label": "Rendering Plant"
+          },
+          "incinerator": {
+            "label": "Incinerator"
+          },
+          "huntKennel": {
+            "label": "Hunt kennel"
+          },
+          "somewhereElse": {
+            "label": "Somewhere else"
+          }
+        },
+        "validation": {
+          "empty": "Select where the carcasses are going"
+        }
+      },
+      "carcassesSomewhereElse": {
+        "intro": "They can only move to one of the following places:",
+        "places": {
+          "place-1": "Knacker's yard",
+          "place-2": "Rendering plant",
+          "place-3": "Incinerator",
+          "place-4": "Hunt kennel"
+        }
+      },
+      "applicantMovingCarcasses": {
+        "question": "Are you moving the carcasses?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "noThirdParty": {
+            "label": "No, a third party will move them"
+          }
+        },
+        "validation": {
+          "empty": "Select if you are moving the carcasses"
+        }
+      },
+      "destinationAddressKnown": {
+        "question": "Do you know the address of the destination premises?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        },
+        "validation": {
+          "empty": "Select if you know the address for the destination business"
+        }
+      },
+      "destinationHasACphNumber": {
+        "question": "Does the destination premises have a county parish holding (CPH) number?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        },
+        "validation": {
+          "empty": "Select if you know the CPH number for the destination premises"
+        }
+      },
+      "willMoveToTla": {
+        "heading": "Temporary land association (TLA)",
+        "question": "Is the destination premises a TLA?",
+        "tlaIntro": "A temporary land association (TLA) is for land or buildings that:",
+        "criteria": {
+          "criterion-1": "are within 10 miles of the main area you keep livestock",
+          "criterion-2": "you do not own",
+          "criterion-3": "are in England or Wales",
+          "criterion-4": "are in the same bovine TB risk area as your CPH number"
+        },
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        },
+        "validation": {
+          "empty": "Select if the destination premises is a TLA"
+        }
+      },
+      "cphDesignated": {
+        "question": "What is the county parish holding (CPH) number of the destination premises?"
+      },
+      "cphPremises": {
+        "question": "What is the county parish holding (CPH) number for the destination premises?"
+      },
+      "destinationBusinessName": {
+        "question": "What is the name of the destination business?",
+        "validation": {
+          "empty": "Enter the name of the destination business",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "destinationAddress": {
+        "question": "What is the destination premises address?"
+      },
+      "abattoirName": {
+        "question": "What is the name of the approved abattoir?",
+        "validation": {
+          "empty": "Enter the name of the approved abattoir",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "abattoirAddress": {
+        "question": "What is the address of the approved abattoir?"
+      },
+      "destinationBusinessPhone": {
+        "question": "What is the contact phone number for the destination business?",
+        "validation": {
+          "empty": "Enter the contact number for the destination business",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "tlaOrCphNumber": {
+        "question": "What is the TLA or temporary county parish holding (tCPH) number?",
+        "validation": {
+          "maxLength": "Enter the TLA or tCPH number in the correct format, for example, 12/345/6789",
+          "pattern": "Enter the TLA or tCPH number in the correct format, for example, 12/345/6789",
+          "empty": "Enter the TLA or tCPH number"
+        }
+      },
+      "thirdPartyMoving": {
+        "question": "What is the name of the third party moving the carcasses?",
+        "validation": {
+          "empty": "Enter the name of the third party moving the carcasses",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "companySellingMilkTo": {
+        "question": "What company are you selling your milk to?",
+        "validation": {
+          "empty": "Enter the name of the company you are selling the milk to",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "removingBusinessAddress": {
+        "question": "What is the address of the business removing the carcasses?"
+      }
+    },
+    "movement": {
+      "title": "Movement details",
+      "collectionPremises": {
+        "question": "List the premises the vehicle will visit on the collection day",
+        "hint": "Enter the full names of the premises",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 5000 characters",
+          "empty": "Enter the premises names the vehicle will visit on collection day"
+        }
+      },
+      "movementStart": {
+        "question": "What date does your movement start?",
+        "additionalInfo": "Licences can take up to 5 working days to be issued.",
+        "hint": "For example, 7 3 2025",
+        "validation": {
+          "missingDate": "Enter the movement start date",
+          "missingDay": "Movement start date must include a day",
+          "missingMonth": "Movement start date must include a month",
+          "missingYear": "Movement start date must include a year",
+          "invalidDay": "Movement start date must be a real date",
+          "invalidMonth": "Movement start date must be a real date",
+          "invalidYear": "Movement start year must be a real date",
+          "nonFourDigitYear": "Year must include 4 numbers",
+          "invalidDate": "Movement start date must be a real date",
+          "pastDate": "Movement start date must be in the future"
+        }
+      },
+      "movementEnd": {
+        "question": "What date does your movement end?",
+        "hint": "For example, 7 3 2025",
+        "validation": {
+          "missingDate": "Enter the movement end date",
+          "missingDay": "Movement end date must include a day",
+          "missingMonth": "Movement end date must include a month",
+          "missingYear": "Movement end date must include a year",
+          "invalidDay": "Movement end day must be a real date",
+          "invalidMonth": "Movement end month must be a number between 1 and 12",
+          "invalidYear": "Movement end year must be a real date",
+          "nonFourDigitYear": "Movement end year must include 4 numbers",
+          "invalidDate": "Movement end date must be a real date",
+          "pastDate": "Movement end date must be in the future"
+        }
+      },
+      "expectMovementDate": {
+        "question": "When is the date when you expect the milk to move?",
+        "additionalInfo": "Licences can take up to 5 working days to be issued.",
+        "hint": "For example, 7 3 2025",
+        "validation": {
+          "missingDate": "Enter the start date",
+          "missingDay": "The milk movement start date must include a day",
+          "missingMonth": "The milk movement start date must include a month",
+          "missingYear": "The milk movement start date must include a year",
+          "invalidDay": "The milk movement start date must be a real date",
+          "invalidMonth": "The milk movement start date must be a real date",
+          "invalidYear": "The milk movement start date must be a real date",
+          "nonFourDigitYear": "The year of milk movement must include 4 numbers",
+          "invalidDate": "The milk movement start date must be a real date",
+          "pastDate": "The milk movement start date must be in the future"
+        }
+      },
+      "milkMovementDate": {
+        "question": "What date does your movement start?",
+        "additionalInfo": "Licences can take up to 5 working days to be issued.",
+        "hint": "For example, 7 3 2025",
+        "validation": {
+          "missingDate": "Enter the start date of the milk movement",
+          "missingDay": "The milk movement start date must include a day",
+          "missingMonth": "The milk movement start date must include a month",
+          "missingYear": "The milk movement start date must include a year",
+          "invalidDay": "The milk movement start date must be a real date",
+          "invalidMonth": "The milk movement start date must be a real date",
+          "invalidYear": "The milk movement start date must be a real date",
+          "nonFourDigitYear": "The year of milk movement must include 4 numbers",
+          "invalidDate": "The milk movement start date must be a real date",
+          "pastDate": "The milk movement start date must be in the future"
+        }
+      },
+      "disposalDate": {
+        "question": "What date do you expect the disposal to take place?",
+        "additionalInfo": "Licences can take up to 5 working days to be issued. For welfare cases, we will aim to process your application sooner.",
+        "validation": {
+          "missingDate": "Enter the date you expect the disposal to take place",
+          "missingDay": "Disposal date must include a day",
+          "missingMonth": "Disposal date must include a month",
+          "missingYear": "Disposal date must include a year",
+          "invalidDay": "Disposal day must be a real date",
+          "invalidMonth": "Disposal month must be a number between 1 and 12",
+          "invalidYear": "Disposal year must be a real date",
+          "nonFourDigitYear": "Disposal year must include 4 numbers",
+          "invalidDate": "Disposal date must be a real date",
+          "pastDate": "Disposal date must be in the future"
+        },
+        "hint": "For example, 7 3 2025"
+      },
+      "twoWeekRepeat": {
+        "question": "Will the movement be repeated within a 2 week period?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        },
+        "errors": {
+          "empty": "Select if the movement will be repeated within a 2 week period"
+        }
+      },
+      "maximumDaysAnimals": {
+        "question": "What are the maximum number of days needed to move the animals?",
+        "validation": {
+          "empty": "Enter the maximum number of days needed to move the animals",
+          "min": "The maximum number of days needed to move the animals must be 1 or higher",
+          "max": "The number of journeys needed to move the animals within a 2 week period must be 999 days or lower"
+        }
+      },
+      "maxJourneys": {
+        "question": "What are the maximum number of journeys or consignments needed to move the animals?",
+        "validation": {
+          "empty": "Enter the maximum of journeys or consignments needed to move the animals",
+          "min": "The number of journeys or consignments needed to move the animals must be 1 or more",
+          "max": "The number of journeys or consignments needed to move the animals must be 999 or lower"
+        }
+      },
+      "maximumJourneysMilk": {
+        "question": "What are the maximum number of journeys needed to move the milk over the 2 week period?",
+        "validation": {
+          "empty": "Enter the maximum number of journeys needed to move the milk in the 2 week period",
+          "min": "The number of journeys needed to move the milk within a 2 week period must be 1 or more",
+          "max": "The number of journeys needed to move the milk within a 2 week period must be 999 or lower"
+        }
+      },
+      "dairyName": {
+        "question": "What is the name of the dairy collecting the milk?",
+        "validation": {
+          "maxLength": "Your answer must be no longer than 100 characters",
+          "empty": "Enter the name of the dairy"
+        }
+      },
+      "vehicleNumber": {
+        "question": "What is the number plate of the vehicle collecting the milk?",
+        "validation": {
+          "empty": "Enter the vehicle number plate",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "driverName": {
+        "question": "What is the vehicle driver's name?",
+        "validation": {
+          "firstName": "Enter the first name of the vehicle driver",
+          "lastName": "Enter the last name of the vehicle driver"
+        }
+      },
+      "driverPhone": {
+        "question": "What is the vehicle driver's phone number?",
+        "validation": {
+          "empty": "Enter the vehicle driver's phone number",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      }
+    },
+    "disposal": {
+      "title": "Disposal of the animal",
+      "disposalDate": {
+        "question": "What date do you expect the disposal to take place?",
+        "hint": "For example, 7 3 2025",
+        "additionalInfo": "Licences can take up to 5 working days to be issued.",
+        "validation": {
+          "missingDate": "Enter the disposal date",
+          "missingDay": "Disposal date must include a day",
+          "missingMonth": "Disposal date must include a month",
+          "missingYear": "Disposal date must include a year",
+          "invalidDay": "Disposal day must be a real date",
+          "invalidMonth": "Disposal month must be a number between 1 and 12",
+          "invalidYear": "Disposal year must be a real date",
+          "nonFourDigitYear": "Disposal year must include 4 numbers",
+          "invalidDate": "Disposal date must be a real date",
+          "pastDate": "Disposal date must be in the future"
+        }
+      },
+      "carcassesDestination": {
+        "question": "Where are the carcasses going?",
+        "options": {
+          "knackersYard": {
+            "label": "Knacker's yard"
+          },
+          "renderingPlant": {
+            "label": "Rendering plant"
+          },
+          "incinerator": {
+            "label": "Incinerator"
+          },
+          "huntKennel": {
+            "label": "Hunt kennel"
+          },
+          "somewhereElse": {
+            "label": "Somewhere else"
+          }
+        },
+        "validation": {
+          "empty": "Select where the carcasses are going"
+        }
+      },
+      "animalByProductsDestination": {
+        "question": "Where are the animal by-products going?",
+        "options": {
+          "renderingPlant": {
+            "label": "Rendering plant"
+          },
+          "incinerator": {
+            "label": "Incinerator"
+          },
+          "somewhereElse": {
+            "label": "Somewhere else"
+          }
+        },
+        "validation": {
+          "empty": "Select where the animal by-products are going"
+        }
+      },
+      "disposalWholeAnimal": {
+        "question": "Will you dispose of the whole animal?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "noPartsOnly": {
+            "label": "No, only parts of the animal (such as animal by-products)"
+          }
+        },
+        "validation": {
+          "empty": "Select if you are disposing of the whole animal"
+        }
+      },
+      "carcassesSomewhereElse": {
+        "text": "They can only move to one of the following places:",
+        "places": {
+          "place-1": "Rendering plant",
+          "place-2": "Incinerator"
+        }
+      },
+      "abpSomewhereElse": {
+        "text": "They can only move to one of the following places:",
+        "places": {
+          "place-1": "Rendering plant",
+          "place-2": "Incinerator"
+        }
+      },
+      "destinationBusinessName": {
+        "question": "What is the destination’s business name?",
+        "validation": {
+          "empty": "Enter the destination's business name",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "destinationContactNumber": {
+        "question": "What is the contact phone number for the destination business?",
+        "validation": {
+          "empty": "Enter the destination's contact number",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      }
+    },
+    "slaughter": {
+      "title": "Slaughter information",
+      "slaughterOrKnackerman": {
+        "question": "Will the slaughter be done by a Slaughterman or Knackerman?",
+        "options": {
+          "knackerman": {
+            "label": "Knackerman"
+          },
+          "slaughterman": {
+            "label": "Slaughterman"
+          }
+        },
+        "validation": {
+          "empty": "Select who the slaughter will be done by"
+        }
+      },
+      "slaughterDate": {
+        "question": "What date do you expect the slaughter to take place?",
+        "hint": "For example, 7 3 2030",
+        "validation": {
+          "missingDate": "Enter the date you expect the slaughter to take place",
+          "missingDay": "Expected slaughter date must include a day",
+          "missingMonth": "Expected slaughter date must include a month",
+          "missingYear": "Expected slaughter date must include a year",
+          "invalidDay": "Expected slaughter day must be a real date",
+          "invalidMonth": "Expected slaughter month must be a number between 1 and 12",
+          "invalidYear": "Expected slaughter year must be a real date",
+          "nonFourDigitYear": "Expected slaughter year must include 4 numbers",
+          "invalidDate": "Expected slaughter date must be a real date",
+          "pastDate": "Expected slaughter date must be in the future"
+        }
+      },
+      "slaughtermanName": {
+        "question": "What is the name of the Slaughterman?",
+        "validation": {
+          "firstName": "Enter the first name of who will be the Slaughterman",
+          "lastName": "Enter the last name of who will be the Slaughterman"
+        }
+      },
+      "businessNameKnackerman": {
+        "question": "What is the business name of the Knackerman?",
+        "validation": {
+          "empty": "Enter the Knackerman's business name",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "businessPhone": {
+        "question": "What is the contact phone number for the business providing the Slaughterman?",
+        "validation": {
+          "empty": "Enter the contact phone number for the business providing the Slaughterman",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      },
+      "numberKnackerman": {
+        "question": "What is the contact phone number for the business providing the Knackerman?",
+        "validation": {
+          "empty": "Enter the contact phone number for the business providing the Knackerman",
+          "maxLength": "Your answer must be no longer than 100 characters"
+        }
+      }
+    },
+    "licence": {
+      "title": "Receiving the licence",
+      "emailAddress": {
+        "question": "What email address would you like the licence sent to?",
+        "validation": {
+          "pattern": "Enter an email address in the correct format, like name@example.com",
+          "maxLength": "Enter an email address in the correct format, like name@example.com",
+          "empty": "Enter the email address you would like the licence sent to"
+        }
+      },
+      "originResponsiblePersonName": {
+        "question": "Who is responsible for the origin premises?",
+        "validation": {
+          "firstName": "Enter the first name of the person responsible for the origin premises",
+          "lastName": "Enter the last name of the person responsible for the origin premises"
+        }
+      },
+      "registeredKeeperName": {
+        "question": "Who is the registered keeper of the animals?",
+        "validation": {
+          "firstName": "Enter the first name of the registered keeper of the animals",
+          "lastName": "Enter the last name of the registered keeper of the animals"
+        }
+      },
+      "licenseeName": {
+        "question": "Who should we issue the licence to?",
+        "validation": {
+          "firstName": "Enter the first name of the licensee",
+          "lastName": "Enter the last name of the licensee"
+        }
+      }
+    },
+    "home": {
+      "intro": "Use this service to apply for a movement licence during a foot and mouth disease outbreak.",
+      "whatYouCanApplyFor": "What you can apply for",
+      "youCanApplyForFollowing": "You can use this service to apply for a licence for the following activities:",
+      "activities": {
+        "activity-1": "movement of live animals on or off your premises",
+        "activity-2": "on-farm slaughter",
+        "activity-3": "movement of carcasses",
+        "activity-4": "movement of milk"
+      },
+      "beforeYouStart": "Before you start",
+      "aphaNeedDetails": "APHA need these details to process your application:",
+      "detailsNeeded": {
+        "details-1": "details about the origin premises",
+        "details-2": "animal ID numbers",
+        "details-3": "dates of the activity"
+      },
+      "signingIntoService": "Signing into the service",
+      "signingIntoServiceIntro": "You need a Defra account to use this service. You can register for one using your Government Gateway sign in details.",
+      "signingIntoServiceDetails": "After you sign in you need to enter your contact information, and details about your business if you have one.",
+      "getHelp": "Get help",
+      "getHelpText": "If you need help using the service you can call 03000 200 301. Lines are open from Monday to Friday between 8.30am and 5pm.",
+      "usingAndSharingInfo": "Using and sharing your information",
+      "privacyNoticeIntro": "How we use your personal data is set out in the",
+      "privacyNoticeLinkText": "exotic, notifiable and reportable diseases privacy notice (opens in a new tab)"
+    },
+    "submit": {
+      "additionalInfo": "Licences can take up to 5 days to issue. For welfare cases, we will aim to process applications sooner."
+    }
+  }
+}

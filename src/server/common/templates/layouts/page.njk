@@ -1,9 +1,11 @@
 {% set govukRebrand = true %}
+{% set htmlLang = languageCode %}
 {% extends "govuk/template.njk" %}
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "language-navigation/macro.njk" import govukLanguageNavigation %}
 {% set cspNonce = uuid %}
 
 {% block head %}
@@ -50,7 +52,7 @@
         tag: {
           text: 'Beta'
         },
-        html: 'This is a new service. Help us improve it and <a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">give your feedback (opens in new tab)</a>.'
+        html: translate('common.feedbackBannerHtml-1', 'This is a new service. Help us improve it and ') + '<a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">' + translate('common.feedbackBannerHtml-2', 'give your feedback (opens in new tab)') + '</a>.'
       })
     }}
   {% endif %}
@@ -62,13 +64,23 @@
     }}
   {% endif %}
 
+  {{
+    govukLanguageNavigation({
+      classes: 'govuk-!-margin-top-3',
+      items: [
+        { text: 'English', lang: 'en', current: languageCode == 'en', href: languageUrls.en },
+        { text: 'Cymraeg', lang: 'cy', current: languageCode == 'cy', href: languageUrls.cy }
+      ]
+    })
+  }}
+
   {% if isAuthenticated %}
     {% include "../partials/userDetails.njk" %}
   {% endif %}
   {% block metaBeforeContent %}
     {{
       govukBackLink({
-        text: "Back",
+        text: translate('common.back', 'Back'),
         attributes:{
           "id": "back-link"
         },
