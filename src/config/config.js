@@ -309,6 +309,12 @@ export const config = convict({
       format: Boolean,
       default: true,
       env: 'CPH_VALIDATION_ENABLED'
+    },
+    translationEnabled: {
+      doc: 'Enable translations',
+      format: Boolean,
+      default: !isProduction,
+      env: 'TRANSLATION_ENABLED'
     }
   },
   integrationBridge: {

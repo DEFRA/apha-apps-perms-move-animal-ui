@@ -1,5 +1,6 @@
 import path from 'path'
 import hapi from '@hapi/hapi'
+import hapiI18n from 'hapi-i18n'
 import { config } from '~/src/config/config.js'
 import { nunjucksConfig } from '~/src/config/nunjucks/nunjucks.js'
 import { router } from './router.js'
@@ -20,6 +21,10 @@ import {
 } from './common/plugins/defra-forms/index.js'
 import { getAuthOptions } from './common/helpers/auth/toggles-helper.js'
 import { CustomCacheService } from './common/plugins/defra-forms/custom-cache-service.js'
+import { LANGUAGE_QUERY_PARAM } from './common/helpers/i18n/index.js'
+import { createLanguageCookiePlugin } from './common/plugins/i18n/language-cookie-plugin.js'
+
+const locales = ['en', 'cy']
 
 export async function createServer() {
   const server = hapi.server({
@@ -67,6 +72,23 @@ export async function createServer() {
     csrfPlugin,
     router // Register all the controllers/routes defined in src/server/router.js
   ])
+
+  if (config.get('featureFlags').translationEnabled) {
+    await server.register({
+      plugin: hapiI18n.plugin,
+      options: {
+        locales,
+        defaultLocale: 'en',
+        queryParameter: LANGUAGE_QUERY_PARAM,
+        directory: path.resolve(config.get('root'), 'src/config/i18n'),
+        updateFiles: false,
+        autoReload: config.get('isDevelopment'),
+        syncFiles: false,
+        objectNotation: true
+      }
+    })
+    await server.register({ plugin: createLanguageCookiePlugin(locales) })
+  }
 
   if (config.get('featureFlags').defraFormsEnabled) {
     const cacheService = new CustomCacheService({

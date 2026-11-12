@@ -65,6 +65,7 @@ describe('#context', () => {
 
     it('Should provide expected context', () => {
       expect(contextResult).toEqual({
+        request: mockRequest,
         assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
         features: {
@@ -76,7 +77,8 @@ describe('#context', () => {
           fmdJourney: true,
           exoticsJourney: true,
           pdfUpload: true,
-          prototypeMode: false
+          prototypeMode: false,
+          translationEnabled: true
         },
         uuid: 'unique-identifier',
         displayName: undefined,
@@ -96,7 +98,8 @@ describe('#context', () => {
           }
         ],
         serviceName: 'Move animals under disease controls',
-        initialServiceUrl: '/'
+        initialServiceUrl: '/',
+        languageUrls: { en: '?lang=en', cy: '?lang=cy' }
       })
     })
 
@@ -174,6 +177,7 @@ describe('#context cache', () => {
 
     it('Should provide expected context', () => {
       expect(contextResult).toEqual({
+        request: mockRequest,
         assetPath: '/public/assets/rebrand',
         breadcrumbs: [],
         features: {
@@ -185,7 +189,8 @@ describe('#context cache', () => {
           exoticsJourney: true,
           fmdJourney: true,
           pdfUpload: true,
-          prototypeMode: false
+          prototypeMode: false,
+          translationEnabled: true
         },
         uuid: 'unique-identifier',
         getAssetPath: expect.any(Function),
@@ -205,7 +210,8 @@ describe('#context cache', () => {
           }
         ],
         serviceName: 'Move animals under disease controls',
-        initialServiceUrl: '/'
+        initialServiceUrl: '/',
+        languageUrls: { en: '?lang=en', cy: '?lang=cy' }
       })
     })
   })
