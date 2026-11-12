@@ -10,6 +10,7 @@ import { allRequests } from '~/src/server/common/helpers/headers/index.js'
 import { secureContext } from '~/src/server/common/helpers/secure-context/index.js'
 import { sessionCache } from '~/src/server/common/helpers/session-cache/session-cache.js'
 import { getCacheEngine } from '~/src/server/common/helpers/session-cache/cache-engine.js'
+import { LANGUAGE_QUERY_PARAM } from '~/src/server/common/helpers/i18n/index.js'
 import { createLanguageCookiePlugin } from '~/src/server/common/helpers/i18n/language-cookie-plugin.js'
 import { pulse } from '~/src/server/common/helpers/pulse.js'
 import { csrfPlugin } from '~/src/server/common/helpers/csrf-plugin.js'
@@ -77,7 +78,7 @@ export async function createServer() {
     options: {
       locales,
       defaultLocale: 'en',
-      queryParameter: 'lang',
+      queryParameter: LANGUAGE_QUERY_PARAM,
       directory: path.resolve(config.get('root'), 'src/config/i18n'),
       updateFiles: false,
       autoReload: config.get('isDevelopment'),

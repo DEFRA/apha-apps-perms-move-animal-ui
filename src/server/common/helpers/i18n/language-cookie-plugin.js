@@ -1,4 +1,5 @@
 import { config } from '~/src/config/config.js'
+import { LANGUAGE_QUERY_PARAM } from './index.js'
 
 export const LANGUAGE_COOKIE_NAME = 'language'
 const oneYearMs = 365 * 24 * 60 * 60 * 1000
@@ -24,7 +25,7 @@ export const createLanguageCookiePlugin = (locales) => ({
 
     server.ext('onPreAuth', (request, h) => {
       const cookieLocale = request.state?.[LANGUAGE_COOKIE_NAME]
-      const hasQueryLocale = Boolean(request.query?.lang)
+      const hasQueryLocale = Boolean(request.query?.[LANGUAGE_QUERY_PARAM])
 
       if (!hasQueryLocale && locales.includes(cookieLocale)) {
         request.i18n.setLocale(cookieLocale)
@@ -36,7 +37,7 @@ export const createLanguageCookiePlugin = (locales) => ({
     server.ext('onPreResponse', (request, h) => {
       const locale = request.i18n?.getLocale?.()
 
-      if (locale && request.query?.lang && locales.includes(locale)) {
+      if (locale && request.query?.[LANGUAGE_QUERY_PARAM] && locales.includes(locale)) {
         h.state(LANGUAGE_COOKIE_NAME, locale)
       }
 

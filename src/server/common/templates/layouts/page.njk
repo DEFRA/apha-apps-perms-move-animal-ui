@@ -1,4 +1,5 @@
 {% set govukRebrand = true %}
+{% set htmlLang = languageCode %}
 {% extends "govuk/template.njk" %}
 {% from "breadcrumbs/macro.njk" import appBreadcrumbs %}
 {% from "heading/macro.njk" import appHeading %}
@@ -67,8 +68,8 @@
     govukLanguageNavigation({
       classes: 'govuk-!-margin-top-3',
       items: [
-        { text: 'English', lang: 'en', current: locale == 'en', href: '?lang=en' },
-        { text: 'Cymraeg', lang: 'cy', current: locale == 'cy', href: '?lang=cy' }
+        { text: 'English', lang: 'en', current: languageCode == 'en', href: languageUrls.en },
+        { text: 'Cymraeg', lang: 'cy', current: languageCode == 'cy', href: languageUrls.cy }
       ]
     })
   }}
