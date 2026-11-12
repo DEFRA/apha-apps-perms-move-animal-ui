@@ -1,4 +1,5 @@
 import path from 'path'
+import { fileURLToPath } from 'node:url'
 import hapi from '@hapi/hapi'
 import hapiI18n from 'hapi-i18n'
 import { config } from '~/src/config/config.js'
@@ -24,6 +25,7 @@ import { CustomCacheService } from './common/plugins/defra-forms/custom-cache-se
 import { LANGUAGE_QUERY_PARAM } from './common/helpers/i18n/index.js'
 import { createLanguageCookiePlugin } from './common/plugins/i18n/language-cookie-plugin.js'
 
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 const locales = ['en', 'cy']
 
 export async function createServer() {
@@ -80,7 +82,7 @@ export async function createServer() {
         locales,
         defaultLocale: 'en',
         queryParameter: LANGUAGE_QUERY_PARAM,
-        directory: path.resolve(config.get('root'), 'src/config/i18n'),
+        directory: path.resolve(dirname, '../config/i18n'),
         updateFiles: false,
         autoReload: config.get('isDevelopment'),
         syncFiles: false,
