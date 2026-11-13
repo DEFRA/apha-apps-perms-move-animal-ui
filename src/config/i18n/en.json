@@ -95,6 +95,10 @@
       "crumb": {
         "purpose": "Used to prevent attackers from changing your application",
         "expires": "Until you close your browser"
+      },
+      "language": {
+        "purpose": "Used to detect your language choice",
+        "expires": "One year since it was last set"
       }
     },
     "accessibility": {

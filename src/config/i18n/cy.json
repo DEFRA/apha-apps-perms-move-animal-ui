@@ -95,6 +95,10 @@
       "crumb": {
         "purpose": "Yn cael ei ddefnyddio i atal ymosodwyr rhag newid eich cais",
         "expires": "Nes i chi gau eich porwr"
+      },
+      "language": {
+        "purpose": "I ganfod eich dewis iaith",
+        "expires": "Un flwyddyn ers ei osod"
       }
     },
     "accessibility": {
