@@ -3,3 +3,4 @@
 package-lock.json
 node_modules
 coverage
+src/server/common/components/language-navigation/template.njk

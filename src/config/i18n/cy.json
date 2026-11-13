@@ -1,0 +1,1955 @@
+{
+  "common": {
+    "serviceName": "Symud anifeiliaid dan reolaethau clefydau",
+    "back": "Yn ôl",
+    "feedbackBannerHtml-1": "Mae hwn yn wasanaeth newydd. Helpwch ni i'w wella a",
+    "feedbackBannerHtml-2": "rhoi eich adborth (yn agor mewn tab newydd)",
+    "helpFooterText": "Os oes angen help arnoch gyda'r gwasanaeth gallwch ffonio 03000 200 301.",
+    "startNow": "Dechrau nawr",
+    "continue": "Parhau",
+    "change": "Newid",
+    "taskList": {
+      "progress": {
+        "youHave": "Mae gennych",
+        "outOf": "allan o",
+        "sectionsLeft": "adran ar ôl i'w cwblhau.",
+        "allSectionsComplete": "Rydych wedi cwblhau pob adran."
+      },
+      "status": {
+        "cannotStartYet": "Methu dechrau eto",
+        "completed": "Wedi cwblhau",
+        "incomplete": "Anghyflawn"
+      }
+    },
+    "taskListIncomplete": {
+      "heading": "Mae angen i chi gwblhau pob un o'r adrannau cyn i chi adolygu a chyflwyno",
+      "button": "Ewch i'ch cais"
+    },
+    "checkAnswers": {
+      "sectionHeading": "Gwiriwch eich atebion cyn i chi barhau â'ch cais",
+      "declaration": {
+        "question": "Cyn i chi gyflwyno eich cais, mae'n rhaid i chi ddewis un o'r blychau datganiad.",
+        "options": {
+          "confirm": "Mae manylion fy fferm neu safle yn gywir hyd eithaf fy ngwybodaeth",
+          "divider": "neu",
+          "other": "Rwy'n cyflwyno ar ran rhywun arall ac yn cadarnhau bod y manylion a roddir yn gywir hyd eithaf fy ngwybodaeth"
+        }
+      },
+      "sectionFooter": "Rhaid i chi dicio un blwch datganiad"
+    },
+    "confirmation": {
+      "title": "Eich cais am drwydded symud clefyd anifeiliaid",
+      "email": "Rydym wedi anfon e-bost cadarnhau atoch. Bydd yn cynnwys eich rhif cyfeirnod cais.",
+      "emailFollowUp": "Os caiff ei gymeradwyo, bydd eich trwydded hefyd yn cael ei hanfon drwy e-bost. Gallwch gysylltu â llinell gymorth Asiantaeth Iechyd Anifeiliaid a Phlanhigion (APHA) ar 03000 200 301 os oes gennych unrhyw broblemau wrth ei derbyn.",
+      "whatHappensNext": "Beth sy'n digwydd nesaf",
+      "processingTime": "Gall gymryd hyd at 5 diwrnod gwaith i brosesu eich cais. Gall gymryd mwy o amser os oes angen gwiriadau milfeddygol, neu os oes angen gwybodaeth bellach arnom.",
+      "contact": "Byddwn yn cysylltu â chi os oes angen gwybodaeth bellach arnom.",
+      "feedback": "Beth oeddech chi'n feddwl am y gwasanaeth hwn?",
+      "feedbackTime": "(yn cymryd 30 eiliad)"
+    },
+    "banner": {
+      "prototype": "Prototeip",
+      "beta": "Beta",
+      "prototypeBanner": "Mae hwn yn brototeip gwasanaeth."
+    },
+    "user": {
+      "manageAccount": "Rheoli cyfrif",
+      "signOut": "Allgofnodi"
+    },
+    "footer": {
+      "privacy": "Preifatrwydd",
+      "cookies": "Cwcis",
+      "accessibilityStatement": "Datganiad hygyrchedd"
+    },
+    "errors": {
+      "summaryTitle": "Mae problem wedi codi",
+      "pageNotFound": "Heb ddod o hyd i'r dudalen",
+      "forbidden": "Wedi'i wahardd",
+      "unauthorized": "Heb Awdurdod",
+      "badRequest": "Cais Gwael",
+      "generic": "Aeth rhywbeth o'i le"
+    },
+    "cookies": {
+      "title": "Cwcis",
+      "intro": "Mae cwcis yn ffeiliau bach sy'n cael eu cadw ar eich ffôn, tabled neu gyfrifiadur pan fyddwch yn ymweld â gwefan.",
+      "essential": "Rydym yn defnyddio'r cwcis hanfodol canlynol i gadw eich data'n ddiogel wrth i chi ddefnyddio'r gwasanaeth Symud anifeiliaid dan reolaethau clefydau.",
+      "permission": "Nid oes angen i ni ofyn am ganiatâd i ddefnyddio cwcis hanfodol.",
+      "table": {
+        "name": "Enw",
+        "purpose": "Diben",
+        "expires": "Yn dod i ben"
+      },
+      "session": {
+        "name": "sesiwn",
+        "purpose": "Yn cael ei ddefnyddio i gadw eich cynnydd yn ystod y broses ymgeisio",
+        "expires": "20 awr ers i chi ddefnyddio'r wefan ddiwethaf"
+      },
+      "userSession": {
+        "purpose": "Yn cael ei ddefnyddio i storio prawf eich bod wedi mewngofnodi gan ddefnyddio Defra CustomerIdentity ac i storio data eich proffil",
+        "expires": "20 awr ers i chi ddefnyddio'r wefan ddiwethaf"
+      },
+      "defraBellId": {
+        "purpose": "Yn cael ei ddefnyddio i storio eich manylion ac i'ch mewngofnodi gyda Defra CustomerIdentity",
+        "expires": "Nes i chi gau eich porwr"
+      },
+      "crumb": {
+        "purpose": "Yn cael ei ddefnyddio i atal ymosodwyr rhag newid eich cais",
+        "expires": "Nes i chi gau eich porwr"
+      },
+      "language": {
+        "purpose": "I ganfod eich dewis iaith",
+        "expires": "Un flwyddyn ers ei osod"
+      }
+    },
+    "accessibility": {
+      "title": "Datganiad hygyrchedd",
+      "intro": "Datganiad hygyrchedd ar gyfer Cael caniatâd i symud anifeiliaid dan reolaeth clefydau.",
+      "howToUseHeading": "Sut y dylech allu defnyddio'r wefan hon",
+      "howToUseIntro": "Rydym am i gynifer o bobl â phosibl allu defnyddio'r wefan hon.",
+      "shouldBeAbleTo": "Dylech allu:",
+      "changeColours": "Newid lliwiau, lefelau cyferbyniad a ffontiau gan ddefnyddio gosodiadau'r porwr neu'r ddyfais",
+      "zoom": "Chwyddo i mewn hyd at 200% heb i'r testun ollwng oddi ar y sgrin",
+      "keyboard": "Llywio'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd neu feddalwedd adnabod llais",
+      "screenReader": "Gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
+      "simpleText": "Rydym hefyd yn gwneud testun y wefan mor syml â phosibl i'w ddeall",
+      "accessibilityHeading": "Pa mor hygyrch yw'r wefan hon",
+      "accessibilityBody": "Er bod y rhan fwyaf o'r wefan hon yn hollol hygyrch, rydym yn cynnal archwiliad hygyrchedd llawn a all ddatgelu materion hygyrchedd anhysbys. Os dewch ar draws unrhyw rai, cofiwch",
+      "feedbackLink": "rhoi eich adborth (yn agor mewn tab newydd)",
+      "feedbackSuffix": "i roi gwybod i ni sut y gallwn wella."
+    },
+    "privacy": {
+      "title": "Polisi Preifatrwydd",
+      "intro": "Mae'r hysbysiad preifatrwydd yn cwmpasu holl waith yr Asiantaeth Iechyd Anifeiliaid a Phlanhigion.",
+      "moreInformation": "Mae gwybodaeth fanylach am sut rydym yn rheoli data personol ar gyfer pob un o'n swyddogaethau wedi'i chynnwys yn",
+      "individualPrivacyNotices": "hysbysiadau preifatrwydd unigol",
+      "dataCollectedByHeading": "Mae eich data yn cael ei gasglu gan",
+      "dataController": "Y rheolwr data yw'r Adran Amgylchedd, Bwyd a Materion Gwledig (Defra) ar gyfer data personol rydych chi'n ei roi i'r Asiantaeth Iechyd Anifeiliaid a Phlanhigion (APHA).",
+      "aphaDataProtectionManager": "Mae APHA yn Asiantaeth Weithredol o Defra. Gallwch gysylltu â Rheolwr Diogelu Data APHA drwy e-bost yn:",
+      "dataProtectionEmail": "data.protection@defra.gov.uk",
+      "jointControllers": "Mae APHA hefyd yn gweithio gyda Llywodraeth yr Alban a Llywodraeth Cymru, sy'n rheolwyr ar y cyd ag APHA ar gyfer unrhyw ddata personol perthnasol.",
+      "dataQuestions": "Dylid anfon unrhyw gwestiynau ynghylch sut mae Defra ac APHA yn defnyddio eich data personol a'ch hawliau cysylltiedig at y cyswllt uchod.",
+      "dataProtectionOfficer": "Gellir cysylltu â'r Swyddog Diogelu Data sy'n gyfrifol am fonitro bod Defra ac APHA yn bodloni gofynion y ddeddfwriaeth drwy e-bost yn:",
+      "dataProtectionOfficerEmail": "DefraGroupDataProtectionOfficer@defra.gov.uk",
+      "dataCollectedHeading": "Pa ddata personol sy'n cael ei gasglu",
+      "dataCollectedIntro": "Mae'r data personol a gesglir yn cael ei nodi'n glir mewn",
+      "dataCollectedLinkText": "hysbysiadau preifatrwydd unigol APHA",
+      "dataCollectedSuffix": "neu ddogfennaeth sy'n casglu data personol.",
+      "dataObtainedHeading": "Sut y cafwyd eich data",
+      "dataObtainedIntro": "Rydym wedi cael eich data naill ai'n uniongyrchol gennych chi neu drydydd parti. Mae sut y cafwyd eich data mewn unrhyw achos penodol yn cael ei nodi'n glir mewn",
+      "dataObtainedLinkText": "hysbysiadau preifatrwydd unigol APHA",
+      "dataObtainedSuffix": "neu ddogfennaeth sy'n casglu data personol.",
+      "whyDataHeading": "Pam mae APHA yn defnyddio eich data",
+      "whyDataIntro": "Mae data personol yn cael ei gasglu a'i storio i gefnogi swyddogaethau APHA sy'n cynnwys:",
+      "functions": {
+        "function-1": "nodi a rheoli clefydau a phlâu endemig ac egsotig mewn anifeiliaid, planhigion a gwenyn, a gwyliadwriaeth o blâu a chlefydau newydd ac sy'n dod i'r amlwg",
+        "function-2": "ymchwil wyddonol",
+        "function-3": "hwyluso masnach ryngwladol mewn anifeiliaid, cynhyrchion o darddiad anifail, a phlanhigion",
+        "function-4": "gwarchod bywyd gwyllt mewn perygl drwy drwyddedu a chofrestru",
+        "function-5": "diogelu iechyd a lles anifeiliaid; a diogelu iechyd dynol lle bo'n berthnasol (sŵnosau)",
+        "function-6": "rheoli rhaglen o arolygiadau gwenyn, diagnosteg, ymchwil a datblygu, a hyfforddiant a chyngor",
+        "function-7": "rheoleiddio gwaredu diogel sgil-gynhyrchion anifeiliaid i leihau'r risg o sylweddau a allai fod yn beryglus yn mynd i mewn i'r gadwyn fwyd",
+        "function-8": "data cyflogeion sy'n angenrheidiol i gefnogi rheoli staff",
+        "function-9": "diogelu cyflogeion, is-gontractwyr a chwsmeriaid (gall hyn gynnwys defnydd cyfyngedig iawn o fideo a wisgir ar y corff pan fo angen)",
+        "function-10": "ar gyfer swyddogaethau statudol APHA mewn perthynas â bioddiogelwch planhigion; rhyddhau organebau a addaswyd yn enetig i'r amgylchedd; ac yng nghylch rheoli rhywogaethau estron ac ymledol - yn benodol ar gyfer plâu a chlefydau hysbysadwy, rheolaethau mewnforio ac allforio, hyfforddiant ac at ddibenion monitro diogelwch bwyd statudol"
+      },
+      "moreAboutApha": "Gellir dod o hyd i ragor o wybodaeth am APHA yn",
+      "aphaWebsite": "www.gov.uk/apha",
+      "googleAnalyticsHeading": "Eich data a Google Analytics",
+      "googleAnalyticsIntro": "Mae ein gwefan yn defnyddio Google Analytics, gwasanaeth dadansoddeg gwe a ddarperir gan Google, i fonitro gweithgaredd y safle a chasglu mewnwelediadau am sut mae defnyddwyr yn rhyngweithio â'n cynnwys.",
+      "googleAnalyticsData": "Mae'r data hwn yn ein galluogi i ddeall ymddygiad defnyddwyr yn well a gweithredu gwelliannau i wella eich profiad ar ein safle. Fel rhan o'r broses hon, mae Google Analytics yn casglu gwybodaeth benodol, gan gynnwys eich cyfeiriad IP. Mae'r data hwn yn ein helpu i bennu lleoliadau bras, gan ein galluogi i nodi meysydd posibl ar gyfer ymchwil defnyddwyr a theilwra ein gwasanaethau'n well i ddiwallu anghenion defnyddwyr.",
+      "googleAnalyticsPurpose": "Sylwch fod y wybodaeth a gesglir yn cael ei defnyddio at ddibenion dadansoddi a gwella yn unig.",
+      "googleAnalyticsPrivacy": "Rydym yn parchu eich preifatrwydd ac wedi ymrwymo i drin eich data yn gyfrifol. Am ragor o wybodaeth am sut mae Google yn casglu ac yn prosesu data, gweler",
+      "googlePrivacyLink": "Preifatrwydd a Thelerau Google",
+      "legalBasisHeading": "Y sail gyfreithiol ar gyfer prosesu eich data",
+      "legalBasisIntro": "Mae sylfeini cyfreithiol ar gyfer prosesu yn cynnwys:",
+      "legalBases": {
+        "legalBase-1": "cyflawni tasg a wneir er budd y cyhoedd neu wrth arfer awdurdod swyddogol a freiniwyd yn y rheolwr",
+        "legalBase-2": "er mwyn cydymffurfio â rhwymedigaeth gyfreithiol ar y rheolwr",
+        "legalBase-3": "cyflawni contract y mae'r gwrthrych data yn barti iddo neu er mwyn cymryd camau ar gais y gwrthrych data cyn ymrwymo i gontract",
+        "legalBase-4": "rydych wedi rhoi caniatâd i ni brosesu eich data at un neu fwy o ddibenion penodedig"
+      },
+      "consentHeading": "Caniatâd i brosesu eich data",
+      "consent": "Lle mai eich caniatâd chi yw'r sail gyfreithiol ar gyfer prosesu eich data personol, gallwch optio allan ar unrhyw adeg a bydd manylion sut y gallwch wneud hynny ar gael i chi gan y tîm sy'n prosesu eich data personol.",
+      "requirementHeading": "Gofyniad cyfreithiol neu gontractiol i ddarparu data personol",
+      "requirement": "Weithiau mae'n ofynnol yn gyfreithiol neu'n gontractiol i chi rannu data personol gan APHA. Mae'r sefyllfaoedd hyn yn cael eu nodi'n glir yn yr hysbysiadau preifatrwydd perthnasol.",
+      "consequencesHeading": "Canlyniadau peidio â darparu'r data angenrheidiol",
+      "consequences": {
+        "consequence-1": "At ddibenion statudol ac er budd y cyhoedd mae'n angenrheidiol darparu data fel y nodir yn y ddeddfwriaeth berthnasol.",
+        "consequence-2": "Ar gyfer prosesu sy'n seiliedig ar gontract, mae eich penderfyniad i ymrwymo i gontract gyda ni yn wirfoddol a darperir gwybodaeth angenrheidiol i gyflawni'r berthynas gontractiol honno.",
+        "consequence-3": "Ar gyfer prosesu sy'n seiliedig ar ganiatâd mae gennych hawl i ddirymu hyn ar unrhyw adeg."
+      },
+      "automatedDecisionHeading": "Data personol a ddefnyddir ar gyfer gwneud penderfyniadau awtomataidd",
+      "automatedDecision": "Nid yw'r wybodaeth rydych yn ei darparu'n gysylltiedig â gwneud penderfyniadau unigol, hynny yw gwneud penderfyniad ar sail dulliau awtomataidd yn unig heb unrhyw gyfranogiad dynol.",
+      "profilingHeading": "Data personol wedi'i gyfuno neu 'broffilio' awtomataidd a chanlyniadau hyn",
+      "profiling": "Nid yw'r wybodaeth rydych yn ei darparu'n gysylltiedig â phroffilio, hynny yw prosesu awtomataidd data personol i werthuso rhai pethau am unigolyn.",
+      "sharingHeading": "Gyda phwy mae APHA yn rhannu eich data",
+      "sharing": {
+        "sharing-1": "Gellir rhoi data personol ar gael i awdurdodau lleol a chyrff cyhoeddus eraill yn y DU a'r UE i fodloni gofynion cyfreithiol a swyddogaethau rheoleiddio a gorfodi.",
+        "sharing-2": "Efallai y byddwn yn rhannu data gyda Defra a'i asiantaethau, Llywodraeth Cymru, Llywodraeth yr Alban, Gweithrediaeth Gogledd Iwerddon, yr Asiantaeth Safonau Bwyd a sefydliadau swyddogol a chyrff gorfodi eraill.",
+        "sharing-3": "Efallai y byddwn yn rhannu data gyda sefydliadau eraill sy'n gweithio ar ein rhan i'n galluogi i gyflawni ein dyletswyddau.",
+        "sharing-4": "Efallai y bydd yn rhaid i ni ryddhau gwybodaeth (gan gynnwys data personol a gwybodaeth fasnachol) o dan y ddeddfwriaeth ganlynol:"
+      },
+      "legislation": {
+        "legislation-1": "Rheoliad Diogelu Data Cyffredinol y DU (UK GDPR)",
+        "legislation-2": "Deddf Diogelu Data'r DU 2018",
+        "legislation-3": "Deddf Rhyddid Gwybodaeth 2000",
+        "legislation-4": "Rheoliadau Gwybodaeth Amgylcheddol 2004"
+      },
+      "confidentiality": "Ni fyddwn yn caniatáu unrhyw doriad diangen o gyfrinachedd ac ni fyddwn yn gweithredu yn groes i'n rhwymedigaethau o dan ddeddfwriaeth diogelu data'r DU.",
+      "outsideUkHeading": "Storio a defnyddio data personol y tu allan i'r DU",
+      "outsideUk": {
+        "outsideUk-1": "Dewisir canran fach iawn o gofnodion llywodraeth sy'n cynnwys gwybodaeth bersonol i'w cadw'n barhaol yn yr Archifau Gwladol. Maent ar gael yn unol â Deddf Rhyddid Gwybodaeth 2000, fel y'i diwygiwyd gan Ddeddf Diogelu Data 2018.",
+        "outsideUk-2": "Ar y cyfan ni fydd y data rydych yn ei ddarparu yn cael ei drosglwyddo y tu allan i'r DU. Ar adegau prin, pan fo'n gyfreithlon ac yn ategu ein gwaith a gyflawnir er budd y cyhoedd, gellir trosglwyddo data ymchwil yn ddiogel y tu allan i'r DU."
+      },
+      "retentionHeading": "Am ba hyd mae APHA yn cadw data personol",
+      "retention": "Mae'r holl wybodaeth gydag APHA yn cael ei chadw yn unol â'n polisi cadw data, os hoffech ragor o wybodaeth cysylltwch â",
+      "enquiriesEmail": "enquiries@apha.gov.uk",
+      "longerRetention": "Mewn amgylchiadau penodol gellir cadw gwybodaeth am gyfnodau hirach. Mae enghreifftiau'n cynnwys:",
+      "longerRetentionExamples": {
+        "longerRetentionExample-1": "apêl",
+        "longerRetentionExample-2": "gweithgaredd archwilio",
+        "longerRetentionExample-3": "cwyn",
+        "longerRetentionExample-4": "afreoleidd-dra",
+        "longerRetentionExample-5": "camau cyfreithiol",
+        "longerRetentionExample-6": "cais ffurfiol am wybodaeth",
+        "longerRetentionExample-7": "os yw'n gosod cynsail",
+        "longerRetentionExample-8": "at ddibenion ymchwil wyddonol neu hanesyddol"
+      },
+      "rightsHeading": "Eich hawliau",
+      "rightsIntro": "Dysgu am",
+      "rightsLink": "eich hawliau o dan y gyfraith diogelu data",
+      "complaintsHeading": "Cwynion",
+      "complaints": "Mae gennych hawl i gyflwyno cwyn am ddefnydd eich data personol ar unrhyw adeg gyda",
+      "icoLink": "Swyddfa'r Comisiynydd Gwybodaeth",
+      "complaintsSuffix": "(ICO - yr awdurdod goruchwylio diogelu data).",
+      "charterHeading": "Siarter gwybodaeth bersonol APHA",
+      "charterLink": "Siarter gwybodaeth bersonol APHA",
+      "charterText": "Mae APHA yn prosesu data personol."
+    },
+    "answer": {
+      "cphNumber": {
+        "hint": "Er enghraifft, 12/345/6789",
+        "validation": {
+          "maxLength": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "pattern": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "empty": "Nodwch rif CPH y fferm neu'r safle"
+        }
+      },
+      "address": {
+        "validation": {
+          "addressLine1": "Nodwch linell gyfeiriad 1, fel arfer yr adeilad a'r stryd",
+          "townOrCity": "Nodwch dref neu ddinas",
+          "postcode": "Nodwch god post",
+          "postcodeFormat": "Nodwch god post llawn y DU"
+        }
+      }
+    }
+  },
+  "tb": {
+    "origin": {
+      "title": "Tarddiad y symudiad",
+      "onOffFarm": {
+        "question": "A ydych chi'n symud yr anifeiliaid i mewn i'ch fferm neu'ch safle neu allan ohono?",
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n symud anifeiliaid i mewn i'ch fferm neu'ch safle neu allan ohono"
+        },
+        "options": {
+          "on": {
+            "label": "I mewn i'r fferm neu'r safle"
+          },
+          "off": {
+            "label": "Oddi ar y fferm neu'r safle"
+          }
+        }
+      },
+      "originType": {
+        "question": "Pa fath o safle mae'r anifeiliaid yn symud oddi arno?",
+        "validation": {
+          "empty": "Dewiswch o ble mae'r anifeiliaid yn symud"
+        },
+        "options": {
+          "offFarm": {
+            "tb-restricted-farm": {
+              "label": "Fferm gyfyngedig TB"
+            },
+            "afu": {
+              "label": "Uned bwrcasu gymeradwy (AFU)",
+              "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
+            },
+            "unrestricted-farm": {
+              "label": "Fferm neu safle dirwystr"
+            },
+            "iso-unit": {
+              "label": "Uned ynysu TB"
+            },
+            "other": {
+              "label": "Man cychwyn arall gyda chyfyngiadau TB"
+            }
+          },
+          "onFarm": {
+            "unrestricted-farm": {
+              "label": "Ffermydd a marchnadoedd dirwystr"
+            },
+            "tb-restricted-farm": {
+              "label": "Fferm gyfyngedig TB"
+            },
+            "afu": {
+              "label": "Uned bwrcasu gymeradwy (AFU)",
+              "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
+            },
+            "other": {
+              "label": "Man cychwyn arall gyda chyfyngiadau TB"
+            }
+          }
+        }
+      },
+      "cphNumber": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) eich fferm neu'ch safle y mae'r anifeiliaid yn symud oddi arno?"
+      },
+      "originFarmCph": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) y fferm neu'r safle y mae'r anifeiliaid yn symud oddi arno?"
+      },
+      "address": {
+        "question": "Beth yw cyfeiriad eich fferm neu'ch safle y mae'r anifeiliaid yn symud oddi arno?"
+      },
+      "originFarmAddress": {
+        "question": "Beth yw cyfeiriad y fferm neu'r safle y mae'r anifeiliaid yn symud oddi arno?"
+      },
+      "originTypeOther": {
+        "question": "Pa fath o safle gyda chyfyngiadau TB mae'r anifeiliaid yn symud oddi arno?",
+        "validation": {
+          "empty": "Nodwch y math o safle",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "contactTbRestrictedFarm": {
+        "title": "Cysylltwch â'r fferm gyfyngedig TB",
+        "responsibility": "Pan fydd anifeiliaid yn symud i fferm sydd â chyfyngiadau TB, cyfrifoldeb y fferm honno yw gwneud cais am drwydded.",
+        "needDetails": "Mae angen i ni wybod manylion am eu harferion bioddiogelwch er mwyn prosesu'r drwydded.",
+        "cannotApplyIntro": "Os na all y fferm gyrchfan wneud cais, llenwch a",
+        "cannotApplyLinkText": "anfonwch y ffurflen gais hon i APHA (yn agor mewn tab newydd)"
+      },
+      "fiftyPercentWarning": {
+        "title": "Ni allwch symud mwy na 50% o'r fuches",
+        "reductionWarning": "Bydd anifeiliaid sy'n ymuno â buches sydd â chlwy TB ac sy'n cael eu tynnu wedyn fel adweithyddion TB neu gysylltiadau uniongyrchol cyn i'r fuches gael ei chadarnhau'n rhydd o TB yn derbyn gostyngiad o 50% yn yr iawndal.",
+        "doesNotApply": "Nid yw hyn yn berthnasol os:",
+        "exceptions": {
+          "exception-1": "mae'r fuches gyrchfan wedi'i chofrestru â chynllun iechyd TB Buchol. Rhaid i achrediad gan y Safonau Ardystio Iechyd Gwartheg (CHECS) fod ar waith cyn i'r clwy ddechrau",
+          "exception-2": "mae'r anifeiliaid yn symud i unrhyw fath o uned bwrcasu gymeradwy neu drwyddedig, neu i uned ynysu TB"
+        },
+        "moreInfoIntro": "Am ragor o wybodaeth, darllenwch yr adran lladd ac iawndal ar",
+        "moreInfoLinkText": "dudalen ganllawiau TB Buchol GOV.UK",
+        "moreInfoSuffix": "(yn agor mewn tab newydd)."
+      }
+    },
+    "destination": {
+      "destinationType": {
+        "question": "Ble mae'r anifeiliaid yn mynd iddo?",
+        "validation": {
+          "empty": "Dewiswch ble mae'r anifeiliaid yn mynd"
+        },
+        "options": {
+          "tb-restricted-farm": {
+            "label": "Fferm gyfyngedig TB"
+          },
+          "slaughter": {
+            "label": "Lladd"
+          },
+          "dedicated-sale": {
+            "label": "Gwerthiant penodol ar gyfer TB (marchnad oren)"
+          },
+          "afu": {
+            "label": "Uned bwrcasu gymeradwy (AFU)",
+            "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
+          },
+          "afu-or-market": {
+            "label": "Unedau pwrcasu cymeradwy a gwerthiannau TB mewn marchnadoedd oren",
+            "hint": "Mae'r drwydded yn cwmpasu naill ai neu'r ddau gyrchfan"
+          },
+          "iso-unit": {
+            "label": "Uned ynysu TB"
+          },
+          "other": {
+            "label": "Cyrchfan arall gyda chyfyngiadau TB"
+          }
+        }
+      },
+      "destinationFarmCph": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) y fferm neu'r safle y mae'r anifeiliaid yn mynd iddo?"
+      },
+      "destinationFarmAddress": {
+        "question": "Beth yw cyfeiriad y fferm neu'r safle y mae'r anifeiliaid yn mynd iddo?"
+      },
+      "destinationTypeOther": {
+        "question": "Pa fath o safle gyda chyfyngiadau TB mae'r anifeiliaid yn mynd iddo?",
+        "validation": {
+          "empty": "Nodwch y math o safle",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "howManyAnimals": {
+        "question": "Sawl anifail rydych chi'n bwriadu eu symud?",
+        "validation": {
+          "empty": "Nodwch sawl anifail rydych chi'n bwriadu eu symud",
+          "max": "Nodwch rif %{value} neu is",
+          "min": "Nodwch rif %{value} neu uwch"
+        }
+      },
+      "howManyAnimalsMaximum": {
+        "question": "Beth yw'r nifer mwyaf o anifeiliaid rydych chi'n bwriadu eu symud?",
+        "validation": {
+          "empty": "Nodwch y nifer mwyaf o anifeiliaid rydych chi'n bwriadu eu symud",
+          "max": "Nodwch rif %{value} neu is",
+          "min": "Nodwch rif %{value} neu uwch"
+        }
+      },
+      "movementDate": {
+        "question": "Pa ddyddiad fydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle?",
+        "validation": {
+          "invalidDate": "Rhaid i'r dyddiad y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle fod yn ddyddiad go iawn",
+          "missingDate": "Nodwch y dyddiad y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle",
+          "missingDay": "Rhaid i'r dyddiad y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle gynnwys diwrnod",
+          "missingMonth": "Rhaid i'r dyddiad y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle gynnwys mis",
+          "missingYear": "Rhaid i'r dyddiad y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle gynnwys blwyddyn",
+          "invalidDay": "Rhaid i'r diwrnod y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i'r mis y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i'r flwyddyn y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i'r flwyddyn y bydd yr anifeiliaid yn symud oddi ar y fferm neu'r safle fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad y symudiad fod heddiw neu wedyn"
+        }
+      },
+      "additionalInfo": {
+        "question": "Nodwch unrhyw wybodaeth ychwanegol (dewisol)",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "reasonForMovement": {
+        "question": "Beth yw'r rheswm dros y symudiad?",
+        "validation": {
+          "empty": "Dewiswch y rheswm dros y symudiad"
+        },
+        "options": {
+          "routineRestocking": {
+            "label": "Ailstocio rheolaidd"
+          },
+          "breedingMale": {
+            "label": "Gwryw bridio"
+          },
+          "welfare": {
+            "label": "Lles",
+            "hint": "Gan gynnwys symud benywod beichiog"
+          },
+          "other": {
+            "label": "Rhywbeth arall"
+          }
+        }
+      },
+      "ownBothOriginAndDestination": {
+        "question": "A ydych chi'n gyfrifol am y fferm gyfyngedig TB y mae'r anifeiliaid yn mynd iddi?",
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n gyfrifol am y fferm gyfyngedig TB y mae'r anifeiliaid yn mynd iddi"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "restockAnimals": {
+        "question": "Pa fathau o anifeiliaid rydych chi'n eu hailstocio?",
+        "validation": {
+          "empty": "Dewiswch pa fathau o anifeiliaid rydych chi'n eu hailstocio"
+        },
+        "hint": "Dewiswch bob un sy'n berthnasol.",
+        "options": {
+          "calves": {
+            "label": "Lloi"
+          },
+          "heifers": {
+            "label": "Treisiaid"
+          },
+          "cows": {
+            "label": "Gwartheg"
+          },
+          "pregnantCows": {
+            "label": "Gwartheg beichiog"
+          },
+          "dairyCows": {
+            "label": "Gwartheg godro"
+          },
+          "sucklingCalves": {
+            "label": "Lloi sugno"
+          }
+        }
+      },
+      "restockReason": {
+        "question": "Pa resymau sydd gennych dros ailstocio?",
+        "validation": {
+          "empty": "Dewiswch y rhesymau sydd gennych dros ailstocio"
+        },
+        "hint": "Dewiswch bob un sy'n berthnasol.",
+        "options": {
+          "fattening": {
+            "label": "Pesgi"
+          },
+          "breeding": {
+            "label": "Bridio"
+          },
+          "sucklingRestocking": {
+            "label": "Ailstocio sugno"
+          },
+          "dairyRestocking": {
+            "label": "Ailstocio llaeth"
+          },
+          "other": {
+            "label": "Rhywbeth arall"
+          }
+        }
+      },
+      "restockAdditionalInfo": {
+        "question": "Beth yw'r rheswm dros ailstocio?",
+        "validation": {
+          "empty": "Nodwch y rheswm dros ailstocio",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "quantityHalfHerd": {
+        "question": "A fydd nifer y gwartheg yn fwy na hanner maint buches y cyrchfan?",
+        "validation": {
+          "empty": "Dewiswch a fydd nifer y gwartheg yn fwy na hanner maint buches y cyrchfan"
+        },
+        "options": {
+          "no": {
+            "label": "Na"
+          },
+          "yes": {
+            "label": "Iawn"
+          },
+          "unknown": {
+            "label": "Nid wyf yn gwybod"
+          }
+        }
+      },
+      "contactTbRestrictedFarm": {
+        "title": "Cysylltwch â'r fferm gyfyngedig TB",
+        "responsibility": "Pan fydd yr anifeiliaid yn symud i fferm sydd â chyfyngiadau TB, cyfrifoldeb y fferm honno yw gwneud cais am drwydded.",
+        "needDetails": "Mae angen i ni wybod manylion am eu harferion bioddiogelwch er mwyn prosesu'r drwydded.",
+        "cannotApplyIntro": "Os na all y fferm gyrchfan wneud cais, llenwch a",
+        "cannotApplyLinkText": "anfonwch y ffurflen gais hon i APHA (yn agor mewn tab newydd)"
+      },
+      "afuOnlyOnExitPage": {
+        "title": "Ni allwch symud anifeiliaid i mewn i uned bwrcasu gymeradwy",
+        "body": "Nid yw'r gwasanaeth hwn yn caniatáu symudiadau i'ch safle o uned bwrcasu gymeradwy (AFU) oni bai bod eich safle yn AFU."
+      },
+      "afuOnlyOffExitPage": {
+        "title": "Ni allwch symud anifeiliaid oddi ar uned bwrcasu gymeradwy",
+        "intro": "Mae'r gwasanaeth hwn yn caniatáu symudiadau oddi ar uned bwrcasu gymeradwy (AFU) yn unig i:",
+        "destinations": {
+          "destination-1": "lladd-dy",
+          "destination-2": "unedau bwrcasu cymeradwy (AFU)"
+        }
+      },
+      "checkExistingLicenceExitPage": {
+        "title": "Gwiriwch a yw APHA eisoes wedi anfon trwydded atoch",
+        "checkLicenceSuffix": "gwiriwch a allwch symud anifeiliaid gyda'r drwydded a gyhoeddwyd gyda'r cymeradwyaeth.",
+        "contactIntro": "Cysylltwch â",
+        "contactEmail": "CSCTBUnits@apha.gov.uk",
+        "contactSuffix": "os nad yw eich symudiad yn bodloni telerau'r drwydded bresennol."
+      },
+      "generalLicence": {
+        "title": "Gwiriwch a oes gennych drwydded gyffredinol",
+        "infoPack": "Dylai fod gennych drwydded gyffredinol yn y pecyn gwybodaeth a anfonwyd atoch gan yr Asiantaeth Iechyd Anifeiliaid a Phlanhigion (APHA). Postiwyd y pecyn atoch pan roddwyd cyfyngiad TB ar eich buches.",
+        "allowsSlaughterMovement": "Mae'r drwydded hon yn caniatáu i chi symud anifeiliaid o fferm sydd â chyfyngiadau TB i'r lladd-dy.",
+        "continueIfNone": "Os nad oes gennych drwydded gyffredinol, gallwch barhau i wneud cais am un newydd."
+      }
+    },
+    "identification": {
+      "animals42DaysOldOrOlder": {
+        "question": "A ydych chi hefyd yn symud unrhyw anifeiliaid sy'n 42 diwrnod oed neu'n hŷn?",
+        "validation": {
+          "empty": "Dewiswch a ydych chi hefyd yn symud unrhyw anifeiliaid sy'n 42 diwrnod oed neu'n hŷn"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "calvesUnder42DaysOld": {
+        "question": "A fyddwch chi'n symud unrhyw lloi dan 42 diwrnod oed?",
+        "hint": "Mae angen i ni wybod a yw'r lloi dan 42 diwrnod oed ar y dyddiad rydych chi'n bwriadu eu symud",
+        "validation": {
+          "empty": "Dewiswch a fyddwch chi'n symud unrhyw lloi dan 42 diwrnod oed"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "oldestCalfDob": {
+        "question": "Beth yw dyddiad geni'r llo hynaf dan 42 diwrnod oed?",
+        "validation": {
+          "missingDate": "Nodwch ddyddiad geni'r llo hynaf",
+          "missingDay": "Rhaid i ddyddiad geni'r llo hynaf gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad geni'r llo hynaf gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad geni'r llo hynaf gynnwys blwyddyn",
+          "invalidDay": "Rhaid i'r diwrnod geni fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i fis geni'r llo hynaf fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i flwyddyn geni fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn geni gynnwys 4 rhif",
+          "invalidDate": "Rhaid i'r diwrnod geni fod yn ddyddiad go iawn",
+          "futureDate": "Rhaid i ddyddiad geni'r llo hynaf fod heddiw neu yn y gorffennol"
+        }
+      },
+      "earTags": {
+        "question": "Nodwch y rhifau clust-dag",
+        "validation": {
+          "empty": "Nodwch rifau clust-dag yr anifeiliaid rydych chi'n bwriadu eu symud",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        },
+        "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân",
+        "identifyIntro": "Mae angen i chi adnabod yr anifeiliaid gan ddefnyddio'r clustdagiau swyddogol a brynwyd gan gyflenwr cymeradwy.",
+        "earTagFormat": "Rhaid i'r clustdag gynnwys cod y wlad, rhif y fuches a rhif clustdag swyddogol chwe digid. Er enghraifft, UK12345678910."
+      },
+      "earTagsCalves": {
+        "question": "Nodwch rifau clust-dag y lloi dan 42 diwrnod oed rydych chi'n bwriadu eu symud",
+        "validation": {
+          "empty": "Nodwch rifau clust-dag y lloi dan 42 diwrnod oed rydych chi'n bwriadu eu symud",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        },
+        "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân",
+        "identifyIntro": "Mae angen i chi adnabod y lloi gan ddefnyddio'r clustdagiau swyddogol a brynwyd gan gyflenwr cymeradwy.",
+        "earTagFormat": "Rhaid i'r clustdag gynnwys cod y wlad, rhif y fuches a rhif clustdag swyddogol chwe digid. Er enghraifft, UK12345678910."
+      },
+      "earTagsOver42DaysOld": {
+        "question": "Nodwch y rhifau clust-dag ar gyfer yr anifeiliaid hyn",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        },
+        "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân"
+      },
+      "testingDates": {
+        "question": "Beth yw dyddiadau'r profion TB diwethaf ar gyfer yr anifeiliaid sy'n 42 diwrnod oed neu'n hŷn?",
+        "validation": {
+          "empty": "Nodwch y dyddiadau pan gafodd anifeiliaid dros 42 diwrnod oed eu profi ddiwethaf am TB",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        },
+        "negativeTestIntro": "Rhaid i'r anifeiliaid fod wedi profi'n negyddol i brawf croen TB o fewn 30 diwrnod i'r dyddiad symud arfaethedig.",
+        "enterInjectionDate": "Mae angen i chi nodi'r dyddiad y cawsant eu pigo ar eu prawf croen TB diweddaraf."
+      },
+      "warning": {
+        "title": "Rhifau clust-dag swyddogol ar gyfer anifeiliaid sy'n cael eu symud",
+        "possibleAgeWarning": "Mae'n bosibl y bydd y llo yn 42 diwrnod oed neu'n hŷn tra byddwn yn adolygu eich cais.",
+        "testingRequirement": "Rhaid profi lloi 42 diwrnod oed neu'n hŷn am TB er mwyn i drwydded gael ei rhoi."
+      }
+    },
+    "biosecurity": {
+      "title": "Manylion bioddiogelwch",
+      "buildingsAnyShared": {
+        "question": "A fydd yr anifeiliaid sy'n dod i mewn yn cael eu cadw dan do?",
+        "validation": {
+          "empty": "Dewiswch a fydd yr anifeiliaid yn cael eu cadw dan do"
+        },
+        "hint": "Mae hyn yn cynnwys mannau a rennir fel llociau",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "buildingsHowMinimiseContamination": {
+        "question": "Pa fesurau sy'n cael eu cymryd i leihau lledaeniad TB yn ystod cadw dan do?",
+        "validation": {
+          "empty": "Nodwch sut y byddwch yn lleihau'r risg o ledaenu TB o'r fuches breswyl i'r anifeiliaid sy'n dod i mewn yn ystod cadw dan do"
+        },
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "cleaning": {
+            "label": "Glanhau a diheintio adeiladau a rennir cyn i'r anifeiliaid gyrraedd"
+          },
+          "isolation": {
+            "label": "Ynysu anifeiliaid sy'n dod i mewn mewn adeilad, sied neu lloc ar wahân wrth gyrraedd"
+          },
+          "incoming": {
+            "label": "Bydd anifeiliaid sy'n dod i mewn yn cael eu cadw dan do yn barhaol"
+          },
+          "disinfection": {
+            "label": "Pwyntiau diheintio wedi'u lleoli wrth fynedfeydd ac allanfeydd y tai"
+          },
+          "other": {
+            "label": "Mesurau eraill"
+          }
+        },
+        "preventSpreadIntro": "Dylai fod gennych fesurau ar waith i atal lledaeniad TB pan fo'r anifeiliaid sy'n dod i mewn yn cael eu cadw dan do neu â mynediad i adeiladau a rennir.",
+        "shouldInclude": "Dylech gynnwys:",
+        "includeItems": {
+          "item-1": "sut y bydd yr anifeiliaid sy'n dod i mewn yn cael eu gwahanu oddi wrth y fuches breswyl",
+          "item-2": "mesurau glanhau a diheintio ar gyfer tai a rennir ac adeiladau a rennir, gan gynnwys cyfleusterau trin a godro"
+        }
+      },
+      "equipmentAnyShared": {
+        "question": "A fydd yr anifeiliaid sy'n dod i mewn yn rhannu unrhyw offer a pheiriannau gyda'r fuches breswyl?",
+        "validation": {
+          "empty": "Dewiswch a fydd yr anifeiliaid sy'n dod i mewn yn rhannu unrhyw offer a pheiriannau gyda'r fuches breswyl"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "equipmentHowMinimiseContamination": {
+        "question": "Pa fesurau sydd ar waith i lanhau a diheintio offer i leihau'r risg o ledaenu TB?",
+        "validation": {
+          "empty": "Dewiswch pa fesurau sydd ar waith i lanhau a diheintio offer i leihau'r risg o ledaenu TB"
+        },
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "designatedDisinfectionPoints": {
+            "label": "Pwyntiau diheintio penodedig"
+          },
+          "disinfectingMachinery": {
+            "label": "Glanhau a diheintio peiriannau a rennir"
+          },
+          "disinfectingMilkingAndHandling": {
+            "label": "Glanhau a diheintio cyfleusterau godro a thrin a rennir"
+          },
+          "equipmentNotShared": {
+            "label": "Nid yw offer yn cael ei rannu rhwng yr anifeiliaid sy'n dod i mewn a'r fuches breswyl"
+          },
+          "other": {
+            "label": "Mesurau glanhau a diheintio eraill"
+          }
+        }
+      },
+      "grazingFieldHowSeparated": {
+        "question": "Pa fesurau sy'n cael eu cymryd i leihau lledaeniad TB pan fydd yr anifeiliaid yn pori?",
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "separated-by-roads": {
+            "label": "Mae ffyrdd yn creu ffin rhwng yr anifeiliaid"
+          },
+          "separated-by-three-meters": {
+            "label": "Bydd o leiaf 3 metr yn gwahanu'r anifeiliaid",
+            "hint": "Fel trwy wrychoedd, ffensio dwbl neu waliau"
+          },
+          "other": {
+            "label": "Mesurau gwahanu eraill"
+          }
+        }
+      },
+      "grazing": {
+        "question": "A fydd yr anifeiliaid sy'n dod i mewn yn pori?",
+        "validation": {
+          "empty": "Dewiswch a fydd yr anifeiliaid sy'n dod i mewn yn pori"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "grazingOther": {
+        "question": "Pa fesurau eraill sy'n cael eu cymryd i leihau lledaeniad TB pan fydd yr anifeiliaid yn pori?",
+        "validation": {
+          "empty": "Nodwch fanylion am y mesurau eraill sy'n cael eu cymryd i leihau lledaeniad TB pan fydd yr anifeiliaid yn pori",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "housingOther": {
+        "question": "Pa fesurau eraill sy'n cael eu cymryd i leihau lledaeniad TB yn ystod cadw dan do?",
+        "validation": {
+          "empty": "Nodwch fanylion am y mesurau eraill sy'n cael eu cymryd i leihau lledaeniad TB yn ystod cadw dan do",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "keptSeparately": {
+        "question": "A fyddwch chi'n gwahanu'r anifeiliaid sy'n dod i mewn oddi wrth y fuches breswyl?",
+        "validation": {
+          "empty": "Dewiswch a fydd yr anifeiliaid sy'n dod i mewn yn cael eu cadw ar wahân"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "lastGrazed": {
+        "question": "Pa mor hir yn ôl y cafodd y cae ei bori ddiwethaf gan y fuches breswyl?",
+        "validation": {
+          "empty": "Nodwch pryd y cafodd y cae ei bori ddiwethaf gan y fuches breswyl",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "manureAndSlurry": {
+        "question": "A oes unrhyw dail neu slyri wedi'i roi ar y cae pori yn ystod y 60 diwrnod diwethaf?",
+        "validation": {
+          "empty": "Dewiswch a yw tail neu slyri wedi'i roi ar y cae pori yn ystod y 60 diwrnod diwethaf"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        }
+      },
+      "manureAndSlurryDetails": {
+        "question": "Sut y byddwch yn rheoli slyri a thail?",
+        "validation": {
+          "empty": "Nodwch sut y byddwch yn rheoli tail a slyri"
+        },
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "not-purchased": {
+            "label": "Nid yw tail yn cael ei brynu o ffermydd eraill"
+          },
+          "stored": {
+            "label": "Mae tail a slyri'n cael eu storio'n ddiogel fel na all anifeiliaid domestig a gwyllt gael mynediad atynt"
+          },
+          "three-weeks": {
+            "label": "Mae tail yn cael ei storio am o leiaf 3 wythnos cyn ei daenu ar borfa"
+          },
+          "six-months": {
+            "label": "Mae slyri'n cael ei storio am o leiaf 6 mis cyn ei daenu ar borfa"
+          },
+          "other": {
+            "label": "Mesurau eraill"
+          }
+        }
+      },
+      "otherEquipmentMeasures": {
+        "question": "Pa fesurau eraill sydd ar waith i lanhau a diheintio offer i leihau'r risg o ledaenu TB?",
+        "validation": {
+          "empty": "Nodwch ba fesurau eraill sydd ar waith i lanhau a diheintio offer i leihau'r risg o ledaenu TB",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "otherStaffMeasures": {
+        "question": "Pa fesurau eraill mae staff yn eu cymryd i leihau'r risg o ledaenu TB?",
+        "validation": {
+          "empty": "Nodwch ba fesurau eraill mae staff yn eu cymryd i leihau'r risg o ledaenu TB",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "otherWildlifeMeasures": {
+        "question": "Pa fesurau eraill rydych chi'n eu cymryd i leihau'r risg o ledaenu TB?",
+        "validation": {
+          "empty": "Nodwch wybodaeth am ba fesurau eraill rydych chi'n eu cymryd i leihau'r risg o ledaenu TB",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "peopleDisinfection": {
+        "question": "Pa fesurau mae staff yn eu cymryd i leihau'r risg o ledaenu TB?",
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "ppe": {
+            "label": "Dillad penodol a chyfarpar diogelu personol (PPE)"
+          },
+          "disinfectingBoots": {
+            "label": "Glanhau a diheintio welingtonau, gan gynnwys trochfeydd traed"
+          },
+          "disinfectingOnArrivalAndDeparture": {
+            "label": "Mesurau glanhau a diheintio pan fydd contractwr yn cyrraedd ac yn gadael"
+          },
+          "dedicatedStaff": {
+            "label": "Staff penodol yn gofalu am yr anifeiliaid sy'n dod i mewn"
+          },
+          "other": {
+            "label": "Mesurau glanhau a diheintio eraill"
+          }
+        }
+      },
+      "slurryManureOther": {
+        "question": "Pa fesurau eraill sy'n cael eu cymryd i reoli slyri a thail?",
+        "validation": {
+          "empty": "Nodwch fanylion am y mesurau eraill sy'n cael eu cymryd i reoli slyri a thail",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "disinfectant": {
+        "question": "Pa ddiheintydd rydych chi'n ei ddefnyddio?",
+        "validation": {
+          "empty": "Nodwch 2 lythyren gyntaf y diheintydd rydych yn ei ddefnyddio"
+        },
+        "intro": "Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB."
+      },
+      "badgers": {
+        "question": "Pa fesurau rydych chi'n eu cymryd i leihau'r risg o haint gan fywyd gwyllt?",
+        "hint": "Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.",
+        "options": {
+          "badgerProofFencing": {
+            "label": "Ffensio sy'n atal moch daear, fel ffensys weiren, gatiau alwminiwm solet a ffensys rheiliau neu ffensys trydan ôl-dynadwy"
+          },
+          "aluminiumFeedBins": {
+            "label": "Biniau bwydo alwminiwm"
+          },
+          "limitAccessToBadgerHabitat": {
+            "label": "Cyfyngu mynediad i letrinau a thwlciau moch daear"
+          },
+          "troughsAbove90cm": {
+            "label": "Cafnau bwyd a dŵr wedi'u codi uwchben 90cm"
+          },
+          "securedFeedStores": {
+            "label": "Mae storfeydd bwyd yn ddiogel"
+          },
+          "licksOutOfReach": {
+            "label": "Llyfiadau mwynau yn cael eu cadw allan o gyrraedd bywyd gwyllt"
+          },
+          "other": {
+            "label": "Mesurau eraill i leihau'r risg o haint"
+          }
+        },
+        "guidanceIntro": "Os oes mesurau nad ydych yn eu cymryd ond yr hoffech ddysgu mwy amdanynt,",
+        "guidanceLinkText": "darllenwch y canllawiau ar y TB Hub",
+        "guidanceSuffix": "(yn agor mewn tab newydd)."
+      },
+      "obligations": {
+        "question": "Bioddiogelwch ar eich fferm neu safle",
+        "intro": "Rhaid i chi ateb y cwestiynau yn yr adran hon mor gywir ag y gallwch.",
+        "importance": "Mae'n bwysig eich bod yn treulio amser yn ystyried eich mesurau bioddiogelwch a'r camau rydych yn eu cymryd i atal lledaeniad TB.",
+        "vetReview": "Bydd milfeddyg yn adolygu eich atebion ac yn penderfynu ar ganlyniad eich cais.",
+        "guidance": "Canllawiau ar fioddiogelwch",
+        "guidanceLink": "sut i warchod gwartheg rhag haint TB"
+      },
+      "dilutionRate": {
+        "heading": "Cyfradd gwanhau diheintydd",
+        "question": "Cadarnhad o'r gyfradd gwanhau",
+        "validation": {
+          "empty": "Mae angen i chi dicio'r blwch cadarnhau"
+        },
+        "answer": {
+          "undiluted": "Rwy'n cadarnhau bod y diheintydd yn cael ei ddefnyddio heb ei wanhau ar y fferm neu'r safle",
+          "prefix": "Rwy'n cadarnhau cyfradd gwanhau o 1:",
+          "suffix": " yn cael ei ddefnyddio ar y fferm neu'r safle",
+          "confirmationOption": "Rwy'n cadarnhau mai dyma'r gyfradd gwanhau a ddefnyddir ar y fferm neu'r safle"
+        },
+        "page": {
+          "intro": "Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.",
+          "approvedPrefix": "Y gyfradd gwanhau gymeradwy ar gyfer",
+          "is": "yw",
+          "undiluted": "heb ei wanhau",
+          "explanationPrefix": "Mae hyn yn golygu am bob 1",
+          "explanationMiddle": "o",
+          "explanationUsing": "rydych yn ei ddefnyddio",
+          "explanationSuffix": "o ddŵr.",
+          "units": {
+            "litres": "litrau",
+            "millilitres": "mililitrau",
+            "litre": "litr",
+            "gram": "gram"
+          },
+          "selectFirst": "Rhaid i chi ddewis diheintydd cyn cadarnhau'r gyfradd gwanhau.",
+          "selectDisinfectantButton": "Dewiswch ddiheintydd"
+        }
+      }
+    },
+    "home": {
+      "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud TB. Rhaid i chi gael trwydded cyn symud gwartheg i mewn i neu allan o fferm neu safle gyda chyfyngiadau TB.",
+      "checkExistingLicence": "Gwiriwch a yw APHA eisoes wedi anfon trwydded symud TB atoch cyn i chi wneud cais.",
+      "whoCanUseThisService": "Pwy all ddefnyddio'r gwasanaeth hwn",
+      "youCanUseThisService": "Gallwch ddefnyddio'r gwasanaeth hwn i wneud cais am drwydded os ydych yn symud gwartheg:",
+      "movingCattleReasons": {
+        "reason-1": "o fferm neu farchnad dirwystr i fferm neu safle cyfyngedig TB",
+        "reason-2": "o fferm neu safle cyfyngedig TB i:",
+        "reason-2-options": {
+          "option-1": "fferm neu safle cyfyngedig TB",
+          "option-2": "uned bwrcasu gymeradwy (AFU), gan gynnwys wedi'i wella â phori (AFUE)",
+          "option-3": "lladd neu gasgliad lladd TB (marchnad goch), oni bai ei fod wedi'i gwmpasu gan drwydded gyffredinol",
+          "option-4": "gwerthiant TB penodol (marchnad oren)"
+        },
+        "reason-3": "o AFU (gan gynnwys AFUE) i AFU (gan gynnwys AFUE)"
+      },
+      "whenYouDoNotNeedThisService": "Pryd nad oes angen y gwasanaeth hwn arnoch",
+      "generalLicenceNotice": "Nid oes angen i chi wneud cais os yw trwydded gyffredinol eisoes yn caniatáu'r symudiad.",
+      "generalLicenceCheck": "Gwiriwch y drwydded gyffredinol a anfonodd APHA atoch pan osodwyd eich buches dan gyfyngiad TB. Bydd trwydded gyffredinol yn caniatáu i chi symud gwartheg:",
+      "generalLicenceMovements": {
+        "movement-1": "yn uniongyrchol i gael eu lladd",
+        "movement-2": "drwy gasgliad lladd TB (marchnad goch) os cafodd ei chyhoeddi ar ôl 30 Medi 2024"
+      },
+      "movingBetweenRestrictedPremises": "Symud gwartheg rhwng ffermydd neu safleoedd cyfyngedig TB",
+      "movingBetweenRestrictedPremisesIntro": "Os yw gwartheg yn symud o fferm neu safle cyfyngedig TB i fferm neu safle cyfyngedig TB arall, rhaid i'r fferm neu'r safle cyrchfan wneud cais am y drwydded. Mae hyn oherwydd bod angen manylion arnom am eu gweithdrefnau bioddiogelwch TB.",
+      "cannotApplyIntro": "Os na all y fferm neu'r safle cyrchfan wneud cais, defnyddiwch",
+      "cannotApplyLinkText": "y ffurflen gais hon",
+      "cannotApplySuffix": "yn lle hynny.",
+      "beforeYouStart": "Cyn i chi ddechrau",
+      "guidanceIntro": "Darllenwch y canllawiau:",
+      "guidanceLinkText": "Twbercwlosis Buchol: profi eich gwartheg yn Lloegr",
+      "cannotProcessIf": "Ni all APHA brosesu eich cais os:",
+      "cannotProcessReasons": {
+        "reason-1": "oes adweithyddion yn dal ar eich fferm neu safle",
+        "reason-2": "oes gwartheg yn aros am ganlyniadau prawf croen neu waed TB",
+        "reason-3": "yw profi TB yn hwyr"
+      },
+      "contactVet": "Cysylltwch â'ch milfeddyg os nad ydych yn siŵr a yw canlyniadau'r prawf wedi'u cyflwyno. Gall oedi ddigwydd os nad yw APHA wedi'u derbyn.",
+      "whatYouNeedToApply": "Beth sydd angen arnoch i wneud cais",
+      "youWillNeed": "Bydd angen arnoch:",
+      "requirements": {
+        "requirement-1": "rif daliad plwyf sirol (CPH) a chyfeiriad y lle mae'r gwartheg yn symud ohono",
+        "requirement-2": "rif CPH a manylion ynghylch ble mae'r gwartheg yn symud iddo (er enghraifft, y math o farchnad)",
+        "requirement-3": "gyfeiriad e-bost rydych am i'r drwydded gael ei anfon ato"
+      },
+      "movingOntoFarm": "Os yw gwartheg yn symud i mewn i'ch fferm, rhaid i chi hefyd:",
+      "movingOntoFarmRequirements": {
+        "requirement-1": "ddarparu manylion am eich gweithdrefnau bioddiogelwch TB",
+        "requirement-2": "lwytho map bioddiogelwch i fyny"
+      },
+      "getHelp": "Cael help",
+      "applicationProcessingTime": "Gall geisiadau gymryd hyd at 5 diwrnod gwaith i'w prosesu.",
+      "processingDelay": "Gall gymryd mwy o amser os oes angen gwiriadau milfeddygol neu os oes angen mwy o wybodaeth arnom.",
+      "callUs": "Ffoniwch 03000 200 301 a dewiswch yr opsiwn ar gyfer TB mewn anifeiliaid.",
+      "openingHours": "Mae'r llinellau ar agor o ddydd Llun i ddydd Gwener, 8:30am i 5pm."
+    },
+    "taskList": {
+      "title": "Eich cais am drwydded symud Twbercwlosis Buchol (TB)",
+      "buttonText": "Adolygu a chyflwyno"
+    },
+    "biosecurityMap": {
+      "title": "Map bioddiogelwch",
+      "uploadPlan": {
+        "question": "Llwythwch fap bioddiogelwch i fyny",
+        "intro": "Mae angen i chi lwytho map o'r fferm neu'r safle i fyny.",
+        "preference": "Mae'n well gennym fap clir a manwl, megis map Google gydag anodiadau neu fap wedi'i baratoi ymlaen llaw gan asiant neu syrfëwr.",
+        "itNeedsToInclude": "Mae angen iddo gynnwys:",
+        "isolationLocation": "lle bydd y gwartheg sy'n dod i mewn yn cael eu hynysu",
+        "residentAndNeighbouringCattle": "lleoliad y gwartheg preswyl a gwartheg cyfagos",
+        "minimumDistances": "pellterau lleiaf rhwng y gwartheg sy'n dod i mewn ac unrhyw wartheg preswyl a chyfagos",
+        "cattleMovements": "symudiadau'r gwartheg, gan gynnwys lle byddant yn pori, yn cael eu godro, ac yn cael eu llwytho",
+        "handlingFacility": "lleoliad y cyfleuster trin",
+        "manureStorage": "lleoliad storio tail neu slyri",
+        "biosecurityPoints": "lleoliad pwyntiau bioddiogelwch, gan gynnwys ffensio sy'n atal moch daear",
+        "fileRequirements": "Rhaid i'r ffeil a ddewiswyd fod yn PNG, JPEG, JPG neu PDF ac yn llai na 10 MB.",
+        "uploading": "Llwytho'r map bioddiogelwch i fyny",
+        "uploadingSubTitle": "Gall hyn gymryd ychydig funudau.",
+        "uploadFile": "Llwytho ffeil",
+        "chooseFile": "Dewis ffeil",
+        "dropFile": "neu ollwng ffeil",
+        "dropZoneEntered": "Mewnosodwyd y parth cwympo",
+        "dropZoneLeft": "Gadael y parth cwympo",
+        "noFile": "Dim ffeil wedi'i dewis",
+        "errorCodes": {
+          "FILE_VIRUS": "Mae'r ffeil yn cynnwys firws",
+          "FILE_EMPTY": "Mae'r ffeil a ddewiswyd yn wag",
+          "FILE_TOO_LARGE": "Rhaid i'r ffeil fod yn llai na 10 MB",
+          "FILE_INVALID_TYPE": "Rhaid i'r ffeil fod yn PNG, JPEG neu PDF",
+          "FILE_UPLOAD_FAILED": "Ni ellir llwytho'r ffeil i fyny - ceisiwch eto",
+          "FILE_DOWNLOAD_FAILED": "Ni ellir lawrlwytho'r ffeil"
+        }
+      },
+      "sizeError": {
+        "emailInstruction": "Rhaid i chi e-bostio eich map bioddiogelwch i csc.tblicensing@apha.gov.uk",
+        "cphInstruction": "Yn eich e-bost cynhwyswch eich rhif daliad plwyf sirol (CPH).",
+        "processingNotice": "Ni ellir prosesu eich cais nes i ni dderbyn eich map bioddiogelwch."
+      }
+    },
+    "licence": {
+      "receivingLicence": "Derbyn y drwydded",
+      "yourName": {
+        "question": "Beth yw eich enw?",
+        "validation": {
+          "firstName": "Nodwch eich enw cyntaf",
+          "lastName": "Nodwch eich cyfenw"
+        }
+      },
+      "fullName": {
+        "question": "Beth yw enw'r person a gofrestrwyd fel ceidwad yr anifeiliaid?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf y person a gofrestrwyd fel ceidwad yr anifeiliaid",
+          "lastName": "Nodwch gyfenw'r person a gofrestrwyd fel ceidwad yr anifeiliaid"
+        }
+      },
+      "fullNameFuture": {
+        "question": "Beth yw enw'r person a fydd yn geidwad cofrestredig yr anifeiliaid?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf y person a fydd yn geidwad cofrestredig yr anifeiliaid",
+          "lastName": "Nodwch gyfenw'r person a fydd yn geidwad cofrestredig yr anifeiliaid"
+        }
+      },
+      "emailAddress": {
+        "question": "Pa gyfeiriad e-bost hoffech chi i'r drwydded gael ei hanfon ato?",
+        "validation": {
+          "pattern": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
+          "maxLength": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
+          "empty": "Nodwch y cyfeiriad e-bost yr hoffech i'r drwydded gael ei hanfon ato"
+        }
+      },
+      "destinationEmailAddress": {
+        "question": "Beth yw eich cyfeiriad e-bost?",
+        "validation": {
+          "pattern": "Nodwch y cyfeiriad e-bost mewn fformat dilys",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 255 nod",
+          "empty": "Nodwch eich cyfeiriad e-bost"
+        }
+      },
+      "originEmail": {
+        "question": "Beth yw cyfeiriad e-bost y safle tarddiad?",
+        "validation": {
+          "pattern": "Nodwch y cyfeiriad e-bost mewn fformat dilys",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 255 nod",
+          "empty": "Nodwch gyfeiriad e-bost y safle tarddiad"
+        }
+      },
+      "checkAnswers": "Gwiriwch eich atebion cyn i chi barhau â'ch cais"
+    },
+    "submit": {
+      "confirmationTitle": "Eich cais am drwydded symud clefyd anifeiliaid"
+    }
+  },
+  "fmd": {
+    "about": {
+      "title": "Am y symudiad",
+      "movementActivityType": {
+        "question": "Pa fath o symudiad neu weithgaredd y mae eich cais yn ymwneud ag ef?",
+        "options": {
+          "onFarm": {
+            "label": "Symud i mewn i fferm neu safle"
+          },
+          "offFarm": {
+            "label": "Symud oddi ar fferm neu safle",
+            "hint": "Gan gynnwys symud neu gasglu llaeth"
+          },
+          "slaughter": {
+            "label": "Lladd anifeiliaid ar y safle",
+            "hint": "Gan gynnwys dod â Slaughterman neu Knackerman i'r safle"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch y math o symudiad neu weithgaredd y mae eich cais yn ymwneud ag ef"
+        }
+      },
+      "whatIsMoving": {
+        "question": "Beth rydych chi'n ei symud?",
+        "options": {
+          "liveAnimals": "Anifeiliaid byw",
+          "carcasses": "Celanedd (anifeiliaid marw)",
+          "milk": "Llaeth"
+        },
+        "validation": {
+          "empty": "Dewiswch beth rydych chi'n ei symud"
+        }
+      },
+      "moveToSlaughter": {
+        "question": "A yw'r anifeiliaid yn symud i gael eu lladd?",
+        "options": {
+          "yes": "Iawn",
+          "no": "Na"
+        },
+        "validation": {
+          "empty": "Dewiswch a yw'r anifeiliaid yn symud i gael eu lladd"
+        }
+      },
+      "animalSlaughtered": {
+        "question": "Pa fath o anifail fydd yn cael ei ladd?",
+        "options": {
+          "cattle": {
+            "label": "Gwartheg"
+          },
+          "sheep": {
+            "label": "Defaid"
+          },
+          "goats": {
+            "label": "Geifr"
+          },
+          "pigs": {
+            "label": "Moch"
+          },
+          "camelids": {
+            "label": "Camelidau (fel lamas ac alpacas)"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch y math o anifail sy'n cael ei ladd"
+        }
+      },
+      "typeOfAnimals": {
+        "question": "Pa fath o anifail rydych chi'n ei symud?",
+        "options": {
+          "cattle": {
+            "label": "Gwartheg"
+          },
+          "sheep": {
+            "label": "Defaid"
+          },
+          "goats": {
+            "label": "Geifr"
+          },
+          "pigs": {
+            "label": "Moch"
+          },
+          "camelids": {
+            "label": "Camelidau (fel lamas ac alpacas)"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch y math o anifail rydych chi'n ei symud"
+        }
+      },
+      "milkAnimal": {
+        "question": "Pa anifail mae'r llaeth neu'r cynnyrch yn dod ohono?",
+        "options": {
+          "cow": {
+            "label": "Buwch"
+          },
+          "sheep": {
+            "label": "Defaid"
+          },
+          "goat": {
+            "label": "Gafr"
+          },
+          "anotherAnimal": {
+            "label": "Anifail arall"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch pa anifail mae'r llaeth neu'r cynnyrch yn dod ohono"
+        }
+      },
+      "milkWhoIsMoving": {
+        "question": "Pwy sy'n symud y llaeth?",
+        "options": {
+          "producer": {
+            "label": "Rwy'n gynhyrchydd yn symud fy llaeth fy hun"
+          },
+          "dairy": {
+            "label": "Rwy'n hufenfa sy'n casglu gan sawl cynhyrchydd"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch pwy sy'n symud y llaeth"
+        }
+      },
+      "animalIds": {
+        "question": "Beth yw rhifau adnabod (ID) yr anifeiliaid sy'n cael eu symud?",
+        "hint": "Er enghraifft, clust-dagiau, marciau taro, neu rifau praidd. Os nad oes gan yr anifeiliaid rifau adnabod, nodwch N/A.",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod",
+          "empty": "Nodwch rifau adnabod yr anifeiliaid neu N/A os nad oes rhai"
+        }
+      },
+      "animalIdsSlaughter": {
+        "question": "Beth yw rhifau adnabod (ID) yr anifeiliaid sy'n cael eu lladd?",
+        "hint": "Er enghraifft, clust-dagiau, marciau taro, neu rifau praidd. Os nad oes gan yr anifeiliaid rifau adnabod, nodwch N/A.",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod",
+          "empty": "Nodwch rifau adnabod yr anifeiliaid neu N/A os nad oes rhai"
+        }
+      },
+      "numberOfAnimals": {
+        "question": "Sawl anifail rydych chi'n bwriadu eu symud?",
+        "validation": {
+          "empty": "Nodwch sawl anifail rydych chi'n bwriadu eu symud",
+          "max": "Nodwch rif %{value} neu is",
+          "min": "Nodwch rif %{value} neu uwch"
+        }
+      },
+      "slaughteredNumber": {
+        "question": "Sawl anifail fydd yn cael eu lladd?",
+        "validation": {
+          "empty": "Nodwch sawl anifail fydd yn cael eu lladd",
+          "max": "Nodwch rif %{value} neu is",
+          "min": "Nodwch rif %{value} neu uwch"
+        }
+      },
+      "movementOnExit": {
+        "title": "Dim ond anifeiliaid byw y gallwch eu symud ar y safle",
+        "body": "I symud carcasau neu laeth, gallwch wneud cais am symudiad oddi ar fferm neu safle."
+      }
+    },
+    "origin": {
+      "title": "Tarddiad y symudiad",
+      "premisesType": {
+        "question": "Pa fath o safle mae'r anifeiliaid yn symud ohono?",
+        "validation": {
+          "empty": "Dewiswch fath y safle tarddiad"
+        },
+        "options": {
+          "farm": {
+            "label": "Fferm"
+          },
+          "smallholding": {
+            "label": "Daliad bach neu breswylfa ddomestig",
+            "hint": "Mae daliad bach fel arfer o dan 50 erw"
+          },
+          "anotherPremisesType": {
+            "label": "Math arall o safle"
+          }
+        },
+        "errors": {
+          "empty": "Dewiswch fath y safle tarddiad"
+        }
+      },
+      "whatAnimals": {
+        "question": "Pa anifeiliaid sy'n cael eu cadw ar y safle?",
+        "hint": "Dewiswch bob un sy'n berthnasol",
+        "validation": {
+          "empty": "Dewiswch pa anifeiliaid sy'n cael eu cadw ar y safle"
+        },
+        "options": {
+          "cattle": {
+            "label": "Gwartheg"
+          },
+          "sheep": {
+            "label": "Defaid"
+          },
+          "goats": {
+            "label": "Geifr"
+          },
+          "pigs": {
+            "label": "Moch"
+          },
+          "camelids": {
+            "label": "Camelidau"
+          },
+          "otherClovenHoovedAnimals": {
+            "label": "Anifeiliaid carn-hollt eraill"
+          },
+          "or": {
+            "label": "neu"
+          },
+          "noneOfTheseAnimals": {
+            "label": "Dim un o'r anifeiliaid hyn"
+          }
+        }
+      },
+      "tla": {
+        "heading": "Cysylltiad tir dros dro (TLA)",
+        "question": "A yw'r safle tarddiad yn TLA?",
+        "tlaIntro": "Mae cysylltiad tir dros dro (TLA) ar gyfer tir neu adeiladau sydd:",
+        "criteria": {
+          "criterion-1": "o fewn 10 milltir i'r prif ardal rydych yn cadw da byw ynddi",
+          "criterion-2": "nad ydych yn berchen arnynt",
+          "criterion-3": "yng Nghymru neu Loegr",
+          "criterion-4": "yn yr un ardal risg TB buchol â'ch rhif CPH"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a yw'r safle tarddiad yn TLA"
+        }
+      },
+      "gridRef": {
+        "question": "Beth yw cyfeirnod grid y lleoliad?",
+        "hint": "Gallwch ddod o hyd i'r cyfeirnod grid drwy ddefnyddio gwasanaeth map ar-lein, fel OS Maps.",
+        "validation": {
+          "empty": "Nodwch gyfeirnod grid y safle tarddiad",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      },
+      "cphNumber": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) y safle tarddiad?"
+      },
+      "originAddress": {
+        "question": "Beth yw cyfeiriad y safle tarddiad?"
+      },
+      "tcphNumber": {
+        "question": "Beth yw'r rhif TLA neu ddaliad plwyf sirol dros dro (tCPH)?",
+        "validation": {
+          "maxLength": "Nodwch y rhif TLA neu tCPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "pattern": "Nodwch y rhif TLA neu tCPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "empty": "Nodwch y rhif TLA neu tCPH"
+        }
+      },
+      "clovenHooved": {
+        "question": "Pa anifeiliaid carn-hollt eraill sy'n cael eu cadw ar y safle?",
+        "validation": {
+          "empty": "Nodwch ba anifeiliaid carn-hollt eraill sy'n cael eu cadw ar y safle",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
+        }
+      }
+    },
+    "destination": {
+      "title": "Cyrchfan y symudiad",
+      "premisesType": {
+        "question": "Pa fath o safle mae'r anifeiliaid yn symud iddo?",
+        "options": {
+          "commercial": {
+            "label": "Daliad neu safle masnachol",
+            "hint": "Fel busnes bwyd neu gwmni bwyd anifeiliaid"
+          },
+          "smallholding": {
+            "label": "Daliad bach neu breswylfa ddomestig",
+            "hint": "Mae daliad bach fel arfer o dan 50 erw"
+          },
+          "farm": {
+            "label": "Fferm"
+          },
+          "anotherLocation": {
+            "label": "Lleoliad arall"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch fath y safle cyrchfan"
+        }
+      },
+      "carcassesDestinationType": {
+        "question": "Ble mae'r celanedd yn mynd?",
+        "options": {
+          "knackersYard": {
+            "label": "Iard knacer"
+          },
+          "renderingPlant": {
+            "label": "Gwaith Rendro"
+          },
+          "incinerator": {
+            "label": "Llosgydd"
+          },
+          "huntKennel": {
+            "label": "Cenel hela"
+          },
+          "somewhereElse": {
+            "label": "Rhywle arall"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch ble mae'r celanedd yn mynd"
+        }
+      },
+      "carcassesSomewhereElse": {
+        "intro": "Dim ond i un o'r lleoedd canlynol y gallant symud:",
+        "places": {
+          "place-1": "Iard knacer",
+          "place-2": "Gwaith rendro",
+          "place-3": "Llosgydd",
+          "place-4": "Cenel hela"
+        }
+      },
+      "applicantMovingCarcasses": {
+        "question": "A ydych chi'n symud y celanedd?",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "noThirdParty": {
+            "label": "Na, bydd trydydd parti yn eu symud"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n symud y celanedd"
+        }
+      },
+      "destinationAddressKnown": {
+        "question": "A ydych chi'n gwybod cyfeiriad y safle cyrchfan?",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n gwybod cyfeiriad y busnes cyrchfan"
+        }
+      },
+      "destinationHasACphNumber": {
+        "question": "A oes gan y safle cyrchfan rif daliad plwyf sirol (CPH)?",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n gwybod rhif CPH y safle cyrchfan"
+        }
+      },
+      "willMoveToTla": {
+        "heading": "Cysylltiad tir dros dro (TLA)",
+        "question": "A yw'r safle cyrchfan yn TLA?",
+        "tlaIntro": "Mae cysylltiad tir dros dro (TLA) ar gyfer tir neu adeiladau sydd:",
+        "criteria": {
+          "criterion-1": "o fewn 10 milltir i'r prif ardal rydych yn cadw da byw ynddi",
+          "criterion-2": "nad ydych yn berchen arnynt",
+          "criterion-3": "yng Nghymru neu Loegr",
+          "criterion-4": "yn yr un ardal risg TB buchol â'ch rhif CPH"
+        },
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a yw'r safle cyrchfan yn TLA"
+        }
+      },
+      "cphDesignated": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) y safle cyrchfan?"
+      },
+      "cphPremises": {
+        "question": "Beth yw rhif daliad plwyf sirol (CPH) y safle cyrchfan?"
+      },
+      "destinationBusinessName": {
+        "question": "Beth yw enw'r busnes cyrchfan?",
+        "validation": {
+          "empty": "Nodwch enw busnes y cyrchfan",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "destinationAddress": {
+        "question": "Beth yw cyfeiriad y safle cyrchfan?"
+      },
+      "abattoirName": {
+        "question": "Beth yw enw'r lladd-dy cymeradwy?",
+        "validation": {
+          "empty": "Nodwch enw'r lladd-dy cymeradwy",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "abattoirAddress": {
+        "question": "Beth yw cyfeiriad y lladd-dy cymeradwy?"
+      },
+      "destinationBusinessPhone": {
+        "question": "Beth yw rhif ffôn cyswllt y busnes cyrchfan?",
+        "validation": {
+          "empty": "Nodwch rif cyswllt y busnes cyrchfan",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "tlaOrCphNumber": {
+        "question": "Beth yw'r rhif TLA neu ddaliad plwyf sirol dros dro (tCPH)?",
+        "validation": {
+          "maxLength": "Nodwch y rhif TLA neu tCPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "pattern": "Nodwch y rhif TLA neu tCPH yn y fformat cywir, er enghraifft, 12/345/6789",
+          "empty": "Nodwch y rhif TLA neu tCPH"
+        }
+      },
+      "thirdPartyMoving": {
+        "question": "Beth yw enw'r trydydd parti sy'n symud y celanedd?",
+        "validation": {
+          "empty": "Nodwch enw'r trydydd parti sy'n symud y celanedd",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "companySellingMilkTo": {
+        "question": "Pa gwmni rydych chi'n gwerthu eich llaeth iddo?",
+        "validation": {
+          "empty": "Nodwch enw'r cwmni rydych chi'n gwerthu'r llaeth iddo",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "removingBusinessAddress": {
+        "question": "Beth yw cyfeiriad y busnes sy'n symud y celanedd?"
+      }
+    },
+    "movement": {
+      "title": "Manylion y symudiad",
+      "collectionPremises": {
+        "question": "Rhestrwch y safleoedd y bydd y cerbyd yn ymweld â nhw ar y diwrnod casglu",
+        "hint": "Nodwch enwau llawn y safleoedd",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod",
+          "empty": "Nodwch enwau'r safleoedd y bydd y cerbyd yn ymweld â nhw ar ddiwrnod casglu"
+        }
+      },
+      "movementStart": {
+        "question": "Pa ddyddiad mae eich symudiad yn dechrau?",
+        "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod gwaith i'w cyhoeddi.",
+        "hint": "Er enghraifft, 7 3 2025",
+        "validation": {
+          "missingDate": "Nodwch ddyddiad dechrau'r symudiad",
+          "missingDay": "Rhaid i ddyddiad dechrau'r symudiad gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad dechrau'r symudiad gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad dechrau'r symudiad gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddyddiad dechrau'r symudiad fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i ddyddiad dechrau'r symudiad fod yn ddyddiad go iawn",
+          "invalidYear": "Rhaid i flwyddyn dechrau'r symudiad fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i'r flwyddyn gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad dechrau'r symudiad fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad dechrau'r symudiad fod yn y dyfodol"
+        }
+      },
+      "movementEnd": {
+        "question": "Pa ddyddiad mae eich symudiad yn gorffen?",
+        "hint": "Er enghraifft, 7 3 2025",
+        "validation": {
+          "missingDate": "Nodwch ddyddiad gorffen y symudiad",
+          "missingDay": "Rhaid i ddyddiad gorffen y symudiad gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad gorffen y symudiad gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad gorffen y symudiad gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddiwrnod gorffen y symudiad fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i fis gorffen y symudiad fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i flwyddyn gorffen y symudiad fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn gorffen y symudiad gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad gorffen y symudiad fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad gorffen y symudiad fod yn y dyfodol"
+        }
+      },
+      "expectMovementDate": {
+        "question": "Beth yw'r dyddiad rydych chi'n disgwyl i'r llaeth symud?",
+        "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod gwaith i'w cyhoeddi.",
+        "hint": "Er enghraifft, 7 3 2025",
+        "validation": {
+          "missingDate": "Nodwch y dyddiad dechrau",
+          "missingDay": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "invalidYear": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn symudiad y llaeth gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn y dyfodol"
+        }
+      },
+      "milkMovementDate": {
+        "question": "Pa ddyddiad mae eich symudiad yn dechrau?",
+        "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod gwaith i'w cyhoeddi.",
+        "hint": "Er enghraifft, 7 3 2025",
+        "validation": {
+          "missingDate": "Nodwch ddyddiad dechrau symudiad y llaeth",
+          "missingDay": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad dechrau symudiad y llaeth gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "invalidYear": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn symudiad y llaeth gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad dechrau symudiad y llaeth fod yn y dyfodol"
+        }
+      },
+      "disposalDate": {
+        "question": "Pa ddyddiad rydych chi'n disgwyl i'r gwaredu ddigwydd?",
+        "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod gwaith i'w cyhoeddi. Ar gyfer achosion lles, byddwn yn anelu at brosesu eich cais yn gynt.",
+        "validation": {
+          "missingDate": "Nodwch y dyddiad rydych chi'n disgwyl i'r gwaredu ddigwydd",
+          "missingDay": "Rhaid i ddyddiad gwaredu gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad gwaredu gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad gwaredu gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddiwrnod gwaredu fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i fis gwaredu fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i flwyddyn gwaredu fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn gwaredu gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad gwaredu fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad gwaredu fod yn y dyfodol"
+        },
+        "hint": "Er enghraifft, 7 3 2025"
+      },
+      "twoWeekRepeat": {
+        "question": "A fydd y symudiad yn cael ei ailadrodd o fewn cyfnod o 2 wythnos?",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "no": {
+            "label": "Na"
+          }
+        },
+        "errors": {
+          "empty": "Dewiswch a fydd y symudiad yn cael ei ailadrodd o fewn cyfnod o 2 wythnos"
+        }
+      },
+      "maximumDaysAnimals": {
+        "question": "Beth yw'r nifer mwyaf o ddyddiau sydd eu hangen i symud yr anifeiliaid?",
+        "validation": {
+          "empty": "Nodwch y nifer mwyaf o ddyddiau sydd eu hangen i symud yr anifeiliaid",
+          "min": "Rhaid i'r nifer mwyaf o ddyddiau sydd eu hangen i symud yr anifeiliaid fod yn 1 neu'n uwch",
+          "max": "Rhaid i nifer y teithiau sydd eu hangen i symud yr anifeiliaid o fewn cyfnod o 2 wythnos fod yn 999 diwrnod neu'n is"
+        }
+      },
+      "maxJourneys": {
+        "question": "Beth yw'r nifer mwyaf o deithiau neu gonsignmentau sydd eu hangen i symud yr anifeiliaid?",
+        "validation": {
+          "empty": "Nodwch y nifer mwyaf o deithiau neu gonsignmentau sydd eu hangen i symud yr anifeiliaid",
+          "min": "Rhaid i nifer y teithiau neu'r consignmentau sydd eu hangen i symud yr anifeiliaid fod yn 1 neu fwy",
+          "max": "Rhaid i nifer y teithiau neu'r consignmentau sydd eu hangen i symud yr anifeiliaid fod yn 999 neu'n is"
+        }
+      },
+      "maximumJourneysMilk": {
+        "question": "Beth yw'r nifer mwyaf o deithiau sydd eu hangen i symud y llaeth dros y cyfnod o 2 wythnos?",
+        "validation": {
+          "empty": "Nodwch y nifer mwyaf o deithiau sydd eu hangen i symud y llaeth yn y cyfnod o 2 wythnos",
+          "min": "Rhaid i nifer y teithiau sydd eu hangen i symud y llaeth o fewn cyfnod o 2 wythnos fod yn 1 neu fwy",
+          "max": "Rhaid i nifer y teithiau sydd eu hangen i symud y llaeth o fewn cyfnod o 2 wythnos fod yn 999 neu'n is"
+        }
+      },
+      "dairyName": {
+        "question": "Beth yw enw'r hufenfa sy'n casglu'r llaeth?",
+        "validation": {
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod",
+          "empty": "Nodwch enw'r hufenfa"
+        }
+      },
+      "vehicleNumber": {
+        "question": "Beth yw rhif cofrestru'r cerbyd sy'n casglu'r llaeth?",
+        "validation": {
+          "empty": "Nodwch rif cofrestru'r cerbyd",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "driverName": {
+        "question": "Beth yw enw gyrrwr y cerbyd?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf gyrrwr y cerbyd",
+          "lastName": "Nodwch gyfenw gyrrwr y cerbyd"
+        }
+      },
+      "driverPhone": {
+        "question": "Beth yw rhif ffôn gyrrwr y cerbyd?",
+        "validation": {
+          "empty": "Nodwch rif ffôn gyrrwr y cerbyd",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      }
+    },
+    "disposal": {
+      "title": "Gwaredu'r anifail",
+      "disposalDate": {
+        "question": "Pa ddyddiad rydych chi'n disgwyl i'r gwaredu ddigwydd?",
+        "hint": "Er enghraifft, 7 3 2025",
+        "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod gwaith i'w cyhoeddi.",
+        "validation": {
+          "missingDate": "Nodwch y dyddiad gwaredu",
+          "missingDay": "Rhaid i ddyddiad gwaredu gynnwys diwrnod",
+          "missingMonth": "Rhaid i ddyddiad gwaredu gynnwys mis",
+          "missingYear": "Rhaid i ddyddiad gwaredu gynnwys blwyddyn",
+          "invalidDay": "Rhaid i ddiwrnod gwaredu fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i fis gwaredu fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i flwyddyn gwaredu fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i flwyddyn gwaredu gynnwys 4 rhif",
+          "invalidDate": "Rhaid i ddyddiad gwaredu fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i ddyddiad gwaredu fod yn y dyfodol"
+        }
+      },
+      "carcassesDestination": {
+        "question": "Ble mae'r celanedd yn mynd?",
+        "options": {
+          "knackersYard": {
+            "label": "Iard knacer"
+          },
+          "renderingPlant": {
+            "label": "Gwaith rendro"
+          },
+          "incinerator": {
+            "label": "Llosgydd"
+          },
+          "huntKennel": {
+            "label": "Cenel hela"
+          },
+          "somewhereElse": {
+            "label": "Rhywle arall"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch ble mae'r celanedd yn mynd"
+        }
+      },
+      "animalByProductsDestination": {
+        "question": "Ble mae'r sgil-gynhyrchion anifeiliaid yn mynd?",
+        "options": {
+          "renderingPlant": {
+            "label": "Gwaith rendro"
+          },
+          "incinerator": {
+            "label": "Llosgydd"
+          },
+          "somewhereElse": {
+            "label": "Rhywle arall"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch ble mae'r sgil-gynhyrchion anifeiliaid yn mynd"
+        }
+      },
+      "disposalWholeAnimal": {
+        "question": "A fyddwch chi'n gwaredu'r anifail cyfan?",
+        "options": {
+          "yes": {
+            "label": "Iawn"
+          },
+          "noPartsOnly": {
+            "label": "Na, dim ond rhannau o'r anifail (fel sgil-gynhyrchion anifeiliaid)"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch a ydych chi'n gwaredu'r anifail cyfan"
+        }
+      },
+      "carcassesSomewhereElse": {
+        "text": "Dim ond i un o'r lleoedd canlynol y gallant symud:",
+        "places": {
+          "place-1": "Gwaith rendro",
+          "place-2": "Llosgydd"
+        }
+      },
+      "abpSomewhereElse": {
+        "text": "Dim ond i un o'r lleoedd canlynol y gallant symud:",
+        "places": {
+          "place-1": "Gwaith rendro",
+          "place-2": "Llosgydd"
+        }
+      },
+      "destinationBusinessName": {
+        "question": "Beth yw enw busnes y cyrchfan?",
+        "validation": {
+          "empty": "Nodwch enw busnes y cyrchfan",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "destinationContactNumber": {
+        "question": "Beth yw rhif ffôn cyswllt y busnes cyrchfan?",
+        "validation": {
+          "empty": "Nodwch rif cyswllt y cyrchfan",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      }
+    },
+    "slaughter": {
+      "title": "Gwybodaeth lladd",
+      "slaughterOrKnackerman": {
+        "question": "A fydd y lladd yn cael ei wneud gan Slaughterman neu Knackerman?",
+        "options": {
+          "knackerman": {
+            "label": "Knackerman"
+          },
+          "slaughterman": {
+            "label": "Slaughterman"
+          }
+        },
+        "validation": {
+          "empty": "Dewiswch gan bwy y bydd y lladd yn cael ei wneud"
+        }
+      },
+      "slaughterDate": {
+        "question": "Pa ddyddiad rydych chi'n disgwyl i'r lladd ddigwydd?",
+        "hint": "Er enghraifft, 7 3 2030",
+        "validation": {
+          "missingDate": "Nodwch y dyddiad rydych chi'n disgwyl i'r lladd ddigwydd",
+          "missingDay": "Rhaid i'r dyddiad lladd disgwyliedig gynnwys diwrnod",
+          "missingMonth": "Rhaid i'r dyddiad lladd disgwyliedig gynnwys mis",
+          "missingYear": "Rhaid i'r dyddiad lladd disgwyliedig gynnwys blwyddyn",
+          "invalidDay": "Rhaid i'r diwrnod lladd disgwyliedig fod yn ddyddiad go iawn",
+          "invalidMonth": "Rhaid i'r mis lladd disgwyliedig fod yn rhif rhwng 1 a 12",
+          "invalidYear": "Rhaid i'r flwyddyn lladd disgwyliedig fod yn ddyddiad go iawn",
+          "nonFourDigitYear": "Rhaid i'r flwyddyn lladd disgwyliedig gynnwys 4 rhif",
+          "invalidDate": "Rhaid i'r dyddiad lladd disgwyliedig fod yn ddyddiad go iawn",
+          "pastDate": "Rhaid i'r dyddiad lladd disgwyliedig fod yn y dyfodol"
+        }
+      },
+      "slaughtermanName": {
+        "question": "Beth yw enw'r Slaughterman?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf pwy fydd y Slaughterman",
+          "lastName": "Nodwch gyfenw pwy fydd y Slaughterman"
+        }
+      },
+      "businessNameKnackerman": {
+        "question": "Beth yw enw busnes y Knackerman?",
+        "validation": {
+          "empty": "Nodwch enw busnes y Knackerman",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "businessPhone": {
+        "question": "Beth yw rhif ffôn cyswllt y busnes sy'n darparu'r Slaughterman?",
+        "validation": {
+          "empty": "Nodwch rif ffôn cyswllt y busnes sy'n darparu'r Slaughterman",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      },
+      "numberKnackerman": {
+        "question": "Beth yw rhif ffôn cyswllt y busnes sy'n darparu'r Knackerman?",
+        "validation": {
+          "empty": "Nodwch rif ffôn cyswllt y busnes sy'n darparu'r Knackerman",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 100 nod"
+        }
+      }
+    },
+    "licence": {
+      "title": "Derbyn y drwydded",
+      "emailAddress": {
+        "question": "Pa gyfeiriad e-bost hoffech chi i'r drwydded gael ei hanfon ato?",
+        "validation": {
+          "pattern": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
+          "maxLength": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
+          "empty": "Nodwch y cyfeiriad e-bost yr hoffech i'r drwydded gael ei hanfon ato"
+        }
+      },
+      "originResponsiblePersonName": {
+        "question": "Pwy sy'n gyfrifol am y safle tarddiad?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf y person sy'n gyfrifol am y safle tarddiad",
+          "lastName": "Nodwch gyfenw'r person sy'n gyfrifol am y safle tarddiad"
+        }
+      },
+      "registeredKeeperName": {
+        "question": "Pwy yw ceidwad cofrestredig yr anifeiliaid?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf ceidwad cofrestredig yr anifeiliaid",
+          "lastName": "Nodwch gyfenw ceidwad cofrestredig yr anifeiliaid"
+        }
+      },
+      "licenseeName": {
+        "question": "I bwy ddylem ni gyhoeddi'r drwydded?",
+        "validation": {
+          "firstName": "Nodwch enw cyntaf deiliad y drwydded",
+          "lastName": "Nodwch gyfenw deiliad y drwydded"
+        }
+      }
+    },
+    "home": {
+      "intro": "Defnyddiwch y gwasanaeth hwn i wneud cais am drwydded symud yn ystod achos o glefyd y traed a'r genau.",
+      "whatYouCanApplyFor": "Beth y gallwch wneud cais amdano",
+      "youCanApplyForFollowing": "Gallwch ddefnyddio'r gwasanaeth hwn i wneud cais am drwydded ar gyfer y gweithgareddau canlynol:",
+      "activities": {
+        "activity-1": "symud anifeiliaid byw i mewn i'ch safle neu allan ohono",
+        "activity-2": "lladd ar y fferm",
+        "activity-3": "symud celanedd",
+        "activity-4": "symud llaeth"
+      },
+      "beforeYouStart": "Cyn i chi ddechrau",
+      "aphaNeedDetails": "Mae angen y manylion hyn ar APHA i brosesu eich cais:",
+      "detailsNeeded": {
+        "details-1": "manylion am y safle tarddiad",
+        "details-2": "rhifau adnabod anifeiliaid",
+        "details-3": "dyddiadau'r gweithgaredd"
+      },
+      "signingIntoService": "Mewngofnodi i'r gwasanaeth",
+      "signingIntoServiceIntro": "Mae angen cyfrif Defra arnoch i ddefnyddio'r gwasanaeth hwn. Gallwch gofrestru am un gan ddefnyddio eich manylion mewngofnodi Government Gateway.",
+      "signingIntoServiceDetails": "Ar ôl i chi fewngofnodi mae angen i chi nodi eich manylion cyswllt, a manylion am eich busnes os oes gennych un.",
+      "getHelp": "Cael help",
+      "getHelpText": "Os oes angen help arnoch i ddefnyddio'r gwasanaeth gallwch ffonio 03000 200 301. Mae'r llinellau ar agor o ddydd Llun i ddydd Gwener rhwng 8.30am a 5pm.",
+      "usingAndSharingInfo": "Defnyddio a rhannu eich gwybodaeth",
+      "privacyNoticeIntro": "Mae sut rydym yn defnyddio eich data personol wedi'i nodi yn",
+      "privacyNoticeLinkText": "hysbysiad preifatrwydd clefydau egsotig, hysbysadwy ac adroddadwy (yn agor mewn tab newydd)"
+    },
+    "submit": {
+      "additionalInfo": "Gall drwyddedau gymryd hyd at 5 diwrnod i'w cyhoeddi. Ar gyfer achosion lles, byddwn yn anelu at brosesu ceisiadau yn gynt."
+    }
+  }
+}
