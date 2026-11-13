@@ -1,6 +1,6 @@
 <div class="govuk-width-container">
   <p class="govuk-body govuk-body-s" data-testid="help-footer-text">
-    If you need help with the service you can call 03000 200 301.
+    {{ translate('common.helpFooterText', 'If you need help with the service you can call 03000 200 301.') }}
   </p>
 </div>
 {{
@@ -10,21 +10,21 @@
       items: [
         {
           href: "/privacy-policy",
-          text: "Privacy",
+          text: 'Privacy',
           attributes: {
             'data-testid': 'privacy-policy-link'
           }
         },
         {
           href: "/cookies",
-          text: "Cookies",
+          text: 'Cookies',
           attributes: {
             'data-testid': 'cookies-link'
           }
         },
         {
           href: "/accessibility-statement",
-          text: "Accessibility statement",
+          text: 'Accessibility statement',
           attributes: {
             'data-testid': 'accessibility-statement-link'
           }

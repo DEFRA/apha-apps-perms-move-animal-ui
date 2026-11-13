@@ -12,6 +12,8 @@ export class HomePage extends Page {
   urlPath = '/'
   pageTitle = config.get('serviceName')
   pageHeading = 'Move animals under disease controls'
+  headingI18nKey = 'common.serviceName'
+  titleI18nKey = 'common.serviceName'
 }
 
 export const homePage = new HomePage()

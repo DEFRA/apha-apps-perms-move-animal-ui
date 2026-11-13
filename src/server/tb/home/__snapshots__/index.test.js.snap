@@ -9,65 +9,64 @@ exports[`HomePage content checks should match content 1`] = `
           <h1 class="govuk-heading-l">Move animals under disease controls</h1>
         </div>
         <p class="govuk-body">
-          Use this service to apply for a TB movement licence. You must have a
-          licence before moving cattle onto or off a farm or premises with TB
-          restrictions.
+          Use this service to apply for a TB movement licence. You must have a licence before moving cattle onto or off a farm or premises with TB restrictions.
         </p>
         <p class="govuk-body">
-          Check if APHA has already sent you a TB movement licence before you
-          apply.
+          Check if APHA has already sent you a TB movement licence before you apply.
         </p>
-        <h3 class="govuk-heading-m">Who can use this service</h3>
+        <h3 class="govuk-heading-m">
+          Who can use this service
+        </h3>
         <p class="govuk-body">
-          You can use this service to apply for a licence if you are moving
-          cattle:
+          You can use this service to apply for a licence if you are moving cattle:
         </p>
         <ul class="govuk-list govuk-list--bullet">
           <li>
-            from an unrestricted farm or market to a TB restricted farm or
-            premises
+            from an unrestricted farm or market to a TB restricted farm or premises
           </li>
           <li>
             from a TB restricted farm or premises to:
             <ul class="govuk-list govuk-list--bullet circle">
-              <li>a TB restricted farm or premises</li>
               <li>
-                an approved finishing unit (AFU), including enhanced with
-                grazing (AFUE)
+                a TB restricted farm or premises
               </li>
               <li>
-                slaughter or a TB slaughter gathering (red market), unless
-                covered by a general licence
+                an approved finishing unit (AFU), including enhanced with grazing (AFUE)
               </li>
-              <li>a dedicated TB sale (orange market)</li>
+              <li>
+                slaughter or a TB slaughter gathering (red market), unless covered by a general licence
+              </li>
+              <li>
+                a dedicated TB sale (orange market)
+              </li>
             </ul>
           </li>
-          <li>from an AFU (including AFUE) to an AFU (including AFUE)</li>
+          <li>
+            from an AFU (including AFUE) to an AFU (including AFUE)
+          </li>
         </ul>
-        <h3 class="govuk-heading-m">When you do not need this service</h3>
+        <h3 class="govuk-heading-m">
+          When you do not need this service
+        </h3>
         <p class="govuk-body">
-          You don’t need to apply if a general licence already allows the
-          movement.
+          You don’t need to apply if a general licence already allows the movement.
         </p>
         <p class="govuk-body">
-          Check the general licence APHA sent you when your herd was placed
-          under TB restriction. A general licence will allow you to move cattle:
+          Check the general licence APHA sent you when your herd was placed under TB restriction. A general licence will allow you to move cattle:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>direct to slaughter</li>
           <li>
-            via a TB slaughter gathering (red market) if issued after 30
-            September 2024
+            direct to slaughter
+          </li>
+          <li>
+            via a TB slaughter gathering (red market) if issued after 30 September 2024
           </li>
         </ul>
         <h3 class="govuk-heading-m">
           Moving cattle between TB restricted farms or premises
         </h3>
         <p class="govuk-body">
-          If cattle are moving from a TB restricted farm or premises to another
-          TB restricted farm or premises, the destination farm or premises must
-          apply for the licence. This is because we need details about their TB
-          biosecurity procedures.
+          If cattle are moving from a TB restricted farm or premises to another TB restricted farm or premises, the destination farm or premises must apply for the licence. This is because we need details about their TB biosecurity procedures.
         </p>
         <p class="govuk-body">
           If the destination farm or premises cannot apply, use
@@ -75,41 +74,58 @@ exports[`HomePage content checks should match content 1`] = `
             this application form</a>
           instead.
         </p>
-        <h3 class="govuk-heading-m">Before you start</h3>
+        <h3 class="govuk-heading-m">
+          Before you start
+        </h3>
         <p class="govuk-body">
           Read the guidance:
           <a href="https://www.gov.uk/guidance/bovine-tb-get-your-cattle-tested-in-england" class="govuk-link">
             Bovine TB: get your cattle tested in England</a>.
         </p>
-        <p class="govuk-body">APHA cannot process your application if:</p>
+        <p class="govuk-body">
+          APHA cannot process your application if:
+        </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>reactors are still on your farm or premises</li>
-          <li>cattle are waiting for TB skin or blood test results</li>
-          <li>TB testing is overdue</li>
+          <li>
+            reactors are still on your farm or premises
+          </li>
+          <li>
+            cattle are waiting for TB skin or blood test results
+          </li>
+          <li>
+            TB testing is overdue
+          </li>
         </ul>
         <p class="govuk-body">
-          Contact your vet if you are unsure whether test results have been
-          submitted. Delays may occur if APHA has not received them.
+          Contact your vet if you are unsure whether test results have been submitted. Delays may occur if APHA has not received them.
         </p>
-        <h3 class="govuk-heading-m">What you need to apply</h3>
-        <p class="govuk-body">You will need:</p>
+        <h3 class="govuk-heading-m">
+          What you need to apply
+        </h3>
+        <p class="govuk-body">
+          You will need:
+        </p>
         <ul class="govuk-list govuk-list--bullet">
           <li>
-            the county parish holding (CPH) number and address cattle are moving
-            from
+            the county parish holding (CPH) number and address cattle are moving from
           </li>
           <li>
-            the CPH number and details of where the cattle are moving to (for
-            example, the type of market)
+            the CPH number and details of where the cattle are moving to (for example, the type of market)
           </li>
-          <li>an email address you want the licence to go to</li>
+          <li>
+            an email address you want the licence to go to
+          </li>
         </ul>
         <p class="govuk-body">
           If cattle are moving onto your farm, you must also:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>provide details of your TB biosecurity procedures</li>
-          <li>upload a biosecurity map</li>
+          <li>
+            provide details of your TB biosecurity procedures
+          </li>
+          <li>
+            upload a biosecurity map
+          </li>
         </ul>
         <a href="task-list" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button" data-testid="start-now-btn">
   Start now
@@ -121,10 +137,11 @@ exports[`HomePage content checks should match content 1`] = `
           Applications can take up to 5 working days to process.
         </p>
         <p class="govuk-body">
-          It may take longer if veterinary checks are needed or if we need more
-          information.
+          It may take longer if veterinary checks are needed or if we need more information.
         </p>
-        <h3 class="govuk-heading-m">Get help</h3>
+        <h3 class="govuk-heading-m">
+          Get help
+        </h3>
         <p class="govuk-body">
           Call 03000 200 301 and select the option for TB in animals.
         </p>
