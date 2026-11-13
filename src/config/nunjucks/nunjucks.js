@@ -60,12 +60,10 @@ Object.entries(globals).forEach(([name, global]) => {
   nunjucksEnvironment.addGlobal(name, global)
 })
 
-if (config.get('featureFlags').translationEnabled) {
-  nunjucksEnvironment.addGlobal('translate', function (key, fallback, params) {
-    const request = this?.ctx?.request ?? this?.request ?? null
-    return translate(request, key, fallback, params)
-  })
-}
+nunjucksEnvironment.addGlobal('translate', function (key, fallback, params) {
+  const request = this?.ctx?.request ?? this?.request ?? null
+  return translate(request, key, fallback, params)
+})
 
 Object.entries(filters).forEach(([name, filter]) => {
   nunjucksEnvironment.addFilter(name, filter)
