@@ -27,6 +27,7 @@
     },
     "checkAnswers": {
       "sectionHeading": "Check your answers before you continue your application",
+      "beforeSubmitHeading": "Check your answers before sending your application",
       "declaration": {
         "question": "Before you submit your application, you must select one of the declaration check boxes.",
         "options": {
