@@ -23,6 +23,14 @@ class Page {
     return $('[data-testid="feedback-link"]')
   }
 
+  getFeedbackBannerText() {
+    return $('.govuk-phase-banner__text')
+  }
+
+  getLanguageLink(language) {
+    return $(`.govuk-language-navigation a[lang="${language}"]`)
+  }
+
   getPrivateBetaBanner() {
     return $('.govuk-phase-banner__content__tag')
   }
