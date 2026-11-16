@@ -2,6 +2,7 @@ import { calculateNextPage } from '../../helpers/next-page.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import GenericPageController from '../generic-page-controller/index.js'
 import { getAuthOptions } from '../../helpers/auth/toggles-helper.js'
+import { translate } from '../../helpers/i18n/index.js'
 
 /** @import { Server, ServerRegisterPluginObject, ServerRoute, ReqRefDefaults, RouteDefMethods } from '@hapi/hapi' */
 /** @import { NextPage } from '../../helpers/next-page.js' */
@@ -61,10 +62,13 @@ export class PageController extends GenericPageController {
   }
 
   async handleGet(req, h, opts = {}) {
+    const heading = translate(req, this.page.headingI18nKey, this.page.heading)
+    const pageTitle = translate(req, this.page.titleI18nKey, this.page.title)
+
     const response = h.view(this.page.view, {
       nextPage: req.query.returnUrl,
-      pageTitle: this.page.title,
-      heading: this.page.heading,
+      pageTitle,
+      heading,
       ...(await this.page.viewProps(req)),
       ...opts
     })

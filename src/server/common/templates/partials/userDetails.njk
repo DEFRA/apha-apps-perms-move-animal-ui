@@ -4,10 +4,12 @@
   {{ displayName }}
   <span class="govuk-!-margin-left-3"
     ><a data-testid="manage-account-link" href="{{ manageAccountUrl }}"
-      >Manage account</a
+      >{{ translate('common.user.manageAccount', 'Manage account') }}</a
     ></span
   >
   <span class="govuk-!-margin-left-3"
-    ><a data-testid="sign-out-link" href="/auth/logout">Sign out</a></span
+    ><a data-testid="sign-out-link" href="/auth/logout"
+      >{{ translate('common.user.signOut', 'Sign out') }}</a
+    ></span
   >
 </p>

@@ -49,11 +49,10 @@
   {% else %}
     {{
       govukPhaseBanner({
-        tag: {
-          text: 'Beta'
-        },
-        html: 'This is a new service. Help us improve it and <a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">give your feedback (opens in new tab)</a>.'
-      })
+              tag: {
+                text: 'Beta'
+              },
+      html: translate('common.feedbackBannerHtml-1', 'This is a new service. Help us improve it and') + ' ' + '<a data-testid="feedback-link" target="_blank" class="govuk-link" href="https://defragroup.eu.qualtrics.com/jfe/form/SV_7ZDFNwIA2wLF9lk">' + translate('common.feedbackBannerHtml-2', 'give your feedback (opens in new tab)') + '</a>.'      })
     }}
   {% endif %}
   {% if breadcrumbs.length > 1 %}
@@ -82,7 +81,7 @@
   {% block metaBeforeContent %}
     {{
       govukBackLink({
-        text: "Back",
+        text: translate('common.back', 'Back'),
         attributes:{
           "id": "back-link"
         },
