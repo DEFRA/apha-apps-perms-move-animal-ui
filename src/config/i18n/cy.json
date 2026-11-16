@@ -80,7 +80,6 @@
         "expires": "Yn dod i ben"
       },
       "session": {
-        "name": "sesiwn",
         "purpose": "Yn cael ei ddefnyddio i gadw eich cynnydd yn ystod y broses ymgeisio",
         "expires": "20 awr ers i chi ddefnyddio'r wefan ddiwethaf"
       },
@@ -108,7 +107,7 @@
       "howToUseIntro": "Rydym am i gynifer o bobl â phosibl allu defnyddio'r wefan hon.",
       "shouldBeAbleTo": "Dylech allu:",
       "changeColours": "Newid lliwiau, lefelau cyferbyniad a ffontiau gan ddefnyddio gosodiadau'r porwr neu'r ddyfais",
-      "zoom": "Chwyddo i mewn hyd at 200% heb i'r testun ollwng oddi ar y sgrin",
+      "zoom": "Chwyddo i mewn hyd at 200%% heb i'r testun ollwng oddi ar y sgrin",
       "keyboard": "Llywio'r rhan fwyaf o'r wefan gan ddefnyddio bysellfwrdd neu feddalwedd adnabod llais",
       "screenReader": "Gwrando ar y rhan fwyaf o'r wefan gan ddefnyddio darllenydd sgrin (gan gynnwys y fersiynau diweddaraf o JAWS, NVDA a VoiceOver)",
       "simpleText": "Rydym hefyd yn gwneud testun y wefan mor syml â phosibl i'w ddeall",
@@ -119,6 +118,8 @@
     },
     "privacy": {
       "title": "Polisi Preifatrwydd",
+      "aphaAbbreviationTitle": "Asiantaeth Iechyd Anifeiliaid a Phlanhigion",
+      "gdprAbbreviationTitle": "Rheoliad Diogelu Data Cyffredinol",
       "intro": "Mae'r hysbysiad preifatrwydd yn cwmpasu holl waith yr Asiantaeth Iechyd Anifeiliaid a Phlanhigion.",
       "moreInformation": "Mae gwybodaeth fanylach am sut rydym yn rheoli data personol ar gyfer pob un o'n swyddogaethau wedi'i chynnwys yn",
       "individualPrivacyNotices": "hysbysiadau preifatrwydd unigol",

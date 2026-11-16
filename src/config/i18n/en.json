@@ -81,7 +81,6 @@
         "expires": "Expires"
       },
       "session": {
-        "name": "session",
         "purpose": "Used to save your progress during the application process",
         "expires": "20 hours since you last used the website"
       },
@@ -109,7 +108,7 @@
       "howToUseIntro": "We want as many people as possible to be able to use this website.",
       "shouldBeAbleTo": "You should be able to:",
       "changeColours": "Change colours, contrast levels and fonts using browser or device settings",
-      "zoom": "Zoom in up to 200% without the text spilling off the screen",
+      "zoom": "Zoom in up to 200%% without the text spilling off the screen",
       "keyboard": "Navigate most of the website using a keyboard or speech recognition software",
       "screenReader": "Listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)",
       "simpleText": "We also make the website text as simple as possible to understand",
@@ -120,6 +119,8 @@
     },
     "privacy": {
       "title": "Privacy Policy",
+      "aphaAbbreviationTitle": "Animal and Plant Health Agency",
+      "gdprAbbreviationTitle": "General Data Protection Regulation",
       "intro": "The privacy notice covers all of Animal and Plant Health Agency’s work.",
       "moreInformation": "More detailed information on how we manage personal data for each of our functions is included within",
       "individualPrivacyNotices": "individual privacy notices",

@@ -1,27 +1,24 @@
-import { privacyPolicyController } from './controller.js'
+import { Page } from '~/src/server/common/model/page/page-model.js'
+import { PageController } from '~/src/server/common/controller/page-controller/page-controller.js'
 
-/**
- * Sets up the routes used in the privacy policy page.
- * These routes are registered in src/server/router.js.
- */
+export class PrivacyPolicyPage extends Page {
+  skipAuth = true
+  sectionKey = 'policies'
+  key = 'privacy'
+  pageTitle = 'Privacy Policy'
+  pageHeading = 'Privacy Policy'
+  urlPath = '/privacy-policy'
+  view = 'privacy-policy/index'
+  titleI18nKey = 'common.privacy.title'
+  headingI18nKey = 'common.privacy.title'
+}
+
+export const privacyPolicyPage = new PrivacyPolicyPage()
 
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-export const privacyPolicy = {
-  plugin: {
-    name: 'privacy-policy',
-    register(server) {
-      server.route([
-        {
-          method: 'GET',
-          path: '/privacy-policy',
-          ...privacyPolicyController
-        }
-      ])
-    }
-  }
-}
+export const privacyPolicy = new PageController(privacyPolicyPage).plugin()
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
