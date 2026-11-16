@@ -11,6 +11,8 @@ export class AccessibilityStatementPage extends Page {
   pageHeading = pageTitle
   urlPath = '/accessibility-statement'
   view = 'accessibility/index'
+  titleI18nKey = 'common.accessibility.title'
+  headingI18nKey = 'common.accessibility.title'
 }
 
 export const accessibilityStatementPage = new AccessibilityStatementPage()

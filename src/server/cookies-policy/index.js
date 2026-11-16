@@ -9,6 +9,8 @@ export class CookiesPolicyPage extends Page {
   pageHeading = 'Cookies'
   urlPath = '/cookies'
   view = 'cookies-policy/index'
+  titleI18nKey = 'common.cookies.title'
+  headingI18nKey = 'common.cookies.title'
 }
 
 export const cookiesPolicyPage = new CookiesPolicyPage()
