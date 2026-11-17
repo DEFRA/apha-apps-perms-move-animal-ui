@@ -7,11 +7,10 @@ import Wreck from '@hapi/wreck'
  */
 
 /**
- * @param {ApplicationModel} application
- * @param {RawApplicationState} [state]
+ * @param {object} payload
  * @returns {Promise<{statusCode: number | undefined, payload: any}>}
  */
-export const submitApplication = async (application, state) => {
+export const submitApplication = async (payload) => {
   if (config.get('featureFlags').prototypeMode) {
     return {
       statusCode: 200,
@@ -22,9 +21,6 @@ export const submitApplication = async (application, state) => {
   }
 
   const { baseUrl, timeout } = config.get('caseManagementApi')
-
-  const payload = application.getCaseManagementData(state)
-
   const response = await Wreck.post(`${baseUrl}/submit`, {
     payload,
     timeout

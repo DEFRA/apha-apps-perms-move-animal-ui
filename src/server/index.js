@@ -22,7 +22,10 @@ import {
 } from './common/plugins/defra-forms/index.js'
 import { getAuthOptions } from './common/helpers/auth/toggles-helper.js'
 import { CustomCacheService } from './common/plugins/defra-forms/custom-cache-service.js'
-import { LANGUAGE_QUERY_PARAM } from './common/helpers/i18n/index.js'
+import {
+  LANGUAGE_CODES,
+  LANGUAGE_QUERY_PARAM
+} from './common/helpers/i18n/index.js'
 import { createLanguageCookiePlugin } from './common/plugins/i18n/language-cookie-plugin.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -80,7 +83,7 @@ export async function createServer() {
       plugin: hapiI18n.plugin,
       options: {
         locales,
-        defaultLocale: 'en',
+        defaultLocale: LANGUAGE_CODES.english,
         queryParameter: LANGUAGE_QUERY_PARAM,
         directory: path.resolve(dirname, '../config/i18n'),
         updateFiles: false,

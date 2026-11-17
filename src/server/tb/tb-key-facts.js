@@ -1,6 +1,8 @@
 /** @import { TbApplicationModel } from './application.js' */
 /** @import { SectionModelV1 } from '../common/model/section/section-model/section-model-v1.js' */
 
+import { LANGUAGE_CODES } from '../common/helpers/i18n/index.js'
+
 // Constants
 const MOVEMENT_ON = 'on'
 const MOVEMENT_OFF = 'off'
@@ -32,7 +34,8 @@ const KEY_FACT_TYPES = {
   destinationKeeperName: 'name',
   requesterCph: 'text',
   additionalInformation: 'text',
-  biosecurityMaps: 'file'
+  biosecurityMaps: 'file',
+  language: 'text'
 }
 
 /**
@@ -256,8 +259,9 @@ function buildBasicKeyFacts(origin, destination) {
 /**
  * Generates TB key facts from the raw application state.
  * @param {TbApplicationModel} application
+ * @param {string} [language]
  */
-export function tbKeyFacts(application) {
+export function tbKeyFacts(application, language = LANGUAGE_CODES.english) {
   const origin = /** @type {SectionModelV1} */ (
     application.getSection('origin')
   )
@@ -297,6 +301,8 @@ export function tbKeyFacts(application) {
   if (biosecurityMap) {
     addBiosecurityMaps(keyFacts, biosecurityMap)
   }
+
+  setKeyFact(keyFacts, 'language', language)
 
   return keyFacts
 }

@@ -1,22 +1,12 @@
 import { statusCodes } from '../../constants/status-codes.js'
-import { TbApplicationModel } from '../../../tb/application.js'
-import { validApplicationState } from '../../test-helpers/journey-state.js'
 import { submitApplication } from './case-management.js'
 import Wreck from '@hapi/wreck'
 import { config } from '~/src/config/config.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 
-const mockRequest = /** @type { any } */ ({})
-let application
+const payload = {}
 
 describe('CaseManagement.submitApplication', () => {
-  beforeAll(async () => {
-    application = await TbApplicationModel.fromRequest(
-      mockRequest,
-      validApplicationState
-    )
-  })
-
   const { baseUrl, timeout } = config.get('caseManagementApi')
   let wreckMock
 
@@ -45,10 +35,10 @@ describe('CaseManagement.submitApplication', () => {
       })
     )
 
-    const response = await submitApplication(application)
+    const response = await submitApplication(payload)
 
     expect(Wreck.post).toHaveBeenCalledWith(`${baseUrl}/submit`, {
-      payload: application.caseManagementData,
+      payload,
       timeout
     })
 
@@ -67,7 +57,7 @@ describe('CaseManagement.submitApplication', () => {
       message: 'EX-12AB-34CD'
     }
 
-    const response = await submitApplication(application)
+    const response = await submitApplication(payload)
 
     expect(Wreck.post).not.toHaveBeenCalled()
 
@@ -75,58 +65,5 @@ describe('CaseManagement.submitApplication', () => {
       payload: expectedResponse,
       statusCode: 200
     })
-  })
-
-  it('should include keyFacts in payload when state is provided for TB applications', async () => {
-    const expectedResponse = {
-      message: 'TB-1234-ABCD'
-    }
-
-    wreckMock.mockResolvedValue(
-      /** @type {any} */ ({
-        payload: JSON.stringify(expectedResponse),
-        res: { statusCode: statusCodes.ok }
-      })
-    )
-
-    await submitApplication(application, validApplicationState)
-
-    expect(Wreck.post).toHaveBeenCalled()
-    const lastCall = wreckMock.mock.calls[wreckMock.mock.calls.length - 1]
-    const [url, options] = lastCall
-    const payloadSent = options.payload
-
-    expect(url).toBe(`${baseUrl}/submit`)
-    expect(payloadSent).toHaveProperty('keyFacts')
-    expect(payloadSent.keyFacts).toMatchObject({
-      licenceType: { type: 'text', value: 'TB16' },
-      requester: { type: 'text', value: 'destination' },
-      movementDirection: { type: 'text', value: 'on' },
-      destinationCph: { type: 'text', value: '12/345/6789' },
-      requesterCph: { type: 'text', value: '12/345/6789' }
-    })
-  })
-
-  it('should send empty keyFacts in payload when state is not provided', async () => {
-    const expectedResponse = {
-      message: 'TB-1234-ABCD'
-    }
-
-    wreckMock.mockResolvedValue(
-      /** @type {any} */ ({
-        payload: JSON.stringify(expectedResponse),
-        res: { statusCode: statusCodes.ok }
-      })
-    )
-
-    await submitApplication(application)
-
-    expect(Wreck.post).toHaveBeenCalled()
-    const lastCall = wreckMock.mock.calls[wreckMock.mock.calls.length - 1]
-    const [url, options] = lastCall
-    const payloadSent = options.payload
-
-    expect(url).toBe(`${baseUrl}/submit`)
-    expect(payloadSent.keyFacts).toEqual({})
   })
 })
