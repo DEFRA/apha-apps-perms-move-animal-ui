@@ -30,6 +30,7 @@ export const config = {
         osVersion: '15.6',
         deviceName: 'iPhone 13',
         realMobile: true,
+        networkLogs: true,
         sessionName: 'ios-safari'
       }
     },
@@ -41,6 +42,7 @@ export const config = {
         osVersion: '15.6',
         deviceName: 'iPhone 13',
         realMobile: true,
+        networkLogs: true,
         sessionName: 'ios-chrome'
       }
     }
