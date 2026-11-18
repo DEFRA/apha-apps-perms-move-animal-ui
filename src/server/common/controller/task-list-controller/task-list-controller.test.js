@@ -13,6 +13,22 @@ import {
 } from '../../test-helpers/journey-state.js'
 import { parseDocument } from '../../test-helpers/dom.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
+import { LANGUAGE_COOKIE_NAME } from '../../plugins/i18n/language-cookie-plugin.js'
+
+jest.mock('../../helpers/i18n/index.js', () => {
+  const actual = jest.requireActual('../../helpers/i18n/index.js')
+
+  return {
+    ...actual,
+    translate: jest.fn((req, key, fallback, params) => {
+      if (key === 'tb.taskList.buttonText') {
+        return actual.getLocale(req) === 'cy' ? 'Adolygu a chyflwyno' : fallback
+      }
+
+      return actual.translate(req, key, fallback, params)
+    })
+  }
+})
 
 /**
  * @import { Server } from '@hapi/hapi'
@@ -35,6 +51,7 @@ class TestTaskListController extends TaskListController {
   StateManager = TestStateManager
   pageTitleAndHeading = 'Test page heading'
   buttonText = 'Review your application and submit'
+  buttonTextI18nKey = 'tb.taskList.buttonText'
   urlPath = '/test/task-list'
   submitUrlPath = '/test/submit'
 }
@@ -195,5 +212,26 @@ describe('TaskListController', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(controller.submitUrlPath)
+  })
+
+  it('should render content in Welsh', async () => {
+    await session.setState(stateKey, {})
+
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: controller.urlPath
+        },
+        {
+          Cookie: `${session.sessionID}; ${LANGUAGE_COOKIE_NAME}=cy`
+        }
+      )
+    )
+
+    const document = parseDocument(payload)
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
   })
 })

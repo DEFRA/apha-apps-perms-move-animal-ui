@@ -344,6 +344,7 @@
       }
     },
     "destination": {
+      "title": "Cyrchfan symud",
       "destinationType": {
         "question": "Ble mae'r anifeiliaid yn mynd iddo?",
         "validation": {
@@ -569,6 +570,7 @@
       }
     },
     "identification": {
+      "title": "Adnabod anifeiliaid",
       "animals42DaysOldOrOlder": {
         "question": "A ydych chi hefyd yn symud unrhyw anifeiliaid sy'n 42 diwrnod oed neu'n hŷn?",
         "validation": {
@@ -1068,7 +1070,7 @@
       }
     },
     "licence": {
-      "receivingLicence": "Derbyn y drwydded",
+      "title": "Derbyn y drwydded",
       "yourName": {
         "question": "Beth yw eich enw?",
         "validation": {

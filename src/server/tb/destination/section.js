@@ -12,6 +12,7 @@ export class DestinationSection extends SectionModelV1 {
   static config = {
     key: 'destination',
     title: 'Movement destination',
+    titleI18nKey: 'tb.destination.title',
     plugin: destination,
     summaryLink: '/destination/check-answers',
     isEnabled: async (app, req) => {

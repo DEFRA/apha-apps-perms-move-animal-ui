@@ -10,6 +10,7 @@ export class BiosecuritySection extends SectionModelV1 {
   static config = {
     key: 'biosecurity',
     title: 'Biosecurity details',
+    titleI18nKey: 'tb.biosecurity.title',
     plugin: biosecurity,
     summaryLink: '/biosecurity/check-answers',
     isEnabled: () => true,

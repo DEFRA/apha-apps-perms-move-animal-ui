@@ -19,5 +19,7 @@ describe('TbTaskListController', () => {
     expect(controller.pageTitleAndHeading).toBe(
       'Your Bovine Tuberculosis (TB) movement licence application'
     )
+    expect(controller.titleAndHeadingI18nKey).toBe('tb.taskList.title')
+    expect(controller.buttonTextI18nKey).toBe('tb.taskList.buttonText')
   })
 })

@@ -8,7 +8,9 @@ exports[`ExoticsTaskListController ExoticsTaskListController should have the exp
         <h1 class="govuk-heading-l">Your foot and mouth disease movement licence application</h1>
           <p>
             You have
-            <span data="test-id-task-to-complete-count">2 out of 2</span>
+            <span data="test-id-task-to-complete-count">2
+              out of
+              2</span>
             sections left to complete.
           </p>
         

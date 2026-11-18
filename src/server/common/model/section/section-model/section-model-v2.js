@@ -9,7 +9,11 @@ import { TerminalPageController } from '@defra/forms-engine-plugin/controllers/i
 /**
  * @import { Request } from '@hapi/hapi'
  * @import { FormContext } from "@defra/forms-engine-plugin/engine/types.js"
- * @import { SectionValidation, summaryViewModelData } from './section-model.js'
+ * @import {
+ *  SectionValidation,
+ *  TaskDetailsViewModel,
+ *  summaryViewModelData
+ * } from './section-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  */
 
@@ -99,7 +103,7 @@ export class SectionModelV2 extends SectionModel {
   /**
    * @param {Request} req
    * @param {RawApplicationState} applicationState
-   * @returns {Promise<object>}
+   * @returns {Promise<TaskDetailsViewModel>}
    */
   async taskDetailsViewModel(req, applicationState) {
     const firstPage = getFirstJourneyPage(this._data)

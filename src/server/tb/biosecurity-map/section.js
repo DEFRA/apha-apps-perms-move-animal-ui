@@ -10,6 +10,7 @@ export class BiosecurityPlanSection extends SectionModelV1 {
   static config = {
     key: 'biosecurity-map',
     title: 'Biosecurity map',
+    titleI18nKey: 'tb.biosecurityMap.title',
     plugin: biosecurityPlan,
     summaryLink: '/biosecurity-map/check-answers',
     isEnabled: () => true,

@@ -22,6 +22,7 @@ describe('OriginSection as SectionModelV1', () => {
   it('should have correct config', () => {
     expect(OriginSection.config.key).toBe('origin')
     expect(OriginSection.config.title).toBe('Movement origin')
+    expect(OriginSection.config.titleI18nKey).toBe('tb.origin.title')
     expect(OriginSection.config.plugin).toBe(origin)
     expect(OriginSection.config.summaryLink).toBe('/origin/check-answers')
     expect(OriginSection.config.isEnabled({})).toBe(true)

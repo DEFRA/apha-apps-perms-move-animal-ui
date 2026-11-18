@@ -13,6 +13,7 @@ export class LicenceSection extends SectionModelV1 {
   static config = {
     key: 'licence',
     title: 'Receiving the licence',
+    titleI18nKey: 'tb.licence.title',
     plugin: licence,
     summaryLink: '/receiving-the-licence/check-answers',
     isEnabled: async (app, req) =>
