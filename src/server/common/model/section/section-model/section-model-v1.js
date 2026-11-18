@@ -3,10 +3,11 @@ import { ExitPage } from '~/src/server/common/model/page/exit-page-model.js'
 import SummaryPage from '~/src/server/common/model/page/summary-page/SummaryPageModel.js'
 import { HiddenAnswer } from '../../answer/hidden/hidden.js'
 import { SectionModel } from './section-model.js'
+import { translate } from '../../../helpers/i18n/index.js'
 
 /**
  * @import { Request } from '@hapi/hapi'
- * @import { SectionValidation } from './section-model.js'
+ * @import { SectionValidation, TaskDetailsViewModel } from './section-model.js'
  * @import { Page } from '~/src/server/common/model/page/page-model.js'
  * @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js'
  * @import { AnswerModel }  from '~/src/server/common/model/answer/answer-model.js'
@@ -154,12 +155,12 @@ export class SectionModelV1 extends SectionModel {
   /**
    * @param {Request} req
    * @param {RawApplicationState} applicationState
-   * @returns {Promise<object>}
+   * @returns {Promise<TaskDetailsViewModel>}
    */
   async taskDetailsViewModel(req, applicationState) {
     const sectionValidity = this.validate()
     return {
-      title: this.config.title,
+      title: translate(req, this.config.titleI18nKey, this.config.title),
       initialLink:
         sectionValidity.firstInvalidPageUrl ??
         this._getFirstPage(applicationState).urlPath,

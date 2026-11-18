@@ -66,6 +66,7 @@ export class IdentificationSection extends SectionModelV1 {
   static config = {
     key: 'identification',
     title: 'Animal identification',
+    titleI18nKey: 'tb.identification.title',
     plugin: identification,
     summaryLink: '/identification/check-answers',
     isEnabled: () => true,

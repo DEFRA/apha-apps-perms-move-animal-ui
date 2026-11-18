@@ -27,6 +27,7 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * @typedef {{
  *  key: string,
  *  title: string,
+ *  titleI18nKey?: string,
  *  plugin?: ServerRegisterPluginObject<void>,
  *  summaryLink: string,
  *  isEnabled: (app: RawApplicationState, req?: Request) => Promise<boolean> | boolean,
@@ -42,6 +43,16 @@ import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
  * visuallyHiddenKey: string,
  * attributes: Record<string, string>
  * }} summaryViewModelData
+ */
+
+/**
+ * @typedef {{
+ *  title: string,
+ *  initialLink: string,
+ *  summaryLink: string,
+ *  isValid: boolean,
+ *  isEnabled: boolean
+ * }} TaskDetailsViewModel
  */
 
 /**
@@ -93,7 +104,7 @@ export class SectionModel {
   /**
    * @param {Request} _req
    * @param {RawApplicationState} _applicationState
-   * @returns {Promise<object>}
+   * @returns {Promise<TaskDetailsViewModel>}
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/require-await
   async taskDetailsViewModel(_req, _applicationState) {

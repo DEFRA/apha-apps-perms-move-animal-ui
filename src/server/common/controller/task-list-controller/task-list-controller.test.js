@@ -13,6 +13,7 @@ import {
 } from '../../test-helpers/journey-state.js'
 import { parseDocument } from '../../test-helpers/dom.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
+import { LANGUAGE_COOKIE_NAME } from '../../plugins/i18n/language-cookie-plugin.js'
 
 /**
  * @import { Server } from '@hapi/hapi'
@@ -195,5 +196,26 @@ describe('TaskListController', () => {
 
     expect(statusCode).toBe(statusCodes.redirect)
     expect(headers.location).toBe(controller.submitUrlPath)
+  })
+
+  it('should render content in Welsh', async () => {
+    await session.setState(stateKey, {})
+
+    const { payload, statusCode } = await server.inject(
+      withCsrfProtection(
+        {
+          method: 'GET',
+          url: controller.urlPath
+        },
+        {
+          Cookie: `${session.sessionID}; ${LANGUAGE_COOKIE_NAME}=cy`
+        }
+      )
+    )
+
+    const document = parseDocument(payload)
+
+    expect(statusCode).toBe(statusCodes.ok)
+    expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
   })
 })

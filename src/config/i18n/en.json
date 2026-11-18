@@ -345,6 +345,7 @@
       }
     },
     "destination": {
+      "title": "Movement destination",
       "destinationType": {
         "question": "Where are the animals going to?",
         "validation": {
@@ -570,6 +571,7 @@
       }
     },
     "identification": {
+      "title": "Animal identification",
       "animals42DaysOldOrOlder": {
         "question": "Are you also moving any animals 42 days old or older?",
         "validation": {
@@ -1069,7 +1071,7 @@
       }
     },
     "licence": {
-      "receivingLicence": "Receiving the licence",
+      "title": "Receiving the licence",
       "yourName": {
         "question": "What is your name?",
         "validation": {
