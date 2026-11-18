@@ -12,6 +12,7 @@ import landingPage from '../page-objects/landingPage.js'
 import accessibilityStatementPage from '../page-objects/accessibilityStatementPage.js'
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
 import signInPage from '../page-objects/signInPage.js'
+import privacyPage from '../page-objects/privacyPage.js'
 
 const welshPageHeadingAndTitle = 'Symud anifeiliaid dan reolaethau clefydau'
 const welshFeedback = 'rhoi eich adborth (yn agor mewn tab newydd)'
@@ -38,6 +39,18 @@ describe('Landing page test', () => {
 
   afterEach('Clear the language preference', async () => {
     await browser.deleteCookies('language')
+  })
+
+  it('Should verify Welsh Cookies translations and restore English', async () => {
+    await cookiesPage.verifyWelshAndEnglishTranslations()
+  })
+
+  it('Should verify Welsh Privacy translations and restore English', async () => {
+    await privacyPage.verifyWelshAndEnglishTranslations()
+  })
+
+  it('Should verify Welsh Accessibility translations and restore English', async () => {
+    await accessibilityStatementPage.verifyWelshAndEnglishTranslations()
   })
 
   it('should have all external links working', async () => {
