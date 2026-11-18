@@ -1,3 +1,4 @@
+import { LANGUAGE_CODES } from '../common/helpers/i18n/index.js'
 import { tbKeyFacts } from './tb-key-facts.js'
 
 /** @import { RawApplicationState } from '~/src/server/common/model/state/state-manager.js' */
@@ -36,15 +37,21 @@ const createApplication = (state) => ({
   }
 })
 
-/** @param {RawApplicationState} state */
-const getKeyFacts = (state) =>
-  tbKeyFacts(/** @type {TbApplicationModel} */ (createApplication(state)))
+/**
+ * @param {RawApplicationState} state
+ * @param {string} [language]
+ */
+const generateKeyFacts = (state, language) =>
+  tbKeyFacts(
+    /** @type {TbApplicationModel} */ (createApplication(state)),
+    language
+  )
 
 /**
  * @param {RawApplicationState} state
  * @param {string} field
  */
-const getKeyFactValue = (state, field) => getKeyFacts(state)[field]?.value
+const getKeyFactValue = (state, field) => generateKeyFacts(state)[field]?.value
 
 describe('tbKeyFacts', () => {
   describe('licence type determination', () => {
@@ -131,7 +138,7 @@ describe('tbKeyFacts', () => {
       ['undefined', { howManyAnimals: undefined }]
     ])('should not include numberOfCattle when %s', (_, destination) => {
       const state = createState({ destination })
-      expect(getKeyFacts(state).numberOfCattle).toBeUndefined()
+      expect(generateKeyFacts(state).numberOfCattle).toBeUndefined()
     })
   })
 
@@ -159,8 +166,8 @@ describe('tbKeyFacts', () => {
       const stateOffFarm = createState({
         origin: { onOffFarm: 'off' }
       })
-      expect(getKeyFacts(stateOnFarm).requesterCph).toBeUndefined()
-      expect(getKeyFacts(stateOffFarm).requesterCph).toBeUndefined()
+      expect(generateKeyFacts(stateOnFarm).requesterCph).toBeUndefined()
+      expect(generateKeyFacts(stateOffFarm).requesterCph).toBeUndefined()
     })
   })
 
@@ -175,7 +182,7 @@ describe('tbKeyFacts', () => {
         origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
         licence: names
       })
-      const result = getKeyFacts(state)
+      const result = generateKeyFacts(state)
       expect(result.originKeeperName.value).toEqual(names.fullName)
       expect(result.destinationKeeperName.value).toEqual(names.yourName)
     })
@@ -188,7 +195,7 @@ describe('tbKeyFacts', () => {
       expect(getKeyFactValue(state, 'destinationKeeperName')).toEqual(
         names.fullName
       )
-      expect(getKeyFacts(state).originKeeperName).toBeUndefined()
+      expect(generateKeyFacts(state).originKeeperName).toBeUndefined()
     })
 
     it('should not set destinationKeeperName for non-eligible movements', () => {
@@ -196,7 +203,7 @@ describe('tbKeyFacts', () => {
         origin: { onOffFarm: 'off', originType: 'tb-restricted-farm' },
         licence: names
       })
-      expect(getKeyFacts(state).destinationKeeperName).toBeUndefined()
+      expect(generateKeyFacts(state).destinationKeeperName).toBeUndefined()
     })
 
     describe('destinationKeeperName logic based on origin restriction', () => {
@@ -225,7 +232,7 @@ describe('tbKeyFacts', () => {
           origin: { onOffFarm: 'on', originType: 'tb-restricted-farm' },
           licence: { fullName: names.fullName, yourName: null }
         })
-        expect(getKeyFacts(state).destinationKeeperName).toBeUndefined()
+        expect(generateKeyFacts(state).destinationKeeperName).toBeUndefined()
       })
 
       it('should not set destinationKeeperName when origin is unrestricted and fullName is null', () => {
@@ -233,7 +240,7 @@ describe('tbKeyFacts', () => {
           origin: { onOffFarm: 'on', originType: 'unrestricted-farm' },
           licence: { fullName: null, yourName: names.yourName }
         })
-        expect(getKeyFacts(state).destinationKeeperName).toBeUndefined()
+        expect(generateKeyFacts(state).destinationKeeperName).toBeUndefined()
       })
     })
   })
@@ -264,8 +271,8 @@ describe('tbKeyFacts', () => {
       })
       const emptyState = createState()
 
-      expect(getKeyFacts(skippedState).biosecurityMaps).toBeUndefined()
-      expect(getKeyFacts(emptyState).biosecurityMaps).toBeUndefined()
+      expect(generateKeyFacts(skippedState).biosecurityMaps).toBeUndefined()
+      expect(generateKeyFacts(emptyState).biosecurityMaps).toBeUndefined()
     })
   })
 
@@ -305,7 +312,7 @@ describe('tbKeyFacts', () => {
         }
       })
 
-      const result = getKeyFacts(state)
+      const result = generateKeyFacts(state)
 
       expect(result).toEqual({
         licenceType: { type: 'text', value: 'TB16' },
@@ -340,7 +347,8 @@ describe('tbKeyFacts', () => {
           value: { firstName: 'Jane', lastName: 'Smith' }
         },
         requesterCph: { type: 'text', value: '22/222/2222' },
-        biosecurityMaps: { type: 'file', value: ['map-key'] }
+        biosecurityMaps: { type: 'file', value: ['map-key'] },
+        language: { type: 'text', value: 'en' }
       })
       expect(result.originKeeperName).toBeDefined()
       expect(result.destinationKeeperName).toBeDefined()
@@ -350,14 +358,31 @@ describe('tbKeyFacts', () => {
 
     it('should handle minimal state with defaults', () => {
       const state = createState()
-      const result = getKeyFacts(state)
+      const result = generateKeyFacts(state)
 
       expect(result).toEqual({
         licenceType: { type: 'text', value: '' },
         requester: { type: 'text', value: 'origin' },
         movementDirection: { type: 'text', value: undefined },
-        additionalInformation: { type: 'text', value: '' }
+        additionalInformation: { type: 'text', value: '' },
+        language: { type: 'text', value: 'en' }
       })
+    })
+  })
+
+  describe('language', () => {
+    it('should use the selected Welsh language', () => {
+      const keyFacts = generateKeyFacts(createState(), 'cy')
+      expect(/** @type {any} */ (keyFacts).language.value).toBe(
+        LANGUAGE_CODES.welsh
+      )
+    })
+
+    it('should default to English when language not provided', () => {
+      const keyFacts = generateKeyFacts(createState())
+      expect(/** @type {any} */ (keyFacts).language.value).toBe(
+        LANGUAGE_CODES.english
+      )
     })
   })
 })

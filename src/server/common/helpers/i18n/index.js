@@ -1,4 +1,8 @@
 export const LANGUAGE_QUERY_PARAM = 'lang'
+export const LANGUAGE_CODES = {
+  english: 'en',
+  welsh: 'cy'
+}
 
 /**
  * @param {import('@hapi/hapi').Request | null | undefined} request
@@ -25,7 +29,7 @@ export function translate(request, key, fallback, params) {
 export function getLocale(request) {
   const requestI18n = /** @type {any} */ (request)
 
-  return requestI18n?.i18n?.getLocale?.() ?? 'en'
+  return requestI18n?.i18n?.getLocale?.() ?? LANGUAGE_CODES.english
 }
 
 /**

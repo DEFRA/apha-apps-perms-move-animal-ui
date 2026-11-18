@@ -4,6 +4,7 @@ import { Page } from '../../model/page/page-model.js'
 import { submitApplication } from '../../connectors/case-management/case-management.js'
 import { statusCodes } from '../../constants/status-codes.js'
 import { QuestionPageController } from '../question-page-controller/question-page-controller.js'
+import { getLocale } from '../../helpers/i18n/index.js'
 
 /**
  * @import {NextPage} from '../../helpers/next-page.js'
@@ -92,10 +93,13 @@ export class SubmitPageController extends QuestionPageController {
       req,
       applicationState
     )
+    const language = getLocale(req)
 
     try {
-      const submissionPayload =
-        application.getCaseManagementData(applicationState)
+      const submissionPayload = application.getCaseManagementData(
+        applicationState,
+        language
+      )
 
       const licenceType = submissionPayload.keyFacts?.licenceType?.value
       if (licenceType) {
@@ -112,7 +116,7 @@ export class SubmitPageController extends QuestionPageController {
       const {
         payload: { message },
         statusCode
-      } = await submitApplication(application, applicationState)
+      } = await submitApplication(submissionPayload)
 
       if (statusCode !== statusCodes.ok) {
         throw new Error(

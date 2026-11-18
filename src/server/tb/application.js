@@ -27,7 +27,7 @@ export class TbApplicationModel extends ApplicationModel {
   get version() {
     return {
       major: 2,
-      minor: 1
+      minor: 2
     }
   }
 
@@ -37,21 +37,23 @@ export class TbApplicationModel extends ApplicationModel {
 
   /**
    * Generates key facts from the application.
+   * @param {string} [language]
    * @returns {Record<string, any>}
    */
-  getKeyFacts() {
-    return tbKeyFacts(this)
+  generateKeyFacts(language) {
+    return tbKeyFacts(this, language)
   }
 
   /**
    * @param {RawApplicationState} [state]
+   * @param {string} [language]
    * @returns {Record<string, any>}
    */
-  getCaseManagementData(state) {
+  getCaseManagementData(state, language) {
     const data = super.getCaseManagementData(state)
 
     if (state) {
-      data.keyFacts = this.getKeyFacts()
+      data.keyFacts = this.generateKeyFacts(language)
     }
 
     return data

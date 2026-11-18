@@ -15,10 +15,10 @@ const createApplication = async (state) =>
   )
 
 describe('TbApplicationModel', () => {
-  describe('getKeyFacts', () => {
+  describe('generateKeyFacts', () => {
     it('should return key facts from valid application state', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts).toBeDefined()
       expect(keyFacts).toHaveProperty('licenceType')
@@ -28,21 +28,21 @@ describe('TbApplicationModel', () => {
 
     it('should correctly determine licence type for TB-restricted to TB-restricted', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.licenceType.value).toBe('TB16')
     })
 
     it('should correctly set requester as destination for on-farm TB-restricted movement', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.requester.value).toBe('destination')
     })
 
     it('should include CPH numbers when present', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.originCph.value).toBe('12/345/6789')
       expect(keyFacts.destinationCph.value).toBe('12/345/6789')
@@ -50,7 +50,7 @@ describe('TbApplicationModel', () => {
 
     it('should include keeper names when present', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.originKeeperName.value).toEqual({
         firstName: 'Kathryn',
@@ -64,7 +64,7 @@ describe('TbApplicationModel', () => {
 
     it('should include biosecurity maps when uploaded', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.biosecurityMaps).toBeDefined()
       expect(keyFacts.biosecurityMaps.value).toContain(
@@ -74,7 +74,7 @@ describe('TbApplicationModel', () => {
 
     it('should set requesterCph based on movement direction', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       // On farm movement should use destination CPH
       expect(keyFacts.requesterCph.value).toBe('12/345/6789')
@@ -98,7 +98,7 @@ describe('TbApplicationModel', () => {
       }
 
       const model = await createApplication(offFarmState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.requester.value).toBe('origin')
       expect(keyFacts.requesterCph.value).toBe('11/111/1111')
@@ -120,7 +120,7 @@ describe('TbApplicationModel', () => {
       }
 
       const model = await createApplication(minimalState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.licenceType.value).toBe('TB16')
       expect(keyFacts.requester.value).toBe('destination')
@@ -144,7 +144,7 @@ describe('TbApplicationModel', () => {
       }
 
       const model = await createApplication(stateWithAnimals)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.numberOfCattle.value).toBe(25)
       expect(typeof keyFacts.numberOfCattle.value).toBe('number')
@@ -152,10 +152,22 @@ describe('TbApplicationModel', () => {
 
     it('should include addresses when present', async () => {
       const model = await createApplication(validApplicationState)
-      const keyFacts = model.getKeyFacts()
+      const keyFacts = model.generateKeyFacts()
 
       expect(keyFacts.originAddress).toBeDefined()
       expect(keyFacts.destinationAddress).toBeDefined()
+    })
+
+    it('should include language defaulting to English', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.generateKeyFacts()
+      expect(keyFacts.language.value).toBe('en')
+    })
+
+    it('should include language passed in', async () => {
+      const model = await createApplication(validApplicationState)
+      const keyFacts = model.generateKeyFacts('cy')
+      expect(keyFacts.language.value).toBe('cy')
     })
   })
 
@@ -170,14 +182,14 @@ describe('TbApplicationModel', () => {
       const model = await createApplication(validApplicationState)
       const data = model.getCaseManagementData(validApplicationState)
 
-      expect(data.keyFacts).toEqual(model.getKeyFacts())
+      expect(data.keyFacts).toEqual(model.generateKeyFacts())
     })
   })
 
   describe('version', () => {
     it('should return correct version', () => {
       const model = new TbApplicationModel({})
-      expect(model.version).toEqual({ major: 2, minor: 1 })
+      expect(model.version).toEqual({ major: 2, minor: 2 })
     })
   })
 

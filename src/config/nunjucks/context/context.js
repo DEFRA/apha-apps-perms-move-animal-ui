@@ -7,6 +7,7 @@ import { buildNavigation } from '~/src/config/nunjucks/context/build-navigation.
 import { isAuthenticated } from '~/src/server/common/helpers/auth/isAuthenticated.js'
 import {
   getLanguageUrl,
+  LANGUAGE_CODES,
   translate
 } from '~/src/server/common/helpers/i18n/index.js'
 
@@ -55,8 +56,8 @@ export function context(request) {
   return {
     request,
     languageUrls: {
-      en: getLanguageUrl(request, 'en'),
-      cy: getLanguageUrl(request, 'cy')
+      en: getLanguageUrl(request, LANGUAGE_CODES.english),
+      cy: getLanguageUrl(request, LANGUAGE_CODES.welsh)
     },
     initialServiceUrl,
     assetPath: `${assetPath}/assets/rebrand`,
