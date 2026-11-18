@@ -27,9 +27,6 @@ export class TaskListController {
   buttonTextI18nKey
 
   /** @type {string} */
-  pageTitle
-
-  /** @type {string} */
   urlPath
 
   /** @type {string} */

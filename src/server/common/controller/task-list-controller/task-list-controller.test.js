@@ -15,6 +15,21 @@ import { parseDocument } from '../../test-helpers/dom.js'
 import { spyOnConfig } from '../../test-helpers/config.js'
 import { LANGUAGE_COOKIE_NAME } from '../../plugins/i18n/language-cookie-plugin.js'
 
+jest.mock('../../helpers/i18n/index.js', () => {
+  const actual = jest.requireActual('../../helpers/i18n/index.js')
+
+  return {
+    ...actual,
+    translate: jest.fn((req, key, fallback, params) => {
+      if (key === 'tb.taskList.buttonText') {
+        return actual.getLocale(req) === 'cy' ? 'Adolygu a chyflwyno' : fallback
+      }
+
+      return actual.translate(req, key, fallback, params)
+    })
+  }
+})
+
 /**
  * @import { Server } from '@hapi/hapi'
  */
@@ -36,6 +51,7 @@ class TestTaskListController extends TaskListController {
   StateManager = TestStateManager
   pageTitleAndHeading = 'Test page heading'
   buttonText = 'Review your application and submit'
+  buttonTextI18nKey = 'tb.taskList.buttonText'
   urlPath = '/test/task-list'
   submitUrlPath = '/test/submit'
 }
