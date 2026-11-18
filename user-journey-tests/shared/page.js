@@ -19,6 +19,10 @@ class Page {
     return $('h1')
   }
 
+  getIntroText() {
+    return $('[data-testid="app-page-body"] > p')
+  }
+
   getFeedbackLink() {
     return $('[data-testid="feedback-link"]')
   }
@@ -170,6 +174,29 @@ class Page {
       this.pageHeading
     )
     await page.verifyPageTitle(this.pageTitle)
+  }
+
+  async verifyPolicyTranslations(
+    getFooterLink,
+    welshTitle,
+    welshIntro,
+    englishIntro,
+    welshFooterText = welshTitle
+  ) {
+    await page.selectElement(this.getLanguageLink('cy'))
+    await page.validateElementVisibleAndText(getFooterLink(), welshFooterText)
+    await page.selectElement(getFooterLink())
+    await page.waitForPagePath(this.pagePath)
+    await page.verifyPageTitle(welshTitle)
+    await page.validateElementVisibleAndText(this.getPageHeading(), welshTitle)
+    await page.validateElementVisibleAndText(this.getIntroText(), welshIntro)
+
+    await page.selectLinkAndVerifyTitle(
+      this.getLanguageLink('en'),
+      this.pageTitle
+    )
+    await this.verifyPageHeadingAndTitle()
+    await page.validateElementVisibleAndText(this.getIntroText(), englishIntro)
   }
 
   async selectBackLink() {

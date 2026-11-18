@@ -8,6 +8,16 @@ class PrivacyPage extends Page {
   pageHeading = pageHeadingAndTitle
   pageTitle = pageHeadingAndTitle
 
+  async verifyWelshAndEnglishTranslations() {
+    await super.verifyPolicyTranslations(
+      () => this.getPrivacyFooterLink(),
+      'Polisi Preifatrwydd',
+      "Mae'r hysbysiad preifatrwydd yn cwmpasu holl waith",
+      'The privacy notice covers all of Animal and Plant Health Agency’s work.',
+      'Preifatrwydd'
+    )
+  }
+
   // Links
   get individualNoticesLink() {
     return $('a=individual privacy notices')

@@ -1,11 +1,9 @@
 import { loginAndSaveSession } from '../helpers/authSessionManager.js'
-import {
-  waitForFullPageUrl,
-  selectElement,
-  waitForPagePath
-} from '../helpers/page.js'
 import privacyPage from '../page-objects/privacyPage.js'
 import signInPage from '../page-objects/signInPage.js'
+
+const privacyNoticesUrl =
+  'https://www.gov.uk/government/publications/animal-and-plant-health-agency-privacy-notices'
 
 describe('Privacy policy page test', () => {
   before(async () => {
@@ -18,41 +16,51 @@ describe('Privacy policy page test', () => {
 
   // Regular links
   it('Should verify the individual privacy notices link', async () => {
-    await selectElement(privacyPage.individualNoticesLink)
-    await waitForPagePath(
-      '/government/publications/animal-and-plant-health-agency-privacy-notices'
+    await expect(privacyPage.individualNoticesLink).toBeDisplayed()
+    await expect(privacyPage.individualNoticesLink).toHaveAttribute(
+      'href',
+      privacyNoticesUrl
     )
   })
 
   it('Should verify the first individual apha privacy notices link', async () => {
-    await selectElement(privacyPage.aphaNotices1)
-    await waitForPagePath(
-      '/government/publications/animal-and-plant-health-agency-privacy-notices'
+    await expect(privacyPage.aphaNotices1).toBeDisplayed()
+    await expect(privacyPage.aphaNotices1).toHaveAttribute(
+      'href',
+      privacyNoticesUrl
     )
   })
 
   it('Should verify the second individual apha privacy notices link', async () => {
-    await selectElement(privacyPage.aphaNotices2)
-    await waitForPagePath(
-      '/government/publications/animal-and-plant-health-agency-privacy-notices'
+    await expect(privacyPage.aphaNotices2).toBeDisplayed()
+    await expect(privacyPage.aphaNotices2).toHaveAttribute(
+      'href',
+      privacyNoticesUrl
     )
   })
 
   it('Should verify the apha gov link', async () => {
-    await selectElement(privacyPage.aphaGovLink)
-    await waitForPagePath(
-      '/government/organisations/animal-and-plant-health-agency'
+    await expect(privacyPage.aphaGovLink).toBeDisplayed()
+    await expect(privacyPage.aphaGovLink).toHaveAttribute(
+      'href',
+      'http://www.gov.uk/apha'
     )
   })
 
   it('Should verify the google terms link', async () => {
-    await selectElement(privacyPage.googleTermsLink)
-    await waitForFullPageUrl('https://policies.google.com/')
+    await expect(privacyPage.googleTermsLink).toBeDisplayed()
+    await expect(privacyPage.googleTermsLink).toHaveAttribute(
+      'href',
+      'https://policies.google.com/'
+    )
   })
 
   it('Should verify the comissioners office link', async () => {
-    await selectElement(privacyPage.comissionersOfficeLink)
-    await waitForPagePath('/make-a-complaint/')
+    await expect(privacyPage.comissionersOfficeLink).toBeDisplayed()
+    await expect(privacyPage.comissionersOfficeLink).toHaveAttribute(
+      'href',
+      'https://ico.org.uk/make-a-complaint/'
+    )
   })
 
   // Email links
