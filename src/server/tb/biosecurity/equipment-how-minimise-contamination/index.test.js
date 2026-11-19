@@ -32,6 +32,12 @@ describe('EquipmentHowMinimiseContaminationPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe(
+      'tb.biosecurity.equipmentHowMinimiseContamination.question'
+    )
+  })
+
   it('should have the correct title', () => {
     expect(page.title).toBe(question)
   })

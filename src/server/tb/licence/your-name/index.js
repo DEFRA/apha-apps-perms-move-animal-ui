@@ -9,6 +9,7 @@ export class YourNamePage extends QuestionPage {
   sectionKey = 'licence'
 
   question = 'What is your name?'
+  questionI18nKey = 'tb.licence.yourName.question'
 
   questionKey = 'yourName'
 

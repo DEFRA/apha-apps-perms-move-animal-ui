@@ -38,6 +38,7 @@ export class DisinfectantPage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'biosecurity'
   question = 'What disinfectant are you using?'
+  questionI18nKey = 'tb.biosecurity.disinfectant.question'
 
   Answer = Answer
 

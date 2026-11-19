@@ -29,6 +29,10 @@ describe('ManureAndSlurryPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe('tb.biosecurity.manureAndSlurry.question')
+  })
+
   it('should have the correct view', () => {
     expect(page.view).toBe(view)
   })

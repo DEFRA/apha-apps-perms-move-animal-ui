@@ -8,6 +8,7 @@ export class Animals42DaysOldOrOlderPage extends QuestionPage {
   sectionKey = 'identification'
   urlPath = `/${this.sectionKey}/any-cattle-over-42-days`
   question = 'Are you also moving any animals 42 days old or older?'
+  questionI18nKey = 'tb.identification.animals42DaysOldOrOlder.question'
 
   questionKey = 'animals42DaysOldOrOlder'
   Answer = Animals42DaysOldOrOlderAnswer

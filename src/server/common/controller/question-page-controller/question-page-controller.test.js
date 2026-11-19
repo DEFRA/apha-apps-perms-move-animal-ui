@@ -9,10 +9,25 @@ import { AnswerModel } from '../../model/answer/answer-model.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import { config } from '~/src/config/config.js'
 
+jest.mock('../../helpers/i18n/index.js', () => {
+  const actual = jest.requireActual('../../helpers/i18n/index.js')
+
+  return {
+    ...actual,
+    translate: jest.fn((request, key, fallback, params) =>
+      key === 'question-i18n-key'
+        ? 'Translated question'
+        : actual.translate(request, key, fallback, params)
+    )
+  }
+})
+
 /** @import { Server } from '@hapi/hapi' */
 
 const question = 'question-text'
 const questionKey = 'question-key'
+const questionI18nKey = 'question-i18n-key'
+const translatedQuestion = 'Translated question'
 const questionView =
   'common/controller/question-page-controller/question-page-controller.test.njk'
 const sectionKey = 'section-key'
@@ -97,6 +112,7 @@ class TestExitPage extends ExitPage {
 class TestPage extends QuestionPage {
   question = question
   questionKey = questionKey
+  questionI18nKey = questionI18nKey
   view = questionView
   sectionKey = sectionKey
   urlPath = questionUrl
@@ -224,6 +240,23 @@ describe('QuestionPageController', () => {
         origin: originState,
         [sectionKey]: { [questionKey]: questionValue }
       })
+    })
+
+    it('should pass the translated question to the answer view model', async () => {
+      const viewModelSpy = jest.spyOn(TestAnswer.prototype, 'viewModel')
+
+      const { statusCode } = await server.inject({
+        method: 'GET',
+        url: questionUrl
+      })
+
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(viewModelSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          validate: false,
+          question: translatedQuestion
+        })
+      )
     })
   })
 
@@ -415,6 +448,7 @@ describe('QuestionPageController', () => {
         expect(statusCode).toBe(statusCodes.redirect)
         expect(headers.location).toBe(questionUrlWithRedirectUri)
 
+        const viewModelSpy = jest.spyOn(TestAnswer.prototype, 'viewModel')
         const erroredGET = await server.inject(
           withCsrfProtection(
             {
@@ -435,6 +469,13 @@ describe('QuestionPageController', () => {
         expect(erroredGET.statusCode).toBe(statusCodes.ok)
         expect(erroredDocument.title).toBe(`Error: ${question}`)
         expect(input?.getAttribute('value')).toBe(errorValue)
+        expect(viewModelSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            validate: true,
+            question: translatedQuestion,
+            errors: expect.anything()
+          })
+        )
       })
 
       it('should clear the session state *for this question only* if the user encounters an error', async () => {

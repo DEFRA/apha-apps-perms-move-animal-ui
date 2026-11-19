@@ -36,6 +36,12 @@ describe('HowManyAnimalsMaximumPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe(
+      'tb.destination.howManyAnimalsMaximum.question'
+    )
+  })
+
   it('should have the correct view', () => {
     expect(page.view).toBe(view)
   })

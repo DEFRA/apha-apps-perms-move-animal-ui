@@ -15,6 +15,8 @@ export class CphNumberPage extends QuestionPage {
   question =
     'What is the county parish holding (CPH) number of your farm or premises where the animals are moving off?'
 
+  questionI18nKey = 'tb.origin.cphNumber.question'
+
   questionKey = 'cphNumber'
 
   Answer = CphNumberAnswer

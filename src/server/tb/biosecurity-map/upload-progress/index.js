@@ -9,6 +9,7 @@ import { checkStatus } from '../../../common/connectors/file-upload/cdp-uploader
 
 export class UploadProgressPage extends QuestionPage {
   pageTitle = 'Uploading the biosecurity map'
+  questionI18nKey = 'tb.biosecurityMap.uploadPlan.question'
   sectionKey = uploadConfig.sectionKey
   questionKey = uploadConfig.questionKey
   urlPath = `/${this.sectionKey}/uploading`

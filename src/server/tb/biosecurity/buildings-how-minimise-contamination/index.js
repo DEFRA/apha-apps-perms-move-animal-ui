@@ -50,6 +50,8 @@ export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   question =
     'Which measures are being taken to reduce the spread of TB during housing?'
 
+  questionI18nKey = 'tb.biosecurity.buildingsHowMinimiseContamination.question'
+
   Answer = Answer
 
   nextPage(answer) {

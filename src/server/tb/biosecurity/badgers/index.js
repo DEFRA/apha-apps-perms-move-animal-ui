@@ -12,6 +12,8 @@ export class BadgersPage extends QuestionPage {
   question =
     'Which measures are you taking to reduce the risk of infection from wildlife?'
 
+  questionI18nKey = 'tb.biosecurity.badgers.question'
+
   questionKey = 'badgers'
   Answer = BadgersAnswer
 

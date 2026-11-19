@@ -8,6 +8,7 @@ export class RestockReasonPage extends QuestionPage {
   urlPath = '/destination/restocking-additional-info-reason'
   sectionKey = 'destination'
   question = 'Which reasons do you have for restocking?'
+  questionI18nKey = 'tb.destination.restockReason.question'
 
   questionKey = 'restockReasons'
   Answer = RestockReasonsAnswer

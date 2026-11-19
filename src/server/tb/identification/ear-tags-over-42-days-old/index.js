@@ -7,6 +7,8 @@ const customHeading =
 export class EarTagsOver42DaysOldPage extends EarTagsPage {
   urlPath = '/identification/enter-ear-tags-over-42-days'
   question = 'Enter the ear tag numbers for these animals'
+  questionI18nKey = 'tb.identification.earTagsOver42DaysOld.question'
+  headingI18nKey = 'tb.identification.earTagsOver42DaysOld.heading'
 
   get heading() {
     return customHeading

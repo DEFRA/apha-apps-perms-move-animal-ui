@@ -12,6 +12,8 @@ export class OriginAddressPage extends QuestionPage {
   question =
     'What is the address of your farm or premises where the animals are moving off?'
 
+  questionI18nKey = 'tb.origin.address.question'
+
   questionKey = 'address'
 
   Answer = AddressAnswer

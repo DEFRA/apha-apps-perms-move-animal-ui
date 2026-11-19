@@ -13,6 +13,10 @@ describe('QuestionPage', () => {
     expect(question).toHaveProperty('questionKey')
   })
 
+  it('should have questionI18nKey', () => {
+    expect(question).toHaveProperty('questionI18nKey')
+  })
+
   it('should have an expected answer model', () => {
     expect(question).toHaveProperty('Answer')
   })

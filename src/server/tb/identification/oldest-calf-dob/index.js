@@ -13,6 +13,7 @@ export class OldestCalfDobPage extends QuestionPage {
   urlPath = '/identification/oldest-calf-dob'
   sectionKey = 'identification'
   question = 'What is the date of birth of the oldest calf under 42 days old?'
+  questionI18nKey = 'tb.identification.oldestCalfDob.question'
   questionKey = 'oldestCalfDob'
 
   Answer = CalfDob

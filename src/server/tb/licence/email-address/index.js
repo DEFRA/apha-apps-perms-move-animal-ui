@@ -13,6 +13,7 @@ export class EmailAddressPage extends QuestionPage {
   sectionKey = 'licence'
 
   question = 'What email address would you like the licence sent to?'
+  questionI18nKey = 'tb.licence.emailAddress.question'
   questionKey = 'emailAddress'
 
   Answer = EmailAddressAnswer

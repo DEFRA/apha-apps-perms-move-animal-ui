@@ -10,6 +10,8 @@ export class PeopleDisinfectionPage extends QuestionPage {
   question =
     'Which measures are staff taking to reduce the risk of spreading TB?'
 
+  questionI18nKey = 'tb.biosecurity.peopleDisinfection.question'
+
   questionKey = 'peopleDisinfection'
   Answer = PeopleDisinfectionAnswer
 

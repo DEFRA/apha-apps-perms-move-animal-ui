@@ -9,6 +9,7 @@ export class OriginEmailAddressPage extends QuestionPage {
   sectionKey = 'licence'
 
   question = 'What is the email address for the origin premises?'
+  questionI18nKey = 'tb.licence.originEmail.question'
 
   questionKey = 'originEmail'
 

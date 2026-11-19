@@ -34,6 +34,10 @@ describe('OriginTypePage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe('tb.origin.originType.question')
+  })
+
   it('should have the correct view', () => {
     expect(page.view).toBe(view)
   })

@@ -27,6 +27,10 @@ describe('RestockAnimalPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe('tb.destination.restockAnimals.question')
+  })
+
   it('should have the correct Answer model', () => {
     expect(page.Answer).toBe(RestockAnimalsAnswer)
   })

@@ -60,6 +60,10 @@ describe('GrazingOtherPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe('tb.biosecurity.grazingOther.question')
+  })
+
   it('should have the correct question', () => {
     expect(page.question).toBe(question)
   })

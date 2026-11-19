@@ -9,6 +9,8 @@ export class EarTagsPage extends QuestionPage {
   urlPath = '/identification/enter-ear-tags'
   sectionKey = 'identification'
   question = 'Enter the ear tag numbers'
+  questionI18nKey = 'tb.identification.earTags.question'
+  headingI18nKey = 'tb.identification.earTags.heading'
   questionKey = 'earTags'
   Answer = EarTagsAnswer
 

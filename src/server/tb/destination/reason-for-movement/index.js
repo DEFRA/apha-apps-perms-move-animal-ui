@@ -8,6 +8,7 @@ export class ReasonForMovementPage extends QuestionPage {
   urlPath = '/destination/reason-for-movement'
   sectionKey = 'destination'
   question = 'What is the reason for the movement?'
+  questionI18nKey = 'tb.destination.reasonForMovement.question'
   questionKey = 'reasonForMovement'
 
   Answer = ReasonForMovementAnswer

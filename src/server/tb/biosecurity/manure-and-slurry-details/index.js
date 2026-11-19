@@ -48,6 +48,7 @@ export class ManureAndSlurryDetailsPage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'biosecurity'
   question = 'How will you manage slurry and manure?'
+  questionI18nKey = 'tb.biosecurity.manureAndSlurryDetails.question'
 
   Answer = Answer
 

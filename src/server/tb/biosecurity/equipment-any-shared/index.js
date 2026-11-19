@@ -10,6 +10,8 @@ export class EquipmentAnySharedPage extends QuestionPage {
   question =
     'Will the incoming animals share any equipment and machinery with the resident herd?'
 
+  questionI18nKey = 'tb.biosecurity.equipmentAnyShared.question'
+
   questionKey = 'equipmentShared'
   Answer = EquipmentAnySharedAnswer
 

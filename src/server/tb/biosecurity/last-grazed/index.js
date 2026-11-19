@@ -7,6 +7,7 @@ export class LastGrazedPage extends QuestionPage {
   urlPath = '/biosecurity/last-grazed'
   sectionKey = 'biosecurity'
   question = 'How long ago was the field last grazed by the resident herd?'
+  questionI18nKey = 'tb.biosecurity.lastGrazed.question'
   questionKey = 'lastGrazed'
   Answer = LastGrazedAnswer
 

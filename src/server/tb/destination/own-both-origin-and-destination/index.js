@@ -35,6 +35,8 @@ export class OwnBothOriginAndDestinationPage extends QuestionPage {
   question =
     'Are you responsible for the TB restricted farm where the animals are going to?'
 
+  questionI18nKey = 'tb.destination.ownBothOriginAndDestination.question'
+
   Answer = Answer
 
   /**

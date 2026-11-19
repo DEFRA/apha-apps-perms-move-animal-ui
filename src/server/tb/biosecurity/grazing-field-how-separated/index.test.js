@@ -32,6 +32,12 @@ describe('GrazingFieldHowSeparatedPage', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe(
+      'tb.biosecurity.grazingFieldHowSeparated.question'
+    )
+  })
+
   it('should have the correct Answer model', () => {
     expect(page.Answer).toBe(Answer)
   })
