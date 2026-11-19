@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -23,7 +24,16 @@ describe('Task list page test', () => {
   })
 
   beforeEach('Navigate to task list page', async () => {
+    await browser.deleteCookies('language')
     await taskListPage.navigateToPageAndVerifyTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should verify representative Welsh translations and restore English', async () => {
+    await taskListPage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should display the correct statuses before an application has been started', async () => {
@@ -46,7 +56,6 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 3')
-    await taskListPage.verifyWelshTranslationAndRestoreEnglish(3, 3)
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -76,7 +85,6 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
-    await taskListPage.verifyWelshTranslationAndRestoreEnglish(2, 3)
     await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
@@ -122,7 +130,6 @@ describe('Task list page test', () => {
     ])
 
     expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 6')
-    await taskListPage.verifyWelshTranslationAndRestoreEnglish(4, 6)
     await taskListPage.selectMovementDestination(destinationAnswersPage)
   })
 
@@ -289,7 +296,6 @@ describe('Task list page test', () => {
       expect(await taskListPage.getTaskToCompleteCount()).toContain(
         'You have completed all sections.'
       )
-      await taskListPage.verifyWelshTranslationAndRestoreEnglish(0, 6)
       await taskListPage.selectBiosecurityMapLink(biosecurityMapAnswersPage)
     }
   })
