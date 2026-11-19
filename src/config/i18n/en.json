@@ -332,7 +332,7 @@
         "cannotApplyLinkText": "send this application form to APHA (opens in new tab)"
       },
       "fiftyPercentWarning": {
-        "title": "You cannot move more than 50% of the herd",
+        "title": "Reduction in TB compensation",
         "reductionWarning": "Animals that enter a TB breakdown herd and are later removed as TB reactors or direct contacts before the herd is officially TB-free will receive a 50% reduction in compensation.",
         "doesNotApply": "This does not apply if:",
         "exceptions": {
@@ -622,6 +622,7 @@
           "empty": "Enter the ear tag numbers of the animals you are planning to move",
           "maxLength": "Your answer must be no longer than 5000 characters"
         },
+        "heading": "Official ear tag numbers for animals being moved",
         "hint": "You need to enter each ear tag number on a separate line",
         "identifyIntro": "You need to identify the animals using the official ear tags bought from an approved supplier.",
         "earTagFormat": "The ear tag must include the country code, herd number and six-digit official ear tag number. For example, UK12345678910."
@@ -632,6 +633,7 @@
           "empty": "Enter the ear tag numbers of the calves under 42 days old you are planning to move",
           "maxLength": "Your answer must be no longer than 5000 characters"
         },
+        "heading": "Official ear tag numbers for calves under 42 days old",
         "hint": "You need to enter each ear tag number on a separate line",
         "identifyIntro": "You need to identify the calves using the official ear tags bought from an approved supplier.",
         "earTagFormat": "The ear tag must include the country code, herd number and six-digit official ear tag number. For example, UK12345678910."
@@ -641,6 +643,7 @@
         "validation": {
           "maxLength": "Your answer must be no longer than 5000 characters"
         },
+        "heading": "Official ear tag numbers for animals 42 days old or older",
         "hint": "You need to enter each ear tag number on a separate line"
       },
       "testingDates": {
@@ -649,6 +652,7 @@
           "empty": "Enter the dates when animals over 42 days old were last tested for TB",
           "maxLength": "Your answer must be no longer than 5000 characters"
         },
+        "heading": "Testing dates",
         "negativeTestIntro": "The animals must have tested negative to a TB skin test within 30 days of the planned movement date.",
         "enterInjectionDate": "You need to enter the date they were injected on their most recent TB skin test."
       },
@@ -900,6 +904,7 @@
         "validation": {
           "empty": "Enter the first 2 letters of the disinfectant you are using"
         },
+        "heading": "Disinfectant",
         "intro": "You must use a Defra-approved disinfectant for TB."
       },
       "badgers": {

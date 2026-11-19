@@ -11,6 +11,8 @@ export class OriginTypeOtherPage extends QuestionPage {
   question =
     'What type of premises with TB restrictions are the animals moving off?'
 
+  questionI18nKey = 'tb.origin.originTypeOther.question'
+
   Answer = OriginTypeOtherAnswer
 
   nextPage(_answer, context) {

@@ -331,7 +331,7 @@
         "cannotApplyLinkText": "anfonwch y ffurflen gais hon i APHA (yn agor mewn tab newydd)"
       },
       "fiftyPercentWarning": {
-        "title": "Ni allwch symud mwy na 50% o'r fuches",
+        "title": "Gostyngiad yn yr iawndal TB",
         "reductionWarning": "Bydd anifeiliaid sy'n ymuno â buches sydd â chlwy TB ac sy'n cael eu tynnu wedyn fel adweithyddion TB neu gysylltiadau uniongyrchol cyn i'r fuches gael ei chadarnhau'n rhydd o TB yn derbyn gostyngiad o 50% yn yr iawndal.",
         "doesNotApply": "Nid yw hyn yn berthnasol os:",
         "exceptions": {
@@ -621,6 +621,7 @@
           "empty": "Nodwch rifau clust-dag yr anifeiliaid rydych chi'n bwriadu eu symud",
           "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
         },
+        "heading": "Rhifau clust-dag swyddogol ar gyfer anifeiliaid sy'n cael eu symud",
         "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân",
         "identifyIntro": "Mae angen i chi adnabod yr anifeiliaid gan ddefnyddio'r clustdagiau swyddogol a brynwyd gan gyflenwr cymeradwy.",
         "earTagFormat": "Rhaid i'r clustdag gynnwys cod y wlad, rhif y fuches a rhif clustdag swyddogol chwe digid. Er enghraifft, UK12345678910."
@@ -631,6 +632,7 @@
           "empty": "Nodwch rifau clust-dag y lloi dan 42 diwrnod oed rydych chi'n bwriadu eu symud",
           "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
         },
+        "heading": "Rhifau clust-dag swyddogol ar gyfer lloi dan 42 diwrnod oed",
         "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân",
         "identifyIntro": "Mae angen i chi adnabod y lloi gan ddefnyddio'r clustdagiau swyddogol a brynwyd gan gyflenwr cymeradwy.",
         "earTagFormat": "Rhaid i'r clustdag gynnwys cod y wlad, rhif y fuches a rhif clustdag swyddogol chwe digid. Er enghraifft, UK12345678910."
@@ -640,9 +642,11 @@
         "validation": {
           "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
         },
+        "heading": "Rhifau clust-dag swyddogol ar gyfer anifeiliaid 42 diwrnod oed neu'n hŷn",
         "hint": "Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân"
       },
       "testingDates": {
+        "heading": "Dyddiadau profion TB",
         "question": "Beth yw dyddiadau'r profion TB diwethaf ar gyfer yr anifeiliaid sy'n 42 diwrnod oed neu'n hŷn?",
         "validation": {
           "empty": "Nodwch y dyddiadau pan gafodd anifeiliaid dros 42 diwrnod oed eu profi ddiwethaf am TB",
@@ -899,6 +903,7 @@
         "validation": {
           "empty": "Nodwch 2 lythyren gyntaf y diheintydd rydych yn ei ddefnyddio"
         },
+        "heading": "Diheintydd",
         "intro": "Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB."
       },
       "badgers": {

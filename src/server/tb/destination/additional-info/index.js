@@ -7,6 +7,7 @@ export class AdditionalInfoPage extends QuestionPage {
   urlPath = '/destination/any-additional-info'
   sectionKey = 'destination'
   question = 'Enter any additional information (optional)'
+  questionI18nKey = 'tb.destination.additionalInfo.question'
   questionKey = 'additionalInfo'
 
   Answer = AdditionalInfoAnswer

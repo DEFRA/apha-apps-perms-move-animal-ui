@@ -22,6 +22,12 @@ describe('EarTagsOver42DaysOldPage', () => {
     expect(page.question).toBe(question)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe(
+      'tb.identification.earTagsOver42DaysOld.question'
+    )
+  })
+
   it('should have the correct heading', () => {
     expect(page.heading).toBe(customHeading)
   })

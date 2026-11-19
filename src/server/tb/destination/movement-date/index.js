@@ -61,6 +61,7 @@ export class MovementDatePage extends QuestionPage {
   questionKey = questionKey
   sectionKey = 'destination'
   question = 'What date will the animals move off the farm or premises?'
+  questionI18nKey = 'tb.destination.movementDate.question'
 
   Answer = Answer
 

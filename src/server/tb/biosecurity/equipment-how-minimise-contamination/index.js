@@ -10,6 +10,8 @@ export class EquipmentHowMinimiseContaminationPage extends QuestionPage {
   question =
     'Which measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
 
+  questionI18nKey = 'tb.biosecurity.equipmentHowMinimiseContamination.question'
+
   questionKey = 'equipmentHowMinimiseContamination'
   Answer = EquipmentHowMinimiseContaminationAnswer
 

@@ -47,6 +47,12 @@ jest.mock('hapi-pino', () => ({
 }))
 
 describe('#UploadPlan', () => {
+  it('should have the correct questionI18nKey', () => {
+    expect(uploadProgressPage.questionI18nKey).toBe(
+      'tb.biosecurityMap.uploadPlan.question'
+    )
+  })
+
   let server
   let session
 

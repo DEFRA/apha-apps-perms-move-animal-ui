@@ -17,6 +17,8 @@ export class DisinfectantDilutionPage extends QuestionPage {
   urlPath = '/biosecurity/disinfectant-dilution'
   sectionKey = 'biosecurity'
   question = 'Confirmation of the dilution rate'
+  questionI18nKey = 'tb.biosecurity.dilutionRate.question'
+  headingI18nKey = 'tb.biosecurity.dilutionRate.heading'
   questionKey = 'dilutionRate'
 
   Answer = DilutionRateAnswer

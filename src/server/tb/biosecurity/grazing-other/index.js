@@ -35,6 +35,8 @@ export class GrazingOtherPage extends QuestionPage {
   question =
     'What other measures are being taken to reduce the spread of TB when the animals are grazing?'
 
+  questionI18nKey = 'tb.biosecurity.grazingOther.question'
+
   Answer = Answer
 
   nextPage() {

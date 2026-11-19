@@ -34,6 +34,10 @@ describe('OriginFarmCph', () => {
     expect(page.questionKey).toBe(questionKey)
   })
 
+  it('should have the correct questionI18nKey', () => {
+    expect(page.questionI18nKey).toBe('tb.origin.originFarmCph.question')
+  })
+
   it('should share a question key with CphNumberPage, since they control the sae data', () => {
     expect(page.sectionKey).toBe(cphNumberPage.sectionKey)
     expect(page.questionKey).toBe(cphNumberPage.questionKey)

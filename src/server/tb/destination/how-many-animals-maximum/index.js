@@ -7,6 +7,7 @@ export class HowManyAnimalsMaximumPage extends QuestionPage {
   urlPath = '/destination/how-many-animals-maximum'
   sectionKey = 'destination'
   question = 'What is the maximum number of animals you are planning to move?'
+  questionI18nKey = 'tb.destination.howManyAnimalsMaximum.question'
   questionKey = 'howManyAnimalsMaximum'
 
   Answer = HowManyAnimalsMaximumAnswer

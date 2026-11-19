@@ -9,6 +9,7 @@ export class HowManyAnimalsPage extends QuestionPage {
   urlPath = '/destination/how-many-animals'
   sectionKey = 'destination'
   question = 'How many animals are you planning to move?'
+  questionI18nKey = 'tb.destination.howManyAnimals.question'
   questionKey = 'howManyAnimals'
 
   Answer = HowManyAnimalsAnswer

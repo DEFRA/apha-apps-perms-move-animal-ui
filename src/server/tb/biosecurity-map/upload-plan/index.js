@@ -8,6 +8,7 @@ import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-u
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
+  questionI18nKey = 'tb.biosecurityMap.uploadPlan.question'
   sectionKey = uploadConfig.sectionKey
   questionKey = uploadConfig.questionKey
   urlPath = `/${this.sectionKey}/${this.questionKey}`

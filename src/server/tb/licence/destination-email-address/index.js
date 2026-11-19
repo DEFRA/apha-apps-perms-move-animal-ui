@@ -9,6 +9,7 @@ export class DestinationEmailAddressPage extends QuestionPage {
   sectionKey = 'licence'
 
   question = 'What is your email address?'
+  questionI18nKey = 'tb.licence.destinationEmailAddress.question'
 
   questionKey = 'destinationEmail'
 

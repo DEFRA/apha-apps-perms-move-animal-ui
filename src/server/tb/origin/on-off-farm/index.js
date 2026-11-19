@@ -16,6 +16,7 @@ export class OnOffFarmPage extends QuestionPage {
   sectionKey = 'origin'
 
   question = 'Are you moving the animals on or off your farm or premises?'
+  questionI18nKey = 'tb.origin.onOffFarm.question'
 
   questionKey = 'onOffFarm'
 

@@ -14,6 +14,7 @@ export class OriginTypePage extends QuestionPage {
   urlPath = '/origin/type-of-origin'
   sectionKey = 'origin'
   question = 'Which type of premises are the animals moving off?'
+  questionI18nKey = 'tb.origin.originType.question'
   questionKey = 'originType'
 
   Answer = OriginTypeAnswer

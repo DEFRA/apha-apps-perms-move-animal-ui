@@ -9,6 +9,8 @@ export class OtherEquipmentMeasuresPage extends QuestionPage {
   question =
     'What other measures are in place to clean and disinfect equipment to reduce the risk of spreading TB?'
 
+  questionI18nKey = 'tb.biosecurity.otherEquipmentMeasures.question'
+
   questionKey = 'otherEquipmentMeasures'
 
   Answer = OtherEquipmentMeasuresAnswer

@@ -17,9 +17,11 @@ export class ConfirmationPage extends Page {
 
 const headingAndTitle = 'Check your answers before sending your application'
 
+// common.checkAnswers.beforeSubmitHeading
 export class SubmitSummaryPage extends QuestionPage {
   question =
     'Before you submit your application, you must select one of the declaration check boxes.'
+  // questionI18nKey = 'common.checkAnswers.beforeSubmitHeading'
 
   get title() {
     return headingAndTitle

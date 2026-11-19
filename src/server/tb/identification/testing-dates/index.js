@@ -12,6 +12,9 @@ export class TestingDatesPage extends QuestionPage {
   question =
     'What are the dates of the last TB tests for the animals that are 42 days old or older?'
 
+  questionI18nKey = 'tb.identification.testingDates.question'
+  headingI18nKey = 'tb.identification.testingDates.heading'
+
   questionKey = 'testingDates'
   Answer = TestingDatesAnswer
 

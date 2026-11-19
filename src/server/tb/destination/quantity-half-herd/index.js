@@ -9,6 +9,8 @@ export class QuantityHalfHerdPage extends QuestionPage {
   question =
     'Will the number of cattle be larger than half of the destination herd size?'
 
+  questionI18nKey = 'tb.destination.quantityHalfHerd.question'
+
   questionKey = 'movingMoreThanHalfExistingHerd'
 
   Answer = QuantityHalfHerdAnswer

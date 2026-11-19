@@ -7,6 +7,7 @@ export class ObligationsPage extends QuestionPage {
   urlPath = '/biosecurity/biosecurity-intro'
   sectionKey = 'biosecurity'
   question = 'Biosecurity on your farm or premises'
+  questionI18nKey = 'tb.biosecurity.obligations.question'
   questionKey = 'biosecurityObligationsAcknowledged'
   view = 'tb/biosecurity/obligations/index.njk'
   isInterstitial = true

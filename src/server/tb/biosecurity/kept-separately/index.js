@@ -10,6 +10,7 @@ export class KeptSeparatelyPage extends QuestionPage {
   urlPath = '/biosecurity/kept-separately'
   sectionKey = 'biosecurity'
   question = 'Will you separate the incoming animals from the resident herd?'
+  questionI18nKey = 'tb.biosecurity.keptSeparately.question'
   questionKey = 'keptSeparately'
   Answer = KeptSeparatelyAnswer
 

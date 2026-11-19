@@ -9,6 +9,7 @@ export class SlurryManureOtherPage extends QuestionPage {
   urlPath = '/biosecurity/manure-and-slurry-details-other'
   sectionKey = 'biosecurity'
   question = 'What other measures are being taken to manage slurry and manure?'
+  questionI18nKey = 'tb.biosecurity.slurryManureOther.question'
   questionKey = 'slurryManureOther'
 
   Answer = SlurryManureOtherAnswer

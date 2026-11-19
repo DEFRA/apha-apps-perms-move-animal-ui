@@ -7,6 +7,7 @@ export class RestockAnimalPage extends QuestionPage {
   urlPath = '/destination/restocking-additional-info-animal-type'
   sectionKey = 'destination'
   question = 'Which types of animals are you restocking?'
+  questionI18nKey = 'tb.destination.restockAnimals.question'
 
   questionKey = 'restockAnimals'
   Answer = RestockAnimalsAnswer

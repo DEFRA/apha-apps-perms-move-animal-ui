@@ -35,6 +35,8 @@ export class HousingOtherPage extends QuestionPage {
   question =
     'What other measures are being taken to reduce the spread of TB during housing?'
 
+  questionI18nKey = 'tb.biosecurity.housingOther.question'
+
   Answer = Answer
 
   nextPage() {

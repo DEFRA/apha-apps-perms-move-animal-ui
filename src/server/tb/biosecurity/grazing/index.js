@@ -8,6 +8,7 @@ export class GrazingPage extends QuestionPage {
   urlPath = '/biosecurity/grazing'
   sectionKey = 'biosecurity'
   question = 'Will the incoming animals be grazed?'
+  questionI18nKey = 'tb.biosecurity.grazing.question'
   questionKey = 'grazing'
   Answer = GrazingAnswer
 

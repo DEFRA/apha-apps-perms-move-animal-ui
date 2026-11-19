@@ -11,6 +11,9 @@ export class EarTagsCalvesPage extends QuestionPage {
   question =
     'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
 
+  questionI18nKey = 'tb.identification.earTagsCalves.question'
+  headingI18nKey = 'tb.identification.earTagsCalves.heading'
+
   questionKey = 'earTagsCalves'
   Answer = EarTagsCalvesAnswer
 

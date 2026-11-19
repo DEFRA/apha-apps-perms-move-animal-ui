@@ -10,6 +10,8 @@ export class DestinationTypeOtherPage extends QuestionPage {
   question =
     'What type of premises with TB restrictions are the animals going to?'
 
+  questionI18nKey = 'tb.destination.destinationTypeOther.question'
+
   Answer = DestinationTypeOtherAnswer
 
   nextPage() {

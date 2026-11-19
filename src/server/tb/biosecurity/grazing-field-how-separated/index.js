@@ -38,6 +38,8 @@ export class GrazingFieldHowSeparatedPage extends QuestionPage {
   question =
     'Which measures are being taken to reduce the spread of TB when the animals are grazing?'
 
+  questionI18nKey = 'tb.biosecurity.grazingFieldHowSeparated.question'
+
   Answer = Answer
 
   nextPage(answer) {

@@ -9,6 +9,8 @@ export class OtherStaffMeasuresPage extends QuestionPage {
   question =
     'What other measures are staff taking to reduce the risk of spreading TB?'
 
+  questionI18nKey = 'tb.biosecurity.otherStaffMeasures.question'
+
   questionKey = 'otherStaffMeasures'
 
   Answer = OtherStaffMeasuresAnswer

@@ -29,6 +29,7 @@ export class DestinationTypePage extends QuestionPage {
   urlPath = '/destination/type-of-destination'
   sectionKey = 'destination'
   question = 'Where are the animals going to?'
+  questionI18nKey = 'tb.destination.destinationType.question'
   questionKey = 'destinationType'
 
   Answer = DestinationTypeAnswer

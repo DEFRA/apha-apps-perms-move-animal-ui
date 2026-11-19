@@ -16,6 +16,8 @@ export class FullNamePage extends QuestionPage {
   question =
     'What is the name of the person registered as the keeper of the animals?'
 
+  questionI18nKey = 'tb.licence.fullName.question'
+
   questionKey = 'fullName'
 
   Answer = OwnerFullNameAnswer

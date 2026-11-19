@@ -9,6 +9,8 @@ export class OtherWildlifeMeasuresPage extends QuestionPage {
   question =
     'What other measures are you taking to reduce the risk of spreading TB?'
 
+  questionI18nKey = 'tb.biosecurity.otherWildlifeMeasures.question'
+
   questionKey = 'otherWildlifeMeasures'
 
   Answer = OtherWildlifeMeasuresAnswer
