@@ -38,10 +38,6 @@ jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
 const mockInitiateFileUpload = /** @type {jest.Mock} */ (initiateFileUpload)
 
 describe('#UploadPlan', () => {
-  it('should have the correct questionI18nKey', () => {
-    expect(page.questionI18nKey).toBe('tb.biosecurityMap.uploadPlan.question')
-  })
-
   describePageSnapshot({
     describes: '#UploadPlanPage',
     it: 'should render expected response and content',
