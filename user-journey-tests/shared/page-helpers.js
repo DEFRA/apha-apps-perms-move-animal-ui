@@ -2,45 +2,109 @@ import { browser, $, $$ } from '@wdio/globals'
 
 const normalizePath = (value) => value.replace(/^\/+|\/+$/g, '')
 
+const diagnosticUrl = (value) => {
+  if (!value) return '[not available]'
+  try {
+    const url = new URL(value)
+    return ['http:', 'https:'].includes(url.protocol)
+      ? `${url.origin}${url.pathname}`
+      : `${url.protocol}[redacted]`
+  } catch {
+    return '[invalid URL]'
+  }
+}
+
+export const logFailureContext = async (test, phase, retries) => {
+  const details = {
+    timestamp: new Date().toISOString(),
+    test: [test?.parent, test?.title].filter(Boolean).join(' - '),
+    phase,
+    attempt: retries?.attempts
+  }
+  let timer
+  try {
+    Object.assign(details, {
+      sessionId: browser.sessionId,
+      browser: browser.capabilities?.browserName,
+      version: browser.capabilities?.browserVersion,
+      platform: browser.capabilities?.platformName,
+      device:
+        browser.capabilities?.deviceName ??
+        browser.capabilities?.['appium:deviceName']
+    })
+    await Promise.race([
+      (async () => {
+        if (browser.isMobile) details.context = await browser.getContext()
+        details.url = diagnosticUrl(await browser.getUrl())
+        const page = await browser.execute(() => ({
+          title: globalThis.document.title,
+          language: globalThis.document.documentElement.lang,
+          validationFields: Array.from(
+            globalThis.document.querySelectorAll(
+              '.govuk-error-summary a[href^="#"]'
+            ),
+            (link) => link.getAttribute('href')
+          )
+        }))
+        Object.assign(details, page)
+      })(),
+      new Promise((resolve, reject) => {
+        timer = setTimeout(() => reject(new Error('capture timed out')), 5000)
+      })
+    ])
+  } catch {
+    details.diagnostics = 'Page context unavailable or capture timed out'
+  } finally {
+    clearTimeout(timer)
+  }
+  process.stderr.write(`[E2E failure] ${JSON.stringify(details)}\n`)
+}
+
 export const waitForExpectedRedirectUri = async (pagePath) => {
   const expectedQueryString = `returnUrl=/${pagePath}`
+  let currentUrl
   await browser.waitUntil(
     async () => {
-      const currentUrl = await browser.getUrl()
+      currentUrl = await browser.getUrl()
       const currentQueryString = currentUrl.split('?')[1]
 
       return expectedQueryString === currentQueryString
     },
     {
-      timeoutMessage: `Failed to verify page returnUrl.  Expected: "${pagePath}", but found ${await browser.getUrl()}`
+      timeoutMsg: () =>
+        `Failed to verify page returnUrl. Expected: "${pagePath}", but found URL: "${diagnosticUrl(currentUrl)}" (query values redacted)`
     }
   )
 }
 
 export const waitForPagePath = async (path) => {
   const expectedPath = normalizePath(path)
+  let currentUrl
 
   await browser.waitUntil(
     async () => {
-      const currentUrl = await browser.getUrl()
+      currentUrl = await browser.getUrl()
       const { pathname } = new URL(currentUrl)
 
       return normalizePath(pathname) === expectedPath
     },
     {
-      timeoutMsg: `Failed to verify page path. Expected path: "/${expectedPath}", but found: "${await browser.getUrl()}"`
+      timeoutMsg: () =>
+        `Failed to verify page path. Expected path: "/${expectedPath}", but found: "${diagnosticUrl(currentUrl)}"`
     }
   )
 }
 
 export const waitForFullPageUrl = async (url) => {
+  let currentUrl
   await browser.waitUntil(
     async () => {
-      const currentUrl = await browser.getUrl()
+      currentUrl = await browser.getUrl()
       return url === currentUrl
     },
     {
-      timeoutMsg: `Failed to verify page url. Expected: "${url}", but found: "${await browser.getUrl()}"`
+      timeoutMsg: () =>
+        `Failed to verify page url. Expected: "${diagnosticUrl(url)}", but found: "${diagnosticUrl(currentUrl)}" (query values redacted)`
     }
   )
 }
@@ -77,13 +141,15 @@ export const selectElement = async (element, hidden = false) => {
 }
 
 export const verifyPageTitle = async (pageTitle) => {
+  let title
   const titleMatches = async () => {
-    const title = await browser.getTitle()
+    title = await browser.getTitle()
     return title === pageTitle || title === `Error: ${pageTitle}`
   }
 
   await browser.waitUntil(titleMatches, {
-    timeoutMsg: `Expected page title to be "${pageTitle}" or "Error: ${pageTitle}"\nReceived:\t"${await browser.getTitle()}"`
+    timeoutMsg: () =>
+      `Expected page title to be "${pageTitle}" or "Error: ${pageTitle}"\nReceived:\t${JSON.stringify(title)}`
   })
 }
 

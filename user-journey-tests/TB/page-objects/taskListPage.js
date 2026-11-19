@@ -6,6 +6,9 @@ import { secureDeviceArray } from '../helpers/constants.js'
 
 const pageHeadingAndTitle =
   'Your Bovine Tuberculosis (TB) movement licence application'
+const welshPageHeadingAndTitle =
+  'Eich cais am drwydded symud Twbercwlosis Buchol (TB)'
+const normalizeText = (text) => text.replace(/\s+/g, ' ').trim()
 
 class TaskListPage extends Page {
   pagePath = 'task-list'
@@ -37,12 +40,12 @@ class TaskListPage extends Page {
   }
 
   get reviewLink() {
-    return $('aria/Review and submit')
+    return $('main form button')
   }
 
   async getTaskToCompleteCount() {
     const element = await $('[data="test-id-task-to-complete-count"]')
-    return element.getText()
+    return normalizeText(await element.getText())
   }
 
   async selectMovementOrigin(nextPage) {
@@ -87,6 +90,41 @@ class TaskListPage extends Page {
     for (const { position, taskTitle, expectedStatus } of statusArray) {
       await this.verifyStatus({ position, taskTitle, expectedStatus })
     }
+  }
+
+  async verifyWelshAndEnglishTranslations() {
+    await page.selectLinkAndVerifyTitle(
+      this.getLanguageLink('cy'),
+      welshPageHeadingAndTitle
+    )
+    await page.validateElementVisibleAndText(
+      this.getPageHeading(),
+      welshPageHeadingAndTitle
+    )
+    await this.verifyStatus({
+      position: 1,
+      taskTitle: 'Tarddiad y symudiad',
+      expectedStatus: 'Anghyflawn'
+    })
+    await page.validateElementVisibleAndText(
+      this.reviewLink,
+      'Adolygu a chyflwyno'
+    )
+
+    await page.selectLinkAndVerifyTitle(
+      this.getLanguageLink('en'),
+      this.pageTitle
+    )
+    await this.verifyPageHeadingAndTitle()
+    await this.verifyStatus({
+      position: 1,
+      taskTitle: 'Movement origin',
+      expectedStatus: 'Incomplete'
+    })
+    await page.validateElementVisibleAndText(
+      this.reviewLink,
+      'Review and submit'
+    )
   }
 
   async selectReview() {

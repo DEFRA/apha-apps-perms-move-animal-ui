@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import taskListPage from '../page-objects/taskListPage.js'
 import toFromFarmPage from '../page-objects/origin/toFromFarmPage.js'
 import checkAnswersPage from '../page-objects/origin/checkAnswersPage.js'
@@ -23,7 +24,16 @@ describe('Task list page test', () => {
   })
 
   beforeEach('Navigate to task list page', async () => {
+    await browser.deleteCookies('language')
     await taskListPage.navigateToPageAndVerifyTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should verify representative Welsh translations and restore English', async () => {
+    await taskListPage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should display the correct statuses before an application has been started', async () => {

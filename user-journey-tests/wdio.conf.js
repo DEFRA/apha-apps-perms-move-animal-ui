@@ -1,4 +1,5 @@
 import testConfig from './config/config.js'
+import { logFailureContext } from './shared/page-helpers.js'
 const debug = process.env.DEBUG
 
 export const config = {
@@ -136,6 +137,12 @@ export const config = {
   mochaOpts: {
     ui: 'bdd',
     timeout: 300000
+  },
+  afterTest: async (test, context, { error, retries }) => {
+    if (error) await logFailureContext(test, 'test', retries)
+  },
+  afterHook: async (test, context, { error, retries }, hookName) => {
+    if (error) await logFailureContext(test, hookName, retries)
   }
   //
   // =====

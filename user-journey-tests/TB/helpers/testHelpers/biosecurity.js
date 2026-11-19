@@ -20,7 +20,11 @@ import { waitForPagePath } from '../page.js'
 import buildingsMinimiseContiaminationPage from '../../page-objects/biosecurity/buildingsMinimiseContiaminationPage.js'
 
 // Helper function to complete the biosecurity task
-const completeBiosecurityTask = async (radioType, direct = false) => {
+const completeBiosecurityTask = async (
+  radioType,
+  direct = false,
+  disinfectant = 'Agrichlor'
+) => {
   if (!direct) {
     await navigateToTaskList()
     await taskListPage.selectBiosecurityLink(biosecIntroPage)
@@ -46,7 +50,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(
-        'Agrichlor',
+        disinfectant,
         disinfectantDilutionPage,
         true
       )
@@ -83,7 +87,7 @@ const completeBiosecurityTask = async (radioType, direct = false) => {
         disinfectantPage
       )
       await disinfectantPage.inputTextAndContinue(
-        'Agrichlor',
+        disinfectant,
         disinfectantDilutionPage,
         true
       )
