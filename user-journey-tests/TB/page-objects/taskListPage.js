@@ -42,7 +42,7 @@ class TaskListPage extends Page {
 
   async getTaskToCompleteCount() {
     const element = await $('[data="test-id-task-to-complete-count"]')
-    return element.getText()
+    return (await element.getText()).replace(/\s+/g, ' ').trim()
   }
 
   async selectMovementOrigin(nextPage) {
@@ -87,6 +87,69 @@ class TaskListPage extends Page {
     for (const { position, taskTitle, expectedStatus } of statusArray) {
       await this.verifyStatus({ position, taskTitle, expectedStatus })
     }
+  }
+
+  async verifyWelshTranslationAndRestoreEnglish(remaining, total) {
+    const titles = {
+      'Movement origin': 'Tarddiad y symudiad',
+      'Movement destination': 'Cyrchfan symud',
+      'Receiving the licence': 'Derbyn y drwydded',
+      'Animal identification': 'Adnabod anifeiliaid',
+      'Biosecurity details': 'Manylion bioddiogelwch',
+      'Biosecurity map': 'Map bioddiogelwch'
+    }
+    const statuses = {
+      Incomplete: 'Anghyflawn',
+      Completed: 'Wedi cwblhau',
+      'Cannot start yet': 'Methu dechrau eto'
+    }
+    const readTasks = async () => {
+      const tasks = []
+      for (const item of await $$('.govuk-task-list__item')) {
+        const link = await item.$('a')
+        tasks.push({
+          title: await item.$('.govuk-task-list__name-and-hint').getText(),
+          status: await item.$('.govuk-task-list__status').getText(),
+          href: (await link.isExisting())
+            ? await link.getAttribute('href')
+            : null
+        })
+      }
+      return tasks
+    }
+    const englishTasks = await readTasks()
+    expect(englishTasks).toHaveLength(total)
+    const button = $('main form button')
+    const buttonClass = await button.getAttribute('class')
+
+    try {
+      await page.selectElement(this.getLanguageLink('cy'))
+      await expect(this.getPageHeading()).toHaveText(
+        'Eich cais am drwydded symud Twbercwlosis Buchol (TB)'
+      )
+      expect(await readTasks()).toEqual(
+        englishTasks.map(({ title, status, href }) => ({
+          title: titles[title],
+          status: statuses[status],
+          href
+        }))
+      )
+      const progress = (await this.getIntroText().getText())
+        .replace(/\s+/g, ' ')
+        .trim()
+      expect(progress).toBe(
+        remaining === 0
+          ? 'Rydych wedi cwblhau pob adran.'
+          : `Mae gennych ${remaining} allan o ${total} adran ar ôl i'w cwblhau.`
+      )
+      await expect(button).toHaveText('Adolygu a chyflwyno')
+      expect(await button.getAttribute('class')).toBe(buttonClass)
+    } finally {
+      await page.selectElement(this.getLanguageLink('en'))
+      await this.verifyPageHeadingAndTitle()
+    }
+    expect(await readTasks()).toEqual(englishTasks)
+    await expect(button).toHaveText('Review and submit')
   }
 
   async selectReview() {
