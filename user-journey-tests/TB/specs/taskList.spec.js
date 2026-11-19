@@ -207,7 +207,7 @@ describe('Task list page test', () => {
   })
 
   it('Should link to Biosecurity details check-answers page once that section has been complete', async () => {
-    await completeBiosecurityTask('yes', false, "Pearson's Black Disinfectant")
+    await completeBiosecurityTask('yes')
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {

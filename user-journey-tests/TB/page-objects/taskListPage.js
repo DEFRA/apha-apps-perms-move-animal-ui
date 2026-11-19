@@ -6,6 +6,7 @@ import { secureDeviceArray } from '../helpers/constants.js'
 
 const pageHeadingAndTitle =
   'Your Bovine Tuberculosis (TB) movement licence application'
+const normalizeText = (text) => text.replace(/\s+/g, ' ').trim()
 
 class TaskListPage extends Page {
   pagePath = 'task-list'
@@ -42,7 +43,7 @@ class TaskListPage extends Page {
 
   async getTaskToCompleteCount() {
     const element = await $('[data="test-id-task-to-complete-count"]')
-    return (await element.getText()).replace(/\s+/g, ' ').trim()
+    return normalizeText(await element.getText())
   }
 
   async selectMovementOrigin(nextPage) {
@@ -108,8 +109,12 @@ class TaskListPage extends Page {
       for (const item of await $$('.govuk-task-list__item')) {
         const link = await item.$('a')
         tasks.push({
-          title: await item.$('.govuk-task-list__name-and-hint').getText(),
-          status: await item.$('.govuk-task-list__status').getText(),
+          title: normalizeText(
+            await item.$('.govuk-task-list__name-and-hint').getText()
+          ),
+          status: normalizeText(
+            await item.$('.govuk-task-list__status').getText()
+          ),
           href: (await link.isExisting())
             ? await link.getAttribute('href')
             : null
@@ -134,9 +139,7 @@ class TaskListPage extends Page {
           href
         }))
       )
-      const progress = (await this.getIntroText().getText())
-        .replace(/\s+/g, ' ')
-        .trim()
+      const progress = normalizeText(await this.getIntroText().getText())
       expect(progress).toBe(
         remaining === 0
           ? 'Rydych wedi cwblhau pob adran.'
