@@ -1,4 +1,5 @@
 import { createServer } from '~/src/server/index.js'
+import { config } from '~/src/config/config.js'
 import { emailAddressPage, EmailAddressPage } from './index.js'
 import { licenceSummaryPage } from '../check-answers/index.js'
 import { EmailAddressAnswer } from '../../../common/model/answer/email-address/email-address.js'
@@ -6,6 +7,7 @@ import { spyOnConfig } from '../../../common/test-helpers/config.js'
 import { withCsrfProtection } from '../../../common/test-helpers/csrf.js'
 import { parseDocument } from '../../../common/test-helpers/dom.js'
 import SessionTestHelper from '../../../common/test-helpers/session-helper.js'
+import { describePageSnapshot } from '~/src/server/common/test-helpers/snapshot-page.js'
 
 const sectionKey = 'licence'
 const question = 'What email address would you like the licence sent to?'
@@ -64,6 +66,7 @@ describe('#hint text turned off', () => {
 
   beforeAll(async () => {
     spyOnConfig('featureFlags', {
+      ...config.get('featureFlags'),
       emailConfirmation: false
     })
     server = await createServer()
@@ -80,6 +83,7 @@ describe('#hint text turned off', () => {
 
   afterAll(async () => {
     await server.stop({ timeout: 0 })
+    jest.restoreAllMocks()
   })
 
   it('Should respond with expected output', async () => {
@@ -111,6 +115,7 @@ describe('#hint text turned on', () => {
 
   beforeAll(async () => {
     spyOnConfig('featureFlags', {
+      ...config.get('featureFlags'),
       emailConfirmation: true
     })
     server = await createServer()
@@ -123,6 +128,7 @@ describe('#hint text turned on', () => {
 
   afterAll(async () => {
     await server.stop({ timeout: 0 })
+    jest.restoreAllMocks()
   })
 
   it('Should respond with expected output', async () => {
@@ -146,4 +152,16 @@ describe('#hint text turned on', () => {
       'A confirmation email will also be sent to this email address'
     )
   })
+})
+
+describePageSnapshot({
+  describes: 'emailAddressPage.content',
+  it: 'should render expected response and content',
+  pageUrl
+})
+
+describePageSnapshot({
+  describes: 'emailAddressPage.content.welsh',
+  it: 'should render expected response and content',
+  pageUrl: `${pageUrl}?lang=cy`
 })

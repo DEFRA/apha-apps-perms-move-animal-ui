@@ -473,6 +473,57 @@ describe('DateAnswer.html', () => {
 describe('DateAnswer.viewModel', () => {
   const answer = new TestDateAnswer(invalidPayload)
 
+  it('should translate a configured hint', async () => {
+    class TranslatedHintDateAnswer extends DateAnswer {
+      static config = { ...dateConfig, hintI18nKey: 'test.date.hint' }
+    }
+
+    const translate = jest.fn().mockReturnValue('Translated hint')
+    const translatedAnswer = new TranslatedHintDateAnswer(invalidPayload)
+    const viewModel = await translatedAnswer.viewModel({ question, translate })
+
+    expect(translate).toHaveBeenCalledWith('test.date.hint', hint)
+    expect(viewModel.hint.text).toBe('Translated hint')
+  })
+
+  it('should use the hint when no translator is provided', async () => {
+    class TranslatedHintDateAnswer extends DateAnswer {
+      static config = { ...dateConfig, hintI18nKey: 'test.date.hint' }
+    }
+
+    const translatedAnswer = new TranslatedHintDateAnswer(validPayload)
+    const viewModel = await translatedAnswer.viewModel({ question })
+
+    expect(viewModel.hint.text).toBe(hint)
+  })
+
+  it('should use the hint without translating when no key is configured', async () => {
+    const translate = jest.fn()
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(viewModel.hint.text).toBe(hint)
+    expect(translate).not.toHaveBeenCalledWith(expect.anything(), hint)
+  })
+
+  it('should translate day, month and year labels', async () => {
+    const translations = {
+      'common.answer.date.day': 'Dydd',
+      'common.answer.date.month': 'Mis',
+      'common.answer.date.year': 'Blwyddyn'
+    }
+    const translate = jest.fn((key, fallback) => translations[key] ?? fallback)
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(viewModel.items.map((item) => item.label)).toEqual([
+      'Dydd',
+      'Mis',
+      'Blwyddyn'
+    ])
+    expect(translate).toHaveBeenCalledWith('common.answer.date.day', 'Day')
+    expect(translate).toHaveBeenCalledWith('common.answer.date.month', 'Month')
+    expect(translate).toHaveBeenCalledWith('common.answer.date.year', 'Year')
+  })
+
   it('should return data to render without errors (if validate is false)', async () => {
     expect(await answer.viewModel({ validate: false, question })).toStrictEqual(
       {
@@ -491,16 +542,19 @@ describe('DateAnswer.viewModel', () => {
           {
             classes: 'govuk-input--width-2',
             name: 'day',
+            label: 'Day',
             value: invalidPayload.day
           },
           {
             classes: 'govuk-input--width-2',
             name: 'month',
+            label: 'Month',
             value: invalidPayload.month
           },
           {
             classes: 'govuk-input--width-4',
             name: 'year',
+            label: 'Year',
             value: invalidPayload.year
           }
         ]
@@ -530,16 +584,19 @@ describe('DateAnswer.viewModel', () => {
         {
           classes: 'govuk-input--width-2 govuk-input--error',
           name: 'day',
+          label: 'Day',
           value: missingDatePayload.day
         },
         {
           classes: 'govuk-input--width-2 govuk-input--error',
           name: 'month',
+          label: 'Month',
           value: missingDatePayload.month
         },
         {
           classes: 'govuk-input--width-4 govuk-input--error',
           name: 'year',
+          label: 'Year',
           value: missingDatePayload.year
         }
       ]
@@ -568,16 +625,19 @@ describe('DateAnswer.viewModel', () => {
         {
           classes: 'govuk-input--width-2',
           name: 'day',
+          label: 'Day',
           value: missingDatePayload.day
         },
         {
           classes: 'govuk-input--width-2 govuk-input--error',
           name: 'month',
+          label: 'Month',
           value: missingDatePayload.month
         },
         {
           classes: 'govuk-input--width-4',
           name: 'year',
+          label: 'Year',
           value: missingDatePayload.year
         }
       ]
@@ -614,16 +674,19 @@ describe('DateAnswer.viewModel', () => {
         {
           classes: 'govuk-input--width-2',
           name: 'day',
+          label: 'Day',
           value: validPayload.day
         },
         {
           classes: 'govuk-input--width-2',
           name: 'month',
+          label: 'Month',
           value: validPayload.month
         },
         {
           classes: 'govuk-input--width-4',
           name: 'year',
+          label: 'Year',
           value: validPayload.year
         }
       ]

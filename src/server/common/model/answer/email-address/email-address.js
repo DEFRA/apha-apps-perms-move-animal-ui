@@ -57,6 +57,7 @@ export class EmailAddressAnswer extends TextAnswer {
     if (config.get('featureFlags').emailConfirmation) {
       answerConfig.hint =
         'A confirmation email will also be sent to this email address'
+      answerConfig.hintI18nKey = 'tb.licence.emailAddress.hint'
     }
 
     return answerConfig

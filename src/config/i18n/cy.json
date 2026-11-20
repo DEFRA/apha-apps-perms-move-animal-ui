@@ -228,6 +228,15 @@
       "charterText": "Mae APHA yn prosesu data personol."
     },
     "answer": {
+      "date": {
+        "day": "Dydd",
+        "month": "Mis",
+        "year": "Blwyddyn"
+      },
+      "fullName": {
+        "firstName": "Enw cyntaf",
+        "lastName": "Cyfenw"
+      },
       "cphNumber": {
         "hint": "Er enghraifft, 12/345/6789",
         "validation": {
@@ -607,6 +616,7 @@
       },
       "oldestCalfDob": {
         "question": "Beth yw dyddiad geni'r llo hynaf dan 42 diwrnod oed?",
+        "hint": "Er enghraifft, 7 3 2025",
         "validation": {
           "missingDate": "Nodwch ddyddiad geni'r llo hynaf",
           "missingDay": "Rhaid i ddyddiad geni'r llo hynaf gynnwys diwrnod",
@@ -1104,6 +1114,7 @@
       },
       "emailAddress": {
         "question": "Pa gyfeiriad e-bost hoffech chi i'r drwydded gael ei hanfon ato?",
+        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn",
         "validation": {
           "pattern": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
           "maxLength": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",

@@ -327,6 +327,14 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     value: textAreaAnswer.value
   }
 
+  it('should use the hint without translating when no key is configured', async () => {
+    const translate = jest.fn()
+    const viewModel = await textAreaAnswer.viewModel({ question, translate })
+
+    expect(viewModel.hint).toEqual({ text: 'Enter the data' })
+    expect(translate).not.toHaveBeenCalled()
+  })
+
   it('should return data to render without errors (if validate is false)', async () => {
     expect(
       await textAreaAnswer.viewModel({ validate: false, question })
@@ -340,6 +348,35 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
       ...expectedViewModel,
       errorMessage: { text: maxLengthError }
     })
+  })
+})
+
+describe('TextAreaAnswer.viewModel hint translation', () => {
+  class TranslatedHintTextAreaAnswer extends TextAreaAnswer {
+    static config = {
+      ...optionalTextAreaConfig,
+      hint: 'Enter the data',
+      hintI18nKey: 'test.textArea.hint'
+    }
+  }
+
+  it('should translate the hint using its key and fallback', async () => {
+    const translate = jest.fn().mockReturnValue('Translated hint')
+    const answer = new TranslatedHintTextAreaAnswer(validPayload)
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(translate).toHaveBeenCalledWith(
+      'test.textArea.hint',
+      'Enter the data'
+    )
+    expect(viewModel.hint).toEqual({ text: 'Translated hint' })
+  })
+
+  it('should use the hint fallback when no translator is provided', async () => {
+    const answer = new TranslatedHintTextAreaAnswer(validPayload)
+    const viewModel = await answer.viewModel({ question })
+
+    expect(viewModel.hint).toEqual({ text: 'Enter the data' })
   })
 })
 
