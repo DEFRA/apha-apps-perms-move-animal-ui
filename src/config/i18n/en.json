@@ -238,6 +238,11 @@
         }
       },
       "address": {
+        "line1": "Address line 1",
+        "line2": "Address line 2 (optional)",
+        "townOrCity": "Town or city",
+        "county": "County (optional)",
+        "postcode": "Postcode",
         "validation": {
           "addressLine1": "Enter address line 1, typically the building and street",
           "townOrCity": "Enter town or city",

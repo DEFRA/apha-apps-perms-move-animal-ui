@@ -237,6 +237,11 @@
         }
       },
       "address": {
+        "line1": "Nodwch linell gyfeiriad 1",
+        "line2": "Nodwch linell gyfeiriad 2 (dewisol)",
+        "townOrCity": "Nodwch dref neu ddinas",
+        "county": "Sir (dewisol)",
+        "postcode": "Cod post",
         "validation": {
           "addressLine1": "Nodwch linell gyfeiriad 1, fel arfer yr adeilad a'r stryd",
           "townOrCity": "Nodwch dref neu ddinas",
