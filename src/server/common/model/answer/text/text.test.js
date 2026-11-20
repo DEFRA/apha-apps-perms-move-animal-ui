@@ -346,6 +346,46 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
       errorMessage: { text: maxLengthError }
     })
   })
+
+  it('should use the hint without translating when no key is configured', async () => {
+    const translate = jest.fn()
+
+    const viewModel = await textAnswer.viewModel({ question, translate })
+
+    expect(viewModel.hint).toEqual({ text: 'Enter your email' })
+    expect(translate).not.toHaveBeenCalled()
+  })
+})
+
+describe('TestAnswer.viewModel hint translation', () => {
+  class TranslatedHintAnswer extends TextAnswer {
+    static config = {
+      ...textConfig,
+      hint: 'Enter your email',
+      hintI18nKey: 'test.email.hint'
+    }
+  }
+
+  it('should translate the hint using its key and fallback', async () => {
+    const translate = jest.fn().mockReturnValue('Translated hint')
+    const answer = new TranslatedHintAnswer(validPayload)
+
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(translate).toHaveBeenCalledWith(
+      'test.email.hint',
+      'Enter your email'
+    )
+    expect(viewModel.hint).toEqual({ text: 'Translated hint' })
+  })
+
+  it('should use the hint fallback when no translator is provided', async () => {
+    const answer = new TranslatedHintAnswer(validPayload)
+
+    const viewModel = await answer.viewModel({ question })
+
+    expect(viewModel.hint).toEqual({ text: 'Enter your email' })
+  })
 })
 
 describe('TextAnswer.template', () => {

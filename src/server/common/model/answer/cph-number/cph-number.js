@@ -30,6 +30,7 @@ export class CphNumberAnswer extends TextAnswer {
     autocomplete: 'cph-number',
     characterWidth: 10,
     hint: 'For example, 12/345/6789',
+    hintI18nKey: 'common.answer.cphNumber.hint',
     validation: {
       maxLength: { value: 11, message: invalidCphNumberError },
       pattern: { regex: cphNumberRegex, message: invalidCphNumberError },

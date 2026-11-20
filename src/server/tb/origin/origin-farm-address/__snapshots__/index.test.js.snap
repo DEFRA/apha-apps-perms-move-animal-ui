@@ -63,3 +63,67 @@ exports[`OriginAddressPage originFarmAddressPage.content should render expected 
     </form>
         "
 `;
+
+exports[`OriginAddressPage originFarmAddressPage.content.welsh should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Beth yw cyfeiriad y fferm neu'r safle y mae'r anifeiliaid yn symud oddi arno?
+    </h1>
+  </legend>
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="addressLine1">
+    Nodwch linell gyfeiriad 1
+  </label>
+  <input class="govuk-input" id="addressLine1" name="addressLine1" type="text" autocomplete="address-line1">
+</div>
+
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="addressLine2">
+    Nodwch linell gyfeiriad 2 (dewisol)
+  </label>
+  <input class="govuk-input" id="addressLine2" name="addressLine2" type="text" autocomplete="address-line2">
+</div>
+
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="addressTown">
+    Nodwch dref neu ddinas
+  </label>
+  <input class="govuk-input govuk-!-width-two-thirds" id="addressTown" name="addressTown" type="text" autocomplete="address-level2">
+</div>
+
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="addressCounty">
+    Sir (dewisol)
+  </label>
+  <input class="govuk-input govuk-!-width-two-thirds" id="addressCounty" name="addressCounty" type="text">
+</div>
+
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="addressPostcode">
+    Cod post
+  </label>
+  <input class="govuk-input govuk-input--width-10" id="addressPostcode" name="addressPostcode" type="text" autocomplete="postal-code">
+</div>
+
+
+</fieldset>
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

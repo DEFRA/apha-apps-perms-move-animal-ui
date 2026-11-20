@@ -74,6 +74,12 @@ describe('CphNumberPage', () => {
     pageUrl
   })
 
+  describePageSnapshot({
+    describes: 'cphNumberPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
+
   describe('matching the CPH with SAM on continue', () => {
     /** @type {Server} */
     let server
