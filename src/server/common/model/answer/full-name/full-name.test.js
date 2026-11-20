@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { FullNameAnswer } from './full-name.js'
 
 /** @import {FullNameConfig} from '../full-name/full-name.js' */
@@ -161,7 +162,13 @@ describe('FullName.viewModel', () => {
   const question = 'What is the name of the CPH owner?'
 
   it('should return the value without errors (if validate is false)', async () => {
-    expect(await name.viewModel({ validate: false, question })).toEqual({
+    expect(
+      await name.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toEqual({
       value: name.value,
       question,
       explanation
@@ -169,7 +176,13 @@ describe('FullName.viewModel', () => {
   })
 
   it('should return the value with errors (if valiate is true)', async () => {
-    expect(await name.viewModel({ validate: true, question })).toEqual({
+    expect(
+      await name.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toEqual({
       value: name.value,
       errors: name.validate().errors,
       question,

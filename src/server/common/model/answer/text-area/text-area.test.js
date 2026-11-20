@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { TextAreaAnswer } from './text-area.js'
 /** @import {TextAreaConfig} from './text-area.js' */
@@ -266,7 +267,11 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
 
   it('should return data to render without errors (if validate is false)', async () => {
     expect(
-      await textAreaAnswer.viewModel({ validate: false, question })
+      await textAreaAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
     ).toEqual({
       label: {
         text: question,
@@ -281,7 +286,11 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
 
   it('should return data to render with errors (if validate is true)', async () => {
     expect(
-      await textAreaAnswer.viewModel({ validate: true, question })
+      await textAreaAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
     ).toEqual({
       label: {
         text: question,
@@ -327,23 +336,31 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     value: textAreaAnswer.value
   }
 
-  it('should use the hint without translating when no key is configured', async () => {
-    const translate = jest.fn()
+  it('should use the hint fallback when no key is configured', async () => {
+    const translate = jest.fn((_key, fallback) => fallback)
     const viewModel = await textAreaAnswer.viewModel({ question, translate })
 
     expect(viewModel.hint).toEqual({ text: 'Enter the data' })
-    expect(translate).not.toHaveBeenCalled()
+    expect(translate).toHaveBeenCalledWith(undefined, 'Enter the data')
   })
 
   it('should return data to render without errors (if validate is false)', async () => {
     expect(
-      await textAreaAnswer.viewModel({ validate: false, question })
+      await textAreaAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
     ).toEqual(expectedViewModel)
   })
 
   it('should return data to render with errors (if validate is true)', async () => {
     expect(
-      await textAreaAnswer.viewModel({ validate: true, question })
+      await textAreaAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
     ).toEqual({
       ...expectedViewModel,
       errorMessage: { text: maxLengthError }
@@ -370,13 +387,6 @@ describe('TextAreaAnswer.viewModel hint translation', () => {
       'Enter the data'
     )
     expect(viewModel.hint).toEqual({ text: 'Translated hint' })
-  })
-
-  it('should use the hint fallback when no translator is provided', async () => {
-    const answer = new TranslatedHintTextAreaAnswer(validPayload)
-    const viewModel = await answer.viewModel({ question })
-
-    expect(viewModel.hint).toEqual({ text: 'Enter the data' })
   })
 })
 

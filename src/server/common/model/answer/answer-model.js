@@ -154,6 +154,6 @@ export class AnswerModel {
  *   validate?: boolean,
  *   question: string,
  *   errors?: AnswerErrors,
- *   translate?: (key: string | undefined, fallback: string, params?: Record<string, unknown>) => string
+ *   translate: (key: string | undefined, fallback: string, params?: Record<string, unknown>) => string
  * }} AnswerViewModelOptions
  */

@@ -202,7 +202,7 @@ export class DateAnswer extends AnswerModel {
       },
       id: 'date',
       hint: {
-        text: hintI18nKey && translate ? translate(hintI18nKey, hint) : hint
+        text: translate(hintI18nKey, hint)
       },
       items: [
         {
@@ -211,7 +211,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-2'
           ),
           name: 'day',
-          label: translate ? translate('common.answer.date.day', 'Day') : 'Day',
+          label: translate('common.answer.date.day', 'Day'),
           value: this.value?.day
         },
         {
@@ -220,9 +220,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-2'
           ),
           name: 'month',
-          label: translate
-            ? translate('common.answer.date.month', 'Month')
-            : 'Month',
+          label: translate('common.answer.date.month', 'Month'),
           value: this.value?.month
         },
         {
@@ -231,9 +229,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-4'
           ),
           name: 'year',
-          label: translate
-            ? translate('common.answer.date.year', 'Year')
-            : 'Year',
+          label: translate('common.answer.date.year', 'Year'),
           value: this.value?.year
         }
       ]

@@ -153,7 +153,7 @@ export class TextAnswer extends AnswerModel {
 
     if (hint) {
       viewModel.hint = {
-        text: hintI18nKey && translate ? translate(hintI18nKey, hint) : hint
+        text: translate(hintI18nKey, hint)
       }
     }
 

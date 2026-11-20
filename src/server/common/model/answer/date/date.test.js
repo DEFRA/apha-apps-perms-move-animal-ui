@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { DateAnswer } from './date.js'
 import { TZDate } from '@date-fns/tz'
 
@@ -486,23 +487,12 @@ describe('DateAnswer.viewModel', () => {
     expect(viewModel.hint.text).toBe('Translated hint')
   })
 
-  it('should use the hint when no translator is provided', async () => {
-    class TranslatedHintDateAnswer extends DateAnswer {
-      static config = { ...dateConfig, hintI18nKey: 'test.date.hint' }
-    }
-
-    const translatedAnswer = new TranslatedHintDateAnswer(validPayload)
-    const viewModel = await translatedAnswer.viewModel({ question })
-
-    expect(viewModel.hint.text).toBe(hint)
-  })
-
-  it('should use the hint without translating when no key is configured', async () => {
-    const translate = jest.fn()
+  it('should use the hint fallback when no key is configured', async () => {
+    const translate = jest.fn((_key, fallback) => fallback)
     const viewModel = await answer.viewModel({ question, translate })
 
     expect(viewModel.hint.text).toBe(hint)
-    expect(translate).not.toHaveBeenCalledWith(expect.anything(), hint)
+    expect(translate).toHaveBeenCalledWith(undefined, hint)
   })
 
   it('should translate day, month and year labels', async () => {
@@ -525,47 +515,57 @@ describe('DateAnswer.viewModel', () => {
   })
 
   it('should return data to render without errors (if validate is false)', async () => {
-    expect(await answer.viewModel({ validate: false, question })).toStrictEqual(
-      {
-        fieldset: {
-          legend: {
-            text: question,
-            classes: 'govuk-fieldset__legend--l',
-            isPageHeading: true
-          }
+    expect(
+      await answer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toStrictEqual({
+      fieldset: {
+        legend: {
+          text: question,
+          classes: 'govuk-fieldset__legend--l',
+          isPageHeading: true
+        }
+      },
+      hint: {
+        text: hint
+      },
+      id: 'date',
+      items: [
+        {
+          classes: 'govuk-input--width-2',
+          name: 'day',
+          label: 'Day',
+          value: invalidPayload.day
         },
-        hint: {
-          text: hint
+        {
+          classes: 'govuk-input--width-2',
+          name: 'month',
+          label: 'Month',
+          value: invalidPayload.month
         },
-        id: 'date',
-        items: [
-          {
-            classes: 'govuk-input--width-2',
-            name: 'day',
-            label: 'Day',
-            value: invalidPayload.day
-          },
-          {
-            classes: 'govuk-input--width-2',
-            name: 'month',
-            label: 'Month',
-            value: invalidPayload.month
-          },
-          {
-            classes: 'govuk-input--width-4',
-            name: 'year',
-            label: 'Year',
-            value: invalidPayload.year
-          }
-        ]
-      }
-    )
+        {
+          classes: 'govuk-input--width-4',
+          name: 'year',
+          label: 'Year',
+          value: invalidPayload.year
+        }
+      ]
+    })
   })
 
   it('should return errors that affect the whole date', async () => {
     const missingDatePayload = { day: '', month: '', year: '' }
     const answer = new TestDateAnswer(missingDatePayload)
-    expect(await answer.viewModel({ validate: true, question })).toStrictEqual({
+    expect(
+      await answer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toStrictEqual({
       fieldset: {
         legend: {
           text: question,
@@ -606,7 +606,13 @@ describe('DateAnswer.viewModel', () => {
   it('should return errors that affect only affect one field', async () => {
     const missingDatePayload = { day: '12', month: '', year: '2024' }
     const answer = new TestDateAnswer(missingDatePayload)
-    expect(await answer.viewModel({ validate: true, question })).toStrictEqual({
+    expect(
+      await answer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toStrictEqual({
       fieldset: {
         legend: {
           text: question,
@@ -657,7 +663,11 @@ describe('DateAnswer.viewModel', () => {
     const nonPageHeadingAnswer = new NonPageHeadingDateAnswer(validPayload)
 
     expect(
-      await nonPageHeadingAnswer.viewModel({ validate: false, question })
+      await nonPageHeadingAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
     ).toStrictEqual({
       fieldset: {
         legend: {

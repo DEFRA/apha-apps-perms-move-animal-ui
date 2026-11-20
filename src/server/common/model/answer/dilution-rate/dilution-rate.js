@@ -32,10 +32,10 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   }
 
   /**
-   * @param {AnswerViewModelOptions} options
+   * @param {AnswerViewModelOptions} viewModelOptions
    */
-  async viewModel({ question, validate }) {
-    const viewModel = await super.viewModel({ question, validate })
+  async viewModel(viewModelOptions) {
+    const viewModel = await super.viewModel(viewModelOptions)
 
     const values = this.value
     const { options } = this.config

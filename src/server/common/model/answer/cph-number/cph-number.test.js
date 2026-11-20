@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { TextAnswer } from '../text/text.js'
 import { CphNumberAnswer } from './cph-number.js'
 import { config } from '~/src/config/config.js'
@@ -147,6 +148,7 @@ describe('CphNumberAnswer', () => {
       const answer = new CphNumberAnswer(validPayload)
 
       const { errorMessage } = await answer.viewModel({
+        translate: fallbackTranslate,
         validate: true,
         question,
         errors: { cphNumber: unmatchedError }
@@ -159,6 +161,7 @@ describe('CphNumberAnswer', () => {
       const answer = new CphNumberAnswer({ cphNumber: '12345' })
 
       const { errorMessage } = await answer.viewModel({
+        translate: fallbackTranslate,
         validate: true,
         question,
         errors: { cphNumber: unmatchedError }
@@ -173,6 +176,7 @@ describe('CphNumberAnswer', () => {
       const answer = new CphNumberAnswer(validPayload)
 
       const { errorMessage } = await answer.viewModel({
+        translate: fallbackTranslate,
         validate: false,
         question,
         errors: { cphNumber: unmatchedError }

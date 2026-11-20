@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { TextAnswer } from './text.js'
 /** @import {TextConfig} from './text.js' */
 
@@ -241,7 +242,13 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAnswer = new TestTextAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', async () => {
-    expect(await textAnswer.viewModel({ validate: false, question })).toEqual({
+    expect(
+      await textAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -254,7 +261,13 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
   })
 
   it('should return data to render with errors (if validate is true)', async () => {
-    expect(await textAnswer.viewModel({ validate: true, question })).toEqual({
+    expect(
+      await textAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -280,7 +293,11 @@ describe('TestAnswer.viewModel (without any extra options)', () => {
     const nonPageHeadingAnswer = new NonPageHeadingTextAnswer(invalidPayload)
 
     expect(
-      await nonPageHeadingAnswer.viewModel({ validate: false, question })
+      await nonPageHeadingAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
     ).toEqual({
       label: {
         text: question,
@@ -311,7 +328,13 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   const textAnswer = new ExtraOptionsTextAnswer(invalidPayload)
 
   it('should return data to render without errors (if validate is false)', async () => {
-    expect(await textAnswer.viewModel({ validate: false, question })).toEqual({
+    expect(
+      await textAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -329,7 +352,13 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
   })
 
   it('should return data to render with errors (if validate is true)', async () => {
-    expect(await textAnswer.viewModel({ validate: true, question })).toEqual({
+    expect(
+      await textAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toEqual({
       label: {
         text: question,
         classes: 'govuk-label--l',
@@ -347,13 +376,13 @@ describe('TestAnswer.viewModel (with all optional options)', () => {
     })
   })
 
-  it('should use the hint without translating when no key is configured', async () => {
-    const translate = jest.fn()
+  it('should use the hint fallback when no key is configured', async () => {
+    const translate = jest.fn((_key, fallback) => fallback)
 
     const viewModel = await textAnswer.viewModel({ question, translate })
 
     expect(viewModel.hint).toEqual({ text: 'Enter your email' })
-    expect(translate).not.toHaveBeenCalled()
+    expect(translate).toHaveBeenCalledWith(undefined, 'Enter your email')
   })
 })
 
@@ -377,14 +406,6 @@ describe('TestAnswer.viewModel hint translation', () => {
       'Enter your email'
     )
     expect(viewModel.hint).toEqual({ text: 'Translated hint' })
-  })
-
-  it('should use the hint fallback when no translator is provided', async () => {
-    const answer = new TranslatedHintAnswer(validPayload)
-
-    const viewModel = await answer.viewModel({ question })
-
-    expect(viewModel.hint).toEqual({ text: 'Enter your email' })
   })
 })
 

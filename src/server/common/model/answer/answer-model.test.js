@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../test-helpers/translate.js'
 import { NotImplementedError } from '../../helpers/not-implemented-error.js'
 import { AnswerModel } from './answer-model.js'
 
@@ -86,6 +87,7 @@ describe('AnswerModel', () => {
   it('should return a default empty view model if no override is given', async () => {
     expect(
       await answer.viewModel({
+        translate: fallbackTranslate,
         validate: true,
         question: 'What is the answer?'
       })
