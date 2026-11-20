@@ -184,7 +184,7 @@ describe('QuestionPageController', () => {
       })
 
       const document = parseDocument(payload)
-      expect(document.title).toBe(question)
+      expect(document.title).toBe(translatedQuestion)
       expect(statusCode).toBe(statusCodes.ok)
     })
 
@@ -390,7 +390,7 @@ describe('QuestionPageController', () => {
       })
 
       const document = parseDocument(payload)
-      expect(document.title).toBe(question)
+      expect(document.title).toBe(translatedQuestion)
 
       expect(payload).toEqual(
         expect.stringContaining(
@@ -467,7 +467,7 @@ describe('QuestionPageController', () => {
         )
 
         expect(erroredGET.statusCode).toBe(statusCodes.ok)
-        expect(erroredDocument.title).toBe(`Error: ${question}`)
+        expect(erroredDocument.title).toBe(`Error: ${translatedQuestion}`)
         expect(input?.getAttribute('value')).toBe(errorValue)
         expect(viewModelSpy).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -601,7 +601,7 @@ describe('QuestionPageController', () => {
         )
 
         expect(parseDocument(erroredGET.payload).title).toBe(
-          `Error: ${question}`
+          `Error: ${translatedQuestion}`
         )
         expect(viewModelSpy).toHaveBeenCalledWith(
           expect.objectContaining({ validate: true, errors: externalError })
@@ -782,9 +782,9 @@ describe('QuestionPageController', () => {
       expect(h.view).toHaveBeenCalledWith(
         questionView,
         expect.objectContaining({
-          heading: question,
+          heading: translatedQuestion,
           nextPage: 'returnUrl',
-          pageTitle: question,
+          pageTitle: translatedQuestion,
           value: undefined,
           answerViewModel: testViewModel
         })
@@ -816,9 +816,9 @@ describe('QuestionPageController', () => {
       expect(h.view).toHaveBeenCalledWith(
         questionView,
         expect.objectContaining({
-          heading: question,
+          heading: translatedQuestion,
           nextPage: 'returnUrl',
-          pageTitle: `Error: ${question}`,
+          pageTitle: `Error: ${translatedQuestion}`,
           errorMessages: errorState.errorMessages,
           errors: errorState.errors,
           answerViewModel: testViewModel
