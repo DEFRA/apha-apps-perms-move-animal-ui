@@ -73,13 +73,13 @@ export class QuestionPageController extends GenericPageController {
     const heading = translate(
       req,
       this.page.headingI18nKey,
-      this.page.heading ?? question
+      this.page.questionI18nKey ? question : this.page.heading
     )
 
     const pageTitle = translate(
       req,
       this.page.titleI18nKey,
-      this.page.title ?? question
+      this.page.questionI18nKey ? question : this.page.title
     )
 
     const pageError = req.yar.get(this.errorKey)
