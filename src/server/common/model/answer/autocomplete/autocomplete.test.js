@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { AutocompleteAnswer } from './autocomplete.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 /** @import {AutocompleteConfig} from './autocomplete.js' */
@@ -200,6 +201,7 @@ describe('AutocompleteAnswer.viewModel', () => {
   it('should return basic view model without validation', async () => {
     const autocompleteAnswer = new TestAutocompleteAnswer(validPayload)
     const viewModel = await autocompleteAnswer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })
@@ -226,6 +228,7 @@ describe('AutocompleteAnswer.viewModel', () => {
   it('should return view model with validation errors', async () => {
     const autocompleteAnswer = new TestAutocompleteAnswer(invalidPayload)
     const viewModel = await autocompleteAnswer.viewModel({
+      translate: fallbackTranslate,
       validate: true,
       question
     })
@@ -253,6 +256,7 @@ describe('AutocompleteAnswer.viewModel', () => {
   it('should return view model with all optional config properties', async () => {
     const autocompleteAnswer = new TestAutocompleteAnswerWithHint(validPayload)
     const viewModel = await autocompleteAnswer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })
@@ -280,6 +284,7 @@ describe('AutocompleteAnswer.viewModel', () => {
   it('should handle undefined value in view model', async () => {
     const autocompleteAnswer = new TestAutocompleteAnswer()
     const viewModel = await autocompleteAnswer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })
@@ -290,6 +295,7 @@ describe('AutocompleteAnswer.viewModel', () => {
   it('should use default isPageHeading value when not specified', async () => {
     const autocompleteAnswer = new TestAutocompleteAnswer(validPayload)
     const viewModel = await autocompleteAnswer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })
@@ -318,6 +324,7 @@ describe('AutocompleteAnswer.viewModel characterWidth', () => {
 
       const answer = new TestCharacterWidthAnswer(validPayload)
       const viewModel = await answer.viewModel({
+        translate: fallbackTranslate,
         validate: false,
         question
       })
@@ -398,6 +405,7 @@ describe('AutocompleteAnswer async items integration', () => {
 
     const answer = new AsyncItemsAnswer(validPayload)
     const viewModel = await answer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })
@@ -420,6 +428,7 @@ describe('AutocompleteAnswer async items integration', () => {
 
     const answer = new EmptyItemsAnswer(validPayload)
     const viewModel = await answer.viewModel({
+      translate: fallbackTranslate,
       validate: false,
       question
     })

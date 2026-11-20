@@ -55,3 +55,59 @@ exports[`OldestCalfDobPage oldestCalfDobPage.content should render expected resp
     </form>
         "
 `;
+
+exports[`OldestCalfDobPage oldestCalfDobPage.content.welsh should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+        Beth yw dyddiad geni'r llo hynaf dan 42 diwrnod oed?
+      </h1>
+    </legend>
+    <div id="date-hint" class="govuk-hint">
+      Er enghraifft, 7 3 2025
+    </div>
+    <div class="govuk-date-input" id="date">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="date-day">
+            Dydd
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="day" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="date-month">
+            Mis
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month" name="month" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="date-year">
+            Blwyddyn
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="year" type="text" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

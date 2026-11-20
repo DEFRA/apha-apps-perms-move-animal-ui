@@ -25,6 +25,7 @@ import {
  * export @typedef {{
  *  isPageHeading?: boolean,
  *  hint: string,
+ *  hintI18nKey?: string,
  *  validation: {
  *    missingDate: { message: string },
  *    missingDay: { message: string },
@@ -164,7 +165,7 @@ export class DateAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, translate }) {
     const {
       isValid,
       errors = {},
@@ -187,6 +188,7 @@ export class DateAnswer extends AnswerModel {
         }
 
     const isPageHeading = this.config.isPageHeading ?? true
+    const { hint, hintI18nKey } = this.config
 
     const viewModel = {
       fieldset: {
@@ -200,7 +202,7 @@ export class DateAnswer extends AnswerModel {
       },
       id: 'date',
       hint: {
-        text: this.config.hint
+        text: translate(hintI18nKey, hint)
       },
       items: [
         {
@@ -209,6 +211,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-2'
           ),
           name: 'day',
+          label: translate('common.answer.date.day', 'Day'),
           value: this.value?.day
         },
         {
@@ -217,6 +220,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-2'
           ),
           name: 'month',
+          label: translate('common.answer.date.month', 'Month'),
           value: this.value?.month
         },
         {
@@ -225,6 +229,7 @@ export class DateAnswer extends AnswerModel {
             'govuk-input--width-4'
           ),
           name: 'year',
+          label: translate('common.answer.date.year', 'Year'),
           value: this.value?.year
         }
       ]

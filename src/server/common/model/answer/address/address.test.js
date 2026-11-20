@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { AddressAnswer } from './address.js'
 
 const validAddress = {
@@ -294,14 +295,26 @@ describe('Address.viewModel', () => {
   const question = 'What is the address of your farm or premises?'
 
   it('should return the value without errors (if validate is false)', async () => {
-    expect(await address.viewModel({ validate: false, question })).toEqual({
+    expect(
+      await address.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toEqual({
       value: address.value,
       question
     })
   })
 
   it('should return the value with errors (if validate is true)', async () => {
-    expect(await address.viewModel({ validate: true, question })).toEqual({
+    expect(
+      await address.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toEqual({
       question,
       value: address.value,
       errors: address.validate().errors

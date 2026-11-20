@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { HiddenAnswer } from './hidden.js'
 /** @import {HiddenAnswerConfig} from './hidden.js' */
@@ -91,7 +92,9 @@ describe('TestAnswer.viewModel', () => {
   const hiddenAnswer = new TestHiddenAnswer(validPayload)
 
   it('should return expected data to render', async () => {
-    expect(await hiddenAnswer.viewModel({ question })).toEqual({
+    expect(
+      await hiddenAnswer.viewModel({ translate: fallbackTranslate, question })
+    ).toEqual({
       id: hiddenAnswerConfig.payloadKey,
       name: hiddenAnswerConfig.payloadKey,
       question,

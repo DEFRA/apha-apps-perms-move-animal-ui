@@ -7,7 +7,7 @@ import { translate } from '../../helpers/i18n/index.js'
 
 /** @import { Request, Server, ServerRegisterPluginObject } from '@hapi/hapi' */
 /** @import { NextPage } from '~/src/server/common/helpers/next-page.js' */
-/** @import { AnswerModel, RawPayload } from '~/src/server/common/model/answer/answer-model.js' */
+/** @import { AnswerModel, RawPayload, AnswerViewModelOptions } from '~/src/server/common/model/answer/answer-model.js' */
 /** @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js' */
 /** @import { RawApplicationState, StateManager } from '~/src/server/common/model/state/state-manager.js' */
 
@@ -82,6 +82,10 @@ export class QuestionPageController extends GenericPageController {
       this.page.questionI18nKey ? question : this.page.title
     )
 
+    /** @type {NonNullable<AnswerViewModelOptions['translate']>} */
+    const translateForRequest = (key, fallback, params) =>
+      translate(req, key, fallback, params)
+
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
@@ -92,6 +96,7 @@ export class QuestionPageController extends GenericPageController {
       const errorViewModelOptions = {
         validate: true,
         question,
+        translate: translateForRequest,
         errors: pageError.errors
       }
 
@@ -109,7 +114,8 @@ export class QuestionPageController extends GenericPageController {
     }
     const viewModelOptions = {
       validate: false,
-      question
+      question,
+      translate: translateForRequest
     }
 
     return h.view(this.page.view, {
