@@ -6,6 +6,7 @@ export class CalfDob extends DateAnswer {
   /** @type {DateConfig} */
   static config = {
     hint: 'For example, 7 3 2025',
+    hintI18nKey: 'tb.identification.oldestCalfDob.hint',
     validation: {
       missingDate: { message: 'Enter the oldest calf’s date of birth' },
       missingDay: {

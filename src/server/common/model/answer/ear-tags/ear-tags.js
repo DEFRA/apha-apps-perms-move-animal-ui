@@ -16,6 +16,7 @@ export class EarTagsAnswer extends TextAreaAnswer {
     payloadKey: 'earTags',
     isPageHeading: false,
     hint: 'You need to enter each ear tag number on a separate line',
+    hintI18nKey: 'tb.identification.earTags.hint',
     rows: 15,
     validation: {
       maxLength: {

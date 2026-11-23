@@ -1,10 +1,10 @@
-import { EmailAddressAnswer } from '../email-address/email-address.js'
+import { BaseEmailAddressAnswer } from '../base-email-address/base-email-address.js'
 import { DestinationEmailAddressAnswer } from './destination-email-address.js'
 
 describe('DestinationEmailAddressAnswer', () => {
   it('should be an email address answer', () => {
     expect(new DestinationEmailAddressAnswer()).toBeInstanceOf(
-      EmailAddressAnswer
+      BaseEmailAddressAnswer
     )
   })
 

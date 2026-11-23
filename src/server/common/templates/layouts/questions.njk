@@ -33,7 +33,7 @@
             {{
               govukButton({
                 id: "continue-button",
-                text: continueButtonText | default('Continue'),
+                text: continueButtonText | default(translate('common.continue', 'Continue')),
                 classes: continueButtonClasses | default(''),
                 preventDoubleClick: true
               })

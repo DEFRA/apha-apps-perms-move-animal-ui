@@ -229,6 +229,15 @@
       "charterText": "APHA processes personal data."
     },
     "answer": {
+      "date": {
+        "day": "Day",
+        "month": "Month",
+        "year": "Year"
+      },
+      "fullName": {
+        "firstName": "First name",
+        "lastName": "Last name"
+      },
       "cphNumber": {
         "hint": "For example, 12/345/6789",
         "validation": {
@@ -238,12 +247,20 @@
         }
       },
       "address": {
+        "line1": "Address line 1",
+        "line2": "Address line 2 (optional)",
+        "townOrCity": "Town or city",
+        "county": "County (optional)",
+        "postcode": "Postcode",
         "validation": {
           "addressLine1": "Enter address line 1, typically the building and street",
           "townOrCity": "Enter town or city",
           "postcode": "Enter postcode",
           "postcodeFormat": "Enter a full UK postcode"
         }
+      },
+      "emailAddress": {
+        "hint": "A confirmation email will also be sent to this email address"
       }
     }
   },
@@ -603,6 +620,7 @@
       },
       "oldestCalfDob": {
         "question": "What is the date of birth of the oldest calf under 42 days old?",
+        "hint": "For example, 7 3 2025",
         "validation": {
           "missingDate": "Enter the oldest calf’s date of birth",
           "missingDay": "Date of birth of the oldest calf must include a day",

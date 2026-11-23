@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { RadioButtonAnswer } from './radio-button.js'
 
 /** @import {RadioButtonConfig} from './radio-button.js' */
@@ -250,13 +251,21 @@ describe('RadioButton', () => {
 
     it('should return everything (except errors) to render in the template', async () => {
       expect(
-        await invalidAnswer.viewModel({ validate: false, question })
+        await invalidAnswer.viewModel({
+          translate: fallbackTranslate,
+          validate: false,
+          question
+        })
       ).toEqual(defaultViewModel)
     })
 
     it('should return everything (including errors) to render in the template', async () => {
       expect(
-        await invalidAnswer.viewModel({ validate: true, question })
+        await invalidAnswer.viewModel({
+          translate: fallbackTranslate,
+          validate: true,
+          question
+        })
       ).toEqual({
         ...defaultViewModel,
         errorMessage: { text: 'Select an option' }
@@ -275,7 +284,11 @@ describe('RadioButton', () => {
       )
 
       expect(
-        await invalidAnswer.viewModel({ validate: false, question })
+        await invalidAnswer.viewModel({
+          translate: fallbackTranslate,
+          validate: false,
+          question
+        })
       ).toEqual(defaultViewModel)
     })
 
@@ -288,7 +301,11 @@ describe('RadioButton', () => {
       )
 
       expect(
-        await invalidAnswer.viewModel({ validate: false, question })
+        await invalidAnswer.viewModel({
+          translate: fallbackTranslate,
+          validate: false,
+          question
+        })
       ).toEqual({
         ...defaultViewModel,
         items: defaultViewModel.items.concat([
@@ -310,7 +327,11 @@ describe('RadioButton', () => {
           test_radio: 'value_1'
         })
         expect(
-          await answer.viewModel({ validate: false, question })
+          await answer.viewModel({
+            translate: fallbackTranslate,
+            validate: false,
+            question
+          })
         ).toMatchObject({
           classes: 'govuk-radios--inline'
         })
@@ -319,7 +340,11 @@ describe('RadioButton', () => {
       it('should return empty class when layout is not specified', async () => {
         const answer = new TestRadioButtonAnswer({ test_radio: 'value_1' })
         expect(
-          await answer.viewModel({ validate: false, question })
+          await answer.viewModel({
+            translate: fallbackTranslate,
+            validate: false,
+            question
+          })
         ).toMatchObject({
           classes: ''
         })

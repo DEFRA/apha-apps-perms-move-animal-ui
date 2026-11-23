@@ -1,3 +1,4 @@
+import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { CheckboxAnswer } from './checkbox.js'
 
 /** @import {CheckboxConfig} from './checkbox.js' */
@@ -252,7 +253,13 @@ describe('CheckboxAnswer.viewModel', () => {
 
     const expectedItems = [itemOne, { ...itemTwo, checked: true }]
 
-    expect(await validAnswer.viewModel({ validate: false, question })).toEqual({
+    expect(
+      await validAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
+    ).toEqual({
       ...defaultViewModel,
       items: expectedItems
     })
@@ -265,13 +272,17 @@ describe('CheckboxAnswer.viewModel', () => {
 
     const expectedItems = [itemOne, itemTwo]
 
-    expect(await invalidAnswer.viewModel({ validate: true, question })).toEqual(
-      {
-        ...defaultViewModel,
-        errorMessage: { text: checkboxEmptyError },
-        items: expectedItems
-      }
-    )
+    expect(
+      await invalidAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: true,
+        question
+      })
+    ).toEqual({
+      ...defaultViewModel,
+      errorMessage: { text: checkboxEmptyError },
+      items: expectedItems
+    })
   })
 
   it('should return data to render with the alternative (not page heading) question styles set correctly', async () => {
@@ -291,7 +302,11 @@ describe('CheckboxAnswer.viewModel', () => {
     const expectedItems = [itemOne, { ...itemTwo, checked: true }]
 
     expect(
-      await nonPageHeadingAnswer.viewModel({ validate: false, question })
+      await nonPageHeadingAnswer.viewModel({
+        translate: fallbackTranslate,
+        validate: false,
+        question
+      })
     ).toEqual({
       ...defaultViewModel,
 
@@ -330,6 +345,7 @@ describe('CheckboxAnswer - dividers and exclusive options', () => {
   it('should include a divider item in the viewModel', async () => {
     const answer = new DividerExclusiveCheckboxAnswer({ test_checkbox: [] })
     const viewModel = await answer.viewModel({
+      translate: fallbackTranslate,
       question: 'Test',
       validate: false
     })
@@ -358,6 +374,7 @@ describe('CheckboxAnswer - dividers and exclusive options', () => {
       test_checkbox: ['option2']
     })
     const viewModel = await answer.viewModel({
+      translate: fallbackTranslate,
       question: 'Test',
       validate: false
     })

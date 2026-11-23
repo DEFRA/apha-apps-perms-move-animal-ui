@@ -43,6 +43,7 @@ const textAreaSchema = ({ payloadKey, validation }) => {
  *  rows?: number,
  *  autocomplete?: string,
  *  hint?: string,
+ *  hintI18nKey?: string,
  *  isPageHeading?: boolean,
  *  validation: {
  *    maxLength: { value: number, message: string },
@@ -105,8 +106,9 @@ export class TextAreaAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
-    const { payloadKey, spellcheck, autocomplete, rows, hint } = this.config
+  async viewModel({ validate, question, translate }) {
+    const { payloadKey, spellcheck, autocomplete, rows, hint, hintI18nKey } =
+      this.config
     const isPageHeading = this.config.isPageHeading ?? true
 
     const viewModel = {
@@ -129,7 +131,9 @@ export class TextAreaAnswer extends AnswerModel {
     }
 
     if (hint) {
-      viewModel.hint = { text: hint }
+      viewModel.hint = {
+        text: translate(hintI18nKey, hint)
+      }
     }
 
     if (spellcheck === false) {

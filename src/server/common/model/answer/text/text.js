@@ -48,6 +48,7 @@ const whitespaceRegex = /\s+/g
  *  isPageHeading? : boolean,
  *  autocomplete?: string,
  *  hint?: string,
+ *  hintI18nKey?: string,
  *  validation: {
  *    maxLength?: { value: number, message: string },
  *    empty?: { message: string },
@@ -114,9 +115,16 @@ export class TextAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
-    const { payloadKey, type, spellcheck, autocomplete, characterWidth, hint } =
-      this.config
+  async viewModel({ validate, question, translate }) {
+    const {
+      payloadKey,
+      type,
+      spellcheck,
+      autocomplete,
+      characterWidth,
+      hint,
+      hintI18nKey
+    } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
 
@@ -144,7 +152,9 @@ export class TextAnswer extends AnswerModel {
     }
 
     if (hint) {
-      viewModel.hint = { text: hint }
+      viewModel.hint = {
+        text: translate(hintI18nKey, hint)
+      }
     }
 
     if (spellcheck === false) {

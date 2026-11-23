@@ -2,6 +2,9 @@ import { EarTagsAnswer } from '../../../common/model/answer/ear-tags/ear-tags.js
 import { describePageSnapshot } from '../../../common/test-helpers/snapshot-page.js'
 import { identificationSummaryPage } from '../summary/index.js'
 import { earTagsPage, EarTagsPage } from './index.js'
+import { createServer } from '~/src/server/index.js'
+import { parseDocument } from '../../../common/test-helpers/dom.js'
+import { statusCodes } from '../../../common/constants/status-codes.js'
 
 const sectionKey = 'identification'
 const question = 'Enter the ear tag numbers'
@@ -56,6 +59,24 @@ describe('EarTagsPage', () => {
 
   it('should export page', () => {
     expect(earTagsPage).toBeInstanceOf(EarTagsPage)
+  })
+
+  it('should render the hint in Welsh', async () => {
+    const server = await createServer()
+    try {
+      await server.initialize()
+      const { payload, statusCode } = await server.inject({
+        method: 'GET',
+        url: `${pageUrl}?lang=cy`
+      })
+
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(
+        parseDocument(payload).querySelector('#earTags-hint')?.textContent
+      ).toContain('Mae angen i chi nodi pob rhif clust-dag ar linell ar wahân')
+    } finally {
+      await server.stop({ timeout: 0 })
+    }
   })
 
   describePageSnapshot({

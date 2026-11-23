@@ -228,6 +228,15 @@
       "charterText": "Mae APHA yn prosesu data personol."
     },
     "answer": {
+      "date": {
+        "day": "Dydd",
+        "month": "Mis",
+        "year": "Blwyddyn"
+      },
+      "fullName": {
+        "firstName": "Enw cyntaf",
+        "lastName": "Cyfenw"
+      },
       "cphNumber": {
         "hint": "Er enghraifft, 12/345/6789",
         "validation": {
@@ -237,12 +246,20 @@
         }
       },
       "address": {
+        "line1": "Nodwch linell gyfeiriad 1",
+        "line2": "Nodwch linell gyfeiriad 2 (dewisol)",
+        "townOrCity": "Nodwch dref neu ddinas",
+        "county": "Sir (dewisol)",
+        "postcode": "Cod post",
         "validation": {
           "addressLine1": "Nodwch linell gyfeiriad 1, fel arfer yr adeilad a'r stryd",
           "townOrCity": "Nodwch dref neu ddinas",
           "postcode": "Nodwch god post",
           "postcodeFormat": "Nodwch god post llawn y DU"
         }
+      },
+      "emailAddress": {
+        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn"
       }
     }
   },
@@ -602,6 +619,7 @@
       },
       "oldestCalfDob": {
         "question": "Beth yw dyddiad geni'r llo hynaf dan 42 diwrnod oed?",
+        "hint": "Er enghraifft, 7 3 2025",
         "validation": {
           "missingDate": "Nodwch ddyddiad geni'r llo hynaf",
           "missingDay": "Rhaid i ddyddiad geni'r llo hynaf gynnwys diwrnod",

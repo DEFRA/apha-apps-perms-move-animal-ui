@@ -1,53 +1,32 @@
 import { config } from '~/src/config/config.js'
-import { TextAnswer } from '../text/text.js'
-import fs from 'fs'
-import path from 'path'
+import { BaseEmailAddressAnswer } from '../base-email-address/base-email-address.js'
 
 /** @import {TextConfig} from '../text/text.js' */
 
-const tldsPath = path.resolve(
-  path.dirname(new URL(import.meta.url).pathname),
-  'tlds.txt'
-)
-const tldPattern = fs
-  .readFileSync(tldsPath, 'utf-8')
-  .split('\n')
-  .map((line) => line.trim())
-  .filter((line) => line && !line.startsWith('#'))
-  .join('|')
-
-const emailAddressRegex = new RegExp(
-  `^[^@()<>\\[\\]:;,"\\\\]+@[^@]+\\.(${tldPattern})$`,
-  'i'
-)
-
-const maxLength = 255
-const emptyAddressError =
-  'Enter the email address you would like the licence sent to'
-const invalidAddressError =
-  'Enter an email address in the correct format, like name@example.com'
-
 /**
  * export @typedef {string} EmailAddressData
- * @typedef {{ emailAddress: EmailAddressData }} EmailAddressPayload
+ * @typedef {{ mail: EmailAddressData }} EmailAddressPayload
  */
 
 /**
- * @augments {TextAnswer<EmailAddressPayload>}
+ * @augments {BaseEmailAddressAnswer}
  */
-export class EmailAddressAnswer extends TextAnswer {
+export class EmailAddressAnswer extends BaseEmailAddressAnswer {
   /** @type {TextConfig} */
   static config = {
-    payloadKey: 'emailAddress',
-    stripWhitespace: true,
-    type: 'email',
-    spellcheck: false,
-    autocomplete: 'email-address',
-    characterWidth: 20,
+    ...BaseEmailAddressAnswer.config,
     validation: {
-      pattern: { regex: emailAddressRegex, message: invalidAddressError },
-      maxLength: { value: maxLength, message: invalidAddressError },
-      empty: { message: emptyAddressError }
+      ...BaseEmailAddressAnswer.config.validation,
+      pattern: {
+        regex: /** @type {RegExp} */ (
+          BaseEmailAddressAnswer.config.validation.pattern?.regex
+        ),
+        message:
+          'Enter an email address in the correct format, like name@example.com'
+      },
+      empty: {
+        message: 'Enter the email address you would like the licence sent to'
+      }
     }
   }
 
@@ -57,8 +36,8 @@ export class EmailAddressAnswer extends TextAnswer {
     if (config.get('featureFlags').emailConfirmation) {
       answerConfig.hint =
         'A confirmation email will also be sent to this email address'
+      answerConfig.hintI18nKey = 'common.answer.emailAddress.hint'
     }
-
     return answerConfig
   }
 }

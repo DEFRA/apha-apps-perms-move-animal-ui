@@ -150,5 +150,10 @@ export class AnswerModel {
  */
 
 /**
- * @typedef {{ validate?: boolean, question: string, errors?: AnswerErrors }} AnswerViewModelOptions
+ * @typedef {{
+ *   validate?: boolean,
+ *   question: string,
+ *   errors?: AnswerErrors,
+ *   translate: (key: string | undefined, fallback: string, params?: Record<string, unknown>) => string
+ * }} AnswerViewModelOptions
  */
