@@ -257,6 +257,9 @@
           "postcode": "Nodwch god post",
           "postcodeFormat": "Nodwch god post llawn y DU"
         }
+      },
+      "emailAddress": {
+        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn"
       }
     }
   },
@@ -1114,7 +1117,6 @@
       },
       "emailAddress": {
         "question": "Pa gyfeiriad e-bost hoffech chi i'r drwydded gael ei hanfon ato?",
-        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn",
         "validation": {
           "pattern": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",
           "maxLength": "Nodwch gyfeiriad e-bost yn y fformat cywir, fel enw@enghraifft.com",

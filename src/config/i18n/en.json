@@ -258,6 +258,9 @@
           "postcode": "Enter postcode",
           "postcodeFormat": "Enter a full UK postcode"
         }
+      },
+      "emailAddress": {
+        "hint": "A confirmation email will also be sent to this email address"
       }
     }
   },
@@ -1918,7 +1921,6 @@
       "title": "Receiving the licence",
       "emailAddress": {
         "question": "What email address would you like the licence sent to?",
-        "hint": "A confirmation email will also be sent to this email address",
         "validation": {
           "pattern": "Enter an email address in the correct format, like name@example.com",
           "maxLength": "Enter an email address in the correct format, like name@example.com",

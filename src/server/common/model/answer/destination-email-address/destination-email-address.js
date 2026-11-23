@@ -1,4 +1,4 @@
-import { EmailAddressAnswer } from '../email-address/email-address.js'
+import { BaseEmailAddressAnswer } from '../base-email-address/base-email-address.js'
 
 /** @import {TextConfig} from '../text/text.js' */
 
@@ -8,26 +8,15 @@ import { EmailAddressAnswer } from '../email-address/email-address.js'
  */
 
 /**
- * @augments {EmailAddressAnswer}
+ * @augments {BaseEmailAddressAnswer}
  */
-export class DestinationEmailAddressAnswer extends EmailAddressAnswer {
+export class DestinationEmailAddressAnswer extends BaseEmailAddressAnswer {
   /** @type {TextConfig} */
   static config = {
-    ...EmailAddressAnswer.config,
+    ...BaseEmailAddressAnswer.config,
     payloadKey: 'destinationEmail',
     validation: {
-      pattern: {
-        regex: /** @type {RegExp} */ (
-          EmailAddressAnswer.config.validation.pattern?.regex
-        ),
-        message: 'Enter the email address in a valid format'
-      },
-      maxLength: {
-        value: /** @type {number} */ (
-          EmailAddressAnswer.config.validation.maxLength?.value
-        ),
-        message: 'Your answer must be no longer than 255 characters'
-      },
+      ...BaseEmailAddressAnswer.config.validation,
       empty: { message: 'Enter your email address' }
     }
   }

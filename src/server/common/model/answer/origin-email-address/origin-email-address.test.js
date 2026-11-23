@@ -1,9 +1,11 @@
-import { EmailAddressAnswer } from '../email-address/email-address.js'
+import { BaseEmailAddressAnswer } from '../base-email-address/base-email-address.js'
 import { OriginEmailAddressAnswer } from './origin-email-address.js'
 
 describe('OriginEmailAddressAnswer', () => {
   it('should be an email address answer', () => {
-    expect(new OriginEmailAddressAnswer()).toBeInstanceOf(EmailAddressAnswer)
+    expect(new OriginEmailAddressAnswer()).toBeInstanceOf(
+      BaseEmailAddressAnswer
+    )
   })
 
   it('should have the correct payload key', () => {

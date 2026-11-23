@@ -1,112 +1,100 @@
-import { TextAnswer } from '../text/text.js'
+import { config } from '~/src/config/config.js'
+import { spyOnConfig } from '../../../test-helpers/config.js'
+import { BaseEmailAddressAnswer } from '../base-email-address/base-email-address.js'
 import { EmailAddressAnswer } from './email-address.js'
 
-/** @import {EmailAddressPayload} from './email-address.js' */
-
-const validPayload = {
-  emailAddress: 'test@somewhere.com'
-}
-
-const validEmailAddresses = [
-  'email@domain.com',
-  'email@domain.COM',
-  'firstname.lastname@domain.com',
-  "firstname.o'lastname@domain.com",
-  'email@subdomain.domain.com',
-  'firstname+lastname@domain.com',
-  '1234567890@domain.com',
-  'email@domain-one.com',
-  'email-with-dash@domain-one.com',
-  '_______@domain.com',
-  'email@domain.name',
-  'email@domain.co.jp',
-  'firstname-lastname@domain.com',
-  'technically..valid@domain.com'
-]
-const invalidEmailAddresses = [
-  'info@german-financial-services.vermögensberatung',
-  'japanese-info@例え.テスト',
-  'info@german-financial-services.reallylongarbitrarytldthatiswaytoohugejustincase',
-  'plainaddress',
-  '@no-local-part.com',
-  'no-at.domain.com',
-  'email@domain.superlongtld',
-  'name(withopeningparenthesis@domain.com',
-  'name)withclosingparenthesis@domain.com',
-  'john<lowerthan@domain.com',
-  'john>greaterthan@domain.com',
-  'openingbrackets[john@domain.com',
-  'closingbrackets]john@domain.com',
-  'colon:name@domain.com',
-  'semicolon;name@domain.com',
-  'two@@domain.com',
-  'back\\slash@domain.com',
-  'comma,name@domain.com',
-  'quote"name@domain.com'
-]
-
-describe('EmailAddressAnswer', () => {
-  it('should be a text input', () => {
-    expect(new EmailAddressAnswer(validPayload)).toBeInstanceOf(TextAnswer)
+describe('EmailAddress', () => {
+  it('should be an email address answer', () => {
+    expect(new EmailAddressAnswer()).toBeInstanceOf(BaseEmailAddressAnswer)
   })
 
-  it('should have the right payload key', () => {
+  it('should have the correct payload key', () => {
     expect(EmailAddressAnswer.config.payloadKey).toBe('emailAddress')
   })
 
-  it('should autocomplete', () => {
-    expect(EmailAddressAnswer.config.autocomplete).toBe('email-address')
+  it('should have the correct type', () => {
+    expect(EmailAddressAnswer.config.type).toBe('email')
+  })
+
+  it('should define the right validation messages', () => {
+    expect(EmailAddressAnswer.config.validation.empty?.message).toBe(
+      'Enter the email address you would like the licence sent to'
+    )
+
+    expect(EmailAddressAnswer.config.validation.pattern?.message).toBe(
+      'Enter an email address in the correct format, like name@example.com'
+    )
+
+    expect(EmailAddressAnswer.config.validation.maxLength?.message).toBe(
+      'Your answer must be no longer than 255 characters'
+    )
+  })
+
+  it('should have the correct max length', () => {
+    expect(EmailAddressAnswer.config.validation.maxLength?.value).toBe(255)
   })
 
   it('should strip whitespace', () => {
     expect(EmailAddressAnswer.config.stripWhitespace).toBe(true)
   })
 
-  it('should have an input type of email', () => {
-    expect(EmailAddressAnswer.config.type).toBe('email')
+  it('uses the licence email message for an invalid email', () => {
+    spyOnConfig('featureFlags', {
+      ...config.get('featureFlags'),
+      emailConfirmation: false
+    })
+    const payload = { emailAddress: 'not-an-email' }
+    const answer = new EmailAddressAnswer(payload)
+    const { errors } = answer.validate()
+    jest.restoreAllMocks()
+
+    expect(errors.emailAddress.text).toBe(
+      'Enter an email address in the correct format, like name@example.com'
+    )
   })
 
-  it('should display with a char width of 20', () => {
-    expect(EmailAddressAnswer.config.characterWidth).toBe(20)
-  })
+  describe('confirmation email hint', () => {
+    let originalAnswerConfig
 
-  describe('#EmailAddressAnswer.validate', () => {
-    validEmailAddresses.forEach((email) => {
-      it(`should return true for valid email address ${email}`, () => {
-        const emailAddress = new EmailAddressAnswer({ emailAddress: email })
-        const { isValid, errors } = emailAddress.validate()
-
-        expect(isValid).toBe(true)
-        expect(errors).toEqual({})
-      })
+    beforeEach(() => {
+      originalAnswerConfig = { ...EmailAddressAnswer.config }
     })
 
-    it('should return false for an empty input', () => {
-      const emailAddress = new EmailAddressAnswer(
-        /** @type {EmailAddressPayload} */ ({})
-      )
-
-      const { isValid, errors } = emailAddress.validate()
-
-      expect(isValid).toBe(false)
-      expect(errors.emailAddress.text).toBe(
-        'Enter the email address you would like the licence sent to'
-      )
+    afterEach(() => {
+      EmailAddressAnswer.config = originalAnswerConfig
+      jest.restoreAllMocks()
     })
 
-    invalidEmailAddresses.forEach((email) => {
-      it(`should return false for invalid email address: ${email}`, () => {
-        const emailAddress = new EmailAddressAnswer({
-          emailAddress: email
-        })
-
-        const { isValid, errors } = emailAddress.validate()
-
-        expect(isValid).toBe(false)
-        expect(errors.emailAddress.text).toBe(
-          'Enter an email address in the correct format, like name@example.com'
-        )
+    it('does not show a hint when email confirmation is disabled', async () => {
+      spyOnConfig('featureFlags', {
+        ...config.get('featureFlags'),
+        emailConfirmation: false
       })
+      const translate = jest.fn()
+      const answer = new EmailAddressAnswer()
+
+      expect(answer.config.hint).toBeUndefined()
+      expect(answer.config.hintI18nKey).toBeUndefined()
+      const viewModel = await answer.viewModel({ question: 'Email', translate })
+      expect(viewModel.hint).toBeUndefined()
+      expect(translate).not.toHaveBeenCalled()
+    })
+
+    it('shows the translated hint when email confirmation is enabled', async () => {
+      spyOnConfig('featureFlags', {
+        ...config.get('featureFlags'),
+        emailConfirmation: true
+      })
+      const translate = jest.fn().mockReturnValue('Translated hint')
+      const answer = new EmailAddressAnswer()
+
+      const viewModel = await answer.viewModel({ question: 'Email', translate })
+
+      expect(translate).toHaveBeenCalledWith(
+        'common.answer.emailAddress.hint',
+        'A confirmation email will also be sent to this email address'
+      )
+      expect(viewModel.hint).toEqual({ text: 'Translated hint' })
     })
   })
 })
