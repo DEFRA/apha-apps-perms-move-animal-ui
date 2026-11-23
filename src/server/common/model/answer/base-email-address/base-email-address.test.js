@@ -70,6 +70,46 @@ describe('BaseEmailAddress', () => {
     expect(BaseEmailAddressAnswer.config.characterWidth).toBe(20)
   })
 
+  describe('viewModel translation', () => {
+    class EmailWithHint extends BaseEmailAddressAnswer {
+      static config = {
+        ...BaseEmailAddressAnswer.config,
+        hint: 'Enter an email address'
+      }
+    }
+
+    class EmailWithTranslatedHint extends EmailWithHint {
+      static config = {
+        ...EmailWithHint.config,
+        hintI18nKey: 'test.email.hint'
+      }
+    }
+
+    it('should translate a configured hint', async () => {
+      const translate = jest.fn().mockReturnValue('Translated hint')
+      const answer = new EmailWithTranslatedHint(validPayload)
+      const viewModel = await answer.viewModel({ question: 'Email', translate })
+
+      expect(translate).toHaveBeenCalledWith(
+        'test.email.hint',
+        'Enter an email address'
+      )
+      expect(viewModel.hint.text).toBe('Translated hint')
+    })
+
+    it('should use the hint fallback when no key is configured', async () => {
+      const translate = jest.fn((_key, fallback) => fallback)
+      const answer = new EmailWithHint(validPayload)
+      const viewModel = await answer.viewModel({ question: 'Email', translate })
+
+      expect(translate).toHaveBeenCalledWith(
+        undefined,
+        'Enter an email address'
+      )
+      expect(viewModel.hint.text).toBe('Enter an email address')
+    })
+  })
+
   describe('#BaseEmailAddress.validate', () => {
     validEmailAddresses.forEach((email) => {
       it(`should return true for valid email address ${email}`, () => {
