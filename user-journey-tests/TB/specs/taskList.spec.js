@@ -24,6 +24,7 @@ describe('Task list page test', () => {
   })
 
   beforeEach('Navigate to task list page', async () => {
+    await taskListPage.open('/')
     await browser.deleteCookies('language')
     await taskListPage.navigateToPageAndVerifyTitle()
   })
