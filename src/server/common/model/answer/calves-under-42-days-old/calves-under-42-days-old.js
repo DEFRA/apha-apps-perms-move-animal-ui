@@ -15,6 +15,7 @@ export class CalvesUnder42DaysOldAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'calvesUnder42DaysOld',
     hint: 'We need to know if the calves are under 42 days old on the date you are planning to move them',
+    hintI18nKey: 'tb.identification.calvesUnder42DaysOld.hint',
     options: {
       yes: {
         label: 'Yes',

@@ -46,6 +46,7 @@ const handleConfig = (context, config) => {
  * export @typedef {{
  *  payloadKey: string,
  *  hint?: string,
+ *  hintI18nKey?: string,
  *  options: Record<string, RadioOption>,
  *  validation: {
  *    empty: string
@@ -175,7 +176,7 @@ export class RadioButtonAnswer extends AnswerModel {
     }
 
     if (hint) {
-      model.hint = { text: hint }
+      model.hint = { text: translate(this.config.hintI18nKey, hint) }
     }
 
     if (validate) {
