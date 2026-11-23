@@ -1,6 +1,6 @@
 import { TextAnswer } from '../text/text.js'
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
 /** @import {TextConfig} from '../text/text.js' */
 
@@ -16,7 +16,7 @@ const tldPattern = fs
   .join('|')
 
 const emailAddressRegex = new RegExp(
-  `^[^@()<>\\[\\]:;,"\\\\]+@[^@]+\\.(${tldPattern})$`,
+  String.raw`^[^@()<>\[\]:;,"\\]+@[^@]+\.(${tldPattern})$`,
   'i'
 )
 
