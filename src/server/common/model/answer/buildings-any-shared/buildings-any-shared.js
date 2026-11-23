@@ -16,8 +16,14 @@ export class BuildingsAnySharedAnswer extends RadioButtonAnswer {
     payloadKey: 'animalsHoused',
     hint: 'This includes shared spaces such as pens',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.biosecurity.buildingsAnyShared.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.biosecurity.buildingsAnyShared.options.no.label'
+      }
     },
     validation: {
       empty: 'Select if the animals will be housed'

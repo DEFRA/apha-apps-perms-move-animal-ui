@@ -15,8 +15,16 @@ export class Animals42DaysOldOrOlderAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'animals42DaysOldOrOlder',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey:
+          'tb.identification.animals42DaysOldOrOlder.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey:
+          'tb.identification.animals42DaysOldOrOlder.options.no.label'
+      }
     },
     validation: {
       empty: 'Select if you are also moving any animals 42 days old or older'

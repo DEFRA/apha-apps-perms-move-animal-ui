@@ -1,7 +1,6 @@
 /** @import { OnOffFarmData } from '~/src/server/common/model/answer/on-off-farm/on-off-farm.js' */
 /** @import { DestinationTypeData } from '~/src/server/common/model/answer/destination-type/destination-type.js' */
 /** @import { ReasonForMovementData } from '~/src/server/common/model/answer/reason-for-movement/reason-for-movement.js' */
-/** @import { QuantityOptionsData } from '~/src/server/common/model/answer/quantity-options/quantity-options.js' */
 /** @import { QuantityHalfHerdData } from '~/src/server/common/model/answer/quantity-half-herd/quantity-half-herd.js' */
 
 const validCphNumber = '12/345/6789'
@@ -32,8 +31,6 @@ export const validDestinationSectionState = {
   howManyAnimalsMaximum: '1',
   /** @type {ReasonForMovementData} */
   reasonForMovement: 'welfare',
-  /** @type {QuantityOptionsData} */
-  movingMoreThan75Animals: 'no',
   /** @type {QuantityHalfHerdData} */
   movingMoreThanHalfExistingHerd: 'yes',
   additionalInfo: ''

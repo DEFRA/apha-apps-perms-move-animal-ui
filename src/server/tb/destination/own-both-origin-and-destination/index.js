@@ -16,8 +16,16 @@ export class Answer extends RadioButtonAnswer {
   static config = {
     payloadKey: questionKey,
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey:
+          'tb.destination.ownBothOriginAndDestination.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey:
+          'tb.destination.ownBothOriginAndDestination.options.no.label'
+      }
     },
     layout: 'inline',
     validation: {

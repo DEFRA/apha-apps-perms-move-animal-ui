@@ -15,8 +15,14 @@ export class EquipmentAnySharedAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'equipmentShared',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.biosecurity.equipmentAnyShared.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.biosecurity.equipmentAnyShared.options.no.label'
+      }
     },
     validation: {
       empty:
