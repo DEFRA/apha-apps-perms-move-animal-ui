@@ -103,8 +103,14 @@ describe('OwnBothOriginAndDestinationPage', () => {
   })
 
   describePageSnapshot({
-    describes: 'content',
+    describes: 'ownBothOriginAndDestinationPage',
     it: 'should render expected response and content',
     pageUrl
+  })
+
+  describePageSnapshot({
+    describes: 'ownBothOriginAndDestinationPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
   })
 })
