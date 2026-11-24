@@ -241,6 +241,14 @@ describe('TestAnswer.html', () => {
 describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAnswer = new TestTextAnswer(invalidPayload)
 
+  it('should not translate or render a hint when none is configured', async () => {
+    const translate = jest.fn()
+    const viewModel = await textAnswer.viewModel({ question, translate })
+
+    expect(viewModel.hint).toBeUndefined()
+    expect(translate).not.toHaveBeenCalled()
+  })
+
   it('should return data to render without errors (if validate is false)', async () => {
     expect(
       await textAnswer.viewModel({

@@ -265,6 +265,14 @@ describe('TestAnswer.displayText', () => {
 describe('TestAnswer.viewModel (without any extra options)', () => {
   const textAreaAnswer = new TestOptionalTextAreaAnswer(invalidPayload)
 
+  it('should not translate or render a hint when none is configured', async () => {
+    const translate = jest.fn()
+    const viewModel = await textAreaAnswer.viewModel({ question, translate })
+
+    expect(viewModel.hint).toBeUndefined()
+    expect(translate).not.toHaveBeenCalled()
+  })
+
   it('should return data to render without errors (if validate is false)', async () => {
     expect(
       await textAreaAnswer.viewModel({

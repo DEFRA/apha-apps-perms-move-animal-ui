@@ -249,6 +249,72 @@ describe('RadioButton', () => {
       }
     }
 
+    it('should translate the main hint and option labels and hints', async () => {
+      class TranslatedRadioAnswer extends RadioButtonAnswer {
+        static config = {
+          ...defaultConfig,
+          hintI18nKey: 'test.radio.hint',
+          options: {
+            value_1: {
+              label: 'First option',
+              labelI18nKey: 'test.radio.first'
+            },
+            value_2: {
+              label: 'Second option',
+              labelI18nKey: 'test.radio.second',
+              hint: 'Second hint',
+              hintI18nKey: 'test.radio.secondHint'
+            }
+          }
+        }
+      }
+      const translations = {
+        'test.radio.hint': 'Translated main hint',
+        'test.radio.first': 'Translated first option',
+        'test.radio.second': 'Translated second option',
+        'test.radio.secondHint': 'Translated second hint'
+      }
+      const translate = jest.fn(
+        (key, fallback) => translations[key] ?? fallback
+      )
+      const answer = new TranslatedRadioAnswer(validTestRadio)
+      const viewModel = await answer.viewModel({ question, translate })
+
+      expect(viewModel.hint.text).toBe('Translated main hint')
+      expect(viewModel.items.map((item) => item.text)).toEqual([
+        'Translated first option',
+        'Translated second option'
+      ])
+      expect(viewModel.items[0].hint.text).toBeUndefined()
+      expect(viewModel.items[1].hint.text).toBe('Translated second hint')
+      expect(translate).toHaveBeenCalledWith('test.radio.hint', 'main_hint')
+      expect(translate).toHaveBeenCalledWith('test.radio.first', 'First option')
+      expect(translate).toHaveBeenCalledWith(
+        'test.radio.second',
+        'Second option'
+      )
+      expect(translate).toHaveBeenCalledWith(
+        'test.radio.secondHint',
+        'Second hint'
+      )
+    })
+
+    it('should use hint and option fallbacks when no keys are configured', async () => {
+      const translate = jest.fn((_key, fallback) => fallback)
+      const viewModel = await invalidAnswer.viewModel({ question, translate })
+
+      expect(viewModel.hint.text).toBe('main_hint')
+      expect(viewModel.items.map((item) => item.text)).toEqual([
+        'test_label_1',
+        'test_label_2'
+      ])
+      expect(viewModel.items[1].hint.text).toBe('test_hint_2')
+      expect(translate).toHaveBeenCalledWith(undefined, 'main_hint')
+      expect(translate).toHaveBeenCalledWith(undefined, 'test_label_1')
+      expect(translate).toHaveBeenCalledWith(undefined, 'test_label_2')
+      expect(translate).toHaveBeenCalledWith(undefined, 'test_hint_2')
+    })
+
     it('should return everything (except errors) to render in the template', async () => {
       expect(
         await invalidAnswer.viewModel({

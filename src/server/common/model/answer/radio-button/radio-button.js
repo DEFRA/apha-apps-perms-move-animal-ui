@@ -41,11 +41,12 @@ const handleConfig = (context, config) => {
 }
 
 /**
- * @typedef {{ label: string, hint?: string }} RadioOption
+ * @typedef {{ label: string, hint?: string, labelI18nKey?: string, hintI18nKey?: string }} RadioOption
  * @typedef {'inline' | 'stacked'} RadioButtonLayout
  * export @typedef {{
  *  payloadKey: string,
  *  hint?: string,
+ *  hintI18nKey?: string,
  *  options: Record<string, RadioOption>,
  *  validation: {
  *    empty: string
@@ -132,7 +133,7 @@ export class RadioButtonAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, translate }) {
     const {
       options,
       payloadKey,
@@ -140,14 +141,21 @@ export class RadioButtonAnswer extends AnswerModel {
       hint,
       isQuestionHeading = true
     } = this.config
-    const items = Object.entries(options).map(([key, value]) => ({
-      id: key,
-      value: key,
-      text: value.label,
-      hint: {
-        text: value.hint
+    const items = Object.entries(options).map(([key, value]) => {
+      const labelText = translate(value.labelI18nKey, value.label)
+      const hintText = value.hint
+        ? translate(value.hintI18nKey, value.hint)
+        : undefined
+
+      return {
+        id: key,
+        value: key,
+        text: labelText,
+        hint: {
+          text: hintText
+        }
       }
-    }))
+    })
     items[0].id = payloadKey
 
     const model = {
@@ -168,7 +176,7 @@ export class RadioButtonAnswer extends AnswerModel {
     }
 
     if (hint) {
-      model.hint = { text: hint }
+      model.hint = { text: translate(this.config.hintI18nKey, hint) }
     }
 
     if (validate) {

@@ -8,17 +8,38 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
 
 const afuOption = {
   label: 'Approved finishing unit (AFU)',
-  hint: 'Including enhanced with grazing (AFUE)'
+  hint: 'Including enhanced with grazing (AFUE)',
+  labelI18nKey: 'tb.destination.destinationType.options.afu.label',
+  hintI18nKey: 'tb.destination.destinationType.options.afu.hint'
 }
 const AfuOrMarketOption = {
   label: 'Approved finishing units and TB sales at orange markets',
-  hint: 'The licence covers either or both destinations'
+  hint: 'The licence covers either or both destinations',
+  labelI18nKey: 'tb.destination.destinationType.options.afu-or-market.label',
+  hintI18nKey: 'tb.destination.destinationType.options.afu-or-market.hint'
 }
 
-const tbRestrictedOption = { label: 'TB restricted farm' }
-const otherOption = { label: 'Another destination with TB restrictions' }
-const dedicatedSaleOption = { label: 'Dedicated sale for TB (orange market)' }
-const slaughterOption = { label: 'Slaughter' }
+const tbRestrictedOption = {
+  label: 'TB restricted farm',
+  labelI18nKey:
+    'tb.destination.destinationType.options.tb-restricted-farm.label'
+}
+const otherOption = {
+  label: 'Another destination with TB restrictions',
+  labelI18nKey: 'tb.destination.destinationType.options.other.label'
+}
+const dedicatedSaleOption = {
+  label: 'Dedicated sale for TB (orange market)',
+  labelI18nKey: 'tb.destination.destinationType.options.dedicated-sale.label'
+}
+const slaughterOption = {
+  label: 'Slaughter',
+  labelI18nKey: 'tb.destination.destinationType.options.slaughter.label'
+}
+const isoUnitOption = {
+  label: 'TB isolation unit',
+  labelI18nKey: 'tb.destination.destinationType.options.iso-unit.label'
+}
 
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
 const isOriginAfu = (app) => app.origin?.originType === 'afu'
@@ -50,7 +71,7 @@ const getDestinationOptions = (app) => {
       slaughter: slaughterOption,
       'afu-or-market': AfuOrMarketOption,
       'tb-restricted-farm': tbRestrictedOption,
-      'iso-unit': { label: 'TB isolation unit' },
+      'iso-unit': isoUnitOption,
       other: otherOption
     }
   }
@@ -75,7 +96,7 @@ const getDestinationOptions = (app) => {
     'dedicated-sale': dedicatedSaleOption,
     'afu-or-market': AfuOrMarketOption,
     'tb-restricted-farm': tbRestrictedOption,
-    'iso-unit': { label: 'TB isolation unit' },
+    'iso-unit': isoUnitOption,
     other: otherOption
   }
 }

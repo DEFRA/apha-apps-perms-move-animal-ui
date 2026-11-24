@@ -15,8 +15,14 @@ export class ManureAndSlurryAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'manureAndSlurry',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.biosecurity.manureAndSlurry.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.biosecurity.manureAndSlurry.options.no.label'
+      }
     },
     validation: {
       empty:

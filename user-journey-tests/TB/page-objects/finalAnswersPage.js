@@ -24,7 +24,6 @@ class FinalAnswersPage extends AnswersBasePage {
     maxAnimals: '[data-testid="howManyAnimalsMaximum-change-link"]',
     reason: '[data-testid="reasonForMovement-change-link"]',
     additionalInfo: '[data-testid="additionalInfo-change-link"]',
-    over75: '[data-testid="movingMoreThan75Animals-change-link"]',
     halfHerd: '[data-testid="movingMoreThanHalfExistingHerd-change-link"]',
 
     // Licence

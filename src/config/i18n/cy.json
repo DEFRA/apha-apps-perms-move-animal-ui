@@ -286,38 +286,24 @@
           "empty": "Dewiswch o ble mae'r anifeiliaid yn symud"
         },
         "options": {
-          "offFarm": {
-            "tb-restricted-farm": {
-              "label": "Fferm gyfyngedig TB"
-            },
-            "afu": {
-              "label": "Uned bwrcasu gymeradwy (AFU)",
-              "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
-            },
-            "unrestricted-farm": {
-              "label": "Fferm neu safle dirwystr"
-            },
-            "iso-unit": {
-              "label": "Uned ynysu TB"
-            },
-            "other": {
-              "label": "Man cychwyn arall gyda chyfyngiadau TB"
-            }
+          "tb-restricted-farm": {
+            "label": "Fferm gyfyngedig TB"
           },
-          "onFarm": {
-            "unrestricted-farm": {
-              "label": "Ffermydd a marchnadoedd dirwystr"
-            },
-            "tb-restricted-farm": {
-              "label": "Fferm gyfyngedig TB"
-            },
-            "afu": {
-              "label": "Uned bwrcasu gymeradwy (AFU)",
-              "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
-            },
-            "other": {
-              "label": "Man cychwyn arall gyda chyfyngiadau TB"
-            }
+          "afu": {
+            "label": "Uned bwrcasu gymeradwy (AFU)",
+            "hint": "Gan gynnwys wedi'i wella â phori (AFUE)"
+          },
+          "iso-unit": {
+            "label": "Uned ynysu TB"
+          },
+          "other": {
+            "label": "Man cychwyn arall gyda chyfyngiadau TB"
+          },
+          "off-unrestricted-farm": {
+            "label": "Fferm neu safle dirwystr"
+          },
+          "on-to-unrestricted-farm": {
+            "label": "Ffermydd a marchnadoedd dirwystr"
           }
         }
       },

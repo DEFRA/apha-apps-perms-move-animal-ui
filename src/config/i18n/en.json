@@ -287,38 +287,24 @@
           "empty": "Select where the animals are moving from"
         },
         "options": {
-          "offFarm": {
-            "tb-restricted-farm": {
-              "label": "TB restricted farm"
-            },
-            "afu": {
-              "label": "Approved finishing unit (AFU)",
-              "hint": "Including enhanced with grazing (AFUE)"
-            },
-            "unrestricted-farm": {
-              "label": "Unrestricted farm or premises"
-            },
-            "iso-unit": {
-              "label": "TB isolation unit"
-            },
-            "other": {
-              "label": "Another TB restricted origin"
-            }
+          "tb-restricted-farm": {
+            "label": "TB restricted farm"
           },
-          "onFarm": {
-            "unrestricted-farm": {
-              "label": "Unrestricted farms and markets"
-            },
-            "tb-restricted-farm": {
-              "label": "TB restricted farm"
-            },
-            "afu": {
-              "label": "Approved finishing unit (AFU)",
-              "hint": "Including enhanced with grazing (AFUE)"
-            },
-            "other": {
-              "label": "Another TB restricted origin"
-            }
+          "afu": {
+            "label": "Approved finishing unit (AFU)",
+            "hint": "Including enhanced with grazing (AFUE)"
+          },
+          "iso-unit": {
+            "label": "TB isolation unit"
+          },
+          "other": {
+            "label": "Another TB restricted origin"
+          },
+          "off-unrestricted-farm": {
+            "label": "Unrestricted farm or premises"
+          },
+          "on-to-unrestricted-farm": {
+            "label": "Unrestricted farms and markets"
           }
         }
       },

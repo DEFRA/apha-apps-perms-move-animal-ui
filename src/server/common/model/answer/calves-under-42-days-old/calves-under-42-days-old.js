@@ -15,9 +15,16 @@ export class CalvesUnder42DaysOldAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'calvesUnder42DaysOld',
     hint: 'We need to know if the calves are under 42 days old on the date you are planning to move them',
+    hintI18nKey: 'tb.identification.calvesUnder42DaysOld.hint',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.identification.calvesUnder42DaysOld.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.identification.calvesUnder42DaysOld.options.no.label'
+      }
     },
     validation: {
       empty: 'Select if you will move any calves under 42 days old'

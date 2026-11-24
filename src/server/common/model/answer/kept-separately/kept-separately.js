@@ -15,8 +15,14 @@ export class KeptSeparatelyAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'keptSeparately',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.biosecurity.keptSeparately.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.biosecurity.keptSeparately.options.no.label'
+      }
     },
     validation: {
       empty: 'Select if the incoming animals will be kept separately'

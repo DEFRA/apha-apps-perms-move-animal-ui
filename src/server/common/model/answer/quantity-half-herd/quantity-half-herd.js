@@ -15,9 +15,18 @@ export class QuantityHalfHerdAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'quantityHalfHerd',
     options: {
-      no: { label: 'No' },
-      yes: { label: 'Yes' },
-      unknown: { label: "I don't know" }
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.destination.quantityHalfHerd.options.no.label'
+      },
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.destination.quantityHalfHerd.options.yes.label'
+      },
+      unknown: {
+        label: "I don't know",
+        labelI18nKey: 'tb.destination.quantityHalfHerd.options.unknown.label'
+      }
     },
     validation: {
       empty:

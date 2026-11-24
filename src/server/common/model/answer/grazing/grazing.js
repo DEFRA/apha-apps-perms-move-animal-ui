@@ -15,8 +15,14 @@ export class GrazingAnswer extends RadioButtonAnswer {
   static config = {
     payloadKey: 'grazing',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' }
+      yes: {
+        label: 'Yes',
+        labelI18nKey: 'tb.biosecurity.grazing.options.yes.label'
+      },
+      no: {
+        label: 'No',
+        labelI18nKey: 'tb.biosecurity.grazing.options.no.label'
+      }
     },
     validation: {
       empty: 'Select if the incoming animals will be grazed'

@@ -13,27 +13,40 @@ import { RadioButtonAnswer } from '../radio-button/radio-button.js'
  */
 const isOnToTheFarm = (app) => app.origin?.onOffFarm === 'on'
 
-const tbRestrictedOption = { label: 'TB restricted farm' }
+const tbRestrictedOption = {
+  label: 'TB restricted farm',
+  labelI18nKey: 'tb.origin.originType.options.tb-restricted-farm.label'
+}
 const afuOption = {
   label: 'Approved finishing unit (AFU)',
-  hint: 'Including enhanced with grazing (AFUE)'
+  hint: 'Including enhanced with grazing (AFUE)',
+  labelI18nKey: 'tb.origin.originType.options.afu.label',
+  hintI18nKey: 'tb.origin.originType.options.afu.hint'
 }
 
-const otherOption = { label: 'Another TB restricted origin' }
+const otherOption = {
+  label: 'Another TB restricted origin',
+  labelI18nKey: 'tb.origin.originType.options.other.label'
+}
 
 const offFarmOptions = {
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
   'unrestricted-farm': {
-    label: 'Unrestricted farm or premises'
+    label: 'Unrestricted farm or premises',
+    labelI18nKey: 'tb.origin.originType.options.off-unrestricted-farm.label'
   },
-  'iso-unit': { label: 'TB isolation unit' },
+  'iso-unit': {
+    label: 'TB isolation unit',
+    labelI18nKey: 'tb.origin.originType.options.iso-unit.label'
+  },
   other: otherOption
 }
 
 const onFarmOptions = {
   'unrestricted-farm': {
-    label: 'Unrestricted farms and markets'
+    label: 'Unrestricted farms and markets',
+    labelI18nKey: 'tb.origin.originType.options.on-to-unrestricted-farm.label'
   },
   'tb-restricted-farm': tbRestrictedOption,
   afu: afuOption,
