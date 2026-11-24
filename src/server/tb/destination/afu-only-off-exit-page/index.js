@@ -8,6 +8,7 @@ import { PageController } from '../../../common/controller/page-controller/page-
 export class AfuOnlyOffExitPage extends ExitPage {
   urlPath = '/destination/can-not-use-service-afu-only-off'
   pageTitle = 'This service is not available for your movement type'
+  titleI18nKey = 'tb.destination.afuOnlyOffExitPage.title'
   view = `tb/destination/afu-only-off-exit-page/index`
   key = 'ExitPageOnlyOff'
   sectionKey = 'destination'

@@ -56,4 +56,46 @@ describe('#CheckExistingLicenceExitPage', () => {
       }
     }
   })
+
+  describePageSnapshot({
+    describes: 'CheckExistingLicenceExitPage.content.welsh',
+    it: 'should render expected response and content when origin is AFU',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: {
+        origin: {
+          originType: 'afu'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'CheckExistingLicenceExitPage.content.welsh',
+    it: 'should render expected response and content when destination is AFU',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: {
+        origin: {
+          originType: 'unrestricted-farm'
+        },
+        destination: {
+          destinationType: 'afu'
+        }
+      }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'CheckExistingLicenceExitPage.content.welsh',
+    it: 'should render expected response and content when origin is not AFU',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: {
+        origin: {
+          originType: 'slaughter'
+        }
+      }
+    }
+  })
 })

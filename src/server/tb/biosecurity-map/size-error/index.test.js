@@ -39,4 +39,10 @@ describe('#SizeErrorPage', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: 'SizeErrorPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })

@@ -7,12 +7,38 @@ exports[`#AfuToAfuExitPage AfuToAfuExitPage.content should render expected respo
       <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          This service only allows movements off an approved finishing unit
-          (AFU) to:
+          This service only allows movements off an approved finishing unit (AFU) to:
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>slaughter</li>
-          <li>approved finishing units (AFU)</li>
+          <li>
+            slaughter
+          </li>
+          <li>
+            approved finishing units (AFU)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#AfuToAfuExitPage AfuToAfuExitPage.content.welsh should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          Mae'r gwasanaeth hwn yn caniatáu symudiadau oddi ar uned bwrcasu gymeradwy (AFU) yn unig i:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            lladd-dy
+          </li>
+          <li>
+            unedau bwrcasu cymeradwy (AFU)
+          </li>
         </ul>
       </div>
     </div>

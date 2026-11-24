@@ -327,7 +327,7 @@
         }
       },
       "contactTbRestrictedFarm": {
-        "title": "Cysylltwch â'r fferm gyfyngedig TB",
+        "title": "Mae angen i chi gysylltu â'r fferm gyfyngedig TB y mae'r anifeiliaid yn symud iddi",
         "responsibility": "Pan fydd anifeiliaid yn symud i fferm sydd â chyfyngiadau TB, cyfrifoldeb y fferm honno yw gwneud cais am drwydded.",
         "needDetails": "Mae angen i ni wybod manylion am eu harferion bioddiogelwch er mwyn prosesu'r drwydded.",
         "cannotApplyIntro": "Os na all y fferm gyrchfan wneud cais, llenwch a",
@@ -540,18 +540,18 @@
         }
       },
       "contactTbRestrictedFarm": {
-        "title": "Cysylltwch â'r fferm gyfyngedig TB",
+        "title": "Mae angen i chi gysylltu â'r fferm gyfyngedig TB y mae'r anifeiliaid yn symud iddi",
         "responsibility": "Pan fydd yr anifeiliaid yn symud i fferm sydd â chyfyngiadau TB, cyfrifoldeb y fferm honno yw gwneud cais am drwydded.",
         "needDetails": "Mae angen i ni wybod manylion am eu harferion bioddiogelwch er mwyn prosesu'r drwydded.",
         "cannotApplyIntro": "Os na all y fferm gyrchfan wneud cais, llenwch a",
         "cannotApplyLinkText": "anfonwch y ffurflen gais hon i APHA (yn agor mewn tab newydd)"
       },
       "afuOnlyOnExitPage": {
-        "title": "Ni allwch symud anifeiliaid i mewn i uned bwrcasu gymeradwy",
+        "title": "Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad",
         "body": "Nid yw'r gwasanaeth hwn yn caniatáu symudiadau i'ch safle o uned bwrcasu gymeradwy (AFU) oni bai bod eich safle yn AFU."
       },
       "afuOnlyOffExitPage": {
-        "title": "Ni allwch symud anifeiliaid oddi ar uned bwrcasu gymeradwy",
+        "title": "Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad",
         "intro": "Mae'r gwasanaeth hwn yn caniatáu symudiadau oddi ar uned bwrcasu gymeradwy (AFU) yn unig i:",
         "destinations": {
           "destination-1": "lladd-dy",
@@ -559,7 +559,9 @@
         }
       },
       "checkExistingLicenceExitPage": {
-        "title": "Gwiriwch a yw APHA eisoes wedi anfon trwydded atoch",
+        "title": "Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad",
+        "customTextAfu": "Os yw'r AFU eisoes wedi'i sefydlu",
+        "customTextNonAfu": "Os yw'r uned ynysu TB eisoes wedi'i sefydlu",
         "checkLicenceSuffix": "gwiriwch a allwch symud anifeiliaid gyda'r drwydded a gyhoeddwyd gyda'r cymeradwyaeth.",
         "contactIntro": "Cysylltwch â",
         "contactEmail": "CSCTBUnits@apha.gov.uk",
@@ -1067,6 +1069,7 @@
         }
       },
       "sizeError": {
+        "title": "Problem wrth lwytho'r map bioddiogelwch",
         "emailInstruction": "Rhaid i chi e-bostio eich map bioddiogelwch i csc.tblicensing@apha.gov.uk",
         "cphInstruction": "Yn eich e-bost cynhwyswch eich rhif daliad plwyf sirol (CPH).",
         "processingNotice": "Ni ellir prosesu eich cais nes i ni dderbyn eich map bioddiogelwch."

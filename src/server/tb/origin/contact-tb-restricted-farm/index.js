@@ -13,6 +13,7 @@ export class OriginContactTbRestrictedFarmPage extends ExitPage {
   view = `tb/origin/contact-tb-restricted-farm/index`
   sectionKey = 'origin'
   key = 'OriginContactTbRestrictedFarmPage'
+  titleI18nKey = 'tb.origin.contactTbRestrictedFarm.title'
 }
 export const originContactTbRestrictedFarmPage =
   new OriginContactTbRestrictedFarmPage()

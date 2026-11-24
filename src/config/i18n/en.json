@@ -328,7 +328,7 @@
         }
       },
       "contactTbRestrictedFarm": {
-        "title": "Contact the TB restricted farm",
+        "title": "You need to contact the TB restricted farm the animals are moving onto",
         "responsibility": "When animals are moving onto a TB restricted farm, it is the responsibility of the TB restricted farm to apply for a licence.",
         "needDetails": "We need details about their biosecurity practices to process the licence.",
         "cannotApplyIntro": "If the destination farm cannot apply, complete and",
@@ -541,18 +541,18 @@
         }
       },
       "contactTbRestrictedFarm": {
-        "title": "Contact the TB restricted farm",
+        "title": "You need to contact the TB restricted farm the animals are moving onto",
         "responsibility": "When the animals are moving on to a TB restricted farm, it is the responsibility of that farm to apply for a licence.",
         "needDetails": "We need details about their biosecurity practices to process the licence.",
         "cannotApplyIntro": "If the destination farm cannot apply, complete and",
         "cannotApplyLinkText": "send this application form to APHA (opens in new tab)"
       },
       "afuOnlyOnExitPage": {
-        "title": "You cannot move animals onto an approved finishing unit",
+        "title": "This service is not available for your movement type",
         "body": "This service does not allow movements onto your premises from approved finishing unit (AFU) unless your premises is an AFU."
       },
       "afuOnlyOffExitPage": {
-        "title": "You cannot move animals off an approved finishing unit",
+        "title": "This service is not available for your movement type",
         "intro": "This service only allows movements off an approved finishing unit (AFU) to:",
         "destinations": {
           "destination-1": "slaughter",
@@ -560,7 +560,9 @@
         }
       },
       "checkExistingLicenceExitPage": {
-        "title": "Check if APHA has already sent you a licence",
+        "title": "This service is not available for your movement type",
+        "customTextAfu": "If the approved finishing unit (AFU) has already been set up",
+        "customTextNonAfu": "If the TB isolation unit has already been set up and approved",
         "checkLicenceSuffix": "check if you can move animals with the licence that was issued with the approval.",
         "contactIntro": "Contact",
         "contactEmail": "CSCTBUnits@apha.gov.uk",
@@ -1068,6 +1070,7 @@
         }
       },
       "sizeError": {
+        "title": "There was a problem uploading your biosecurity map",
         "emailInstruction": "You must email your biosecurity map to csc.tblicensing@apha.gov.uk",
         "cphInstruction": "In your email include your county parish holding (CPH) number.",
         "processingNotice": "Your application cannot be processed until we receive your biosecurity map."
