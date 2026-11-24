@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import { verifySelectionPersistence } from '../../helpers/page.js'
 import signInPage from '../../page-objects/signInPage.js'
 import {
@@ -14,8 +15,18 @@ describe('Cattle over 42 days old page spec', () => {
   })
 
   beforeEach('Restore session and navigate to page', async () => {
+    await cattleOver42DaysPage.open('/')
+    await browser.deleteCookies('language')
     await restoreSession()
     await cattleOver42DaysPage.navigateToPageAndVerifyTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should select a Welsh Yes/No option and restore English labels', async () => {
+    await cattleOver42DaysPage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify that the page errors when no option is selected', async () => {

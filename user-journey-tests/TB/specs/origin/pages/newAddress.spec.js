@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import newAddressPage from '../../../page-objects/origin/newAddressPage.js'
 import signInPage from '../../../page-objects/signInPage.js'
 import {
@@ -19,8 +20,18 @@ describe('New address page test', () => {
   })
 
   beforeEach('Restore session and navigate to page', async () => {
+    await newAddressPage.open('/')
+    await browser.deleteCookies('language')
     await restoreSession()
     await newAddressPage.navigateToPageAndVerifyTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should verify Welsh address labels and restore English', async () => {
+    await newAddressPage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify all errors when no input', async () => {
