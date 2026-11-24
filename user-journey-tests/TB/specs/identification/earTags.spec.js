@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import signInPage from '../../page-objects/signInPage.js'
 import {
   loginAndSaveSession,
@@ -12,8 +13,18 @@ describe('Disinfectant page spec', () => {
   })
 
   beforeEach('Restore session and navigate to page', async () => {
+    await earTagsOver42DaysOldPage.open('/')
+    await browser.deleteCookies('language')
     await restoreSession()
     await earTagsOver42DaysOldPage.navigateToPageAndVerifyTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should verify the Welsh ear-tag label and hint and restore English', async () => {
+    await earTagsOver42DaysOldPage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify that page errors when nothing is entered', async () => {

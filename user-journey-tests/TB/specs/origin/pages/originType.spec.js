@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import originTypePage from '../../../page-objects/origin/originTypePage.js'
 import toFromFarmPage from '../../../page-objects/origin/toFromFarmPage.js'
 import { verifyRadioButtonNumber } from '../../../helpers/page.js'
@@ -13,10 +14,20 @@ describe('origin type page test (off farm)', () => {
   })
 
   beforeEach('Restore session and navigate to origin type page', async () => {
+    await originTypePage.open('/')
+    await browser.deleteCookies('language')
     await restoreSession()
     await toFromFarmPage.navigateToPageAndVerifyTitle(false)
     await toFromFarmPage.selectOffFarmAndContinue(originTypePage)
     await originTypePage.verifyPageHeadingAndTitle()
+  })
+
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('Should select the Welsh AFU option, verify its hint and restore English', async () => {
+    await originTypePage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify that the page errors when no option is selected', async () => {
