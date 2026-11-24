@@ -5,12 +5,15 @@
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          This service only allows movements off an approved finishing unit
-          (AFU) to:
+          {{ translate('tb.destination.afuOnlyOffExitPage.intro', 'This service only allows movements off an approved finishing unit (AFU) to:') }}
         </p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>slaughter</li>
-          <li>approved finishing units (AFU)</li>
+          <li>
+            {{ translate('tb.destination.afuOnlyOffExitPage.destinations.destination-1', 'slaughter') }}
+          </li>
+          <li>
+            {{ translate('tb.destination.afuOnlyOffExitPage.destinations.destination-2', 'approved finishing units (AFU)') }}
+          </li>
         </ul>
       </div>
     </div>

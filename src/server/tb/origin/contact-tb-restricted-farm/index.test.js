@@ -19,4 +19,10 @@ describe('ContactTbRestrictedFarmPage', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: '#ContactTbRestrictedFarmPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })

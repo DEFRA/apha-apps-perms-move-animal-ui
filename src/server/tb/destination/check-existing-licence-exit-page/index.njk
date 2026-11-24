@@ -5,13 +5,13 @@
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          {{ customText }}, check if you can move animals with the licence that
-          was issued with the approval.
+          {{ customText }},
+          {{ translate('tb.destination.checkExistingLicenceExitPage.checkLicenceSuffix', 'check if you can move animals with the licence that was issued with the approval.') }}
         </p>
         <p>
-          Contact
-          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a> if
-          your movement does not meet the terms of the existing licence.
+          {{ translate('tb.destination.checkExistingLicenceExitPage.contactIntro', 'Contact') }}
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          {{ translate('tb.destination.checkExistingLicenceExitPage.contactSuffix', 'if your movement does not meet the terms of the existing licence.') }}
         </p>
       </div>
     </div>

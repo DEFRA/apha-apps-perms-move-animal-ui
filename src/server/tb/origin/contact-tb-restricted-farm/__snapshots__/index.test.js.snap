@@ -7,17 +7,38 @@ exports[`ContactTbRestrictedFarmPage #ContactTbRestrictedFarmPage.content should
       <h1 class="govuk-heading-l">You need to contact the TB restricted farm the animals are moving onto</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          When animals are moving onto a TB restricted farm, it is the
-          responsibility of the TB restricted farm to apply for a licence.
+          When animals are moving onto a TB restricted farm, it is the responsibility of the TB restricted farm to apply for a licence.
         </p>
         <p>
-          We need details about their biosecurity practices to process the
-          licence.
+          We need details about their biosecurity practices to process the licence.
         </p>
         <p>
           If the destination farm cannot apply, complete and
           <a href="https://www.gov.uk/government/publications/tb-movement-licence-moving-animals-between-restricted-premises-in-england" target="_blank">
             send this application form to APHA (opens in new tab)</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`ContactTbRestrictedFarmPage #ContactTbRestrictedFarmPage.content.welsh should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Mae angen i chi gysylltu â'r fferm gyfyngedig TB y mae'r anifeiliaid yn symud iddi</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          Pan fydd anifeiliaid yn symud i fferm sydd â chyfyngiadau TB, cyfrifoldeb y fferm honno yw gwneud cais am drwydded.
+        </p>
+        <p>
+          Mae angen i ni wybod manylion am eu harferion bioddiogelwch er mwyn prosesu'r drwydded.
+        </p>
+        <p>
+          Os na all y fferm gyrchfan wneud cais, llenwch a
+          <a href="https://www.gov.uk/government/publications/tb-movement-licence-moving-animals-between-restricted-premises-in-england" target="_blank">
+            anfonwch y ffurflen gais hon i APHA (yn agor mewn tab newydd)</a>.
         </p>
       </div>
     </div>

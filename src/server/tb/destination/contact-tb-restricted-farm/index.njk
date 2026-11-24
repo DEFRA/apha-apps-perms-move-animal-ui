@@ -5,20 +5,18 @@
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          When the animals are moving on to a TB restricted farm, it is the
-          responsibility of that farm to apply for a licence.
+          {{ translate('tb.destination.contactTbRestrictedFarm.responsibility', 'When the animals are moving on to a TB restricted farm, it is the responsibility of that farm to apply for a licence.') }}
         </p>
         <p>
-          We need details about their biosecurity practices to process the
-          licence.
+          {{ translate('tb.destination.contactTbRestrictedFarm.needDetails', 'We need details about their biosecurity practices to process the licence.') }}
         </p>
         <p>
-          If the destination farm cannot apply, complete and
+          {{ translate('tb.destination.contactTbRestrictedFarm.cannotApplyIntro', 'If the destination farm cannot apply, complete and') }}
           <a
             href="https://www.gov.uk/government/publications/tb-movement-licence-moving-animals-between-restricted-premises-in-england"
             target="_blank"
           >
-            send this application form to APHA (opens in new tab)</a
+            {{ translate('tb.destination.contactTbRestrictedFarm.cannotApplyLinkText', 'send this application form to APHA (opens in new tab)') }}</a
           >.
         </p>
       </div>

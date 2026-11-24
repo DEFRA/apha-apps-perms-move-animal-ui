@@ -1,26 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content should render expected response and content when origin is AFU 1`] = `
-"
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
-      <div class="govuk-body" data-testid="app-page-body">
-        <p>
-          If the approved finishing unit (AFU) has already been set up, check if you can move animals with the licence that
-          was issued with the approval.
-        </p>
-        <p>
-          Contact
-          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a> if
-          your movement does not meet the terms of the existing licence.
-        </p>
-      </div>
-    </div>
-  </div>
-        "
-`;
-
 exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content should render expected response and content when destination is AFU 1`] = `
 "
   <div class="govuk-grid-row">
@@ -28,13 +7,34 @@ exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content shou
       <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          If the approved finishing unit (AFU) has already been set up, check if you can move animals with the licence that
-          was issued with the approval.
+          If the approved finishing unit (AFU) has already been set up,
+          check if you can move animals with the licence that was issued with the approval.
         </p>
         <p>
           Contact
-          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a> if
-          your movement does not meet the terms of the existing licence.
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          if your movement does not meet the terms of the existing licence.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content should render expected response and content when origin is AFU 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          If the approved finishing unit (AFU) has already been set up,
+          check if you can move animals with the licence that was issued with the approval.
+        </p>
+        <p>
+          Contact
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          if your movement does not meet the terms of the existing licence.
         </p>
       </div>
     </div>
@@ -49,13 +49,76 @@ exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content shou
       <h1 class="govuk-heading-l">This service is not available for your movement type</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          If the TB isolation unit has already been set up and approved, check if you can move animals with the licence that
-          was issued with the approval.
+          If the TB isolation unit has already been set up and approved,
+          check if you can move animals with the licence that was issued with the approval.
         </p>
         <p>
           Contact
-          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a> if
-          your movement does not meet the terms of the existing licence.
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          if your movement does not meet the terms of the existing licence.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content.welsh should render expected response and content when destination is AFU 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          Os yw'r AFU eisoes wedi'i sefydlu,
+          gwiriwch a allwch symud anifeiliaid gyda'r drwydded a gyhoeddwyd gyda'r cymeradwyaeth.
+        </p>
+        <p>
+          Cysylltwch â
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          os nad yw eich symudiad yn bodloni telerau'r drwydded bresennol.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content.welsh should render expected response and content when origin is AFU 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          Os yw'r AFU eisoes wedi'i sefydlu,
+          gwiriwch a allwch symud anifeiliaid gyda'r drwydded a gyhoeddwyd gyda'r cymeradwyaeth.
+        </p>
+        <p>
+          Cysylltwch â
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          os nad yw eich symudiad yn bodloni telerau'r drwydded bresennol.
+        </p>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#CheckExistingLicenceExitPage CheckExistingLicenceExitPage.content.welsh should render expected response and content when origin is not AFU 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Nid yw'r gwasanaeth hwn ar gael ar gyfer eich math o symudiad</h1>
+      <div class="govuk-body" data-testid="app-page-body">
+        <p>
+          Os yw'r uned ynysu TB eisoes wedi'i sefydlu,
+          gwiriwch a allwch symud anifeiliaid gyda'r drwydded a gyhoeddwyd gyda'r cymeradwyaeth.
+        </p>
+        <p>
+          Cysylltwch â
+          <a href="mailto:CSCTBUnits@apha.gov.uk">CSCTBUnits@apha.gov.uk</a>
+          os nad yw eich symudiad yn bodloni telerau'r drwydded bresennol.
         </p>
       </div>
     </div>

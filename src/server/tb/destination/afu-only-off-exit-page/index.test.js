@@ -18,4 +18,10 @@ describe('#AfuToAfuExitPage', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: 'AfuToAfuExitPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })

@@ -6,12 +6,13 @@
       <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
       <div class="govuk-body" data-testid="app-page-body">
         <p>
-          You must email your biosecurity map to csc.tblicensing@apha.gov.uk
+          {{ translate('tb.biosecurityMap.sizeError.emailInstruction', 'You must email your biosecurity map to csc.tblicensing@apha.gov.uk') }}
         </p>
-        <p>In your email include your county parish holding (CPH) number.</p>
         <p>
-          Your application cannot be processed until we receive your biosecurity
-          map.
+          {{ translate('tb.biosecurityMap.sizeError.cphInstruction', 'In your email include your county parish holding (CPH) number.') }}
+        </p>
+        <p>
+          {{ translate('tb.biosecurityMap.sizeError.processingNotice', 'Your application cannot be processed until we receive your biosecurity map.') }}
         </p>
       </div>
     </div>

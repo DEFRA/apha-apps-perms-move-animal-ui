@@ -10,6 +10,7 @@ export class ContactTbRestrictedFarmPage extends ExitPage {
   pageTitle =
     'You need to contact the TB restricted farm the animals are moving onto'
 
+  titleI18nKey = 'tb.destination.contactTbRestrictedFarm.title'
   view = `tb/destination/contact-tb-restricted-farm/index`
   sectionKey = 'destination'
   key = 'ContactTbRestrictedFarmPage'

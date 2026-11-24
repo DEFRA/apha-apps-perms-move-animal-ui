@@ -9,6 +9,7 @@ export class SizeErrorPage extends ExitPage {
   urlPath = '/tb/biosecurity-map/size-error'
 
   pageTitle = 'There was a problem uploading your biosecurity map'
+  titleI18nKey = 'tb.biosecurityMap.sizeError.title'
   view = `tb/biosecurity-map/size-error/index`
   key = 'size-error'
   sectionKey = 'biosecurity-map'
