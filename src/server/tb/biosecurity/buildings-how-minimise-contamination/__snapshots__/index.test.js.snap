@@ -61,3 +61,65 @@ exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContamination
     </form>
         "
 `;
+
+exports[`BuildingsHowMinimiseContaminationPage buildingsHowMinimiseContaminationPage.content.welsh should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="buildingsHowMinimiseContamination-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Pa fesurau sy'n cael eu cymryd i leihau lledaeniad TB yn ystod cadw dan do?
+    </h1>
+  </legend>
+  <div id="buildingsHowMinimiseContamination-hint" class="govuk-hint">
+    Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination" name="buildingsHowMinimiseContamination" type="checkbox" value="cleaning" data-testid="cleaning-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination">
+        Glanhau a diheintio adeiladau a rennir cyn i'r anifeiliaid gyrraedd
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-2" name="buildingsHowMinimiseContamination" type="checkbox" value="isolation" data-testid="isolation-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-2">
+        Ynysu anifeiliaid sy'n dod i mewn mewn adeilad, sied neu lloc ar wahân wrth gyrraedd
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-3" name="buildingsHowMinimiseContamination" type="checkbox" value="incoming" data-testid="incoming-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-3">
+        Bydd anifeiliaid sy'n dod i mewn yn cael eu cadw dan do yn barhaol
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-4" name="buildingsHowMinimiseContamination" type="checkbox" value="disinfection" data-testid="disinfection-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-4">
+        Pwyntiau diheintio wedi'u lleoli wrth fynedfeydd ac allanfeydd y tai
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="buildingsHowMinimiseContamination-5" name="buildingsHowMinimiseContamination" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="buildingsHowMinimiseContamination-5">
+        Mesurau eraill
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

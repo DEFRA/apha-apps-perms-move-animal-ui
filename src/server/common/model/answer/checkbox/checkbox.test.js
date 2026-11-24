@@ -246,6 +246,88 @@ describe('CheckboxAnswer.viewModel', () => {
     checked: false
   }
 
+  it('should translate the main hint and option labels and hints', async () => {
+    class TranslatedCheckboxAnswer extends CheckboxAnswer {
+      static config = {
+        ...config,
+        hintI18nKey: 'test.checkbox.hint',
+        options: {
+          badgerProofFencing: {
+            label: 'First option',
+            labelI18nKey: 'test.checkbox.first'
+          },
+          limitAccessToBadgerHabitat: {
+            label: 'Second option',
+            labelI18nKey: 'test.checkbox.second',
+            hint: 'Second hint',
+            hintI18nKey: 'test.checkbox.secondHint'
+          }
+        }
+      }
+    }
+    const translations = {
+      'test.checkbox.hint': 'Translated main hint',
+      'test.checkbox.first': 'Translated first option',
+      'test.checkbox.second': 'Translated second option',
+      'test.checkbox.secondHint': 'Translated second hint'
+    }
+    const translate = jest.fn((key, fallback) => translations[key] ?? fallback)
+    const answer = new TranslatedCheckboxAnswer(validTestCheckbox)
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(viewModel.hint.text).toBe('Translated main hint')
+    expect(viewModel.items[0]).toMatchObject({
+      text: 'Translated first option',
+      checked: true
+    })
+    expect(viewModel.items[0]).not.toHaveProperty('hint')
+    expect(viewModel.items[1]).toMatchObject({
+      text: 'Translated second option',
+      hint: { text: 'Translated second hint' },
+      checked: false
+    })
+    expect(translate).toHaveBeenCalledWith('test.checkbox.hint', 'test_hint')
+    expect(translate).toHaveBeenCalledWith(
+      'test.checkbox.first',
+      'First option'
+    )
+    expect(translate).toHaveBeenCalledWith(
+      'test.checkbox.second',
+      'Second option'
+    )
+    expect(translate).toHaveBeenCalledWith(
+      'test.checkbox.secondHint',
+      'Second hint'
+    )
+  })
+
+  it('should use hint and option fallbacks when no keys are configured', async () => {
+    class CheckboxWithOptionHint extends CheckboxAnswer {
+      static config = {
+        ...config,
+        options: {
+          option1: { label: 'First option', hint: 'First hint' },
+          option2: { label: 'Second option' }
+        }
+      }
+    }
+    const translate = jest.fn((_key, fallback) => fallback)
+    const answer = new CheckboxWithOptionHint({ test_checkbox: ['option1'] })
+    const viewModel = await answer.viewModel({ question, translate })
+
+    expect(viewModel.hint.text).toBe('test_hint')
+    expect(viewModel.items[0]).toMatchObject({
+      text: 'First option',
+      hint: { text: 'First hint' }
+    })
+    expect(viewModel.items[1]).toMatchObject({ text: 'Second option' })
+    expect(viewModel.items[1]).not.toHaveProperty('hint')
+    expect(translate).toHaveBeenCalledWith(undefined, 'test_hint')
+    expect(translate).toHaveBeenCalledWith(undefined, 'First option')
+    expect(translate).toHaveBeenCalledWith(undefined, 'First hint')
+    expect(translate).toHaveBeenCalledWith(undefined, 'Second option')
+  })
+
   it('should return everything (except errors) to render in the template', async () => {
     const validAnswer = new TestCheckboxAnswer({
       test_checkbox: ['limitAccessToBadgerHabitat']

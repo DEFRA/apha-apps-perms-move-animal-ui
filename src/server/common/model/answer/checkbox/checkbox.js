@@ -58,13 +58,16 @@ const createCheckboxSchema = (config) => {
 /**
  * @typedef {{
  *   label: string,
+ *   labelI18nKey?: string,
  *   hint?: string,
+ *   hintI18nKey?: string,
  *   exclusive?: boolean
  * }} CheckboxOption
  * @typedef {{
  *   payloadKey: string,
  *   options: Record<string, CheckboxOption>,
  *   hint?: string,
+ *   hintI18nKey?: string,
  *   isPageHeading? : boolean,
  *   isQuestionHeading? : boolean,
  *   validation: {
@@ -129,9 +132,9 @@ export class CheckboxAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ question, validate }) {
+  async viewModel({ question, validate, translate }) {
     const values = this.value
-    const { payloadKey, options, hint } = this.config
+    const { payloadKey, options, hint, hintI18nKey } = this.config
 
     const isPageHeading = this.config.isPageHeading ?? true
     const isQuestionHeading = this.config.isQuestionHeading ?? false
@@ -162,8 +165,13 @@ export class CheckboxAnswer extends AnswerModel {
           }
         }
 
+        const labelText = translate(option.labelI18nKey, option.label)
+        const hintText = option.hint
+          ? translate(option.hintI18nKey, option.hint)
+          : undefined
+
         const checkboxOption = {
-          text: option.label,
+          text: labelText,
           value,
           attributes: {
             'data-testid': `${value}-checkbox`
@@ -175,9 +183,9 @@ export class CheckboxAnswer extends AnswerModel {
           checkboxOption.behaviour = 'exclusive'
         }
 
-        if (option.hint) {
+        if (hintText) {
           checkboxOption.hint = {
-            text: option.hint
+            text: hintText
           }
         }
 
@@ -186,7 +194,7 @@ export class CheckboxAnswer extends AnswerModel {
     }
 
     if (hint) {
-      viewModel.hint = { text: hint }
+      viewModel.hint = { text: translate(hintI18nKey, hint) }
     }
 
     if (validate) {

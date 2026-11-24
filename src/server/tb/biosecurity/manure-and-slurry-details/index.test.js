@@ -101,4 +101,10 @@ describe('manureAndSlurryDetails', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: 'manureAndSlurryDetailsPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })

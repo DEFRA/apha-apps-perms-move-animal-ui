@@ -704,12 +704,6 @@
           "other": {
             "label": "Mesurau eraill"
           }
-        },
-        "preventSpreadIntro": "Dylai fod gennych fesurau ar waith i atal lledaeniad TB pan fo'r anifeiliaid sy'n dod i mewn yn cael eu cadw dan do neu â mynediad i adeiladau a rennir.",
-        "shouldInclude": "Dylech gynnwys:",
-        "includeItems": {
-          "item-1": "sut y bydd yr anifeiliaid sy'n dod i mewn yn cael eu gwahanu oddi wrth y fuches breswyl",
-          "item-2": "mesurau glanhau a diheintio ar gyfer tai a rennir ac adeiladau a rennir, gan gynnwys cyfleusterau trin a godro"
         }
       },
       "equipmentAnyShared": {

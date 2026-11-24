@@ -15,21 +15,29 @@ export class RestockReasonsAnswer extends CheckboxAnswer {
     payloadKey: 'restockReasons',
     isPageHeading: true,
     hint: 'Select all that apply.',
+    hintI18nKey: 'tb.biosecurity.restockReason.hint',
     options: {
       fattening: {
-        label: 'Fattening'
+        label: 'Fattening',
+        labelI18nKey: 'tb.biosecurity.restockReason.options.fattening.label'
       },
       breeding: {
-        label: 'Breeding'
+        label: 'Breeding',
+        labelI18nKey: 'tb.biosecurity.restockReason.options.breeding.label'
       },
       sucklingRestocking: {
-        label: 'Suckling restocking'
+        label: 'Suckling restocking',
+        labelI18nKey:
+          'tb.biosecurity.restockReason.options.sucklingRestocking.label'
       },
       dairyRestocking: {
-        label: 'Dairy restocking'
+        label: 'Dairy restocking',
+        labelI18nKey:
+          'tb.biosecurity.restockReason.options.dairyRestocking.label'
       },
       other: {
-        label: 'Something else'
+        label: 'Something else',
+        labelI18nKey: 'tb.biosecurity.restockReason.options.other.label'
       }
     },
     validation: {

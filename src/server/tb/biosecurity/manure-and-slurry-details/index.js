@@ -14,24 +14,35 @@ export class Answer extends CheckboxAnswer {
   static config = {
     payloadKey: questionKey,
     hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    hintI18nKey: 'tb.biosecurity.manureAndSlurryDetails.hint',
     options: {
       'not-purchased': {
-        label: 'Manure is not purchased from other farms'
+        label: 'Manure is not purchased from other farms',
+        labelI18nKey:
+          'tb.biosecurity.manureAndSlurryDetails.options.not-purchased.label'
       },
       stored: {
         label:
-          "Manure and slurry is securely stored so domestic and wild animals can't access it"
+          "Manure and slurry is securely stored so domestic and wild animals can't access it",
+        labelI18nKey:
+          'tb.biosecurity.manureAndSlurryDetails.options.stored.label'
       },
       'three-weeks': {
         label:
-          'Manure is stored for at least 3 weeks before spreading on pasture'
+          'Manure is stored for at least 3 weeks before spreading on pasture',
+        labelI18nKey:
+          'tb.biosecurity.manureAndSlurryDetails.options.three-weeks.label'
       },
       'six-months': {
         label:
-          'Slurry is stored for at least 6 months before spreading on pasture'
+          'Slurry is stored for at least 6 months before spreading on pasture',
+        labelI18nKey:
+          'tb.biosecurity.manureAndSlurryDetails.options.six-months.label'
       },
       other: {
-        label: 'Other measures'
+        label: 'Other measures',
+        labelI18nKey:
+          'tb.biosecurity.manureAndSlurryDetails.options.other.label'
       }
     },
     validation: {
