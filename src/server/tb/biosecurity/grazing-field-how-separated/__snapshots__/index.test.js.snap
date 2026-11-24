@@ -52,3 +52,56 @@ exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content shoul
     </form>
         "
 `;
+
+exports[`GrazingFieldHowSeparatedPage grazingFieldHowSeparatedPage.content.welsh should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="grazingFieldHowSeparated-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Pa fesurau sy'n cael eu cymryd i leihau lledaeniad TB pan fydd yr anifeiliaid yn pori?
+    </h1>
+  </legend>
+  <div id="grazingFieldHowSeparated-hint" class="govuk-hint">
+    Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated" name="grazingFieldHowSeparated" type="checkbox" value="separated-by-roads" data-testid="separated-by-roads-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated">
+        Mae ffyrdd yn creu ffin rhwng yr anifeiliaid
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-2" name="grazingFieldHowSeparated" type="checkbox" value="separated-by-three-meters" aria-describedby="grazingFieldHowSeparated-2-item-hint" data-testid="separated-by-three-meters-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated-2">
+        Bydd o leiaf 3 metr yn gwahanu'r anifeiliaid
+      </label>
+      <div id="grazingFieldHowSeparated-2-item-hint" class="govuk-hint govuk-checkboxes__hint">
+        Such as by hedges, doubling fencing or walls
+      </div>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="grazingFieldHowSeparated-3" name="grazingFieldHowSeparated" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="grazingFieldHowSeparated-3">
+        Mesurau gwahanu eraill
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

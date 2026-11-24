@@ -14,23 +14,34 @@ export class Answer extends CheckboxAnswer {
   static config = {
     payloadKey: questionKey,
     hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    hintI18nKey: 'tb.biosecurity.buildingsHowMinimiseContamination.hint',
     options: {
       cleaning: {
         label:
-          'Cleaning and disinfecting of shared buildings before the animals arrive'
+          'Cleaning and disinfecting of shared buildings before the animals arrive',
+        labelI18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.options.cleaning.label'
       },
       isolation: {
         label:
-          'Isolation of incoming animals in a separate building, shed or pen on arrival'
+          'Isolation of incoming animals in a separate building, shed or pen on arrival',
+        labelI18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.options.isolation.label'
       },
       incoming: {
-        label: 'Incoming animals will be permanently housed'
+        label: 'Incoming animals will be permanently housed',
+        labelI18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.options.incoming.label'
       },
       disinfection: {
-        label: 'Disinfection points located at the housing entrances and exits'
+        label: 'Disinfection points located at the housing entrances and exits',
+        labelI18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.options.disinfection.label'
       },
       other: {
-        label: 'Other measures'
+        label: 'Other measures',
+        labelI18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.options.other.label'
       }
     },
     validation: {
@@ -44,7 +55,6 @@ export class Answer extends CheckboxAnswer {
 
 export class BuildingsHowMinimiseContaminationPage extends QuestionPage {
   urlPath = '/biosecurity/buildings-how-minimise-contamination'
-
   questionKey = questionKey
   sectionKey = 'biosecurity'
   question =

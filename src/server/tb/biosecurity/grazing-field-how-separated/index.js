@@ -15,17 +15,26 @@ export class Answer extends CheckboxAnswer {
     payloadKey: questionKey,
     options: {
       'separated-by-roads': {
-        label: 'Roads create a boundary between the animals'
+        label: 'Roads create a boundary between the animals',
+        labelI18nKey:
+          'tb.biosecurity.grazingFieldHowSeparated.options.separated-by-roads.label'
       },
       'separated-by-three-meters': {
         label: 'A minimum of 3 metres will separate the animals',
-        hint: 'Such as by hedges, doubling fencing or walls'
+        hint: 'Such as by hedges, doubling fencing or walls',
+        labelI18nKey:
+          'tb.biosecurity.grazingFieldHowSeparated.options.separated-by-three-meters.label',
+        hintI18nKey:
+          'tb.biosecurity.grazingFieldHowSeparated.options.eparated-by-three-meters.hint'
       },
       other: {
-        label: 'Other separation measures'
+        label: 'Other separation measures',
+        labelI18nKey:
+          'tb.biosecurity.grazingFieldHowSeparated.options.other.label'
       }
     },
     hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    hintI18nKey: 'tb.biosecurity.grazingFieldHowSeparated.hint',
     validation: {}
   }
 }

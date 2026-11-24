@@ -705,12 +705,6 @@
           "other": {
             "label": "Other measures"
           }
-        },
-        "preventSpreadIntro": "You should have measures in place to prevent the spread of TB when the incoming animals are housed or have access to shared buildings.",
-        "shouldInclude": "You should include:",
-        "includeItems": {
-          "item-1": "how the incoming animals will be separated from the resident herd",
-          "item-2": "cleaning and disinfection measures for housing and shared buildings, including handling and milking facilities"
         }
       },
       "equipmentAnyShared": {

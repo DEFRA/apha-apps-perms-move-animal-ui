@@ -15,23 +15,34 @@ export class EquipmentHowMinimiseContaminationAnswer extends CheckboxAnswer {
     payloadKey: 'equipmentHowMinimiseContamination',
     isPageHeading: true,
     hint: 'Only select the measures you are taking. You do not need to select them all to receive your licence.',
+    hintI18nKey: 'tb.biosecurity.equipmentHowMinimiseContamination.hint',
     options: {
       designatedDisinfectionPoints: {
-        label: 'Designated disinfection points'
+        label: 'Designated disinfection points',
+        labelI18nKey:
+          'tb.biosecurity.equipmentHowMinimiseContamination.options.designatedDisinfectionPoints.label'
       },
       disinfectingMachinery: {
-        label: 'Cleaning and disinfecting shared machinery'
+        label: 'Cleaning and disinfecting shared machinery',
+        labelI18nKey:
+          'tb.biosecurity.equipmentHowMinimiseContamination.options.disinfectingMachinery.label'
       },
       disinfectingMilkingAndHandling: {
         label:
-          'Cleaning and disinfecting shared milking and handling facilities'
+          'Cleaning and disinfecting shared milking and handling facilities',
+        labelI18nKey:
+          'tb.biosecurity.equipmentHowMinimiseContamination.options.disinfectingMilkingAndHandling.label'
       },
       equipmentNotShared: {
         label:
-          'Equipment is not shared between the incoming animals and the resident herd'
+          'Equipment is not shared between the incoming animals and the resident herd',
+        labelI18nKey:
+          'tb.biosecurity.equipmentHowMinimiseContamination.options.equipmentNotShared.label'
       },
       other: {
-        label: 'Other cleaning and disinfection measures'
+        label: 'Other cleaning and disinfection measures',
+        labelI18nKey:
+          'tb.biosecurity.equipmentHowMinimiseContamination.options.other.label'
       }
     },
     validation: {

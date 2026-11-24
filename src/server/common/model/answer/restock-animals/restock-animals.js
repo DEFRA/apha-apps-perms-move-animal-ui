@@ -15,24 +15,32 @@ export class RestockAnimalsAnswer extends CheckboxAnswer {
     payloadKey: 'restockAnimals',
     isPageHeading: true,
     hint: 'Select all that apply.',
+    hintI18nKey: 'tb.biosecurity.restockAnimals.hint',
     options: {
       calves: {
-        label: 'Calves'
+        label: 'Calves',
+        labelI18nKey: 'tb.biosecurity.restockAnimals.options.calves.label'
       },
       heifers: {
-        label: 'Heifers'
+        label: 'Heifers',
+        labelI18nKey: 'tb.biosecurity.restockAnimals.options.heifers.label'
       },
       cows: {
-        label: 'Cows'
+        label: 'Cows',
+        labelI18nKey: 'tb.biosecurity.restockAnimals.options.cows.label'
       },
       pregnantCows: {
-        label: 'Pregnant cows'
+        label: 'Pregnant cows',
+        labelI18nKey: 'tb.biosecurity.restockAnimals.options.pregnantCows.label'
       },
       dairyCows: {
-        label: 'Dairy cows'
+        label: 'Dairy cows',
+        labelI18nKey: 'tb.biosecurity.restockAnimals.options.dairyCows.label'
       },
       sucklingCalves: {
-        label: 'Suckling calves'
+        label: 'Suckling calves',
+        labelI18nKey:
+          'tb.biosecurity.restockAnimals.options.sucklingCalves.label'
       }
     },
     validation: {

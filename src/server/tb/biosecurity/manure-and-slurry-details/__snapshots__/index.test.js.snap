@@ -61,3 +61,65 @@ exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content should render
     </form>
         "
 `;
+
+exports[`manureAndSlurryDetails manureAndSlurryDetailsPage.content.welsh should render expected response and content 1`] = `
+"
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="manureAndSlurryDetails-hint">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      Sut y byddwch yn rheoli slyri a thail?
+    </h1>
+  </legend>
+  <div id="manureAndSlurryDetails-hint" class="govuk-hint">
+    Dewiswch yn unig y mesurau rydych yn eu cymryd. Nid oes angen i chi ddewis pob un ohonynt i gael eich trwydded.
+  </div>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails" name="manureAndSlurryDetails" type="checkbox" value="not-purchased" data-testid="not-purchased-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails">
+        Nid yw tail yn cael ei brynu o ffermydd eraill
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-2" name="manureAndSlurryDetails" type="checkbox" value="stored" data-testid="stored-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-2">
+        Mae tail a slyri'n cael eu storio'n ddiogel fel na all anifeiliaid domestig a gwyllt gael mynediad atynt
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-3" name="manureAndSlurryDetails" type="checkbox" value="three-weeks" data-testid="three-weeks-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-3">
+        Mae tail yn cael ei storio am o leiaf 3 wythnos cyn ei daenu ar borfa
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-4" name="manureAndSlurryDetails" type="checkbox" value="six-months" data-testid="six-months-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-4">
+        Mae slyri'n cael ei storio am o leiaf 6 mis cyn ei daenu ar borfa
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="manureAndSlurryDetails-5" name="manureAndSlurryDetails" type="checkbox" value="other" data-testid="other-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="manureAndSlurryDetails-5">
+        Mesurau eraill
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;

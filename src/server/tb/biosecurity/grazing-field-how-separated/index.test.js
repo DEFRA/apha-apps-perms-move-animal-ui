@@ -71,4 +71,10 @@ describe('GrazingFieldHowSeparatedPage', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: 'grazingFieldHowSeparatedPage.content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })
