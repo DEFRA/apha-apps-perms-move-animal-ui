@@ -25,7 +25,7 @@ export class Answer extends CheckboxAnswer {
         labelI18nKey:
           'tb.biosecurity.grazingFieldHowSeparated.options.separated-by-three-meters.label',
         hintI18nKey:
-          'tb.biosecurity.grazingFieldHowSeparated.options.eparated-by-three-meters.hint'
+          'tb.biosecurity.grazingFieldHowSeparated.options.separated-by-three-meters.hint'
       },
       other: {
         label: 'Other separation measures',
