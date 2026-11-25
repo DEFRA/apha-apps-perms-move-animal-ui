@@ -33,25 +33,32 @@ export class DilutionRateAnswer extends CheckboxAnswer {
 
   /**
    * @param {string} dilutionRate
-   * @param {boolean} isUndiluted
-   * @param {Function} translate
+   * @param {AnswerViewModelOptions['translate']} translate
    * @returns {string}
    */
-  _formatDilutionRateText(dilutionRate, isUndiluted, translate) {
-    return isUndiluted
-      ? translate(
-          'tb.biosecurity.dilutionRate.answer.undiluted',
-          'I confirm the disinfectant is used undiluted on the farm or premises'
-        )
-      : translate(
-          'tb.biosecurity.dilutionRate.answer.prefix',
-          'I confirm a dilution rate of 1:'
-        ) +
-          dilutionRate +
-          translate(
-            'tb.biosecurity.dilutionRate.answer.suffix',
-            ' is used on the farm or premises'
-          )
+  formatDilutionRateText(dilutionRate, translate) {
+    return (
+      translate(
+        'tb.biosecurity.dilutionRate.answer.prefix',
+        'I confirm a dilution rate of 1:'
+      ) +
+      dilutionRate +
+      translate(
+        'tb.biosecurity.dilutionRate.answer.suffix',
+        ' is used on the farm or premises'
+      )
+    )
+  }
+
+  /**
+   * @param {AnswerViewModelOptions['translate']} translate
+   * @returns {string}
+   */
+  formatUndilutedText(translate) {
+    return translate(
+      'tb.biosecurity.dilutionRate.answer.undiluted',
+      'I confirm the disinfectant is used undiluted on the farm or premises'
+    )
   }
 
   /**
@@ -73,11 +80,12 @@ export class DilutionRateAnswer extends CheckboxAnswer {
     }
 
     viewModel.items = Object.entries(options).map(([value]) => ({
-      text: this._formatDilutionRateText(
-        disinfectantDetails?.dilutionRate,
-        disinfectantDetails?.isUndiluted,
-        viewModelOptions.translate
-      ),
+      text: disinfectantDetails.isUndiluted
+        ? this.formatUndilutedText(viewModelOptions.translate)
+        : this.formatDilutionRateText(
+            disinfectantDetails.dilutionRate,
+            viewModelOptions.translate
+          ),
       value: disinfectantDetails?.dilutionRate ?? value,
       attributes: {
         'data-testid': `${value}-checkbox`
