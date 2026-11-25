@@ -15,32 +15,32 @@ export class RestockAnimalsAnswer extends CheckboxAnswer {
     payloadKey: 'restockAnimals',
     isPageHeading: true,
     hint: 'Select all that apply.',
-    hintI18nKey: 'tb.biosecurity.restockAnimals.hint',
+    hintI18nKey: 'tb.destination.restockAnimals.hint',
     options: {
       calves: {
         label: 'Calves',
-        labelI18nKey: 'tb.biosecurity.restockAnimals.options.calves.label'
+        labelI18nKey: 'tb.destination.restockAnimals.options.calves.label'
       },
       heifers: {
         label: 'Heifers',
-        labelI18nKey: 'tb.biosecurity.restockAnimals.options.heifers.label'
+        labelI18nKey: 'tb.destination.restockAnimals.options.heifers.label'
       },
       cows: {
         label: 'Cows',
-        labelI18nKey: 'tb.biosecurity.restockAnimals.options.cows.label'
+        labelI18nKey: 'tb.destination.restockAnimals.options.cows.label'
       },
       pregnantCows: {
         label: 'Pregnant cows',
-        labelI18nKey: 'tb.biosecurity.restockAnimals.options.pregnantCows.label'
+        labelI18nKey: 'tb.destination.restockAnimals.options.pregnantCows.label'
       },
       dairyCows: {
         label: 'Dairy cows',
-        labelI18nKey: 'tb.biosecurity.restockAnimals.options.dairyCows.label'
+        labelI18nKey: 'tb.destination.restockAnimals.options.dairyCows.label'
       },
       sucklingCalves: {
         label: 'Suckling calves',
         labelI18nKey:
-          'tb.biosecurity.restockAnimals.options.sucklingCalves.label'
+          'tb.destination.restockAnimals.options.sucklingCalves.label'
       }
     },
     validation: {

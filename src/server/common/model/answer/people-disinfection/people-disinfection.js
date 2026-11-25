@@ -40,7 +40,7 @@ export class PeopleDisinfectionAnswer extends CheckboxAnswer {
       },
       other: {
         label: 'Other cleaning and disinfection measures',
-        labelI18nKey: 'tb.biosecurity.peopleDisinfection.options  .other.label'
+        labelI18nKey: 'tb.biosecurity.peopleDisinfection.options.other.label'
       }
     },
     validation: {}
