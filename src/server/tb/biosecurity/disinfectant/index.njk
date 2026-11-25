@@ -11,10 +11,12 @@
 {% block beforequestion %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p>You must use a Defra-approved disinfectant for TB.</p>
+      <p>
+        {{ translate('tb.biosecurity.disinfectant.intro', 'You must use a Defra-approved disinfectant for TB.') }}
+      </p>
       {{
         govukDetails({
-          summaryText: "View approved disinfectants",
+          summaryText: translate('tb.biosecurity.disinfectant.view', 'View approved disinfectants'),
           html: list
         })
       }}
