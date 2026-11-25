@@ -32,6 +32,29 @@ export class DilutionRateAnswer extends CheckboxAnswer {
   }
 
   /**
+   * @param {string} dilutionRate
+   * @param {boolean} isUndiluted
+   * @param {Function} translate
+   * @returns {string}
+   */
+  _formatDilutionRateText(dilutionRate, isUndiluted, translate) {
+    return isUndiluted
+      ? translate(
+          'tb.biosecurity.dilutionRate.answer.undiluted',
+          'I confirm the disinfectant is used undiluted on the farm or premises'
+        )
+      : translate(
+          'tb.biosecurity.dilutionRate.answer.prefix',
+          'I confirm a dilution rate of 1:'
+        ) +
+          dilutionRate +
+          translate(
+            'tb.biosecurity.dilutionRate.answer.suffix',
+            ' is used on the farm or premises'
+          )
+  }
+
+  /**
    * @param {AnswerViewModelOptions} viewModelOptions
    */
   async viewModel(viewModelOptions) {
@@ -50,9 +73,11 @@ export class DilutionRateAnswer extends CheckboxAnswer {
     }
 
     viewModel.items = Object.entries(options).map(([value]) => ({
-      text: disinfectantDetails?.isUndiluted
-        ? 'I confirm the disinfectant is used undiluted on the farm or premises'
-        : `I confirm a dilution rate of 1:${disinfectantDetails?.dilutionRate} is used on the farm or premises`,
+      text: this._formatDilutionRateText(
+        disinfectantDetails?.dilutionRate,
+        disinfectantDetails?.isUndiluted,
+        viewModelOptions.translate
+      ),
       value: disinfectantDetails?.dilutionRate ?? value,
       attributes: {
         'data-testid': `${value}-checkbox`

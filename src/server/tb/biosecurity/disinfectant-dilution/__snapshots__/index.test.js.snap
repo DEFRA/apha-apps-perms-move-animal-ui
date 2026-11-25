@@ -10,16 +10,21 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <p>
-          By law you must use a Defra-approved disinfectant when there is an
-          outbreak of TB. This includes using the correct dilution rate.
+          By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for Agrichlor is
+          The approved dilution rate for
+          Agrichlor
+          is
             1:10.
         </p>
           <p>
-            This means for every 1 litre of Agrichlor,
-            you are using 10
+            This means for every 1
+            litre
+            of
+            Agrichlor,
+            you are using
+            10
             litres
             of water.
           </p>
@@ -67,16 +72,21 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <p>
-          By law you must use a Defra-approved disinfectant when there is an
-          outbreak of TB. This includes using the correct dilution rate.
+          By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for Interkokask is
+          The approved dilution rate for
+          Interkokask
+          is
             1:150.
         </p>
           <p>
-            This means for every 1 gram of Interkokask,
-            you are using 150
+            This means for every 1
+            gram
+            of
+            Interkokask,
+            you are using
+            150
             millilitres
             of water.
           </p>
@@ -124,11 +134,12 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <p>
-          By law you must use a Defra-approved disinfectant when there is an
-          outbreak of TB. This includes using the correct dilution rate.
+          By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for Undiluted Mock is
+          The approved dilution rate for
+          Undiluted Mock
+          is
             undiluted
         </p>
       </div>
@@ -201,6 +212,222 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
     </div>
     <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
   Select disinfectant
+</a>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should render Welsh content when a liquid disinfectant was selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cyfradd gwanhau diheintydd</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
+        </p>
+        <p>
+          Y gyfradd gwanhau gymeradwy ar gyfer
+          Agrichlor
+          yw
+            1:10.
+        </p>
+          <p>
+            Mae hyn yn golygu am bob 1
+            litr
+            o
+            Agrichlor,
+            rydych yn ei ddefnyddio
+            10
+            litrau
+            o ddŵr.
+          </p>
+      </div>
+    </div>
+        <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    Cadarnhad o'r gyfradd gwanhau
+  </legend>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="10" data-testid="dilutionRateConfirmed-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+        Rwy'n cadarnhau cyfradd gwanhau o 1:10 yn cael ei ddefnyddio ar y fferm neu'r safle
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should render Welsh content when a non-liquid disinfectant was selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cyfradd gwanhau diheintydd</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
+        </p>
+        <p>
+          Y gyfradd gwanhau gymeradwy ar gyfer
+          Interkokask
+          yw
+            1:150.
+        </p>
+          <p>
+            Mae hyn yn golygu am bob 1
+            gram
+            o
+            Interkokask,
+            rydych yn ei ddefnyddio
+            150
+            mililitrau
+            o ddŵr.
+          </p>
+      </div>
+    </div>
+        <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    Cadarnhad o'r gyfradd gwanhau
+  </legend>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="150" data-testid="dilutionRateConfirmed-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+        Rwy'n cadarnhau cyfradd gwanhau o 1:150 yn cael ei ddefnyddio ar y fferm neu'r safle
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should render Welsh content when an undiluted disinfectant was selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cyfradd gwanhau diheintydd</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
+        </p>
+        <p>
+          Y gyfradd gwanhau gymeradwy ar gyfer
+          Undiluted Mock
+          yw
+            heb ei wanhau
+        </p>
+      </div>
+    </div>
+        <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    Cadarnhad o'r gyfradd gwanhau
+  </legend>
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="dilutionRate" name="dilutionRate" type="checkbox" value="0" data-testid="dilutionRateConfirmed-checkbox">
+      <label class="govuk-label govuk-checkboxes__label" for="dilutionRate">
+        Rwy'n cadarnhau bod y diheintydd yn cael ei ddefnyddio heb ei wanhau ar y fferm neu'r safle
+      </label>
+    </div>
+  </div>
+</fieldset>
+</div>
+
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+        </div>
+      </div>
+    </form>
+
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should render Welsh content when no disinfectant was selected 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cyfradd gwanhau diheintydd</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          Rhaid i chi ddewis diheintydd cyn cadarnhau'r gyfradd gwanhau.
+        </p>
+      </div>
+    </div>
+    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Dewiswch ddiheintydd
+</a>
+        "
+`;
+
+exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should render Welsh content when the selected disinfectant cannot be found 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Cyfradd gwanhau diheintydd</h1>
+    </div>
+  </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>
+          Rhaid i chi ddewis diheintydd cyn cadarnhau'r gyfradd gwanhau.
+        </p>
+      </div>
+    </div>
+    <a href="/biosecurity/disinfectant" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Dewiswch ddiheintydd
 </a>
         "
 `;

@@ -158,4 +158,46 @@ describe('DisinfectantDilutionPage', () => {
       }
     }
   })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content.welsh',
+    it: 'should render Welsh content when a liquid disinfectant was selected',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: { biosecurity: { disinfectant: 'Agrichlor' } }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content.welsh',
+    it: 'should render Welsh content when a non-liquid disinfectant was selected',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: { biosecurity: { disinfectant: 'Interkokask' } }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content.welsh',
+    it: 'should render Welsh content when an undiluted disinfectant was selected',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: { biosecurity: { disinfectant: 'Undiluted Mock' } }
+    }
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content.welsh',
+    it: 'should render Welsh content when no disinfectant was selected',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
+
+  describePageSnapshot({
+    describes: 'disinfectantDilutionPage.content.welsh',
+    it: 'should render Welsh content when the selected disinfectant cannot be found',
+    pageUrl: `${pageUrl}?lang=cy`,
+    state: {
+      application: { biosecurity: { disinfectant: 'FAM 30' } }
+    }
+  })
 })
