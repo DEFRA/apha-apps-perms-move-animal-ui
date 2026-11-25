@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#taskListIncompleteController buildingsHowMinimiseContaminationPage.content should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <h1 class="govuk-heading-l">You need to complete all of the sections before you review and submit</h1>
+        <a href="/task-list" role="button" draggable="false" class="govuk-button govuk-button--primary" data-module="govuk-button">
+  Go to your application
+</a>
+      </div>
+    </div>
+  </div>
+        "
+`;
+
+exports[`#taskListIncompleteController buildingsHowMinimiseContaminationPage.content.welsh should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-body" data-testid="app-page-body">
+        <h1 class="govuk-heading-l">Mae angen i chi gwblhau pob un o'r adrannau cyn i chi adolygu a chyflwyno</h1>
+        <a href="/task-list" role="button" draggable="false" class="govuk-button govuk-button--primary" data-module="govuk-button">
+  Ewch i'ch cais
+</a>
+      </div>
+    </div>
+  </div>
+        "
+`;
