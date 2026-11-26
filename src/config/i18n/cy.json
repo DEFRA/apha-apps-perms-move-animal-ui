@@ -904,7 +904,8 @@
           "empty": "Nodwch 2 lythyren gyntaf y diheintydd rydych yn ei ddefnyddio"
         },
         "heading": "Diheintydd",
-        "intro": "Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB."
+        "intro": "Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB.",
+        "view": "Gweld diheintyddion cymeradwy"
       },
       "badgers": {
         "question": "Pa fesurau rydych chi'n eu cymryd i leihau'r risg o haint gan fywyd gwyllt?",

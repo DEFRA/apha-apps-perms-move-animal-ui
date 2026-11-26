@@ -128,4 +128,10 @@ describe('DisinfectantPage', () => {
     it: 'should render expected response and content',
     pageUrl
   })
+
+  describePageSnapshot({
+    describes: 'content.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${pageUrl}?lang=cy`
+  })
 })

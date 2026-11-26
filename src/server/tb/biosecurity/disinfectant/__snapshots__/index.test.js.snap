@@ -9,7 +9,9 @@ exports[`DisinfectantPage content should render expected response and content 1`
   </div>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <p>You must use a Defra-approved disinfectant for TB.</p>
+      <p>
+        You must use a Defra-approved disinfectant for TB.
+      </p>
       <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -45,6 +47,60 @@ exports[`DisinfectantPage content should render expected response and content 1`
 </fieldset>
             <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
   Continue
+</button>
+        </div>
+      </div>
+    </form>
+        "
+`;
+
+exports[`DisinfectantPage content.welsh should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Diheintydd</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>
+        Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB.
+      </p>
+      <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Gweld diheintyddion cymeradwy
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <ul class="govuk-body govuk-list--bullet"><li>Virkon® LSP</li><li>Agrichlor</li><li>Biocid 30</li></ul>
+  </div>
+</details>
+
+    </div>
+  </div>
+    <form method="POST" novalidate="">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <input type="hidden" name="crumb" value="csrf-value">
+          <input type="hidden" name="nextPage" value="">
+<fieldset class="govuk-fieldset">
+  <div class="autocomplete-wrapper"><div class="govuk-form-group">
+  <label class="govuk-label govuk-label--m" for="disinfectant">
+    Pa ddiheintydd rydych chi'n ei ddefnyddio?
+  </label>
+  <select class="govuk-select autocomplete" id="disinfectant" name="disinfectant">
+    <option value=""></option>
+    <option value="Virkon® LSP">Virkon® LSP</option>
+    <option value="Agrichlor">Agrichlor</option>
+    <option value="Biocid 30">Biocid 30</option>
+  </select>
+</div>
+</div>
+
+</fieldset>
+            <button type="submit" data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
 </button>
         </div>
       </div>

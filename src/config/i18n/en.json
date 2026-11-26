@@ -905,7 +905,8 @@
           "empty": "Enter the first 2 letters of the disinfectant you are using"
         },
         "heading": "Disinfectant",
-        "intro": "You must use a Defra-approved disinfectant for TB."
+        "intro": "You must use a Defra-approved disinfectant for TB.",
+        "view": "View approved disinfectants"
       },
       "badgers": {
         "question": "Which measures are you taking to reduce the risk of infection from wildlife?",
