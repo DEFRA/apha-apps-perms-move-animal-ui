@@ -44,6 +44,12 @@ describe('#UploadPlan', () => {
     pageUrl: uploadPlanUrl
   })
 
+  describePageSnapshot({
+    describes: '#UploadPlanPage.welsh',
+    it: 'should render expected response and content',
+    pageUrl: `${uploadPlanUrl}?lang=cy`
+  })
+
   let server
 
   beforeAll(async () => {
