@@ -18,6 +18,10 @@ class BiosecurityMapUploadPage extends Page {
     return $('[data-testid="file-biosecuritymap-upload"]')
   }
 
+  get fileUploadControl() {
+    return $(`[id="${pageId}"]`)
+  }
+
   get loadingSpinner() {
     return $('[data-testid="upload-spinner"]')
   }
@@ -38,8 +42,9 @@ class BiosecurityMapUploadPage extends Page {
     const remoteFilePath = await browser.uploadFile(filePath)
 
     // Set the file input with the remote path
-    await waitForElement(this.fileInput)
-    await this.fileInput.setValue(remoteFilePath)
+    await waitForElement(this.fileUploadControl)
+    await waitForElement(this.fileInput, { visible: false })
+    await this.fileInput.addValue(remoteFilePath)
 
     await super.selectContinue()
   }
@@ -51,7 +56,10 @@ class BiosecurityMapUploadPage extends Page {
       await super.selectContinue()
     }
     await super.verifyErrorsOnPage(this.inputFieldError(), errorText)
-    await super.verifySummaryErrorLink(this.summaryErrorLink(), this.fileInput)
+    await super.verifySummaryErrorLink(
+      this.summaryErrorLink(),
+      this.fileUploadControl
+    )
   }
 }
 
