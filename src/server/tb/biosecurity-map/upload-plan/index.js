@@ -5,6 +5,7 @@ import { BiosecurityMapAnswer } from '../../../common/model/answer/biosecurity-m
 import { uploadConfig } from '../upload-config.js'
 import { TbStateManager } from '~/src/server/tb/state-manager.js'
 import { initiateFileUpload } from '../../../common/connectors/file-upload/cdp-uploader.js'
+import { translate } from '~/src/server/common/helpers/i18n/index.js'
 
 export class UploadPlanPage extends QuestionPage {
   question = 'Upload a biosecurity map'
@@ -59,7 +60,11 @@ export class UploadPlanController extends TbQuestionPageController {
       ) {
         validationErrors = {
           'status.form.file': {
-            text: existingAnswer.value.status.form.file.errorMessage
+            text: translate(
+              req,
+              `tb.biosecurityMap.uploadPlan.errorCodes.${existingAnswer.value.status.form.file.errorCode}`,
+              existingAnswer.value.status.form.file.errorMessage
+            )
           }
         }
       }

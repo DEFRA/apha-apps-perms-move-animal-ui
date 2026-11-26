@@ -19,6 +19,20 @@ const uploadProgressUrl = '/biosecurity-map/uploading'
 const checkAnswersUrl = '/biosecurity-map/check-answers'
 const uploadPlanUrl = '/biosecurity-map/upload-plan'
 
+const uploadState = {
+  application: {
+    [uploadConfig.sectionKey]: {
+      [uploadConfig.questionKey]: {
+        metadata: {
+          uploadId: testUploadId,
+          uploadUrl: testUploadUrl,
+          statusUrl: testStatusUrl
+        }
+      }
+    }
+  }
+}
+
 jest.mock('~/src/server/common/connectors/file-upload/cdp-uploader.js', () => ({
   checkStatus: jest.fn()
 }))
@@ -112,12 +126,6 @@ describe('#UploadPlan', () => {
       })
     })
 
-    describePageSnapshot({
-      describes: '#UploadProgressPage',
-      it: 'should render expected response and content',
-      pageUrl: uploadProgressUrl
-    })
-
     it('should render the upload progress page', async () => {
       const { statusCode, headers } = await server.inject({
         method: 'GET',
@@ -129,6 +137,47 @@ describe('#UploadPlan', () => {
 
       expect(statusCode).toBe(statusCodes.redirect)
       expect(headers.location).toBe(checkAnswersUrl)
+    })
+  })
+
+  describe('upload in progress', () => {
+    beforeEach(() => {
+      mockCheckStatus.mockResolvedValue({
+        res: /** @type {IncomingMessage} */ ({
+          statusCode: statusCodes.ok
+        }),
+        payload: JSON.stringify({
+          uploadStatus: 'pending',
+          metadata: {},
+          form: { crumb: testCrumb, file: {} },
+          numberOfRejectedFiles: 0
+        })
+      })
+    })
+
+    describePageSnapshot({
+      describes: '#UploadProgressPage',
+      it: 'should render expected response and content',
+      pageUrl: uploadProgressUrl,
+      state: uploadState
+    })
+
+    describePageSnapshot({
+      describes: '#UploadProgressPage.welsh',
+      it: 'should render expected response and content',
+      pageUrl: `${uploadProgressUrl}?lang=cy`,
+      state: uploadState
+    })
+
+    it('should render the progress page while the upload is pending', async () => {
+      const { statusCode } = await server.inject({
+        method: 'GET',
+        url: uploadProgressUrl,
+        headers: { Cookie: session.sessionID }
+      })
+
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(mockCheckStatus).toHaveBeenCalledWith(testUploadId)
     })
   })
 
