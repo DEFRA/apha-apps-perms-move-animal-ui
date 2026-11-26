@@ -12,25 +12,34 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
       <div class="govuk-grid-column-two-thirds">
         <input type="hidden" name="crumb" value="csrf-value">
         <input type="hidden" name="nextPage" value="">
-        <p>You need to upload a map of the farm or premises.</p>
         <p>
-          We prefer a clear and detailed map, such as a Google map with
-          annotations or a pre-prepared map from an agent or surveyor.
+          You need to upload a map of the farm or premises.
         </p>
-        <p>It needs to include:</p>
+        <p>
+          We prefer a clear and detailed map, such as a Google map with annotations or a pre-prepared map from an agent or surveyor.
+        </p>
+        <p>
+          It needs to include:
+        </p>
         <ul class="govuk-body govuk-list--bullet">
-          <li>where the incoming cattle will be isolated</li>
-          <li>location of the resident cattle and neighbouring cattle</li>
           <li>
-            minimum distances between the incoming cattle and any resident and
-            neighbouring cattle
+            where the incoming cattle will be isolated
           </li>
           <li>
-            movements of the cattle, including where they will graze, be milked,
-            and be loaded
+            location of the resident cattle and neighbouring cattle
           </li>
-          <li>location of handling facility</li>
-          <li>location of manure or slurry storage</li>
+          <li>
+            minimum distances between the incoming cattle and any resident and neighbouring cattle
+          </li>
+          <li>
+            movements of the cattle, including where they will graze, be milked, and be loaded
+          </li>
+          <li>
+            location of handling facility
+          </li>
+          <li>
+            location of manure or slurry storage
+          </li>
           <li>
             location of biosecurity points, including badger proof fencing
           </li>
@@ -42,7 +51,9 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
   <label class="govuk-label" for="status.form.file">
     Upload a file
   </label>
+  <div class="govuk-drop-zone" data-module="govuk-file-upload" data-i18n.choose-files-button="Choose file" data-i18n.no-file-chosen="No file chosen" data-i18n.drop-instruction="or drop file" data-i18n.entered-drop-zone="Entered drop zone" data-i18n.left-drop-zone="Left drop zone">
   <input class="govuk-file-upload" id="status.form.file" name="file" type="file" data-testid="file-biosecuritymap-upload">
+  </div>
 </div>
 
       </div>
@@ -62,6 +73,88 @@ exports[`#UploadPlan #UploadPlanPage should render expected response and content
       </div>
     </div>
     <p>This may take a few minutes.</p>
+    <div class="hods-loading-spinner">
+      <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+
+        "
+`;
+
+exports[`#UploadPlan #UploadPlanPage.welsh should render expected response and content 1`] = `
+"
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Llwythwch fap bioddiogelwch i fyny</h1>
+    </div>
+  </div>
+  <form method="POST" action="test-upload-url" novalidate="" enctype="multipart/form-data">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <input type="hidden" name="crumb" value="csrf-value">
+        <input type="hidden" name="nextPage" value="">
+        <p>
+          Mae angen i chi lwytho map o'r fferm neu'r safle i fyny.
+        </p>
+        <p>
+          Mae'n well gennym fap clir a manwl, megis map Google gydag anodiadau neu fap wedi'i baratoi ymlaen llaw gan asiant neu syrfëwr.
+        </p>
+        <p>
+          Mae angen iddo gynnwys:
+        </p>
+        <ul class="govuk-body govuk-list--bullet">
+          <li>
+            lle bydd y gwartheg sy'n dod i mewn yn cael eu hynysu
+          </li>
+          <li>
+            lleoliad y gwartheg preswyl a gwartheg cyfagos
+          </li>
+          <li>
+            pellterau lleiaf rhwng y gwartheg sy'n dod i mewn ac unrhyw wartheg preswyl a chyfagos
+          </li>
+          <li>
+            symudiadau'r gwartheg, gan gynnwys lle byddant yn pori, yn cael eu godro, ac yn cael eu llwytho
+          </li>
+          <li>
+            lleoliad y cyfleuster trin
+          </li>
+          <li>
+            lleoliad storio tail neu slyri
+          </li>
+          <li>
+            lleoliad pwyntiau bioddiogelwch, gan gynnwys ffensio sy'n atal moch daear
+          </li>
+        </ul>
+        <p>
+          Rhaid i'r ffeil a ddewiswyd fod yn PNG, JPEG, JPG neu PDF ac yn llai na 10 MB.
+        </p>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="status.form.file">
+    Llwytho ffeil
+  </label>
+  <div class="govuk-drop-zone" data-module="govuk-file-upload" data-i18n.choose-files-button="Dewis ffeil" data-i18n.no-file-chosen="Dim ffeil wedi'i dewis" data-i18n.drop-instruction="neu ollwng ffeil" data-i18n.entered-drop-zone="Mewnosodwyd y parth cwympo" data-i18n.left-drop-zone="Gadael y parth cwympo">
+  <input class="govuk-file-upload" id="status.form.file" name="file" type="file" data-testid="file-biosecuritymap-upload">
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+          <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button">
+  Parhau
+</button>
+      </div>
+    </div>
+  </form>
+    <div class="apha_upload-spinner apha-hidden" data-testid="upload-spinner">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Llwytho'r map bioddiogelwch i fyny</h1>
+      </div>
+    </div>
+    <p>Gall hyn gymryd ychydig funudau.</p>
     <div class="hods-loading-spinner">
       <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
       <div class="hods-loading-spinner__content"></div>

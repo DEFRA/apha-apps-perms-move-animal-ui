@@ -1,3 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#UploadPlan valid upload #UploadProgressPage should render expected response and content 1`] = `undefined`;
+exports[`#UploadPlan upload in progress #UploadProgressPage should render expected response and content 1`] = `
+"
+    <div class="apha_upload-spinner apha-block" data-testid="upload-spinner">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Uploading the biosecurity map</h1>
+      </div>
+    </div>
+    <p>This may take a few minutes.</p>
+    <div class="hods-loading-spinner">
+      <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+
+        "
+`;
+
+exports[`#UploadPlan upload in progress #UploadProgressPage.welsh should render expected response and content 1`] = `
+"
+    <div class="apha_upload-spinner apha-block" data-testid="upload-spinner">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Llwytho'r map bioddiogelwch i fyny</h1>
+      </div>
+    </div>
+    <p>Gall hyn gymryd ychydig funudau.</p>
+    <div class="hods-loading-spinner">
+      <div class="hods-loading-spinner__spinner" aria-live="polite" role="status"></div>
+      <div class="hods-loading-spinner__content"></div>
+    </div>
+  </div>
+
+        "
+`;
