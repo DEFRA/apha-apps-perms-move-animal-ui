@@ -57,6 +57,7 @@ describe('Destination selection options test', () => {
       serviceUnavailablePage
     )
     await waitForElement(serviceUnavailablePage.govUkMailLink)
+    await serviceUnavailablePage.verifyWelshAndEnglishTranslations(false)
   })
 
   it('Should show existing licence guidance when moving off an AFU to slaughter', async () => {
@@ -67,6 +68,7 @@ describe('Destination selection options test', () => {
       serviceUnavailablePage
     )
     await waitForElement(serviceUnavailablePage.govUkMailLink)
+    await serviceUnavailablePage.verifyWelshAndEnglishTranslations(true)
   })
 
   it.skip('Should verify iso unit selection when Off the farm generates 2 options', async () => {

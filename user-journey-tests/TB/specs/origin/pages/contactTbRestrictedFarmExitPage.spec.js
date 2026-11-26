@@ -10,4 +10,8 @@ describe('Contact the TB restricted farm exit page', () => {
   it('should display a page', async () => {
     await contactTbRestrictedFarmExitPage.navigateToPageAndVerifyTitle()
   })
+  it('should translate the title, guidance and application link and restore English', async () => {
+    await contactTbRestrictedFarmExitPage.navigateToPageAndVerifyTitle()
+    await contactTbRestrictedFarmExitPage.verifyWelshAndEnglishTranslations()
+  })
 })

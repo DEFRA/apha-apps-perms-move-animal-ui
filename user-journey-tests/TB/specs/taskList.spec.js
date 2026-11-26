@@ -92,6 +92,7 @@ describe('Task list page test', () => {
   it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
     await taskListPage.selectReview()
     await taskListIncompletePage.verifyPageHeadingAndTitle()
+    await taskListIncompletePage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify completed destination task', async () => {
@@ -215,7 +216,7 @@ describe('Task list page test', () => {
   })
 
   it('Should link to Biosecurity details check-answers page once that section has been complete', async () => {
-    await completeBiosecurityTask('yes')
+    await completeBiosecurityTask('yes', false, "Pearson's Black Disinfectant")
     await taskListPage.navigateToPageAndVerifyTitle()
     await taskListPage.verifyAllStatus([
       {
