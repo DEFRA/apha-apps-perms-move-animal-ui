@@ -92,6 +92,7 @@ describe('Task list page test', () => {
   it(`Should route the user to task incomplete page if they haven't completed the user journey`, async () => {
     await taskListPage.selectReview()
     await taskListIncompletePage.verifyPageHeadingAndTitle()
+    await taskListIncompletePage.verifyWelshAndEnglishTranslations()
   })
 
   it('Should verify completed destination task', async () => {
