@@ -258,7 +258,8 @@
         "validation": {
           "maxLength": "Enter the CPH number in the correct format, for example, 12/345/6789",
           "pattern": "Enter the CPH number in the correct format, for example, 12/345/6789",
-          "empty": "Enter the farm or premises CPH number"
+          "empty": "Enter the farm or premises CPH number",
+          "unmatched": "The CPH number you entered cannot be found. Check the number and try again"
         }
       },
       "address": {

@@ -1,6 +1,7 @@
 import { config } from '~/src/config/config.js'
 import { TextAnswer } from '../text/text.js'
 import { matchCph } from '../../../helpers/cph-matching/index.js'
+import { resolveValidationMessage } from '../validation.js'
 
 /** @import { TextConfig } from '../text/text.js' */
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
@@ -11,8 +12,11 @@ export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 const invalidCphNumberError =
   'Enter the CPH number in the correct format, for example, 12/345/6789'
 const emptyCphNumberError = 'Enter the farm or premises CPH number'
-const unmatchedCphNumberError =
-  'The CPH number you entered cannot be found. Check the number and try again'
+const unmatchedCphNumberError = {
+  message:
+    'The CPH number you entered cannot be found. Check the number and try again',
+  i18nKey: 'common.answer.cphNumber.validation.unmatched'
+}
 
 /**
  * export @typedef {string} CphNumberData
@@ -54,8 +58,9 @@ export class CphNumberAnswer extends TextAnswer {
    * unavailable, or the cphValidation feature flag is off, the user can
    * still progress.
    * @param {Logger} logger
+   * @param {AnswerViewModelOptions['translate']} [translate]
    */
-  async validateExternally(logger) {
+  async validateExternally(logger, translate) {
     if (!config.get('featureFlags').cphValidation) {
       return { isValid: true, errors: {} }
     }
@@ -66,7 +71,9 @@ export class CphNumberAnswer extends TextAnswer {
       return {
         isValid: false,
         errors: {
-          [this.config.payloadKey]: { text: unmatchedCphNumberError }
+          [this.config.payloadKey]: {
+            text: resolveValidationMessage(unmatchedCphNumberError, translate)
+          }
         }
       }
     }

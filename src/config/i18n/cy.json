@@ -257,7 +257,8 @@
         "validation": {
           "maxLength": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
           "pattern": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
-          "empty": "Nodwch rif CPH y fferm neu'r safle"
+          "empty": "Nodwch rif CPH y fferm neu'r safle",
+          "unmatched": "Ni ellir dod o hyd i'r rhif CPH a nodoch. Gwiriwch y rhif a rhoi cynnig arall arni"
         }
       },
       "address": {
