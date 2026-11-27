@@ -3,7 +3,10 @@ import { TbQuestionPageController } from '../../../tb/question-page-controller.j
 import { createServer } from '~/src/server/index.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
-import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
+import {
+  expectValidationError,
+  parseDocument
+} from '~/src/server/common/test-helpers/dom.js'
 import SessionTester from '../../test-helpers/session-helper.js'
 import { AnswerModel } from '../../model/answer/answer-model.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
@@ -202,15 +205,11 @@ describe('QuestionPageController', () => {
       )
       expect(response.statusCode).toBe(statusCodes.ok)
       const document = parseDocument(response.payload)
-      const summary = document.querySelector('.govuk-error-summary__list a')
-      expect(summary?.textContent?.trim()).toBe('Nodwch rif 1 neu uwch')
-      expect(summary?.getAttribute('href')).toBe('#howManyAnimals')
-      expect(
-        document.querySelector('.govuk-error-message')?.textContent
-      ).toContain('Nodwch rif 1 neu uwch')
-      expect(
-        document.querySelector('#howManyAnimals')?.getAttribute('value')
-      ).toBe('0')
+      expectValidationError(document, {
+        message: 'Nodwch rif 1 neu uwch',
+        href: '#howManyAnimals',
+        input: { selector: '#howManyAnimals', value: '0' }
+      })
     })
 
     it('revalidates stored local errors in the requested language', async () => {
@@ -259,15 +258,11 @@ describe('QuestionPageController', () => {
         )
         expect(result.statusCode).toBe(statusCodes.ok)
         const document = parseDocument(result.payload)
-        const summary = document.querySelector('.govuk-error-summary__list a')
-        expect(summary?.textContent?.trim()).toBe(message)
-        expect(summary?.getAttribute('href')).toBe(`#${questionKey}`)
-        expect(
-          document.querySelector('.govuk-error-message')?.textContent
-        ).toContain(message)
-        expect(
-          document.querySelector(questionElementSelector)?.getAttribute('value')
-        ).toBe('ERROR')
+        expectValidationError(document, {
+          message,
+          href: `#${questionKey}`,
+          input: { selector: questionElementSelector, value: 'ERROR' }
+        })
       }
 
       expect(externalSpy).not.toHaveBeenCalled()
@@ -292,12 +287,10 @@ describe('QuestionPageController', () => {
       )
       expect(result.statusCode).toBe(statusCodes.ok)
       const document = parseDocument(result.payload)
-      const summary = document.querySelector('.govuk-error-summary__list a')
-      expect(summary?.textContent?.trim()).toBe('External error')
-      expect(summary?.getAttribute('href')).toBe('#external-link')
-      expect(
-        document.querySelector('.govuk-error-message')?.textContent
-      ).toContain('External error')
+      expectValidationError(document, {
+        message: 'External error',
+        href: '#external-link'
+      })
       expect(externalSpy).not.toHaveBeenCalled()
       externalSpy.mockRestore()
     })
@@ -637,12 +630,7 @@ describe('QuestionPageController', () => {
           expect(
             document.querySelector('.govuk-error-summary__title')?.textContent
           ).toContain(message)
-          expect(
-            document.querySelector('.govuk-error-summary__list')?.textContent
-          ).toContain(message)
-          expect(
-            document.querySelector('.govuk-error-message')?.textContent
-          ).toContain(message)
+          expectValidationError(document, { message })
           validateSpy.mockRestore()
         }
       )
