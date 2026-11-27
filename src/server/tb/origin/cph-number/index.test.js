@@ -6,6 +6,7 @@ import { createServer } from '~/src/server/index.js'
 import { config } from '~/src/config/config.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
+import { parseDocument } from '~/src/server/common/test-helpers/dom.js'
 import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
 
@@ -153,6 +154,34 @@ describe('CphNumberPage', () => {
       expect(payload).toContain('There is a problem')
       expect(payload).toContain(unmatchedCphError)
       expect(payload).not.toContain(otherHolding)
+    })
+
+    it('should show an unmatched CPH error in Welsh after a Welsh POST', async () => {
+      mockFindMatchingCphs.mockResolvedValue(new Set())
+      const headers = { Cookie: session.sessionID }
+      const url = `${pageUrl}?lang=cy`
+      const post = await server.inject(
+        withCsrfProtection(
+          { method: 'POST', url, payload: { [questionKey]: cph } },
+          headers
+        )
+      )
+      expect(post.statusCode).toBe(statusCodes.redirect)
+      const response = await server.inject(
+        withCsrfProtection({ method: 'GET', url }, headers)
+      )
+      const document = parseDocument(response.payload)
+      const message =
+        "Ni ellir dod o hyd i'r rhif CPH a nodoch. Gwiriwch y rhif a rhoi cynnig arall arni"
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expect(
+        document
+          .querySelector('.govuk-error-summary__list a')
+          ?.textContent?.trim()
+      ).toBe(message)
+      expect(
+        document.querySelector('.govuk-error-message')?.textContent
+      ).toContain(message)
     })
 
     it('should retry once and then let the user progress when SAM is unavailable', async () => {

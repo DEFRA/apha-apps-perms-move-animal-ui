@@ -5,6 +5,7 @@ import { resolveValidationMessage } from '../validation.js'
 
 /** @import { TextConfig } from '../text/text.js' */
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
+/** @import { AnswerErrors } from '../validation.js' */
 /** @import { Logger } from 'pino' */
 
 export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i

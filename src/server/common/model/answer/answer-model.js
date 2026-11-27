@@ -79,9 +79,10 @@ export class AnswerModel {
    * Validation that depends on an external service. Only called once
    * validate() has passed.
    * @param {Logger} _logger
+   * @param {AnswerViewModelOptions['translate']} [_translate]
    * @returns {Promise<AnswerValidationResult>}
    */
-  validateExternally(_logger) {
+  validateExternally(_logger, _translate) {
     return Promise.resolve({ isValid: true, errors: {} })
   }
 

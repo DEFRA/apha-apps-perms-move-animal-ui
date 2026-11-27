@@ -183,6 +183,125 @@ describe('QuestionPageController', () => {
   })
 
   describe('GET', () => {
+    it('updates the summary and inline error for a real number question after a language switch', async () => {
+      const url = '/destination/how-many-animals'
+      const headers = { Cookie: session.sessionID }
+      const post = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${url}?lang=en`,
+            payload: { howManyAnimals: '0' }
+          },
+          headers
+        )
+      )
+      expect(post.statusCode).toBe(statusCodes.redirect)
+      const response = await server.inject(
+        withCsrfProtection({ method: 'GET', url: `${url}?lang=cy` }, headers)
+      )
+      expect(response.statusCode).toBe(statusCodes.ok)
+      const document = parseDocument(response.payload)
+      const summary = document.querySelector('.govuk-error-summary__list a')
+      expect(summary?.textContent?.trim()).toBe('Nodwch rif 1 neu uwch')
+      expect(summary?.getAttribute('href')).toBe('#howManyAnimals')
+      expect(
+        document.querySelector('.govuk-error-message')?.textContent
+      ).toContain('Nodwch rif 1 neu uwch')
+      expect(
+        document.querySelector('#howManyAnimals')?.getAttribute('value')
+      ).toBe('0')
+    })
+
+    it('revalidates stored local errors in the requested language', async () => {
+      const validateSpy = jest
+        .spyOn(TestAnswer.prototype, 'validate')
+        .mockImplementation((translate) => {
+          if (!translate) {
+            throw new Error('Expected a request-bound translator')
+          }
+          return {
+            isValid: false,
+            errors: {
+              [questionKey]: {
+                text: translate(
+                  'common.answer.number.validation.base',
+                  'Enter a number'
+                )
+              }
+            }
+          }
+        })
+      const externalSpy = jest.spyOn(TestAnswer.prototype, 'validateExternally')
+      const response = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: `${questionUrl}?lang=en`,
+            payload: { [questionKey]: 'ERROR' }
+          },
+          { Cookie: session.sessionID }
+        )
+      )
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      const storedError = await session.getState(controller.errorKey)
+      expect(storedError.errors[questionKey].text).toBe('Enter a number')
+
+      for (const [language, message] of [
+        ['cy', 'Nodwch rif'],
+        ['en', 'Enter a number']
+      ]) {
+        const result = await server.inject(
+          withCsrfProtection(
+            { method: 'GET', url: `${questionUrl}?lang=${language}` },
+            { Cookie: session.sessionID }
+          )
+        )
+        expect(result.statusCode).toBe(statusCodes.ok)
+        const document = parseDocument(result.payload)
+        const summary = document.querySelector('.govuk-error-summary__list a')
+        expect(summary?.textContent?.trim()).toBe(message)
+        expect(summary?.getAttribute('href')).toBe(`#${questionKey}`)
+        expect(
+          document.querySelector('.govuk-error-message')?.textContent
+        ).toContain(message)
+        expect(
+          document.querySelector(questionElementSelector)?.getAttribute('value')
+        ).toBe('ERROR')
+      }
+
+      expect(externalSpy).not.toHaveBeenCalled()
+      expect(await session.getState(controller.errorKey)).toEqual(storedError)
+      validateSpy.mockRestore()
+      externalSpy.mockRestore()
+    })
+
+    it('retains a stored external error when local validation passes', async () => {
+      const externalSpy = jest.spyOn(TestAnswer.prototype, 'validateExternally')
+      await session.setState(controller.errorKey, {
+        errors: { [questionKey]: { text: 'External error' } },
+        errorMessages: [{ href: '#external-link', text: 'External error' }],
+        payload: { [questionKey]: questionValue }
+      })
+
+      const result = await server.inject(
+        withCsrfProtection(
+          { method: 'GET', url: `${questionUrl}?lang=cy` },
+          { Cookie: session.sessionID }
+        )
+      )
+      expect(result.statusCode).toBe(statusCodes.ok)
+      const document = parseDocument(result.payload)
+      const summary = document.querySelector('.govuk-error-summary__list a')
+      expect(summary?.textContent?.trim()).toBe('External error')
+      expect(summary?.getAttribute('href')).toBe('#external-link')
+      expect(
+        document.querySelector('.govuk-error-message')?.textContent
+      ).toContain('External error')
+      expect(externalSpy).not.toHaveBeenCalled()
+      externalSpy.mockRestore()
+    })
+
     it('should provide the question page on a GET without any session state', async () => {
       const { payload, statusCode } = await server.inject({
         method: 'GET',
@@ -476,9 +595,9 @@ describe('QuestionPageController', () => {
       ])(
         'should render the $language error title, summary and field message',
         async ({ language, title, message }) => {
-          jest
+          const validateSpy = jest
             .spyOn(TestAnswer.prototype, 'validate')
-            .mockImplementationOnce((translate) => {
+            .mockImplementation((translate) => {
               if (!translate) {
                 throw new Error('Expected a request-bound translator')
               }
@@ -524,6 +643,7 @@ describe('QuestionPageController', () => {
           expect(
             document.querySelector('.govuk-error-message')?.textContent
           ).toContain(message)
+          validateSpy.mockRestore()
         }
       )
 
@@ -679,7 +799,10 @@ describe('QuestionPageController', () => {
           )
         )
 
-        expect(validateExternallySpy).toHaveBeenCalledWith(expect.anything())
+        expect(validateExternallySpy).toHaveBeenCalledWith(
+          expect.anything(),
+          expect.any(Function)
+        )
         expect(statusCode).toBe(statusCodes.redirect)
         expect(headers.location).toBe(questionUrl)
         expect(onAnswerSavedSpy).not.toHaveBeenCalled()

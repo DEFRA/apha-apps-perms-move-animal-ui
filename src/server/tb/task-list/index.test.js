@@ -29,7 +29,7 @@ describe('TbTaskListController', () => {
   describePageSnapshot({
     describes: 'TbTaskListController',
     it: 'should have the expected content',
-    pageUrl: pageUrl
+    pageUrl
   })
 
   describePageSnapshot({

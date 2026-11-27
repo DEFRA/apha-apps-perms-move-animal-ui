@@ -99,11 +99,16 @@ export class QuestionPageController extends GenericPageController {
         pageError.payload,
         applicationState
       )
+      const validation = errorAnswer.validate(translateForRequest)
+      const errors = validation.isValid ? pageError.errors : validation.errors
+      const errorMessages = validation.isValid
+        ? pageError.errorMessages
+        : this.page.Answer.errorMessages(errors)
       const errorViewModelOptions = {
         validate: true,
         question,
         translate: translateForRequest,
-        errors: pageError.errors
+        errors
       }
 
       return h.view(this.page.view, {
@@ -111,8 +116,8 @@ export class QuestionPageController extends GenericPageController {
         heading,
         answer: errorAnswer,
         pageTitle: `${errorTitle}: ${pageTitle}`,
-        errors: pageError.errors,
-        errorMessages: pageError.errorMessages,
+        errors,
+        errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
         ...args,
         ...(await this.page.viewProps(req))
@@ -149,13 +154,14 @@ export class QuestionPageController extends GenericPageController {
    * @param {AnswerModel} answer
    */
   async validateAnswer(req, answer) {
-    const result = answer.validate(createRequestTranslator(req))
+    const translateForRequest = createRequestTranslator(req)
+    const result = answer.validate(translateForRequest)
 
     if (!result.isValid) {
       return result
     }
 
-    return answer.validateExternally(req.logger)
+    return answer.validateExternally(req.logger, translateForRequest)
   }
 
   async handlePost(req, h) {
