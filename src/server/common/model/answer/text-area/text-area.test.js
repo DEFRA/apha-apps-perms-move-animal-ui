@@ -49,6 +49,44 @@ describe('TextAreaAnswer.new', () => {
 })
 
 describe('TextAreaAnswer.validate', () => {
+  it.each([
+    { value: '', message: 'Translated empty', fallback: 'Enter text' },
+    { value: '12345', message: 'Translated maximum', fallback: 'Too long' },
+    { value: 'abc', message: 'Translated pattern', fallback: 'Enter digits' }
+  ])(
+    'should translate the error for "$value"',
+    ({ value, message, fallback }) => {
+      class TranslatedTextAreaAnswer extends TextAreaAnswer {
+        static config = {
+          payloadKey: 'textAreaPayload',
+          validation: {
+            maxLength: { value: 4, message: 'Too long', i18nKey: 'test.max' },
+            empty: { message: 'Enter text', i18nKey: 'test.empty' },
+            pattern: {
+              regex: /^\d+$/,
+              message: 'Enter digits',
+              i18nKey: 'test.pattern'
+            }
+          }
+        }
+      }
+      const translations = {
+        'test.max': 'Translated maximum',
+        'test.empty': 'Translated empty',
+        'test.pattern': 'Translated pattern'
+      }
+      const translate = jest.fn(
+        (key, defaultMessage) => translations[key] ?? defaultMessage
+      )
+      const answer = new TranslatedTextAreaAnswer({ textAreaPayload: value })
+
+      expect(answer.validate(translate).errors.textAreaPayload.text).toBe(
+        message
+      )
+      expect(answer.validate().errors.textAreaPayload.text).toBe(fallback)
+    }
+  )
+
   it('should error if max length is exceeded', () => {
     const textAreaAnswer = new TestOptionalTextAreaAnswer({
       textAreaPayload: longAnswer

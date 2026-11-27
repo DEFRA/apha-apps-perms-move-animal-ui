@@ -10,9 +10,7 @@
     "change": "Newid",
     "taskList": {
       "progress": {
-        "youHave": "Mae gennych",
-        "outOf": "allan o",
-        "sectionsLeft": "adran ar ôl i'w cwblhau.",
+        "incomplete": "Mae gennych {{remaining}} allan o {{total}} adran ar ôl i'w cwblhau.",
         "allSectionsComplete": "Rydych wedi cwblhau pob adran."
       },
       "status": {
@@ -62,6 +60,7 @@
       "accessibilityStatement": "Datganiad hygyrchedd"
     },
     "errors": {
+      "title": "Gwall",
       "summaryTitle": "Mae problem wedi codi",
       "pageNotFound": "Heb ddod o hyd i'r dudalen",
       "forbidden": "Wedi'i wahardd",
@@ -228,6 +227,12 @@
       "charterText": "Mae APHA yn prosesu data personol."
     },
     "answer": {
+      "number": {
+        "validation": {
+          "base": "Nodwch rif",
+          "wholeNumber": "Nodwch rif cyfan"
+        }
+      },
       "date": {
         "day": "Dydd",
         "month": "Mis",
@@ -235,14 +240,25 @@
       },
       "fullName": {
         "firstName": "Enw cyntaf",
-        "lastName": "Cyfenw"
+        "lastName": "Cyfenw",
+        "validation": {
+          "firstName": {
+            "empty": "Nodwch yr enw cyntaf",
+            "maxLength": "Rhaid i'r enw cyntaf fod yn ddim hirach na {{value}} nod"
+          },
+          "lastName": {
+            "empty": "Nodwch y cyfenw",
+            "maxLength": "Rhaid i'r cyfenw fod yn ddim hirach na {{value}} nod"
+          }
+        }
       },
       "cphNumber": {
         "hint": "Er enghraifft, 12/345/6789",
         "validation": {
           "maxLength": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
           "pattern": "Nodwch y rhif CPH yn y fformat cywir, er enghraifft, 12/345/6789",
-          "empty": "Nodwch rif CPH y fferm neu'r safle"
+          "empty": "Nodwch rif CPH y fferm neu'r safle",
+          "unmatched": "Ni ellir dod o hyd i'r rhif CPH a nodoch. Gwiriwch y rhif a rhoi cynnig arall arni"
         }
       },
       "address": {
@@ -253,13 +269,22 @@
         "postcode": "Cod post",
         "validation": {
           "addressLine1": "Nodwch linell gyfeiriad 1, fel arfer yr adeilad a'r stryd",
+          "addressLine1MaxLength": "Rhaid i linell gyfeiriad 1 fod yn ddim hirach na 255 nod",
+          "addressLine2MaxLength": "Rhaid i linell gyfeiriad 2 fod yn ddim hirach na 255 nod",
           "townOrCity": "Nodwch dref neu ddinas",
+          "townOrCityMaxLength": "Rhaid i'r dref yn y cyfeiriad fod yn ddim hirach na 255 nod",
+          "countyMaxLength": "Rhaid i'r sir yn y cyfeiriad fod yn ddim hirach na 255 nod",
           "postcode": "Nodwch god post",
           "postcodeFormat": "Nodwch god post llawn y DU"
         }
       },
       "emailAddress": {
-        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn"
+        "hint": "Bydd e-bost cadarnhau hefyd yn cael ei anfon i'r cyfeiriad hwn",
+        "validation": {
+          "empty": "Nodwch gyfeiriad e-bost",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 255 nod",
+          "pattern": "Nodwch y cyfeiriad e-bost mewn fformat dilys"
+        }
       }
     }
   },
@@ -396,16 +421,16 @@
         "question": "Sawl anifail rydych chi'n bwriadu eu symud?",
         "validation": {
           "empty": "Nodwch sawl anifail rydych chi'n bwriadu eu symud",
-          "max": "Nodwch rif %{value} neu is",
-          "min": "Nodwch rif %{value} neu uwch"
+          "max": "Nodwch rif {{value}} neu is",
+          "min": "Nodwch rif {{value}} neu uwch"
         }
       },
       "howManyAnimalsMaximum": {
         "question": "Beth yw'r nifer mwyaf o anifeiliaid rydych chi'n bwriadu eu symud?",
         "validation": {
           "empty": "Nodwch y nifer mwyaf o anifeiliaid rydych chi'n bwriadu eu symud",
-          "max": "Nodwch rif %{value} neu is",
-          "min": "Nodwch rif %{value} neu uwch"
+          "max": "Nodwch rif {{value}} neu is",
+          "min": "Nodwch rif {{value}} neu uwch"
         }
       },
       "movementDate": {
@@ -901,7 +926,8 @@
       "disinfectant": {
         "question": "Pa ddiheintydd rydych chi'n ei ddefnyddio?",
         "validation": {
-          "empty": "Nodwch 2 lythyren gyntaf y diheintydd rydych yn ei ddefnyddio"
+          "empty": "Nodwch 2 lythyren gyntaf y diheintydd rydych yn ei ddefnyddio",
+          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 5000 nod"
         },
         "heading": "Diheintydd",
         "intro": "Rhaid i chi ddefnyddio diheintydd sydd wedi'i gymeradwyo gan Defra ar gyfer TB.",
@@ -953,19 +979,15 @@
         },
         "answer": {
           "undiluted": "Rwy'n cadarnhau bod y diheintydd yn cael ei ddefnyddio heb ei wanhau ar y fferm neu'r safle",
-          "prefix": "Rwy'n cadarnhau cyfradd gwanhau o 1:",
-          "suffix": " yn cael ei ddefnyddio ar y fferm neu'r safle",
+          "diluted": "Rwy'n cadarnhau cyfradd gwanhau o 1:{{{dilutionRate}}} yn cael ei ddefnyddio ar y fferm neu'r safle",
           "confirmationOption": "Rwy'n cadarnhau mai dyma'r gyfradd gwanhau a ddefnyddir ar y fferm neu'r safle"
         },
         "page": {
           "intro": "Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.",
-          "approvedPrefix": "Y gyfradd gwanhau gymeradwy ar gyfer",
-          "is": "yw",
+          "approvedDiluted": "Y gyfradd gwanhau gymeradwy ar gyfer {{{disinfectant}}} yw 1:{{{dilutionRate}}}.",
+          "approvedUndiluted": "Y gyfradd gwanhau gymeradwy ar gyfer {{{disinfectant}}} yw heb ei wanhau",
           "undiluted": "heb ei wanhau",
-          "explanationPrefix": "Mae hyn yn golygu am bob 1",
-          "explanationMiddle": "o",
-          "explanationUsing": "rydych yn ei ddefnyddio",
-          "explanationSuffix": "o ddŵr.",
+          "explanation": "Mae hyn yn golygu am bob 1 {{{disinfectantUnit}}} o {{{disinfectant}}}, rydych yn ei ddefnyddio {{{dilutionRate}}} {{{dilutantUnit}}} o ddŵr.",
           "units": {
             "litres": "litrau",
             "millilitres": "mililitrau",
@@ -1081,22 +1103,34 @@
       "yourName": {
         "question": "Beth yw eich enw?",
         "validation": {
-          "firstName": "Nodwch eich enw cyntaf",
-          "lastName": "Nodwch eich cyfenw"
+          "firstName": {
+            "empty": "Nodwch eich enw cyntaf"
+          },
+          "lastName": {
+            "empty": "Nodwch eich cyfenw"
+          }
         }
       },
-      "fullName": {
+      "ownerFullName": {
         "question": "Beth yw enw'r person a gofrestrwyd fel ceidwad yr anifeiliaid?",
         "validation": {
-          "firstName": "Nodwch enw cyntaf y person a gofrestrwyd fel ceidwad yr anifeiliaid",
-          "lastName": "Nodwch gyfenw'r person a gofrestrwyd fel ceidwad yr anifeiliaid"
+          "firstName": {
+            "empty": "Nodwch enw cyntaf y person a gofrestrwyd fel ceidwad yr anifeiliaid"
+          },
+          "lastName": {
+            "empty": "Nodwch gyfenw'r person a gofrestrwyd fel ceidwad yr anifeiliaid"
+          }
         }
       },
       "fullNameFuture": {
         "question": "Beth yw enw'r person a fydd yn geidwad cofrestredig yr anifeiliaid?",
         "validation": {
-          "firstName": "Nodwch enw cyntaf y person a fydd yn geidwad cofrestredig yr anifeiliaid",
-          "lastName": "Nodwch gyfenw'r person a fydd yn geidwad cofrestredig yr anifeiliaid"
+          "firstName": {
+            "empty": "Nodwch enw cyntaf y person a fydd yn geidwad cofrestredig yr anifeiliaid"
+          },
+          "lastName": {
+            "empty": "Nodwch gyfenw'r person a fydd yn geidwad cofrestredig yr anifeiliaid"
+          }
         }
       },
       "emailAddress": {
@@ -1110,16 +1144,12 @@
       "destinationEmailAddress": {
         "question": "Beth yw eich cyfeiriad e-bost?",
         "validation": {
-          "pattern": "Nodwch y cyfeiriad e-bost mewn fformat dilys",
-          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 255 nod",
           "empty": "Nodwch eich cyfeiriad e-bost"
         }
       },
-      "originEmail": {
+      "originEmailAddress": {
         "question": "Beth yw cyfeiriad e-bost y safle tarddiad?",
         "validation": {
-          "pattern": "Nodwch y cyfeiriad e-bost mewn fformat dilys",
-          "maxLength": "Rhaid i'ch ateb fod yn ddim hirach na 255 nod",
           "empty": "Nodwch gyfeiriad e-bost y safle tarddiad"
         }
       },

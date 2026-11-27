@@ -108,7 +108,10 @@ export class DestinationTypeAnswer extends RadioButtonAnswer {
     payloadKey: 'destinationType',
     options: getDestinationOptions(app),
     validation: {
-      empty: 'Select where the animals are going'
+      empty: {
+        message: 'Select where the animals are going',
+        i18nKey: 'tb.destination.destinationType.validation.empty'
+      }
     }
   })
 

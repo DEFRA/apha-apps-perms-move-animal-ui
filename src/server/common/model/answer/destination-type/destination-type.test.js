@@ -26,9 +26,9 @@ describe('DestinationType', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(DestinationTypeAnswer.config({}).validation.empty).toBe(
-      'Select where the animals are going'
-    )
+    expect(DestinationTypeAnswer.config({}).validation.empty).toMatchObject({
+      message: 'Select where the animals are going'
+    })
   })
 })
 

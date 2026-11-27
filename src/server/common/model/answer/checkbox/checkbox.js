@@ -2,7 +2,10 @@ import Joi from 'joi'
 
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 import { ensureArray } from '../../../helpers/ensure-array.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
@@ -10,17 +13,19 @@ import { ensureArray } from '../../../helpers/ensure-array.js'
 
 /**
  * @param {CheckboxConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-const createCheckboxSchema = (config) => {
+const createCheckboxSchema = (config, translate) => {
   const optionSchema = config.validation.dynamicOptions
     ? Joi.string()
     : Joi.string().valid(...Object.keys(config.options))
 
   let optionsSchema = Joi.array().required().items(optionSchema)
 
-  if (config.validation.empty) {
-    const emptyOptionText = config.validation.empty.message
+  const { empty } = config.validation
+  if (empty) {
+    const emptyOptionText = resolveValidationMessage(empty, translate)
     optionsSchema = optionsSchema.min(1).messages({
       'array.min': emptyOptionText
     })
@@ -72,7 +77,7 @@ const createCheckboxSchema = (config) => {
  *   isQuestionHeading? : boolean,
  *   validation: {
  *     dynamicOptions?: boolean,
- *     empty?: { message: string },
+ *     empty?: { message: string, i18nKey?: string },
  *     exclusive?: {message: string}
  *     multipleExclusive?: {message: string}
  *   }
@@ -198,7 +203,8 @@ export class CheckboxAnswer extends AnswerModel {
     }
 
     if (validate) {
-      viewModel.errorMessage = this.validate().errors[this.config.payloadKey]
+      viewModel.errorMessage =
+        this.validate(translate).errors[this.config.payloadKey]
     }
 
     return Promise.resolve(viewModel)
@@ -211,7 +217,10 @@ export class CheckboxAnswer extends AnswerModel {
     return ensureArray(this._data?.[this.config.payloadKey])
   }
 
-  validate() {
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     /**
      * Here we could be coming from the task list / summary or from the question page:
      *
@@ -232,7 +241,7 @@ export class CheckboxAnswer extends AnswerModel {
         : undefined /// question never answered
 
     return validateAnswerAgainstSchema(
-      createCheckboxSchema(this.config),
+      createCheckboxSchema(this.config, translate),
       dataToValidate
     )
   }

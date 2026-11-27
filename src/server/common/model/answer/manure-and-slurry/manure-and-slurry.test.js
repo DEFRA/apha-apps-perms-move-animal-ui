@@ -17,9 +17,10 @@ describe('ManureAndSlurry', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(ManureAndSlurryAnswer.config.validation.empty).toBe(
-      'Select if manure or slurry has been put on the grazing field in the past 60 days'
-    )
+    expect(ManureAndSlurryAnswer.config.validation.empty).toMatchObject({
+      message:
+        'Select if manure or slurry has been put on the grazing field in the past 60 days'
+    })
   })
 
   it('should have the expected options to select from', () => {

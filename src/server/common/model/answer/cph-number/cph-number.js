@@ -1,9 +1,11 @@
 import { config } from '~/src/config/config.js'
 import { TextAnswer } from '../text/text.js'
 import { matchCph } from '../../../helpers/cph-matching/index.js'
+import { resolveValidationMessage } from '../validation.js'
 
 /** @import { TextConfig } from '../text/text.js' */
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
+/** @import { AnswerErrors } from '../validation.js' */
 /** @import { Logger } from 'pino' */
 
 export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
@@ -11,8 +13,11 @@ export const cphNumberRegex = /^(\d{2})\/(\d{3})\/(\d{4})$/i
 const invalidCphNumberError =
   'Enter the CPH number in the correct format, for example, 12/345/6789'
 const emptyCphNumberError = 'Enter the farm or premises CPH number'
-const unmatchedCphNumberError =
-  'The CPH number you entered cannot be found. Check the number and try again'
+const unmatchedCphNumberError = {
+  message:
+    'The CPH number you entered cannot be found. Check the number and try again',
+  i18nKey: 'common.answer.cphNumber.validation.unmatched'
+}
 
 /**
  * export @typedef {string} CphNumberData
@@ -32,9 +37,20 @@ export class CphNumberAnswer extends TextAnswer {
     hint: 'For example, 12/345/6789',
     hintI18nKey: 'common.answer.cphNumber.hint',
     validation: {
-      maxLength: { value: 11, message: invalidCphNumberError },
-      pattern: { regex: cphNumberRegex, message: invalidCphNumberError },
-      empty: { message: emptyCphNumberError }
+      maxLength: {
+        value: 11,
+        message: invalidCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.maxLength'
+      },
+      pattern: {
+        regex: cphNumberRegex,
+        message: invalidCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.pattern'
+      },
+      empty: {
+        message: emptyCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.empty'
+      }
     }
   }
 
@@ -43,8 +59,9 @@ export class CphNumberAnswer extends TextAnswer {
    * unavailable, or the cphValidation feature flag is off, the user can
    * still progress.
    * @param {Logger} logger
+   * @param {AnswerViewModelOptions['translate']} [translate]
    */
-  async validateExternally(logger) {
+  async validateExternally(logger, translate) {
     if (!config.get('featureFlags').cphValidation) {
       return { isValid: true, errors: {} }
     }
@@ -55,12 +72,34 @@ export class CphNumberAnswer extends TextAnswer {
       return {
         isValid: false,
         errors: {
-          [this.config.payloadKey]: { text: unmatchedCphNumberError }
+          [this.config.payloadKey]: {
+            text: resolveValidationMessage(unmatchedCphNumberError, translate)
+          }
         }
       }
     }
 
     return { isValid: true, errors: {} }
+  }
+
+  /**
+   * @param {AnswerErrors} errors
+   * @param {AnswerViewModelOptions['translate']} translate
+   * @returns {AnswerErrors}
+   */
+  localiseExternalErrors(errors, translate) {
+    const key = this.config.payloadKey
+    if (!errors[key]) {
+      return errors
+    }
+
+    return {
+      ...errors,
+      [key]: {
+        ...errors[key],
+        text: resolveValidationMessage(unmatchedCphNumberError, translate)
+      }
+    }
   }
 
   /**

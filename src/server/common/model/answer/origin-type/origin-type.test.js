@@ -17,9 +17,9 @@ describe('OriginType', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(new OriginTypeAnswer().config.validation.empty).toBe(
-      'Select where the animals are moving from'
-    )
+    expect(new OriginTypeAnswer().config.validation.empty).toMatchObject({
+      message: 'Select where the animals are moving from'
+    })
   })
 })
 

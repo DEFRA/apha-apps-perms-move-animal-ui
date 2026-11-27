@@ -27,7 +27,10 @@ export class BuildingsAnySharedAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select if the animals will be housed'
+      empty: {
+        message: 'Select if the animals will be housed',
+        i18nKey: 'tb.biosecurity.buildingsAnyShared.validation.empty'
+      }
     },
     layout: 'inline'
   }

@@ -11,6 +11,13 @@ import { translate } from '../../helpers/i18n/index.js'
 /** @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js' */
 /** @import { RawApplicationState, StateManager } from '~/src/server/common/model/state/state-manager.js' */
 
+/**
+ * @param {Request} req
+ * @returns {AnswerViewModelOptions['translate']}
+ */
+const createRequestTranslator = (req) => (key, fallback, params) =>
+  translate(req, key, fallback, params)
+
 export class QuestionPageController extends GenericPageController {
   /** @type {typeof StateManager} */
   StateManager
@@ -82,31 +89,42 @@ export class QuestionPageController extends GenericPageController {
       this.page.questionI18nKey ? question : this.page.title
     )
 
-    /** @type {NonNullable<AnswerViewModelOptions['translate']>} */
-    const translateForRequest = (key, fallback, params) =>
-      translate(req, key, fallback, params)
+    const translateForRequest = createRequestTranslator(req)
 
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
+      const errorTitle = translate(req, 'common.errors.title', 'Error')
       const errorAnswer = new this.page.Answer(
         pageError.payload,
         applicationState
       )
+      // Refresh errors for the current language without repeating external validation.
+      const validation = errorAnswer.validate(translateForRequest)
+      const errors = validation.isValid
+        ? errorAnswer.localiseExternalErrors(
+            pageError.errors,
+            translateForRequest
+          )
+        : validation.errors
+      const errorMessages =
+        validation.isValid && errors === pageError.errors
+          ? pageError.errorMessages
+          : this.page.Answer.errorMessages(errors)
       const errorViewModelOptions = {
         validate: true,
         question,
         translate: translateForRequest,
-        errors: pageError.errors
+        errors
       }
 
       return h.view(this.page.view, {
         nextPage: req.query.returnUrl,
         heading,
         answer: errorAnswer,
-        pageTitle: `Error: ${pageTitle}`,
-        errors: pageError.errors,
-        errorMessages: pageError.errorMessages,
+        pageTitle: `${errorTitle}: ${pageTitle}`,
+        errors,
+        errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
         ...args,
         ...(await this.page.viewProps(req))
@@ -143,13 +161,14 @@ export class QuestionPageController extends GenericPageController {
    * @param {AnswerModel} answer
    */
   async validateAnswer(req, answer) {
-    const result = answer.validate()
+    const translateForRequest = createRequestTranslator(req)
+    const result = answer.validate(translateForRequest)
 
     if (!result.isValid) {
       return result
     }
 
-    return answer.validateExternally(req.logger)
+    return answer.validateExternally(req.logger, translateForRequest)
   }
 
   async handlePost(req, h) {

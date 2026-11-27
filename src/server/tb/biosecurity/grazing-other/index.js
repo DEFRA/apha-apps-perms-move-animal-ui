@@ -17,11 +17,13 @@ export class Answer extends TextAreaAnswer {
     validation: {
       empty: {
         message:
-          'Enter details on the other measures being taken to reduce the spread of TB when the animals are grazing'
+          'Enter details on the other measures being taken to reduce the spread of TB when the animals are grazing',
+        i18nKey: 'tb.biosecurity.grazingOther.validation.empty'
       },
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters '
+        message: 'Your answer must be no longer than 5000 characters ',
+        i18nKey: 'tb.biosecurity.grazingOther.validation.maxLength'
       }
     }
   }

@@ -18,25 +18,38 @@
           {{ translate('tb.biosecurity.dilutionRate.page.intro', 'By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.') }}
         </p>
         <p>
-          {{ translate('tb.biosecurity.dilutionRate.page.approvedPrefix', 'The approved dilution rate for') }}
-          {{ disinfectant }}
-          {{ translate('tb.biosecurity.dilutionRate.page.is', 'is') }}
           {% if isUndiluted %}
-            {{ translate('tb.biosecurity.dilutionRate.page.undiluted', 'undiluted') }}
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.approvedUndiluted',
+                'The approved dilution rate for ' ~ disinfectant ~ ' is undiluted',
+                { disinfectant: disinfectant }
+              )
+            }}
           {% else %}
-            1:{{ dilutionRate }}.
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.approvedDiluted',
+                'The approved dilution rate for ' ~ disinfectant ~ ' is 1:' ~ dilutionRate ~ '.',
+                { disinfectant: disinfectant, dilutionRate: dilutionRate }
+              )
+            }}
           {% endif %}
         </p>
         {% if not isUndiluted %}
           <p>
-            {{ translate('tb.biosecurity.dilutionRate.page.explanationPrefix', 'This means for every 1') }}
-            {{ disinfectantUnit }}
-            {{ translate('tb.biosecurity.dilutionRate.page.explanationMiddle', 'of') }}
-            {{ disinfectant }},
-            {{ translate('tb.biosecurity.dilutionRate.page.explanationUsing', 'you are using') }}
-            {{ dilutionRate }}
-            {{ dilutantUnit }}
-            {{ translate('tb.biosecurity.dilutionRate.page.explanationSuffix', 'of water.') }}
+            {{
+              translate(
+                'tb.biosecurity.dilutionRate.page.explanation',
+                'This means for every 1 ' ~ disinfectantUnit ~ ' of ' ~ disinfectant ~ ', you are using ' ~ dilutionRate ~ ' ' ~ dilutantUnit ~ ' of water.',
+                {
+                  disinfectantUnit: disinfectantUnit,
+                  disinfectant: disinfectant,
+                  dilutionRate: dilutionRate,
+                  dilutantUnit: dilutantUnit
+                }
+              )
+            }}
           </p>
         {% endif %}
       </div>

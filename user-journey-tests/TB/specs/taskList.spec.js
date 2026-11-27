@@ -56,7 +56,9 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('3 out of 3')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe(
+      'You have 3 out of 3 sections left to complete.'
+    )
   })
 
   it('Should link to movement origin first question before an application has been started', async () => {
@@ -85,7 +87,9 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('2 out of 3')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe(
+      'You have 2 out of 3 sections left to complete.'
+    )
     await taskListPage.selectMovementOrigin(checkAnswersPage)
   })
 
@@ -131,7 +135,9 @@ describe('Task list page test', () => {
       }
     ])
 
-    expect(await taskListPage.getTaskToCompleteCount()).toBe('4 out of 6')
+    expect(await taskListPage.getTaskToCompleteCount()).toBe(
+      'You have 4 out of 6 sections left to complete.'
+    )
     await taskListPage.selectMovementDestination(destinationAnswersPage)
   })
 

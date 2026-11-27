@@ -1,6 +1,9 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -12,52 +15,144 @@ const maxLength = 255
 const maxLengthMessage = (key) =>
   `${key} must be no longer than ${maxLength} characters`
 
-const addressLine1Required =
-  'Enter address line 1, typically the building and street'
-const addressTownRequired = 'Enter town or city'
-const postcodeRequired = 'Enter postcode'
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressLine1Schema = (translate) => {
+  const required = resolveValidationMessage(
+    {
+      message: 'Enter address line 1, typically the building and street',
+      i18nKey: 'common.answer.address.validation.addressLine1'
+    },
+    translate
+  )
 
-const addressPayloadSchema = Joi.object({
-  addressLine1: Joi.string()
+  return Joi.string()
     .required()
     .trim()
     .max(maxLength)
     .messages({
-      'any.required': addressLine1Required,
-      'string.empty': addressLine1Required,
-      'string.max': maxLengthMessage('Address line 1')
-    }),
-  addressLine2: Joi.string()
+      'any.required': required,
+      'string.empty': required,
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address line 1'),
+          i18nKey: 'common.answer.address.validation.addressLine1MaxLength'
+        },
+        translate
+      )
+    })
+}
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressLine2Schema = (translate) =>
+  Joi.string()
     .allow('')
     .max(maxLength)
     .messages({
-      'string.max': maxLengthMessage('Address line 2')
-    }),
-  addressTown: Joi.string()
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address line 2'),
+          i18nKey: 'common.answer.address.validation.addressLine2MaxLength'
+        },
+        translate
+      )
+    })
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressTownSchema = (translate) => {
+  const required = resolveValidationMessage(
+    {
+      message: 'Enter town or city',
+      i18nKey: 'common.answer.address.validation.townOrCity'
+    },
+    translate
+  )
+
+  return Joi.string()
     .required()
     .trim()
     .max(maxLength)
     .messages({
-      'any.required': addressTownRequired,
-      'string.empty': addressTownRequired,
-      'string.max': maxLengthMessage('Address town')
-    }),
-  addressCounty: Joi.string()
+      'any.required': required,
+      'string.empty': required,
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address town'),
+          i18nKey: 'common.answer.address.validation.townOrCityMaxLength'
+        },
+        translate
+      )
+    })
+}
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressCountySchema = (translate) =>
+  Joi.string()
     .allow('')
     .max(maxLength)
     .messages({
-      'string.max': maxLengthMessage('Address county')
-    }),
-  addressPostcode: Joi.string()
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address county'),
+          i18nKey: 'common.answer.address.validation.countyMaxLength'
+        },
+        translate
+      )
+    })
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createPostcodeSchema = (translate) => {
+  const required = resolveValidationMessage(
+    {
+      message: 'Enter postcode',
+      i18nKey: 'common.answer.address.validation.postcode'
+    },
+    translate
+  )
+
+  return Joi.string()
     .required()
     .replace(' ', '')
     .pattern(postcodeRegex)
     .messages({
-      'any.required': postcodeRequired,
-      'string.empty': postcodeRequired,
-      'string.pattern.base': 'Enter a full UK postcode'
+      'any.required': required,
+      'string.empty': required,
+      'string.pattern.base': resolveValidationMessage(
+        {
+          message: 'Enter a full UK postcode',
+          i18nKey: 'common.answer.address.validation.postcodeFormat'
+        },
+        translate
+      )
     })
-}).required()
+}
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.ObjectSchema}
+ */
+const createAddressPayloadSchema = (translate) =>
+  Joi.object({
+    addressLine1: createAddressLine1Schema(translate),
+    addressLine2: createAddressLine2Schema(translate),
+    addressTown: createAddressTownSchema(translate),
+    addressCounty: createAddressCountySchema(translate),
+    addressPostcode: createPostcodeSchema(translate)
+  }).required()
 
 /**
  * export @typedef {{
@@ -110,18 +205,24 @@ export class AddressAnswer extends AnswerModel {
     return this.value
   }
 
-  validate() {
-    return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
+    return validateAnswerAgainstSchema(
+      createAddressPayloadSchema(translate),
+      this._data ?? {}
+    )
   }
 
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, translate }) {
     const viewModel = { value: this.value, question }
 
     if (validate) {
-      viewModel.errors = this.validate().errors
+      viewModel.errors = this.validate(translate).errors
     }
 
     return Promise.resolve(viewModel)

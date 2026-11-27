@@ -27,7 +27,10 @@ export class CalvesUnder42DaysOldAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select if you will move any calves under 42 days old'
+      empty: {
+        message: 'Select if you will move any calves under 42 days old',
+        i18nKey: 'tb.identification.calvesUnder42DaysOld.validation.empty'
+      }
     },
     layout: 'inline'
   }

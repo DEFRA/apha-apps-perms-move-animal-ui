@@ -1,21 +1,31 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
+/** @import {ValidationMessage} from '../validation.js' */
 
 /**
  * @param {TextConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
+const textSchema = ({ payloadKey, validation, stripWhitespace }, translate) => {
   let stringValidation = Joi.string().trim().required()
 
+  const emptyMessage = validation.empty
+    ? resolveValidationMessage(validation.empty, translate)
+    : ''
   const messages = {
-    'any.required': validation.empty?.message ?? '',
-    'string.empty': validation.empty?.message ?? '',
-    'string.max': validation.maxLength?.message ?? ''
+    'any.required': emptyMessage,
+    'string.empty': emptyMessage,
+    'string.max': validation.maxLength
+      ? resolveValidationMessage(validation.maxLength, translate)
+      : ''
   }
 
   if (validation.maxLength) {
@@ -24,7 +34,10 @@ const textSchema = ({ payloadKey, validation, stripWhitespace }) => {
 
   if (validation.pattern) {
     stringValidation = stringValidation.pattern(validation.pattern.regex)
-    messages['string.pattern.base'] = validation.pattern.message
+    messages['string.pattern.base'] = resolveValidationMessage(
+      validation.pattern,
+      translate
+    )
   }
 
   if (stripWhitespace) {
@@ -50,9 +63,9 @@ const whitespaceRegex = /\s+/g
  *  hint?: string,
  *  hintI18nKey?: string,
  *  validation: {
- *    maxLength?: { value: number, message: string },
- *    empty?: { message: string },
- *    pattern?: { regex: RegExp, message: string }
+ *    maxLength?: ValidationMessage & { value: number },
+ *    empty?: ValidationMessage,
+ *    pattern?: ValidationMessage & { regex: RegExp }
  *  }
  * }} TextConfig
  */
@@ -105,9 +118,12 @@ export class TextAnswer extends AnswerModel {
     return v
   }
 
-  validate() {
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     return validateAnswerAgainstSchema(
-      textSchema(this.config),
+      textSchema(this.config, translate),
       this._data ?? {}
     )
   }
@@ -162,7 +178,7 @@ export class TextAnswer extends AnswerModel {
     }
 
     if (validate) {
-      viewModel.errorMessage = this.validate().errors[payloadKey]
+      viewModel.errorMessage = this.validate(translate).errors[payloadKey]
     }
 
     return Promise.resolve(viewModel)

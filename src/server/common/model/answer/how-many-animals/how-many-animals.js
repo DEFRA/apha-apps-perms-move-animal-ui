@@ -20,9 +20,20 @@ export class HowManyAnimalsAnswer extends NumberAnswer {
     autocomplete: 'howManyAnimals',
     characterWidth: 2,
     validation: {
-      empty: { message: 'Enter how many animals you are planning to move' },
-      max: { value: max, message: `Enter a number ${max} or below` },
-      min: { value: min, message: `Enter a number ${min} or above` }
+      empty: {
+        message: 'Enter how many animals you are planning to move',
+        i18nKey: 'tb.destination.howManyAnimals.validation.empty'
+      },
+      max: {
+        value: max,
+        message: `Enter a number ${max} or below`,
+        i18nKey: 'tb.destination.howManyAnimals.validation.max'
+      },
+      min: {
+        value: min,
+        message: `Enter a number ${min} or above`,
+        i18nKey: 'tb.destination.howManyAnimals.validation.min'
+      }
     }
   }
 }

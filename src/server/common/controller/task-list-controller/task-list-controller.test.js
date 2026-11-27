@@ -1,4 +1,5 @@
 import { createServer } from '~/src/server/index.js'
+import { config } from '~/src/config/config.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
@@ -149,6 +150,11 @@ describe('TaskListController', () => {
     const document = parseDocument(payload)
 
     expect(statusCode).toBe(statusCodes.ok)
+    expect(
+      document
+        .querySelector('[data="test-id-task-to-complete-count"]')
+        ?.textContent?.trim()
+    ).toBe('You have 2 out of 2 sections left to complete.')
     expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
   })
 
@@ -232,6 +238,43 @@ describe('TaskListController', () => {
     const document = parseDocument(payload)
 
     expect(statusCode).toBe(statusCodes.ok)
+    expect(
+      document
+        .querySelector('[data="test-id-task-to-complete-count"]')
+        ?.textContent?.trim()
+    ).toBe("Mae gennych 2 allan o 2 adran ar ôl i'w cwblhau.")
     expect(document.querySelector('#main-content')?.innerHTML).toMatchSnapshot()
+  })
+
+  it('should render the English fallback when translations are disabled', async () => {
+    spyOnConfig('featureFlags', {
+      ...config.get('featureFlags'),
+      translationEnabled: false
+    })
+    const serverWithoutTranslations = await createServer()
+
+    try {
+      await serverWithoutTranslations.register(controller.plugin())
+      await serverWithoutTranslations.initialize()
+      const sessionWithoutTranslations = await SessionTester.create(
+        serverWithoutTranslations
+      )
+      await sessionWithoutTranslations.setState(stateKey, {})
+      const { payload, statusCode } = await serverWithoutTranslations.inject(
+        withCsrfProtection(
+          { method: 'GET', url: controller.urlPath },
+          { Cookie: sessionWithoutTranslations.sessionID }
+        )
+      )
+
+      expect(statusCode).toBe(statusCodes.ok)
+      expect(
+        parseDocument(payload)
+          .querySelector('[data="test-id-task-to-complete-count"]')
+          ?.textContent?.trim()
+      ).toBe('You have 2 out of 2 sections left to complete.')
+    } finally {
+      await serverWithoutTranslations.stop({ timeout: 0 })
+    }
   })
 })

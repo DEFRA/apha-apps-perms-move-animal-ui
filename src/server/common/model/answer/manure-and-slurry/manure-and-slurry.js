@@ -25,8 +25,11 @@ export class ManureAndSlurryAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty:
-        'Select if manure or slurry has been put on the grazing field in the past 60 days'
+      empty: {
+        message:
+          'Select if manure or slurry has been put on the grazing field in the past 60 days',
+        i18nKey: 'tb.biosecurity.manureAndSlurry.validation.empty'
+      }
     },
     layout: 'inline'
   }

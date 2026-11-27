@@ -6,6 +6,10 @@ import { createServer } from '~/src/server/index.js'
 import { config } from '~/src/config/config.js'
 import { statusCodes } from '~/src/server/common/constants/status-codes.js'
 import { withCsrfProtection } from '~/src/server/common/test-helpers/csrf.js'
+import {
+  expectValidationError,
+  parseDocument
+} from '~/src/server/common/test-helpers/dom.js'
 import { spyOnConfig } from '~/src/server/common/test-helpers/config.js'
 import SessionTester from '~/src/server/common/test-helpers/session-helper.js'
 
@@ -154,6 +158,79 @@ describe('CphNumberPage', () => {
       expect(payload).toContain(unmatchedCphError)
       expect(payload).not.toContain(otherHolding)
     })
+
+    it('should show an unmatched CPH error in Welsh after a Welsh POST', async () => {
+      mockFindMatchingCphs.mockResolvedValue(new Set())
+      const headers = { Cookie: session.sessionID }
+      const url = `${pageUrl}?lang=cy`
+      const post = await server.inject(
+        withCsrfProtection(
+          { method: 'POST', url, payload: { [questionKey]: cph } },
+          headers
+        )
+      )
+      expect(post.statusCode).toBe(statusCodes.redirect)
+      const response = await server.inject(
+        withCsrfProtection({ method: 'GET', url }, headers)
+      )
+      const document = parseDocument(response.payload)
+      const message =
+        "Ni ellir dod o hyd i'r rhif CPH a nodoch. Gwiriwch y rhif a rhoi cynnig arall arni"
+      expect(response.statusCode).toBe(statusCodes.ok)
+      expectValidationError(document, { message })
+    })
+
+    it.each([
+      {
+        postLanguage: 'en',
+        getLanguage: 'cy',
+        message:
+          "Ni ellir dod o hyd i'r rhif CPH a nodoch. Gwiriwch y rhif a rhoi cynnig arall arni"
+      },
+      {
+        postLanguage: 'cy',
+        getLanguage: 'en',
+        message:
+          'The CPH number you entered cannot be found. Check the number and try again'
+      }
+    ])(
+      'should translate a stored CPH error from $postLanguage to $getLanguage without another external validation',
+      async ({ postLanguage, getLanguage, message }) => {
+        mockFindMatchingCphs.mockResolvedValue(new Set())
+        const externalSpy = jest.spyOn(
+          CphNumberAnswer.prototype,
+          'validateExternally'
+        )
+        const headers = { Cookie: session.sessionID }
+        const post = await server.inject(
+          withCsrfProtection(
+            {
+              method: 'POST',
+              url: `${pageUrl}?lang=${postLanguage}`,
+              payload: { [questionKey]: cph }
+            },
+            headers
+          )
+        )
+        expect(post.statusCode).toBe(statusCodes.redirect)
+        const samCalls = mockFindMatchingCphs.mock.calls.length
+        const response = await server.inject(
+          withCsrfProtection(
+            { method: 'GET', url: `${pageUrl}?lang=${getLanguage}` },
+            headers
+          )
+        )
+        expect(response.statusCode).toBe(statusCodes.ok)
+        const document = parseDocument(response.payload)
+        expectValidationError(document, {
+          message,
+          href: '#cphNumber',
+          input: { selector: '#cphNumber', value: cph }
+        })
+        expect(externalSpy).toHaveBeenCalledTimes(1)
+        expect(mockFindMatchingCphs).toHaveBeenCalledTimes(samCalls)
+      }
+    )
 
     it('should retry once and then let the user progress when SAM is unavailable', async () => {
       mockFindMatchingCphs.mockRejectedValue(new Error('SAM is down'))

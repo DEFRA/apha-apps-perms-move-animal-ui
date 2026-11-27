@@ -74,6 +74,26 @@ describe('RadioButton', () => {
   })
 
   describe('#RadioButton.validate', () => {
+    it('should translate a configured validation message and retain its fallback', () => {
+      class TranslatedRadioAnswer extends RadioButtonAnswer {
+        static config = {
+          ...defaultConfig,
+          validation: {
+            empty: { message: 'Select an option', i18nKey: 'test.radio.empty' }
+          }
+        }
+      }
+      const answer = new TranslatedRadioAnswer()
+      const translate = jest.fn((key, fallback) =>
+        key === 'test.radio.empty' ? 'Translated error' : fallback
+      )
+
+      expect(answer.validate(translate).errors.test_radio.text).toBe(
+        'Translated error'
+      )
+      expect(answer.validate().errors.test_radio.text).toBe('Select an option')
+    })
+
     test('should return true for valid value', () => {
       const { isValid, errors } = new TestRadioButtonAnswer({
         test_radio: 'value_1'

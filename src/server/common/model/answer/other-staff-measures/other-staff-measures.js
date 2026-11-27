@@ -17,11 +17,13 @@ export class OtherStaffMeasuresAnswer extends TextAreaAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.biosecurity.otherStaffMeasures.validation.maxLength'
       },
       empty: {
         message:
-          'Enter what other measures staff are taking to reduce the risk of spreading TB'
+          'Enter what other measures staff are taking to reduce the risk of spreading TB',
+        i18nKey: 'tb.biosecurity.otherStaffMeasures.validation.empty'
       }
     }
   }

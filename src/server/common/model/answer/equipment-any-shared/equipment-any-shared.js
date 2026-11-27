@@ -25,8 +25,11 @@ export class EquipmentAnySharedAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty:
-        'Select if the incoming animals will share any equipment and machinery with the resident herd'
+      empty: {
+        message:
+          'Select if the incoming animals will share any equipment and machinery with the resident herd',
+        i18nKey: 'tb.biosecurity.equipmentAnyShared.validation.empty'
+      }
     },
     layout: 'inline'
   }

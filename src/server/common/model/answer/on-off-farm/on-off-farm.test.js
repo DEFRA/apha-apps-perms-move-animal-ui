@@ -17,9 +17,10 @@ describe('OnOffFarm', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(OnOffFarmAnswer.config.validation.empty).toBe(
-      'Select if you are moving animals on or off your farm or premises'
-    )
+    expect(OnOffFarmAnswer.config.validation.empty).toMatchObject({
+      message:
+        'Select if you are moving animals on or off your farm or premises'
+    })
   })
 
   it('should have the expected options to select from', () => {

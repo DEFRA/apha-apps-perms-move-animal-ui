@@ -25,7 +25,10 @@ export class KeptSeparatelyAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select if the incoming animals will be kept separately'
+      empty: {
+        message: 'Select if the incoming animals will be kept separately',
+        i18nKey: 'tb.biosecurity.keptSeparately.validation.empty'
+      }
     },
     layout: 'inline'
   }

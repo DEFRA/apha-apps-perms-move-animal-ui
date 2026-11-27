@@ -45,7 +45,8 @@ export class RestockAnimalsAnswer extends CheckboxAnswer {
     },
     validation: {
       empty: {
-        message: 'Select which types of animals you are restocking'
+        message: 'Select which types of animals you are restocking',
+        i18nKey: 'tb.destination.restockAnimals.validation.empty'
       }
     }
   }

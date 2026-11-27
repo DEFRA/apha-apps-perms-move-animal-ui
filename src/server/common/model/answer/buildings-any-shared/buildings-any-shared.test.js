@@ -19,9 +19,9 @@ describe('BuildingsAnyShared', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(BuildingsAnySharedAnswer.config.validation.empty).toBe(
-      'Select if the animals will be housed'
-    )
+    expect(BuildingsAnySharedAnswer.config.validation.empty).toMatchObject({
+      message: 'Select if the animals will be housed'
+    })
   })
 
   it('should have the expected options to select from', () => {

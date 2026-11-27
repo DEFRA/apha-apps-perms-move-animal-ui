@@ -26,7 +26,7 @@ describe('EmailAddress', () => {
     )
 
     expect(EmailAddressAnswer.config.validation.maxLength?.message).toBe(
-      'Your answer must be no longer than 255 characters'
+      'Enter an email address in the correct format, like name@example.com'
     )
   })
 

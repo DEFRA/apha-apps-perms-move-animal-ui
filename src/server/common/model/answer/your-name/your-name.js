@@ -10,12 +10,14 @@ export class YourNameAnswer extends FullNameAnswer {
     validation: {
       firstName: {
         empty: {
-          message: 'Enter your first name'
+          message: 'Enter your first name',
+          i18nKey: 'tb.licence.yourName.validation.firstName.empty'
         }
       },
       lastName: {
         empty: {
-          message: 'Enter your last name'
+          message: 'Enter your last name',
+          i18nKey: 'tb.licence.yourName.validation.lastName.empty'
         }
       }
     }

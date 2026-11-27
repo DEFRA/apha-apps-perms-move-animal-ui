@@ -68,9 +68,10 @@ export class AnswerModel {
   }
 
   /**
+   * @param {AnswerViewModelOptions['translate']} [_translate]
    * @returns {AnswerValidationResult}
    */
-  validate() {
+  validate(_translate) {
     throw new NotImplementedError()
   }
 
@@ -78,10 +79,20 @@ export class AnswerModel {
    * Validation that depends on an external service. Only called once
    * validate() has passed.
    * @param {Logger} _logger
+   * @param {AnswerViewModelOptions['translate']} [_translate]
    * @returns {Promise<AnswerValidationResult>}
    */
-  validateExternally(_logger) {
+  validateExternally(_logger, _translate) {
     return Promise.resolve({ isValid: true, errors: {} })
+  }
+
+  /**
+   * @param {AnswerErrors} errors
+   * @param {AnswerViewModelOptions['translate']} _translate
+   * @returns {AnswerErrors}
+   */
+  localiseExternalErrors(errors, _translate) {
+    return errors
   }
 
   /*

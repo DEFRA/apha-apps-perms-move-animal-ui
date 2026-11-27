@@ -21,11 +21,13 @@ export class EarTagsAnswer extends TextAreaAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.identification.earTags.validation.maxLength'
       },
       empty: {
         message:
-          'Enter the ear tag numbers of the animals you are planning to move'
+          'Enter the ear tag numbers of the animals you are planning to move',
+        i18nKey: 'tb.identification.earTags.validation.empty'
       }
     }
   }

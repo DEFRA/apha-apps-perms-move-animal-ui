@@ -13,20 +13,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
           By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for
-          Agrichlor
-          is
-            1:10.
+            The approved dilution rate for Agrichlor is 1:10.
         </p>
           <p>
-            This means for every 1
-            litre
-            of
-            Agrichlor,
-            you are using
-            10
-            litres
-            of water.
+            This means for every 1 litre of Agrichlor, you are using 10 litres of water.
           </p>
       </div>
     </div>
@@ -75,20 +65,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
           By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for
-          Interkokask
-          is
-            1:150.
+            The approved dilution rate for Interkokask is 1:150.
         </p>
           <p>
-            This means for every 1
-            gram
-            of
-            Interkokask,
-            you are using
-            150
-            millilitres
-            of water.
+            This means for every 1 gram of Interkokask, you are using 150 millilitres of water.
           </p>
       </div>
     </div>
@@ -137,10 +117,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content should render
           By law you must use a Defra-approved disinfectant when there is an outbreak of TB. This includes using the correct dilution rate.
         </p>
         <p>
-          The approved dilution rate for
-          Undiluted Mock
-          is
-            undiluted
+            The approved dilution rate for Undiluted Mock is undiluted
         </p>
       </div>
     </div>
@@ -229,20 +206,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should 
           Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
         </p>
         <p>
-          Y gyfradd gwanhau gymeradwy ar gyfer
-          Agrichlor
-          yw
-            1:10.
+            Y gyfradd gwanhau gymeradwy ar gyfer Agrichlor yw 1:10.
         </p>
           <p>
-            Mae hyn yn golygu am bob 1
-            litr
-            o
-            Agrichlor,
-            rydych yn ei ddefnyddio
-            10
-            litrau
-            o ddŵr.
+            Mae hyn yn golygu am bob 1 litr o Agrichlor, rydych yn ei ddefnyddio 10 litrau o ddŵr.
           </p>
       </div>
     </div>
@@ -291,20 +258,10 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should 
           Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
         </p>
         <p>
-          Y gyfradd gwanhau gymeradwy ar gyfer
-          Interkokask
-          yw
-            1:150.
+            Y gyfradd gwanhau gymeradwy ar gyfer Interkokask yw 1:150.
         </p>
           <p>
-            Mae hyn yn golygu am bob 1
-            gram
-            o
-            Interkokask,
-            rydych yn ei ddefnyddio
-            150
-            mililitrau
-            o ddŵr.
+            Mae hyn yn golygu am bob 1 gram o Interkokask, rydych yn ei ddefnyddio 150 mililitrau o ddŵr.
           </p>
       </div>
     </div>
@@ -353,10 +310,7 @@ exports[`DisinfectantDilutionPage disinfectantDilutionPage.content.welsh should 
           Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.
         </p>
         <p>
-          Y gyfradd gwanhau gymeradwy ar gyfer
-          Undiluted Mock
-          yw
-            heb ei wanhau
+            Y gyfradd gwanhau gymeradwy ar gyfer Undiluted Mock yw heb ei wanhau
         </p>
       </div>
     </div>

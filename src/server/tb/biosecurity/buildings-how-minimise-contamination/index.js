@@ -47,7 +47,9 @@ export class Answer extends CheckboxAnswer {
     validation: {
       empty: {
         message:
-          'Enter how you will reduce the risk of spreading TB from the resident herd to the incoming animals during housing'
+          'Enter how you will reduce the risk of spreading TB from the resident herd to the incoming animals during housing',
+        i18nKey:
+          'tb.biosecurity.buildingsHowMinimiseContamination.validation.empty'
       }
     }
   }

@@ -35,9 +35,10 @@ describe('DilutionRate', () => {
 
   describe('viewModel translation', () => {
     const translations = {
-      'tb.biosecurity.dilutionRate.answer.prefix': 'Translated rate 1:',
-      'tb.biosecurity.dilutionRate.answer.suffix': ' on the premises',
-      'tb.biosecurity.dilutionRate.answer.undiluted': 'Translated undiluted'
+      'tb.biosecurity.dilutionRate.answer.diluted': (params) =>
+        `Translated rate 1:${params.dilutionRate} on the premises`,
+      'tb.biosecurity.dilutionRate.answer.undiluted': () =>
+        'Translated undiluted'
     }
 
     it.each([
@@ -57,7 +58,7 @@ describe('DilutionRate', () => {
       'should translate $description',
       async ({ disinfectant, rate, text }) => {
         const translate = jest.fn(
-          (key, fallback) => translations[key] ?? fallback
+          (key, fallback, params) => translations[key]?.(params) ?? fallback
         )
         const answer = new DilutionRateAnswer(
           { dilutionRate: [rate] },

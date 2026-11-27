@@ -51,11 +51,9 @@ exports[`TaskListController should render a partially complete application 1`] =
       <div class="govuk-body" data-testid="app-page-body">
         <h1 class="govuk-heading-l">Test page heading</h1>
           <p>
-            You have
-            <span data="test-id-task-to-complete-count">1
-              out of
-              2</span>
-            sections left to complete.
+            <span data="test-id-task-to-complete-count">
+              You have 1 out of 2 sections left to complete.
+            </span>
           </p>
         
 <ul class="govuk-task-list">
@@ -101,11 +99,9 @@ exports[`TaskListController should render an empty application (complete with "c
       <div class="govuk-body" data-testid="app-page-body">
         <h1 class="govuk-heading-l">Test page heading</h1>
           <p>
-            You have
-            <span data="test-id-task-to-complete-count">2
-              out of
-              2</span>
-            sections left to complete.
+            <span data="test-id-task-to-complete-count">
+              You have 2 out of 2 sections left to complete.
+            </span>
           </p>
         
 <ul class="govuk-task-list">
@@ -151,11 +147,9 @@ exports[`TaskListController should render content in Welsh 1`] = `
       <div class="govuk-body" data-testid="app-page-body">
         <h1 class="govuk-heading-l">Test page heading</h1>
           <p>
-            Mae gennych
-            <span data="test-id-task-to-complete-count">2
-              allan o
-              2</span>
-            adran ar ôl i'w cwblhau.
+            <span data="test-id-task-to-complete-count">
+              Mae gennych 2 allan o 2 adran ar ôl i'w cwblhau.
+            </span>
           </p>
         
 <ul class="govuk-task-list">

@@ -21,10 +21,19 @@ export class HowManyAnimalsMaximumAnswer extends NumberAnswer {
     characterWidth: 2,
     validation: {
       empty: {
-        message: 'Enter the maximum number of animals you are planning to move'
+        message: 'Enter the maximum number of animals you are planning to move',
+        i18nKey: 'tb.destination.howManyAnimalsMaximum.validation.empty'
       },
-      max: { value: max, message: `Enter a number ${max} or below` },
-      min: { value: min, message: `Enter a number ${min} or above` }
+      max: {
+        value: max,
+        message: `Enter a number ${max} or below`,
+        i18nKey: 'tb.destination.howManyAnimalsMaximum.validation.max'
+      },
+      min: {
+        value: min,
+        message: `Enter a number ${min} or above`,
+        i18nKey: 'tb.destination.howManyAnimalsMaximum.validation.min'
+      }
     }
   }
 }

@@ -60,7 +60,10 @@ export class OriginTypeAnswer extends RadioButtonAnswer {
     payloadKey: 'originType',
     options: isOnToTheFarm(app) ? onFarmOptions : offFarmOptions,
     validation: {
-      empty: 'Select where the animals are moving from'
+      empty: {
+        message: 'Select where the animals are moving from',
+        i18nKey: 'tb.origin.originType.validation.empty'
+      }
     }
   })
 

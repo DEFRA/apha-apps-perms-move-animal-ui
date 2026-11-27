@@ -21,9 +21,9 @@ describe('CalvesUnder42DaysOld', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(CalvesUnder42DaysOldAnswer.config.validation.empty).toBe(
-      'Select if you will move any calves under 42 days old'
-    )
+    expect(CalvesUnder42DaysOldAnswer.config.validation.empty).toMatchObject({
+      message: 'Select if you will move any calves under 42 days old'
+    })
   })
 
   it('should have the expected options to select from', () => {

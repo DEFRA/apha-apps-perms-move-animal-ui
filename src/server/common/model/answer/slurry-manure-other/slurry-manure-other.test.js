@@ -15,7 +15,7 @@ describe('SlurryManureOtherAnswer', () => {
     expect(config.payloadKey).toBe('slurryManureOther')
     expect(config.rows).toBe(4)
     expect(config.spellcheck).toBe(false)
-    expect(config.validation.maxLength).toEqual({
+    expect(config.validation.maxLength).toMatchObject({
       value: 5000,
       message: 'Your answer must be no longer than 5000 characters'
     })

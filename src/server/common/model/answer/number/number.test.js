@@ -1,9 +1,7 @@
+import path from 'node:path'
+import { HowManyAnimalsAnswer } from '../how-many-animals/how-many-animals.js'
+import { HowManyAnimalsMaximumAnswer } from '../how-many-animals-maximum/how-many-animals-maximum.js'
 import { NumberAnswer, numberSchema } from './number.js'
-
-// Mock the validateAnswerAgainstSchema function
-jest.mock('../validation.js', () => ({
-  validateAnswerAgainstSchema: jest.fn()
-}))
 
 const nonNumericInputs = ['abc', '=123']
 const negativeInputs = ['-1', '-99999']
@@ -78,6 +76,94 @@ describe('NumberAnswer', () => {
 })
 
 describe('numberSchema', () => {
+  describe('validation translations', () => {
+    const { I18n } = jest.requireActual('i18n')
+    const i18n = new I18n({
+      locales: ['en', 'cy'],
+      defaultLocale: 'en',
+      directory: path.resolve('src/config/i18n'),
+      objectNotation: true,
+      updateFiles: false
+    })
+
+    it.each([
+      ['en', '', 'Enter how many animals you are planning to move'],
+      ['cy', '', "Nodwch sawl anifail rydych chi'n bwriadu eu symud"],
+      ['en', 'abc', 'Enter a number'],
+      ['cy', 'abc', 'Nodwch rif'],
+      ['en', '1.5', 'Enter a whole number'],
+      ['cy', '1.5', 'Nodwch rif cyfan'],
+      ['en', '0', 'Enter a number 1 or above'],
+      ['cy', '0', 'Nodwch rif 1 neu uwch'],
+      ['en', '5001', 'Enter a number 5000 or below'],
+      ['cy', '5001', 'Nodwch rif 5000 neu is']
+    ])(
+      'should translate %s validation for %s',
+      async (locale, value, expectedMessage) => {
+        const translate = (key, fallback, params) => {
+          if (!key) {
+            return fallback
+          }
+          const result = i18n.__({ phrase: key, locale }, params)
+          return result === key ? fallback : result
+        }
+        const answer = new HowManyAnimalsAnswer({ howManyAnimals: value })
+
+        expect(answer.validate(translate).errors.howManyAnimals.text).toBe(
+          expectedMessage
+        )
+        const viewModel = await answer.viewModel({
+          question: 'How many animals?',
+          validate: true,
+          translate
+        })
+        expect(viewModel.errorMessage.text).toBe(expectedMessage)
+      }
+    )
+
+    it.each([
+      ['0', 'Nodwch rif 1 neu uwch'],
+      ['5001', 'Nodwch rif 5000 neu is']
+    ])(
+      'should interpolate maximum-animal limits in Welsh',
+      (value, message) => {
+        const translate = (key, fallback, params) => {
+          const result = i18n.__({ phrase: key, locale: 'cy' }, params)
+          return result === key ? fallback : result
+        }
+        const answer = new HowManyAnimalsMaximumAnswer({
+          howManyAnimalsMaximum: value
+        })
+
+        expect(
+          answer.validate(translate).errors.howManyAnimalsMaximum.text
+        ).toBe(message)
+      }
+    )
+
+    it('should translate custom whole-number messages and preserve fallbacks', () => {
+      const config = {
+        payloadKey: 'test',
+        validation: {
+          wholeNumberRequired: {
+            message: 'Enter a count',
+            i18nKey: 'test.wholeNumber'
+          }
+        }
+      }
+      const translate = (key, fallback) =>
+        key === 'test.wholeNumber' ? 'Nodwch gyfrif' : fallback
+
+      expect(
+        numberSchema(config, translate).validate({ test: '1.5' }).error
+          ?.details[0].message
+      ).toBe('Nodwch gyfrif')
+      expect(
+        numberSchema(config).validate({ test: '1.5' }).error?.details[0].message
+      ).toBe('Enter a count')
+    })
+  })
+
   describe('basic validation', () => {
     it('should accept valid integer values', () => {
       const config = { payloadKey: 'test', validation: {} }

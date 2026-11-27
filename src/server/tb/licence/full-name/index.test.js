@@ -35,7 +35,7 @@ describe('FullNamePage', () => {
   })
 
   it('should have the correct questionI18nKey', () => {
-    expect(page.questionI18nKey).toBe('tb.licence.fullName.question')
+    expect(page.questionI18nKey).toBe('tb.licence.ownerFullName.question')
   })
 
   it('should have the correct view', () => {
