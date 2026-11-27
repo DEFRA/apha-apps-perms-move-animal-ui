@@ -99,11 +99,18 @@ export class QuestionPageController extends GenericPageController {
         pageError.payload,
         applicationState
       )
+      // Refresh errors for the current language without repeating external validation.
       const validation = errorAnswer.validate(translateForRequest)
-      const errors = validation.isValid ? pageError.errors : validation.errors
-      const errorMessages = validation.isValid
-        ? pageError.errorMessages
-        : this.page.Answer.errorMessages(errors)
+      const errors = validation.isValid
+        ? errorAnswer.localiseExternalErrors(
+            pageError.errors,
+            translateForRequest
+          )
+        : validation.errors
+      const errorMessages =
+        validation.isValid && errors === pageError.errors
+          ? pageError.errorMessages
+          : this.page.Answer.errorMessages(errors)
       const errorViewModelOptions = {
         validate: true,
         question,

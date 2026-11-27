@@ -83,6 +83,26 @@ export class CphNumberAnswer extends TextAnswer {
   }
 
   /**
+   * @param {AnswerErrors} errors
+   * @param {AnswerViewModelOptions['translate']} translate
+   * @returns {AnswerErrors}
+   */
+  localiseExternalErrors(errors, translate) {
+    const key = this.config.payloadKey
+    if (!errors[key]) {
+      return errors
+    }
+
+    return {
+      ...errors,
+      [key]: {
+        ...errors[key],
+        text: resolveValidationMessage(unmatchedCphNumberError, translate)
+      }
+    }
+  }
+
+  /**
    * @param {AnswerViewModelOptions} options
    */
   async viewModel(options) {

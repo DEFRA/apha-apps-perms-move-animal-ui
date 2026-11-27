@@ -157,7 +157,7 @@ describe('CphNumberAnswer', () => {
       expect(errorMessage).toEqual(unmatchedError)
     })
 
-    it('should use the error passed in for an invalid value', async () => {
+    it('should show the format error instead of an external error for an invalid value', async () => {
       const answer = new CphNumberAnswer({ cphNumber: '12345' })
 
       const { errorMessage } = await answer.viewModel({
@@ -167,7 +167,9 @@ describe('CphNumberAnswer', () => {
         errors: { cphNumber: unmatchedError }
       })
 
-      expect(errorMessage).toEqual(unmatchedError)
+      expect(errorMessage).toEqual({
+        text: 'Enter the CPH number in the correct format, for example, 12/345/6789'
+      })
     })
 
     it('should not show an error when not validating', async () => {

@@ -86,6 +86,15 @@ export class AnswerModel {
     return Promise.resolve({ isValid: true, errors: {} })
   }
 
+  /**
+   * @param {AnswerErrors} errors
+   * @param {AnswerViewModelOptions['translate']} _translate
+   * @returns {AnswerErrors}
+   */
+  localiseExternalErrors(errors, _translate) {
+    return errors
+  }
+
   /*
    * @param {AnswerErrors} errors
    * @returns {ViewErrorMessage[]}
