@@ -1,5 +1,40 @@
 import Joi from 'joi'
-import { validateAnswerAgainstSchema } from './validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from './validation.js'
+
+describe('resolveValidationMessage', () => {
+  it('should translate a message with a key', () => {
+    const translate = jest.fn().mockReturnValue('Translated message')
+
+    expect(
+      resolveValidationMessage(
+        { message: 'Fallback message', i18nKey: 'test.error' },
+        translate
+      )
+    ).toBe('Translated message')
+    expect(translate).toHaveBeenCalledWith('test.error', 'Fallback message')
+  })
+
+  it('should use the fallback when the translator or key is missing', () => {
+    const translate = jest.fn()
+
+    expect(
+      resolveValidationMessage({
+        message: 'Fallback message',
+        i18nKey: 'test.error'
+      })
+    ).toBe('Fallback message')
+    expect(
+      resolveValidationMessage({ message: 'Fallback message' }, translate)
+    ).toBe('Fallback message')
+    expect(resolveValidationMessage('Legacy message', translate)).toBe(
+      'Legacy message'
+    )
+    expect(translate).not.toHaveBeenCalled()
+  })
+})
 
 describe('validateAnswerAgainstSchema', () => {
   const validationSchema = Joi.object({

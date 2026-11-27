@@ -17,7 +17,10 @@ export class OriginEmailAddressAnswer extends BaseEmailAddressAnswer {
     payloadKey: 'originEmail',
     validation: {
       ...BaseEmailAddressAnswer.config.validation,
-      empty: { message: 'Enter the email address for the origin premises' }
+      empty: {
+        message: 'Enter the email address for the origin premises',
+        i18nKey: 'tb.licence.originEmailAddress.validation.empty'
+      }
     }
   }
 

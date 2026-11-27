@@ -18,11 +18,13 @@ export class SlurryManureOtherAnswer extends TextAreaAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.biosecurity.slurryManureOther.validation.maxLength'
       },
       empty: {
         message:
-          'Enter details on the other measures being taken to manage slurry and manure'
+          'Enter details on the other measures being taken to manage slurry and manure',
+        i18nKey: 'tb.biosecurity.slurryManureOther.validation.empty'
       }
     }
   }

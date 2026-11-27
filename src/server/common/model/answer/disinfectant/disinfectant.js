@@ -20,9 +20,13 @@ export class DisinfectantAnswer extends TextAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.biosecurity.disinfectant.validation.maxLength'
       },
-      empty: { message: 'Enter what disinfectant you are using' }
+      empty: {
+        message: 'Enter what disinfectant you are using',
+        i18nKey: 'tb.biosecurity.disinfectant.validation.empty'
+      }
     }
   }
 }

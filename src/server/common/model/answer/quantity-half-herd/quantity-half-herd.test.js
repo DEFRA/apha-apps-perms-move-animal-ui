@@ -19,9 +19,10 @@ describe('QuantityHalfHerd', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(QuantityHalfHerdAnswer.config.validation.empty).toBe(
-      'Select if the number of cattle will be larger than half of the destination herd size'
-    )
+    expect(QuantityHalfHerdAnswer.config.validation.empty).toMatchObject({
+      message:
+        'Select if the number of cattle will be larger than half of the destination herd size'
+    })
   })
 
   it('should have the expected options to select from', () => {

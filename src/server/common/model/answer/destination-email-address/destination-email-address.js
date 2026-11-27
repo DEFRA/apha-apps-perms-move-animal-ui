@@ -17,7 +17,10 @@ export class DestinationEmailAddressAnswer extends BaseEmailAddressAnswer {
     payloadKey: 'destinationEmail',
     validation: {
       ...BaseEmailAddressAnswer.config.validation,
-      empty: { message: 'Enter your email address' }
+      empty: {
+        message: 'Enter your email address',
+        i18nKey: 'tb.licence.destinationEmailAddress.validation.empty'
+      }
     }
   }
 

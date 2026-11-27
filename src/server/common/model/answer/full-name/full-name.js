@@ -1,19 +1,24 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
+/** @import {ValidationMessage} from '../validation.js' */
 
 /**
  * @typedef {{
  *  explanation?: string,
+ *  explanationI18nKey?: string,
  *  validation: {
  *    firstName: {
- *      empty?: { message: string },
+ *      empty?: ValidationMessage,
  *    },
  *    lastName: {
- *      empty?: { message: string },
+ *      empty?: ValidationMessage
  *    }
  *  }
  * }} FullNameConfig
@@ -23,27 +28,48 @@ const maxLength = 50
 
 /**
  * @param {FullNameConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-const fullNamePayloadSchema = ({ validation }) => {
+const fullNamePayloadSchema = ({ validation }, translate) => {
+  const emptyFirstNameMessage = validation.firstName.empty
+    ? resolveValidationMessage(validation.firstName.empty, translate)
+    : ''
+  const emptyLastNameMessage = validation.lastName.empty
+    ? resolveValidationMessage(validation.lastName.empty, translate)
+    : ''
   return Joi.object({
     firstName: Joi.string()
       .trim()
       .required()
       .max(maxLength)
       .messages({
-        'any.required': validation.firstName.empty?.message ?? '',
-        'string.empty': validation.firstName.empty?.message ?? '',
-        'string.max': `First name must be no longer than ${maxLength} characters`
+        'any.required': emptyFirstNameMessage,
+        'string.empty': emptyFirstNameMessage,
+        'string.max': resolveValidationMessage(
+          {
+            message: `First name must be no longer than ${maxLength} characters`,
+            i18nKey: 'common.answer.fullName.validation.firstName.maxLength'
+          },
+          translate,
+          { value: maxLength }
+        )
       }),
     lastName: Joi.string()
       .trim()
       .required()
       .max(maxLength)
       .messages({
-        'any.required': validation.lastName.empty?.message ?? '',
-        'string.empty': validation.lastName.empty?.message ?? '',
-        'string.max': `Last name must be no longer than ${maxLength} characters`
+        'any.required': emptyLastNameMessage,
+        'string.empty': emptyLastNameMessage,
+        'string.max': resolveValidationMessage(
+          {
+            message: `Last name must be no longer than ${maxLength} characters`,
+            i18nKey: 'common.answer.fullName.validation.lastName.maxLength'
+          },
+          translate,
+          { value: maxLength }
+        )
       })
   })
 }
@@ -103,9 +129,12 @@ export class FullNameAnswer extends AnswerModel {
     }
   }
 
-  validate() {
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     return validateAnswerAgainstSchema(
-      fullNamePayloadSchema(this.config),
+      fullNamePayloadSchema(this.config, translate),
       this._data ?? {}
     )
   }
@@ -113,15 +142,18 @@ export class FullNameAnswer extends AnswerModel {
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, translate }) {
     const viewModel = { value: this.value, question }
 
     if (this.config.explanation) {
-      viewModel.explanation = this.config.explanation
+      viewModel.explanation = translate(
+        this.config.explanationI18nKey,
+        this.config.explanation
+      )
     }
 
     if (validate) {
-      viewModel.errors = this.validate().errors
+      viewModel.errors = this.validate(translate).errors
     }
 
     return Promise.resolve(viewModel)

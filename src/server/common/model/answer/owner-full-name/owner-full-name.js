@@ -11,13 +11,15 @@ export class OwnerFullNameAnswer extends FullNameAnswer {
       firstName: {
         empty: {
           message:
-            'Enter the first name of the person registered as the keeper of the animals'
+            'Enter the first name of the person registered as the keeper of the animals',
+          i18nKey: 'tb.licence.ownerFullName.validation.firstName.empty'
         }
       },
       lastName: {
         empty: {
           message:
-            'Enter the last name of the person registered as the keeper of the animals'
+            'Enter the last name of the person registered as the keeper of the animals',
+          i18nKey: 'tb.licence.ownerFullName.validation.lastName.empty'
         }
       }
     }

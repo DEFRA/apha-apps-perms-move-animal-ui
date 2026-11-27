@@ -21,8 +21,11 @@ describe('Animals42DaysOldOrOlder', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(Animals42DaysOldOrOlderAnswer.config.validation.empty).toBe(
-      'Select if you are also moving any animals 42 days old or older'
+    expect(Animals42DaysOldOrOlderAnswer.config.validation.empty).toMatchObject(
+      {
+        message:
+          'Select if you are also moving any animals 42 days old or older'
+      }
     )
   })
 

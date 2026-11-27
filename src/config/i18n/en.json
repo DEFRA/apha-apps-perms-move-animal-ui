@@ -10,9 +10,7 @@
     "change": "Change",
     "taskList": {
       "progress": {
-        "youHave": "You have",
-        "outOf": "out of",
-        "sectionsLeft": "sections left to complete.",
+        "incomplete": "You have {{remaining}} out of {{total}} sections left to complete.",
         "allSectionsComplete": "You have completed all sections."
       },
       "status": {
@@ -63,6 +61,7 @@
       "accessibilityStatement": "Accessibility statement"
     },
     "errors": {
+      "title": "Error",
       "summaryTitle": "There is a problem",
       "pageNotFound": "Page not found",
       "forbidden": "Forbidden",
@@ -229,6 +228,12 @@
       "charterText": "APHA processes personal data."
     },
     "answer": {
+      "number": {
+        "validation": {
+          "base": "Enter a number",
+          "wholeNumber": "Enter a whole number"
+        }
+      },
       "date": {
         "day": "Day",
         "month": "Month",
@@ -236,7 +241,17 @@
       },
       "fullName": {
         "firstName": "First name",
-        "lastName": "Last name"
+        "lastName": "Last name",
+        "validation": {
+          "firstName": {
+            "empty": "Enter the first name",
+            "maxLength": "First name must be no longer than {{value}} characters"
+          },
+          "lastName": {
+            "empty": "Enter the last name",
+            "maxLength": "Last name must be no longer than {{value}} characters"
+          }
+        }
       },
       "cphNumber": {
         "hint": "For example, 12/345/6789",
@@ -254,13 +269,22 @@
         "postcode": "Postcode",
         "validation": {
           "addressLine1": "Enter address line 1, typically the building and street",
+          "addressLine1MaxLength": "Address line 1 must be no longer than 255 characters",
+          "addressLine2MaxLength": "Address line 2 must be no longer than 255 characters",
           "townOrCity": "Enter town or city",
+          "townOrCityMaxLength": "Address town must be no longer than 255 characters",
+          "countyMaxLength": "Address county must be no longer than 255 characters",
           "postcode": "Enter postcode",
           "postcodeFormat": "Enter a full UK postcode"
         }
       },
       "emailAddress": {
-        "hint": "A confirmation email will also be sent to this email address"
+        "hint": "A confirmation email will also be sent to this email address",
+        "validation": {
+          "empty": "Enter the email address",
+          "maxLength": "Your answer must be no longer than 255 characters",
+          "pattern": "Enter the email address in a valid format"
+        }
       }
     }
   },
@@ -397,16 +421,16 @@
         "question": "How many animals are you planning to move?",
         "validation": {
           "empty": "Enter how many animals you are planning to move",
-          "max": "Enter a number %{value} or below",
-          "min": "Enter a number %{value} or above"
+          "max": "Enter a number {{value}} or below",
+          "min": "Enter a number {{value}} or above"
         }
       },
       "howManyAnimalsMaximum": {
         "question": "What is the maximum number of animals you are planning to move?",
         "validation": {
           "empty": "Enter the maximum number of animals you are planning to move",
-          "max": "Enter a number %{value} or below",
-          "min": "Enter a number %{value} or above"
+          "max": "Enter a number {{value}} or below",
+          "min": "Enter a number {{value}} or above"
         }
       },
       "movementDate": {
@@ -902,7 +926,8 @@
       "disinfectant": {
         "question": "What disinfectant are you using?",
         "validation": {
-          "empty": "Enter the first 2 letters of the disinfectant you are using"
+          "empty": "Enter the first 2 letters of the disinfectant you are using",
+          "maxLength": "Your answer must be no longer than 5000 characters"
         },
         "heading": "Disinfectant",
         "intro": "You must use a Defra-approved disinfectant for TB.",
@@ -1082,22 +1107,34 @@
       "yourName": {
         "question": "What is your name?",
         "validation": {
-          "firstName": "Enter your first name",
-          "lastName": "Enter your last name"
+          "firstName": {
+            "empty": "Enter your first name"
+          },
+          "lastName": {
+            "empty": "Enter your last name"
+          }
         }
       },
-      "fullName": {
+      "ownerFullName": {
         "question": "What is the name of the person registered as the keeper of the animals?",
         "validation": {
-          "firstName": "Enter the first name of the person registered as the keeper of the animals",
-          "lastName": "Enter the last name of the person registered as the keeper of the animals"
+          "firstName": {
+            "empty": "Enter the first name of the person registered as the keeper of the animals"
+          },
+          "lastName": {
+            "empty": "Enter the last name of the person registered as the keeper of the animals"
+          }
         }
       },
       "fullNameFuture": {
         "question": "What is the name of the person who will be the registered keeper of the animals?",
         "validation": {
-          "firstName": "Enter the first name of the person who will be the registered keeper of the animals",
-          "lastName": "Enter the last name of the person who will be the registered keeper of the animals"
+          "firstName": {
+            "empty": "Enter the first name of the person who will be the registered keeper of the animals"
+          },
+          "lastName": {
+            "empty": "Enter the last name of the person who will be the registered keeper of the animals"
+          }
         }
       },
       "emailAddress": {
@@ -1111,16 +1148,12 @@
       "destinationEmailAddress": {
         "question": "What is your email address?",
         "validation": {
-          "pattern": "Enter the email address in a valid format",
-          "maxLength": "Your answer must be no longer than 255 characters",
           "empty": "Enter your email address"
         }
       },
-      "originEmail": {
+      "originEmailAddress": {
         "question": "What is the email address for the origin premises?",
         "validation": {
-          "pattern": "Enter the email address in a valid format",
-          "maxLength": "Your answer must be no longer than 255 characters",
           "empty": "Enter the email address for the origin premises"
         }
       },

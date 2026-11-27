@@ -17,10 +17,12 @@ export class LastGrazedAnswer extends TextAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.biosecurity.lastGrazed.validation.maxLength'
       },
       empty: {
-        message: 'Enter when the field was last grazed by the resident herd'
+        message: 'Enter when the field was last grazed by the resident herd',
+        i18nKey: 'tb.biosecurity.lastGrazed.validation.empty'
       }
     }
   }

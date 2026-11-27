@@ -25,7 +25,10 @@ export class GrazingAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select if the incoming animals will be grazed'
+      empty: {
+        message: 'Select if the incoming animals will be grazed',
+        i18nKey: 'tb.biosecurity.grazing.validation.empty'
+      }
     },
     layout: 'inline'
   }

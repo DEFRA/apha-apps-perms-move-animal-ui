@@ -22,10 +22,18 @@ export class EmailAddressAnswer extends BaseEmailAddressAnswer {
           BaseEmailAddressAnswer.config.validation.pattern?.regex
         ),
         message:
-          'Enter an email address in the correct format, like name@example.com'
+          'Enter an email address in the correct format, like name@example.com',
+        i18nKey: 'tb.licence.emailAddress.validation.pattern'
       },
       empty: {
-        message: 'Enter the email address you would like the licence sent to'
+        message: 'Enter the email address you would like the licence sent to',
+        i18nKey: 'tb.licence.emailAddress.validation.empty'
+      },
+      maxLength: {
+        value: 255,
+        message:
+          'Enter an email address in the correct format, like name@example.com',
+        i18nKey: 'tb.licence.emailAddress.validation.maxLength'
       }
     }
   }

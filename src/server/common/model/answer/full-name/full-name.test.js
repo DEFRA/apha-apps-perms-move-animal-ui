@@ -1,3 +1,4 @@
+import path from 'node:path'
 import { fallbackTranslate } from '../../../test-helpers/translate.js'
 import { FullNameAnswer } from './full-name.js'
 
@@ -79,7 +80,56 @@ describe('#FullName.validate', () => {
     expect(errors.lastName.text).toBe(
       `Last name must be no longer than ${maxLength} characters`
     )
+    expect(fullName.validate(fallbackTranslate).errors).toEqual(errors)
   })
+
+  it.each([
+    [
+      'en',
+      'First name must be no longer than 50 characters',
+      'Last name must be no longer than 50 characters'
+    ],
+    [
+      'cy',
+      "Rhaid i'r enw cyntaf fod yn ddim hirach na 50 nod",
+      "Rhaid i'r cyfenw fod yn ddim hirach na 50 nod"
+    ]
+  ])(
+    'should translate maximum-length errors into %s',
+    async (locale, firstNameMessage, lastNameMessage) => {
+      const { I18n } = jest.requireActual('i18n')
+      const i18n = new I18n({
+        locales: ['en', 'cy'],
+        defaultLocale: 'en',
+        directory: path.resolve('src/config/i18n'),
+        objectNotation: true,
+        updateFiles: false
+      })
+      const translate = (key, fallback, params) => {
+        if (!key) {
+          return fallback
+        }
+        const result = i18n.__({ phrase: key, locale }, params)
+        return result === key ? fallback : result
+      }
+      const fullName = new TestFullNameAnswer({
+        firstName: 'a'.repeat(maxLength + 1),
+        lastName: 'a'.repeat(maxLength + 1)
+      })
+      const expectedErrors = {
+        firstName: { text: firstNameMessage },
+        lastName: { text: lastNameMessage }
+      }
+
+      expect(fullName.validate(translate).errors).toEqual(expectedErrors)
+      const viewModel = await fullName.viewModel({
+        question: 'What is your name?',
+        validate: true,
+        translate
+      })
+      expect(viewModel.errors).toEqual(expectedErrors)
+    }
+  )
 })
 
 describe('#FullName.toState', () => {

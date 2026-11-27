@@ -1,23 +1,47 @@
 import Joi from 'joi'
 import { TextAnswer } from '../text/text.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 
+/** @import {ValidationMessage} from '../validation.js' */
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
 
 /**
  * @param {NumberConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-export const numberSchema = ({ payloadKey, validation }) => {
+export const numberSchema = ({ payloadKey, validation }, translate) => {
   let numberValidation = Joi.number().empty('').required()
 
   const messages = {
-    'any.required': validation.empty?.message ?? '',
-    'number.base': 'Enter a number',
-    'number.integer':
-      validation.wholeNumberRequired?.message ?? 'Enter a whole number',
-    'number.max': validation.max?.message ?? '',
-    'number.min': validation.min?.message ?? ''
+    'any.required': resolveValidationMessage(validation.empty ?? '', translate),
+    'number.base': resolveValidationMessage(
+      {
+        message: 'Enter a number',
+        i18nKey: 'common.answer.number.validation.base'
+      },
+      translate
+    ),
+    'number.integer': resolveValidationMessage(
+      validation.wholeNumberRequired ?? {
+        message: 'Enter a whole number',
+        i18nKey: 'common.answer.number.validation.wholeNumber'
+      },
+      translate
+    ),
+    'number.max': validation.max
+      ? resolveValidationMessage(validation.max, translate, {
+          value: validation.max.value
+        })
+      : '',
+    'number.min': validation.min
+      ? resolveValidationMessage(validation.min, translate, {
+          value: validation.min.value
+        })
+      : ''
   }
 
   if (validation.max) {
@@ -44,10 +68,10 @@ export const numberSchema = ({ payloadKey, validation }) => {
  *  autocomplete?: string,
  *  hint?: string,
  *  validation: {
- *    max?: { value: number, message: string },
- *    min?: { value: number, message: string },
- *    empty?: { message: string },
- *    wholeNumberRequired?: { message: string }
+ *    max?: ValidationMessage & { value: number },
+ *    min?: ValidationMessage & { value: number },
+ *    empty?: ValidationMessage,
+ *    wholeNumberRequired?: ValidationMessage
  *  }
  * }} NumberConfig
  */
@@ -88,9 +112,12 @@ export class NumberAnswer extends TextAnswer {
     return Number.isNaN(n) ? undefined : n
   }
 
-  validate() {
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     return validateAnswerAgainstSchema(
-      numberSchema(this.config),
+      numberSchema(this.config, translate),
       this._data ?? {}
     )
   }

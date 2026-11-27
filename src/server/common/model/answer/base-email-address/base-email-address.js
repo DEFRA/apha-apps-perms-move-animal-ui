@@ -42,13 +42,18 @@ export class BaseEmailAddressAnswer extends TextAnswer {
     validation: {
       pattern: {
         regex: emailAddressRegex,
-        message: 'Enter the email address in a valid format'
+        message: 'Enter the email address in a valid format',
+        i18nKey: 'common.answer.emailAddress.validation.pattern'
       },
       maxLength: {
         value: maxLength,
-        message: 'Your answer must be no longer than 255 characters'
+        message: 'Your answer must be no longer than 255 characters',
+        i18nKey: 'common.answer.emailAddress.validation.maxLength'
       },
-      empty: { message: 'Enter the email address' }
+      empty: {
+        message: 'Enter the email address',
+        i18nKey: 'common.answer.emailAddress.validation.empty'
+      }
     }
   }
 }

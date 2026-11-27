@@ -22,8 +22,8 @@ describe('RestockAnimalsAnswer', () => {
     expect(RestockAnimalsAnswer.config.payloadKey).toBe('restockAnimals')
   })
 
-  it('should have no validation', () => {
-    expect(RestockAnimalsAnswer.config.validation).toEqual({
+  it('should have the right validation', () => {
+    expect(RestockAnimalsAnswer.config.validation).toMatchObject({
       empty: {
         message: 'Select which types of animals you are restocking'
       }

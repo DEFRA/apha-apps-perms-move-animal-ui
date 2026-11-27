@@ -21,11 +21,13 @@ export class EarTagsCalvesAnswer extends TextAreaAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.identification.earTagsCalves.validation.maxLength'
       },
       empty: {
         message:
-          'Enter the ear tag numbers of the calves under 42 days old you are planning to move'
+          'Enter the ear tag numbers of the calves under 42 days old you are planning to move',
+        i18nKey: 'tb.identification.earTagsCalves.validation.empty'
       }
     }
   }

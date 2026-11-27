@@ -15,7 +15,11 @@ const onOffFarmConfig = {
     }
   },
   validation: {
-    empty: 'Select if you are moving animals on or off your farm or premises'
+    empty: {
+      message:
+        'Select if you are moving animals on or off your farm or premises',
+      i18nKey: 'tb.origin.onOffFarm.validation.empty'
+    }
   }
 }
 

@@ -9,6 +9,9 @@ import { AnswerModel } from '../../model/answer/answer-model.js'
 import { ExitPage } from '../../model/page/exit-page-model.js'
 import { config } from '~/src/config/config.js'
 
+/** @import { Server } from '@hapi/hapi' */
+/** @import { AnswerViewModelOptions } from '~/src/server/common/model/answer/answer-model.js' */
+
 jest.mock('../../helpers/i18n/index.js', () => {
   const actual = jest.requireActual('../../helpers/i18n/index.js')
 
@@ -21,8 +24,6 @@ jest.mock('../../helpers/i18n/index.js', () => {
     )
   }
 })
-
-/** @import { Server } from '@hapi/hapi' */
 
 const question = 'question-text'
 const questionKey = 'question-key'
@@ -82,12 +83,17 @@ class TestAnswer extends AnswerModel {
     }
   }
 
-  validate() {
+  /** @param {AnswerViewModelOptions['translate']} [translate] */
+  validate(translate) {
     if (!this.value || this.value?.includes('ERROR')) {
       return {
         isValid: false,
         errors: {
-          [questionKey]: { text: 'There is a problem' }
+          [questionKey]: {
+            text:
+              translate?.(undefined, 'There is a problem') ??
+              'There is a problem'
+          }
         }
       }
     }
@@ -261,6 +267,43 @@ describe('QuestionPageController', () => {
   })
 
   describe('POST', () => {
+    it('should pass a request-bound translator to answer validation', async () => {
+      const validateSpy = jest
+        .spyOn(TestAnswer.prototype, 'validate')
+        .mockImplementationOnce((translate) => {
+          expect(translate).toEqual(expect.any(Function))
+          if (!translate) {
+            throw new Error('Expected a request-bound translator')
+          }
+
+          expect(translate(undefined, 'Fallback')).toBe('Fallback')
+          return {
+            isValid: false,
+            errors: {
+              [questionKey]: {
+                text: translate(questionI18nKey, question)
+              }
+            }
+          }
+        })
+
+      const response = await server.inject(
+        withCsrfProtection(
+          {
+            method: 'POST',
+            url: questionUrl,
+            payload: { [questionKey]: questionValue }
+          },
+          { Cookie: session.sessionID }
+        )
+      )
+
+      expect(response.statusCode).toBe(statusCodes.redirect)
+      expect(validateSpy).toHaveBeenCalledWith(expect.any(Function))
+      const error = await session.getState(controller.errorKey)
+      expect(error.errors[questionKey].text).toBe(translatedQuestion)
+    })
+
     it('should redirect to next page, storing question state & preserving the rest of the section state', async () => {
       await session.setSectionState(sectionKey, {
         someOtherQuestion: 'some-other-answer'
@@ -426,6 +469,63 @@ describe('QuestionPageController', () => {
       beforeEach(() => {
         validationSpy.mockReturnValue({ isValid: false, errors: {} })
       })
+
+      it.each([
+        { language: 'en', title: 'Error', message: 'There is a problem' },
+        { language: 'cy', title: 'Gwall', message: 'Mae problem wedi codi' }
+      ])(
+        'should render the $language error title, summary and field message',
+        async ({ language, title, message }) => {
+          jest
+            .spyOn(TestAnswer.prototype, 'validate')
+            .mockImplementationOnce((translate) => {
+              if (!translate) {
+                throw new Error('Expected a request-bound translator')
+              }
+              return {
+                isValid: false,
+                errors: {
+                  [questionKey]: {
+                    text: translate(
+                      'common.errors.summaryTitle',
+                      'There is a problem'
+                    )
+                  }
+                }
+              }
+            })
+
+          const url = `${questionUrl}?lang=${language}`
+          const headers = { Cookie: session.sessionID }
+          const post = await server.inject(
+            withCsrfProtection(
+              { method: 'POST', url, payload: { [questionKey]: 'ERROR' } },
+              headers
+            )
+          )
+          expect(post.statusCode).toBe(statusCodes.redirect)
+
+          const response = await server.inject(
+            withCsrfProtection({ method: 'GET', url }, headers)
+          )
+          const document = parseDocument(response.payload)
+
+          expect(response.statusCode).toBe(statusCodes.ok)
+          expect(document.title).toBe(`${title}: ${translatedQuestion}`)
+          expect(
+            document.querySelectorAll('.govuk-error-summary')
+          ).toHaveLength(1)
+          expect(
+            document.querySelector('.govuk-error-summary__title')?.textContent
+          ).toContain(message)
+          expect(
+            document.querySelector('.govuk-error-summary__list')?.textContent
+          ).toContain(message)
+          expect(
+            document.querySelector('.govuk-error-message')?.textContent
+          ).toContain(message)
+        }
+      )
 
       it('should display an error to the user if answer is invalid, preserving returnUrl', async () => {
         const errorValue = 'ERROR'

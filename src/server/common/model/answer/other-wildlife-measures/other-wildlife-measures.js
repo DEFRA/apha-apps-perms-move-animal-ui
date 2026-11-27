@@ -17,11 +17,13 @@ export class OtherWildlifeMeasuresAnswer extends TextAreaAnswer {
     validation: {
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.biosecurity.otherWildlifeMeasures.validation.maxLength'
       },
       empty: {
         message:
-          'Enter information on what other measures are you taking to reduce the risk of spreading TB'
+          'Enter information on what other measures are you taking to reduce the risk of spreading TB',
+        i18nKey: 'tb.biosecurity.otherWildlifeMeasures.validation.empty'
       }
     }
   }

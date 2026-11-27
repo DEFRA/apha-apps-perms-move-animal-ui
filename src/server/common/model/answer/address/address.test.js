@@ -45,6 +45,86 @@ describe('Address.new', () => {
 })
 
 describe('Address.validate', () => {
+  const welshMessages = jest.requireActual('../../../../../config/i18n/cy.json')
+    .common.answer.address.validation
+
+  it.each([
+    {
+      field: 'addressLine1',
+      value: '',
+      key: 'addressLine1',
+      fallback: 'Enter address line 1, typically the building and street',
+      welsh: "Nodwch linell gyfeiriad 1, fel arfer yr adeilad a'r stryd"
+    },
+    {
+      field: 'addressTown',
+      value: '',
+      key: 'townOrCity',
+      fallback: 'Enter town or city',
+      welsh: 'Nodwch dref neu ddinas'
+    },
+    {
+      field: 'addressPostcode',
+      value: '',
+      key: 'postcode',
+      fallback: 'Enter postcode',
+      welsh: 'Nodwch god post'
+    },
+    {
+      field: 'addressPostcode',
+      value: 'invalid postcode',
+      key: 'postcodeFormat',
+      fallback: 'Enter a full UK postcode',
+      welsh: 'Nodwch god post llawn y DU'
+    },
+    {
+      field: 'addressLine1',
+      value: 'a'.repeat(256),
+      key: 'addressLine1MaxLength',
+      fallback: 'Address line 1 must be no longer than 255 characters',
+      welsh: 'Rhaid i linell gyfeiriad 1 fod yn ddim hirach na 255 nod'
+    },
+    {
+      field: 'addressLine2',
+      value: 'a'.repeat(256),
+      key: 'addressLine2MaxLength',
+      fallback: 'Address line 2 must be no longer than 255 characters',
+      welsh: 'Rhaid i linell gyfeiriad 2 fod yn ddim hirach na 255 nod'
+    },
+    {
+      field: 'addressTown',
+      value: 'a'.repeat(256),
+      key: 'townOrCityMaxLength',
+      fallback: 'Address town must be no longer than 255 characters',
+      welsh: "Rhaid i'r dref yn y cyfeiriad fod yn ddim hirach na 255 nod"
+    },
+    {
+      field: 'addressCounty',
+      value: 'a'.repeat(256),
+      key: 'countyMaxLength',
+      fallback: 'Address county must be no longer than 255 characters',
+      welsh: "Rhaid i'r sir yn y cyfeiriad fod yn ddim hirach na 255 nod"
+    }
+  ])(
+    'should translate $key validation and retain its fallback',
+    async ({ field, value, key, fallback, welsh }) => {
+      const address = new AddressAnswer({ ...validAddress, [field]: value })
+      const translateWelsh = (translationKey, defaultMessage) =>
+        translationKey === `common.answer.address.validation.${key}`
+          ? (welshMessages[key] ?? defaultMessage)
+          : defaultMessage
+
+      expect(address.validate(translateWelsh).errors[field].text).toBe(welsh)
+      expect(address.validate().errors[field].text).toBe(fallback)
+      const viewModel = await address.viewModel({
+        question: 'Address?',
+        validate: true,
+        translate: translateWelsh
+      })
+      expect(viewModel.errors[field].text).toBe(welsh)
+    }
+  )
+
   it('should return true for valid address', () => {
     const address = new AddressAnswer(validAddress)
     const { isValid } = address.validate()

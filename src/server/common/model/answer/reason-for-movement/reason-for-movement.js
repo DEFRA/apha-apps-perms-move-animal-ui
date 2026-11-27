@@ -37,7 +37,10 @@ export class ReasonForMovementAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select the reason for movement'
+      empty: {
+        message: 'Select the reason for movement',
+        i18nKey: 'tb.destination.reasonForMovement.validation.empty'
+      }
     },
     layout: 'stacked'
   }

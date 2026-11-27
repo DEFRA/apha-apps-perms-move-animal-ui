@@ -23,9 +23,10 @@ describe('Answer', () => {
   })
 
   it('should define the right empty input message', () => {
-    expect(Answer.config.validation.empty).toBe(
-      'Select if you are responsible for the TB restricted farm where the animals are going to'
-    )
+    expect(Answer.config.validation.empty).toMatchObject({
+      message:
+        'Select if you are responsible for the TB restricted farm where the animals are going to'
+    })
   })
 })
 

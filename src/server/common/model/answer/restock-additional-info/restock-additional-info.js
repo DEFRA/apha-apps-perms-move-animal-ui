@@ -16,11 +16,13 @@ export class RestockAdditionalInfoAnswer extends TextAreaAnswer {
     rows: 5,
     validation: {
       empty: {
-        message: 'Enter the reason for restocking'
+        message: 'Enter the reason for restocking',
+        i18nKey: 'tb.destination.restockAdditionalInfo.validation.empty'
       },
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.destination.restockAdditionalInfo.validation.maxLength'
       }
     }
   }

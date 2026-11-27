@@ -42,7 +42,8 @@ export class RestockReasonsAnswer extends CheckboxAnswer {
     },
     validation: {
       empty: {
-        message: 'Select the reasons you have for restocking'
+        message: 'Select the reasons you have for restocking',
+        i18nKey: 'tb.destination.restockReason.validation.empty'
       }
     }
   }

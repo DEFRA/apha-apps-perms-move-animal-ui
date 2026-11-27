@@ -1,6 +1,9 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 
 /** @import { AnswerViewModelOptions } from '../answer-model.js' */
 
@@ -12,52 +15,105 @@ const maxLength = 255
 const maxLengthMessage = (key) =>
   `${key} must be no longer than ${maxLength} characters`
 
-const addressLine1Required =
-  'Enter address line 1, typically the building and street'
-const addressTownRequired = 'Enter town or city'
-const postcodeRequired = 'Enter postcode'
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.ObjectSchema}
+ */
+const createAddressPayloadSchema = (translate) => {
+  const addressLine1Required = resolveValidationMessage(
+    {
+      message: 'Enter address line 1, typically the building and street',
+      i18nKey: 'common.answer.address.validation.addressLine1'
+    },
+    translate
+  )
+  const addressTownRequired = resolveValidationMessage(
+    {
+      message: 'Enter town or city',
+      i18nKey: 'common.answer.address.validation.townOrCity'
+    },
+    translate
+  )
+  const postcodeRequired = resolveValidationMessage(
+    {
+      message: 'Enter postcode',
+      i18nKey: 'common.answer.address.validation.postcode'
+    },
+    translate
+  )
 
-const addressPayloadSchema = Joi.object({
-  addressLine1: Joi.string()
-    .required()
-    .trim()
-    .max(maxLength)
-    .messages({
-      'any.required': addressLine1Required,
-      'string.empty': addressLine1Required,
-      'string.max': maxLengthMessage('Address line 1')
-    }),
-  addressLine2: Joi.string()
-    .allow('')
-    .max(maxLength)
-    .messages({
-      'string.max': maxLengthMessage('Address line 2')
-    }),
-  addressTown: Joi.string()
-    .required()
-    .trim()
-    .max(maxLength)
-    .messages({
-      'any.required': addressTownRequired,
-      'string.empty': addressTownRequired,
-      'string.max': maxLengthMessage('Address town')
-    }),
-  addressCounty: Joi.string()
-    .allow('')
-    .max(maxLength)
-    .messages({
-      'string.max': maxLengthMessage('Address county')
-    }),
-  addressPostcode: Joi.string()
-    .required()
-    .replace(' ', '')
-    .pattern(postcodeRegex)
-    .messages({
-      'any.required': postcodeRequired,
-      'string.empty': postcodeRequired,
-      'string.pattern.base': 'Enter a full UK postcode'
-    })
-}).required()
+  return Joi.object({
+    addressLine1: Joi.string()
+      .required()
+      .trim()
+      .max(maxLength)
+      .messages({
+        'any.required': addressLine1Required,
+        'string.empty': addressLine1Required,
+        'string.max': resolveValidationMessage(
+          {
+            message: maxLengthMessage('Address line 1'),
+            i18nKey: 'common.answer.address.validation.addressLine1MaxLength'
+          },
+          translate
+        )
+      }),
+    addressLine2: Joi.string()
+      .allow('')
+      .max(maxLength)
+      .messages({
+        'string.max': resolveValidationMessage(
+          {
+            message: maxLengthMessage('Address line 2'),
+            i18nKey: 'common.answer.address.validation.addressLine2MaxLength'
+          },
+          translate
+        )
+      }),
+    addressTown: Joi.string()
+      .required()
+      .trim()
+      .max(maxLength)
+      .messages({
+        'any.required': addressTownRequired,
+        'string.empty': addressTownRequired,
+        'string.max': resolveValidationMessage(
+          {
+            message: maxLengthMessage('Address town'),
+            i18nKey: 'common.answer.address.validation.townOrCityMaxLength'
+          },
+          translate
+        )
+      }),
+    addressCounty: Joi.string()
+      .allow('')
+      .max(maxLength)
+      .messages({
+        'string.max': resolveValidationMessage(
+          {
+            message: maxLengthMessage('Address county'),
+            i18nKey: 'common.answer.address.validation.countyMaxLength'
+          },
+          translate
+        )
+      }),
+    addressPostcode: Joi.string()
+      .required()
+      .replace(' ', '')
+      .pattern(postcodeRegex)
+      .messages({
+        'any.required': postcodeRequired,
+        'string.empty': postcodeRequired,
+        'string.pattern.base': resolveValidationMessage(
+          {
+            message: 'Enter a full UK postcode',
+            i18nKey: 'common.answer.address.validation.postcodeFormat'
+          },
+          translate
+        )
+      })
+  }).required()
+}
 
 /**
  * export @typedef {{
@@ -110,18 +166,24 @@ export class AddressAnswer extends AnswerModel {
     return this.value
   }
 
-  validate() {
-    return validateAnswerAgainstSchema(addressPayloadSchema, this._data ?? {})
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
+    return validateAnswerAgainstSchema(
+      createAddressPayloadSchema(translate),
+      this._data ?? {}
+    )
   }
 
   /**
    * @param {AnswerViewModelOptions} options
    */
-  async viewModel({ validate, question }) {
+  async viewModel({ validate, question, translate }) {
     const viewModel = { value: this.value, question }
 
     if (validate) {
-      viewModel.errors = this.validate().errors
+      viewModel.errors = this.validate(translate).errors
     }
 
     return Promise.resolve(viewModel)

@@ -68,9 +68,10 @@ export class AnswerModel {
   }
 
   /**
+   * @param {AnswerViewModelOptions['translate']} [_translate]
    * @returns {AnswerValidationResult}
    */
-  validate() {
+  validate(_translate) {
     throw new NotImplementedError()
   }
 

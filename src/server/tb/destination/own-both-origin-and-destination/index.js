@@ -29,8 +29,11 @@ export class Answer extends RadioButtonAnswer {
     },
     layout: 'inline',
     validation: {
-      empty:
-        'Select if you are responsible for the TB restricted farm where the animals are going to'
+      empty: {
+        message:
+          'Select if you are responsible for the TB restricted farm where the animals are going to',
+        i18nKey: 'tb.destination.ownBothOriginAndDestination.validation.empty'
+      }
     }
   }
 }

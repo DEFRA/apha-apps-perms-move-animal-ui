@@ -43,6 +43,26 @@ describe('Checkbox.new', () => {
 })
 
 describe('#Checkbox.validate', () => {
+  it('should translate a configured validation message and retain its fallback', () => {
+    class TranslatedCheckboxAnswer extends CheckboxAnswer {
+      static config = {
+        ...config,
+        validation: {
+          empty: { message: checkboxEmptyError, i18nKey: 'test.checkbox.empty' }
+        }
+      }
+    }
+    const answer = new TranslatedCheckboxAnswer({ test_checkbox: [] })
+    const translate = jest.fn((key, fallback) =>
+      key === 'test.checkbox.empty' ? 'Translated error' : fallback
+    )
+
+    expect(answer.validate(translate).errors.test_checkbox.text).toBe(
+      'Translated error'
+    )
+    expect(answer.validate().errors.test_checkbox.text).toBe(checkboxEmptyError)
+  })
+
   it('should return true for valid value (passed in as a single answer)', () => {
     const { isValid, errors } = new TestCheckboxAnswer({
       test_checkbox: 'badgerProofFencing'

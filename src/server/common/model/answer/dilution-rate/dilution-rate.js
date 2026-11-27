@@ -27,7 +27,10 @@ export class DilutionRateAnswer extends CheckboxAnswer {
     },
     validation: {
       dynamicOptions: true,
-      empty: { message: 'You need to tick the confirmation box' }
+      empty: {
+        message: 'You need to tick the confirmation box',
+        i18nKey: 'tb.biosecurity.dilutionRate.empty'
+      }
     }
   }
 

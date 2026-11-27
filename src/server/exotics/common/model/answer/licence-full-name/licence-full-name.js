@@ -6,6 +6,7 @@ export class LicenceFullNameAnswer extends FullNameAnswer {
   /** @type { FullNameConfig } */
   static config = {
     explanation: 'This is the person we will issue the licence to.',
+    explanationI18nKey: 'licenceFullName.explanation',
     validation: {
       firstName: {
         empty: {

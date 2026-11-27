@@ -32,9 +32,20 @@ export class CphNumberAnswer extends TextAnswer {
     hint: 'For example, 12/345/6789',
     hintI18nKey: 'common.answer.cphNumber.hint',
     validation: {
-      maxLength: { value: 11, message: invalidCphNumberError },
-      pattern: { regex: cphNumberRegex, message: invalidCphNumberError },
-      empty: { message: emptyCphNumberError }
+      maxLength: {
+        value: 11,
+        message: invalidCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.maxLength'
+      },
+      pattern: {
+        regex: cphNumberRegex,
+        message: invalidCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.pattern'
+      },
+      empty: {
+        message: emptyCphNumberError,
+        i18nKey: 'common.answer.cphNumber.validation.empty'
+      }
     }
   }
 

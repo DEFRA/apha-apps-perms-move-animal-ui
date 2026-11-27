@@ -29,8 +29,11 @@ export class QuantityHalfHerdAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty:
-        'Select if the number of cattle will be larger than half of the destination herd size'
+      empty: {
+        message:
+          'Select if the number of cattle will be larger than half of the destination herd size',
+        i18nKey: 'tb.destination.quantityHalfHerd.validation.empty'
+      }
     },
     layout: 'stacked'
   }

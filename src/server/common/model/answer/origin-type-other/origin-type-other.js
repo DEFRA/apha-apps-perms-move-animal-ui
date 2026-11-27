@@ -16,11 +16,13 @@ export class OriginTypeOtherAnswer extends TextAnswer {
     characterWidth: 20,
     validation: {
       empty: {
-        message: 'Enter the premises type'
+        message: 'Enter the premises type',
+        i18nKey: 'tb.origin.originTypeOther.validation.empty'
       },
       maxLength: {
         value: 5000,
-        message: 'Your answer must be no longer than 5000 characters'
+        message: 'Your answer must be no longer than 5000 characters',
+        i18nKey: 'tb.origin.originTypeOther.validation.maxLength'
       }
     }
   }

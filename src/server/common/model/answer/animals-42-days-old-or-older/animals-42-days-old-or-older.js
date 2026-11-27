@@ -27,7 +27,11 @@ export class Animals42DaysOldOrOlderAnswer extends RadioButtonAnswer {
       }
     },
     validation: {
-      empty: 'Select if you are also moving any animals 42 days old or older'
+      empty: {
+        message:
+          'Select if you are also moving any animals 42 days old or older',
+        i18nKey: 'tb.identification.animals42DaysOldOrOlder.validation.empty'
+      }
     },
     layout: 'inline'
   }

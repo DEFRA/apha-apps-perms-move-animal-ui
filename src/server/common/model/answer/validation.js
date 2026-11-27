@@ -1,8 +1,10 @@
 /**
  * @import { Schema } from 'joi'
  */
+/** @import {AnswerViewModelOptions} from './answer-model.js' */
 
 /**
+ * export @typedef {{message: string, i18nKey?: string}} ValidationMessage
  * @typedef {{text: string}} ValidationError
  * @typedef {{[key:string]: ValidationError}} AnswerErrors
  * export @typedef {{
@@ -10,6 +12,30 @@
  *   errors: AnswerErrors
  * }} AnswerValidationResult
  */
+
+/**
+ * @param {ValidationMessage | string} validationMessage
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @param {Record<string, unknown>} [params]
+ * @returns {string}
+ */
+export const resolveValidationMessage = (
+  validationMessage,
+  translate,
+  params
+) => {
+  if (typeof validationMessage === 'string') {
+    return validationMessage
+  }
+
+  if (!validationMessage.i18nKey || !translate) {
+    return validationMessage.message
+  }
+
+  return params
+    ? translate(validationMessage.i18nKey, validationMessage.message, params)
+    : translate(validationMessage.i18nKey, validationMessage.message)
+}
 
 /**
  * @param {Schema} schema

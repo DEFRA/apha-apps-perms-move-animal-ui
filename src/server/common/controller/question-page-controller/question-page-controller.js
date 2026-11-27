@@ -11,6 +11,13 @@ import { translate } from '../../helpers/i18n/index.js'
 /** @import { QuestionPage } from '~/src/server/common/model/page/question-page-model.js' */
 /** @import { RawApplicationState, StateManager } from '~/src/server/common/model/state/state-manager.js' */
 
+/**
+ * @param {Request} req
+ * @returns {AnswerViewModelOptions['translate']}
+ */
+const createRequestTranslator = (req) => (key, fallback, params) =>
+  translate(req, key, fallback, params)
+
 export class QuestionPageController extends GenericPageController {
   /** @type {typeof StateManager} */
   StateManager
@@ -82,13 +89,12 @@ export class QuestionPageController extends GenericPageController {
       this.page.questionI18nKey ? question : this.page.title
     )
 
-    /** @type {NonNullable<AnswerViewModelOptions['translate']>} */
-    const translateForRequest = (key, fallback, params) =>
-      translate(req, key, fallback, params)
+    const translateForRequest = createRequestTranslator(req)
 
     const pageError = req.yar.get(this.errorKey)
 
     if (pageError) {
+      const errorTitle = translate(req, 'common.errors.title', 'Error')
       const errorAnswer = new this.page.Answer(
         pageError.payload,
         applicationState
@@ -104,7 +110,7 @@ export class QuestionPageController extends GenericPageController {
         nextPage: req.query.returnUrl,
         heading,
         answer: errorAnswer,
-        pageTitle: `Error: ${pageTitle}`,
+        pageTitle: `${errorTitle}: ${pageTitle}`,
         errors: pageError.errors,
         errorMessages: pageError.errorMessages,
         answerViewModel: await errorAnswer.viewModel(errorViewModelOptions),
@@ -143,7 +149,7 @@ export class QuestionPageController extends GenericPageController {
    * @param {AnswerModel} answer
    */
   async validateAnswer(req, answer) {
-    const result = answer.validate()
+    const result = answer.validate(createRequestTranslator(req))
 
     if (!result.isValid) {
       return result

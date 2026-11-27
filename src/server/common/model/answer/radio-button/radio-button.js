@@ -1,19 +1,25 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
+/** @import {ValidationMessage} from '../validation.js' */
 /** @import {RawApplicationState} from '~/src/server/common/model/state/state-manager.js' */
 
 /* eslint-disable jsdoc/require-returns-check */
 
 /**
  * @param {RadioButtonConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-const createRadioSchema = (config) => {
-  const { empty: emptyOptionText } = config.validation
+const createRadioSchema = (config, translate) => {
+  const { empty } = config.validation
+  const emptyOptionText = resolveValidationMessage(empty, translate)
   return Joi.object({
     [config.payloadKey]: Joi.string()
       .required()
@@ -49,7 +55,7 @@ const handleConfig = (context, config) => {
  *  hintI18nKey?: string,
  *  options: Record<string, RadioOption>,
  *  validation: {
- *    empty: string
+ *    empty: string | ValidationMessage
  *  }
  * layout?: RadioButtonLayout,
  * isQuestionHeading?: false
@@ -114,9 +120,12 @@ export class RadioButtonAnswer extends AnswerModel {
     )
   }
 
-  validate() {
+  /**
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     return validateAnswerAgainstSchema(
-      createRadioSchema(this.config),
+      createRadioSchema(this.config, translate),
       this._data ?? {}
     )
   }
@@ -180,7 +189,7 @@ export class RadioButtonAnswer extends AnswerModel {
     }
 
     if (validate) {
-      model.errorMessage = this.validate().errors[payloadKey]
+      model.errorMessage = this.validate(translate).errors[payloadKey]
     }
     return Promise.resolve(model)
   }

@@ -44,6 +44,51 @@ describe('TextAnswer.new', () => {
 })
 
 describe('TextAnswer.validate', () => {
+  describe('validation translations', () => {
+    class TranslatedTextAnswer extends TextAnswer {
+      static config = {
+        payloadKey: 'textPayload',
+        validation: {
+          empty: { message: 'Enter text', i18nKey: 'test.empty' },
+          maxLength: { value: 4, message: 'Too long', i18nKey: 'test.max' },
+          pattern: {
+            regex: /^\d+$/,
+            message: 'Enter digits',
+            i18nKey: 'test.pattern'
+          }
+        }
+      }
+    }
+
+    const translations = {
+      'test.empty': 'Translated empty',
+      'test.max': 'Translated maximum',
+      'test.pattern': 'Translated pattern'
+    }
+    const translate = (key, fallback) => translations[key] ?? fallback
+
+    it.each([
+      { value: '', message: 'Translated empty', fallback: 'Enter text' },
+      { value: undefined, message: 'Translated empty', fallback: 'Enter text' },
+      { value: '12345', message: 'Translated maximum', fallback: 'Too long' },
+      { value: 'abc', message: 'Translated pattern', fallback: 'Enter digits' }
+    ])(
+      'should translate the error for $value',
+      async ({ value, message, fallback }) => {
+        const answer = new TranslatedTextAnswer({ textPayload: value })
+
+        expect(answer.validate(translate).errors.textPayload.text).toBe(message)
+        expect(answer.validate().errors.textPayload.text).toBe(fallback)
+        const viewModel = await answer.viewModel({
+          question,
+          validate: true,
+          translate
+        })
+        expect(viewModel.errorMessage.text).toBe(message)
+      }
+    )
+  })
+
   it('should error if max length is exceeded', () => {
     const textAnswer = new TestTextAnswer({
       textPayload: longAnswer

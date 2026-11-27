@@ -47,7 +47,8 @@ export class Answer extends CheckboxAnswer {
     },
     validation: {
       empty: {
-        message: 'Enter how you will manage manure and slurry'
+        message: 'Enter how you will manage manure and slurry',
+        i18nKey: 'tb.biosecurity.manureAndSlurryDetails.validation.empty'
       }
     }
   }

@@ -1,34 +1,45 @@
 import Joi from 'joi'
 import { AnswerModel } from '../answer-model.js'
-import { validateAnswerAgainstSchema } from '../validation.js'
+import {
+  resolveValidationMessage,
+  validateAnswerAgainstSchema
+} from '../validation.js'
 import { NotImplementedError } from '../../../helpers/not-implemented-error.js'
 
 /** @import {AnswerViewModelOptions} from '../answer-model.js' */
+/** @import {ValidationMessage} from '../validation.js' */
 
 /**
  * @param {TextAreaConfig} config
+ * @param {AnswerViewModelOptions['translate']} [translate]
  * @returns {Joi.Schema}
  */
-const textAreaSchema = ({ payloadKey, validation }) => {
+const textAreaSchema = ({ payloadKey, validation }, translate) => {
   let stringValidation = Joi.string()
     .required()
     .trim()
     .max(validation.maxLength.value)
 
   const messages = {
-    'string.max': validation.maxLength.message
+    'string.max': resolveValidationMessage(validation.maxLength, translate),
+    'any.required': '',
+    'string.empty': ''
   }
 
   if (validation.empty) {
-    messages['any.required'] = validation.empty.message
-    messages['string.empty'] = validation.empty.message
+    const emptyMessage = resolveValidationMessage(validation.empty, translate)
+    messages['any.required'] = emptyMessage
+    messages['string.empty'] = emptyMessage
   } else {
     stringValidation = stringValidation.allow('')
   }
 
   if (validation.pattern) {
     stringValidation = stringValidation.pattern(validation.pattern.regex)
-    messages['string.pattern.base'] = validation.pattern.message
+    messages['string.pattern.base'] = resolveValidationMessage(
+      validation.pattern,
+      translate
+    )
   }
 
   return Joi.object({
@@ -46,9 +57,9 @@ const textAreaSchema = ({ payloadKey, validation }) => {
  *  hintI18nKey?: string,
  *  isPageHeading?: boolean,
  *  validation: {
- *    maxLength: { value: number, message: string },
- *    empty?: { message: string },
- *    pattern?: { regex: RegExp, message: string }
+ *    maxLength: ValidationMessage & { value: number },
+ *    empty?:ValidationMessage,
+ *    pattern?: ValidationMessage & { regex: RegExp }
  *  }
  * }} TextAreaConfig
  */
@@ -96,9 +107,13 @@ export class TextAreaAnswer extends AnswerModel {
     return this.value?.trim() ?? ''
   }
 
-  validate() {
+  /**
+   *
+   * @param {AnswerViewModelOptions['translate']} [translate]
+   */
+  validate(translate) {
     return validateAnswerAgainstSchema(
-      textAreaSchema(this.config),
+      textAreaSchema(this.config, translate),
       this._data ?? {}
     )
   }
@@ -141,7 +156,7 @@ export class TextAreaAnswer extends AnswerModel {
     }
 
     if (validate) {
-      viewModel.errorMessage = this.validate().errors[payloadKey]
+      viewModel.errorMessage = this.validate(translate).errors[payloadKey]
     }
 
     return Promise.resolve(viewModel)
