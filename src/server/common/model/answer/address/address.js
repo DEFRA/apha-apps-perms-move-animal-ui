@@ -17,24 +17,106 @@ const maxLengthMessage = (key) =>
 
 /**
  * @param {AnswerViewModelOptions['translate']} [translate]
- * @returns {Joi.ObjectSchema}
+ * @returns {Joi.StringSchema}
  */
-const createAddressPayloadSchema = (translate) => {
-  const addressLine1Required = resolveValidationMessage(
+const createAddressLine1Schema = (translate) => {
+  const required = resolveValidationMessage(
     {
       message: 'Enter address line 1, typically the building and street',
       i18nKey: 'common.answer.address.validation.addressLine1'
     },
     translate
   )
-  const addressTownRequired = resolveValidationMessage(
+
+  return Joi.string()
+    .required()
+    .trim()
+    .max(maxLength)
+    .messages({
+      'any.required': required,
+      'string.empty': required,
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address line 1'),
+          i18nKey: 'common.answer.address.validation.addressLine1MaxLength'
+        },
+        translate
+      )
+    })
+}
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressLine2Schema = (translate) =>
+  Joi.string()
+    .allow('')
+    .max(maxLength)
+    .messages({
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address line 2'),
+          i18nKey: 'common.answer.address.validation.addressLine2MaxLength'
+        },
+        translate
+      )
+    })
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressTownSchema = (translate) => {
+  const required = resolveValidationMessage(
     {
       message: 'Enter town or city',
       i18nKey: 'common.answer.address.validation.townOrCity'
     },
     translate
   )
-  const postcodeRequired = resolveValidationMessage(
+
+  return Joi.string()
+    .required()
+    .trim()
+    .max(maxLength)
+    .messages({
+      'any.required': required,
+      'string.empty': required,
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address town'),
+          i18nKey: 'common.answer.address.validation.townOrCityMaxLength'
+        },
+        translate
+      )
+    })
+}
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createAddressCountySchema = (translate) =>
+  Joi.string()
+    .allow('')
+    .max(maxLength)
+    .messages({
+      'string.max': resolveValidationMessage(
+        {
+          message: maxLengthMessage('Address county'),
+          i18nKey: 'common.answer.address.validation.countyMaxLength'
+        },
+        translate
+      )
+    })
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.StringSchema}
+ */
+const createPostcodeSchema = (translate) => {
+  const required = resolveValidationMessage(
     {
       message: 'Enter postcode',
       i18nKey: 'common.answer.address.validation.postcode'
@@ -42,78 +124,35 @@ const createAddressPayloadSchema = (translate) => {
     translate
   )
 
-  return Joi.object({
-    addressLine1: Joi.string()
-      .required()
-      .trim()
-      .max(maxLength)
-      .messages({
-        'any.required': addressLine1Required,
-        'string.empty': addressLine1Required,
-        'string.max': resolveValidationMessage(
-          {
-            message: maxLengthMessage('Address line 1'),
-            i18nKey: 'common.answer.address.validation.addressLine1MaxLength'
-          },
-          translate
-        )
-      }),
-    addressLine2: Joi.string()
-      .allow('')
-      .max(maxLength)
-      .messages({
-        'string.max': resolveValidationMessage(
-          {
-            message: maxLengthMessage('Address line 2'),
-            i18nKey: 'common.answer.address.validation.addressLine2MaxLength'
-          },
-          translate
-        )
-      }),
-    addressTown: Joi.string()
-      .required()
-      .trim()
-      .max(maxLength)
-      .messages({
-        'any.required': addressTownRequired,
-        'string.empty': addressTownRequired,
-        'string.max': resolveValidationMessage(
-          {
-            message: maxLengthMessage('Address town'),
-            i18nKey: 'common.answer.address.validation.townOrCityMaxLength'
-          },
-          translate
-        )
-      }),
-    addressCounty: Joi.string()
-      .allow('')
-      .max(maxLength)
-      .messages({
-        'string.max': resolveValidationMessage(
-          {
-            message: maxLengthMessage('Address county'),
-            i18nKey: 'common.answer.address.validation.countyMaxLength'
-          },
-          translate
-        )
-      }),
-    addressPostcode: Joi.string()
-      .required()
-      .replace(' ', '')
-      .pattern(postcodeRegex)
-      .messages({
-        'any.required': postcodeRequired,
-        'string.empty': postcodeRequired,
-        'string.pattern.base': resolveValidationMessage(
-          {
-            message: 'Enter a full UK postcode',
-            i18nKey: 'common.answer.address.validation.postcodeFormat'
-          },
-          translate
-        )
-      })
-  }).required()
+  return Joi.string()
+    .required()
+    .replace(' ', '')
+    .pattern(postcodeRegex)
+    .messages({
+      'any.required': required,
+      'string.empty': required,
+      'string.pattern.base': resolveValidationMessage(
+        {
+          message: 'Enter a full UK postcode',
+          i18nKey: 'common.answer.address.validation.postcodeFormat'
+        },
+        translate
+      )
+    })
 }
+
+/**
+ * @param {AnswerViewModelOptions['translate']} [translate]
+ * @returns {Joi.ObjectSchema}
+ */
+const createAddressPayloadSchema = (translate) =>
+  Joi.object({
+    addressLine1: createAddressLine1Schema(translate),
+    addressLine2: createAddressLine2Schema(translate),
+    addressTown: createAddressTownSchema(translate),
+    addressCounty: createAddressCountySchema(translate),
+    addressPostcode: createPostcodeSchema(translate)
+  }).required()
 
 /**
  * export @typedef {{
