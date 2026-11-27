@@ -40,16 +40,10 @@ export class DilutionRateAnswer extends CheckboxAnswer {
    * @returns {string}
    */
   formatDilutionRateText(dilutionRate, translate) {
-    return (
-      translate(
-        'tb.biosecurity.dilutionRate.answer.prefix',
-        'I confirm a dilution rate of 1:'
-      ) +
-      dilutionRate +
-      translate(
-        'tb.biosecurity.dilutionRate.answer.suffix',
-        ' is used on the farm or premises'
-      )
+    return translate(
+      'tb.biosecurity.dilutionRate.answer.diluted',
+      `I confirm a dilution rate of 1:${dilutionRate} is used on the farm or premises`,
+      { dilutionRate }
     )
   }
 

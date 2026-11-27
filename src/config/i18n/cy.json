@@ -978,19 +978,15 @@
         },
         "answer": {
           "undiluted": "Rwy'n cadarnhau bod y diheintydd yn cael ei ddefnyddio heb ei wanhau ar y fferm neu'r safle",
-          "prefix": "Rwy'n cadarnhau cyfradd gwanhau o 1:",
-          "suffix": " yn cael ei ddefnyddio ar y fferm neu'r safle",
+          "diluted": "Rwy'n cadarnhau cyfradd gwanhau o 1:{{{dilutionRate}}} yn cael ei ddefnyddio ar y fferm neu'r safle",
           "confirmationOption": "Rwy'n cadarnhau mai dyma'r gyfradd gwanhau a ddefnyddir ar y fferm neu'r safle"
         },
         "page": {
           "intro": "Yn ôl y gyfraith rhaid i chi ddefnyddio diheintydd a gymeradwywyd gan Defra pan fo achos o TB. Mae hyn yn cynnwys defnyddio'r gyfradd gwanhau gywir.",
-          "approvedPrefix": "Y gyfradd gwanhau gymeradwy ar gyfer",
-          "is": "yw",
+          "approvedDiluted": "Y gyfradd gwanhau gymeradwy ar gyfer {{{disinfectant}}} yw 1:{{{dilutionRate}}}.",
+          "approvedUndiluted": "Y gyfradd gwanhau gymeradwy ar gyfer {{{disinfectant}}} yw heb ei wanhau",
           "undiluted": "heb ei wanhau",
-          "explanationPrefix": "Mae hyn yn golygu am bob 1",
-          "explanationMiddle": "o",
-          "explanationUsing": "rydych yn ei ddefnyddio",
-          "explanationSuffix": "o ddŵr.",
+          "explanation": "Mae hyn yn golygu am bob 1 {{{disinfectantUnit}}} o {{{disinfectant}}}, rydych yn ei ddefnyddio {{{dilutionRate}}} {{{dilutantUnit}}} o ddŵr.",
           "units": {
             "litres": "litrau",
             "millilitres": "mililitrau",
