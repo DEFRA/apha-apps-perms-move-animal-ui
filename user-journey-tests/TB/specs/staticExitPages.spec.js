@@ -5,6 +5,7 @@ import {
   restoreSession
 } from '../helpers/authSessionManager.js'
 import signInPage from '../page-objects/signInPage.js'
+import landingPage from '../page-objects/landingPage.js'
 
 // These checks inspect existing information pages without submitting an application.
 describe('Static exit page translations', () => {
@@ -13,6 +14,7 @@ describe('Static exit page translations', () => {
   })
 
   beforeEach('Restore session and clear the language preference', async () => {
+    await landingPage.open('/')
     await restoreSession()
     await browser.deleteCookies('language')
   })

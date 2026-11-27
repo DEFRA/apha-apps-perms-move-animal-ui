@@ -1,3 +1,4 @@
+import { browser } from '@wdio/globals'
 import { waitForElement, waitForPagePath } from '../../helpers/page.js'
 import biosecurityMapAnswersPage from '../../page-objects/biosecurity-map/biosecurityMapAnswersPage.js'
 import mapUploadPage from '../../page-objects/biosecurity-map/mapUploadPage.js'
@@ -30,22 +31,30 @@ describe('Biosecurity map upload tests', () => {
     await loginAndSaveSession(signInPage)
   })
 
-  beforeEach(async () => {
+  beforeEach('Restore session and navigate to the upload page', async () => {
+    await mapUploadPage.open('/')
+    await browser.deleteCookies('language')
     await restoreSession()
+    await mapUploadPage.navigateToPageAndVerifyTitle()
   })
 
-  beforeEach('Navigate to the biosecurity map upload page', async () => {
-    await mapUploadPage.navigateToPageAndVerifyTitle()
+  afterEach('Clear the language preference', async () => {
+    await browser.deleteCookies('language')
+  })
+
+  it('should verify representative Welsh upload text and restore English', async () => {
+    await mapUploadPage.verifyWelshAndEnglishTranslations()
   })
 
   it('should show an error when no file is uploaded', async () => {
     await mapUploadPage.uploadFileErrorTest()
   })
 
-  it('should show an error for unsupported file type', async () => {
+  it('should show a Welsh error for unsupported file type', async () => {
+    await mapUploadPage.selectWelsh()
     await mapUploadPage.uploadFileErrorTest(
       testFiles.invalidType,
-      mapUploadPage.wrongFileTypeError
+      mapUploadPage.welshFileTypeError
     )
   })
 
@@ -56,8 +65,8 @@ describe('Biosecurity map upload tests', () => {
     )
   })
 
-  it('should successfully upload a JPG file', async () => {
-    await verifySuccessfulUpload(testFiles.jpg)
+  it('should upload a JPG with Welsh progress text and retain Welsh', async () => {
+    await mapUploadPage.verifyWelshUploadProgress(testFiles.jpg)
   })
 
   it('should successfully upload a PDF file', async () => {

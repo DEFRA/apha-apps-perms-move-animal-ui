@@ -200,6 +200,16 @@ class Page {
   }
 
   async selectBackLink() {
+    const { pageLoad } = await browser.getTimeouts()
+    await browser.waitUntil(
+      async () =>
+        (await browser.execute(() => globalThis.document.readyState)) ===
+        'complete',
+      {
+        timeout: pageLoad,
+        timeoutMsg: 'Page did not finish loading before selecting the Back link'
+      }
+    )
     await page.selectElement(this.getBackLink())
   }
 
